@@ -21,11 +21,11 @@ def main():
     report=dict(passed=False,build_id=meta['build_id'],owned_fixture=work.name,base_sha256=before,qemu_img_sha256=digest(qimg),checks=[])
     try:
         with ui.guest(work/'write-failure',clone,media='installed',ready='M7_DESKTOP_READY',fault={'event':'write_aio','errno':5,'once':True,'immediately':True}) as g:
-            p=ui.Pointer(g);p.drain();p.desktop(94,True);p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');original=f.app(g)['path'];c.key(g,'end');c.type_text(g,' unsaved after fault');text=bytes(d.appview(g).text)
+            p=ui.Pointer(g);p.drain();p.desktop(94,True);p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');original=f.app(g)['path'];before_pages=f.stats(g);c.key(g,'end');c.type_text(g,' unsaved after fault');text=bytes(d.appview(g).text)
             p.desktop(54001,True);d.field(g,p,54020,'WriteFailed.txt');p.desktop(54011,True)
             assert c.flag(g,'file_dialog_state11')==10 and d.picker(g).error and d.appview(g).dirty and bytes(d.appview(g).text)==text and f.app(g)['path']==original
             assert '/Users/Owner/Documents/WriteFailed.txt' not in f.entries(g)
-            c.shot(g,'write-failure-preserves-work');p.desktop(54010,True);assert d.appview(g).dirty and bytes(d.appview(g).text)==text;c.idle(g)
+            c.shot(g,'write-failure-preserves-work');p.desktop(54010,True);assert d.appview(g).dirty and bytes(d.appview(g).text)==text;f.same_pages(before_pages,f.stats(g));report['retained_pages_after_failed_save']=0;c.idle(g)
             (out/'failure.log').write_bytes(g.log().encode())
         assert digest(base)==before
         report['checks'].append('Actual injected first-write failure keeps dirty text, original document path and actionable picker error; Cancel keeps work and the source disk remains byte-identical')
