@@ -1,11 +1,11 @@
 /* Retained native file surfaces, using the shared scalable font/compositor. */
-static unsigned file_sidebar11(const desktop_window*w){return w->bounds.width>=700&&w->bounds.height>=
+static unsigned file_sidebar11(const desktop_window*w){
 #ifdef ENGINE_M12
-580
+ return ui12_files_sidebar(w->bounds.width,w->bounds.height);
 #else
-540
+ return w->bounds.width>=700&&w->bounds.height>=540;
 #endif
-;}
+}
 static int file_body_top11(const desktop_window*w){return w->bounds.y+(w->bounds.height>=360?142:98);}
 static int file_body_bottom11(const desktop_window*w){uint64_t token=desktop_token(&model,(unsigned)(w-model.windows));return w->bounds.y+w->bounds.height-82-(file_job_state11.active&&file_job_state11.owner==token?64:0);}
 static unsigned file_columns11(const desktop_window*w){unsigned slot=(unsigned)(w-model.windows);if(!file_windows11[slot].view)return 1;int width=w->bounds.width-32-(file_sidebar11(w)?170:0);

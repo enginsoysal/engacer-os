@@ -1355,7 +1355,11 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
         __asm__ volatile("cli");
         if(usb_work_pending()){usb_process_changes();
 #ifdef ENGINE_M10
-            hw10_refresh();for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==FILES||model.windows[i].app==SETTINGS))invalidate(model.windows[i].bounds);__asm__ volatile("sti":::"memory");render();
+            hw10_refresh();for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==FILES||model.windows[i].app==SETTINGS)){
+#ifdef ENGINE_M12
+ if(model.windows[i].app==FILES&&apps[i].usb_mode10==1){apps[i].usb_selected10=0;if(focused_control_window==desktop_token(&model,i)&&focused_action>=USB_DISK10&&focused_action<USB_DISK10+STORAGE_MAX)control_active=0;}
+#endif
+ invalidate(model.windows[i].bounds);}__asm__ volatile("sti":::"memory");render();
 #endif
             continue;}
 #ifdef ENGINE_M74

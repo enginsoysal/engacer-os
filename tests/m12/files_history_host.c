@@ -18,7 +18,7 @@ int main(void){
  for(unsigned i=0;i<10000;++i){ui12_file_location before=h->locations[h->position],next=location(UI12_NATIVE,0,"");snprintf(next.path,sizeof(next.path),"/folder-%u",i);ui12_history_push(h,&before,&next);assert(h->count<=8&&h->position+1==h->count&&guarded.before==0x123456789abcdef0&&guarded.after==0xfedcba9876543210);}
  assert(!strcmp(h->locations[0].path,"/folder-9992")&&!strcmp(h->locations[7].path,"/folder-9999"));
  h->count=9;h->position=8;ui12_history_push(h,&docs,&docs);assert(h->count==1&&h->position==0&&ui12_location_equal(&h->locations[0],&docs));
- for(int height=356;height<=2160;++height){unsigned rows=ui12_usb_rows(height);assert(rows>=1&&rows<=6);assert(184+(int)(rows-1)*44+36<=height-82);}
+ for(int height=356;height<=2160;++height){unsigned rows=ui12_usb_rows(height);assert(rows>=1&&rows<=6);assert(184+(int)(rows-1)*44+36<=height-82);if(ui12_files_sidebar(700,height))assert(142+38+7*38+36<=height-82);}
  assert(sizeof(ui12_file_location)==276&&sizeof(ui12_file_history)==2216);
  puts("PASS: native/USB collection/leased USB history, back/forward, branch replacement, offset retention, generation/partition/device isolation, 10000 bounded transitions and 1805 row layouts.");return 0;
 }

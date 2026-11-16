@@ -19,5 +19,6 @@ static inline void ui12_history_push(ui12_file_history*h,const ui12_file_locatio
  h->locations[h->count]=*after;h->position=h->count++;
 }
 static inline unsigned ui12_history_can(const ui12_file_history*h,int forward){return h->count&&h->count<=UI12_FILE_HISTORY&&h->position<h->count&&(forward?h->position+1<h->count:h->position!=0);}
+static inline unsigned ui12_files_sidebar(int width,int height){return width>=700&&height>=580;}
 static inline unsigned ui12_usb_rows(int height){int rows=(height-266)/44;if(rows<1)rows=1;if(rows>6)rows=6;return(unsigned)rows;}
 #endif
