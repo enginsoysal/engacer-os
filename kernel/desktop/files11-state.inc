@@ -29,7 +29,13 @@ enum {F11_NATIVE,F11_USB,F11_BUILTIN};
 #define F11_ROOTS 128u
 typedef struct {char path[256];unsigned view,sort,descending;} file_view_record11;
 typedef struct {uint64_t magic;unsigned version,count,next,reserved;file_view_record11 records[32];} file_views11;
-typedef struct {unsigned view,sort,descending,address_active;char address[256];unsigned cursor,anchor;} file_window11;
+typedef struct {unsigned view,sort,descending,address_active;
+#ifdef ENGINE_M12
+ char address[272];
+#else
+ char address[256];
+#endif
+ unsigned cursor,anchor;} file_window11;
 typedef struct {uint64_t generation;char path[256];unsigned count,sort,descending;uint16_t order[V6_ENTRIES];} file_listing11;
 typedef struct {uint64_t magic;unsigned version,kind;char original[256];uint64_t size;uint32_t crc,reserved;} recycle_record11;
 typedef struct {uint64_t magic;unsigned version,kind,app,reserved;char target[256];} shortcut_record11;
@@ -104,3 +110,22 @@ static unsigned file_rows11(const desktop_window*);
 static unsigned file_page_size11(const desktop_window*);
 
 static void select_row11(application*,unsigned,unsigned,unsigned);
+
+#ifdef ENGINE_M12
+static ui12_file_location files_current12(application*);
+static void files_record12(application*,const ui12_file_location*);
+static void files_selection_clear12(application*);
+static void files_visit12(application*,const char*,unsigned);
+static unsigned files_navigation12(desktop_window*,application*,uint64_t,unsigned);
+static unsigned files_native_ready12(application*),files_usb_ready12(application*);
+static unsigned files_address12(application*,const char*);
+static void files_address_text12(application*,char*);
+static void files_title12(application*,char*,unsigned);
+static void files_frame12(desktop_window*,application*,uint64_t);
+static void files_footer12(desktop_window*,application*,uint64_t,unsigned,unsigned,const char*);
+static void files_usb_body12(desktop_window*,application*,uint64_t);
+static void files_breadcrumbs12(desktop_window*,application*,uint64_t,desktop_rect);
+static void files_hint_damage12(i11_target,i11_target);
+static unsigned files_usb_rows12(desktop_window*);
+static void files_empty12(int,int,int,int,unsigned,const char*,const char*);
+#endif

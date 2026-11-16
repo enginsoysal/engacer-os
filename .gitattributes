@@ -191,3 +191,13 @@ evidence/M12/3/** -text -whitespace
 include/engine/ui/chrome12.h -text whitespace=cr-at-eol
 kernel/desktop/chrome12.inc -text whitespace=cr-at-eol
 evidence/M12/4/** -text -whitespace
+
+# M12.5 provider navigation and common frame.
+include/engine/ui/files12.h -text whitespace=cr-at-eol
+kernel/desktop/files12-navigation.inc -text whitespace=cr-at-eol
+kernel/desktop/files12-ui.inc -text whitespace=cr-at-eol
+kernel/desktop/files72.inc -text whitespace=cr-at-eol
+kernel/desktop/devices10.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-ui.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-actions.inc -text whitespace=cr-at-eol
+evidence/M12/5/** -text -whitespace

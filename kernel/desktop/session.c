@@ -32,6 +32,7 @@
 #include <engine/ui/icons12.h>
 #include <engine/ui/desktop12.h>
 #include <engine/ui/chrome12.h>
+#include <engine/ui/files12.h>
 #endif
 
 enum { FILES=1, EDITOR, SETTINGS, CALCULATOR, DOWNLOADS, DETAILS, TERMINAL,
@@ -471,6 +472,9 @@ static void open_file74(const char *path){
 #endif
 #ifdef ENGINE_M11
 #include "files11-model.inc"
+#ifdef ENGINE_M12
+#include "files12-navigation.inc"
+#endif
 #endif
 static void init_files72(application *app){
     memset(&navigation[app-apps],0,sizeof(navigation[0]));char home[256];home72(home);visit72(app,home,1);
@@ -588,6 +592,9 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "files11-keys.inc"
 #include "files11-desktop.inc"
 #include "files11-ui.inc"
+#ifdef ENGINE_M12
+#include "files12-ui.inc"
+#endif
 #include "start11-model.inc"
 #include "start11-ui.inc"
 #include "power11.inc"

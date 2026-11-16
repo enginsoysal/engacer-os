@@ -1,6 +1,12 @@
 static unsigned devices_rows10(desktop_window*w){unsigned n=w->bounds.height>350?(unsigned)(w->bounds.height-310)/56:1;return n>6?6:n?n:1;}
 static rem10_entry usb_rows10[6];
-static unsigned usb_visible10(desktop_window*w){unsigned rows=w->bounds.height>350?(unsigned)(w->bounds.height-350)/43:1;return rows>6?6:rows?rows:1;}
+static unsigned usb_visible10(desktop_window*w){
+#ifdef ENGINE_M12
+ return files_usb_rows12(w);
+#else
+ unsigned rows=w->bounds.height>350?(unsigned)(w->bounds.height-350)/43:1;return rows>6?6:rows?rows:1;
+#endif
+}
 static void draw_devices10(desktop_window*w,application*app,uint64_t token){
  int x=w->bounds.x+22,y=w->bounds.y+54,width=w->bounds.width-44;
  text(x,y,"Devices",2,ink());button(token,x+width-240,y-8,110,"Refresh",DEVICES_REFRESH10,0);button(token,x+width-120,y-8,110,"Back",DEVICES_BACK10,0);
@@ -66,6 +72,9 @@ static unsigned devices_action10(desktop_window*w,application*app,uint64_t token
   else return 0;invalidate(w->bounds);return 1;
  }
  if(w->app!=FILES)return 0;
+#ifdef ENGINE_M12
+ ui12_file_location previous12=files_current12(app);
+#endif
 #ifdef ENGINE_M11
  if(command==USB_OPEN10||command==USB_CLOSE10||command==USB_DRIVES10||command==USB_UP10||(command>=USB_DISK10&&command<USB_DISK10+STORAGE_MAX)){memset(selected11[app-apps],0,sizeof(selected11[0]));interaction11.last_valid=0;}
  if(command==USB_IMPORT10){unsigned count=0;for(unsigned n=0;n<V6_ENTRIES;++n)count+=selected_row11(app,n);if(count>1){notice(app,"USB transfer accepts one selected file at a time. Select one file to copy.");invalidate(w->bounds);return 1;}}
@@ -74,7 +83,11 @@ static unsigned devices_action10(desktop_window*w,application*app,uint64_t token
  else if(command==USB_OPEN10){app->usb_mode10=1;app->offset=0;app->usb_source10[0]=0;app->notice[0]=0;}
  else if(command==USB_CLOSE10){app->usb_mode10=0;app->offset=0;app->usb_source10[0]=0;}
  else if(command==USB_DRIVES10){app->usb_mode10=1;app->offset=0;}
- else if(command>=USB_DISK10&&command<USB_DISK10+STORAGE_MAX){unsigned disk=command-USB_DISK10,part,context,status=rem10_volume(disk,&part,&context);if(status)usb_notice10(app,status);else{app->usb_disk10=disk;app->usb_context10=context;app->usb_part10=part;app->usb_mode10=2;app->offset=app->usb_selected10=0;copy(app->usb_path10,"/",256);app->notice[0]=0;}}
+ else if(command>=USB_DISK10&&command<USB_DISK10+STORAGE_MAX){unsigned disk=command-USB_DISK10,part,context;
+#ifdef ENGINE_M12
+ const storage_disk*selected12=storage_get(disk);if(app->usb_mode10==1&&app->usb_selected10==disk+1&&(!selected12||!selected12->readable||selected12->context!=app->usb_context10)){app->usb_selected10=0;notice(app,"The drive changed. Select the connected drive again.");invalidate(w->bounds);return 1;}
+#endif
+ unsigned status=rem10_volume(disk,&part,&context);if(status)usb_notice10(app,status);else{app->usb_disk10=disk;app->usb_context10=context;app->usb_part10=part;app->usb_mode10=2;app->offset=app->usb_selected10=0;copy(app->usb_path10,"/",256);app->notice[0]=0;}}
  else if(app->usb_mode10==2){
   if(command==USB_UP10){unsigned n=length(app->usb_path10);while(n>1&&app->usb_path10[n-1]!='/')--n;if(n>1)app->usb_path10[n-1]=0;else copy(app->usb_path10,"/",256);app->offset=app->usb_selected10=0;}
   else if(command==USB_PREV10)app->offset=app->offset>=usb_visible10(w)?app->offset-usb_visible10(w):0;
@@ -93,5 +106,9 @@ static unsigned devices_action10(desktop_window*w,application*app,uint64_t token
   else if(command==USB_IMPORT10){unsigned total,status=app->usb_selected10?usb_listing10(app,app->usb_selected10-1,1,&total):B_DENIED;if(status||!app->usb_selected10||app->usb_selected10>total||usb_rows10[0].kind!=1)notice(app,"Select a file first.");else{char source[256],target[256];copy(source,app->usb_path10,256);if(!equal(source,"/"))append(source,"/",256);if(length(source)+length(usb_rows10[0].name)>=256||length(usb_rows10[0].name)>55){notice(app,"Use a shorter file name before copying to your Downloads.");invalidate(w->bounds);return 1;}append(source,usb_rows10[0].name,256);root_path(target,"Downloads");append(target,"/",256);append(target,usb_rows10[0].name,256);if(entry(target))unique_path(target,"Downloads",usb_rows10[0].name,"");notice(app,"Copying to Downloads. Please keep the drive connected.");invalidate(w->bounds);render();status=target[0]?rem10_import(app->usb_disk10,app->usb_context10,app->usb_part10,source,target):B_DENIED;if(status)usb_notice10(app,status);else notice(app,"Copied to Downloads. Your existing files were kept.");}}
   else return 0;
  }else return 0;
+
+#ifdef ENGINE_M12
+ files_record12(app,&previous12);
+#endif
  invalidate(w->bounds);(void)token;return 1;
 }

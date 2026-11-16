@@ -63,3 +63,13 @@ same installed disk and VM. No online account is required.
 Read the matching release guide for qualified hardware and Windows-app profiles.
 English manuals and exact downloads: https://engaceros.brixcanvas.com
 Open-source code and checksums: https://github.com/enginsoysal/engacer-os
+
+Files keeps Back, Forward, Up, Refresh, the address field and Places visible for
+ordinary folders and USB. Back restores a real previous location, not just Home.
+USB drives: click a drive to select it; double-click or Enter to open it.
+Use Home or Documents in Places to leave USB. A disconnected drive keeps its
+identity in history; Refresh never silently opens a different device.
+The optional address editor accepts USB:2:/Games for drive 2. Ordinary browsing
+uses the same buttons and folders and needs no terminal command.
+USB currently provides FAT32 browsing and one-file create-only copies. Unsupported
+commands stay unavailable. Use Safe remove before disconnecting a writable drive.

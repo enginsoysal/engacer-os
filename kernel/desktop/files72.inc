@@ -1,6 +1,10 @@
 /* Bounded per-window navigation, independent of optional application workers. */
 enum { NAV_BACK=90,NAV_FORWARD,NAV_HOME,NAV_DESKTOP,NAV_DOCUMENTS,NAV_DOWNLOADS,NAV_PICTURES,NAV_SYSTEM,NAV_PREVIOUS,NAV_NEXT,NAV_CREATE,NAV_NAME };
+#ifdef ENGINE_M12
+typedef ui12_file_history navigation72;
+#else
 typedef struct {char path[8][256];unsigned count,position;} navigation72;
+#endif
 static navigation72 navigation[DESKTOP_WINDOWS];
 static unsigned children72(application *app){
  unsigned total=0,size=equal(app->path,"/")?0:length(app->path);v6_volume*v=m6_volume();
@@ -22,6 +26,9 @@ static void folder_icon72(int x,int y,unsigned size,uint32_t tint){
 static void home72(char *path){root_path(path,"");unsigned n=length(path);if(n&&path[n-1]=='/')path[n-1]=0;}
 static int writable72(const char *path){char home[256];home72(home);unsigned n=length(home);return !memcmp(path,home,n)&&(!path[n]||path[n]=='/');}
 static void visit72(application *app,const char *path,unsigned remember){
+#ifdef ENGINE_M12
+ files_visit12(app,path,remember);
+#else
  navigation72 *nav=&navigation[app-apps];
  if(!equal(path,"/")){const v6_entry *folder=entry(path);if(!folder||folder->kind!=2){notice(app,"This folder is unavailable. Your current folder was kept.");return;}}
  if(remember&&(!nav->count||!equal(nav->path[nav->position],path))){
@@ -33,6 +40,7 @@ static void visit72(application *app,const char *path,unsigned remember){
  file_visit11(app);interaction11.last_valid=0;memset(selected11[app-apps],0,sizeof(selected11[0]));selection_anchor11[app-apps]=selection_focus11[app-apps]=0;
 #endif
  serial_text("M72_FOLDER_VISIT ");serial_text(path);serial_text("\n");
+#endif
 }
 static void create_folder72(application *app){
  unsigned n=length(app->pending);
@@ -140,14 +148,20 @@ static void draw_files72(desktop_window *w,application *app,uint64_t token){
 }
 static unsigned files_action72(desktop_window*w,application*app,uint64_t token,unsigned command){
  if(w->app!=FILES)return 0;
+#ifdef ENGINE_M12
+ if(files_navigation12(w,app,token,command))return 1;
+#else
  navigation72*nav=&navigation[app-apps];
+#endif
  if(command==OPEN_SETTINGS+100){launch(SETTINGS,0);whole();return 1;}
  if(command==NAV_NAME)return 1;
  if(command==NAV_CREATE){if(app->closing==4)create_folder72(app);invalidate(w->bounds);return 1;}
+#ifndef ENGINE_M12
  if(command==NAV_BACK||command==NAV_FORWARD){
  if(command==NAV_BACK&&nav->position)--nav->position;
  if(command==NAV_FORWARD&&nav->position+1<nav->count)++nav->position;
  if(nav->count)visit72(app,nav->path[nav->position],0);invalidate(w->bounds);return 1;}
+#endif
  if(command>=NAV_HOME&&command<=NAV_SYSTEM){char path[256];const char*folders[]={"","Desktop","Documents","Downloads","Pictures"};
  if(command==NAV_SYSTEM)copy(path,"/",256);else if(command==NAV_HOME)home72(path);else root_path(path,folders[command-NAV_HOME]);
  visit72(app,path,1);invalidate(w->bounds);return 1;}

@@ -52,8 +52,16 @@ static uint64_t file_item_identity11(i11_target target){
  if(entry)return file_path_hash11(entry->path)^((uint64_t)(entry-m6_volume()->entries+1)<<32);
  desktop_window*w=file_owner_window11(target.window);
  if(w){application*a=&apps[w-model.windows];
+
+#ifdef ENGINE_M12
+  if(a->usb_mode10==1&&target.action>=USB_DISK10&&target.action<USB_DISK10+STORAGE_MAX){unsigned disk=target.action-USB_DISK10;const storage_disk*d=storage_get(disk);if(d&&d->readable)return ((uint64_t)d->context<<32)^((uint64_t)(disk+1)<<8)^UI12_USB_DRIVES;}
+#endif
   if(a->usb_mode10==2&&target.action>=USB_ROW10&&target.action<USB_ROW10+6){unsigned total,row=target.action-USB_ROW10;
-   if(!usb_listing10(a,a->offset,6,&total)&&a->offset+row<total)return file_path_hash11(a->usb_path10)^file_path_hash11(usb_rows10[row].name)^((uint64_t)a->usb_disk10<<48);
+   if(!usb_listing10(a,a->offset,6,&total)&&a->offset+row<total)return file_path_hash11(a->usb_path10)^file_path_hash11(usb_rows10[row].name)^((uint64_t)a->usb_disk10<<48)
+#ifdef ENGINE_M12
+ ^((uint64_t)a->usb_context10<<16)^a->usb_part10
+#endif
+ ;
   }
  }
  return target.window^((uint64_t)target.action<<32)^target.kind;

@@ -42,7 +42,11 @@ static unsigned file_collect11(uint64_t owner_token,file_root11*out,unsigned*cou
  }
  return *count?V6_OK:V6_NOTFOUND;
 }
-static unsigned file_destination11(uint64_t owner_token,char*out){desktop_window*w=file_owner_window11(owner_token);if(w){application*a=&apps[w-model.windows];if(a->usb_mode10)return V6_INVALID;copy(out,a->path,256);}else root_path(out,"Desktop");return writable72(out)&&!file_in_bin11(out)?V6_OK:V6_RO;}
+static unsigned file_destination11(uint64_t owner_token,char*out){desktop_window*w=file_owner_window11(owner_token);if(w){application*a=&apps[w-model.windows];if(a->usb_mode10)return V6_INVALID;
+#ifdef ENGINE_M12
+ if(!files_native_ready12(a))return V6_NOTFOUND;
+#endif
+ copy(out,a->path,256);}else root_path(out,"Desktop");return writable72(out)&&!file_in_bin11(out)?V6_OK:V6_RO;}
 static unsigned file_unique11(char*out,const char*requested,unsigned root){char folder[256],name[64],stem[64],extension[64];file_parent11(folder,requested);copy(name,file_basename11(requested),64);const char*dot=0;for(unsigned i=1;name[i];++i)if(name[i]=='.')dot=name+i;unsigned base=dot?(unsigned)(dot-name):length(name);copy(extension,dot?dot:"",64);if(length(extension)>20)extension[0]=0;copy(stem,name,base+1);
  for(unsigned candidate=2;candidate<10000;++candidate){char number[16],suffix[24],changed[64];decimal(number,candidate);copy(suffix," (",24);append(suffix,number,24);append(suffix,")",24);unsigned available=63-length(extension)-length(suffix);copy(changed,stem,available+1);append(changed,suffix,64);append(changed,extension,64);if(file_join11(out,folder,changed))return V6_LIMIT;if(file_case_entry11(out))continue;unsigned used=0;for(unsigned i=0;i<file_job_state11.count;++i)if(i!=root&&!file_job_state11.roots[i].skip&&!file_compare_text11(out,file_job_state11.roots[i].target))used=1;if(!used)return V6_OK;}return V6_FULL;
 }
