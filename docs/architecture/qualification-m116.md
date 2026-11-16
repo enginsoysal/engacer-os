@@ -1,8 +1,10 @@
 # M11.6 qualification design
 
 M11.6 qualifies one frozen final artifact, rather than combining passes from
-different stage builds. Acceptance remains pending until the complete matching
-regression and public delivery gates pass. The accepted M11.1–M11.5 artifacts
+different stage builds. [Matching native acceptance](../../evidence/M11/6/acceptance-results.json)
+passes 36 report groups, including 14 enabled-device VMware controller/starter
+profiles, on 562 compiled inputs and the exact final ISO/ZIP. Public release and
+website verification are separate delivery gates. Accepted M11.1–M11.5 artifacts
 remain unchanged.
 
 ## What must be exercised

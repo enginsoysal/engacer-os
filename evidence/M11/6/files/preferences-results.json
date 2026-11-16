@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "checks": [
+    "Icons, size sorting and reverse direction affect the actual native Files window",
+    "Context Properties opens for the selected real file and closes through its owner dialog",
+    "Independent stored preference bytes and a second detached boot restore nondefault view, sort and direction"
+  ]
+}

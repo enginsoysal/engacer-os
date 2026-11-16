@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    "Single desktop-icon click selects without launching",
+    "Ctrl toggles and Shift extends actual desktop icon selection",
+    "Background marquee selects actual desktop icons without launching",
+    "Enter opens selected desktop icon",
+    "Single Files row click selects without navigating",
+    "Right release opens a native context menu; Escape consumes cancellation",
+    "Shift+F10, arrows and Enter operate the menu without activating the underlying row",
+    "Release outside a pressed control cancels activation",
+    "Arrow keyboard route changes the selected native row",
+    "Ctrl adds a second actual Files item without opening it",
+    "Files background marquee selects three real entries and releases capture",
+    "Caption capture respects the drag threshold, then moves the actual window",
+    "Double-click opens the real selected folder once",
+    "Click interval saved through Settings, independent disk-byte verification and detached disk startup"
+  ],
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "double_click_host_seconds": 0.26599999999962165
+}

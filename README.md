@@ -4,40 +4,34 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Current delivery: M11.5 / 0.11.5 - guided setup and first installed desktop**,
-qualified within **M11-STAGE5-VM-v1**. [Release and checksums](docs/releases/m115-v0.11.5.md),
-[exact-source acceptance](evidence/M11/5/acceptance-results.json),
-[current status](docs/roadmap/status.md). Twenty-six native task groups cover
-eight-step setup, real partition/format/consent/error/recovery, optional apps,
-ordinary/150%/actual-4K installed startup, and the exact enabled-device VMware
-SATA/UEFI starter with retained-ISO reset and two disk-only starts.
-This is named virtual-profile qualification; broader M11.6 regression, physical
-hardware, vendor GPU 3D and universal Windows compatibility are not claimed.
+**Current delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
+within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
+[exact-source acceptance](evidence/M11/6/acceptance-results.json),
+[current status](docs/roadmap/status.md). Thirty-six native report groups include
+fourteen enabled-device VMware controller/starter profiles, eight-step setup,
+real partition/format/error/recovery, Files, Start/taskbar, window commands,
+ordinary/150%/actual-4K rendering, USB round trips and the original 7-Zip MSI/console
+lifecycle. Every controller profile installs, resets with its matching ISO and
+starts twice without it. The exact starter's 106 original application payloads
+are independently verified. This is named VM qualification; physical hardware,
+ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.
 
-**Current development: [M11 desktop and setup refresh](docs/milestones/m11.md).**
-M11.6 final regression is now in progress; M11.5 remains the latest qualified
-download until its replacement passes all delivery gates.
-[Final qualification design](docs/architecture/qualification-m116.md).
-M11.0 defines the interaction and visual contract. M11.1 implements native
-selection, double-click, context/focus and release-driven controls with
-[14 native tasks and matching-source acceptance](evidence/M11/1/acceptance-results.json).
-M11.2 adds [genuine Files operations](docs/handbook/files-m11.md), with
-[23 native tasks, 288 fault cases and matching-source acceptance](evidence/M11/2/acceptance-results.json).
-M11.3 adds [Start, categories and taskbar](docs/handbook/start-m11.md), with
-[22 native tasks and exact-source acceptance](evidence/M11/3/acceptance-results.json).
-M11.4 adds [maximize/restore, snapping, Alt+Tab and per-user appearance](docs/handbook/windows-m11.md),
-with ordinary/150%/actual-4K evidence and 768 bytes of extra fixed desktop state.
-M11.5 adds [eight-step offline setup and first-start guidance](docs/handbook/install-m115.md),
-with saved real choices, optional-app presets and sixteen bytes of extra fixed
-desktop state. M11.6 full qualification follows. Each remaining
-stage includes a visible release, matching test media, English manuals and a
-freshly verified public website before the next stage begins.
+**The M11 sequence now has its final native qualification.**
+[Interaction and design](docs/architecture/desktop-m11.md),
+[Files](docs/handbook/files-m11.md), [Start/taskbar](docs/handbook/start-m11.md),
+[windows/appearance](docs/handbook/windows-m11.md),
+[eight-step setup](docs/handbook/install-m116.md) and
+[final qualification decisions](docs/architecture/qualification-m116.md).
+Final fixed desktop state is unchanged from M11.5. Window movement, USB reconnect
+and offline Calculator lifecycle retain no extra managed pages; idle CPUs halt.
+GitHub release and fresh public website verification are recorded separately
+with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5.iso) ·
-[Step-by-step installation](docs/handbook/install-m115.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL.iso) ·
+[Step-by-step installation](docs/handbook/install-m116.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.
@@ -49,11 +43,11 @@ terminal command or guest driver installer is required. Keep Secure Boot off.
 The matching ISO may remain attached. For an independent boot, disconnect only
 CD/DVD and keep the same installed hard disk connected.
 
-## Inherited M10 hardware baseline
+## Hardware and original-app qualification
 
-[M10's immutable release](docs/releases/m10-v0.10.0.md) has its own 27-gate
-hardware/controller acceptance. Its results do not qualify new M11 bytes;
-use the current release guide for the newly tested stage profiles.
+[M11.6 acceptance](evidence/M11/6/acceptance-results.json) reruns the controller,
+device and original-app tasks on the final bytes. [M10](docs/releases/m10-v0.10.0.md)
+remains a separate historical record; its hashes are preserved.
 
 - Automatic supported-device binding and common capability/status reporting in
   **Start → Settings → Devices**. Ready, Limited, Detected and Unavailable reflect
@@ -61,7 +55,7 @@ use the current release guide for the newly tested stage profiles.
 - Saved US QWERTY/Dvorak choices, qualified keyboard/mouse/wheel input, supported
   xHCI HID/hubs, disconnect and reconnect.
 - **Files → USB drives**: browse supported FAT32 media, copy files to Downloads,
-  choose **To USB** for native files, flush, safely remove and reconnect.
+  right-click a native file and choose **Copy to USB...**, flush, safely remove and reconnect.
 - Ordinary and actual 4K presentation, reachable partially off-screen windows,
   checked repaint, stable retained pages during movement and halted idle CPUs.
 - New-artifact VMware installation, persistence and two detached boots on SATA,
@@ -69,7 +63,7 @@ use the current release guide for the newly tested stage profiles.
 - The exact prepared ZIP also passes native Devices/layout interaction and the
   original 7-Zip 26.06 x64 MSI install/run/archive/extract/remove/reinstall task.
 
-[Device and USB tutorial](docs/handbook/hardware-m10.md) ·
+[Current device and USB tutorial](docs/handbook/install-m116.md#use-a-usb-drive) ·
 [Hardware architecture: how and why](docs/architecture/hardware-m10.md) ·
 [Standard applications](docs/handbook/apps-m74.md) ·
 [Original Windows app guide](docs/handbook/windows-apps-m8.md).

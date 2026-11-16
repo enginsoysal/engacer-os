@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "qualified": false,
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "condition": "64-MiB OVMF with USB storage attached before firmware boot",
+  "expected_refusal_recorded": true,
+  "error": "Missing M6_WIZARD_READY; tail=BdsDxe: loading Boot0001 \"UEFI QEMU DVD-ROM QM00005 \" from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)\nBdsDxe: starting Boot0001 \"UEFI QEMU DVD-ROM QM00005 \" from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)\nENGINE_OS_LOADER build=ea730e92bc70d0545b4b8f22385e31bc\nM10_KERNEL_STREAM_LOADED whole_file_copy_bytes=0\nLOADER_REJECT: allocate low pages\n"
+}

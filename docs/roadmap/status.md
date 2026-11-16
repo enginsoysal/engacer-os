@@ -1,14 +1,17 @@
 # Current status
 
-Updated 16 November 2026. **Engacer OS M11.5 / 0.11.5 is the current stage delivery.**
-Expanded setup and first installed startup pass **M11-STAGE5-VM-v1**:
-[26 native task groups and exact-source acceptance](../../evidence/M11/5/acceptance-results.json).
-[Release/downloads and limits](../releases/m115-v0.11.5.md),
-[eight-step VMware installation](../handbook/install-m115.md), [window guide](../handbook/windows-m11.md).
-M11.6 full controller/device/original-app regression remains pending.
-The immutable earlier M10 delivery completed hardware phases 1/2 within its own
-[27-gate scope](../../evidence/M10/acceptance-results.json). Its older controller
-matrix does not qualify these new M11 bytes.
+Updated 16 November 2026. **Engacer OS M11.6 / 0.11.6 is the final M11 delivery.**
+[Exact-source acceptance](../../evidence/M11/6/acceptance-results.json) passes
+**M11-FINAL-VM-v1**: 36 native report groups, including 14 enabled-device VMware
+controller/starter profiles, match 562 compiled inputs and the frozen final media.
+[Release/downloads and limits](../releases/m116-v0.11.6.md),
+[eight-step VMware installation](../handbook/install-m116.md),
+[qualification decisions](../architecture/qualification-m116.md).
+Setup safety/recovery, Files, Start, windows, actual 4K, USB failures/quota and
+original 7-Zip MSI/console lifecycle pass on these bytes. The exact ZIP's 106
+application payload hashes and independent installed boots are verified.
+Earlier M10 and M11 stage artifacts remain immutable. Public release, website
+and exact-download readback are separate required publication records.
 
 The new ISO and exact blank-disk VMware starter are branded Engacer OS.
 The canonical public/MIT repository is
@@ -65,7 +68,15 @@ ordinary/150%/4K installed resets/two disk-only boots. The exact VMware starter
 passes enabled-device SATA/UEFI installation and independent startup. Fixed
 desktop state grows by sixteen bytes; app lifecycle retains no managed pages.
 [Guide](../handbook/install-m115.md), [decisions](../architecture/setup-m115.md).
-M11.6 remains pending; later hardware phases resume afterward.
+**M11.6 full final regression passes:**
+[36 native report groups](../../evidence/M11/6/acceptance-results.json) include
+all 14 VMware controller/starter profiles and the exact original-app lifecycle.
+The final fixed desktop state remains 543,828 bytes, unchanged from M11.5 and
+423,484 bytes above M11.1, below the 512-KiB growth budget. The 288 storage-fault
+cases, zero retained-page checks, idle and 12 exact viewport comparisons pass.
+[Resource evidence](../../evidence/M11/6/resources.json),
+[final release](../releases/m116-v0.11.6.md). Later hardware and Windows expansion
+remain separate work; physical devices, ARM and GPU 3D are not qualified here.
 
 ## Inherited hardware baseline and qualification limits
 

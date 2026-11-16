@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "controller": "lsisas1068",
+  "firmware": "bios",
+  "exact_starter": false,
+  "checks": [
+    "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+    "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+    "Every distribution guide and binary sample independently matches its exact stored bytes"
+  ],
+  "persisted_distribution_sha256": {
+    "/Users/Owner/Documents/Welcome.txt": "ad2fb7f6601887023be8517d2646160849ad345df62469c3101166c2393e5ed8",
+    "/Users/Owner/Downloads/ArchiveSample.zip": "d9901670502a168d99e282769cc767901a58ed2890c4a2b4c5ba46054426e859",
+    "/Users/Owner/Pictures/ColorStudy.bmp": "13743257b3389ea8e83202e82864369228b2092dc27dc396741081aa5cd6bfe3",
+    "/Users/Owner/Music/Chime.wav": "5cb76cbf638407893f5b18353e82aedc4c82e10b7e55fd0f515e9aa54085646f"
+  },
+  "boot_order_forced": false,
+  "same_vm_reused": true,
+  "all_shipped_devices_enabled": true,
+  "existing_vm_inventory_unchanged": true
+}

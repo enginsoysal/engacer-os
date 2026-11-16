@@ -16,7 +16,10 @@ The owner's M11.4 clarification requires a visible release, exact test media,
 English manuals and fresh complete site/download verification at each remaining
 stage. [M11.5 delivery](../releases/m115-v0.11.5.md) now completes expanded setup
 within its [26 native task groups](../../evidence/M11/5/acceptance-results.json);
-M11.6 full regression remains pending. M10 remains an immutable historical qualification.
+[M11.6 final qualification](../../evidence/M11/6/acceptance-results.json) now passes
+36 native report groups, including 14 VMware controller/starter profiles, on the
+same final artifact. [Final media and scope](../releases/m116-v0.11.6.md).
+M10 remains an immutable historical qualification.
 
 ## Historical owner priority - 10 November 2026
 

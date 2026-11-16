@@ -165,8 +165,7 @@ The public homepage leads with the latest completed M11 stage and a clearly
 labeled native VM capture. The owner's M11.4 clarification requires a visible
 GitHub stage release and matching test media after each remaining stage, with
 its actual qualification. The downloads selector requires the matching ISO,
-VMware ZIP and build manifest before promoting a stage. Full final regression
-remains M11.6. Update the homepage after each ordered stage; a GitHub
+VMware ZIP and build manifest before promoting a stage. Final M11.6 regression has its own exact-artifact acceptance. Update the homepage after each ordered stage; a GitHub
 article sync alone does not change the native homepage sections.
 
 The Documentation index is ordered by reader task: Start here, current M11
@@ -193,3 +192,9 @@ Always reload the editor after the final GitHub Actions sync, then replace the
 four native homepage sections and verify Save plus fresh public content. After
 verified GitHub source/evidence/assets publication, the owner's temporary local
 build directory can be removed without removing canonical source or evidence.
+
+M11.6 promotes FINAL media and its current guide after the matching 36 native
+report groups and 14 VMware controller/starter profiles pass. Its homepage image
+is the actual final `evidence/M11/6/setup/vmware/first-start-guide.png`. Full
+public source/article/homepage/download readback belongs under `evidence/M11/6`;
+keep failed diagnostics separate from accepted runtime and publication checks.

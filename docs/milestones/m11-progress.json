@@ -2,7 +2,7 @@
   "schema": 1,
   "product": "Engacer OS",
   "updated": "2026-11-16",
-  "qualified_download": "M11.5",
+  "qualified_download": "M11.6",
   "current_stage": "M11.6",
   "stages": [
     {
@@ -37,12 +37,12 @@
     },
     {
       "id": "M11.6",
-      "status": "in_progress",
+      "status": "complete",
       "title": "Full qualification and final VMware media"
     }
   ],
-  "publication": "Each remaining stage requires its visible GitHub release, exact test media and complete fresh public site/manual/download verification before the next starts.",
-  "release_guide": "install-m115",
-  "release_tag": "m115-v0.11.5",
-  "release_image": "EngacerOS-M11STAGE5"
+  "publication": "Native qualification passes M11-FINAL-VM-v1. Delivery additionally requires the visible matching release and fresh complete public site/manual/download verification, recorded separately in evidence/M11/6.",
+  "release_guide": "install-m116",
+  "release_tag": "m116-v0.11.6",
+  "release_image": "EngacerOS-M11FINAL"
 }

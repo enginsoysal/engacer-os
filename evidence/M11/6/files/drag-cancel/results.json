@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "checks": [
+    "USB: Escape and held-Ctrl Escape cancel genuine pointer file capture without opening Start, changing source bytes or retaining pages",
+    "PS2: Escape and held-Ctrl Escape cancel genuine pointer file capture without opening Start, changing source bytes or retaining pages"
+  ]
+}

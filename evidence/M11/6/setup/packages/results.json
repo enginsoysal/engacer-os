@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "checks": [
+    "The actual minimal installed disk restores active Dvorak and 150-percent providers after firmware startup, not just stored preference bytes",
+    "Base Settings installs Calculator from the offline cache; the original native worker launches; reviewed removal preserves cache, files and base services",
+    "Calculator launch/close/removal retains no managed pages; required Files still creates a real persistent directory afterward"
+  ],
+  "managed_current_bytes": 9408512,
+  "managed_peak_bytes": 9461760,
+  "retained_page_delta": 0
+}
