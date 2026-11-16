@@ -1,7 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {documentationGroups} from './navigation.mjs';
+import {nativeDesign} from './design.mjs';
 const post=(path,title,category='handbook')=>({slug:path,title,category,meta:[{key:'engine_source_path',value:path}]});
+
+test('homepage separates M12 concepts from the native M11.6 download',()=>{
+ const sections=nativeDesign(),payload=JSON.stringify(sections);
+ assert.equal(sections.length,4);
+ assert.match(payload,/M12\.0 original design concept/);
+ assert.match(payload,/not a native VM capture/);
+ assert.match(payload,/M11\.6 remains the current tested VMware download/);
+ assert.match(payload,/evidence\/M11\/6\/setup\/vmware\/first-start-guide\.png/);
+ assert.doesNotMatch(payload,/Try its matching VMware package/);
+});
 
 test('M12 design follows tested installation without replacing its release',()=>{
  const posts=[post('docs/handbook/install-m116.md','Install M11.6'),post('docs/milestones/m12.md','M12','milestones'),post('docs/architecture/desktop-m12.md','M12 design','architecture'),post('docs/handbook/files-m11.md','Files')];

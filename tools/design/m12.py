@@ -22,8 +22,8 @@ def icon(x,y,kind,size=32):
  'archive':'<rect x="3" y="5" width="27" height="24" rx="4" fill="#9c78ad"/><path d="M15 5v24" stroke="#ead8f4" stroke-width="4" stroke-dasharray="3 2"/>',
  'start':'<path d="M3 3h12v12H3Zm15 0h12v12H18ZM3 18h12v12H3Zm15 0h12v12H18Z" fill="#087c71"/>'}
  return f'<g transform="translate({x} {y}) scale({size/32})">'+shapes.get(kind,shapes['folder'])+'</g>'
-def button(x,y,w,label,primary=False):
- return rect(x,y,w,36,ACCENT if primary else '#ffffff',6,LINE)+text(x+12,y+24,label,14,'#ffffff' if primary else INK)
+def button(x,y,w,label,primary=False,height=36):
+ return rect(x,y,w,height,ACCENT if primary else '#ffffff',6,LINE)+text(x+12,y+height//2+6,label,14,'#ffffff' if primary else INK)
 def base(title):
  return '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img"><title>'+escape(title)+'</title>'+rect(0,0,1280,800,'#dce9ec',0)+'<path d="M0 590Q430 210 850 500T1280 280V800H0Z" fill="#c8dde2"/>'+text(30,56,'Engacer OS',24,INK,600)+rect(748,18,510,32,'#ffffff',6)+text(761,39,'M12.0 DESIGN CONCEPT — NOT A VM CAPTURE',14,MUTED,600)
 def taskbar():
@@ -78,8 +78,8 @@ def settings():
   s+=text(148,yy,label,14)
  s+=text(365,199,'Settings  /  Personalization',14,MUTED)+text(365,269,'Make it yours',28,INK,600)
  for i,(name,color) in enumerate((('Light','#f8fafc'),('Dark','#202732'),('High contrast','#000000'))):
-  x=365+i*250;s+=rect(x,324,225,130,color,8,LINE)+text(x,481,name,16)
- s+=text(365,534,'Display size',16)+button(365,551,150,'Auto')+button(527,551,150,'150%')+text(365,629,'Reduced motion and solid surfaces remain available.',14,MUTED)
+  x=365+i*250;s+=rect(x,324,225,130,color,8,ACCENT if i==0 else LINE)+text(x,481,name+' (selected)' if i==0 else name,16)
+ s+=text(365,534,'Display size',16)+button(365,551,150,'Auto',True)+button(527,551,150,'150%')+text(365,629,'Reduced motion and solid surfaces remain available.',14,MUTED)
  return s
 def transfer():
  s=frame()+rect(474,300,580,257,'#ffffff',10,LINE)+text(500,342,'Copying 3 items to USB drive',21,INK,600)+text(500,379,'Destination: USB drive / Work',16,MUTED)+rect(500,407,528,8,'#e8edf2',4)+rect(500,407,304,8,ACCENT,4)+text(500,445,'Confirmed completed work · keep the drive connected',14,MUTED)+button(898,489,130,'Cancel')
@@ -91,7 +91,7 @@ def setup():
   s+=text(221,218+i*41,f'{i+1}  {label}',14,'#e8edf5')
  s+=text(451,164,'STEP 3 OF 8',14,MUTED)+text(451,222,'Choose an installation disk',28,INK,600)+text(451,257,'Select a row. Review all changes before installation.',14,MUTED)
  s+=rect(451,291,596,210,'#f8fafc',7,LINE)+rect(460,332,578,66,'#d9efe9',5,ACCENT)+text(477,359,'●   Disk 1',16)+text(522,383,'Supported writable disk · 20 GiB',14,MUTED)
- s+=button(451,523,140,'Disk tools…')+text(451,608,'Erasure always requires a separate explicit review.',14,MUTED)+button(451,653,106,'Back')+button(917,653,130,'Next',True)
+ s+=button(451,523,140,'Disk tools…',height=44)+text(451,608,'Erasure always requires a separate explicit review.',14,MUTED)+button(451,653,106,'Back',height=44)+button(917,653,130,'Next',True,height=44)
  return s
 def main():
  OUT.mkdir(parents=True,exist_ok=True)

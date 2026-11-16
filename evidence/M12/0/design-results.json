@@ -142,7 +142,7 @@
     },
     {
       "path": "docs/architecture/figures/m12/settings.svg",
-      "sha256": "85f9d2ac19b5e23c4995d839c0d8e6747b6c3b06593f3ae8c1c6450516b00561"
+      "sha256": "0752123018689d770fc4d26b16c94276f0f1e4ae1f44e4191f71600aa3409131"
     },
     {
       "path": "docs/architecture/figures/m12/transfer.svg",
@@ -150,7 +150,7 @@
     },
     {
       "path": "docs/architecture/figures/m12/setup.svg",
-      "sha256": "b108a07301f92a8260513ee9148e5d3e0eb56a71f26872bd31bf64ca874a1233"
+      "sha256": "7c8b277a306cff592045f2f7350ae926468040d43e59b007854c9b3c135e444f"
     }
   ],
   "visual_review": "See separate visual-review.json; this script cannot certify visual quality."

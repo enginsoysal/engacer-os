@@ -9,7 +9,8 @@
   "corrections": [
     "Settings uses its own navigation and Settings icon, rather than a Files toolbar/sidebar.",
     "Unavailable USB commands are visually muted; an empty provider retains Back, address and sidebar.",
-    "Distinct Calculator, Calendar and Clock silhouettes replace identical letter tiles."
+    "Distinct Calculator, Calendar and Clock silhouettes replace identical letter tiles.",
+    "Setup buttons use the specified 44-pixel height; Settings identifies selected theme and automatic scale."
   ],
   "limitations": [
     "Concepts are fixed 1280 by 800 logical-pixel diagrams, not native scale or 4K qualification.",

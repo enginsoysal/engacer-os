@@ -7,6 +7,20 @@ Status: M12.0 design baseline, authorized 16 November 2026. This specification a
 The owner authorized proceeding with this baseline; agent review does not claim
 that the owner or study participants reviewed the newly generated concepts.
 
+## Original concept gallery
+
+These are design diagrams with illustrative content, not guest captures or
+evidence that the depicted functionality has shipped.
+
+| Concept | Review focus |
+|---|---|
+| [Start and app identity](figures/m12/overview.svg) | Distinct icons, hierarchy, search and taskbar |
+| [USB file browsing](figures/m12/files-usb.svg) | Shared frame, path, selection, metadata and capability limits |
+| [USB without a connected drive](figures/m12/usb-empty.svg) | Back, sidebar and Refresh remain visible |
+| [Settings and personalization](figures/m12/settings.svg) | Dedicated navigation, themes and display size |
+| [Transfer feedback](figures/m12/transfer.svg) | Destination, confirmed progress and Cancel |
+| [Installer disk selection](figures/m12/setup.svg) | Obvious selected row, Disk tools and review before erasure |
+
 ## Visual system and interaction
 
 Recognize before reading; keep navigation stable; distinguish selection, hover,
