@@ -28,6 +28,8 @@ def main():
         assert profile['managed_bytes_before']==profile['managed_bytes_after']
         assert profile['all_cpus_halted_when_idle'] and profile['idle_paints_unchanged'] and profile['cached_copy_frames']>0
     assert len(motion['profiles'])==3
+    for group,names in [('desktop-native',['install','disk-1','disk-2']),('desktop-empty',['install','independent']),('bios',['install','disk-only-1','disk-only-2']),('vmware-results',['install','disk-only-1','disk-only-2'])]:
+        for name in names:assert 'M7_DESKTOP_READY build='+meta['build_id'] in (WORK/group/(name+'.log')).read_text(encoding='utf-8')
     for label,width,height in [('long-name-selection',1280,800),('native-150',1920,1200),('native-4k',3840,2160)]:
         capture=load(WORK/f'desktop-native/{label}-capture.json');assert (capture['width'],capture['height'])==(width,height)
     common.git_inputs(meta['source_sha256']);common.git_inputs(host['source_sha256'])
@@ -44,7 +46,12 @@ def main():
         assert sha(ROOT/'dist'/oldstarter['archive'])==oldstarter['sha256']
     for row in load(ROOT/'evidence/M12/0/preserved-baseline.json')['artifacts']:assert sha(ROOT/'dist'/row['name'])==row['sha256']
     OUT.mkdir(parents=True,exist_ok=True)
-    for source,name in [('desktop-native','native'),('desktop-empty','empty'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:common.copy_report(WORK/source,OUT/name)
+    for source,name in [('desktop-native','native'),('desktop-empty','empty'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
+        target=OUT/name;target.mkdir(exist_ok=True)
+        for path in (WORK/source).iterdir():
+            if path.is_file() and path.suffix in ('.json','.png','.log') and not path.name.startswith('prototype-'):
+                if path.suffix=='.png':shutil.copyfile(path,target/path.name)
+                else:(target/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
     for source,name in [('dist/m12stage3-build-manifest.json','candidate-manifest.json'),('dist/m12stage3-starter-manifest.json','starter-manifest.json'),('build/m12/stage3/host-results.json','host-results.json')]:shutil.copyfile(ROOT/source,OUT/name)
     shutil.copyfile(WORK/'desktop-native/long-name-selection.png',OUT/'feature.png')
     diagnostics=OUT/'diagnostics';diagnostics.mkdir(exist_ok=True)
