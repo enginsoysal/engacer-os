@@ -87,11 +87,11 @@ def main():
             p.desktop(f.item(g,p,'Export.txt'),True);action(g,p,40000);f.visit(g,p,'Desktop');action(g,p,40002);wait(g,p);assert '/Users/Owner/Desktop/Export.txt' in f.entries(g);details(g,p)
             report['checks'].append('Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion')
             f.visit(g,p,'/Users/Owner/Documents/Source');p.desktop(f.item(g,p,'Export.txt'),True);c.key(g,'ctrl','c');c.key(g,'f2');c.key(g,'ctrl','a');c.type_text(g,'Renamed.txt');c.key(g,'ret')
-            f.visit(g,p,'Desktop');action(g,p,40002)
-            assert not job(g)[0][0] and not f.has(g,40034) and 'no longer available' in f.app(g)['notice']
-            assert ui.memory(g,ui.symbol('file_job_result11',installed=True)[0],1)==b'\0'
+            f.visit(g,p,'Desktop');p.desktop(52000,True);assert menu_items(g)[40002]==0;c.key(g,'esc');c.key(g,'ctrl','v')
+            assert not job(g)[0][0] and 'Copy or Cut a file or folder first' in f.app(g)['notice']
+            assert '/Users/Owner/Documents/Source/Renamed.txt' in f.entries(g)
             f.visit(g,p,'/Users/Owner/Documents/Source');p.desktop(f.item(g,p,'Renamed.txt'),True);c.key(g,'f2');c.key(g,'ctrl','a');c.type_text(g,'Export.txt');c.key(g,'ret');f.visit(g,p,'Desktop')
-            report['checks'].append('Renaming a copied source before Paste produces a truthful missing-source refusal; stale previous counts/destinations are cleared, and the original payload is kept')
+            report['checks'].append('Rename clears the prior file clipboard under the retained move policy: Paste is disabled, Ctrl+V explains that Copy/Cut is required, and the renamed payload is kept')
             p.desktop(f.item(g,p,'Export.txt'),True);action(g,p,40001);f.visit(g,p,'Documents');action(g,p,40002);wait(g,p);assert '/Users/Owner/Desktop/Export.txt' not in f.entries(g)
             action(g,p,40011);assert '/Users/Owner/Desktop/Export.txt' in f.entries(g)
             report['checks'].append('Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents')
