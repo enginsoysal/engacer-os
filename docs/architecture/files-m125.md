@@ -15,7 +15,7 @@ storage records, without invented dates or capacity values.
 
 The sidebar is shown only when width and height fit all eight places. Smaller
 windows retain a Places button in the toolbar. All four navigation controls stay
-visible. The footer labels Prev page and Next page distinguish item pagination
+visible. The footer groups Prev and Next beneath a Page label to distinguish item pagination
 from location history. Empty and unavailable locations retain navigation rather
 than replacing the entire window. Empty-state layout adapts to short content
 regions, including a real active transfer's progress strip. One shared row-count
@@ -58,6 +58,13 @@ focus are reset on provider changes. Caption names describe the actual provider
 rather than continuing to say Documents while USB is open.
 
 ## Verification and limits
+
+Native qualification found a real dispatch defect in the first complete candidate:
+the root breadcrumb and Refresh reached the legacy generic application handler
+before the new Files handler. They were drawn but consumed without their action.
+The explicit Files dispatch now precedes that sink for these two commands, while
+retaining the existing modal and owner guards. The failed candidate report is
+preserved; the corrected media must repeat its own native and boot qualification.
 
 Host checks exercise location/generation isolation, branching, offsets, 10,000
 bounded transitions and short-window row geometry. Native qualification must

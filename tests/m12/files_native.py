@@ -97,7 +97,11 @@ def main():
             report['checks'].append('USB drive objects select once and Enter opens their actual lease; item pages and native/USB history restore the prior scroll offset')
             double(g,p,row(g,'Games'));assert app(g)['usb_path']=='/Games';p.desktop(row(g,'Arcade'),True);assert app(g)['usb_path']=='/Games';c.key(g,'ret');assert app(g)['usb_path']=='/Games/Arcade'
             p.desktop(row(g,'HELLO.TXT'),True);assert app(g)['usb_path']=='/Games/Arcade';p.desktop(21004,True);assert 'Copied to Downloads' in app(g)['notice'];c.shot(g,'usb-folder-common-frame')
-            p.desktop(24,True);assert app(g)['usb_path']=='/Games';p.desktop(50001,True);assert app(g)['usb_path']=='/';p.desktop(90,True);assert app(g)['usb_path']=='/Games';p.desktop(91,True);assert app(g)['usb_path']=='/'
+            p.desktop(50000,True);assert not app(g)['notice'],('Refresh dispatch',app(g))
+            p.desktop(24,True);assert app(g)['usb_path']=='/Games',('Up',app(g))
+            p.desktop(50001,True);assert app(g)['usb_path']=='/',('Drive breadcrumb',app(g))
+            p.desktop(90,True);assert app(g)['usb_path']=='/Games',('Back',app(g))
+            p.desktop(91,True);assert app(g)['usb_path']=='/',('Forward',app(g))
             report['checks'].append('Real FAT32 folders obey single-select/double-click/Enter; copy-to-Downloads, Up, drive-root breadcrumbs and Back/Forward use the same frame')
             uri='USB:'+str(app(g)['disk']+1)+':'+long_path;assert len(uri)>255
             visit(g,p,uri);assert app(g)['usb_path']==long_path;p.desktop(40015,True);assert address(g)[0]==uri;c.key(g,'ctrl','a');c.key(g,'ctrl','c');c.key(g,'esc')
