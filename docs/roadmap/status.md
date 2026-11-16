@@ -8,8 +8,9 @@ Updated 16 November 2026. **M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
 twelve cached/full comparisons and exact enabled-device VMware/BIOS install and
 ordinary starts pass. Native metadata, ordering, selection, minimum layout,
 light/dark USB, detach and persisted choices are checked. Fixed shell state is
-545,636 bytes, 16 above M12.5; tasks retain zero managed pages. Public release/site
-proof closes separately before M12.7. Existing menu, HiDPI cursor and BIOS/AHCI
+545,636 bytes, 16 above M12.5; tasks retain zero managed pages. [Public release/site
+proof](../../evidence/M12/6/publication-results.json) passes: twenty downloads,
+325 pages and 2,244 links. **M12.7 is active.** Existing menu, HiDPI cursor and BIOS/AHCI
 carry-forward observations remain open for their named later stages. USB sort
 is unavailable; no universal hardware or Windows claim follows from this stage.
 
@@ -121,7 +122,7 @@ its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
 [source-backed inventory](../architecture/m12-inventory.md) and
 [expected journeys](../handbook/desktop-m12.md). Concepts are explicitly labeled;
-M12.0 provides no new native ISO. M12.3 has the current scoped download;
+M12.0 provides no new native ISO. M12.6 has the current scoped download;
 M11.6's broader final matrix remains historical proof for its own frozen bytes.
 
 ### Completed M11 development sequence

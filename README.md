@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.6 — Files presentation.**
+**Active development: M12.7 — File commands and transfers.**
 **Current native delivery: M12.6**, qualified within M12-STAGE6-VM-v1.
 [Install](docs/handbook/install-m126.md), [Files views guide](docs/handbook/files-m126.md),
 [release scope and retained limits](docs/releases/m126-v0.12.6.md),
@@ -13,8 +13,9 @@ bounded CPU/RAM use are product requirements.
 sorting, source-bound selection, complete names, compact views, USB and saved
 choices. Independent actual 150%/4K name tips, twelve cached/full comparisons and
 exact VMware/BIOS install/ordinary starts pass. Fixed shell state grows 16 bytes
-over M12.5; tasks retain zero managed pages. Public release, matching downloads
-and complete website verification close before M12.7.
+over M12.5; tasks retain zero managed pages. [Complete public verification](evidence/M12/6/publication-results.json)
+passes: twenty downloads, 325 pages, 2,244 links and current desktop/mobile guides.
+M12.7 now addresses file commands, transfer feedback and recoverable outcomes.
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English guides, GitHub releases and public website verification
 between stages. [Design contract](docs/architecture/desktop-m12.md),

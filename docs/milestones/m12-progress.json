@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.6",
+  "current_stage": "M12.7",
   "qualified_download": "M12.6",
   "known_issues": [
     {
@@ -80,17 +80,18 @@
     },
     {
       "id": "M12.6",
-      "status": "in_progress",
+      "status": "complete",
       "title": "File presentation",
       "requires": "M12.5",
       "deliverable": "Readable details/icons, columns, sorting, selection, full-name tips and actual provider metadata.",
       "how_and_why": "Make content scannable without inventing timestamps or expanding filesystem limits cosmetically.",
       "acceptance": "Long supported names, sort stability, narrow windows, selection identity, metadata truth and saved view.",
-      "publication": "required_before_next_stage"
+      "publication": "required_before_next_stage",
+      "evidence": "evidence/M12/6/publication-results.json"
     },
     {
       "id": "M12.7",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "File commands and transfers",
       "requires": "M12.6",
       "deliverable": "Consistent toolbar/context commands, transfer feedback, cancellation, conflicts and supported Undo.",

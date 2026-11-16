@@ -137,3 +137,8 @@ M12STAGE5 media, source stamp and evidence/M12/5. Use stage6 or later for new
 work. Retain generation-bound USB history, explicit replacement selection and
 the guarded Files dispatch before the generic application handler. Existing
 M12.14/M12.16/M12.18 carry-forward observations remain open.
+
+M12.6 M12-STAGE6-VM-v1 and complete public delivery are accepted. Preserve
+M12STAGE6 media, source stamp and evidence/M12/6. New work uses stage7 or later.
+Retain full-name tip owner/row guards, source-bound ordering and generation-bound
+USB navigation. Carry the named M12.14/M12.16/M12.18 observations forward.
