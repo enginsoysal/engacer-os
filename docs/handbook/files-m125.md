@@ -1,7 +1,8 @@
 # Files navigation in M12.5
 
-Development guide: M12.5 qualification is in progress. Use the handbook index
-for the current tested download until the matching release is published.
+M12.5 is qualified within M12-STAGE5-VM-v1. Use the matching
+[installation guide](install-m125.md), [release scope](../releases/m125-v0.12.5.md)
+and current official downloads.
 
 Open Files from Start or double-click a desktop folder. Click once to select a
 folder or drive; double-click it, or press Enter after selecting it, to open it.

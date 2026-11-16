@@ -1,6 +1,6 @@
 # BrixCanvas documentation website
 
-The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.4 is the current qualified native stage; its ISO and exact VMware download have their own stage scope and retained BIOS observation. M12.0 remains the accepted design baseline, M12.3, M12.2 and M12.1 the previous native stages and M11.6 the earlier final matrix. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles. Earlier milestone sections below are historical publication records, not the current release selector.
+The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.5 is the current qualified native stage; its ISO and exact VMware download have their own stage scope and retained BIOS observation. M12.0 remains the accepted design baseline, M12.4, M12.3, M12.2 and M12.1 the previous native stages and M11.6 the earlier final matrix. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles. Earlier milestone sections below are historical publication records, not the current release selector.
 
 ## Current M12 publication
 
@@ -13,7 +13,7 @@ roadmap, website maintenance and the archive. Every article remains discoverable
 
 Native M12 releases are selected numerically and only after their public ISO,
 VMware ZIP and build manifest exist. Design prereleases cannot become an OS
-download. M12.4's homepage uses its actual QEMU installed-guest capture and matching guide;
+download. M12.5's homepage uses its actual QEMU installed-guest capture and matching guide;
 the full M12 qualification remains M12.18. Refresh the editor after article sync
 before changing its four native sections, then explicitly Save and verify the
 public desktop/mobile layout, links, source provenance and downloadable hashes.

@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "build_id": "69b114d97561bfe742ac9097748ad3d5",
+  "iso_sha256": "36823e017ce466e0df39bcee5ad50b53eaa096f08ccaf4fb27165bac4a680fd7",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\files_compact.py\", line 21, in main\n    p.desktop(94,True);p.desktop(21000,True)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (94, 26)\n"
+}

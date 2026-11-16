@@ -1,29 +1,27 @@
 # Engacer OS user handbook
 
-Current native delivery: **M12.4 / 0.12.4**, within M12-STAGE4-VM-v1.
-[Release scope, retained BIOS observation and exact evidence](../releases/m124-v0.12.4.md). Earlier stage
-releases remain historical.
+Current native delivery: **M12.5 / 0.12.5**, within M12-STAGE5-VM-v1.
+[Install the matching VMware media](install-m125.md),
+[use Files and USB navigation](files-m125.md), and read the
+[release scope and retained limits](../releases/m125-v0.12.5.md).
 
-Development now follows [M12.0–M12.18](../milestones/m12.md).
-[The M12 user journeys](desktop-m12.md) describe the planned consistent desktop.
-M12.0 concepts are design evidence. M12.4 supplies the current tested native stage;
-the complete final M12 regression remains M12.18.
+Extract the complete VMware ZIP, open EngacerOS.vmx and choose I Copied It if
+asked. Select the disk row inside the bordered list, follow Next, review and
+install, then choose **Restart to Engacer OS**. The matching ISO may stay attached.
+No terminal command, online account or guest driver installer is needed.
 
-Extract the complete prepared VMware ZIP, open EngacerOS.vmx and choose I Copied
-It if asked. Start, select the disk row in the bordered list, follow Next, review
-and install, then choose **Restart to Engacer OS**. The matching ISO may stay
-connected. No terminal command, network account or guest driver installer is needed.
+M12.5 tests its exact enabled-device VMware starter, QEMU SATA/UEFI and BIOS
+journeys, native/USB navigation and replacement, compact light/dark, actual
+150%/4K, cached/full rendering and idle/resources. Final regression remains
+M12.18. The earlier concurrent BIOS/AHCI timeout remains open; stress reliability
+is unqualified. Shared-menu footer fitting and HiDPI cursor isolation continue
+in their named later stages. Agent review is not a human usability study.
 
-M12.4 tests its exact enabled-device VMware starter and QEMU SATA/UEFI and BIOS
-journeys, caption/window and owner-modal tasks, actual 150%/4K rendering,
-cached/full comparisons and idle/resources. Read its explicit carry-forward limits.
-The retained observation concerns an earlier M12.2 concurrent BIOS/AHCI timeout.
-A repeat of that candidate passes; its trigger is not isolated and stress
-reliability remains unqualified.
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.4](install-m124.md)
+- [Download and install M12.5](install-m125.md)
+- [Navigate native folders and USB](files-m125.md)
 - [Use desktop objects, shortcuts and hidden/restored icons](desktop-m123.md)
 - [Recognize original app, folder and file icons](icons-m122.md)
 - [Use the shared desktop controls and Files scrollbar](components-m121.md)
@@ -34,7 +32,7 @@ broader original-app/USB regression; those results qualify its own bytes.
 - [Install, run and remove the original Windows 7-Zip console app](windows-apps-m8.md)
 - [Use the standard apps and manage optional packages](apps-m74.md)
 - [Explore the desktop and navigate your folders](desktop-m73.md)
-- [Current release, checksums and qualified limits](../releases/m124-v0.12.4.md)
+- [Current release, checksums and qualified limits](../releases/m125-v0.12.5.md)
 - [Previous M11.6 final installation and matrix](install-m116.md)
 - [Repair boot files and review recovery limits](apps-m74.md#disks-and-recovery)
 - [Manage partitions and format safely](disk-manager-m71.md)

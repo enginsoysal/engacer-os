@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M12.5",
+  "build_id": "0efed900bdf19cc198e81c3ee9fffff1",
+  "iso_sha256": "e33fb367bd6da9a5a9baf11ff4260edc6904ef637135823c2f38d7015300e821",
+  "owned_fixture": "10794f4c840a410fa54fda8de118105f",
+  "checks": [
+    "Real installed startup and a single common frame retain Back/Forward/Home/Refresh in no-device state; hidden native scrollbars cannot steal USB keys",
+    "USB drive objects select once and Enter opens their actual lease; item pages and native/USB history restore the prior scroll offset"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\files_native.py\", line 100, in main\n    p.desktop(24,True);assert app(g)['usb_path']=='/Games';p.desktop(50001,True);assert app(g)['usb_path']=='/';p.desktop(90,True);assert app(g)['usb_path']=='/Games';p.desktop(91,True);assert app(g)['usb_path']=='/'\nAssertionError\n",
+  "idle_observations": []
+}

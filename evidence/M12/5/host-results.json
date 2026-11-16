@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "stage": "M12.5",
+  "checks": "PASS: native/USB collection/leased USB history, back/forward, branch replacement, offset retention, generation/partition/device isolation, 10000 bounded transitions and 1805 row layouts.",
+  "history_bytes_per_window": 2216,
+  "history_slots_per_window": 8,
+  "added_history_bytes_per_window": 160,
+  "allocations": 0,
+  "source_sha256": {
+    "include/engine/ui/files12.h": "f46ee2bfe933f0d65a121057031fe00df547e5e2bb9409c63735374a8f94b5eb",
+    "tests/m12/files_history_host.c": "ffd98c4c3e96b2274e82fe8480fe5423f2ce218934a4770e279a94a512f63b9c"
+  }
+}

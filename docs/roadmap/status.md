@@ -1,6 +1,20 @@
 # Current status
 
-Updated 16 November 2026. **M12.4 / 0.12.4 passes M12-STAGE4-VM-v1.**
+Updated 16 November 2026. **M12.5 / 0.12.5 passes M12-STAGE5-VM-v1.**
+[Install](../handbook/install-m125.md), [Files navigation](../handbook/files-m125.md),
+[release scope](../releases/m125-v0.12.5.md),
+[acceptance](../../evidence/M12/5/acceptance-results.json).
+579 compiled inputs match Git. Ten native journeys cover the common navigation
+frame, page/history restoration, actual USB data, long addresses, independent
+windows and detach/replacement identity. Compact light/dark, actual 150%/4K,
+twelve cached/full comparisons, exact enabled-device VMware and separate BIOS
+install/ordinary starts pass. Fixed shell state is 545,620 bytes, 1,408 above
+M12.4; native tasks retain zero managed pages. Public release/site proof closes
+separately before M12.6. Shared-menu fitting and the HiDPI cursor observation
+remain M12.14/M12.16 follow-ups; the earlier BIOS/AHCI observation remains open
+for M12.18. No universal hardware or Windows claim follows from this stage.
+
+**Previous M12.4 / 0.12.4 passes M12-STAGE4-VM-v1.**
 [Install](../handbook/install-m124.md), [window controls](../handbook/windows-m124.md),
 [release and retained limits](../releases/m124-v0.12.4.md),
 [acceptance](../../evidence/M12/4/acceptance-results.json).

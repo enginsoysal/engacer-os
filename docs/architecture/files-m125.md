@@ -1,7 +1,8 @@
 # M12.5 one Files environment
 
-Status: implementation and qualification in progress. M12.4 remains the current
-qualified download. Host checks and compilation do not qualify a new ISO.
+Status: native qualification passes M12-STAGE5-VM-v1. Public release and full
+website verification close separately before M12.6. Host checks supplement
+actual installed behavior; final comprehensive regression remains M12.18.
 
 ## One frame, different capabilities
 
@@ -64,7 +65,7 @@ the root breadcrumb and Refresh reached the legacy generic application handler
 before the new Files handler. They were drawn but consumed without their action.
 The explicit Files dispatch now precedes that sink for these two commands, while
 retaining the existing modal and owner guards. The failed candidate report is
-preserved; the corrected media must repeat its own native and boot qualification.
+preserved; the corrected media repeated and passed native and boot qualification.
 
 Host checks exercise location/generation isolation, branching, offsets, 10,000
 bounded transitions and short-window row geometry. Native qualification must
@@ -72,10 +73,18 @@ separately install and start matching media, traverse Documents/USB/folders and
 Back/Forward/Home, test no-device/detach/replacement/refresh, address limits,
 multiple window ownership, real 150%/4K rendering, idle and retained resources.
 Exact VMware, BIOS and cached/full rendering checks remain separate gates before
-release and complete website verification. No M12.5 native acceptance is claimed
-by this development document.
+release and complete website verification. All matching native gates pass; see
+[exact-source acceptance](../../evidence/M12/5/acceptance-results.json).
 
 Presentation/sort expansion remains M12.6; broader transfers M12.7; shared Open
 and Save dialogs M12.8. The M12.4 shared-menu footer and HiDPI cursor observations
 remain explicit M12.14/M12.16 follow-ups. Final controller/application regression
 and the retained BIOS/AHCI observation remain M12.18.
+
+Linked fixed shell state is 545,620 bytes: 1,408 above M12.4 and 1,792 above
+the M11.6 baseline. The history accounts for 1,280 bytes and address fields for
+128 bytes. Native tasks return to 1,047 managed pages (4,288,512 bytes) after
+USB detach; the seven live USB driver pages are separate. No extra allocation
+failures or retained pages occur. Compact light/dark and twelve cached/full
+comparisons pass; idle paint counts remain unchanged and CPUs halt. Font
+coverage remains 251,248 bytes; no raster icon cache is introduced.

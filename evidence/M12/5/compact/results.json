@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build_id": "69b114d97561bfe742ac9097748ad3d5",
+  "iso_sha256": "36823e017ce466e0df39bcee5ad50b53eaa096f08ccaf4fb27165bac4a680fd7",
+  "bounds": [
+    100,
+    20,
+    500,
+    420
+  ],
+  "navigation": [
+    "Back",
+    "Forward",
+    "Refresh",
+    "Places",
+    "address"
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "retained_pages": 0,
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 71,
+        "paints_after": 71
+      }
+    ]
+  ]
+}

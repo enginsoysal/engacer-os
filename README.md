@@ -5,24 +5,23 @@ kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
 **Active development: M12.5 — one Files environment.**
-**Current native delivery: M12.4**, qualified within M12-STAGE4-VM-v1.
-[Install](docs/handbook/install-m124.md), [window guide](docs/handbook/windows-m124.md),
-[release scope and retained limits](docs/releases/m124-v0.12.4.md),
-[exact-source acceptance](evidence/M12/4/acceptance-results.json).
-576 compiled inputs match Git. Nine native window journeys cover caption states,
-keyboard commands, owner modality, unsaved close and screen bounds. Actual
-150%/4K rendering, twelve cached/full comparisons and exact VMware/BIOS install
-and independent starts pass. Fixed shell state grows 16 bytes over M12.3;
-window tasks retain no extra managed pages. Public download and complete
-[website verification passed](evidence/M12/4/publication-results.json): twenty downloads,
-315 pages and 2,155 discovered links. M12.5 now follows in order.
-The shared-menu footer and HiDPI cursor observation remain explicit follow-ups
-for M12.14/M12.16; the earlier BIOS/AHCI observation remains open for M12.18.
-[M12.3 public delivery](evidence/M12/3/publication-results.json) is preserved.
+**Current native delivery: M12.5**, qualified within M12-STAGE5-VM-v1.
+[Install](docs/handbook/install-m125.md), [Files guide](docs/handbook/files-m125.md),
+[release scope and retained limits](docs/releases/m125-v0.12.5.md),
+[exact-source acceptance](evidence/M12/5/acceptance-results.json).
+579 compiled inputs match Git. Ten native journeys cover Documents/USB history,
+real file copy, 258-byte addresses, independent windows and actual USB replacement.
+Compact light/dark, actual 150%/4K, twelve cached/full comparisons and the exact
+VMware/BIOS installation and independent starts pass. Fixed shell state grows
+1,408 bytes over M12.4; tasks retain zero extra managed pages. Public release,
+matching downloads and complete website verification close before M12.6.
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English guides, GitHub releases and public website verification
 between stages. [Design contract](docs/architecture/desktop-m12.md),
-[user journeys](docs/handbook/desktop-m12.md). Final M12 regression remains M12.18.
+[user journeys](docs/handbook/desktop-m12.md). Final regression remains M12.18.
+Shared-menu footer fitting and the HiDPI cursor observation remain explicit
+M12.14/M12.16 follow-ups; the earlier BIOS/AHCI observation remains open for M12.18.
+[M12.4 public delivery](evidence/M12/4/publication-results.json) is preserved.
 
 **Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
@@ -49,9 +48,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m124-v0.12.4/EngacerOS-M12STAGE4-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m124-v0.12.4/EngacerOS-M12STAGE4.iso) ·
-[Step-by-step installation](docs/handbook/install-m124.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5.iso) ·
+[Step-by-step installation](docs/handbook/install-m125.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

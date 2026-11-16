@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "stage": "M12.5",
+  "build_id": "69b114d97561bfe742ac9097748ad3d5",
+  "scope": "Agent visual/scenario review of the common Files frame; not a human usability study or final accessibility qualification",
+  "reviewed": [
+    "native/usb-folder-common-frame.png",
+    "native/disconnected-history.png",
+    "native/long-usb-address.png",
+    "native/native-150.png",
+    "native/native-4k.png",
+    "compact/compact-no-device.png",
+    "compact/compact-dark-no-device.png",
+    "compact/compact-dark-documents.png"
+  ],
+  "findings": [
+    "Native Inter, shared icons and controls remain legible on ordinary, 150% and real 4K captures.",
+    "No essential navigation or empty-state text overlaps at the actual 500x420 size; Places replaces the sidebar.",
+    "Light and dark native/USB locations retain the same controls and bounded page footer.",
+    "Disconnected and empty folders retain the frame; long names use bounded display ellipsis while full supported addresses remain editable."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Existing shared-menu helper footer uses bounded ellipsis; complete fitting remains planned."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Raw HiDPI captures suggest drawn cursor displacement. Isolate capture timing versus native cursor coordinates; scripted actions alone do not establish pointer usability."
+    }
+  ],
+  "capture_sha256": {
+    "native/usb-folder-common-frame.png": "8c7c8416084c9d3e5c4ac4c37741cab24bd2b3d868ab7df4e48592923fd0f567",
+    "native/disconnected-history.png": "9e780775c5d524702f9093aa416782e9d5112bf5b07ca9f876dae8ebaa2de84e",
+    "native/long-usb-address.png": "0fe79e585c084742d4eda05bae8e5dde40b47f25e4a945ac48e8ab45cafc7a08",
+    "native/native-150.png": "9a3f825586ea7ca90eeaaa0a04461ed7e4c680f33b9f81416fcdd17122ed1b7b",
+    "native/native-4k.png": "70d085fbd08f8bfb03f99c52f1a3944ec52e9901236205803f4cadcabd2e423c",
+    "compact/compact-no-device.png": "b0bed8487fed17f2487fd75254f690d16780eabca7d41a388bbc7be9096f5484",
+    "compact/compact-dark-no-device.png": "e6969960ede64b726ad67ec951155a1240dfc03222139e2fe0dae09c0e207e56",
+    "compact/compact-dark-documents.png": "bd8f5dc91993026257c7e463df68b749197d693dfa93d9ecb2a865381dcc51f6"
+  }
+}
