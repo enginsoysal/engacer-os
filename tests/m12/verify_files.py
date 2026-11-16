@@ -19,7 +19,7 @@ def main():
     assert vmware['existing_vm_inventory_unchanged'] and len(vmware['checks'])==len(bios['checks'])==3
     assert len(native['checks'])>=10 and len(native['profiles'])==2
     assert host['history_slots_per_window']==8 and host['allocations']==0
-    assert compact['bounds'][2:]==[500,420] and compact['retained_pages']==0
+    assert compact['bounds'][2:]==[500,420] and compact['retained_pages']==0 and compact['themes']==['light','dark']
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
     assert native['resources']['before'][3]==native['resources']['after'][3]
