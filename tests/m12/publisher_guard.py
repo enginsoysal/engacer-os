@@ -26,5 +26,36 @@ def main():
     try:check(incomplete,False)
     except AssertionError:pass
     else:raise AssertionError('Incomplete public release was accepted')
-    print('PASS: matching empty/partial/full drafts and public readback; nine unsafe visibility/source/body/asset/public cases rejected without HTTP.')
+    tag='m128-v0.12.8';base='repos/enginsoysal/engacer-os/releases';calls=[]
+    listed=dict(id=128,tag_name=tag,**draft)
+    def request(path,**options):
+        calls.append((path,options))
+        if path==base+'/tags/'+tag:return None
+        if path==base+'?per_page=100':return [[dict(id=1,tag_name='unrelated')],[listed]]
+        if path==base+'/128':return copy.deepcopy(listed)
+        raise AssertionError('Unexpected API route')
+    assert m.lookup_release(tag,request)==listed
+    assert calls[1][1]==dict(paginate=True) and calls[2][0].endswith('/128')
+    assert m.lookup_release(tag,lambda path,**kwargs:None if '/tags/' in path else [[]]) is None
+    def denied(path,**kwargs):raise RuntimeError('HTTP 403; absence is not established')
+    try:m.lookup_release(tag,denied)
+    except RuntimeError:pass
+    else:raise AssertionError('Lookup failure was interpreted as a missing release')
+    def duplicate(path,**kwargs):return None if '/tags/' in path else [[listed],[listed]]
+    try:m.lookup_release(tag,duplicate)
+    except AssertionError:pass
+    else:raise AssertionError('Duplicate draft identity was admitted')
+    def changed(path,**kwargs):
+        if '/tags/' in path:return None
+        if '?per_page=' in path:return [[listed]]
+        return dict(listed,id=129)
+    try:m.lookup_release(tag,changed)
+    except AssertionError:pass
+    else:raise AssertionError('Changed draft identity was admitted')
+    public_lookup=dict(listed,draft=False)
+    assert m.lookup_release(tag,lambda path,**kwargs:public_lookup)==public_lookup
+    try:m.check_release(public_lookup,rows,'a'*40,'English notes\n',True)
+    except AssertionError:pass
+    else:raise AssertionError('Direct public lookup became a mutable draft')
+    print('PASS: matching empty/partial/full drafts and public readback; nine unsafe release cases and six tag/draft lookup cases checked without HTTP or mutation.')
 if __name__=='__main__':main()

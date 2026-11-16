@@ -11,6 +11,32 @@ def read(path):return json.loads(path.read_text(encoding='utf-8'))
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def run(*args):return subprocess.check_output(list(args),cwd=ROOT).decode('utf-8')
 
+def api_json(path,missing=False,paginate=False):
+    args=['gh','api',path]+(['--paginate','--slurp'] if paginate else [])
+    result=subprocess.run(args,cwd=ROOT,capture_output=True)
+    if result.returncode:
+        if missing and b'HTTP 404' in result.stderr:return None
+        raise RuntimeError('Release API read failed; no release is created or replaced: '+result.stderr.decode('utf-8',errors='replace'))
+    return json.loads(result.stdout)
+
+def lookup_release(tag,request=api_json):
+    """Authenticated tag lookup can hide drafts; resolve their exact listed ID.
+
+    Only a successful complete listing can establish absence. Permission/network
+    failures never authorize creation, and a public release remains immutable.
+    """
+    base=f'repos/{REPO}/releases'
+    release=request(base+'/tags/'+tag,missing=True)
+    if release is None:
+        pages=request(base+'?per_page=100',paginate=True)
+        matches=[row for page in pages for row in page if row['tag_name']==tag]
+        assert len(matches)<=1,'Duplicate matching release records'
+        if not matches:return None
+        release=request(base+'/'+str(matches[0]['id']))
+        assert release['id']==matches[0]['id'],'Listed release identity changed'
+    assert release['tag_name']==tag,'Release tag changed'
+    return release
+
 def check_release(release,expected,reference,body,draft):
     assert release['draft']==draft and not release['prerelease'],'Unexpected release visibility'
     assert release['target_commitish']==reference,'Release targets different source'
@@ -41,13 +67,12 @@ def main():
     for row in assets['assets']:
         path=ROOT/'dist'/row['name'];assert path.name==row['name'] and path.is_file() and path.stat().st_size==row['size'] and sha(path)==row['sha256']
     if not stage.publish:print('PASS: committed qualified source, UTF-8 notes and twenty assets; no external change.');return
-    endpoint=f'repos/{REPO}/releases/tags/{tag}'
-    response=subprocess.run(['gh','api',endpoint],cwd=ROOT,capture_output=True)
-    if response.returncode:
-        assert b'HTTP 404' in response.stderr,'Release lookup failed; no draft is created'
+    release=lookup_release(tag)
+    if release is None:
         run('gh','release','create',tag,'--draft','--target',reference,'--title',body.splitlines()[0].removeprefix('# '),'--notes-file',str(work/'release-notes.md'))
-        release=json.loads(run('gh','api',endpoint))
-    else:release=json.loads(response.stdout)
+        release=lookup_release(tag)
+        assert release is not None,'Created draft is not readable; stop before uploads'
+    endpoint=f'repos/{REPO}/releases/'+str(release['id'])
     missing=check_release(release,assets['assets'],reference,body,True)
     if missing:run('gh','release','upload',tag,*[str(ROOT/'dist'/name) for name in missing])
     release=json.loads(run('gh','api',endpoint));assert not check_release(release,assets['assets'],reference,body,True),'Incomplete draft'
