@@ -171,3 +171,7 @@ tools/design/components12.py -text whitespace=cr-at-eol
 tools/release/vmware_starter12.py -text whitespace=cr-at-eol
 third_party/inter/raster-lock12.json -text whitespace=cr-at-eol
 tests/m12/** -text whitespace=cr-at-eol
+
+# Keep original icon review assets and the new stage's evidence byte-exact.
+docs/architecture/figures/m12-icons/** -text -whitespace
+evidence/M12/2/** -text -whitespace
