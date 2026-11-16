@@ -8,16 +8,17 @@ load=common.load;sha=common.sha;write=common.write
 def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage6-build-manifest.json');starter=load(ROOT/'dist/m12stage6-starter-manifest.json')
-    native=load(WORK/'presentation-native/results.json');host=load(WORK/'presentation-host/results.json')
+    native=load(WORK/'presentation-native/results.json');host=load(WORK/'presentation-host/results.json');tips=load(WORK/'name-tips/results.json')
     bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json')
-    assert all(r['passed'] for r in (native,host,bios,vmware,motion))
+    assert all(r['passed'] for r in (native,host,tips,bios,vmware,motion))
     iso=meta['artifacts']['EngacerOS-M12STAGE6.iso']['sha256']
     assert meta['release_version']=='0.12.6' and meta['qualification_scope']=='M12-STAGE6-VM-v1'
-    for report in (native,bios,vmware,motion,starter):assert report['build_id']==meta['build_id']
-    for report in (native,bios,vmware,motion):assert report['iso_sha256']==iso
+    for report in (native,tips,bios,vmware,motion,starter):assert report['build_id']==meta['build_id']
+    for report in (native,tips,bios,vmware,motion):assert report['iso_sha256']==iso
     assert vmware['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
     assert vmware['existing_vm_inventory_unchanged'] and len(vmware['checks'])==len(bios['checks'])==3
     assert len(native['checks'])>=10 and len(native['profiles'])==2
+    assert len(tips['profiles'])==2 and tips['usb_unchanged'] and all(p['retained_pages']==0 and p['native_tip'][2]>0 and p['usb_tip'][2]>0 for p in tips['profiles'])
     assert host['allocations']==0 and 'transitivity' in host['checks'] and 'responsive layouts' in host['checks']
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
@@ -46,7 +47,7 @@ def main():
         assert sha(ROOT/'dist'/oldstarter['archive'])==oldstarter['sha256']
     for row in load(ROOT/'evidence/M12/0/preserved-baseline.json')['artifacts']:assert sha(ROOT/'dist'/row['name'])==row['sha256']
     OUT.mkdir(parents=True,exist_ok=True)
-    for source,name in [('presentation-native','native'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
+    for source,name in [('presentation-native','native'),('name-tips','name-tips'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
         target=OUT/name;target.mkdir(exist_ok=True)
         for path in (WORK/source).iterdir():
             if path.is_file() and path.suffix in ('.json','.png','.log') and path.name!='failure.log' and not path.name.startswith('prototype-'):
