@@ -18,6 +18,7 @@ def main():
         guest=ui.guest(work/('cancel-probe-'+uuid.uuid4().hex),work/'owned.img',media='installed',ready='M7_DESKTOP_READY',extra=['-drive',f'if=none,id=probe-source,format=raw,file={source}'])
         ui.s.normal_boot(guest,work/'install/vars.fd')
         with guest as g:
+            assert 'M7_DESKTOP_READY build='+report['build_id'] in g.log(),'A probe requires a fixture installed from the matching current media'
             pointer=ui.Pointer(g);pointer.drain();pointer.desktop(21000,True);f.attach(g,pointer,'probe-source','probe-usb');pointer.desktop(f.drive(g),True);c.key(g,'ret');pointer.desktop(f.row(g,'Large.bin'),True)
             t.start(g,pointer,21004);t.busy_frame(g);t.capture_active(g,'cancel-probe-active');c.key(g,'esc');t.wait(g,pointer)
             assert '/Users/Owner/Downloads/Large.bin' not in f.entries(g)
