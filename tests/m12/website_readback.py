@@ -18,17 +18,26 @@ def main():
     parser.add_argument('--audit', type=Path, required=True)
     parser.add_argument('--payload', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--stage', type=int, default=0)
     args = parser.parse_args()
+    assert 0 <= args.stage <= 18
     report = json.loads(args.audit.read_text(encoding='utf-8'))
     payload = json.loads(args.payload.read_text(encoding='utf-8'))
     results = {r['url']: r for r in report['pages']}
     initial_errors = list(report['page_errors'])
     expected_sources = {}
     required = {audit.SITE+'/', audit.SITE+'/blog/documentation', audit.SITE+'/blog/downloads'}
+    critical_paths = {'docs/milestones/m12.md', 'docs/architecture/desktop-m12.md',
+                      'docs/handbook/desktop-m12.md', 'docs/roadmap/status.md', 'website/README.md'}
+    if args.stage:
+        suffix = f'm12{args.stage}'
+        critical_paths.update({f'docs/handbook/install-{suffix}.md',
+                              f'docs/releases/{suffix}-v0.12.{args.stage}.md'})
+        if args.stage == 1:
+            critical_paths.update({'docs/architecture/components-m121.md', 'docs/handbook/components-m121.md'})
     for post in payload['page']['blog']['posts']:
         path = next(m['value'] for m in post['meta'] if m['key'] == 'engine_source_path')
-        if path in ('docs/milestones/m12.md', 'docs/architecture/desktop-m12.md',
-                    'docs/handbook/desktop-m12.md', 'docs/roadmap/status.md', 'website/README.md'):
+        if path in critical_paths:
             url = audit.SITE+'/blog/'+post['slug']
             required.add(url)
             expected_sources[url] = 'https://github.com/enginsoysal/engacer-os/blob/'+payload['source_commit']+'/'+path
