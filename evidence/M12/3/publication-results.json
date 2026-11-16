@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.3",
+  "qualification": "M12-STAGE3-VM-v1",
+  "source_commit": "06c9aa186e8443d0e207576256b838fd9b1cf1e4",
+  "build_id": "d7e649efbacc08139ee701199d951eeb",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m123-v0.12.3",
+  "workflow_ids": [
+    43918964176
+  ],
+  "current_native_download": "m123-v0.12.3",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 311,
+  "unique_links": 2097,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

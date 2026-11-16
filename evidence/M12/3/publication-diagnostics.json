@@ -1,0 +1,9 @@
+{
+  "superseded_workflow": 43918798755,
+  "action": "cancelled",
+  "reason": "Pre-release inventory was superseded by the public M12.3 release event.",
+  "successful_workflow": 43918964176,
+  "initial_public_scan": "Two new articles returned 404 before the publisher had created them. Both recover in the retained fresh readback; all 311 pages then pass.",
+  "mobile_capture": "public-mobile.jpg contains the menu closing transition despite the already collapsed accessibility state. public-mobile-closed.jpg is a supplemental settled capture after reload with Open menu collapsed, aria-expanded false, current M12.3 text and viewport/document 390/380. The original capture and accepted browser proof are preserved.",
+  "cleanup": "Previously rejected retired M12.1 scratch cleanup was not retried."
+}
