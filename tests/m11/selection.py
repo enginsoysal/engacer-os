@@ -88,10 +88,10 @@ def main():
    # Documents sidebar remains a one-release button.
    p.desktop(94,True);p.desktop(26,True)
    for key in ('m','1','1','ret'):ui.h.key(g,key)
-   g.wait('M72_FOLDER_CREATED /Users/Owner/Documents/m11');p.drain()
+   p.drain();assert '/Users/Owner/Documents/m11' in ui.s.directories(disk)
    p.desktop(26,True)
    for key in ('m','1','2','ret'):ui.h.key(g,key)
-   g.wait('M72_FOLDER_CREATED /Users/Owner/Documents/m12');p.drain()
+   p.drain();assert '/Users/Owner/Documents/m12' in ui.s.directories(disk)
    base=ui.symbol('volume',0xd3040,True)[0]+64
    slot=next(i for i,v in enumerate(windows(g)) if v[6] and v[5]==1)
    native_order=listing(g,slot)

@@ -39,6 +39,11 @@ Files listings. Selected bits identify volume entries, not row numbers. The
 regression observes the actual native listing-to-entry mapping; it does not
 weaken selection checks or restore old ordering merely to satisfy a test.
 The VMware folder task uses the normal Ctrl+Shift+N action after navigation.
+M11's creation dialog no longer emits the legacy M72 creation marker. QEMU
+checks the actual stored directory; VMware navigates to the new directory through
+the normal address field and subsequently inspects the stopped disk independently.
+A missing obsolete marker is retained as a harness diagnostic, not described as
+a failed storage operation or fixed by weakening durable-byte verification.
 
 Failed candidate reports are diagnostic evidence, never acceptance for later
 bytes. Any change to a compiled input requires rebuilding and repeating the

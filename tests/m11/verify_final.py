@@ -1,5 +1,5 @@
 """Accept only the matching final native/controller/device/application regression."""
-import hashlib,json,re,subprocess
+import hashlib,json,os,re,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'evidence/M11/6'
 
@@ -12,7 +12,7 @@ def main():
  assert (meta['milestone'],meta['build_revision'],meta['release_version'])==('M11','final','0.11.6')
  iso=meta['artifacts']['EngacerOS-M11FINAL.iso']['sha256'];build=meta['build_id']
  assert starter['passed'] and starter['build_id']==build and digest(ROOT/'dist'/starter['archive'])==starter['sha256']
- paths=['selection/results.json','files/results.json','files/preferences-results.json','start/results.json','start/controls-results.json','windows/results.json','windows/keys/results.json','windows/motion/results.json']
+ paths=['selection/results.json','files/results.json','files/preferences-results.json','files/drag-cancel/results.json','start/results.json','start/controls-results.json','windows/results.json','windows/keys/results.json','windows/motion/results.json']
  paths+=['setup/'+p+'/results.json' for p in ('ordinary','150','4k','safety','packages','vmware')]
  paths+=['hardware/'+p+'/results.json' for p in ('uefi-1280x800-128','uefi-1280x800-64','bios-1280x800-128','uefi-3840x2160-128-hub','uefi-1280x800-128-large-usb')]
  paths+=['usb-negative/results.json','usb-quota/results.json']
@@ -31,6 +31,11 @@ def main():
  assert reports['setup/vmware/results.json']['starter_sha256']==starter['sha256']
  assert reports['windows/results.json']['window_operations_retained_managed_page_delta']==0
  assert reports['setup/packages/results.json']['retained_page_delta']==0
+ assert len(reports['selection/results.json']['checks'])>=14
+ assert len(reports['files/results.json']['checks'])>=20
+ assert len(reports['windows/results.json']['checks'])>=11
+ for profile in ('ordinary','150','4k'):
+  r=reports['setup/'+profile+'/results.json'];assert len(r['checks'])>=5 and len(r['idle_observations'])>=3 and all(r['idle_observations'][-3:])
  motion=reports['windows/motion/results.json']['profiles']
  assert [p['physical'] for p in motion]==[[1280,800],[1920,1200],[3840,2160]]
  for p in motion:
@@ -66,6 +71,9 @@ def main():
    values=re.findall(r'^\s*[0-9a-f]+\s+[0-9a-f]+\s+([0-9a-f]+)\s+\d+\s+.*kernel_desktop_session-kernel.o:\(\.'+section+r'\)$',text,re.M);assert len(values)==1;parts[section]=int(values[0],16)
   fixed[revision]={'bytes':sum(parts.values()),'sections':parts,'map_sha256':digest(p)}
  assert fixed['FINAL']['bytes']-fixed['STAGE1']['bytes']<512*1024
+ font=load(ROOT/'build/m11/font73-manifest.json')
+ assert font['secondary_sizes']==[14,21,28] and font['coverage_bytes']<1024**2
+ assert font['header_sha256']==load(ROOT/'third_party/inter/raster-lock11.json')['header_sha256']
  # Publish only observations, never private owned-image pointers or raw VRAM.
  for path,r in reports.items():
   source=ROOT/('build/m10/'+path.removeprefix('hardware-host/') if path.startswith('hardware-host/') else 'build/m11/'+path)
@@ -77,9 +85,23 @@ def main():
     data=data.replace(str(ROOT).encode(),b'<project-root>')
     assert b'C:\\Users\\' not in data and b'C:/Users/' not in data,p.name
    (target/p.name).write_bytes(data)
+ for task,folders in {'files':('install','detached'),'start':('install','disk-only'),'windows':('install','disk-only','native-4k')}.items():
+  base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6'/('m11-'+task)
+  owned=max(base.iterdir(),key=lambda p:p.stat().st_mtime_ns)
+  assert owned.resolve().is_relative_to(base.resolve())
+  for folder in folders:
+   serial=(owned/folder/'serial.log').read_text(encoding='utf-8',errors='replace')
+   assert 'M7_DESKTOP_READY build='+build in serial and 'KERNEL_PANIC' not in serial,(task,folder)
+   (OUT/task/(folder+'.log')).write_bytes(serial.replace(str(ROOT),'<project-root>').encode())
  write(OUT/'known-unqualified/uefi64-boot-usb.json',known)
  write(OUT/'candidate-manifest.json',meta);write(OUT/'starter-manifest.json',starter);write(OUT/'preserved-releases.json',preserved)
- write(OUT/'resources.json',{'passed':True,'fixed_desktop':fixed,'added_from_stage1_bytes':fixed['FINAL']['bytes']-fixed['STAGE1']['bytes'],'budget_bytes':512*1024,'native_motion':motion,'scope':'Fixed desktop state and managed pages are measured separately; configured guest RAM is not consumption.'})
+ boots={}
+ for profile in ('ordinary','150','4k','vmware'):
+  serial=(OUT/'setup'/profile/'install.log').read_text(encoding='utf-8')
+  values=re.findall(r'M7_DESKTOP_STATS current=0x([0-9a-f]+) peak=0x([0-9a-f]+) allocation_failures=0x([0-9a-f]+)',serial);assert values
+  current,peak,failures=[int(v,16) for v in values[-1]]
+  boots[profile]={'managed_current_bytes':current,'managed_peak_bytes':peak,'allocation_failure_counter_including_boot_stress_probes':failures}
+ write(OUT/'resources.json',{'passed':True,'fixed_desktop':fixed,'added_from_stage1_bytes':fixed['FINAL']['bytes']-fixed['STAGE1']['bytes'],'budget_bytes':512*1024,'native_motion':motion,'boot_managed_observations':boots,'font':font,'scope':'Fixed desktop state and managed pages are measured separately; configured guest RAM is not consumption.'})
  result={'passed':True,'stage':'M11.6','version':'0.11.6','qualification':'M11-FINAL-VM-v1','build_id':build,'iso_sha256':iso,'vmware_zip_sha256':starter['sha256'],'source_inputs_verified':len(meta['source_sha256']),'artifacts_verified':len(meta['artifacts'])+1,'native_profiles':paths,'controller_profiles':pairs,'native_tasks':[c for r in reports.values() for c in r.get('checks',[])],'source_index_matches_compiled_bytes':True,'test_source_sha256':{p.relative_to(ROOT).as_posix():digest(p) for p in sorted((ROOT/'tests/m11').iterdir()) if p.suffix in ('.py','.c')},'limits':meta['limits']+['64-MiB OVMF boot-attached USB remains unqualified; the 64-MiB passing journey connects storage after installed startup.'],'publication':'Visible release, exact downloads and fresh public website verification are separate required gates.'}
  write(OUT/'acceptance-results.json',result);print('M11.6 matching final qualification PASS')
 if __name__=='__main__':main()

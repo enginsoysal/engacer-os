@@ -21,7 +21,7 @@ def launch(g,name,kind):
  for c in name:v.key(g,ord(c))
  start=len(g.read());v.enter(g);g.wait('M7_WINDOW_OPEN app=0x'+format(kind,'016x'),offset=start)
 def chord(g,modifier,key):
- display=g.connect_display();display.key(modifier,True);display.key(key,True);display.key(key,False);display.key(modifier,False);g.read();time.sleep(.2)
+ display=g.connect_display();display.key(modifier,True);time.sleep(.12);display.press(key);display.key(modifier,False);g.read();time.sleep(.2)
 def windows(g,out):
  launch(g,'windows apps',19);v.shot(g,out,'windows-apps')
  for tabs,confirm in [(1,True),(1,False),(4,False),(5,False),(2,True),(1,True),(1,False)]:legacy.windows_job(g,tabs,confirm)
@@ -34,7 +34,20 @@ def folders(g,out):
  display=g.connect_display();display.key(0xffe3,True);display.key(0xffe1,True);v.key(g,ord('n'));display.key(0xffe1,False);display.key(0xffe3,False);g.read();time.sleep(.3)
  v.shot(g,out,'new-folder-dialog');chord(g,0xffe3,ord('a'))
  for c in 'vmware-folders':v.key(g,ord(c))
- start=len(g.read());v.enter(g);g.wait('M72_FOLDER_CREATED /Users/Owner/Documents/vmware-folders',offset=start);v.shot(g,out,'real-folder')
+ v.shot(g,out,'folder-name-entered');v.enter(g);g.read();time.sleep(.3)
+ # The M11 dialog stores through v6_mkdir and does not emit the old M72 create marker.
+ # Navigate by ordinary address entry; visit72 logs only after validating a real folder.
+ chord(g,0xffe9,ord('d'));chord(g,0xffe3,ord('a'))
+ for c in 'vmware-folders':
+  if c.isupper():
+   display=g.connect_display();display.key(0xffe1,True);v.key(g,ord(c.lower()));display.key(0xffe1,False)
+  else:v.key(g,ord(c))
+ start=len(g.read());v.enter(g)
+ try:g.wait('M72_FOLDER_VISIT /Users/Owner/Documents/vmware-folders',offset=start)
+ except Exception:
+  v.shot(g,out,'folder-failure');(out/'folder-failure.log').write_bytes(g.read().encode());raise
+ v.shot(g,out,'real-folder')
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--controller',choices=['sata','ide','lsilogic','lsisas1068','pvscsi','buslogic','nvme'],default='sata');p.add_argument('--firmware',choices=['efi','bios'],default='efi');p.add_argument('--starter',action='store_true');a=p.parse_args()
  assert not(a.controller=='buslogic' and a.firmware=='efi');assert not a.starter or (a.controller,a.firmware)==('sata','efi')

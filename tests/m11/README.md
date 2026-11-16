@@ -135,3 +135,44 @@ and repair restores a deliberately damaged owned BIOS payload before disk startu
 All required native screenshots/logs/results are copied into `evidence/M11/5`
 before temporary build output is removed. Published source/media hashes and
 public website verification remain separate gates. Full regression is M11.6.
+
+## M11.6 final regression
+
+Use a separate reproduction checkout and disposable local build storage. Never
+rebuild accepted stage media in place. Freeze all final artifacts before guest
+tests start; a compiled-input change invalidates previous final-candidate passes.
+
+```powershell
+python tools/build/m11.py --revision final
+python tools/release/vmware_starter11.py --revision final
+python tests/m11/interaction_host.py
+python tests/m11/start_host.py
+python tests/m11/volume_host.py
+python tests/m10/input_host.py
+python tests/m10/filesystem_host.py
+python tests/m11/run_final.py files
+python tests/m11/run_final.py start
+python tests/m11/run_final.py windows
+python tests/m11/run_final.py setup
+python tests/m11/run_final.py hardware
+python tests/m11/matrix_final.py
+python tests/m11/vmware_setup.py --revision final
+```
+
+Each lane stops on failure. Its dependent tasks share only that lane's owned
+fixture. The VMware matrix is sequential and must not overlap other VMware
+qualification: each task asserts that the pre-existing VM inventory is unchanged.
+`--resume` accepts only matching successful build/ISO/starter identities.
+
+The current final helper defaults to FINAL media. Older stage acceptance scripts
+remain historical writers: do not run them against accepted evidence directories.
+`verify_final.py` writes only `evidence/M11/6`, after every required native/host
+report passes and Git index bytes match all compiled inputs. It also verifies
+accepted earlier artifact hashes and retains the known 64-MiB OVMF boot-attached
+USB refusal as unqualified. Stage passes never replace final-artifact regression.
+
+The Files lane includes a dedicated USB/PS2 Ctrl-drag cancellation regression.
+QEMU observes actual sorted listing entry identities and durable directories.
+VMware creates a folder with ordinary input, opens it through the address field,
+then verifies persisted contents after two independent disk boots. Neither uses
+the obsolete pre-M11 creation log marker as its success criterion.

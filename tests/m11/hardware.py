@@ -107,7 +107,7 @@ def main():
             p.desktop(20006,True);assert ui.integer(g,'layout10',True)==1
             p.close_app(3,True);p.desktop(94,True);p.desktop(26,True)
             for key in ('a','b','c','ret'):ui.h.key(g,key)
-            g.wait('M72_FOLDER_CREATED /Users/Owner/Documents/axj')
+            p.drain();assert '/Users/Owner/Documents/axj' in ui.s.directories(disk)
             p.desktop(0,True);p.desktop(42203,True);p.desktop(20000,True)
             p.desktop(20005,True);assert ui.integer(g,'layout10',True)==0
             report['checks'].append('Native Settings Devices, saved layouts and real Dvorak typing into a persisted folder name')

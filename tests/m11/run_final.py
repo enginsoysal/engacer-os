@@ -3,7 +3,7 @@ import argparse,os,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 LANES={
- 'files':[['files.py'],['file_preferences.py'],['selection.py']],
+ 'files':[['files.py'],['file_preferences.py'],['drag_cancel.py'],['selection.py']],
  'start':[['start.py'],['start_controls.py']],
  'windows':[['windows.py'],['window_keys.py'],['window_motion.py']],
  'setup':[['setup.py','--profile','ordinary'],['setup.py','--profile','150'],['setup_packages.py'],['setup.py','--profile','4k'],['setup_safety.py']],
