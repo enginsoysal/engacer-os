@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: old public routes move to the canonical origin without losing the destination
+ok 1 - old public routes move to the canonical origin without losing the destination
+  ---
+  duration_ms: 2.3904
+  type: 'test'
+  ...
+# Subtest: repository links retain immutable commits, filenames, tags and anchors
+ok 2 - repository links retain immutable commits, filenames, tags and anchors
+  ---
+  duration_ms: 0.5383
+  type: 'test'
+  ...
+# Subtest: old guide titles use the new brand and clearly identify their historical release
+ok 3 - old guide titles use the new brand and clearly identify their historical release
+  ---
+  duration_ms: 3.0566
+  type: 'test'
+  ...
+# Subtest: homepage separates M12 concepts from the native M11.6 download
+ok 4 - homepage separates M12 concepts from the native M11.6 download
+  ---
+  duration_ms: 4.0213
+  type: 'test'
+  ...
+# Subtest: M12 design follows tested installation without replacing its release
+ok 5 - M12 design follows tested installation without replacing its release
+  ---
+  duration_ms: 2.1898
+  type: 'test'
+  ...
+# Subtest: current install and M11 user tasks precede architecture and history
+ok 6 - current install and M11 user tasks precede architecture and history
+  ---
+  duration_ms: 0.7614
+  type: 'test'
+  ...
+# Subtest: numeric names sort naturally and every uncategorized article stays discoverable once
+ok 7 - numeric names sort naturally and every uncategorized article stays discoverable once
+  ---
+  duration_ms: 0.965
+  type: 'test'
+  ...
+# Subtest: a new stage replaces the previous install/release in Start here; history stays last
+ok 8 - a new stage replaces the previous install/release in Start here; history stays last
+  ---
+  duration_ms: 1.1016
+  type: 'test'
+  ...
+# Subtest: M11.5 is first and the older M11.4 install guide stays in the archive
+ok 9 - M11.5 is first and the older M11.4 install guide stays in the archive
+  ---
+  duration_ms: 0.5717
+  type: 'test'
+  ...
+# Subtest: active M12 design is labeled separately and cannot replace a native download
+ok 10 - active M12 design is labeled separately and cannot replace a native download
+  ---
+  duration_ms: 1.5548
+  type: 'test'
+  ...
+# Subtest: stage downloads require all matching public assets and prefer the newest stage
+ok 11 - stage downloads require all matching public assets and prefer the newest stage
+  ---
+  duration_ms: 0.5707
+  type: 'test'
+  ...
+# Subtest: publication retries only repeatable operations and obeys bounded server delay
+ok 12 - publication retries only repeatable operations and obeys bounded server delay
+  ---
+  duration_ms: 2.9362
+  type: 'test'
+  ...
+# Subtest: reject a key for any other site before writing
+ok 13 - reject a key for any other site before writing
+  ---
+  duration_ms: 2.6644
+  type: 'test'
+  ...
+# Subtest: accept only the renamed canonical site identity
+ok 14 - accept only the renamed canonical site identity
+  ---
+  duration_ms: 0.4966
+  type: 'test'
+  ...
+# Subtest: never overwrite a matching slug owned by the author rather than the publisher
+ok 15 - never overwrite a matching slug owned by the author rather than the publisher
+  ---
+  duration_ms: 0.6315
+  type: 'test'
+  ...
+# Subtest: preserve unrelated author articles
+ok 16 - preserve unrelated author articles
+  ---
+  duration_ms: 1.9242
+  type: 'test'
+  ...
+# Subtest: archive removed generated sources as drafts rather than delete them
+ok 17 - archive removed generated sources as drafts rather than delete them
+  ---
+  duration_ms: 0.344
+  type: 'test'
+  ...
+# Subtest: recover only the exact, empty publisher-created draft
+ok 18 - recover only the exact, empty publisher-created draft
+  ---
+  duration_ms: 0.917
+  type: 'test'
+  ...
+# Subtest: a mixed plan with a later collision is rejected before any operations are returned
+ok 19 - a mixed plan with a later collision is rejected before any operations are returned
+  ---
+  duration_ms: 0.3637
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 319.2494

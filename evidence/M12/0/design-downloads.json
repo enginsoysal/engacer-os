@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "scope": "Both public design archives independently downloaded with matching SHA256 and CRC; not boot media",
+  "artifacts": [
+    {
+      "name": "EngacerOS-M120-Design.zip",
+      "source_commit": "8e295abfd1044cc2e0dd951972eff78078c13b9d",
+      "sha256": "e6305759223a0464e4536d23f2c17a9d0c0daed5ce38ff55f35b0eb6720b750f",
+      "size": 36042,
+      "crc_passed": true,
+      "archive_commit": "8e295abfd1044cc2e0dd951972eff78078c13b9d"
+    },
+    {
+      "name": "EngacerOS-M120-Design-Review2.zip",
+      "source_commit": "d122238a5289da7cb22d5d088906f35bb32f449b",
+      "sha256": "2a7b25e57031695471c7bddd1778336cdb607b01a236d4c1bb5afde9f8fd49c3",
+      "size": 37068,
+      "crc_passed": true,
+      "archive_commit": "d122238a5289da7cb22d5d088906f35bb32f449b"
+    }
+  ]
+}

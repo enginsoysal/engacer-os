@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "scope": "Read-only verification; no M11 rebuild or runtime requalification",
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "artifacts": [
+    {
+      "name": "EngacerOS-M11FINAL.iso",
+      "sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+      "size": 75388928
+    },
+    {
+      "name": "EngacerOS-M11FINAL-usb.img",
+      "sha256": "57296ac7360782793750da8b80cf6b50725f12ef04366c29c4faf9e3f6b73e2b",
+      "size": 84934656
+    },
+    {
+      "name": "EngacerOS-M11FINAL-kernel.elf",
+      "sha256": "85d56b7156256d038950cc43788b5b2e71856c4e73f6d062ef0163d6c4d291eb",
+      "size": 4137340
+    },
+    {
+      "name": "EngacerOS-M11FINAL-kernel.map",
+      "sha256": "d0ac57ce827a8e5b0991d16e4cd2495c45b8d3727c7aa733c92e62a3f90caea8",
+      "size": 378385
+    },
+    {
+      "name": "EngacerOS-M11FINAL-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064
+    },
+    {
+      "name": "EngacerOS-M11FINAL-installed-kernel.elf",
+      "sha256": "1c75ff68038ee1ba54d39c9fd9dac76ac574609b19bc9b2127de4575ef737bf4",
+      "size": 1278332
+    },
+    {
+      "name": "EngacerOS-M11FINAL-installed-kernel.map",
+      "sha256": "7b9a7b1f87b8b324a608c784358d8a16444fc3c5c5c19d9a31d2032f039b4ed6",
+      "size": 378093
+    },
+    {
+      "name": "EngacerOS-M11FINAL-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M11FINAL-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976
+    },
+    {
+      "name": "EngacerOS-M11FINAL-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M11FINAL-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068
+    },
+    {
+      "name": "EngacerOS-M11FINAL-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639
+    },
+    {
+      "name": "EngacerOS-M11FINAL-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M11FINAL-VMware.zip",
+      "sha256": "d00ad70c25dcb52e9958d1109ff33a64e4e5e6e0800020e52710354dd74c1e12",
+      "size": 9694003
+    }
+  ]
+}

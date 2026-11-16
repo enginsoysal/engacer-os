@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "stage": "M12.0",
+  "qualification": "M12-DESIGN-v1",
+  "source_commit": "f0ea7499ff943fe483c9efd0a9ccfad23b590ea1",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m120-v0.12.0-design",
+  "workflow_ids": [
+    43881015360
+  ],
+  "current_native_download": "m116-v0.11.6",
+  "design_only": true,
+  "new_iso": false,
+  "pages_checked": 290,
+  "unique_links": 1950,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "design-downloads.json",
+  "diagnostics": [
+    {
+      "run": 43877002152,
+      "outcome": "Failed: server 502; later successful sync retained separately"
+    },
+    {
+      "run": 43878853754,
+      "outcome": "Failed: server 429; publisher rate/backoff corrected"
+    },
+    {
+      "run": 43878959449,
+      "outcome": "Failed: request timeout; bounded safe retries added"
+    },
+    {
+      "run": 43879309866,
+      "outcome": "Cancelled as superseded by documented publication correction"
+    }
+  ]
+}

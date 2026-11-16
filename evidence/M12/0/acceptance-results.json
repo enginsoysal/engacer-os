@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "stage": "M12.0",
+  "qualification": "M12-DESIGN-v1",
+  "native_runtime": false,
+  "new_iso": false,
+  "ordered_stages": 19,
+  "text_contrast_pairs": 15,
+  "original_concepts": 6,
+  "publisher_tests": 19,
+  "visual_review": "Agent review; not a human usability study",
+  "preserved_native_baseline": "ea730e92bc70d0545b4b8f22385e31bc",
+  "design_archives": [
+    {
+      "name": "EngacerOS-M120-Design.zip",
+      "source_commit": "8e295abfd1044cc2e0dd951972eff78078c13b9d",
+      "sha256": "e6305759223a0464e4536d23f2c17a9d0c0daed5ce38ff55f35b0eb6720b750f",
+      "size": 36042,
+      "crc_passed": true,
+      "archive_commit": "8e295abfd1044cc2e0dd951972eff78078c13b9d"
+    },
+    {
+      "name": "EngacerOS-M120-Design-Review2.zip",
+      "source_commit": "d122238a5289da7cb22d5d088906f35bb32f449b",
+      "sha256": "2a7b25e57031695471c7bddd1778336cdb607b01a236d4c1bb5afde9f8fd49c3",
+      "size": 37068,
+      "crc_passed": true,
+      "archive_commit": "d122238a5289da7cb22d5d088906f35bb32f449b"
+    }
+  ]
+}

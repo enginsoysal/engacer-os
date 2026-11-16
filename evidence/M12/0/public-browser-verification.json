@@ -1,0 +1,40 @@
+{
+  "stage": "M12.0",
+  "website": "https://engaceros.brixcanvas.com",
+  "source_commit": "f0ea7499ff943fe483c9efd0a9ccfad23b590ea1",
+  "native_editor_save": "Saved ✓ observed after explicit Save",
+  "desktop": {
+    "document": 1902,
+    "headings": [
+      "The M12 desktop",
+      "made familiar.",
+      "ENGACER OS",
+      "M12.0 original design concept",
+      "From the real M11.6 VM — current tested download",
+      "A good place to start",
+      "Understand the decisions behind the OS.",
+      "Documentation that follows the code."
+    ],
+    "images": [
+      {
+        "alt": "Original M12.0 design concept, not a native VM capture. Distinct app icons and a proposed Start layout.",
+        "loaded": true,
+        "naturalWidth": 1280
+      },
+      {
+        "alt": "Native Engacer OS M11.6 in the tested VMware guest. This remains the qualified download while M12 development proceeds.",
+        "loaded": true,
+        "naturalWidth": 1024
+      }
+    ],
+    "viewport": 1912
+  },
+  "mobile_menu": true,
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "gallery_six_links": true,
+  "checked_at": "2026-11-16T14:08:00.966Z",
+  "design_download_label": "Design only — no ISO observed on fresh public downloads"
+}
