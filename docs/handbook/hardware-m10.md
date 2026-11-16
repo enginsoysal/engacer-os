@@ -1,4 +1,6 @@
-# Devices and USB files in Engacer OS M10
+# Devices and USB files in Engacer OS M10 (historical)
+
+For current media and single-click selection, use the [M11.6 USB tutorial](install-m116.md#use-a-usb-drive).
 
 M10 is qualified within M10-DEVICES-VM-v1. Use a fresh disposable VM and the
 [official release](../releases/m10-v0.10.0.md). Historical Engine OS releases
