@@ -156,3 +156,18 @@ evidence/M11/5/** -text -whitespace
 
 # Preserve final M11 qualification evidence bytes.
 evidence/M11/6/** -text -whitespace
+
+# Preserve the exact M12 native inputs and executed harness bytes across hosts.
+distros/engacer-desktop-m12.json -text whitespace=cr-at-eol
+distros/packages/m12-desktop-guide/** -text whitespace=cr-at-eol
+include/engine/ui/components12.h -text whitespace=cr-at-eol
+include/engine/ui/luminance12.h -text whitespace=cr-at-eol
+kernel/core/graphics73.inc -text whitespace=cr-at-eol
+kernel/desktop/components12.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-ui.inc -text whitespace=cr-at-eol
+tools/build/font73.py -text whitespace=cr-at-eol
+tools/build/m12.py -text whitespace=cr-at-eol
+tools/design/components12.py -text whitespace=cr-at-eol
+tools/release/vmware_starter12.py -text whitespace=cr-at-eol
+third_party/inter/raster-lock12.json -text whitespace=cr-at-eol
+tests/m12/** -text whitespace=cr-at-eol

@@ -1,0 +1,50 @@
+WELCOME TO ENGACER OS
+
+YOUR FIRST STEPS
+Click a file or desktop icon once to select it. Double-click or press Enter
+to open it. Buttons, Start results and menu commands use one click.
+Right-click an item for its actions. Escape closes a menu or cancels a drag.
+
+START AND APPS
+Open Start to search installed apps and pinned folders. Use All apps or
+Categories to browse. Pins, categories and the taskbar can be customized.
+Optional apps are managed separately in Software Manager. Removing Calculator
+keeps your desktop, Files and base Settings working.
+
+YOUR FILES
+Use the Places list, Back, Forward, Up or the address field in Files.
+Select an item before choosing Copy, Cut, Recycle or Properties.
+Unavailable actions are muted. Recycle Bin has Restore and reviewed removal.
+Protected system locations are readable; their write actions stay unavailable.
+
+SCROLLING
+When a folder has more rows than fit, use its scrollbar, wheel or page buttons.
+Drag the scrollbar thumb to move through the list. Escape during a thumb drag
+returns to its starting position. Click above or below the thumb to page.
+When the scrollbar has keyboard focus, arrows scroll and Home/End jump.
+
+KEYBOARD AND CONTROLS
+Tab and Shift+Tab move keyboard focus. The focus outline differs from selection.
+Enter activates the focused control. Releasing a pressed button outside it
+cancels that click. Text fields keep a visible caret and selection.
+
+MAKE IT YOURS
+Search Start for Settings. Preview Light or Dark, accent, wallpaper and display
+size. Choose Save preferences to keep the changes after restarting.
+Auto chooses a suitable scale. Unsupported sizes preserve the usable setting.
+Move, resize, maximize, restore and snap windows; Alt+Tab switches between them.
+
+USB DRIVES
+Files can browse supported FAT32 drives and perform guarded file copies.
+Use safe removal before unplugging. In the separate USB view, Your folders
+returns to your native folders. Device information is in Settings > Devices.
+
+INSTALLATION AND HELP
+The prepared VMware package includes a new blank disk. Select the disk row,
+review all changes, install and choose Restart to Engacer OS. The matching ISO
+may remain connected. For disk-only startup disconnect CD/DVD, keeping the
+same installed disk and VM. No online account is required.
+
+Read the matching release guide for qualified hardware and Windows-app profiles.
+English manuals and exact downloads: https://engaceros.brixcanvas.com
+Open-source code and checksums: https://github.com/enginsoysal/engacer-os

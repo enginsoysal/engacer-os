@@ -27,6 +27,9 @@
 #ifdef ENGINE_M11
 #include <engine/desktop/interaction11.h>
 #endif
+#ifdef ENGINE_M12
+#include <engine/ui/components12.h>
+#endif
 
 enum { FILES=1, EDITOR, SETTINGS, CALCULATOR, DOWNLOADS, DETAILS, TERMINAL,
        CLOCK74,CALENDAR74,DISKS74,SOFTWARE74,RECOVERY74,ARCHIVES74,IMAGES74,SCREENSHOT74,MEDIA74,BROWSER74,HELP74,WINDOWS8 };
@@ -181,8 +184,23 @@ static void rectangle(desktop_rect r,uint32_t color) {
     )
         gui6_rect((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height,color);
 }
-static uint32_t ink(void) { return preferences.dark?0xe5eef2:0x1b3441; }
-static uint32_t paper(void) { return preferences.dark?0x172933:0xf8fafb; }
+static uint32_t ink(void) {
+#ifdef ENGINE_M12
+ return ui12_theme(preferences.dark,preferences.accent).ink;
+#else
+ return preferences.dark?0xe5eef2:0x1b3441;
+#endif
+}
+static uint32_t paper(void) {
+#ifdef ENGINE_M12
+ return ui12_theme(preferences.dark,preferences.accent).paper;
+#else
+ return preferences.dark?0x172933:0xf8fafb;
+#endif
+}
+#ifdef ENGINE_M12
+#include "components12.inc"
+#endif
 #ifndef ENGINE_M11
 #define desktop_ink11() 0xe2eee7
 #define desktop_label_ink11(row) 0xe2eee7
@@ -196,7 +214,9 @@ static void button(uint64_t window,int x,int y,int width,const char *label,unsig
     30
 #endif
     };
-#ifdef ENGINE_M73
+#ifdef ENGINE_M12
+    component_button12(window,r,label,action,primary,1);
+#elif defined(ENGINE_M73)
     ui73_round((unsigned)x,(unsigned)y,(unsigned)width,36,6,primary?preferences.accent:preferences.dark?0x2a414f:0xe6edf0);
     ui73_fit((unsigned)x+10,(unsigned)y+8,(unsigned)(width>20?width-20:0),label,1,primary?0x102d29:ink());
 #else
@@ -209,11 +229,13 @@ static void button(uint64_t window,int x,int y,int width,const char *label,unsig
     text(x+9,y+9,fitted,1,primary?0x102d29:ink());
 #endif
     if(control_active&&focused_control_window==window&&focused_action==action){
+#ifndef ENGINE_M12
 #ifdef ENGINE_M73
         ui73_round(x,y,width,36,7,ink());ui73_round(x+2,y+2,width-4,32,5,primary?preferences.accent:preferences.dark?0x2a414f:0xe6edf0);ui73_fit(x+10,y+8,width-20,label,1,primary?0x102d29:ink());
 #else
         rectangle((desktop_rect){x,y,width,2},ink());rectangle((desktop_rect){x,y+28,width,2},ink());
         rectangle((desktop_rect){x,y,2,30},ink());rectangle((desktop_rect){x+width-2,y,2,30},ink());
+#endif
 #endif
     }
     if(control_count<sizeof(controls)/sizeof(*controls))controls[control_count++]=(control){r,window,action};
@@ -1018,6 +1040,12 @@ static void pointer(void) {
 #ifdef ENGINE_M11
     unsigned released=!(buttons&1)&&(previous_buttons&1);
     i11_target hit11=target11((int)x,(int)y);
+#ifdef ENGINE_M12
+    component_hover12(hit11,buttons);
+    if(component_scroll_pointer12(hit11,(int)y,buttons)){
+        interaction11.buttons=buttons;pointer_x=x;pointer_y=y;render();previous_buttons=buttons;usb_mouse_draw();return;
+    }
+#endif
     if(buttons!=previous_buttons)interaction11.target_identity=hit11.kind==I11_ITEM?file_item_identity11(hit11):start_identity11(hit11);
     dispatch_modifiers11=input11_pointer_modifiers();
     unsigned event11=i11_pointer(&interaction11,hit11,(int)x,(int)y,buttons,input11_pointer_ms());
@@ -1121,6 +1149,9 @@ if(r.height<minimum)r.height=minimum;}else{r.x+=dx;r.y+=dy;}
 }
 
 static void keyboard(int key) {
+#ifdef ENGINE_M12
+    if(component_scroll_key12(key))return;
+#endif
 #ifdef ENGINE_M11
     if(keyboard11(key))return;
 #endif
