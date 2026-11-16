@@ -215,3 +215,10 @@ evidence/M12/7/** -text -whitespace
 
 # M12.7 production FAT32 host qualification.
 tests/m12/reader_host.c -text whitespace=cr-at-eol
+
+# M12.8 shared native dialogs and exact evidence.
+kernel/desktop/picker12-state.inc -text whitespace=cr-at-eol
+kernel/desktop/picker12.inc -text whitespace=cr-at-eol
+kernel/desktop/archives74.inc -text whitespace=cr-at-eol
+kernel/desktop/formats74.inc -text whitespace=cr-at-eol
+evidence/M12/8/** -text -whitespace

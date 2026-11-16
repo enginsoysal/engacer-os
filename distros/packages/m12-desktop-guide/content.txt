@@ -86,3 +86,6 @@ Details remains available after success, cancellation or a stopped operation.
 USB Copy to Downloads uses the same conflict review as Copy/Paste. USB imports
 read and verify in small cancellable steps. USB export is create-only and
 currently cannot be cancelled mid-file. Use Safe remove before unplugging.
+
+M12.8 shared file dialogs
+Open, Save as and Choose folder use the same navigation. Click once to select, double-click or Enter to open. Cancel keeps your work. Existing files require explicit replacement review. Native app/format and provider limits still apply.
