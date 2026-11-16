@@ -10,8 +10,9 @@ edges, keyboard/menu commands, unsaved close and modal-owner protection are
 checked on real installs, ordinary disk starts and actual 150%/4K displays.
 The exact enabled-device VMware starter and separate QEMU SATA/UEFI and BIOS
 paths install and start independently. Fixed shell state grows 16 bytes over
-M12.3; tasks retain zero extra managed pages. Public media and full website
-verification remain the closure gates before M12.5. Shared-menu footer fitting
+M12.3; tasks retain zero extra managed pages. [Public media and full website
+verification](../../evidence/M12/4/publication-results.json) pass: twenty downloads,
+315 pages and 2,155 discovered links. M12.5 is now active. Shared-menu footer fitting
 and the HiDPI cursor observation are carried to M12.14/M12.16. The earlier
 BIOS/AHCI observation remains open for M12.18.
 

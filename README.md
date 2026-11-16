@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.4 — windows and title bars.**
+**Active development: M12.5 — one Files environment.**
 **Current native delivery: M12.4**, qualified within M12-STAGE4-VM-v1.
 [Install](docs/handbook/install-m124.md), [window guide](docs/handbook/windows-m124.md),
 [release scope and retained limits](docs/releases/m124-v0.12.4.md),
@@ -13,8 +13,9 @@ bounded CPU/RAM use are product requirements.
 keyboard commands, owner modality, unsaved close and screen bounds. Actual
 150%/4K rendering, twelve cached/full comparisons and exact VMware/BIOS install
 and independent starts pass. Fixed shell state grows 16 bytes over M12.3;
-window tasks retain no extra managed pages. Public downloads and complete
-website verification are the remaining M12.4 gates before M12.5 starts.
+window tasks retain no extra managed pages. Public download and complete
+[website verification passed](evidence/M12/4/publication-results.json): twenty downloads,
+315 pages and 2,155 discovered links. M12.5 now follows in order.
 The shared-menu footer and HiDPI cursor observation remain explicit follow-ups
 for M12.14/M12.16; the earlier BIOS/AHCI observation remains open for M12.18.
 [M12.3 public delivery](evidence/M12/3/publication-results.json) is preserved.

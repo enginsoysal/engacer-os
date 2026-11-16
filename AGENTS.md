@@ -125,3 +125,9 @@ M12.3 M12-STAGE3-VM-v1 and its complete public delivery are accepted. Preserve
 M12STAGE3 media, source stamp and evidence/M12/3. New work uses stage4 or later.
 Retain the tested caption-capture hover suppression and the recoverable per-user
 desktop reference preference; the earlier BIOS/AHCI observation remains open.
+
+M12.4 M12-STAGE4-VM-v1 and complete public delivery are accepted. Preserve
+M12STAGE4 media, source stamp and evidence/M12/4. New work uses stage5 or later.
+Retain owner guards across caption, keyboard and system-menu routes. Carry
+shared-menu footer fitting to M12.14 and cursor-versus-hit HiDPI isolation to
+M12.16; the BIOS/AHCI observation remains open for M12.18.
