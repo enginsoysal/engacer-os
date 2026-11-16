@@ -64,11 +64,11 @@ def control(g,command):
  x,y,w,h,*_=found[-1];return x+w//2,y+h//2
 def main():
  work=ui.q.new_work('m11-files');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
- result={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE2.iso').read_bytes()).hexdigest()}
+ result={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest()}
  try:
   with ui.guest(work/'install',disk) as g:
    p=ui.Pointer(g)
-   for command in (2,100,2,2,2):s.wizard(g,p,command)
+   for command in (2,2,100,2,2,2):s.wizard(g,p,command)
    start=s.wizard(g,p,2);g.wait('M6_INSTALL_PASS',start,240)
    start=s.wizard(g,p,84);g.wait('M7_DESKTOP_READY',start,180);p=ui.Pointer(g);p.drain()
    p.desktop(94,True)

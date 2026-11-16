@@ -35,7 +35,7 @@ def main():
  resolution={'ordinary':(1280,800),'150':(1920,1200),'4k':(3840,2160)}[args.profile]
  out=ROOT/'build/m11/setup'/args.profile;out.mkdir(parents=True,exist_ok=True)
  work=ui.q.new_work('m115-setup-'+args.profile);disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
- meta=json.loads((ROOT/'dist/m11stage5-build-manifest.json').read_text());report={'passed':False,'build_id':meta['build_id'],'iso_sha256':meta['artifacts']['EngacerOS-M11STAGE5.iso']['sha256'],'profile':args.profile,'checks':[]}
+ meta=json.loads((ui.manifest_path11()).read_text());report={'passed':False,'build_id':meta['build_id'],'iso_sha256':meta['artifacts'][ui.IMAGE11+'.iso']['sha256'],'profile':args.profile,'checks':[]}
  user='Alex' if args.profile=='ordinary' else 'Owner';minimal=args.profile=='150'
  try:
   before=ui.q.digest(disk)

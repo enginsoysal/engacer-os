@@ -1,11 +1,14 @@
 """Use ordinary guest input with isolated M11 media and map identities."""
 import os,importlib.util
 from pathlib import Path
-os.environ["ENGINE74_IMAGE"]=os.environ.get("ENGACER11_IMAGE","EngacerOS-M11STAGE5")
+os.environ["ENGINE74_IMAGE"]=os.environ.get("ENGACER11_IMAGE","EngacerOS-M11FINAL")
 spec=importlib.util.spec_from_file_location("shared74",Path(__file__).resolve().parents[1]/"m74/ui.py")
 shared=importlib.util.module_from_spec(spec);spec.loader.exec_module(shared)
 globals().update({k:v for k,v in vars(shared).items() if not k.startswith("__")})
 
+IMAGE11=os.environ.get("ENGACER11_IMAGE","EngacerOS-M11FINAL")
+def iso_path11():return ROOT/'dist'/(IMAGE11+'.iso')
+def manifest_path11():return ROOT/'dist'/(IMAGE11.removeprefix('EngacerOS-').lower()+'-build-manifest.json')
 _original_guest=guest
 def guest(*args,controller='sata',**kwargs):
     value=_original_guest(*args,**kwargs)
@@ -65,7 +68,14 @@ class Pointer(_BasePointer):
             pending=integer(self.guest,'mouse_head11',installed)!=integer(self.guest,'mouse_tail11',installed)
             halted=self.guest.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1')==len(self.guest.qmp('query-cpus-fast'))
             queued=integer(self.guest,'head',installed)!=integer(self.guest,'tail',installed)
-            if not dirty and not pending and not queued and halted:return
+            if not dirty and not pending and not queued and halted:
+                # Regression tasks deliberately dismiss the optional first-start card
+                # through ordinary keyboard input; setup qualification leaves it visible.
+                if installed and os.environ.get('ENGACER11_DISMISS_GUIDE')=='1':
+                    at,size=symbol('guide_open11',installed=True)
+                    if int.from_bytes(memory(self.guest,at,min(size,4)),'little'):
+                        self.guest.qmp('send-key',{'keys':[{'type':'qcode','data':'esc'}],'hold-time':40});time.sleep(.15);continue
+                return
             if time.monotonic()>deadline:raise TimeoutError('Guest did not consume the previous pointer edge')
             time.sleep(.025)
     def click(self,x,y):

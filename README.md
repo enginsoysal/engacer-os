@@ -15,6 +15,9 @@ This is named virtual-profile qualification; broader M11.6 regression, physical
 hardware, vendor GPU 3D and universal Windows compatibility are not claimed.
 
 **Current development: [M11 desktop and setup refresh](docs/milestones/m11.md).**
+M11.6 final regression is now in progress; M11.5 remains the latest qualified
+download until its replacement passes all delivery gates.
+[Final qualification design](docs/architecture/qualification-m116.md).
 M11.0 defines the interaction and visual contract. M11.1 implements native
 selection, double-click, context/focus and release-driven controls with
 [14 native tasks and matching-source acceptance](evidence/M11/1/acceptance-results.json).

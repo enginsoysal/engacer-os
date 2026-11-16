@@ -4,9 +4,9 @@ from pathlib import Path
 import setup as s
 ui=s.ui;f=s.f;ROOT=s.ROOT
 def main():
- meta=json.loads((ROOT/'dist/m11stage5-build-manifest.json').read_text());prior=json.loads((ROOT/'build/m11/setup/150/results.json').read_text());assert prior['passed'] and prior['build_id']==meta['build_id']
+ meta=json.loads((ui.manifest_path11()).read_text());prior=json.loads((ROOT/'build/m11/setup/150/results.json').read_text());assert prior['passed'] and prior['build_id']==meta['build_id']
  base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m115-setup-150';owned=max(base.iterdir(),key=lambda p:p.stat().st_mtime_ns);disk=owned/'owned.img';assert disk.is_file() and disk.resolve().is_relative_to(base.resolve())
- work=ui.q.new_work('m115-packages');out=ROOT/'build/m11/setup/packages';out.mkdir(parents=True,exist_ok=True);report={'passed':False,'build_id':meta['build_id'],'iso_sha256':meta['artifacts']['EngacerOS-M11STAGE5.iso']['sha256'],'checks':[]}
+ work=ui.q.new_work('m115-packages');out=ROOT/'build/m11/setup/packages';out.mkdir(parents=True,exist_ok=True);report={'passed':False,'build_id':meta['build_id'],'iso_sha256':meta['artifacts'][ui.IMAGE11+'.iso']['sha256'],'checks':[]}
  try:
   g=ui.guest(work/'installed',disk,media='installed',ready='M7_DESKTOP_READY',resolution=(1920,1200));ui.s.normal_boot(g,owned/'install/vars.fd')
   with g:

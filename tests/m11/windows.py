@@ -22,11 +22,11 @@ def drag(g,p,x,y,xx,yy,release=True):
  if release:p.down(False);p.drain()
 def main():
  work=ui.q.new_work('m11-windows');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
- report={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE4.iso').read_bytes()).hexdigest()}
+ report={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest()}
  try:
   with ui.guest(work/'install',disk,resolution=(1920,1200)) as g:
    p=ui.Pointer(g)
-   for command in (2,100,2,2,2):f.s.wizard(g,p,command)
+   for command in (2,2,100,2,2,2):f.s.wizard(g,p,command)
    at=f.s.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240)
    at=f.s.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain()
    baseline=struct.unpack("<4Q",ui.memory(g,ui.symbol("stats",32,True)[0],32))

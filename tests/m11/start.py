@@ -26,11 +26,11 @@ def open_app(g,p,text,kind):search(g,p,text);assert results(g)==[(1,kind)],resul
 
 def main():
  work=ui.q.new_work('m11-start');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
- report={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE3.iso').read_bytes()).hexdigest()}
+ report={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest()}
  try:
   with ui.guest(work/'install',disk) as g:
    p=ui.Pointer(g)
-   for command in (2,100,2,2,2):f.s.wizard(g,p,command)
+   for command in (2,2,100,2,2,2):f.s.wizard(g,p,command)
    at=f.s.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240)
    at=f.s.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();p.close_app(1,True);p.drain()
    p.desktop(0,True);assert f.flag(g,'launcher');initial=prefs(g)

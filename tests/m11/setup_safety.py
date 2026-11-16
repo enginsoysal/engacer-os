@@ -16,7 +16,7 @@ def apply(g,p,operation):
  s.wizard(g,p,226);start=s.wizard(g,p,228);g.wait('M71_DISK_APPLIED op=0x'+format(operation,'016x'),start,120)
 
 def main():
- work=ui.q.new_work('m115-safety');meta=json.loads((ROOT/'dist/m11stage5-build-manifest.json').read_text());report={'passed':False,'build_id':meta['build_id'],'checks':[]}
+ work=ui.q.new_work('m115-safety');meta=json.loads((ui.manifest_path11()).read_text());report={'passed':False,'build_id':meta['build_id'],'checks':[]}
  try:
   disk=ui.q.sparse_disk(work/'target.img',2*1024**3);parts=fixture.fixture(disk);foreign=ui.q.sparse_disk(work/'foreign.img',2*1024**3);fixture.fixture(foreign)
   keep=ui.q.digest(disk,parts[0][0]*512,(parts[0][1]-parts[0][0]+1)*512);whole=ui.q.digest(disk);untouched=ui.q.digest(foreign)

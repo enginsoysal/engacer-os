@@ -6,7 +6,7 @@ ui=w.ui;f=w.f;ROOT=ui.ROOT
 def main():
  base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m11-windows';owned=max(base.iterdir(),key=lambda p:p.stat().st_mtime_ns);disk=owned/'owned.img'
  native=json.loads((ROOT/'build/m11/windows/results.json').read_text());assert native['passed']
- report={'passed':False,'iso_sha256':hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE4.iso').read_bytes()).hexdigest(),'checks':[]};assert report['iso_sha256']==native['iso_sha256']
+ report={'passed':False,'iso_sha256':hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest(),'checks':[]};assert report['iso_sha256']==native['iso_sha256']
  out=ROOT/'build/m11/windows/keys';out.mkdir(parents=True,exist_ok=True);f.out=out;work=ui.q.new_work('m11-window-keys')
  try:
   for ps2 in (False,True):

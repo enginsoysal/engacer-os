@@ -4,7 +4,7 @@ import ui
 ROOT=ui.ROOT
 out=ROOT/'build/m11/selection';out.mkdir(parents=True,exist_ok=True)
 checks=[]
-def state(g,name,size=4):return ui.memory(g,ui.symbol(name,16384 if name=='controls' else None,True)[0],size)
+def state(g,name,size=4):return ui.memory(g,ui.symbol(name,65536 if name=='controls' else None,True)[0],size)
 def flag(g,name):
  address,size=ui.symbol(name,installed=True)
  return int.from_bytes(ui.memory(g,address,min(size,4)),'little')
@@ -47,13 +47,22 @@ def shot(g,name):
  g.qmp('stop')
  try:ui.raw_shot(g,out,name,True)
  finally:g.qmp('cont')
+def listing(g,slot):
+ raw=ui.memory(g,ui.symbol('file_lists11',installed=True)[0]+slot*2328,2328)
+ count=struct.unpack_from('<I',raw,264)[0]
+ return struct.unpack_from('<1024H',raw,276)[:count]
+
+def selected(g,slot,row):
+ index=listing(g,slot)[row]
+ return bool(state(g,'selected11',1024)[slot*128+index//8]&(1<<(index%8)))
+
 def main():
  work=ui.q.new_work('m11-selection');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
- report={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE1.iso').read_bytes()).hexdigest()}
+ report={'passed':False,'checks':checks,'iso_sha256':hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest()}
  try:
   with ui.guest(work/'install',disk) as g:
    p=ui.Pointer(g)
-   for command in (2,100,2,2,2):wizard(g,p,command)
+   for command in (2,2,100,2,2,2):wizard(g,p,command)
    start=wizard(g,p,2);g.wait('M6_INSTALL_PASS',start,240)
    start=wizard(g,p,84);g.wait('M7_DESKTOP_READY',start,180);p=ui.Pointer(g);p.drain()
    assert count(g,1)==1;p.close_app(1,True);p.drain();assert count(g)==0
@@ -83,14 +92,13 @@ def main():
    p.desktop(26,True)
    for key in ('m','1','2','ret'):ui.h.key(g,key)
    g.wait('M72_FOLDER_CREATED /Users/Owner/Documents/m12');p.drain()
-   base=ui.symbol('volume',0xd3040,True)[0]+64;index=0;target=None
-   for i in range(1024):
-    row=ui.memory(g,base+i*280,280)
-    if not struct.unpack_from('<I',row,276)[0]:continue
-    path=row[:256].split(b'\0')[0].decode();prefix='/Users/Owner/Documents/'
-    if not path.startswith(prefix) or '/' in path[len(prefix):]:continue
-    if path==prefix+'m11':target=1000+index;break
-    index+=1
+   base=ui.symbol('volume',0xd3040,True)[0]+64
+   slot=next(i for i,v in enumerate(windows(g)) if v[6] and v[5]==1)
+   native_order=listing(g,slot)
+   target=None
+   for row,index in enumerate(native_order):
+    path=ui.memory(g,base+index*280,256).split(b'\0')[0].decode()
+    if path=='/Users/Owner/Documents/m11':target=1000+row;break
    assert target is not None
    before=g.log().count('M72_FOLDER_VISIT ')
    x,y=control(g,target);p.logical(x,y,True);assert g.log().count('M72_FOLDER_VISIT ')==before
@@ -112,18 +120,18 @@ def main():
    ui.h.key(g,'home');p.drain();ui.h.key(g,'down');p.drain()
    slot=next(i for i,v in enumerate(windows(g)) if v[6] and v[5]==1)
    assert struct.unpack_from('<I',state(g,'selection_focus11',32),slot*4)[0]==1
-   assert state(g,'selected11',1024)[slot*128]&2
+   assert selected(g,slot,1)
    shot(g,'keyboard-selection')
    checks.append('Arrow keyboard route changes the selected native row')
    x,y=control(g,1000);modifier(g,'ctrl',True,1);p.logical(x,y,True);modifier(g,'ctrl',False,0)
-   assert state(g,'selected11',1024)[slot*128]&3==3
+   assert selected(g,slot,0) and selected(g,slot,1)
    checks.append('Ctrl adds a second actual Files item without opening it')
    w=next(v for v in windows(g) if v[6] and v[5]==1);wx,wy,ww,wh=w[:4]
    x,y=control(g,1000)
    p.move((wx+ww-200)*scale//2,(wy+wh-150)*scale//2);p.drain();p.down(True);p.drain()
    p.move((x-100)*scale//2,(y-5)*scale//2);p.drain()
    assert flag(g,'marquee11')==1
-   assert state(g,'selected11',1024)[slot*128]&7==7
+   assert all(selected(g,slot,row) for row in range(3))
    shot(g,'marquee-selection');p.down(False);p.drain()
    assert flag(g,'marquee11')==0
    checks.append('Files background marquee selects three real entries and releases capture')
@@ -139,7 +147,9 @@ def main():
    g.wait('M72_FOLDER_VISIT /Users/Owner/Documents/m11');p.drain()
    checks.append('Double-click opens the real selected folder once')
    shot(g,'double-opened-folder')
-   p.desktop(0,True);p.desktop(3,True);p.desktop(32100,True)
+   ui.h.key(g,'f10');p.drain()
+   for c in 'settings':ui.h.key(g,c)
+   ui.h.key(g,'ret');p.drain();p.desktop(32100,True)
    assert struct.unpack_from('<I',state(g,'interaction11',80),72)[0]==900
    shot(g,'saved-double-click-preference')
   assert ui.s.s.document(disk,'/System/Settings/input11.bin')==struct.pack('<II',0x31314955,900)

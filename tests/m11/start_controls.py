@@ -8,7 +8,7 @@ def ctrl_escape(g):
  g.qmp('send-key',{'keys':[{'type':'qcode','data':'ctrl'},{'type':'qcode','data':'esc'}],'hold-time':40});time.sleep(.16);ui.Pointer(g).drain()
 def main():
  native=json.loads((out/'results.json').read_text(encoding='utf-8'));assert native['passed']
- digest=hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE3.iso').read_bytes()).hexdigest();assert digest==native['iso_sha256']
+ digest=hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest();assert digest==native['iso_sha256']
  base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m11-start';owned=max(base.iterdir(),key=lambda p:p.stat().st_mtime_ns);disk=owned/'owned.img';assert disk.is_relative_to(base)
  report={'passed':False,'iso_sha256':digest,'checks':[]}
  try:

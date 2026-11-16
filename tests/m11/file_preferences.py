@@ -10,7 +10,7 @@ def view(g):
  return struct.unpack('<III',ui.memory(g,ui.symbol('file_windows11',installed=True)[0]+slot*280,12))
 def main():
  native=json.loads((out/'results.json').read_text(encoding='utf-8'));assert native['passed']
- digest=hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE2.iso').read_bytes()).hexdigest();assert digest==native['iso_sha256']
+ digest=hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest();assert digest==native['iso_sha256']
  base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m11-files';owned=max(base.iterdir(),key=lambda p:p.stat().st_mtime_ns);disk=owned/'owned.img'
  assert disk.is_relative_to(base) and 'M7_DESKTOP_READY' in (owned/'detached/serial.log').read_text()
  report={'passed':False,'iso_sha256':digest,'checks':[]}

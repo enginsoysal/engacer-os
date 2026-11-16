@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "updated": "2026-11-16",
   "qualified_download": "M11.5",
-  "current_stage": "M11.5",
+  "current_stage": "M11.6",
   "stages": [
     {
       "id": "M11.0",
@@ -37,7 +37,7 @@
     },
     {
       "id": "M11.6",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Full qualification and final VMware media"
     }
   ],

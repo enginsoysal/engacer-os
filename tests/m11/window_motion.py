@@ -9,7 +9,7 @@ def main():
  assert disk.resolve().is_relative_to(base.resolve()) and disk.is_file()
  native=json.loads((ROOT/'build/m11/windows/results.json').read_text());assert native['passed']
  out=ROOT/'build/m11/windows/motion';out.mkdir(parents=True,exist_ok=True);f.out=out
- report={'passed':False,'iso_sha256':hashlib.sha256((ROOT/'dist/EngacerOS-M11STAGE4.iso').read_bytes()).hexdigest(),'profiles':[]}
+ report={'passed':False,'iso_sha256':hashlib.sha256((ui.iso_path11()).read_bytes()).hexdigest(),'profiles':[]}
  assert report['iso_sha256']==native['iso_sha256']
  work=ui.q.new_work('m11-window-motion')
  try:
