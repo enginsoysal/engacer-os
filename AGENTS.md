@@ -142,3 +142,12 @@ M12.6 M12-STAGE6-VM-v1 and complete public delivery are accepted. Preserve
 M12STAGE6 media, source stamp and evidence/M12/6. New work uses stage7 or later.
 Retain full-name tip owner/row guards, source-bound ordering and generation-bound
 USB navigation. Carry the named M12.14/M12.16/M12.18 observations forward.
+
+M12.7 M12-STAGE7-VM-v1 and complete public delivery are accepted. Preserve
+M12STAGE7 media, source stamp and evidence/M12/7. New work uses stage8 or later.
+Retain cooperative transfer/provider ownership guards, bounded FAT metadata
+cache and the compressed installer validation/recovery contract. The build must
+refuse a live fixed-address ELF crossing the named firmware 8-MiB boundary.
+Carry menu/conflict feedback to M12.14, cursor isolation to M12.16 and the earlier
+BIOS/AHCI stress observation to M12.18. Future publication must resolve matching
+drafts by release ID when tag lookup returns 404, never recreate/replace them.

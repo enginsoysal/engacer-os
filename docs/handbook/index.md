@@ -14,7 +14,8 @@ include the supported disk tools and explicit erasure review.
 M12.7 tests native commands, confirmed transfers, conflicts, cancellation,
 partial completion, USB source removal, actual 150%/4K and persisted data.
 The exact enabled-device VMware starter, separate QEMU UEFI/BIOS and compressed
-recovery slot are checked. Public delivery closes separately before M12.8.
+recovery slot are checked. [Complete public verification](../../evidence/M12/7/publication-results.json)
+passed before M12.8 began.
 Final controller/application regression remains M12.18. Menu/conflict feedback,
 HiDPI cursor isolation and the earlier BIOS/AHCI observation retain their named
 later stages. Agent review is not a human usability study.

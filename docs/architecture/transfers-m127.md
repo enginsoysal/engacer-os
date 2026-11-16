@@ -1,7 +1,7 @@
 # M12.7 file commands and transfers
 
-Status: matching native qualification passes M12-STAGE7-VM-v1. Public release
-and complete website verification remain required before M12.8.
+Status: matching native qualification passes M12-STAGE7-VM-v1. [Complete public verification](../../evidence/M12/7/publication-results.json)
+passed before M12.8: twenty assets, 333 pages and 2,262 links.
 
 ## A command must be reachable and applicable
 

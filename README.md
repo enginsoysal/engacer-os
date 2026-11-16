@@ -14,12 +14,13 @@ compressed-slot recovery restores deliberately damaged owned boot bytes and
 starts independently. Large-file cancellation, partial completion, conflicts,
 source removal and independent stored bytes are checked. Tasks retain zero
 managed pages; fixed shell state is unchanged, with 1,696 additional fixed USB
-reader bytes. Public release and complete website verification close separately.
+reader bytes. [Complete public verification](evidence/M12/7/publication-results.json) passes:
+twenty matching assets, 333 pages and 2,262 links. **M12.8 is active.**
 
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English manuals, matching GitHub releases and complete website
 verification after each stage. [Design](docs/architecture/desktop-m12.md),
-[user journeys](docs/handbook/desktop-m12.md). M12.8 follows this publication.
+[user journeys](docs/handbook/desktop-m12.md). M12.8 now develops the shared file dialogs.
 The shared-menu footer and conflict feedback remain M12.14 refinements; HiDPI
 cursor isolation remains M12.16 and the earlier BIOS/AHCI observation remains
 M12.18. Named VM qualification does not imply universal hardware or Windows support.

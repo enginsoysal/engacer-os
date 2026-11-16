@@ -10,8 +10,8 @@ Compressed-slot recovery restores damaged owned BIOS boot bytes and starts
 without ISO. Confirmed 64-MiB import, native partial cancellation, conflicts,
 source removal, independent bytes and zero retained managed pages are checked.
 Fixed shell state remains 545,636 bytes; fixed FAT32 state grows 1,696 bytes,
-including its 1,568-byte metadata cache. Public delivery remains the current gate.
-M12.8 starts only after GitHub assets and the whole public website are verified.
+including its 1,568-byte metadata cache. [Complete public proof](../../evidence/M12/7/publication-results.json) passes:
+twenty assets, 333 pages and 2,262 links. **M12.8 is active.**
 M12.14/M12.16/M12.18 carry-forward observations remain explicit. No physical,
 vendor GPU 3D or universal Windows qualification follows from this stage.
 
