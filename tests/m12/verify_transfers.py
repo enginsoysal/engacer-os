@@ -1,5 +1,6 @@
 """Qualify matching M12.7 command/transfer behavior, source and released media."""
-import hashlib,json,re,shutil
+import hashlib,json,re,shutil,os
+from pathlib import Path
 import verify_components as common
 ROOT=common.ROOT;WORK=ROOT/'build/m12/stage7';OUT=ROOT/'evidence/M12/7'
 load=common.load;sha=common.sha;write=common.write
@@ -28,6 +29,10 @@ def main():
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
     assert native['resources']['before'][3]==native['resources']['after'][3]
+    os.environ['ENGACER12_IMAGE']='EngacerOS-M12STAGE7'
+    import files_observe as observed
+    fixture=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m12-stage7-transfers'/native['owned_fixture']/'owned.img'
+    assert observed.ui.s.s.document(fixture,'/Users/Owner/Documents/Welcome.txt')==(ROOT/'distros/packages/m12-desktop-guide/content.txt').read_bytes()
     for profile in motion['profiles']:
         assert len(profile['comparisons'])==4 and all(v['cached_equals_full_viewport'] for v in profile['comparisons'])
         assert profile['managed_bytes_before']==profile['managed_bytes_after']
