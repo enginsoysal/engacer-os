@@ -24,7 +24,11 @@ static void file_open11(const char*path,unsigned requested){uint64_t owner_token
   const v6_entry*target=entry(link.target);if((link.kind!=1&&link.kind!=2)||!target||target->kind!=link.kind||file_suffix11(link.target,"link")){file_notice11(owner_token,"This shortcut's target is unavailable. Your shortcut was kept.");return;}file_open11(link.target,requested);return;
  }
  if(!writable72(path)){file_notice11(owner_token,"This location is protected. Copy the file to Home before opening it.");return;}
- unsigned kind=requested?requested:file_default_app11(path);if(!kind||!file_handler11(kind)||!app7_available(kind)){file_dialog_open11(F11_DLG_OPEN_WITH,owner_token,path);return;}
+ unsigned kind=requested?requested:file_default_app11(path);if(!kind||!file_handler11(kind)||!app7_available(kind)){
+#ifdef ENGINE_M12
+ if(file_dialog_state11.mode){file_notice11(owner_token,"Finish or cancel the existing file dialog before choosing another app.");return;}
+#endif
+ file_dialog_open11(F11_DLG_OPEN_WITH,owner_token,path);return;}
  if(kind==EDITOR&&e->size>=APP7_TEXT){file_notice11(owner_token,"Text Editor supports files smaller than 8 KiB. Your file was kept.");return;}desktop_focus11=0;launch(kind,path);whole();
 }
 static void file_copy_selection11(uint64_t owner_token,unsigned cut){unsigned count=0,status=file_collect11(owner_token,file_drag_roots11,&count);if(status){file_notice11(owner_token,status==V6_LIMIT?"Select up to 128 top-level items; selected children are included with their parent.":"Select files or folders first. USB copies accept one file at a time.");return;}if(cut)for(unsigned i=0;i<count;++i)if(file_drag_roots11[i].provider!=F11_NATIVE||!file_user_item11(file_drag_roots11[i].source)||file_open_under11(file_drag_roots11[i].source)){file_notice11(owner_token,"This item is protected or in use. Close its app before choosing Cut.");return;}
@@ -66,7 +70,13 @@ static unsigned file_action11(uint64_t owner_token,unsigned command){
  if(command==F11_ALWAYS&&file_dialog_state11.mode==F11_DLG_OPEN_WITH){char extension[12];file_extension11(extension,file_dialog_state11.path);if(extension[0])file_dialog_state11.always^=1;whole();return 1;}
  if(command>=F11_ASSOC_APP&&command<F11_ASSOC_APP+APP74_KINDS){unsigned app=command-F11_ASSOC_APP;file_dialog11*d=&file_dialog_state11;if(d->mode!=F11_DLG_OPEN_WITH||!file_handler11(app)||!app7_available(app))return 1;char path[256];copy(path,d->path,256);unsigned remember=d->always;d->mode=0;if(remember){status=file_associate11(path,app);if(status)file_notice11(owner_token,"The app can open now, but this association could not be saved.");}desktop_focus11=!owner_token;file_open11(path,app);return 1;}
  if(command==F11_NAME_FIELD&&file_dialog_state11.mode){file_dialog_state11.focus=0;file_dialog_state11.cursor=length(file_dialog_state11.input);file_dialog_state11.anchor=file_dialog_state11.cursor;whole();return 1;}
- if(file_dialog_state11.mode){file_notice11(owner_token,"Finish or cancel the open file dialog first.");return 1;}
+ if(file_dialog_state11.mode){
+#ifdef ENGINE_M12
+ unsigned other_picker=file_dialog_state11.mode==P12_DIALOG&&file_dialog_state11.owner!=owner_token;
+ unsigned navigation=command==F11_ADDRESS||command==F11_ADDRESS_FIELD||command==F11_OPEN||command==F11_COPY||command==F11_CUT||command==F11_VIEW||command==F11_SORT||command==F11_DIRECTION||command==F11_PLACES||(command>=F11_PLACE&&command<F11_PLACE+8)||(command>=F11_CRUMB&&command<F11_CRUMB+256)||command==F11_SORT_NAME||command==F11_SORT_SIZE||command==F11_SORT_TYPE;
+ if(!other_picker||!navigation)
+#endif
+ {file_notice11(owner_token,"Finish or cancel the open file dialog first.");return 1;}}
  if(owner_token&&!w)return 0;
 #ifdef ENGINE_M12
  if(files_busy12()&&(command==F11_PASTE||command==F11_RENAME||command==F11_UNDO||command==F11_RECYCLE||command==F11_RESTORE||command==F11_PERMANENT||command==F11_EMPTY||command==FILE_FOLDER||command==F11_NEW_TEXT||command==F11_SHORTCUT)){file_notice11(owner_token,"Wait for the transfer or choose Cancel before changing more files.");return 1;}

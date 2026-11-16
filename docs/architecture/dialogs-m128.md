@@ -89,3 +89,9 @@ payload buffer, per-window allocation or mailbox ABI is introduced. The prepared
 input flag stays private to the trusted broker; ordinary requests still require
 and copy their supplied input. Hosted source/I/O/identity/fault tests supplement,
 rather than replace, the real CPL3 and dialog retry.
+
+The retry now passes actual multi-page CPL3 Open, Save as and Cancel with zero
+retained managed pages. Other Files windows may navigate, select and open known
+handlers while a different owner holds the picker. Requests that would replace
+the shared modal broker remain refused, including unknown-type Open with. The
+expanded fault, format, display and restart matrix is still pending.
