@@ -39,7 +39,7 @@ def caption_states(g,p,label):
         c.key(g,'tab')
         if c.flag(g,'control_active') and c.flag(g,'focused_action')==49001:break
     else:raise AssertionError('Maximize is unreachable through Tab')
-    assert c.pixel(g,x+w-91,y+20)==(0xe8edf5 if c.dark(g) else 0x17212f)
+    assert c.pixel(g,x+w-91,y+20)==(0xffffff if c.dark(g) else 0),hex(c.pixel(g,x+w-91,y+20))
     c.shot(g,label+'-keyboard-focus');c.key(g,'ret');base=ui.symbol('model',installed=True)[0];width,height=struct.unpack('<II',ui.memory(g,base+240,8));assert geometry(g)==(0,0,width,height-60)
     p.desktop(49001,True);assert geometry(g)==(x,y,w,h)
 
@@ -69,7 +69,11 @@ def main():
             report['checks'].append('App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits')
             for horizontal,vertical in ((1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1),(1,-1),(-1,1)):
                 x,y,w,h=old=geometry(g);px=x+2 if horizontal<0 else x+w-2 if horizontal>0 else x+w//2;py=y+2 if vertical<0 else y+h-2 if vertical>0 else y+h//2
-                drag(g,p,px,py,px+horizontal*16,py+vertical*12);assert geometry(g)!=old,(horizontal,vertical,old,geometry(g))
+                drag(g,p,px,py,px+horizontal*16,py+vertical*12,False);assert geometry(g)!=old,(horizontal,vertical,old,geometry(g));c.key(g,'esc');p.down(False);p.drain();assert geometry(g)==old
+            x,y,w,h=geometry(g);drag(g,p,x+w//2,y+h-2,x+w//2,738)
+            edge=geometry(g);x,y,w,h=edge;drag(g,p,x+2,y+h-2,x-14,y+h-14,False)
+            assert geometry(g)!=edge,('Bottom-left at full usable height is unreachable',edge,geometry(g))
+            c.key(g,'esc');p.down(False);p.drain();assert geometry(g)==edge
             old=geometry(g);x,y,w,h=old;drag(g,p,x+180,y+18,x+240,y+52,False);c.key(g,'esc');p.down(False);p.drain();assert geometry(g)==old
             report['checks'].append('All eight resize edges/corners operate alongside the caption hit rectangles; Escape restores a captured move')
             x,y,w,h=geometry(g);drag(g,p,x+180,y+18,50,y+18)
@@ -84,9 +88,12 @@ def main():
             launch(g,p,'text editor');c.type_text(g,'Unsaved caption test');slot=focused(g)[0]
             p.desktop(49002,True);c.shot(g,'unsaved-close-review')
             raw=ui.memory(g,ui.symbol('apps',installed=True)[0],ui.symbol('apps',installed=True)[1]);assert b'Unsaved caption test' in raw
-            p.desktop(61,True);assert focused(g)[0]==slot
+            p.desktop(61,True)
+            if focused(g)[0]!=slot:
+                c.shot(g,'keep-editing-focus-failure');report['focus_failure']=dict(expected_slot=slot,actual=list(focused(g)),window_count=count(g),controls=[list(r) for r in controls(g) if r[5] in (60,61,49002)])
+            assert focused(g)[0]==slot
             p.desktop(49002,True);p.desktop(60,True);p.drain()
-            c.key(g,'meta_l','e');p.drain();owner=next(r[4] for r in controls(g) if r[5]==49002)
+            c.key(g,'meta_l','e');p.drain();owner=c.control(g,49002)[4];assert owner&0xffffffff==focused(g)[0]+1
             c.key(g,'ctrl','shift','n');assert c.flag(g,'file_dialog_state11')
             assert not any(r[5] in range(49000,49004) and r[4]==owner for r in controls(g))
             before=count(g);c.key(g,'alt','f4');assert count(g)==before
@@ -109,6 +116,7 @@ def main():
             with ui.guest(work/label,disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution) as g:
                 p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(scale_action,True);p.close_app(3,True);p.drain();assert c.flag(g,'scale73')==(3 if label=='150' else 4)
                 caption_states(g,p,'native-'+label);c.shot(g,'native-'+label);c.idle(g);report['profiles'].append(dict(physical=list(resolution),scale=c.flag(g,'scale73')))
+        report['checks'].append('Actual 1920x1200/150% and 3840x2160/200% framebuffers exercise the same caption controls and idle halt without image resizing')
         report['passed']=True
     except Exception:
         report['error']=ui.q.clean(traceback.format_exc());raise
