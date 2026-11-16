@@ -79,11 +79,11 @@ def selected(g,path):
 def close_files(g,p):
     p.close_app(1,True);p.drain();assert count(g)==0
 
-def icon_pixels(g,p,name,theme):
+def icon_pixels(g,p,name,theme,objects=None):
     p.move(1200,80);p.drain();c.shot(g,name);scale=c.flag(g,'scale73');compared=[]
     with Image.open(OUT/(name+'.png')) as source:
         image=source.convert('RGB')
-        for action,identity in [(30000,42),(30001,20),(30002,3),(30003,38)]:
+        for action,identity,*overlay in (objects or [(30000,42),(30001,20),(30002,3),(30003,38)]):
             x,y,w,h,_,_=next(r for r in controls(g) if r[5]==action)
             left=(x+36)*scale//2;top=(y+6)*scale//2;extent=48*scale//2
             background=Image.new('RGBA',(extent,extent))
@@ -91,6 +91,7 @@ def icon_pixels(g,p,name,theme):
                 color=image.getpixel((left-4*scale//2,top+row))+(255,)
                 for column in range(extent):background.putpixel((column,row),color)
             background.alpha_composite(art.icon(OUT/'icon-oracle.exe',identity,extent,theme))
+            if overlay:background.alpha_composite(art.icon(OUT/'icon-oracle.exe',28,extent//2,theme),(0,extent//2))
             difference=ImageChops.difference(image.crop((left,top,left+extent,top+extent)),background.convert('RGB'))
             maximum=max(high for low,high in difference.getextrema());assert maximum<=1,(action,theme,maximum)
             compared.append(dict(action=action,theme=theme,physical_size=extent,max_channel_difference=maximum))
@@ -113,6 +114,11 @@ def main():
             report['icon_comparisons']=icon_pixels(g,p,'desktop-dark-wallpaper',1)
             c.open_settings(g,p);p.desktop(45002,True);p.close_app(3,True);p.drain();report['icon_comparisons']+=icon_pixels(g,p,'desktop-paper-wallpaper',0)
             c.open_settings(g,p);p.desktop(45000,True);p.close_app(3,True);p.drain()
+            for _ in range(20):
+                c.key(g,'tab')
+                if c.flag(g,'control_active') and c.flag(g,'focused_action')==30000:break
+            else:raise AssertionError('My files cannot receive Tab focus')
+            c.key(g,'ret');assert count(g)==1;close_files(g,p)
             p.desktop(30000,True);assert count(g)==0 and c.flag(g,'desktop_selection11')==1
             c.key(g,'ret');assert count(g)==1;close_files(g,p)
             double(g,p,30001);assert count(g)==1;close_files(g,p)
@@ -120,6 +126,7 @@ def main():
             c.shot(g,'selected-recycle-bin');c.key(g,'ret');assert count(g)==1
             assert '/System/Recycle/Owner' in rows(g);close_files(g,p)
             p.desktop(30000,True);before=rows(g);c.key(g,'delete');assert rows(g)==before and count(g)==0
+            assert ui.memory(g,ui.symbol('shell_notice',96,True)[0],96).split(b'\0')[0].startswith(b'Right-click built-in icons')
             report['checks'].append('Real UEFI install/retained-ISO restart; one click selects, double-click opens Documents, Enter opens My files and Recycle Bin, protected launcher deletion leaves core objects unchanged')
             # Genuine marquee edges, with all four built-ins inside the rectangle.
             scale=c.flag(g,'scale73');p.move(20*scale//2,100*scale//2);p.drain();p.down(True);p.drain();p.move(154*scale//2,530*scale//2);p.drain()
@@ -131,7 +138,9 @@ def main():
             action=desktop_item(g,p,path);p.desktop(action,True);c.key(g,'shift','f10');menu(g,p,43000)
             action=desktop_item(g,p,path);p.desktop(action,True);c.key(g,'shift','f10');menu(g,p,40010);job(g,p)
             link='/Users/Owner/Desktop/project.link';assert link in rows(g)
-            action=desktop_item(g,p,link);p.desktop(action,True);assert count(g)==0;c.key(g,'ret');assert count(g)==1;close_files(g,p)
+            action=desktop_item(g,p,link);p.desktop(action,True);assert count(g)==0
+            report['icon_comparisons']+=icon_pixels(g,p,'desktop-shortcut',1,[(action,21,True)])
+            c.key(g,'ret');assert count(g)==1;close_files(g,p)
             # Removing a reference cannot remove its target.
             action=desktop_item(g,p,link);p.desktop(action,True);c.key(g,'delete');job(g,p);assert path in rows(g) and link not in rows(g)
             action=desktop_item(g,p,path);p.desktop(action,True);c.key(g,'delete');job(g,p);assert path not in rows(g)
@@ -148,7 +157,9 @@ def main():
             p.desktop(40005,True);job(g,p);assert path in rows(g);close_files(g,p)
             action=desktop_item(g,p,path);p.desktop(action,True);c.key(g,'shift','f10');menu(g,p,43000)
             report['checks'].append('Background and keyboard menus create/rename/pin a real folder; validated shortcut opens its target, recycling the shortcut preserves the target, and Recycle Bin restores the original folder')
+            overflow_before=g.log().count('M73_TEXT_OVERFLOW')
             create(g,p,'a long desktop folder name for readability');c.shot(g,'long-name-selection')
+            assert g.log().count('M73_TEXT_OVERFLOW')==overflow_before,'Expected caption shortening emitted a paragraph overflow'
             # Hover a different object, then compare the dirty update with a genuine full repaint.
             target=desktop_item(g,p,'/Users/Owner/Desktop/project');x,y=point(g,target);scale=c.flag(g,'scale73');p.move(x*scale//2,y*scale//2);p.drain();c.shot(g,'hovered-name-dirty')
             c.key(g,'esc');c.shot(g,'hovered-name-full')
@@ -172,16 +183,37 @@ def main():
             after=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32));assert after[0]==baseline[0] and after[3]==baseline[3]
             report['resources']=dict(before=baseline,after=after,retained_pages=after[0]-baseline[0])
             report['checks'].append('Forty-three actual GUI-created folders overflow to reachable pages; unavailable Previous has no hit target; spatial keys skip the reserved gap, End reveals the selected item; no retained pages/new allocation failures and idle CPUs halt')
+            # Hide every built-in reference independently, without removing its service.
+            before_refs=rows(g)
+            for reference in range(4):
+                right(g,p,*point(g,30000+reference));menu(g,p,48000)
+                assert not any(v[5]==30000+reference for v in controls(g))
+            assert c.flag(g,'desktop_hidden12')==15 and c.flag(g,'desktop_selection11')==0
+            c.key(g,'home');assert c.flag(g,'desktop_item_focus11')==4
+            c.key(g,'left');assert c.flag(g,'desktop_item_focus11')==4
+            c.open_settings(g,p);assert count(g)==1;p.close_app(3,True);p.drain()
+            assert all(rows(g).get(path)==value for path,value in before_refs.items())
+            right(g,p,1260,660);c.shot(g,'restore-desktop-references');menu(g,p,48001)
+            assert c.flag(g,'desktop_hidden12')==0 and all(any(v[5]==30000+i for v in controls(g)) for i in range(4))
+            right(g,p,*point(g,30002));menu(g,p,48000);assert c.flag(g,'desktop_hidden12')==4
+            refs_stats=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32));assert refs_stats[0]==baseline[0] and refs_stats[3]==baseline[3]
+            report['checks'].append('Each built-in reference can be hidden without deleting user/core entries; keyboard skips hidden cells, Settings remains reachable through Start, Restore defaults works and display-only changes retain no pages')
             (OUT/'install.log').write_text(g.log(),encoding='utf-8')
         assert '/Users/Owner/Desktop/project' in ui.s.directories(disk)
         pins=ui.s.s.document(disk,'/System/Settings/start11-Owner.bin');assert b'/Users/Owner/Desktop/project\0' in pins
-        report['checks'].append('Independent stored directories and pinned-folder bytes confirm persistence, not just compositor state')
+        assert ui.s.s.document(disk,'/Users/Owner/Documents/Welcome.txt')==(ROOT/'distros/packages/m12-desktop-guide/content.txt').read_bytes()
+        assert struct.unpack('<QII',ui.s.s.document(disk,'/System/Settings/desktop12-Owner.bin'))==(0x31504f544b534544,1,4)
+        report['checks'].append('Independent stored directories, pinned-folder bytes and the matching bundled guide confirm persistence, not just compositor state')
         for number in (1,2):
             boot=ui.guest(work/f'disk-{number}',disk,media='installed',ready='M7_DESKTOP_READY');ui.s.normal_boot(boot,live.folder/'vars.fd')
             with boot as g:
                 p=ui.Pointer(g);p.drain();assert '/Users/Owner/Desktop/project' in rows(g)
+                assert c.flag(g,'desktop_hidden12')==4 and not any(v[5]==30002 for v in controls(g))
+                close_files(g,p);right(g,p,1260,660);menu(g,p,48001)
+                assert c.flag(g,'desktop_hidden12')==0 and any(v[5]==30002 for v in controls(g))
+                if number==1:right(g,p,*point(g,30002));menu(g,p,48000)
                 c.shot(g,f'disk-only-{number}');c.idle(g);(OUT/f'disk-{number}.log').write_text(g.log(),encoding='utf-8')
-            report['checks'].append(f'Independent disk boot {number} uses ordinary firmware discovery and retains real desktop objects')
+            report['checks'].append(f'Independent disk boot {number} uses ordinary firmware discovery and retains real desktop objects and hidden-reference settings, with working restore')
         for label,resolution,scale_action in [('150',(1920,1200),112),('4k',(3840,2160),113)]:
             with ui.guest(work/label,disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution) as g:
                 p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(scale_action,True);p.desktop(43,True);p.close_app(3,True);p.drain();p.close_app(1,True);p.drain()

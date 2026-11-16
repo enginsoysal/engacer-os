@@ -1,5 +1,26 @@
+#ifdef ENGINE_M12
+/* Display-only reference preference. Hiding never deletes a service or user item. */
+typedef struct {uint64_t magic;uint32_t version,hidden;} desktop_record12;
+_Static_assert(sizeof(desktop_record12)==16,"Desktop preference must stay bounded");
+static void desktop_path12(char*path){copy(path,"/System/Settings/desktop12-",256);append(path,owner.user,256);append(path,".bin",256);}
+static void desktop_load12(void){char path[256];desktop_path12(path);desktop_record12 record;unsigned bytes=0;desktop_hidden12=0;
+ if(v6_verify(m6_volume(),path)||v6_read(m6_volume(),path,0,&record,sizeof(record),&bytes)||bytes!=sizeof(record)||record.magic!=UINT64_C(0x31504f544b534544)||record.version!=1||(record.hidden&~15u))return;
+ desktop_hidden12=record.hidden;
+}
+static unsigned desktop_first12(unsigned total,unsigned last){
+ if(last&&total>4)return total-1;
+ for(unsigned i=0;i<4;++i){unsigned row=last?3-i:i;if(DESKTOP_VISIBLE11&(1u<<row))return row;}
+ return total>4?4:total;
+}
+static void desktop_references12(unsigned hidden){if(hidden&~15u)return;char path[256];desktop_path12(path);desktop_record12 record={UINT64_C(0x31504f544b534544),1,hidden};
+ if(v6_put(m6_volume(),path,sizeof(record),memory_source,&record)){file_notice11(0,"Could not save your desktop icons. The previous layout is kept for this session.");return;}
+ desktop_hidden12=hidden;desktop_selection11&=DESKTOP_VISIBLE11;interaction11.last_valid=0;
+ if(desktop_item_focus11<4&&!(DESKTOP_VISIBLE11&(1u<<desktop_item_focus11)))desktop_item_focus11=desktop_first12(desktop_children11()+4,0);
+ whole();
+}
+#endif
 static void desktop_open_builtin11(unsigned row){
- if(row>=DESKTOP_BUILTINS11)return;
+ if(row>=DESKTOP_BUILTINS11||!(DESKTOP_VISIBLE11&(1u<<row)))return;
  desktop_focus11=0;
 #ifdef ENGINE_M12
  if(row==3){file_action11(0,F11_BIN);whole();return;}
@@ -19,6 +40,14 @@ static unsigned desktop_capacity11(void){
 #endif
 }
 #ifdef ENGINE_M12
+static void desktop_label12(desktop_rect r,const char*label,uint32_t foreground){
+ char first[64];unsigned used=0,last_space=0;
+ while(label[used]&&used<63){first[used]=label[used];first[used+1]=0;if(ui73_measure(first,UI12_BODY)>(unsigned)r.width-12){first[used]=0;break;}if(label[used]==' ')last_space=used;++used;}
+ first[used]=0;if(label[used]&&last_space){used=last_space;first[used]=0;}
+ while(label[used]==' ')++used;
+ unsigned width=ui73_measure(first,UI12_BODY);ui73_fit(r.x+(r.width-(int)width)/2,r.y+60,r.width-12,first,UI12_BODY,foreground);
+ if(label[used]){width=ui73_measure(label+used,UI12_BODY);int x=width<=(unsigned)r.width-12?r.x+(r.width-(int)width)/2:r.x+6;ui73_fit(x,r.y+84,r.width-12,label+used,UI12_BODY,foreground);}
+}
 static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsigned focused,unsigned icon,const v6_entry*entry12,const char*label){
  unsigned hovered=hover12.kind==I11_ITEM&&!hover12.window&&hover12.action==action;
  uint32_t foreground=desktop_ink11();
@@ -27,18 +56,18 @@ static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsi
  unsigned icon_dark=selected||hovered||foreground==0xffffff;
  if(entry12){ui12_icon(shell_entry_icon12(entry12),r.x+36,r.y+6,48,icon_dark);if(shell_suffix12(file_label11(entry12),"link"))ui12_icon(ICON12_SHORTCUT,r.x+36,r.y+30,24,icon_dark);}
  else ui12_icon(icon,r.x+36,r.y+6,48,icon_dark);
- ui73_paragraph(r.x+6,r.y+60,r.width-12,2,label,foreground);
+ desktop_label12(r,label,foreground);
  if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,action};
 }
 static void draw_desktop_builtin12(void){
  static const char*names[]={"My files","Documents","Appearance","Recycle Bin"};
  static const unsigned icons[]={ICON12_HOME,ICON12_FOLDER,ICON12_SETTINGS,ICON12_TRASH};
- for(unsigned i=0;i<UI12_DESKTOP_BUILTINS;++i){ui12_desktop_cell cell=ui12_desktop_position(model.height,i,1);desktop_rect r={cell.x,cell.y,cell.width,cell.height};desktop_tile12(r,30000+i,!!(desktop_selection11&(1u<<i)),desktop_item_focus11==i,icons[i],0,names[i]);}
+ for(unsigned i=0;i<UI12_DESKTOP_BUILTINS;++i){if(!(DESKTOP_VISIBLE11&(1u<<i)))continue;ui12_desktop_cell cell=ui12_desktop_position(model.height,i,1);desktop_rect r={cell.x,cell.y,cell.width,cell.height};desktop_tile12(r,30000+i,!!(desktop_selection11&(1u<<i)),desktop_item_focus11==i,icons[i],0,names[i]);}
 }
 #endif
-static void desktop_set_selected11(unsigned row,unsigned value){if(row<DESKTOP_BUILTINS11){if(value)desktop_selection11|=1u<<row;else desktop_selection11&=~(1u<<row);return;}const v6_entry*e=desktop_child11(row-DESKTOP_BUILTINS11);if(!e)return;unsigned index=(unsigned)(e-m6_volume()->entries);if(value)desktop_files_selected11[index/8]|=(uint8_t)(1u<<(index%8));else desktop_files_selected11[index/8]&=(uint8_t)~(1u<<(index%8));}
+static void desktop_set_selected11(unsigned row,unsigned value){if(row<DESKTOP_BUILTINS11){if(value&&!(DESKTOP_VISIBLE11&(1u<<row)))return;if(value)desktop_selection11|=1u<<row;else desktop_selection11&=~(1u<<row);return;}const v6_entry*e=desktop_child11(row-DESKTOP_BUILTINS11);if(!e)return;unsigned index=(unsigned)(e-m6_volume()->entries);if(value)desktop_files_selected11[index/8]|=(uint8_t)(1u<<(index%8));else desktop_files_selected11[index/8]&=(uint8_t)~(1u<<(index%8));}
 static unsigned desktop_is_selected11(unsigned row){return row<DESKTOP_BUILTINS11?!!(desktop_selection11&(1u<<row)):file_selected_desktop11(row-DESKTOP_BUILTINS11);}
-static void desktop_select11(unsigned row,unsigned modifiers,unsigned preserve){unsigned total=desktop_children11()+DESKTOP_BUILTINS11;if(row>=total)return;if(preserve&&desktop_is_selected11(row)){desktop_item_focus11=row;return;}if(!(modifiers&3)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}
+static void desktop_select11(unsigned row,unsigned modifiers,unsigned preserve){unsigned total=desktop_children11()+DESKTOP_BUILTINS11;if(row>=total||(row<DESKTOP_BUILTINS11&&!(DESKTOP_VISIBLE11&(1u<<row))))return;if(preserve&&desktop_is_selected11(row)){desktop_item_focus11=row;return;}if(!(modifiers&3)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}
  if(modifiers&2){unsigned anchor=desktop_anchor11<total?desktop_anchor11:row;if(!(modifiers&1)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}unsigned lo=anchor<row?anchor:row,hi=anchor>row?anchor:row;for(unsigned n=lo;n<=hi;++n)desktop_set_selected11(n,1);}
  else{desktop_set_selected11(row,(modifiers&1)?!desktop_is_selected11(row):1);desktop_anchor11=row;}desktop_item_focus11=row;if(row>=DESKTOP_BUILTINS11)desktop_page11=(row-DESKTOP_BUILTINS11)/desktop_capacity11();
 }

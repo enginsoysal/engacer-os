@@ -16,6 +16,7 @@ static unsigned shell_path_icon12(const char*path,unsigned kind){
  return ICON12_UNKNOWN;
 }
 static unsigned shell_entry_icon12(const v6_entry*e){
+ if(e->kind==1&&shell_suffix12(file_label11(e),"link"))return ICON12_DOCUMENT;
  if(e->kind==2&&!memcmp(e->path,"/Applications/",14)){
   #define ICON_APP_NAME12(symbol,kind,id,title,worker,ready) {#id,kind},
   static const struct{const char*name;unsigned icon;}names[]={APP74_CATALOG(ICON_APP_NAME12)};

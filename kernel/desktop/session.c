@@ -867,6 +867,9 @@ static void insert(application *app,const char *bytes,unsigned count) {
 
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
+    if(!token&&command==DESKTOP_HIDE12){if(context_action11>=30000&&context_action11<30004)desktop_references12(desktop_hidden12|(1u<<(context_action11-30000)));return;}
+    if(!token&&command==DESKTOP_RESTORE12){desktop_references12(0);return;}
+
     if(!token&&command>=30000&&command<30000+DESKTOP_BUILTINS11){desktop_open_builtin11(command-30000);return;}
     if(!token&&command>=F11_DESKTOP_ITEM&&command<F11_DESKTOP_ITEM+V6_ENTRIES){const v6_entry*e=desktop_child11(command-F11_DESKTOP_ITEM);if(e){char path[256];copy(path,e->path,256);desktop_focus11=1;file_open11(path,0);}return;}
 #endif
@@ -1312,6 +1315,9 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
     usb_mouse_state(&pointer_x,&pointer_y,&previous_buttons);
 #ifdef ENGINE_M11
     appearance_load11();file_settings_load11();power_init11(boot);start_load11();
+#ifdef ENGINE_M12
+    desktop_load12();
+#endif
 #endif
     launch(FILES,0);
 #ifdef ENGINE_M11

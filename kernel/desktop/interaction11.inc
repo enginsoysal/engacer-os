@@ -53,7 +53,7 @@ static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
  if(event&I11_ACTIVATE){if(target.action==W11_MAX||target.action==31000){window_state11*s=window_state_for11(target.window);if(s)window_mode11(target.window,s->mode?0:1);}else if(target.action==31001){close_window(target.window,0);task_damage();}else if(target.action==31002){desktop_minimize(&model,target.window,1);task_damage();}else if(target.kind==I11_ITEM||target.kind==I11_BUTTON)open_target11(target);}
 }
 static void marquee_update11(int x,int y){desktop_window*w=desktop_lookup(&model,marquee_window11);if(marquee_window11&&!w){marquee11=0;return;}int left=x<interaction11.x?x:interaction11.x,top=y<interaction11.y?y:interaction11.y,right=x>interaction11.x?x:interaction11.x,bottom=y>interaction11.y?y:interaction11.y;marquee_rect11=(desktop_rect){left,top,right-left+1,bottom-top+1};
- if(!w){if(dispatch_modifiers11&1){desktop_selection11=marquee_desktop_saved11;memcpy(desktop_files_selected11,marquee_desktop_files_saved11,sizeof(desktop_files_selected11));}else{desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}for(unsigned i=0;i<DESKTOP_BUILTINS11;++i){
+ if(!w){if(dispatch_modifiers11&1){desktop_selection11=marquee_desktop_saved11;memcpy(desktop_files_selected11,marquee_desktop_files_saved11,sizeof(desktop_files_selected11));}else{desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}for(unsigned i=0;i<DESKTOP_BUILTINS11;++i){if(!(DESKTOP_VISIBLE11&(1u<<i)))continue;
 #ifdef ENGINE_M12
  ui12_desktop_cell cell=ui12_desktop_position(model.height,i,1);int xx=cell.x,yy=cell.y,ww=cell.width,hh=cell.height;
 #else

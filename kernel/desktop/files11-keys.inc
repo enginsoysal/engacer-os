@@ -37,12 +37,14 @@ static unsigned files_key11(int key){
  if(a&&(modifiers&4)&&(key==128||key==129||key==133)){files_action72(w,a,token,key==128?NAV_BACK:key==129?NAV_FORWARD:FILE_UP);return 1;}
  if(key==10&&(modifiers&4)){file_action11(owner_token,F11_PROPERTIES);return 1;}
  if(control_active&&(key==10||key==32)){if(focused_control_window==owner_token){unsigned command=focused_action;control_active=0;action(owner_token,command);whole();return 1;}return 0;}
- if(desktop){unsigned total=desktop_children11()+DESKTOP_BUILTINS11;if(key==1){desktop_selection11=(1u<<DESKTOP_BUILTINS11)-1;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));for(unsigned row=0;row+DESKTOP_BUILTINS11<total;++row){const v6_entry*e=desktop_child11(row);unsigned index=(unsigned)(e-m6_volume()->entries);desktop_files_selected11[index/8]|=(uint8_t)(1u<<(index%8));}whole();return 1;}
-  if(key==133||key==134||key==128||key==129||key==130||key==131){unsigned row=desktop_item_focus11;if(row>=total)row=0;if(key==130)row=0;else if(key==131)row=total-1;
+ if(desktop){unsigned total=desktop_children11()+DESKTOP_BUILTINS11;if(key==1){desktop_selection11=DESKTOP_VISIBLE11;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));for(unsigned row=0;row+DESKTOP_BUILTINS11<total;++row){const v6_entry*e=desktop_child11(row);unsigned index=(unsigned)(e-m6_volume()->entries);desktop_files_selected11[index/8]|=(uint8_t)(1u<<(index%8));}whole();return 1;}
+  if(key==133||key==134||key==128||key==129||key==130||key==131){unsigned row=desktop_item_focus11;if(row>=total)row=0;
 #ifdef ENGINE_M12
- else row=ui12_desktop_neighbor(model.height,row,total,(unsigned)key);
+ if(key==130)row=desktop_first12(total,0);else if(key==131)row=desktop_first12(total,1);
+ else if(row<4&&!(DESKTOP_VISIBLE11&(1u<<row)))row=desktop_first12(total,0);
+ else row=ui12_desktop_neighbor_visible(model.height,row,total,(unsigned)key,DESKTOP_VISIBLE11);
 #else
- else if(key==133||key==128){if(row)--row;}else if(row+1<total)++row;
+ if(key==130)row=0;else if(key==131)row=total-1;else if(key==133||key==128){if(row)--row;}else if(row+1<total)++row;
 #endif
  desktop_select11(row,modifiers,0);whole();return 1;}
   if(key==10){if(desktop_item_focus11<DESKTOP_BUILTINS11&&(desktop_selection11&(1u<<desktop_item_focus11))){desktop_open_builtin11(desktop_item_focus11);}else file_open_selection11(0);return 1;}

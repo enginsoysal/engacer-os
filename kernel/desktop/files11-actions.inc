@@ -51,6 +51,9 @@ static void file_dialog_confirm11(void){file_dialog11*d=&file_dialog_state11;uin
 }
 static unsigned file_action11(uint64_t owner_token,unsigned command){
  desktop_window*w=file_owner_window11(owner_token);application*a=w?&apps[w-model.windows]:0;unsigned status=0;
+#ifdef ENGINE_M12
+ if(!owner_token&&command==F11_RECYCLE&&desktop_selection11){file_notice11(0,"Right-click built-in icons and choose Hide desktop icon. Your files are unchanged.");return 1;}
+#endif
  if(command>=FILE_DELETE_ROW&&command<FILE_DELETE_ROW+V6_ENTRIES&&a&&!a->usb_mode10){select_row11(a,command-FILE_DELETE_ROW,0,0);command=F11_RECYCLE;}
  if(command!=FILE_FOLDER&&(command<F11_COPY||command>F11_JOB_DETAILS)&&!(command>=F11_ASSOC_APP&&command<F11_ASSOC_APP+APP74_KINDS)&&!(command>=F11_PLACE&&command<F11_PLACE+8)&&!(command>=F11_CRUMB&&command<=F11_CRUMB+255))return 0;
  if(command==F11_CANCEL_JOB){file_job_state11.cancel=1;return 1;}

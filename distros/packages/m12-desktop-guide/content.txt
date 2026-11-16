@@ -17,6 +17,19 @@ Select an item before choosing Copy, Cut, Recycle or Properties.
 Unavailable actions are muted. Recycle Bin has Restore and reviewed removal.
 Protected system locations are readable; their write actions stay unavailable.
 
+DESKTOP OBJECTS
+My files, Documents, Appearance and Recycle Bin refer to protected services.
+Right-click one and choose Hide desktop icon to remove its desktop reference.
+Right-click empty space and choose Restore desktop icons to bring them back.
+These display choices save per user without removing any app or user file.
+Your own files and shortcuts are separate. Right-click empty space to create
+an item; its page is shown and the item is selected. Previous/Next reach more
+objects. Arrow keys follow the grid; Home/End select its first/last objects.
+Point to an object or select it to read its full name above the grid.
+Create desktop shortcut makes a reference: deleting it keeps the original.
+Recycle Bin can restore recycled files to their original folders. Recycling a
+pinned folder removes its Start pin; restore it, then pin it again if wanted.
+
 SCROLLING
 When a folder has more rows than fit, use its scrollbar, wheel or page buttons.
 Drag the scrollbar thumb to move through the list. Escape during a thumb drag

@@ -51,8 +51,12 @@ It returns to its original folder when the destination is available. Name
 conflicts or unavailable destinations are handled by the existing file reviews.
 Permanent deletion and Empty Recycle Bin require their explicit review.
 
-The built-in references are protected and separate from your files. Trying to
-recycle them cannot delete the desktop, kernel or required system services.
+To remove a built-in icon, right-click it and choose **Hide desktop icon**.
+Right-click empty space and choose **Restore desktop icons** to bring the four
+standard references back. These display choices save immediately for your user;
+you do not need to remove an app. Even with all four hidden, Start still opens
+Files and Settings. Trying Delete explains the Hide route and cannot delete the
+desktop, kernel or required services.
 Optional applications and user shortcuts retain their independent lifecycle.
 
 ## Personalize and understand limits

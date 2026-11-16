@@ -25,11 +25,12 @@ static inline ui12_desktop_cell ui12_desktop_position(unsigned height,unsigned i
         110+(int)(index%rows)*UI12_DESKTOP_PITCH_Y,120,112};
 }
 /* Find the next real object on the same row or column, skipping reserved gaps. */
-static inline unsigned ui12_desktop_neighbor(unsigned height,unsigned index,unsigned total,unsigned key) {
+static inline unsigned ui12_desktop_neighbor_visible(unsigned height,unsigned index,unsigned total,unsigned key,unsigned visible) {
     if(index>=total||total>1028)return index;
     ui12_desktop_cell from=ui12_desktop_position(height,index<4?index:index-4,index<4);
     unsigned best=index;int distance=0x7fffffff;
     for(unsigned i=0;i<total;++i){
+        if(i<4&&!(visible&(1u<<i)))continue;
         ui12_desktop_cell to=ui12_desktop_position(height,i<4?i:i-4,i<4);
         int dx=to.x-from.x,dy=to.y-from.y;
         int delta=key==128?-dx:key==129?dx:key==133?-dy:dy;
@@ -38,4 +39,5 @@ static inline unsigned ui12_desktop_neighbor(unsigned height,unsigned index,unsi
     }
     return best;
 }
+static inline unsigned ui12_desktop_neighbor(unsigned height,unsigned index,unsigned total,unsigned key){return ui12_desktop_neighbor_visible(height,index,total,key,15);}
 #endif

@@ -9,7 +9,9 @@ The desktop uses shared 120 by 112 logical-pixel object cells, with 128 by 120
 spacing. Four built-in references lead the grid: My files, Documents, Appearance
 and Recycle Bin. User objects come from the real per-user Desktop directory.
 The original M12 icon renderer draws 48-pixel vector identities; labels use the
-same native Inter body typography and two-line limit. Desktop icon inks follow the actual wallpaper or selection
+same native Inter body typography, centered under each icon with a two-line
+limit and explicit ellipsis on a shortened final line. Expected label shortening
+does not emit a paragraph-overflow error. Desktop icon inks follow the actual wallpaper or selection
 background independently of the window theme. Hover and selection have
 different backgrounds; keyboard focus has an additional outline. A focused or
 hovered user object's full supported name is also shown above the grid.
@@ -34,19 +36,28 @@ their page is revealed.
 
 A single object click selects; a double-click or Enter opens. Context commands
 activate once. Tab-focused desktop controls route to the same validated open
-operation. Built-in references are protected launchers, separate from removable
-user shortcuts and optional applications. Their removal cannot delete required
-services. The background menu exposes creation, Desktop in Files, Recycle Bin,
+operation. Built-in references can be hidden independently with Hide desktop icon,
+separate from removing user shortcuts and optional applications. The background
+menu offers Restore desktop icons, so hiding all references cannot strand the
+user. Start still reaches the underlying required services. Delete explains the
+Hide route and never deletes those services. The background menu exposes creation, Desktop in Files, Recycle Bin,
 Personalize and supported clipboard/Undo actions.
 
 The Recycle Bin opens the existing real per-user recycle provider in Files.
 Native file actions retain the M11 transactional implementation, metadata/CRC
 checks and original-location Restore. Shortcuts retain the versioned validated
-reference format: removing a shortcut leaves its target unchanged; unavailable
+reference format. A document-and-arrow icon identifies a reference without
+reading or executing its target during painting. Removing a shortcut leaves its target unchanged; unavailable
 targets explain their failure without executing another file. Folder pins reuse
 the existing persisted Start preferences instead of another desktop-only pin
 store. Recycling a folder removes its pin; Restore restores the object, and the
-user can pin it again. It does not silently recreate removed pins. No new disk layout or settings format is introduced.
+user can pin it again. It does not silently recreate removed pins. No new disk layout is introduced. A separate 16-byte, versioned per-user
+`desktop12-<user>.bin` record stores only four hidden-reference bits. Length,
+CRC, magic, version and reserved-bit validation reject malformed records to the
+safe visible defaults. Save failure preserves the prior layout for this session.
+Existing appearance and Start formats are unchanged. The grid reserves stable
+reference positions; rendering, Tab focus, range selection, marquee and spatial
+navigation exclude hidden references without renumbering user object identities.
 
 ## Resources and qualification
 

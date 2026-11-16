@@ -17,8 +17,8 @@ def main():
     for report in (native,bios,vmware,motion):assert report['iso_sha256']==iso
     assert vmware['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
     assert vmware['existing_vm_inventory_unchanged'] and len(vmware['checks'])==len(bios['checks'])==3
-    assert len(native['checks'])>=7 and len(native['profiles'])==2
-    assert len(native['icon_comparisons'])==16 and all(v['max_channel_difference']<=1 for v in native['icon_comparisons'])
+    assert len(native['checks'])>=8 and len(native['profiles'])==2
+    assert len(native['icon_comparisons'])==17 and all(v['max_channel_difference']<=1 for v in native['icon_comparisons'])
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
     assert native['resources']['before'][3]==native['resources']['after'][3]
@@ -53,6 +53,6 @@ def main():
     write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],display_profiles=native['profiles'],motion=motion['profiles'],scope='Fixed shell state and managed framebuffer pages are separate. No new icon cache, per-window framebuffer, idle animation or heap allocation is introduced by desktop layout. Configured VM RAM is not consumption.'))
     harness={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')}
     write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.3',version='0.12.3',qualification='M12-STAGE3-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks'],native_icon_comparisons=len(native['icon_comparisons']),cached_full_comparisons=12,bios_checks=bios['checks'],vmware_checks=vmware['checks'],resources='resources.json',feature_provenance='Actual owned QEMU SATA/UEFI installed 1280x800 guest, long-name-selection.png; original native Inter/vector rendering',feature_sha256=sha(OUT/'feature.png'),harness_sha256=harness,limits=['The earlier M12.2 concurrent BIOS/AHCI timeout remains open; stress reliability is not qualified.','Free desktop icon placement and arbitrary Unicode filenames are not added; existing volume/name/window quotas remain real.','Recycling a pinned folder removes its pin. Restore restores the original object; users can pin it again.','Final controller/device/original-application regression remains M12.18; physical/ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.','Agent visual/scenario review is not a human usability study. Public release/site/download proof closes separately.']))
-    print('PASS: matching M12.3 desktop source/media, real file/shortcut/recycle/overflow journeys, 16 native icon and 12 cached/full comparisons, independent boots and bounded resources.')
+    print('PASS: matching M12.3 desktop source/media, real file/shortcut/recycle/overflow journeys, 17 native icon and 12 cached/full comparisons, independent boots and bounded resources.')
 
 if __name__=='__main__':main()

@@ -1,8 +1,16 @@
 /* Bounded file-shell state; no per-window framebuffer or general heap queue. */
 #ifdef ENGINE_M12
 #define DESKTOP_BUILTINS11 UI12_DESKTOP_BUILTINS
+enum {DESKTOP_HIDE12=48000,DESKTOP_RESTORE12};
+static unsigned desktop_hidden12;
+#define DESKTOP_VISIBLE11 (15u&~desktop_hidden12)
+static void desktop_load12(void);
+static void desktop_references12(unsigned);
+static unsigned desktop_first12(unsigned,unsigned);
+
 #else
 #define DESKTOP_BUILTINS11 3u
+#define DESKTOP_VISIBLE11 7u
 #endif
 static void desktop_open_builtin11(unsigned);
 
