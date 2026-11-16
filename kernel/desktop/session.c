@@ -910,6 +910,10 @@ static void action(uint64_t token,unsigned command) {
     if(devices_action10(w,app,token,command))return;
 #endif
 #ifdef ENGINE_M74
+#ifdef ENGINE_M12
+    /* These Files commands must precede the legacy generic application sink. */
+    if((command==F12_REFRESH||command==F12_USB_ROOT)&&w->app==FILES&&files_navigation12(w,app,token,command))return;
+#endif
     if(action74(w,app,token,command))return;
 #endif
 #ifdef ENGINE_M72
