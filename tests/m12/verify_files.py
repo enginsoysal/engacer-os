@@ -50,7 +50,7 @@ def main():
     for source,name in [('files-native','native'),('files-compact','compact'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
         target=OUT/name;target.mkdir(exist_ok=True)
         for path in (WORK/source).iterdir():
-            if path.is_file() and path.suffix in ('.json','.png','.log') and not path.name.startswith('prototype-'):
+            if path.is_file() and path.suffix in ('.json','.png','.log') and path.name!='failure.log' and not path.name.startswith('prototype-'):
                 if path.suffix=='.png':shutil.copyfile(path,target/path.name)
                 else:(target/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
     for source,name in [('dist/m12stage5-build-manifest.json','candidate-manifest.json'),('dist/m12stage5-starter-manifest.json','starter-manifest.json'),('build/m12/stage5/history-host/results.json','host-results.json')]:shutil.copyfile(ROOT/source,OUT/name)

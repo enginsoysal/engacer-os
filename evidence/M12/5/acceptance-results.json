@@ -66,7 +66,7 @@
     "tests/m12/verify_chrome.py": "1d69d1a03f82638a1c203210ff961cc98a293a8e3cc2ad83cbdd6142f2806926",
     "tests/m12/verify_components.py": "82d97e959a5798933fb245b42680669e15aa36529262f95dc80f9564e6b0f7d3",
     "tests/m12/verify_desktop.py": "cfe39266845e43681de4a965619a2181ba405d54acdf24b1081556dce1a1692b",
-    "tests/m12/verify_files.py": "7c551b3523d3200ce3e06d284f8762824f430ad3eba2704a4a19697da795880c",
+    "tests/m12/verify_files.py": "ede4e5b82528e73e54d3b3a43f46eeaaa6449deea9bee0b3c61de6d7989ec107",
     "tests/m12/verify_icons.py": "80b05925f01f267d3aa3d2465adf5e342220e2078bc5d3b8fec6a2be18267286",
     "tests/m12/vmware.py": "cda6a695068b2b22efa2ec185b7c958772ee4853312edd16fdd1ab8eead42a03",
     "tests/m12/vmware_stage.py": "583bd8d973d76d70552f24c08fdbe35b659b304c300d7f5aac48e7cce848a454",
