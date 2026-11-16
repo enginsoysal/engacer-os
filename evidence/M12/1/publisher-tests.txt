@@ -1,0 +1,30 @@
+✔ old public routes move to the canonical origin without losing the destination (1.9069ms)
+✔ repository links retain immutable commits, filenames, tags and anchors (0.4114ms)
+✔ old guide titles use the new brand and clearly identify their historical release (2.1727ms)
+✔ homepage separates M12 concepts from the native M11.6 download (2.3481ms)
+✔ a qualified native M12 stage uses its own real capture, guide and scope (0.3351ms)
+✔ M12 design follows tested installation without replacing its release (1.0217ms)
+✔ M12 native guides replace older installation without hiding established tasks (1.0495ms)
+✔ current install and M11 user tasks precede architecture and history (0.474ms)
+✔ numeric names sort naturally and every uncategorized article stays discoverable once (0.227ms)
+✔ a new stage replaces the previous install/release in Start here; history stays last (1.3961ms)
+✔ M11.5 is first and the older M11.4 install guide stays in the archive (0.1656ms)
+✔ active M12 design is labeled separately and cannot replace a native download (1.5784ms)
+✔ stage downloads require all matching public assets and prefer the newest stage (0.3551ms)
+✔ M12 downloads require native assets, numeric stage order and public qualification (0.4808ms)
+✔ publication retries only repeatable operations and obeys bounded server delay (1.4239ms)
+✔ reject a key for any other site before writing (1.0915ms)
+✔ accept only the renamed canonical site identity (0.2664ms)
+✔ never overwrite a matching slug owned by the author rather than the publisher (0.3247ms)
+✔ preserve unrelated author articles (0.8694ms)
+✔ archive removed generated sources as drafts rather than delete them (0.2114ms)
+✔ recover only the exact, empty publisher-created draft (0.4232ms)
+✔ a mixed plan with a later collision is rejected before any operations are returned (0.2381ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.1947

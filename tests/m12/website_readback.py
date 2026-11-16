@@ -41,6 +41,7 @@ def main():
             url = audit.SITE+'/blog/'+post['slug']
             required.add(url)
             expected_sources[url] = 'https://github.com/enginsoysal/engacer-os/blob/'+payload['source_commit']+'/'+path
+    assert len(expected_sources) == len(critical_paths), 'A current stage article is missing from the publication payload'
     pending = required | {r['url'] for r in initial_errors}
     attempts = []
     while pending:

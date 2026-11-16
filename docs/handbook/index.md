@@ -1,30 +1,34 @@
 # Engacer OS user handbook
 
-Current delivery: **M11.6 / 0.11.6**, within M11-FINAL-VM-v1.
-[Release scope and exact evidence](../releases/m116-v0.11.6.md). Earlier stage
+Current native delivery: **M12.1 / 0.12.1**, within M12-STAGE1-VM-v1.
+[Release scope and exact evidence](../releases/m121-v0.12.1.md). Earlier stage
 releases remain historical.
 
 Development now follows [M12.0–M12.18](../milestones/m12.md).
 [The M12 user journeys](desktop-m12.md) describe the planned consistent desktop.
-M12.0 concepts are design evidence, not a replacement for the tested ISO below.
+M12.0 concepts are design evidence. M12.1 supplies the first tested native stage;
+the complete final M12 regression remains M12.18.
 
 Extract the complete prepared VMware ZIP, open EngacerOS.vmx and choose I Copied
 It if asked. Start, select the disk row in the bordered list, follow Next, review
 and install, then choose **Restart to Engacer OS**. The matching ISO may stay
 connected. No terminal command, network account or guest driver installer is needed.
 
-The final artifact has its own 14 VMware controller/starter profiles with all
-shipped devices enabled, plus native ordinary/150%/4K, keyboard, USB and original
-7-Zip MSI/console regression. Use the matching final media and documented limits.
+M12.1 tests its exact enabled-device VMware starter and QEMU SATA/UEFI and BIOS
+journeys, actual 150%/4K controls and cached/full rendering, and idle/resources.
+The previous M11.6 final artifact has fourteen controller/starter profiles and a
+broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M11.6](install-m116.md)
+- [Download and install M12.1](install-m121.md)
+- [Use the shared desktop controls and Files scrollbar](components-m121.md)
 - [Select, open and manage real Files items](files-m11.md)
 - [Use Start search, categories, pins and taskbar](start-m11.md)
 - [Arrange windows and save your appearance](windows-m11.md)
 - [Install, run and remove the original Windows 7-Zip console app](windows-apps-m8.md)
 - [Use the standard apps and manage optional packages](apps-m74.md)
 - [Explore the desktop and navigate your folders](desktop-m73.md)
-- [Current release, checksums and qualified limits](../releases/m116-v0.11.6.md)
+- [Current release, checksums and qualified limits](../releases/m121-v0.12.1.md)
+- [Previous M11.6 final installation and matrix](install-m116.md)
 - [Repair boot files and review recovery limits](apps-m74.md#disks-and-recovery)
 - [Manage partitions and format safely](disk-manager-m71.md)
 - [Build and customize your own distribution](distributions.md)

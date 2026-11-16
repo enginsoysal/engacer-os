@@ -4,16 +4,23 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.1 — shared visual components.** M12.0 has
+**Current native stage: M12.1 — shared visual components**, qualified within
+M12-STAGE1-VM-v1. [Install](docs/handbook/install-m121.md),
+[controls](docs/handbook/components-m121.md),
+[release and checksums](docs/releases/m121-v0.12.1.md),
+[exact-source acceptance](evidence/M12/1/acceptance-results.json).
+Public release and website verification are the remaining closure gate before
+M12.2 begins. M12.0 has
 [completed design and public-delivery checks](evidence/M12/0/publication-results.json).
 The owner has
 authorized [M12.0 through M12.18](docs/milestones/m12.md) in strict order, with
 tests, documentation, GitHub and public website verification between stages.
 [The M12 contract](docs/architecture/desktop-m12.md) and
 [expected user journeys](docs/handbook/desktop-m12.md) distinguish original design
-concepts from implemented behavior. M12.0 does not replace the tested M11.6 ISO.
+concepts from implemented behavior. M12.1 has its own tested ISO and VMware
+starter; the complete final M12 regression remains M12.18.
 
-**Current delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
+**Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
 [exact-source acceptance](evidence/M11/6/acceptance-results.json),
 [current status](docs/roadmap/status.md). Thirty-six native report groups include

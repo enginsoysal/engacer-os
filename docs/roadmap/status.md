@@ -1,6 +1,15 @@
 # Current status
 
-Updated 16 November 2026. **Engacer OS M11.6 / 0.11.6 is the final M11 delivery.**
+Updated 16 November 2026. **M12.1 / 0.12.1 passes its native stage qualification.**
+[Install M12.1](../handbook/install-m121.md),
+[release scope and checksums](../releases/m121-v0.12.1.md),
+[exact-source acceptance](../../evidence/M12/1/acceptance-results.json).
+All 568 compiled inputs match Git; QEMU SATA/UEFI and BIOS, the exact enabled-device
+VMware starter, real 150%/4K, focus/scroll input, idle and twelve cached/full
+comparisons pass. Native acceptance precedes the separate public release/site
+closure. Full final M12 regression remains M12.18.
+
+**Engacer OS M11.6 / 0.11.6 is the previous final M11 delivery.**
 [Exact-source acceptance](../../evidence/M11/6/acceptance-results.json) passes
 **M11-FINAL-VM-v1**: 36 native report groups, including 14 enabled-device VMware
 controller/starter profiles, match 562 compiled inputs and the frozen final media.
@@ -25,17 +34,18 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
-**M12.0 is complete within M12-DESIGN-v1; M12.1 shared components is in progress.**
+**M12.0 is complete within M12-DESIGN-v1; M12.1 native checks pass within M12-STAGE1-VM-v1.**
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website
-readback. No new native media are qualified yet. The owner authorized
+readback. M12.1 now provides its separately qualified native media. The owner authorized
 [nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
 its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
 [source-backed inventory](../architecture/m12-inventory.md) and
 [expected journeys](../handbook/desktop-m12.md). Concepts are explicitly labeled;
-M12.0 provides no new native ISO. M11.6 remains the tested download below.
+M12.0 provides no new native ISO. M12.1 has the current scoped download;
+M11.6's broader final matrix remains historical proof for its own frozen bytes.
 
 ### Completed M11 development sequence
 

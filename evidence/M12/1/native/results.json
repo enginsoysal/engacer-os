@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "stage": "M12.1",
+  "build_id": "981a97dc89216bba34db0b02c25adab2",
+  "iso_sha256": "18545414d308da95b04bc5b849d871971ec396d7e5eb58740ec24945cf63a113",
+  "checks": [
+    "Ordinary Next/disk-selection steps repaint content without adding full-frame clears",
+    "Real graphical installation and retained-ISO reset reach the installed desktop",
+    "Desktop accent glyph and selection marquee have readable foregrounds on the actual dark wallpaper",
+    "Disabled Start pagination is visibly distinct, excluded from activation targets and cannot change the page",
+    "Actual framebuffer distinguishes normal, hover and press; release outside preserves the previous theme",
+    "Keyboard focus has its own contrast border without activating the control",
+    "Light/dark switches retain no managed pages or new allocation failures; idle paints stop and CPUs halt",
+    "Native Files scrollbar drags actual row identities; Escape and Ctrl+Escape restore its start without opening Start; track paging and keyboard Home/End work",
+    "A previous scrollbar focus cannot steal Home/End from the USB provider or the native address field",
+    "Independent metadata/CRC and file-byte inspection confirms the matching M12 welcome guide was installed",
+    "Independent disk boot 1 retains saved appearance and the same firmware variables without forced boot order",
+    "Independent disk boot 2 retains saved appearance and the same firmware variables without forced boot order",
+    "Actual 1920x1200 framebuffer with 150 scale uses native shared typography and idle halt",
+    "Actual 3840x2160 framebuffer with 4k scale uses native shared typography and idle halt"
+  ],
+  "owned_fixture": "d34a26467450492f96914517e48fd547",
+  "setup_full_paints_before_install": [
+    1,
+    1
+  ],
+  "managed_current_bytes": 4288512,
+  "managed_peak_bytes": 4288512,
+  "retained_page_delta": 0,
+  "display_profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "allocation_failures": 5,
+      "idle_cpus_halted": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "allocation_failures": 5,
+      "idle_cpus_halted": true,
+      "idle_paints_unchanged": true
+    }
+  ],
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 93,
+        "paints_after": 93
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 3,
+        "paints_after": 3
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 3,
+        "paints_after": 3
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 29,
+        "paints_after": 29
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 32,
+        "paints_after": 32
+      }
+    ]
+  ]
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m12\components.py", line 186, in main
+    p=ui.Pointer(g);p.drain();assert dark(g)==1;idle(g)
+  File "<project-root>\tests\m12\components.py", line 82, in idle
+    assert before==ui.memory(g,ui.symbol('paints',8,True)[0],8)
+AssertionError

@@ -1,6 +1,6 @@
 # BrixCanvas documentation website
 
-The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.0 is the active design delivery; M11.6 remains the tested native ISO and VMware download. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles. Earlier milestone sections below are historical publication records, not the current release selector.
+The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.1 is the current qualified native stage; its ISO and exact VMware download have their own stage scope. M12.0 remains the accepted design baseline and M11.6 the earlier final matrix. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles. Earlier milestone sections below are historical publication records, not the current release selector.
 
 ## Current M12 publication
 
@@ -10,6 +10,13 @@ downloads. M12.0 has no new ISO. Its linked concept gallery and design prereleas
 cannot qualify runtime behavior. The reader index places the tested installation
 first, then current M12 work, established M11 guides, daily use, architecture,
 roadmap, website maintenance and the archive. Every article remains discoverable.
+
+Native M12 releases are selected numerically and only after their public ISO,
+VMware ZIP and build manifest exist. Design prereleases cannot become an OS
+download. M12.1's homepage uses its actual guest capture and matching guide;
+the full M12 qualification remains M12.18. Refresh the editor after article sync
+before changing its four native sections, then explicitly Save and verify the
+public desktop/mobile layout, links, source provenance and downloadable hashes.
 
 During M12.0 publication, real server responses included 502, 429 and a request
 timeout. The publisher now spaces requests by at least 2.1 seconds and allows at

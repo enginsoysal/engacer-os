@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "stage": "M12.1",
+  "build_id": "50bd7ff6e149c19c7b32c2abd9daf3f6",
+  "iso_sha256": "7942ae8b9bbccfa640b24e16ed35eb76eb34a16a059afe70580cbace882ad29c",
+  "checks": [],
+  "error": "Missing M6_WIZARD_READY; tail=BdsDxe: loading Boot0001 \"UEFI QEMU DVD-ROM QM00005 \" from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)\nBdsDxe: starting Boot0001 \"UEFI QEMU DVD-ROM QM00005 \" from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)\nENGINE_OS_LOADER build=50bd7ff6e149c19c7b32c2abd9daf3f6\nLOADER_REJECT: kernel fixed allocation\n"
+}

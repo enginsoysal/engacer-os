@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m12\components.py", line 84, in main
+    with live as g:
+  File "<project-root>\tests\m6\vm.py", line 55, in __enter__
+    self.wait(self.ready)
+  File "<project-root>\tests\m6\vm.py", line 76, in wait
+    raise RuntimeError('Missing '+text+'; tail='+self.log()[-1500:])
+RuntimeError: Missing M6_WIZARD_READY; tail=BdsDxe: loading Boot0001 "UEFI QEMU DVD-ROM QM00005 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU DVD-ROM QM00005 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+ENGINE_OS_LOADER build=50bd7ff6e149c19c7b32c2abd9daf3f6
+LOADER_REJECT: kernel fixed allocation
+

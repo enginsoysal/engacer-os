@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.1",
-  "qualified_download": "M11.6",
+  "qualified_download": "M12.1",
   "stages": [
     {
       "id": "M12.0",
@@ -18,7 +18,7 @@
     },
     {
       "id": "M12.1",
-      "status": "in_progress",
+      "status": "publication_pending",
       "title": "Shared visual components",
       "requires": "M12.0",
       "deliverable": "Semantic typography, spacing, colors, buttons, fields, lists, scrollbars and focus states.",

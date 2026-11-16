@@ -1,0 +1,7 @@
+{
+  "scope": "Pre-release contrast review of legacy accent consumers",
+  "old_foreground": "102d29",
+  "background": "087c71",
+  "contrast": 2.8905980767561137,
+  "correction": "Shared integer foreground selection for legacy badge/glyph/selected text; ink for editor caret and selection feedback"
+}

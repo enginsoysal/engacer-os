@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "scope": "Host execution of production color/state/scroll arithmetic; native rendering and input are separate checks",
+  "checks": "PASS: 16777216 accent colors; 1572864 component state cases; 4096 bounded scroll cases.",
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "m11_raster_lock_unchanged": true,
+  "m11_coverage_bytes": 270910,
+  "font_coverage_delta_bytes": -19662,
+  "source_sha256": {
+    "include/engine/ui/components12.h": "0f5aec70d7fea7e862e79d673e38c8032468759e43399244ce1acc49b45f6f74",
+    "include/engine/ui/luminance12.h": "92f0bf404a94081c24013f0e4fb56d2967c465a195f2dd2aa3deff033fc924b1",
+    "tests/m12/components_host.c": "22c6412689e6306e7a943575f04a1ea55baaaafd95034e3e9af6de813178754d",
+    "tools/design/components12.py": "8345146ac92e0f679c34865a1815a1c01d53afa34ea2962840f2a9ff5da99839",
+    "tools/build/font73.py": "68970c22a5bd9e865ecfe790f4cb5d6f5a603007ad253dd2030801e81d86f4b6"
+  },
+  "diagnostics": [
+    "Initial compounded hover-plus-press styling produced contrast 4.475582 for dark theme/accent bbffee. Press now replaces hover rather than compounding it.",
+    "The first unqualified live kernel exceeded its former low-memory placement. Unused legacy heading masks and duplicate semantic masks were removed."
+  ]
+}

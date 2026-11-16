@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "stage": "M12.1",
+  "build_id": "ebec880941263516a7dacfb2b24a67b5",
+  "iso_sha256": "57312f21630fae62a8628cca4c00c07cf37288573142836ba8bdeb5099efda96",
+  "checks": [
+    "Real graphical installation and retained-ISO reset reach the installed desktop"
+  ],
+  "error": "('start_bounds11', [])"
+}

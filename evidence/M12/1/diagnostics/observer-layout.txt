@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m12\components.py", line 119, in main
+    sx,sy,sw,sh=struct.unpack('<4i',ui.memory(g,ui.symbol('start_bounds11',16,True)[0],16))
+  File "<project-root>\tests\m74\ui.py", line 20, in symbol
+    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)
+AssertionError: ('start_bounds11', [])

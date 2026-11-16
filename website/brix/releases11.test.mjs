@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {stageRelease11,releaseLabel} from './releases11.mjs';
+import {stageRelease11,stageRelease12,releaseLabel} from './releases11.mjs';
 const release=(n,extra={})=>({tag_name:`m11${n}-v0.11.${n}`,draft:false,prerelease:false,assets:[{name:`EngacerOS-M11STAGE${n}.iso`},{name:`EngacerOS-M11STAGE${n}-VMware.zip`},{name:`m11stage${n}-build-manifest.json`}],...extra});
 
 test('active M12 design is labeled separately and cannot replace a native download',()=>{
@@ -14,4 +14,14 @@ test('stage downloads require all matching public assets and prefer the newest s
  assert.equal(stageRelease11([release(4),release(5,{draft:true})]).id,'M114');
  assert.equal(stageRelease11([release(4,{prerelease:true})]),null);
  assert.equal(stageRelease11([release(4,{assets:[]})]),null);
+});
+
+test('M12 downloads require native assets, numeric stage order and public qualification',()=>{
+ const native=n=>({tag_name:`m12${n}-v0.12.${n}`,draft:false,prerelease:false,assets:[{name:`EngacerOS-M12STAGE${n}.iso`},{name:`EngacerOS-M12STAGE${n}-VMware.zip`},{name:`m12stage${n}-build-manifest.json`}]});
+ assert.equal(stageRelease12([{tag_name:'m120-v0.12.0-design',prerelease:true,assets:[]}]),null);
+ assert.equal(stageRelease12([native(1)]).guide,'install-m121');
+ assert.equal(stageRelease12([native(9),native(10)]).label,'M12.10');
+ assert.equal(stageRelease12([{...native(2),draft:true},native(1)]).label,'M12.1');
+ assert.equal(stageRelease12([{...native(2),prerelease:true}]),null);
+ assert.equal(stageRelease12([{...native(2),assets:[]}]),null);
 });

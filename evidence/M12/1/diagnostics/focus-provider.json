@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "scope": "Additional native provider/focus regression before release",
+  "build_id": "63d2c12ec63c034f1087200df9d3b4cc",
+  "actual_hidden_offset_after_usb_end": 9,
+  "expected_hidden_offset": 0,
+  "correction": "Require active Files owner, native provider and no foreground modal or address field before routing scrollbar keys"
+}

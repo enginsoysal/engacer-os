@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {marked} from '../public/vendor/marked.esm.js';
 import {canonicalPublicUrl,articleBranding} from './branding.mjs';
 import {documentationGroups} from './navigation.mjs';
-import {stageRelease11,releaseLabel} from './releases11.mjs';
+import {stageRelease11,stageRelease12,releaseLabel} from './releases11.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
@@ -59,9 +59,9 @@ export function build(output){
  const downloads=[];const add=(type,props)=>downloads.push({id:`engine-downloads-${downloads.length+1}`,type,props});
  const generationSource=`<p>Generated from <a href="${GH}/tree/${ref}">canonical source commit ${ref.slice(0,7)}</a> and official GitHub release metadata.</p>`;
  add('richtext',{html:generationSource,size:14});
- const stage=stageRelease11(releases);
+ const stage=stageRelease12(releases)||stageRelease11(releases);
  const current=stage?stage.id:releases.some(r=>r.tag_name==='m10-v0.10.0')?'M10':releases.some(r=>r.tag_name==='m92-v0.9.2')?'M92':releases.some(r=>r.tag_name==='m91-v0.9.1')?'M91':releases.some(r=>r.tag_name==='m9-v0.9.0')?'M9':releases.some(r=>r.tag_name==='m8-v0.8.0')?'M8':releases.some(r=>r.tag_name==='m75-v0.7.5')?'M75':releases.some(r=>r.tag_name==='m74-v0.7.4')?'M74':releases.some(r=>r.tag_name==='m73-v0.7.3')?'M73':releases.some(r=>r.tag_name==='m72-v0.7.2')?'M72':releases.some(r=>r.tag_name==='m71-v0.7.1')?'M71':releases.some(r=>r.tag_name==='m7-v0.7.0')?'M7':'M6';
- if(stage)add('richtext',{html:'<p><strong>Stage delivery:</strong> this download has the qualification recorded in its release guide. The complete M11 controller/application regression is M11.6. Earlier M10 results do not qualify these new bytes.</p>',size:17});
+ if(stage)add('richtext',{html:stage.id.startsWith('M12')?'<p><strong>M12 stage delivery:</strong> use this exact ISO and VMware package with its matching native scope and release guide. Full final M12 controller/application regression is M12.18. Earlier M11 results do not qualify these new bytes.</p>':'<p><strong>Stage delivery:</strong> this download has the qualification recorded in its release guide. The complete M11 controller/application regression is M11.6. Earlier M10 results do not qualify these new bytes.</p>',size:17});
  const currentLabel=stage?stage.label:current==='M92'?'M9.2':current==='M91'?'M9.1':current==='M75'?'M7.5':current==='M74'?'M7.4':current==='M73'?'M7.3':current==='M72'?'M7.2':current==='M71'?'M7.1':current;
  const tag=stage?stage.tag:current==='M10'?'m10-v0.10.0':current==='M92'?'m92-v0.9.2':current==='M91'?'m91-v0.9.1':current==='M9'?'m9-v0.9.0':current==='M8'?'m8-v0.8.0':current==='M75'?'m75-v0.7.5':current==='M74'?'m74-v0.7.4':current==='M73'?'m73-v0.7.3':current==='M72'?'m72-v0.7.2':current==='M71'?'m71-v0.7.1':current==='M7'?'m7-v0.7.0':'m6-v0.6.0';
  const guide=stage?stage.guide:current==='M10'?'install-m10':current==='M92'?'install-m92':current==='M91'?'install-m91':current==='M9'?'install-m9':current==='M8'?'install-m8':current==='M75'?'install-m75':current==='M74'?'install-m74':current==='M73'?'install-m73':current==='M72'?'install-m72':current==='M71'?'install-m71':current==='M7'?'install-m7':'install-m6';

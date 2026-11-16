@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "stage": "M12.1",
+  "build_id": "63d2c12ec63c034f1087200df9d3b4cc",
+  "iso_sha256": "8381bcb0a47ce01cc62010159e44407c51810cd1f3733911b39fdd928bc53c07",
+  "checks": [
+    "Real graphical installation and retained-ISO reset reach the installed desktop",
+    "Disabled Start pagination is visibly distinct, excluded from activation targets and cannot change the page",
+    "Actual framebuffer distinguishes normal, hover and press; release outside preserves the previous theme",
+    "Keyboard focus has its own contrast border without activating the control",
+    "Light/dark switches retain no managed pages or new allocation failures; idle paints stop and CPUs halt",
+    "Native Files scrollbar drags actual row identities; Escape and Ctrl+Escape restore its start without opening Start; track paging and keyboard Home/End work",
+    "Independent metadata/CRC and file-byte inspection confirms the matching M12 welcome guide was installed",
+    "Independent disk boot 1 retains saved appearance and the same firmware variables without forced boot order"
+  ],
+  "owned_fixture": "eb9e4cd53e874481a418e7847e27b2b4",
+  "managed_current_bytes": 4288512,
+  "managed_peak_bytes": 4288512,
+  "retained_page_delta": 0,
+  "error": ""
+}
