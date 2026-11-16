@@ -1,0 +1,29 @@
+{
+  "accepted_evidence": false,
+  "records": [
+    {
+      "id": "initial-ctrl-drag-cancellation",
+      "qualified": false,
+      "explanation": "Runtime defect: Ctrl+Escape dispatched to Start before captured file cancellation. Rebuilt and reran final regression; this candidate is not qualified.",
+      "sha256": "453df060aa9995903c586dda1645c02708197cc293324d45f0102569f4c8c97b"
+    },
+    {
+      "id": "legacy-vmware-create-marker",
+      "qualified": false,
+      "explanation": "Harness expected an obsolete M72 create marker. M11 creation is checked through real address navigation and independent stored-directory inspection.",
+      "sha256": "c2bd507fbdb69436a428b6c822ef041fd562446ce29af75395229385bbe4681f"
+    },
+    {
+      "id": "legacy-usb-single-click",
+      "qualified": false,
+      "explanation": "Harness selected EFI but did not open it before export. M11 requires Enter/double-click after selection. The corrected task exports into EFI and independently validates both copies.",
+      "sha256": "87d025499a630d4b14ce6324beb6c8d0960554e388f4666cc63c7c3ff074faf8"
+    },
+    {
+      "id": "batched-selection-input",
+      "qualified": false,
+      "explanation": "Harness sent held QMP key gestures without draining each edge. Corrected ordinary per-key input verifies the exact dialog name, durable folder and all selection tasks.",
+      "sha256": "3564d79cade6ca69b776f9a7bd824e48f14d012d8a4858ef47f77e335d7c8f75"
+    }
+  ]
+}

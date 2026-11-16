@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "checks": [
+    "Single desktop-icon click selects without launching",
+    "Ctrl toggles and Shift extends actual desktop icon selection",
+    "Background marquee selects actual desktop icons without launching",
+    "Enter opens selected desktop icon"
+  ],
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m11\\selection.py\", line 91, in main\n    p.drain();assert '/Users/Owner/Documents/m11' in ui.s.directories(disk)\nAssertionError\n"
+}

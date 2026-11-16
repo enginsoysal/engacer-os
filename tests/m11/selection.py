@@ -87,10 +87,15 @@ def main():
    checks.append('Enter opens selected desktop icon')
    # Documents sidebar remains a one-release button.
    p.desktop(94,True);p.desktop(26,True)
-   for key in ('m','1','1','ret'):ui.h.key(g,key)
+   for key in ('m','1','1'):
+    ui.h.key(g,key);p.drain()
+   entered=ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+304,256).split(b'\0')[0];assert entered==b'm11',entered
+   shot(g,'create-first-folder');ui.h.key(g,'ret')
    p.drain();assert '/Users/Owner/Documents/m11' in ui.s.directories(disk)
    p.desktop(26,True)
-   for key in ('m','1','2','ret'):ui.h.key(g,key)
+   for key in ('m','1','2'):
+    ui.h.key(g,key);p.drain()
+   ui.h.key(g,'ret')
    p.drain();assert '/Users/Owner/Documents/m12' in ui.s.directories(disk)
    base=ui.symbol('volume',0xd3040,True)[0]+64
    slot=next(i for i,v in enumerate(windows(g)) if v[6] and v[5]==1)
@@ -148,7 +153,8 @@ def main():
    checks.append('Double-click opens the real selected folder once')
    shot(g,'double-opened-folder')
    ui.h.key(g,'f10');p.drain()
-   for c in 'settings':ui.h.key(g,c)
+   for c in 'settings':
+    ui.h.key(g,c);p.drain()
    ui.h.key(g,'ret');p.drain();p.desktop(32100,True)
    assert struct.unpack_from('<I',state(g,'interaction11',80),72)[0]==900
    shot(g,'saved-double-click-preference')

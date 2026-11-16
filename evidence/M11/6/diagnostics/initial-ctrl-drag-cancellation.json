@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "checks": [
+    "Graphical new-folder and text-file dialogs create actual native entries",
+    "Rename changes the persisted entry without losing the file",
+    "Copy/Paste publishes an actual desktop file and preserves the source",
+    "Cut/Paste moves the native file between folders",
+    "Recycle and Restore preserve the real payload and original location",
+    "Native details/icon view switches without changing stored items",
+    "Directory copy includes the real nested file payload",
+    "Collision requires review; Keep both preserves the existing directory and creates a separate tree",
+    "Guarded single-action Undo removes the unchanged copy and preserves its source",
+    "Directory rename atomically changes descendant paths",
+    "Recycling and restoring a directory preserves its nested file",
+    "Keyboard context menu creates a validated desktop shortcut to the selected real file"
+  ],
+  "iso_sha256": "b636f9d0eb82e7ff456830841c750baedf17037dfe227b2600a269844f6dc30b",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m11\\files.py\", line 133, in main\n    key(g,'esc');assert not flag(g,'file_drag11');p.down(False);s.modifier(g,'ctrl',False,0);p.drain()\nAssertionError\n"
+}

@@ -28,7 +28,7 @@ def main():
             count=f.flag(g,'file_menu_count11');menu=ui.memory(g,ui.symbol('file_menu_items11',installed=True)[0],count*16)
             which=next(i for i in range(count) if 18000<=struct.unpack_from('<I',menu,i*16+8)[0]<19024 and struct.unpack_from('<I',menu,i*16+12)[0])
             p.desktop(32000+which,True)
-            p.desktop(21101,True);p.desktop(21200,True);start=len(g.log());p.desktop(21005,True)
+            p.desktop(21101,True);p.desktop(21200,True);f.key(g,'ret');start=len(g.log());p.desktop(21005,True)
             assert 'M10_USB_FILE_EXPORTED' not in g.log()[start:];shot(g,out,'read-only-copy-refused')
             report['checks'].append('Actual USB MODE SENSE write protection: native export refused with unchanged backing bytes')
             p.desktop(21006,True);g.wait('M10_USB_SAFE_TO_REMOVE');g.qmp('device_del',{'id':'readonly'})

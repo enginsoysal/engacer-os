@@ -1,0 +1,27 @@
+{
+  "passed": false,
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "iso_sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+  "checks": [
+    "Graphical installation and installed desktop startup with retained ISO",
+    "USB keyboard reconnect followed by real keyboard launcher open/close",
+    "Native Settings Devices, saved layouts and real Dvorak typing into a persisted folder name",
+    "Real mouse wheel scrolls the focused native USB folder down and back up",
+    "Native USB Files selection and copy to Downloads"
+  ],
+  "firmware": "uefi",
+  "resolution": [
+    1280,
+    800
+  ],
+  "ram_mib": 128,
+  "usb_attach_stage": "before firmware boot",
+  "usb_payload_bytes": 39,
+  "usb_payload_sha256": "f611ba0a20793de82c42e4fb9a3597af76d9ab1047ee64ec3304dc343f625380",
+  "usb_cluster_bytes": 512,
+  "actual_display_status": {
+    "backend": 1,
+    "detail": "Buffered software 2D; no GPU acceleration."
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m11\\hardware.py\", line 135, in main\n    g.wait('M10_USB_FILE_EXPORTED');shot(g,out,'usb-exported')\n  File \"<project-root>\\tests\\m6\\vm.py\", line 76, in wait\n    raise RuntimeError('Missing '+text+'; tail='+self.log()[-1500:])\nRuntimeError: Missing M10_USB_FILE_EXPORTED; tail=234 shadow_bytes=0x00000000003e8000\nM73_DISPLAY physical=0x0000000000000500x0x0000000000000320 scale_half=0x0000000000000002 logical=0x0000000000000500x0x0000000000000320\nM6_STORAGE_BEGIN\nM45_AHCI_UNSUPPORTED_SIGNATURE port=0x0000000000000002 signature=0x00000000eb140101\nM4_XHCI_BAR=0x000000c000000000\nM4_XHCI_MSI=0x0000000000000000 msix=0x0000000000000090\nM4_XHCI_MSIX_TABLE=0x0000000000003000\nM4_USB_KEYBOARD_ONLINE\nM10_USB_WHEEL_DESCRIPTOR_VERIFIED\nM4_USB_MOUSE_ONLINE\nM10_USB_WRITABLE\nM45_USB_MASS_STORAGE_READY status=0x0000000000000000\nM6_PS2_MOUSE_ONLINE\nM6_INSTALLED_VOLUME\nM73_SCALE_APPLIED choice=0x0000000000000000 actual=0x0000000000000002\nM11_POWER_S5_PROVIDER_READY\nM72_FOLDER_VISIT /Users/Owner\nM7_WINDOW_OPEN app=0x0000000000000001\nM115_FIRST_START_GUIDE\nM7_DESKTOP_STATS current=0x000000000041e000 peak=0x000000000041e000 allocation_failures=0x0000000000000005 paints=0x0000000000000001 pixels=0x00000000000fa000 visible_framebuffer=0x00000000003e8000 framebuffer_range=0x00000000003e8000\nM7_DESKTOP_READY build=ea730e92bc70d0545b4b8f22385e31bc\nM115_GUIDE_DISMISSED\nM45_USB_DISCONNECTED port=0x0000000000000005\nM4_USB_KEYBOARD_ONLINE\nM45_USB_CONNECTED port=0x0000000000000008\nM7_WINDOW_OPEN app=0x0000000000000003\nM72_FOLDER_VISIT /Users/Owner/Documents\nM7_WINDOW_OPEN app=0x0000000000000003\nM11_SELECTION row=0x0000000000000001\nM10_USB_FILE_IMPORTED\nM72_FOLDER_VISIT /Users/Owner/Downloads\nM11_SELECTION row=0x0000000000000002\nM11_CONTEXT_OPEN\nM11_SELECTION row=0x0000000000000000\n\n"
+}

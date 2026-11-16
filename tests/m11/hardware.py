@@ -131,7 +131,7 @@ def main():
             g.qmp('send-key',{'keys':[{'type':'qcode','data':'shift'},{'type':'qcode','data':'f10'}],'hold-time':40});time.sleep(.16);p.drain()
             count=f.flag(g,'file_menu_count11');menu=ui.memory(g,ui.symbol('file_menu_items11',installed=True)[0],count*16)
             which=next(i for i in range(count) if 18000<=struct.unpack_from('<I',menu,i*16+8)[0]<19024 and struct.unpack_from('<I',menu,i*16+12)[0])
-            p.desktop(32000+which,True);p.desktop(21101,True);p.desktop(21200,True);p.desktop(21005,True)
+            p.desktop(32000+which,True);p.desktop(21101,True);p.desktop(21200,True);f.key(g,'ret');p.desktop(21005,True)
             g.wait('M10_USB_FILE_EXPORTED');shot(g,out,'usb-exported')
             report['checks'].append('Native Downloads To USB and flushed create-only export')
             pages_before=struct.unpack('<Q',ui.memory(g,ui.symbol('stats',32,True)[0],8))[0]
