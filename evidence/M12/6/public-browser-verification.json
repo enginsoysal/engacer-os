@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "stage": "M12.6",
+  "source_commit": "f7eb0df6b9dc0fdcab6af9eae6700374af2ba97f",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1902,
+    "guides": [
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126"
+    ],
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/6/feature.png",
+        "width": 1280
+      }
+    ],
+    "viewport": 1912
+  },
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "documentation": {
+    "installation_guides": [
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125"
+    ],
+    "reader_groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones"
+    ]
+  },
+  "current_guide": true,
+  "matching_download": true
+}

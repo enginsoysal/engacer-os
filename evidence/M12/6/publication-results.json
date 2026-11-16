@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.6",
+  "qualification": "M12-STAGE6-VM-v1",
+  "source_commit": "f7eb0df6b9dc0fdcab6af9eae6700374af2ba97f",
+  "build_id": "a4efdd3ede571e885ec1780fbcc0d3f7",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m126-v0.12.6",
+  "workflow_ids": [
+    43952320948
+  ],
+  "current_native_download": "m126-v0.12.6",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 325,
+  "unique_links": 2244,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
