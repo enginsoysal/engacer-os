@@ -2,6 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {documentationGroups} from './navigation.mjs';
 const post=(path,title,category='handbook')=>({slug:path,title,category,meta:[{key:'engine_source_path',value:path}]});
+
+test('M12 design follows tested installation without replacing its release',()=>{
+ const posts=[post('docs/handbook/install-m116.md','Install M11.6'),post('docs/milestones/m12.md','M12','milestones'),post('docs/architecture/desktop-m12.md','M12 design','architecture'),post('docs/handbook/files-m11.md','Files')];
+ const groups=documentationGroups(posts);
+ assert.equal(groups[0].posts[0].title,'Install M11.6');
+ assert.deepEqual(groups[1].posts.map(p=>p.title),['M12','M12 design']);
+ assert.equal(groups[2].posts[0].title,'Files');
+ assert.equal(new Set(groups.flatMap(g=>g.posts.map(p=>p.slug))).size,posts.length);
+});
 test('current install and M11 user tasks precede architecture and history',()=>{
  const posts=[post('docs/handbook/install-m6.md','M6 installation (historical)'),post('docs/architecture/input-m11.md','Input','architecture'),post('docs/handbook/files-m11.md','Files'),post('docs/handbook/install-m10.md','Install M10'),post('docs/handbook/index.md','Handbook'),post('docs/milestones/m11.md','M11','milestones')];
  const groups=documentationGroups(posts);

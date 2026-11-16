@@ -4,6 +4,13 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
+**Active development: M12.0 — inventory and design contract.** The owner has
+authorized [M12.0 through M12.18](docs/milestones/m12.md) in strict order, with
+tests, documentation, GitHub and public website verification between stages.
+[The M12 contract](docs/architecture/desktop-m12.md) and
+[expected user journeys](docs/handbook/desktop-m12.md) distinguish original design
+concepts from implemented behavior. M12.0 does not replace the tested M11.6 ISO.
+
 **Current delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
 [exact-source acceptance](evidence/M11/6/acceptance-results.json),

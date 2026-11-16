@@ -25,6 +25,16 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
+**M12.0: inventory and design contract is in progress.** The owner authorized
+[nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
+its tests, English guides, GitHub delivery and fresh public website verification
+before the next begins. [Design contract](../architecture/desktop-m12.md),
+[source-backed inventory](../architecture/m12-inventory.md) and
+[expected journeys](../handbook/desktop-m12.md). Concepts are explicitly labeled;
+M12.0 provides no new native ISO. M11.6 remains the tested download below.
+
+### Completed M11 development sequence
+
 [M11: familiar setup and desktop](../milestones/m11.md) proceeds strictly from
 M11.0 through M11.6, with GitHub and public website verification between stages.
 **M11.0 design is complete:** [interaction and visual contract](../architecture/desktop-m11.md),

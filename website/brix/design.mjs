@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const progress=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m11-progress.json',import.meta.url),'utf8'));
+const development=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m12-progress.json',import.meta.url),'utf8'));
 let sequence=0;
 const site='https://engaceros.brixcanvas.com';
 const expanded=Number(progress.current_stage.split('.')[1])>=5;
@@ -27,22 +28,22 @@ export function nativeDesign(){
    heading('ENGACER OS',18,'#e4edf1',{py:12}),
    text('Original kernel · BIOS + UEFI boot',13,'#35ceba'),
    text('Published delivery: '+progress.qualified_download+' · Scoped native tests',12,'#90a6b8'),
-   text(progress.current_stage+' · '+progress.stages.find(s=>s.id===progress.current_stage).title,13,'#35ceba'),
-   text('Completed stages: '+progress.stages.filter(s=>s.status==='complete').map(s=>s.id).join(', '),12,'#90a6b8'),
+   text(development.current_stage+' · '+development.stages.find(s=>s.id===development.current_stage).title,13,'#35ceba'),
+   text('M12.0–M12.18 · Ordered delivery with tests and publication',12,'#90a6b8'),
    b('code',{code:'Next → Review → Install → Restart\nIDE / SATA / supported SCSI / NVMe\nDevices · USB file copies · Safe removal'}),
  ]],{bg:{kind:'color',color:dark},border:1,borderColor:'#35ceba',radius:4,padY:18,minH:320,valign:'center'});
  const hero=layout([[
    text('THE ENGACER OS KNOWLEDGE BASE',11,teal,{letterSpacing:'1.6px',weight:600,py:12}),
-   heading('The M11 desktop',52,ink,{level:1,py:0,letterSpacing:'-1.8px'}),
+   heading('The M12 desktop',52,ink,{level:1,py:0,letterSpacing:'-1.8px'}),
    heading('made familiar.',52,teal,{py:0,letterSpacing:'-1.8px'}),
-   text(progress.current_stage+' completed: '+progress.stages.find(s=>s.id===progress.current_stage).title+'. Try its matching VMware package, read the stage manuals and explore the evidence. '+(final?'The final M11 ISO has matching setup, desktop, controller, USB and original-app regression evidence.':expanded?'Expanded offline setup and the first installed desktop are ready. Full regression remains M11.6.':'Expanded setup follows in M11.5; full regression is M11.6.'),18,muted,{py:20}),
-   layout([[button('See M11 progress →',`${site}/blog/docs-milestones-m11`,{size:'sm'})],[button('Get the ISO ↓',`${site}/blog/downloads`,{variant:'outline',bg:ink,size:'sm'})]]),
+   text('M12.0 establishes the design: recognizable app icons, consistent Files navigation, clear controls and a coherent desktop. Nineteen stages follow in order. These concepts are not a new native build; M11.6 remains the current tested VMware download.',18,muted,{py:20}),
+   layout([[button('See the M12 plan →',`${site}/blog/docs-milestones-m12`,{size:'sm'})],[button('Get the tested ISO ↓',`${site}/blog/downloads`,{variant:'outline',bg:ink,size:'sm'})]]),
  ],[terminal]],{padY:52,valign:'center'});
  hero.props.columns[0].width=55;hero.props.columns[1].width=45;
  hero.props.columns[0].children.at(-1).props.columns[0].width=60;
  hero.props.columns[0].children.at(-1).props.columns[1].width=40;
  const cards=layout([
-   expanded?card('01 / CURRENT DELIVERY','From setup to your desktop.','Choose your keyboard, display size, optional apps and style. Review the disk, install, restart and feel at home. No online account is needed.','Follow the installation guide ↗','docs-handbook-'+progress.release_guide):card('01 / CURRENT DELIVERY','Your windows. Your way.','Maximize, restore, snap, resize and switch with Alt+Tab. Choose light or dark, wallpaper, accent and display size; save your appearance per user.','Read the windows guide ↗','docs-handbook-windows-m11'),
+   card('01 / M12 DESIGN','One coherent desktop.','Recognizable icons, shared controls and a Files window that keeps Back, breadcrumbs and the sidebar visible, including USB empty states.','Explore the design contract ↗','docs-architecture-desktop-m12'),
    card('02 / TESTED DOWNLOAD','Install in VMware','The current qualified download is '+progress.qualified_download+'. Use its prepared VMware ZIP and matching installation guide. Read the exact tested profiles and limits before choosing other hardware.','Open the setup guide ↗','docs-handbook-'+(progress.release_guide||'install-m10')),
    card('03 / MAKE IT YOURS','Build your own distro.','Choose your accent, wallpaper, window style and default content with a validated distribution profile.','Open the distro guide ↗','docs-handbook-distributions'),
  ],{bg:{kind:'color',color:'#ffffff'},border:1,borderColor:'#dbe3e6',divided:true,ruleColor:'#dbe3e6',radius:4,padY:24});
@@ -58,8 +59,8 @@ export function nativeDesign(){
  ]],{padY:32,borderBottom:1,borderColor:'#dbe3e6'});
  bottom.props.columns.forEach(column=>{column.width=50;});
  const main=layout([[
-   hero,heading('From the real '+progress.current_stage+' VM',27,ink,{py:18}),b('image',{url:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M11/'+(final?'6/setup/vmware/first-start-guide.png':expanded?'5/vmware/first-start-guide.png':'4/vmware/appearance.png'),alt:'Native Engacer OS '+progress.current_stage+' in the actual tested VMware guest. Original Inter typography, saved preferences and the installed desktop; not a design concept.',naturalSize:true,radius:8}),heading('A good place to start',27,ink,{py:24}),cards,
-   b('alert',{variant:'info',title:'Development progress and tested downloads',text:progress.stages.filter(s=>s.status==='complete').map(s=>s.id).join(', ')+' are completed stages, with native test evidence and English guides. '+(final?'Final M11 media pass the named virtual controller/device/application regression. ':'The remaining stages follow in order before final M11 VMware media. ')+progress.qualified_download+' is the published delivery. Read its matching release scope. Qualification covers named virtual profiles; physical hardware, 3D and general Windows compatibility remain unqualified.'}),bottom,
+   hero,heading('M12.0 original design concept',27,ink,{py:18}),b('image',{url:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/docs/architecture/figures/m12/overview.svg',alt:'Original M12.0 design concept, not a native VM capture. Distinct app icons and a proposed Start layout.',naturalSize:true,radius:8}),heading('From the real M11.6 VM — current tested download',27,ink,{py:18}),b('image',{url:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M11/6/setup/vmware/first-start-guide.png',alt:'Native Engacer OS M11.6 in the tested VMware guest. This remains the qualified download while M12 development proceeds.',naturalSize:true,radius:8}),heading('A good place to start',27,ink,{py:24}),cards,
+   b('alert',{variant:'info',title:'Development progress and tested downloads',text:'M12.0 is a design-only delivery. M12.1–M12.18 follow in order, each with scoped tests, guides and publication before the next begins. M11.6 remains the published native ISO and VMware package. Read its matching release scope. Qualification covers named virtual profiles; physical hardware, 3D and general Windows compatibility remain unqualified.'}),bottom,
  ]],{bg:{kind:'color',color:paper},padY:12});
  const footer=b('socialcircles',{copyright:'Engacer OS / MIT licensed · Documentation & releases on GitHub',bg:paper,circleBg:teal,items:[{label:'github',href:'https://github.com/enginsoysal/engacer-os'},{label:'website',href:`${site}/blog/documentation`}]});
  return [header,status,main,footer];

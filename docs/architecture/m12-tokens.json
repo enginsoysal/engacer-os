@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "product": "Engacer OS",
+  "status": "M12.0 design specification; not runtime implementation",
+  "font": "Inter (existing SIL OFL licensed asset)",
+  "type_px": {"secondary": 14, "body": 16, "section": 21, "heading": 28},
+  "spacing_px": [4, 8, 12, 16, 24, 32],
+  "control_height_px": 36,
+  "setup_control_height_px": 44,
+  "icon_sizes_px": [16, 20, 24, 32, 48, 64],
+  "themes": {
+    "light": {"paper": "#f8fafc", "surface": "#ffffff", "ink": "#17212f", "muted": "#526173", "line": "#ccd4df", "accent": "#087c71", "on_accent": "#ffffff", "selection": "#d9efe9"},
+    "dark": {"paper": "#161d27", "surface": "#202732", "ink": "#e8edf5", "muted": "#abb7c6", "line": "#485567", "accent": "#77d8c0", "on_accent": "#102820", "selection": "#25483f"},
+    "high_contrast": {"paper": "#000000", "surface": "#000000", "ink": "#ffffff", "muted": "#ffffff", "line": "#ffffff", "accent": "#ffff00", "on_accent": "#000000", "selection": "#000080"}
+  },
+  "contrast_minimum": {"ordinary_text": 4.5, "large_text_and_meaningful_graphics": 3},
+  "resource_policy": {
+    "new_fixed_shell_state_growth_budget_bytes": 262144,
+    "shared_icon_cache_budget_bytes": 1048576,
+    "transition_scratch_budget_bytes": 65536,
+    "per_window_full_framebuffer": false,
+    "continuous_idle_animation": false,
+    "mandatory_blur": false,
+    "scope": "M12 incremental budgets above measured M11.6; report fixed state, shared assets, peak and retained pages separately."
+  }
+}

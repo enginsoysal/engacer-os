@@ -13,6 +13,15 @@
 
 ## Product requirements
 
+- Owner priority, 16 November 2026: execute M12.0 through M12.18 strictly in
+  order under docs/milestones/m12.md and docs/architecture/desktop-m12.md.
+  Close each stage with appropriate tests, English documentation, a scoped
+  GitHub delivery and fresh complete public website verification before the
+  next stage. M12.0 is design only; M11.6 remains the tested ISO until new
+  native media are qualified. Preserve M11FINAL artifacts and accepted evidence.
+  Keep large disposable VM fixtures outside OneDrive. Earlier pending M11.6
+  statements below are historical: its M11-FINAL-VM-v1 qualification is complete.
+
 - Owner request, 16 November 2026: finish M11.5, test its actual setup/installed
   startup, publish its source/evidence/docs/site and exact release assets, then
   remove temporary local build output to reduce OneDrive storage. Verify online

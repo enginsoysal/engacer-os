@@ -4,6 +4,10 @@ Current delivery: **M11.6 / 0.11.6**, within M11-FINAL-VM-v1.
 [Release scope and exact evidence](../releases/m116-v0.11.6.md). Earlier stage
 releases remain historical.
 
+Development now follows [M12.0–M12.18](../milestones/m12.md).
+[The M12 user journeys](desktop-m12.md) describe the planned consistent desktop.
+M12.0 concepts are design evidence, not a replacement for the tested ISO below.
+
 Extract the complete prepared VMware ZIP, open EngacerOS.vmx and choose I Copied
 It if asked. Start, select the disk row in the bordered list, follow Next, review
 and install, then choose **Restart to Engacer OS**. The matching ISO may stay

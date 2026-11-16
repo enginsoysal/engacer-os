@@ -9,14 +9,16 @@ export function documentationGroups(posts){
  const currentRelease=find('docs/releases/m116-v0.11.6.md')||find('docs/releases/m115-v0.11.5.md')||find('docs/releases/m114-v0.11.4.md')||find('docs/releases/m10-v0.10.0.md');
  add('1. Start here','Install the tested release, understand what works and find downloads.',[
   find('docs/handbook/index.md'),currentInstall,find('docs/roadmap/status.md'),posts.find(p=>p.slug==='downloads'),currentRelease]);
- add('2. M11 desktop and installation refresh','User guides, interaction decisions and qualification, in milestone order.',[
+ add('2. M12 desktop experience','Current ordered development. Design concepts are distinct from the tested M11.6 download.',[
+  find('docs/milestones/m12.md'),find('docs/handbook/desktop-m12.md'),find('docs/architecture/desktop-m12.md'),find('docs/architecture/m12-inventory.md')]);
+ add('3. M11 desktop and installation refresh','User guides, interaction decisions and qualification, in milestone order.',[
   find('docs/milestones/m11.md'),find('docs/handbook/desktop-install-m11.md'),find('docs/handbook/files-m11.md'),find('docs/handbook/start-m11.md'),find('docs/handbook/windows-m11.md'),find('docs/architecture/desktop-m11.md'),find('docs/architecture/input-m11.md'),find('docs/architecture/files-m11.md'),find('docs/architecture/start-m11.md'),find('docs/architecture/windows-m11.md'),find('docs/architecture/setup-m115.md'),find('docs/architecture/qualification-m116.md'),find('docs/architecture/usability-review-m116.md')]);
  const sorted=()=>[...remaining.values()].sort((a,b)=>compare(a.title,b.title));
  const historical=p=>/docs\/handbook\/install-m11[456]\.md$/.test(source(p))||/\(historical\)$/.test(p.title)||source(p).startsWith('docs/roadmap/history/')||p.category==='releases';
- add('3. Everyday use and customization','Current manuals for files, devices, distributions and ordinary tasks.',sorted().filter(p=>p.category==='handbook'&&!historical(p)));
- add('4. Architecture and development','Technical reference, source builds and design decisions.',sorted().filter(p=>!['handbook','roadmap','milestones','evidence','website','downloads','releases'].includes(p.category)&&!historical(p)));
- add('5. Roadmap and verification','Current plans and test evidence; qualification is always scoped.',sorted().filter(p=>['roadmap','milestones','evidence'].includes(p.category)&&!historical(p)));
- add('6. Website maintenance','How the English website follows canonical GitHub documentation.',sorted().filter(p=>p.category==='website'));
- add('7. Historical releases and earlier milestones','Archive material. Use the current installation guide above for the tested download.',sorted());
+ add('4. Everyday use and customization','Current manuals for files, devices, distributions and ordinary tasks.',sorted().filter(p=>p.category==='handbook'&&!historical(p)));
+ add('5. Architecture and development','Technical reference, source builds and design decisions.',sorted().filter(p=>!['handbook','roadmap','milestones','evidence','website','downloads','releases'].includes(p.category)&&!historical(p)));
+ add('6. Roadmap and verification','Current plans and test evidence; qualification is always scoped.',sorted().filter(p=>['roadmap','milestones','evidence'].includes(p.category)&&!historical(p)));
+ add('7. Website maintenance','How the English website follows canonical GitHub documentation.',sorted().filter(p=>p.category==='website'));
+ add('8. Historical releases and earlier milestones','Archive material. Use the current installation guide above for the tested download.',sorted());
  return groups;
 }

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "scope": "M12.0 design contract; no native runtime or human study claimed",
+  "passed": true,
+  "ordered_stages": 19,
+  "contrast": [
+    {
+      "theme": "light",
+      "foreground": "ink",
+      "background": "paper",
+      "ratio": 15.499
+    },
+    {
+      "theme": "light",
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 16.216
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 6.333
+    },
+    {
+      "theme": "light",
+      "foreground": "ink",
+      "background": "selection",
+      "ratio": 13.493
+    },
+    {
+      "theme": "light",
+      "foreground": "on_accent",
+      "background": "accent",
+      "ratio": 5.082
+    },
+    {
+      "theme": "dark",
+      "foreground": "ink",
+      "background": "paper",
+      "ratio": 14.416
+    },
+    {
+      "theme": "dark",
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 12.781
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 7.384
+    },
+    {
+      "theme": "dark",
+      "foreground": "ink",
+      "background": "selection",
+      "ratio": 8.599
+    },
+    {
+      "theme": "dark",
+      "foreground": "on_accent",
+      "background": "accent",
+      "ratio": 9.186
+    },
+    {
+      "theme": "high_contrast",
+      "foreground": "ink",
+      "background": "paper",
+      "ratio": 21.0
+    },
+    {
+      "theme": "high_contrast",
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 21.0
+    },
+    {
+      "theme": "high_contrast",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 21.0
+    },
+    {
+      "theme": "high_contrast",
+      "foreground": "ink",
+      "background": "selection",
+      "ratio": 16.01
+    },
+    {
+      "theme": "high_contrast",
+      "foreground": "on_accent",
+      "background": "accent",
+      "ratio": 19.556
+    }
+  ],
+  "concepts": [
+    {
+      "path": "docs/architecture/figures/m12/overview.svg",
+      "sha256": "067748e0e77323e53afb00c68f65383261cadbe7434301b1e620e284137be79f"
+    },
+    {
+      "path": "docs/architecture/figures/m12/files-usb.svg",
+      "sha256": "914652987104c441fc95682402dddc07a099fc87525ab8083e3b87f6aad5d1fb"
+    },
+    {
+      "path": "docs/architecture/figures/m12/usb-empty.svg",
+      "sha256": "d1ab0a398009a93c9586a5e1d2622365dbd190d8358bae513163e50729b04bf5"
+    },
+    {
+      "path": "docs/architecture/figures/m12/settings.svg",
+      "sha256": "85f9d2ac19b5e23c4995d839c0d8e6747b6c3b06593f3ae8c1c6450516b00561"
+    },
+    {
+      "path": "docs/architecture/figures/m12/transfer.svg",
+      "sha256": "ff48d81416e72d3bf1b53423fe4187451a1b813f8c42fe9d71ac9a97e1f24881"
+    },
+    {
+      "path": "docs/architecture/figures/m12/setup.svg",
+      "sha256": "b108a07301f92a8260513ee9148e5d3e0eb56a71f26872bd31bf64ca874a1233"
+    }
+  ],
+  "visual_review": "pending"
+}
