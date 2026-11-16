@@ -13,6 +13,12 @@
 
 ## Product requirements
 
+- Owner request, 16 November 2026: finish M11.5, test its actual setup/installed
+  startup, publish its source/evidence/docs/site and exact release assets, then
+  remove temporary local build output to reduce OneDrive storage. Verify online
+  assets before deletion; preserve canonical source, Git history and evidence.
+  M11.6 remains separately unqualified until its complete regression is run.
+
 - Owner clarification during M11.4, 11 November 2026: close every remaining
   stage as a complete public delivery before proceeding: matching tests, English
   manuals, GitHub source and a visible release with matching downloadable media,

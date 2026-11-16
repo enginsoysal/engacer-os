@@ -1,11 +1,11 @@
 # Current status
 
-Updated 11 November 2026. **Engacer OS M11.4 / 0.11.4 is the current stage delivery.**
-Native windows/appearance pass **M11-STAGE4-VM-v1**:
-[16 native tasks, 12 exact frame comparisons and matching-source acceptance](../../evidence/M11/4/acceptance-results.json).
-[Release/downloads and limits](../releases/m114-v0.11.4.md) ·
-[VMware installation](../handbook/install-m114.md) · [window guide](../handbook/windows-m11.md).
-M11.5 expanded setup and M11.6 full regression follow in order.
+Updated 16 November 2026. **Engacer OS M11.5 / 0.11.5 is the current stage delivery.**
+Expanded setup and first installed startup pass **M11-STAGE5-VM-v1**:
+[26 native task groups and exact-source acceptance](../../evidence/M11/5/acceptance-results.json).
+[Release/downloads and limits](../releases/m115-v0.11.5.md),
+[eight-step VMware installation](../handbook/install-m115.md), [window guide](../handbook/windows-m11.md).
+M11.6 full controller/device/original-app regression remains pending.
 The immutable earlier M10 delivery completed hardware phases 1/2 within its own
 [27-gate scope](../../evidence/M10/acceptance-results.json). Its older controller
 matrix does not qualify these new M11 bytes.
@@ -56,8 +56,16 @@ it twice. Cached/full viewport pixels match in twelve comparisons. Added fixed
 desktop state is 768 bytes; retained managed pages and idle paints stay unchanged.
 [Guide](../handbook/windows-m11.md) · [decisions](../architecture/windows-m11.md).
 Each remaining stage now includes a visible release and full public site/manual/
-download update before proceeding. M11.5 and M11.6 remain pending; later hardware
-phases resume afterward.
+download update before proceeding. **M11.5 expanded setup is now complete within
+its native stage scope:** [26 task groups](../../evidence/M11/5/acceptance-results.json)
+cover retained choices, actual layouts/scaling, optional app selection and offline
+reinstall/run/removal, reviewed partition/format/replacement, write-fault refusal,
+retry after controller restart, visible UEFI recovery entry, real repair and
+ordinary/150%/4K installed resets/two disk-only boots. The exact VMware starter
+passes enabled-device SATA/UEFI installation and independent startup. Fixed
+desktop state grows by sixteen bytes; app lifecycle retains no managed pages.
+[Guide](../handbook/install-m115.md), [decisions](../architecture/setup-m115.md).
+M11.6 remains pending; later hardware phases resume afterward.
 
 ## Inherited hardware baseline and qualification limits
 

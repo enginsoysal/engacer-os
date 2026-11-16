@@ -101,6 +101,9 @@ static unsigned cache_source(void *ctx,uint64_t off,void *out,unsigned bytes) {
 static unsigned directory(v6_volume *volume,const char *path) {
     unsigned status=v6_mkdir(volume,path);return status==V6_EXISTS?0:status;
 }
+#ifdef ENGINE_M11
+#include <engine/install/setup11.h>
+#endif
 unsigned app7_install(v6_volume *volume,unsigned calculator) {
 #ifdef ENGINE_M8
     extern unsigned w8_install_runtime(void*);
@@ -117,7 +120,13 @@ unsigned app7_install(v6_volume *volume,unsigned calculator) {
         while(p->path[n]&&n<sizeof(folder)-1){folder[n]=p->path[n];++n;}folder[n]=0;
         while(n&&folder[n]!='/')--n;folder[n]=0;
         if(!*p->size||directory(volume,folder)||v6_put(volume,p->cache,*p->size,memory_source,(void *)p->image))return V6_IO;
-        if((DISTRO_APPS74_MASK&(1u<<kind))&&(kind!=4||calculator)&&
+        if((
+#ifdef ENGINE_M11
+            setup_choices11()->apps
+#else
+            DISTRO_APPS74_MASK
+#endif
+            &(1u<<kind))&&(kind!=4||calculator)&&
            v6_put(volume,p->path,*p->size,memory_source,(void *)p->image))return V6_IO;
     }
     return 0;

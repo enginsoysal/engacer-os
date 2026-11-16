@@ -1,14 +1,13 @@
 # M11 installation and desktop guide — staged development
 
-M11.0 through M11.4 are implemented and qualified within their individual stage
-scopes. Use the [M11.4 installation tutorial](install-m114.md) for its actual
-seven-step wizard and downloads. [Files](files-m11.md), [Start/taskbar](start-m11.md)
-and [windows/appearance](windows-m11.md) describe current native behavior.
-The expanded installation journey below is the ordered M11.5 contract;
-full final regression is M11.6. Each remaining stage has its own public release,
-manuals and fresh website/download verification before proceeding.
+M11.0 through M11.5 are implemented and qualified within their individual stage
+scopes. Use the [M11.5 installation tutorial](install-m115.md) for the actual
+eight-step wizard and matching VMware downloads. [Files](files-m11.md),
+[Start/taskbar](start-m11.md) and [windows/appearance](windows-m11.md) describe
+current native behavior. Full final regression remains M11.6. Each stage has
+its own public release, manuals and fresh website/download verification.
 
-## Planned M11.5 installation journey
+## M11.5 installation journey
 
 Start from the prepared disposable VMware package, choose I Copied It if asked,
 and boot the matching ISO. Follow Welcome, keyboard, disk, components, user/style
@@ -54,9 +53,10 @@ ordinary/4K readability and error-path tests are required. Design images and a
 live installer desktop are not completion evidence. Original Windows application
 compatibility retains its separate bounded profile and roadmap.
 
-## Implemented through M11.4
+## Implemented through M11.5
 
 The interaction stage, [native Files](files-m11.md), [Start/taskbar](start-m11.md)
 and [windows/appearance](windows-m11.md) have actual guest and saved-disk evidence.
-[M11.4 release](../releases/m114-v0.11.4.md) includes its exact tested VMware
-starter. The expanded setup and complete final regression remain M11.5 and M11.6.
+[M11.5 release](../releases/m115-v0.11.5.md) includes expanded guided setup,
+its exact tested VMware starter and a dismissible first-start guide. Full final
+regression remains M11.6.

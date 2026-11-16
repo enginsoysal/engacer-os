@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "boot_managed_observations": {
+    "ordinary": {
+      "managed_current_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "allocation_failure_counter_including_boot_stress_probes": 5
+    },
+    "150": {
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "allocation_failure_counter_including_boot_stress_probes": 5
+    },
+    "4k": {
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "allocation_failure_counter_including_boot_stress_probes": 5
+    },
+    "vmware": {
+      "managed_current_bytes": 3338240,
+      "managed_peak_bytes": 3338240,
+      "allocation_failure_counter_including_boot_stress_probes": 5
+    }
+  },
+  "offline_app_lifecycle": {
+    "managed_current_bytes": 9408512,
+    "managed_peak_bytes": 9461760,
+    "retained_page_delta": 0
+  },
+  "scope": "Fixed desktop BSS/data only; firmware, kernel, fonts, shared framebuffer and managed-page consumption are separate",
+  "fixed_desktop": {
+    "1": {
+      "bytes": 120344,
+      "sections": {
+        "bss": 120324,
+        "data": 20
+      },
+      "map_sha256": "0ad194bff3500857f5dc669aeedbf110aa4364104d1e2de4376461baa718e3d3"
+    },
+    "4": {
+      "bytes": 543812,
+      "sections": {
+        "bss": 543784,
+        "data": 28
+      },
+      "map_sha256": "7e6beae949d7f7e100f036306c1a18824ad3578b2f67d52eaa6e117aca717e01"
+    },
+    "5": {
+      "bytes": 543828,
+      "sections": {
+        "bss": 543800,
+        "data": 28
+      },
+      "map_sha256": "8630d2be45d323b7c383a295b4eec3a8d197341e79fb82bbb0b2c70ba1352ac9"
+    }
+  },
+  "added_from_stage4_bytes": 16,
+  "added_from_stage1_bytes": 423484,
+  "budget_bytes": 524288,
+  "idle": "Every profile observes three consecutive unchanged-paint idle intervals and all CPUs halted; legitimate DHCP/clock startup work is retained in observations"
+}

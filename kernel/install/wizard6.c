@@ -13,6 +13,8 @@
 #ifdef ENGINE_M11
 #include <engine/desktop/interaction11.h>
 #include <engine/hardware10.h>
+#include <engine/install/setup11.h>
+#include <engine/desktop/catalog74.h>
 static i11_state setup_input11;
 #endif
 #ifdef ENGINE_M71
@@ -52,6 +54,9 @@ static void button(unsigned x,unsigned y,unsigned w,const char*title,unsigned ac
 }
 #ifdef ENGINE_M71
 static void render(void);
+#ifdef ENGINE_M11
+#include "setup11-state.inc"
+#endif
 #include "disk71-ui.inc"
 #ifdef ENGINE_M74
 #include <engine/install/desktop74.h>
@@ -193,6 +198,10 @@ void m7_terminal_command(const char *line,unsigned bytes){
 #endif
 static void action(unsigned a){
 #ifdef ENGINE_M75
+#ifdef ENGINE_M11
+ if(!u71_mode&&!diagnostics&&!failure&&setup_action11(a))return;
+ if(a==63){replace_consent=0;keyboard_page11=0;}
+#endif
  if(a==84&&step==6&&!failure){serial_text("M75_USER_RESTART\n");out8(0xcf9,6);for(unsigned i=0;i<100000;++i){if(!(in8(0x64)&2)){out8(0x64,0xfe);break;}}failure="Restart did not complete. Power this VM off and start it again. Keep the hard disk connected.";render();return;}
  if(a==85){validation=0;render();return;}
  if(a==86){diagnostics=1;focus=0;render();return;}
@@ -325,6 +334,9 @@ NORETURN void m6_start(const os_boot_info_v0*boot){
 #endif
  usb_mouse_draw();continue;}
 
+#ifdef ENGINE_M11
+ if(!diagnostics&&!u71_mode&&!failure&&setup_key11(key))continue;
+#endif
 #ifdef ENGINE_M7
  if(key==136&&controls){focus=(focus+controls-1)%controls;render();continue;}
 #endif

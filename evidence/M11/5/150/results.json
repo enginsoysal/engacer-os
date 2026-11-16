@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "build_id": "a3b7513cdcf772f5b3a2b4845b84509e",
+  "iso_sha256": "cb40fcc987b7dfb290fcedf98b19f8fdea9a96624d6547140ff75a5bffddbc2e",
+  "profile": "150",
+  "checks": [
+    "Eight-step native setup retains keyboard, app, user/style and disk choices on Back; no disk bytes change before Install",
+    "Next/Back preserve the outer frame; only a real display-size change recreates it",
+    "Independent GPT/native metadata and payload CRC inspection verifies account, keyboard, appearance and first-start settings before installed startup",
+    "Actual retained-ISO reset loads the installed volume; optional guide dismisses durably, saved appearance is active and idle CPUs halt without repaint",
+    "Two independent disk-only firmware boots reuse installation NVRAM without forced disk priority and retain saved choices and guide dismissal"
+  ],
+  "idle_observations": [
+    true,
+    true,
+    true
+  ]
+}

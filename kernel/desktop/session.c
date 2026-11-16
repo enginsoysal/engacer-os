@@ -109,6 +109,7 @@ static uint8_t marquee_saved11[V6_ENTRIES/8];static unsigned marquee_desktop_sav
 #include "start11-state.inc"
 #include "window11-state.inc"
 #include "appearance11-state.inc"
+static unsigned guide_open11;static desktop_rect guide_bounds11;
 static unsigned selected_row11(application*,unsigned);
 static void draw_context11(void);
 static unsigned keyboard11(int);
@@ -552,6 +553,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "start11-keys.inc"
 #include "window11.inc"
 #include "appearance11.inc"
+#include "guide11.inc"
 #endif
 unsigned desktop74_in_use(unsigned kind){
     for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==kind)return 1;return 0;
@@ -775,6 +777,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
 #ifdef ENGINE_M11
     if(marquee11){desktop_rect r=marquee_rect11;rectangle((desktop_rect){r.x,r.y,r.width,1},preferences.accent);rectangle((desktop_rect){r.x,r.y+r.height-1,r.width,1},preferences.accent);rectangle((desktop_rect){r.x,r.y,1,r.height},preferences.accent);rectangle((desktop_rect){r.x+r.width-1,r.y,1,r.height},preferences.accent);}
     files_draw_overlay11();
+    guide_draw11();
     start_draw11();
     window_overlay11();
     draw_context11();
@@ -810,6 +813,9 @@ static void insert(application *app,const char *bytes,unsigned count) {
 }
 
 static void action(uint64_t token,unsigned command) {
+#ifdef ENGINE_M11
+    if(command>=46000&&command<=46003){guide_action11(command);return;}
+#endif
 #ifdef ENGINE_M11
     if(command>=45000&&command<=45004){desktop_window*w=desktop_lookup(&model,token);if(!w||w->app!=SETTINGS)return;if(command<45003){const unsigned colors[]={0x142c35,0x182039,0xd7e4e9};appearance11.wallpaper=colors[command-45000];}else if(command==45003)appearance11.pattern=(appearance11.pattern+1)%3;else{start_open11();start_manage11=3;}whole();return;}
     if(command==PREFERENCES_SAVE){desktop_window*w=desktop_lookup(&model,token);if(w&&w->app==SETTINGS){unsigned status=appearance_save11();notice(&apps[w-model.windows],status?"Preferences could not be saved. Your files are unchanged.":"Appearance and normal window sizes saved for your user.");serial_text(status?"M11_APPEARANCE_SAVE_FAILED\n":"M11_APPEARANCE_SAVED\n");whole();return;}}
@@ -1241,7 +1247,11 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
 #ifdef ENGINE_M11
     appearance_load11();file_settings_load11();power_init11(boot);start_load11();
 #endif
-    launch(FILES,0);render();resource_log();serial_text("M7_DESKTOP_READY build=" BUILD_ID "\n");
+    launch(FILES,0);
+#ifdef ENGINE_M11
+    guide_load11();
+#endif
+    render();resource_log();serial_text("M7_DESKTOP_READY build=" BUILD_ID "\n");
 #ifdef ENGINE_M74
     clock74_start();
 #endif

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "archive": "EngacerOS-M11STAGE5-VMware.zip",
+  "sha256": "4d49f5e089bcd0df82b0383223c8ce1636e35249e75443ea6451e1d6b9c82a8a",
+  "size": 9693415,
+  "image": "EngacerOS-M11STAGE5",
+  "build_id": "a3b7513cdcf772f5b3a2b4845b84509e",
+  "members": [
+    "7z2606-src.tar.xz",
+    "EngacerOS-M11STAGE5.iso",
+    "EngacerOS.vmdk",
+    "EngacerOS.vmx",
+    "Inter-OFL.txt",
+    "libmspack-LGPL-2.1.txt",
+    "LICENSE",
+    "START-HERE.txt",
+    "THIRD-PARTY-NOTICES.txt"
+  ],
+  "disk": "new growable 20-GiB SATA; not preinstalled",
+  "firmware": "UEFI, Secure Boot off",
+  "boot_order_forced": false,
+  "all_shipped_devices_enabled": true
+}

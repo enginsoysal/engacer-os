@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build_id": "a3b7513cdcf772f5b3a2b4845b84509e",
+  "iso_sha256": "cb40fcc987b7dfb290fcedf98b19f8fdea9a96624d6547140ff75a5bffddbc2e",
+  "starter_sha256": "4d49f5e089bcd0df82b0383223c8ce1636e35249e75443ea6451e1d6b9c82a8a",
+  "checks": [
+    "Exact archived blank 20-GiB SATA starter traverses the eight-step wizard and installs in owned VMware with all shipped devices enabled; retained ISO restarts into the actual installed kernel and obtains DHCP",
+    "Optional first-start guide dismisses with Escape; ordinary guest mouse and Windows-key Start search exercise maximize/restore and native Appearance/save without controlling the host desktop",
+    "Two independent VMware boots retain the same installed disk, firmware variables and VM configuration with only the ISO disconnected; no forced boot order"
+  ],
+  "existing_vm_inventory_unchanged": true
+}

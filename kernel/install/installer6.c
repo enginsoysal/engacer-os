@@ -3,6 +3,11 @@
 #endif
 #include <engine/install/m6.h>
 #include "build.h"
+#ifdef ENGINE_M11
+#include "distro.h"
+#include <engine/install/setup11.h>
+#include <engine/desktop/appearance11.h>
+#endif
 #ifdef ENGINE_M74
 unsigned quiet_progress74;
 #endif
@@ -61,12 +66,19 @@ static unsigned source_memory(void*ctx,uint64_t off,void*p,unsigned n){memcpy(p,
 static unsigned directory(const char*p){unsigned s=v6_mkdir(&volume,p);return s==V6_EXISTS?0:s;}
 unsigned m6_save_settings(const m6_preferences*p){return !persistent?B_DENIED:v6_put(&volume,"/System/Settings/setup.bin",sizeof(*p),source_memory,(void*)p);}
 unsigned m6_settings(m6_preferences*p){unsigned bytes=0;if(!persistent||v6_verify(&volume,"/System/Settings/setup.bin")||v6_read(&volume,"/System/Settings/setup.bin",0,p,sizeof(*p),&bytes)||bytes!=sizeof(*p)||p->guide>1||p->accent>0xffffff)return B_IO;unsigned n=0;while(n<sizeof(p->user)&&p->user[n]){char c=p->user[n++];if(!((c>='a'&&c<='z')||(c>='A'&&c<='Z')||(c>='0'&&c<='9')||c=='-'||c=='_'))return B_IO;}return !n||n==sizeof(p->user)?B_IO:B_OK;}
+#ifdef ENGINE_M11
+#include "setup11-store.inc"
+#endif
 static unsigned save_slot(unsigned);
 static unsigned bundle_valid(void){if(m6_bundle_size<4||m4_crc(m6_bundle,m6_bundle_size)!=m6_bundle_crc)return 0;unsigned count=r32(m6_bundle),off=4;uint64_t end=0;
  for(unsigned i=0;i<count;++i){if(off>m6_bundle_size||m6_bundle_size-off<4)return 0;unsigned value=r32(m6_bundle+off),bytes=(value&0x80000000u)?4:4100,lba=value&0x7fffffffu;if(bytes>m6_bundle_size-off)return 0;if((lba&7)||lba<end)return 0;end=(uint64_t)lba+8;
  if(lba&&!(lba>=layout.bios.first&&end<=layout.bios.last+1)&&!(lba>=layout.esp.first&&end<=layout.esp.last+1))return 0;off+=bytes;}return off==m6_bundle_size;
 }
-unsigned m6_install(const m6_preferences*p){const storage_disk*d=storage_get(selected);if(!d||persistent||!m6_live()||!bundle_valid()||memcmp(d,&target,sizeof(*d))||io(selected,0,page,512,0)||memcmp(page,identity,512))return B_DENIED;
+unsigned m6_install(const m6_preferences*p){
+#ifdef ENGINE_M11
+ if(!setup_valid11(setup_choices11(),DISTRO_APPS74_MASK))return B_DENIED;
+#endif
+const storage_disk*d=storage_get(selected);if(!d||persistent||!m6_live()||!bundle_valid()||memcmp(d,&target,sizeof(*d))||io(selected,0,page,512,0)||memcmp(page,identity,512))return B_DENIED;
  unsigned userlen=0;while(userlen<32&&p->user[userlen]){char c=p->user[userlen++];if(!((c>='A'&&c<='Z')||(c>='a'&&c<='z')||(c>='0'&&c<='9')||c=='_'||c=='-'))return B_DENIED;}if(!userlen||userlen==32||p->guide>1)return B_DENIED;
 #ifdef ENGINE_M71
  if(replace_disk){replace_disk=0;d71_device dev=utility(selected);unsigned erase_status=d71_apply(&dev,&replacement,&erase_plan,&volume);if(erase_status)return erase_status==D71_CHANGED?B_DENIED:B_IO;serial_text("M71_REPLACEMENT_METADATA_CLEARED\n");}
@@ -98,6 +110,9 @@ unsigned size=0;while(guide[size])++size;if(v6_put(&volume,guidepath,size,source
  if(w8_distribute(&volume,user))return B_IO;
  #endif
  if(app7_install(&volume,m7_calculator_selection()))return B_IO;
+#endif
+#ifdef ENGINE_M11
+ if(setup_store11(p))return B_IO;
 #endif
  persistent=1;if(m6_save_settings(p)){persistent=0;return B_IO;}m6_progress(90,"Verifying partition and boot setup");if(gpt()||flush(selected)){persistent=0;return B_IO;}
  w32(record+72,2);if(activate_record()){persistent=0;return B_IO;}if(verified(selected,42,record,512)||verified(selected,40,record,512)||flush(selected)){persistent=0;return B_IO;}

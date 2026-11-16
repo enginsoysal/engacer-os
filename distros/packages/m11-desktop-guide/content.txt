@@ -1,4 +1,4 @@
-WELCOME TO ENGACER OS M11.4
+WELCOME TO ENGACER OS M11.5
 
 YOUR FIRST STEPS
 Click a file or desktop icon once to select it. Double-click or press Enter
@@ -74,7 +74,7 @@ The native Browser is a limited local/HTTPS document viewer, not a modern web
 browser. MS-DOS and wider Windows compatibility remain separate development.
 
 HELP AND RELEASE SCOPE
-This M11.4 delivery covers windows and appearance on its named VM profiles.
+This M11.5 delivery covers windows and appearance on its named VM profiles.
 M11.5 expands setup; M11.6 performs the full final regression matrix. The older
 M10 controller matrix does not itself qualify these new installation bytes.
 Keep the matching ISO for recovery. Restart to Engacer OS after installation;
@@ -83,3 +83,11 @@ boot. For a disk-only check, disconnect only CD/DVD and retain the installed dis
 
 English guides, release downloads and checksums: https://engaceros.brixcanvas.com
 Source and releases: https://github.com/enginsoysal/engacer-os
+
+SETUP AND FIRST START
+Choose Keyboard / size before selecting a disk. Only English and US QWERTY or
+Dvorak are available. The clock uses UTC. Setup works without a network account.
+Your apps lets you choose every optional app, including no optional apps.
+Files, Settings and the desktop remain. Reinstall apps offline from Settings.
+Your style saves your local account, accent, light/dark style and wallpaper.
+The optional first-start card closes with Go to my desktop or Escape.

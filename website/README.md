@@ -176,7 +176,7 @@ and Files guides come before technical and historical material. Numeric titles
 sort naturally and every generated article appears exactly once. The publisher's
 navigation tests preserve this order and keep uncategorized references visible.
 
-M11.4 changes the full homepage image/feature card to native windows/Appearance,
+The historical M11.4 publication changed the full homepage image/feature card to native windows/Appearance,
 links its current installation guide and release, labels M10 as historical and
 keeps Files/Start/windows user guides before technical and archived articles.
 The publisher tests cover release-asset completeness and source ownership.
@@ -184,3 +184,12 @@ Record the successful Actions sync, native Save, fresh anonymous home/guide/inde
 downloads readback, image readiness and official asset SHA256 readback under
 `evidence/M11/4` before proceeding to M11.5. Never save a stale editor blog
 snapshot after CI: reload the editor after synchronization first.
+
+M11.5 promotes the new eight-step installation guide and exact release, updates
+the native homepage feature/capture and archives the older M11.4 install guide.
+The new navigation test keeps previous stage guides out of Start here. Its
+source, native acceptance and public publication readback are in `evidence/M11/5`.
+Always reload the editor after the final GitHub Actions sync, then replace the
+four native homepage sections and verify Save plus fresh public content. After
+verified GitHub source/evidence/assets publication, the owner's temporary local
+build directory can be removed without removing canonical source or evidence.

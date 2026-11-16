@@ -8,7 +8,7 @@ spec=importlib.util.spec_from_file_location('configuration10',ROOT/'tools/releas
 def configuration(image,controller='sata',firmware='efi'):
  return base.configuration(controller,firmware).replace('EngacerOS-M10.iso',image+'.iso')
 def main():
- p=argparse.ArgumentParser();p.add_argument('--revision',default='stage4');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--revision',default='stage5');a=p.parse_args()
  assert a.revision in ('stage4','stage5','final')
  image='EngacerOS-M11'+a.revision.upper();meta=json.loads((ROOT/('dist/m11'+a.revision+'-build-manifest.json')).read_text())
  iso=ROOT/'dist'/(image+'.iso');assert hashlib.sha256(iso.read_bytes()).hexdigest()==meta['artifacts'][iso.name]['sha256']

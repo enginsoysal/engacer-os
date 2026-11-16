@@ -6,8 +6,9 @@ describe the intended presentation; they are not screenshots of working M11 code
 M11.1 now has a separately qualified [native input implementation](input-m11.md);
 native Files, Start/taskbar and windows/appearance are now separately qualified
 through M11.4. [Current windows implementation](windows-m11.md),
-[release](../releases/m114-v0.11.4.md). Expanded setup is M11.5 and full regression
-is M11.6; each remaining stage has a visible release and public verification gate.
+[release](../releases/m114-v0.11.4.md). Expanded setup is now separately qualified
+in [M11.5](setup-m115.md), with its [installation guide](../handbook/install-m115.md).
+Full regression remains M11.6; each remaining stage has a visible release and public verification gate.
 
 ## Familiar behavior, original implementation
 

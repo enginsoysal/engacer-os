@@ -11,6 +11,7 @@ static void select_row11(application*a,unsigned row,unsigned modifiers,unsigned 
 static i11_target target11(int x,int y){
  if(launcher&&!context11&&y<(int)model.height-60&&(x<start_bounds11.x||x>=start_bounds11.x+start_bounds11.width||y<start_bounds11.y||y>=start_bounds11.y+start_bounds11.height))return(i11_target){0,0,I11_BACKGROUND};
  if(switch_open11){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect r=c->rect;if(c->action>=W11_SWITCH&&c->action<W11_SWITCH+DESKTOP_WINDOWS&&x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,0,I11_BACKGROUND};}
+ if(guide_open11&&!launcher&&!context11){desktop_rect r=guide_bounds11;if(x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect b=c->rect;if(c->action>=46000&&c->action<=46003&&x>=b.x&&x<b.x+b.width&&y>=b.y&&y<b.y+b.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,46004,I11_BUTTON};}}
  uint64_t token=desktop_hit(&model,x,y);desktop_window*edge_window=desktop_lookup(&model,token);unsigned edges=window_edges11(edge_window,x,y);if(edges&&!context11&&!launcher)return(i11_target){token,31010+edges,I11_CAPTION};
  for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect r=c->rect;if(launcher&&!context11&&y<(int)model.height-60&&(c->action<S11_PINNED||c->action>=S11_END))continue;if(file_block_control11(c->window,c->action))continue;
   if(x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height&&(file_modal_control11(c->window,c->action)||(context11&&c->action>=32000&&c->action<=32031)||(launcher?c->window==0:c->window==token)||y>=(int)model.height-60)){
@@ -34,6 +35,7 @@ static void open_target11(i11_target target){
 static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
  if(switch_open11){if((event&I11_ACTIVATE)&&target.action>=W11_SWITCH&&target.action<W11_SWITCH+DESKTOP_WINDOWS)window_action11(0,target.action);return;}
  if(start_dispatch11(target,event,x,y))return;
+ if(target.action>=46000&&target.action<=46004){if(event&I11_ACTIVATE)guide_action11(target.action);return;}
  if(context11&&!(target.action>=32000&&target.action<=32031)){if(event&I11_CONTEXT)return;context11=0;whole();return;}
  if(target.action!=70&&target.action!=0&&!(target.action>=S11_PINNED&&target.action<S11_END)&&file_block_owner11(target.window)&&!file_modal_control11(target.window,target.action))return;
  if(target.window&&target.action!=70)desktop_focus11=0;else if(target.kind==I11_ITEM||target.kind==I11_BACKGROUND)desktop_focus11=1;
@@ -52,6 +54,7 @@ static void marquee_update11(int x,int y){desktop_window*w=desktop_lookup(&model
 }
 static unsigned keyboard11(int key){dispatch_modifiers11=input11_modifiers();if(window_key11(key))return 1;if(key==141){files_cancel_drag11();context11=marquee11=dragging=0;i11_cancel(&interaction11);whole();return 1;}if(key==27&&(context11||interaction11.captured||marquee11||dragging||file_drag11)){files_cancel_drag11();context11=marquee11=0;i11_cancel(&interaction11);dragging=0;whole();return 1;}
  if(start_key11(key))return 1;
+ if(guide_key11(key))return 1;
  if(files_key11(key))return 1;
  desktop_window*w=model.focused<DESKTOP_WINDOWS?&model.windows[model.focused]:0;
  if(key==140){i11_target target={0,0,I11_BACKGROUND};if(desktop_focus11&&(desktop_selection11||(desktop_item_focus11>=3&&file_selected_desktop11(desktop_item_focus11-3)))){target.kind=I11_ITEM;target.action=desktop_item_focus11<3?30000+desktop_item_focus11:F11_DESKTOP_ITEM+desktop_item_focus11-3;}else if(!desktop_focus11&&w&&w->live){target.window=desktop_token(&model,model.focused);application*a=&apps[model.focused];if(w->app==FILES&&!a->usb_mode10&&children72(a)){target.kind=I11_ITEM;target.action=FILE_ROW+selection_focus11[model.focused];}else if(w->app==FILES&&a->usb_mode10==2&&a->usb_selected10){a->offset=a->usb_selected10-1;target.kind=I11_ITEM;target.action=USB_ROW10;}}dispatch11(target,I11_CONTEXT,pointer_x,pointer_y);return 1;}

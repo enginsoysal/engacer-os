@@ -150,3 +150,6 @@ kernel/storage/partitions.c -text whitespace=cr-at-eol
 tools/build/m2.py -text whitespace=cr-at-eol
 tools/build/media.py -text whitespace=cr-at-eol
 user/windows8/runtime.c -text whitespace=cr-at-eol
+
+# Preserve accepted M11.5 native/public evidence bytes.
+evidence/M11/5/** -text -whitespace

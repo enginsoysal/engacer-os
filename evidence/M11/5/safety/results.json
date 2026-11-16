@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build_id": "a3b7513cdcf772f5b3a2b4845b84509e",
+  "checks": [
+    "Native FAT32 and native-volume format, partition delete/create and separate unchecked/cancelled consent preserve foreign partition payload and every byte of the other equal-capacity disk",
+    "Whole-disk replacement needs fresh separate Review consent after Back; actual copy/readback/reset succeeds and the unselected disk remains byte-identical",
+    "Missing and undersized disks retain actionable guidance and disabled Next without pretending installation is possible",
+    "Injected first-write failure never reports success; Back keeps choices and clears consent, quarantined I/O cannot enable Next, and a real retry on the same disk/NVRAM succeeds after removing the external fault and power-cycling",
+    "The ISO recovery route restores a deliberately corrupted owned BIOS payload from the checked slot, followed by actual disk-only installed desktop startup"
+  ],
+  "untouched_disk_sha256": "7d92c1ca06cdbe1e119cf52b5bf8b230c589e4bb054279764f3433c985ccf66e"
+}

@@ -23,3 +23,11 @@ test('a new stage replaces the previous install/release in Start here; history s
  assert.deepEqual(new Set(groups.at(-1).posts.map(p=>p.title)),new Set(['Install M10 (historical)','M10 release (historical)']));
  assert.equal(groups.flatMap(g=>g.posts).length,posts.length);
 });
+
+test('M11.5 is first and the older M11.4 install guide stays in the archive',()=>{
+ const posts=[post('docs/handbook/install-m114.md','Install M11.4'),post('docs/handbook/install-m115.md','Install M11.5'),post('docs/architecture/setup-m115.md','Setup decisions','architecture')];
+ const groups=documentationGroups(posts);
+ assert.equal(groups[0].posts[0].title,'Install M11.5');
+ assert.equal(groups.at(-1).posts[0].title,'Install M11.4');
+ assert.equal(groups.flatMap(g=>g.posts).length,3);
+});

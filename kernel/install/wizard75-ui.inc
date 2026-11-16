@@ -19,14 +19,26 @@ static void tap75(unsigned x,unsigned y,unsigned w,unsigned h,const char*text,un
 }
 static unsigned suitable75(const storage_disk*d){return d&&d->readable&&m6_target_writable(d)&&d->sector_bytes==512&&d->sectors>=UINT64_C(4194304)&&d->sectors<=UINT64_C(4294967296);}
 static void inspect75(unsigned disk){const storage_disk*d=storage_get(disk);chosen_state75=3;if(!suitable75(d))return;unsigned status=m6_prepare(disk);chosen_state75=status==B_OK?1:status==B_IO?4:2;m6_cancel();}
-static void diskname75(unsigned disk,char*out){memcpy(out,"Disk ",5);decimal(disk+1,out+5);}
+static void diskname75(unsigned disk,char*out){memcpy(out,"Disk ",5);decimal(disk+1,out+5);
+#ifdef ENGINE_M11
+ const storage_disk*d=storage_get(disk);const char*name=!d?"":d->transport==STORAGE_AHCI?" - SATA/AHCI":d->transport==STORAGE_IDE?" - IDE":d->transport==STORAGE_SCSI?" - SCSI":d->transport==STORAGE_NVME?" - NVMe":d->transport==STORAGE_VIRTIO?" - VirtIO":" - USB";unsigned n=0;while(out[n])++n;while(*name)out[n++]=*name++;out[n]=0;
+#endif
+}
 static void capacity75(const storage_disk*d,char*out){decimal(d->sectors/2097152,out);unsigned n=0;while(out[n])++n;memcpy(out+n," GiB",5);}
 static void art75(unsigned x,unsigned y,unsigned w){
  ui73_round(x,y,w,128,12,0xe4f2ed);unsigned mid=x+w/2;
  ui73_round(mid-111,y+20,222,83,9,0x193c4c);ui73_round(mid-104,y+27,208,65,5,0xf5fafc);
  ui73_folder(mid-58,y+44,32,0xf0c87c);ui73_folder(mid-3,y+44,32,0x98d9c2);gui6_rect(mid-1,y+103,3,10,0x193c4c);ui73_round(mid-40,y+112,80,4,2,0x193c4c);
 }
-static uint32_t model75(void){uint32_t h=2166136261u;const uint8_t*p=(const uint8_t*)&preferences;for(unsigned i=0;i<sizeof(preferences);++i)h=(h^p[i])*16777619u;h^=chosen_state75*53+chosen*31+replace_selected*7+replace_consent*19+disk_page*37+percent*43;h^=(uint32_t)(uintptr_t)validation;return h;}
+#ifdef ENGINE_M11
+#include "setup11-ui.inc"
+#endif
+static uint32_t model75(void){uint32_t h=2166136261u;const uint8_t*p=(const uint8_t*)&preferences;for(unsigned i=0;i<sizeof(preferences);++i)h=(h^p[i])*16777619u;h^=chosen_state75*53+chosen*31+replace_selected*7+replace_consent*19+disk_page*37+percent*43;h^=(uint32_t)(uintptr_t)validation;
+#ifdef ENGINE_M11
+ const uint8_t*q=(const uint8_t*)&setup11;for(unsigned i=0;i<sizeof(setup11);++i)h=(h^q[i])*16777619u;h^=keyboard_page11*65537+apps_page11*4099+name_cursor11*13+name_anchor11*17;
+ for(unsigned i=0;i<32;++i)h=(h^(uint8_t)keyboard_test11[i])*16777619u;if(step==3)h^=focus*211;
+#endif
+return h;}
 static void render72(void){
  painting73=1;uint64_t began=counter75();unsigned oldfocus=focus;uint32_t sig=model75();gui7_clip_reset();
  unsigned x=body+12,y=top+98,cw=width-276;uint32_t ink=0x193746,muted=0x506976;
@@ -34,12 +46,14 @@ static void render72(void){
   gui7_clip(x,y+260,cw,168);gui6_rect(x,y+260,cw,168,0xf8fafb);ui73_paragraph(x,y+272,cw,2,stage?stage:"Preparing the installation",ink);
   ui73_round(x,y+335,cw,14,7,0xd8e4eb);if(percent)ui73_round(x,y+335,cw*percent/100,14,7,0x229d80);char value[24];decimal(percent,value);unsigned at=0;while(value[at])++at;memcpy(value+at,"%",2);label(x,y+373,value,3,ink);signature75=sig;goto done75;
  }
+#ifndef ENGINE_M11
  if(framed75&&previous_mode75==0&&last_step75==3&&step==3&&previous_accent75==accent&&signature75!=sig){
   gui6_rect(x,y+94,cw,64,0xf8fafb);ui73_round(x,y+97,cw,56,8,0xbacbd4);ui73_round(x+2,y+99,cw-4,52,6,0xffffff);
   ui73_fit(x+16,y+114,cw-32,preferences.user[0]?preferences.user:"Click here and type your name",2,ink);
   if(focus<controls)outline75(buttons[focus],0x19846e);gui6_rect(x,y+378,cw,70,0xf8fafb);ui73_paragraph(x,y+382,cw,2,validation?validation:"You can change your desktop appearance again in Settings.",validation?0x994334:muted);
   signature75=sig;++name_frames75;goto done75;
  }
+#endif
  /* Tab/Shift+Tab changes only the two focus rings, preserving all content. */
  if(framed75&&previous_mode75==0&&last_step75==step&&signature75==sig&&previous_count75==controls){
   if(previous_focus75<controls)outline75(buttons[previous_focus75],kind75[previous_focus75]==1?accent:0xbacbd4);
@@ -54,12 +68,25 @@ static void render72(void){
  ++content_frames75;
  /* The outer frame/background never clears on Next. Only changing panes paint. */
  gui6_rect(left+196,top+16,width-212,height-16,0xf8fafb);
+#ifdef ENGINE_M11
+ unsigned visual=setup_visual11();const char*names[]={"Welcome","Keyboard / size","Choose a disk","Your apps","Your style","Review","Installing","Ready"};
+ for(unsigned i=0;i<8;++i){unsigned sy=top+125+i*47;gui6_rect(left+12,sy-8,172,40,0x102c3b);ui73_round(left+12,sy-8,172,40,8,i==visual?0x264e5d:0x102c3b);char n[2]={(char)('1'+i),0};label(left+25,sy,n,2,i<=visual?accent:0x7394a5);label(left+52,sy+2,names[i],1,i==visual?0xffffff:0xb4ced8);}
+ char steptext[32]="STEP ";decimal(visual+1,steptext+5);unsigned n=0;while(steptext[n])++n;memcpy(steptext+n," OF 8",6);label(x,top+29,steptext,1,muted);
+ gui6_rect(x,top+65,cw,4,0xdbe6ec);gui6_rect(x,top+65,cw*(visual+1)/8,4,0x239e80);
+#else
  const char*names[]={"Welcome","Choose a disk","Your apps","Your style","Review","Installing","Ready"};
  for(unsigned i=0;i<7;++i){unsigned sy=top+128+i*54;gui6_rect(left+12,sy-8,172,42,0x102c3b);ui73_round(left+12,sy-8,172,42,8,i==step?0x264e5d:0x102c3b);char n[2]={(char)('1'+i),0};label(left+25,sy,n,2,i<=step?accent:0x7394a5);label(left+52,sy+2,names[i],1,i==step?0xffffff:0xb4ced8);}
  char steptext[32]="STEP ";decimal(step+1,steptext+5);unsigned n=0;while(steptext[n])++n;memcpy(steptext+n," OF 7",6);label(x,top+29,steptext,1,muted);
  gui6_rect(x,top+65,cw,4,0xdbe6ec);gui6_rect(x,top+65,cw*(step+1)/7,4,0x239e80);
+#endif
  controls=0;
- if(step==0){label(x,y,"Let's set up " ENGINE_PRODUCT_NAME ".",4,ink);ui73_paragraph(x,y+55,cw,2,"A few simple choices. Your own desktop, ready to use.",muted);art75(x,y+116,cw);
+#ifdef ENGINE_M11
+ if(step==0&&keyboard_page11)setup_keyboard11(x,y,cw);
+ if(step==0&&!keyboard_page11)
+#else
+ if(step==0)
+#endif
+ {label(x,y,"Let's set up " ENGINE_PRODUCT_NAME ".",4,ink);ui73_paragraph(x,y+55,cw,2,"A few simple choices. Your own desktop, ready to use.",muted);art75(x,y+116,cw);
   label(x,y+268,"1. Choose where to install",2,ink);label(x,y+307,"2. Make it yours",2,ink);label(x,y+346,"3. Review, install and restart",2,ink);
   ui73_paragraph(x,y+395,cw,2,validation?validation:"We will ask before erasing anything. You do not need an internet connection.",validation?0x994334:muted);
  }
@@ -77,6 +104,11 @@ static void render72(void){
   else if(!maintenance){tap75(x,y+377,180,44,"Disk tools...",90,chosen<count?0:2);if(chosen_state75==2)tap75(x+194,y+377,cw-194,44,replace_selected?"[x] Erase this disk and install":"[ ] Erase this disk and install",91,0);else if(chosen_state75==1)label(x+200,y+390,"Empty disk - ready to install",2,ink);}
   ui73_paragraph(x,y+435,cw,1,validation?validation:chosen>=count?"Select a disk above to enable Next.":chosen_state75==1?"The installer will prepare this empty disk automatically.":chosen_state75==3?"This disk cannot be used for installation. Choose a supported disk, 2 GiB to 2 TiB.":chosen_state75==4?"This disk could not be read. Check its disk connection and try again.":replace_selected?"Review will ask for separate permission before erasing this disk.":"This disk contains files. Back them up before choosing Erase this disk and install.",validation?0x994334:muted);
  }
+#ifdef ENGINE_M11
+ if(step==2)setup_apps11(x,y,cw);
+ if(step==3)setup_style11(x,y,cw);
+ if(step==4)setup_review11(x,y,cw);
+#else
  if(step==2){label(x,y,"Your everyday essentials.",4,ink);ui73_paragraph(x,y+53,cw,2,"Files, Settings and the desktop are ready for you. Standard apps are included with this build.",muted);art75(x,y+119,cw);
   label(x,y+270,"Make changes whenever you like.",3,ink);ui73_paragraph(x,y+315,cw,2,"Remove or reinstall optional apps in Settings. Your files stay separate, and the system keeps working.",muted);tap75(x,y+390,cw,52,preferences.guide?"[x] Include the getting-started guide":"[ ] Include the getting-started guide",20,0);
  }
@@ -92,21 +124,35 @@ static void render72(void){
   if(!maintenance){if(replace_selected)tap75(x,y+346,cw,54,replace_consent?"[x] Erase all files on the selected disk":"[ ] I agree to erase this entire disk",92,3);
    ui73_paragraph(x,y+(replace_selected?416:350),cw,2,validation?validation:replace_selected?"This cannot be undone. Other disks are not selected for installation.":"This disk will be prepared automatically. Use Back to change any choice.",validation?0x994334:muted);}
  }
+#endif
  if(step==5){label(x,y,"Making it yours.",4,ink);ui73_paragraph(x,y+56,cw,2,"Keep the computer on. We are saving and checking your system.",muted);art75(x,y+119,cw);ui73_paragraph(x,y+272,cw,2,stage?stage:"Preparing the installation",ink);
   ui73_round(x,y+335,cw,14,7,0xd8e4eb);if(percent)ui73_round(x,y+335,cw*percent/100,14,7,0x229d80);char value[24];decimal(percent,value);unsigned at=0;while(value[at])++at;memcpy(value+at,"%",2);label(x,y+373,value,3,ink);
  }
  if(step==6){label(x,y,"You're ready to go.",4,ink);ui73_paragraph(x,y+54,cw,2,"" ENGINE_PRODUCT_NAME " is installed on your disk. Your choices have been saved.",muted);art75(x,y+116,cw);
   label(x,y+268,"Next: start your installed system.",3,ink);ui73_paragraph(x,y+312,cw,2,"Choose Restart. " ENGINE_PRODUCT_NAME " will start from the hard disk. You can leave this matching installer connected.",muted);
-  ui73_paragraph(x,y+383,cw,2,"Keep the hard disk connected. You can disconnect the installation ISO later.",muted);if(!maintenance)tap75(x,y+434,250,42,"Open desktop now",3,0);
+  ui73_paragraph(x,y+383,cw,2,"Keep the hard disk connected. You can disconnect the installation ISO later.",muted);
+#ifndef ENGINE_M11
+ if(!maintenance)tap75(x,y+434,250,42,"Open desktop now",3,0);
+#endif
  }
  gui6_rect(left+196,bottom-8,width-214,1,0xdce6ec);
+#ifdef ENGINE_M11
+ if(step==0&&keyboard_page11)tap75(x,bottom+8,120,48,"Back",1,0);
+ else
+#endif
  if(step==0){tap75(x,bottom+8,188,48,"Recovery & details",50,0);tap75(x+202,bottom+8,228,48,"Open installed system",83,0);}
  else if(step<5)tap75(x,bottom+8,120,48,"Back",1,0);
  if(step<5){unsigned disabled=step==1&&(chosen>=storage_count()||(!maintenance&&(chosen_state75==3||chosen_state75==4||(chosen_state75==2&&!replace_selected))));if(step==4&&!maintenance&&replace_selected&&!replace_consent)disabled=1;
   tap75(left+width-242,bottom+8,214,48,step==4?(maintenance?"Apply repair":"Install " ENGINE_PRODUCT_NAME ""):"Next",2,disabled?2:1);
  }
  if(step==6)tap75(left+width-298,bottom+8,270,48,"Restart to " ENGINE_PRODUCT_NAME "",84,1);
- if(last_step75!=step){focus=0;for(unsigned i=0;i<controls;++i)if(kind75[i]==1)focus=i;}
+#ifdef ENGINE_M11
+ static unsigned previous_visual11=UINT32_MAX;
+ if(previous_visual11!=setup_visual11()){previous_visual11=setup_visual11();focus=0;
+#else
+ if(last_step75!=step){focus=0;
+#endif
+for(unsigned i=0;i<controls;++i)if(kind75[i]==1)focus=i;}
  else focus=oldfocus<controls?oldfocus:0;
  if(focus<controls)outline75(buttons[focus],0x19846e);
  signature75=sig;previous_accent75=accent;last_step75=step;previous_mode75=0;previous_count75=controls;

@@ -4,12 +4,13 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Current delivery: M11.4 / 0.11.4 — native windows and appearance**, qualified
-within **M11-STAGE4-VM-v1**. [Release and checksums](docs/releases/m114-v0.11.4.md),
-[exact-source acceptance](evidence/M11/4/acceptance-results.json),
-[current status](docs/roadmap/status.md). Sixteen native tasks, twelve exact
-cached/full-frame comparisons and the enabled-device VMware SATA/UEFI starter
-include real installation, retained-ISO restart and two disk-only starts.
+**Current delivery: M11.5 / 0.11.5 - guided setup and first installed desktop**,
+qualified within **M11-STAGE5-VM-v1**. [Release and checksums](docs/releases/m115-v0.11.5.md),
+[exact-source acceptance](evidence/M11/5/acceptance-results.json),
+[current status](docs/roadmap/status.md). Twenty-six native task groups cover
+eight-step setup, real partition/format/consent/error/recovery, optional apps,
+ordinary/150%/actual-4K installed startup, and the exact enabled-device VMware
+SATA/UEFI starter with retained-ISO reset and two disk-only starts.
 This is named virtual-profile qualification; broader M11.6 regression, physical
 hardware, vendor GPU 3D and universal Windows compatibility are not claimed.
 
@@ -23,15 +24,17 @@ M11.3 adds [Start, categories and taskbar](docs/handbook/start-m11.md), with
 [22 native tasks and exact-source acceptance](evidence/M11/3/acceptance-results.json).
 M11.4 adds [maximize/restore, snapping, Alt+Tab and per-user appearance](docs/handbook/windows-m11.md),
 with ordinary/150%/actual-4K evidence and 768 bytes of extra fixed desktop state.
-M11.5 expanded setup and M11.6 full qualification follow in order. Each remaining
+M11.5 adds [eight-step offline setup and first-start guidance](docs/handbook/install-m115.md),
+with saved real choices, optional-app presets and sixteen bytes of extra fixed
+desktop state. M11.6 full qualification follows. Each remaining
 stage includes a visible release, matching test media, English manuals and a
 freshly verified public website before the next stage begins.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m114-v0.11.4/EngacerOS-M11STAGE4-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m114-v0.11.4/EngacerOS-M11STAGE4.iso) ·
-[Step-by-step installation](docs/handbook/install-m114.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5.iso) ·
+[Step-by-step installation](docs/handbook/install-m115.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

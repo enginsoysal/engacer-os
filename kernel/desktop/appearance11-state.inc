@@ -1,5 +1,5 @@
 /* Versioned per-user appearance and normal app geometry; 352 bytes. */
-typedef struct {unsigned magic,version,accent,dark,scale,wallpaper,pattern,reserved;desktop_rect normal[20];} appearance_record11;
+#include <engine/desktop/appearance11.h>
 static appearance_record11 appearance11;
 static void appearance_load11(void);
 static unsigned appearance_save11(void);

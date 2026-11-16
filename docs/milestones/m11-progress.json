@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "product": "Engacer OS",
-  "updated": "2026-11-11",
-  "qualified_download": "M11.4",
-  "current_stage": "M11.4",
+  "updated": "2026-11-16",
+  "qualified_download": "M11.5",
+  "current_stage": "M11.5",
   "stages": [
     {
       "id": "M11.0",
@@ -32,7 +32,7 @@
     },
     {
       "id": "M11.5",
-      "status": "not_started",
+      "status": "complete",
       "title": "Guided installation and installed startup"
     },
     {
@@ -42,7 +42,7 @@
     }
   ],
   "publication": "Each remaining stage requires its visible GitHub release, exact test media and complete fresh public site/manual/download verification before the next starts.",
-  "release_guide": "install-m114",
-  "release_tag": "m114-v0.11.4",
-  "release_image": "EngacerOS-M11STAGE4"
+  "release_guide": "install-m115",
+  "release_tag": "m115-v0.11.5",
+  "release_image": "EngacerOS-M11STAGE5"
 }

@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 const progress=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m11-progress.json',import.meta.url),'utf8'));
 let sequence=0;
 const site='https://engaceros.brixcanvas.com';
+const expanded=Number(progress.current_stage.split('.')[1])>=5;
 const ink='#152434',muted='#5a6976',teal='#087c71',dark='#101e2c',paper='#f7f9f9';
 const b=(type,props)=>({id:`engine-home-${++sequence}`,type,props});
 const text=(value,size=16,color=muted,more={})=>b('text',{text:value,size,color,padX:0,py:10,lineHeight:1.65,...more});
@@ -33,14 +34,14 @@ export function nativeDesign(){
    text('THE ENGACER OS KNOWLEDGE BASE',11,teal,{letterSpacing:'1.6px',weight:600,py:12}),
    heading('The M11 desktop',52,ink,{level:1,py:0,letterSpacing:'-1.8px'}),
    heading('made familiar.',52,teal,{py:0,letterSpacing:'-1.8px'}),
-   text(progress.current_stage+' completed: '+progress.stages.find(s=>s.id===progress.current_stage).title+'. Try its matching VMware package, read the stage manuals and explore the evidence. Expanded setup follows in M11.5; full regression is M11.6.',18,muted,{py:20}),
+   text(progress.current_stage+' completed: '+progress.stages.find(s=>s.id===progress.current_stage).title+'. Try its matching VMware package, read the stage manuals and explore the evidence. '+(expanded?'Expanded offline setup and the first installed desktop are ready. Full regression remains M11.6.':'Expanded setup follows in M11.5; full regression is M11.6.'),18,muted,{py:20}),
    layout([[button('See M11 progress →',`${site}/blog/docs-milestones-m11`,{size:'sm'})],[button('Get the ISO ↓',`${site}/blog/downloads`,{variant:'outline',bg:ink,size:'sm'})]]),
  ],[terminal]],{padY:52,valign:'center'});
  hero.props.columns[0].width=55;hero.props.columns[1].width=45;
  hero.props.columns[0].children.at(-1).props.columns[0].width=60;
  hero.props.columns[0].children.at(-1).props.columns[1].width=40;
  const cards=layout([
-   card('01 / CURRENT DELIVERY','Your windows. Your way.','Maximize, restore, snap, resize and switch with Alt+Tab. Choose light or dark, wallpaper, accent and display size; save your appearance per user.','Read the windows guide ↗','docs-handbook-windows-m11'),
+   expanded?card('01 / CURRENT DELIVERY','From setup to your desktop.','Choose your keyboard, display size, optional apps and style. Review the disk, install, restart and feel at home. No online account is needed.','Follow the installation guide ↗','docs-handbook-'+progress.release_guide):card('01 / CURRENT DELIVERY','Your windows. Your way.','Maximize, restore, snap, resize and switch with Alt+Tab. Choose light or dark, wallpaper, accent and display size; save your appearance per user.','Read the windows guide ↗','docs-handbook-windows-m11'),
    card('02 / TESTED DOWNLOAD','Install in VMware','The current qualified download is '+progress.qualified_download+'. Use its prepared VMware ZIP and matching installation guide while the M11 stages are completed.','Open the setup guide ↗','docs-handbook-'+(progress.release_guide||'install-m10')),
    card('03 / MAKE IT YOURS','Build your own distro.','Choose your accent, wallpaper, window style and default content with a validated distribution profile.','Open the distro guide ↗','docs-handbook-distributions'),
  ],{bg:{kind:'color',color:'#ffffff'},border:1,borderColor:'#dbe3e6',divided:true,ruleColor:'#dbe3e6',radius:4,padY:24});
@@ -56,7 +57,7 @@ export function nativeDesign(){
  ]],{padY:32,borderBottom:1,borderColor:'#dbe3e6'});
  bottom.props.columns.forEach(column=>{column.width=50;});
  const main=layout([[
-   hero,heading('From the real M11.4 VM',27,ink,{py:18}),b('image',{url:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M11/4/vmware/appearance.png',alt:'Native Engacer OS M11.4 Appearance and Files in the actual tested VMware guest. Original Inter typography, scalable controls and real windows; not a design concept.',naturalSize:true,radius:8}),heading('A good place to start',27,ink,{py:24}),cards,
+   hero,heading('From the real '+progress.current_stage+' VM',27,ink,{py:18}),b('image',{url:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M11/'+(expanded?'5/vmware/first-start-guide.png':'4/vmware/appearance.png'),alt:'Native Engacer OS '+progress.current_stage+' in the actual tested VMware guest. Original Inter typography, saved preferences and the installed desktop; not a design concept.',naturalSize:true,radius:8}),heading('A good place to start',27,ink,{py:24}),cards,
    b('alert',{variant:'info',title:'Development progress and tested downloads',text:progress.stages.filter(s=>s.status==='complete').map(s=>s.id).join(', ')+' are completed stages, with native test evidence and English guides. The remaining stages follow in order before final M11 VMware media. '+progress.qualified_download+' is the published stage delivery. Read its matching release scope; the M10 matrix does not qualify new bytes. Qualification covers named virtual profiles; physical hardware, 3D and general Windows compatibility remain unqualified.'}),bottom,
  ]],{bg:{kind:'color',color:paper},padY:12});
  const footer=b('socialcircles',{copyright:'Engacer OS / MIT licensed · Documentation & releases on GitHub',bg:paper,circleBg:teal,items:[{label:'github',href:'https://github.com/enginsoysal/engacer-os'},{label:'website',href:`${site}/blog/documentation`}]});

@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "build_id": "a3b7513cdcf772f5b3a2b4845b84509e",
+  "checks": [
+    "Native FAT32 and native-volume format, partition delete/create and separate unchecked/cancelled consent preserve foreign partition payload and every byte of the other equal-capacity disk",
+    "Whole-disk replacement needs fresh separate Review consent after Back; actual copy/readback/reset succeeds and the unselected disk remains byte-identical",
+    "Missing and undersized disks retain actionable guidance and disabled Next without pretending installation is possible"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m11\\setup_safety.py\", line 51, in main\n    go(g,p,100,2,2,2);start=s.wizard(g,p,2);g.wait('M6_INSTALL_PASS',start,240);s.shot(g,out,'write-failure-retry-succeeded');(out/'failure-retry.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m11\\setup_safety.py\", line 13, in go\n    for c in commands:s.wizard(g,p,c)\n  File \"<project-root>\\tests\\m11\\setup.py\", line 27, in wizard\n    def wizard(g,p,command):return f.s.wizard(g,p,command)\n  File \"<project-root>\\tests\\m11\\selection.py\", line 44, in wizard\n    found=[struct.unpack_from('<5I',raw,i*20) for i in range(n) if struct.unpack_from('<I',raw,i*20+16)[0]==command];assert len(found)==1\nAssertionError\n"
+}

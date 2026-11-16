@@ -17,6 +17,18 @@ static void chain75_try(efi_handle image,efi_system_table*system,efi_loaded_imag
   root->close(root);if(match){target=handles[i];++count;}
  }
  if(count!=1){if(count)serial_text("M75_MULTIPLE_INSTALLATIONS_SETUP\n");return;}
+#ifdef ENGINE_M11
+ /* A real user needs time to choose recovery when matching media stays attached.
+    This firmware-only delay adds no kernel polling, pages or idle animation. */
+ if(bs->stall&&input&&input->read){
+  typedef struct {void*reset;efi_status(*write)(void*,uint16_t*);} output115;
+  output115*out=system->output;
+  if(out&&out->write)out->write(out,(uint16_t*)u"\r\nStarting " ENGINE_PRODUCT_NAME " from disk.\r\nPress Esc within 2 seconds for setup or recovery.\r\n");
+  serial_text("M115_RECOVERY_WINDOW\n");
+  efi_status(*pause115)(uint64_t)=(efi_status(*)(uint64_t))bs->stall;
+  for(unsigned i=0;i<20;++i){pause115(100000);key[0]=key[1]=0;if(!EFI_ERROR(input->read(input,key))&&(key[0]==0x17||key[1]==27)){serial_text("M75_SETUP_OVERRIDE\n");return;}}
+ }
+#endif
  efi_guid dp_guid={0x09576e91,0x6d3f,0x11d2,{0x8e,0x39,0,0xa0,0xc9,0x69,0x72,0x3b}};
  uint8_t*source=0,path[1152];if(EFI_ERROR(bs->handle_protocol(target,&dp_guid,(void**)&source))||!source)return;
  unsigned at=0,hard=0;

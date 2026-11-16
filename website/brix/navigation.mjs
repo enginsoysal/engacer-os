@@ -10,9 +10,9 @@ export function documentationGroups(posts){
  add('1. Start here','Install the tested release, understand what works and find downloads.',[
   find('docs/handbook/index.md'),currentInstall,find('docs/roadmap/status.md'),posts.find(p=>p.slug==='downloads'),currentRelease]);
  add('2. M11 desktop and installation refresh','Current development, in stage order. The final M11 download follows qualification.',[
-  find('docs/milestones/m11.md'),find('docs/handbook/desktop-install-m11.md'),find('docs/handbook/files-m11.md'),find('docs/handbook/start-m11.md'),find('docs/handbook/windows-m11.md'),find('docs/architecture/desktop-m11.md'),find('docs/architecture/input-m11.md'),find('docs/architecture/files-m11.md'),find('docs/architecture/start-m11.md'),find('docs/architecture/windows-m11.md')]);
+  find('docs/milestones/m11.md'),find('docs/handbook/desktop-install-m11.md'),find('docs/handbook/files-m11.md'),find('docs/handbook/start-m11.md'),find('docs/handbook/windows-m11.md'),find('docs/architecture/desktop-m11.md'),find('docs/architecture/input-m11.md'),find('docs/architecture/files-m11.md'),find('docs/architecture/start-m11.md'),find('docs/architecture/windows-m11.md'),find('docs/architecture/setup-m115.md')]);
  const sorted=()=>[...remaining.values()].sort((a,b)=>compare(a.title,b.title));
- const historical=p=>/\(historical\)$/.test(p.title)||source(p).startsWith('docs/roadmap/history/')||p.category==='releases';
+ const historical=p=>/docs\/handbook\/install-m11[456]\.md$/.test(source(p))||/\(historical\)$/.test(p.title)||source(p).startsWith('docs/roadmap/history/')||p.category==='releases';
  add('3. Everyday use and customization','Current manuals for files, devices, distributions and ordinary tasks.',sorted().filter(p=>p.category==='handbook'&&!historical(p)));
  add('4. Architecture and development','Technical reference, source builds and design decisions.',sorted().filter(p=>!['handbook','roadmap','milestones','evidence','website','downloads','releases'].includes(p.category)&&!historical(p)));
  add('5. Roadmap and verification','Current plans and test evidence; qualification is always scoped.',sorted().filter(p=>['roadmap','milestones','evidence'].includes(p.category)&&!historical(p)));

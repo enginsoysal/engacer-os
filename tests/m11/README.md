@@ -5,7 +5,7 @@ order and publication gates are defined in [the milestone](../../docs/milestones
 
 The accepted input-stage commands below describe its historical source revision
 `e833630`. Reproduce that stage only in a separate checkout; its evidence and
-artifacts are frozen. The current wrapper targets the stage-4 candidate.
+artifacts are frozen. The current wrapper targets the stage-5 candidate.
 
 ```powershell
 python tests/m11/interaction_host.py
@@ -106,3 +106,32 @@ No test writes guest memory or controls the host desktop.
 Publication additionally requires source-index/committed-blob digest checks,
 the visible GitHub release, full English docs/homepage/download readback and the
 separate public proof before M11.5 implementation begins.
+
+## M11.5 setup qualification
+
+Use new STAGE5 paths; never reproduce earlier accepted stages in place.
+Freeze source and media throughout native tests, then stage identical source
+bytes before running the exact-source verifier.
+
+```powershell
+python tools/build/m11.py --revision stage5
+python tests/m11/setup.py --profile ordinary
+python tests/m11/setup.py --profile 150
+python tests/m11/setup.py --profile 4k
+python tests/m11/setup_safety.py
+python tests/m11/setup_packages.py
+python tools/release/vmware_starter11.py --revision stage5
+python tests/m11/vmware_setup.py --revision stage5
+python tests/m11/verify_setup.py
+```
+
+The package follow-up uses only the matching minimal journey's disposable disk,
+after its two boots finish. Safety uses separate owned disks/NVRAM, including
+an external one-shot write error. A quarantined controller must refuse Next;
+after removing the fault and restarting the same disk/NVRAM, retry must succeed.
+The initial immediate-retry harness assumption is retained as a diagnostic,
+not a successful task. The real UEFI Escape prompt enters the ISO recovery route
+and repair restores a deliberately damaged owned BIOS payload before disk startup.
+All required native screenshots/logs/results are copied into `evidence/M11/5`
+before temporary build output is removed. Published source/media hashes and
+public website verification remain separate gates. Full regression is M11.6.

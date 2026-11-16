@@ -1,0 +1,22 @@
+[
+  {
+    "manifest": "evidence/M10/m10-build-manifest.json",
+    "unchanged_artifacts": 13
+  },
+  {
+    "manifest": "evidence/M11/1/candidate-manifest.json",
+    "unchanged_artifacts": 13
+  },
+  {
+    "manifest": "evidence/M11/2/candidate-manifest.json",
+    "unchanged_artifacts": 13
+  },
+  {
+    "manifest": "evidence/M11/3/candidate-manifest.json",
+    "unchanged_artifacts": 13
+  },
+  {
+    "manifest": "evidence/M11/4/candidate-manifest.json",
+    "unchanged_artifacts": 13
+  }
+]
