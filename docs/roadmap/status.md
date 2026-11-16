@@ -1,6 +1,6 @@
 # Current status
 
-Updated 16 November 2026. **M12.7 / 0.12.7 passes M12-STAGE7-VM-v1.**
+Updated 17 November 2026. **M12.7 / 0.12.7 passes M12-STAGE7-VM-v1.**
 [Install](../handbook/install-m127.md), [commands and transfers](../handbook/transfers-m127.md),
 [release scope](../releases/m127-v0.12.7.md),
 [acceptance](../../evidence/M12/7/acceptance-results.json).
@@ -12,6 +12,12 @@ source removal, independent bytes and zero retained managed pages are checked.
 Fixed shell state remains 545,636 bytes; fixed FAT32 state grows 1,696 bytes,
 including its 1,568-byte metadata cache. [Complete public proof](../../evidence/M12/7/publication-results.json) passes:
 twenty assets, 333 pages and 2,262 links. **M12.8 is active.**
+M12.8 implements shared native Open/Save as/Choose folder and is still under
+qualification. Native probes found two guarded-stack overflows; checked IPC
+staging and array-free Tab traversal correct them without increasing the stack.
+The current candidate passes its exact VMware install/two-start checks and the
+587-input source comparison. Full feature, fault, display, recovery and public
+delivery gates remain pending; M12.7 remains the qualified download.
 M12.14/M12.16/M12.18 carry-forward observations remain explicit. No physical,
 vendor GPU 3D or universal Windows qualification follows from this stage.
 

@@ -110,3 +110,11 @@ focus with two bounded scans over existing controls, with the same order and
 wrap behavior, no array, no new persistent buffer and no idle work. M11 retains
 its historical conditional path. The failed candidate and frames are retained;
 all current-media qualification must be repeated after rebuilding this fix.
+
+The updated compile-only keyboard frame is 56 bytes, down from 8248; ZIP load
+remains 4376 and the stack remains guarded at 16384. A fresh native probe
+passes generic Tab/Shift+Tab order and wrap, BMP and ZIP Enter, chosen-folder
+extraction and zero retained pages. An independent read matches all three ZIP
+member payloads; its observer initially expected Extracted instead of the actual
+unique Extracted1 name. That failed observer result is retained and the corrected
+complete probe is being repeated. This is not final M12.8 acceptance.
