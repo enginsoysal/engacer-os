@@ -5,11 +5,12 @@ qualified download until the M12.3 native and publication gates pass.
 
 ## One bounded grid
 
-The desktop uses shared 120 by 96 logical-pixel object cells, with 128 by 104
+The desktop uses shared 120 by 112 logical-pixel object cells, with 128 by 120
 spacing. Four built-in references lead the grid: My files, Documents, Appearance
 and Recycle Bin. User objects come from the real per-user Desktop directory.
 The original M12 icon renderer draws 48-pixel vector identities; labels use the
-same native Inter body typography and two-line limit. Hover and selection have
+same native Inter body typography and two-line limit. Desktop icon inks follow the actual wallpaper or selection
+background independently of the window theme. Hover and selection have
 different backgrounds; keyboard focus has an additional outline. A focused or
 hovered user object's full supported name is also shown above the grid.
 
@@ -44,7 +45,8 @@ checks and original-location Restore. Shortcuts retain the versioned validated
 reference format: removing a shortcut leaves its target unchanged; unavailable
 targets explain their failure without executing another file. Folder pins reuse
 the existing persisted Start preferences instead of another desktop-only pin
-store. No new disk layout or settings format is introduced.
+store. Recycling a folder removes its pin; Restore restores the object, and the
+user can pin it again. It does not silently recreate removed pins. No new disk layout or settings format is introduced.
 
 ## Resources and qualification
 

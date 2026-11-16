@@ -24,7 +24,9 @@ static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsi
  uint32_t foreground=desktop_ink11();
  if(selected||hovered){ui73_round(r.x,r.y,r.width,r.height,UI12_RADIUS,selected?0x315b62:0x29454e);foreground=0xe5f0f3;}
  if(focused&&desktop_focus11){uint32_t stroke=foreground;rectangle((desktop_rect){r.x+2,r.y+2,r.width-4,1},stroke);rectangle((desktop_rect){r.x+2,r.y+r.height-3,r.width-4,1},stroke);rectangle((desktop_rect){r.x+2,r.y+2,1,r.height-4},stroke);rectangle((desktop_rect){r.x+r.width-3,r.y+2,1,r.height-4},stroke);}
- if(entry12)shell_file_icon12(r.x+36,r.y+6,48,entry12);else ui12_icon(icon,r.x+36,r.y+6,48,preferences.dark);
+ unsigned icon_dark=selected||hovered||foreground==0xffffff;
+ if(entry12){ui12_icon(shell_entry_icon12(entry12),r.x+36,r.y+6,48,icon_dark);if(shell_suffix12(file_label11(entry12),"link"))ui12_icon(ICON12_SHORTCUT,r.x+36,r.y+30,24,icon_dark);}
+ else ui12_icon(icon,r.x+36,r.y+6,48,icon_dark);
  ui73_paragraph(r.x+6,r.y+60,r.width-12,2,label,foreground);
  if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,action};
 }

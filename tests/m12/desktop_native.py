@@ -1,11 +1,13 @@
 """Actual installed desktop tasks using normal guest input and read-only observations."""
-import hashlib,json,os,struct,time,traceback
+import hashlib,json,os,struct,time,traceback,subprocess,sys
+from PIL import Image,ImageChops
 os.environ['ENGACER12_IMAGE']='EngacerOS-M12STAGE3'
 import components as c
 ui=c.ui;ROOT=ui.ROOT;OUT=ROOT/'build/m12/stage3/desktop-native';OUT.mkdir(parents=True,exist_ok=True);c.OUT=OUT
+import icons_host as art
 
 def rows(g):
-    raw=ui.memory(g,ui.symbol('volume',installed=True)[0]+64,1024*280)
+    raw=ui.memory(g,ui.symbol('volume',0xd3040,True)[0]+64,1024*280)
     result={}
     for i in range(1024):
         value=raw[i*280:(i+1)*280];first,size,crc,kind=struct.unpack_from('<QQII',value,256)
@@ -77,7 +79,26 @@ def selected(g,path):
 def close_files(g,p):
     p.close_app(1,True);p.drain();assert count(g)==0
 
+def icon_pixels(g,p,name,theme):
+    p.move(1200,80);p.drain();c.shot(g,name);scale=c.flag(g,'scale73');compared=[]
+    with Image.open(OUT/(name+'.png')) as source:
+        image=source.convert('RGB')
+        for action,identity in [(30000,42),(30001,20),(30002,3),(30003,38)]:
+            x,y,w,h,_,_=next(r for r in controls(g) if r[5]==action)
+            left=(x+36)*scale//2;top=(y+6)*scale//2;extent=48*scale//2
+            background=Image.new('RGBA',(extent,extent))
+            for row in range(extent):
+                color=image.getpixel((left-4*scale//2,top+row))+(255,)
+                for column in range(extent):background.putpixel((column,row),color)
+            background.alpha_composite(art.icon(OUT/'icon-oracle.exe',identity,extent,theme))
+            difference=ImageChops.difference(image.crop((left,top,left+extent,top+extent)),background.convert('RGB'))
+            maximum=max(high for low,high in difference.getextrema());assert maximum<=1,(action,theme,maximum)
+            compared.append(dict(action=action,theme=theme,physical_size=extent,max_channel_difference=maximum))
+    return compared
+
 def main():
+    sys.path.insert(0,str(ROOT/'tools/build'));from m2 import pinned_tools
+    subprocess.run([pinned_tools()['clang'],'-std=c17','-O2','-Wall','-Wextra','-Werror','-I','include','tests/m12/icons_host.c','-o',str(OUT/'icon-oracle.exe')],cwd=ROOT,check=True)
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));work=ui.q.new_work('m12-stage3-desktop');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
     report=dict(passed=False,stage='M12.3',build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],owned_fixture=work.name,checks=[],profiles=[])
     try:
@@ -89,6 +110,9 @@ def main():
             at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain()
             assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log();close_files(g,p)
             baseline=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32))
+            report['icon_comparisons']=icon_pixels(g,p,'desktop-dark-wallpaper',1)
+            c.open_settings(g,p);p.desktop(45002,True);p.close_app(3,True);p.drain();report['icon_comparisons']+=icon_pixels(g,p,'desktop-paper-wallpaper',0)
+            c.open_settings(g,p);p.desktop(45000,True);p.close_app(3,True);p.drain()
             p.desktop(30000,True);assert count(g)==0 and c.flag(g,'desktop_selection11')==1
             c.key(g,'ret');assert count(g)==1;close_files(g,p)
             double(g,p,30001);assert count(g)==1;close_files(g,p)
@@ -122,8 +146,15 @@ def main():
                 c.key(g,'down')
             else:raise AssertionError('Recycled project selection')
             p.desktop(40005,True);job(g,p);assert path in rows(g);close_files(g,p)
+            action=desktop_item(g,p,path);p.desktop(action,True);c.key(g,'shift','f10');menu(g,p,43000)
             report['checks'].append('Background and keyboard menus create/rename/pin a real folder; validated shortcut opens its target, recycling the shortcut preserves the target, and Recycle Bin restores the original folder')
             create(g,p,'a long desktop folder name for readability');c.shot(g,'long-name-selection')
+            # Hover a different object, then compare the dirty update with a genuine full repaint.
+            target=desktop_item(g,p,'/Users/Owner/Desktop/project');x,y=point(g,target);scale=c.flag(g,'scale73');p.move(x*scale//2,y*scale//2);p.drain();c.shot(g,'hovered-name-dirty')
+            c.key(g,'esc');c.shot(g,'hovered-name-full')
+            with Image.open(OUT/'hovered-name-dirty.png') as a,Image.open(OUT/'hovered-name-full.png') as b:
+                assert a.crop((30*scale//2,82*scale//2,(1280-30)*scale//2,110*scale//2)).tobytes()==b.crop((30*scale//2,82*scale//2,(1280-30)*scale//2,110*scale//2)).tobytes()
+            p.move(1200,80);p.drain()
             # Create enough real desktop folders through the wizard to overflow the ordinary grid.
             p.logical(600,300,True)
             for number in range(43):
@@ -155,7 +186,7 @@ def main():
             with ui.guest(work/label,disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution) as g:
                 p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(scale_action,True);p.desktop(43,True);p.close_app(3,True);p.drain();p.close_app(1,True);p.drain()
                 assert c.flag(g,'scale73')==(3 if label=='150' else 4)
-                p.desktop(30003,True);assert count(g)==0;c.shot(g,'native-'+label);c.idle(g)
+                p.desktop(30003,True);assert count(g)==0;report['icon_comparisons']+=icon_pixels(g,p,'native-'+label,1);c.idle(g)
                 report['profiles'].append(dict(physical=list(resolution),scale=c.flag(g,'scale73'),dark=c.dark(g)))
         report['checks'].append('Actual 150% and 3840x2160/200% dark desktop captures preserve whole-object selection and native vector icons')
         report['passed']=True

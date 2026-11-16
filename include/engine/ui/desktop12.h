@@ -2,9 +2,10 @@
 #ifndef ENGINE_UI_DESKTOP12_H
 #define ENGINE_UI_DESKTOP12_H
 typedef struct { int x,y,width,height; } ui12_desktop_cell;
-enum { UI12_DESKTOP_BUILTINS=4, UI12_DESKTOP_PITCH_X=128, UI12_DESKTOP_PITCH_Y=104 };
+enum { UI12_DESKTOP_BUILTINS=4, UI12_DESKTOP_PITCH_X=128, UI12_DESKTOP_PITCH_Y=120 };
 static inline unsigned ui12_desktop_rows(unsigned height) {
-    return height>=322 ? (height-218)/UI12_DESKTOP_PITCH_Y : 1;
+    unsigned rows=height>218?(height-218)/UI12_DESKTOP_PITCH_Y:0;
+    return rows?rows:1;
 }
 static inline unsigned ui12_desktop_reserved(unsigned height) {
     unsigned rows=ui12_desktop_rows(height);
@@ -21,7 +22,7 @@ static inline ui12_desktop_cell ui12_desktop_position(unsigned height,unsigned i
     unsigned rows=ui12_desktop_rows(height);
     unsigned column=index/rows+(builtin?0:ui12_desktop_reserved(height));
     return (ui12_desktop_cell){30+(int)column*UI12_DESKTOP_PITCH_X,
-        110+(int)(index%rows)*UI12_DESKTOP_PITCH_Y,120,96};
+        110+(int)(index%rows)*UI12_DESKTOP_PITCH_Y,120,112};
 }
 /* Find the next real object on the same row or column, skipping reserved gaps. */
 static inline unsigned ui12_desktop_neighbor(unsigned height,unsigned index,unsigned total,unsigned key) {

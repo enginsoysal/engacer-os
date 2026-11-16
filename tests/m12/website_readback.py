@@ -37,6 +37,8 @@ def main():
             critical_paths.update({'docs/architecture/components-m121.md', 'docs/handbook/components-m121.md'})
         if args.stage == 2:
             critical_paths.update({'docs/architecture/icons-m122.md', 'docs/handbook/icons-m122.md'})
+        if args.stage == 3:
+            critical_paths.update({'docs/architecture/desktop-m123.md', 'docs/handbook/desktop-m123.md'})
     for post in payload['page']['blog']['posts']:
         path = next(m['value'] for m in post['meta'] if m['key'] == 'engine_source_path')
         if path in critical_paths:
