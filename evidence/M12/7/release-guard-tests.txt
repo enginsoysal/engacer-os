@@ -1,0 +1,1 @@
+PASS: matching empty/partial/full drafts and public readback; nine unsafe visibility/source/body/asset/public cases rejected without HTTP.

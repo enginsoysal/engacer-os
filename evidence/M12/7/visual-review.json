@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "stage": "M12.7",
+  "build_id": "595e94df44cc995c3379d11379f4663e",
+  "scope": "Agent visual/scenario review of actual candidate screenshots. Not a human study or final accessibility qualification.",
+  "reviewed": [
+    "native/conflict-review.png",
+    "native/protected-actions.png",
+    "native/compact-actions.png",
+    "native/compact-dark-actions.png",
+    "native/usb-export-refusal.png",
+    "native/usb-conflict.png",
+    "native/usb-transfer-progress.png",
+    "native/minimized-transfer-progress.png",
+    "native/native-transfer-progress.png",
+    "native/removed-source-result.png",
+    "native/commands-150.png",
+    "native/commands-4k.png"
+  ],
+  "findings": [
+    "Actions stays visible at the actual 500x420 minimum in Light and Dark; command labels and muted unavailable states remain readable.",
+    "The reviewed name-conflict dialog has distinct Keep both/Skip/Cancel and explicit red Replace; USB Replace is disabled.",
+    "Actual transfer feedback names the phase, source and destination with bounded progress and Cancel. The minimized owner keeps global feedback above the taskbar.",
+    "Stopped operations keep an accessible Details route and do not display the incomplete target as a completed file.",
+    "Actual 1920x1200/150% and 3840x2160/200% show crisp native typography, original icons and non-overlapping essential action controls."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "The existing shared-menu helper footer uses bounded ellipsis. Conflict text lists general replacement limits rather than the selected USB provider reason and does not enumerate matching source/target paths; refine those feedback details in the planned feedback stage."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Preserve the earlier drawn-cursor-versus-hit HiDPI observation for isolation; scripted actions alone do not establish human pointer usability."
+    }
+  ],
+  "capture_sha256": {
+    "native/conflict-review.png": "afcc5342bf7f2179988942df47758500faa1085af1870b692796a0b949aa5ba5",
+    "native/protected-actions.png": "d4e924fa77632e0809feac517c071d1741735255a63fd79a77c122eac7b6905d",
+    "native/compact-actions.png": "591c3499fae4d7e61e27885657809a4bea48765c743bf8823e18525487a08e0b",
+    "native/compact-dark-actions.png": "8432ce3a3289e8f3f0f55042734aa1d6cd96b026ac9efa7da7ea5ca3f778cfe7",
+    "native/usb-export-refusal.png": "cfb8e4d7453f5a61cb78bcd92899757c95abe448eadf2a3fc6aa7729058caff0",
+    "native/usb-conflict.png": "b168203eee9d272b7433bbf767c05152e6f6014a72198f720d9c237c9d5fa475",
+    "native/usb-transfer-progress.png": "12fdec91045ab6ab43d03c05cbc92d1268229b2a7395a35d3bf986da36b7ada4",
+    "native/minimized-transfer-progress.png": "56d1333caa009862e995c8caa9052828733d351ff8adcd1e0e58a21787691d83",
+    "native/native-transfer-progress.png": "73d737b22cf3445be79728446ffb07c8256c3b815800c2962e093cf22f92b6d3",
+    "native/removed-source-result.png": "ea3dd4e5d87be5f63d21efec564540791a49712ab63215fe6d95a2c1f8f6955e",
+    "native/commands-150.png": "375ca8b09a685b61aacec07af88696cf3525c90f9e4099ff63db61d5dc6cb986",
+    "native/commands-4k.png": "37c69d8b7ef3a9c85622ec663609d9e87219f519698fb75ea455a6ff8b954302"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "development_only": true,
+  "intentionally_stopped": true,
+  "owned_fixture": "47fb3a70d5b9479898ffe3c82338b3fd",
+  "reason": "The shell continued after a failed test-source replacement. This duplicate uncorrected observer run was deliberately stopped before changing its harness; this is not a spontaneous guest crash."
+}

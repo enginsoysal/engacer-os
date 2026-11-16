@@ -1,0 +1,6 @@
+{
+  "development_only": true,
+  "passed": false,
+  "reason": "The agent intentionally stopped only the owned 0762af27be5b4b0ea46685b8d17ece4c install guest after the 64-MiB import remained active for several minutes. The ConnectionResetError is this deliberate test interruption, not a claimed spontaneous kernel crash. Preserve the failure; implement bounded bulk reads, a tiny validated metadata cache and progress-only damage before requalification.",
+  "candidate_build_id": "9a9646fc6786bcd0d61baeaf68fc34da"
+}

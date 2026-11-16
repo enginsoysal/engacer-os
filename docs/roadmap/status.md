@@ -1,6 +1,21 @@
 # Current status
 
-Updated 16 November 2026. **M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
+Updated 16 November 2026. **M12.7 / 0.12.7 passes M12-STAGE7-VM-v1.**
+[Install](../handbook/install-m127.md), [commands and transfers](../handbook/transfers-m127.md),
+[release scope](../releases/m127-v0.12.7.md),
+[acceptance](../../evidence/M12/7/acceptance-results.json).
+584 compiled Git inputs, fourteen native journeys, actual 150%/4K, twelve
+cached/full comparisons, exact VMware/BIOS setup and ordinary starts pass.
+Compressed-slot recovery restores damaged owned BIOS boot bytes and starts
+without ISO. Confirmed 64-MiB import, native partial cancellation, conflicts,
+source removal, independent bytes and zero retained managed pages are checked.
+Fixed shell state remains 545,636 bytes; fixed FAT32 state grows 1,696 bytes,
+including its 1,568-byte metadata cache. Public delivery remains the current gate.
+M12.8 starts only after GitHub assets and the whole public website are verified.
+M12.14/M12.16/M12.18 carry-forward observations remain explicit. No physical,
+vendor GPU 3D or universal Windows qualification follows from this stage.
+
+**Previous M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
 [Install](../handbook/install-m126.md), [Files views](../handbook/files-m126.md),
 [release scope](../releases/m126-v0.12.6.md),
 [acceptance](../../evidence/M12/6/acceptance-results.json).
@@ -10,7 +25,7 @@ ordinary starts pass. Native metadata, ordering, selection, minimum layout,
 light/dark USB, detach and persisted choices are checked. Fixed shell state is
 545,636 bytes, 16 above M12.5; tasks retain zero managed pages. [Public release/site
 proof](../../evidence/M12/6/publication-results.json) passes: twenty downloads,
-325 pages and 2,244 links. **M12.7 is active.** Existing menu, HiDPI cursor and BIOS/AHCI
+325 pages and 2,244 links. M12.7 subsequently followed. Existing menu, HiDPI cursor and BIOS/AHCI
 carry-forward observations remain open for their named later stages. USB sort
 is unavailable; no universal hardware or Windows claim follows from this stage.
 

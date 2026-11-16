@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "build_id": "595e94df44cc995c3379d11379f4663e",
+  "iso_sha256": "11832944be106bfa560856f4978994a59e17613ddc0c283c1704816e7ff041f2",
+  "checks": [
+    "Actual ISO recovery validates and decodes its on-disk compressed slot, restoring deliberately corrupted owned BIOS bytes exactly",
+    "Repaired BIOS disk starts without ISO and independently stored user data remains unchanged"
+  ]
+}

@@ -1,7 +1,7 @@
 # Install Engacer OS M12.7 in VMware
 
-M12.7 is in native qualification and is not yet the published download.
-Use the matching released M12.6 media until the M12.7 release is visible.
+M12.7 passes M12-STAGE7-VM-v1. Download its exact matching public release;
+source commits alone do not constitute a downloadable release.
 
 M12.7 is the file commands and transfers stage. Use its matching ISO and prepared
 VMware ZIP. The stage's exact-source acceptance is required before release; the

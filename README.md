@@ -4,25 +4,26 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.7 — File commands and transfers.**
-**Current native delivery: M12.6**, qualified within M12-STAGE6-VM-v1.
-[Install](docs/handbook/install-m126.md), [Files views guide](docs/handbook/files-m126.md),
-[release scope and retained limits](docs/releases/m126-v0.12.6.md),
-[exact-source acceptance](evidence/M12/6/acceptance-results.json).
-581 compiled inputs match Git. Ten native journeys cover real metadata, natural
-sorting, source-bound selection, complete names, compact views, USB and saved
-choices. Independent actual 150%/4K name tips, twelve cached/full comparisons and
-exact VMware/BIOS install/ordinary starts pass. Fixed shell state grows 16 bytes
-over M12.5; tasks retain zero managed pages. [Complete public verification](evidence/M12/6/publication-results.json)
-passes: twenty downloads, 325 pages, 2,244 links and current desktop/mobile guides.
-M12.7 now addresses file commands, transfer feedback and recoverable outcomes.
+**M12.7 / 0.12.7 passes M12-STAGE7-VM-v1.**
+[Install](docs/handbook/install-m127.md), [file commands and transfers](docs/handbook/transfers-m127.md),
+[release scope](docs/releases/m127-v0.12.7.md),
+[exact-source acceptance](evidence/M12/7/acceptance-results.json).
+584 compiled Git inputs, fourteen native journeys, real 150%/4K, twelve cached/full
+comparisons, matching VMware/BIOS install and independent starts pass. Actual
+compressed-slot recovery restores deliberately damaged owned boot bytes and
+starts independently. Large-file cancellation, partial completion, conflicts,
+source removal and independent stored bytes are checked. Tasks retain zero
+managed pages; fixed shell state is unchanged, with 1,696 additional fixed USB
+reader bytes. Public release and complete website verification close separately.
+
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
-order, with tests, English guides, GitHub releases and public website verification
-between stages. [Design contract](docs/architecture/desktop-m12.md),
-[user journeys](docs/handbook/desktop-m12.md). Final regression remains M12.18.
-Shared-menu fitting and the HiDPI cursor observation remain M12.14/M12.16
-follow-ups; the earlier BIOS/AHCI observation remains open for M12.18.
-[M12.5 public delivery](evidence/M12/5/publication-results.json) is preserved.
+order, with tests, English manuals, matching GitHub releases and complete website
+verification after each stage. [Design](docs/architecture/desktop-m12.md),
+[user journeys](docs/handbook/desktop-m12.md). M12.8 follows this publication.
+The shared-menu footer and conflict feedback remain M12.14 refinements; HiDPI
+cursor isolation remains M12.16 and the earlier BIOS/AHCI observation remains
+M12.18. Named VM qualification does not imply universal hardware or Windows support.
+[M12.6 public delivery](evidence/M12/6/publication-results.json) is preserved.
 
 **Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
@@ -49,9 +50,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m126-v0.12.6/EngacerOS-M12STAGE6-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m126-v0.12.6/EngacerOS-M12STAGE6.iso) ·
-[Step-by-step installation](docs/handbook/install-m126.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7.iso) ·
+[Step-by-step installation](docs/handbook/install-m127.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

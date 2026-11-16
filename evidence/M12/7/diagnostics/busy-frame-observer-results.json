@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "stage": "M12.7",
+  "build_id": "d6f689fff29a29b0093477ee42dba16d",
+  "iso_sha256": "b320b80bc5b1b148e82fab1a441f0b3eda4619f8192f07ed8c93da8559fdf82e",
+  "owned_fixture": "db966a19c14242c89599c1c46eb4a736",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 89, in main\n    p.desktop(f.row(g,'Large.bin'),True);start(g,p,21004);assert job(g)[0][0];capture_active(g,'usb-transfer-progress');assert f.has(g,40019);start(g,p,40019);wait(g,p);assert '/Users/Owner/Downloads/Large.bin' not in f.entries(g);details(g,p);assert not struct.unpack('<4i',ui.memory(g,ui.symbol('files_tip_bounds12',16,True)[0],16))[2]\nAssertionError\n",
+  "idle_observations": []
+}

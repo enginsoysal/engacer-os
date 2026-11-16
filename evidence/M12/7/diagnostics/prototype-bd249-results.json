@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "stage": "M12.7",
+  "build_id": "bd249d745694119f486847f8ae32f079",
+  "iso_sha256": "d16bc2858afd9175f7d6b5ce1cbc0aa479173ccd2139ff4eb47c2e21d6940ff0",
+  "owned_fixture": "c4043011ec634866b7d1f938642db2bb",
+  "checks": [],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 82, in main\n    with live as g:\n  File \"<project-root>\\tests\\m6\\vm.py\", line 55, in __enter__\n    self.wait(self.ready)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 76, in wait\n    raise RuntimeError('Missing '+text+'; tail='+self.log()[-1500:])\nRuntimeError: Missing M6_WIZARD_READY; tail=BdsDxe: loading Boot0001 \"UEFI QEMU DVD-ROM QM00005 \" from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)\nBdsDxe: starting Boot0001 \"UEFI QEMU DVD-ROM QM00005 \" from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)\nENGINE_OS_LOADER build=bd249d745694119f486847f8ae32f079\nLOADER_REJECT: kernel fixed allocation\n\n",
+  "idle_observations": []
+}

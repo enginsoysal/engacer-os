@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "stage": "M12.7",
+  "build_id": "595e94df44cc995c3379d11379f4663e",
+  "iso_sha256": "11832944be106bfa560856f4978994a59e17613ddc0c283c1704816e7ff041f2",
+  "owned_fixture": "2cde8da4a9144fb09b4ceed42104aa54",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 90, in main\n    f.visit(g,p,'Desktop');action(g,p,40002)\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 53, in action\n    else:p.desktop(52000,True);f.menu(g,p,command)\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 106, in menu\n    found=[i for i in range(n) if struct.unpack_from('<II',raw,i*16+8)==(command,1)];assert len(found)==1,(command,n)\nAssertionError: (40002, 10)\n",
+  "idle_observations": []
+}

@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.7",
-  "qualified_download": "M12.6",
+  "qualified_download": "M12.7",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -91,7 +91,7 @@
     },
     {
       "id": "M12.7",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "File commands and transfers",
       "requires": "M12.6",
       "deliverable": "Consistent toolbar/context commands, transfer feedback, cancellation, conflicts and supported Undo.",

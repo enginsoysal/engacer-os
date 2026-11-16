@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "stage": "M12.7",
+  "build_id": "9a9646fc6786bcd0d61baeaf68fc34da",
+  "iso_sha256": "19eb900577fe44958a1ab6a41b15eebda63f32f5178c411daba387225b4a329c",
+  "owned_fixture": "b7f78880f3c3422b817fe65cad5cdfce",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details"
+  ],
+  "profiles": [],
+  "cancelled_usb_work_bytes": 4096,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 119, in main\n    p.desktop(f.row(g,'Large.bin'),True);p.desktop(21004,True);wait(g,p);assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 98, in desktop\n    if time.monotonic()>until:raise TimeoutError('Native desktop did not finish input and painting')\nTimeoutError: Native desktop did not finish input and painting\n",
+  "idle_observations": []
+}

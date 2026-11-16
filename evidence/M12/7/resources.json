@@ -1,0 +1,302 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 545636,
+    "sections": {
+      "bss": 545608,
+      "data": 28
+    },
+    "map_sha256": "70bbc42853d582ac345d4fbee060be6ea68b56bcd20a5f698ede772c9b28f7c5"
+  },
+  "current": {
+    "bytes": 545636,
+    "sections": {
+      "bss": 545608,
+      "data": 28
+    },
+    "map_sha256": "db41a3b1dcdcaa60c31039b741c840dfc771e9d21417ac79d790f377445cee7d"
+  },
+  "added_fixed_desktop_bytes": 0,
+  "fat32_before": {
+    "bytes": 8224,
+    "sections": {
+      "bss": 8224,
+      "data": 0
+    },
+    "map_sha256": "70bbc42853d582ac345d4fbee060be6ea68b56bcd20a5f698ede772c9b28f7c5"
+  },
+  "fat32_current": {
+    "bytes": 9920,
+    "sections": {
+      "bss": 9920,
+      "data": 0
+    },
+    "map_sha256": "db41a3b1dcdcaa60c31039b741c840dfc771e9d21417ac79d790f377445cee7d"
+  },
+  "added_fixed_fat32_bytes": 1696,
+  "reader_metadata_cache_bytes": 1568,
+  "reader_io_command_ratio": 13.57426914427743,
+  "active_progress_damage": {
+    "frames": 15,
+    "logical_pixels": 1077120,
+    "average_damage": 71808.0,
+    "whole_window_area": 756000,
+    "scope": "Damage rectangles during a running restored transfer, not hardware FPS or physical USB throughput"
+  },
+  "managed": {
+    "before": [
+      1047,
+      1047,
+      17731,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17731,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "icon_raster_cache_bytes": 0,
+  "icon_temporary_row_bytes": 512,
+  "display_profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112
+    }
+  ],
+  "motion": [
+    {
+      "physical": [
+        1280,
+        800
+      ],
+      "scale_percent": 100,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 4247552,
+      "managed_bytes_after": 4247552,
+      "managed_peak_bytes": 4247552,
+      "cached_copy_frames": 16,
+      "event_to_drain_ms": [
+        514.2912000010256,
+        1325.5914000037592,
+        823.6380999951507,
+        774.4241999971564
+      ],
+      "median_ms": 799.0311499961535,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale_percent": 150,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 9408512,
+      "managed_bytes_after": 9408512,
+      "managed_peak_bytes": 9408512,
+      "cached_copy_frames": 6,
+      "event_to_drain_ms": [
+        1674.2453999977442,
+        1906.7279000009876,
+        1001.8541000026744,
+        3705.936099999235
+      ],
+      "median_ms": 1790.486649999366,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale_percent": 200,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1720,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            972,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            182,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 33370112,
+      "managed_bytes_after": 33370112,
+      "managed_peak_bytes": 33370112,
+      "cached_copy_frames": 16,
+      "event_to_drain_ms": [
+        2528.433600004064,
+        3299.7557999988203,
+        2089.017899997998,
+        4332.186899999215
+      ],
+      "median_ms": 2914.094700001442,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    }
+  ],
+  "scope": "Fixed shell, cooperative reader and tiny FAT metadata cache are separate from managed framebuffer pages. The existing 4096-byte payload buffer is reused; no growing queue, per-window framebuffer or idle animation. Host I/O request counts and observer latency are not physical throughput/FPS. Configured guest RAM is not consumption."
+}

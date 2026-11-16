@@ -1,0 +1,5 @@
+{
+  "passed": false,
+  "development_only": true,
+  "observation": "The host test assumed a fragmented file must require more than 64 aligned 4096-byte commands for 256 KiB. Its assertion bulk12-fragment_before>64 failed. This fixture uses 4096-byte clusters, so an individual 4096-byte request need not cross a fragment boundary. Correct the observer to inspect actual nonconsecutive FAT links and test unaligned requests across those links. The byte checks had passed before the mistaken count assertion."
+}

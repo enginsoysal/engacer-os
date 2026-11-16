@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "595e94df44cc995c3379d11379f4663e",
+  "iso_sha256": "11832944be106bfa560856f4978994a59e17613ddc0c283c1704816e7ff041f2",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\recovery7.py\", line 27, in main\n    start=c.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240);c.shot(g,'recovery-complete');(out/'recovery.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m12\\components.py\", line 47, in shot\n    try:ui.raw_shot(g,OUT,name,True)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 50, in raw_shot\n    boot=physical_boot(g,installed)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 43, in physical_boot\n    assert candidates,'No validated physical boot framebuffer found'\nAssertionError: No validated physical boot framebuffer found\n"
+}

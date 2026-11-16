@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "stage": "M12.7",
+  "build_id": "9a9646fc6786bcd0d61baeaf68fc34da",
+  "iso_sha256": "19eb900577fe44958a1ab6a41b15eebda63f32f5178c411daba387225b4a329c",
+  "owned_fixture": "0762af27be5b4b0ea46685b8d17ece4c",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details"
+  ],
+  "profiles": [],
+  "cancelled_usb_work_bytes": 61440,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 119, in main\n    p.desktop(f.row(g,'Large.bin'),True);start(g,p,21004);wait(g,p);assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 37, in wait\n    while job(g)[0][0]:\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 32, in job\n    raw=ui.memory(g,ui.symbol('file_job_state11',installed=True)[0],112)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 65, in qmp\n    v=json.loads(self.stream.readline())\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 705, in readinto\n    return self._sock.recv_into(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 73, in main\n    with live as g:\n  File \"<project-root>\\tests\\m74\\ui.py\", line 73, in __exit__\n    super().__exit__(*exc)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 88, in __exit__\n    self.stream.close();self.sock.close()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n",
+  "idle_observations": []
+}

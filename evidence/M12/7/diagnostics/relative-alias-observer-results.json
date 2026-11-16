@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M12.7",
+  "build_id": "f7a3ef718323a32eb606e79f47915ce5",
+  "iso_sha256": "7a11041bc767ea4a2381e303772633417c785ba143804bbee511283791ada86e",
+  "owned_fixture": "01e71accec3342019628117ea2f686fe",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 59, in main\n    f.visit(g,p,'Documents/Source');p.desktop(f.item(g,p,'Export.txt'),True);action(g,p,40000);f.visit(g,p,'Desktop');action(g,p,40002);assert c.flag(g,'file_dialog_state11')==2;c.shot(g,'conflict-review');c.key(g,'esc')\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 79, in item\n    values=names(g);row=values.index(name);action=1000+row\nValueError: 'Export.txt' is not in list\n",
+  "idle_observations": []
+}

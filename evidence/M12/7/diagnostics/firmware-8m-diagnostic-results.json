@@ -1,0 +1,7 @@
+{
+  "development_only": true,
+  "passed": false,
+  "exit_code": 69,
+  "build_id": "bd249d745694119f486847f8ae32f079",
+  "scope": "Diagnostic-only EFI against unchanged candidate kernel/INIT; not release media or native qualification."
+}

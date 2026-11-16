@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "full_bytes": 67108864,
+  "full_single_sector_reads": 514,
+  "full_data_commands": 16384,
+  "multi_sector_commands": 16384,
+  "full_mirror_reads": 256,
+  "metadata_cache_bytes": 1568,
+  "checks": [
+    "production 64-MiB contiguous bytes",
+    "real fragmented chain bytes",
+    "unaligned and odd reads",
+    "generation change and replacement",
+    "mirror mismatch and failed data read",
+    "fresh lease after error",
+    "empty file and argument/EOF bounds"
+  ],
+  "writes": 0,
+  "baseline": {
+    "passed": true,
+    "full_bytes": 67108864,
+    "full_single_sector_reads": 229378,
+    "full_data_commands": 0,
+    "full_mirror_reads": 49152,
+    "source_commit": "f5503853079654dfbf7f3db75b8fb397aa686733",
+    "source_sha256": {
+      "kernel/storage/fat32.c": "778e583cf4a950bf39aa559e8788d6c3a3441fbf88663f9e1c752cdd68b7cf9a",
+      "kernel/storage/fat32-write10.inc": "d944d816cb085506ad311fb2e31ae7b9d11ddffa6134329715879900c2962c44"
+    }
+  },
+  "io_command_ratio": 13.57426914427743,
+  "scope": "Production old/new readers validate the same owned FAT32 bytes. I/O request counts are a host control-flow measurement, not physical/VM throughput or a human study.",
+  "owned_fixture": "23a2c20feab34da3a49e982668a7220f",
+  "image_sha256": "82e7e5a880bde0c4e4a24078dec7acfd2bb6e8c5b6429a117a48ab39808eeabb",
+  "image_unchanged": true,
+  "source_sha256": {
+    "kernel/storage/fat32.c": "778e583cf4a950bf39aa559e8788d6c3a3441fbf88663f9e1c752cdd68b7cf9a",
+    "kernel/storage/fat32-write10.inc": "c74b41181d7017233eda6fcc03dd78909f309d3163681f12d334cf4c57ed221b",
+    "include/engine/hardware10.h": "5a2b37187a9758c97b0479759a29df8007f6d4ea5d0b37f9df3186bf544e5ccd",
+    "tests/m12/reader_host.c": "83a46136cb2142a27daafde6fa9764b6f6180bc5e748786e7803ec4e14b26ca2"
+  }
+}

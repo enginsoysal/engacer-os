@@ -1,7 +1,7 @@
 # Copy, move and manage files in M12.7
 
-M12.7 is being tested. Until its matching release is published, use the
-[M12.6 installation guide](install-m126.md) and matching download.
+M12.7 passes M12-STAGE7-VM-v1. Use its [matching installation guide](install-m127.md)
+and public release; final M12 regression remains M12.18.
 
 ## Find an action
 
@@ -73,5 +73,5 @@ showing a drive does not imply unrestricted formatting, moves or folder writes.
 
 See [Files views and names](files-m126.md) for presentation, and the
 [navigation guide](files-m125.md) for Back, Forward, addresses and disconnected
-locations. This guide describes the intended M12.7 native scope; qualification
-and matching release links are updated when its tests pass.
+locations. This guide describes the tested M12.7 native scope. Read its matching release
+and retained limits; later providers and final regression are separate work.

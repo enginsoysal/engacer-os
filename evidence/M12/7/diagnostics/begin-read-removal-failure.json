@@ -1,0 +1,34 @@
+{
+  "passed": false,
+  "development_only": true,
+  "fixture": "a7beb780d1be4ced9985ad268daa3f6a",
+  "build_id": "b687716477891050a429e0d43ff9980f",
+  "cancelled_job": [
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      4294967297,
+      134217728,
+      0,
+      0,
+      0,
+      749
+    ]
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\transfers_probe.py\", line 26, in main\n    g.qmp('device_del',{'id':'probe-usb'});t.wait(g,pointer,error=3)\n  File \"<project-root>\\tests\\m12\\transfers_native.py\", line 40, in wait\n    p.drain();assert c.flag(g,'file_job_error11')==error,(job(g),f.app(g))\nAssertionError: (((0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1), (4294967297, 134217728, 0, 0, 0, 0)), {'slot': 0, 'path': '/Users/Owner/Pictures', 'notice': 'File operation stopped. Open Details for completed items and the reason.', 'offset': 0, 'mode': 0, 'disk': 1, 'part': 4294967295, 'context': 2, 'selected': 0, 'usb_path': '/'})\n"
+}

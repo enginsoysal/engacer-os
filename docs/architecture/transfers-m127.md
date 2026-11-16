@@ -1,8 +1,7 @@
 # M12.7 file commands and transfers
 
-Status: implementation and native qualification in progress. M12.6 remains the
-published download until this stage closes its exact-source/media tests and
-public delivery. This document does not claim that pending checks passed.
+Status: matching native qualification passes M12-STAGE7-VM-v1. Public release
+and complete website verification remain required before M12.8.
 
 ## A command must be reachable and applicable
 
@@ -124,3 +123,16 @@ menu-footer fitting, M12.16 cursor isolation and M12.18 BIOS/AHCI stress and fin
 controller/application regression retain their explicit scope. USB sorting,
 general Windows compatibility, physical/ARM qualification and vendor GPU 3D do
 not follow from this stage.
+
+The final candidate passes fourteen native journeys, actual 150%/4K, twelve
+cached/full comparisons, exact VMware/BIOS setup and ordinary starts, production
+codec/reader tests and actual compressed-slot repair of damaged owned boot bytes.
+[Acceptance](../../evidence/M12/7/acceptance-results.json) and
+[resources](../../evidence/M12/7/resources.json) preserve the exact build and
+failed prototype/observer diagnostics. Fixed shell state remains 545,636 bytes;
+fixed FAT32 state grows from 8,224 to 9,920 bytes, including its 1,568-byte cache.
+Managed pages return to 1,047, with a measured peak of 1,059 and no new failures.
+The live payload is 1,989,246 bytes; its physical ELF end is below 8 MiB.
+The conflict modal retains a general disabled-replacement explanation, rather
+than USB-specific reasoning or enumerated matching paths; refine that feedback
+in M12.14 with the shared menu helper footer.
