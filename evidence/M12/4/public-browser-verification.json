@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "stage": "M12.4",
+  "website": "https://engaceros.brixcanvas.com",
+  "source_commit": "69ef51b45794e26df05d0a9a59bde25cdd9a566d",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1902,
+    "guide": true,
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/4/feature.png",
+        "width": 1280
+      }
+    ],
+    "text": true,
+    "viewport": 1912
+  },
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "documentation_order": [
+    "1. Start here",
+    "2. M12 desktop experience",
+    "3. M11 desktop and installation refresh",
+    "4. Everyday use and customization",
+    "5. Architecture and development",
+    "6. Roadmap and verification",
+    "7. Website maintenance",
+    "8. Historical releases and earlier milestones",
+    "You might be interested in"
+  ],
+  "first_install_guides": [
+    "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124",
+    "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+    "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+    "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123"
+  ],
+  "guide": {
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/69ef51b45794e26df05d0a9a59bde25cdd9a566d/docs/handbook/install-m124.md"
+    ],
+    "steps": 8,
+    "title": "Install Engacer OS M12.4 in VMware — Engacer OS"
+  },
+  "current_guide": true,
+  "download": {
+    "iso": true,
+    "links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m124-v0.12.4/EngacerOS-M12STAGE4.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m124-v0.12.4/EngacerOS-M12STAGE4-VMware.zip"
+    ],
+    "zip": true,
+    "raw_link_count": 4
+  },
+  "matching_download": true
+}

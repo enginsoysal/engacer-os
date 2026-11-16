@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.4",
+  "qualification": "M12-STAGE4-VM-v1",
+  "source_commit": "69ef51b45794e26df05d0a9a59bde25cdd9a566d",
+  "build_id": "df69fcb86b63e2ffbd3b821f412f3782",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m124-v0.12.4",
+  "workflow_ids": [
+    43929758040
+  ],
+  "current_native_download": "m124-v0.12.4",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 315,
+  "unique_links": 2155,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
