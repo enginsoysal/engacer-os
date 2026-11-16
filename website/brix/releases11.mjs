@@ -1,4 +1,9 @@
 // A stage becomes a download only when its required public assets exist.
+export function releaseLabel(release,stable,stageTag){
+ if(release.tag_name==='m120-v0.12.0-design')return 'Design only — no ISO';
+ if(release.prerelease)return /^m12/.test(release.tag_name)?'Development preview':'Historical preview';
+ return stable?'Earlier release':release.tag_name===stageTag?'Latest stage delivery':'Latest stable';
+}
 export function stageRelease11(releases){
  for(const number of [6,5,4]){
   const tag=`m11${number}-v0.11.${number}`,image=`EngacerOS-M11${number===6?'FINAL':`STAGE${number}`}`;

@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {marked} from '../public/vendor/marked.esm.js';
 import {canonicalPublicUrl,articleBranding} from './branding.mjs';
 import {documentationGroups} from './navigation.mjs';
-import {stageRelease11} from './releases11.mjs';
+import {stageRelease11,releaseLabel} from './releases11.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
@@ -78,7 +78,7 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
  if(current==='M91')add('richtext',{html:`<p>M9.1 fixes the VMware starter PCIe configuration with Ethernet and sound enabled. The included M9 ISO is unchanged. The older M9 ZIP has a known startup defect. IDE installation and unqualified SCSI controllers remain unsupported.</p>`,size:17});
  let stable=false;
  for(const r of releases){
-   const label=r.prerelease?'Historical preview':stable?'Earlier release':stage&&r.tag_name===stage.tag?'Latest stage delivery':'Latest stable';if(!r.prerelease)stable=true;
+   const label=releaseLabel(r,stable,stage?.tag);if(!r.prerelease)stable=true;
    const displayName=(r.name||r.tag_name).replace(/\b(?:Codename:\s*)?Engine OS\b/gi,'Engacer OS');
    add('heading',{text:`${displayName} — ${label}`,level:2,size:27,color:'#152434'});
    add('richtext',{html:`<p>Published ${escape(r.published_at?.slice(0,10)||'unknown')} · <a href="${escape(r.html_url)}">Official release notes</a></p>`,size:15});
