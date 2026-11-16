@@ -73,3 +73,6 @@ The optional address editor accepts USB:2:/Games for drive 2. Ordinary browsing
 uses the same buttons and folders and needs no terminal command.
 USB currently provides FAT32 browsing and one-file create-only copies. Unsupported
 commands stay unavailable. Use Safe remove before disconnecting a writable drive.
+
+M12.6 Files presentation
+Use Icons or Details, or right-click the folder background to change view. Native Name, Type and Size headers change order; clicking the current header reverses it. Folders stay first and numbered names use natural order. Selection follows the actual item after sorting. Hover an abbreviated name for its complete supported name. USB keeps its real directory order; its sort controls remain unavailable. Native folders remember up to 32 view/order choices; your USB view preference is separate and does not bind a replacement device.

@@ -33,6 +33,7 @@
 #include <engine/ui/desktop12.h>
 #include <engine/ui/chrome12.h>
 #include <engine/ui/files12.h>
+#include <engine/ui/fileview12.h>
 #endif
 
 enum { FILES=1, EDITOR, SETTINGS, CALCULATOR, DOWNLOADS, DETAILS, TERMINAL,
@@ -594,6 +595,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "files11-ui.inc"
 #ifdef ENGINE_M12
 #include "files12-ui.inc"
+#include "files12-presentation.inc"
 #endif
 #include "start11-model.inc"
 #include "start11-ui.inc"
@@ -844,6 +846,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
         rectangle((desktop_rect){r.x,r.y,r.width,1},stroke);rectangle((desktop_rect){r.x,r.y+r.height-1,r.width,1},stroke);rectangle((desktop_rect){r.x,r.y,1,r.height},stroke);rectangle((desktop_rect){r.x+r.width-1,r.y,1,r.height},stroke);}
 #ifdef ENGINE_M12
     window_hint_draw12();
+    files_name_tip_draw12();
 #endif
     files_draw_overlay11();
     guide_draw11();
@@ -913,6 +916,7 @@ static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
     /* These Files commands must precede the legacy generic application sink. */
     if((command==F12_REFRESH||command==F12_USB_ROOT)&&w->app==FILES&&files_navigation12(w,app,token,command))return;
+    if(files_column_action12(w,app,token,command))return;
 #endif
     if(action74(w,app,token,command))return;
 #endif

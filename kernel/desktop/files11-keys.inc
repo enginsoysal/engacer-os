@@ -71,15 +71,25 @@ static unsigned files_key11(int key){
  if(a->usb_mode10){
 
 #ifdef ENGINE_M12
+  if(key==138){unsigned total=0;if(a->usb_mode10==1)total=files_drive_count12();else if(usb_listing10(a,0,1,&total))return 1;int wheel=input10_take_wheel(),step=file_windows11[a-apps].view?(int)file_columns11(w):3,position=(int)a->offset-wheel*step;if(position<0)position=0;if(total&&(unsigned)position>=total)position=(int)total-1;a->offset=(unsigned)position;invalidate(w->bounds);return 1;}
   if(a->usb_mode10==1){unsigned total=files_drive_count12(),row=0;if(a->usb_selected10)while(row<total&&files_drive_at12(row)+1!=a->usb_selected10)++row;if(row>=total)row=0;
-   if(key==133||key==134||key==130||key==131||key==32){if(total){if(key==130)row=0;else if(key==131)row=total-1;else if(key==133&&row)--row;else if(key==134&&row+1<total)++row;a->usb_selected10=files_drive_at12(row)+1;const storage_disk*d=storage_get(a->usb_selected10-1);if(d)a->usb_context10=d->context;unsigned visible=files_usb_rows12(w);if(row<a->offset)a->offset=row;if(row>=a->offset+visible)a->offset=row-visible+1;invalidate(w->bounds);}return 1;}
+   if(key==128||key==129||key==133||key==134||key==130||key==131||key==32){if(total){unsigned columns=file_columns11(w);if(key==130)row=0;else if(key==131)row=total-1;else if(key==133)row=row>=columns?row-columns:0;else if(key==134)row=row+columns<total?row+columns:total-1;else if(key==128&&row)--row;else if(key==129&&row+1<total)++row;a->usb_selected10=files_drive_at12(row)+1;const storage_disk*d=storage_get(a->usb_selected10-1);if(d)a->usb_context10=d->context;unsigned visible=files_usb_rows12(w);if(row<a->offset)a->offset=row;if(row>=a->offset+visible)a->offset=row-visible+1;invalidate(w->bounds);}return 1;}
    if(key==10){if(a->usb_selected10)devices_action10(w,a,token,USB_DISK10+a->usb_selected10-1);return 1;}if(key==27){a->usb_selected10=0;invalidate(w->bounds);return 1;}if(key==1)return 1;return 0;}
 #endif
   if(a->usb_mode10!=2)return 0;unsigned total=0,slot=(unsigned)(a-apps),visible=usb_visible10(w);
+#ifdef ENGINE_M12
+ unsigned usb_columns12=file_columns11(w);
+#endif
   if(usb_listing10(a,0,1,&total)){file_notice11(token,"The USB folder is unavailable. Reconnect the drive or return to your folders.");return 1;}
   if(key==1){memset(selected11[slot],0,sizeof(selected11[slot]));for(unsigned row=0;row<total&&row<V6_ENTRIES;++row)selected11[slot][row/8]|=(uint8_t)(1u<<(row%8));a->usb_selected10=total?1:0;invalidate(w->bounds);return 1;}
+#ifdef ENGINE_M12
+  if(key==128||key==129||key==133||key==134||key==130||key==131||key==32){if(!total)return 1;unsigned row=a->usb_selected10?a->usb_selected10-1:0;
+   if(key==130)row=0;else if(key==131)row=total-1;else if(key==133)row=row>=usb_columns12?row-usb_columns12:0;else if(key==134)row=row+usb_columns12<total?row+usb_columns12:total-1;else if(key==128&&row)--row;else if(key==129&&row+1<total)++row;
+   select_row11(a,row,key==32?modifiers&1:modifiers&2,0);a->usb_selected10=row+1;if(row<a->offset)a->offset=row;if(row>=a->offset+visible)a->offset=row-visible+1;invalidate(w->bounds);return 1;}
+#else
   if(key==133||key==134||key==130||key==131||key==32){if(!total)return 1;unsigned row=a->usb_selected10?a->usb_selected10-1:0;if(key==130)row=0;else if(key==131)row=total-1;else if(key==133){if(row)--row;}else if(key==134&&row+1<total)++row;
    select_row11(a,row,key==32?modifiers&1:modifiers&2,0);a->usb_selected10=row+1;if(row<a->offset)a->offset=row;if(row>=a->offset+visible)a->offset=row-visible+1;invalidate(w->bounds);return 1;}
+#endif
   if(key==10&&a->usb_selected10){unsigned row=a->usb_selected10-1;a->offset=row;devices_action10(w,a,token,USB_ROW10);return 1;}
   if(key==27){memset(selected11[slot],0,sizeof(selected11[slot]));a->usb_selected10=0;invalidate(w->bounds);return 1;}
   return 0;

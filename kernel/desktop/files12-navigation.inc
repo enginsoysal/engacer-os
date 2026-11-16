@@ -8,7 +8,7 @@ static ui12_file_location files_current12(application*a){
 static void files_record12(application*a,const ui12_file_location*before){ui12_file_location after=files_current12(a);if(!ui12_location_equal(before,&after))files_selection_clear12(a);ui12_history_push(&navigation[a-apps],before,&after);}
 static unsigned files_native_ready12(application*a){const v6_entry*e=entry(a->path);return equal(a->path,"/")||(e&&e->kind==2);}
 static unsigned files_usb_ready12(application*a){const storage_disk*d=storage_get(a->usb_disk10);return d&&d->transport==STORAGE_USB&&d->readable&&d->context==a->usb_context10;}
-static void files_selection_clear12(application*a){unsigned slot=(unsigned)(a-apps);a->usb_selected10=0;scroll_records12[slot].owner=0;if(scroll_capture12.owner==desktop_token(&model,slot)){scroll_capture12.owner=0;i11_cancel(&interaction11);}memset(selected11[slot],0,sizeof(selected11[slot]));selection_anchor11[slot]=selection_focus11[slot]=0;interaction11.last_valid=0;control_active=0;file_windows11[slot].address_active=0;if(a->usb_mode10)file_windows11[slot].view=0;}
+static void files_selection_clear12(application*a){unsigned slot=(unsigned)(a-apps);a->usb_selected10=0;scroll_records12[slot].owner=0;if(scroll_capture12.owner==desktop_token(&model,slot)){scroll_capture12.owner=0;i11_cancel(&interaction11);}memset(selected11[slot],0,sizeof(selected11[slot]));selection_anchor11[slot]=selection_focus11[slot]=0;interaction11.last_valid=0;control_active=0;file_windows11[slot].address_active=0;if(a->usb_mode10)file_windows11[slot].view=usb_view12;}
 static void files_apply12(application*a,const ui12_file_location*l){
  a->usb_mode10=l->provider;a->offset=l->offset;a->notice[0]=0;files_selection_clear12(a);
  if(l->provider==UI12_NATIVE){copy(a->path,l->path,256);a->usb_source10[0]=0;file_visit11(a);if(!files_native_ready12(a))notice(a,"This folder is no longer available. Use Back or Home.");}
@@ -21,7 +21,7 @@ static void files_visit12(application*a,const char*path,unsigned remember){
 }
 static unsigned files_drive_count12(void){unsigned n=0;for(unsigned i=0;i<storage_count();++i){const storage_disk*d=storage_get(i);if(d->transport==STORAGE_USB&&d->readable)++n;}return n;}
 static unsigned files_drive_at12(unsigned row){for(unsigned i=0;i<storage_count();++i){const storage_disk*d=storage_get(i);if(d->transport==STORAGE_USB&&d->readable){if(!row)return i;--row;}}return STORAGE_MAX;}
-static unsigned files_usb_rows12(desktop_window*w){return ui12_usb_rows(w->bounds.height-(file_job_state11.active&&file_job_state11.owner==desktop_token(&model,w-model.windows)?64:0));}
+static unsigned files_usb_rows12(desktop_window*w){unsigned n=file_page_size11(w);return n>6?6:n;}
 static unsigned files_navigation12(desktop_window*w,application*a,uint64_t token,unsigned command){
  navigation72*h=&navigation[a-apps];
  if(command==NAV_BACK||command==NAV_FORWARD){unsigned forward=command==NAV_FORWARD;if(ui12_history_can(h,forward)){h->locations[h->position]=files_current12(a);h->position=forward?h->position+1:h->position-1;ui12_file_location next=h->locations[h->position];files_apply12(a,&next);}invalidate(w->bounds);return 1;}

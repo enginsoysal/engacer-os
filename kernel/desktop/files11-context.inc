@@ -14,8 +14,16 @@ static void files_context_open11(i11_target t,unsigned x,unsigned y){
   if(w->app==EDITOR&&t.kind!=I11_CAPTION&&t.action<31000){file_menu_add11("Copy document",COPY,1);file_menu_add11("Cut document",CUT,1);file_menu_add11("Paste text",PASTE,clipboard_kind11!=2&&clipboard_length!=0);}
   file_menu_add11("Minimize",31002,1);file_menu_add11("Close",31001,1);file_menu_fit11();return;
  }
- if(a&&a->usb_mode10==1){if(t.action>=USB_DISK10&&t.action<USB_DISK10+STORAGE_MAX)file_menu_add11("Open drive",t.action,1);file_menu_add11("Open Home",F11_PLACE,1);file_menu_add11("Settings",OPEN_SETTINGS+100,1);copy(file_menu_reason11,"Open a supported USB drive to browse its files.",128);file_menu_fit11();return;}
+ if(a&&a->usb_mode10==1){
+#ifdef ENGINE_M12
+ file_menu_add11(file_windows11[a-apps].view?"Use details view":"Use icon view",F11_VIEW,1);
+#endif
+if(t.action>=USB_DISK10&&t.action<USB_DISK10+STORAGE_MAX)file_menu_add11("Open drive",t.action,1);file_menu_add11("Open Home",F11_PLACE,1);file_menu_add11("Settings",OPEN_SETTINGS+100,1);copy(file_menu_reason11,"Open a supported USB drive to browse its files.",128);file_menu_fit11();return;}
  if(a&&a->usb_mode10==2){
+#ifdef ENGINE_M12
+ file_menu_add11(file_windows11[a-apps].view?"Use details view":"Use icon view",F11_VIEW,1);
+#endif
+
   if(t.action>=USB_ROW10&&t.action<USB_ROW10+6){unsigned total,row=t.action-USB_ROW10;if(!usb_listing10(a,a->offset,6,&total)&&a->offset+row<total){rem10_entry*e=&usb_rows10[row];file_join11(file_context_path11,a->usb_path10,e->name);file_menu_add11(e->kind==2?"Open folder":"Copy to Downloads",e->kind==2?t.action:USB_IMPORT10,1);file_menu_add11("Copy",F11_COPY,e->kind==1&&file_selected_count11(a)==1);file_menu_add11("Properties",F11_PROPERTIES,file_selected_count11(a)==1);}}
   file_menu_add11("Safe remove",USB_EJECT10,1);copy(file_menu_reason11,"USB supports one-file, create-only copies. Native items support more actions.",128);file_menu_fit11();return;
  }

@@ -128,4 +128,16 @@ static void files_breadcrumbs12(desktop_window*,application*,uint64_t,desktop_re
 static void files_hint_damage12(i11_target,i11_target);
 static unsigned files_usb_rows12(desktop_window*);
 static void files_empty12(int,int,int,int,unsigned,const char*,const char*);
+static unsigned usb_view12;
+static void files_usb_view_load12(void);
+static unsigned files_usb_view_save12(void);
+static unsigned files_column_action12(desktop_window*,application*,uint64_t,unsigned);
+static void files_order12(desktop_window*,application*,unsigned,unsigned);
+static void files_details_header12(desktop_window*,uint64_t,int,int,int,unsigned);
+static void files_row_state12(desktop_window*,uint64_t,desktop_rect,unsigned,unsigned);
+static void files_details_text12(desktop_rect,const char*,const char*,uint64_t,unsigned);
+static void files_icon_label12(desktop_rect,const char*);
+static const char*files_type_name12(const char*,unsigned);
+static void files_name_tip_draw12(void);
+static void files_name_tip_damage12(i11_target);
 #endif

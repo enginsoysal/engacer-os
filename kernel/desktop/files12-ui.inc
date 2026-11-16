@@ -23,7 +23,7 @@ static void files_frame12(desktop_window*w,application*a,uint64_t token){
  files_nav_button12(token,x,y,NAV_BACK,ICON12_BACK,ui12_history_can(h,0));files_nav_button12(token,x+52,y,NAV_FORWARD,ICON12_FORWARD,ui12_history_can(h,1));
  unsigned up=a->usb_mode10==2||(!a->usb_mode10&&!equal(a->path,"/"));files_nav_button12(token,x+104,y,FILE_UP,ICON12_UP,up);files_nav_button12(token,x+156,y,F12_REFRESH,ICON12_REFRESH,1);
  int tools=compact?0:184,address_width=width-32-208-tools;if(address_width<48)address_width=48;file_breadcrumbs11(w,a,token,(desktop_rect){x+208,y,address_width,36});
- if(!compact){file_button11(token,w->bounds.x+width-190,y,82,file_windows11[a-apps].view?"Details":"Icons",F11_VIEW,!a->usb_mode10,0);file_button11(token,w->bounds.x+width-100,y,84,"Sort",F11_SORT,!a->usb_mode10,0);}
+ if(!compact){file_button11(token,w->bounds.x+width-190,y,82,file_windows11[a-apps].view?"Details":"Icons",F11_VIEW,1,0);file_button11(token,w->bounds.x+width-100,y,84,"Sort",F11_SORT,!a->usb_mode10,0);}
  int by=y+44,next=0;if(!sidebar){button(token,x,by,80,"Places",F11_PLACES,0);next=88;}
  if(!a->usb_mode10){unsigned selected=file_selected_count11(a),writable=files_native_ready12(a)&&writable72(a->path)&&!file_in_bin11(a->path)&&!m6_volume()->readonly;
   if(file_is_bin11(a->path)){file_button11(token,x+next,by,112,"Restore",F11_RESTORE,selected!=0,1);button(token,x+next+120,by,174,"Empty Bin...",F11_EMPTY,0);if(width>=700)file_button11(token,x+next+302,by,78,"Copy",F11_COPY,selected!=0,0);}
@@ -43,13 +43,21 @@ static void files_empty12(int x,int y,int width,int height,unsigned icon,const c
  else{ui12_icon(icon,x+20,y+12,40,preferences.dark);ui73_fit(x+20,y+68,width-40,title,UI12_SECTION,ink());ui73_paragraph(x+20,y+104,width-40,3,detail,ink());}
 }
 static void files_usb_body12(desktop_window*w,application*a,uint64_t token){
- int x=w->bounds.x+16+(file_sidebar11(w)?170:0),top=file_body_top11(w),width=w->bounds.width-56-(file_sidebar11(w)?170:0),start=top+42;unsigned rows=files_usb_rows12(w),count=0,selected=0,status=0;
- text(x+10,top+8,"Name",UI12_BODY,ink());if(width>=400){text(x+width-230,top+8,"Type",UI12_BODY,ink());text(x+width-92,top+8,"Size",UI12_BODY,ink());}rectangle((desktop_rect){x,top+34,width,1},preferences.dark?0x35515a:0xd7e3e8);
- if(a->usb_mode10==1){const storage_disk*selected_drive=a->usb_selected10?storage_get(a->usb_selected10-1):0;if(selected_drive&&(!selected_drive->readable||selected_drive->transport!=STORAGE_USB||selected_drive->context!=a->usb_context10)){a->usb_selected10=0;selected_drive=0;}selected=selected_drive&&selected_drive->readable&&selected_drive->transport==STORAGE_USB;count=files_drive_count12();if(a->offset>=count)a->offset=0;
-  for(unsigned i=0;i<rows&&a->offset+i<count;++i){unsigned disk=files_drive_at12(a->offset+i);const storage_disk*d=storage_get(disk);desktop_rect r={x,start+(int)i*44,width,36};unsigned chosen=a->usb_selected10==disk+1;if(chosen){ui73_round(r.x,r.y,r.width,r.height,6,file_tint11());file_focus_rect11(r);}file_control11(token,r,USB_DISK10+disk);ui12_icon(ICON12_USB,x+10,r.y+5,24,preferences.dark);char label[64],n[24];decimal(n,disk+1);copy(label,"USB drive ",64);append(label,n,64);ui73_fit(x+44,r.y+8,width-(width>=400?282:46),label,UI12_BODY,ink());if(width>=400){ui73_fit(x+width-230,r.y+8,130,"USB drive",UI12_BODY,ink());char size[48];file_size_text11(size,d->sectors*d->sector_bytes);ui73_fit(x+width-92,r.y+8,90,size,UI12_BODY,ink());}}
-  if(!count)files_empty12(x,start,width,file_body_bottom11(w)-start,ICON12_USB,"No USB drive is connected","Connect a supported USB drive and choose Refresh. Back, Home and the other places remain available.");}
- else{for(unsigned row=0;row<V6_ENTRIES;++row)selected+=selected_row11(a,row);status=usb_listing10(a,a->offset,rows,&count);if(status){usb_notice10(a,status);files_empty12(x,start,width,file_body_bottom11(w)-start,ICON12_USB,status==B_ABSENT?"This drive is disconnected":"This location is unavailable","Back and Home still work. Choose USB drives to select a connected drive; Refresh never substitutes a different device.");count=0;}
-  else{for(unsigned i=0;i<rows&&a->offset+i<count;++i){rem10_entry*e=&usb_rows10[i];desktop_rect r={x,start+(int)i*44,width,36};unsigned chosen=selected_row11(a,a->offset+i);if(chosen){ui73_round(r.x,r.y,r.width,r.height,6,file_tint11());file_focus_rect11(r);}file_control11(token,r,USB_ROW10+i);ui12_icon(shell_path_icon12(e->name,e->kind),x+10,r.y+5,24,preferences.dark);ui73_fit(x+44,r.y+8,width-(width>=400?282:46),e->name,UI12_BODY,ink());if(width>=400){ui73_fit(x+width-230,r.y+8,130,e->kind==2?"Folder":"USB file",UI12_BODY,ink());char size[48];if(e->kind==2)copy(size,"-",48);else file_size_text11(size,e->size);ui73_fit(x+width-92,r.y+8,90,size,UI12_BODY,ink());}}
-   if(!count)files_empty12(x,start,width,file_body_bottom11(w)-start,ICON12_USB,"This USB folder is empty","The navigation frame stays here. Use Back, Up or Home to continue browsing.");}}
- files_footer12(w,a,token,count,selected,a->usb_mode10==1?"USB drive selection never formats or erases the device.":"FAT32 browsing and one-file create-only copies. Safe remove before unplugging.");
+ int x=w->bounds.x+16+(file_sidebar11(w)?170:0),top=file_body_top11(w),width=w->bounds.width-56-(file_sidebar11(w)?170:0);
+ unsigned icons=file_windows11[a-apps].view,columns=file_columns11(w),rows=files_usb_rows12(w),count=0,selected=0,status=0;int start=top+(icons?6:42);
+ if(!icons)files_details_header12(w,token,x,top,width,0);
+ if(a->usb_mode10==1){const storage_disk*d=a->usb_selected10?storage_get(a->usb_selected10-1):0;if(d&&(!d->readable||d->transport!=STORAGE_USB||d->context!=a->usb_context10)){a->usb_selected10=0;d=0;}selected=d&&d->readable&&d->transport==STORAGE_USB;count=files_drive_count12();if(a->offset>=count)a->offset=0;}
+ else{for(unsigned row=0;row<V6_ENTRIES;++row)selected+=selected_row11(a,row);status=usb_listing10(a,a->offset,rows,&count);if(!status&&count&&a->offset>=count){a->offset=0;status=usb_listing10(a,0,rows,&count);}}
+ if(status){usb_notice10(a,status);files_empty12(x,start,width,file_body_bottom11(w)-start,ICON12_USB,status==B_ABSENT?"This drive is disconnected":"This location is unavailable","Choose USB drives to select a connected drive.");count=0;}
+ else if(!count)files_empty12(x,start,width,file_body_bottom11(w)-start,ICON12_USB,a->usb_mode10==1?"No USB drive is connected":"This USB folder is empty",a->usb_mode10==1?"Connect a USB drive, then choose Refresh.":"Use Back, Up or Home to continue browsing.");
+ else for(unsigned i=0;i<rows&&a->offset+i<count;++i){
+  desktop_rect r=icons?(desktop_rect){x+(int)(i%columns)*(width/(int)columns),start+(int)(i/columns)*112,width/(int)columns-8,108}:(desktop_rect){x,start+(int)i*44,width,36};
+  unsigned disk=0,folder=0,command=USB_ROW10+i,chosen=a->usb_mode10==2?selected_row11(a,a->offset+i):0,icon;uint64_t bytes=0;char label[256];const char*type;
+  if(a->usb_mode10==1){disk=files_drive_at12(a->offset+i);const storage_disk*d=storage_get(disk);command=USB_DISK10+disk;chosen=a->usb_selected10==disk+1;char number[24];decimal(number,disk+1);copy(label,"USB drive ",256);append(label,number,256);bytes=d->sectors*d->sector_bytes;type="USB drive";icon=ICON12_USB;}
+  else{rem10_entry*e=&usb_rows10[i];copy(label,e->name,256);folder=e->kind==2;bytes=e->size;type=files_type_name12(label,e->kind);icon=shell_path_icon12(label,e->kind);}
+  files_row_state12(w,token,r,command,chosen);file_control11(token,r,command);
+  if(icons){ui12_icon(icon,r.x+(r.width-48)/2,r.y+7,48,preferences.dark);files_icon_label12((desktop_rect){r.x+6,r.y+62,r.width-12,42},label);}
+  else{ui12_icon(icon,r.x+10,r.y+5,24,preferences.dark);files_details_text12(r,label,type,bytes,folder);}
+ }
+ files_footer12(w,a,token,count,selected,a->usb_mode10==1?"Opening a drive never formats or erases it.":"USB order is unchanged. Safe remove before unplugging.");
 }

@@ -5,6 +5,9 @@ static void file_settings_load11(void){unsigned bytes=0;memset(&file_views_state
  if(!v6_verify(m6_volume(),"/System/Settings/files11.bin")&&!v6_read(m6_volume(),"/System/Settings/files11.bin",0,&file_views_state11,sizeof(file_views_state11),&bytes)&&bytes==sizeof(file_views_state11)&&file_views_state11.magic==UINT64_C(0x3153574549563146)&&file_views_state11.version==1&&file_views_state11.count<=32){for(unsigned i=0;i<file_views_state11.count;++i){file_view_record11*r=&file_views_state11.records[i];if(!file_nul11(r->path)||r->path[0]!='/'||r->view>1||r->sort>2||r->descending>1){file_views_state11.count=0;break;}}}else file_views_state11.count=0;
  bytes=0;if(v6_verify(m6_volume(),"/System/Settings/associations11.bin")||v6_read(m6_volume(),"/System/Settings/associations11.bin",0,&file_associations11,sizeof(file_associations11),&bytes)||bytes!=sizeof(file_associations11)||file_associations11.magic!=UINT64_C(0x31434f5353413146)||file_associations11.version!=1||file_associations11.count>32)file_associations11.count=0;
  for(unsigned i=0;i<file_associations11.count;++i){unsigned terminated=0;for(unsigned n=0;n<12;++n)if(!file_associations11.records[i].extension[n]){terminated=1;break;}if(!terminated||!file_handler11(file_associations11.records[i].app)){file_associations11.count=0;break;}}
+ #ifdef ENGINE_M12
+ files_usb_view_load12();
+#endif
  files_observed_generation11=m6_volume()->generation;
 }
 static unsigned file_associate11(const char*path,unsigned app){char extension[12];file_extension11(extension,path);if(!extension[0]||!file_handler11(app)||!app7_available(app))return V6_INVALID;unsigned index=32;for(unsigned i=0;i<file_associations11.count;++i)if(equal(extension,file_associations11.records[i].extension)){index=i;break;}if(index==32)index=file_associations11.count<32?file_associations11.count++:file_associations11.next++%32;copy(file_associations11.records[index].extension,extension,12);file_associations11.records[index].app=app;file_associations11.magic=UINT64_C(0x31434f5353413146);file_associations11.version=1;return v6_put(m6_volume(),"/System/Settings/associations11.bin",sizeof(file_associations11),memory_source,&file_associations11);}
@@ -97,9 +100,21 @@ if(a&&!a->usb_mode10){file_window11*f=&file_windows11[a-apps];f->address_active=
 #endif
  if(command>=F11_CRUMB&&command<=F11_CRUMB+255){if(a&&!a->usb_mode10){unsigned bytes=command-F11_CRUMB;if(bytes&&bytes<=length(a->path)){char path[256];memcpy(path,a->path,bytes);path[bytes]=0;visit72(a,path,1);invalidate(w->bounds);}}return 1;}
  if(command>=F11_PLACE&&command<F11_PLACE+8){unsigned place=command-F11_PLACE;if(a){if(place<6)files_action72(w,a,owner_token,NAV_HOME+place);else if(place==6)devices_action10(w,a,owner_token,USB_OPEN10);else file_action11(owner_token,F11_BIN);}else if(place==7)file_action11(0,F11_BIN);else {uint64_t opened=launch(FILES,0);desktop_window*created=file_owner_window11(opened);if(created){application*view=&apps[created-model.windows];if(place<6)files_action72(created,view,opened,NAV_HOME+place);else devices_action10(created,view,opened,USB_OPEN10);}}whole();return 1;}
+#ifdef ENGINE_M12
+ if(command==F11_VIEW&&a){file_windows11[a-apps].view^=1;if(a->usb_mode10){usb_view12=file_windows11[a-apps].view;status=files_usb_view_save12();}else status=file_save_view11(a);if(status)file_notice11(owner_token,"View changed for this window; saving the preference failed.");else a->notice[0]=0;control_active=0;interaction11.last_valid=0;invalidate(w->bounds);return 1;}
+#else
  if(command==F11_VIEW&&a&&!a->usb_mode10){file_windows11[a-apps].view^=1;status=file_save_view11(a);if(status)file_notice11(owner_token,"View changed for this window; saving the preference failed.");invalidate(w->bounds);return 1;}
+#endif
+#ifdef ENGINE_M12
+ if(command>=F11_SORT_NAME&&command<=F11_SORT_TYPE&&a&&!a->usb_mode10){files_order12(w,a,command-F11_SORT_NAME,0);return 1;}
+#else
  if(command>=F11_SORT_NAME&&command<=F11_SORT_TYPE&&a&&!a->usb_mode10){file_windows11[a-apps].sort=command-F11_SORT_NAME;a->offset=0;status=file_save_view11(a);if(status)file_notice11(owner_token,"Sort changed for this window; saving failed.");interaction11.last_valid=0;invalidate(w->bounds);return 1;}
+#endif
+#ifdef ENGINE_M12
+ if(command==F11_DIRECTION&&a&&!a->usb_mode10){files_order12(w,a,file_windows11[a-apps].sort,1);return 1;}
+#else
  if(command==F11_DIRECTION&&a&&!a->usb_mode10){file_windows11[a-apps].descending^=1;a->offset=0;status=file_save_view11(a);if(status)file_notice11(owner_token,"Sort direction changed for this window; saving failed.");interaction11.last_valid=0;invalidate(w->bounds);return 1;}
+#endif
  if(command==F11_DESKTOP_PREV||command==F11_DESKTOP_NEXT){if(command==F11_DESKTOP_PREV){if(desktop_page11)--desktop_page11;}else ++desktop_page11;whole();return 1;}
  return 0;
 }

@@ -27,6 +27,7 @@ static void component_hover12(i11_target next,unsigned buttons){
  if(dragging||(interaction11.captured&&interaction11.down.kind==I11_CAPTION))next=(i11_target){0,0,I11_BACKGROUND};
  if(i11_same(next,hover12)&&buttons==previous_buttons)return;
  window_hint_damage12(hover12,next);files_hint_damage12(hover12,next);
+ files_name_tip_damage12(next);
  /* The full desktop name lives above the grid, outside the hovered tile. */
  if((!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+V6_ENTRIES)||(!next.window&&next.action>=F11_DESKTOP_ITEM&&next.action<F11_DESKTOP_ITEM+V6_ENTRIES))invalidate((desktop_rect){30,82,(int)model.width-60,28});
  for(unsigned i=0;i<control_count;++i){control*c=&controls[i];

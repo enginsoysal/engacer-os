@@ -7,14 +7,20 @@ static void file_bin_path11(char*out,unsigned meta){copy(out,meta?"/System/Recyc
 static unsigned file_is_bin11(const char*path){char bin[256];file_bin_path11(bin,0);return equal(path,bin);}
 static unsigned file_in_bin11(const char*path){char bin[256];file_bin_path11(bin,0);return file_within11(path,bin);}
 static unsigned file_direct_child11(const char*path,const char*folder){unsigned n=equal(folder,"/")?0:length(folder);if(memcmp(path,folder,n)||path[n]!='/')return 0;for(unsigned i=n+1;path[i];++i)if(path[i]=='/')return 0;return 1;}
+#ifndef ENGINE_M12
 static const char *file_kind11(const char*path){const char*name=file_basename11(path),*dot=0;for(unsigned i=0;name[i];++i)if(name[i]=='.')dot=name+i+1;return dot?dot:"";}
+#endif
 static int file_compare11(unsigned left,unsigned right,unsigned sort,unsigned descending){
  const v6_entry*a=&m6_volume()->entries[left],*b=&m6_volume()->entries[right];
+#ifdef ENGINE_M12
+ return ui12_file_order(file_label11(a),a->kind,a->size,left,file_label11(b),b->kind,b->size,right,sort,descending);
+#else
  if(a->kind!=b->kind)return a->kind==2?-1:1;
  int result=0;if(sort==1&&a->size!=b->size)result=a->size<b->size?-1:1;
  else if(sort==2)result=file_compare_text11(file_kind11(a->path),file_kind11(b->path));
  if(!result)result=file_compare_text11(file_label11(a),file_label11(b));
  if(!result)result=left<right?-1:left>right?1:0;return descending?-result:result;
+#endif
 }
 static void file_heap11(file_listing11*l,unsigned start,unsigned count){
  for(;;){unsigned child=start*2+1;if(child>=count)return;

@@ -201,3 +201,8 @@ kernel/desktop/devices10.inc -text whitespace=cr-at-eol
 kernel/desktop/files11-ui.inc -text whitespace=cr-at-eol
 kernel/desktop/files11-actions.inc -text whitespace=cr-at-eol
 evidence/M12/5/** -text -whitespace
+
+# M12.6 shared Files presentation and exact evidence.
+include/engine/ui/fileview12.h -text whitespace=cr-at-eol
+kernel/desktop/files12-presentation.inc -text whitespace=cr-at-eol
+evidence/M12/6/** -text -whitespace

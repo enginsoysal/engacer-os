@@ -6,14 +6,27 @@ static unsigned file_sidebar11(const desktop_window*w){
  return w->bounds.width>=700&&w->bounds.height>=540;
 #endif
 }
-static int file_body_top11(const desktop_window*w){return w->bounds.y+(w->bounds.height>=360?142:98);}
+static int file_body_top11(const desktop_window*w){
+#ifdef ENGINE_M12
+ return w->bounds.y+142;
+#else
+ return w->bounds.y+(w->bounds.height>=360?142:98);
+#endif
+}
 static int file_body_bottom11(const desktop_window*w){uint64_t token=desktop_token(&model,(unsigned)(w-model.windows));return w->bounds.y+w->bounds.height-82-(file_job_state11.active&&file_job_state11.owner==token?64:0);}
 static unsigned file_columns11(const desktop_window*w){unsigned slot=(unsigned)(w-model.windows);if(!file_windows11[slot].view)return 1;int width=w->bounds.width-32-(file_sidebar11(w)?170:0);
 #ifdef ENGINE_M12
  width-=24;
 #endif
+ #ifdef ENGINE_M12
+ return ui12_file_columns_count(width,1);
+#endif
  unsigned columns=width>150?(unsigned)width/150:1;return columns?columns:1;}
-static unsigned file_rows11(const desktop_window*w){int height=file_body_bottom11(w)-file_body_top11(w);unsigned icons=file_windows11[w-model.windows].view;int rows=icons?(height-8)/100:(height-40)/44;if(rows<1)rows=1;if(rows>128)rows=128;return(unsigned)rows;}
+static unsigned file_rows11(const desktop_window*w){int height=file_body_bottom11(w)-file_body_top11(w);unsigned icons=file_windows11[w-model.windows].view;
+#ifdef ENGINE_M12
+ return ui12_file_rows_count(height,icons);
+#endif
+ int rows=icons?(height-8)/100:(height-40)/44;if(rows<1)rows=1;if(rows>128)rows=128;return(unsigned)rows;}
 static unsigned file_page_size11(const desktop_window*w){unsigned count=file_rows11(w)*file_columns11(w);return count>128?128:count;}
 static uint32_t file_tint11(void){uint32_t base=paper(),accent=preferences.accent,result=0;for(unsigned shift=0;shift<24;shift+=8)result|=((3*((base>>shift)&255)+((accent>>shift)&255))/4)<<shift;return result;}
 static void file_control11(uint64_t token,desktop_rect rect,unsigned command){if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){rect,token,command};}
@@ -30,7 +43,11 @@ static void file_button11(uint64_t token,int x,int y,int width,const char*label,
 #endif
 }
 static void file_size_text11(char*out,uint64_t size){const char*units[]={" B"," KiB"," MiB"," GiB"};unsigned unit=0;uint64_t divisor=1;while(unit<3&&size/divisor>=1024){divisor*=1024;++unit;}char number[24];decimal(number,size/divisor);copy(out,number,48);if(unit){append(out,".",48);decimal(number,(size%divisor)*10/divisor);append(out,number,48);}append(out,units[unit],48);}
+#ifdef ENGINE_M12
+ static const char *file_type_text11(const v6_entry*e){return files_type_name12(file_label11(e),e->kind);}
+#else
 static const char *file_type_text11(const v6_entry*e){if(e->kind==2)return "Folder";char extension[12];file_extension11(extension,file_label11(e));if(equal(extension,"link"))return "Shortcut";if(equal(extension,"txt")||equal(extension,"md")||equal(extension,"log"))return "Text document";if(equal(extension,"bmp"))return "BMP image";if(equal(extension,"wav"))return "WAV audio";if(equal(extension,"zip"))return "ZIP archive";if(equal(extension,"msi"))return "MSI package";if(equal(extension,"exe"))return "EXE file";return "File";}
+#endif
 static void file_icon11(int x,int y,unsigned size,const v6_entry*e){
 #ifdef ENGINE_M12
  shell_file_icon12(x,y,size,e);
@@ -103,14 +120,43 @@ if(a->usb_mode10){draw_usb10(w,a,token);return;}int x=w->bounds.x+16,y=w->bounds
  if(!files_native_ready12(a)){a->offset=0;ui73_fit(list+12,top+12,list_width-24,"This folder is no longer available",UI12_SECTION,ink());ui73_paragraph(list+12,top+56,list_width-24,3,"Use Back, Home or another place. Refresh checks the same location without changing your files.",ink());files_footer12(w,a,token,0,0,"The original location was kept for navigation.");return;}
 #endif
  unsigned count=children72(a),page=file_page_size11(w),columns=file_columns11(w),icons=file_windows11[a-apps].view;if(a->offset>=count)a->offset=count?count-1:0;if(icons)a->offset=a->offset/columns*columns;
- int start=top+6;if(!icons){text(list+10,top+8,"Name",1,ink());if(list_width>=400){text(list+list_width-230,top+8,"Type",1,ink());text(list+list_width-92,top+8,"Size",1,ink());}rectangle((desktop_rect){list,top+34,list_width,1},preferences.dark?0x35515a:0xd7e3e8);start=top+42;}
- for(unsigned i=0;i<page&&a->offset+i<count;++i){unsigned row=a->offset+i;const v6_entry*e=child_at(a,row);if(!e)break;desktop_rect rect=icons?(desktop_rect){list+(int)(i%columns)*(list_width/(int)columns),start+(int)(i/columns)*100,list_width/(int)columns-8,92}:(desktop_rect){list,start+(int)i*44,list_width,36};unsigned chosen=selected_row11(a,row);if(chosen)ui73_round(rect.x,rect.y,rect.width,rect.height,6,file_tint11());if(chosen||(model.focused==(unsigned)(w-model.windows)&&!control_active&&selection_focus11[a-apps]==row))file_focus_rect11(rect);file_control11(token,rect,FILE_ROW+row);
-  if(icons){file_icon11(rect.x+(rect.width-42)/2,rect.y+7,40,e);ui73_paragraph(rect.x+6,rect.y+54,rect.width-12,2,file_label11(e),ink());}
-  else{file_icon11(rect.x+10,rect.y+5,24,e);int name_width=list_width-(list_width>=400?282:46);ui73_fit(rect.x+44,rect.y+8,name_width,file_label11(e),1,ink());if(list_width>=400){ui73_fit(rect.x+list_width-230,rect.y+8,130,file_type_text11(e),1,ink());char size[48];if(e->kind==2)copy(size,"-",48);else file_size_text11(size,e->size);ui73_fit(rect.x+list_width-92,rect.y+8,90,size,1,ink());}}
+ #ifdef ENGINE_M12
+ const int tile_height=112,tile_hit=108,tile_icon=48,tile_label=62;
+#else
+ const int tile_height=100,tile_hit=92,tile_icon=40,tile_label=54;
+#endif
+ int start=top+6;if(!icons){
+#ifdef ENGINE_M12
+ files_details_header12(w,token,list,top,list_width,1);
+#else
+ text(list+10,top+8,"Name",1,ink());if(list_width>=400){text(list+list_width-230,top+8,"Type",1,ink());text(list+list_width-92,top+8,"Size",1,ink());}rectangle((desktop_rect){list,top+34,list_width,1},preferences.dark?0x35515a:0xd7e3e8);
+#endif
+ start=top+42;}
+ for(unsigned i=0;i<page&&a->offset+i<count;++i){unsigned row=a->offset+i;const v6_entry*e=child_at(a,row);if(!e)break;desktop_rect rect=icons?(desktop_rect){list+(int)(i%columns)*(list_width/(int)columns),start+(int)(i/columns)*tile_height,list_width/(int)columns-8,tile_hit}:(desktop_rect){list,start+(int)i*44,list_width,36};unsigned chosen=selected_row11(a,row);
+#ifdef ENGINE_M12
+ files_row_state12(w,token,rect,FILE_ROW+row,chosen);
+#else
+ if(chosen)ui73_round(rect.x,rect.y,rect.width,rect.height,6,file_tint11());if(chosen||(model.focused==(unsigned)(w-model.windows)&&!control_active&&selection_focus11[a-apps]==row))file_focus_rect11(rect);
+#endif
+ file_control11(token,rect,FILE_ROW+row);
+  if(icons){file_icon11(rect.x+(rect.width-tile_icon)/2,rect.y+7,tile_icon,e);
+#ifdef ENGINE_M12
+ files_icon_label12((desktop_rect){rect.x+6,rect.y+tile_label,rect.width-12,42},file_label11(e));
+#else
+ ui73_paragraph(rect.x+6,rect.y+tile_label,rect.width-12,2,file_label11(e),ink());
+#endif
+}
+  else{file_icon11(rect.x+10,rect.y+5,24,e);
+#ifdef ENGINE_M12
+ files_details_text12(rect,file_label11(e),file_type_text11(e),e->size,e->kind==2);
+#else
+ int name_width=list_width-(list_width>=400?282:46);ui73_fit(rect.x+44,rect.y+8,name_width,file_label11(e),1,ink());if(list_width>=400){ui73_fit(rect.x+list_width-230,rect.y+8,130,file_type_text11(e),1,ink());char size[48];if(e->kind==2)copy(size,"-",48);else file_size_text11(size,e->size);ui73_fit(rect.x+list_width-92,rect.y+8,90,size,1,ink());}
+#endif
+}
  }
  if(!count){
 #ifdef ENGINE_M12
- files_empty12(list,start,list_width,bottom-start,bin?ICON12_TRASH:ICON12_FOLDER,bin?"The Recycle Bin is empty.":"This folder is empty.",bin?"Recycled items will appear here with Restore actions.":writable?"Create a folder, create a text file, or Paste items here.":"This location is protected.");
+ files_empty12(list,start,list_width,bottom-start,bin?ICON12_TRASH:ICON12_FOLDER,bin?"The Recycle Bin is empty.":"This folder is empty.",bin?"Recycled items appear here.":writable?"Use New folder or Paste.":"Choose Home for your files.");
 #else
 if(bottom-start>=145){folder_icon72(list+22,start+18,50,0xf0ce87);ui73_fit(list+22,start+84,list_width-44,bin?"The Recycle Bin is empty.":"This folder is empty.",2,ink());ui73_fit(list+22,start+120,list_width-44,bin?"Recycled items will appear here with Restore actions.":writable?"Create a folder, create a text file, or Paste items here.":"This location is protected.",1,ink());}else ui73_fit(list+12,start+12,list_width-24,bin?"The Recycle Bin is empty.":"This folder is empty.",1,ink());
 #endif
