@@ -2,10 +2,11 @@
 
 This guide describes the native M11.2 development stage, qualified by
 [23 guest tasks and storage-fault checks](../../evidence/M11/2/acceptance-results.json).
-These actions are included in the [M11.4 stage delivery](install-m114.md), together
+These actions are included in the [M11.5 stage delivery](install-m115.md), together
 with [Start/taskbar](start-m11.md) and [windows/appearance](windows-m11.md).
-Older M10 ISOs do not contain them. Expanded setup and full final regression
-remain M11.5 and M11.6; each stage has its own exact qualification.
+Older M10 ISOs do not contain them. Expanded setup is qualified separately in
+M11.5; full new-artifact regression remains M11.6. Earlier Files acceptance does
+not automatically qualify every operation on later media.
 
 ## Find your files
 

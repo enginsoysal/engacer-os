@@ -1,8 +1,11 @@
 # Windows and appearance in M11
 
-M11.4 is qualified within its named window/appearance VM scope.
-[Download and install](install-m114.md) · [release limits](../releases/m114-v0.11.4.md).
-Expanded setup and full final regression follow as M11.5 and M11.6.
+The window/appearance implementation was first qualified within M11.4's named
+VM scope. [Current download and installation](install-m115.md) ·
+[current release limits](../releases/m115-v0.11.5.md) ·
+[original window acceptance](../../evidence/M11/4/acceptance-results.json).
+Expanded setup is qualified separately in M11.5; full new-artifact regression
+remains M11.6.
 
 ## Arrange your workspace
 

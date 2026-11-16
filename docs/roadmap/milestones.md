@@ -6,11 +6,12 @@
 selection and double-click, real Files operations, Start/categories/taskbar,
 window behavior and visuals, guided setup, then exact final media qualification.
 Each stage must pass its checks, update English documentation, push to GitHub
-and verify the public website before the next begins. M11.0 through M11.4 are
+and verify the public website before the next begins. M11.0 through M11.5 are
 complete within their stage criteria: [input](../../evidence/M11/1/acceptance-results.json),
 [Files](../../evidence/M11/2/acceptance-results.json),
 [Start/taskbar](../../evidence/M11/3/acceptance-results.json) and
-[windows/appearance](../../evidence/M11/4/acceptance-results.json).
+[windows/appearance](../../evidence/M11/4/acceptance-results.json), plus
+[guided setup and installed startup](../../evidence/M11/5/acceptance-results.json).
 The owner's M11.4 clarification requires a visible release, exact test media,
 English manuals and fresh complete site/download verification at each remaining
 stage. [M11.5 delivery](../releases/m115-v0.11.5.md) now completes expanded setup

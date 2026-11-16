@@ -1,5 +1,20 @@
 # Changelog
 
+## M11.5 v0.11.5 — 2026-11-16
+
+Eight-step offline setup adds actual keyboard/layout testing, display size,
+individual optional apps and presets, local account editing, saved appearance,
+full Review and an optional first-start guide. Matching UEFI media provides a
+visible Escape recovery choice. Real partition/format/consent/error/retry/repair,
+ordinary/150%/actual-4K startup and the exact enabled-device VMware SATA/UEFI
+starter pass 26 native task groups, including retained-ISO reset and two disk-only
+boots. Minimal setup reinstalls/runs/removes Calculator offline without breaking
+Files or retaining managed pages. Fixed desktop state adds sixteen bytes.
+562 exact inputs and fourteen artifacts bind M11-STAGE5-VM-v1; full M11.6 regression
+remains pending. English manuals, visible release and public site/download checks
+accompany the stage. [Release](m115-v0.11.5.md),
+[acceptance](../../evidence/M11/5/acceptance-results.json).
+
 ## M11.4 v0.11.4 — 2026-11-11
 
 Native maximize/restore, all-edge/corner resizing, snap preview/cancel, window
