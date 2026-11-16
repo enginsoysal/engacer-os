@@ -118,7 +118,7 @@ def main():
                 start_app(g,p,'Archive Manager');p.desktop(54000,True);assert picker(g).purpose==4
                 p.desktop(54017,True);choose(g,p,'ArchiveSample.zip');c.key(g,'ret');assert not c.flag(g,'file_dialog_state11') and f.app(g)['path'].endswith('/ArchiveSample.zip')
                 p.desktop(54002,True);assert picker(g).purpose==5;p.desktop(54016,True);c.shot(g,'choose-extraction-folder');p.desktop(54011,True)
-                assert not c.flag(g,'file_dialog_state11') and '/Users/Owner/Documents/Extracted' in f.entries(g)
+                assert not c.flag(g,'file_dialog_state11');report['extracted_folder']=next(path for path,e in f.entries(g).items() if e['kind']==2 and path.startswith('/Users/Owner/Documents/Extracted') and '/' not in path[len('/Users/Owner/Documents/'):])
                 c.shot(g,'chosen-extraction-result');close_focused(g,p)
                 report['checks'].append('Archive Manager opens a real ZIP and extracts into a newly created subfolder at the destination chosen through the shared folder dialog')
                 p.desktop(94,True);p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret')

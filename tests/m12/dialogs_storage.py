@@ -17,7 +17,7 @@ def main():
     with zipfile.ZipFile(ROOT/'distros/packages/apps-guide/ArchiveSample.zip') as archive:
         for item in archive.infolist():
             if item.is_dir():continue
-            assert read('Documents/Extracted/'+item.filename)==archive.read(item);extracted.append(item.filename)
+            assert ui.s.s.document(disk,native['extracted_folder']+'/'+item.filename)==archive.read(item);extracted.append(item.filename)
     assert extracted
     record=read('AppData/file-dialogs12.bin');assert len(record)==792
     magic,version,reserved=struct.unpack_from('<QII',record);crc,padding=struct.unpack_from('<II',record,784)
