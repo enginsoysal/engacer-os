@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "stage": "M11.5",
+  "checked_at": "2026-11-16T09:17:37.011229+00:00",
+  "runtime_source_commit": "527827b60e459a437d2bbe5ea321d64b808e053e",
+  "publication_source_commit": "68e0fcef1a33bfaefe6f923347f1280ece66edf7",
+  "build_id": "a3b7513cdcf772f5b3a2b4845b84509e",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m115-v0.11.5",
+  "release_asset_count": 20,
+  "release_asset_digests_verified": true,
+  "official_vmware_zip_downloaded_and_verified": true,
+  "native_task_groups": 26,
+  "exact_compiled_source_inputs": 562,
+  "github_actions": [
+    {
+      "conclusion": "success",
+      "databaseId": 43836559987,
+      "event": "push",
+      "headSha": "68e0fcef1a33bfaefe6f923347f1280ece66edf7",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 43836344673,
+      "event": "push",
+      "headSha": "d4cd6f8fcbea9f65e4dd575e71eb4709ac104eca",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 43836082138,
+      "event": "release",
+      "headSha": "527827b60e459a437d2bbe5ea321d64b808e053e",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 43835633252,
+      "event": "push",
+      "headSha": "527827b60e459a437d2bbe5ea321d64b808e053e",
+      "status": "completed"
+    }
+  ],
+  "website": "https://engaceros.brixcanvas.com",
+  "native_editor_save_and_fresh_public_readback": true,
+  "homepage_stage": "M11.5",
+  "article_count": 173,
+  "public_pages_checked": 279,
+  "unique_links_observed": 1800,
+  "stale_links": [],
+  "branding_errors": [],
+  "page_errors": [],
+  "resolved_transient_connection_errors": {
+    "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-start-m11",
+    "status": 200,
+    "resolved": true,
+    "checked_at": "2026-11-16T09:16:50.890869+00:00"
+  },
+  "desktop_mobile_and_image_checks": {
+    "passed": true,
+    "website": "https://engaceros.brixcanvas.com",
+    "publication_source_commit": "68e0fcef1a33bfaefe6f923347f1280ece66edf7",
+    "native_editor_save_observed": "Saved check mark",
+    "homepage_version": "M11.5",
+    "native_guest_image": {
+      "ready": true,
+      "width": 1024,
+      "height": 768,
+      "path": "evidence/M11/5/vmware/first-start-guide.png"
+    },
+    "desktop": {
+      "width": 1280,
+      "documentWidth": 1270
+    },
+    "mobile": {
+      "width": 390,
+      "documentWidth": 380,
+      "menuOpenedAndLinksVerified": true,
+      "viewportOverrideReset": true
+    },
+    "articles": [
+      {
+        "slug": "documentation",
+        "title": "Documentation \u2014 all guides \u2014 Engacer OS",
+        "sourceFresh": true
+      },
+      {
+        "slug": "docs-handbook-install-m115",
+        "title": "Install Engacer OS M11.5 in VMware \u2014 Engacer OS",
+        "sourceFresh": true
+      },
+      {
+        "slug": "downloads",
+        "title": "Downloads and SHA256 verification \u2014 Engacer OS",
+        "sourceFresh": true
+      }
+    ],
+    "download_hashes_match_tested_release": true
+  },
+  "public_screenshot_sha256": {
+    "homepage-public.png": "c9468b60ee61fc254023cb020efef881b291eafc79a608a219d1537c6ad8a60e",
+    "homepage-mobile-public.png": "a80ac73730b390a546ee0b4413d0f50c358173926ab8da9284deadc86d51d796",
+    "documentation-public.png": "eac5369f540435e361676bce84d09f305a5e1da5ca4b7c7e2059cc84f37a88d1",
+    "install-guide-public.png": "2e807ccaa768cf600c0a33219b7cf53536923836901d471e177d968c95996348",
+    "downloads-public.png": "09f39713e56b5742368a6447017ce685d95ca21fe4620cab9f737b5b0f907f2a"
+  },
+  "remaining_scope": "M11.6 full controller/device/original-app regression remains pending; no universal physical/ARM/vendor GPU 3D/general Windows claim",
+  "local_cleanup": "Owner-authorized temporary project build removal follows verified publication; canonical source, evidence and accepted dist media stay"
+}

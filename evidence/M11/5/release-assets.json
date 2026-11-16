@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m115-v0.11.5",
+  "tag": "m115-v0.11.5",
+  "source_commit": "527827b60e459a437d2bbe5ea321d64b808e053e",
+  "published_at": "2026-11-16T09:01:34Z",
+  "official_assets": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "size": 1567328,
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/7z2606-src.tar.xz"
+    },
+    {
+      "name": "COPYING.LIB",
+      "size": 26430,
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/COPYING.LIB"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-archives.elf",
+      "size": 17068,
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-archives.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-browser.elf",
+      "size": 12639,
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-browser.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-calculator.elf",
+      "size": 12976,
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-calculator.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-calendar.elf",
+      "size": 8232,
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-calendar.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-editor.elf",
+      "size": 8232,
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-editor.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-help.elf",
+      "size": 8232,
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-help.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-installed-kernel.elf",
+      "size": 1278332,
+      "sha256": "0fabac1ffbfa566d79c8775b6458a2624b57e975d1543d6f0d05e45b7e8d821c",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-installed-kernel.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-installed-kernel.map",
+      "size": 378093,
+      "sha256": "8630d2be45d323b7c383a295b4eec3a8d197341e79fb82bbb0b2c70ba1352ac9",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-installed-kernel.map"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-kernel.elf",
+      "size": 4137340,
+      "sha256": "3e0e3ba2dbb4eb65d7ed511545b6facd4154a46772e03e2223d76c9533e8e45f",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-kernel.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-kernel.map",
+      "size": 378385,
+      "sha256": "9f704b855223786dc1efa8dbab365db38a69d5b283feefafaa5fb10ed6424783",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-kernel.map"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-THIRD-PARTY-NOTICES.txt",
+      "size": 59409,
+      "sha256": "38d474c23f23e74b75cbfa3a0d46e3bbfc208f205c3e01291e50a715b747ae52",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-THIRD-PARTY-NOTICES.txt"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-usb.img",
+      "size": 84934656,
+      "sha256": "1340eac9364ee560dfe3cc0bfa2fab9fb8d24e6acb2346509f8dee084e99faa3",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-usb.img"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-user.elf",
+      "size": 68064,
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-user.elf"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5-VMware.zip",
+      "size": 9693415,
+      "sha256": "4d49f5e089bcd0df82b0383223c8ce1636e35249e75443ea6451e1d6b9c82a8a",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5-VMware.zip"
+    },
+    {
+      "name": "EngacerOS-M11STAGE5.iso",
+      "size": 75388928,
+      "sha256": "cb40fcc987b7dfb290fcedf98b19f8fdea9a96624d6547140ff75a5bffddbc2e",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/EngacerOS-M11STAGE5.iso"
+    },
+    {
+      "name": "m11stage5-build-manifest.json",
+      "size": 76537,
+      "sha256": "0508d89726a7a4cff91e6a0c3c13be726bbca8d74ae32f8fa67306f420846eb4",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/m11stage5-build-manifest.json"
+    },
+    {
+      "name": "M11STAGE5-SHA256SUMS.txt",
+      "size": 1839,
+      "sha256": "32e9ca85985bd6bfd1b81c6b221bd19ae21d5d82939711d8bec0cf609b6e80e2",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/M11STAGE5-SHA256SUMS.txt"
+    },
+    {
+      "name": "m11stage5-starter-manifest.json",
+      "size": 652,
+      "sha256": "44135e42c2bf63dd1cd42ff711bd4c22a1736680c01ae5e7c9017d10ee7500d0",
+      "official_digest_matches": true,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m115-v0.11.5/m11stage5-starter-manifest.json"
+    }
+  ],
+  "downloaded_vmware_zip_sha256": "4d49f5e089bcd0df82b0383223c8ce1636e35249e75443ea6451e1d6b9c82a8a",
+  "downloaded_vmware_zip_crc_valid": true
+}

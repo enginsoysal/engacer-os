@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "website": "https://engaceros.brixcanvas.com",
+  "publication_source_commit": "68e0fcef1a33bfaefe6f923347f1280ece66edf7",
+  "native_editor_save_observed": "Saved check mark",
+  "homepage_version": "M11.5",
+  "native_guest_image": {
+    "ready": true,
+    "width": 1024,
+    "height": 768,
+    "path": "evidence/M11/5/vmware/first-start-guide.png"
+  },
+  "desktop": {
+    "width": 1280,
+    "documentWidth": 1270
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 380,
+    "menuOpenedAndLinksVerified": true,
+    "viewportOverrideReset": true
+  },
+  "articles": [
+    {
+      "slug": "documentation",
+      "title": "Documentation — all guides — Engacer OS",
+      "sourceFresh": true
+    },
+    {
+      "slug": "docs-handbook-install-m115",
+      "title": "Install Engacer OS M11.5 in VMware — Engacer OS",
+      "sourceFresh": true
+    },
+    {
+      "slug": "downloads",
+      "title": "Downloads and SHA256 verification — Engacer OS",
+      "sourceFresh": true
+    }
+  ],
+  "download_hashes_match_tested_release": true
+}
