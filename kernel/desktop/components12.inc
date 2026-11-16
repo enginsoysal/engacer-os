@@ -60,8 +60,10 @@ static void component_scroll_cancel12(void){
 }
 static unsigned component_scroll_key12(int key){
  if(scroll_capture12.owner){if(key==27||key==137||key==141)component_scroll_cancel12();return 1;}
- if(!control_active||focused_action!=SCROLLBAR12||input11_modifiers())return 0;
+ if(!control_active||focused_action!=SCROLLBAR12||input11_modifiers()||launcher||context11||guide_open11||file_dialog_state11.mode)return 0;
  desktop_window*w=desktop_lookup(&model,focused_control_window);if(!w)return 0;
+ unsigned slot=(unsigned)(w-model.windows);
+ if(w->app!=FILES||w->minimized||model.focused!=slot||desktop_focus11||apps[slot].usb_mode10||file_windows11[slot].address_active)return 0;
  scroll_record12*r=&scroll_records12[w-model.windows];if(r->owner!=focused_control_window)return 0;
  unsigned first=apps[w-model.windows].offset/r->step;
  if(key==133){if(first)--first;}else if(key==134)++first;else if(key==130)first=0;else if(key==131)first=r->total;else return key==10;

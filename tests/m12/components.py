@@ -12,6 +12,7 @@ ROOT=ui.ROOT
 OUT=ROOT/'build/m12/stage1/components'
 OUT.mkdir(parents=True,exist_ok=True)
 os.environ['ENGACER11_DISMISS_GUIDE']='1'
+IDLE_OBSERVATIONS=[]
 
 def flag(g,name,size=None):
     address,length=ui.symbol(name,size,True)
@@ -77,10 +78,20 @@ def dark(g):
     return struct.unpack_from('<I',ui.memory(g,ui.symbol('preferences',24,True)[0],24),12)[0]
 
 def idle(g):
-    before=ui.memory(g,ui.symbol('paints',8,True)[0],8)
-    time.sleep(.6)
-    assert before==ui.memory(g,ui.symbol('paints',8,True)[0],8)
-    assert g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1')==len(g.qmp('query-cpus-fast'))
+    observations=[]
+    # Startup/status/minute-clock events may finish here. Retain them and require
+    # an actual stable idle window; sustained repaint still fails all three tries.
+    for attempt in range(3):
+        ui.Pointer(g).drain()
+        before=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')
+        time.sleep(.6)
+        after=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')
+        observations.append(dict(attempt=attempt+1,paints_before=before,paints_after=after))
+        if before!=after:continue
+        ui.Pointer(g).drain()
+        if g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1')==len(g.qmp('query-cpus-fast')):
+            IDLE_OBSERVATIONS.append(observations);return
+    raise AssertionError(('No stable idle window',observations))
 
 def file_first(g):
     count=ui.integer(g,'control_count',True)
@@ -115,6 +126,7 @@ def main():
     meta=json.loads(ui.manifest_path12().read_text())
     report={'passed':False,'stage':'M12.1','build_id':meta['build_id'],'iso_sha256':hashlib.sha256(ui.iso_path12().read_bytes()).hexdigest(),'checks':[]}
     work=ui.q.new_work('m12-stage1-components')
+    report['owned_fixture']=work.name
     disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
     try:
         live=ui.guest(work/'install',disk,resolution=(1280,800))
@@ -173,6 +185,9 @@ def main():
             p.desktop(47,True)
             scroll_test(g,p)
             report['checks'].append('Native Files scrollbar drags actual row identities; Escape and Ctrl+Escape restore its start without opening Start; track paging and keyboard Home/End work')
+            import focus_ownership
+            focus_ownership.journey(g,p)
+            report['checks'].append('A previous scrollbar focus cannot steal Home/End from the USB provider or the native address field')
             (OUT/'install.log').write_text(g.log(),encoding='utf-8')
         welcome=ui.s.s.document(disk,'/Users/Owner/Documents/Welcome.txt')
         assert welcome==(ROOT/'distros/packages/m12-desktop-guide/content.txt').read_bytes()
@@ -181,12 +196,14 @@ def main():
             boot=ui.guest(work/f'independent-{number}',disk,media='installed',ready='M7_DESKTOP_READY')
             ui.s.normal_boot(boot,live.folder/'vars.fd')
             with boot as g:
+                assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log()
                 p=ui.Pointer(g);p.drain();assert dark(g)==1;idle(g)
                 shot(g,f'disk-only-{number}')
                 (OUT/f'disk-only-{number}.log').write_text(g.log(),encoding='utf-8')
             report['checks'].append(f'Independent disk boot {number} retains saved appearance and the same firmware variables without forced boot order')
         for name,resolution in [('150',(1920,1200)),('4k',(3840,2160))]:
             with ui.guest(work/name,disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution) as g:
+                assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log()
                 p=ui.Pointer(g);p.drain();open_settings(g,p)
                 p.desktop(112 if name=='150' else 113,True)
                 assert flag(g,'scale73')==(3 if name=='150' else 4)
@@ -200,6 +217,7 @@ def main():
         (OUT/'failure.txt').write_text(traceback.format_exc().replace(str(ROOT),'<project-root>'),encoding='utf-8')
         raise
     finally:
+        report['idle_observations']=IDLE_OBSERVATIONS
         (OUT/'results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(report,indent=2),flush=True)
 
