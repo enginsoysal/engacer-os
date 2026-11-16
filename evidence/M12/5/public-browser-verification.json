@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "stage": "M12.5",
+  "source_commit": "bf68dd056c40348581ac99f28ff41b7acdd0e660",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1902,
+    "guides": [
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125"
+    ],
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/5/feature.png",
+        "width": 1280
+      }
+    ],
+    "viewport": 1912
+  },
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "documentation": {
+    "groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones",
+      "You might be interested in"
+    ],
+    "installation_guides": [
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124"
+    ],
+    "reader_groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones"
+    ]
+  },
+  "guide": {
+    "source": "https://github.com/enginsoysal/engacer-os/blob/bf68dd056c40348581ac99f28ff41b7acdd0e660/docs/handbook/install-m125.md",
+    "steps": 8,
+    "title": "Install Engacer OS M12.5 in VMware — Engacer OS"
+  },
+  "current_guide": true,
+  "downloads": {
+    "iso_hash_visible": true,
+    "links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5-VMware.zip"
+    ],
+    "zip_hash_visible": true,
+    "unique_links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5-VMware.zip"
+    ]
+  },
+  "matching_download": true
+}

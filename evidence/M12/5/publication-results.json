@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.5",
+  "qualification": "M12-STAGE5-VM-v1",
+  "source_commit": "bf68dd056c40348581ac99f28ff41b7acdd0e660",
+  "build_id": "69b114d97561bfe742ac9097748ad3d5",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m125-v0.12.5",
+  "workflow_ids": [
+    43941683659
+  ],
+  "current_native_download": "m125-v0.12.5",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 321,
+  "unique_links": 2225,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
