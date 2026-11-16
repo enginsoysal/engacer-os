@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "stage": "M12.2",
+  "website": "https://engaceros.brixcanvas.com",
+  "source_commit": "c9cbec19fa3e2ed4da9eabba814d8927337e3edf",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1902,
+    "guide": true,
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/2/feature.png",
+        "width": 1280
+      }
+    ],
+    "text": true,
+    "viewport": 1912
+  },
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "current_guide": true,
+  "matching_download": true,
+  "guide": {
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/c9cbec19fa3e2ed4da9eabba814d8927337e3edf/docs/handbook/install-m122.md"
+    ],
+    "steps": 8,
+    "title": "Install Engacer OS M12.2 in VMware — Engacer OS"
+  },
+  "documentation_order": [
+    "1. Start here",
+    "2. M12 desktop experience",
+    "3. M11 desktop and installation refresh",
+    "4. Everyday use and customization",
+    "5. Architecture and development",
+    "6. Roadmap and verification",
+    "7. Website maintenance",
+    "8. Historical releases and earlier milestones",
+    "You might be interested in"
+  ],
+  "observations": [
+    "Mobile menu opened with Documentation/Downloads and closed; override reset.",
+    "Four owned homepage sections saved and native Saved check observed. Fresh editor controls were used to add a missing footer after a paste did not complete.",
+    "Current exact public ISO/ZIP links and SHA256 verified; open BIOS observation retained.",
+    "Screenshots are actual public desktop/mobile JPEG captures; agent visual review is not a human usability study."
+  ]
+}

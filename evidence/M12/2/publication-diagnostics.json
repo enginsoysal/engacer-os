@@ -1,0 +1,8 @@
+{
+  "superseded_workflow": 43907097478,
+  "action": "cancelled",
+  "reason": "Pre-release inventory was superseded by the public M12.2 release event.",
+  "successful_workflow": 43907814222,
+  "homepage_observation": "The refreshed editor uses autosave. After the fourth paste did not complete, fresh AX showed three roots; the missing footer was pasted once using the refreshed control. Four roots and explicit Saved check were observed before public readback.",
+  "cleanup": "Retired stage1 scratch deletion was rejected by automatic policy review and was not retried."
+}
