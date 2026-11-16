@@ -226,3 +226,32 @@ report groups and 14 VMware controller/starter profiles pass. Its homepage image
 is the actual final `evidence/M11/6/setup/vmware/first-start-guide.png`. Full
 public source/article/homepage/download readback belongs under `evidence/M11/6`;
 keep failed diagnostics separate from accepted runtime and publication checks.
+
+## Ordered M12 release publication
+
+M12 follows its nineteen ordered stages. A native stage closes matching source,
+media, tests, English manuals, GitHub assets and the whole public site before
+the next implementation. M12.0 remains a design-only record. The milestone
+progress file and handbook index identify the current scoped native download;
+the M9/M11 sections above describe their historical deliveries.
+
+After native acceptance and visual review, prepare the twenty matching assets
+with `tools/release/m12_assets.py`, commit the source/evidence/manuals and create
+UTF-8 pinned notes with `tools/release/m12_notes.py`. Run
+`python tools/release/publish12.py --stage N` for local read-only validation, then
+the same command with `--publish` for the authorized public delivery. It checks
+the preceding publication, compiled Git bytes, current commit, notes, exact
+asset sizes and SHA256 digests before promoting a complete draft. A partially
+uploaded draft can resume only when its existing source, notes and assets match.
+An already-public release is immutable. These checks replace error-prone manual
+asset selection; they do not replace independent public downloads or site review.
+
+Run `tests/m12/downloads.py` to inspect all public assets and independently
+download/extract/hash the VMware ZIP and embedded ISO. Wait for the final
+matching-source Brix publisher run. Reload the native editor, replace its four
+current homepage roots, explicitly Save and observe Saved. Verify desktop/mobile
+home, actual image readiness, documentation reader order, current pinned guide,
+download targets/checksums and every generated article/link. Retain failed reads
+and fresh successful retries. `tests/m12/close_stage.py` closes the stage only
+when the native, GitHub, workflow, download and public-browser proofs match.
+Article synchronization by itself is not complete homepage publication.
