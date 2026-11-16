@@ -1,0 +1,855 @@
+{
+  "passed": true,
+  "scope": "Fixed desktop state, shared icon art, transient row and managed framebuffers are distinct; configured RAM is not consumption",
+  "previous": {
+    "bytes": 544164,
+    "sections": {
+      "bss": 544136,
+      "data": 28
+    },
+    "map_sha256": "3deb1652370906ca3221c6df94c3fb79feda55079f493bac2353d0c3b87df6cb"
+  },
+  "current": {
+    "bytes": 544164,
+    "sections": {
+      "bss": 544136,
+      "data": 28
+    },
+    "map_sha256": "ac25d3e5ca520caa96b15f91bff3f86a4b091bfd0c89661cfb0acbb4de9bddc6"
+  },
+  "added_fixed_desktop_bytes": 0,
+  "icon_read_only_symbols": {
+    "icon12_offsets": 116,
+    "icon12_shapes": 2191,
+    "icon12_palettes": 136
+  },
+  "icon_read_only_total_bytes": 2443,
+  "icon_telemetry_payload_bytes": 28,
+  "icon_telemetry_storage_span_bytes": 32,
+  "temporary_row_bytes": 512,
+  "raster_cache_bytes": 0,
+  "managed": [
+    {
+      "profile": "ordinary-light",
+      "scale": 2,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 4288512,
+      "managed_after_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "ordinary-dark",
+      "scale": 2,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 4288512,
+      "managed_after_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "150-light",
+      "scale": 3,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 9408512,
+      "managed_after_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "150-dark",
+      "scale": 3,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 9408512,
+      "managed_after_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "4k-light",
+      "scale": 4,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 33370112,
+      "managed_after_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "4k-dark",
+      "scale": 4,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 33370112,
+      "managed_after_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "no_application_launch": true,
+      "retained_pages": 0
+    }
+  ],
+  "motion": [
+    {
+      "physical": [
+        1280,
+        800
+      ],
+      "scale_percent": 100,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 4247552,
+      "managed_bytes_after": 4247552,
+      "managed_peak_bytes": 4247552,
+      "cached_copy_frames": 21,
+      "event_to_drain_ms": [
+        541.1736000023666,
+        1048.1072000038694,
+        585.8938999954262,
+        506.91290000395384
+      ],
+      "median_ms": 563.5337499988964,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale_percent": 150,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 9408512,
+      "managed_bytes_after": 9408512,
+      "managed_peak_bytes": 9408512,
+      "cached_copy_frames": 4,
+      "event_to_drain_ms": [
+        2168.3112000027904,
+        1806.9931999998516,
+        1037.1929999964777,
+        2099.016299995128
+      ],
+      "median_ms": 1953.0047499974899,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale_percent": 200,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1720,
+            142,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            972,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            182,
+            1080,
+            700
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 33370112,
+      "managed_bytes_after": 33370112,
+      "managed_peak_bytes": 33370112,
+      "cached_copy_frames": 8,
+      "event_to_drain_ms": [
+        3898.741600001813,
+        3567.736100005277,
+        3340.3314000024693,
+        4303.621599996404
+      ],
+      "median_ms": 3733.238850003545,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    }
+  ],
+  "font_coverage_bytes": 251248
+}

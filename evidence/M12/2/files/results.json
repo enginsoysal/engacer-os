@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "stage": "M12.2",
+  "build_id": "704df6a9802e5ba98e2062fec7922f57",
+  "iso_sha256": "b95cd6cd2bb3e8aca6b2f85104f8b3af28484c2cc447d3a5f1f7b54f33111f64",
+  "comparisons": [
+    {
+      "surface": "native-Documents",
+      "app": 22,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-Pictures",
+      "app": 23,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-Music",
+      "app": 24,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-Downloads",
+      "app": 26,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-Downloads",
+      "app": 25,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-unknown",
+      "app": 0,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "usb-row-0",
+      "app": 20,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "usb-row-1",
+      "app": 22,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "usb-row-2",
+      "app": 23,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "usb-row-3",
+      "app": 24,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "usb-row-4",
+      "app": 25,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "usb-row-5",
+      "app": 0,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    }
+  ],
+  "checks": [
+    "Native text/BMP/WAV/ZIP icons and an actual unknown binary file match physical host rows; browsing does not launch an app",
+    "Actual FAT32 USB folder/text/BMP/WAV/ZIP/unknown rows use the same shared art; safe removal confirms flush and Devices retains capability text",
+    "Independent metadata-bank/file CRC inspection confirms all four native sample files remain intact"
+  ]
+}

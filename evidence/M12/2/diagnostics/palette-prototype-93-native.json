@@ -1,0 +1,716 @@
+{
+  "passed": true,
+  "stage": "M12.2",
+  "build_id": "93d8dc6597cbc948062274e4fb29eeff",
+  "iso_sha256": "119b61478d96dfdb6b40e990197df6de758549e2518862fa6bac4b01107264fb",
+  "owned_fixture": "b8e54d76b6a3422cb40e3f7d415415cc",
+  "checks": [
+    "Real UEFI installation and retained-ISO restart reach the matching installed desktop",
+    "The real Files scrollbar and keyboard ownership survive app-folder icons and USB/address transitions",
+    "Independent disk startup 1 retains the same firmware variables, saved dark theme and matching build without forced boot order",
+    "Independent disk startup 2 retains the same firmware variables, saved dark theme and matching build without forced boot order",
+    "All nineteen Start app identities match production host pixels in light/dark at ordinary, actual 150% and actual 3840x2160/200%, without launching apps or retaining pages"
+  ],
+  "profiles": [
+    {
+      "profile": "ordinary-light",
+      "scale": 2,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 4288512,
+      "managed_after_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "ordinary-dark",
+      "scale": 2,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 4288512,
+      "managed_after_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "150-light",
+      "scale": 3,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 9408512,
+      "managed_after_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "150-dark",
+      "scale": 3,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 39,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 9408512,
+      "managed_after_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "4k-light",
+      "scale": 4,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 33370112,
+      "managed_after_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "4k-dark",
+      "scale": 4,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 52,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 33370112,
+      "managed_after_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "no_application_launch": true,
+      "retained_pages": 0
+    }
+  ],
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 26,
+        "paints_after": 26
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 93,
+        "paints_after": 93
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 3,
+        "paints_after": 3
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 3,
+        "paints_after": 3
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 107,
+        "paints_after": 107
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 178,
+        "paints_after": 178
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 120,
+        "paints_after": 120
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 202,
+        "paints_after": 202
+      }
+    ]
+  ]
+}

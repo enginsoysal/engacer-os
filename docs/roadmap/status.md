@@ -1,6 +1,20 @@
 # Current status
 
-Updated 16 November 2026. **M12.1 / 0.12.1 passes its native stage qualification.**
+Updated 16 November 2026. **M12.2 / 0.12.2 passes M12-STAGE2-VM-v1.**
+[Install M12.2](../handbook/install-m122.md), [recognize icons](../handbook/icons-m122.md),
+[scope/checksums and retained BIOS observation](../releases/m122-v0.12.2.md),
+[acceptance](../../evidence/M12/2/acceptance-results.json).
+573 compiled inputs match Git. There are 57 original icons with 2,443 shared
+read-only bytes, a 512-byte transient row and no raster cache. All 114 native app
+and twelve file/USB comparisons match exactly; twelve cached/full movement
+comparisons pass. Real 150%/4K, focus/scrolling, idle and no retained pages are
+checked. The exact enabled-device VMware starter and separate QEMU journeys
+install, reset and start independently. One initial concurrent BIOS install
+timed out in AHCI; a same-artifact repeat passes, but its trigger is not isolated
+and stress reliability remains unqualified. Public release/site closure is a
+separate gate before M12.3. Full final M12 regression remains M12.18.
+
+**Previous M12.1 / 0.12.1 passed its native and public stage qualification.**
 [Install M12.1](../handbook/install-m121.md),
 [release scope and checksums](../releases/m121-v0.12.1.md),
 [exact-source acceptance](../../evidence/M12/1/acceptance-results.json).
@@ -9,8 +23,8 @@ VMware starter, real 150%/4K, focus/scroll input, idle and twelve cached/full
 comparisons pass. Native acceptance and
 [public release/site closure](../../evidence/M12/1/publication-results.json)
 pass separately: twenty public assets, 297 pages and 1,950 discovered links,
-with current source/guide/download and desktop/mobile checks. M12.2 icon work is
-now in progress. Full final M12 regression remains M12.18.
+with current source/guide/download and desktop/mobile checks. M12 continues in
+order; full final M12 regression remains M12.18.
 
 **Engacer OS M11.6 / 0.11.6 is the previous final M11 delivery.**
 [Exact-source acceptance](../../evidence/M11/6/acceptance-results.json) passes
@@ -37,17 +51,17 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
-**M12.0 is complete within M12-DESIGN-v1; M12.1 native checks pass within M12-STAGE1-VM-v1.**
+**M12.0 and M12.1 are closed; M12.2 native icon checks pass and publication is being verified.**
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website
-readback. M12.1 now provides its separately qualified native media. The owner authorized
+readback. M12.2 now provides its separately qualified native media. The owner authorized
 [nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
 its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
 [source-backed inventory](../architecture/m12-inventory.md) and
 [expected journeys](../handbook/desktop-m12.md). Concepts are explicitly labeled;
-M12.0 provides no new native ISO. M12.1 has the current scoped download;
+M12.0 provides no new native ISO. M12.2 has the current scoped download;
 M11.6's broader final matrix remains historical proof for its own frozen bytes.
 
 ### Completed M11 development sequence

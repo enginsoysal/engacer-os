@@ -1,0 +1,8 @@
+{
+  "operation": "Remove retired owned M12.1 scratch and disposable guest fixtures after verifying public preservation",
+  "status": "blocked_not_executed",
+  "reason": "Automatic execution review rejected the recursive removal command as blocked by policy; no more specific reason was provided.",
+  "response": "No retry or alternate deletion mechanism. Leave these directories in place and continue independent milestone work.",
+  "paths_reviewed": ["<local-m12-scratch>/stage1", "<local-m12-scratch>/starter/stage1", "<local-qemu-scratch>/m12-stage1-bios", "<local-qemu-scratch>/m12-stage1-components", "<local-qemu-scratch>/m12-stage1-focus", "<local-qemu-scratch>/m12-stage1-motion"],
+  "native_media_source_and_evidence_preserved": true
+}

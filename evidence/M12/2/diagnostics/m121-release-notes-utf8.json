@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "release": "m121-v0.12.1",
+  "correction": "Release-description UTF-8 text repaired; immutable target, native assets and accepted evidence remain intact",
+  "body_sha256": "c5b3784a71a71469bcc575066378a2cd0163368013f7b71c68e8949f8964167c",
+  "source_commit": "98862e51abecfe3049a0c7fe4f5e683cdc11f2c2",
+  "unchanged_assets": 20
+}

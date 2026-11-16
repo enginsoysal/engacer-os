@@ -4,7 +4,18 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.2",
-  "qualified_download": "M12.1",
+  "qualified_download": "M12.2",
+  "known_issues": [
+    {
+      "id": "bios-ahci-concurrent-timeout",
+      "status": "open",
+      "observed_in": "M12.2",
+      "scope": "An earlier M12.2 candidate's initial concurrent QEMU BIOS SATA installation",
+      "observation": "An earlier M12.2 candidate hit the existing AHCI timeout and installation reported failure. A fresh repeat passed; the corrected palette candidate has separate matching tests. The trigger is not isolated and stress reliability is not qualified.",
+      "evidence": "evidence/M12/2/diagnostics/bios-ahci-timeout.json",
+      "required_revisit": "M12.18 installation and controller qualification"
+    }
+  ],
   "stages": [
     {
       "id": "M12.0",
@@ -28,7 +39,7 @@
     },
     {
       "id": "M12.2",
-      "status": "in_progress",
+      "status": "publication_pending",
       "title": "Icon system",
       "requires": "M12.1",
       "deliverable": "Original app, action, folder, file-type and device icons across shell surfaces.",

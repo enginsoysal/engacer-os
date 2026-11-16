@@ -23,6 +23,13 @@ test('a qualified native M12 stage uses its own real capture, guide and scope',(
  assert.doesNotMatch(payload,/M11\/6\/setup\/vmware|overview\.svg/);
 });
 
+test('open observed issues remain visible on the native homepage until resolved',()=>{
+ const base={current_stage:'M12.2',qualified_download:'M12.2',stages:[{id:'M12.2',title:'Icon system'}]};
+ const issue={observed_in:'M12.2',status:'open',observation:'Initial BIOS AHCI timeout; trigger not isolated.'};
+ assert.match(JSON.stringify(nativeDesign({development:{...base,known_issues:[issue]}})),/Initial BIOS AHCI timeout; trigger not isolated/);
+ assert.doesNotMatch(JSON.stringify(nativeDesign({development:{...base,known_issues:[{...issue,status:'resolved'}]}})),/Initial BIOS AHCI timeout; trigger not isolated/);
+});
+
 test('M12 design follows tested installation without replacing its release',()=>{
  const posts=[post('docs/handbook/install-m116.md','Install M11.6'),post('docs/milestones/m12.md','M12','milestones'),post('docs/architecture/desktop-m12.md','M12 design','architecture'),post('docs/handbook/files-m11.md','Files')];
  const groups=documentationGroups(posts);

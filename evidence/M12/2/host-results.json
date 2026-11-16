@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "stage": "M12.2",
+  "scope": "Host execution of production geometry/raster rules and independent geometry reference; native binding and input are separate checks",
+  "checks": "PASS: 1322425 independent geometry samples, 1596 icon/theme/extent cases, 19 distinct app identities, palette contrast, fallback and row bounds.",
+  "icons": 57,
+  "temporary_row_bytes": 512,
+  "raster_cache_bytes": 0,
+  "allocations_in_renderer": 0,
+  "source_sha256": {
+    "include/engine/ui/icons12.h": "5d89c72e2af8b0b42a7366ee39671cb4644fa4441c3716b58ada489186932c96",
+    "include/engine/ui/icons12_data.h": "48da69ea00eccbbfc73bbf483e7784aaa7e72ee3616b2645801890c88cf35cd1",
+    "kernel/core/icons12.inc": "50fa5778f1fb574d7b998e1f39178baa416c9fa9435183dd879bf3639157ee5d",
+    "tools/design/icons12.py": "5bbb8ab5bb7514071bbcfb2be96bbd889773b95f7a833801bafd775261679e1f",
+    "tests/m12/icons_host.c": "d0c9cc94793fbc92878bc2308e4c16144d341fa7a502d0a166270559fc4ed932"
+  }
+}

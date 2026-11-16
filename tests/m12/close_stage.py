@@ -32,6 +32,11 @@ def main():
     assert release['tag_name'] == downloads['latest'] == f'm12{stage}-v0.12.{stage}'
     assert not release['draft'] and not release['prerelease']
     assert browser['source_commit'] == site['source_commit']
+    notes_meta = json.loads((ROOT / f'build/m12/stage{stage}/release-notes.json').read_text(encoding='utf-8'))
+    notes = (ROOT / f'build/m12/stage{stage}/release-notes.md').read_text(encoding='utf-8')
+    assert notes_meta['source_commit'] == site['source_commit'] and notes_meta['encoding'] == 'UTF-8'
+    assert hashlib.sha256(notes.encode('utf-8')).hexdigest() == notes_meta['sha256']
+    assert release['body'].replace('\r\n', '\n') == notes.replace('\r\n', '\n')
     assert tag['ref'] == f'refs/tags/m12{stage}-v0.12.{stage}'
     assert tag['object']['type'] == 'commit' and tag['object']['sha'] == site['source_commit']
     assert browser['native_editor_save'].startswith('Saved')

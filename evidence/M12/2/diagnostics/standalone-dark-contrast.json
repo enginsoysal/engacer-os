@@ -1,0 +1,10 @@
+{
+  "candidate": "93d8dc6597cbc948062274e4fb29eeff",
+  "finding": "Standalone blue, violet and orange strokes used tile-background colors on dark paper, below the graphical 3:1 contrast requirement. Tile fills themselves retain white interior symbols with sufficient contrast.",
+  "measured_dark_paper_contrast": {
+    "blue": 2.6498852155054955,
+    "violet": 2.5505017559921996,
+    "orange": 2.878366670702793
+  },
+  "correction": "Separate adaptive standalone ink colors from saturated tile fills; add production palette contrast assertions and requalify new media."
+}

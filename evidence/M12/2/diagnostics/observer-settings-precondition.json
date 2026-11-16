@@ -1,0 +1,243 @@
+{
+  "passed": false,
+  "stage": "M12.2",
+  "build_id": "93d8dc6597cbc948062274e4fb29eeff",
+  "iso_sha256": "119b61478d96dfdb6b40e990197df6de758549e2518862fa6bac4b01107264fb",
+  "owned_fixture": "7f8933ee6e9c4621bf70360944f76fda",
+  "checks": [
+    "Real UEFI installation and retained-ISO restart reach the matching installed desktop"
+  ],
+  "profiles": [
+    {
+      "profile": "ordinary-light",
+      "scale": 2,
+      "dark": 0,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 4288512,
+      "managed_after_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    },
+    {
+      "profile": "ordinary-dark",
+      "scale": 2,
+      "dark": 1,
+      "apps": [
+        {
+          "app": 1,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 2,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 3,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 4,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 5,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 6,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 7,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 8,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 9,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 10,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 11,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 12,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 13,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 14,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 15,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 16,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 17,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 18,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        },
+        {
+          "app": 19,
+          "physical_size": 26,
+          "max_channel_difference": 0
+        }
+      ],
+      "managed_before_bytes": 4288512,
+      "managed_after_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "no_application_launch": true,
+      "retained_pages": 0
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\icons_native.py\", line 84, in main\n    c.shot(g,'application-folders');c.scroll_test(g,p)\n  File \"<project-root>\\tests\\m12\\components.py\", line 108, in scroll_test\n    p.close_app(3,True);p.drain()\n  File \"<project-root>\\tests\\m74\\ui.py\", line 32, in close_app\n    found=[v for v in windows if v[5]==kind and v[6]];assert len(found)==1\nAssertionError\n",
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 26,
+        "paints_after": 26
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 94,
+        "paints_after": 94
+      }
+    ]
+  ]
+}

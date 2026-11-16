@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "stage": "M12.2",
+  "build_id": "93d8dc6597cbc948062274e4fb29eeff",
+  "iso_sha256": "119b61478d96dfdb6b40e990197df6de758549e2518862fa6bac4b01107264fb",
+  "comparisons": [
+    {
+      "surface": "native-Documents",
+      "app": 22,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-Pictures",
+      "app": 23,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    },
+    {
+      "surface": "native-Music",
+      "app": 24,
+      "physical_size": 24,
+      "max_channel_difference": 0
+    }
+  ],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\icons_files.py\", line 32, in main\n    rows=[r for r in n.controls(g) if 1000<=r[5]<2024];assert len(rows)==1,(folder,len(rows))\nAssertionError: ('Downloads', 2)\n"
+}

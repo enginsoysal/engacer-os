@@ -5,11 +5,12 @@ kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
 **Active development: M12.2 — icon system.**
-**Current native delivery: M12.1 — shared visual components**, qualified within
-M12-STAGE1-VM-v1. [Install](docs/handbook/install-m121.md),
-[controls](docs/handbook/components-m121.md),
-[release and checksums](docs/releases/m121-v0.12.1.md),
-[exact-source acceptance](evidence/M12/1/acceptance-results.json).
+**Current native delivery: M12.2 — original scalable icons**, qualified within
+M12-STAGE2-VM-v1. [Install](docs/handbook/install-m122.md),
+[icons](docs/handbook/icons-m122.md), [shared controls](docs/handbook/components-m121.md),
+[release, checksums and retained BIOS observation](docs/releases/m122-v0.12.2.md),
+[exact-source acceptance](evidence/M12/2/acceptance-results.json).
+Public release/download and website verification close separately before M12.3.
 [Public release and complete website verification passed](evidence/M12/1/publication-results.json)
 before M12.2 began. M12.0 has
 [completed design and public-delivery checks](evidence/M12/0/publication-results.json).
@@ -18,7 +19,7 @@ authorized [M12.0 through M12.18](docs/milestones/m12.md) in strict order, with
 tests, documentation, GitHub and public website verification between stages.
 [The M12 contract](docs/architecture/desktop-m12.md) and
 [expected user journeys](docs/handbook/desktop-m12.md) distinguish original design
-concepts from implemented behavior. M12.1 has its own tested ISO and VMware
+concepts from implemented behavior. M12.2 has its own tested ISO and VMware
 starter; the complete final M12 regression remains M12.18.
 
 **Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,

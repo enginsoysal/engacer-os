@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "stage": "M12.2",
+  "build_id": "704df6a9802e5ba98e2062fec7922f57",
+  "review": "Agent inspection of original artwork and actual native captures; not a human usability study",
+  "captures": ["native/ordinary-light-all-apps-0.png", "native/ordinary-dark-all-apps-0.png", "native/4k-dark-all-apps-0.png", "files/usb-file-types.png", "files/music.png", "files/devices.png", "vmware/shared-components.png"],
+  "observations": [
+    "All app tiles retain readable full Start labels and distinct recognizable silhouettes in light and dark; taskbar/title-bar identities are consistent.",
+    "Original host contact sheets are artwork/raster review, while the feature image is an actual owned QEMU installed guest.",
+    "Native file and USB rows retain clear name/icon spacing; the corrected dark audio/archive/standalone inks remain readable without lightening saturated app tile backgrounds.",
+    "Devices retains explicit capability text beside category icons, including software 2D and the absence of GPU acceleration.",
+    "Actual HiDPI captures use physical-density antialiasing rather than resized icons. Later M12 stages still own broader desktop, Files/USB and taskbar layout changes."
+  ],
+  "retained_limits": "Earlier candidate BIOS timeout remains unresolved and separately documented; scoped successful guest journeys are not stress-reliability or universal hardware proof."
+}

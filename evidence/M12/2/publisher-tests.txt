@@ -1,0 +1,31 @@
+✔ old public routes move to the canonical origin without losing the destination (47.5673ms)
+✔ repository links retain immutable commits, filenames, tags and anchors (1.3314ms)
+✔ old guide titles use the new brand and clearly identify their historical release (23.0318ms)
+✔ homepage separates M12 concepts from the native M11.6 download (8.4209ms)
+✔ a qualified native M12 stage uses its own real capture, guide and scope (1.9743ms)
+✔ open observed issues remain visible on the native homepage until resolved (2.2109ms)
+✔ M12 design follows tested installation without replacing its release (3.9754ms)
+✔ M12 native guides replace older installation without hiding established tasks (8.2479ms)
+✔ current install and M11 user tasks precede architecture and history (10.3168ms)
+✔ numeric names sort naturally and every uncategorized article stays discoverable once (1.4318ms)
+✔ a new stage replaces the previous install/release in Start here; history stays last (1.1627ms)
+✔ M11.5 is first and the older M11.4 install guide stays in the archive (0.6927ms)
+✔ active M12 design is labeled separately and cannot replace a native download (24.9024ms)
+✔ stage downloads require all matching public assets and prefer the newest stage (0.8823ms)
+✔ M12 downloads require native assets, numeric stage order and public qualification (1.5562ms)
+✔ publication retries only repeatable operations and obeys bounded server delay (7.3678ms)
+✔ reject a key for any other site before writing (3.8376ms)
+✔ accept only the renamed canonical site identity (1.4855ms)
+✔ never overwrite a matching slug owned by the author rather than the publisher (1.8395ms)
+✔ preserve unrelated author articles (3.3233ms)
+✔ archive removed generated sources as drafts rather than delete them (0.9892ms)
+✔ recover only the exact, empty publisher-created draft (1.5631ms)
+✔ a mixed plan with a later collision is rejected before any operations are returned (0.6902ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1182.5853
