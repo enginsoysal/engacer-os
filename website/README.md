@@ -1,6 +1,27 @@
 # BrixCanvas documentation website
 
-The Engacer OS website belongs inside BrixCanvas. The native dashboard saved the owner-selected name and **https://engaceros.brixcanvas.com** on 2026-11-10. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. M11.4 windows/appearance is the current separately scoped stage delivery. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
+The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.0 is the active design delivery; M11.6 remains the tested native ISO and VMware download. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles. Earlier milestone sections below are historical publication records, not the current release selector.
+
+## Current M12 publication
+
+Follow [M12.0–M12.18](../docs/milestones/m12.md) strictly in order. The homepage
+distinguishes original design concepts from actual native captures and tested
+downloads. M12.0 has no new ISO. Its linked concept gallery and design prerelease
+cannot qualify runtime behavior. The reader index places the tested installation
+first, then current M12 work, established M11 guides, daily use, architecture,
+roadmap, website maintenance and the archive. Every article remains discoverable.
+
+During M12.0 publication, real server responses included 502, 429 and a request
+timeout. The publisher now spaces requests by at least 2.1 seconds and allows at
+most three retries for repeatable GET/exact-body PATCH operations. It respects
+Retry-After up to 60 seconds and stops rather than retrying earlier when a
+longer delay is requested. Transient gateway errors/timeouts use bounded backoff.
+POST creation is never blindly repeated; the existing exact empty-draft recovery
+rules remain authoritative. Authentication, validation and ownership failures
+stop immediately. Retry-policy and ownership tests run before publication; final
+article inventory/readback remains mandatory. This adds resilience without
+claiming the external service cannot fail. Keep failed/cancelled runs in the
+publication record and reload the native editor after the final successful sync.
 
 ## Native website
 
@@ -65,7 +86,7 @@ belong in a new folder under `evidence/documentation/`.
 
 ## Automatic updates
 
-`website/brix/sync.mjs` uses the existing BrixCanvas content API, restricted to this site's `read_content` and `write_content` scopes. It checks the expected site slug/name before writing, validates every slug ownership marker before the first mutation, preserves unrelated articles and sends at most one request per second. New content is created as a clearly marked empty draft and then filled with native blocks. A failed draft is recoverable only if that exact marker and empty body still match. Removed source documents become drafts; the publisher never deletes them. Every generated article is read back and verified.
+`website/brix/sync.mjs` uses the existing BrixCanvas content API, restricted to this site's `read_content` and `write_content` scopes. It checks the expected site slug/name before writing, validates every slug ownership marker before the first mutation, preserves unrelated articles and spaces requests by at least 2.1 seconds. New content is created as a clearly marked empty draft and then filled with native blocks. A failed draft is recoverable only if that exact marker and empty body still match. Removed source documents become drafts; the publisher never deletes them. Every generated article is read back and verified.
 
 The active `.github/workflows/brixcanvas-docs.yml` workflow runs on relevant `main` pushes, release publication/edits and manual dispatch. Repository variable `BRIXCANVAS_ENGINEOS_SYNC_ENABLED` is `true`; the site-specific credential is stored only as encrypted repository secret `BRIXCANVAS_ENGINEOS_KEY`. The owner approved creating this content-only key on 2026-11-06. The first real [GitHub publication](https://github.com/enginsoysal/engacer-os/actions/runs/42209026210) updated and read back all 55 articles successfully. See [workflow evidence](../evidence/documentation/github-sync-results.json). The key must never enter source, logs or public artifacts. Disable future synchronization by setting the variable to `false`; revoke access through this site's Integrations panel. Run `node --test website/brix/sync.test.mjs` and `node website/brix/sync.mjs --dry-run` without a credential to validate preparation.
 
@@ -73,8 +94,8 @@ Edit generated documentation in the canonical GitHub files. Local edits to gener
 
 Documentation and binaries remain canonical on GitHub. Native articles identify
 their source commit and downloads link directly to official release assets.
-M10 is the earlier qualified phase-1/2 virtual-device release; M11.4 is the new
-window/appearance stage delivery, with its own test scope. Broader hardware and
+M10 is the earlier qualified phase-1/2 virtual-device release; M11.6 is the tested
+final desktop delivery and M12.0 is design-only development. Broader hardware and
 general DOS/Windows compatibility remain open. Accepted releases, tags, hashes
 and OS evidence are unchanged. Article/download updates are automatic; homepage
 editing is a separate native Brix operation. Browser work uses only the
