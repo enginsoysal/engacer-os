@@ -1,0 +1,13 @@
+{
+  "stage": "M12.1",
+  "observations": [
+    {
+      "workflow": 43893499331,
+      "outcome": "Cancelled as superseded by the release-published run 43893750520. The earlier run began while the native release was still a draft; the final run refreshes the public release inventory before homepage editing."
+    },
+    {
+      "operation": "Draft release lookup by REST tag",
+      "outcome": "Returned 404 while draft assets were uploading. Authenticated gh release view found the intended draft; all twenty asset sizes and SHA256 digests were checked before public publication. Public REST lookup and independent download then passed."
+    }
+  ]
+}

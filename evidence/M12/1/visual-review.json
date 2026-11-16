@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "stage": "M12.1",
+  "build_id": "981a97dc89216bba34db0b02c25adab2",
+  "review": "Agent inspection of actual native captures; not a human usability study",
+  "captures": ["vmware/shared-components.png", "native/keyboard-focus.png", "native/scroll-drag.png", "native/native-4k.png"],
+  "observations": [
+    "Light shared controls retain readable labels and a visible dark keyboard-focus outline without changing the selected theme.",
+    "Dark Files rows align with the reserved scrollbar gutter; the actual thumb and disabled command states remain visually distinct.",
+    "The actual 3840x2160 capture uses physical font masks with readable section hierarchy, aligned controls and no overlapping foreground Settings text.",
+    "The exact VMware capture shows the matching shared controls inside the real installed desktop."
+  ],
+  "remaining_ordered_work": "Original app/action icons, desktop shortcuts, window chrome, unified Files/USB navigation, Start/taskbar and remaining M12 surfaces are separate later stages."
+}

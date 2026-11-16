@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "stage": "M12.1",
+  "website": "https://engaceros.brixcanvas.com",
+  "source_commit": "98862e51abecfe3049a0c7fe4f5e683cdc11f2c2",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1516,
+    "guide": true,
+    "images": [
+      {
+        "height": 768,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/1/feature.png",
+        "width": 1024
+      }
+    ],
+    "text": true,
+    "viewport": 1526
+  },
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "current_guide": true,
+  "matching_download": true,
+  "guide": {
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/98862e51abecfe3049a0c7fe4f5e683cdc11f2c2/docs/handbook/install-m121.md"
+    ],
+    "steps": 8,
+    "title": "Install Engacer OS M12.1 in VMware — Engacer OS"
+  },
+  "documentation_order": [
+    "1. Start here",
+    "2. M12 desktop experience",
+    "3. M11 desktop and installation refresh",
+    "4. Everyday use and customization",
+    "5. Architecture and development",
+    "6. Roadmap and verification",
+    "7. Website maintenance",
+    "8. Historical releases and earlier milestones",
+    "You might be interested in"
+  ],
+  "observations": [
+    "Mobile menu opened with Documentation/Downloads and closed; viewport override reset.",
+    "Full-page screenshot command timed out; ordinary viewport capture succeeded. Screenshots are JPEG files.",
+    "Public guide has eight setup steps and the exact canonical source link; current ISO/ZIP links and ISO SHA256 match the verified GitHub release."
+  ]
+}
