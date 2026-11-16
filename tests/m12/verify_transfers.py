@@ -23,8 +23,13 @@ def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage7-build-manifest.json');starter=load(ROOT/'dist/m12stage7-starter-manifest.json')
     native=load(WORK/'transfers-native/results.json');bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json');syntax=load(WORK/'syntax-results.json');reader=load(WORK/'reader-host/results.json')
+    pack=load(WORK/'pack-host/results.json');recovery=load(WORK/'recovery/results.json')
+    assert pack['passed'] and pack['roundtrip_pages']>500 and pack['malformed_and_fuzz_cases']>10000 and pack['guard_bytes_unchanged']
+    assert recovery['passed'] and recovery['build_id']==meta['build_id'] and recovery['iso_sha256']==meta['artifacts']['EngacerOS-M12STAGE7.iso']['sha256'] and len(recovery['checks'])==2
+    for path,digest in pack['source_sha256'].items():assert sha(ROOT/path)==digest
+    for path,digest in pack['payload_sha256'].items():assert sha(ROOT/path)==digest
     assert all(row['passed'] for row in (native,bios,vmware,motion,syntax,reader))
-    assert len(syntax['checks'])==4
+    assert len(syntax['checks'])==6
     for path,digest in syntax['source_sha256'].items():assert meta['source_sha256'][path]==digest
     iso=meta['artifacts']['EngacerOS-M12STAGE7.iso']['sha256']
     assert meta['release_version']=='0.12.7' and meta['qualification_scope']=='M12-STAGE7-VM-v1'
@@ -79,13 +84,13 @@ def main():
         oldstarter=load(ROOT/f'evidence/M12/{stage}/starter-manifest.json');assert sha(ROOT/'dist'/oldstarter['archive'])==oldstarter['sha256']
     for row in load(ROOT/'evidence/M12/0/preserved-baseline.json')['artifacts']:assert sha(ROOT/'dist'/row['name'])==row['sha256']
     OUT.mkdir(parents=True,exist_ok=True)
-    for source,name in [('transfers-native','native'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
+    for source,name in [('transfers-native','native'),('bios','bios'),('vmware-results','vmware'),('motion','motion'),('recovery','recovery')]:
         target=OUT/name;target.mkdir(exist_ok=True)
         for path in (WORK/source).iterdir():
             if path.is_file() and path.suffix in ('.json','.png','.log') and path.name!='failure.log':
                 if path.suffix=='.png':shutil.copyfile(path,target/path.name)
                 else:(target/path.name).write_bytes(public_bytes(path.read_bytes()))
-    for source,name in [('dist/m12stage7-build-manifest.json','candidate-manifest.json'),('dist/m12stage7-starter-manifest.json','starter-manifest.json'),('build/m12/stage7/syntax-results.json','syntax-results.json'),('build/m12/stage7/reader-host/results.json','reader-host.json')]:shutil.copyfile(ROOT/source,OUT/name)
+    for source,name in [('dist/m12stage7-build-manifest.json','candidate-manifest.json'),('dist/m12stage7-starter-manifest.json','starter-manifest.json'),('build/m12/stage7/syntax-results.json','syntax-results.json'),('build/m12/stage7/reader-host/results.json','reader-host.json'),('build/m12/stage7/pack-host/results.json','pack-host.json')]:shutil.copyfile(ROOT/source,OUT/name)
     shutil.copyfile(WORK/'transfers-native/usb-transfer-progress.png',OUT/'feature.png')
     diagnostics=OUT/'diagnostics';diagnostics.mkdir(exist_ok=True)
     for path in (WORK/'diagnostics').iterdir():

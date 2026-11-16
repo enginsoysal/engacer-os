@@ -79,6 +79,33 @@ cancellation or arbitrary USB moves. Further concurrent write operations cannot
 borrow the shared stream while a cooperative job is active. Source/destination
 names, provider capability and final flush remain real backend constraints.
 
+## Compact live installation payload
+
+The M12.7 live image initially crossed physical 8 MiB, which the named OVMF
+profile reserves as ACPI NVS. The loader correctly refused allocation; VMware
+alone did not expose that conflict. The fixed-address ELF contract is unchanged:
+firmware-owned memory is never reclaimed or overwritten. M12 independently
+compresses each nonzero installation page using original bounded LZ4 block
+encoding; zero/raw records remain readable. Bit 30 marks an encoded record,
+followed by a 16-bit encoded length; bit 31 retains zero-page semantics. Both
+flags together are invalid. Addresses retain 30 bits, well above payload LBAs.
+Earlier build modes retain their original format and immutable artifacts.
+
+The production decoder uses no heap or persistent dictionary. Output is exactly
+4096 bytes; lengths, back-references, input/output boundaries and complete input
+are checked before destination I/O. Whole bundle CRC and every record/destination
+are validated before install or recovery writes. The existing scratch buffers
+are reused. Recovery slots keep their opaque checked bundle, with both validation
+and replay using the same decoder. Independent installed pages remain unchanged;
+this compresses distribution bytes, not the running installed filesystem.
+
+A build guard refuses a live ELF extending beyond the qualified low 8-MiB
+envelope. This saves live memory without weakening ownership checks or moving
+installed BIOS data beyond its boot-area limit. It does not solve arbitrary
+firmware maps: relocatable/sparse loading remains a separate architectural task.
+Production decoder round trips, malformed lengths/references, recovery replay,
+actual QEMU/VMware UEFI and BIOS startup are required on the final candidate.
+
 ## Verification and limits
 
 Use owned virtual images and ordinary guest input for real installation,

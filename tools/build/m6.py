@@ -38,13 +38,16 @@ def embed(work,live):
         text+='const uint8_t windows8_runtime_image[]={'+','.join(map(str,data or b'\0'))+'};\nconst unsigned windows8_runtime_size='+str(len(data))+';\n'
     (work/'installer-image.c').write_bytes(text.encode())
 
-def pack(parts):
+def pack(parts, compressed=False):
     pages={}
     for lba,content in parts:
         assert lba%8==0
         for offset in range(0,len(content),4096):
             page=content[offset:offset+4096].ljust(4096,b'\0')
             where=lba+offset//512;assert where not in pages;pages[where]=page
+    if compressed:
+        from pack12 import record
+        return struct.pack('<I',len(pages))+b''.join(record(k,v) for k,v in sorted(pages.items()))
     return struct.pack('<I',len(pages))+b''.join(struct.pack('<I',k|(0x80000000 if not any(v) else 0))+(v if any(v) else b'') for k,v in sorted(pages.items()))
 
 def build(revision="standard",profile_path=None,desktop=False,disk_manager=False,desktop_first=False,polished=False,standard_apps=False,installer_ux=False,windows=False,graphics=False,hardware=False,devices=False,m11=False,m12=False):
@@ -75,11 +78,17 @@ def build(revision="standard",profile_path=None,desktop=False,disk_manager=False
     fat_files=[(4,b'BOOTX64 EFI',efi),(2,b'KERNEL  ELF',kernel),(2,b'INIT    BIN',init)]
     if installer_ux:fat_files.append((2,b'ENGINE  DSK',b'ENGDISK1'+base['build_id'].encode()))
     fat=fat32(fat_files)
-    payload=pack([(0,bytes(low)),(2048,stage),(2112,raw),(ESP,trim(fat))])
+    payload=pack([(0,bytes(low)),(2048,stage),(2112,raw),(ESP,trim(fat))], compressed=m12)
     (work/'install.pack').write_bytes(payload)
     live=main('M5',m5_live=True,distro=profile,m6=True,m6_revision=revision,m7=desktop,m71=disk_manager,m72=desktop_first,m73=polished,m74=standard_apps,m75=installer_ux,m8=windows,m9=graphics,m92=hardware,m10=devices,m11=m11,m12=m12)
     if live['build_id']!=base['build_id']:raise RuntimeError('Build inputs changed between installed and live images; rebuild with frozen inputs')
     if any(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=value for p,value in profile['input_sha256'].items()):raise RuntimeError('Distribution inputs changed during build')
+    if m12:
+        # The qualified OVMF profile owns ACPI NVS at 8 MiB. Never reclaim it.
+        # Installed BIOS media must retain its independent compact layout.
+        image=(work/'KERNEL.ELF').read_bytes();phoff=struct.unpack_from('<Q',image,32)[0];stride,count=struct.unpack_from('<HH',image,54)
+        high=max(struct.unpack_from('<Q',image,phoff+i*stride+24)[0]+struct.unpack_from('<Q',image,phoff+i*stride+40)[0] for i in range(count) if struct.unpack_from('<I',image,phoff+i*stride)[0]==1)
+        if high>0x800000:raise RuntimeError('M12 live image exceeds the qualified low-memory envelope; redesign placement before publishing')
     media=dual_media(work,name)
     live.update(milestone=prefix,build_revision=revision,distribution=profile,qualification_scope='M71-VM-v1' if disk_manager else 'M7-VM-v1' if desktop else 'M6-VM-v1',qualification='Requires the exact artifact acceptance report; building alone does not qualify runtime',release_version=('0.7.1' if disk_manager else '0.7.0' if desktop else '0.6.0')+('' if revision=='standard' else '+'+revision),installed_kernel_sha256=hashlib.sha256(kernel).hexdigest(),installer_payload_bytes=len(payload),bios_media_layout=media,limits=['Qualify the exact artifact digests against evidence/M6/acceptance-results.json','SATA/AHCI 512-byte logical-sector blank targets only, 2 GiB to 2 TiB','Native extent volume: 1024 entries, 63-byte path components, contiguous copy-on-write files','ISO-assisted verified-slot update/rollback/repair; interrupted boot replay can require ISO recovery','Single local profile, no authentication/ACLs or cross-layout migration; no desktop or Windows/DOS application runtime'])
     if desktop:

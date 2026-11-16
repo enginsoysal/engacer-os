@@ -3,6 +3,9 @@
 #endif
 #include <engine/install/m6.h>
 #include "build.h"
+#ifdef ENGINE_M12
+#include <engine/install/pack12.h>
+#endif
 #ifdef ENGINE_M11
 #include "distro.h"
 #include <engine/install/setup11.h>
@@ -70,8 +73,29 @@ unsigned m6_settings(m6_preferences*p){unsigned bytes=0;if(!persistent||v6_verif
 #include "setup11-store.inc"
 #endif
 static unsigned save_slot(unsigned);
+typedef unsigned (*pack_read12)(void*,unsigned,void*,unsigned);
+static unsigned bundle_read12(void*ctx,unsigned off,void*p,unsigned n){(void)ctx;memcpy(p,m6_bundle+off,n);return B_OK;}
+/* Decode/validate one bounded record without submitting destination I/O. */
+static unsigned unpack_record12(pack_read12 read,void*ctx,unsigned off,unsigned bytes,uint32_t*value,uint8_t*out){
+ uint8_t h[6];if(off>bytes||bytes-off<4||read(ctx,off,h,4))return 0;*value=r32(h);
+ unsigned size=(*value&0x80000000u)?4:4100;
+#ifdef ENGINE_M12
+ if((*value&0xc0000000u)==0xc0000000u)return 0;
+ if((*value&0x40000000u)){if(bytes-off<6||read(ctx,off+4,h,2))return 0;unsigned n=(unsigned)h[0]|((unsigned)h[1]<<8);size=pack12_size(*value,h,bytes-off-4);if(!size||read(ctx,off+6,check,n)||!pack12_decode(check,n,out))return 0;return size;}
+#endif
+ if(size>bytes-off)return 0;
+ if(size==4)memset(out,0,4096);else if(read(ctx,off+4,out,4096))return 0;
+ return size;
+}
+static uint32_t unpack_lba12(uint32_t value){
+#ifdef ENGINE_M12
+ return value&0x3fffffffu;
+#else
+ return value&0x7fffffffu;
+#endif
+}
 static unsigned bundle_valid(void){if(m6_bundle_size<4||m4_crc(m6_bundle,m6_bundle_size)!=m6_bundle_crc)return 0;unsigned count=r32(m6_bundle),off=4;uint64_t end=0;
- for(unsigned i=0;i<count;++i){if(off>m6_bundle_size||m6_bundle_size-off<4)return 0;unsigned value=r32(m6_bundle+off),bytes=(value&0x80000000u)?4:4100,lba=value&0x7fffffffu;if(bytes>m6_bundle_size-off)return 0;if((lba&7)||lba<end)return 0;end=(uint64_t)lba+8;
+ for(unsigned i=0;i<count;++i){uint32_t value;unsigned bytes=unpack_record12(bundle_read12,0,off,m6_bundle_size,&value,page);if(!bytes)return 0;unsigned lba=unpack_lba12(value);if((lba&7)||lba<end)return 0;end=(uint64_t)lba+8;
  if(lba&&!(lba>=layout.bios.first&&end<=layout.bios.last+1)&&!(lba>=layout.esp.first&&end<=layout.esp.last+1))return 0;off+=bytes;}return off==m6_bundle_size;
 }
 unsigned m6_install(const m6_preferences*p){
@@ -85,7 +109,7 @@ const storage_disk*d=storage_get(selected);if(!d||persistent||!m6_live()||!bundl
 #endif
  unsigned s=restarting?B_OK:blank(selected);if(s)return s;if(restarting){if(io(selected,40,record,512,0)||memcmp(record,"ENGINEI6",8)||r64(record+8)!=target.sectors||r32(record+72)!=1||r32(record+508)!=m4_crc(record,508))return B_DENIED;if(activation(selected)!=B_DENIED)return B_DENIED;}memset(record,0,512);memcpy(record,"ENGINEI6",8);w64(record+8,layout.sectors);memcpy(record+24,BUILD_ID,32);uint32_t low,high;__asm__ volatile("rdtsc":"=a"(low),"=d"(high));w64(record+56,((uint64_t)high<<32)|low);w64(record+64,layout.sectors^target.bdf^low);w32(record+72,1);w32(record+508,m4_crc(record,508));if(verified(selected,40,record,512)||flush(selected))return B_IO;
  if(save_slot(0))return B_IO;w32(record+76,0);
- m6_progress(5,"Preparing system files");unsigned count=r32(m6_bundle),offset=4;for(unsigned i=0;i<count;++i){const uint8_t*r=m6_bundle+offset;unsigned zero=r32(r)&0x80000000u;memset(page,0,4096);if(verified(selected,r32(r)&0x7fffffffu,zero?page:(void*)(r+4),4096))return B_IO;offset+=zero?4:4100;if(i%16==0)m6_progress(5+i*60/count,"Copying and verifying boot files");}
+ m6_progress(5,"Preparing system files");unsigned count=r32(m6_bundle),offset=4;for(unsigned i=0;i<count;++i){uint32_t value;unsigned bytes=unpack_record12(bundle_read12,0,offset,m6_bundle_size,&value,page);if(!bytes||verified(selected,unpack_lba12(value),page,4096))return B_IO;offset+=bytes;if(i%16==0)m6_progress(5+i*60/count,"Copying and verifying boot files");}
  configure_volume();m6_progress(70,"Creating your data volume");if(v6_format(&volume))return B_IO;
  for(unsigned i=0;i<8;++i){const char *names[]={"/System","/Applications","/Users","/Data","/Cache","/Logs","/Temporary","/Volumes"};if(directory(names[i]))return B_IO;}
  if(directory("/System/Settings"))return B_IO;
@@ -150,20 +174,21 @@ static unsigned slot_header(unsigned slot,unsigned*bytes,unsigned*sum){if(io(sel
 static unsigned slot_read(unsigned slot,unsigned off,void*p,unsigned bytes){
  uint8_t*out=p;while(bytes){unsigned at=off%4096,n=4096-at;if(n>bytes)n=bytes;if(io(selected,slot_first(slot)+8+(off/4096)*8,page,4096,0))return B_IO;memcpy(out,page+at,n);out+=n;off+=n;bytes-=n;}return B_OK;
 }
+static unsigned slot_read12(void*ctx,unsigned off,void*p,unsigned n){return slot_read((unsigned)(uintptr_t)ctx,off,p,n);}
 static unsigned replay_slot(unsigned slot){unsigned bytes,sum;if(slot_header(slot,&bytes,&sum))return B_IO;uint32_t actual=~0u;uint8_t data[4096];
  for(unsigned off=0;off<bytes;off+=4096){unsigned n=bytes-off;if(n>4096)n=4096;if(slot_read(slot,off,data,n))return B_IO;actual=crc_update(actual,data,n);}if(~actual!=sum)return B_IO;
  uint32_t count;if(slot_read(slot,0,&count,4)||!count||count>(bytes-4)/4)return B_IO;uint64_t end=0;
  /* Validate every destination before changing any boot file. */
- unsigned offset=4;for(unsigned i=0;i<count;++i){uint32_t value;if(offset>bytes||bytes-offset<4||slot_read(slot,offset,&value,4))return B_IO;unsigned size=(value&0x80000000u)?4:4100,lba=value&0x7fffffffu;if(size>bytes-offset)return B_DENIED;uint64_t limit=(uint64_t)lba+8;if((lba&7)||lba<end||(lba&&!(lba>=layout.bios.first&&limit<=layout.bios.last+1)&&!(lba>=layout.esp.first&&limit<=layout.esp.last+1)))return B_DENIED;end=limit;offset+=size;}if(offset!=bytes)return B_DENIED;
- offset=4;for(unsigned i=0;i<count;++i){uint32_t value;if(slot_read(slot,offset,&value,4))return B_IO;unsigned zero=value&0x80000000u;memset(data,0,4096);if(!zero&&slot_read(slot,offset+4,data,4096))return B_IO;
+ unsigned offset=4;for(unsigned i=0;i<count;++i){uint32_t value;unsigned size=unpack_record12(slot_read12,(void*)(uintptr_t)slot,offset,bytes,&value,data);if(!size)return B_DENIED;unsigned lba=unpack_lba12(value);uint64_t limit=(uint64_t)lba+8;if((lba&7)||lba<end||(lba&&!(lba>=layout.bios.first&&limit<=layout.bios.last+1)&&!(lba>=layout.esp.first&&limit<=layout.esp.last+1)))return B_DENIED;end=limit;offset+=size;}if(offset!=bytes)return B_DENIED;
+ offset=4;for(unsigned i=0;i<count;++i){uint32_t value;unsigned size=unpack_record12(slot_read12,(void*)(uintptr_t)slot,offset,bytes,&value,data);if(!size)return B_IO;
 #ifdef ENGINE_M74
- if(quiet_progress74&&!(value&0x7fffffffu)){
+ if(quiet_progress74&&!unpack_lba12(value)){
      /* Replay only the bootstrap at LBA zero, retaining the protective MBR/GPT. */
      if(io(selected,0,check,4096,0))return B_IO;memcpy(data+446,check+446,sizeof(data)-446);
  }
 #endif
- if(verified(selected,value&0x7fffffffu,data,4096))return B_IO;
- offset+=zero?4:4100;if(i%16==0)m6_progress(10+i*70/count,"Restoring verified boot files");}return flush(selected);
+ if(verified(selected,unpack_lba12(value),data,4096))return B_IO;
+ offset+=size;if(i%16==0)m6_progress(10+i*70/count,"Restoring verified boot files");}return flush(selected);
 }
 unsigned m6_maintenance_prepare(unsigned disk,unsigned mode){
  if(!m6_live()||mode<1||mode>3)return B_DENIED;const storage_disk*d=storage_get(disk);if(!d||!m6_target_writable(d)||engine_install_plan(d->sectors,d->sector_bytes,&layout)||activation(disk))return B_DENIED;
