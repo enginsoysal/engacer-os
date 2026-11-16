@@ -87,3 +87,22 @@ unsigned rem10_import(unsigned disk,unsigned token,unsigned part,const char*path
  if(!lease10(disk,token))return B_ABSENT;v6_volume*root=m6_volume();for(unsigned i=0;i<V6_ENTRIES;++i)if(root->entries[i].kind&&exact10(root->entries[i].path,native))return B_DENIED;
  stream10 stream={0};unsigned status=mount(disk,part,&stream.v),size,attr;if(status)return status;if((status=resolve10(&stream.v,path,&stream.cluster,&size,&attr)))return status;if(attr&16||size>64*1024*1024)return B_UNSUPPORTED;stream.size=size;stream.slow=stream.fast=stream.cluster;status=v6_put(root,native,size,source_usb10,&stream);if(!status)serial_text("M10_USB_FILE_IMPORTED\n");return status;
 }
+
+#ifdef ENGINE_M12
+/* One cooperative read lease: no heap or retained per-window USB buffers. */
+static stream10 reader12;
+static unsigned reader_token12,reader_active12;
+void rem12_read_close(void){memset(&reader12,0,sizeof(reader12));reader_token12=reader_active12=0;}
+unsigned rem12_read_begin(unsigned disk,unsigned token,unsigned part,const char*path,uint64_t*bytes){
+ if(reader_active12)return B_DENIED;if(!lease10(disk,token))return B_ABSENT;
+ stream10 next={0};unsigned size,attr,status=mount(disk,part,&next.v);if(status)return status;
+ if((status=resolve10(&next.v,path,&next.cluster,&size,&attr)))return status;
+ if((attr&16)||size>64u*1024*1024)return B_UNSUPPORTED;
+ next.size=size;next.slow=next.fast=next.cluster;reader12=next;reader_token12=token;reader_active12=1;*bytes=size;return B_OK;
+}
+unsigned rem12_read_next(void*out,unsigned bytes){
+ if(!reader_active12||!bytes||bytes>4096)return B_DENIED;
+ if(!lease10(reader12.v.disk,reader_token12)){rem12_read_close();return B_ABSENT;}
+ if(source_usb10(&reader12,reader12.position,out,bytes)){rem12_read_close();return B_IO;}return B_OK;
+}
+#endif

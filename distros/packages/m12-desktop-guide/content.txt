@@ -77,3 +77,12 @@ commands stay unavailable. Use Safe remove before disconnecting a writable drive
 M12.6 Files presentation
 Use Icons or Details, or right-click the folder background to change view. Native Name, Type and Size headers change order; clicking the current header reverses it. Folders stay first and numbered names use natural order. Selection follows the actual item after sorting. Hover an abbreviated name for its complete supported name. USB keeps its real directory order; its sort controls remain unavailable. Native folders remember up to 32 view/order choices; your USB view preference is separate and does not bind a replacement device.
 Breadcrumbs show ancestors when they fit and mark skipped middle folders with an ellipsis. Edit always exposes the full supported address. Name tips disappear when their owner is covered or the pointer is no longer over that row.
+
+M12.7 File commands and transfers
+Use Actions for Copy, Cut, Paste, Rename, Recycle and supported Undo, even in
+a small Files window. During copying, read the phase and destination below.
+Cancel or Escape stops unfinished work; completed items and copy sources stay.
+Details remains available after success, cancellation or a stopped operation.
+USB Copy to Downloads uses the same conflict review as Copy/Paste. USB imports
+read and verify in small cancellable steps. USB export is create-only and
+currently cannot be cancelled mid-file. Use Safe remove before unplugging.

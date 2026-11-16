@@ -28,4 +28,9 @@ unsigned rem10_volume(unsigned,unsigned*,unsigned*);
 unsigned rem10_list(unsigned,unsigned,unsigned,const char*,unsigned,rem10_entry*,unsigned,unsigned*);
 unsigned rem10_export(unsigned,unsigned,unsigned,const char*,const char*);
 unsigned rem10_import(unsigned,unsigned,unsigned,const char*,const char*);
+#ifdef ENGINE_M12
+unsigned rem12_read_begin(unsigned,unsigned,unsigned,const char*,uint64_t*);
+unsigned rem12_read_next(void*,unsigned);
+void rem12_read_close(void);
+#endif
 #endif

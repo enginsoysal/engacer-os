@@ -68,6 +68,9 @@ static unsigned file_action11(uint64_t owner_token,unsigned command){
  if(command==F11_NAME_FIELD&&file_dialog_state11.mode){file_dialog_state11.focus=0;file_dialog_state11.cursor=length(file_dialog_state11.input);file_dialog_state11.anchor=file_dialog_state11.cursor;whole();return 1;}
  if(file_dialog_state11.mode){file_notice11(owner_token,"Finish or cancel the open file dialog first.");return 1;}
  if(owner_token&&!w)return 0;
+#ifdef ENGINE_M12
+ if(files_busy12()&&(command==F11_PASTE||command==F11_RENAME||command==F11_UNDO||command==F11_RECYCLE||command==F11_RESTORE||command==F11_PERMANENT||command==F11_EMPTY||command==FILE_FOLDER||command==F11_NEW_TEXT||command==F11_SHORTCUT)){file_notice11(owner_token,"Wait for the transfer or choose Cancel before changing more files.");return 1;}
+#endif
  if(command==F11_JOB_DETAILS){file_dialog_open11(F11_DLG_RESULT,owner_token,0);return 1;}
  if(command==F11_PLACES){files_places_menu11(owner_token);return 1;}
  if(command==F11_SORT){files_sort_menu11(owner_token);return 1;}

@@ -469,6 +469,10 @@ static void open_file74(const char *path){
 #endif
 #include "files72.inc"
 #ifdef ENGINE_M10
+#ifdef ENGINE_M12
+static unsigned files_usb_import12(uint64_t);
+static unsigned files_busy12(void);
+#endif
 #include "devices10.inc"
 #endif
 #ifdef ENGINE_M11
@@ -592,6 +596,9 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "files11-context.inc"
 #include "files11-keys.inc"
 #include "files11-desktop.inc"
+#ifdef ENGINE_M12
+#include "transfers12.inc"
+#endif
 #include "files11-ui.inc"
 #ifdef ENGINE_M12
 #include "files12-ui.inc"
@@ -915,6 +922,7 @@ static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M74
 #ifdef ENGINE_M12
     /* These Files commands must precede the legacy generic application sink. */
+    if(command==F12_COMMANDS&&w->app==FILES){if(!file_dialog_state11.mode)files_commands_menu12(token);return;}
     if((command==F12_REFRESH||command==F12_USB_ROOT)&&w->app==FILES&&files_navigation12(w,app,token,command))return;
     if(files_column_action12(w,app,token,command))return;
 #endif

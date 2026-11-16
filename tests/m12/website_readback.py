@@ -45,6 +45,8 @@ def main():
             critical_paths.update({'docs/architecture/files-m125.md', 'docs/handbook/files-m125.md'})
         if args.stage == 6:
             critical_paths.update({'docs/architecture/files-m126.md', 'docs/handbook/files-m126.md'})
+        if args.stage == 7:
+            critical_paths.update({'docs/architecture/transfers-m127.md', 'docs/handbook/transfers-m127.md'})
     for post in payload['page']['blog']['posts']:
         path = next(m['value'] for m in post['meta'] if m['key'] == 'engine_source_path')
         if path in critical_paths:

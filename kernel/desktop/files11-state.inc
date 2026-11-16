@@ -22,6 +22,7 @@ enum {F11_COPY=40000,F11_CUT,F11_PASTE,F11_RENAME,F11_RECYCLE,F11_RESTORE,F11_PE
  F11_PLACES,F11_BIN,F11_NEW_TEXT,F11_CANCEL_JOB,F11_DIALOG_OK,F11_DIALOG_CANCEL,F11_KEEP_BOTH,
  F11_SKIP,F11_REPLACE,F11_ALWAYS,F11_ADDRESS_FIELD,F11_DESKTOP_PREV,F11_DESKTOP_NEXT,F11_OPEN,
  F11_SORT_NAME,F11_SORT_SIZE,F11_SORT_TYPE,F11_NAME_FIELD,F11_JOB_DETAILS,
+ F12_COMMANDS=52000,
  F11_ASSOC_APP=40100,F11_PLACE=40200,F11_CRUMB=41000,F11_DESKTOP_ITEM=33000};
 enum {F11_JOB_COPY=1,F11_JOB_MOVE,F11_JOB_RECYCLE,F11_JOB_RESTORE,F11_JOB_REMOVE,F11_JOB_LINK};
 enum {F11_DLG_RENAME=1,F11_DLG_CONFLICT,F11_DLG_PROPERTIES,F11_DLG_OPEN_WITH,F11_DLG_REMOVE,F11_DLG_EMPTY,F11_DLG_NEW_FOLDER,F11_DLG_NEW_TEXT,F11_DLG_RESULT};
@@ -84,6 +85,10 @@ static void files_context_open11(i11_target,unsigned,unsigned);
 static void files_context_invoke11(unsigned);
 static unsigned files_context_next11(unsigned,int);
 static unsigned file_action11(uint64_t,unsigned);
+#ifdef ENGINE_M12
+static unsigned files_usb_import12(uint64_t);
+static unsigned files_can_command12(uint64_t,unsigned);
+#endif
 static unsigned files_key11(int);
 static void files_pump11(void);
 static unsigned files_pending11(void);

@@ -206,3 +206,9 @@ evidence/M12/5/** -text -whitespace
 include/engine/ui/fileview12.h -text whitespace=cr-at-eol
 kernel/desktop/files12-presentation.inc -text whitespace=cr-at-eol
 evidence/M12/6/** -text -whitespace
+
+# M12.7 cooperative file transfers.
+kernel/desktop/transfers12.inc -text whitespace=cr-at-eol
+kernel/storage/fat32-write10.inc -text whitespace=cr-at-eol
+include/engine/hardware10.h -text whitespace=cr-at-eol
+evidence/M12/7/** -text -whitespace

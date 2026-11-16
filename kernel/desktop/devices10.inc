@@ -79,6 +79,10 @@ static unsigned devices_action10(desktop_window*w,application*app,uint64_t token
  if(command==USB_OPEN10||command==USB_CLOSE10||command==USB_DRIVES10||command==USB_UP10||(command>=USB_DISK10&&command<USB_DISK10+STORAGE_MAX)){memset(selected11[app-apps],0,sizeof(selected11[0]));interaction11.last_valid=0;}
  if(command==USB_IMPORT10){unsigned count=0;for(unsigned n=0;n<V6_ENTRIES;++n)count+=selected_row11(app,n);if(count>1){notice(app,"USB transfer accepts one selected file at a time. Select one file to copy.");invalidate(w->bounds);return 1;}}
 #endif
+#ifdef ENGINE_M12
+ if(command==USB_IMPORT10)return files_usb_import12(token);
+ if((command==USB_EXPORT10||(command>=USB_SEND10&&command<USB_SEND10+V6_ENTRIES))&&files_busy12()){notice(app,"Wait for the transfer or choose Cancel before another USB copy.");invalidate(w->bounds);return 1;}
+#endif
  if(command>=USB_SEND10&&command<USB_SEND10+V6_ENTRIES){const v6_entry*f=child_at(app,command-USB_SEND10);if(f&&f->kind==1&&writable72(f->path)){copy(app->usb_source10,f->path,256);app->usb_mode10=1;app->offset=0;app->notice[0]=0;}}
  else if(command==USB_OPEN10){app->usb_mode10=1;app->offset=0;app->usb_source10[0]=0;app->notice[0]=0;}
  else if(command==USB_CLOSE10){app->usb_mode10=0;app->offset=0;app->usb_source10[0]=0;}

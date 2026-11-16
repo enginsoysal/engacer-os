@@ -52,14 +52,14 @@ static unsigned files_icon_lines12(const char*name,unsigned width,char lines[2][
 static void files_icon_label12(desktop_rect r,const char*name){char lines[2][256];files_icon_lines12(name,r.width,lines);for(unsigned i=0;i<2;++i)if(lines[i][0]){unsigned width=ui73_measure(lines[i],UI12_BODY);text(r.x+(r.width-(int)width)/2,r.y+(int)i*21,lines[i],UI12_BODY,ink());}}
 /* A full-name tip owns no heap buffer and never extends outside its window. */
 static unsigned files_tip_content12(i11_target target,char lines[12][64],desktop_rect*out){
- if(target.kind!=I11_ITEM||!target.window||launcher||context11||guide_open11||file_dialog_state11.mode||dragging||interaction11.captured)return 0;
+ if(target.kind!=I11_ITEM||!target.window||launcher||context11||guide_open11||file_dialog_state11.mode||file_job_state11.active||dragging||interaction11.captured)return 0;
  desktop_window*w=desktop_lookup(&model,target.window);if(!w||w->app!=FILES||w->minimized)return 0;application*a=&apps[w-model.windows];if(a->usb_mode10==1)return 0;
  desktop_rect row={0};for(unsigned i=0;i<control_count;++i)if(controls[i].window==target.window&&controls[i].action==target.action)row=controls[i].rect;if(!row.width)return 0;
  char name[256];if(a->usb_mode10==2){if(target.action<USB_ROW10||target.action>=USB_ROW10+6)return 0;rem10_entry item;unsigned total;if(rem10_list(a->usb_disk10,a->usb_context10,a->usb_part10,a->usb_path10,a->offset+target.action-USB_ROW10,&item,1,&total))return 0;copy(name,item.name,256);}
  else{const v6_entry*e=file_target_entry11(target);if(!e)return 0;copy(name,file_label11(e),256);}
  unsigned icons=file_windows11[w-model.windows].view,available=icons?(unsigned)row.width-12:(unsigned)ui12_file_details(row.width).name-46;
  if(icons){char label_lines[2][256];if(!files_icon_lines12(name,available,label_lines))return 0;}else if(ui73_measure(name,UI12_BODY)<=available)return 0;
- int left=w->bounds.x+12,right=w->bounds.x+w->bounds.width-12,top=w->bounds.y+44,bottom=w->bounds.y+w->bounds.height-12;
+ int left=w->bounds.x+12,right=w->bounds.x+w->bounds.width-12,top=file_body_top11(w),bottom=file_body_bottom11(w);
  if(left<8)left=8;if(right>(int)model.width-8)right=(int)model.width-8;if(top<8)top=8;if(bottom>(int)model.height-68)bottom=(int)model.height-68;
  int width=right-left;if(width>480)width=480;if(width<160)return 0;unsigned at=0,count=0;
  while(name[at]&&count<12){unsigned n=0;while(name[at]&&n<63){lines[count][n]=name[at];lines[count][n+1]=0;if(ui73_measure(lines[count],UI12_SECONDARY)>(unsigned)(width-24)){lines[count][n]=0;break;}++n;++at;}if(!n)return 0;++count;}
