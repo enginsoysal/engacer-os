@@ -7,7 +7,12 @@ static void desktop_select11(unsigned row,unsigned modifiers,unsigned preserve){
  else{desktop_set_selected11(row,(modifiers&1)?!desktop_is_selected11(row):1);desktop_anchor11=row;}desktop_item_focus11=row;if(row>=3)desktop_page11=(row-3)/desktop_capacity11();
 }
 static void draw_desktop_files11(void){unsigned count=desktop_children11(),page=desktop_capacity11(),rows=desktop_rows11();if(desktop_page11*page>=count)desktop_page11=count?(count-1)/page:0;unsigned start=desktop_page11*page;
- for(unsigned n=0;n<page&&start+n<count;++n){unsigned row=start+n;const v6_entry*e=desktop_child11(row);int x=176+(int)(n/rows)*126,y=110+(int)(n%rows)*95;desktop_rect r={x,y,120,88};if(file_selected_desktop11(row))ui73_round(x,y,120,88,6,0x315b62);if(e->kind==2)folder_icon72(x+38,y+9,42,0xf0ce87);else{ui73_round(x+43,y+6,32,39,4,0xe8f2f4);rectangle((desktop_rect){x+49,y+17,20,2},0x78959c);rectangle((desktop_rect){x+49,y+24,16,2},0x78959c);if(file_suffix11(e->path,"link")){rectangle((desktop_rect){x+35,y+33,15,12},paper());rectangle((desktop_rect){x+38,y+38,9,2},ink());rectangle((desktop_rect){x+45,y+35,2,8},ink());}}
+ for(unsigned n=0;n<page&&start+n<count;++n){unsigned row=start+n;const v6_entry*e=desktop_child11(row);int x=176+(int)(n/rows)*126,y=110+(int)(n%rows)*95;desktop_rect r={x,y,120,88};if(file_selected_desktop11(row))ui73_round(x,y,120,88,6,0x315b62);
+#ifdef ENGINE_M12
+ shell_file_icon12(x+38,y+6,42,e);
+#else
+ if(e->kind==2)folder_icon72(x+38,y+9,42,0xf0ce87);else{ui73_round(x+43,y+6,32,39,4,0xe8f2f4);rectangle((desktop_rect){x+49,y+17,20,2},0x78959c);rectangle((desktop_rect){x+49,y+24,16,2},0x78959c);if(file_suffix11(e->path,"link")){rectangle((desktop_rect){x+35,y+33,15,12},paper());rectangle((desktop_rect){x+38,y+38,9,2},ink());rectangle((desktop_rect){x+45,y+35,2,8},ink());}}
+#endif
   ui73_paragraph(x+6,y+54,108,2,file_label11(e),file_selected_desktop11(row)?0xe5f0f3:desktop_ink11());if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,F11_DESKTOP_ITEM+row};
  }
  if(count>page){int y=(int)model.height-105;button(0,176,y,65,"<",F11_DESKTOP_PREV,0);button(0,249,y,65,">",F11_DESKTOP_NEXT,0);char info[64],number[24];decimal(number,desktop_page11+1);copy(info,"Desktop page ",64);append(info,number,64);text(326,y+9,info,1,desktop_ink11());}

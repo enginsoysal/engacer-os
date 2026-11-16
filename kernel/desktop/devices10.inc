@@ -7,7 +7,13 @@ static void draw_devices10(desktop_window*w,application*app,uint64_t token){
  ui73_fit(x,y+42,width,"Support is built in. Detected does not mean fully supported.",1,ink());
  usb10_info usb=usb10_current();char summary[160]="USB: ",n[24];decimal(n,usb.keyboards);append(summary,n,160);append(summary," keyboard, ",160);decimal(n,usb.mice);append(summary,n,160);append(summary," mouse, ",160);decimal(n,usb.disks);append(summary,n,160);append(summary," storage, ",160);decimal(n,usb.hubs);append(summary,n,160);append(summary," hub. Display: software 2D.",160);ui73_fit(x,y+72,width,summary,1,ink());
  unsigned count=hw10_count(),rows=devices_rows10(w);
- for(unsigned i=0;i<rows&&app->offset+i<count;++i){const hw10_device*d=hw10_get(app->offset+i);int top=y+112+(int)i*56;char label[96];copy(label,d->name,96);append(label,"  /  ",96);append(label,d->state==HW10_READY?"Ready":d->state==HW10_LIMITED?"Limited":d->state==HW10_UNAVAILABLE?"Unavailable":"Detected",96);text(x+8,top,label,1,ink());ui73_fit(x+8,top+23,width-16,d->detail,1,ink());rectangle((desktop_rect){x,top+46,width,1},preferences.dark?0x35515a:0xd7e1d8);}
+ for(unsigned i=0;i<rows&&app->offset+i<count;++i){const hw10_device*d=hw10_get(app->offset+i);int top=y+112+(int)i*56;char label[96];copy(label,d->name,96);append(label,"  /  ",96);append(label,d->state==HW10_READY?"Ready":d->state==HW10_LIMITED?"Limited":d->state==HW10_UNAVAILABLE?"Unavailable":"Detected",96);
+#ifdef ENGINE_M12
+ unsigned cls=d->class_code>>16;unsigned icon=cls==1?ICON12_VOLUME:cls==2?ICON12_NETWORK:cls==3?ICON12_GPU:cls==4?ICON12_SOUND:d->class_code==0x0c0330?ICON12_USB_HUB:ICON12_UNKNOWN;ui12_icon(icon,x+6,top+5,32,preferences.dark);ui73_fit(x+48,top,width-56,label,1,ink());ui73_fit(x+48,top+23,width-56,d->detail,1,ink());
+#else
+ text(x+8,top,label,1,ink());ui73_fit(x+8,top+23,width-16,d->detail,1,ink());
+#endif
+ rectangle((desktop_rect){x,top+46,width,1},preferences.dark?0x35515a:0xd7e1d8);}
  int bottom=w->bounds.y+w->bounds.height-135;button(token,x,bottom,95,"Previous",DEVICES_PREV10,0);button(token,x+105,bottom,95,"Next",DEVICES_NEXT10,0);
  text(x,bottom+48,"Keyboard layout",1,ink());button(token,x+170,bottom+35,135,"US QWERTY",LAYOUT_US10,!input10_layout());button(token,x+315,bottom+35,135,"US Dvorak",LAYOUT_DVORAK10,input10_layout()==1);
  ui73_fit(x,w->bounds.y+w->bounds.height-28,width,app->notice[0]?app->notice:"Keyboard choice is saved automatically. Hardware support expands by tested profiles.",1,ink());
@@ -18,7 +24,13 @@ static void draw_usb10(desktop_window*w,application*app,uint64_t token){
  int x=w->bounds.x+22,y=w->bounds.y+54,width=w->bounds.width-44;
  text(x,y,"USB drives",2,ink());button(token,x+width-130,y-8,130,"Your folders",USB_CLOSE10,0);
  if(app->usb_mode10==1){ui73_paragraph(x,y+48,width,1,"Choose a connected drive. Opening it never formats or erases it.",ink());unsigned row=0;
-  for(unsigned i=0;i<storage_count()&&row<6;++i){const storage_disk*d=storage_get(i);if(d->transport!=STORAGE_USB||!d->readable)continue;char label[128]="USB drive ",n[24];decimal(n,i+1);append(label,n,128);append(label,"  -  ",128);decimal(n,d->sectors*d->sector_bytes/(1024*1024));append(label,n,128);append(label," MiB",128);append(label,storage_writable(d)?"  /  read and write":"  /  read only",128);button(token,x,y+105+(int)row*55,width,label,USB_DISK10+i,0);++row;}
+  for(unsigned i=0;i<storage_count()&&row<6;++i){const storage_disk*d=storage_get(i);if(d->transport!=STORAGE_USB||!d->readable)continue;char label[128]="USB drive ",n[24];decimal(n,i+1);append(label,n,128);append(label,"  -  ",128);decimal(n,d->sectors*d->sector_bytes/(1024*1024));append(label,n,128);append(label," MiB",128);append(label,storage_writable(d)?"  /  read and write":"  /  read only",128);
+#ifdef ENGINE_M12
+ icon_button12(token,x,y+105+(int)row*55,width,label,USB_DISK10+i,0,ICON12_USB);
+#else
+ button(token,x,y+105+(int)row*55,width,label,USB_DISK10+i,0);
+#endif
+ ++row;}
   if(!row)ui73_paragraph(x,y+115,width,2,"No readable USB drive is connected. Connect one, then reopen USB drives. Other devices are listed in Settings > Devices.",ink());
  }else{
   button(token,x,y+44,95,"Drives",USB_DRIVES10,0);button(token,x+105,y+44,80,"Up",USB_UP10,0);ui73_fit(x+200,y+55,width-205,app->usb_path10,1,ink());
@@ -29,7 +41,13 @@ static void draw_usb10(desktop_window*w,application*app,uint64_t token){
 #else
  app->usb_selected10==app->offset+i+1
 #endif
- );if(e->kind==2)folder_icon72(x+12,top+8,20,0xf0ce87);else{rectangle((desktop_rect){x+15,top+7,16,24},0xf7f8ee);rectangle((desktop_rect){x+18,top+13,10,2},0x88a4a0);}ui73_fit(x+44,top+10,width-55,e->name,1,ink());}
+ );
+#ifdef ENGINE_M12
+ ui12_icon(shell_path_icon12(e->name,e->kind),x+12,top+8,24,preferences.dark);
+#else
+ if(e->kind==2)folder_icon72(x+12,top+8,20,0xf0ce87);else{rectangle((desktop_rect){x+15,top+7,16,24},0xf7f8ee);rectangle((desktop_rect){x+18,top+13,10,2},0x88a4a0);}
+#endif
+ ui73_fit(x+44,top+10,width-55,e->name,1,ink());}
   if(!status&&!total)text(x,y+128,"This folder is empty.",2,ink());
   int bottom=w->bounds.y+w->bounds.height-145;button(token,x,bottom,80,"<",USB_PREV10,0);button(token,x+90,bottom,80,">",USB_NEXT10,0);
   if(app->usb_source10[0])button(token,x+185,bottom,width-185,"Copy here",USB_EXPORT10,1);else button(token,x+185,bottom,width-185,"Copy selected to Downloads",USB_IMPORT10,1);

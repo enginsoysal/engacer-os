@@ -1,5 +1,8 @@
 /* Original clipped CPU compositor. Font coverage is generated from OFL Inter. */
 #include <engine/ui/graphics73.h>
+#ifdef ENGINE_M12
+#include <engine/ui/icons12.h>
+#endif
 #include "font73.h"
 #ifdef ENGINE_M74
 #include <engine/audio74.h>
@@ -65,6 +68,9 @@ static void blend73(unsigned x,unsigned y,uint32_t rgb,unsigned a,unsigned clipp
  unsigned g=(((fg>>8)&255)*a+((bg>>8)&255)*(255-a)+127)/255;
  unsigned b=((fg&255)*a+(bg&255)*(255-a)+127)/255;*p=(r<<16)|(g<<8)|b;
 }
+#ifdef ENGINE_M12
+#include "icons12.inc"
+#endif
 static void rect73(unsigned x,unsigned y,unsigned w,unsigned h,uint32_t rgb){
  if(!x&&!y)gui6_repaint=1;
 #ifdef ENGINE_M92

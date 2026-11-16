@@ -9,6 +9,9 @@ static unsigned children72(application *app){
  return total;
 }
 static void folder_icon72(int x,int y,unsigned size,uint32_t tint){
+#ifdef ENGINE_M12
+ (void)tint;ui12_icon(ICON12_FOLDER,x,y,size,preferences.dark);return;
+#endif
 #ifdef ENGINE_M73
  ui73_folder((unsigned)x,(unsigned)y,size,tint);return;
 #endif

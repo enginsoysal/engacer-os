@@ -1,6 +1,20 @@
 static unsigned start_page_size11(void){unsigned rows=start_bounds11.height>264?(unsigned)(start_bounds11.height-264)/56:1;if(!rows)rows=1;return rows*(start_preferences11.view?3u:1u);}
 static unsigned start_manage_rows11(void){if(start_bounds11.height<430)return 1;unsigned rows=(unsigned)(start_bounds11.height-334)/44;return rows?rows:1;}
-static void start_draw_item11(unsigned row,int x,int y,int width){start_result11 result=start_results11[row];const s11_pin*pin=result.kind==1?0:&start_preferences11.pinned[result.id];unsigned app=result.kind==1?result.id:pin->kind==1?pin->app:FILES;const char*name=pin?start_pin_name11(pin):titles[app];unsigned available=pin&&pin->kind==2?equal(pin->path,"/")||(entry(pin->path)&&entry(pin->path)->kind==2):app7_available(app);desktop_rect rect={x,y,width,48};ui73_round(x,y,width,48,6,row==start_cursor11&&!start_search_focus11?file_tint11():preferences.dark?0x20343d:0xeaf0f2);if(pin&&pin->kind==2)folder_icon72(x+10,y+13,25,0xf0ce87);else{ui73_round(x+10,y+10,26,26,5,preferences.accent);char letter[2]={titles[app][0],0};text(x+17,y+14,letter,1,accent_ink12(0x102d29));}ui73_fit(x+45,y+4,width-54,name,1,available?ink():0x829098);ui73_fit(x+45,y+26,width-54,!available?"Unavailable":pin&&pin->kind==2?"Folder":pin&&pin->label[0]?titles[app]:"Application",5,preferences.dark?0xa7bcc4:0x56717d);file_control11(0,rect,S11_RESULT+row);if(control_active&&focused_control_window==0&&focused_action==S11_RESULT+row)file_focus_rect11(rect);}
+static void start_draw_item11(unsigned row,int x,int y,int width){
+ start_result11 result=start_results11[row];const s11_pin*pin=result.kind==1?0:&start_preferences11.pinned[result.id];
+ unsigned app=result.kind==1?result.id:pin->kind==1?pin->app:FILES;
+ const char*name=pin?start_pin_name11(pin):titles[app];
+ unsigned available=pin&&pin->kind==2?equal(pin->path,"/")||(entry(pin->path)&&entry(pin->path)->kind==2):app7_available(app);
+ desktop_rect rect={x,y,width,48};ui73_round(x,y,width,48,6,row==start_cursor11&&!start_search_focus11?file_tint11():preferences.dark?0x20343d:0xeaf0f2);
+#ifdef ENGINE_M12
+ ui12_icon(pin&&pin->kind==2?(equal(pin->path,"/")?ICON12_VOLUME:ICON12_FOLDER):app,x+10,y+10,26,preferences.dark);
+#else
+ if(pin&&pin->kind==2)folder_icon72(x+10,y+13,25,0xf0ce87);else{ui73_round(x+10,y+10,26,26,5,preferences.accent);char letter[2]={titles[app][0],0};text(x+17,y+14,letter,1,accent_ink12(0x102d29));}
+#endif
+ ui73_fit(x+45,y+4,width-54,name,1,available?ink():0x829098);
+ ui73_fit(x+45,y+26,width-54,!available?"Unavailable":pin&&pin->kind==2?"Folder":pin&&pin->label[0]?titles[app]:"Application",5,preferences.dark?0xa7bcc4:0x56717d);
+ file_control11(0,rect,S11_RESULT+row);if(control_active&&focused_control_window==0&&focused_action==S11_RESULT+row)file_focus_rect11(rect);
+}
 static void start_draw_manage11(int x,int y,int width,int height){s11_preferences*p=&start_preferences11;unsigned count=start_manage11==1?p->categories:start_manage11==2?p->pins:p->tasks,rows=start_manage_rows11();if(start_manage_page11*rows>=count)start_manage_page11=count?(count-1)/rows:0;unsigned first=start_manage_page11*rows;int list=y+164;
  for(unsigned n=0;n<rows&&first+n<count;++n){unsigned index=first+n;char label[96];unsigned command,selected;
   if(start_manage11==1){unsigned category=p->order[index];copy(label,p->names[category],96);if(p->hidden[category])append(label," (hidden)",96);command=S11_CATEGORY+category;selected=start_category11==category;}
@@ -30,8 +44,26 @@ static void start_draw11(void){if(!launcher)return;int width=model.width>792?760
  if(start_manage11){button(0,left+120,top+height-48,110,"Back",S11_BACK,0);button(0,left+width-178,top+height-48,158,"Restore defaults",S11_DEFAULTS,0);}else{button(0,left+120,top+height-48,112,"Customize",S11_CUSTOMIZE,0);if(width>=600){button(0,left+240,top+height-48,65,"Files",S11_APP+FILES,0);button(0,left+313,top+height-48,85,"Settings",S11_APP+SETTINGS,0);}button(0,left+width-120,top+height-48,100,"Power",S11_POWER,0);}
  start_draw_dialog11(left,top,width,height);
 }
-static void start_taskbar11(int bar){s11_preferences*p=&start_preferences11;int clock=model.width>=1000?180:0,available=(int)model.width-clock-32,reserve=model.count?(int)model.count*44:0,budget=available-112-reserve;if(budget<0)budget=0;unsigned visible=(unsigned)budget/90;if(visible>p->tasks)visible=p->tasks;if(visible<p->tasks){budget-=52;visible=budget>0?(unsigned)budget/90:0;if(visible>p->tasks)visible=p->tasks;}unsigned more=visible<p->tasks;int pinwidth=(int)visible*90+(more?52:0),windowspace=available-112-pinwidth;unsigned overflow=model.count&&windowspace<(int)model.count*44;int windows=overflow?120:model.count?(windowspace/(int)model.count>120?120:windowspace/(int)model.count)*(int)model.count:0,total=112+pinwidth+windows;int x=p->centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;button(0,x,bar+15,100,"E  Start",0,launcher);x+=112;
- for(unsigned i=0;i<visible;++i){unsigned app=p->task[i];if(!app7_available(app))continue;button(0,x,bar+15,82,titles[app],S11_TASK_PIN+i,0);x+=90;}if(more){button(0,x,bar+15,44,"Pins",S11_MORE_PINS,0);x+=52;}
- if(model.count){rectangle((desktop_rect){x-6,bar+14,1,36},0x45606d);if(overflow)button(0,x,bar+15,116,"Windows",S11_WINDOWS,0);else{int step=windows/(int)model.count;for(unsigned i=0;i<model.count;++i){unsigned slot=model.order[i];desktop_window*w=&model.windows[slot];unsigned active=model.focused==slot&&!w->minimized&&!desktop_focus11;button(desktop_token(&model,slot),x+(int)i*step,bar+15,step-8,titles[w->app],70,active);rectangle((desktop_rect){x+(int)i*step+8,bar+54,step-24,2},active?preferences.accent:w->minimized?0x56717b:0xb6cbd1);}}}
+static void start_taskbar11(int bar){s11_preferences*p=&start_preferences11;int clock=model.width>=1000?180:0,available=(int)model.width-clock-32,reserve=model.count?(int)model.count*44:0,budget=available-112-reserve;if(budget<0)budget=0;unsigned visible=(unsigned)budget/90;if(visible>p->tasks)visible=p->tasks;if(visible<p->tasks){budget-=52;visible=budget>0?(unsigned)budget/90:0;if(visible>p->tasks)visible=p->tasks;}unsigned more=visible<p->tasks;int pinwidth=(int)visible*90+(more?52:0),windowspace=available-112-pinwidth;unsigned overflow=model.count&&windowspace<(int)model.count*44;int windows=overflow?120:model.count?(windowspace/(int)model.count>120?120:windowspace/(int)model.count)*(int)model.count:0,total=112+pinwidth+windows;int x=p->centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
+#ifdef ENGINE_M12
+ icon_button12(0,x,bar+15,100,"Start",0,launcher,ICON12_START);
+#else
+ button(0,x,bar+15,100,"E  Start",0,launcher);
+#endif
+ x+=112;
+ for(unsigned i=0;i<visible;++i){unsigned app=p->task[i];if(!app7_available(app))continue;
+#ifdef ENGINE_M12
+ icon_button12(0,x,bar+15,82,titles[app],S11_TASK_PIN+i,0,app);
+#else
+ button(0,x,bar+15,82,titles[app],S11_TASK_PIN+i,0);
+#endif
+ x+=90;}if(more){button(0,x,bar+15,44,"Pins",S11_MORE_PINS,0);x+=52;}
+ if(model.count){rectangle((desktop_rect){x-6,bar+14,1,36},0x45606d);if(overflow)button(0,x,bar+15,116,"Windows",S11_WINDOWS,0);else{int step=windows/(int)model.count;for(unsigned i=0;i<model.count;++i){unsigned slot=model.order[i];desktop_window*w=&model.windows[slot];unsigned active=model.focused==slot&&!w->minimized&&!desktop_focus11;
+#ifdef ENGINE_M12
+ icon_button12(desktop_token(&model,slot),x+(int)i*step,bar+15,step-8,titles[w->app],70,active,w->app);
+#else
+ button(desktop_token(&model,slot),x+(int)i*step,bar+15,step-8,titles[w->app],70,active);
+#endif
+ rectangle((desktop_rect){x+(int)i*step+8,bar+54,step-24,2},active?preferences.accent:w->minimized?0x56717b:0xb6cbd1);}}}
  if(clock)task_clock74(bar);
 }

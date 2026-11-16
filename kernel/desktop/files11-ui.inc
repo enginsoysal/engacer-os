@@ -12,6 +12,10 @@ static unsigned file_page_size11(const desktop_window*w){unsigned count=file_row
 static uint32_t file_tint11(void){uint32_t base=paper(),accent=preferences.accent,result=0;for(unsigned shift=0;shift<24;shift+=8)result|=((3*((base>>shift)&255)+((accent>>shift)&255))/4)<<shift;return result;}
 static void file_control11(uint64_t token,desktop_rect rect,unsigned command){if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){rect,token,command};}
 static void file_button11(uint64_t token,int x,int y,int width,const char*label,unsigned command,unsigned enabled,unsigned primary){
+#ifdef ENGINE_M12
+ unsigned icon=command==NAV_BACK||command==NAV_PREVIOUS?ICON12_BACK:command==NAV_FORWARD||command==NAV_NEXT?ICON12_FORWARD:command==FILE_UP?ICON12_UP:command==F11_COPY?ICON12_COPY:command==F11_CUT?ICON12_CUT:command==F11_PASTE?ICON12_PASTE:0;
+ if(enabled&&icon&&(width<60||ui73_measure(label,1)<=(unsigned)(width-35))){icon_button12(token,x,y,width,label,command,primary,icon);return;}
+#endif
  if(enabled)button(token,x,y,width,label,command,primary);
 #ifdef ENGINE_M12
  else component_button12(token,(desktop_rect){x,y,width,36},label,command,primary,0);
@@ -21,7 +25,13 @@ static void file_button11(uint64_t token,int x,int y,int width,const char*label,
 }
 static void file_size_text11(char*out,uint64_t size){const char*units[]={" B"," KiB"," MiB"," GiB"};unsigned unit=0;uint64_t divisor=1;while(unit<3&&size/divisor>=1024){divisor*=1024;++unit;}char number[24];decimal(number,size/divisor);copy(out,number,48);if(unit){append(out,".",48);decimal(number,(size%divisor)*10/divisor);append(out,number,48);}append(out,units[unit],48);}
 static const char *file_type_text11(const v6_entry*e){if(e->kind==2)return "Folder";char extension[12];file_extension11(extension,file_label11(e));if(equal(extension,"link"))return "Shortcut";if(equal(extension,"txt")||equal(extension,"md")||equal(extension,"log"))return "Text document";if(equal(extension,"bmp"))return "BMP image";if(equal(extension,"wav"))return "WAV audio";if(equal(extension,"zip"))return "ZIP archive";if(equal(extension,"msi"))return "MSI package";if(equal(extension,"exe"))return "EXE file";return "File";}
-static void file_icon11(int x,int y,unsigned size,const v6_entry*e){if(e->kind==2){folder_icon72(x,y,size,0xf0ce87);return;}ui73_round(x+3,y,size*3/4,size,4,preferences.dark?0x91adb7:0xd8e8ef);rectangle((desktop_rect){x+8,y+(int)size/3,(int)size/2,2},0x698e9a);rectangle((desktop_rect){x+8,y+(int)size/2,(int)size/3,2},0x698e9a);if(file_suffix11(file_label11(e),"link")){rectangle((desktop_rect){x,y+(int)size-12,13,12},paper());rectangle((desktop_rect){x+2,y+(int)size-7,8,2},ink());rectangle((desktop_rect){x+8,y+(int)size-10,2,7},ink());}}
+static void file_icon11(int x,int y,unsigned size,const v6_entry*e){
+#ifdef ENGINE_M12
+ shell_file_icon12(x,y,size,e);
+#else
+ if(e->kind==2){folder_icon72(x,y,size,0xf0ce87);return;}ui73_round(x+3,y,size*3/4,size,4,preferences.dark?0x91adb7:0xd8e8ef);rectangle((desktop_rect){x+8,y+(int)size/3,(int)size/2,2},0x698e9a);rectangle((desktop_rect){x+8,y+(int)size/2,(int)size/3,2},0x698e9a);if(file_suffix11(file_label11(e),"link")){rectangle((desktop_rect){x,y+(int)size-12,13,12},paper());rectangle((desktop_rect){x+2,y+(int)size-7,8,2},ink());rectangle((desktop_rect){x+8,y+(int)size-10,2,7},ink());}
+#endif
+}
 static void file_focus_rect11(desktop_rect r){
 #ifdef ENGINE_M12
  uint32_t stroke=ink();

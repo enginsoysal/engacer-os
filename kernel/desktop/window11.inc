@@ -24,13 +24,24 @@ static unsigned window_edges11(desktop_window*w,int x,int y){if(!w||file_block_o
 static void window_caption11(desktop_window*w){desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];char title[320];copy(title,titles[w->app],sizeof(title));
  if((w->app==FILES||w->app==EDITOR)&&a->path[0]){const char*name=a->path;for(unsigned i=0;a->path[i];++i)if(a->path[i]=='/'&&a->path[i+1])name=a->path+i+1;copy(title,a->dirty?"* ":"",sizeof(title));append(title,equal(a->path,"/")?"System drive":name,sizeof(title));append(title," - ",sizeof(title));append(title,titles[w->app],sizeof(title));}
  if(model.focused==(unsigned)(w-model.windows)&&!desktop_focus11&&!launcher)rectangle((desktop_rect){r.x+12,r.y+38,r.width-24,2},preferences.accent);
+#ifdef ENGINE_M12
+ ui12_icon(w->app,r.x+14,r.y+10,20,preferences.dark);ui73_fit(r.x+42,r.y+11,r.width-192,title,1,ink());
+#else
  ui73_fit(r.x+16,r.y+11,r.width-166,title,1,ink());
+#endif
  unsigned hover_y=pointer_y>=(unsigned)r.y+2&&pointer_y<(unsigned)r.y+38;
  for(unsigned i=0;i<3;++i){int x=r.x+r.width-140+(int)i*44;if(hover_y&&(int)pointer_x>=x&&(int)pointer_x<x+40)ui73_round(x,r.y+2,40,36,5,i==2?0xc84d58:preferences.dark?0x3c5665:0xd7e3e9);}
+#ifdef ENGINE_M12
+ window_state11*s=window_state_for11(token);
+ ui12_icon(ICON12_MINIMIZE,r.x+r.width-134,r.y+9,24,preferences.dark);
+ ui12_icon(s&&s->mode?ICON12_RESTORE:ICON12_MAXIMIZE,r.x+r.width-90,r.y+9,24,preferences.dark);
+ ui12_icon(ICON12_CLOSE,r.x+r.width-46,r.y+9,24,preferences.dark);
+#else
  uint32_t color=ink();int x=r.x+r.width-128,y=r.y+18;rectangle((desktop_rect){x,y+6,13,2},color);x+=44;
  window_state11*s=window_state_for11(token);if(s&&s->mode){rectangle((desktop_rect){x+3,y-3,12,2},color);rectangle((desktop_rect){x+13,y-3,2,11},color);}
  rectangle((desktop_rect){x,y,12,2},color);rectangle((desktop_rect){x,y+10,12,2},color);rectangle((desktop_rect){x,y,2,12},color);rectangle((desktop_rect){x+10,y,2,12},color);x+=44;
  for(int i=0;i<12;++i){rectangle((desktop_rect){x+i,y+i,2,2},color);rectangle((desktop_rect){x+11-i,y+i,2,2},color);}
+#endif
 }
 static void window_drag_begin11(i11_target target){desktop_window*w=desktop_lookup(&model,target.window);window_state11*s=window_state_for11(target.window);if(!w||!s)return;window_before11=w->bounds;window_mode_before11=s->mode;window_normal_before11=s->normal;
  dragging=1;drag_window=target.window;drag_x=interaction11.x;drag_y=interaction11.y;window_drag_edges11=target.action>=31010&&target.action<=31025?target.action-31010:target.action==31003?10:0;drag_resize=!!window_drag_edges11;

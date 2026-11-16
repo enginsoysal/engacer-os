@@ -64,7 +64,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m10:sources.extend(sorted((ROOT/'tools/build').glob('m10*.py')))
     if m11:sources.extend(sorted((ROOT/'tools/build').glob('m11*.py')))
     if m12:sources.extend(sorted((ROOT/'tools/build').glob('m12*.py')))
-    if m12:sources.append(ROOT/'tools/design/components12.py')
+    if m12:sources.extend([ROOT/'tools/design/components12.py',ROOT/'tools/design/icons12.py'])
     hashes={p.relative_to(ROOT).as_posix():sha(p) for p in sorted(sources)}
     identity={'milestone':'M12' if m12 else 'M11' if m11 else 'M10' if m10 else 'M92' if m92 else 'M9' if m9 else 'M8' if m8 else 'M75' if m75 else 'M74' if m74 else 'M73' if m73 else 'M72' if m72 else 'M71' if m71 else 'M7' if m7 else 'M6' if m6 else milestone,'source_sha256':hashes}
     if m6:identity['revision']=m6_revision

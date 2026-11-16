@@ -29,6 +29,7 @@
 #endif
 #ifdef ENGINE_M12
 #include <engine/ui/components12.h>
+#include <engine/ui/icons12.h>
 #endif
 
 enum { FILES=1, EDITOR, SETTINGS, CALCULATOR, DOWNLOADS, DETAILS, TERMINAL,
@@ -254,6 +255,9 @@ static void button(uint64_t window,int x,int y,int width,const char *label,unsig
     }
     if(control_count<sizeof(controls)/sizeof(*controls))controls[control_count++]=(control){r,window,action};
 }
+#ifdef ENGINE_M12
+#include "icons12.inc"
+#endif
 static void unique_in(char *out,const char *directory,const char *prefix,const char *suffix) {
     char number[24],base[256];copy(base,directory,sizeof(base));if(length(base)&&base[length(base)-1]!='/')append(base,"/",256);
     for(unsigned i=1;i<10000;++i){copy(out,base,256);append(out,prefix,256);decimal(number,i);append(out,number,256);append(out,suffix,256);unsigned reserved=0;for(unsigned slot=0;slot<DESKTOP_WINDOWS;++slot)
@@ -740,8 +744,12 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     folder_icon72(40,125,42,0xf0ce87);text(38,175,"My files",1,desktop_label_ink11(0));
     folder_icon72(40,220,42,0xf0ce87);text(38,270,"Documents",1,desktop_label_ink11(1));
 #ifdef ENGINE_M73
+#ifdef ENGINE_M12
+    ui12_icon(ICON12_SETTINGS,40,315,42,preferences.dark);text(38,365,"Appearance",1,desktop_label_ink11(2));
+#else
     ui73_round(40,315,42,42,10,preferences.accent);
     for(unsigned i=0;i<3;++i){unsigned cy=326+i*10;gui6_rect(48,cy,26,2,accent_ink12(0x17382f));ui73_round(i==1?62:52,cy-3,7,8,3,accent_ink12(0x17382f));}text(38,365,"Appearance",1,desktop_label_ink11(2));
+#endif
 #else
     gui6_rect(40,318,42,36,preferences.accent);text(52,329,"S",2,0x17382f);text(38,365,"Appearance",1,desktop_label_ink11(2));
 #endif

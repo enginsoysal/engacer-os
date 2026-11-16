@@ -1,0 +1,292 @@
+{
+  "license": "MIT",
+  "provenance": "Original Engacer OS geometric artwork; no external icon or Windows assets",
+  "coordinate_grid": 32,
+  "icons": [
+    {
+      "id": 0,
+      "name": "unknown",
+      "shapes": 5
+    },
+    {
+      "id": 1,
+      "name": "files",
+      "shapes": 4
+    },
+    {
+      "id": 2,
+      "name": "editor",
+      "shapes": 7
+    },
+    {
+      "id": 3,
+      "name": "settings",
+      "shapes": 7
+    },
+    {
+      "id": 4,
+      "name": "calculator",
+      "shapes": 11
+    },
+    {
+      "id": 5,
+      "name": "downloads",
+      "shapes": 5
+    },
+    {
+      "id": 6,
+      "name": "monitor",
+      "shapes": 8
+    },
+    {
+      "id": 7,
+      "name": "terminal",
+      "shapes": 4
+    },
+    {
+      "id": 8,
+      "name": "clock",
+      "shapes": 5
+    },
+    {
+      "id": 9,
+      "name": "calendar",
+      "shapes": 11
+    },
+    {
+      "id": 10,
+      "name": "disks",
+      "shapes": 5
+    },
+    {
+      "id": 11,
+      "name": "software",
+      "shapes": 6
+    },
+    {
+      "id": 12,
+      "name": "recovery",
+      "shapes": 7
+    },
+    {
+      "id": 13,
+      "name": "archives",
+      "shapes": 8
+    },
+    {
+      "id": 14,
+      "name": "images",
+      "shapes": 6
+    },
+    {
+      "id": 15,
+      "name": "screenshot",
+      "shapes": 6
+    },
+    {
+      "id": 16,
+      "name": "media",
+      "shapes": 4
+    },
+    {
+      "id": 17,
+      "name": "browser",
+      "shapes": 6
+    },
+    {
+      "id": 18,
+      "name": "help",
+      "shapes": 5
+    },
+    {
+      "id": 19,
+      "name": "windows_apps",
+      "shapes": 5
+    },
+    {
+      "id": 20,
+      "name": "folder",
+      "shapes": 4
+    },
+    {
+      "id": 21,
+      "name": "document",
+      "shapes": 3
+    },
+    {
+      "id": 22,
+      "name": "text",
+      "shapes": 5
+    },
+    {
+      "id": 23,
+      "name": "image_file",
+      "shapes": 6
+    },
+    {
+      "id": 24,
+      "name": "audio_file",
+      "shapes": 7
+    },
+    {
+      "id": 25,
+      "name": "archive_file",
+      "shapes": 8
+    },
+    {
+      "id": 26,
+      "name": "package",
+      "shapes": 6
+    },
+    {
+      "id": 27,
+      "name": "executable",
+      "shapes": 7
+    },
+    {
+      "id": 28,
+      "name": "shortcut",
+      "shapes": 6
+    },
+    {
+      "id": 29,
+      "name": "usb",
+      "shapes": 6
+    },
+    {
+      "id": 30,
+      "name": "network",
+      "shapes": 5
+    },
+    {
+      "id": 31,
+      "name": "volume",
+      "shapes": 5
+    },
+    {
+      "id": 32,
+      "name": "back",
+      "shapes": 2
+    },
+    {
+      "id": 33,
+      "name": "forward",
+      "shapes": 2
+    },
+    {
+      "id": 34,
+      "name": "up",
+      "shapes": 3
+    },
+    {
+      "id": 35,
+      "name": "copy",
+      "shapes": 4
+    },
+    {
+      "id": 36,
+      "name": "cut",
+      "shapes": 6
+    },
+    {
+      "id": 37,
+      "name": "paste",
+      "shapes": 6
+    },
+    {
+      "id": 38,
+      "name": "trash",
+      "shapes": 6
+    },
+    {
+      "id": 39,
+      "name": "search",
+      "shapes": 3
+    },
+    {
+      "id": 40,
+      "name": "power",
+      "shapes": 5
+    },
+    {
+      "id": 41,
+      "name": "start",
+      "shapes": 5
+    },
+    {
+      "id": 42,
+      "name": "home",
+      "shapes": 4
+    },
+    {
+      "id": 43,
+      "name": "refresh",
+      "shapes": 8
+    },
+    {
+      "id": 44,
+      "name": "save",
+      "shapes": 6
+    },
+    {
+      "id": 45,
+      "name": "close",
+      "shapes": 2
+    },
+    {
+      "id": 46,
+      "name": "minimize",
+      "shapes": 1
+    },
+    {
+      "id": 47,
+      "name": "maximize",
+      "shapes": 2
+    },
+    {
+      "id": 48,
+      "name": "restore",
+      "shapes": 4
+    },
+    {
+      "id": 49,
+      "name": "check",
+      "shapes": 2
+    },
+    {
+      "id": 50,
+      "name": "warning",
+      "shapes": 3
+    },
+    {
+      "id": 51,
+      "name": "keyboard",
+      "shapes": 13
+    },
+    {
+      "id": 52,
+      "name": "mouse",
+      "shapes": 4
+    },
+    {
+      "id": 53,
+      "name": "sound",
+      "shapes": 7
+    },
+    {
+      "id": 54,
+      "name": "gpu",
+      "shapes": 9
+    },
+    {
+      "id": 55,
+      "name": "wifi",
+      "shapes": 5
+    },
+    {
+      "id": 56,
+      "name": "usb_hub",
+      "shapes": 8
+    }
+  ]
+}
