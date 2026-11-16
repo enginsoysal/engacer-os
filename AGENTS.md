@@ -120,3 +120,8 @@ media, source stamp and evidence/M12/1; use M12STAGE2 or later for new work.
 M12.2 M12-STAGE2-VM-v1 and its complete public delivery are accepted. Preserve
 M12STAGE2 bytes, source stamp and evidence/M12/2. Use stage3 or later for new work.
 Carry the open BIOS/AHCI observation into final M12.18 qualification.
+
+M12.3 M12-STAGE3-VM-v1 and its complete public delivery are accepted. Preserve
+M12STAGE3 media, source stamp and evidence/M12/3. New work uses stage4 or later.
+Retain the tested caption-capture hover suppression and the recoverable per-user
+desktop reference preference; the earlier BIOS/AHCI observation remains open.

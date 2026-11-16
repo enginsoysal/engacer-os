@@ -10,7 +10,9 @@ overflow, independently hidden/restored icons and empty-desktop recovery. The
 exact enabled-device VMware starter, QEMU SATA/UEFI and BIOS install and start
 independently; actual 150%/4K, stored guide/preferences and idle are checked.
 Fixed desktop state grows 32 bytes over M12.2; tasks retain zero extra pages.
-Public release/site closure is being verified before M12.4. The earlier
+[Public release/site closure](../../evidence/M12/3/publication-results.json)
+passes: twenty downloads, 311 pages and 2,097 discovered links, with current-source
+guides and native desktop/mobile homepage verification. The earlier
 M12.2 concurrent BIOS/AHCI timeout remains open for M12.18.
 
 **Previous M12.2 / 0.12.2 passes M12-STAGE2-VM-v1.**
@@ -65,7 +67,7 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
-**M12.0 through M12.2 are closed; M12.3 native acceptance passes and public closure is in progress.**
+**M12.0 through M12.3 are closed; M12.4 windows and title bars is in progress.**
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website

@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.3",
+  "current_stage": "M12.4",
   "qualified_download": "M12.3",
   "known_issues": [
     {
@@ -49,7 +49,7 @@
     },
     {
       "id": "M12.3",
-      "status": "publication_pending",
+      "status": "complete",
       "title": "Desktop and shortcuts",
       "requires": "M12.2",
       "deliverable": "Consistent desktop layout, icon labels, alignment, selection, background menu and Recycle Bin.",
@@ -59,7 +59,7 @@
     },
     {
       "id": "M12.4",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Windows and title bars",
       "requires": "M12.3",
       "deliverable": "Consistent app identity, active/inactive chrome, caption controls, borders and reachable window grips.",

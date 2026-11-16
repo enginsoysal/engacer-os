@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.3 — desktop and shortcuts, public closure in progress.**
+**Active development: M12.4 — windows and title bars.**
 **Current native delivery: M12.3**, qualified within M12-STAGE3-VM-v1.
 [Install](docs/handbook/install-m123.md), [desktop and shortcuts](docs/handbook/desktop-m123.md),
 [release/checksums and retained BIOS observation](docs/releases/m123-v0.12.3.md),
@@ -13,7 +13,8 @@ bounded CPU/RAM use are product requirements.
 routes, overflow and independently hidden/restored references pass, including
 an empty desktop, disk-only restarts, actual 150%/4K and twelve cached/full
 comparisons. Fixed shell state grows 32 bytes over M12.2; managed tasks retain
-no extra pages. Public download and full website verification close before M12.4.
+no extra pages. [M12.3 public media and full website verification passed](evidence/M12/3/publication-results.json):
+twenty downloads, 311 pages and 2,097 discovered links. M12.4 follows in order.
 [M12.2 public delivery](evidence/M12/2/publication-results.json) is preserved.
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English guides, GitHub releases and public website verification
