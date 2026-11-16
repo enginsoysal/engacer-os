@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "stage": "M12.4",
+  "build_id": "a248264dba8804c2acf20109e9e45d20",
+  "iso_sha256": "19af405bef781202f882da8a8c117128f722123430dadc5681c63bc561bda268",
+  "owned_fixture": "5fe2b8306eed4702a502a9fca2e97142",
+  "checks": [
+    "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds",
+    "Inactive frame differs visibly from the active owner; Minimize and its exact taskbar target restore the normal window",
+    "App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits",
+    "All eight resize edges/corners operate alongside the caption hit rectangles; Escape restores a captured move",
+    "Partially off-screen windows keep a reachable menu; desktop Alt+F4/Alt+Space cannot act on a background window"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\chrome_native.py\", line 98, in main\n    assert not any(r[5] in range(49000,49004) and r[4]==owner for r in controls(g))\nAssertionError\n",
+  "idle_observations": [],
+  "diagnosis": "The observer chose the first caption record (the background Files window) as the dialog owner. The active foreground owner is the last caption record. Its caption is correctly disabled while unrelated background windows remain usable. Keep editing passed. The earlier apparent Keep editing traceback used edited source lines during a running harness; freeze the harness for the next run."
+}

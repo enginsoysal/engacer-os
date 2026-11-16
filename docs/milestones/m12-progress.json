@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.4",
-  "qualified_download": "M12.3",
+  "qualified_download": "M12.4",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -59,7 +59,7 @@
     },
     {
       "id": "M12.4",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Windows and title bars",
       "requires": "M12.3",
       "deliverable": "Consistent app identity, active/inactive chrome, caption controls, borders and reachable window grips.",
@@ -165,7 +165,10 @@
       "deliverable": "Shared empty/loading/success/refusal/error states, useful notifications and owner-scoped reviews.",
       "how_and_why": "Explain what happened and the next useful action without interrupting unrelated work.",
       "acceptance": "Missing USB, failed saves/transfers, notification bounds, actionable recovery and preserved work.",
-      "publication": "required_before_next_stage"
+      "publication": "required_before_next_stage",
+      "carry_forward": [
+        "Fit the shared window-menu helper footer completely; its current bounded ellipsis and full handbook instructions are recorded during M12.4 visual review."
+      ]
     },
     {
       "id": "M12.15",
@@ -185,7 +188,10 @@
       "deliverable": "Keyboard-complete routes, visible focus, contrast, text/display scaling, reduced motion and semantic control identities.",
       "how_and_why": "Accessibility participates from M12.1; this stage qualifies it across complete tasks.",
       "acceptance": "Keyboard-only tasks, focus order, light/dark/high-contrast, supported scales and reduced motion. Screen-reader support requires its own working protocol/reader.",
-      "publication": "required_before_next_stage"
+      "publication": "required_before_next_stage",
+      "carry_forward": [
+        "Check the drawn guest cursor against actual caption and client hit coordinates after 150%/200% changes. M12.4 raw 4K captures suggest a cursor-position discrepancy; isolate capture timing versus native pointer rendering before final qualification."
+      ]
     },
     {
       "id": "M12.17",

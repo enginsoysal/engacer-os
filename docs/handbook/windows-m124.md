@@ -1,6 +1,8 @@
 # Window controls in M12.4
 
-Development guide: M12.4 qualification is in progress. Use the
+M12.4 is qualified within M12-STAGE4-VM-v1.
+[Install the matching media](install-m124.md), read the
+[release scope and carry-forward limits](../releases/m124-v0.12.4.md), or use the
 [handbook index](index.md) for the current tested download.
 
 The app icon at the left of a title bar opens its window menu. At the right,
@@ -25,4 +27,5 @@ Windows+Down restores or minimizes. Alt+Tab switches between open windows.
 Closing an edited document asks you to review unsaved work. Choose Keep editing
 to return to it, or explicitly Discard if you want to close without saving. A
 file dialog must be completed or cancelled before its owner's title-bar controls
-can be used. This protects the operation rather than silently abandoning it.
+or window-arrangement shortcuts can be used. Other windows remain available.
+This protects the operation rather than silently abandoning it.

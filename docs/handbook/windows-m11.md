@@ -1,11 +1,10 @@
 # Windows and appearance in M11
 
-The window/appearance implementation was first qualified within M11.4's named
-VM scope. [Current download and installation](install-m115.md) ·
-[current release limits](../releases/m115-v0.11.5.md) ·
-[original window acceptance](../../evidence/M11/4/acceptance-results.json).
-Expanded setup is qualified separately in M11.5; full new-artifact regression
-remains M11.6.
+Historical M11 guide: window/appearance was first qualified within M11.4's
+named VM scope. M11.6 later completed its own final qualification. Use the
+[handbook index](index.md) for the current tested release and installation guide.
+[Original window acceptance](../../evidence/M11/4/acceptance-results.json) and
+[final M11 release](../releases/m116-v0.11.6.md) remain separate historical proof.
 
 ## Arrange your workspace
 

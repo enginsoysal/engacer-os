@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "stage": "M12.4",
+  "build_id": "df69fcb86b63e2ffbd3b821f412f3782",
+  "iso_sha256": "3a84ee0d39b1a53bcac2ab3a0469b0bc658655a47c6d7e1c8161e483ffd8a585",
+  "owned_fixture": "711b1ab290804f5082e6d5f9b1834b0f",
+  "checks": [
+    "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds",
+    "Inactive frame differs visibly from the active owner; Minimize and its exact taskbar target restore the normal window",
+    "App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits",
+    "All eight resize edges/corners operate alongside the caption hit rectangles; Escape restores a captured move",
+    "Partially off-screen windows keep a reachable menu; desktop Alt+F4/Alt+Space cannot act on a background window",
+    "Caption Close preserves unsaved text behind review; Keep editing returns to the same owner; file dialog blocks its owner caption/menu/Win-key geometry routes while unrelated captions remain available; explicit Discard closes it",
+    "Light/dark caption journeys retain zero managed pages and no new allocation failures; idle CPUs halt without repaint polling",
+    "Matching installed guide and two independent ordinary disk starts retain usable window controls",
+    "Actual 1920x1200/150% and 3840x2160/200% framebuffers exercise the same caption controls and idle halt without image resizing"
+  ],
+  "profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4
+    }
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17739,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17739,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 332,
+        "paints_after": 332
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 7,
+        "paints_after": 7
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 7,
+        "paints_after": 7
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 56,
+        "paints_after": 56
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 70,
+        "paints_after": 70
+      }
+    ]
+  ]
+}

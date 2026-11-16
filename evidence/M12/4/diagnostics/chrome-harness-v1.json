@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "stage": "M12.4",
+  "build_id": "a248264dba8804c2acf20109e9e45d20",
+  "iso_sha256": "19af405bef781202f882da8a8c117128f722123430dadc5681c63bc561bda268",
+  "owned_fixture": "2db5aac3037b405a9bdba9e6e880127c",
+  "checks": [],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\chrome_native.py\", line 57, in main\n    baseline=stats(g);normal=geometry(g);caption_states(g,p,'light')\n  File \"<project-root>\\tests\\m12\\chrome_native.py\", line 42, in caption_states\n    assert c.pixel(g,x+w-91,y+20)==(0xe8edf5 if c.dark(g) else 0x17212f)\nAssertionError\n",
+  "idle_observations": [],
+  "diagnosis": "Harness expected normal title ink for the focus border. Production deliberately uses black/white adaptive focus ink. Correct the observer expectation, not the kernel."
+}

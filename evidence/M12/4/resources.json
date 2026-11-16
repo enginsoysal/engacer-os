@@ -1,0 +1,272 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 544196,
+    "sections": {
+      "bss": 544168,
+      "data": 28
+    },
+    "map_sha256": "b79005ec74b3972da0ccb29991f1aadeb267ab49812d1368258012ad2aa93651"
+  },
+  "current": {
+    "bytes": 544212,
+    "sections": {
+      "bss": 544184,
+      "data": 28
+    },
+    "map_sha256": "e3bbd282e257a275ea39d85c8943c25e4757c9b0b50194dfc398df83db678193"
+  },
+  "added_fixed_desktop_bytes": 16,
+  "managed": {
+    "before": [
+      1047,
+      1047,
+      17739,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17739,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "icon_raster_cache_bytes": 0,
+  "icon_temporary_row_bytes": 512,
+  "display_profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4
+    }
+  ],
+  "motion": [
+    {
+      "physical": [
+        1280,
+        800
+      ],
+      "scale_percent": 100,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 4247552,
+      "managed_bytes_after": 4247552,
+      "managed_peak_bytes": 4247552,
+      "cached_copy_frames": 24,
+      "event_to_drain_ms": [
+        293.6986999993678,
+        1087.4360000016168,
+        594.1139999995357,
+        524.3553999971482
+      ],
+      "median_ms": 559.234699998342,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale_percent": 150,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 9408512,
+      "managed_bytes_after": 9408512,
+      "managed_peak_bytes": 9408512,
+      "cached_copy_frames": 6,
+      "event_to_drain_ms": [
+        1266.3580000007642,
+        1639.562799995474,
+        1050.6827999997768,
+        1130.0749000001815
+      ],
+      "median_ms": 1198.2164500004728,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale_percent": 200,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1720,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            972,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            182,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 33370112,
+      "managed_bytes_after": 33370112,
+      "managed_peak_bytes": 33370112,
+      "cached_copy_frames": 17,
+      "event_to_drain_ms": [
+        1001.7893000040203,
+        3185.4249000025447,
+        1977.9820999974618,
+        3137.493900001573
+      ],
+      "median_ms": 2557.7379999995173,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    }
+  ],
+  "scope": "Fixed shell state and managed framebuffer pages are separate. No new icon cache, per-window framebuffer, idle animation or heap allocation is introduced by caption rendering. Configured VM RAM is not consumption."
+}

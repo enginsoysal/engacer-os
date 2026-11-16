@@ -1,6 +1,22 @@
 # Current status
 
-Updated 16 November 2026. **M12.3 / 0.12.3 passes M12-STAGE3-VM-v1.**
+Updated 16 November 2026. **M12.4 / 0.12.4 passes M12-STAGE4-VM-v1.**
+[Install](../handbook/install-m124.md), [window controls](../handbook/windows-m124.md),
+[release and retained limits](../releases/m124-v0.12.4.md),
+[acceptance](../../evidence/M12/4/acceptance-results.json).
+576 compiled inputs, nine native window journeys and twelve cached/full
+comparisons pass. Caption geometry/state, active/inactive frames, all resize
+edges, keyboard/menu commands, unsaved close and modal-owner protection are
+checked on real installs, ordinary disk starts and actual 150%/4K displays.
+The exact enabled-device VMware starter and separate QEMU SATA/UEFI and BIOS
+paths install and start independently. Fixed shell state grows 16 bytes over
+M12.3; tasks retain zero extra managed pages. Public media and full website
+verification remain the closure gates before M12.5. Shared-menu footer fitting
+and the HiDPI cursor observation are carried to M12.14/M12.16. The earlier
+BIOS/AHCI observation remains open for M12.18.
+
+
+**Previous M12.3 / 0.12.3 passes M12-STAGE3-VM-v1.**
 [Install M12.3](../handbook/install-m123.md), [desktop/shortcut guide](../handbook/desktop-m123.md),
 [release and retained limits](../releases/m123-v0.12.3.md),
 [acceptance](../../evidence/M12/3/acceptance-results.json).

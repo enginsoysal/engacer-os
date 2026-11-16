@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build_id": "a248264dba8804c2acf20109e9e45d20",
+  "iso_sha256": "19af405bef781202f882da8a8c117128f722123430dadc5681c63bc561bda268",
+  "firmware": "BIOS",
+  "checks": [
+    "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+    "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+    "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+  ]
+}

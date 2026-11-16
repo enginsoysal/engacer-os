@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M12.4",
+  "checks": {
+    "chrome_host": "{\"geometry_points\":53982630,\"styles\":384,\"tinted_pixels\":731264}",
+    "icons_host": "PASS: 1322425 independent geometry samples, 1596 icon/theme/extent cases, 19 distinct app identities, palette contrast, fallback and row bounds."
+  },
+  "measurements": {
+    "geometry_points": 53982630,
+    "styles": 384,
+    "tinted_pixels": 731264
+  },
+  "source_sha256": {
+    "include/engine/ui/chrome12.h": "450caafd03883ed4e1b47a3afe4a611ed9129e53bec3a0830b581c17f7bfd3ee",
+    "include/engine/ui/components12.h": "0f5aec70d7fea7e862e79d673e38c8032468759e43399244ce1acc49b45f6f74",
+    "include/engine/ui/icons12.h": "96088ba4bf17dce8fda2fb962e5977a00bac62aee0dc2e7d24052545b4472375",
+    "include/engine/ui/icons12_data.h": "48da69ea00eccbbfc73bbf483e7784aaa7e72ee3616b2645801890c88cf35cd1",
+    "tests/m12/chrome_host.c": "61725ca31763fd3768018e7d8125215348f5fb8b2475adfa17c59b08598965e9",
+    "tests/m12/icons_host.c": "d0c9cc94793fbc92878bc2308e4c16144d341fa7a502d0a166270559fc4ed932"
+  },
+  "scope": "Host geometry/styles/tinted rows and all normal-icon raster geometry; native input/rendering are separately qualified"
+}

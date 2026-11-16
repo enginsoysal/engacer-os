@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "stage": "M12.4",
+  "build_id": "a248264dba8804c2acf20109e9e45d20",
+  "iso_sha256": "19af405bef781202f882da8a8c117128f722123430dadc5681c63bc561bda268",
+  "owned_fixture": "4c89aa524fcd4ba6b97510743d9176d0",
+  "checks": [
+    "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds",
+    "Inactive frame differs visibly from the active owner; Minimize and its exact taskbar target restore the normal window",
+    "App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits",
+    "All eight resize edges/corners operate alongside the caption hit rectangles; Escape restores a captured move",
+    "Partially off-screen windows keep a reachable menu; desktop Alt+F4/Alt+Space cannot act on a background window"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\chrome_native.py\", line 91, in main\n    p.desktop(61,True);assert focused(g)[0]==slot\nAssertionError\n",
+  "idle_observations": [],
+  "diagnosis": "Keep editing observer saw a changed focus after the combined journey. A separate same-artifact fresh installed-boot reproduction passes with owner slot 1 unchanged. Keep the combined failure and repeat with explicit post-click state/capture; trigger is not isolated."
+}

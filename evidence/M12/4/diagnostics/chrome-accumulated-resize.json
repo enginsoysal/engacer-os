@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "stage": "M12.4",
+  "build_id": "a248264dba8804c2acf20109e9e45d20",
+  "iso_sha256": "19af405bef781202f882da8a8c117128f722123430dadc5681c63bc561bda268",
+  "owned_fixture": "5e65439d65024a5e9c6b2625d8171026",
+  "checks": [
+    "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds",
+    "Inactive frame differs visibly from the active owner; Minimize and its exact taskbar target restore the normal window",
+    "App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\chrome_native.py\", line 72, in main\n    drag(g,p,px,py,px+horizontal*16,py+vertical*12);assert geometry(g)!=old,(horizontal,vertical,old,geometry(g))\nAssertionError: (-1, 1, (68, 0, 1176, 740), (68, 0, 1176, 740))\n",
+  "idle_observations": [],
+  "diagnosis": "The cumulative eight-edge observer reached the display height constraint. Retain this failure and exercise each edge independently from the same normal rectangle, plus a separately committed resize. This is not a kernel fix or universal edge qualification."
+}

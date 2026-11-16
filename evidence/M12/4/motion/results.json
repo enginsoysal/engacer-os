@@ -1,0 +1,184 @@
+{
+  "passed": true,
+  "build_id": "df69fcb86b63e2ffbd3b821f412f3782",
+  "iso_sha256": "3a84ee0d39b1a53bcac2ab3a0469b0bc658655a47c6d7e1c8161e483ffd8a585",
+  "profiles": [
+    {
+      "physical": [
+        1280,
+        800
+      ],
+      "scale_percent": 100,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 4247552,
+      "managed_bytes_after": 4247552,
+      "managed_peak_bytes": 4247552,
+      "cached_copy_frames": 24,
+      "event_to_drain_ms": [
+        293.6986999993678,
+        1087.4360000016168,
+        594.1139999995357,
+        524.3553999971482
+      ],
+      "median_ms": 559.234699998342,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale_percent": 150,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 9408512,
+      "managed_bytes_after": 9408512,
+      "managed_peak_bytes": 9408512,
+      "cached_copy_frames": 6,
+      "event_to_drain_ms": [
+        1266.3580000007642,
+        1639.562799995474,
+        1050.6827999997768,
+        1130.0749000001815
+      ],
+      "median_ms": 1198.2164500004728,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale_percent": 200,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1720,
+            142,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            972,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            182,
+            1096,
+            716
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 33370112,
+      "managed_bytes_after": 33370112,
+      "managed_peak_bytes": 33370112,
+      "cached_copy_frames": 17,
+      "event_to_drain_ms": [
+        1001.7893000040203,
+        3185.4249000025447,
+        1977.9820999974618,
+        3137.493900001573
+      ],
+      "median_ms": 2557.7379999995173,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    }
+  ]
+}

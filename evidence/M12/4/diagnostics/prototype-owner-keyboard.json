@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "build_id": "a248264dba8804c2acf20109e9e45d20",
+  "scope": "Same-artifact native diagnostic, not acceptance",
+  "before": [
+    0,
+    20,
+    1096,
+    716
+  ],
+  "after": [
+    0,
+    0,
+    1280,
+    740
+  ],
+  "owner_geometry_changed": true,
+  "owner_window_menu_opened": true
+}

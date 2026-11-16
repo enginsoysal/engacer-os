@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "stage": "M12.4",
+  "build_id": "df69fcb86b63e2ffbd3b821f412f3782",
+  "scope": "Agent visual/scenario review of stage window chrome; not a human usability study or final M12 accessibility qualification",
+  "reviewed": [
+    "native/active-inactive-frames.png",
+    "native/light-close-hover.png",
+    "native/dark-keyboard-focus.png",
+    "native/window-menu.png",
+    "native/owner-dialog.png",
+    "native/unsaved-close-review.png",
+    "native/native-4k.png"
+  ],
+  "findings": [
+    "Native Inter captions and original icons remain legible; active/inactive borders differ; white Close ink contrasts on red.",
+    "Caption labels and controls have separate hover/press/focus states, with shared geometry.",
+    "Unsaved work and owner-only modal controls remain explicit, including keyboard commands."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Existing shared-menu helper footer uses bounded ellipsis; complete fitting remains planned."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Raw HiDPI captures suggest drawn cursor displacement. Isolate capture timing versus native cursor coordinates; scripted actions alone do not establish pointer usability."
+    }
+  ],
+  "capture_sha256": {
+    "native/active-inactive-frames.png": "66d500fcc17a2c227f6466e2da5c8312952fae7abc47f1deb27ed44fb456f289",
+    "native/light-close-hover.png": "444289e21eab2903b2a8b85a807da021335a1de60cc88f1703ba1d66bb305c2b",
+    "native/dark-keyboard-focus.png": "cb72eb422145f56faab8c5738a92c31a70bd7f82ae4e1d195d626afa55284861",
+    "native/window-menu.png": "49bbad5f33fa14c1ce08e2f0aa7af90d1f8f6c9abe6917c4bc95753aa40435e0",
+    "native/owner-dialog.png": "bf45713a289a5100c93cd0d27ae3e38edadac2a94f600b8b9dfbc018ae433739",
+    "native/unsaved-close-review.png": "1c836e73c1a7d15a5ebd53d661144d1c40e0da652c4bf160390b0711a702105e",
+    "native/native-4k.png": "8cf76f3dfd52769f542d145dea504613f11e8ed99e5d35ce82eba82cecf2e658"
+  }
+}
