@@ -3,6 +3,38 @@
   "scope": "M12.0 design contract; no native runtime or human study claimed",
   "passed": true,
   "ordered_stages": 19,
+  "inventory_sources": [
+    "appearance11.inc",
+    "apps74.inc",
+    "devices10-controls.inc",
+    "devices10.inc",
+    "files11-actions.inc",
+    "files11-context.inc",
+    "files11-desktop.inc",
+    "files11-keys.inc",
+    "files11-model.inc",
+    "files11-ops.inc",
+    "files11-ui.inc",
+    "files72.inc",
+    "guide11.inc",
+    "include/engine/ui/graphics73.h",
+    "interaction11.inc",
+    "kernel/core/graphics73.inc",
+    "kernel/desktop/session.c",
+    "kernel/install/wizard6.c",
+    "power11.inc",
+    "session.c",
+    "setup11-store.inc",
+    "setup11-ui.inc",
+    "start11-actions.inc",
+    "start11-keys.inc",
+    "start11-model.inc",
+    "start11-ui.inc",
+    "window.c",
+    "window11-state.inc",
+    "window11.inc",
+    "wizard75-ui.inc"
+  ],
   "contrast": [
     {
       "theme": "light",
@@ -121,5 +153,5 @@
       "sha256": "b108a07301f92a8260513ee9148e5d3e0eb56a71f26872bd31bf64ca874a1233"
     }
   ],
-  "visual_review": "pending"
+  "visual_review": "See separate visual-review.json; this script cannot certify visual quality."
 }
