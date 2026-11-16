@@ -1,4 +1,4 @@
-"""Qualify matching M12.4 desktop behavior, resources, sources and media."""
+"""Qualify matching M12.4 window behavior, resources, sources and media."""
 import hashlib,json,shutil
 from pathlib import Path
 import verify_components as common
@@ -35,6 +35,7 @@ def main():
     for folder in ('boot','kernel','include','runtime','user'):
         assert {p.relative_to(ROOT).as_posix() for p in (ROOT/folder).rglob('*') if p.is_file()}<=meta['source_sha256'].keys()
     for name,record in meta['artifacts'].items():assert sha(ROOT/'dist'/name)==record['sha256']
+    assert meta['font']==load(ROOT/'evidence/M12/3/candidate-manifest.json')['font']
     previous=load(ROOT/'evidence/M12/3/resources.json')['current'];current=common.desktop_state(ROOT/'dist/EngacerOS-M12STAGE4-installed-kernel.map')
     baseline=load(ROOT/'evidence/M11/6/resources.json')['fixed_desktop']['FINAL']
     assert current['bytes']-baseline['bytes']<256*1024
@@ -58,7 +59,7 @@ def main():
     for path in (WORK/'diagnostics').iterdir():
         if path.is_file() and path.suffix in ('.json','.txt','.png'):
             (diagnostics/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
-    write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],display_profiles=native['profiles'],motion=motion['profiles'],scope='Fixed shell state and managed framebuffer pages are separate. No new icon cache, per-window framebuffer, idle animation or heap allocation is introduced by caption rendering. Configured VM RAM is not consumption.'))
+    write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],font=meta['font'],icon_raster_cache_bytes=0,icon_temporary_row_bytes=512,display_profiles=native['profiles'],motion=motion['profiles'],scope='Fixed shell state and managed framebuffer pages are separate. No new icon cache, per-window framebuffer, idle animation or heap allocation is introduced by caption rendering. Configured VM RAM is not consumption.'))
     harness={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')}
     write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.4',version='0.12.4',qualification='M12-STAGE4-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks'],cached_full_comparisons=12,bios_checks=bios['checks'],vmware_checks=vmware['checks'],resources='resources.json',feature_provenance='Actual owned QEMU SATA/UEFI installed 1280x800 guest, active-inactive-frames.png; original native Inter/vector rendering',feature_sha256=sha(OUT/'feature.png'),harness_sha256=harness,limits=['The earlier M12.2 concurrent BIOS/AHCI timeout remains open; stress reliability is not qualified.','Shared Open/Save dialogs and the broader Files environment are later M12 stages; existing name/window quotas remain real.','Final controller/device/original-application regression remains M12.18; physical/ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.','Agent visual/scenario review is not a human usability study. Public release/site/download proof closes separately.']))
     print('PASS: matching M12.4 window source/media, native caption/ownership/geometry journeys and 12 cached/full comparisons, independent boots and bounded resources.')

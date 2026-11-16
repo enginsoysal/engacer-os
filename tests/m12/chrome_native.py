@@ -92,14 +92,17 @@ def main():
             if focused(g)[0]!=slot:
                 c.shot(g,'keep-editing-focus-failure');report['focus_failure']=dict(expected_slot=slot,actual=list(focused(g)),window_count=count(g),controls=[list(r) for r in controls(g) if r[5] in (60,61,49002)])
             assert focused(g)[0]==slot
-            p.desktop(49002,True);p.desktop(60,True);p.drain()
+            before=count(g);p.desktop(49002,True);p.desktop(60,True);p.drain();assert count(g)==before-1
             c.key(g,'meta_l','e');p.drain();owner=c.control(g,49002)[4];assert owner&0xffffffff==focused(g)[0]+1
             c.key(g,'ctrl','shift','n');assert c.flag(g,'file_dialog_state11')
             assert not any(r[5] in range(49000,49004) and r[4]==owner for r in controls(g))
-            before=count(g);c.key(g,'alt','f4');assert count(g)==before
+            before=count(g);blocked_bounds=geometry(g)
+            for chord in [('alt','f4'),('alt','spc'),('meta_l','up'),('meta_l','left'),('meta_l','right'),('meta_l','down')]:
+                c.key(g,*chord);assert count(g)==before and geometry(g)==blocked_bounds and not c.flag(g,'context11'),chord
+            assert any(r[5] in range(49000,49004) and r[4]!=owner for r in controls(g))
             c.shot(g,'owner-dialog');c.key(g,'esc');assert not c.flag(g,'file_dialog_state11')
             p.desktop(49002,True)
-            report['checks'].append('Caption Close preserves unsaved text behind review; Keep editing returns to the same owner; file dialog blocks its owner caption; explicit Discard closes it')
+            report['checks'].append('Caption Close preserves unsaved text behind review; Keep editing returns to the same owner; file dialog blocks its owner caption/menu/Win-key geometry routes while unrelated captions remain available; explicit Discard closes it')
             c.open_settings(g,p);p.desktop(43,True);p.desktop(47,True);caption_states(g,p,'dark');p.close_app(3,True);p.drain()
             after=stats(g);assert baseline[0]==after[0] and baseline[3]==after[3]
             c.idle(g);report['resources']=dict(before=list(baseline),after=list(after),retained_pages=after[0]-baseline[0])

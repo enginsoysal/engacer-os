@@ -70,6 +70,7 @@ static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window
  )){return 0;}
  window_state11*s=window_state_for11(t.window);
 #ifdef ENGINE_M12
+ if(file_block_owner11(t.window)){copy(shell_notice,"Finish or cancel this window's dialog first.",96);whole();return 1;}
  if((int)x<8)x=8;if((int)y<8)y=8;
 #endif
  file_menu_begin11(t.window,x,y);
@@ -77,6 +78,9 @@ static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window
 static unsigned window_action11(uint64_t token,unsigned command){
  if(command>=W11_SWITCH&&command<W11_SWITCH+DESKTOP_WINDOWS){unsigned i=command-W11_SWITCH;if(switch_open11&&i<switch_count11&&desktop_lookup(&model,switch_tokens11[i])){desktop_focus11=0;desktop_focus(&model,switch_tokens11[i]);}switch_open11=0;control_active=0;whole();return 1;}
  if(command<W11_MAX||command>=W11_SWITCH)return 0;desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;
+#ifdef ENGINE_M12
+ if(file_block_owner11(token)){copy(shell_notice,"Finish or cancel this window's dialog first.",96);whole();return 1;}
+#endif
  if(command==W11_MAX||command==W11_RESTORE||command==W11_LEFT||command==W11_RIGHT){window_mode11(token,command==W11_RESTORE?0:command==W11_LEFT?2:command==W11_RIGHT?3:1);return 1;}
  if(command==W11_MOVE||command==W11_SIZE){desktop_focus(&model,token);interaction11.x=w->bounds.x+30;interaction11.y=w->bounds.y+18;window_drag_begin11((i11_target){token,command==W11_SIZE?31020:31000,I11_CAPTION});window_keyboard_move11=1;whole();return 1;}return 1;
 }
@@ -98,6 +102,10 @@ static unsigned window_key11(int key){
 #endif
  desktop_window*w=desktop_lookup(&model,token);
  if(key==144){if(context11){context11=0;whole();return 1;}if(launcher){launcher=0;whole();return 1;}if(w){if(file_block_owner11(token))copy(shell_notice,"Finish or cancel this window's dialog first.",96);else if(apps[w-model.windows].closing)apps[w-model.windows].closing=0;else close_window(token,0);whole();}return 1;}
+
+#ifdef ENGINE_M12
+ if(key>=145&&key<=149&&w&&file_block_owner11(token)){copy(shell_notice,"Finish or cancel this window's dialog first.",96);whole();return 1;}
+#endif
  if(key==145&&w){window_menu11((i11_target){token,31000,I11_CAPTION},w->bounds.x+12,w->bounds.y+40);return 1;}
  if(key>=146&&key<=149&&w){if(key==149){window_state11*s=window_state_for11(token);if(s->mode)window_mode11(token,0);else{desktop_minimize(&model,token,1);whole();}}else window_mode11(token,key==146?2:key==147?3:1);return 1;}
  if(key==150){launch(FILES,0);whole();return 1;}return 0;
