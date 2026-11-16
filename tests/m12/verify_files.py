@@ -1,4 +1,4 @@
-"""Qualify matching M12.5 window behavior, resources, sources and media."""
+"""Qualify matching M12.5 Files behavior, resources, sources and media."""
 import hashlib,json,shutil
 from pathlib import Path
 import verify_components as common
@@ -8,17 +8,18 @@ load=common.load;sha=common.sha;write=common.write
 def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage5-build-manifest.json');starter=load(ROOT/'dist/m12stage5-starter-manifest.json')
-    native=load(WORK/'files-native/results.json');host=load(WORK/'history-host/results.json')
+    native=load(WORK/'files-native/results.json');host=load(WORK/'history-host/results.json');compact=load(WORK/'files-compact/results.json')
     bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json')
-    assert all(r['passed'] for r in (native,host,bios,vmware,motion))
+    assert all(r['passed'] for r in (native,host,compact,bios,vmware,motion))
     iso=meta['artifacts']['EngacerOS-M12STAGE5.iso']['sha256']
     assert meta['release_version']=='0.12.5' and meta['qualification_scope']=='M12-STAGE5-VM-v1'
-    for report in (native,bios,vmware,motion,starter):assert report['build_id']==meta['build_id']
-    for report in (native,bios,vmware,motion):assert report['iso_sha256']==iso
+    for report in (native,compact,bios,vmware,motion,starter):assert report['build_id']==meta['build_id']
+    for report in (native,compact,bios,vmware,motion):assert report['iso_sha256']==iso
     assert vmware['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
     assert vmware['existing_vm_inventory_unchanged'] and len(vmware['checks'])==len(bios['checks'])==3
     assert len(native['checks'])>=10 and len(native['profiles'])==2
     assert host['history_slots_per_window']==8 and host['allocations']==0
+    assert compact['bounds'][2:]==[500,420] and compact['retained_pages']==0
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
     assert native['resources']['before'][3]==native['resources']['after'][3]
@@ -46,7 +47,7 @@ def main():
         assert sha(ROOT/'dist'/oldstarter['archive'])==oldstarter['sha256']
     for row in load(ROOT/'evidence/M12/0/preserved-baseline.json')['artifacts']:assert sha(ROOT/'dist'/row['name'])==row['sha256']
     OUT.mkdir(parents=True,exist_ok=True)
-    for source,name in [('files-native','native'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
+    for source,name in [('files-native','native'),('files-compact','compact'),('bios','bios'),('vmware-results','vmware'),('motion','motion')]:
         target=OUT/name;target.mkdir(exist_ok=True)
         for path in (WORK/source).iterdir():
             if path.is_file() and path.suffix in ('.json','.png','.log') and not path.name.startswith('prototype-'):
@@ -61,7 +62,7 @@ def main():
             (diagnostics/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
     write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],font=meta['font'],icon_raster_cache_bytes=0,icon_temporary_row_bytes=512,display_profiles=native['profiles'],motion=motion['profiles'],scope='Fixed shell state and managed framebuffer pages are separate. No new icon cache, per-window framebuffer, idle animation or heap allocation is introduced by common Files rendering. Configured VM RAM is not consumption.'))
     harness={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')}
-    write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.5',version='0.12.5',qualification='M12-STAGE5-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks'],cached_full_comparisons=12,bios_checks=bios['checks'],vmware_checks=vmware['checks'],resources='resources.json',feature_provenance='Actual owned QEMU SATA/UEFI installed 1280x800 guest, usb-folder-common-frame.png; original native Inter/vector rendering',feature_sha256=sha(OUT/'feature.png'),harness_sha256=harness,limits=['The shared window-menu helper footer fitting is carried to M12.14.','The drawn cursor versus hit coordinates after HiDPI changes requires explicit M12.16 isolation; scripted caption clicks alone do not qualify pointer usability.','The earlier M12.2 concurrent BIOS/AHCI timeout remains open; stress reliability is not qualified.','Shared Open/Save dialogs and the broader Files environment are later M12 stages; existing name/window quotas remain real.','Final controller/device/original-application regression remains M12.18; physical/ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.','Agent visual/scenario review is not a human usability study. Public release/site/download proof closes separately.']))
+    write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.5',version='0.12.5',qualification='M12-STAGE5-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks'],cached_full_comparisons=12,bios_checks=bios['checks'],vmware_checks=vmware['checks'],resources='resources.json',feature_provenance='Actual owned QEMU SATA/UEFI installed 1280x800 guest, usb-folder-common-frame.png; original native Inter/vector rendering',feature_sha256=sha(OUT/'feature.png'),harness_sha256=harness,limits=['The shared window-menu helper footer fitting is carried to M12.14.','The drawn cursor versus hit coordinates after HiDPI changes requires explicit M12.16 isolation; scripted caption clicks alone do not qualify pointer usability.','The earlier M12.2 concurrent BIOS/AHCI timeout remains open; stress reliability is not qualified.','File presentation, commands and shared dialogs continue in later stages; USB FAT32 one-file/create-only limits and existing name/window quotas remain real.','Final controller/device/original-application regression remains M12.18; physical/ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.','Agent visual/scenario review is not a human usability study. Public release/site/download proof closes separately.']))
     print('PASS: matching M12.5 Files source/media, native provider/history/detach journeys and 12 cached/full comparisons, independent boots and bounded resources.')
 
 if __name__=='__main__':main()
