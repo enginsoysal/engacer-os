@@ -1,7 +1,7 @@
 # M12.6 file presentation decisions
 
-Status: native qualification passes M12-STAGE6-VM-v1. Public release and full
-website verification close separately before M12.7. Host rules supplement actual
+Status: native qualification passes M12-STAGE6-VM-v1. [Public release and full
+website verification](../../evidence/M12/6/publication-results.json) passed before M12.7. Host rules supplement actual
 installed behavior; final comprehensive qualification remains M12.18.
 
 ## Responsive views and actual metadata

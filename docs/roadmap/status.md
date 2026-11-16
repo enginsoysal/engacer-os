@@ -24,7 +24,7 @@ windows and detach/replacement identity. Compact light/dark, actual 150%/4K,
 twelve cached/full comparisons, exact enabled-device VMware and separate BIOS
 install/ordinary starts pass. Fixed shell state is 545,620 bytes, 1,408 above
 M12.4; native tasks retain zero managed pages. [Public release/site proof](../../evidence/M12/5/publication-results.json) passes:
-twenty downloads, 321 pages and 2,225 links. M12.6 is now active. Shared-menu fitting and the HiDPI cursor observation
+twenty downloads, 321 pages and 2,225 links. M12.6 subsequently followed. Shared-menu fitting and the HiDPI cursor observation
 remain M12.14/M12.16 follow-ups; the earlier BIOS/AHCI observation remains open
 for M12.18. No universal hardware or Windows claim follows from this stage.
 
@@ -40,7 +40,7 @@ The exact enabled-device VMware starter and separate QEMU SATA/UEFI and BIOS
 paths install and start independently. Fixed shell state grows 16 bytes over
 M12.3; tasks retain zero extra managed pages. [Public media and full website
 verification](../../evidence/M12/4/publication-results.json) pass: twenty downloads,
-315 pages and 2,155 discovered links. M12.5 is now active. Shared-menu footer fitting
+315 pages and 2,155 discovered links. M12.5 subsequently followed. Shared-menu footer fitting
 and the HiDPI cursor observation are carried to M12.14/M12.16. The earlier
 BIOS/AHCI observation remains open for M12.18.
 
@@ -116,7 +116,7 @@ unchanged. The previous releases below are historical qualification, not new med
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website
-readback. M12.3 now provides its separately qualified native media. The owner authorized
+readback. Later native M12 stages provide separately qualified media. The owner authorized
 [nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
 its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
