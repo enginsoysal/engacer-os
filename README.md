@@ -4,7 +4,9 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.0 — inventory and design contract.** The owner has
+**Active development: M12.1 — shared visual components.** M12.0 has
+[completed design and public-delivery checks](evidence/M12/0/publication-results.json).
+The owner has
 authorized [M12.0 through M12.18](docs/milestones/m12.md) in strict order, with
 tests, documentation, GitHub and public website verification between stages.
 [The M12 contract](docs/architecture/desktop-m12.md) and

@@ -25,7 +25,11 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
-**M12.0: inventory and design contract is in progress.** The owner authorized
+**M12.0 is complete within M12-DESIGN-v1; M12.1 shared components is in progress.**
+[Design acceptance](../../evidence/M12/0/acceptance-results.json) and
+[public delivery](../../evidence/M12/0/publication-results.json) include original
+concepts, contrast, preserved baseline, exact design archives and fresh website
+readback. No new native media are qualified yet. The owner authorized
 [nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
 its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),

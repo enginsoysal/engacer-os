@@ -105,6 +105,11 @@ M11.0 design and M11.1/M11.2/M11.3/M11.4/M11.5 native evidence and STAGE1/STAGE2
 artifacts are accepted stage records, separate from final M11 qualification.
 Preserve their bytes and evidence after their publication gates. Subsequent
 stages use FINAL or later distinct output prefixes; never rebuild STAGE1/STAGE2/STAGE3/STAGE4/STAGE5 in place.
-The public homepage must lead with current M11 progress and the matching separately
-scoped stage release. Preserve M10 as historical qualification. Keep the index ordered by
+During M11 the public homepage led with its current progress and matching separately
+scoped stage release. M12 now takes precedence. Preserve M10 as historical qualification. Keep the index ordered by
 reader task, with current installation/use before internals and historical guides.
+
+M11.6 FINAL and M12.0 design/publication evidence are accepted records. Preserve
+M11FINAL media and the original M12.0 SVGs/design archives. New native work uses
+M12STAGE<n> artifacts and evidence/M12/<n>. build/m12 is an owned junction to
+external local scratch storage; never place sparse VM fixtures in OneDrive.
