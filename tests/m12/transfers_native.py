@@ -90,7 +90,11 @@ def main():
             report['checks'].append('Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard')
             f.visit(g,p,'/Users/Owner/Documents/Source');f.resize(g,p,500,420);p.desktop(f.item(g,p,'Export.txt'),True);p.desktop(52000,True);commands=menu_items(g);assert all(commands[x] for x in (40000,40001,40003,40004,40018));c.shot(g,'compact-actions');c.key(g,'esc');f.resize(g,p,1080,700)
             report['checks'].append('The actual minimum 500x420 window keeps Actions visible; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar')
-            p.desktop(21000,True);f.attach(g,p,'transfer-source','transfer-usb');p.desktop(f.drive(g),True);c.key(g,'ret');p.desktop(f.row(g,'Folder'),True);assert not f.has(g,21004);p.desktop(f.row(g,'Small.txt'),True);p.desktop(21004,True);wait(g,p);assert '/Users/Owner/Downloads/Small.txt' in f.entries(g)
+            row=f.names(g).index('Export.txt');rect=c.control(g,1000+row);f.right(g,p,rect[0]+60,rect[1]+15);f.menu(g,p,18000+row)
+            assert f.app(g)['mode']==1;f.attach(g,p,'transfer-source','transfer-usb');p.desktop(f.drive(g),True);c.key(g,'ret');p.desktop(21005,True)
+            assert 'No file was replaced.' in f.app(g)['notice'];c.shot(g,'usb-export-refusal')
+            report['checks'].append('A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination')
+            p.desktop(21000,True);p.desktop(f.drive(g),True);c.key(g,'ret');p.desktop(f.row(g,'Folder'),True);assert not f.has(g,21004);p.desktop(f.row(g,'Small.txt'),True);p.desktop(21004,True);wait(g,p);assert '/Users/Owner/Downloads/Small.txt' in f.entries(g)
             p.desktop(f.row(g,'Small.txt'),True);p.desktop(21004,True);assert c.flag(g,'file_dialog_state11')==2;assert not f.has(g,40024);c.shot(g,'usb-conflict');p.desktop(40022,True);wait(g,p)
             report['checks'].append('USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled')
             p.desktop(f.row(g,'Large.bin'),True);start(g,p,21004);busy_frame(g);capture_active(g,'usb-transfer-progress');assert f.has(g,40019);c.key(g,'esc');wait(g,p);assert '/Users/Owner/Downloads/Large.bin' not in f.entries(g);details(g,p);assert not struct.unpack('<4i',ui.memory(g,ui.symbol('files_tip_bounds12',16,True)[0],16))[2]

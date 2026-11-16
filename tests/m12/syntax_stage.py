@@ -15,6 +15,7 @@ def main():
             assert r.returncode==0,(mode,source,r.stderr.decode(errors='replace'))
             reports.append(dict(mode=mode,source=source,passed=True))
     out=ROOT/f'build/m12/stage{stage}';out.mkdir(parents=True,exist_ok=True)
-    (out/'syntax-results.json').write_bytes((json.dumps(dict(passed=True,checks=reports,compiler_sha256=hashlib.sha256(Path(compiler).read_bytes()).hexdigest(),scope='Compile-only compatibility of conditional source paths; does not requalify historical media.'),indent=2)+'\n').encode())
+    sources={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for folder in ('kernel','include') for p in (ROOT/folder).rglob('*') if p.is_file()}
+    (out/'syntax-results.json').write_bytes((json.dumps(dict(passed=True,checks=reports,source_sha256=sources,compiler_sha256=hashlib.sha256(Path(compiler).read_bytes()).hexdigest(),scope='Compile-only compatibility of conditional source paths; does not requalify historical media.'),indent=2)+'\n').encode())
     print('PASS: native M12 and preserved M11 conditional desktop/FAT32 sources compile with warnings as errors.')
 if __name__=='__main__':main()

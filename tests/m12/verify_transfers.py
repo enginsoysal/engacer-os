@@ -14,8 +14,10 @@ def fat_state(path):
 def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage7-build-manifest.json');starter=load(ROOT/'dist/m12stage7-starter-manifest.json')
-    native=load(WORK/'transfers-native/results.json');bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json')
-    assert all(row['passed'] for row in (native,bios,vmware,motion))
+    native=load(WORK/'transfers-native/results.json');bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json');syntax=load(WORK/'syntax-results.json')
+    assert all(row['passed'] for row in (native,bios,vmware,motion,syntax))
+    assert len(syntax['checks'])==4
+    for path,digest in syntax['source_sha256'].items():assert meta['source_sha256'][path]==digest
     iso=meta['artifacts']['EngacerOS-M12STAGE7.iso']['sha256']
     assert meta['release_version']=='0.12.7' and meta['qualification_scope']=='M12-STAGE7-VM-v1'
     for row in (native,bios,vmware,motion,starter):assert row['build_id']==meta['build_id']
@@ -35,9 +37,9 @@ def main():
         for name in names:assert 'M7_DESKTOP_READY build='+meta['build_id'] in (WORK/group/(name+'.log')).read_text(encoding='utf-8')
     for label,width,height in [('compact-actions',1280,800),('commands-150',1920,1200),('commands-4k',3840,2160)]:
         capture=load(WORK/f'transfers-native/{label}-capture.json');assert (capture['width'],capture['height'])==(width,height)
-    for label in ('usb-transfer-progress','native-transfer-progress','conflict-review','usb-conflict','removed-source-result'):
+    for label in ('usb-transfer-progress','native-transfer-progress','conflict-review','usb-conflict','removed-source-result','usb-export-refusal'):
         assert (WORK/f'transfers-native/{label}.png').is_file()
-    common.git_inputs(meta['source_sha256'])
+    common.git_inputs(meta['source_sha256']);common.git_inputs(syntax['source_sha256'])
     for folder in ('boot','kernel','include','runtime','user'):
         assert {p.relative_to(ROOT).as_posix() for p in (ROOT/folder).rglob('*') if p.is_file()}<=meta['source_sha256'].keys()
     for name,record in meta['artifacts'].items():assert sha(ROOT/'dist'/name)==record['sha256']
@@ -56,7 +58,7 @@ def main():
             if path.is_file() and path.suffix in ('.json','.png','.log') and path.name!='failure.log':
                 if path.suffix=='.png':shutil.copyfile(path,target/path.name)
                 else:(target/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
-    for source,name in [('dist/m12stage7-build-manifest.json','candidate-manifest.json'),('dist/m12stage7-starter-manifest.json','starter-manifest.json')]:shutil.copyfile(ROOT/source,OUT/name)
+    for source,name in [('dist/m12stage7-build-manifest.json','candidate-manifest.json'),('dist/m12stage7-starter-manifest.json','starter-manifest.json'),('build/m12/stage7/syntax-results.json','syntax-results.json')]:shutil.copyfile(ROOT/source,OUT/name)
     shutil.copyfile(WORK/'transfers-native/usb-transfer-progress.png',OUT/'feature.png')
     diagnostics=OUT/'diagnostics';diagnostics.mkdir(exist_ok=True)
     for path in (WORK/'diagnostics').iterdir():
