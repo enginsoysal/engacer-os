@@ -26,6 +26,8 @@ def main():
     assert vmware['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
     assert vmware['existing_vm_inventory_unchanged'] and len(vmware['checks'])==len(bios['checks'])==3
     assert len(native['checks'])>=12 and len(native['profiles'])==2
+    assert 0<native['cancelled_usb_work_bytes']<128*1024**2 and native['partial_copy_confirmed_files']>=1
+    assert native['removed_source_error'] in (3,9)
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
     assert native['resources']['before'][3]==native['resources']['after'][3]

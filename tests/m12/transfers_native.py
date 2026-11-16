@@ -37,7 +37,7 @@ def wait(g,p,error=0):
     while job(g)[0][0]:
         if time.monotonic()>deadline:raise TimeoutError('Transfer deadline')
         time.sleep(.02)
-    p.drain();assert c.flag(g,'file_job_error11')==error,(job(g),f.app(g))
+    p.drain();actual=c.flag(g,'file_job_error11');assert actual in (error if isinstance(error,tuple) else (error,)),(actual,job(g),f.app(g))
 
 def action(g,p,command):
     if f.has(g,command):p.desktop(command,True)
@@ -97,15 +97,46 @@ def main():
             p.desktop(21000,True);p.desktop(f.drive(g),True);c.key(g,'ret');p.desktop(f.row(g,'Folder'),True);assert not f.has(g,21004);p.desktop(f.row(g,'Small.txt'),True);p.desktop(21004,True);wait(g,p);assert '/Users/Owner/Downloads/Small.txt' in f.entries(g)
             p.desktop(f.row(g,'Small.txt'),True);p.desktop(21004,True);assert c.flag(g,'file_dialog_state11')==2;assert not f.has(g,40024);c.shot(g,'usb-conflict');p.desktop(40022,True);wait(g,p)
             report['checks'].append('USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled')
-            p.desktop(f.row(g,'Large.bin'),True);start(g,p,21004);busy_frame(g);capture_active(g,'usb-transfer-progress');assert f.has(g,40019);c.key(g,'esc');wait(g,p);assert '/Users/Owner/Downloads/Large.bin' not in f.entries(g);details(g,p);assert not struct.unpack('<4i',ui.memory(g,ui.symbol('files_tip_bounds12',16,True)[0],16))[2]
+            p.desktop(f.row(g,'Large.bin'),True)
+            start(g,p,21004);busy_frame(g)
+            deadline=time.monotonic()+15
+            while not job(g)[1][3]:
+                assert job(g)[0][0],job(g)
+                if time.monotonic()>deadline:raise TimeoutError('USB copy never began reading')
+                time.sleep(.01)
+            capture_active(g,'usb-transfer-progress')
+            # Controls are rebuilt during repaint; a second unsynchronized read
+            # after resuming is not an atomic view of the completed busy frame.
+            c.key(g,'esc');wait(g,p)
+            assert job(g)[0][8] and 0<job(g)[1][2]<job(g)[1][1],job(g)
+            report['cancelled_usb_work_bytes']=job(g)[1][2]
+            assert '/Users/Owner/Downloads/Large.bin' not in f.entries(g),'Cancelled USB stream was published'
+            details(g,p)
+            assert not struct.unpack('<4i',ui.memory(g,ui.symbol('files_tip_bounds12',16,True)[0],16))[2],'Busy name tip remained'
             report['checks'].append('A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details')
             p.desktop(f.row(g,'Large.bin'),True);p.desktop(21004,True);wait(g,p);assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)
             # A second real source tests partial completion on cancellation of a tree.
             f.visit(g,p,'Downloads');p.desktop(f.item(g,p,'Large.bin'),True);action(g,p,40000);f.visit(g,p,'/Users/Owner/Documents/Source');action(g,p,40002);wait(g,p)
-            f.visit(g,p,'Documents');p.desktop(f.item(g,p,'Source'),True);action(g,p,40000);f.visit(g,p,'Desktop');start(g,p,40002);busy_frame(g);capture_active(g,'native-transfer-progress');assert f.has(g,40019);c.key(g,'esc');wait(g,p);assert '/Users/Owner/Documents/Source/Large.bin' in f.entries(g);details(g,p)
+            f.visit(g,p,'Documents');p.desktop(f.item(g,p,'Source'),True);action(g,p,40000);f.visit(g,p,'Desktop');start(g,p,40002);busy_frame(g)
+            deadline=time.monotonic()+30
+            while job(g)[0][11]<1:
+                assert job(g)[0][0],job(g)
+                if time.monotonic()>deadline:raise TimeoutError('No confirmed first file before partial-copy cancellation')
+                time.sleep(.01)
+            capture_active(g,'native-transfer-progress');c.key(g,'esc');wait(g,p)
+            assert '/Users/Owner/Documents/Source/Large.bin' in f.entries(g)
+            assert '/Users/Owner/Desktop/Source/Export.txt' in f.entries(g)
+            assert '/Users/Owner/Desktop/Source/Large.bin' not in f.entries(g)
+            report['partial_copy_confirmed_files']=job(g)[0][11]
+            details(g,p)
             report['checks'].append('USB read-back verified import has the expected independent CRC; cancelling a real native tree copy preserves its only source and reports completed items without claiming full success')
             # Test stale device lease while the large source is genuinely being read.
-            f.visit(g,p,'USB:2:/');p.desktop(f.row(g,'Large.bin'),True);c.key(g,'ctrl','c');f.visit(g,p,'Pictures');start(g,p,40002);busy_frame(g);g.qmp('device_del',{'id':'transfer-usb'});wait(g,p,error=3);assert '/Users/Owner/Pictures/Large.bin' not in f.entries(g);c.shot(g,'removed-source-result');details(g,p)
+            f.visit(g,p,'USB:2:/');p.desktop(f.row(g,'Large.bin'),True);c.key(g,'ctrl','c');f.visit(g,p,'Pictures');start(g,p,40002);busy_frame(g);deadline=time.monotonic()+15
+            while not job(g)[1][3]:
+                assert job(g)[0][0],job(g)
+                if time.monotonic()>deadline:raise TimeoutError('Removed source had not begun reading')
+                time.sleep(.01)
+            g.qmp('device_del',{'id':'transfer-usb'});wait(g,p,error=(3,9));report['removed_source_error']=c.flag(g,'file_job_error11');assert '/Users/Owner/Pictures/Large.bin' not in f.entries(g);c.shot(g,'removed-source-result');details(g,p)
             report['checks'].append('Unplugging a source during a genuine USB read stops the generation-bound job, aborts the unfinished destination and preserves previously completed data with an inspectable reason')
             f.visit(g,p,'Home');deadline=time.monotonic()+30
             while f.stats(g)[0]!=before[0]:

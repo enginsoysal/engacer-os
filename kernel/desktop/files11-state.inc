@@ -27,6 +27,7 @@ enum {F11_COPY=40000,F11_CUT,F11_PASTE,F11_RENAME,F11_RECYCLE,F11_RESTORE,F11_PE
 enum {F11_JOB_COPY=1,F11_JOB_MOVE,F11_JOB_RECYCLE,F11_JOB_RESTORE,F11_JOB_REMOVE,F11_JOB_LINK};
 enum {F11_DLG_RENAME=1,F11_DLG_CONFLICT,F11_DLG_PROPERTIES,F11_DLG_OPEN_WITH,F11_DLG_REMOVE,F11_DLG_EMPTY,F11_DLG_NEW_FOLDER,F11_DLG_NEW_TEXT,F11_DLG_RESULT};
 enum {F11_NATIVE,F11_USB,F11_BUILTIN};
+enum {F12_SOURCE_ERROR=9};
 #define F11_ROOTS 128u
 typedef struct {char path[256];unsigned view,sort,descending;} file_view_record11;
 typedef struct {uint64_t magic;unsigned version,count,next,reserved;file_view_record11 records[32];} file_views11;

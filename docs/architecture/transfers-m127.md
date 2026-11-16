@@ -34,7 +34,9 @@ device generation. Each job step reads at most 4096 bytes into the existing
 shared buffer and appends to an unpublished native stream. It checks the device
 lease before every read. The destination stream is sealed and checked back in
 4096-byte steps before metadata publication. A cancellation or removed source
-aborts the uncommitted stream. Already completed items remain available and the
+aborts the uncommitted stream. USB source failures have a separate actionable
+status; they do not falsely claim that the native destination has stopped all
+writes or requires recovery. Already completed items remain available and the
 source is never removed by copying. This adds fixed state, not a growing queue,
 worker process or per-window data buffer.
 

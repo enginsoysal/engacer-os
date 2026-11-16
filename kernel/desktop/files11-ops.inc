@@ -1,7 +1,7 @@
 /* Provider checks and cooperative jobs. UI never treats a queued action as success. */
 static desktop_window *file_owner_window11(uint64_t token){desktop_window*w=desktop_lookup(&model,token);return w&&w->app==FILES?w:0;}
 static void file_notice11(uint64_t token,const char*message){desktop_window*w=file_owner_window11(token);if(w){notice(&apps[w-model.windows],message);invalidate(w->bounds);}else{copy(shell_notice,message,sizeof(shell_notice));task_damage();invalidate((desktop_rect){0,(int)model.height-108,(int)model.width,48});}}
-static const char *file_error_text11(unsigned code){return code==V6_FULL?"Not enough free space or file slots. Completed items remain available.":code==V6_RO?"This disk is read-only. Use recovery to check it.":code==V6_IO?"The disk could not confirm the change. Writes are stopped; use recovery.":code==V6_EXISTS?"That name is already in use. Choose Keep both or Skip.":code==V6_LIMIT?"This operation exceeds a supported file, path or selection limit.":code==V6_NOTFOUND?"The item is no longer available. Refresh the folder and try again.":"The source changed or this operation is not supported. Check the selected items.";}
+static const char *file_error_text11(unsigned code){return code==F12_SOURCE_ERROR?"The USB source could not be read. Existing files were kept. Reconnect the drive and select it again.":code==V6_FULL?"Not enough free space or file slots. Completed items remain available.":code==V6_RO?"This disk is read-only. Use recovery to check it.":code==V6_IO?"The disk could not confirm the change. Writes are stopped; use recovery.":code==V6_EXISTS?"That name is already in use. Choose Keep both or Skip.":code==V6_LIMIT?"This operation exceeds a supported file, path or selection limit.":code==V6_NOTFOUND?"The item is no longer available. Refresh the folder and try again.":"The source changed or this operation is not supported. Check the selected items.";}
 static void file_invalidate11(void){for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==FILES)invalidate(model.windows[i].bounds);whole();}
 static void file_clear_selections11(void){memset(selected11,0,sizeof(selected11));memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));desktop_selection11=0;interaction11.last_valid=0;}
 static void file_dialog_open11(unsigned mode,uint64_t owner_token,const char*path){memset(&file_dialog_state11,0,sizeof(file_dialog_state11));file_dialog_state11.mode=mode;file_dialog_state11.owner=owner_token;if(path)copy(file_dialog_state11.path,path,256);if(owner_token){desktop_focus(&model,owner_token);desktop_focus11=0;}else desktop_focus11=1;control_active=0;context11=0;whole();}
@@ -118,7 +118,7 @@ static void files_pump11(void){file_job11*j=&file_job_state11;if(!j->active)retu
 #ifdef ENGINE_M12
   while(j->root<j->count){file_root11*r=&j->roots[j->root++];if(r->skip||r->provider!=F11_USB)continue;
    uint64_t bytes=0;status=rem12_read_begin(r->disk,r->context,r->part,r->source,&bytes);
-   if(status||bytes!=r->size){file_job_finish11(status==B_ABSENT?V6_NOTFOUND:V6_INVALID,0);return;}
+   if(status||bytes!=r->size){file_job_finish11(status==B_ABSENT?V6_NOTFOUND:F12_SOURCE_ERROR,0);return;}
    copy(j->source,r->source,256);copy(j->target,r->target,256);j->source_size=bytes;j->offset=j->verified=0;
    if(!bytes){rem12_read_close();status=v6_put(v,j->target,0,0,0);if(status){file_job_finish11(status,0);return;}++j->files;file_job_progress11();return;}
    status=v6_stream_begin(v,j->target,bytes);if(status){file_job_finish11(status,0);return;}j->phase=3;break;
@@ -138,7 +138,7 @@ static void files_pump11(void){file_job11*j=&file_job_state11;if(!j->active)retu
  }
 #ifdef ENGINE_M12
  if(j->phase==3){unsigned bytes=(unsigned)(j->source_size-j->offset>4096?4096:j->source_size-j->offset);
-  status=rem12_read_next(file_buffer11,bytes);if(status){file_job_finish11(status==B_ABSENT?V6_NOTFOUND:V6_IO,0);return;}
+  status=rem12_read_next(file_buffer11,bytes);if(status){file_job_finish11(status==B_ABSENT?V6_NOTFOUND:F12_SOURCE_ERROR,0);return;}
   status=v6_stream_append(v,file_buffer11,bytes);if(status){file_job_finish11(status,0);return;}j->offset+=bytes;j->done_bytes+=bytes;
   if(j->offset==j->source_size){rem12_read_close();status=v6_stream_seal11(v);if(status){file_job_finish11(status,0);return;}j->phase=4;}
  }else if(j->phase==4){unsigned done=0;status=v6_stream_check11(v,&done);if(status){file_job_finish11(status,0);return;}
