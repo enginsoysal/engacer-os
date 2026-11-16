@@ -1,7 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {assertSite,planSync} from './sync.mjs';
+import {assertSite,planSync,retryDelay} from './sync.mjs';
 const post={slug:'docs-handbook-index',title:'Handbook',status:'published',bodyFormat:'brix',blocks:[{id:'a',type:'text',props:{text:'Guide'}}],meta:[{key:'engine_source_path',value:'docs/handbook/index.md'}]};
+
+test('publication retries only repeatable operations and obeys bounded server delay',()=>{
+ for(const method of ['GET','PATCH']){
+  assert.equal(retryDelay(method,429,0,'30'),30000);
+  assert.equal(retryDelay(method,429,0,'120'),null);
+  assert.equal(retryDelay(method,429,0,'Mon, 16 Nov 2026 14:00:30 GMT',Date.parse('2026-11-16T14:00:00Z')),30000);
+  assert.equal(retryDelay(method,502,2,null),8000);
+  assert.equal(retryDelay(method,502,3,null),null);
+  assert.equal(retryDelay(method,'timeout',0),2000);
+  for(const status of [400,401,403,404,409,422])assert.equal(retryDelay(method,status,0,null),null);
+ }
+ assert.equal(retryDelay('POST',429,0,'30'),null);
+ assert.equal(retryDelay('POST',502,0,null),null);
+ assert.equal(retryDelay('POST','timeout',0),null);
+});
 test('reject a key for any other site before writing',()=>assert.throws(()=>assertSite({slug:'another-site',title:'Codename: Engine OS'}),/different website/));
 test('accept only the renamed canonical site identity',()=>{
  assert.doesNotThrow(()=>assertSite({slug:'codename-engine-os-ltvck',title:'Engacer OS'}));

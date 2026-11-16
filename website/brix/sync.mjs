@@ -14,6 +14,22 @@ const select=p=>Object.fromEntries(fields.map(key=>[key,p[key]]));
 const source=p=>p.meta?.find(m=>m.key==='engine_source_path')?.value;
 const pending=p=>`Engacer OS generated draft: ${source(p)}`;
 
+// GET and exact-body PATCH are repeatable. Never blindly retry article creation.
+export function retryDelay(method,status,attempt,retryAfter,now=Date.now()){
+ if(!['GET','PATCH'].includes(method)||attempt>=3)return null;
+ if(status===429){
+   let delay=30000;
+   if(retryAfter){
+     const seconds=Number(retryAfter);
+     delay=Number.isFinite(seconds)?seconds*1000:Date.parse(retryAfter)-now;
+     if(!Number.isFinite(delay)||delay<0)delay=30000;
+   }
+   if(delay>60000)return null;
+   return Math.max(2100,delay);
+ }
+ return [502,503,504,'timeout'].includes(status)?2000*2**attempt:null;
+}
+
 export function assertSite(settings){
  assert.equal(settings?.slug,slug,'The API key belongs to a different website; nothing was changed.');
  assert.equal(settings?.title,'Engacer OS','Unexpected website identity; nothing was changed.');
@@ -52,11 +68,25 @@ async function publish(){
  assert(/^bx_live_[A-Za-z0-9_-]+$/.test(key||''),'Configure the site-scoped BrixCanvas publishing secret first.');
  let lastRequest=0;
  async function api(route,method='GET',body){
-   const pause=Math.max(0,1050-(Date.now()-lastRequest));if(pause)await new Promise(resolve=>setTimeout(resolve,pause));
-   lastRequest=Date.now();
-   const response=await fetch(apiBase+route,{method,redirect:'error',signal:AbortSignal.timeout(30000),headers:{Authorization:`Bearer ${key}`,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
-   if(!response.ok)throw Error(`BrixCanvas ${method} ${route.split('?')[0]} returned ${response.status}; publication stopped.`);
-   return response.json();
+   for(let attempt=0;;attempt++){
+     const pause=Math.max(0,2100-(Date.now()-lastRequest));if(pause)await new Promise(resolve=>setTimeout(resolve,pause));
+     lastRequest=Date.now();
+     let response;
+     try{
+       response=await fetch(apiBase+route,{method,redirect:'error',signal:AbortSignal.timeout(30000),headers:{Authorization:`Bearer ${key}`,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
+     }catch(error){
+       const delay=['AbortError','TimeoutError'].includes(error.name)?retryDelay(method,'timeout',attempt):null;
+       if(delay===null)throw error;
+       console.warn(`BrixCanvas ${method} ${route.split('?')[0]} timed out; bounded retry ${attempt+1}/3 after ${delay} ms.`);
+       await new Promise(resolve=>setTimeout(resolve,delay));continue;
+     }
+     if(response.ok)return response.json();
+     const delay=retryDelay(method,response.status,attempt,response.headers.get('retry-after'));
+     if(delay===null)throw Error(`BrixCanvas ${method} ${route.split('?')[0]} returned ${response.status}; publication stopped.`);
+     await response.body?.cancel();
+     console.warn(`BrixCanvas ${method} ${route.split('?')[0]} returned ${response.status}; bounded retry ${attempt+1}/3 after ${delay} ms.`);
+     await new Promise(resolve=>setTimeout(resolve,delay));
+   }
  }
  async function inventory(){
    const posts=[];for(let offset=0;;offset+=100){const r=await api(`/posts?limit=100&offset=${offset}`);assert(Array.isArray(r.data),'Invalid article inventory');posts.push(...r.data);if(posts.length>=r.total||r.data.length<100)break;assert(offset<20000,'Article inventory exceeds the bounded publisher');}return posts;
