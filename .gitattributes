@@ -212,3 +212,6 @@ kernel/desktop/transfers12.inc -text whitespace=cr-at-eol
 kernel/storage/fat32-write10.inc -text whitespace=cr-at-eol
 include/engine/hardware10.h -text whitespace=cr-at-eol
 evidence/M12/7/** -text -whitespace
+
+# M12.7 production FAT32 host qualification.
+tests/m12/reader_host.c -text whitespace=cr-at-eol

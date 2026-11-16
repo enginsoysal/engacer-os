@@ -76,7 +76,7 @@ static void file_job_finish11(unsigned status,unsigned cancelled){file_job11*j=&
 }
 static unsigned file_job_start11(unsigned mode,uint64_t owner_token,const file_root11*roots,unsigned count,const char*folder){
  if(file_job_state11.active||file_job_state11.waiting||file_dialog_state11.mode)return V6_LIMIT;if(!count||count>F11_ROOTS)return V6_LIMIT;
- file_job11*j=&file_job_state11;memset(j,0,sizeof(*j));j->mode=mode;j->owner=owner_token;j->count=count;j->replace_allowed=1;memcpy(j->roots,roots,count*sizeof(*roots));
+ file_job11*j=&file_job_state11;memset(j,0,sizeof(*j));file_job_result11[0]=0;file_job_error11=0;whole();j->mode=mode;j->owner=owner_token;j->count=count;j->replace_allowed=1;memcpy(j->roots,roots,count*sizeof(*roots));
  if(m6_volume()->readonly)return V6_RO;
  if(mode==F11_JOB_RECYCLE){unsigned status=file_bin_ready11();if(status)return status;}
  for(unsigned i=0;i<count;++i){file_root11*r=&j->roots[i];const v6_entry*source=r->provider==F11_NATIVE?entry(r->source):0;
@@ -101,7 +101,13 @@ static unsigned file_job_policy11(unsigned policy){file_job11*j=&file_job_state1
  }
  unsigned status=file_job_nodes11();if(status)return status;j->waiting=0;j->active=1;file_job_error11=0;file_job_result11[0]=0;file_dialog_state11.mode=0;file_undo_state11.kind=0;whole();return V6_OK;
 }
-static void file_job_progress11(void){uint64_t now=m3_clock_ticks();if(now-file_job_state11.last_paint>=5){file_job_state11.last_paint=now;desktop_window*w=file_owner_window11(file_job_state11.owner);if(w)invalidate(w->bounds);else invalidate((desktop_rect){10,(int)model.height-136,(int)model.width-20,74});}}
+static void file_job_progress11(void){uint64_t now=m3_clock_ticks();if(now-file_job_state11.last_paint>=5){file_job_state11.last_paint=now;desktop_window*w=file_owner_window11(file_job_state11.owner);
+#ifdef ENGINE_M12
+ if(w&&!w->minimized)invalidate((desktop_rect){w->bounds.x+12,w->bounds.y+w->bounds.height-142,w->bounds.width-24,68});else invalidate((desktop_rect){10,(int)model.height-136,(int)model.width-20,74});
+#else
+if(w)invalidate(w->bounds);else invalidate((desktop_rect){10,(int)model.height-136,(int)model.width-20,74});
+#endif
+}}
 static void files_pump11(void){file_job11*j=&file_job_state11;if(!j->active)return;v6_volume*v=m6_volume();if(j->cancel){file_job_finish11(0,1);return;}unsigned status=0;
  if(j->mode!=F11_JOB_COPY){while(j->root<j->count&&j->roots[j->root].skip)++j->root;if(j->root==j->count){file_job_finish11(0,0);return;}file_root11*r=&j->roots[j->root];
   if(j->mode==F11_JOB_RECYCLE){const v6_entry*e=entry(r->source);if(!e){file_job_finish11(V6_NOTFOUND,0);return;}recycle_record11 record={.magic=UINT64_C(0x314e494243455246),.version=1,.kind=e->kind,.size=e->size,.crc=e->crc};copy(record.original,r->source,256);char meta[256];file_bin_path11(meta,1);append(meta,"/",256);append(meta,file_basename11(r->target),256);append(meta,".bin",256);status=v6_put(v,meta,sizeof(record),memory_source,&record);if(!status)status=v6_move_tree11(v,r->source,r->target,0);
@@ -160,10 +166,10 @@ static void files_poll11(void){uint64_t generation=m6_volume()->generation;if(ge
 #ifdef ENGINE_M12
 static unsigned files_busy12(void){return file_job_state11.active||file_job_state11.waiting;}
 static unsigned files_usb_import12(uint64_t token){
- desktop_window*w=file_owner_window11(token);if(!w)return 1;application*a=&apps[w-model.windows];
+ desktop_window*w=file_owner_window11(token);if(!w)return 1;if(files_busy12()){file_notice11(token,"Wait for the transfer or choose Cancel before another USB copy.");return 1;}
  unsigned count=0,status=file_collect11(token,file_drag_roots11,&count);char destination[256];root_path(destination,"Downloads");
  if(!status)status=file_job_start11(F11_JOB_COPY,token,file_drag_roots11,count,destination);
  if(status)file_notice11(token,status==V6_INVALID||status==V6_NOTFOUND?"Select one USB file to copy to Downloads. Folders cannot be imported.":file_error_text11(status));
- (void)a;return 1;
+ return 1;
 }
 #endif

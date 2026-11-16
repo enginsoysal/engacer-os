@@ -40,6 +40,21 @@ writes or requires recovery. Already completed items remain available and the
 source is never removed by copying. This adds fixed state, not a growing queue,
 worker process or per-window data buffer.
 
+The read lease coalesces at most 4096 physically consecutive bytes only after
+checking their FAT links. Fragmented chains retain their real order. Three
+512-byte FAT-sector slots cover the current/slow/fast chain cursors; entries are
+validated against mirrored FATs on insertion and invalidated with the lease.
+Their data/tags/mask use 1,568 fixed bytes. Larger-sector media retain the checked
+uncached chain path. This bounded working set is chosen over an entire FAT in
+RAM or repeated reads of the same metadata for every cluster.
+
+The production old/new host reader comparison validates the same 64-MiB data:
+229,378 sector requests in the earlier M12.7 prototype versus 16,384 data requests
+and 514 sector requests in the new path. This is 13.57 times fewer I/O requests,
+not a measured physical-device speedup. Real fragmented/unaligned data, mirror
+faults, read failure and generation replacement remain separate correctness
+checks; native VM copying/CRC and memory qualification are still required.
+
 The progress strip names the phase, current source and actual destination and
 uses completed copy/read-back work for its percentage. It does not invent a
 throughput or remaining-time estimate. The Cancel control remains outside the
@@ -47,6 +62,16 @@ file-name-tip area; tips are suppressed during an active job and otherwise fit
 within the content body. Completion, cancellation and failure all retain a
 Details route. Cancellation of a tree can leave already confirmed files/folders;
 it is not an all-or-nothing undo of earlier completed work.
+
+Admitting or finishing a job redraws shared command state across Files windows.
+Steady progress damages only its strip; a minimized owner damages the global
+progress strip instead. Whole-window repainting for each percentage change
+wastes CPU and can conceal a usable background progress control. Undo/Restore
+also respect the native volume's read-only state. A rejected new attempt clears
+the previous summary before reusing the one bounded job record, so old completed
+counts cannot be displayed beside a new source/destination. This is a last-result
+record, not an unbounded operation history. Safe removal and competing USB copy
+routes share the busy guard in the toolbar, context menu and command handler.
 
 The separately checked FAT32 export remains a synchronous create-only operation.
 It must state that limitation; this stage must not advertise mid-export

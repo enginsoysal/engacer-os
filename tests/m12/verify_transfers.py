@@ -1,9 +1,16 @@
 """Qualify matching M12.7 command/transfer behavior, source and released media."""
-import hashlib,json,re,shutil,os
+import hashlib,json,re,shutil,os,subprocess
 from pathlib import Path
 import verify_components as common
 ROOT=common.ROOT;WORK=ROOT/'build/m12/stage7';OUT=ROOT/'evidence/M12/7'
 load=common.load;sha=common.sha;write=common.write
+
+def public_bytes(data):
+    for path,label in ((str(ROOT),'<project-root>'),(os.environ.get('USERPROFILE',''),'<user-home>')):
+        if not path:continue
+        for spelling in (path,path.replace('\\','/')):
+            for variant in (spelling,json.dumps(spelling)[1:-1]):data=data.replace(variant.encode(),label.encode())
+    return data
 
 def fat_state(path):
     text=path.read_text();parts={}
@@ -15,8 +22,8 @@ def fat_state(path):
 def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage7-build-manifest.json');starter=load(ROOT/'dist/m12stage7-starter-manifest.json')
-    native=load(WORK/'transfers-native/results.json');bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json');syntax=load(WORK/'syntax-results.json')
-    assert all(row['passed'] for row in (native,bios,vmware,motion,syntax))
+    native=load(WORK/'transfers-native/results.json');bios=load(WORK/'bios/results.json');vmware=load(WORK/'vmware-results/results.json');motion=load(WORK/'motion/results.json');syntax=load(WORK/'syntax-results.json');reader=load(WORK/'reader-host/results.json')
+    assert all(row['passed'] for row in (native,bios,vmware,motion,syntax,reader))
     assert len(syntax['checks'])==4
     for path,digest in syntax['source_sha256'].items():assert meta['source_sha256'][path]==digest
     iso=meta['artifacts']['EngacerOS-M12STAGE7.iso']['sha256']
@@ -28,6 +35,15 @@ def main():
     assert len(native['checks'])>=12 and len(native['profiles'])==2
     assert 0<native['cancelled_usb_work_bytes']<128*1024**2 and native['partial_copy_confirmed_files']>=1
     assert native['removed_source_error'] in (3,9)
+    assert native['minimized_transfer_feedback'] and native['full_usb_copy_observer_seconds']>0
+    assert native['active_progress_damage']['frames']>2 and native['active_progress_damage']['average_damage']<native['active_progress_damage']['whole_window_area']/2
+    assert reader['image_unchanged'] and reader['writes']==0 and reader['io_command_ratio']>10 and reader['metadata_cache_bytes']==1568
+    for path,digest in reader['source_sha256'].items():
+        if path.startswith(('kernel/','include/')):assert meta['source_sha256'][path]==digest
+    assert re.fullmatch('[0-9a-f]{40}',reader['baseline']['source_commit'])
+    for path,digest in reader['baseline']['source_sha256'].items():
+        assert path.startswith('kernel/storage/')
+        raw=subprocess.check_output(['git','show',reader['baseline']['source_commit']+':'+path],cwd=ROOT);assert hashlib.sha256(raw).hexdigest()==digest
     assert native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0]
     assert native['resources']['before'][3]==native['resources']['after'][3]
@@ -50,7 +66,7 @@ def main():
         capture=load(WORK/f'transfers-native/{label}-capture.json');assert (capture['width'],capture['height'])==(width,height)
     for label in ('usb-transfer-progress','native-transfer-progress','conflict-review','usb-conflict','removed-source-result','usb-export-refusal','compact-dark-actions'):
         assert (WORK/f'transfers-native/{label}.png').is_file()
-    common.git_inputs(meta['source_sha256']);common.git_inputs(syntax['source_sha256'])
+    common.git_inputs(meta['source_sha256']);common.git_inputs(syntax['source_sha256']);common.git_inputs(reader['source_sha256'])
     for folder in ('boot','kernel','include','runtime','user'):
         assert {p.relative_to(ROOT).as_posix() for p in (ROOT/folder).rglob('*') if p.is_file()}<=meta['source_sha256'].keys()
     for name,record in meta['artifacts'].items():assert sha(ROOT/'dist'/name)==record['sha256']
@@ -68,13 +84,13 @@ def main():
         for path in (WORK/source).iterdir():
             if path.is_file() and path.suffix in ('.json','.png','.log') and path.name!='failure.log':
                 if path.suffix=='.png':shutil.copyfile(path,target/path.name)
-                else:(target/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
-    for source,name in [('dist/m12stage7-build-manifest.json','candidate-manifest.json'),('dist/m12stage7-starter-manifest.json','starter-manifest.json'),('build/m12/stage7/syntax-results.json','syntax-results.json')]:shutil.copyfile(ROOT/source,OUT/name)
+                else:(target/path.name).write_bytes(public_bytes(path.read_bytes()))
+    for source,name in [('dist/m12stage7-build-manifest.json','candidate-manifest.json'),('dist/m12stage7-starter-manifest.json','starter-manifest.json'),('build/m12/stage7/syntax-results.json','syntax-results.json'),('build/m12/stage7/reader-host/results.json','reader-host.json')]:shutil.copyfile(ROOT/source,OUT/name)
     shutil.copyfile(WORK/'transfers-native/usb-transfer-progress.png',OUT/'feature.png')
     diagnostics=OUT/'diagnostics';diagnostics.mkdir(exist_ok=True)
     for path in (WORK/'diagnostics').iterdir():
-        if path.is_file() and path.suffix in ('.json','.txt','.png'):(diagnostics/path.name).write_bytes(path.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
-    write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],fat32_before=fat_before,fat32_current=fat_after,added_fixed_fat32_bytes=fat_after['bytes']-fat_before['bytes'],managed=native['resources'],font=meta['font'],icon_raster_cache_bytes=0,icon_temporary_row_bytes=512,display_profiles=native['profiles'],motion=motion['profiles'],scope='Fixed shell and FAT32 cooperative reader state are measured separately from managed framebuffer pages. No additional data buffer, growing queue, per-window framebuffer or idle animation. Configured guest RAM is not consumption.'))
+        if path.is_file() and path.suffix in ('.json','.txt','.png'):(diagnostics/path.name).write_bytes(public_bytes(path.read_bytes()))
+    write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],fat32_before=fat_before,fat32_current=fat_after,added_fixed_fat32_bytes=fat_after['bytes']-fat_before['bytes'],reader_metadata_cache_bytes=reader['metadata_cache_bytes'],reader_io_command_ratio=reader['io_command_ratio'],active_progress_damage=native['active_progress_damage'],managed=native['resources'],font=meta['font'],icon_raster_cache_bytes=0,icon_temporary_row_bytes=512,display_profiles=native['profiles'],motion=motion['profiles'],scope='Fixed shell, cooperative reader and tiny FAT metadata cache are separate from managed framebuffer pages. The existing 4096-byte payload buffer is reused; no growing queue, per-window framebuffer or idle animation. Host I/O request counts and observer latency are not physical throughput/FPS. Configured guest RAM is not consumption.'))
     harness={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')}
     write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.7',version='0.12.7',qualification='M12-STAGE7-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks'],cached_full_comparisons=12,bios_checks=bios['checks'],vmware_checks=vmware['checks'],resources='resources.json',feature_provenance='Actual owned QEMU SATA/UEFI installed 1280x800 guest, usb-transfer-progress.png; real source/destination and bounded verified USB import',feature_sha256=sha(OUT/'feature.png'),harness_sha256=harness,limits=['USB imports are cooperative, one-file and bounded to 64 MiB; USB export remains synchronous create-only and cannot be cancelled mid-file.','USB folder import, Cut/Move, replacing USB files and sorting remain unavailable.','The menu helper footer fitting remains M12.14; HiDPI drawn cursor versus hit coordinate isolation remains M12.16.','The earlier M12.2 concurrent BIOS/AHCI timeout remains open; stress reliability is not qualified.','Final controller/device/original-application regression remains M12.18; physical/ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.','Agent visual/scenario review is not a human study; public release/site/download proof closes separately.']))
     print('PASS: matching M12.7 source/media, genuine transfer/cancellation/conflict bytes, independent boots and bounded resources.')

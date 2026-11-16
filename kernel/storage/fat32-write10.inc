@@ -92,17 +92,52 @@ unsigned rem10_import(unsigned disk,unsigned token,unsigned part,const char*path
 /* One cooperative read lease: no heap or retained per-window USB buffers. */
 static stream10 reader12;
 static unsigned reader_token12,reader_active12;
-void rem12_read_close(void){memset(&reader12,0,sizeof(reader12));reader_token12=reader_active12=0;}
+/* Three 512-byte FAT sectors cover the current/slow/fast chain cursors. */
+static uint8_t reader_fat12[3][512];
+static uint64_t reader_fat_index12[3];
+static unsigned reader_fat_mask12,reader_fat_next12;
+static unsigned reader_cluster_next12(unsigned cluster,unsigned*next){
+ volume*v=&reader12.v;if(v->bytes!=512)return next_cluster(v,cluster,next);
+ if(cluster<2||cluster>=v->clusters+2)return B_DENIED;uint64_t index=(uint64_t)cluster*4/512;unsigned slot=3;
+ for(unsigned i=0;i<3;++i)if((reader_fat_mask12&(1u<<i))&&reader_fat_index12[i]==index)slot=i;
+ if(slot==3){slot=reader_fat_next12;reader_fat_mask12&=~(1u<<slot);uint64_t lba=v->fat_start+(uint64_t)v->fat_index*v->fat_sectors+index;
+  if(storage_read(v->disk,lba,reader_fat12[slot]))return B_IO;
+  if(v->mirrored&&v->fats==2){if(storage_read(v->disk,v->fat_start+v->fat_sectors+index,fat_sector))return B_IO;if(memcmp(reader_fat12[slot],fat_sector,512))return B_DENIED;}
+  reader_fat_index12[slot]=index;reader_fat_mask12|=1u<<slot;reader_fat_next12=(slot+1)%3;
+ }
+ unsigned value=r32(reader_fat12[slot]+cluster*4%512)&0x0fffffff;if(value>=0x0ffffff8){*next=0;return B_OK;}if(value<2||value>=v->clusters+2)return B_DENIED;*next=value;return B_OK;
+}
+static unsigned reader_advance12(void){
+ stream10*s=&reader12;if(reader_cluster_next12(s->cluster,&s->cluster))return B_IO;
+ if(s->slow&&reader_cluster_next12(s->slow,&s->slow))return B_IO;
+ if(s->fast&&reader_cluster_next12(s->fast,&s->fast))return B_IO;
+ if(s->fast&&reader_cluster_next12(s->fast,&s->fast))return B_IO;
+ return s->slow&&s->fast&&s->slow==s->fast?B_IO:B_OK;
+}
+void rem12_read_close(void){memset(&reader12,0,sizeof(reader12));reader_token12=reader_active12=reader_fat_mask12=reader_fat_next12=0;}
 unsigned rem12_read_begin(unsigned disk,unsigned token,unsigned part,const char*path,uint64_t*bytes){
- if(reader_active12)return B_DENIED;if(!lease10(disk,token))return B_ABSENT;
+ if(reader_active12||!bytes)return B_DENIED;if(!lease10(disk,token))return B_ABSENT;
  stream10 next={0};unsigned size,attr,status=mount(disk,part,&next.v);if(status)return status;
  if((status=resolve10(&next.v,path,&next.cluster,&size,&attr)))return status;
  if((attr&16)||size>64u*1024*1024)return B_UNSUPPORTED;
- next.size=size;next.slow=next.fast=next.cluster;reader12=next;reader_token12=token;reader_active12=1;*bytes=size;return B_OK;
+ next.size=size;next.slow=next.fast=next.cluster;reader12=next;reader_fat_mask12=reader_fat_next12=0;reader_token12=token;reader_active12=1;*bytes=size;return B_OK;
 }
 unsigned rem12_read_next(void*out,unsigned bytes){
- if(!reader_active12||!bytes||bytes>4096)return B_DENIED;
+ if(!reader_active12||!out||!bytes||bytes>4096||bytes>reader12.size-reader12.position)return B_DENIED;
  if(!lease10(reader12.v.disk,reader_token12)){rem12_read_close();return B_ABSENT;}
- if(source_usb10(&reader12,reader12.position,out,bytes)){rem12_read_close();return B_IO;}return B_OK;
+ stream10*s=&reader12;uint8_t*data=out;
+ while(bytes){
+  unsigned within=(unsigned)(s->position%s->v.bytes);
+  if(within||bytes<s->v.bytes){unsigned n=s->v.bytes-within;if(n>bytes)n=bytes;if(source_usb10(s,s->position,data,n)){rem12_read_close();return B_IO;}data+=n;bytes-=n;continue;}
+  if(s->cluster<2||s->cluster>=s->v.clusters+2){rem12_read_close();return B_IO;}
+  unsigned wanted=bytes/s->v.bytes,sectors=s->v.spc-s->sector_index,tail=s->cluster;
+  /* Coalesce only physically consecutive clusters verified through the FAT. */
+  while(sectors<wanted){unsigned next=0;if(reader_cluster_next12(tail,&next)){rem12_read_close();return B_IO;}if(next!=tail+1)break;sectors+=s->v.spc;tail=next;}
+  if(sectors>wanted)sectors=wanted;unsigned n=sectors*s->v.bytes;
+  if(storage_device_io(s->v.disk,s->v.data_start+(uint64_t)(s->cluster-2)*s->v.spc+s->sector_index,data,n,0)){rem12_read_close();return B_IO;}
+  s->position+=n;data+=n;bytes-=n;
+  while(sectors){unsigned step=s->v.spc-s->sector_index;if(step>sectors)step=sectors;s->sector_index+=step;sectors-=step;if(s->sector_index==s->v.spc){s->sector_index=0;if(reader_advance12()){rem12_read_close();return B_IO;}}}
+ }
+ return B_OK;
 }
 #endif

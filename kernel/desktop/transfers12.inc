@@ -6,9 +6,9 @@ static unsigned files_can_command12(uint64_t token,unsigned command){
  if(command==F11_COPY){if(!a->usb_mode10)return selected!=0;if(a->usb_mode10!=2||selected!=1||!a->usb_selected10)return 0;rem10_entry item;unsigned total=0;return !rem10_list(a->usb_disk10,a->usb_context10,a->usb_part10,a->usb_path10,a->usb_selected10-1,&item,1,&total)&&a->usb_selected10<=total&&item.kind==1;}
  if(command==F11_PASTE)return !busy&&writable&&clipboard_kind11==2&&file_clip11.count;
  if(command==FILE_FOLDER||command==F11_NEW_TEXT)return !busy&&writable;
- if(command==F11_UNDO)return !busy&&file_undo_state11.kind;
+ if(command==F11_UNDO)return !busy&&!m6_volume()->readonly&&file_undo_state11.kind;
  if(command==F11_JOB_DETAILS)return !busy&&file_job_result11[0];
- if(command==F11_RESTORE)return !busy&&native&&file_is_bin11(a->path)&&selected;
+ if(command==F11_RESTORE)return !busy&&native&&!m6_volume()->readonly&&file_is_bin11(a->path)&&selected;
  if(command==F11_PROPERTIES)return selected==1;
  if(command==F11_CUT||command==F11_RENAME||command==F11_RECYCLE){
   if(busy||!native||!writable||!selected||(command==F11_RENAME&&selected!=1))return 0;

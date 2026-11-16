@@ -5,7 +5,13 @@ import files_observe as f
 c=f.c;ui=f.ui;ROOT=f.ROOT;OUT=ROOT/'build/m12/stage7/transfers-native';OUT.mkdir(parents=True,exist_ok=True);c.OUT=OUT
 
 def start(g,p,command):
-    x,y,w,h,_,_=c.control(g,command);scale=c.flag(g,'scale73')
+    deadline=time.monotonic()+15
+    while True:
+        try:x,y,w,h,_,_=c.control(g,command);break
+        except AssertionError:
+            if time.monotonic()>deadline:raise
+            time.sleep(.01)
+    scale=c.flag(g,'scale73')
     p.move((x+w//2)*scale//2,(y+h//2)*scale//2)
     if not job(g)[0][0]:p.drain()
     else:time.sleep(.08)
@@ -27,6 +33,9 @@ def capture_active(g,name):
     g.qmp('stop')
     try:ui.raw_shot(g,OUT,name,True)
     finally:g.qmp('cont')
+
+def key_active(g,*keys):
+    g.qmp('send-key',{'keys':[{'type':'qcode','data':name} for name in keys],'hold-time':40});time.sleep(.1)
 
 def job(g):
     raw=ui.memory(g,ui.symbol('file_job_state11',installed=True)[0],112)
@@ -77,6 +86,12 @@ def main():
             p.desktop(94,True);create(g,p,'Source',True);f.double(g,p,f.item(g,p,'Source'));create(g,p,'Export.txt');text(g,p,'Export.txt','Native original 123')
             p.desktop(f.item(g,p,'Export.txt'),True);action(g,p,40000);f.visit(g,p,'Desktop');action(g,p,40002);wait(g,p);assert '/Users/Owner/Desktop/Export.txt' in f.entries(g);details(g,p)
             report['checks'].append('Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion')
+            f.visit(g,p,'/Users/Owner/Documents/Source');p.desktop(f.item(g,p,'Export.txt'),True);c.key(g,'ctrl','c');c.key(g,'f2');c.key(g,'ctrl','a');c.type_text(g,'Renamed.txt');c.key(g,'ret')
+            f.visit(g,p,'Desktop');action(g,p,40002)
+            assert not job(g)[0][0] and not f.has(g,40034) and 'no longer available' in f.app(g)['notice']
+            assert ui.memory(g,ui.symbol('file_job_result11',installed=True)[0],1)==b'\0'
+            f.visit(g,p,'/Users/Owner/Documents/Source');p.desktop(f.item(g,p,'Renamed.txt'),True);c.key(g,'f2');c.key(g,'ctrl','a');c.type_text(g,'Export.txt');c.key(g,'ret');f.visit(g,p,'Desktop')
+            report['checks'].append('Renaming a copied source before Paste produces a truthful missing-source refusal; stale previous counts/destinations are cleared, and the original payload is kept')
             p.desktop(f.item(g,p,'Export.txt'),True);action(g,p,40001);f.visit(g,p,'Documents');action(g,p,40002);wait(g,p);assert '/Users/Owner/Desktop/Export.txt' not in f.entries(g)
             action(g,p,40011);assert '/Users/Owner/Desktop/Export.txt' in f.entries(g)
             report['checks'].append('Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents')
@@ -116,7 +131,40 @@ def main():
             details(g,p)
             assert not struct.unpack('<4i',ui.memory(g,ui.symbol('files_tip_bounds12',16,True)[0],16))[2],'Busy name tip remained'
             report['checks'].append('A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details')
-            p.desktop(f.row(g,'Large.bin'),True);start(g,p,21004);wait(g,p);assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)
+            p.desktop(f.row(g,'Large.bin'),True);started=time.monotonic();start(g,p,21004);busy_frame(g)
+            _,bounds=f.model(g);fscale=c.flag(g,'scale73');p.move((bounds[0]+30)*fscale//2,(bounds[1]+150)*fscale//2)
+            for down in (True,False):g.qmp('input-send-event',{'events':[{'type':'btn','data':{'down':down,'button':'right'}}]});time.sleep(.08)
+            deadline=time.monotonic()+15
+            while not c.flag(g,'context11') or 21006 not in menu_items(g):
+                if time.monotonic()>deadline:raise TimeoutError('No busy USB context menu')
+                time.sleep(.01)
+            assert menu_items(g)[21006]==0;capture_active(g,'busy-usb-actions');key_active(g,'esc')
+            deadline=time.monotonic()+15
+            while c.flag(g,'context11'):
+                if time.monotonic()>deadline:raise TimeoutError('Busy menu did not close')
+                time.sleep(.01)
+            start(g,p,49000)
+            deadline=time.monotonic()+15
+            while not any(row[5]==40019 and row[4]==0 for row in f.controls(g)):
+                assert job(g)[0][0],job(g)
+                if time.monotonic()>deadline:raise TimeoutError('Minimized transfer has no global Cancel feedback')
+                time.sleep(.01)
+            capture_active(g,'minimized-transfer-progress');start(g,p,70)
+            deadline=time.monotonic()+15
+            while int.from_bytes(ui.memory(g,ui.symbol('model',installed=True)[0]+236,4),'little')>=8:
+                if time.monotonic()>deadline:raise TimeoutError('Taskbar did not restore the copying Files window')
+                time.sleep(.01)
+            restored_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')
+            while int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')==restored_paints:
+                if time.monotonic()>deadline:raise TimeoutError('Restored Files did not finish its frame')
+                time.sleep(.01)
+            before_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');before_pixels=int.from_bytes(ui.memory(g,ui.symbol('painted_pixels',8,True)[0],8),'little')
+            time.sleep(.75)
+            frames=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')-before_paints;pixels=int.from_bytes(ui.memory(g,ui.symbol('painted_pixels',8,True)[0],8),'little')-before_pixels
+            assert job(g)[0][0] and frames>2 and pixels/frames<bounds[2]*bounds[3]/2,(frames,pixels,job(g))
+            report['active_progress_damage']=dict(frames=frames,logical_pixels=pixels,average_damage=pixels/frames,whole_window_area=bounds[2]*bounds[3],scope='Damage rectangles during a running restored transfer, not hardware FPS or physical USB throughput')
+            wait(g,p);report['full_usb_copy_observer_seconds']=time.monotonic()-started;report['minimized_transfer_feedback']=True
+            assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)
             # A second real source tests partial completion on cancellation of a tree.
             f.visit(g,p,'Downloads');p.desktop(f.item(g,p,'Large.bin'),True);action(g,p,40000);f.visit(g,p,'/Users/Owner/Documents/Source');start(g,p,40002);wait(g,p)
             f.visit(g,p,'Documents');p.desktop(f.item(g,p,'Source'),True);action(g,p,40000);f.visit(g,p,'Desktop');start(g,p,40002);busy_frame(g)
