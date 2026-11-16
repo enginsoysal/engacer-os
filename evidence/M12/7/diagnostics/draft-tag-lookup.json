@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "publication_only": true,
+  "native_tests_affected": false,
+  "observation": "The publisher created the intended matching draft. Authenticated GET by tag returned HTTP 404 for that draft, while the release listing returned it. No asset was replaced. Continue through the exact listed release ID with the same source/body/asset guards.",
+  "follow_up": "After this immutable stage closes, update future-stage publication lookup and regression tests."
+}

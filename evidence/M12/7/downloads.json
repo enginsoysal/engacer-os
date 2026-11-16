@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "stage": "M12.7",
+  "build_id": "595e94df44cc995c3379d11379f4663e",
+  "checked_at": "2026-11-16T22:41:35.499597+00:00",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m127-v0.12.7",
+  "latest": "m127-v0.12.7",
+  "artifacts": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/7z2606-src.tar.xz",
+      "public_head": 200
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/COPYING.LIB",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-archives.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-browser.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-calculator.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-calendar.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-editor.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-help.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-installed-kernel.elf",
+      "sha256": "c46ff81b322a120a045d6bae92d3d66b55e497ed42f4f6be059d02b575aa29ff",
+      "size": 1323388,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-installed-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-installed-kernel.map",
+      "sha256": "db41a3b1dcdcaa60c31039b741c840dfc771e9d21417ac79d790f377445cee7d",
+      "size": 385381,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-installed-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-kernel.elf",
+      "sha256": "471023c796e641993946966b35513467e263ddbaf9fd0418f28bda8ca97cc317",
+      "size": 3551612,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-kernel.map",
+      "sha256": "bb322c53b4b08e3b62ea20c06c8c6b6c1e87aeb9b8990d899daf2de60a241704",
+      "size": 385673,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-THIRD-PARTY-NOTICES.txt",
+      "sha256": "6ebfdfe77167cefaada6607a95717683ba0c953a83883423371375f799499fd8",
+      "size": 59409,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-THIRD-PARTY-NOTICES.txt",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-usb.img",
+      "sha256": "3b1105a4244bf63b14ffe05766503139f6b86a8676c3ea9fd929c46055e5d9e0",
+      "size": 84934656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-usb.img",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-user.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7-VMware.zip",
+      "sha256": "addfc2f971b5de5407318706febbc73cf69c56df68a1eba741417bb494581476",
+      "size": 10290479,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-VMware.zip",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE7.iso",
+      "sha256": "11832944be106bfa560856f4978994a59e17613ddc0c283c1704816e7ff041f2",
+      "size": 74831872,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7.iso",
+      "public_head": 200
+    },
+    {
+      "name": "m12stage7-build-manifest.json",
+      "sha256": "bb4d3c8a238d25c57847cf8dc437098229822c8cf7a01dff4b024c7256f7a162",
+      "size": 79057,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/m12stage7-build-manifest.json",
+      "public_head": 200
+    },
+    {
+      "name": "M12STAGE7-SHA256SUMS.txt",
+      "sha256": "0ea3fd2c3202749fe8da95d720f38b71083a96b670a6590fc57997140fc0b325",
+      "size": 1839,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/M12STAGE7-SHA256SUMS.txt",
+      "public_head": 200
+    },
+    {
+      "name": "m12stage7-starter-manifest.json",
+      "sha256": "dc7881910995db40136030491ce3fff560e05c40bf66b446ed630502624e4a07",
+      "size": 653,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/m12stage7-starter-manifest.json",
+      "public_head": 200
+    }
+  ],
+  "downloaded_zip_sha256": "addfc2f971b5de5407318706febbc73cf69c56df68a1eba741417bb494581476",
+  "downloaded_zip_crc": true,
+  "downloaded_iso_sha256": "11832944be106bfa560856f4978994a59e17613ddc0c283c1704816e7ff041f2"
+}
