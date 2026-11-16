@@ -194,7 +194,7 @@ static unsigned picker_key12(int key){
  if(key==10||key==32){const unsigned commands[]={P12_ADDRESS,0,P12_NAME,P12_FILTER,P12_ACCEPT,P12_CANCEL,P12_BACK,P12_FORWARD,P12_UP,P12_HOME,P12_DOCUMENTS,P12_DOWNLOADS,P12_PICTURES,P12_NEW_FOLDER,P12_PREVIOUS,P12_NEXT};if(d->focus<16)picker_action12(token,commands[d->focus]);}return 1;
 }
 static unsigned picker_shortcut12(int key){
- if(picker_live12())return 0;desktop_window*w=model.focused<DESKTOP_WINDOWS?&model.windows[model.focused]:0;if(!w||!w->live||desktop_focus11||launcher||w->app!=EDITOR)return 0;
+ if(picker_live12()&&file_dialog_owner_focused11())return 0;desktop_window*w=model.focused<DESKTOP_WINDOWS?&model.windows[model.focused]:0;if(!w||!w->live||desktop_focus11||launcher||w->app!=EDITOR)return 0;
  if(key==15||(key==19&&(input11_modifiers()&2))){picker_begin12(desktop_token(&model,model.focused),key==15?P12_TEXT_OPEN:P12_TEXT_SAVE);return 1;}return 0;
 }
 static void picker_button12(int x,int y,int width,const char*label,unsigned command,unsigned enabled,unsigned primary,unsigned focus){file_dialog_button11(x,y,width,label,command,enabled,primary,focus,command==P12_REPLACE||command==P12_DISCARD_OPEN);}

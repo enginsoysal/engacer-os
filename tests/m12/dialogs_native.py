@@ -106,7 +106,11 @@ def main():
                 report['checks'].append('Explicit Save and open persists the old modified document before loading the selected new source')
                 p.desktop(54001,True);p.desktop(54016,True);field(g,p,54020,'Existing.txt');p.desktop(54011,True);assert picker(g).phase==1
                 editor_token=owner(g);task(g,p,file_token);p.desktop(40015,True);c.key(g,'ctrl','a');c.type_text(g,'/Users/Owner/Documents');c.key(g,'ret');assert f.app(g)['path']=='/Users/Owner/Documents'
-                p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');c.key(g,'end');c.type_text(g,' changed');c.key(g,'ctrl','s');close_focused(g,p)
+                p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');c.key(g,'end');c.type_text(g,' changed');old_crc=f.entries(g)['/Users/Owner/Documents/Existing.txt']['crc'];other_text=bytes(appview(g).text)
+                for shortcut in [('ctrl','shift','s'),('ctrl','o')]:
+                    c.key(g,*shortcut);assert c.flag(g,'file_dialog_state11')==10 and appview(g).dirty and bytes(appview(g).text)==other_text and f.entries(g)['/Users/Owner/Documents/Existing.txt']['crc']==old_crc
+                    assert int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little')==editor_token
+                c.key(g,'ctrl','s');assert not appview(g).dirty;close_focused(g,p)
                 task(g,p,editor_token);assert picker(g).phase==1;p.desktop(54025,True);assert picker(g).phase==0 and picker(g).error and f.app(g)['path']=='/Users/Owner/Downloads/Saved.txt'
                 c.shot(g,'changed-target-refused');p.desktop(54011,True);assert picker(g).phase==1;p.desktop(54025,True);assert not c.flag(g,'file_dialog_state11') and f.app(g)['path']=='/Users/Owner/Documents/Existing.txt'
                 report['checks'].append('Another window remains usable during review; changing and saving the target invalidates the old replacement review, followed by a fresh explicit replacement')

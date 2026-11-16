@@ -118,3 +118,11 @@ extraction and zero retained pages. An independent read matches all three ZIP
 member payloads; its observer initially expected Extracted instead of the actual
 unique Extracted1 name. That failed observer result is retained and the corrected
 complete probe is being repeated. This is not final M12.8 acceptance.
+
+Owner review also identified a second-window shortcut hazard: while a picker
+was open, Ctrl+Shift+S could fall through to ordinary Save. Shortcuts now defer
+to picker keys only for its focused owner. A different Editor routes through
+the existing refusal, retaining its dirty text/path and the original owner.
+Native regression explicitly checks both Ctrl+Shift+S and Ctrl+O, followed by
+an intentional Ctrl+S. The interrupted candidate is recorded as an intentional
+owned-test stop, not an OS crash; qualification restarts on the corrected media.
