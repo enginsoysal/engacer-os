@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "scope": "Earlier download-check helper, not native qualification",
+  "observed": "A ZIP request used the transient draft asset URL and returned HTTP 404. Published release metadata supplies the final m116-v0.11.6 URLs. The corrected verification checks those authoritative URLs and preserves any further attempts.",
+  "resolved_by": "Read and verify all twenty asset digests/sizes/URLs again from the published release API."
+}

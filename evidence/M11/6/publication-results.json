@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "stage": "M11.6",
+  "qualification": "M11-FINAL-VM-v1",
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "release_source_commit": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
+  "documentation_source_commit": "bbffe09201cb40cc456b4234d13ff7002323dbc0",
+  "compiled_inputs_verified": 562,
+  "published_harness_and_compiled_source_match": true,
+  "native_groups": 36,
+  "controller_and_starter_profiles": 14,
+  "public_release_assets": 20,
+  "fresh_zip_sha256_and_crc_verified": true,
+  "native_homepage_saved": true,
+  "public_desktop_and_mobile_verified": true,
+  "website_articles": 177,
+  "website_pages_checked": 284,
+  "website_unique_links": 1849,
+  "remaining_website_errors": 0,
+  "sync_runs": [
+    {
+      "id": 43849447048,
+      "event": "push",
+      "head_sha": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/enginsoysal/engacer-os/actions/runs/43849447048"
+    },
+    {
+      "id": 43849641712,
+      "event": "release",
+      "head_sha": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/enginsoysal/engacer-os/actions/runs/43849641712"
+    },
+    {
+      "id": 43850196213,
+      "event": "push",
+      "head_sha": "bbffe09201cb40cc456b4234d13ff7002323dbc0",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/enginsoysal/engacer-os/actions/runs/43850196213"
+    }
+  ],
+  "initial_network_and_helper_failures_retained": [
+    "publication-diagnostic.json",
+    "website-audit-initial.json"
+  ],
+  "temporary_storage": "Large generated build and VM fixtures are stored in local application-data directories outside the OneDrive project; canonical source and accepted evidence/media are preserved.",
+  "checked_at": "2026-11-16T10:50:50.370275+00:00",
+  "publication_evidence_sha256": {
+    "release-publication.json": "083170b305ffa2b9a7a60b39acc8073b952b6259b98a82d4c4e2169aa461e746",
+    "release-downloads.json": "4abc79ef21fe89b78d5be43d1ac0a55702527cd9f31aa4251edfda9e8b0b5b8b",
+    "publication-diagnostic.json": "4ee58272ad11a5d3139ed8ea706e42f4087fb53f74da8043ca877ce7191a3610",
+    "public-browser-verification.json": "09cf130c83ea0acfcd3b0038d5ce8aa543dee57c9759137d7c4c8c081b9770a1",
+    "website-audit.json": "162323e7518727da8c6577e50ad4ec8378e664322a08f9e1483828d7afe20765",
+    "website-audit-initial.json": "fb8a2a200cda3b6ec49fc5c6b0729523a566b73ba2e59c52e77c70367ae583cc",
+    "public-documentation-desktop.jpg": "e9503717fcf32798990efa36ea615b25491fb5cf4507b0e86e5b24b2f22d8518",
+    "public-downloads-desktop.jpg": "ce0a605e2a9f074de9f4ec995c9ec0df3bc7f04f0ac2d0a12c7bc43ef93b468d",
+    "public-homepage-desktop.jpg": "7ef5b0675b645de05360d7d3bf1214da90320ccb630d55191b792385a3a5d33d",
+    "public-homepage-mobile.jpg": "ce2076a90dea6d589a46c32d4b24ee99d7fb7c5f6b06c2dfacb43abf5f311148",
+    "public-installation-desktop.jpg": "c2b158c5829542a72357d7280c2e74ee3d8e46375893027f124e06ede9310a39",
+    "public-installation-mobile.jpg": "fd3d4281c98b001ae5d8246f309a2d1ac9214ea1970f167c5d76d1e71abd9eba",
+    "public-mobile-menu.jpg": "44e15990d0bec359a51f387c9911f3b2edd1f31fe69688632e7d51fce24546a6"
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "passed": true,
+  "tag": "m116-v0.11.6",
+  "public_assets": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 1567328
+        }
+      ]
+    },
+    {
+      "name": "COPYING.LIB",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 26430
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-archives.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 17068
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-browser.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 12639
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-calculator.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 12976
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-calendar.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 8232
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-editor.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 8232
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-help.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 8232
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-installed-kernel.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 1278332
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-installed-kernel.map",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 378093
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-kernel.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 4137340
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-kernel.map",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 378385
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-THIRD-PARTY-NOTICES.txt",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 59409
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-usb.img",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 84934656
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-user.elf",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 68064
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL-VMware.zip",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 9694003
+        }
+      ]
+    },
+    {
+      "name": "EngacerOS-M11FINAL.iso",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 75388928
+        }
+      ]
+    },
+    {
+      "name": "m11final-build-manifest.json",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 76531
+        }
+      ]
+    },
+    {
+      "name": "M11FINAL-SHA256SUMS.txt",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 1822
+        }
+      ]
+    },
+    {
+      "name": "m11final-starter-manifest.json",
+      "passed": true,
+      "attempts": [
+        {
+          "status": 200,
+          "content_length": 649
+        }
+      ]
+    }
+  ],
+  "zip_attempts": [
+    {
+      "status": 200,
+      "sha256": "d00ad70c25dcb52e9958d1109ff33a64e4e5e6e0800020e52710354dd74c1e12",
+      "size": 9694003,
+      "crc_verified": true,
+      "members": 9
+    }
+  ]
+}

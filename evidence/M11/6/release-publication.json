@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "tag": "m116-v0.11.6",
+  "source_commit": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
+  "build_id": "ea730e92bc70d0545b4b8f22385e31bc",
+  "release_url": "https://github.com/enginsoysal/engacer-os/releases/tag/m116-v0.11.6",
+  "latest": true,
+  "assets": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "github_digest": "sha256:a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/7z2606-src.tar.xz"
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "github_digest": "sha256:a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/COPYING.LIB"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "github_digest": "sha256:9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-archives.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "github_digest": "sha256:3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-browser.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "github_digest": "sha256:5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-calculator.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "github_digest": "sha256:bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-calendar.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "github_digest": "sha256:bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-editor.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "github_digest": "sha256:bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-help.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-installed-kernel.elf",
+      "sha256": "1c75ff68038ee1ba54d39c9fd9dac76ac574609b19bc9b2127de4575ef737bf4",
+      "size": 1278332,
+      "github_digest": "sha256:1c75ff68038ee1ba54d39c9fd9dac76ac574609b19bc9b2127de4575ef737bf4",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-installed-kernel.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-installed-kernel.map",
+      "sha256": "7b9a7b1f87b8b324a608c784358d8a16444fc3c5c5c19d9a31d2032f039b4ed6",
+      "size": 378093,
+      "github_digest": "sha256:7b9a7b1f87b8b324a608c784358d8a16444fc3c5c5c19d9a31d2032f039b4ed6",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-installed-kernel.map"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-kernel.elf",
+      "sha256": "85d56b7156256d038950cc43788b5b2e71856c4e73f6d062ef0163d6c4d291eb",
+      "size": 4137340,
+      "github_digest": "sha256:85d56b7156256d038950cc43788b5b2e71856c4e73f6d062ef0163d6c4d291eb",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-kernel.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-kernel.map",
+      "sha256": "d0ac57ce827a8e5b0991d16e4cd2495c45b8d3727c7aa733c92e62a3f90caea8",
+      "size": 378385,
+      "github_digest": "sha256:d0ac57ce827a8e5b0991d16e4cd2495c45b8d3727c7aa733c92e62a3f90caea8",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-kernel.map"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-THIRD-PARTY-NOTICES.txt",
+      "sha256": "38d474c23f23e74b75cbfa3a0d46e3bbfc208f205c3e01291e50a715b747ae52",
+      "size": 59409,
+      "github_digest": "sha256:38d474c23f23e74b75cbfa3a0d46e3bbfc208f205c3e01291e50a715b747ae52",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-THIRD-PARTY-NOTICES.txt"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-usb.img",
+      "sha256": "57296ac7360782793750da8b80cf6b50725f12ef04366c29c4faf9e3f6b73e2b",
+      "size": 84934656,
+      "github_digest": "sha256:57296ac7360782793750da8b80cf6b50725f12ef04366c29c4faf9e3f6b73e2b",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-usb.img"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "github_digest": "sha256:c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-user.elf"
+    },
+    {
+      "name": "EngacerOS-M11FINAL-VMware.zip",
+      "sha256": "d00ad70c25dcb52e9958d1109ff33a64e4e5e6e0800020e52710354dd74c1e12",
+      "size": 9694003,
+      "github_digest": "sha256:d00ad70c25dcb52e9958d1109ff33a64e4e5e6e0800020e52710354dd74c1e12",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-VMware.zip"
+    },
+    {
+      "name": "EngacerOS-M11FINAL.iso",
+      "sha256": "8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+      "size": 75388928,
+      "github_digest": "sha256:8685ecf4580c035d1e415e9069fea4c3187162cd06f67e0d01811a45436a78b1",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL.iso"
+    },
+    {
+      "name": "m11final-build-manifest.json",
+      "sha256": "aac19d52773fddcdd5ee0db0030cccbb05bcde50256a90681bbcb383472ac66b",
+      "size": 76531,
+      "github_digest": "sha256:aac19d52773fddcdd5ee0db0030cccbb05bcde50256a90681bbcb383472ac66b",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/m11final-build-manifest.json"
+    },
+    {
+      "name": "M11FINAL-SHA256SUMS.txt",
+      "sha256": "02083167a994b163aafcf1060456c143c4e6decf150e76bf8a75d384d2b5314d",
+      "size": 1822,
+      "github_digest": "sha256:02083167a994b163aafcf1060456c143c4e6decf150e76bf8a75d384d2b5314d",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/M11FINAL-SHA256SUMS.txt"
+    },
+    {
+      "name": "m11final-starter-manifest.json",
+      "sha256": "6c4a1a13de1a760e9d90ed42dd3b46fa16c259f6b01956ee4c99dcc5eeac66c5",
+      "size": 649,
+      "github_digest": "sha256:6c4a1a13de1a760e9d90ed42dd3b46fa16c259f6b01956ee4c99dcc5eeac66c5",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/m11final-starter-manifest.json"
+    }
+  ],
+  "published_metadata_verified": true
+}

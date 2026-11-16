@@ -1,0 +1,280 @@
+{
+  "home": {
+    "documentWidth": 1902,
+    "finalDownload": true,
+    "finalLead": true,
+    "images": [
+      {
+        "alt": "Native Engacer OS M11.6 in the actual tested VMware guest. Original Inter typography, saved preferences and the installed desktop; not a design concept.",
+        "height": 768,
+        "ready": true,
+        "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M11/6/setup/vmware/first-start-guide.png",
+        "width": 1024
+      }
+    ],
+    "oldPendingCopy": false,
+    "title": "Engacer OS — Documentation & Downloads",
+    "width": 1912
+  },
+  "documentation": {
+    "documentWidth": 1902,
+    "headings": [
+      "Documentation — all guides",
+      "1. Start here",
+      "2. M11 desktop and installation refresh",
+      "3. Everyday use and customization",
+      "4. Architecture and development",
+      "5. Roadmap and verification",
+      "6. Website maintenance",
+      "7. Historical releases and earlier milestones",
+      "You might be interested in"
+    ],
+    "links": [
+      {
+        "href": "https://engaceros.brixcanvas.com/",
+        "label": "E_ ENGACER OS"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/documentation",
+        "label": "Documentation"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/downloads",
+        "label": "Downloads"
+      },
+      {
+        "href": "https://github.com/enginsoysal/engacer-os",
+        "label": "GitHub ↗"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/search",
+        "label": "Search"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/category/handbook",
+        "label": "USER HANDBOOK"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/author/Engacer%20OS%20project",
+        "label": "E\nAUTHOR  Engacer OS project"
+      },
+      {
+        "href": "https://github.com/enginsoysal/engacer-os/tree/bbffe09201cb40cc456b4234d13ff7002323dbc0",
+        "label": "canonical source commit bbffe09"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-index",
+        "label": "Start with the handbook"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/downloads",
+        "label": "Downloads & checksums"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+        "label": "Current capabilities and limitations"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-index",
+        "label": "Engacer OS user handbook"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m116",
+        "label": "Install Engacer OS M11.6 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+        "label": "Current status"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/downloads",
+        "label": "Downloads and SHA256 verification"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-releases-m116-v0-11-6",
+        "label": "Engacer OS M11.6 / 0.11.6 — final desktop qualification"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m11",
+        "label": "M11 — familiar installation and desktop experience"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-desktop-install-m11",
+        "label": "M11 installation and desktop guide — staged development"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-files-m11",
+        "label": "M11.2 — Files guide"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-start-m11",
+        "label": "M11.3 — Start and taskbar guide"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-windows-m11",
+        "label": "Windows and appearance in M11"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-desktop-m11",
+        "label": "M11 desktop and installation design contract"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-input-m11",
+        "label": "M11.1 native interaction implementation"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-files-m11",
+        "label": "M11.2 — native Files and genuine file operations"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-start-m11",
+        "label": "M11.3 — Start, catalogue and taskbar"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-windows-m11",
+        "label": "Native windows and appearance — M11.4"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-setup-m115",
+        "label": "M11.5 guided setup and first installed desktop"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-qualification-m116",
+        "label": "M11.6 qualification design"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-usability-review-m116",
+        "label": "M11.6 installation and desktop review"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-distributions",
+        "label": "Build your own Engacer OS distribution"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-decisions",
+        "label": "Architecture decision record"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-third-party-bearssl-port-readme",
+        "label": "BearSSL freestanding adapter"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-build-platform",
+        "label": "Build and platform choices"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-compatibility",
+        "label": "Compatibility semantics and proof boundaries"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-contributing",
+        "label": "Contributing"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-distros-readme",
+        "label": "Distribution recipes"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-readme",
+        "label": "Engacer OS"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-agents",
+        "label": "Engacer OS — project instructions"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-overview",
+        "label": "Engacer OS architecture"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-filesystem",
+        "label": "Files, storage and compatibility namespaces"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-tools-readme",
+        "label": "Host tools and entry points"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-components",
+        "label": "Independent components and customizable setup"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-architecture-kernel-contracts",
+        "label": "Kernel contracts"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-tests-m10-readme",
+        "label": "M10 qualification commands"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-tests-m11-readme",
+        "label": "M11 staged native tests"
+      }
+    ],
+    "sourceLinks": [],
+    "title": "Documentation — all guides — Engacer OS",
+    "width": 1912
+  },
+  "install": {
+    "documentWidth": 1902,
+    "eightSteps": true,
+    "selectionInstruction": true,
+    "sourceLinks": [
+      "https://github.com/enginsoysal/engacer-os/blob/bbffe09201cb40cc456b4234d13ff7002323dbc0/docs/handbook/install-m116.md"
+    ],
+    "title": "Install Engacer OS M11.6 in VMware — Engacer OS",
+    "usbTutorial": true,
+    "width": 1912
+  },
+  "downloads": {
+    "assets": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-usb.img",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/M11FINAL-SHA256SUMS.txt",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/7z2606-src.tar.xz",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/COPYING.LIB",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-archives.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-browser.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-calculator.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-calendar.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-editor.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-help.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-installed-kernel.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-installed-kernel.map",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-kernel.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-kernel.map",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-THIRD-PARTY-NOTICES.txt",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/EngacerOS-M11FINAL-user.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/m11final-build-manifest.json",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m116-v0.11.6/m11final-starter-manifest.json"
+    ],
+    "documentWidth": 1902,
+    "hasFinalISO": true,
+    "hasISOHash": true,
+    "sourceLinks": [
+      "https://github.com/enginsoysal/engacer-os/tree/bbffe09201cb40cc456b4234d13ff7002323dbc0"
+    ],
+    "title": "Downloads and SHA256 verification — Engacer OS",
+    "width": 1912
+  },
+  "homeMobile": {
+    "documentWidth": 380,
+    "finalLead": true,
+    "width": 390
+  },
+  "mobileMenuOpened": true,
+  "installMobile": {
+    "documentWidth": 380,
+    "eightSteps": true,
+    "title": "Install Engacer OS M11.6 in VMware — Engacer OS",
+    "usbTutorial": true,
+    "width": 390
+  },
+  "saved": true,
+  "source_commit": "bbffe09201cb40cc456b4234d13ff7002323dbc0",
+  "release": "m116-v0.11.6",
+  "checked_at": "2026-11-16T10:47:32.958Z",
+  "viewportReset": true,
+  "passed": true
+}
