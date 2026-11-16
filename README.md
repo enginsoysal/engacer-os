@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.5 — one Files environment.**
+**Active development: M12.6 — file presentation.**
 **Current native delivery: M12.5**, qualified within M12-STAGE5-VM-v1.
 [Install](docs/handbook/install-m125.md), [Files guide](docs/handbook/files-m125.md),
 [release scope and retained limits](docs/releases/m125-v0.12.5.md),
@@ -13,8 +13,8 @@ bounded CPU/RAM use are product requirements.
 real file copy, 258-byte addresses, independent windows and actual USB replacement.
 Compact light/dark, actual 150%/4K, twelve cached/full comparisons and the exact
 VMware/BIOS installation and independent starts pass. Fixed shell state grows
-1,408 bytes over M12.4; tasks retain zero extra managed pages. Public release,
-matching downloads and complete website verification close before M12.6.
+1,408 bytes over M12.4; tasks retain zero extra managed pages. [Public release and full website verification](evidence/M12/5/publication-results.json)
+pass: twenty downloads, 321 pages and 2,225 links. M12.6 now follows in order.
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English guides, GitHub releases and public website verification
 between stages. [Design contract](docs/architecture/desktop-m12.md),

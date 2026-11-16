@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.5",
+  "current_stage": "M12.6",
   "qualified_download": "M12.5",
   "known_issues": [
     {
@@ -69,17 +69,18 @@
     },
     {
       "id": "M12.5",
-      "status": "in_progress",
+      "status": "complete",
       "title": "One Files environment",
       "requires": "M12.4",
       "deliverable": "A common frame and real history for native folders, drives and USB, with Back/Forward/Up and address/sidebar navigation.",
       "how_and_why": "The provider changes capabilities, never the basic navigation model.",
       "acceptance": "Documents to USB to a directory to Back/Forward/Home, no-device state, detach and truthful title/path updates.",
-      "publication": "required_before_next_stage"
+      "publication": "required_before_next_stage",
+      "evidence": "evidence/M12/5/publication-results.json"
     },
     {
       "id": "M12.6",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "File presentation",
       "requires": "M12.5",
       "deliverable": "Readable details/icons, columns, sorting, selection, full-name tips and actual provider metadata.",

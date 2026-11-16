@@ -131,3 +131,9 @@ M12STAGE4 media, source stamp and evidence/M12/4. New work uses stage5 or later.
 Retain owner guards across caption, keyboard and system-menu routes. Carry
 shared-menu footer fitting to M12.14 and cursor-versus-hit HiDPI isolation to
 M12.16; the BIOS/AHCI observation remains open for M12.18.
+
+M12.5 M12-STAGE5-VM-v1 and complete public delivery are accepted. Preserve
+M12STAGE5 media, source stamp and evidence/M12/5. Use stage6 or later for new
+work. Retain generation-bound USB history, explicit replacement selection and
+the guarded Files dispatch before the generic application handler. Existing
+M12.14/M12.16/M12.18 carry-forward observations remain open.

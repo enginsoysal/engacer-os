@@ -1,7 +1,7 @@
 # M12.5 one Files environment
 
-Status: native qualification passes M12-STAGE5-VM-v1. Public release and full
-website verification close separately before M12.6. Host checks supplement
+Status: native qualification passes M12-STAGE5-VM-v1. [Public release and full
+website verification](../../evidence/M12/5/publication-results.json) pass before M12.6. Host checks supplement
 actual installed behavior; final comprehensive regression remains M12.18.
 
 ## One frame, different capabilities

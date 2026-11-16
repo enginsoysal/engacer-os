@@ -9,8 +9,8 @@ frame, page/history restoration, actual USB data, long addresses, independent
 windows and detach/replacement identity. Compact light/dark, actual 150%/4K,
 twelve cached/full comparisons, exact enabled-device VMware and separate BIOS
 install/ordinary starts pass. Fixed shell state is 545,620 bytes, 1,408 above
-M12.4; native tasks retain zero managed pages. Public release/site proof closes
-separately before M12.6. Shared-menu fitting and the HiDPI cursor observation
+M12.4; native tasks retain zero managed pages. [Public release/site proof](../../evidence/M12/5/publication-results.json) passes:
+twenty downloads, 321 pages and 2,225 links. M12.6 is now active. Shared-menu fitting and the HiDPI cursor observation
 remain M12.14/M12.16 follow-ups; the earlier BIOS/AHCI observation remains open
 for M12.18. No universal hardware or Windows claim follows from this stage.
 
