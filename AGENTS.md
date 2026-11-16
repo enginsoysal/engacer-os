@@ -116,3 +116,7 @@ external local scratch storage; never place sparse VM fixtures in OneDrive.
 
 M12.1 M12-STAGE1-VM-v1 and its public delivery are accepted. Preserve its stage
 media, source stamp and evidence/M12/1; use M12STAGE2 or later for new work.
+
+M12.2 M12-STAGE2-VM-v1 and its complete public delivery are accepted. Preserve
+M12STAGE2 bytes, source stamp and evidence/M12/2. Use stage3 or later for new work.
+Carry the open BIOS/AHCI observation into final M12.18 qualification.

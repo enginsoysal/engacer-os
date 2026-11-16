@@ -4,13 +4,13 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.2 — icon system.**
+**Active development: M12.3 — desktop and shortcuts.**
 **Current native delivery: M12.2 — original scalable icons**, qualified within
 M12-STAGE2-VM-v1. [Install](docs/handbook/install-m122.md),
 [icons](docs/handbook/icons-m122.md), [shared controls](docs/handbook/components-m121.md),
 [release, checksums and retained BIOS observation](docs/releases/m122-v0.12.2.md),
 [exact-source acceptance](evidence/M12/2/acceptance-results.json).
-Public release/download and website verification close separately before M12.3.
+[M12.2 public media and complete website verification passed](evidence/M12/2/publication-results.json): twenty downloads, 305 pages and 2,053 discovered links. M12.3 now follows in order.
 [Public release and complete website verification passed](evidence/M12/1/publication-results.json)
 before M12.2 began. M12.0 has
 [completed design and public-delivery checks](evidence/M12/0/publication-results.json).

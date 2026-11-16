@@ -11,8 +11,9 @@ comparisons pass. Real 150%/4K, focus/scrolling, idle and no retained pages are
 checked. The exact enabled-device VMware starter and separate QEMU journeys
 install, reset and start independently. One initial concurrent BIOS install
 timed out in AHCI; a same-artifact repeat passes, but its trigger is not isolated
-and stress reliability remains unqualified. Public release/site closure is a
-separate gate before M12.3. Full final M12 regression remains M12.18.
+and stress reliability remains unqualified. [Public release/site closure](../../evidence/M12/2/publication-results.json)
+passes: twenty public assets, 305 pages and 2,053 discovered links, with
+current-source guides and desktop/mobile homepage verification. Full final M12 regression remains M12.18.
 
 **Previous M12.1 / 0.12.1 passed its native and public stage qualification.**
 [Install M12.1](../handbook/install-m121.md),
@@ -51,7 +52,7 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
-**M12.0 and M12.1 are closed; M12.2 native icon checks pass and publication is being verified.**
+**M12.0 through M12.2 are closed; M12.3 desktop and shortcuts is in progress.**
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website

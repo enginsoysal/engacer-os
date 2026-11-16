@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.2",
+  "current_stage": "M12.3",
   "qualified_download": "M12.2",
   "known_issues": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "id": "M12.2",
-      "status": "publication_pending",
+      "status": "complete",
       "title": "Icon system",
       "requires": "M12.1",
       "deliverable": "Original app, action, folder, file-type and device icons across shell surfaces.",
@@ -49,7 +49,7 @@
     },
     {
       "id": "M12.3",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Desktop and shortcuts",
       "requires": "M12.2",
       "deliverable": "Consistent desktop layout, icon labels, alignment, selection, background menu and Recycle Bin.",
