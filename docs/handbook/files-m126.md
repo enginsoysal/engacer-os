@@ -1,7 +1,8 @@
 # Files views and ordering in M12.6
 
-Development guide: qualification is in progress. M12.5 remains the current tested
-download until the matching M12.6 release is qualified and published.
+M12.6 is qualified within M12-STAGE6-VM-v1. Use its matching
+[installation guide](install-m126.md), [release scope](../releases/m126-v0.12.6.md)
+and official downloads.
 
 Files keeps the [same navigation](files-m125.md). Use Icons or Details near the
 address to switch views. In a small window, right-click the folder background

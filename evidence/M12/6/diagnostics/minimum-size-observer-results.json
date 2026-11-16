@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "stage": "M12.6",
+  "build_id": "e1fde8d8247687d08b18c7911d8d2c34",
+  "iso_sha256": "e67ae15561a84b5f2a63d1ac4b98c20695c031425d4fa7b0eb8f4fde91675263",
+  "owned_fixture": "0fb3e00fcffd45dcb1dfb764ddd10ce9",
+  "checks": [
+    "Real installation/retained-ISO startup; ordinary dialogs and editor saves create actual different file sizes/types; natural names put File2 before File10 with folders first",
+    "Actual sortable Name/Size/Type headers and reverse direction match displayed metadata; folders stay first, and single/multiple selection stays bound to the same source IDs",
+    "Real details/icons use original artwork, bounded two-line ellipsis and a complete measured name tip; moving away removes it without a timer",
+    "Selection survives a second independent Files window; real visible inactive selection differs from active selection without stealing focus"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\presentation_native.py\", line 61, in main\n    p.desktop(40012,True);f.resize(g,p,500,356);assert f.view(g)[0]==0 and f.has(g,51000) and f.has(g,51001) and not f.has(g,51002)\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 111, in resize\n    assert model(g)[1][2:]==(width,height),model(g)\nAssertionError: (0, (100, 20, 500, 420))\n",
+  "idle_observations": []
+}

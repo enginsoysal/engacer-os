@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "build_id": "a4efdd3ede571e885ec1780fbcc0d3f7",
+  "iso_sha256": "5c72697dacdf12e2eb7c2d483729620f36ab2f0d51dc04498a9a0342b15d3a19",
+  "profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "native_tip": [
+        734,
+        392,
+        480,
+        58
+      ],
+      "usb_tip": [
+        788,
+        280,
+        480,
+        100
+      ],
+      "retained_pages": 0,
+      "managed_current_bytes": 9408512
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "native_tip": [
+        954,
+        522,
+        480,
+        58
+      ],
+      "usb_tip": [
+        1008,
+        410,
+        480,
+        100
+      ],
+      "retained_pages": 0,
+      "managed_current_bytes": 33370112
+    }
+  ],
+  "usb_unchanged": true,
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 68,
+        "paints_after": 68
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 80,
+        "paints_after": 80
+      }
+    ]
+  ]
+}

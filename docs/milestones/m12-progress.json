@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.6",
-  "qualified_download": "M12.5",
+  "qualified_download": "M12.6",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",

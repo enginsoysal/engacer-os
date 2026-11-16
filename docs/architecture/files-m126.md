@@ -1,7 +1,8 @@
 # M12.6 file presentation decisions
 
-Status: implementation and qualification in progress. M12.5 remains the current
-tested public download. Host rules and compilation do not qualify new media.
+Status: native qualification passes M12-STAGE6-VM-v1. Public release and full
+website verification close separately before M12.7. Host rules supplement actual
+installed behavior; final comprehensive qualification remains M12.18.
 
 ## Responsive views and actual metadata
 
@@ -82,3 +83,13 @@ icon cache is introduced. Configured RAM, linked fixed state, transient stack
 space and managed display/device pages are separate measurements. Physical
 hardware, vendor GPU 3D and universal Windows compatibility remain unqualified.
 The existing M12.14/M12.16/M12.18 carry-forward observations remain open.
+
+The corrected candidate passes ten native journeys, separate real 150%/4K name
+tips, twelve cached/full comparisons, exact enabled-device VMware and BIOS
+install/ordinary starts. Linked fixed shell state is 545,636 bytes, 16 above
+M12.5 and 1,808 above M11.6. Main tasks return to 1,047 managed pages (4,288,512
+bytes), peak 1,059 pages, with zero retained pages or new allocation failures.
+Font coverage remains 251,248 bytes, raster icon cache zero and temporary icon
+row 512 bytes. Idle paints stay unchanged and CPUs halt. These are distinct
+from configured VM RAM and full kernel consumption.
+[Exact-source acceptance](../../evidence/M12/6/acceptance-results.json).

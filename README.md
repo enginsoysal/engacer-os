@@ -4,24 +4,24 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.6 — file presentation.**
-**Current native delivery: M12.5**, qualified within M12-STAGE5-VM-v1.
-[Install](docs/handbook/install-m125.md), [Files guide](docs/handbook/files-m125.md),
-[release scope and retained limits](docs/releases/m125-v0.12.5.md),
-[exact-source acceptance](evidence/M12/5/acceptance-results.json).
-579 compiled inputs match Git. Ten native journeys cover Documents/USB history,
-real file copy, 258-byte addresses, independent windows and actual USB replacement.
-Compact light/dark, actual 150%/4K, twelve cached/full comparisons and the exact
-VMware/BIOS installation and independent starts pass. Fixed shell state grows
-1,408 bytes over M12.4; tasks retain zero extra managed pages. [Public release and full website verification](evidence/M12/5/publication-results.json)
-pass: twenty downloads, 321 pages and 2,225 links. M12.6 now follows in order.
+**Active development: M12.6 — Files presentation.**
+**Current native delivery: M12.6**, qualified within M12-STAGE6-VM-v1.
+[Install](docs/handbook/install-m126.md), [Files views guide](docs/handbook/files-m126.md),
+[release scope and retained limits](docs/releases/m126-v0.12.6.md),
+[exact-source acceptance](evidence/M12/6/acceptance-results.json).
+581 compiled inputs match Git. Ten native journeys cover real metadata, natural
+sorting, source-bound selection, complete names, compact views, USB and saved
+choices. Independent actual 150%/4K name tips, twelve cached/full comparisons and
+exact VMware/BIOS install/ordinary starts pass. Fixed shell state grows 16 bytes
+over M12.5; tasks retain zero managed pages. Public release, matching downloads
+and complete website verification close before M12.7.
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English guides, GitHub releases and public website verification
 between stages. [Design contract](docs/architecture/desktop-m12.md),
 [user journeys](docs/handbook/desktop-m12.md). Final regression remains M12.18.
-Shared-menu footer fitting and the HiDPI cursor observation remain explicit
-M12.14/M12.16 follow-ups; the earlier BIOS/AHCI observation remains open for M12.18.
-[M12.4 public delivery](evidence/M12/4/publication-results.json) is preserved.
+Shared-menu fitting and the HiDPI cursor observation remain M12.14/M12.16
+follow-ups; the earlier BIOS/AHCI observation remains open for M12.18.
+[M12.5 public delivery](evidence/M12/5/publication-results.json) is preserved.
 
 **Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
@@ -48,9 +48,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m125-v0.12.5/EngacerOS-M12STAGE5.iso) ·
-[Step-by-step installation](docs/handbook/install-m125.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m126-v0.12.6/EngacerOS-M12STAGE6-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m126-v0.12.6/EngacerOS-M12STAGE6.iso) ·
+[Step-by-step installation](docs/handbook/install-m126.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

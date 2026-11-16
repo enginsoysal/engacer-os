@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "stage": "M12.6",
+  "build_id": "e1fde8d8247687d08b18c7911d8d2c34",
+  "iso_sha256": "e67ae15561a84b5f2a63d1ac4b98c20695c031425d4fa7b0eb8f4fde91675263",
+  "owned_fixture": "77fa89467a7847b2b10de3be455b54f1",
+  "checks": [
+    "Real installation/retained-ISO startup; ordinary dialogs and editor saves create actual different file sizes/types; natural names put File2 before File10 with folders first",
+    "Actual sortable Name/Size/Type headers and reverse direction match displayed metadata; folders stay first, and single/multiple selection stays bound to the same source IDs",
+    "Real details/icons use original artwork, bounded two-line ellipsis and a complete measured name tip; moving away removes it without a timer"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\presentation_native.py\", line 56, in main\n    assert f.selected(g,original)==selected;inactive=c.pixel(g,r[0]+12,r[1]+12);assert active!=inactive,(active,inactive);c.shot(g,'inactive-selection');p.desktop(49002,True);assert f.model(g)[0]==original\nAssertionError\n",
+  "idle_observations": []
+}

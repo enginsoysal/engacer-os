@@ -1,6 +1,19 @@
 # Current status
 
-Updated 16 November 2026. **M12.5 / 0.12.5 passes M12-STAGE5-VM-v1.**
+Updated 16 November 2026. **M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
+[Install](../handbook/install-m126.md), [Files views](../handbook/files-m126.md),
+[release scope](../releases/m126-v0.12.6.md),
+[acceptance](../../evidence/M12/6/acceptance-results.json).
+581 compiled inputs, ten native journeys, actual 150%/4K complete-name profiles,
+twelve cached/full comparisons and exact enabled-device VMware/BIOS install and
+ordinary starts pass. Native metadata, ordering, selection, minimum layout,
+light/dark USB, detach and persisted choices are checked. Fixed shell state is
+545,636 bytes, 16 above M12.5; tasks retain zero managed pages. Public release/site
+proof closes separately before M12.7. Existing menu, HiDPI cursor and BIOS/AHCI
+carry-forward observations remain open for their named later stages. USB sort
+is unavailable; no universal hardware or Windows claim follows from this stage.
+
+**Previous M12.5 / 0.12.5 passes M12-STAGE5-VM-v1.**
 [Install](../handbook/install-m125.md), [Files navigation](../handbook/files-m125.md),
 [release scope](../releases/m125-v0.12.5.md),
 [acceptance](../../evidence/M12/5/acceptance-results.json).

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "stage": "M12.6",
+  "checks": "PASS: 1734 comparator pairs, 29478 transitivity triples, folders-first/reverse/stable identities, unbounded numeric strings and 502510 responsive layouts.",
+  "allocations": 0,
+  "source_sha256": {
+    "include/engine/ui/fileview12.h": "8c1a4e9b54fecb0ff0f27582be0977ca4480ad2cbd26d6dc998ddb2ee3a19beb",
+    "tests/m12/fileview_host.c": "c38c0f1be90078e9d71748d9255000704d7cec17bbb2f9d08810ddab35997b87"
+  }
+}

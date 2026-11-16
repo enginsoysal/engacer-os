@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "stage": "M12.6",
+  "build_id": "a4efdd3ede571e885ec1780fbcc0d3f7",
+  "scope": "Agent visual/scenario review of actual Files presentation, not a human study or final accessibility qualification",
+  "reviewed": [
+    "native/native-icons.png",
+    "native/native-full-name-tip.png",
+    "native/covered-owner-no-tip.png",
+    "native/inactive-selection.png",
+    "native/minimum-details.png",
+    "native/minimum-icons.png",
+    "native/dark-usb-icons.png",
+    "native/minimum-disconnected.png",
+    "name-tips/150-usb-name.png",
+    "name-tips/4k-usb-name.png"
+  ],
+  "findings": [
+    "Original icons, native Inter and centered bounded names remain readable; complete names appear in opaque, measured tips.",
+    "Details prioritizes names and real sizes at 500x420; Type is available through Sort when its column does not fit.",
+    "Active/inactive selection differs; actual owner occlusion hides a stale tip and breadcrumb ancestors remain truthful.",
+    "Light/dark USB and actual 150%/4K tip captures remain readable without overlapping essential fixed controls."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Existing shared-menu helper footer uses bounded ellipsis; complete fitting remains planned."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Raw HiDPI captures suggest drawn cursor displacement. Isolate capture timing versus native cursor coordinates; scripted actions alone do not establish pointer usability."
+    }
+  ],
+  "capture_sha256": {
+    "native/native-icons.png": "742d3be1ead0dcdec00b5debec8a145ebe4924d13345942fd3cc8b9188deb536",
+    "native/native-full-name-tip.png": "8cbc7f939fa489b8c74e0192d29ebe11a7de278674b3ded3f06c09f92ec1fde4",
+    "native/covered-owner-no-tip.png": "74df48be84917ff103535ac87731fc05cfe29d80117cc824255b8f85dcae71c8",
+    "native/inactive-selection.png": "c8add8eb6a4413cf0d616be9033deba2c84cedf4ab2253670cf883cc7c551b6f",
+    "native/minimum-details.png": "da604fe4a9c51426a297617289d97e54340006ebc3ff18382faae2ae84141f3c",
+    "native/minimum-icons.png": "1617d94a6c9c9b6e09c2b25644438899518d8984a1669bda9f9200230a6dcdb4",
+    "native/dark-usb-icons.png": "7144af79e6a70e566fe88772d90f4f70e2cfdd62613847dd1bf0851e0c1af0e1",
+    "native/minimum-disconnected.png": "e9ca18b6548c9aef3063ad008d77b12370892be298844f094107aa587264e463",
+    "name-tips/150-usb-name.png": "dc956d0cc6886a97375a1530ce9eb775b3c4190862f8a1d1efbb84a4140531bc",
+    "name-tips/4k-usb-name.png": "806af38a3501651e185dd86a5c9837ac45453ce7e6b7961b27f4940f156dcbb8"
+  }
+}
