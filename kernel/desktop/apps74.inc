@@ -29,7 +29,7 @@ static void note_view74(int x,int y,unsigned width,application *app){
     unsigned first=cursor_line>2?cursor_line-2:0,line=0;at=0;
     while(line<first){unsigned next=line74(app->text,at,width,out);if(next<=at)break;at=next;++line;}
     for(unsigned row=0;row<3;++row){unsigned next=line74(app->text,at,width,out);text(x,y+(int)row*24,out,1,ink());
-        if(app->cursor>=at&&(app->cursor<next||!app->text[next])){unsigned prefix=app->cursor-at,n=length(out);if(prefix>n)prefix=n;out[prefix]=0;rectangle((desktop_rect){x+(int)ui73_measure(out,1),y+(int)row*24,2,20},preferences.accent);}
+        if(app->cursor>=at&&(app->cursor<next||!app->text[next])){unsigned prefix=app->cursor-at,n=length(out);if(prefix>n)prefix=n;out[prefix]=0;rectangle((desktop_rect){x+(int)ui73_measure(out,1),y+(int)row*24,2,20},editor_caret12());}
         if(next<=at||!app->text[next])break;at=next;
     }
 }

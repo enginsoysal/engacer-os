@@ -198,6 +198,20 @@ static uint32_t paper(void) {
  return preferences.dark?0x172933:0xf8fafb;
 #endif
 }
+static uint32_t accent_ink12(uint32_t legacy){
+#ifdef ENGINE_M12
+ (void)legacy;return ui12_foreground(preferences.accent);
+#else
+ return legacy;
+#endif
+}
+static uint32_t editor_caret12(void){
+#ifdef ENGINE_M12
+ return ink();
+#else
+ return preferences.accent;
+#endif
+}
 #ifdef ENGINE_M12
 #include "components12.inc"
 #endif
@@ -387,7 +401,7 @@ static void draw_editor(desktop_window *w,application *app,uint64_t token) {
     unsigned first_line=cursor_line>=rows?cursor_line-rows+1:0,line=0;advance=0;
     for(unsigned i=0;i<=app->length;++i){char c=i<app->length?app->text[i]:0,glyph[2]={c=='\t'?' ':c,0};unsigned a=c&&c!='\n'?ui73_measure(glyph,1):0;
         if(a&&advance+a>available){++line;advance=0;}
-        if(i==app->cursor&&line>=first_line&&line<first_line+rows)rectangle((desktop_rect){tx+(int)advance,ty+(int)(line-first_line)*24,2,20},preferences.accent);
+        if(i==app->cursor&&line>=first_line&&line<first_line+rows)rectangle((desktop_rect){tx+(int)advance,ty+(int)(line-first_line)*24,2,20},editor_caret12());
         if(!c)break;if(c=='\n'){++line;advance=0;continue;}
         if(line>=first_line&&line<first_line+rows)text(tx+(int)advance,ty+(int)(line-first_line)*24,glyph,1,ink());advance+=a;
     }
@@ -400,7 +414,7 @@ static void draw_editor(desktop_window *w,application *app,uint64_t token) {
     unsigned line=0;column=0;
     for(unsigned i=0;i<=app->length;++i){
         if(i==app->cursor&&line>=first_line&&line<first_line+rows)
-            rectangle((desktop_rect){tx+(int)column*12,ty+(int)(line-first_line)*18,2,15},preferences.accent);
+            rectangle((desktop_rect){tx+(int)column*12,ty+(int)(line-first_line)*18,2,15},editor_caret12());
         if(i==app->length)break;
         char value=app->text[i];
         if(value!='\n'&&line>=first_line&&line<first_line+rows){char glyph[2]={value,0};text(tx+(int)column*12,ty+(int)(line-first_line)*18,glyph,2,ink());}
@@ -613,7 +627,7 @@ static void draw_window(unsigned slot) {
     if(app->closing==3){
         text(r.x+22,r.y+75,"Save document as",2,ink());text(r.x+22,r.y+110,"New filename in your Documents folder",1,ink());
         rectangle((desktop_rect){r.x+22,r.y+135,r.width-44,32},app->name_selected?preferences.accent:preferences.dark?0x10212a:0xffffff);
-        text(r.x+30,r.y+147,app->pending,1,app->name_selected?0x102d29:ink());
+        text(r.x+30,r.y+147,app->pending,1,app->name_selected?accent_ink12(0x102d29):ink());
         if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{r.x+22,r.y+135,r.width-44,32},token,FILENAME_FOCUS};
         button(token,r.x+22,r.y+190,150,"Save as",CONFIRM_FILENAME,1);button(token,r.x+185,r.y+190,150,"Cancel",KEEP_EDITING,0);
         text(r.x+22,r.y+250,app->notice,1,ink());return;
@@ -647,7 +661,7 @@ static void draw_window(unsigned slot) {
         rectangle((desktop_rect){r.x+20,r.y+298,r.width-40,30},app->entered?preferences.accent:0xffffff);
         unsigned columns=(unsigned)(r.width-60)/8,start=app->cursor>columns?app->cursor-columns:0;
         char visible[128];unsigned available=app->length-start;if(available>columns)available=columns;if(available>sizeof(visible)-1)available=sizeof(visible)-1;
-        memcpy(visible,app->text+start,available);visible[available]=0;text(r.x+27,r.y+309,visible,1,0x12252e);
+        memcpy(visible,app->text+start,available);visible[available]=0;text(r.x+27,r.y+309,visible,1,app->entered?accent_ink12(0x12252e):0x12252e);
         if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{r.x+20,r.y+298,r.width-40,30},token,URL_FOCUS};
         button(token,r.x+20,r.y+340,145,"Download",DOWNLOAD_START,1);
         button(token,r.x+180,r.y+340,100,"Cancel",DOWNLOAD_CANCEL,0);
@@ -727,7 +741,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     folder_icon72(40,220,42,0xf0ce87);text(38,270,"Documents",1,desktop_label_ink11(1));
 #ifdef ENGINE_M73
     ui73_round(40,315,42,42,10,preferences.accent);
-    for(unsigned i=0;i<3;++i){unsigned cy=326+i*10;gui6_rect(48,cy,26,2,0x17382f);ui73_round(i==1?62:52,cy-3,7,8,3,0x17382f);}text(38,365,"Appearance",1,desktop_label_ink11(2));
+    for(unsigned i=0;i<3;++i){unsigned cy=326+i*10;gui6_rect(48,cy,26,2,accent_ink12(0x17382f));ui73_round(i==1?62:52,cy-3,7,8,3,accent_ink12(0x17382f));}text(38,365,"Appearance",1,desktop_label_ink11(2));
 #else
     gui6_rect(40,318,42,36,preferences.accent);text(52,329,"S",2,0x17382f);text(38,365,"Appearance",1,desktop_label_ink11(2));
 #endif
@@ -797,7 +811,11 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     }
 #endif
 #ifdef ENGINE_M11
-    if(marquee11){desktop_rect r=marquee_rect11;rectangle((desktop_rect){r.x,r.y,r.width,1},preferences.accent);rectangle((desktop_rect){r.x,r.y+r.height-1,r.width,1},preferences.accent);rectangle((desktop_rect){r.x,r.y,1,r.height},preferences.accent);rectangle((desktop_rect){r.x+r.width-1,r.y,1,r.height},preferences.accent);}
+    if(marquee11){desktop_rect r=marquee_rect11;uint32_t stroke=preferences.accent;
+#ifdef ENGINE_M12
+        stroke=marquee_window11?ink():desktop_ink11();
+#endif
+        rectangle((desktop_rect){r.x,r.y,r.width,1},stroke);rectangle((desktop_rect){r.x,r.y+r.height-1,r.width,1},stroke);rectangle((desktop_rect){r.x,r.y,1,r.height},stroke);rectangle((desktop_rect){r.x+r.width-1,r.y,1,r.height},stroke);}
     files_draw_overlay11();
     guide_draw11();
     start_draw11();

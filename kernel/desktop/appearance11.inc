@@ -5,7 +5,13 @@ static void appearance_load11(void){appearance11=(appearance_record11){0x4131314
  appearance11=p;preferences.accent=p.accent;preferences.dark=p.dark;const os_boot_info_v0*changed=ui73_set_scale(p.scale);if(!changed){changed=ui73_set_scale(0);copy(shell_notice,"Saved scale needs a larger display. Automatic scale is active for this session.",96);}if(changed){display=changed;model.width=changed->framebuffer_width;model.height=changed->framebuffer_height;}
 }
 static unsigned appearance_save11(void){appearance11.accent=preferences.accent;appearance11.dark=preferences.dark;appearance11.scale=ui73_scale_choice();for(unsigned i=0;i<model.count;++i){unsigned slot=model.order[i];desktop_window*w=&model.windows[slot];window_state11*s=window_state_for11(desktop_token(&model,slot));if(w->app<20)appearance11.normal[w->app]=s->mode?s->normal:w->bounds;}char path[256];appearance_path11(path);return v6_put(m6_volume(),path,sizeof(appearance11),memory_source,&appearance11);}
-static uint32_t desktop_ink11(void){unsigned c=appearance11.wallpaper,r=c>>16,g=(c>>8)&255,b=c&255;return r*299+g*587+b*114>150000?0x183240:0xe5f0f3;}
+static uint32_t desktop_ink11(void){
+#ifdef ENGINE_M12
+ return ui12_foreground(appearance11.wallpaper);
+#else
+unsigned c=appearance11.wallpaper,r=c>>16,g=(c>>8)&255,b=c&255;return r*299+g*587+b*114>150000?0x183240:0xe5f0f3;
+#endif
+}
 static void appearance_settings11(desktop_window*w,application*a,uint64_t token){int x=w->bounds.x+24,y=w->bounds.y+56;ui73_fit(x,y,w->bounds.width-48,"Make Engacer OS yours",4,ink());
  text(x,y+48,"Window accent",1,ink());const char*names[]={"Mint","Lavender","Amber"};const unsigned colors[]={0x62e5bd,0x9caeff,0xf4c47c};for(unsigned i=0;i<3;++i)button(token,x+(int)i*112,y+74,104,names[i],STYLE_MINT+i,preferences.accent==colors[i]);
  text(x,y+124,"Window appearance",1,ink());button(token,x,y+150,148,"Light",STYLE_PAPER,!preferences.dark);button(token,x+160,y+150,148,"Dark",STYLE_DARK,preferences.dark);

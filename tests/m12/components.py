@@ -6,6 +6,7 @@ import re
 import struct
 import time
 import traceback
+from PIL import Image
 import ui
 
 ROOT=ui.ROOT
@@ -71,6 +72,10 @@ def open_settings(g,p):
     key(g,'ctrl','a')
     type_text(g,'settings')
     shot(g,'search-field')
+    x,y,_,_,_,_=control(g,42200);scale=flag(g,'scale73')
+    with Image.open(OUT/'search-field.png') as image:
+        tile=image.convert('RGB').crop(((x+11)*scale//2,(y+11)*scale//2,(x+35)*scale//2,(y+35)*scale//2))
+        assert any(min(pixel)>240 for pixel in tile.getdata()),'Accent badge foreground is not readable on the dark custom accent'
     key(g,'ret')
     p.drain()
 
@@ -132,11 +137,22 @@ def main():
         live=ui.guest(work/'install',disk,resolution=(1280,800))
         with live as g:
             p=ui.Pointer(g)
+            counter,size=ui.symbol('full_frames75')
+            setup_full_before=int.from_bytes(ui.memory(g,counter,size),'little')
             for action in (2,2,100,2,2,2):wizard(g,p,action)
+            setup_full_after=int.from_bytes(ui.memory(g,counter,size),'little')
+            assert setup_full_after==setup_full_before
+            report['setup_full_paints_before_install']=[setup_full_before,setup_full_after]
+            report['checks'].append('Ordinary Next/disk-selection steps repaint content without adding full-frame clears')
             start=wizard(g,p,2);g.wait('M6_INSTALL_PASS',start,240)
             start=wizard(g,p,84);g.wait('M7_DESKTOP_READY',start,180)
             p=ui.Pointer(g);p.drain();shot(g,'installed-desktop')
             report['checks'].append('Real graphical installation and retained-ISO reset reach the installed desktop')
+            assert pixel(g,58,326)==0xffffff
+            p.move(15,400);p.drain();p.down(True);p.drain();p.move(90,440);p.drain()
+            assert pixel(g,20,400)==0xffffff
+            shot(g,'desktop-marquee-contrast');key(g,'esc');p.down(False);p.drain()
+            report['checks'].append('Desktop accent glyph and selection marquee have readable foregrounds on the actual dark wallpaper')
             p.desktop(0,True)
             sx,sy,sw,sh=struct.unpack('<4i',b''.join(field(g,'start_bounds11',i,4) for i in range(4)))
             count=ui.integer(g,'control_count',True)
