@@ -15,6 +15,11 @@ static const v6_entry *pick_child74(application *app,unsigned index){
     }return 0;
 }
 static void draw_picker74(desktop_window *w,application *app,uint64_t token,const char *heading){
+#ifdef ENGINE_M12
+    (void)app;int xx=w->bounds.x+24,yy=w->bounds.y+65;ui73_fit(xx,yy,w->bounds.width-48,heading,UI12_SECTION,ink());
+    ui73_paragraph(xx,yy+48,w->bounds.width-48,2,"Choose Open to browse your folders. Opening a file never changes the original.",ink());
+    button(token,xx,yy+120,180,w->app==IMAGES74?"Open image...":"Open ZIP...",w->app==IMAGES74?IMAGE_CHOOSE74:P12_OPEN,1);return;
+#endif
     int x=w->bounds.x+24,y=w->bounds.y+65;unsigned width=(unsigned)w->bounds.width-48;
     text(x,y,heading,2,ink());button(token,x,y+42,90,"Up",PICK_UP74,0);
     ui73_fit(x+105,y+52,width-110,app->path,1,ink());

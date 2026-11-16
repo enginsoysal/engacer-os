@@ -24,6 +24,9 @@ static i11_target target11(int x,int y){
 #ifdef ENGINE_M12
    if(w&&w->app==FILES&&apps[w-model.windows].usb_mode10==1&&c->action>=USB_DISK10&&c->action<USB_DISK10+STORAGE_MAX)item=1;
 #endif
+#ifdef ENGINE_M12
+   if(picker_owner12(c->window)&&c->action>=P12_ROW&&c->action<P12_ROW+V6_ENTRIES)item=1;
+#endif
    if(!c->window&&c->action>=30000&&c->action<30000+DESKTOP_BUILTINS11)item=1;
    if(!c->window&&c->action>=F11_DESKTOP_ITEM&&c->action<F11_DESKTOP_ITEM+V6_ENTRIES)item=1;
    return(i11_target){c->window,c->action,item?I11_ITEM:I11_BUTTON};
@@ -56,6 +59,9 @@ static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
  if(context11&&!(target.action>=32000&&target.action<=32031)){if(event&I11_CONTEXT)return;context11=0;whole();return;}
  if(target.action!=70&&target.action!=0&&!(target.action>=S11_PINNED&&target.action<S11_END)&&file_block_owner11(target.window)&&!file_modal_control11(target.window,target.action))return;
  if(target.window&&target.action!=70)desktop_focus11=0;else if(target.kind==I11_ITEM||target.kind==I11_BACKGROUND)desktop_focus11=1;
+#ifdef ENGINE_M12
+ if(picker_dispatch12(target,event))return;
+#endif
  if(event&I11_CONTEXT){if(target.kind==I11_ITEM&&target.window){desktop_window*w=file_owner_window11(target.window);if(w){application*a=&apps[w-model.windows];
 #ifdef ENGINE_M12
  if(a->usb_mode10==1){a->usb_selected10=target.action-USB_DISK10+1;const storage_disk*d=storage_get(a->usb_selected10-1);if(d)a->usb_context10=d->context;}else

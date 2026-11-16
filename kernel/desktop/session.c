@@ -114,6 +114,9 @@ static uint64_t context_window11;
 static unsigned marquee11;static uint64_t marquee_window11;static desktop_rect marquee_rect11;
 static uint8_t marquee_saved11[V6_ENTRIES/8];static unsigned marquee_desktop_saved11;
 #include "files11-state.inc"
+#ifdef ENGINE_M12
+#include "picker12-state.inc"
+#endif
 #include "start11-state.inc"
 #include "window11-state.inc"
 #include "appearance11-state.inc"
@@ -393,8 +396,13 @@ static void save_as(application *app){
 }
 static void draw_editor(desktop_window *w,application *app,uint64_t token) {
     int x=w->bounds.x+14,y=w->bounds.y+48,right=w->bounds.x+w->bounds.width-14;
+#ifdef ENGINE_M12
+    button(token,x,y,80,"Open...",P12_OPEN,0);button(token,x+88,y,72,"Save",SAVE,1);button(token,x+168,y,96,"Save as...",P12_SAVE_AS,0);button(token,x+272,y,75,"Paste",PASTE,0);
+    if(right-x>=560){button(token,x+355,y,85,"Copy all",COPY,0);button(token,x+448,y,75,"Cut all",CUT,0);}
+#else
     button(token,x,y,75,"Save",SAVE,1);button(token,x+83,y,85,"Copy all",COPY,0);
     button(token,x+176,y,75,"Cut all",CUT,0);button(token,x+259,y,75,"Paste",PASTE,0);button(token,x+342,y,100,"Save as",SAVE_AS,0);
+#endif
 #ifdef ENGINE_M73
     ui73_fit(x,y+44,right-x,app->path,1,ink());
 #else
@@ -603,6 +611,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #ifdef ENGINE_M12
 #include "files12-ui.inc"
 #include "files12-presentation.inc"
+#include "picker12.inc"
 #endif
 #include "start11-model.inc"
 #include "start11-ui.inc"
@@ -894,6 +903,7 @@ static void insert(application *app,const char *bytes,unsigned count) {
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
     if(window_action12(token,command))return;
+    if(picker_action12(token,command))return;
     if(!token&&command==DESKTOP_HIDE12){if(context_action11>=30000&&context_action11<30004)desktop_references12(desktop_hidden12|(1u<<(context_action11-30000)));return;}
     if(!token&&command==DESKTOP_RESTORE12){desktop_references12(0);return;}
 
@@ -941,8 +951,12 @@ static void action(uint64_t token,unsigned command) {
     if(command==KEEP_EDITING){app->closing=0;app->pending[0]=0;invalidate(w->bounds);return;}
     if(app->stopped)return;
     if(command==SAVE&&w->app==EDITOR)save_document(app);
+#ifdef ENGINE_M12
+    if(command==SAVE_AS&&w->app==EDITOR){picker_begin12(token,P12_TEXT_SAVE);return;}
+#else
     if(command==SAVE_AS&&w->app==EDITOR){const char *name=app->path;for(unsigned n=0;app->path[n];++n)if(app->path[n]=='/')name=app->path+n+1;
         copy(app->pending,name,sizeof(app->pending));app->name_cursor=length(app->pending);app->name_selected=1;app->closing=3;notice(app,"Choose a new name. The original file will be kept.");}
+#endif
     if(command==CONFIRM_FILENAME&&w->app==EDITOR&&app->closing==3)save_as(app);
     if(command==FILENAME_FOCUS&&app->closing==3){app->name_selected=0;app->name_cursor=length(app->pending);}
     if((command==COPY||command==CUT)&&w->app==EDITOR){
@@ -1221,6 +1235,7 @@ if(r.height<minimum)r.height=minimum;}else{r.x+=dx;r.y+=dy;}
 
 static void keyboard(int key) {
 #ifdef ENGINE_M12
+    if(picker_shortcut12(key))return;
     if(component_scroll_key12(key))return;
 #endif
 #ifdef ENGINE_M11

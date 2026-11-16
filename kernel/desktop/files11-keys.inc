@@ -9,7 +9,11 @@ static unsigned file_text_capacity11(char*buffer,unsigned capacity,unsigned*curs
 }
 static unsigned file_text_key11(char*buffer,unsigned*cursor,unsigned*anchor,int key){return file_text_capacity11(buffer,256,cursor,anchor,key);}
 static unsigned file_dialog_owner_focused11(void){if(!file_dialog_state11.mode)return 0;if(!file_dialog_state11.owner)return desktop_focus11||model.focused>=DESKTOP_WINDOWS;return model.focused<DESKTOP_WINDOWS&&desktop_token(&model,model.focused)==file_dialog_state11.owner;}
-static unsigned file_dialog_key11(int key){file_dialog11*d=&file_dialog_state11;if(!file_dialog_owner_focused11())return 0;if(key==137||key==135)return 0;
+static unsigned file_dialog_key11(int key){
+#ifdef ENGINE_M12
+ if(picker_key12(key))return 1;
+#endif
+file_dialog11*d=&file_dialog_state11;if(!file_dialog_owner_focused11())return 0;if(key==137||key==135)return 0;
  if(key==27){if(file_job_state11.waiting)file_job_state11.waiting=0;d->mode=0;i11_cancel(&interaction11);whole();return 1;}
  unsigned text_mode=d->mode==F11_DLG_RENAME||d->mode==F11_DLG_NEW_FOLDER||d->mode==F11_DLG_NEW_TEXT;
  if(text_mode){if(key==9||key==136){d->focus=(d->focus+(key==9?1:2))%3;whole();return 1;}if(key==10){if(d->focus==2)file_action11(d->owner,F11_DIALOG_CANCEL);else file_dialog_confirm11();return 1;}if(d->focus==0){if(file_text_key11(d->input,&d->cursor,&d->anchor,key)){d->error[0]=0;whole();}return 1;}if(key==32){file_action11(d->owner,d->focus==2?F11_DIALOG_CANCEL:F11_DIALOG_OK);return 1;}return 1;}

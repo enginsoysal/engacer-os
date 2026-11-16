@@ -85,14 +85,17 @@ done:
     if(status){if(active)v6_stream_abort(volume);return status;}
     return active?v6_stream_finish(volume):v6_put(volume,target,0,0,0);
 }
-static void zip_extract74(application *app){
-    download7_info download=download7_current();if(download.state>=DOWNLOAD7_RESOLVING&&download.state<=DOWNLOAD7_RECEIVING){notice(app,"Wait for the current download to finish, or cancel it in Downloads.");return;}
-    if(zip_load74(app)){notice(app,"This ZIP could not be verified. No files were extracted.");return;}
+static unsigned zip_extract_at74(application *app,const char*destination){
+#ifdef ENGINE_M12
+    if(picker_busy12()){notice(app,"Finish the current transfer before extracting another archive.");return V6_LIMIT;}
+#endif
+    download7_info download=download7_current();if(download.state>=DOWNLOAD7_RESOLVING&&download.state<=DOWNLOAD7_RECEIVING){notice(app,"Wait for the current download to finish, or cancel it in Downloads.");return V6_LIMIT;}
+    if(zip_load74(app)){notice(app,"This ZIP could not be verified. No files were extracted.");return V6_INVALID;}
     uint64_t pages[3]={0};unsigned allocated=0,status=0,count=app->count74;
     for(;allocated<3;++allocated){pages[allocated]=page_alloc();if(!pages[allocated])break;}
     if(allocated!=3){status=V6_FULL;goto cleanup;}
     for(unsigned i=0;i<count;++i)memcpy((zip_entry74 *)(uintptr_t)pages[i/16]+i%16,(zip_entry74 *)app->text+i,sizeof(zip_entry74));
-    char folder[256];root_path(folder,"Downloads");unique_in(app->pending,folder,"Extracted","");if(!app->pending[0]){status=V6_FULL;goto cleanup;}
+    char folder[256];if(destination)copy(folder,destination,256);else root_path(folder,"Downloads");unique_in(app->pending,folder,"Extracted","");if(!app->pending[0]){status=V6_FULL;goto cleanup;}
     for(unsigned i=0;i<count;++i){const zip_entry74 *e=(zip_entry74 *)(uintptr_t)pages[i/16]+i%16;if(length(app->pending)+1+length(e->name)>=256){status=V6_INVALID;goto cleanup;}}
     status=v6_mkdir(m6_volume(),app->pending);if(status)goto cleanup;
     for(unsigned i=0;i<count;++i){zip_entry74 e=*((zip_entry74 *)(uintptr_t)pages[i/16]+i%16);char target[256];copy(target,app->pending,256);append(target,"/",256);append(target,e.name,256);
@@ -104,8 +107,9 @@ static void zip_extract74(application *app){
 cleanup:
     while(allocated)page_free(pages[--allocated]);
     if(!app->stopped)(void)zip_load74(app);
-    notice(app,status?"Extraction stopped. The original ZIP is unchanged; check the partial output folder.":"Extracted into a new Downloads folder. Open it below.");
+    notice(app,status?"Extraction stopped. The original ZIP is unchanged; check the partial output folder.":destination?"Extracted into a new folder at your chosen location.":"Extracted into a new Downloads folder. Open it below.");return status;
 }
+static void zip_extract74(application*app){(void)zip_extract_at74(app,0);}
 static void archives_init74(unsigned kind,application *app){
     if(kind!=ARCHIVES74)return;
     if(!app->path[0])root_path(app->path,"Downloads");const v6_entry *e=entry(app->path);
@@ -115,7 +119,12 @@ static void archives_draw74(desktop_window *w,application *app,uint64_t token){
     if(w->app!=ARCHIVES74)return;
     if(!app->entered){draw_picker74(w,app,token,"Choose a ZIP archive - Stored / Deflate");return;}
     int x=w->bounds.x+24,y=w->bounds.y+60;button(token,x,y,160,"Choose ZIP",ZIP_CHOOSE74,0);button(token,x+175,y,150,"Extract all",ZIP_EXTRACT74,1);
+#ifdef ENGINE_M12
+    button(token,x+340,y,160,"Extract to...",P12_EXTRACT_TO,0);
+    if(app->pending[0])button(token,x+240,w->bounds.y+w->bounds.height-100,190,"Open output folder",ZIP_RESULT74,0);
+#else
     if(app->pending[0])button(token,x+340,y,190,"Open output folder",ZIP_RESULT74,0);
+#endif
     ui73_fit(x,y+55,w->bounds.width-48,app->path,1,ink());
     const zip_entry74 *entries=(const zip_entry74 *)app->text;unsigned rows=(unsigned)(w->bounds.height-240)/40;
     for(unsigned i=0;i<rows&&app->offset+i<app->count74;++i){const zip_entry74 *e=entries+app->offset+i;int row=y+100+(int)i*40;
