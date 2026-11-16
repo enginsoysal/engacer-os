@@ -32,7 +32,7 @@ static inline uint32_t ui12_icon_over(uint32_t old,uint32_t rgb,unsigned alpha){
 }
 
 /* Premultiplied ARGB, independently composable over any existing surface. */
-static inline void ui12_icon_row(unsigned id,unsigned row,unsigned extent,unsigned dark,uint32_t*out){
+static inline void ui12_icon_row_custom(unsigned id,unsigned row,unsigned extent,unsigned dark,uint32_t ink,unsigned custom,uint32_t*out){
  if(!out||!extent||extent>ICON12_MAX_PHYSICAL)return;
  for(unsigned x=0;x<extent;++x)out[x]=0;
  if(row>=extent)return;
@@ -44,15 +44,23 @@ static inline void ui12_icon_row(unsigned id,unsigned row,unsigned extent,unsign
   if((int)((row+1)*8192/extent)<=top||(int)(row*8192/extent)>=bottom)continue;
   int first=left*(int)extent/8192,last=(right*(int)extent+8191)/8192;
   if(first<0)first=0;if(last>(int)extent)last=extent;
-  uint32_t rgb=icon12_palettes[dark!=0][s->color];
+  uint32_t rgb=custom&&s->color==6?(ink&0xffffff):icon12_palettes[dark!=0][s->color];
   for(int x=first;x<last;++x){
    unsigned covered=0;
    for(unsigned sy=0;sy<4;++sy)for(unsigned sx=0;sx<4;++sx)
     covered+=ui12_shape_contains(s,((x*8+(int)sx*2+1)*1024)/(int)extent,((row*8+sy*2+1)*1024)/extent);
-   if(covered)out[x]=ui12_icon_over(out[x],rgb,(covered*255+8)/16);
+   if(covered){
+    unsigned alpha=(covered*255+8)/16;
+    /* Monochrome caption cutouts remove coverage instead of painting paper. */
+    if(custom&&s->color==7){uint32_t old=out[x],erased=0;for(unsigned shift=0;shift<32;shift+=8)erased|=((((old>>shift)&255)*(255-alpha)+127)/255)<<shift;out[x]=erased;}
+    else out[x]=ui12_icon_over(out[x],rgb,alpha);
+   }
   }
  }
 }
 
+static inline void ui12_icon_row(unsigned id,unsigned row,unsigned extent,unsigned dark,uint32_t*out){ui12_icon_row_custom(id,row,extent,dark,0,0,out);}
+static inline void ui12_icon_row_ink(unsigned id,unsigned row,unsigned extent,unsigned dark,uint32_t ink,uint32_t*out){ui12_icon_row_custom(id,row,extent,dark,ink,1,out);}
 void ui12_icon(unsigned,int,int,unsigned,unsigned);
+void ui12_icon_ink(unsigned,int,int,unsigned,uint32_t);
 #endif

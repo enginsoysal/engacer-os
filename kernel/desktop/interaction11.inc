@@ -12,7 +12,11 @@ static i11_target target11(int x,int y){
  if(launcher&&!context11&&y<(int)model.height-60&&(x<start_bounds11.x||x>=start_bounds11.x+start_bounds11.width||y<start_bounds11.y||y>=start_bounds11.y+start_bounds11.height))return(i11_target){0,0,I11_BACKGROUND};
  if(switch_open11){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect r=c->rect;if(c->action>=W11_SWITCH&&c->action<W11_SWITCH+DESKTOP_WINDOWS&&x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,0,I11_BACKGROUND};}
  if(guide_open11&&!launcher&&!context11){desktop_rect r=guide_bounds11;if(x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect b=c->rect;if(c->action>=46000&&c->action<=46003&&x>=b.x&&x<b.x+b.width&&y>=b.y&&y<b.y+b.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,46004,I11_BUTTON};}}
- uint64_t token=desktop_hit(&model,x,y);desktop_window*edge_window=desktop_lookup(&model,token);unsigned edges=window_edges11(edge_window,x,y);if(edges&&!context11&&!launcher)return(i11_target){token,31010+edges,I11_CAPTION};
+ uint64_t token=desktop_hit(&model,x,y);desktop_window*edge_window=desktop_lookup(&model,token);
+#ifdef ENGINE_M12
+ if(edge_window&&!context11&&!launcher&&!file_block_owner11(token)){unsigned part=ui12_caption_hit(edge_window->bounds.width,x-edge_window->bounds.x,y-edge_window->bounds.y);if(part)return(i11_target){token,W12_MIN+part-1,I11_BUTTON};}
+#endif
+ unsigned edges=window_edges11(edge_window,x,y);if(edges&&!context11&&!launcher)return(i11_target){token,31010+edges,I11_CAPTION};
  for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect r=c->rect;if(launcher&&!context11&&y<(int)model.height-60&&(c->action<S11_PINNED||c->action>=S11_END))continue;if(file_block_control11(c->window,c->action))continue;
   if(x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height&&(file_modal_control11(c->window,c->action)||(context11&&c->action>=32000&&c->action<=32031)||(launcher?c->window==0:c->window==token)||y>=(int)model.height-60)){
    desktop_window*w=desktop_lookup(&model,c->window);unsigned item=w&&w->app==FILES&&!apps[w-model.windows].closing&&c->action>=FILE_ROW&&c->action<FILE_ROW+V6_ENTRIES;
@@ -24,7 +28,13 @@ static i11_target target11(int x,int y){
  }
  if(context11||launcher)return(i11_target){0,0,I11_BACKGROUND};
  if(file_block_owner11(token))return(i11_target){token,0,I11_BACKGROUND};
- desktop_window*w=desktop_lookup(&model,token);if(w){desktop_rect r=w->bounds;if(y<r.y+40){unsigned command=x>=r.x+r.width-52?31001:x>=r.x+r.width-96?W11_MAX:x>=r.x+r.width-140?31002:31000;return(i11_target){token,command,command==31000?I11_CAPTION:I11_BUTTON};}if(x>=r.x+r.width-18&&y>=r.y+r.height-18)return(i11_target){token,31003,I11_CAPTION};return(i11_target){token,0,I11_BACKGROUND};}
+ desktop_window*w=desktop_lookup(&model,token);if(w){desktop_rect r=w->bounds;if(y<r.y+40){
+#ifdef ENGINE_M12
+ return(i11_target){token,31000,I11_CAPTION};
+#else
+ unsigned command=x>=r.x+r.width-52?31001:x>=r.x+r.width-96?W11_MAX:x>=r.x+r.width-140?31002:31000;return(i11_target){token,command,command==31000?I11_CAPTION:I11_BUTTON};
+#endif
+ }if(x>=r.x+r.width-18&&y>=r.y+r.height-18)return(i11_target){token,31003,I11_CAPTION};return(i11_target){token,0,I11_BACKGROUND};}
  #ifndef ENGINE_M12
  if(!launcher&&x>=30&&x<150&&y>=110&&y<385)return(i11_target){0,30000+(y<195?0u:y<290?1u:2u),I11_ITEM};
 #endif

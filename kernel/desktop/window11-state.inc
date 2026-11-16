@@ -20,3 +20,12 @@ static void window_drag_end11(unsigned);
 static unsigned move_cached9(desktop_rect,desktop_rect);
 
 static void window_reflow11(void);
+
+#ifdef ENGINE_M12
+enum {W12_MIN=49000,W12_TOGGLE,W12_CLOSE,W12_MENU};
+static void window_frame12(desktop_window*);
+static void window_caption12(desktop_window*);
+static unsigned window_action12(uint64_t,unsigned);
+static void window_hint_damage12(i11_target,i11_target);
+static void window_hint_draw12(void);
+#endif

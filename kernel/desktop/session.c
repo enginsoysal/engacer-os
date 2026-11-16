@@ -31,6 +31,7 @@
 #include <engine/ui/components12.h>
 #include <engine/ui/icons12.h>
 #include <engine/ui/desktop12.h>
+#include <engine/ui/chrome12.h>
 #endif
 
 enum { FILES=1, EDITOR, SETTINGS, CALCULATOR, DOWNLOADS, DETAILS, TERMINAL,
@@ -594,6 +595,9 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "start11-keys.inc"
 #include "window11.inc"
 #include "appearance11.inc"
+#ifdef ENGINE_M12
+#include "chrome12.inc"
+#endif
 #include "guide11.inc"
 #endif
 unsigned desktop74_in_use(unsigned kind){
@@ -608,7 +612,9 @@ void desktop74_removed(unsigned kind){if(kind==CLOCK74)memset(&time74,0,sizeof(t
 static void draw_window(unsigned slot) {
     desktop_window *w=&model.windows[slot];if(w->minimized)return;
     application *app=&apps[slot];desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,slot);
-#ifdef ENGINE_M73
+#ifdef ENGINE_M12
+    window_frame12(w);
+#elif defined(ENGINE_M73)
     ui73_shadow((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height);
     ui73_round((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height,12,preferences.dark?0x47606e:0xc9d7df);
     ui73_round((unsigned)r.x+1,(unsigned)r.y+1,(unsigned)r.width-2,(unsigned)r.height-2,11,paper());
@@ -829,6 +835,9 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
         stroke=marquee_window11?ink():desktop_ink11();
 #endif
         rectangle((desktop_rect){r.x,r.y,r.width,1},stroke);rectangle((desktop_rect){r.x,r.y+r.height-1,r.width,1},stroke);rectangle((desktop_rect){r.x,r.y,1,r.height},stroke);rectangle((desktop_rect){r.x+r.width-1,r.y,1,r.height},stroke);}
+#ifdef ENGINE_M12
+    window_hint_draw12();
+#endif
     files_draw_overlay11();
     guide_draw11();
     start_draw11();
@@ -867,6 +876,7 @@ static void insert(application *app,const char *bytes,unsigned count) {
 
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
+    if(window_action12(token,command))return;
     if(!token&&command==DESKTOP_HIDE12){if(context_action11>=30000&&context_action11<30004)desktop_references12(desktop_hidden12|(1u<<(context_action11-30000)));return;}
     if(!token&&command==DESKTOP_RESTORE12){desktop_references12(0);return;}
 
@@ -1200,6 +1210,9 @@ static void keyboard(int key) {
     if(key==135){if(model.count){desktop_focus(&model,desktop_token(&model,model.order[0]));control_active=0;whole();}return;}
     if(key==9||key==136){
         uint64_t target=launcher?0:model.focused<DESKTOP_WINDOWS?desktop_token(&model,model.focused):0;
+#ifdef ENGINE_M12
+        if(desktop_focus11)target=0;
+#endif
         unsigned candidates[DESKTOP_CONTROLS],count=0,current=0;
         for(unsigned n=0;n<control_count;++n){control *c=&controls[n];
             if(c->window!=target||c->action==70||(launcher&&!c->action))continue;

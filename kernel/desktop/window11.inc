@@ -21,7 +21,11 @@ static void window_mode11(uint64_t token,unsigned mode){desktop_window*w=desktop
  launcher=context11=0;s->mode=mode;desktop_place(&model,token,r);desktop_focus11=0;desktop_focus(&model,token);control_active=0;whole();
 }
 static unsigned window_edges11(desktop_window*w,int x,int y){if(!w||file_block_owner11(desktop_token(&model,w-model.windows)))return 0;window_state11*s=window_state_for11(desktop_token(&model,w-model.windows));if(s&&s->mode==1)return 0;desktop_rect r=w->bounds;unsigned e=0;if(x<r.x+6)e|=1;if(x>=r.x+r.width-6)e|=2;if(y<r.y+6)e|=4;if(y>=r.y+r.height-6)e|=8;if(x>=r.x+r.width-18&&y>=r.y+r.height-18)e=10;return e;}
-static void window_caption11(desktop_window*w){desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];char title[320];copy(title,titles[w->app],sizeof(title));
+static void window_caption11(desktop_window*w){
+#ifdef ENGINE_M12
+ window_caption12(w);
+#else
+desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];char title[320];copy(title,titles[w->app],sizeof(title));
  if((w->app==FILES||w->app==EDITOR)&&a->path[0]){const char*name=a->path;for(unsigned i=0;a->path[i];++i)if(a->path[i]=='/'&&a->path[i+1])name=a->path+i+1;copy(title,a->dirty?"* ":"",sizeof(title));append(title,equal(a->path,"/")?"System drive":name,sizeof(title));append(title," - ",sizeof(title));append(title,titles[w->app],sizeof(title));}
  if(model.focused==(unsigned)(w-model.windows)&&!desktop_focus11&&!launcher)rectangle((desktop_rect){r.x+12,r.y+38,r.width-24,2},preferences.accent);
 #ifdef ENGINE_M12
@@ -42,6 +46,8 @@ static void window_caption11(desktop_window*w){desktop_rect r=w->bounds;uint64_t
  rectangle((desktop_rect){x,y,12,2},color);rectangle((desktop_rect){x,y+10,12,2},color);rectangle((desktop_rect){x,y,2,12},color);rectangle((desktop_rect){x+10,y,2,12},color);x+=44;
  for(int i=0;i<12;++i){rectangle((desktop_rect){x+i,y+i,2,2},color);rectangle((desktop_rect){x+11-i,y+i,2,2},color);}
 #endif
+
+#endif
 }
 static void window_drag_begin11(i11_target target){desktop_window*w=desktop_lookup(&model,target.window);window_state11*s=window_state_for11(target.window);if(!w||!s)return;window_before11=w->bounds;window_mode_before11=s->mode;window_normal_before11=s->normal;
  dragging=1;drag_window=target.window;drag_x=interaction11.x;drag_y=interaction11.y;window_drag_edges11=target.action>=31010&&target.action<=31025?target.action-31010:target.action==31003?10:0;drag_resize=!!window_drag_edges11;
@@ -57,7 +63,16 @@ static void window_drag_update11(unsigned x,unsigned y){desktop_window*w=desktop
  desktop_rect old=w->bounds;unsigned cache=!drag_resize&&!window_snap_preview11&&!model.damaged&&model.count&&model.order[model.count-1]==(unsigned)(w-model.windows);desktop_place(&model,drag_window,r);if(cache)(void)move_cached9(old,w->bounds);
 }
 static void window_drag_end11(unsigned cancel){unsigned redraw=cancel||window_snap_preview11;desktop_window*w=desktop_lookup(&model,drag_window);window_state11*s=window_state_for11(drag_window);if(w&&s){if(cancel){s->normal=window_normal_before11;s->mode=window_mode_before11;desktop_place(&model,drag_window,window_before11);}else if(window_snap_preview11){s->normal=window_mode_before11?window_normal_before11:window_before11;s->mode=1;window_mode11(drag_window,window_snap_preview11);}else if(!s->mode)s->normal=w->bounds;}dragging=window_keyboard_move11=window_snap_preview11=0;if(redraw)whole();}
-static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window*w=desktop_lookup(&model,t.window);if(!w||!(t.kind==I11_CAPTION||(t.action>=31000&&t.action<=31025)||t.action==70))return 0;window_state11*s=window_state_for11(t.window);file_menu_begin11(t.window,x,y);
+static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window*w=desktop_lookup(&model,t.window);if(!w||!(t.kind==I11_CAPTION||(t.action>=31000&&t.action<=31025)||t.action==70
+#ifdef ENGINE_M12
+ ||(t.action>=W12_MIN&&t.action<=W12_MENU)
+#endif
+ )){return 0;}
+ window_state11*s=window_state_for11(t.window);
+#ifdef ENGINE_M12
+ if((int)x<8)x=8;if((int)y<8)y=8;
+#endif
+ file_menu_begin11(t.window,x,y);
  file_menu_add11("Restore",W11_RESTORE,s->mode!=0||w->minimized);file_menu_add11("Move (arrow keys)",W11_MOVE,!s->mode);file_menu_add11("Size (arrow keys)",W11_SIZE,!s->mode);file_menu_add11("Minimize",31002,1);file_menu_add11("Maximize",W11_MAX,s->mode!=1);file_menu_add11("Snap left",W11_LEFT,window_snap_allowed11(w));file_menu_add11("Snap right",W11_RIGHT,window_snap_allowed11(w));file_menu_add11("Close",31001,!file_block_owner11(t.window));copy(file_menu_reason11,"Move/size: arrow keys, Enter to keep, Escape to cancel.",128);file_menu_fit11();return 1;}
 static unsigned window_action11(uint64_t token,unsigned command){
  if(command>=W11_SWITCH&&command<W11_SWITCH+DESKTOP_WINDOWS){unsigned i=command-W11_SWITCH;if(switch_open11&&i<switch_count11&&desktop_lookup(&model,switch_tokens11[i])){desktop_focus11=0;desktop_focus(&model,switch_tokens11[i]);}switch_open11=0;control_active=0;whole();return 1;}
@@ -77,7 +92,11 @@ static unsigned window_key11(int key){
  if(key==135||key==143){if(!switch_open11){switch_count11=0;for(unsigned i=model.count;i;--i)switch_tokens11[switch_count11++]=desktop_token(&model,model.order[i-1]);switch_choice11=0;switch_open11=!!switch_count11;launcher=context11=0;}if(switch_count11)switch_choice11=(switch_choice11+(key==143?switch_count11-1:1))%switch_count11;whole();return 1;}
  if(switch_open11){if(key==27||key==141){switch_open11=0;whole();return 1;}if(key==142||key==10){window_action11(0,W11_SWITCH+switch_choice11);return 1;}return 1;}
  if(key==142)return 1;
- uint64_t token=model.focused<DESKTOP_WINDOWS?desktop_token(&model,model.focused):0;desktop_window*w=desktop_lookup(&model,token);
+ uint64_t token=model.focused<DESKTOP_WINDOWS?desktop_token(&model,model.focused):0;
+#ifdef ENGINE_M12
+ if(desktop_focus11)token=0;
+#endif
+ desktop_window*w=desktop_lookup(&model,token);
  if(key==144){if(context11){context11=0;whole();return 1;}if(launcher){launcher=0;whole();return 1;}if(w){if(file_block_owner11(token))copy(shell_notice,"Finish or cancel this window's dialog first.",96);else if(apps[w-model.windows].closing)apps[w-model.windows].closing=0;else close_window(token,0);whole();}return 1;}
  if(key==145&&w){window_menu11((i11_target){token,31000,I11_CAPTION},w->bounds.x+12,w->bounds.y+40);return 1;}
  if(key>=146&&key<=149&&w){if(key==149){window_state11*s=window_state_for11(token);if(s->mode)window_mode11(token,0);else{desktop_minimize(&model,token,1);whole();}}else window_mode11(token,key==146?2:key==147?3:1);return 1;}

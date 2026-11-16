@@ -46,6 +46,8 @@ Search Start for Settings. Preview Light or Dark, accent, wallpaper and display
 size. Choose Save preferences to keep the changes after restarting.
 Auto chooses a suitable scale. Unsupported sizes preserve the usable setting.
 Move, resize, maximize, restore and snap windows; Alt+Tab switches between them.
+The app icon in a title bar opens its window menu. Point at a caption button
+for its name, or use Tab and Enter. Close still reviews unsaved editor work.
 
 USB DRIVES
 Files can browse supported FAT32 drives and perform guarded file copies.

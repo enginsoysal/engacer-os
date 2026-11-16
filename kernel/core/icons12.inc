@@ -1,7 +1,7 @@
 /* Physical-density antialiasing with 512 bytes of bounded transient row state. */
 static uint64_t icon12_draws,icon12_pixels,icon12_fallbacks;
 static unsigned icon12_max_physical;
-void ui12_icon(unsigned id,int x,int y,unsigned size,unsigned dark){
+static void icon12_draw(unsigned id,int x,int y,unsigned size,unsigned dark,unsigned custom,uint32_t ink){
  if(size<8||size>64)return;
  if(id>=ICON12_COUNT)id=ICON12_UNKNOWN;
  if(!id)++icon12_fallbacks;
@@ -21,7 +21,7 @@ void ui12_icon(unsigned id,int x,int y,unsigned size,unsigned dark){
  graphics9_dirty(first_x,first_y,last_x-first_x,last_y-first_y);
  uint32_t row[ICON12_MAX_PHYSICAL];
  for(int py=first_y;py<last_y;++py){
-  ui12_icon_row(id,py-top,extent,dark,row);
+  ui12_icon_row_custom(id,py-top,extent,dark,ink,custom,row);
   for(int px=first_x;px<last_x;++px){
    uint32_t pixel=row[px-left];unsigned alpha=pixel>>24;if(!alpha)continue;
    uint32_t rgb=0;for(unsigned shift=0;shift<24;shift+=8){unsigned value=(((pixel>>shift)&255)*255+alpha/2)/alpha;if(value>255)value=255;rgb|=value<<shift;}
@@ -29,3 +29,6 @@ void ui12_icon(unsigned id,int x,int y,unsigned size,unsigned dark){
   }
  }
 }
+
+void ui12_icon(unsigned id,int x,int y,unsigned size,unsigned dark){icon12_draw(id,x,y,size,dark,0,0);}
+void ui12_icon_ink(unsigned id,int x,int y,unsigned size,uint32_t ink){icon12_draw(id,x,y,size,0,1,ink);}

@@ -186,3 +186,8 @@ kernel/desktop/files11-keys.inc -text whitespace=cr-at-eol
 kernel/desktop/files11-state.inc -text whitespace=cr-at-eol
 kernel/desktop/files11-ops.inc -text whitespace=cr-at-eol
 evidence/M12/3/** -text -whitespace
+
+# Keep M12.4 native chrome and evidence byte-exact.
+include/engine/ui/chrome12.h -text whitespace=cr-at-eol
+kernel/desktop/chrome12.inc -text whitespace=cr-at-eol
+evidence/M12/4/** -text -whitespace
