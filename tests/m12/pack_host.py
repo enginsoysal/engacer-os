@@ -3,7 +3,7 @@ import hashlib,json,random,struct,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT/'tools/build')]
 from m1 import pinned_tools
-from pack12 import compress,record
+from m12_pack import compress,record
 
 def main():
     out=ROOT/'build/m12/stage7/pack-host';out.mkdir(exist_ok=True,parents=True)
@@ -38,7 +38,7 @@ def main():
     assert struct.unpack_from('<I',record(8,pages[3]))[0]==8
     assert struct.unpack_from('<I',record(8,b'A'*4096))[0]==0x40000008
     result=dict(passed=True,roundtrip_pages=good,payload_sha256=payload_hashes,malformed_and_fuzz_cases=len(tests)-good,guard_bytes_unchanged=True,heap_allocations=0,page_bytes=4096,
-        source_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ('include/engine/install/pack12.h','tools/build/pack12.py','tests/m12/pack_host.c','tests/m12/pack_host.py')},
+        source_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ('include/engine/install/pack12.h','tools/build/m12_pack.py','tests/m12/pack_host.c','tests/m12/pack_host.py')},
         scope='Actual production C block decoder and build encoder. Native install/recovery and firmware startup remain separate required gates.')
     (out/'results.json').write_bytes((json.dumps(result,indent=2)+'\n').encode());print(json.dumps(result))
 if __name__=='__main__':main()

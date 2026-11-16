@@ -46,7 +46,7 @@ def pack(parts, compressed=False):
             page=content[offset:offset+4096].ljust(4096,b'\0')
             where=lba+offset//512;assert where not in pages;pages[where]=page
     if compressed:
-        from pack12 import record
+        from m12_pack import record
         return struct.pack('<I',len(pages))+b''.join(record(k,v) for k,v in sorted(pages.items()))
     return struct.pack('<I',len(pages))+b''.join(struct.pack('<I',k|(0x80000000 if not any(v) else 0))+(v if any(v) else b'') for k,v in sorted(pages.items()))
 
