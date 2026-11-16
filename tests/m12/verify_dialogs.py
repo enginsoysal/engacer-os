@@ -36,6 +36,9 @@ def main():
     assert len(reports['motion']['profiles'])==3 and sum(len(row['comparisons']) for row in reports['motion']['profiles'])==12
     assert len(reports['recovery']['checks'])==2
     assert reports['document-host']['checks']==14 and reports['document-host']['new_kernel_payload_buffers']==0
+    assert reports['dialogs-fault']['retained_pages_after_failed_save']==0
+    stack=load(WORK/'diagnostics/stack-final-results.json');assert stack['passed'] and stack['guarded_kernel_stack_bytes']==16384 and stack['frames']['keyboard']<1024
+    for path,digest in stack['source_sha256'].items():assert sha(ROOT/path)==digest
     assert reports['pack-host']['roundtrip_pages']>500 and reports['pack-host']['malformed_and_fuzz_cases']>10000 and reports['pack-host']['guard_bytes_unchanged']
     for name in ('document-host','pack-host'):
         for path,digest in reports[name]['source_sha256'].items():assert sha(ROOT/path)==digest
