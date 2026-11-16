@@ -92,10 +92,10 @@ M9.2 known/unqualified QEMU reports are preserved as failures, not successful st
 
 M10 hardware phases 1 and 2 are accepted within M10-DEVICES-VM-v1. Its ISO, exact VMware ZIP, manifests and evidence are immutable after publication. New work must use a new milestone/revision and preserve these bytes. The canonical product/repository/site are Engacer OS, enginsoysal/engacer-os and engaceros.brixcanvas.com. Legacy internal identifiers and historical artifacts remain stable.
 
-M11.0 design and M11.1/M11.2/M11.3/M11.4 native evidence and STAGE1/STAGE2/STAGE3/STAGE4
+M11.0 design and M11.1/M11.2/M11.3/M11.4/M11.5 native evidence and STAGE1/STAGE2/STAGE3/STAGE4/STAGE5
 artifacts are accepted stage records, separate from final M11 qualification.
 Preserve their bytes and evidence after their publication gates. Subsequent
-stages use STAGE5 and later output prefixes; never rebuild STAGE1/STAGE2/STAGE3/STAGE4 in place.
+stages use FINAL or later distinct output prefixes; never rebuild STAGE1/STAGE2/STAGE3/STAGE4/STAGE5 in place.
 The public homepage must lead with current M11 progress and the matching separately
 scoped stage release. Preserve M10 as historical qualification. Keep the index ordered by
 reader task, with current installation/use before internals and historical guides.
