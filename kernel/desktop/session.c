@@ -30,6 +30,7 @@
 #ifdef ENGINE_M12
 #include <engine/ui/components12.h>
 #include <engine/ui/icons12.h>
+#include <engine/ui/desktop12.h>
 #endif
 
 enum { FILES=1, EDITOR, SETTINGS, CALCULATOR, DOWNLOADS, DETAILS, TERMINAL,
@@ -737,6 +738,9 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
 #endif
 #endif
     text(36,30,DISTRO_NAME,3,desktop_ink11());text(38,64,DISTRO_DESKTOP_TAGLINE,1,desktop_ink11());
+#ifdef ENGINE_M12
+    draw_desktop_builtin12();draw_desktop_files11();
+#else
 #ifdef ENGINE_M72
 #ifdef ENGINE_M11
     for(unsigned selected=0;selected<3;++selected)if(desktop_selection11&(1u<<selected))ui73_round(30,110+(int)selected*95,120,85,6,0x315b62);
@@ -761,6 +765,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
 #endif
 #ifdef ENGINE_M11
     draw_desktop_files11();
+#endif
 #endif
     for(unsigned i=0;i<model.count;++i){
         desktop_rect window=model.windows[model.order[i]].bounds;
@@ -861,6 +866,10 @@ static void insert(application *app,const char *bytes,unsigned count) {
 }
 
 static void action(uint64_t token,unsigned command) {
+#ifdef ENGINE_M12
+    if(!token&&command>=30000&&command<30000+DESKTOP_BUILTINS11){desktop_open_builtin11(command-30000);return;}
+    if(!token&&command>=F11_DESKTOP_ITEM&&command<F11_DESKTOP_ITEM+V6_ENTRIES){const v6_entry*e=desktop_child11(command-F11_DESKTOP_ITEM);if(e){char path[256];copy(path,e->path,256);desktop_focus11=1;file_open11(path,0);}return;}
+#endif
 #ifdef ENGINE_M11
     if(command>=46000&&command<=46003){guide_action11(command);return;}
 #endif

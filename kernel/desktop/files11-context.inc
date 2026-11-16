@@ -22,16 +22,24 @@ static void files_context_open11(i11_target t,unsigned x,unsigned y){
  const v6_entry*e=file_target_entry11(t);if(e){copy(file_context_path11,e->path,256);unsigned count=a?file_selected_count11(a):0;if(!a){for(unsigned row=0;row<desktop_children11();++row)count+=file_selected_desktop11(row);}
   if(a&&file_is_bin11(a->path)){if(e->kind==2)file_menu_add11("Open folder",t.action,1);file_menu_add11("Restore",F11_RESTORE,count!=0);file_menu_add11("Copy",F11_COPY,count!=0);file_menu_add11("Properties",F11_PROPERTIES,count==1);file_menu_add11("Delete permanently...",F11_PERMANENT,count!=0);copy(file_menu_reason11,"Restore returns items to their original folders. Permanent deletion needs review.",128);}
   else{unsigned own=file_user_item11(e->path),in_use=file_open_under11(e->path);file_menu_add11("Open",F11_OPEN,writable72(e->path)||e->kind==2);file_menu_add11("Open with...",F11_OPEN_WITH,count==1&&e->kind==1&&writable72(e->path)&&!file_suffix11(e->path,"link"));file_menu_add11("Copy",F11_COPY,count!=0);file_menu_add11("Cut",F11_CUT,own&&!in_use);file_menu_add11("Rename...",F11_RENAME,count==1&&own&&!in_use);file_menu_add11("Move to Recycle Bin",F11_RECYCLE,own&&!in_use);file_menu_add11("Create desktop shortcut",F11_SHORTCUT,1);if(a&&e->kind==1&&count==1&&own)file_menu_add11("Copy to USB...",USB_SEND10+(t.action-FILE_ROW),1);file_menu_add11("Properties",F11_PROPERTIES,count==1);if(!own)copy(file_menu_reason11,"System items are protected. Copy readable files to Home before opening.",128);else if(in_use)copy(file_menu_reason11,"Close the app using this item before moving, renaming or recycling it.",128);}
- }else if(!t.window&&t.action>=30000&&t.action<=30002){file_menu_add11("Open",t.action,1);file_menu_add11("Create desktop shortcut",F11_SHORTCUT,1);file_menu_add11("Personalize",OPEN_SETTINGS,1);copy(file_menu_reason11,"Built-in launchers are independent of your desktop files.",128);}
+ }
+#ifdef ENGINE_M12
+ else if(!t.window&&t.action==30003){file_menu_add11("Open Recycle Bin",30003,1);copy(file_menu_reason11,"Restore recycled files in Files. Required system services are protected.",128);}
+#endif
+ else if(!t.window&&t.action>=30000&&t.action<=30002){file_menu_add11("Open",t.action,1);file_menu_add11("Create desktop shortcut",F11_SHORTCUT,1);file_menu_add11("Personalize",OPEN_SETTINGS,1);copy(file_menu_reason11,"Built-in launchers are independent of your desktop files.",128);}
  else{char path[256];if(a)copy(path,a->path,256);else root_path(path,"Desktop");copy(file_context_path11,path,256);unsigned writable=writable72(path)&&!file_in_bin11(path)&&!m6_volume()->readonly;
   if(file_is_bin11(path)){file_menu_add11("Restore selected items",F11_RESTORE,a&&file_selected_count11(a));file_menu_add11("Empty Recycle Bin...",F11_EMPTY,a&&children72(a));file_menu_add11("Properties",F11_PROPERTIES,1);}
-  else{file_menu_add11("New folder...",FILE_FOLDER,writable);file_menu_add11("New text file...",F11_NEW_TEXT,writable);file_menu_add11("Paste",F11_PASTE,writable&&clipboard_kind11==2&&file_clip11.count);file_menu_add11("Undo last supported action",F11_UNDO,file_undo_state11.kind!=0);if(a){file_menu_add11(file_windows11[a-apps].view?"Use details view":"Use icon view",F11_VIEW,1);file_menu_add11("Sort by...",F11_SORT,1);}else file_menu_add11("Open Desktop in Files",F11_PLACE+1,1);if(!t.window)file_menu_add11("Personalize",OPEN_SETTINGS,1);if(!writable)copy(file_menu_reason11,"This location is protected. Use Home for your own files.",128);}
+  else{file_menu_add11("New folder...",FILE_FOLDER,writable);file_menu_add11("New text file...",F11_NEW_TEXT,writable);file_menu_add11("Paste",F11_PASTE,writable&&clipboard_kind11==2&&file_clip11.count);file_menu_add11("Undo last supported action",F11_UNDO,file_undo_state11.kind!=0);if(a){file_menu_add11(file_windows11[a-apps].view?"Use details view":"Use icon view",F11_VIEW,1);file_menu_add11("Sort by...",F11_SORT,1);}else {file_menu_add11("Open Desktop in Files",F11_PLACE+1,1);
+#ifdef ENGINE_M12
+file_menu_add11("Open Recycle Bin",F11_BIN,1);
+#endif
+}if(!t.window)file_menu_add11("Personalize",OPEN_SETTINGS,1);if(!writable)copy(file_menu_reason11,"This location is protected. Use Home for your own files.",128);}
  }
  start_offer_folder11(t);file_menu_fit11();
 }
 static void files_context_invoke11(unsigned index){if(index>=file_menu_count11||!file_menu_items11[index].enabled)return;unsigned command=file_menu_items11[index].command;uint64_t token=context_window11;context11=0;whole();
  if(command==31001){desktop_focus11=0;desktop_focus(&model,token);close_window(token,0);task_damage();return;}if(command==31002){desktop_minimize(&model,token,1);task_damage();return;}
- if(!token&&command>=30000&&command<=30002){if(command==30002)launch(SETTINGS,0);else{char path[256];if(command==30001)root_path(path,"Documents");else home72(path);launch(FILES,path);}desktop_focus11=0;whole();return;}
+ if(!token&&command>=30000&&command<30000+DESKTOP_BUILTINS11){desktop_open_builtin11(command-30000);return;}
  action(token,command);
 }
 

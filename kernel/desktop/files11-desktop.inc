@@ -1,25 +1,72 @@
-static unsigned desktop_rows11(void){unsigned rows=model.height>190?(model.height-190)/95:1;return rows?rows:1;}
-static unsigned desktop_capacity11(void){unsigned columns=model.width>210?(model.width-190)/126:1;if(!columns)columns=1;unsigned count=columns*desktop_rows11();return count>128?128:count;}
-static void desktop_set_selected11(unsigned row,unsigned value){if(row<3){if(value)desktop_selection11|=1u<<row;else desktop_selection11&=~(1u<<row);return;}const v6_entry*e=desktop_child11(row-3);if(!e)return;unsigned index=(unsigned)(e-m6_volume()->entries);if(value)desktop_files_selected11[index/8]|=(uint8_t)(1u<<(index%8));else desktop_files_selected11[index/8]&=(uint8_t)~(1u<<(index%8));}
-static unsigned desktop_is_selected11(unsigned row){return row<3?!!(desktop_selection11&(1u<<row)):file_selected_desktop11(row-3);}
-static void desktop_select11(unsigned row,unsigned modifiers,unsigned preserve){unsigned total=desktop_children11()+3;if(row>=total)return;if(preserve&&desktop_is_selected11(row)){desktop_item_focus11=row;return;}if(!(modifiers&3)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}
- if(modifiers&2){unsigned anchor=desktop_anchor11<total?desktop_anchor11:row;if(!(modifiers&1)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}unsigned lo=anchor<row?anchor:row,hi=anchor>row?anchor:row;for(unsigned n=lo;n<=hi;++n)desktop_set_selected11(n,1);}
- else{desktop_set_selected11(row,(modifiers&1)?!desktop_is_selected11(row):1);desktop_anchor11=row;}desktop_item_focus11=row;if(row>=3)desktop_page11=(row-3)/desktop_capacity11();
-}
-static void draw_desktop_files11(void){unsigned count=desktop_children11(),page=desktop_capacity11(),rows=desktop_rows11();if(desktop_page11*page>=count)desktop_page11=count?(count-1)/page:0;unsigned start=desktop_page11*page;
- for(unsigned n=0;n<page&&start+n<count;++n){unsigned row=start+n;const v6_entry*e=desktop_child11(row);int x=176+(int)(n/rows)*126,y=110+(int)(n%rows)*95;desktop_rect r={x,y,120,88};if(file_selected_desktop11(row))ui73_round(x,y,120,88,6,0x315b62);
+static void desktop_open_builtin11(unsigned row){
+ if(row>=DESKTOP_BUILTINS11)return;
+ desktop_focus11=0;
 #ifdef ENGINE_M12
- shell_file_icon12(x+38,y+6,42,e);
-#else
- if(e->kind==2)folder_icon72(x+38,y+9,42,0xf0ce87);else{ui73_round(x+43,y+6,32,39,4,0xe8f2f4);rectangle((desktop_rect){x+49,y+17,20,2},0x78959c);rectangle((desktop_rect){x+49,y+24,16,2},0x78959c);if(file_suffix11(e->path,"link")){rectangle((desktop_rect){x+35,y+33,15,12},paper());rectangle((desktop_rect){x+38,y+38,9,2},ink());rectangle((desktop_rect){x+45,y+35,2,8},ink());}}
+ if(row==3){file_action11(0,F11_BIN);whole();return;}
 #endif
+ if(row==2)launch(SETTINGS,0);
+ else{char path[256];if(row==1)root_path(path,"Documents");else home72(path);launch(FILES,path);}
+ whole();
+}
+#ifndef ENGINE_M12
+static unsigned desktop_rows11(void){unsigned rows=model.height>190?(model.height-190)/95:1;return rows?rows:1;}
+#endif
+static unsigned desktop_capacity11(void){
+#ifdef ENGINE_M12
+ return ui12_desktop_capacity(model.width,model.height);
+#else
+ unsigned columns=model.width>210?(model.width-190)/126:1;if(!columns)columns=1;unsigned count=columns*desktop_rows11();return count>128?128:count;
+#endif
+}
+#ifdef ENGINE_M12
+static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsigned focused,unsigned icon,const v6_entry*entry12,const char*label){
+ unsigned hovered=hover12.kind==I11_ITEM&&!hover12.window&&hover12.action==action;
+ uint32_t foreground=desktop_ink11();
+ if(selected||hovered){ui73_round(r.x,r.y,r.width,r.height,UI12_RADIUS,selected?0x315b62:0x29454e);foreground=0xe5f0f3;}
+ if(focused&&desktop_focus11){uint32_t stroke=foreground;rectangle((desktop_rect){r.x+2,r.y+2,r.width-4,1},stroke);rectangle((desktop_rect){r.x+2,r.y+r.height-3,r.width-4,1},stroke);rectangle((desktop_rect){r.x+2,r.y+2,1,r.height-4},stroke);rectangle((desktop_rect){r.x+r.width-3,r.y+2,1,r.height-4},stroke);}
+ if(entry12)shell_file_icon12(r.x+36,r.y+6,48,entry12);else ui12_icon(icon,r.x+36,r.y+6,48,preferences.dark);
+ ui73_paragraph(r.x+6,r.y+60,r.width-12,2,label,foreground);
+ if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,action};
+}
+static void draw_desktop_builtin12(void){
+ static const char*names[]={"My files","Documents","Appearance","Recycle Bin"};
+ static const unsigned icons[]={ICON12_HOME,ICON12_FOLDER,ICON12_SETTINGS,ICON12_TRASH};
+ for(unsigned i=0;i<UI12_DESKTOP_BUILTINS;++i){ui12_desktop_cell cell=ui12_desktop_position(model.height,i,1);desktop_rect r={cell.x,cell.y,cell.width,cell.height};desktop_tile12(r,30000+i,!!(desktop_selection11&(1u<<i)),desktop_item_focus11==i,icons[i],0,names[i]);}
+}
+#endif
+static void desktop_set_selected11(unsigned row,unsigned value){if(row<DESKTOP_BUILTINS11){if(value)desktop_selection11|=1u<<row;else desktop_selection11&=~(1u<<row);return;}const v6_entry*e=desktop_child11(row-DESKTOP_BUILTINS11);if(!e)return;unsigned index=(unsigned)(e-m6_volume()->entries);if(value)desktop_files_selected11[index/8]|=(uint8_t)(1u<<(index%8));else desktop_files_selected11[index/8]&=(uint8_t)~(1u<<(index%8));}
+static unsigned desktop_is_selected11(unsigned row){return row<DESKTOP_BUILTINS11?!!(desktop_selection11&(1u<<row)):file_selected_desktop11(row-DESKTOP_BUILTINS11);}
+static void desktop_select11(unsigned row,unsigned modifiers,unsigned preserve){unsigned total=desktop_children11()+DESKTOP_BUILTINS11;if(row>=total)return;if(preserve&&desktop_is_selected11(row)){desktop_item_focus11=row;return;}if(!(modifiers&3)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}
+ if(modifiers&2){unsigned anchor=desktop_anchor11<total?desktop_anchor11:row;if(!(modifiers&1)){desktop_selection11=0;memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));}unsigned lo=anchor<row?anchor:row,hi=anchor>row?anchor:row;for(unsigned n=lo;n<=hi;++n)desktop_set_selected11(n,1);}
+ else{desktop_set_selected11(row,(modifiers&1)?!desktop_is_selected11(row):1);desktop_anchor11=row;}desktop_item_focus11=row;if(row>=DESKTOP_BUILTINS11)desktop_page11=(row-DESKTOP_BUILTINS11)/desktop_capacity11();
+}
+static void draw_desktop_files11(void){unsigned count=desktop_children11(),page=desktop_capacity11();
+#ifndef ENGINE_M12
+ unsigned rows=desktop_rows11();
+#endif
+if(desktop_page11*page>=count)desktop_page11=count?(count-1)/page:0;unsigned start=desktop_page11*page;
+ for(unsigned n=0;n<page&&start+n<count;++n){unsigned row=start+n;const v6_entry*e=desktop_child11(row);
+#ifdef ENGINE_M12
+ ui12_desktop_cell cell=ui12_desktop_position(model.height,n,0);desktop_rect r={cell.x,cell.y,cell.width,cell.height};desktop_tile12(r,F11_DESKTOP_ITEM+row,file_selected_desktop11(row),desktop_item_focus11==row+DESKTOP_BUILTINS11,0,e,file_label11(e));
+#else
+ int x=176+(int)(n/rows)*126,y=110+(int)(n%rows)*95;desktop_rect r={x,y,120,88};if(file_selected_desktop11(row))ui73_round(x,y,120,88,6,0x315b62);
+ if(e->kind==2)folder_icon72(x+38,y+9,42,0xf0ce87);else{ui73_round(x+43,y+6,32,39,4,0xe8f2f4);rectangle((desktop_rect){x+49,y+17,20,2},0x78959c);rectangle((desktop_rect){x+49,y+24,16,2},0x78959c);if(file_suffix11(e->path,"link")){rectangle((desktop_rect){x+35,y+33,15,12},paper());rectangle((desktop_rect){x+38,y+38,9,2},ink());rectangle((desktop_rect){x+45,y+35,2,8},ink());}}
   ui73_paragraph(x+6,y+54,108,2,file_label11(e),file_selected_desktop11(row)?0xe5f0f3:desktop_ink11());if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,F11_DESKTOP_ITEM+row};
+#endif
  }
- if(count>page){int y=(int)model.height-105;button(0,176,y,65,"<",F11_DESKTOP_PREV,0);button(0,249,y,65,">",F11_DESKTOP_NEXT,0);char info[64],number[24];decimal(number,desktop_page11+1);copy(info,"Desktop page ",64);append(info,number,64);text(326,y+9,info,1,desktop_ink11());}
+ #ifdef ENGINE_M12
+ unsigned caption=V6_ENTRIES;
+ if(hover12.kind==I11_ITEM&&!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+count)caption=hover12.action-F11_DESKTOP_ITEM;
+ else if(desktop_focus11&&desktop_item_focus11>=DESKTOP_BUILTINS11&&desktop_item_focus11-DESKTOP_BUILTINS11<count&&file_selected_desktop11(desktop_item_focus11-DESKTOP_BUILTINS11))caption=desktop_item_focus11-DESKTOP_BUILTINS11;
+ if(caption<count){const v6_entry*e=desktop_child11(caption);ui73_fit(38,86,model.width-76,file_label11(e),UI12_SECONDARY,desktop_ink11());}
+ if(count>page){int y=(int)model.height-105;unsigned actions[]={F11_DESKTOP_PREV,F11_DESKTOP_NEXT};const char*names[]={"Previous","Next"};for(unsigned i=0;i<2;++i){desktop_rect r={30+(int)i*124,y,112,36};unsigned enabled=i?start+page<count:desktop_page11!=0;component_button12(0,r,names[i],actions[i],0,enabled);if(enabled&&control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,actions[i]};}char info[64],number[24];copy(info,"Desktop page ",64);decimal(number,desktop_page11+1);append(info,number,64);append(info," of ",64);decimal(number,(count+page-1)/page);append(info,number,64);text(290,y+8,info,1,desktop_ink11());}
+#else
+if(count>page){int y=(int)model.height-105;button(0,176,y,65,"<",F11_DESKTOP_PREV,0);button(0,249,y,65,">",F11_DESKTOP_NEXT,0);char info[64],number[24];decimal(number,desktop_page11+1);copy(info,"Desktop page ",64);append(info,number,64);text(326,y+9,info,1,desktop_ink11());}
+#endif
 }
 static unsigned files_begin_drag11(i11_target target,unsigned modifiers){if(file_job_state11.active||file_job_state11.waiting||file_dialog_state11.mode)return 0;desktop_window*w=file_owner_window11(target.window);
  if(w){application*a=&apps[w-model.windows];if(target.action>=FILE_ROW&&target.action<FILE_ROW+V6_ENTRIES){unsigned row=target.action-FILE_ROW;if(!selected_row11(a,row))select_row11(a,row,0,0);}else if(a->usb_mode10==2&&target.action>=USB_ROW10&&target.action<USB_ROW10+6){unsigned row=a->offset+target.action-USB_ROW10;if(!selected_row11(a,row))select_row11(a,row,0,0);a->usb_selected10=row+1;}else return 0;}
- else if(!target.window&&target.action>=F11_DESKTOP_ITEM&&target.action<F11_DESKTOP_ITEM+V6_ENTRIES){unsigned row=target.action-F11_DESKTOP_ITEM;if(!file_selected_desktop11(row))desktop_select11(row+3,0,0);}else return 0;
+ else if(!target.window&&target.action>=F11_DESKTOP_ITEM&&target.action<F11_DESKTOP_ITEM+V6_ENTRIES){unsigned row=target.action-F11_DESKTOP_ITEM;if(!file_selected_desktop11(row))desktop_select11(row+DESKTOP_BUILTINS11,0,0);}else return 0;
  unsigned count=0,status=file_collect11(target.window,file_drag_roots11,&count);if(status){file_notice11(target.window,"Select up to 128 native items, or one supported USB file.");return 0;}
  file_drag11=1;file_drag_count11=count;file_drag_copy11=(modifiers&1)||file_drag_roots11[0].provider==F11_USB;file_drag_x11=pointer_x;file_drag_y11=pointer_y;context11=0;whole();return 1;
 }

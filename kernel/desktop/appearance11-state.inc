@@ -6,4 +6,6 @@ static unsigned appearance_save11(void);
 static void appearance_settings11(desktop_window*,application*,uint64_t);
 static uint32_t desktop_ink11(void);
 
+#ifndef ENGINE_M12
 static uint32_t desktop_label_ink11(unsigned);
+#endif

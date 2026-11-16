@@ -175,3 +175,14 @@ tests/m12/** -text whitespace=cr-at-eol
 # Keep original icon review assets and the new stage's evidence byte-exact.
 docs/architecture/figures/m12-icons/** -text -whitespace
 evidence/M12/2/** -text -whitespace
+
+# Preserve exact M12.3 desktop input and evidence bytes across checkouts.
+include/engine/ui/desktop12.h -text whitespace=cr-at-eol
+kernel/desktop/appearance11-state.inc -text whitespace=cr-at-eol
+kernel/desktop/appearance11.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-context.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-desktop.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-keys.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-state.inc -text whitespace=cr-at-eol
+kernel/desktop/files11-ops.inc -text whitespace=cr-at-eol
+evidence/M12/3/** -text -whitespace

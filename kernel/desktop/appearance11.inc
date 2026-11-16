@@ -22,4 +22,6 @@ static void appearance_settings11(desktop_window*w,application*a,uint64_t token)
  ui73_paragraph(x,w->bounds.y+w->bounds.height-64,w->bounds.width-48,2,a->notice[0]?a->notice:"Preview changes now. Save keeps your appearance and normal window sizes.",ink());
 }
 
+#ifndef ENGINE_M12
 static uint32_t desktop_label_ink11(unsigned row){return desktop_selection11&(1u<<row)?0xe5f0f3:desktop_ink11();}
+#endif

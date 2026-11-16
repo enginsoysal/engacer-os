@@ -1,4 +1,14 @@
 /* Bounded file-shell state; no per-window framebuffer or general heap queue. */
+#ifdef ENGINE_M12
+#define DESKTOP_BUILTINS11 UI12_DESKTOP_BUILTINS
+#else
+#define DESKTOP_BUILTINS11 3u
+#endif
+static void desktop_open_builtin11(unsigned);
+
+#ifdef ENGINE_M12
+static void draw_desktop_builtin12(void);
+#endif
 enum {F11_COPY=40000,F11_CUT,F11_PASTE,F11_RENAME,F11_RECYCLE,F11_RESTORE,F11_PERMANENT,F11_EMPTY,
  F11_PROPERTIES,F11_OPEN_WITH,F11_SHORTCUT,F11_UNDO,F11_VIEW,F11_SORT,F11_DIRECTION,F11_ADDRESS,
  F11_PLACES,F11_BIN,F11_NEW_TEXT,F11_CANCEL_JOB,F11_DIALOG_OK,F11_DIALOG_CANCEL,F11_KEEP_BOTH,
