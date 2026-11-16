@@ -15,7 +15,7 @@ image=[r(7,7,18,18,2,8),r(9,9,14,14,1,1),r(18,11,3,3,2,12),l(10,21,15,15,2,8),l(
 archive=[r(5,6,22,22,3,4),r(4,4,24,6,2,12),*[r(15,10+i*3,3,2,0,8) for i in range(5)],r(14,23,5,4,1,8)]
 add('unknown',page([r(10+i*5,15,3,3,2,6) for i in range(3)]))
 add('files',folder)
-add('editor',page([*doc,l(13,25,25,13,3,4),l(25,13,27,15,3,9)]))
+add('editor',page([*doc,l(13,25,25,13,3,16),l(25,13,27,15,3,9)]))
 add('settings',tile(2,[*[l(7,9+i*7,25,9+i*7,2) for i in range(3)],r(10,6,4,6,2),r(19,13,4,6,2),r(12,20,4,6,2)]))
 add('calculator',tile(1,[r(7,6,18,6,2),*[r(7+x*7,15+y*5,4,3,1) for y in range(3) for x in range(3)]]))
 add('downloads',tile(2,[l(16,6,16,21,3),l(10,15,16,21,3),l(22,15,16,21,3),l(7,25,25,25,3)]))
@@ -37,13 +37,13 @@ add('folder',folder)
 add('document',page([r(11,11,10,10,2,11)]))
 add('text',page(doc))
 add('image_file',page([r(9,9,14,14,2,1),l(10,21,15,14,2),l(15,14,22,21,2),r(18,11,3,3,2,12)]))
-add('audio_file',page([l(13,10,13,22,2,3),l(13,10,22,8,3,3),l(22,8,22,20,2,3),r(9,21,5,4,2,3),r(18,19,5,4,2,3)]))
-add('archive_file',page([*[r(15,8+i*3,3,2,0,4) for i in range(5)],r(14,23,5,3,1,4)]))
+add('audio_file',page([l(13,10,13,22,2,15),l(13,10,22,8,3,15),l(22,8,22,20,2,15),r(9,21,5,4,2,15),r(18,19,5,4,2,15)]))
+add('archive_file',page([*[r(15,8+i*3,3,2,0,16) for i in range(5)],r(14,23,5,3,1,16)]))
 add('package',tile(4,[r(5,8,22,19,3),l(7,10,16,15,2,4),l(16,15,25,10,2,4),l(16,15,16,25,2,4),l(10,6,21,6,2)]))
-add('executable',page([r(9,9,15,14,2,1),r(10,12,13,10,1,7),l(12,14,15,17,2,1),l(15,17,12,20,2,1),l(17,20,21,20,2,1)]))
+add('executable',page([r(9,9,15,14,2,14),r(10,12,13,10,1,7),l(12,14,15,17,2,14),l(15,17,12,20,2,14),l(17,20,21,20,2,14)]))
 add('shortcut',[r(1,15,17,15,3,6),r(2,16,15,13,2,7),l(5,25,5,21,2,6),l(5,21,13,21,2,6),l(10,18,13,21,2,6),l(13,21,10,24,2,6)])
 add('usb',[r(10,2,12,9,2,6),r(11,3,10,7,1,7),r(13,4,2,3,0,6),r(17,4,2,3,0,6),r(7,10,18,20,5,2),r(14,23,4,3,2)])
-add('network',[r(11,3,10,9,2,1),l(16,12,16,19,2,6),l(6,19,26,19,2,6),r(2,21,9,8,2,1),r(21,21,9,8,2,1)])
+add('network',[r(11,3,10,9,2,14),l(16,12,16,19,2,6),l(6,19,26,19,2,6),r(2,21,9,8,2,14),r(21,21,9,8,2,14)])
 add('volume',[r(3,6,26,23,4,6),r(4,7,24,21,3,7),r(6,9,20,12,2,11),r(7,24,13,2,1,6),r(24,24,2,2,1,2)])
 add('back',[l(21,7,11,16,3,6),l(11,16,21,25,3,6)])
 add('forward',[l(11,7,21,16,3,6),l(21,16,11,25,3,6)])
@@ -67,13 +67,13 @@ add('warning',tile(4,[r(14,7,4,13,2),r(14,24,4,3,2)]))
 add('keyboard',[r(1,7,30,21,4,6),r(3,9,26,17,3,7),*[r(5+x*5,12+y*5,3,3,1,6) for y in range(2) for x in range(5)],r(9,23,14,2,1,6)])
 add('mouse',[r(7,1,18,30,9,6),r(9,3,14,26,7,7),l(16,4,16,13,2,6),l(9,14,23,14,2,6)])
 add('sound',tile(3,[r(5,13,6,8,1),l(11,13,17,8,3),l(17,8,17,25,3),l(17,25,11,21,3),l(22,12,25,16,2),l(25,16,22,21,2)]))
-add('gpu',[r(2,6,28,20,3,2),r(6,9,17,14,7),r(10,12,9,8,4,2),r(26,10,2,10,1),*[r(7+i*4,26,2,4,0,4) for i in range(5)]])
+add('gpu',[r(2,6,28,20,3,2),r(6,9,17,14,7),r(10,12,9,8,4,2),r(26,10,2,10,1),*[r(7+i*4,26,2,4,0,16) for i in range(5)]])
 add('wifi',[l(4,12,16,5,3,6),l(16,5,28,12,3,6),l(9,18,16,14,3,6),l(16,14,23,18,3,6),r(13,23,6,6,3,2)])
 add('usb_hub',[r(11,11,10,10,3,2),l(16,3,16,11,2,6),l(3,16,11,16,2,6),l(21,16,29,16,2,6),l(16,21,16,29,2,6),r(12,1,8,4,1,6),r(1,12,4,8,1,6),r(27,12,4,8,1,6)])
 
 PALETTES = [
-    [0,0x245db2,0x087c71,0x684ba8,0xa44a12,0xa93855,0x17212f,0xf8fafc,0xffffff,0x946318,0xf2cb7b,0x526173,0xffe8ae,0x253d57],
-    [0,0x245db2,0x087c71,0x684ba8,0xa44a12,0xa93855,0xe8edf5,0x161d27,0xffffff,0xe8bb68,0xf2cb7b,0xabb7c6,0xffe8ae,0x253d57]
+    [0,0x245db2,0x087c71,0x684ba8,0xa44a12,0xa93855,0x17212f,0xf8fafc,0xffffff,0x946318,0xf2cb7b,0x526173,0xffe8ae,0x253d57,0x245db2,0x684ba8,0xa44a12],
+    [0,0x245db2,0x087c71,0x684ba8,0xa44a12,0xa93855,0xe8edf5,0x161d27,0xffffff,0xe8bb68,0xf2cb7b,0xabb7c6,0xffe8ae,0x253d57,0x77a8f2,0xbda5ef,0xf0b476]
 ]
 
 def main():
@@ -85,11 +85,11 @@ def main():
         assert 1<=len(shapes)<=32
         lines.append(' /* '+name+' */')
         for shape in shapes:
-            assert all(0<=v<=32 for v in shape[1:6]) and 0<shape[6]<14
+            assert all(0<=v<=32 for v in shape[1:6]) and 0<shape[6]<17
             lines.append(' {'+','.join(map(str,shape))+'},')
         offsets.append(offsets[-1]+len(shapes))
     lines+=['};','static const uint16_t icon12_offsets[] = {'+','.join(map(str,offsets))+'};',
-            'static const uint32_t icon12_palettes[2][14] = {'+','.join('{'+','.join(hex(c) for c in p)+'}' for p in PALETTES)+'};']
+            'static const uint32_t icon12_palettes[2][17] = {'+','.join('{'+','.join(hex(c) for c in p)+'}' for p in PALETTES)+'};']
     (ROOT/'include/engine/ui/icons12_data.h').write_bytes(('\n'.join(lines)+'\n').encode())
     out=ROOT/'docs/architecture/figures/m12-icons';out.mkdir(parents=True,exist_ok=True)
     for number,(name,shapes) in enumerate(ICONS):

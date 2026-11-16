@@ -11,6 +11,13 @@
 #endif
 #include <engine/ui/icons12.h>
 
+static double luminance(uint32_t color){
+ double result=0,weights[]={.2126,.7152,.0722};
+ for(unsigned i=0;i<3;++i){double value=(color>>(16-i*8)&255)/255.;result+=weights[i]*(value<=.04045?value/12.92:pow((value+.055)/1.055,2.4));}
+ return result;
+}
+static double contrast(uint32_t a,uint32_t b){double x=luminance(a),y=luminance(b);return (fmax(x,y)+.05)/(fmin(x,y)+.05);}
+
 static int reference(const ui12_shape*s,int u,int v){
  double x=s->x*256.,y=s->y*256.,a=s->a*256.,b=s->b*256.;
  if(!s->kind){
@@ -47,6 +54,13 @@ int main(int argc,char**argv){
   uint32_t row[128];for(unsigned y=0;y<extent;++y){ui12_icon_row(id,y,extent,theme,row);if(fwrite(row,4,extent,stdout)!=extent)return 3;}return 0;
  }
  unsigned samples=0,cases=0;
+ for(unsigned theme=0;theme<2;++theme){
+  const uint32_t*p=icon12_palettes[theme];
+  for(unsigned i=14;i<17;++i)assert(contrast(p[i],p[7])>=3.0);
+  assert(contrast(p[6],p[7])>=4.5&&contrast(p[2],p[7])>=3.0&&contrast(p[9],p[7])>=3.0);
+  for(unsigned i=1;i<=5;++i)assert(contrast(p[8],p[i])>=4.5);
+  assert(contrast(p[8],p[13])>=4.5);
+ }
  for(unsigned i=0;i<sizeof(icon12_shapes)/sizeof(*icon12_shapes);++i)
   for(int y=-129;y<=8321;y+=131)for(int x=-129;x<=8321;x+=131){assert(ui12_shape_contains(&icon12_shapes[i],x,y)==reference(&icon12_shapes[i],x,y));++samples;}
  unsigned sizes[]={8,16,20,24,26,32,39,40,42,48,63,64,96,128};
@@ -59,6 +73,6 @@ int main(int argc,char**argv){
  ui12_icon_row(1,0,0,0,untouched);ui12_icon_row(1,0,129,0,untouched);
  for(unsigned i=0;i<128;++i)assert(untouched[i]==0xabcdef01);
  assert(ICON12_WINDOWS_APPS==19&&ICON12_COUNT==57);
- printf("PASS: %u independent geometry samples, %u icon/theme/extent cases, 19 distinct app identities, fallback and row bounds.\n",samples,cases);
+ printf("PASS: %u independent geometry samples, %u icon/theme/extent cases, 19 distinct app identities, palette contrast, fallback and row bounds.\n",samples,cases);
  return 0;
 }
