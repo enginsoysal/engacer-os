@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "checked_at": "2026-11-16T09:18:23.761526+00:00",
+  "target": "project-root/build",
+  "publication_complete": true,
+  "verified_publication_commit": "08e230ae8402d687f5f22939e85421a754f58c4c",
+  "owner_authorized_cleanup": true,
+  "automatic_approval_review": "rejected",
+  "reported_reason": "blocked by policy; no additional reason supplied",
+  "deletion_performed": false,
+  "build_directory_still_present": true,
+  "canonical_source_docs_evidence_and_release_media_preserved": true,
+  "safe_manual_action": "Remove only the project-root/build directory; preserve source, .git, docs, evidence and accepted dist media"
+}
