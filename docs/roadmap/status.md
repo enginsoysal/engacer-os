@@ -6,8 +6,11 @@ Updated 16 November 2026. **M12.1 / 0.12.1 passes its native stage qualification
 [exact-source acceptance](../../evidence/M12/1/acceptance-results.json).
 All 568 compiled inputs match Git; QEMU SATA/UEFI and BIOS, the exact enabled-device
 VMware starter, real 150%/4K, focus/scroll input, idle and twelve cached/full
-comparisons pass. Native acceptance precedes the separate public release/site
-closure. Full final M12 regression remains M12.18.
+comparisons pass. Native acceptance and
+[public release/site closure](../../evidence/M12/1/publication-results.json)
+pass separately: twenty public assets, 297 pages and 1,950 discovered links,
+with current source/guide/download and desktop/mobile checks. M12.2 icon work is
+now in progress. Full final M12 regression remains M12.18.
 
 **Engacer OS M11.6 / 0.11.6 is the previous final M11 delivery.**
 [Exact-source acceptance](../../evidence/M11/6/acceptance-results.json) passes

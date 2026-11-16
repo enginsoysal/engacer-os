@@ -113,3 +113,6 @@ M11.6 FINAL and M12.0 design/publication evidence are accepted records. Preserve
 M11FINAL media and the original M12.0 SVGs/design archives. New native work uses
 M12STAGE<n> artifacts and evidence/M12/<n>. build/m12 is an owned junction to
 external local scratch storage; never place sparse VM fixtures in OneDrive.
+
+M12.1 M12-STAGE1-VM-v1 and its public delivery are accepted. Preserve its stage
+media, source stamp and evidence/M12/1; use M12STAGE2 or later for new work.
