@@ -38,6 +38,10 @@ Renaming, moving, recycling and removing have different meanings: use Recycle
 Bin's **Restore** to recover a recycled file. Permanent deletion has its own
 explicit review and cannot be undone.
 
+Renaming, moving or recycling an item clears the current file clipboard under
+this stage's retained move policy. Copy or Cut again before pasting elsewhere.
+Paste is muted when that clipboard is empty; Ctrl+V explains the next action.
+
 ## USB files
 
 Choose **USB drives**, select a connected drive, then double-click or Enter.

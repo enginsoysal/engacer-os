@@ -90,6 +90,9 @@ encoding; zero/raw records remain readable. Bit 30 marks an encoded record,
 followed by a 16-bit encoded length; bit 31 retains zero-page semantics. Both
 flags together are invalid. Addresses retain 30 bits, well above payload LBAs.
 Earlier build modes retain their original format and immutable artifacts.
+This is a private installer record format; external compression-tool interchange
+is not supported. Older recovery media cannot replay the new encoded records;
+use the matching stage ISO, retaining its original checksums.
 
 The production decoder uses no heap or persistent dictionary. Output is exactly
 4096 bytes; lengths, back-references, input/output boundaries and complete input
