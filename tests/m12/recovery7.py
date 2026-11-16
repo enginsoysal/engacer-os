@@ -24,7 +24,11 @@ def main():
         with repair as g:
             p=ui.Pointer(g)
             for action in (50,80,100,2):c.wizard(g,p,action)
-            start=c.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240);c.shot(g,'recovery-complete');(out/'recovery.log').write_bytes(g.log().encode())
+            start=c.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240)
+            g.qmp('stop')
+            try:ui.raw_shot(g,out,'recovery-complete',False)
+            finally:g.qmp('cont')
+            (out/'recovery.log').write_bytes(g.log().encode())
         assert ui.q.digest(disk,2112*512,4096)==before
         report['checks'].append('Actual ISO recovery validates and decodes its on-disk compressed slot, restoring deliberately corrupted owned BIOS bytes exactly')
         with ui.guest(work/'compressed-repaired-bios',disk,firmware='bios',media='installed',ready='M7_DESKTOP_READY') as g:
