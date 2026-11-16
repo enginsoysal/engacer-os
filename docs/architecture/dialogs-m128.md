@@ -95,3 +95,10 @@ retained managed pages. Other Files windows may navigate, select and open known
 handlers while a different owner holds the picker. Requests that would replace
 the shared modal broker remain refused, including unknown-type Open with. The
 expanded fault, format, display and restart matrix is still pending.
+
+The exact current VMware ZIP installs and starts twice without its ISO with all
+shipped devices enabled. An isolated native write-fault clone keeps dirty text
+and its original path, reports the error and permits Cancel without losing work.
+Compile-only frames now measure 56 bytes for picker_editor_open12, 168 for the
+checked staging helper and 312 for its broker, retaining the guarded 16-KiB stack.
+The expanded feature/display/recovery gates are still incomplete.
