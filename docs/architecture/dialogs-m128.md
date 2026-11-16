@@ -126,3 +126,10 @@ the existing refusal, retaining its dirty text/path and the original owner.
 Native regression explicitly checks both Ctrl+Shift+S and Ctrl+O, followed by
 an intentional Ctrl+S. The interrupted candidate is recorded as an intentional
 owned-test stop, not an OS crash; qualification restarts on the corrected media.
+
+The shared dialog requires at least 560x512 logical desktop pixels. Review
+layout reserves a bounded three-line filename, a path field and separate
+feedback/buttons with clear gaps at the admitted minimum height. A real
+1280x1024 framebuffer at 200% exercises that height, alongside compact
+light/dark, 150% and 4K. Smaller logical desktops receive an explicit sizing
+message rather than overlapping review controls.

@@ -26,10 +26,10 @@ def main():
         if 'iso_sha256' in row:assert row['iso_sha256']==iso,name
     assert not native['development_only'] and len(native['checks'])>=12 and native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0] and native['resources']['before'][3]==native['resources']['after'][3]
-    assert profiles['feature_journeys_passed'] and len(profiles['profiles'])==4
-    assert [(p['physical'],p['theme']) for p in profiles['profiles']]==[([800,600],'light'),([800,600],'dark'),([1920,1200],'light'),([3840,2160],'light')]
-    for label,size in [('compact',(800,600)),('compact-dark',(800,600)),('150',(1920,1200)),('4k',(3840,2160))]:
-        for kind in ('save-as','open','new-folder'):
+    assert profiles['feature_journeys_passed'] and len(profiles['profiles'])==5
+    assert [(p['physical'],p['theme']) for p in profiles['profiles']]==[([1280,1024],'light'),([800,600],'light'),([800,600],'dark'),([1920,1200],'light'),([3840,2160],'light')]
+    for label,size in [('minimum-height',(1280,1024)),('compact',(800,600))],('compact-dark',(800,600)),('150',(1920,1200)),('4k',(3840,2160))]:
+        for kind in ('save-as','open','new-folder','replace','dirty'):
             with Image.open(WORK/'dialogs-profiles'/f'{kind}-{label}.png') as image:assert image.size==size
     assert len(reports['bios']['checks'])==len(reports['vmware-results']['checks'])==3
     assert reports['vmware-results']['existing_vm_inventory_unchanged'] and reports['vmware-results']['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
