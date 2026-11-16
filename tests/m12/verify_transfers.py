@@ -35,6 +35,10 @@ def main():
     import files_observe as observed
     fixture=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m12-stage7-transfers'/native['owned_fixture']/'owned.img'
     assert observed.ui.s.s.document(fixture,'/Users/Owner/Documents/Welcome.txt')==(ROOT/'distros/packages/m12-desktop-guide/content.txt').read_bytes()
+    assert observed.ui.s.s.document(fixture,'/Users/Owner/Desktop/Source/Export.txt')==b'Native original 123'
+    try:observed.ui.s.s.document(fixture,'/Users/Owner/Desktop/Source/Large.bin',limit=64*1024**2)
+    except AssertionError as error:assert str(error).startswith('Expected persistent file not found:')
+    else:raise AssertionError('The cancelled partial tree published its unfinished file')
     for profile in motion['profiles']:
         assert len(profile['comparisons'])==4 and all(v['cached_equals_full_viewport'] for v in profile['comparisons'])
         assert profile['managed_bytes_before']==profile['managed_bytes_after']
@@ -44,7 +48,7 @@ def main():
         for name in names:assert 'M7_DESKTOP_READY build='+meta['build_id'] in (WORK/group/(name+'.log')).read_text(encoding='utf-8')
     for label,width,height in [('compact-actions',1280,800),('commands-150',1920,1200),('commands-4k',3840,2160)]:
         capture=load(WORK/f'transfers-native/{label}-capture.json');assert (capture['width'],capture['height'])==(width,height)
-    for label in ('usb-transfer-progress','native-transfer-progress','conflict-review','usb-conflict','removed-source-result','usb-export-refusal'):
+    for label in ('usb-transfer-progress','native-transfer-progress','conflict-review','usb-conflict','removed-source-result','usb-export-refusal','compact-dark-actions'):
         assert (WORK/f'transfers-native/{label}.png').is_file()
     common.git_inputs(meta['source_sha256']);common.git_inputs(syntax['source_sha256'])
     for folder in ('boot','kernel','include','runtime','user'):
