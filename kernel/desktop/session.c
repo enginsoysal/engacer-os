@@ -1251,6 +1251,21 @@ static void keyboard(int key) {
 #ifdef ENGINE_M12
         if(desktop_focus11)target=0;
 #endif
+#ifdef ENGINE_M12
+        /* Tab is rare: two bounded scans avoid an 8-KiB frame on every key. */
+        unsigned count=0,current=0;
+        for(unsigned n=0;n<control_count;++n){control*c=&controls[n];
+            if(c->window!=target||c->action==70||(launcher&&!c->action))continue;
+            if(control_active&&focused_control_window==target&&focused_action==c->action)current=count+1;
+            ++count;
+        }
+        if(count){unsigned selected=(key==136?(current?current+count-2:count-1):(current?current:0))%count,position=0;
+            for(unsigned n=0;n<control_count;++n){control*c=&controls[n];
+                if(c->window!=target||c->action==70||(launcher&&!c->action))continue;
+                if(position++==selected){control_active=1;focused_control_window=c->window;focused_action=c->action;whole();break;}
+            }
+        }
+#else
         unsigned candidates[DESKTOP_CONTROLS],count=0,current=0;
         for(unsigned n=0;n<control_count;++n){control *c=&controls[n];
             if(c->window!=target||c->action==70||(launcher&&!c->action))continue;
@@ -1259,6 +1274,7 @@ static void keyboard(int key) {
         }
         if(count){unsigned selected=key==136?(current?current+count-2:count-1):(current?current:0);control *c=&controls[candidates[selected%count]];
             control_active=1;focused_control_window=c->window;focused_action=c->action;whole();}
+#endif
         return;
     }
     if(key==10&&control_active){uint64_t target=focused_control_window;unsigned command=focused_action;control_active=0;action(target,command);whole();return;}

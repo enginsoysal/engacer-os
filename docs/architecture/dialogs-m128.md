@@ -102,3 +102,11 @@ and its original path, reports the error and permits Cancel without losing work.
 Compile-only frames now measure 56 bytes for picker_editor_open12, 168 for the
 checked staging helper and 312 for its broker, retaining the guarded 16-KiB stack.
 The expanded feature/display/recovery gates are still incomplete.
+
+A second native probe opened the actual BMP, then found a ZIP/Enter stack
+overflow. The generic keyboard function reserved an 8192-byte control-index
+array on every key, including nested file-dialog handling. M12 now computes Tab
+focus with two bounded scans over existing controls, with the same order and
+wrap behavior, no array, no new persistent buffer and no idle work. M11 retains
+its historical conditional path. The failed candidate and frames are retained;
+all current-media qualification must be repeated after rebuilding this fix.
