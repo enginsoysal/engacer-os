@@ -9,7 +9,7 @@ static void files_breadcrumbs12(desktop_window*w,application*a,uint64_t token,de
  if(a->usb_mode10==1)ui73_fit(field.x+10,field.y+8,right-field.x-18,"USB drives",UI12_BODY,ink());
  else{char label[48],n[24];decimal(n,a->usb_disk10+1);copy(label,"USB ",48);append(label,n,48);int root=(int)ui73_measure(label,UI12_BODY)+16;if(root>right-field.x-8)root=right-field.x-8;
   if(root>16){ui73_fit(field.x+10,field.y+8,root-8,label,UI12_BODY,ink());file_control11(token,(desktop_rect){field.x+4,field.y,root,36},F12_USB_ROOT);}
-  if(!equal(a->usb_path10,"/")&&right-field.x-root>26){text(field.x+root+5,field.y+8,"/",UI12_BODY,ink());ui73_fit(field.x+root+20,field.y+8,right-field.x-root-26,file_basename11(a->usb_path10),UI12_BODY,ink());}}
+  if(!equal(a->usb_path10,"/")&&right-field.x-root>26){unsigned slashes=0;for(unsigned i=0;a->usb_path10[i];++i)slashes+=a->usb_path10[i]=='/';int leaf=field.x+root;if(slashes>1){text(leaf+5,field.y+8,"/ ...",UI12_BODY,ink());leaf+=44;}if(right-leaf>26){text(leaf+5,field.y+8,"/",UI12_BODY,ink());ui73_fit(leaf+20,field.y+8,right-leaf-26,file_basename11(a->usb_path10),UI12_BODY,ink());}}}
  if(editable)button(token,right,field.y,editable,"Edit",F11_ADDRESS,0);
 }
 static const char*files_nav_hint12(uint64_t token,i11_target target){

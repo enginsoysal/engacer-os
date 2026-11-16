@@ -77,6 +77,7 @@ static void file_breadcrumbs11(desktop_window*w,application*a,uint64_t token,des
  if(f->address_active){file_text_field11(field,f->address,f->cursor,f->anchor,1,0);file_control11(token,field,F11_ADDRESS_FIELD);return;}
 #ifdef ENGINE_M12
  if(a->usb_mode10){files_breadcrumbs12(w,a,token,field);return;}
+ files_native_breadcrumbs12(a,token,field);return;
 #endif
 #ifdef ENGINE_M12
  component_field12(field,0);

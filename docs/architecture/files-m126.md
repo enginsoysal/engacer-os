@@ -20,8 +20,9 @@ capacity. USB directory ordering remains unchanged and sorting stays unavailable
 rather than advertising a sort that the provider does not implement.
 
 The minimum Files window keeps its body below the complete navigation/toolbar.
-This replaces the old short-window branch that could put contents over controls
-below 360 pixels high. Empty-state instructions stay short enough for that body.
+The current graphical minimum is 500x420. The content offset also remains safe
+if later validated sizes become smaller, instead of using the old below-360
+branch. Empty-state instructions stay short enough for the body.
 
 ## Ordering and selection identity
 
@@ -37,8 +38,14 @@ their stable source-entry order even in reverse mode.
 The existing bounded native heap sort and listing cache remain. Selection stays
 bound to source-entry IDs. Sorting remaps keyboard focus and range anchor to
 those IDs and reveals a focused selected item. Active selection, inactive
-selection, hover and keyboard focus have different visual roles. Changing order
-or view does not open an object; ordinary single-select/double-click/Enter remains.
+selection, hover and keyboard focus have different visual roles. Changing view also reveals the focused selected object in the new page size.
+Changing order or view does not open an object; ordinary single-select/double-click/Enter remains.
+
+Native breadcrumbs show every ancestor when it fits; a skipped middle is marked
+with explicit ellipsis. USB similarly marks omitted ancestors. This avoids
+showing Home/Scene as though Documents were not part of the actual hierarchy.
+Ancestor controls retain their checked path-prefix commands; Edit has the full
+address.
 
 ## Complete names and preferences
 
@@ -46,7 +53,10 @@ Hover an abbreviated supported filename for its full name in a measured opaque
 tip. Bounded wrapping uses native Inter at 14 pixels, at most twelve 63-character
 lines and no heap allocation. The tip stays inside the visible window and screen;
 if there is insufficient room it is not clipped into an unreadable popup.
-Moving away invalidates its old bounds. Capture, dialogs, menus and the launcher
+Moving away invalidates its old bounds. Drawing rechecks the real topmost window
+and current row under the pointer: a native probe found stale hover state after
+keyboard window/location changes in the first candidate, and that candidate is
+not accepted. Capture, dialogs, menus and the launcher
 suppress it. USB name lookup uses its own one-entry stack record, preserving
 the shared visible rows and generation-bound identity.
 

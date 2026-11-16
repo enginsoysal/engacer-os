@@ -4,6 +4,13 @@ static const char*files_type_name12(const char*name,unsigned kind){return ui12_f
 static void files_usb_view_path12(char*out){copy(out,"/System/Settings/usb-view12-",256);append(out,owner.user,256);append(out,".bin",256);}
 static void files_usb_view_load12(void){char path[256];unsigned data[4],bytes=0;usb_view12=0;files_usb_view_path12(path);if(!v6_verify(m6_volume(),path)&&!v6_read(m6_volume(),path,0,data,sizeof(data),&bytes)&&bytes==sizeof(data)&&data[0]==0x36565755&&data[1]==1&&data[2]<=1&&!data[3])usb_view12=data[2];}
 static unsigned files_usb_view_save12(void){char path[256];unsigned data[4]={0x36565755,1,usb_view12,0};files_usb_view_path12(path);return v6_put(m6_volume(),path,sizeof(data),memory_source,data);}
+static void files_reveal_view12(desktop_window*w,application*a){
+ unsigned row=0,chosen=0,page=a->usb_mode10?files_usb_rows12(w):file_page_size11(w);
+ if(a->usb_mode10==1&&a->usb_selected10){unsigned count=files_drive_count12();while(row<count&&files_drive_at12(row)+1!=a->usb_selected10)++row;chosen=row<count;}
+ else if(a->usb_mode10==2&&a->usb_selected10){row=a->usb_selected10-1;chosen=1;}
+ else if(!a->usb_mode10){row=selection_focus11[a-apps];chosen=selected_row11(a,row);}
+ if(chosen)a->offset=row/page*page;
+}
 static void files_order12(desktop_window*w,application*a,unsigned key,unsigned toggle){
  unsigned slot=(unsigned)(a-apps);file_window11*f=&file_windows11[slot];unsigned focused=selection_index11(a,selection_focus11[slot]),anchor=selection_index11(a,selection_anchor11[slot]);
  if(toggle&&f->sort==key)f->descending^=1;else{f->sort=key;f->descending=0;}file_lists11[slot].generation=0;a->offset=0;
@@ -59,4 +66,23 @@ static unsigned files_tip_content12(i11_target target,char lines[12][64],desktop
  if(name[at]||!count)return 0;int height=(int)count*21+16;if(height>bottom-top)return 0;int x=row.x+8,y=row.y+row.height+4;if(x+width>right)x=right-width;if(x<left)x=left;if(y+height>bottom)y=row.y-height-4;if(y<top)y=top;*out=(desktop_rect){x,y,width,height};return count;
 }
 static void files_name_tip_damage12(i11_target next){if(files_tip_bounds12.width)invalidate(files_tip_bounds12);char lines[12][64];desktop_rect r;if(files_tip_content12(next,lines,&r))invalidate(r);}
-static void files_name_tip_draw12(void){char lines[12][64];desktop_rect r;unsigned n=files_tip_content12(hover12,lines,&r);files_tip_bounds12=(desktop_rect){0};if(!n)return;files_tip_bounds12=r;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);ui73_round(r.x,r.y,r.width,r.height,6,p.ink);ui73_round(r.x+1,r.y+1,r.width-2,r.height-2,5,p.surface);for(unsigned i=0;i<n;++i)text(r.x+12,r.y+8+(int)i*21,lines[i],UI12_SECONDARY,p.ink);}
+static void files_name_tip_draw12(void){
+ files_tip_bounds12=(desktop_rect){0};
+ /* Keyboard window/location changes can leave the last pointer target stale. */
+ if(desktop_hit(&model,(int)pointer_x,(int)pointer_y)!=hover12.window)return;
+ unsigned under=0;for(unsigned i=0;i<control_count;++i){control*c=&controls[i];desktop_rect r=c->rect;if(c->window==hover12.window&&c->action==hover12.action&&(int)pointer_x>=r.x&&(int)pointer_x<r.x+r.width&&(int)pointer_y>=r.y&&(int)pointer_y<r.y+r.height)under=1;}if(!under)return;
+ char lines[12][64];desktop_rect r;unsigned n=files_tip_content12(hover12,lines,&r);if(!n)return;files_tip_bounds12=r;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);ui73_round(r.x,r.y,r.width,r.height,6,p.ink);ui73_round(r.x+1,r.y+1,r.width-2,r.height-2,5,p.surface);for(unsigned i=0;i<n;++i)text(r.x+12,r.y+8+(int)i*21,lines[i],UI12_SECONDARY,p.ink);
+}
+static void files_native_breadcrumbs12(application*a,uint64_t token,desktop_rect field){
+ component_field12(field,0);file_control11(token,field,F11_ADDRESS);int edit=field.width>=130?52:0,right=field.x+field.width-edit;
+ char home[256],bin[256],label[256];home72(home);file_bin_path11(bin,0);unsigned root=1;const char*root_name="System drive";
+ if(file_in_bin11(a->path)){root=length(bin);root_name="Recycle Bin";}else if(file_within11(a->path,home)){root=length(home);root_name="Home";}
+ uint16_t starts[128],ends[128];unsigned count=0,at=root;while(a->path[at]&&count<128){if(a->path[at]=='/'){++at;continue;}starts[count]=(uint16_t)at;while(a->path[at]&&a->path[at]!='/')++at;ends[count++]=(uint16_t)at;}
+ int root_width=(int)ui73_measure(root_name,UI12_BODY)+16,total=root_width;
+ for(unsigned i=0;i<count;++i){unsigned n=ends[i]-starts[i];memcpy(label,a->path+starts[i],n);label[n]=0;total+=16+(int)ui73_measure(label,UI12_BODY)+16;}
+ int x=field.x+6,available=right-x-6;if(root_width>available)root_width=available;
+ if(root_width>12){ui73_fit(x+4,field.y+8,root_width-8,root_name,UI12_BODY,ink());file_control11(token,(desktop_rect){x,field.y,root_width,36},F11_CRUMB+root);}x+=root_width;
+ unsigned first=0;if(total>available&&count>1){if(right-x>60){text(x+4,field.y+8,"/ ...",UI12_BODY,ink());x+=48;}first=count-1;}
+ for(unsigned i=first;i<count&&right-x>28;++i){text(x+4,field.y+8,"/",UI12_BODY,ink());x+=16;unsigned n=ends[i]-starts[i];memcpy(label,a->path+starts[i],n);label[n]=0;int width=(int)ui73_measure(label,UI12_BODY)+16;if(width>right-x-4)width=right-x-4;if(width<12)break;ui73_fit(x+4,field.y+8,width-8,label,UI12_BODY,ink());file_control11(token,(desktop_rect){x,field.y,width,36},F11_CRUMB+ends[i]);x+=width;}
+ if(edit)button(token,right,field.y,edit,"Edit",F11_ADDRESS,0);
+}
