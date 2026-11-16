@@ -17,7 +17,10 @@ different backgrounds; keyboard focus has an additional outline. A focused or
 hovered user object's full supported name is also shown above the grid.
 
 `include/engine/ui/desktop12.h` owns geometry and spatial neighbors. Rendering,
-hit targets and marquee intersection use the same rectangles. The previous
+hit targets and marquee intersection use the same rectangles. Window caption
+(or grip) capture suppresses ordinary hover behind the moving window. File-drag
+destination hover remains independent. Cached movement is compared against full
+viewport repaint, including the desktop and its full-name header. The previous
 hard-coded three-launcher hit strip is disabled for M12. This prevents visible
 art and input bounds from drifting. The helper reserves enough columns for all
 four built-ins at short display heights and caps each user page at 128 objects.

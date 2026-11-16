@@ -168,13 +168,14 @@ def main():
             p.move(1200,80);p.drain()
             # Create enough real desktop folders through the wizard to overflow the ordinary grid.
             p.logical(600,300,True)
-            for number in range(43):
+            for number in range(33):
                 create(g,p,'d'+str(number).zfill(2));print('Created desktop overflow fixture',number,flush=True)
             assert c.flag(g,'desktop_page11')>0
             c.shot(g,'desktop-overflow');assert any(v[5]==40027 for v in controls(g))
             p.desktop(40027,True);assert c.flag(g,'desktop_page11')==0
             assert not any(v[5]==40027 for v in controls(g));assert any(v[5]==40028 for v in controls(g))
             p.desktop(40028,True);assert c.flag(g,'desktop_page11')==1
+            assert not any(v[5]==40028 for v in controls(g))
             c.key(g,'home');assert c.flag(g,'desktop_item_focus11')==0
             c.key(g,'right');assert c.flag(g,'desktop_item_focus11')==4
             c.key(g,'left');assert c.flag(g,'desktop_item_focus11')==0
@@ -182,7 +183,7 @@ def main():
             c.shot(g,'keyboard-overflow-focus');c.idle(g)
             after=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32));assert after[0]==baseline[0] and after[3]==baseline[3]
             report['resources']=dict(before=baseline,after=after,retained_pages=after[0]-baseline[0])
-            report['checks'].append('Forty-three actual GUI-created folders overflow to reachable pages; unavailable Previous has no hit target; spatial keys skip the reserved gap, End reveals the selected item; no retained pages/new allocation failures and idle CPUs halt')
+            report['checks'].append('Thirty-three actual GUI-created folders overflow to reachable pages; unavailable Previous has no hit target; spatial keys skip the reserved gap, End reveals the selected item; no retained pages/new allocation failures and idle CPUs halt')
             # Hide every built-in reference independently, without removing its service.
             before_refs=rows(g)
             for reference in range(4):

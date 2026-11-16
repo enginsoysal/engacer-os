@@ -23,6 +23,8 @@ static void component_button12(uint64_t window,desktop_rect r,const char*label,u
  ui73_fit(r.x+10,r.y+8+!!(state&UI12_PRESSED),r.width>20?(unsigned)r.width-20:0,label,UI12_BODY,s.ink);
 }
 static void component_hover12(i11_target next,unsigned buttons){
+ /* Captured window movement must not highlight objects behind the old bounds. */
+ if(dragging||(interaction11.captured&&interaction11.down.kind==I11_CAPTION))next=(i11_target){0,0,I11_BACKGROUND};
  if(i11_same(next,hover12)&&buttons==previous_buttons)return;
  /* The full desktop name lives above the grid, outside the hovered tile. */
  if((!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+V6_ENTRIES)||(!next.window&&next.action>=F11_DESKTOP_ITEM&&next.action<F11_DESKTOP_ITEM+V6_ENTRIES))invalidate((desktop_rect){30,82,(int)model.width-60,28});
