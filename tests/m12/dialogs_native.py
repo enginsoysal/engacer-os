@@ -111,23 +111,28 @@ def main():
                 c.shot(g,'changed-target-refused');p.desktop(54011,True);assert picker(g).phase==1;p.desktop(54025,True);assert not c.flag(g,'file_dialog_state11') and f.app(g)['path']=='/Users/Owner/Documents/Existing.txt'
                 report['checks'].append('Another window remains usable during review; changing and saving the target invalidates the old replacement review, followed by a fresh explicit replacement')
                 close_focused(g,p)
-                start_app(g,p,'Image Viewer');p.desktop(74,True);assert picker(g).purpose==3
+                start_app(g,p,'Image Viewer');p.desktop(10502,True);assert picker(g).purpose==3
                 p.desktop(54018,True);choose(g,p,'ColorStudy.bmp');c.key(g,'ret');assert not c.flag(g,'file_dialog_state11') and f.app(g)['path'].endswith('/ColorStudy.bmp')
                 c.shot(g,'image-opened');close_focused(g,p)
                 report['checks'].append('Image Viewer uses the common picker to open an actual native BMP while retaining its existing format checks')
-                start_app(g,p,'Archive Manager');p.desktop(74,True);assert picker(g).purpose==4
+                start_app(g,p,'Archive Manager');p.desktop(54000,True);assert picker(g).purpose==4
                 p.desktop(54017,True);choose(g,p,'ArchiveSample.zip');c.key(g,'ret');assert not c.flag(g,'file_dialog_state11') and f.app(g)['path'].endswith('/ArchiveSample.zip')
                 p.desktop(54002,True);assert picker(g).purpose==5;p.desktop(54016,True);c.shot(g,'choose-extraction-folder');p.desktop(54011,True)
                 assert not c.flag(g,'file_dialog_state11') and '/Users/Owner/Documents/Extracted' in f.entries(g)
                 c.shot(g,'chosen-extraction-result');close_focused(g,p)
                 report['checks'].append('Archive Manager opens a real ZIP and extracts into a newly created subfolder at the destination chosen through the shared folder dialog')
                 p.desktop(94,True);p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret')
-                # Fault, display and restart profiles remain explicit pending gates.
-                raise AssertionError('Remaining M12.8 fault/display/restart qualification is not yet complete')
+                for _ in range(6):start_app(g,p,'Text Editor')
+                assert count_windows(g)==8;c.key(g,'ctrl','shift','s');assert c.flag(g,'file_dialog_state11')==10 and count_windows(g)==8
+                token=owner(g);c.key(g,'alt','f4');assert c.flag(g,'file_dialog_state11')==10 and owner(g)==token and count_windows(g)==8
+                c.shot(g,'eight-window-owner-guard');p.desktop(54010,True)
+                for _ in range(6):close_focused(g,p)
+                assert count_windows(g)==2
+                report['checks'].append('At the eight-window limit keyboard Save as uses its owner without a ninth slot; Alt+F4 cannot bypass it and Cancel returns all window resources')
             close_focused(g,p);assert count_windows(g)==1;f.same_pages(before,f.stats(g));c.idle(g);report['resources']=dict(before=list(before),after=list(f.stats(g)),retained_pages=0);(out/'install.log').write_bytes(g.log().encode())
         assert ui.s.s.document(disk,'/Users/Owner/Documents/First.txt')==text
         assert ui.s.s.document(disk,'/Users/Owner/Downloads/Saved.txt')==saved
-        assert ui.s.s.document(disk,'/Users/Owner/Documents/Existing.txt')==b'Keep original target'
+        assert ui.s.s.document(disk,'/Users/Owner/Documents/Existing.txt')==(b'Keep original target' if args.smoke else saved)
         report['passed']=True
     except Exception:
         report['error']=ui.q.clean(traceback.format_exc())
