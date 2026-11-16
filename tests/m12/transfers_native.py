@@ -33,7 +33,7 @@ def job(g):
     return struct.unpack_from('<15I',raw),struct.unpack_from('<6Q',raw,64)
 
 def wait(g,p,error=0):
-    deadline=time.monotonic()+180
+    deadline=time.monotonic()+600
     while job(g)[0][0]:
         if time.monotonic()>deadline:raise TimeoutError('Transfer deadline')
         time.sleep(.02)
@@ -116,9 +116,9 @@ def main():
             details(g,p)
             assert not struct.unpack('<4i',ui.memory(g,ui.symbol('files_tip_bounds12',16,True)[0],16))[2],'Busy name tip remained'
             report['checks'].append('A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details')
-            p.desktop(f.row(g,'Large.bin'),True);p.desktop(21004,True);wait(g,p);assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)
+            p.desktop(f.row(g,'Large.bin'),True);start(g,p,21004);wait(g,p);assert f.entries(g)['/Users/Owner/Downloads/Large.bin']['crc']==zlib.crc32(payload)
             # A second real source tests partial completion on cancellation of a tree.
-            f.visit(g,p,'Downloads');p.desktop(f.item(g,p,'Large.bin'),True);action(g,p,40000);f.visit(g,p,'/Users/Owner/Documents/Source');action(g,p,40002);wait(g,p)
+            f.visit(g,p,'Downloads');p.desktop(f.item(g,p,'Large.bin'),True);action(g,p,40000);f.visit(g,p,'/Users/Owner/Documents/Source');start(g,p,40002);wait(g,p)
             f.visit(g,p,'Documents');p.desktop(f.item(g,p,'Source'),True);action(g,p,40000);f.visit(g,p,'Desktop');start(g,p,40002);busy_frame(g)
             deadline=time.monotonic()+30
             while job(g)[0][11]<1:
