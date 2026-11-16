@@ -1,0 +1,11 @@
+{
+  "build_id": "f197f66e0a524fa0839c125171587566",
+  "accepted": false,
+  "observations": [
+    "The native capture shows a two-line user label extending beyond the 96-pixel selection cell. Cells are enlarged to 112 pixels with 120-pixel pitch.",
+    "Standalone home/trash marks incorrectly used the window theme on a dark wallpaper. The desktop now chooses shared icon ink from its actual background.",
+    "Code review found that the full-name header needs separate damage invalidation when hover changes. A native dirty/full comparison is added.",
+    "The first harness read matched both volume and another optimized symbol. The read now requests the actual V6 volume size.",
+    "Independent pin verification found no project pin after recycle/restore. Source confirms intentional removal of pins pointing into Recycle Bin. The test now repins the restored folder before verifying persisted pins. Restore itself and original folder bytes succeeded."
+  ]
+}

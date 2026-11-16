@@ -3,7 +3,9 @@
 Status: M12.0 design baseline, authorized 16 November 2026. This specification and
 [concept screens](figures/m12/overview.svg) are design, not native runtime proof.
 [Ordered stages](../milestones/m12.md), [inventory](m12-inventory.md) and
-[tokens](m12-tokens.json) govern implementation. M11.6 remains the qualified ISO.
+[tokens](m12-tokens.json) govern implementation. Current native delivery is recorded in the
+[handbook index](../handbook/index.md) and stage progress; M11.6 was the native
+baseline when this original design contract was accepted.
 The owner authorized proceeding with this baseline; agent review does not claim
 that the owner or study participants reviewed the newly generated concepts.
 

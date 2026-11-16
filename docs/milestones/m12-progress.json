@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.3",
-  "qualified_download": "M12.2",
+  "qualified_download": "M12.3",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -49,7 +49,7 @@
     },
     {
       "id": "M12.3",
-      "status": "in_progress",
+      "status": "publication_pending",
       "title": "Desktop and shortcuts",
       "requires": "M12.2",
       "deliverable": "Consistent desktop layout, icon labels, alignment, selection, background menu and Recycle Bin.",

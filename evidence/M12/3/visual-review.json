@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.3",
+  "build_id": "d7e649efbacc08139ee701199d951eeb",
+  "review_type": "Agent review of actual native captures and complete tasks, not a human usability study",
+  "criteria": {
+    "clarity": "Original identities and labels distinguish folders, references, selection, keyboard focus and disabled paging.",
+    "convenience": "New items are selected and revealed; background commands, shortcuts and Restore desktop icons avoid terminal work.",
+    "user_friendliness": "Hiding all icons leaves Start and restoration available; a fresh empty-desktop installation and disk restart exercise that route.",
+    "graphics": "Centered native Inter captions, ellipsis, original vector art, theme-independent desktop ink and consistent focus cells.",
+    "readability": "Two-line labels remain inside 112-pixel cells; full names are separate above the grid. Actual 150%/4K and 17 independent icon comparisons pass."
+  },
+  "captures": {
+    "feature.png": "1c98f7e54793e82545e5ee1d5c23c0bcd6e4ea7a476297a81830f1fc1bb057d0",
+    "native/desktop-shortcut.png": "03723d669433c52798bb726aae594df2d145bcabf7d7e01158f995ecb9c7b064",
+    "native/native-150.png": "6a956e14b3eb97920cf88149641ff933e88ff0028cef56141b85c1ce4a6ea301",
+    "native/native-4k.png": "2d80d92f403bfa52dddc48dfb845e7f1082744b40c116351d82c81634ea3d168",
+    "empty/restored-desktop-icons.png": "bfd2fba93de365041f6033ad0dc856627f3a6082a58ad3dd180c044185a4816a"
+  },
+  "motion": "Twelve complete viewport comparisons pass, including the corrected caption-capture hover case. Host observation timings are not FPS."
+}

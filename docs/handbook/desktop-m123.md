@@ -1,7 +1,8 @@
 # Use the M12.3 desktop
 
-M12.3 is being qualified. Use its media only after the matching release and
-acceptance appear. M12.2 remains the published tested download in the meantime.
+M12.3 passes its scoped native qualification. Use the matching
+[installation guide](install-m123.md), [release scope](../releases/m123-v0.12.3.md)
+and public media. Complete final M12 regression remains M12.18.
 
 ## Select, then open
 

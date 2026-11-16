@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "6dc77998ba063c26f2890db7f97938da",
+  "iso_sha256": "c94f8dca523c5c309537721a0dcc048a1425da0cd52fc509927ad54de2742c92",
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\motion_stage.py\", line 61, in main\n    assert a.crop(crop).tobytes()==b.crop(crop).tobytes(),(label,number,bounds)\nAssertionError: ('1280x800', 3, (460, 182, 1080, 700))\n"
+}

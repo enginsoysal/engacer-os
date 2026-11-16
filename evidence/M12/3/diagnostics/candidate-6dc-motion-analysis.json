@@ -1,0 +1,14 @@
+{
+  "build_id": "6dc77998ba063c26f2890db7f97938da",
+  "accepted": false,
+  "difference_bbox": [
+    38,
+    89,
+    662,
+    182
+  ],
+  "different_pixels": 7438,
+  "cause": "Pointer hover was recomputed against the old window bounds while caption capture moved the window underneath the pointer. A desktop item and its full-name header could highlight during the drag, then clear on release.",
+  "correction": "Suppress ordinary hover while a caption/grip capture or window drag owns the pointer. File drag destination hover remains available.",
+  "qualification": "Repeat exact-media native/empty/controller/startup and cached/full checks on the corrected build; prior passing groups do not qualify changed bytes."
+}

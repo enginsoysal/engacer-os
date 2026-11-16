@@ -1,7 +1,13 @@
 # M12.3 desktop and shortcut decisions
 
-Status: implementation and qualification in progress. M12.2 remains the public
-qualified download until the M12.3 native and publication gates pass.
+Native qualification passes M12-STAGE3-VM-v1 on build
+`d7e649efbacc08139ee701199d951eeb`: 574 compiled inputs, seventeen native icon
+comparisons, twelve cached/full comparisons, exact VMware/BIOS journeys and a
+separate empty-desktop recovery installation.
+[Acceptance](../../evidence/M12/3/acceptance-results.json),
+[resources](../../evidence/M12/3/resources.json) and
+[release scope](../releases/m123-v0.12.3.md). Public release and website proof
+remain separate gates before M12.4.
 
 ## One bounded grid
 
@@ -67,7 +73,8 @@ navigation exclude hidden references without renumbering user object identities.
 There are no new heap allocations, timers, idle animations, per-icon raster
 caches or per-window framebuffers. Grid state is computed from existing display,
 selection and directory state. Fixed state, transient stack use and managed
-framebuffer allocations are measured separately during qualification.
+framebuffer allocations are measured separately: linked fixed desktop state is 544,196 bytes, a
+32-byte increase over M12.2; managed desktop tasks retain no additional pages.
 
 Host checks exhaustively inspect bounded, non-overlapping cells over more than
 ten thousand display geometries and compare spatial navigation with an
@@ -76,7 +83,7 @@ Native tests separately traverse installation, selection, context commands,
 rename, shortcuts, pinning, recycle/restore, overflow, disk-only restarts,
 ordinary/150%/actual 4K display, idle behavior and retained memory. Exact packaged
 VMware and BIOS qualification are separate required records. Native captures
-and a five-question visual/scenario review will accompany acceptance; these are
+and a five-question visual/scenario review accompany acceptance; these are
 agent review, not a human usability study.
 
 The earlier M12.2 BIOS/AHCI timeout observation remains open. A passing repeat

@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "stage": "M12.3",
+  "build_id": "f197f66e0a524fa0839c125171587566",
+  "iso_sha256": "c628e828804c7e329818212783959e8dcc492bc0e9d4b37ae83ca4896a092841",
+  "owned_fixture": "825e38d90e6d4771913156599669ae39",
+  "checks": [],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\desktop_native.py\", line 97, in main\n    assert '/System/Recycle/Owner' in rows(g);close_files(g,p)\n  File \"<project-root>\\tests\\m12\\desktop_native.py\", line 8, in rows\n    raw=ui.memory(g,ui.symbol('volume',installed=True)[0]+64,1024*280)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('volume', [('364ad8', 'd3040'), ('4eb1e0', '8')])\n",
+  "idle_observations": []
+}

@@ -4,23 +4,21 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**Active development: M12.3 — desktop and shortcuts.**
-**Current native delivery: M12.2 — original scalable icons**, qualified within
-M12-STAGE2-VM-v1. [Install](docs/handbook/install-m122.md),
-[icons](docs/handbook/icons-m122.md), [shared controls](docs/handbook/components-m121.md),
-[release, checksums and retained BIOS observation](docs/releases/m122-v0.12.2.md),
-[exact-source acceptance](evidence/M12/2/acceptance-results.json).
-[M12.2 public media and complete website verification passed](evidence/M12/2/publication-results.json): twenty downloads, 305 pages and 2,053 discovered links. M12.3 now follows in order.
-[Public release and complete website verification passed](evidence/M12/1/publication-results.json)
-before M12.2 began. M12.0 has
-[completed design and public-delivery checks](evidence/M12/0/publication-results.json).
-The owner has
-authorized [M12.0 through M12.18](docs/milestones/m12.md) in strict order, with
-tests, documentation, GitHub and public website verification between stages.
-[The M12 contract](docs/architecture/desktop-m12.md) and
-[expected user journeys](docs/handbook/desktop-m12.md) distinguish original design
-concepts from implemented behavior. M12.2 has its own tested ISO and VMware
-starter; the complete final M12 regression remains M12.18.
+**Active development: M12.3 — desktop and shortcuts, public closure in progress.**
+**Current native delivery: M12.3**, qualified within M12-STAGE3-VM-v1.
+[Install](docs/handbook/install-m123.md), [desktop and shortcuts](docs/handbook/desktop-m123.md),
+[release/checksums and retained BIOS observation](docs/releases/m123-v0.12.3.md),
+[exact-source acceptance](evidence/M12/3/acceptance-results.json).
+574 compiled inputs match Git. Real selection/open/rename/pin/shortcut/recycle
+routes, overflow and independently hidden/restored references pass, including
+an empty desktop, disk-only restarts, actual 150%/4K and twelve cached/full
+comparisons. Fixed shell state grows 32 bytes over M12.2; managed tasks retain
+no extra pages. Public download and full website verification close before M12.4.
+[M12.2 public delivery](evidence/M12/2/publication-results.json) is preserved.
+The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
+order, with tests, English guides, GitHub releases and public website verification
+between stages. [Design contract](docs/architecture/desktop-m12.md),
+[user journeys](docs/handbook/desktop-m12.md). Final M12 regression remains M12.18.
 
 **Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),

@@ -1,6 +1,19 @@
 # Current status
 
-Updated 16 November 2026. **M12.2 / 0.12.2 passes M12-STAGE2-VM-v1.**
+Updated 16 November 2026. **M12.3 / 0.12.3 passes M12-STAGE3-VM-v1.**
+[Install M12.3](../handbook/install-m123.md), [desktop/shortcut guide](../handbook/desktop-m123.md),
+[release and retained limits](../releases/m123-v0.12.3.md),
+[acceptance](../../evidence/M12/3/acceptance-results.json).
+574 compiled inputs, seventeen native icon comparisons and twelve cached/full
+comparisons pass. Native tasks cover real files/references/pins, recycle/Restore,
+overflow, independently hidden/restored icons and empty-desktop recovery. The
+exact enabled-device VMware starter, QEMU SATA/UEFI and BIOS install and start
+independently; actual 150%/4K, stored guide/preferences and idle are checked.
+Fixed desktop state grows 32 bytes over M12.2; tasks retain zero extra pages.
+Public release/site closure is being verified before M12.4. The earlier
+M12.2 concurrent BIOS/AHCI timeout remains open for M12.18.
+
+**Previous M12.2 / 0.12.2 passes M12-STAGE2-VM-v1.**
 [Install M12.2](../handbook/install-m122.md), [recognize icons](../handbook/icons-m122.md),
 [scope/checksums and retained BIOS observation](../releases/m122-v0.12.2.md),
 [acceptance](../../evidence/M12/2/acceptance-results.json).
@@ -52,17 +65,17 @@ unchanged. The previous releases below are historical qualification, not new med
 
 ## Current development priority
 
-**M12.0 through M12.2 are closed; M12.3 desktop and shortcuts is in progress.**
+**M12.0 through M12.2 are closed; M12.3 native acceptance passes and public closure is in progress.**
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website
-readback. M12.2 now provides its separately qualified native media. The owner authorized
+readback. M12.3 now provides its separately qualified native media. The owner authorized
 [nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
 its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
 [source-backed inventory](../architecture/m12-inventory.md) and
 [expected journeys](../handbook/desktop-m12.md). Concepts are explicitly labeled;
-M12.0 provides no new native ISO. M12.2 has the current scoped download;
+M12.0 provides no new native ISO. M12.3 has the current scoped download;
 M11.6's broader final matrix remains historical proof for its own frozen bytes.
 
 ### Completed M11 development sequence

@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "stage": "M12.3",
+  "version": "0.12.3",
+  "qualification": "M12-STAGE3-VM-v1",
+  "build_id": "d7e649efbacc08139ee701199d951eeb",
+  "iso_sha256": "7fa3a8507e6234ac1f29c12e94ae46811b35c702d1fa282b11dea86300d49cb3",
+  "vmware_zip_sha256": "2fb37941bb0297c66ab9cc55f4dac9fd3617ab8be8d7a56a65a67918dce1263f",
+  "source_inputs_verified": 574,
+  "artifacts_verified": 14,
+  "native_checks": [
+    "Real UEFI install/retained-ISO restart; one click selects, double-click opens Documents, Enter opens My files and Recycle Bin, protected launcher deletion leaves core objects unchanged",
+    "Background and keyboard menus create/rename/pin a real folder; validated shortcut opens its target, recycling the shortcut preserves the target, and Recycle Bin restores the original folder",
+    "Thirty-three actual GUI-created folders overflow to reachable pages; unavailable Previous has no hit target; spatial keys skip the reserved gap, End reveals the selected item; no retained pages/new allocation failures and idle CPUs halt",
+    "Each built-in reference can be hidden without deleting user/core entries; keyboard skips hidden cells, Settings remains reachable through Start, Restore defaults works and display-only changes retain no pages",
+    "Independent stored directories, pinned-folder bytes and the matching bundled guide confirm persistence, not just compositor state",
+    "Independent disk boot 1 uses ordinary firmware discovery and retains real desktop objects and hidden-reference settings, with working restore",
+    "Independent disk boot 2 uses ordinary firmware discovery and retains real desktop objects and hidden-reference settings, with working restore",
+    "Actual 150% and 3840x2160/200% dark desktop captures preserve whole-object selection and native vector icons"
+  ],
+  "empty_desktop_checks": [
+    "Fresh installation with no user desktop objects can hide all four icons, safely consume navigation/Enter, open Settings through Start and restore defaults without a terminal",
+    "Ordinary same-firmware disk-only restart retains the empty layout; Restore desktop icons restores all references and writes the independently verified visible preference"
+  ],
+  "native_icon_comparisons": 17,
+  "cached_full_comparisons": 12,
+  "bios_checks": [
+    "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+    "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+    "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+  ],
+  "vmware_checks": [
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "resources": "resources.json",
+  "feature_provenance": "Actual owned QEMU SATA/UEFI installed 1280x800 guest, long-name-selection.png; original native Inter/vector rendering",
+  "feature_sha256": "1c98f7e54793e82545e5ee1d5c23c0bcd6e4ea7a476297a81830f1fc1bb057d0",
+  "harness_sha256": {
+    "tests/m12/boot_bios.py": "8b425afb47933842eb1c3c58a920d32c22c15ccf54500bf3ef06c0d613905e68",
+    "tests/m12/boot_stage.py": "d22d9f93b49eec91b073b43847da7e95ada2d984eb943b2a735a4bfee24db838",
+    "tests/m12/close_design.py": "39602df53eeca48a2a086e5898ec7265e27795817c55a0d9acde0a1ed9c5b1e3",
+    "tests/m12/close_stage.py": "c3180e7193403f45ebd66e3f2cc774225205dc42ddcbe6be4e161306e9da8f27",
+    "tests/m12/components.py": "435155d54c3af46a3df5637bf6cb54183fdd0998246b9a336cd5886522373842",
+    "tests/m12/components_host.c": "22c6412689e6306e7a943575f04a1ea55baaaafd95034e3e9af6de813178754d",
+    "tests/m12/components_host.py": "f616deee4883af88eef2e3a8dcd35d7aa90eacbaaf64fbd8cf081eadf7b3c043",
+    "tests/m12/design_contract.py": "536fddc648adc6f73be99d23ef6fd7f56ad2175970894a3d1186dc4c2ac30483",
+    "tests/m12/desktop_empty.py": "6e39a650c3d873a0d0732c38b28957c8af3a71ef74797c61948b94d4ef9ad879",
+    "tests/m12/desktop_host.c": "e54dd3e49075f73da65eee4b972419f9393bc38f062c4c874c644fe587e40bc3",
+    "tests/m12/desktop_host.py": "21d8f02413cedd5c3d5e96d379cef413a4f9d36bee052b5a48d42ec184b8be60",
+    "tests/m12/desktop_native.py": "2d5d0df8121e97e3856f92024d4fd34d6799124f2f3b7954448a11347a5d4894",
+    "tests/m12/downloads.py": "7a56595294dbc95ab77f11be42b5a1d8121a6d1a94adab4163900285d7576edb",
+    "tests/m12/focus_ownership.py": "9f2853732eac3eac9d1774f3fa2a837e2a6410dc7eee1b5fc46df7db2b40c669",
+    "tests/m12/icons_files.py": "10ed1e25938e445dce3f28a8c83c742f7e7145cca9434adbfc9d207d14174a77",
+    "tests/m12/icons_host.c": "d0c9cc94793fbc92878bc2308e4c16144d341fa7a502d0a166270559fc4ed932",
+    "tests/m12/icons_host.py": "5b9cd9db1162a97f97e5bb1a5ab1130202e7a3429a1aaa50843a8d98e47be3b2",
+    "tests/m12/icons_native.py": "f25a8268b9da4615d13ff8836ca6d2deb763d7bf538899609d8ffb14c1ffd455",
+    "tests/m12/motion.py": "362cc7c00111fbee4fabc0d5e56428ee3039f206eed33dc18aa40ce8bb1587d9",
+    "tests/m12/motion_stage.py": "aaf3954cbff31e9e5c8cefc864a01c76116a16523f42d4a0693281f9556ea967",
+    "tests/m12/ui.py": "cbeed49cb02a40514fcde5dbfef6ff203ef06d649c470e9f009061692bfa1c85",
+    "tests/m12/verify_components.py": "82d97e959a5798933fb245b42680669e15aa36529262f95dc80f9564e6b0f7d3",
+    "tests/m12/verify_desktop.py": "cfe39266845e43681de4a965619a2181ba405d54acdf24b1081556dce1a1692b",
+    "tests/m12/verify_icons.py": "80b05925f01f267d3aa3d2465adf5e342220e2078bc5d3b8fec6a2be18267286",
+    "tests/m12/vmware.py": "cda6a695068b2b22efa2ec185b7c958772ee4853312edd16fdd1ab8eead42a03",
+    "tests/m12/vmware_stage.py": "583bd8d973d76d70552f24c08fdbe35b659b304c300d7f5aac48e7cce848a454",
+    "tests/m12/website_readback.py": "e5e73f7fe09b0d9b20b0b25b4eb29aa633de2966e7360be01c1f1012ceb915a7"
+  },
+  "limits": [
+    "The earlier M12.2 concurrent BIOS/AHCI timeout remains open; stress reliability is not qualified.",
+    "Free desktop icon placement and arbitrary Unicode filenames are not added; existing volume/name/window quotas remain real.",
+    "Recycling a pinned folder removes its pin. Restore restores the original object; users can pin it again.",
+    "Final controller/device/original-application regression remains M12.18; physical/ARM, vendor GPU 3D and universal Windows compatibility remain unqualified.",
+    "Agent visual/scenario review is not a human usability study. Public release/site/download proof closes separately."
+  ]
+}

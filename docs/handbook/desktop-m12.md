@@ -1,8 +1,8 @@
 # M12 desktop experience — staged development
 
 M12.0 defines the design and ordered plan. It adds no native runtime yet.
-Use the qualified [M11.6 installer](install-m116.md) until a newer stage has a
-matching scoped release and media. [Progress and acceptance](../milestones/m12.md).
+Use the [current native guide and scoped media](index.md); each newer native
+stage requires its own matching acceptance and release. [Progress and acceptance](../milestones/m12.md).
 
 The target is recognizable app icons, consistent desktop/Start/taskbar/window
 identity and one Files frame for native folders and USB. Buttons/menu commands

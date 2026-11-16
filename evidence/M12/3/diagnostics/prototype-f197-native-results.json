@@ -1,0 +1,38 @@
+{
+  "passed": false,
+  "stage": "M12.3",
+  "build_id": "f197f66e0a524fa0839c125171587566",
+  "iso_sha256": "c628e828804c7e329818212783959e8dcc492bc0e9d4b37ae83ca4896a092841",
+  "owned_fixture": "28bf18862bab4092a2def168a889baf7",
+  "checks": [
+    "Real UEFI install/retained-ISO restart; one click selects, double-click opens Documents, Enter opens My files and Recycle Bin, protected launcher deletion leaves core objects unchanged",
+    "Background and keyboard menus create/rename/pin a real folder; validated shortcut opens its target, recycling the shortcut preserves the target, and Recycle Bin restores the original folder",
+    "Forty-three actual GUI-created folders overflow to reachable pages; unavailable Previous has no hit target; spatial keys skip the reserved gap, End reveals the selected item; no retained pages/new allocation failures and idle CPUs halt"
+  ],
+  "profiles": [],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17740,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17740,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\desktop_native.py\", line 146, in main\n    p.desktop(40005,True);job(g,p);assert path in rows(g);close_files(g,p)\nAssertionError\n",
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 501,
+        "paints_after": 501
+      }
+    ]
+  ]
+}

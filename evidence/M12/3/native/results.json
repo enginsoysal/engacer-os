@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "stage": "M12.3",
+  "build_id": "d7e649efbacc08139ee701199d951eeb",
+  "iso_sha256": "7fa3a8507e6234ac1f29c12e94ae46811b35c702d1fa282b11dea86300d49cb3",
+  "owned_fixture": "b503e1523d1d49ecb843475d439349be",
+  "checks": [
+    "Real UEFI install/retained-ISO restart; one click selects, double-click opens Documents, Enter opens My files and Recycle Bin, protected launcher deletion leaves core objects unchanged",
+    "Background and keyboard menus create/rename/pin a real folder; validated shortcut opens its target, recycling the shortcut preserves the target, and Recycle Bin restores the original folder",
+    "Thirty-three actual GUI-created folders overflow to reachable pages; unavailable Previous has no hit target; spatial keys skip the reserved gap, End reveals the selected item; no retained pages/new allocation failures and idle CPUs halt",
+    "Each built-in reference can be hidden without deleting user/core entries; keyboard skips hidden cells, Settings remains reachable through Start, Restore defaults works and display-only changes retain no pages",
+    "Independent stored directories, pinned-folder bytes and the matching bundled guide confirm persistence, not just compositor state",
+    "Independent disk boot 1 uses ordinary firmware discovery and retains real desktop objects and hidden-reference settings, with working restore",
+    "Independent disk boot 2 uses ordinary firmware discovery and retains real desktop objects and hidden-reference settings, with working restore",
+    "Actual 150% and 3840x2160/200% dark desktop captures preserve whole-object selection and native vector icons"
+  ],
+  "profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "dark": 1
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "dark": 1
+    }
+  ],
+  "icon_comparisons": [
+    {
+      "action": 30000,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30001,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30002,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30003,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30000,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30001,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30002,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30003,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 33001,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30000,
+      "theme": 1,
+      "physical_size": 72,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30001,
+      "theme": 1,
+      "physical_size": 72,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30002,
+      "theme": 1,
+      "physical_size": 72,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30003,
+      "theme": 1,
+      "physical_size": 72,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30000,
+      "theme": 1,
+      "physical_size": 96,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30001,
+      "theme": 1,
+      "physical_size": 96,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30002,
+      "theme": 1,
+      "physical_size": 96,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30003,
+      "theme": 1,
+      "physical_size": 96,
+      "max_channel_difference": 0
+    }
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17739,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17739,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 509,
+        "paints_after": 509
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 29,
+        "paints_after": 29
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 12,
+        "paints_after": 12
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 61,
+        "paints_after": 61
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 63,
+        "paints_after": 63
+      }
+    ]
+  ]
+}

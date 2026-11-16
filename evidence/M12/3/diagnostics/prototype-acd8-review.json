@@ -1,0 +1,11 @@
+{
+  "build_id": "acd8ecd3e9393ac676b71596a74cf288",
+  "accepted": false,
+  "native_checks_passed": true,
+  "observations": [
+    "The complete native journey and 16 icon comparisons pass, as do exact VMware and BIOS boots.",
+    "The long caption still uses paragraph truncation and emits M73_TEXT_OVERFLOW for expected shortening. The final candidate centers captions with explicit last-line ellipsis and updates its bundled guide.",
+    "Shortcut references now use the original document-and-arrow identity. New native coverage also checks Tab activation, shortcut overlay pixels and absence of a desktop paragraph-overflow marker.",
+    "These prototype results do not qualify the next candidate bytes."
+  ]
+}
