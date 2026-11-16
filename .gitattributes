@@ -222,3 +222,8 @@ kernel/desktop/picker12.inc -text whitespace=cr-at-eol
 kernel/desktop/archives74.inc -text whitespace=cr-at-eol
 kernel/desktop/formats74.inc -text whitespace=cr-at-eol
 evidence/M12/8/** -text -whitespace
+
+# Reuse existing validated IPC input for M12.8 document loading.
+kernel/desktop/document12.inc -text whitespace=cr-at-eol
+kernel/desktop/app.c -text whitespace=cr-at-eol
+include/engine/desktop/app.h -text whitespace=cr-at-eol

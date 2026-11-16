@@ -37,6 +37,10 @@ unsigned app7_package(unsigned,unsigned);
 unsigned app7_available(unsigned);
 unsigned app7_open(unsigned,unsigned);
 unsigned app7_request(unsigned,unsigned,unsigned,const void *,unsigned,app7_view *);
+#ifdef ENGINE_M12
+enum {APP12_DOCUMENT_STOPPED=256};
+unsigned app7_document12(unsigned,const char*,app7_view*,unsigned);
+#endif
 void app7_close(unsigned);
 #ifdef ENGINE_M74
 unsigned desktop74_in_use(unsigned);

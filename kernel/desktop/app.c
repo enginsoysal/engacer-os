@@ -276,8 +276,8 @@ static void transfer(instance *p,unsigned offset,void *buffer,unsigned bytes,int
         offset+=count;data+=count;bytes-=count;
     }
 }
-unsigned app7_request(unsigned slot,unsigned command,unsigned key,const void *data,unsigned bytes,app7_view *view) {
-    if(slot>=APP7_SLOTS||!instances[slot].live||app7_active||bytes>=APP7_TEXT||(!data&&bytes)||!view)return V6_INVALID;
+static unsigned request7(unsigned slot,unsigned command,unsigned key,const void *data,unsigned bytes,app7_view *view,unsigned prepared) {
+    if(slot>=APP7_SLOTS||!instances[slot].live||app7_active||bytes>=APP7_TEXT||(!data&&bytes&&!prepared)||!view)return V6_INVALID;
     instance *p=&instances[slot];unsigned header[]={APP7_MAGIC,command,key,bytes};
 #ifdef ENGINE_M74
     unsigned extra=(p->kind==13&&command==APP74_INFLATE_BEGIN)?APP74_STATE_PAGES:(p->kind==17&&command==APP74_HTML_BEGIN)?3:0;
@@ -287,7 +287,7 @@ unsigned app7_request(unsigned slot,unsigned command,unsigned key,const void *da
     }
 #endif
     transfer(p,0,header,sizeof(header),1);
-    if(bytes)transfer(p,offsetof(app7_mailbox,input),(void *)data,bytes,1);
+    if(bytes&&!prepared)transfer(p,offsetof(app7_mailbox,input),(void *)data,bytes,1);
     trap_frame frame={0};frame.cs=0x1b;frame.ss=0x23;frame.rflags=0x202;
     frame.rip=programs[PROGRAM_INDEX(p->kind)].entry;frame.rsp=APP7_STACK+4096-8;
     uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");
@@ -319,6 +319,11 @@ unsigned app7_request(unsigned slot,unsigned command,unsigned key,const void *da
     else {serial_text("M7_APP_CONTAINED kind=");serial_hex(p->kind);serial_text(" status=");serial_hex(call_result);serial_text("\n");app7_close(slot);}
     return call_result;
 }
+
+unsigned app7_request(unsigned slot,unsigned command,unsigned key,const void*data,unsigned bytes,app7_view*view){return request7(slot,command,key,data,bytes,view,0);}
+#ifdef ENGINE_M12
+#include "document12.inc"
+#endif
 
 trap_frame *app7_trap(trap_frame *frame) {
     if(!app7_active||current_slot>=APP7_SLOTS)for(;;)__asm__ volatile("cli; hlt");

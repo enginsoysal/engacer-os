@@ -10,7 +10,7 @@ def main():
     names=('M2','M3','M4','M45','M5','M51','M6','M7','M71','M72','M73','M74','M75','M8','M9','M92','M10','M11')
     definitions=['-DENGINE_'+name for name in names];reports=[]
     for mode in ('M11','M12'):
-        for source in ('kernel/desktop/session.c','kernel/storage/fat32.c','kernel/install/installer6.c'):
+        for source in ('kernel/desktop/session.c','kernel/storage/fat32.c','kernel/install/installer6.c','kernel/desktop/app.c'):
             r=subprocess.run([compiler,*flags,*definitions,*(['-DENGINE_M12'] if mode=='M12' else []),source],cwd=ROOT,capture_output=True)
             assert r.returncode==0,(mode,source,r.stderr.decode(errors='replace'))
             reports.append(dict(mode=mode,source=source,passed=True))

@@ -72,21 +72,16 @@ static void picker_close12(application*a,const char*message,unsigned remember){
 static unsigned picker_other_open12(uint64_t token,const char*path){
  for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&desktop_token(&model,i)!=token&&model.windows[i].app!=FILES&&apps[i].path[0]&&equal(apps[i].path,path))return 1;return 0;
 }
-static unsigned picker_text12(const char*path,char*out,unsigned*bytes){
- const v6_entry*e=entry(path);if(!e||e->kind!=1)return V6_NOTFOUND;if(e->size>=APP7_TEXT)return V6_LIMIT;
- if(v6_verify(m6_volume(),path)||v6_read(m6_volume(),path,0,out,APP7_TEXT-1,bytes)||*bytes!=e->size)return V6_IO;
- for(unsigned i=0;i<*bytes;++i){unsigned c=(uint8_t)out[i];if((c<32&&c!='\n'&&c!='\r'&&c!='\t')||c>126)return V6_INVALID;}out[*bytes]=0;return 0;
-}
 static void picker_snapshot12(const v6_entry*e){picker12.target_first=e->first;picker12.target_size=e->size;picker12.target_crc=e->crc;}
 static unsigned picker_unchanged12(const v6_entry*e){return e&&e->kind==1&&e->first==picker12.target_first&&e->size==picker12.target_size&&e->crc==picker12.target_crc;}
 static void picker_editor_open12(desktop_window*w,application*a,const char*path,unsigned decision){
- char candidate[APP7_TEXT];unsigned bytes=0,status=picker_text12(path,candidate,&bytes);
+ unsigned slot=(unsigned)(w-model.windows),status=app7_document12(slot,path,&a->view,0);
  if(status){picker12.phase=0;picker_error12(status==V6_LIMIT?"Text Editor accepts at most 8191 bytes. Your current document is kept.":status==V6_INVALID?"This is not a supported ASCII text file. Your current document is kept.":"The selected file could not be verified. Your current document is kept.");return;}
  if(a->dirty&&!decision){copy(picker12.pending,path,256);picker_snapshot12(entry(path));picker12.phase=P12_DIRTY_REVIEW;file_dialog_state11.focus=5;whole();return;}
  if(decision==1){save_document(a);if(a->dirty||a->stopped){picker_error12("Your current document could not be saved. Keep it open and try again.");return;}
-  status=picker_text12(path,candidate,&bytes);if(status){picker_error12("Your document was saved, but the new file could not be opened. It is still kept.");return;}}
+  status=app7_document12(slot,path,&a->view,0);if(status){picker_error12("Your document was saved, but the new file could not be opened. It is still kept.");return;}}
  /* app7_request validates the response before changing the display snapshot. */
- if(send_app(a,APP7_LOAD,0,candidate,bytes)){picker_error12("The app stopped before accepting this file. The previous text is retained.");return;}
+ status=app7_document12(slot,path,&a->view,1);if(status){if(status==APP12_DOCUMENT_STOPPED)a->stopped=1;picker_error12("The new file was not accepted. The previous text is retained.");return;}
  copy(a->path,path,256);a->existed=1;a->source_crc=entry(path)->crc;a->closing=0;(void)send_app(a,APP7_KEY,130,0,0);
  picker_close12(a,"Opened the selected text file.",1);invalidate(w->bounds);serial_text("M128_TEXT_OPENED\n");
 }

@@ -70,3 +70,22 @@ M12.14 owns the previously recorded menu/conflict feedback refinements, M12.16
 owns HiDPI cursor isolation and M12.18 owns final controller/application and
 BIOS/AHCI stress qualification. Every native stage still closes its English
 manuals, immutable GitHub assets and complete website before its successor.
+
+## Guarded-stack correction found by the first native probe
+
+The initial candidate installed and passed Save as/Cancel, but native Enter in
+Open caused a double fault. Compile-only stack usage measured 8,248 bytes in
+keyboard and another 8,248 in the new text-load helper, exceeding the existing
+guarded 16-KiB kernel stack even before intermediate calls. That failed candidate
+is not qualified; its serial log, manifest and frame report are retained.
+
+Keep the stack guard and stack size. Stage each checked source block directly
+from the native volume's existing 4096-byte scratch page into the selected
+worker's already allocated IPC input pages. Validation-only requests do not
+change those input pages. Applying rechecks ASCII/size, complete CRC and source
+identity, then invokes the ordinary response-validating broker. The old kernel
+view is replaced only after a valid successful worker response. No new kernel
+payload buffer, per-window allocation or mailbox ABI is introduced. The prepared
+input flag stays private to the trusted broker; ordinary requests still require
+and copy their supplied input. Hosted source/I/O/identity/fault tests supplement,
+rather than replace, the real CPL3 and dialog retry.
