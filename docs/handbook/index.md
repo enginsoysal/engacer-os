@@ -10,8 +10,7 @@ actual transfer, optional-app independence and USB/PS2 ordinary starts.
 Compact light/dark, actual 150%/4K, enabled-device VMware, separate BIOS,
 twelve movement comparisons and real compressed boot repair pass.
 Fixed shell state is 553,196 bytes, 239 above M12.11; completed UI tasks
-retain zero managed pages. Public release and complete website verification
-are the remaining gates before M12.13.
+retain zero managed pages. [Complete public proof](../../evidence/M12/12/publication-results.json) passes: twenty downloads, 364 pages and 2,513 HTTP links, native homepage Save and actual desktop/mobile guide/download verification. **M12.13 is active.**
 
 Previous [M12.11 complete public delivery](../../evidence/M12/11/publication-results.json)
 remains immutable: twenty downloads, 357 pages and 2,457 links.

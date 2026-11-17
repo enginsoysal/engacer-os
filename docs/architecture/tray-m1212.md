@@ -1,6 +1,6 @@
 # M12.12 — provider-backed system tray
 
-Status: M12-STAGE12-VM-v1 native qualification passes for build `93839018f852f6b6ba79643004d5f101`. The matching public release and complete website verification close separately before M12.13.
+Status: M12-STAGE12-VM-v1 native qualification passes for build `93839018f852f6b6ba79643004d5f101`. The complete public delivery passes: twenty downloads, 364 pages and 2,513 HTTP links, native homepage Save and actual desktop/mobile verification. M12.13 follows in order.
 
 ## How and why
 

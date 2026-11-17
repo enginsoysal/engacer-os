@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.12",
+  "current_stage": "M12.13",
   "qualified_download": "M12.12",
   "known_issues": [
     {
@@ -141,7 +141,7 @@
     },
     {
       "id": "M12.12",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "System tray and quick settings",
       "requires": "M12.11",
       "deliverable": "Clock/calendar, device status, safe removal and controls backed by real providers.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "M12.13",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Settings and personalization",
       "requires": "M12.12",
       "deliverable": "A consistent settings hierarchy, previews, persisted preferences and explicit default restoration.",
@@ -213,7 +213,10 @@
       "deliverable": "One frozen final ISO/starter, complete task regression, release assets and fresh website/manual verification.",
       "how_and_why": "Stage passes cannot qualify different final bytes or broaden hardware/Windows compatibility.",
       "acceptance": "Final native desktop/setup/USB/error/memory tests, all named controller profiles, original 7-Zip MSI lifecycle, exact source/assets and public readback.",
-      "publication": "required_before_next_stage"
+      "publication": "required_before_next_stage",
+      "carry_forward": [
+        "Revisit the BrixCanvas article custom-domain email-sharing observation in evidence/M12/12/website-observations.json during final website qualification."
+      ]
     }
   ],
   "publication_gate": [
