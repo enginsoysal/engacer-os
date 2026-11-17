@@ -1,0 +1,7 @@
+{
+  "stage": "M12.11",
+  "source_commit": "66a044144479ddbf62147ad66a855f5498c22a4e",
+  "observation": "Initial matching draft creation succeeded but immediate lookup was not readable, so the publisher stopped before uploads. A subsequent read resolved the exact same draft by ID; resume without recreating or clobbering.",
+  "draft_id": 448124164,
+  "target_matches": true
+}
