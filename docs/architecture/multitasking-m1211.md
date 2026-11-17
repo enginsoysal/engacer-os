@@ -54,5 +54,19 @@ Freeze matching source/media through native install, actual switch/arrange/drag,
 cancel, owner guards, minimum-size refusal and quota tests. Test compact light/
 dark, actual 150% and physical 3840x2160/200%, independent installed starts,
 exact enabled-device VMware, separate BIOS, movement equivalence and real boot
-repair. Measure retained pages, fixed bytes and halted idle CPUs. Publish only
+repair. Use two deliberately different pointer-moved normal rectangles when checking
+independent restoration; identical defaults alone cannot detect shared restore
+state. Measure retained pages, fixed bytes and halted idle CPUs. Publish only
 after exact-source acceptance and fresh complete public delivery checks.
+
+## M12.17 performance carry-forward
+
+The instrumented eight-window 150%/4K journey takes substantially longer under
+QEMU TCG than a single-window case. That observer duration is not FPS or a
+VMware responsiveness benchmark. Source inspection finds that `round_alpha73`
+still visits every shadow-interior pixel before skipping it, for each of eight
+shadow layers and each repainted window. M12.17 should measure this separately
+and evaluate equivalent bounded edge-span traversal before considering extra
+retained caches. Preserve audio pumping, signed clipping, alpha coverage and
+exact cached/full-frame equivalence. No renderer optimization is implemented
+in M12.11.
