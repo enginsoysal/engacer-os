@@ -45,3 +45,5 @@ The exact Linux image passed full source regression, build/types, vulnerability/
 5. Test the offline overlay prototype separately; record it as design evidence. Keep production overlay/sidebar renderer work visibly pending until real public interaction tests pass.
 
 The continuing website gate applies after every M13 submilestone. A successful Git push alone never closes it. Native OS changes, content publication, portal template behavior and human usability remain separate claims.
+
+The public visual review caught a low-contrast inherited search label on the original dark header. The Engacer opt-in header now uses the shared light paper surface and dark ink, preserving readable search/menu labels without changing other sites. Interaction passes alone did not establish this visual pass.

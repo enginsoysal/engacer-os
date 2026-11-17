@@ -77,7 +77,7 @@ export function portalDesign({stage=0,searchReady=false}={}){
  const current=stage?`M13.${stage}`:'M12.18';
  sequence=0;
  const header=b('menubrix',{brand:'E_  ENGACER OS',brandHref:'/',items:[{label:'Start here',href:'/blog/guide-start'},{label:'Install',href:'/blog/guide-install'},{label:'Use',href:'/blog/guide-use'},{label:'Customize',href:'/blog/guide-customize'},{label:'Downloads',href:'/blog/downloads'},{label:'Search',href:'/search'}],mode:'inline',width:'full',shape:'square',size:'l',bg:dark,textColor:'#d5e1e8',hoverColor:'#35ceba',blur:false,border:false,shadow:false});header.style={bg:{color:dark}};
- if(searchReady){header.props.documentationPortal=portalConfiguration();header.props.items=header.props.items.filter(item=>item.label!=='Search');}
+ if(searchReady){header.props.documentationPortal=portalConfiguration();header.props.items=header.props.items.filter(item=>item.label!=='Search');header.props.bg=paper;header.props.textColor=ink;header.style.bg.color=paper;}
  const status=layout([[text('CURRENT DOWNLOAD · '+current,11,teal,{weight:600,py:6})],[text(stage?`M13.${stage} · QUALIFIED STAGE DELIVERY`:'M13.0 · DESIGN & DOCUMENTATION PORTAL',11,muted,{align:'right',py:6})]],{bg:{kind:'color',color:'#eaf0f0'}});
  const hero=layout([[
  text('YOUR SPACE. YOUR SYSTEM.',11,teal,{weight:600,letterSpacing:'1.4px'}),heading('Start with what you want to do.',44,ink,{level:1,letterSpacing:'-1px'}),text('Install Engacer OS, find your way around the desktop, or make it yours. Current guides come first. Project history has its own place.',18),
