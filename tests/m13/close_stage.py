@@ -4,8 +4,23 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
+
+def verify_inputs_at_commit(ref, records, root=ROOT):
+    """Docs may advance after release; both refs must still bind every compiled byte."""
+    resolved = subprocess.check_output(['git','rev-parse',ref+'^{commit}'],cwd=root).decode().strip()
+    paths = list(records)
+    raw = subprocess.run(['git','cat-file','--batch'],cwd=root,input=''.join(resolved+':'+p+'\n' for p in paths).encode(),capture_output=True,check=True).stdout
+    at = 0
+    for path in paths:
+        end = raw.index(b'\n',at); header = raw[at:end].split()
+        assert len(header)==3 and header[1]==b'blob', ('Missing compiled source',path)
+        size=int(header[2]); body=raw[end+1:end+1+size]; at=end+size+2
+        assert hashlib.sha256(body).hexdigest()==records[path], ('Compiled source differs',resolved,path)
+    return resolved
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -34,11 +49,14 @@ def main():
     assert browser['source_commit'] == site['source_commit']
     notes_meta = json.loads((ROOT / f'build/m13/stage{stage}/release-notes.json').read_text(encoding='utf-8'))
     notes = (ROOT / f'build/m13/stage{stage}/release-notes.md').read_text(encoding='utf-8')
-    assert notes_meta['source_commit'] == site['source_commit'] and notes_meta['encoding'] == 'UTF-8'
+    assert notes_meta['encoding'] == 'UTF-8'
     assert hashlib.sha256(notes.encode('utf-8')).hexdigest() == notes_meta['sha256']
     assert release['body'].replace('\r\n', '\n') == notes.replace('\r\n', '\n')
     assert tag['ref'] == f'refs/tags/m13{stage}-v0.13.{stage}'
-    assert tag['object']['type'] == 'commit' and tag['object']['sha'] == site['source_commit']
+    assert tag['object']['type'] == 'commit' and tag['object']['sha'] == notes_meta['source_commit']
+    manifest = json.loads((ROOT / f'dist/m13stage{stage}-build-manifest.json').read_text(encoding='utf-8'))
+    verify_inputs_at_commit(tag['object']['sha'], manifest['source_sha256'])
+    verify_inputs_at_commit(site['source_commit'], manifest['source_sha256'])
     assert browser['native_editor_save'].startswith('Saved')
     assert browser['production_search'] and browser['task_sidebar'] and browser['ordered_task_navigation']
     assert browser['current_guide'] and browser['matching_download'] and browser['mobile_menu']
@@ -54,7 +72,7 @@ def main():
     assert count and int(count[1]) >= 22 and re.search(r'(?:#|ℹ) fail 0\b', tap)
     target = out / 'publication-results.json'
     assert not target.exists(), 'Accepted publication proof is immutable'
-    result = dict(passed=True, stage=f'M13.{stage}', qualification=accepted['qualification'], source_commit=site['source_commit'], build_id=accepted['build_id'], website='https://engaceros.brixcanvas.com', github_release=release['html_url'], workflow_ids=[w['databaseId'] for w in successful], current_native_download=downloads['latest'], design_only=False, new_iso=True, pages_checked=site['pages_checked'], unique_links=site['unique_links'], full_audit='website-audit.json', fresh_readback='website-readback.json', browser_readback='public-browser-verification.json', downloads='downloads.json')
+    result = dict(passed=True, stage=f'M13.{stage}', qualification=accepted['qualification'], source_commit=site['source_commit'], release_source_commit=tag['object']['sha'], build_id=accepted['build_id'], website='https://engaceros.brixcanvas.com', github_release=release['html_url'], workflow_ids=[w['databaseId'] for w in successful], current_native_download=downloads['latest'], design_only=False, new_iso=True, pages_checked=site['pages_checked'], unique_links=site['unique_links'], full_audit='website-audit.json', fresh_readback='website-readback.json', browser_readback='public-browser-verification.json', downloads='downloads.json')
     target.write_bytes((json.dumps(result, indent=2) + '\n').encode())
     print(f'PASS: M13.{stage} matching native source/media, GitHub downloads and current public website.')
 

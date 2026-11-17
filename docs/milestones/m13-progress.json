@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.1",
-  "qualified_download": "M12.18",
+  "qualified_download": "M13.1",
   "design_only": false,
   "stages": [
     {
@@ -15,7 +15,10 @@
     {
       "id": "M13.1",
       "title": "One native visual and interaction foundation",
-      "status": "in_progress"
+      "status": "in_progress",
+      "native_qualification": "M13-STAGE1-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m131-v0.13.1",
+      "remaining": "Final matching-release homepage Save and complete source/link readback"
     },
     {
       "id": "M13.2",
@@ -76,17 +79,19 @@
   "website_followups": [
     {
       "id": "same-page-search",
-      "status": "design_prototype",
-      "production_complete": false,
+      "status": "production_implemented",
+      "production_complete": true,
       "contract": "docs/architecture/website-m13.md",
-      "target_stage": "M13.1"
+      "target_stage": "M13.1",
+      "evidence": "evidence/M13/1/portal-preflight/results.json"
     },
     {
       "id": "article-sidebar-and-task-pagination",
-      "status": "specified",
-      "production_complete": false,
+      "status": "production_implemented",
+      "production_complete": true,
       "contract": "docs/architecture/website-m13.md",
-      "target_stage": "M13.1"
+      "target_stage": "M13.1",
+      "evidence": "evidence/M13/1/portal-preflight/results.json"
     }
   ]
 }
