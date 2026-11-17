@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "archive": "EngacerOS-M12STAGE10-VMware.zip",
+  "sha256": "2780c528681ad511b5a0fca6b8e33ab78618236be9bbc21735b21506d314b404",
+  "size": 10426069,
+  "image": "EngacerOS-M12STAGE10",
+  "build_id": "3cc55b89594d7e8d0902d44324beb97c",
+  "members": [
+    "7z2606-src.tar.xz",
+    "EngacerOS-M12STAGE10.iso",
+    "EngacerOS.vmdk",
+    "EngacerOS.vmx",
+    "Inter-OFL.txt",
+    "libmspack-LGPL-2.1.txt",
+    "LICENSE",
+    "START-HERE.txt",
+    "THIRD-PARTY-NOTICES.txt"
+  ],
+  "disk": "new growable 20-GiB SATA; not preinstalled",
+  "firmware": "UEFI, Secure Boot off",
+  "boot_order_forced": false,
+  "all_shipped_devices_enabled": true
+}

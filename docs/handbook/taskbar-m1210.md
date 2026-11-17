@@ -1,7 +1,6 @@
 # Use the grouped taskbar — M12.10
 
-Development guide. Qualification and public M12.10 downloads are still pending;
-the completed tested download remains [M12.9](install-m129.md).
+M12.10 native qualification passes. Use the [matching installation guide](install-m1210.md). Public release and website verification close separately before M12.11.
 
 Each app has one taskbar button, combining its pin and open windows. The icon
 and name identify the app. A number appears when it has several windows. The

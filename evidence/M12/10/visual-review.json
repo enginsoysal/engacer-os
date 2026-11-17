@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "stage": "M12.10",
+  "build_id": "3cc55b89594d7e8d0902d44324beb97c",
+  "scope": "Agent visual/scenario review of exact native captures; not a human study or complete accessibility qualification. Public delivery closes separately.",
+  "reviewed": [
+    "feature.png",
+    "taskbar-native/two-files-chooser.png",
+    "taskbar-profiles/chooser-compact-dark.png",
+    "taskbar-profiles/chooser-150.png",
+    "taskbar-profiles/max-overflow-second-page.png",
+    "taskbar-profiles/all-apps-fit-4k.png"
+  ],
+  "findings": [
+    "Original app icons, unique groups and numeric window badges retain readable app identity.",
+    "Numbered chooser rows distinguish actual folder/document and unsaved state; light/dark controls remain legible.",
+    "Compact thirteen-hidden-app overflow reaches a second bounded page; physical 3840x2160/200% fits all eight pins without a spurious More apps control.",
+    "Taskbar names abbreviate within their bounded buttons; full app/window identities remain available through Start and chooser menus."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Retain shared-menu footer fitting, transfer/modal arbitration and Start query/notice feedback. New empty Editor currently says Saved document before its first save; distinguish new/unsaved/saved using real persistence state and test it."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Retain cursor/hit isolation and explicit scale versus compact startup reconciliation."
+    }
+  ],
+  "capture_sha256": {
+    "feature.png": "b58989f59bfcb85b541594092260a01329464160417d2cbc186042e72d3531aa",
+    "taskbar-native/two-files-chooser.png": "b58989f59bfcb85b541594092260a01329464160417d2cbc186042e72d3531aa",
+    "taskbar-profiles/chooser-compact-dark.png": "debbbd3e92ce5ce18e24d2e297de1c001e3a120291140c19d193a324e203ebbb",
+    "taskbar-profiles/chooser-150.png": "f17a6a13ac425a3c88a7cde052bae6728f3f0e5a126e9fb86bdb562722d97cf1",
+    "taskbar-profiles/max-overflow-second-page.png": "9e1a28085943f36839e65086e0390aeb3684c3f0ed1ffc63398dd714a071549e",
+    "taskbar-profiles/all-apps-fit-4k.png": "b5fd3a294cdf16fb6e826f5c960f87af94a971007055a85678710937f49cd74e"
+  }
+}

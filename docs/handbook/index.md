@@ -1,27 +1,21 @@
 # Engacer OS user handbook
 
-Current native delivery: **M12.9 / 0.12.9**, within M12-STAGE9-VM-v1.
-[Install the matching VMware media](install-m129.md),
-[Start and local search](start-m129.md),
-[release scope](../releases/m129-v0.12.9.md).
-
-Extract the whole VMware ZIP, open EngacerOS.vmx and choose I Copied It if asked.
-Select the disk row, follow Next, review and install, then choose **Restart to
-Engacer OS**. The matching ISO may stay attached. [The eight steps](install-m129.md)
-require no terminal syntax, online account or guest driver installer.
-
-Nine native journeys cover local search, launch, categories, pins, optional app
-removal/reinstall and a real folder. Exact stored preferences survive two
-ordinary starts. Compact light/dark/150%/4K, matching VMware/BIOS starts, actual
-compressed repair and twelve cached/full comparisons pass. Fixed shell state
-is unchanged from M12.8 and tasks retain zero managed pages. [Complete public proof](../../evidence/M12/9/publication-results.json)
-passes: twenty downloads, 342 pages and 2,354 links. M12.10 follows in order. Final matrix remains
-M12.18; feedback/arbitration remains M12.14 and scale/cursor work M12.16.
+**M12.10 / 0.12.10 passes M12-STAGE10-VM-v1.**
+[Install](install-m1210.md), [grouped taskbar](taskbar-m1210.md),
+[release scope](../releases/m1210-v0.12.10.md),
+[exact-source acceptance](../../evidence/M12/10/acceptance-results.json).
+590 compiled Git inputs, nine native task/profile checks, compact light/dark,
+actual 150%/4K, twelve movement comparisons, enabled-device VMware/BIOS installation,
+two ordinary disk starts and real compressed boot repair pass. Unique app groups,
+numbered window choice, bounded paginated overflow, pin order and safe removal are
+checked. Fixed shell state is 552,925 bytes, 840 above M12.9; tasks retain zero
+managed pages. Public release and complete website verification are pending;
+M12.10 remains active until those gates close. M12.11 has not started.
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.9](install-m129.md)
+- [Download and install M12.10](install-m1210.md)
 - [Open, Save as, Cancel and choose an extraction folder](dialogs-m128.md)
 - [Copy, move, cancel and inspect transfer results](transfers-m127.md)
 - [Choose Files views, order and full names](files-m126.md)

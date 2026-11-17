@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "build_id": "3cc55b89594d7e8d0902d44324beb97c",
+  "profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "overflow_visible": true,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2220032,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "overflow_visible": true,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2203648,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "overflow_visible": true,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9498624,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "overflow_visible": false,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33460224,
+      "retained_pages": 0
+    }
+  ],
+  "checks": [
+    "Actual 800x600 with eight pins and eight distinct running apps paginates thirteen hidden apps without exceeding twelve menu items; choosing the already-active hidden Help window focuses it rather than minimizing it",
+    "Actual compact light/dark, 150% and physical 3840x2160/200% taskbar/chooser/dirty review/overflow use ordinary input, retain zero pages and halt at idle"
+  ]
+}

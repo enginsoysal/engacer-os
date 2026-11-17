@@ -1,6 +1,6 @@
 # M12.10 — grouped native taskbar
 
-Status: implementation in progress; M12.9 is the completed tested download.
+Status: M12-STAGE10-VM-v1 native qualification passes. Matching public release and website gates are pending before M12.11.
 
 ## How and why
 

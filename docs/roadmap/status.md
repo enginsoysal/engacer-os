@@ -1,20 +1,16 @@
 # Current status
 
-Updated 17 November 2026. **M12.9 / 0.12.9 passes M12-STAGE9-VM-v1.**
-[Install](../handbook/install-m129.md), [Start and local search](../handbook/start-m129.md),
-[release scope](../releases/m129-v0.12.9.md),
-[exact-source acceptance](../../evidence/M12/9/acceptance-results.json).
-588 compiled Git inputs, nine native journeys, compact light/dark, actual
-150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
-ordinary disk starts pass. Real repair restores corrupted owned boot bytes.
-Start adds clearer app/folder types, local ranking, result counts and a compact
-layout while preserving categories/pins. Fixed shell state is unchanged from
-M12.8; completed tasks retain zero managed pages. [Complete public proof](../../evidence/M12/9/publication-results.json)
-passes: twenty matching downloads, 342 pages and 2,354 links, plus actual
-desktop/mobile browser verification. **M12.10 is active.**
-The [grouped taskbar implementation](../architecture/taskbar-m1210.md) is in
-progress. Compile guards and 295,907 production host bounds/order checks pass; native
-group/window/context/overflow and publication gates remain pending.
+Updated 17 November 2026. **M12.10 / 0.12.10 passes M12-STAGE10-VM-v1.**
+[Install](../handbook/install-m1210.md), [grouped taskbar](../handbook/taskbar-m1210.md),
+[release scope](../releases/m1210-v0.12.10.md),
+[exact-source acceptance](../../evidence/M12/10/acceptance-results.json).
+590 compiled Git inputs, nine native task/profile checks, compact light/dark,
+actual 150%/4K, twelve movement comparisons, enabled-device VMware/BIOS installation,
+two ordinary disk starts and real compressed boot repair pass. Unique app groups,
+numbered window choice, bounded paginated overflow, pin order and safe removal are
+checked. Fixed shell state is 552,925 bytes, 840 above M12.9; tasks retain zero
+managed pages. Public release and complete website verification are pending;
+M12.10 remains active until those gates close. M12.11 has not started.
 
 Previous [M12.8 complete public delivery](../../evidence/M12/8/publication-results.json)
 remains immutable: twenty downloads, 337 pages and 2,305 links, including shared

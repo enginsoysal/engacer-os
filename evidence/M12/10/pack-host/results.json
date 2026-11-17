@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "roundtrip_pages": 553,
+  "payload_sha256": {
+    "build/m12/installed/KERNEL.ELF": "3d8ea582d2d6b27eab24cb646f7f765acae670772c0eda632bde30a5353d3ea5",
+    "build/m12/BOOTX64.EFI": "06ce1a6412d5fd02983b2e4ba98e907a2fc59172bedfb7923e5c6812f1bdd7af"
+  },
+  "malformed_and_fuzz_cases": 10808,
+  "guard_bytes_unchanged": true,
+  "heap_allocations": 0,
+  "page_bytes": 4096,
+  "source_sha256": {
+    "include/engine/install/pack12.h": "c0f65bdd052b5f544eb9cbfe6d5c59ae490f4ef547dd86ccbe64e89ca4d9c66f",
+    "tools/build/m12_pack.py": "e6329e8ad8ec060f97deccae1e178cbdab969ba8e8a366c5d7c63c86a89b8f83",
+    "tests/m12/pack_host.c": "4f6f56a7dfb8a12a8f82cb69c4d18154499c00ae5fc1eebaefba336537bcf8cd",
+    "tests/m12/pack_stage.py": "0aab426e35905ed1253cc61b89526644b39e1bff15a96c61ec77b17360fc3e19"
+  },
+  "scope": "Actual production C block decoder and build encoder. Native install/recovery and firmware startup remain separate required gates."
+}

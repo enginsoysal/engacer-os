@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 552085,
+    "sections": {
+      "bss": 552057,
+      "data": 28
+    },
+    "map_sha256": "bca8104ae50d2193c94232e8005ce88f3daa03787c97ad46df6f4a0c783478d7"
+  },
+  "current": {
+    "bytes": 552925,
+    "sections": {
+      "bss": 552897,
+      "data": 28
+    },
+    "map_sha256": "4447926b50bb8dcb7d0ef08dc0aa4a4b50b1e6bb01d0d1d497fb070e61a00730"
+  },
+  "added_fixed_desktop_bytes": 840,
+  "managed": {
+    "before": [
+      1047,
+      1047,
+      17720,
+      5
+    ],
+    "after": [
+      1047,
+      1073,
+      17720,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "display_profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "overflow_visible": true,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2220032,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "overflow_visible": true,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2203648,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "overflow_visible": true,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9498624,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "overflow_visible": false,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33460224,
+      "retained_pages": 0
+    }
+  ],
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "scope": "Derived unique app groups and fixed shared menu labels; no new worker, preview framebuffer or idle animation. Fixed state, peak and retained pages are separate measurements."
+}

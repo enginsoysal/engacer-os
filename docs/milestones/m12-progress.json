@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.10",
-  "qualified_download": "M12.9",
+  "qualified_download": "M12.10",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -121,7 +121,7 @@
     },
     {
       "id": "M12.10",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Taskbar",
       "requires": "M12.9",
       "deliverable": "Consistent app icons, running/active/minimized states, bounded window grouping and context actions.",

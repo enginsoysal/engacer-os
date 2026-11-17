@@ -4,18 +4,17 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**M12.9 / 0.12.9 passes M12-STAGE9-VM-v1.**
-[Install](docs/handbook/install-m129.md), [Start and local search](docs/handbook/start-m129.md),
-[release scope](docs/releases/m129-v0.12.9.md),
-[exact-source acceptance](evidence/M12/9/acceptance-results.json).
-588 compiled Git inputs, nine native journeys, compact light/dark, actual
-150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
-ordinary disk starts pass. Real repair restores corrupted owned boot bytes.
-Start adds clearer app/folder types, local ranking, result counts and a compact
-layout while preserving categories/pins. Fixed shell state is unchanged from
-M12.8; completed tasks retain zero managed pages. [Complete public proof](evidence/M12/9/publication-results.json)
-passes: twenty matching downloads, 342 pages and 2,354 links, plus actual
-desktop/mobile browser verification. **M12.10 is active.**
+**M12.10 / 0.12.10 passes M12-STAGE10-VM-v1.**
+[Install](docs/handbook/install-m1210.md), [grouped taskbar](docs/handbook/taskbar-m1210.md),
+[release scope](docs/releases/m1210-v0.12.10.md),
+[exact-source acceptance](evidence/M12/10/acceptance-results.json).
+590 compiled Git inputs, nine native task/profile checks, compact light/dark,
+actual 150%/4K, twelve movement comparisons, enabled-device VMware/BIOS installation,
+two ordinary disk starts and real compressed boot repair pass. Unique app groups,
+numbered window choice, bounded paginated overflow, pin order and safe removal are
+checked. Fixed shell state is 552,925 bytes, 840 above M12.9; tasks retain zero
+managed pages. Public release and complete website verification are pending;
+M12.10 remains active until those gates close. M12.11 has not started.
 
 Previous [M12.8 complete public delivery](evidence/M12/8/publication-results.json)
 remains immutable: twenty downloads, 337 pages and 2,305 links, including shared
@@ -56,9 +55,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9.iso) ·
-[Step-by-step installation](docs/handbook/install-m129.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1210-v0.12.10/EngacerOS-M12STAGE10-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1210-v0.12.10/EngacerOS-M12STAGE10.iso) ·
+[Step-by-step installation](docs/handbook/install-m1210.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.
