@@ -9,7 +9,12 @@ Reuse the existing eight generation-bound window tokens and geometry state.
 Alt+Tab presents original app icons and numbered document/folder identities,
 including minimized and unsaved state. A snapshot preserves MRU order during
 selection. Arrow/Tab selection changes no focus until Enter, Alt release or a
-mouse choice; Escape cancels. No application thumbnail buffers are allocated.
+mouse choice; Escape cancels. No application thumbnail buffers are allocated. Selected labels and monochrome
+layout icons use the same contrast foreground as the shared button style,
+including hover/pressed/disabled states. A native pixel check guards against
+drawing ordinary paper ink on an accent-filled selection. The first candidate
+was deliberately stopped for this visual correction; it is diagnostic evidence,
+not a qualified artifact.
 
 The window menu adds **Arrange windows...**. Its Left half, Right half and
 Maximize choices show a geometry outline before commitment. Cancel keeps the
