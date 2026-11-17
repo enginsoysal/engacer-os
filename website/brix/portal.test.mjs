@@ -35,3 +35,8 @@ test('M13 home distinguishes design progress, current media and pending producti
  for(const term of ['M13.0','M12.18','not a new native OS release','Production BrixCanvas still uses','documentation-archive','guide-install','guide-use','guide-customize'])assert.ok(body.includes(term),term);
  assert.ok(!body.includes('Download M13'));
 });
+
+test('native M13 homepage uses matching stage and validated shared header navigation',async()=>{
+ const {portalConfiguration}=await import('./portal.mjs');const blocks=portalDesign({stage:1,searchReady:true});
+ assert.deepEqual(blocks[0].props.documentationPortal,portalConfiguration());const serialized=JSON.stringify(blocks);assert(serialized.includes('Download M13.1'));assert(!serialized.includes('CURRENT DOWNLOAD · M12.18'));assert(serialized.includes('Ctrl+K'));assert(!blocks[0].props.items.some(item=>item.href==='/search'));
+});

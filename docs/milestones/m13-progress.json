@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.0",
+  "current_stage": "M13.1",
   "qualified_download": "M12.18",
   "design_only": true,
   "stages": [
@@ -15,7 +15,7 @@
     {
       "id": "M13.1",
       "title": "One native visual and interaction foundation",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.2",

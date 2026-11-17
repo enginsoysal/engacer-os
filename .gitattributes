@@ -279,3 +279,7 @@ evidence/M12/16/** -text -whitespace
 evidence/M12/17/** -text -whitespace
 
 evidence/M12/18/** -text -whitespace
+
+# M13 distribution inputs and captured receipts retain their measured bytes.
+distros/engacer-desktop-m13.json -text whitespace=cr-at-eol
+evidence/M13/** -text -whitespace

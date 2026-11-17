@@ -26,3 +26,15 @@ export function stageRelease12(releases){
  }
  return null;
 }
+
+export function stageRelease13(releases){
+ for(let number=12;number>=1;number--){
+  const tag=`m13${number}-v0.13.${number}`,image=`EngacerOS-M13STAGE${number}`;
+  const release=releases.find(r=>r.tag_name===tag&&!r.draft&&!r.prerelease);
+  if(!release)continue;
+  const names=new Set(release.assets.map(a=>a.name));
+  if(!names.has(image+'.iso')||!names.has(image+'-VMware.zip')||!names.has(`m13stage${number}-build-manifest.json`))continue;
+  return {id:`M13${number}`,label:`M13.${number}`,tag,image,guide:`install-m13${number}`};
+ }
+ return null;
+}

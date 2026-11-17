@@ -19,15 +19,26 @@ static inline uint32_t ui12_foreground(uint32_t background){
  return light>=11739u?0x000000u:0xffffffu;
 }
 static inline ui12_palette ui12_theme(unsigned theme,uint32_t accent){
+#ifdef ENGINE_M13
+ ui12_palette p=theme==2?(ui12_palette){0,0,0xffffff,0xffffff,0xffffff,0xffff00,0,0x000080,0xffffff}:
+  theme?(ui12_palette){0x101923,0x172533,0xeef4f8,0xb1c0ce,0x66808d,accent,0,0x264c49,0x8a99ac}:
+  (ui12_palette){0xf3f6fa,0xffffff,0x192838,0x556777,0xd7e0e8,accent,0,0xd9eeeb,0x788797};
+#else
  ui12_palette p=theme==2?(ui12_palette){0,0,0xffffff,0xffffff,0xffffff,0xffff00,0,0x000080,0xffffff}:
   theme?(ui12_palette){0x161d27,0x202732,0xe8edf5,0xabb7c6,0x485567,accent,0,0x25483f,0x8a99ac}:
   (ui12_palette){0xf8fafc,0xffffff,0x17212f,0x526173,0xccd4df,accent,0,0xd9efe9,0x788797};
+#endif
  p.on_accent=ui12_foreground(p.accent);return p;
 }
 static inline ui12_style ui12_control_style(ui12_palette p,unsigned state,unsigned primary){
  ui12_style s={p.surface,p.ink,p.control_border};
  if(state&UI12_DISABLED)return(ui12_style){p.paper,ui12_mix(p.muted,p.paper,1,3),p.line};
+#ifdef ENGINE_M13
+ if(primary){s.fill=p.accent;s.ink=p.on_accent;s.border=p.accent;}
+ else if(state&UI12_SELECTED){s.fill=p.selection;s.border=p.accent;}
+#else
  if(primary||(state&UI12_SELECTED)){s.fill=p.accent;s.ink=p.on_accent;}
+#endif
  if(state&UI12_PRESSED)s.fill=ui12_mix(s.fill,primary?s.ink:p.accent,1,4);
  else if(state&UI12_HOVER)s.fill=ui12_mix(s.fill,primary?s.ink:p.accent,1,8);
  if(primary||(state&UI12_SELECTED))s.ink=ui12_foreground(s.fill);

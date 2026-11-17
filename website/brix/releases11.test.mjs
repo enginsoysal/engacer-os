@@ -42,3 +42,10 @@ test('release reruns keep immutable content source when publisher tooling advanc
  assert.equal(documentationRef({GITHUB_EVENT_NAME:'push',GITHUB_SHA:sha}),'HEAD');
  assert.equal(documentationRef({ENGACER_DOCS_REF:sha}),sha);assert.throws(()=>documentationRef({ENGACER_DOCS_REF:'main; arbitrary'}),/canonical commit/);
 });
+
+// Native M13 delivery must never be inferred from its design prerelease.
+const {stageRelease13}=await import('./releases11.mjs');
+test('M13 selector requires published matching native media',()=>{
+ const release={tag_name:'m131-v0.13.1',draft:false,prerelease:false,assets:['EngacerOS-M13STAGE1.iso','EngacerOS-M13STAGE1-VMware.zip','m13stage1-build-manifest.json'].map(name=>({name}))};
+ assert.equal(stageRelease13([{...release,prerelease:true}]),null);assert.equal(stageRelease13([{...release,assets:release.assets.slice(0,2)}]),null);assert.equal(stageRelease13([release]).label,'M13.1');assert.equal(stageRelease13([{tag_name:'m130-v0.13.0-design.1',prerelease:true,assets:[]}]),null);
+});

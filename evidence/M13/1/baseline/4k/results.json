@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "baseline": true,
+  "stage": "M12.18 baseline",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "physical": [
+    3840,
+    2160
+  ],
+  "configured_guest_mib": 1024,
+  "owned_fixture": "3167e53783e440fb8e1e777f9638d76c",
+  "checks": [
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery"
+  ],
+  "resources": {
+    "managed_stats": [
+      8147,
+      8147,
+      247087,
+      5
+    ],
+    "framebuffer_bytes": 33177600
+  }
+}

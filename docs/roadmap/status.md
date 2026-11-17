@@ -1,11 +1,11 @@
 # Current status
 
-**Current development: [M13.0 — design and documentation portal](../milestones/m13.md).** M13.1–M13.12 are planned. The qualified native download remains M12.18; M13.0 is not a new OS build.
+**Current development: [M13.1 — native visual foundation](../milestones/m13-1.md), in progress.** M13.2–M13.12 follow in order after each public closure. The qualified public native download remains M12.18.
 
 Updated 17 November 2026.
 
 
-M13.0 is complete within its design-and-portal scope: thirteen ordered stages, six original concepts, a tested search prototype and the live task-first documentation portal. Its design prerelease has no native ISO. Production same-page search and article-template navigation are explicitly assigned to M13.1; M13.1–M13.12 have not started. Public verification passes: 432 pages, 275 exact-source articles and the saved responsive homepage. [Publication receipt](../../evidence/M13/0/publication-results.json).
+M13.0 is complete within its design-and-portal scope: thirteen ordered stages, six original concepts, a tested search prototype and the live task-first documentation portal. Its design prerelease has no native ISO. Production same-page search and article-template navigation are explicitly assigned to M13.1; M13.1 is in progress; M13.2–M13.12 have not started. Public verification passes: 432 pages, 275 exact-source articles and the saved responsive homepage. [Publication receipt](../../evidence/M13/0/publication-results.json).
 
 **M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
 [Install](../handbook/install-m1218.md), [Final desktop guide](../handbook/final-m1218.md),

@@ -1,6 +1,6 @@
 # Engacer OS
 
-**Current development: [M13.0 — design and documentation portal](docs/milestones/m13.md).** M13.1–M13.12 are planned. The qualified native download remains M12.18; M13.0 is not a new OS build.
+**Current development: [M13.1 — native visual foundation](docs/milestones/m13-1.md), in progress.** M13.2–M13.12 follow in order after each public closure. The qualified public native download remains M12.18.
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and

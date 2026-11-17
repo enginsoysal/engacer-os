@@ -18,3 +18,7 @@ export function portalGroups(posts,{strict=false}={}){
  const archive=posts.filter(p=>!used.has(p.slug)).sort((a,b)=>compare(milestoneKey(a),milestoneKey(b)));
  return {groups:groups.filter(g=>g.posts.length),archive};
 }
+
+export function portalConfiguration(){
+ return {version:1,sections:portal.sections.map(section=>({title:section.title,entries:section.items.map(([source,title])=>({slug:source==='@releases'?'downloads':'docs-'+source.replace(/\.md$/i,'').replace(/^docs\//,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),title,group:source==='@releases'?'Downloads':section.id==='project'?'Development':'Guides'}))}))};
+}

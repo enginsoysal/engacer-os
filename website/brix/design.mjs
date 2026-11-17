@@ -1,3 +1,4 @@
+import {portalConfiguration} from './portal.mjs';
 // Native Brix composition matching the owner's preferred local documentation design.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,6 +29,7 @@ export function nativeDesign({development=developmentProgress}={}){
  const knownIssueBrix=native?(development.known_issues||[]).filter(issue=>issue.status==='open').map(issue=>b('alert',{variant:'info',title:'Retained test observation · '+issue.observed_in,text:issue.observation+' Read the matching release scope before testing.'})):[];
  const header=b('menubrix',{brand:'E_  ENGACER OS',brandHref:'/',items:[{label:'Documentation',href:'/blog/documentation'},{label:'Downloads',href:'/blog/downloads'},{label:'GitHub ↗',href:'https://github.com/enginsoysal/engacer-os'},{label:'Search',href:'/search'}],mode:'inline',width:'full',shape:'square',size:'l',bg:dark,textColor:'#d5e1e8',hoverColor:'#35ceba',blur:false,border:false,shadow:false});
  header.style={bg:{color:dark}};
+ if(searchReady){header.props.documentationPortal=portalConfiguration();header.props.items=header.props.items.filter(item=>item.label!=='Search');}
  const status=layout([[text('● Independent kernel. Open source.',11,'#50616c',{py:6})],[text('INDEPENDENT · BUILT FROM SCRATCH',10,'#50616c',{align:'right',letterSpacing:'1px',py:6})]],{bg:{kind:'color',color:'#eaf0f0'},borderBottom:1,borderColor:'#dbe3e6'});
  const terminal=layout([[
    text('PROJECT SNAPSHOT / X86-64',10,'#90a6b8',{letterSpacing:'1.5px',py:10}),
@@ -71,13 +73,16 @@ export function nativeDesign({development=developmentProgress}={}){
  const footer=b('socialcircles',{copyright:'Engacer OS / MIT licensed · Documentation & releases on GitHub',bg:paper,circleBg:teal,items:[{label:'github',href:'https://github.com/enginsoysal/engacer-os'},{label:'website',href:`${site}/blog/documentation`}]});
  return [header,status,main,footer];
 }
-export function portalDesign(){
+export function portalDesign({stage=0,searchReady=false}={}){
+ if(!Number.isInteger(stage)||stage<0||stage>12)throw Error('Invalid qualified M13 stage');
+ const current=stage?`M13.${stage}`:'M12.18';
  sequence=0;
  const header=b('menubrix',{brand:'E_  ENGACER OS',brandHref:'/',items:[{label:'Start here',href:'/blog/guide-start'},{label:'Install',href:'/blog/guide-install'},{label:'Use',href:'/blog/guide-use'},{label:'Customize',href:'/blog/guide-customize'},{label:'Downloads',href:'/blog/downloads'},{label:'Search',href:'/search'}],mode:'inline',width:'full',shape:'square',size:'l',bg:dark,textColor:'#d5e1e8',hoverColor:'#35ceba',blur:false,border:false,shadow:false});header.style={bg:{color:dark}};
- const status=layout([[text('CURRENT DOWNLOAD · M12.18',11,teal,{weight:600,py:6})],[text('M13.0 · DESIGN & DOCUMENTATION PORTAL',11,muted,{align:'right',py:6})]],{bg:{kind:'color',color:'#eaf0f0'}});
+ if(searchReady){header.props.documentationPortal=portalConfiguration();header.props.items=header.props.items.filter(item=>item.label!=='Search');}
+ const status=layout([[text('CURRENT DOWNLOAD · '+current,11,teal,{weight:600,py:6})],[text(stage?`M13.${stage} · QUALIFIED STAGE DELIVERY`:'M13.0 · DESIGN & DOCUMENTATION PORTAL',11,muted,{align:'right',py:6})]],{bg:{kind:'color',color:'#eaf0f0'}});
  const hero=layout([[
  text('YOUR SPACE. YOUR SYSTEM.',11,teal,{weight:600,letterSpacing:'1.4px'}),heading('Start with what you want to do.',44,ink,{level:1,letterSpacing:'-1px'}),text('Install Engacer OS, find your way around the desktop, or make it yours. Current guides come first. Project history has its own place.',18),
- layout([[button('Download M12.18',site+'/blog/downloads')],[button('Install Engacer OS →',site+'/blog/guide-install')],[button('Read the guide →',site+'/blog/documentation')]])
+ layout([[button('Download '+current,site+'/blog/downloads')],[button('Install Engacer OS →',site+'/blog/guide-install')],[button('Read the guide →',site+'/blog/documentation')]])
  ]],{padY:42});
  const choices=layout([
  card('01 / START HERE','A clear beginning','Understand the current release, what works and the first steps to take.','Get started →','guide-start'),
@@ -85,20 +90,21 @@ export function portalDesign(){
  card('03 / YOUR CHOICES','Make it yours','Change supported preferences or build your own distribution.','Explore customization →','guide-customize')
  ],{bg:{kind:'color',color:'#ffffff'},border:1,borderColor:'#dbe3e6',divided:true,ruleColor:'#dbe3e6',radius:6,padY:22});choices.props.columns.forEach(c=>c.width=100/3);
  const main=layout([[
- hero,choices,heading('Next: a desktop that feels finished.',28,ink,{py:28}),text('M13.0 records the complete M13.0–M13.12 plan, original installation and desktop concepts, and the documentation/search design. It is design work, not a new native OS release. M12.18 remains the tested ISO and VMware download.',17),
+ hero,choices,heading('Next: a desktop that feels finished.',28,ink,{py:28}),text(stage?`M13.${stage} is the current scoped native delivery. Install its matching ISO or prepared VMware package, read its release guide and explore the documented changes. The M13.0–M13.12 program follows one published stage at a time; later hardware and Windows work remains separate.`:'M13.0 records the complete M13.0–M13.12 plan, original installation and desktop concepts, and the documentation/search design. It is design work, not a new native OS release. M12.18 remains the tested ISO and VMware download.',17),
  button('See the M13 plan and progress →',site+'/blog/docs-milestones-m13'),
  b('image',{url:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/docs/architecture/figures/m13/desktop.svg',alt:'Original M13.0 desktop and Files design concept. Proposed layout, not a native screenshot or implemented M13 behavior.',naturalSize:true,radius:8}),
  button('Explore all M13 concepts →',site+'/blog/docs-architecture-desktop-m13'),
- b('alert',{variant:'info',title:'Search redesign — design prototype',text:'Same-page search with keyboard navigation and archive filtering is specified and prototyped in M13.0. Production BrixCanvas still uses its existing Search page until the replacement is implemented and verified.'}),
+ b('alert',{variant:'info',title:searchReady?'Find a guide without leaving this page':'Search redesign — design prototype',text:searchReady?'Use Search documentation or Ctrl+K. Current guides come first; include the archive when you want historical details. Articles keep task navigation alongside the text.':'Same-page search with keyboard navigation and archive filtering is specified and prototyped in M13.0. Production BrixCanvas still uses its existing Search page until the replacement is implemented and verified.'}),
  heading('Prefer to explore the project?',25),text('Current technical reference and the next plan are separate from earlier milestone and release records.',16),
  layout([[button('Project & development →',site+'/blog/guide-project',{bg:paper,color:teal})],[button('History & full reference →',site+'/blog/documentation-archive',{bg:paper,color:teal})]]),
- b('alert',{variant:'info',title:'What is qualified today?',text:'M12.18 is qualified for its named virtual-machine profiles. Physical hardware, GPU 3D and general Windows compatibility remain separate work. Read the matching release limits before testing.'})
+ b('alert',{variant:'info',title:'What is qualified today?',text:current+' is qualified for its named virtual-machine profiles. Physical hardware, GPU 3D and general Windows compatibility remain separate work. Read the matching release limits before testing.'})
  ]],{bg:{kind:'color',color:paper},padY:12});
  const footer=b('socialcircles',{copyright:'Engacer OS / MIT licensed · Current guides first, history separately archived.',bg:paper,circleBg:teal,items:[{label:'github',href:'https://github.com/enginsoysal/engacer-os'},{label:'website',href:site+'/blog/documentation'}]});
  return [header,status,main,footer];
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const out=process.argv[2]||'build/brix/design';fs.mkdirSync(out,{recursive:true});
- portalDesign().forEach((section,index)=>fs.writeFileSync(path.join(out,`${index+1}.json`),JSON.stringify({brixcanvas:1,section})));
+ const stageArg=process.argv.find(arg=>arg.startsWith('--stage='));
+ portalDesign({stage:stageArg?Number(stageArg.split('=')[1]):0,searchReady:process.argv.includes('--search-ready')}).forEach((section,index)=>fs.writeFileSync(path.join(out,`${index+1}.json`),JSON.stringify({brixcanvas:1,section})));
  console.log('Prepared four native Brix clipboard payloads for the complete homepage.');
 }

@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {marked} from '../public/vendor/marked.esm.js';
 import {canonicalPublicUrl,articleBranding} from './branding.mjs';
 import {portal,portalGroups,sourcePath as sourcePathForArchive} from './portal.mjs';
-import {stageRelease11,stageRelease12,releaseLabel} from './releases11.mjs';
+import {stageRelease11,stageRelease12,stageRelease13,releaseLabel} from './releases11.mjs';
 import {releaseGroups,documentationRef,assertPostBounds} from './downloads.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
@@ -62,9 +62,9 @@ export function build(output){
  const downloads=[];const add=(type,props)=>downloads.push({id:`engine-downloads-${downloads.length+1}`,type,props});
  const generationSource=`<p>Generated from <a href="${GH}/tree/${ref}">canonical source commit ${ref.slice(0,7)}</a> and official GitHub release metadata.</p>`;
  add('richtext',{html:generationSource,size:14});
- const stage=stageRelease12(releases)||stageRelease11(releases);
+ const stage=stageRelease13(releases)||stageRelease12(releases)||stageRelease11(releases);
  const current=stage?stage.id:releases.some(r=>r.tag_name==='m10-v0.10.0')?'M10':releases.some(r=>r.tag_name==='m92-v0.9.2')?'M92':releases.some(r=>r.tag_name==='m91-v0.9.1')?'M91':releases.some(r=>r.tag_name==='m9-v0.9.0')?'M9':releases.some(r=>r.tag_name==='m8-v0.8.0')?'M8':releases.some(r=>r.tag_name==='m75-v0.7.5')?'M75':releases.some(r=>r.tag_name==='m74-v0.7.4')?'M74':releases.some(r=>r.tag_name==='m73-v0.7.3')?'M73':releases.some(r=>r.tag_name==='m72-v0.7.2')?'M72':releases.some(r=>r.tag_name==='m71-v0.7.1')?'M71':releases.some(r=>r.tag_name==='m7-v0.7.0')?'M7':'M6';
- if(stage)add('richtext',{html:stage.id.startsWith('M12')?'<p><strong>M12 stage delivery:</strong> use this exact ISO and VMware package with its matching native scope and release guide. Full final M12 controller/application regression is M12.18. Earlier M11 results do not qualify these new bytes.</p>':'<p><strong>Stage delivery:</strong> this download has the qualification recorded in its release guide. The complete M11 controller/application regression is M11.6. Earlier M10 results do not qualify these new bytes.</p>',size:17});
+ if(stage)add('richtext',{html:stage.id.startsWith('M13')?'<p><strong>M13 stage delivery:</strong> use the exact ISO and VMware package with its matching stage tests and guide. Later M13 work, physical hardware and general Windows compatibility are separate qualification.</p>':stage.id.startsWith('M12')?'<p><strong>M12 stage delivery:</strong> use this exact ISO and VMware package with its matching native scope and release guide. Full final M12 controller/application regression is M12.18. Earlier M11 results do not qualify these new bytes.</p>':'<p><strong>Stage delivery:</strong> this download has the qualification recorded in its release guide. The complete M11 controller/application regression is M11.6. Earlier M10 results do not qualify these new bytes.</p>',size:17});
  if(stage?.id.startsWith('M12')){
    const progress12=JSON.parse(git('show',`${ref}:docs/milestones/m12-progress.json`));
    for(const issue of progress12.known_issues||[])if(issue.status==='open')add('richtext',{html:`<p><strong>Retained observation (${escape(issue.observed_in)}):</strong> ${escape(issue.observation)} Read the matching release scope before testing.</p>`,size:16});

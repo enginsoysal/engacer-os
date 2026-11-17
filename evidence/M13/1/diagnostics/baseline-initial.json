@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "baseline": true,
+  "stage": "M12.18 baseline",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "physical": [
+    1920,
+    1080
+  ],
+  "configured_guest_mib": 512,
+  "owned_fixture": "f65d5fc0aa2f49d8ad77cba173027f36",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\native_controls.py\", line 32, in main\n    ptr.desktop(0,True);ptr.desktop(42004,True);key(g,'ctrl','a')\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (42004, 42)\n"
+}
