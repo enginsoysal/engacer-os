@@ -1,0 +1,171 @@
+{
+  "passed": true,
+  "stage": "M12.8",
+  "source_commit": "3aeb3751a2dfeddb886d44c4f86f46de47ac6aec",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "current": true,
+    "document": 1270,
+    "guides": [
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m128",
+        "text": "Read the stage guide ↗"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m128",
+        "text": "Open the setup guide ↗"
+      }
+    ],
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/8/feature.png",
+        "width": 1280
+      }
+    ],
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 1280
+  },
+  "documentation": {
+    "groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones"
+    ],
+    "installLinks": [
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m128",
+        "text": "Install Engacer OS M12.8 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m92",
+        "text": "Engacer OS M9.2 installation and hardware guide (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m72",
+        "text": "Install Engacer OS 0.7.2 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m8",
+        "text": "Install Engacer OS and try the original Windows app (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m6",
+        "text": "Install Engacer OS M6 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m7",
+        "text": "Install Engacer OS M7 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m71",
+        "text": "Install Engacer OS M7.1 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m73",
+        "text": "Install Engacer OS M7.3 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m74",
+        "text": "Install Engacer OS M7.4 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m75",
+        "text": "Install Engacer OS M7.5 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m9",
+        "text": "Install Engacer OS M9 and check window movement (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m10",
+        "text": "Install Engacer OS M10 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m114",
+        "text": "Install Engacer OS M11.4 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m115",
+        "text": "Install Engacer OS M11.5 in VMware (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m116",
+        "text": "Install Engacer OS M11.6 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+        "text": "Install Engacer OS M12.1 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+        "text": "Install Engacer OS M12.2 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123",
+        "text": "Install Engacer OS M12.3 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124",
+        "text": "Install Engacer OS M12.4 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125",
+        "text": "Install Engacer OS M12.5 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126",
+        "text": "Install Engacer OS M12.6 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m127",
+        "text": "Install Engacer OS M12.7 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m51",
+        "text": "Install Engacer OS with the guided menu (historical)"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m91",
+        "text": "VMware startup correction: Engacer OS M9.1 (historical)"
+      }
+    ]
+  },
+  "install": {
+    "source": "https://github.com/enginsoysal/engacer-os/blob/3aeb3751a2dfeddb886d44c4f86f46de47ac6aec/docs/handbook/install-m128.md",
+    "steps": [
+      "Welcome:",
+      "Keyboard / size:",
+      "Choose a disk:",
+      "Your apps:",
+      "Your style:",
+      "Review:",
+      "Installing:",
+      "Ready:"
+    ]
+  },
+  "current_guide": true,
+  "downloads": {
+    "iso": true,
+    "links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8-VMware.zip"
+    ],
+    "zip": true
+  },
+  "matching_download": true,
+  "mobile": {
+    "document": 380,
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 390
+  },
+  "mobile_menu": true
+}

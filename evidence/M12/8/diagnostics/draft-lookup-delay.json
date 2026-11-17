@@ -1,0 +1,10 @@
+{
+  "development_only": true,
+  "stage": "M12.8",
+  "tag": "m128-v0.12.8",
+  "release_id": 447846088,
+  "source_commit": "3aeb3751a2dfeddb886d44c4f86f46de47ac6aec",
+  "initial_post_create_lookup": "Created draft not yet readable; publisher stopped before uploads",
+  "subsequent_guarded_lookup_found_same_draft": true,
+  "action": "Resume the existing matching draft through the unchanged guarded publisher; no recreation or replacement"
+}

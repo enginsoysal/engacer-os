@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.8",
+  "qualification": "M12-STAGE8-VM-v1",
+  "source_commit": "3aeb3751a2dfeddb886d44c4f86f46de47ac6aec",
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m128-v0.12.8",
+  "workflow_ids": [
+    43991642802
+  ],
+  "current_native_download": "m128-v0.12.8",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 337,
+  "unique_links": 2305,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
