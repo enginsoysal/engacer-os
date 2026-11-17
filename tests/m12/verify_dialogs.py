@@ -16,7 +16,7 @@ def public(data):
 def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage8-build-manifest.json');starter=load(ROOT/'dist/m12stage8-starter-manifest.json')
-    groups=['dialogs-native','dialogs-formats-smoke','dialogs-profiles','dialogs-fault','dialogs-preferences','dialogs-storage','bios','vmware-results','motion','document-host','pack-host','recovery']
+    groups=['dialogs-native','dialogs-formats-smoke','dialogs-profiles','dialogs-fault','dialogs-preferences','dialogs-storage','dialogs-filters','bios','vmware-results','motion','document-host','pack-host','recovery']
     reports={name:load(WORK/name/'results.json') for name in groups}
     iso=meta['artifacts']['EngacerOS-M12STAGE8.iso']['sha256'];native=reports['dialogs-native'];profiles=reports['dialogs-profiles']
     assert meta['release_version']=='0.12.8' and meta['qualification_scope']=='M12-STAGE8-VM-v1'
@@ -40,6 +40,7 @@ def main():
     assert len(reports['recovery']['checks'])==2
     assert reports['document-host']['checks']==14 and reports['document-host']['new_kernel_payload_buffers']==0
     assert reports['dialogs-fault']['retained_pages_after_failed_save']==0
+    assert reports['dialogs-filters']['disk_unchanged'] and reports['dialogs-filters']['retained_pages']==0 and len(reports['dialogs-filters']['checks'])==4
     stack=load(WORK/'diagnostics/stack-final-results.json');assert stack['passed'] and stack['guarded_kernel_stack_bytes']==16384 and stack['frames']['keyboard']<1024
     for path,digest in stack['source_sha256'].items():assert sha(ROOT/path)==digest
     assert reports['pack-host']['roundtrip_pages']>500 and reports['pack-host']['malformed_and_fuzz_cases']>10000 and reports['pack-host']['guard_bytes_unchanged']
@@ -66,8 +67,8 @@ def main():
     shutil.copyfile(WORK/'dialogs-native/save-as-initial.png',OUT/'feature.png')
     target=OUT/'diagnostics';target.mkdir(exist_ok=True)
     for path in (WORK/'diagnostics').iterdir():
-        if path.is_file() and path.suffix in ('.json','.txt','.png'):(target/path.name).write_bytes(public(path.read_bytes()))
+        if path.is_file() and path.suffix in ('.json','.txt','.png','.log'):(target/path.name).write_bytes(public(path.read_bytes()))
     write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],display_profiles=profiles['profiles'],font=meta['font'],new_kernel_document_buffers=0,scope='One bounded owner picker; existing worker input pages and volume page are reused. Fixed state and peak/retained managed pages are separate; configured RAM is not consumption.'))
-    write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.8',version='0.12.8',qualification='M12-STAGE8-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks']+reports['dialogs-formats-smoke']['checks'],bios_checks=reports['bios']['checks'],vmware_checks=reports['vmware-results']['checks'],cached_full_comparisons=12,resources='resources.json',feature_provenance='Actual native installed QEMU SATA/UEFI Save as dialog, not a browser mockup',feature_sha256=sha(OUT/'feature.png'),harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')},limits=['Native app integration only; no Windows common-dialog ABI expansion.','Text remains supported ASCII up to 8191 bytes; BMP/ZIP format and extraction limits remain.','USB editing and arbitrary replacement are unavailable; copy into a native folder first.','M12.14 feedback, M12.16 cursor isolation and M12.18 BIOS/AHCI stress and final device/application qualification remain open.','Agent visual review is not a human study; public release and complete site proof close separately.']))
+    write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.8',version='0.12.8',qualification='M12-STAGE8-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks']+reports['dialogs-formats-smoke']['checks']+reports['dialogs-filters']['checks'],bios_checks=reports['bios']['checks'],vmware_checks=reports['vmware-results']['checks'],cached_full_comparisons=12,resources='resources.json',feature_provenance='Actual native installed QEMU SATA/UEFI Save as dialog, not a browser mockup',feature_sha256=sha(OUT/'feature.png'),harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')},limits=['Native app integration only; no Windows common-dialog ABI expansion.','Text remains supported ASCII up to 8191 bytes; BMP/ZIP format and extraction limits remain.','USB editing and arbitrary replacement are unavailable; copy into a native folder first.','M12.14 feedback, M12.16 cursor isolation and M12.18 BIOS/AHCI stress and final device/application qualification remain open.','Agent visual review is not a human study; public release and complete site proof close separately.']))
     print('PASS: exact M12.8 dialogs, native failure cases, persisted bytes, matching media and bounded resources.')
 if __name__=='__main__':main()
