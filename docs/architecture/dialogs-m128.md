@@ -127,12 +127,16 @@ Native regression explicitly checks both Ctrl+Shift+S and Ctrl+O, followed by
 an intentional Ctrl+S. The interrupted candidate is recorded as an intentional
 owned-test stop, not an OS crash; qualification restarts on the corrected media.
 
-The shared dialog requires at least 560x512 logical desktop pixels. Review
-layout reserves a bounded three-line filename, a path field and separate
-feedback/buttons with clear gaps at the admitted minimum height. A real
-1280x1024 framebuffer at 200% exercises that height, alongside compact
-light/dark, 150% and 4K. Smaller logical desktops receive an explicit sizing
-message rather than overlapping review controls.
+The shared dialog has a defensive 560x512 logical admission bound. Review
+layout reserves a bounded three-line filename, path and separate feedback and
+buttons. This bound is not a claim of native qualification at exactly 560x512.
+The real 1280x1024 probe showed that the existing global scale control refuses
+200% and retains 100%, because ui73_set_scale requires at least 1024x768 logical
+pixels. Record that as a refused-size route, not a 200% or minimum-height pass.
+Actual compact 800x600 startup, light/dark, 150% and 4K are separate profiles.
+M12.16 must reconcile the global choice limit with smaller startup modes and
+qualify appropriate disabled choices and feedback. Smaller picker admission
+receives an explicit sizing message rather than overlapping review controls.
 
 While a picker is open, Settings explains that it must be finished or
 cancelled before display-size changes. This preserves the admitted layout and
