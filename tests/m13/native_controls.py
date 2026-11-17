@@ -40,6 +40,8 @@ def main():
     for c in 'readable':key(g,c)
     key(g,'backspace');shot(g,out,'component-gallery-interactive',True)
     address,size=ui.symbol('apps',installed=True);assert b'readabl\0' in ui.memory(g,address,size)
+    semantic=struct.unpack('<QII',ui.memory(g,ui.symbol('access_focus16',96,True)[0],16));assert semantic[1:]==(60102,2),semantic
+    key(g,'f1');assert ui.integer(g,'access_help16',True);shot(g,out,'text-field-focus-help',True);key(g,'esc')
     count=ui.integer(g,'control_count',True);controls=ui.memory(g,ui.symbol('controls',65536,True)[0],count*32);assert all(struct.unpack_from('<iiiiQI',controls,i*32)[5]!=60103 for i in range(count))
     for theme in ('dark','high-contrast','light'):
      if theme=='dark':ptr.desktop(59000,True);ptr.desktop(43,True)

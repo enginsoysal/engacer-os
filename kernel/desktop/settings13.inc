@@ -34,7 +34,7 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
   settings_button13(token,x+384,top+54,width-384,"Unavailable",60103,0,0);
   desktop_rect field={x,top+112,width,44};unsigned focused=control_active&&focused_control_window==token&&focused_action==60102;
   component_field12(field,focused);ui73_fit(x+12,top+124,width-24,a->length?a->text:"Click here and type a short message",UI12_BODY,a->length?p.ink:p.muted);
-  access_capture16(token,60102,"Preview text field",1);if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){field,token,60102};
+  access_capture16(token,60102,"Preview text field",2);if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){field,token,60102};
   ui73_fit(x,top+184,width,"Body text stays readable at your chosen display size.",UI12_BODY,p.ink);
   ui73_fit(x,top+216,width,"Secondary text adds context without competing with the task.",UI12_SECONDARY,p.muted);
   settings_button13(token,x,top+262,224,"Back to System",S13_SYSTEM,0,1);
