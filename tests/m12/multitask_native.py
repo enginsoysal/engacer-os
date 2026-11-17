@@ -40,6 +40,7 @@ def main():
             editor=t.launch(g,p,'text editor',2);c.type_text(g,'Keep this unsaved work');other=t.launch(g,p,'text editor',2);c.shot(g,'documents-before-switch')
             alt(g,True);c.key(g,'tab');assert c.flag(g,'switch_open11')==1 and len(tokens(g))==4;before=f.model(g)[0];c.shot(g,'switcher-icons-documents');c.key(g,'down');chosen=tokens(g)[c.flag(g,'switch_choice11')];assert f.model(g)[0]==before;alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen
             before=f.model(g)[0];alt(g,True);c.key(g,'tab');c.key(g,'esc');alt(g,False);assert f.model(g)[0]==before and not c.flag(g,'switch_open11')
+            alt(g,True);c.key(g,'shift','tab');chosen=tokens(g)[c.flag(g,'switch_choice11')];alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen
             alt(g,True);c.key(g,'tab');chosen=tokens(g)[0];p.desktop(44100,True);alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen
             t.focus(g,p,editor);assert bytes(t.app_view(g).text)==b'Keep this unsaved work';c.key(g,'meta_l','down');assert next(w for w in t.records(g) if w['token']==editor['token'])['minimized'];alt(g,True);c.key(g,'tab');choice=tokens(g).index(editor['token']);p.desktop(44100+choice,True);alt(g,False);assert not next(w for w in t.records(g) if w['token']==editor['token'])['minimized'] and bytes(t.app_view(g).text)==b'Keep this unsaved work'
             report['checks'].append('Actual Alt+Tab keeps a bounded MRU snapshot with original icons and document/folder identities; arrows preview choice, Alt release and mouse commit, Escape preserves focus, and selecting a minimized dirty Editor restores exact unsaved text')
@@ -56,12 +57,15 @@ def main():
                 while s.windows(g)<8:t.launch(g,p,'files',1)
                 before=s.windows(g);s.search(g,p,'files');c.key(g,'ret');assert s.windows(g)==before and c.flag(g,'launcher');c.key(g,'esc');c.key(g,'esc');alt(g,True);c.key(g,'tab');assert len(tokens(g))==8;c.shot(g,'eight-window-switcher');c.key(g,'esc');alt(g,False)
                 report['checks'].append('Apps whose actual minimum exceeds half the display expose disabled half choices with a reason and keep their bounds; the eight-window quota refuses another window while the full switcher remains reachable')
-            t.close_all(g,p);f.same_pages(baseline,f.stats(g));c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode())
+            t.close_all(g,p)
+            if not args.smoke:
+                t.pin(g,p,'calc',4);t.right_group(g,p,4);f.menu(g,p,42704);saved=bytes(s.prefs(g));assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==saved;report['preferences_sha256']=hashlib.sha256(saved).hexdigest()
+            f.same_pages(baseline,f.stats(g));c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode())
         if not args.smoke:
             for n in (1,2):
                 boot=ui.guest(work/f'ordinary-{n}',disk,media='installed',ready='M7_DESKTOP_READY');ui.s.normal_boot(boot,work/'install/vars.fd')
                 with boot as g:
-                    p=ui.Pointer(g);p.drain();assert not c.flag(g,'switch_open11');arrange(g,p);c.key(g,'esc');c.idle(g);c.shot(g,f'ordinary-{n}');(out/f'ordinary-{n}.log').write_bytes(g.log().encode())
+                    p=ui.Pointer(g);p.drain();assert bytes(s.prefs(g))==saved and not c.flag(g,'switch_open11');arrange(g,p);c.key(g,'esc');c.idle(g);c.shot(g,f'ordinary-{n}');(out/f'ordinary-{n}.log').write_bytes(g.log().encode())
             report['checks'].append('Two ordinary no-ISO starts reach the installed desktop and retain usable Arrange/Cancel without persisting transient overlays or changing firmware boot order')
         report['passed']=True
     except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
