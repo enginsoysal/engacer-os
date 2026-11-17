@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "source_commit": "87fedd75c46fe4bcc3263a29f39be1491b6e7069",
+  "publisher_commit": "87fedd75c46fe4bcc3263a29f39be1491b6e7069",
+  "workflow_id": 44065083443,
+  "attempt": 1,
+  "scope": "The release event publishes matching pinned canonical documentation through the current main publisher; no shared platform deployment."
+}
