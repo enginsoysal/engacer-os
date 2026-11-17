@@ -275,3 +275,5 @@ evidence/M12/15/** -text -whitespace
 kernel/desktop/accessibility16-state.inc -text whitespace=cr-at-eol
 kernel/desktop/accessibility16.inc -text whitespace=cr-at-eol
 evidence/M12/16/** -text -whitespace
+
+evidence/M12/17/** -text -whitespace

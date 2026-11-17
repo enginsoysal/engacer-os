@@ -124,7 +124,13 @@ static void round_alpha73(unsigned x,unsigned y,unsigned w,unsigned h,unsigned r
  for(unsigned xx=l;xx<right;++xx){
  unsigned dx=xx-px,dy=yy-py;
  /* Shadow interiors are covered by the opaque surface: never blend them. */
- if(alpha<255&&dx>=r&&dx<pw-r&&dy>=r&&dy<ph-r)continue;
+ if(alpha<255&&dx>=r&&dx<pw-r&&dy>=r&&dy<ph-r){
+#ifdef ENGINE_M12
+  /* Jump across covered shadow interiors without visiting every pixel. */
+  unsigned skip=pw-r-dx;if(skip>right-xx)skip=right-xx;xx+=skip-1;
+#endif
+  continue;
+ }
  if(!r||(dx>=r&&dx<pw-r)||(dy>=r&&dy<ph-r)){blend73(xx,yy,rgb,alpha,0);continue;}
  int cx=(int)(dx<r?r:pw-r),cy=(int)(dy<r?r:ph-r);unsigned covered=0;
  for(unsigned sy=0;sy<4;++sy)for(unsigned sx=0;sx<4;++sx){int vx=(int)dx*8+(int)sx*2+1-cx*8,vy=(int)dy*8+(int)sy*2+1-cy*8;if(vx*vx+vy*vy<=(int)(r*r*64))++covered;}
