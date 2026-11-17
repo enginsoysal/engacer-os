@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "action": "Recursive native PowerShell removal of separately verified owned M12.2-M12.18 VM fixture directories and completed M12.2-M12.17 external build scratch",
+  "outcome": "Automatic approval review rejected execution before process creation",
+  "reason": "blocked by policy",
+  "anything_deleted": false,
+  "equivalent_retry_attempted": false,
+  "reported_allocated_bytes_in_full_readonly_plan": 34596784052,
+  "protected_scope": "M12.1 and all M11 paths excluded; canonical source, Git history, evidence, dist release media and active M12.18 publication metadata excluded"
+}

@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "scope": "First full public browser pass",
+  "observation": "At the mobile menu transition the initial Open menu action did not reach an observed Close menu state before the bounded browser selector deadline. No passing browser result was written; real mobile state is being inspected separately."
+}

@@ -1,0 +1,13 @@
+sync	Synchronize and verify native BrixCanvas articles	﻿2026-11-17T12:51:31.6331169Z ##[group]Run node website/brix/sync.mjs
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6331514Z [36;1mnode website/brix/sync.mjs[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6331984Z [36;1mecho 'Updated native articles on https://engaceros.brixcanvas.com' >> "$GITHUB_STEP_SUMMARY"[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6332663Z [36;1mecho 'The publisher verified its website identity and every generated article.' >> "$GITHUB_STEP_SUMMARY"[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6333847Z [36;1mecho 'Homepage design/version copy is a separate native Brix edit: verify Save and fresh public readback before declaring a website release complete. See website/README.md.' >> "$GITHUB_STEP_SUMMARY"[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6365366Z shell: /usr/bin/bash -e {0}
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6365640Z env:
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6368151Z   GH_TOKEN: ***
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6368474Z   BRIXCANVAS_ENGINEOS_KEY: ***
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:31.6368724Z ##[endgroup]
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:33.5324450Z {"documents":255,"articles":263,"releases":47,"blocks":4879,"source_commit":"07743f643687544bb21dcd92a53a993141560cdd","output":"build/brix/site-content.json"}
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:34.1385808Z BrixCanvas GET /settings returned 429; publication stopped.
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T12:51:34.1928674Z ##[error]Process completed with exit code 1.

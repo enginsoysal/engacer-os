@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "source_commit": "07743f643687544bb21dcd92a53a993141560cdd",
+  "publisher_commit": "28307ff64c76d84e89214418811c0c1c02356db8",
+  "workflow": 44085370567,
+  "attempt": 3,
+  "scope": "Release event retains its exact qualified documentation ref; main checkout supplies only the website retry client correction. Native artifacts, tag, compiled inputs and test harnesses remain unchanged. No shared BrixCanvas deployment."
+}

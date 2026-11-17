@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "qualification": "M12-STAGE18-VM-v1",
+  "source_commit": "07743f643687544bb21dcd92a53a993141560cdd",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1218-v0.12.18",
+  "workflow_ids": [
+    44085370567
+  ],
+  "current_native_download": "m1218-v0.12.18",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 406,
+  "unique_links": 2853,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
