@@ -16,7 +16,7 @@ def public(data):
 def main():
     assert not (OUT/'publication-results.json').exists()
     meta=load(ROOT/'dist/m12stage8-build-manifest.json');starter=load(ROOT/'dist/m12stage8-starter-manifest.json')
-    groups=['dialogs-native','dialogs-profiles','dialogs-fault','dialogs-preferences','dialogs-storage','bios','vmware-results','motion','document-host','pack-host','recovery']
+    groups=['dialogs-native','dialogs-formats-smoke','dialogs-profiles','dialogs-fault','dialogs-preferences','dialogs-storage','bios','vmware-results','motion','document-host','pack-host','recovery']
     reports={name:load(WORK/name/'results.json') for name in groups}
     iso=meta['artifacts']['EngacerOS-M12STAGE8.iso']['sha256'];native=reports['dialogs-native'];profiles=reports['dialogs-profiles']
     assert meta['release_version']=='0.12.8' and meta['qualification_scope']=='M12-STAGE8-VM-v1'
@@ -24,6 +24,7 @@ def main():
         assert row['passed'],name
         if name not in ('document-host','pack-host'):assert row['build_id']==meta['build_id'],name
         if 'iso_sha256' in row:assert row['iso_sha256']==iso,name
+    assert len(reports['dialogs-formats-smoke']['checks'])>=3
     assert not native['development_only'] and len(native['checks'])>=12 and native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0] and native['resources']['before'][3]==native['resources']['after'][3]
     assert profiles['feature_journeys_passed'] and len(profiles['profiles'])==5
@@ -67,6 +68,6 @@ def main():
     for path in (WORK/'diagnostics').iterdir():
         if path.is_file() and path.suffix in ('.json','.txt','.png'):(target/path.name).write_bytes(public(path.read_bytes()))
     write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],display_profiles=profiles['profiles'],font=meta['font'],new_kernel_document_buffers=0,scope='One bounded owner picker; existing worker input pages and volume page are reused. Fixed state and peak/retained managed pages are separate; configured RAM is not consumption.'))
-    write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.8',version='0.12.8',qualification='M12-STAGE8-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks'],bios_checks=reports['bios']['checks'],vmware_checks=reports['vmware-results']['checks'],cached_full_comparisons=12,resources='resources.json',feature_provenance='Actual native installed QEMU SATA/UEFI Save as dialog, not a browser mockup',feature_sha256=sha(OUT/'feature.png'),harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')},limits=['Native app integration only; no Windows common-dialog ABI expansion.','Text remains supported ASCII up to 8191 bytes; BMP/ZIP format and extraction limits remain.','USB editing and arbitrary replacement are unavailable; copy into a native folder first.','M12.14 feedback, M12.16 cursor isolation and M12.18 BIOS/AHCI stress and final device/application qualification remain open.','Agent visual review is not a human study; public release and complete site proof close separately.']))
+    write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.8',version='0.12.8',qualification='M12-STAGE8-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=native['checks']+reports['dialogs-formats-smoke']['checks'],bios_checks=reports['bios']['checks'],vmware_checks=reports['vmware-results']['checks'],cached_full_comparisons=12,resources='resources.json',feature_provenance='Actual native installed QEMU SATA/UEFI Save as dialog, not a browser mockup',feature_sha256=sha(OUT/'feature.png'),harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')},limits=['Native app integration only; no Windows common-dialog ABI expansion.','Text remains supported ASCII up to 8191 bytes; BMP/ZIP format and extraction limits remain.','USB editing and arbitrary replacement are unavailable; copy into a native folder first.','M12.14 feedback, M12.16 cursor isolation and M12.18 BIOS/AHCI stress and final device/application qualification remain open.','Agent visual review is not a human study; public release and complete site proof close separately.']))
     print('PASS: exact M12.8 dialogs, native failure cases, persisted bytes, matching media and bounded resources.')
 if __name__=='__main__':main()
