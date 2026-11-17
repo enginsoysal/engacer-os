@@ -17,6 +17,9 @@ def main():
     groups=['taskbar-native','taskbar-profiles','bios','vmware-results','motion','taskbar-host','pack-host','recovery']
     reports={name:load(WORK/name/'results.json') for name in groups};native=reports['taskbar-native'];profiles=reports['taskbar-profiles']
     iso=meta['artifacts']['EngacerOS-M12STAGE10.iso']['sha256']
+    assert 'M7_DESKTOP_READY build='+meta['build_id'] in (WORK/'taskbar-native/native.log').read_text(encoding='utf-8')
+    for name in ('compact','compact-dark','150','4k'):
+        assert 'M7_DESKTOP_READY build='+meta['build_id'] in (WORK/'taskbar-profiles'/(name+'.log')).read_text(encoding='utf-8')
     assert meta['release_version']=='0.12.10' and meta['qualification_scope']=='M12-STAGE10-VM-v1'
     for name,row in reports.items():
         assert row['passed'],name
