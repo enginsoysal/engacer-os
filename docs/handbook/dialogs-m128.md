@@ -56,7 +56,8 @@ cancelling the picker. At most eight navigation locations are retained.
 Successful Open, Save as and Choose folder choices remember separate locations
 for the current user. Cancel does not update them. Missing or invalid optional
 preferences fall back to a usable default. The dialog uses its owner's existing
-window slot; finish or cancel it before requesting another file dialog.
+window slot; finish or cancel it before requesting another file dialog. Finish
+or cancel an active file transfer before opening a file dialog in this stage.
 
 See [the architecture and qualification contract](../architecture/dialogs-m128.md)
 and [the currently qualified installation guide](install-m127.md).

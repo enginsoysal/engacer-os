@@ -140,3 +140,13 @@ all pending work across other-window use; theme changes remain independent.
 Dialog feedback uses shared readable text ink in both themes instead of the
 legacy fixed red (about 4.07:1 on light paper and lower on dark backgrounds).
 The dedicated native probe covers the scale refusal and other-owner shortcuts.
+
+## Background transfer review boundary
+
+The native M12.8 owner checks qualify foreground app requests. Admission while
+a pre-existing background transfer is active is not qualified: that transfer
+can later request its own conflict review through the shared broker. Finish
+or cancel transfers before opening a picker in this stage. M12.14 must qualify
+bounded admission/arbitration against actual transfer conflicts, retaining the
+original document and pending choice. This is an explicit feedback-integration
+carry-forward, not a claim that concurrent background review passed.
