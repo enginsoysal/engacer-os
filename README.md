@@ -12,8 +12,8 @@ bounded CPU/RAM use are product requirements.
 150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
 ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
 Open/Save as/Choose folder preserve work, use real files and retain zero managed
-pages after closing. Added fixed shell state is 6,449 bytes. Public release,
-download and full website closure are required before M12.9 starts.
+pages after closing. Added fixed shell state is 6,449 bytes. [Complete public proof](evidence/M12/8/publication-results.json) passes:
+twenty matching assets, 337 pages and 2,305 links. **M12.9 is active.**
 
 Previous [M12.7 public delivery](evidence/M12/7/publication-results.json) remains
 immutable, including its command/transfer and compressed-slot recovery proof.
@@ -21,7 +21,7 @@ immutable, including its command/transfer and compressed-slot recovery proof.
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English manuals, matching GitHub releases and complete website
 verification after each stage. [Design](docs/architecture/desktop-m12.md),
-[user journeys](docs/handbook/desktop-m12.md). M12.8 qualifies shared native file dialogs; public closure precedes M12.9.
+[user journeys](docs/handbook/desktop-m12.md). M12.8 public delivery is complete; M12.9 now develops Start and local search.
 The shared-menu footer and conflict feedback remain M12.14 refinements; HiDPI
 cursor isolation remains M12.16 and the earlier BIOS/AHCI observation remains
 M12.18. Named VM qualification does not imply universal hardware or Windows support.

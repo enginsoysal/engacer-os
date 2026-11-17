@@ -8,8 +8,8 @@ Updated 17 November 2026. **M12.8 / 0.12.8 passes M12-STAGE8-VM-v1.**
 150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
 ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
 Open/Save as/Choose folder preserve work, use real files and retain zero managed
-pages after closing. Added fixed shell state is 6,449 bytes. Public release,
-download and full website closure are required before M12.9 starts.
+pages after closing. Added fixed shell state is 6,449 bytes. [Complete public proof](../../evidence/M12/8/publication-results.json) passes:
+twenty matching assets, 337 pages and 2,305 links. **M12.9 is active.**
 
 Previous [M12.7 public delivery](../../evidence/M12/7/publication-results.json) remains
 immutable, including its command/transfer and compressed-slot recovery proof.

@@ -1,7 +1,7 @@
 # M12.8 shared native file dialogs
 
-Status: M12-STAGE8-VM-v1 native qualification passes. Matching public release,
-download and complete website verification close before M12.9. Failed
+Status: M12-STAGE8-VM-v1 native qualification passes. [Matching complete public delivery](../../evidence/M12/8/publication-results.json)
+passed before M12.9. Failed
 prototypes remain diagnostic records, not qualified media.
 
 ## One bounded owner dialog

@@ -1,8 +1,8 @@
 # Open, Save as and Choose folder
 
 M12.8 passes M12-STAGE8-VM-v1. Use the matching [installation guide](install-m128.md)
-and [release scope](../releases/m128-v0.12.8.md). Public download and website
-verification close separately before the next stage.
+and [release scope](../releases/m128-v0.12.8.md). [Complete public delivery](../../evidence/M12/8/publication-results.json) passed
+before M12.9 began.
 
 ## Open a file
 

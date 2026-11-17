@@ -151,3 +151,12 @@ refuse a live fixed-address ELF crossing the named firmware 8-MiB boundary.
 Carry menu/conflict feedback to M12.14, cursor isolation to M12.16 and the earlier
 BIOS/AHCI stress observation to M12.18. Future publication must resolve matching
 drafts by release ID when tag lookup returns 404, never recreate/replace them.
+
+M12.8 M12-STAGE8-VM-v1 and complete public delivery are accepted. Preserve
+M12STAGE8 media, source stamp and evidence/M12/8. New work uses stage9 or later.
+Retain checked existing-page IPC loading, array-free Tab, picker owner/shortcut
+and display-size guards. M12.14 must qualify background transfer conflict-review
+admission/arbitration alongside prior menu feedback. M12.16 must isolate the
+cursor observation and reconcile explicit scale limits with compact startup
+modes; 1280x1024 refused 200%, while actual 150%/4K/200% passed separately.
+Keep the earlier BIOS/AHCI stress observation open for M12.18.

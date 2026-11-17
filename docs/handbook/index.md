@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-Current native qualification: **M12.8 / 0.12.8**, within M12-STAGE8-VM-v1.
+Current native delivery: **M12.8 / 0.12.8**, within M12-STAGE8-VM-v1.
 [Install the matching VMware media](install-m128.md),
 [Open, Save as and Choose folder](dialogs-m128.md),
 [file commands and transfers](transfers-m127.md),
@@ -14,7 +14,8 @@ include supported disk tools and explicit erasure review.
 
 Nineteen native scenarios, real compact light/dark/150%/4K, independent stored
 bytes, exact VMware/BIOS startup, write faults, invalid preferences and actual
-compressed recovery pass. Matching public release/site closure precedes M12.9.
+compressed recovery pass. [Complete public verification](../../evidence/M12/8/publication-results.json) passes:
+twenty downloads, 337 pages and 2,305 links.
 The earlier [M12.7 complete public delivery](../../evidence/M12/7/publication-results.json)
 is preserved. Final controller/application regression remains M12.18. Finish
 transfers before opening a picker; shared background review is an M12.14 gate.
