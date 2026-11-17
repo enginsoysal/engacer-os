@@ -1,6 +1,7 @@
 # M12 desktop experience — staged development
 
-M12.0 defines the design and ordered plan. It adds no native runtime yet.
+M12.0 established the original design and ordered plan. M12.8 now qualifies
+[shared native file dialogs](dialogs-m128.md); each stage retains its own scope.
 Use the [current native guide and scoped media](index.md); each newer native
 stage requires its own matching acceptance and release. [Progress and acceptance](../milestones/m12.md).
 

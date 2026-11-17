@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "stage": "M12.8",
+  "development_only": false,
+  "build_id": "36dffd03aa47ba586a3507d5a3a882fa",
+  "iso_sha256": "7faeaf3967163d9e90763fa104fab4c79e0bfcceb82f5c985cdf2e7d35a7991e",
+  "owned_fixture": "72752ee962114a88a74ab866b4b65d8a",
+  "checks": [
+    "Actual installation/retained-ISO startup; shared Save as chooses Downloads, persists exact text and keeps the original source without consuming another window slot",
+    "Cancel preserves the document/path, creates no destination and does not change the remembered successful Save location",
+    "One click selects without replacing the app document; Enter opens the actual selected validated native text file",
+    "The real CPL3 Editor loads the checked multi-page included guide through existing IPC pages without a large kernel stack buffer",
+    "Bounded eight-location history, history branching, missing/USB locations, invalid folder name, separate folder creation and automatic text extension use ordinary controls",
+    "Existing target requires an explicit replacement; default Enter returns to the picker and Cancel retains the original path",
+    "Dirty Open has a separate Save/Discard/Back/Cancel review; Back retains unsaved work and explicit Discard opens the selected original source",
+    "Explicit Save and open persists the old modified document before loading the selected new source",
+    "Another window remains usable during review; changing and saving the target invalidates the old replacement review, followed by a fresh explicit replacement",
+    "Image Viewer uses the common picker to open an actual native BMP while retaining its existing format checks"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\dialogs_native.py\", line 119, in main\n    p.desktop(54017,True);choose(g,p,'ArchiveSample.zip');c.key(g,'ret');assert not c.flag(g,'file_dialog_state11') and f.app(g)['path'].endswith('/ArchiveSample.zip')\n  File \"<project-root>\\tests\\m12\\components.py\", line 30, in key\n    ui.Pointer(g).drain()\n  File \"<project-root>\\tests\\m11\\ui.py\", line 67, in drain\n    dirty=integer(self.guest,'mouse_dirty',installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 27, in integer\n    def integer(g,name,installed=False):return struct.unpack('<I',memory(g,symbol(name,4,installed)[0],4))[0]\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 63, in qmp\n    self.stream.write((json.dumps(r)+'\\n').encode());self.stream.flush()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\dialogs_native.py\", line 58, in main\n    with live as g:\n  File \"<project-root>\\tests\\m74\\ui.py\", line 73, in __exit__\n    super().__exit__(*exc)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 88, in __exit__\n    self.stream.close();self.sock.close()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n"
+}

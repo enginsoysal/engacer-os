@@ -1,25 +1,23 @@
 # Current status
 
-Updated 17 November 2026. **M12.7 / 0.12.7 passes M12-STAGE7-VM-v1.**
-[Install](../handbook/install-m127.md), [commands and transfers](../handbook/transfers-m127.md),
-[release scope](../releases/m127-v0.12.7.md),
-[acceptance](../../evidence/M12/7/acceptance-results.json).
-584 compiled Git inputs, fourteen native journeys, actual 150%/4K, twelve
-cached/full comparisons, exact VMware/BIOS setup and ordinary starts pass.
-Compressed-slot recovery restores damaged owned BIOS boot bytes and starts
-without ISO. Confirmed 64-MiB import, native partial cancellation, conflicts,
-source removal, independent bytes and zero retained managed pages are checked.
-Fixed shell state remains 545,636 bytes; fixed FAT32 state grows 1,696 bytes,
-including its 1,568-byte metadata cache. [Complete public proof](../../evidence/M12/7/publication-results.json) passes:
-twenty assets, 333 pages and 2,262 links. **M12.8 is active.**
-M12.8 implements shared native Open/Save as/Choose folder and is still under
-qualification. Native probes found two guarded-stack overflows; checked IPC
-staging and array-free Tab traversal correct them without increasing the stack.
-The current candidate passes its exact VMware install/two-start checks and the
-587-input source comparison. Full feature, fault, display, recovery and public
-delivery gates remain pending; M12.7 remains the qualified download.
-M12.14/M12.16/M12.18 carry-forward observations remain explicit. No physical,
-vendor GPU 3D or universal Windows qualification follows from this stage.
+Updated 17 November 2026. **M12.8 / 0.12.8 passes M12-STAGE8-VM-v1.**
+[Install](../handbook/install-m128.md), [shared file dialogs](../handbook/dialogs-m128.md),
+[release scope](../releases/m128-v0.12.8.md),
+[exact-source acceptance](../../evidence/M12/8/acceptance-results.json).
+587 compiled Git inputs, nineteen native scenarios, compact light/dark, real
+150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
+ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
+Open/Save as/Choose folder preserve work, use real files and retain zero managed
+pages after closing. Added fixed shell state is 6,449 bytes. Public release,
+download and full website closure are required before M12.9 starts.
+
+Previous [M12.7 public delivery](../../evidence/M12/7/publication-results.json) remains
+immutable, including its command/transfer and compressed-slot recovery proof.
+
+M12.14 retains menu/conflict feedback and background-transfer review integration.
+M12.16 retains cursor isolation and reconciliation of small startup modes with
+explicit scale choices. The earlier BIOS/AHCI stress observation remains M12.18.
+Physical/ARM, vendor GPU 3D and universal Windows support remain unqualified.
 
 **Previous M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
 [Install](../handbook/install-m126.md), [Files views](../handbook/files-m126.md),

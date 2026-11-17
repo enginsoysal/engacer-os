@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "owned_fixture": "528b66efeef54cdf82852ae646477c53",
+  "extracted_members": [
+    "Welcome.txt",
+    "Notes/Readme.txt",
+    "ChimeLong.wav"
+  ],
+  "remembered_locations": [
+    "/Users/Owner/Downloads",
+    "/Users/Owner/Documents",
+    "/Users/Owner/Documents"
+  ],
+  "checks": [
+    "Independent GPT and metadata/data CRC checks confirm exact original, Save as, explicit replacement, Save before Open and discarded-dirty document bytes",
+    "Every extracted member matches Python ZIP decoding of the original included archive",
+    "The 792-byte per-user record has a valid version, reserved fields, CRC and separate successful Open/Save/folder locations"
+  ]
+}

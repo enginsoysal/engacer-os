@@ -155,3 +155,13 @@ Choose shared widgets/history/identity over per-screen cosmetic patches; solid
 default surfaces over mandatory blur; capability-driven commands over fake
 parity; preference data over app dependencies; actual task/boot/storage evidence
 over screenshots alone. Each stage documents how, why, limits and verification.
+
+## M12.8 native shared dialogs
+
+[The implemented owner/IPC/validation decisions](dialogs-m128.md) and
+[matching acceptance](../../evidence/M12/8/acceptance-results.json) qualify
+native Open/Save as/Choose folder without another app-window slot. One bounded
+picker adds 6449 fixed bytes; existing IPC input pages replace large temporary
+stack payloads. This does not expand the foreign Windows common-dialog ABI.
+Background transfer-review arbitration remains M12.14; small-mode scale-choice
+reconciliation and cursor isolation remain M12.16.

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "guarded_kernel_stack_bytes": 16384,
+  "frames": {
+    "keyboard": 56,
+    "zip_load74": 4376,
+    "picker_accept12": 584,
+    "picker_editor_open12": 56,
+    "zip_extract_at74": 1144,
+    "keyboard11": 888,
+    "request7": 312,
+    "app7_document12": 168
+  },
+  "source_sha256": {
+    "kernel/desktop/session.c": "65eedc3442e40bc552230eee416830eee6a67f482de20fff5050f9775b2102de",
+    "kernel/desktop/picker12.inc": "9e39b4d50c1a0662804e0f2fb08dea39bd32a58504fc4bd89cfe92a6a15710c8",
+    "kernel/desktop/app.c": "9979d6bf58052fccf195f28935f715efe77e3867bdefecbfa12122b4ea0ce419",
+    "kernel/desktop/document12.inc": "c40c7e43901ebb8e53f4b7ea79515f830dbdef804022680d49fc2f2402409313",
+    "include/engine/process.h": "54b3fe97c92c50a2bdb9439324cd9c5da97f5c25152eb58493356d0593b7523f",
+    "tests/m12/stack_dialogs.py": "fb6e377569fad77efb77227a8583d7a4f42b6617952fa7654915c000ef87fa78"
+  },
+  "scope": "Individual optimized compile-only frames, not a complete worst-case call-stack proof. Actual native keyboard ZIP/Open/extraction and focus tasks remain mandatory."
+}

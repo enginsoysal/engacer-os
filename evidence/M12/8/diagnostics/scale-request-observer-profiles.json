@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "feature_journeys_passed": true,
+  "checks": [
+    "Ordinary no-ISO start 1 retains files and successful remembered Save destination using the same firmware variables",
+    "Ordinary no-ISO start 2 retains files and successful remembered Save destination using the same firmware variables",
+    "Actual compact, 150% and 3840x2160/200% Open/Save/new-folder controls retain zero pages and halted idle CPUs"
+  ],
+  "profiles": [
+    {
+      "physical": [
+        1280,
+        1024
+      ],
+      "logical": [
+        1280,
+        1024
+      ],
+      "theme": "light",
+      "scale": 2,
+      "managed_current_bytes": 5435392,
+      "managed_peak_bytes": 5484544,
+      "retained_pages": 0
+    },
+    {
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "theme": "light",
+      "scale": 2,
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2162688,
+      "retained_pages": 0
+    },
+    {
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "theme": "dark",
+      "scale": 2,
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2162688,
+      "retained_pages": 0
+    },
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "theme": "light",
+      "scale": 3,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9457664,
+      "retained_pages": 0
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "theme": "light",
+      "scale": 4,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33419264,
+      "retained_pages": 0
+    }
+  ]
+}

@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.8",
-  "qualified_download": "M12.7",
+  "qualified_download": "M12.8",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -101,7 +101,7 @@
     },
     {
       "id": "M12.8",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Shared file dialogs",
       "requires": "M12.7",
       "deliverable": "Reusable Open, Save as and Choose folder with real navigation, validation and remembered appropriate location.",

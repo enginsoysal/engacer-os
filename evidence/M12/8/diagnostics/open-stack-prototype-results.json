@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M12.8",
+  "development_only": true,
+  "build_id": "60bb37c818ab85171f61f403ac42fc77",
+  "iso_sha256": "260952c635b9e3ac2e4b50dacdb38d80f7c494263f7d9bcdd15af359eb34e81f",
+  "owned_fixture": "28e95a68d7e04d5fa900361c42cd93ca",
+  "checks": [
+    "Actual installation/retained-ISO startup; shared Save as chooses Downloads, persists exact text and keeps the original source without consuming another window slot",
+    "Cancel preserves the document/path, creates no destination and does not change the remembered successful Save location"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\dialogs_native.py\", line 72, in main\n    p.desktop(54000,True);assert picker(g).purpose==1;p.desktop(54016,True);choose(g,p,'First.txt');assert c.flag(g,'file_dialog_state11')==10 and f.app(g)['path']=='/Users/Owner/Downloads/Saved.txt';c.shot(g,'open-selected');c.key(g,'ret')\n  File \"<project-root>\\tests\\m12\\components.py\", line 30, in key\n    ui.Pointer(g).drain()\n  File \"<project-root>\\tests\\m11\\ui.py\", line 67, in drain\n    dirty=integer(self.guest,'mouse_dirty',installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 27, in integer\n    def integer(g,name,installed=False):return struct.unpack('<I',memory(g,symbol(name,4,installed)[0],4))[0]\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 63, in qmp\n    self.stream.write((json.dumps(r)+'\\n').encode());self.stream.flush()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\dialogs_native.py\", line 58, in main\n    with live as g:\n  File \"<project-root>\\tests\\m74\\ui.py\", line 73, in __exit__\n    super().__exit__(*exc)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 88, in __exit__\n    self.stream.close();self.sock.close()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n"
+}

@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "development_only": true,
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "owned_fixture": "364486530730478f8a97216b46e7c16b",
+  "checks": [
+    "Generic native Tab and Shift+Tab preserve control order and both wrap directions without the control-index stack array"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\dialogs_formats_smoke.py\", line 28, in main\n    d.task(g,p,first);p.desktop(54010,True);c.shot(g,'before-owner-close');d.close_focused(g,p);assert d.count_windows(g)==3;d.task(g,p,second);c.key(g,'ctrl','s');d.close_focused(g,p);assert d.count_windows(g)==2;d.task(g,p,settings_token);d.close_focused(g,p);assert d.count_windows(g)==1\n  File \"<project-root>\\tests\\m12\\dialogs_native.py\", line 23, in task\n    rows=[r for r in f.controls(g) if r[4]==token and r[5]==70];assert len(rows)==1,(token,rows)\nAssertionError: (4294967298, [])\n"
+}

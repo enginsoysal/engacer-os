@@ -1,29 +1,31 @@
 # Engacer OS user handbook
 
-Current native delivery: **M12.7 / 0.12.7**, within M12-STAGE7-VM-v1.
-[Install the matching VMware media](install-m127.md),
-[copy, move and manage files](transfers-m127.md), and read the
-[release scope and retained limits](../releases/m127-v0.12.7.md).
+Current native qualification: **M12.8 / 0.12.8**, within M12-STAGE8-VM-v1.
+[Install the matching VMware media](install-m128.md),
+[Open, Save as and Choose folder](dialogs-m128.md),
+[file commands and transfers](transfers-m127.md),
+[release scope](../releases/m128-v0.12.8.md).
 
 Extract the whole VMware ZIP, open EngacerOS.vmx and choose I Copied It if asked.
 Select the disk row, follow Next, review and install, then choose **Restart to
-Engacer OS**. Its matching ISO may stay attached. No terminal syntax, online
-account or guest driver installer is required. [The eight steps](install-m127.md)
-include the supported disk tools and explicit erasure review.
+Engacer OS**. The matching ISO may stay attached. No terminal syntax, online
+account or guest driver installer is required. [The eight steps](install-m128.md)
+include supported disk tools and explicit erasure review.
 
-M12.7 tests native commands, confirmed transfers, conflicts, cancellation,
-partial completion, USB source removal, actual 150%/4K and persisted data.
-The exact enabled-device VMware starter, separate QEMU UEFI/BIOS and compressed
-recovery slot are checked. [Complete public verification](../../evidence/M12/7/publication-results.json)
-passed before M12.8 began.
-Final controller/application regression remains M12.18. Menu/conflict feedback,
-HiDPI cursor isolation and the earlier BIOS/AHCI observation retain their named
-later stages. Agent review is not a human usability study.
+Nineteen native scenarios, real compact light/dark/150%/4K, independent stored
+bytes, exact VMware/BIOS startup, write faults, invalid preferences and actual
+compressed recovery pass. Matching public release/site closure precedes M12.9.
+The earlier [M12.7 complete public delivery](../../evidence/M12/7/publication-results.json)
+is preserved. Final controller/application regression remains M12.18. Finish
+transfers before opening a picker; shared background review is an M12.14 gate.
+Scale-choice reconciliation and cursor isolation remain M12.16. Agent review
+is not a human usability study.
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.7](install-m127.md)
+- [Download and install M12.8](install-m128.md)
+- [Open, Save as, Cancel and choose an extraction folder](dialogs-m128.md)
 - [Copy, move, cancel and inspect transfer results](transfers-m127.md)
 - [Choose Files views, order and full names](files-m126.md)
 - [Navigate native folders and USB](files-m125.md)

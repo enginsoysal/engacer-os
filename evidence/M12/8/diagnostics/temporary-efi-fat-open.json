@@ -1,0 +1,9 @@
+{
+  "development_only": true,
+  "build_completed": false,
+  "failed_operation": "Open owned temporary normal/efi-fat.img for writing",
+  "observed_error": "PermissionError errno 13",
+  "subsequent_readwrite_open_succeeded": true,
+  "vm_processes_running": false,
+  "action": "Repeat the complete frozen-source build; do not qualify partial outputs"
+}

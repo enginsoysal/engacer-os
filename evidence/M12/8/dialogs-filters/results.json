@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "checks": [
+    "Text filter excludes ZIP; All files reveals the actual source but retains the original document on its explicit native size-limit refusal",
+    "An actual CRC-valid small binary file is refused as unsupported ASCII without changing the current text or app path",
+    "A protected native destination explains the refused save and never publishes a file or changes the original document",
+    "Invalid All-files names are refused; cancelled navigation and every rejected Open/Save leave the complete owned native disk unchanged"
+  ],
+  "disk_unchanged": true,
+  "retained_pages": 0
+}

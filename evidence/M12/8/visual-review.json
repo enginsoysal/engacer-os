@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "stage": "M12.8",
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "scope": "Agent visual/scenario review of exact candidate screenshots, not a human study or final accessibility qualification.",
+  "reviewed": [
+    "feature.png",
+    "dialogs-profiles/dirty-compact-dark.png",
+    "dialogs-profiles/save-as-150.png",
+    "dialogs-profiles/save-as-4k.png",
+    "dialogs-profiles/scale-refusal-feedback.png",
+    "dialogs-filters/protected-save-refusal.png"
+  ],
+  "findings": [
+    "Open/Save controls, personal places, filename and primary/cancel actions have clear labels and distinct focus.",
+    "Compact dark dirty-work review separates source, path, explanation and four explicit choices without overlapping essential text.",
+    "Actual 150% and 3840x2160/200% show readable native typography, file icons and non-overlapping action fields.",
+    "The unsupported 1280x1024/200% request shows a clear refusal and retains the existing 100% interface.",
+    "Protected Save explains refusal while retaining the original document; feedback uses readable shared ink."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Prior menu/conflict feedback plus background transfer conflict-review admission/arbitration require the planned integration proof; finish/cancel transfers before opening a picker."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Preserve drawn-cursor/hit isolation and reconcile the global explicit scale limit with smaller startup modes."
+    }
+  ],
+  "capture_sha256": {
+    "feature.png": "bd9b472772d224efdedfe2f26d2cc12f75fc430a3d1627fa9f2764a5e701ce4f",
+    "dialogs-profiles/dirty-compact-dark.png": "0a2d455c49d6473a264f4d6a50fd72ac6f2e99f8283ba2dc97445af86602d6f5",
+    "dialogs-profiles/save-as-150.png": "5e05757561d7e3603173803843c7518d6e9aea0909b528733848bd77ca05c657",
+    "dialogs-profiles/save-as-4k.png": "0d3daf8cf1d0b788ee9bd77b3f040f64e471ebc6ce591ddf2881436ea6a99be1",
+    "dialogs-profiles/scale-refusal-feedback.png": "d621537dcce8c9373e9902918e6446b56708441b2574d6ad838c45802fbc4480",
+    "dialogs-filters/protected-save-refusal.png": "a746eef8bcc9ad3a3ec6956e2c107e17040daf1be4cf1d9328d3994b1292a9e9"
+  }
+}

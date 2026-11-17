@@ -1,0 +1,163 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 545636,
+    "sections": {
+      "bss": 545608,
+      "data": 28
+    },
+    "map_sha256": "db41a3b1dcdcaa60c31039b741c840dfc771e9d21417ac79d790f377445cee7d"
+  },
+  "current": {
+    "bytes": 552085,
+    "sections": {
+      "bss": 552057,
+      "data": 28
+    },
+    "map_sha256": "2c9d688921954a15daa8555af43a7dc7e42b571a2479e3e91471861665e22cfc"
+  },
+  "added_fixed_desktop_bytes": 6449,
+  "managed": {
+    "before": [
+      1047,
+      1047,
+      17722,
+      5
+    ],
+    "after": [
+      1047,
+      1119,
+      17722,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "display_profiles": [
+    {
+      "name": "scale-refusal",
+      "requested_scale_percent": 200,
+      "physical": [
+        1280,
+        1024
+      ],
+      "logical": [
+        1280,
+        1024
+      ],
+      "theme": "light",
+      "scale": 2,
+      "managed_current_bytes": 5435392,
+      "managed_peak_bytes": 5484544,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact",
+      "requested_scale_percent": 100,
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "theme": "light",
+      "scale": 2,
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2162688,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "requested_scale_percent": 100,
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "theme": "dark",
+      "scale": 2,
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2162688,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "requested_scale_percent": 150,
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "theme": "light",
+      "scale": 3,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9457664,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "requested_scale_percent": 200,
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "theme": "light",
+      "scale": 4,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33419264,
+      "retained_pages": 0
+    }
+  ],
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "new_kernel_document_buffers": 0,
+  "scope": "One bounded owner picker; existing worker input pages and volume page are reused. Fixed state and peak/retained managed pages are separate; configured RAM is not consumption."
+}

@@ -1,0 +1,7 @@
+kernel/desktop/app.c:279:request7	312	static
+kernel/desktop\document12.inc:3:app7_document12	168	static
+kernel/desktop/session.c:1236:keyboard	8248	static
+kernel/desktop\picker12.inc:104:picker_accept12	584	static
+kernel/desktop\picker12.inc:77:picker_editor_open12	56	static
+kernel/desktop\interaction11.inc:92:keyboard11	888	static
+Guarded stack remains 16384 bytes. Compile-only frames supplement actual native multi-page Open.

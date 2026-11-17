@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "build_id": "36dffd03aa47ba586a3507d5a3a882fa",
+  "feature_journeys_passed": false,
+  "checks": [
+    "Ordinary no-ISO start 1 retains files and successful remembered Save destination using the same firmware variables",
+    "Ordinary no-ISO start 2 retains files and successful remembered Save destination using the same firmware variables"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\dialogs_profiles.py\", line 26, in main\n    p.desktop(94,True);p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (94, 33)\n"
+}

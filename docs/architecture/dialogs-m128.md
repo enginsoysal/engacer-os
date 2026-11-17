@@ -1,7 +1,8 @@
 # M12.8 shared native file dialogs
 
-Status: implementation and qualification in progress. M12.7 remains the
-published native download. This plan does not claim pending tests passed.
+Status: M12-STAGE8-VM-v1 native qualification passes. Matching public release,
+download and complete website verification close before M12.9. Failed
+prototypes remain diagnostic records, not qualified media.
 
 ## One bounded owner dialog
 
@@ -154,3 +155,14 @@ or cancel transfers before opening a picker in this stage. M12.14 must qualify
 bounded admission/arbitration against actual transfer conflicts, retaining the
 original document and pending choice. This is an explicit feedback-integration
 carry-forward, not a claim that concurrent background review passed.
+
+## Qualified outcome
+
+The final candidate passes nineteen native scenarios, five display routes
+(including explicit size refusal), two ordinary starts, three BIOS and three
+exact VMware checks, actual compressed repair and twelve cached/full comparisons.
+Independent reads verify original, saved/replaced, discarded-dirty and extracted
+payloads. Fault clones preserve work and the original fixture. Added fixed shell
+state is 6449 bytes, with zero retained managed pages and unchanged deliberate
+allocation-failure count. [Acceptance](../../evidence/M12/8/acceptance-results.json)
+and [resources](../../evidence/M12/8/resources.json) describe the exact scope.

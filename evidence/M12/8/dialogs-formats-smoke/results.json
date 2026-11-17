@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "development_only": true,
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "owned_fixture": "7b2359d629cf48288787e1c7888aa669",
+  "checks": [
+    "Generic native Tab and Shift+Tab preserve control order and both wrap directions without the control-index stack array",
+    "A second Editor Open/Save as shortcut cannot replace the first dialog or fall through to saving dirty work; display sizing is guarded and explicit ordinary Save remains available",
+    "Ordinary keyboard Enter opens real BMP and ZIP, chosen-folder extraction matches every independently decoded archive member and tasks retain zero pages"
+  ],
+  "extracted_folder": "/Users/Owner/Documents/Extracted1"
+}

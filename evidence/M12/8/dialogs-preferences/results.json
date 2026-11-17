@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "build_id": "9a36bb087f5db1ccbfc8510b72794654",
+  "owned_fixture": "601f7f4f8ee84fc4a5e5bc86095ac9b9",
+  "base_sha256": "30d7e935ba80dd13abd404e0026852b0a711516617042b73390ff57088ddd1d4",
+  "checks": [
+    "Corrupt optional preference payload falls back to usable Documents after ordinary installed startup; Cancel retains real text and the base disk remains unchanged"
+  ]
+}

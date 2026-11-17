@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": 14,
+  "maximum_read_bytes": 4096,
+  "new_kernel_payload_buffers": 0,
+  "old_view_preserved_on_errors": true,
+  "scope": "Hosted production document staging helper with mocked filesystem/IPC. Does not qualify CPL3 execution, actual native app dialogs or disk behavior; those remain native gates.",
+  "source_sha256": {
+    "kernel/desktop/document12.inc": "c40c7e43901ebb8e53f4b7ea79515f830dbdef804022680d49fc2f2402409313",
+    "kernel/desktop/app.c": "9979d6bf58052fccf195f28935f715efe77e3867bdefecbfa12122b4ea0ce419",
+    "include/engine/desktop/app.h": "a1b96bc9be0d660c1ac4a137c50865e7a27a898e6dad9d19a7c53c8badb95f2c",
+    "tests/m12/document_host.c": "3912827a4bf94587c22660ba35517bf6bc322270d88d3d6cb409eeb9b2b47c25",
+    "tests/m12/document_host.py": "08a8156fcf246ba93af1a3b190d63745dac57c24591047d37a3a5311f9c1cdc8"
+  }
+}

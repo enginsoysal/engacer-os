@@ -1,0 +1,6 @@
+{
+  "build_id": "9cf092311aff5c9df75a7d25ca60a28d",
+  "development_only": true,
+  "reason": "Controlled owned guest stop after code review found other-owner Ctrl+Shift+S could fall through to Save; not an OS crash",
+  "matching_formats_smoke_passed": true
+}

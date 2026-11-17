@@ -1,8 +1,8 @@
 # Open, Save as and Choose folder
 
-M12.8 is in development. The qualified download remains M12.7 until its matching
-release and public verification are complete. This guide describes the implemented
-shared native dialogs; pending qualification is not a completed release.
+M12.8 passes M12-STAGE8-VM-v1. Use the matching [installation guide](install-m128.md)
+and [release scope](../releases/m128-v0.12.8.md). Public download and website
+verification close separately before the next stage.
 
 ## Open a file
 
@@ -60,4 +60,4 @@ window slot; finish or cancel it before requesting another file dialog. Finish
 or cancel an active file transfer before opening a file dialog in this stage.
 
 See [the architecture and qualification contract](../architecture/dialogs-m128.md)
-and [the currently qualified installation guide](install-m127.md).
+and [the matching installation guide](install-m128.md).

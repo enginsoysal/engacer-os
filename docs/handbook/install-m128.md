@@ -1,7 +1,7 @@
 # Install Engacer OS M12.8 in VMware
 
-M12.8 qualification is in progress. This is the intended matching installation
-guide; use M12.7 until the M12.8 release and public checks are complete.
+M12.8 passes M12-STAGE8-VM-v1. Use its exact matching public release;
+source commits alone do not constitute downloadable qualified media.
 
 M12.8 is the shared native file dialogs stage. Use its matching ISO and prepared
 VMware ZIP. The stage's exact-source acceptance is required before release; the
@@ -48,7 +48,7 @@ The [desktop guide](desktop-m123.md) continues to cover folders and references. 
 Open Documents/Welcome.txt
 for the included guide. Save appearance changes before restarting.
 
-M12.8 requires its named VMware SATA/UEFI starter and separate native QEMU
+M12.8 qualifies its named VMware SATA/UEFI starter and separate native QEMU
 SATA/UEFI and BIOS journeys. It does not inherit the complete M11.6 matrix as
 proof for these new bytes. Broader hardware, general Windows installers and
 vendor GPU 3D remain outside this stage. Historical media retain their original

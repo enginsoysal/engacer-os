@@ -1,0 +1,6 @@
+Actual failed candidate stack frames:
+kernel/desktop/session.c:1236:keyboard	8248	static
+kernel/desktop\picker12.inc:109:picker_accept12	584	static
+kernel/desktop\picker12.inc:82:picker_editor_open12	8248	static
+kernel/desktop\interaction11.inc:92:keyboard11	888	static
+Guarded kernel stack: 16384 bytes. keyboard and picker_editor_open12 alone exceeded that sum.

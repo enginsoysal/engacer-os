@@ -4,23 +4,24 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**M12.7 / 0.12.7 passes M12-STAGE7-VM-v1.**
-[Install](docs/handbook/install-m127.md), [file commands and transfers](docs/handbook/transfers-m127.md),
-[release scope](docs/releases/m127-v0.12.7.md),
-[exact-source acceptance](evidence/M12/7/acceptance-results.json).
-584 compiled Git inputs, fourteen native journeys, real 150%/4K, twelve cached/full
-comparisons, matching VMware/BIOS install and independent starts pass. Actual
-compressed-slot recovery restores deliberately damaged owned boot bytes and
-starts independently. Large-file cancellation, partial completion, conflicts,
-source removal and independent stored bytes are checked. Tasks retain zero
-managed pages; fixed shell state is unchanged, with 1,696 additional fixed USB
-reader bytes. [Complete public verification](evidence/M12/7/publication-results.json) passes:
-twenty matching assets, 333 pages and 2,262 links. **M12.8 is active.**
+**M12.8 / 0.12.8 passes M12-STAGE8-VM-v1.**
+[Install](docs/handbook/install-m128.md), [shared file dialogs](docs/handbook/dialogs-m128.md),
+[release scope](docs/releases/m128-v0.12.8.md),
+[exact-source acceptance](evidence/M12/8/acceptance-results.json).
+587 compiled Git inputs, nineteen native scenarios, compact light/dark, real
+150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
+ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
+Open/Save as/Choose folder preserve work, use real files and retain zero managed
+pages after closing. Added fixed shell state is 6,449 bytes. Public release,
+download and full website closure are required before M12.9 starts.
+
+Previous [M12.7 public delivery](evidence/M12/7/publication-results.json) remains
+immutable, including its command/transfer and compressed-slot recovery proof.
 
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English manuals, matching GitHub releases and complete website
 verification after each stage. [Design](docs/architecture/desktop-m12.md),
-[user journeys](docs/handbook/desktop-m12.md). M12.8 now develops the shared file dialogs.
+[user journeys](docs/handbook/desktop-m12.md). M12.8 qualifies shared native file dialogs; public closure precedes M12.9.
 The shared-menu footer and conflict feedback remain M12.14 refinements; HiDPI
 cursor isolation remains M12.16 and the earlier BIOS/AHCI observation remains
 M12.18. Named VM qualification does not imply universal hardware or Windows support.
