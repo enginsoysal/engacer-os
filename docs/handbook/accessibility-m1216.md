@@ -1,6 +1,6 @@
 # Keyboard and accessibility — M12.16
 
-M12-STAGE16-VM-v1 native qualification passes. Use its matching M12.16 media; complete public delivery closes separately before M12.17.
+M12-STAGE16-VM-v1 native qualification passes. Use its matching M12.16 media; complete public delivery passes with twenty downloads, 395 pages, 2,749 HTTP links and native browser verification. M12.17 follows in order.
 
 ## Open Accessibility
 

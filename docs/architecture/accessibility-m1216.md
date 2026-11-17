@@ -1,6 +1,6 @@
 # M12.16 native accessibility
 
-M12-STAGE16-VM-v1 native qualification passes. Complete public delivery closes separately before M12.17.
+M12-STAGE16-VM-v1 native qualification passes. Complete public delivery passes: twenty downloads, 395 pages and 2,749 HTTP links, with native Save and desktop/mobile/manual/search/archive readback. M12.17 follows in order.
 
 ## Independent preferences
 

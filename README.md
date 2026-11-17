@@ -16,7 +16,7 @@ logical input and scaled clicks agree through the screen edges. Exact enabled-de
 VMware, BIOS, twelve movement comparisons and compressed repair pass.
 Fixed shell state is 553,452 bytes (+224 from M12.15); completed tasks
 retain zero managed pages. No external screen reader is claimed.
-Public release and complete website verification remain the gates before M12.17.
+[Complete public proof](evidence/M12/16/publication-results.json) passes: twenty downloads, 395 pages and 2,749 HTTP links, explicit native homepage Save, desktop/mobile/manual/download/search/archive verification and ten fresh reads. **M12.17 is active.**
 
 Previous [M12.15 complete public delivery](evidence/M12/15/publication-results.json)
 remains immutable: twenty downloads, 387 pages and 2,697 HTTP links.

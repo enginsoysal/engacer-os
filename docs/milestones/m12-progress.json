@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.16",
+  "current_stage": "M12.17",
   "qualified_download": "M12.16",
   "known_issues": [
     {
@@ -197,7 +197,7 @@
     },
     {
       "id": "M12.16",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Accessibility",
       "requires": "M12.15",
       "deliverable": "Keyboard-complete routes, visible focus, contrast, text/display scaling, reduced motion and semantic control identities.",
@@ -212,11 +212,13 @@
       "build_id": "931575f2d9d3cbfc2038125c394f7589",
       "evidence": "evidence/M12/16/acceptance-results.json",
       "carry_forward_status": "resolved_by_native_qualification",
-      "carry_forward_resolution": "Actual physical VRAM/input/logical/cursor edge observations at 150% and 200%, scaled client/caption clicks, and real Light/Dark first-start boundary and guide/help ownership checks pass."
+      "carry_forward_resolution": "Actual physical VRAM/input/logical/cursor edge observations at 150% and 200%, scaled client/caption clicks, and real Light/Dark first-start boundary and guide/help ownership checks pass.",
+      "publication_evidence": "evidence/M12/16/publication-results.json",
+      "publication_source": "87fedd75c46fe4bcc3263a29f39be1491b6e7069"
     },
     {
       "id": "M12.17",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Motion and performance",
       "requires": "M12.16",
       "deliverable": "Direct feedback and bounded optional transitions, shared caches and measured CPU/RAM behavior.",
