@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "stage": "M13.1",
+  "build_id": "4a96713eaec5b2aa195b1e278be754b9",
+  "reviewer": "agent scenario and actual native-frame review; not a human usability study",
+  "checks": [
+    "Shared smooth typography and essential labels remain readable in compact, ordinary, 150% and physical 4K gallery captures",
+    "Light/dark/high-contrast state captures and independent contrast arithmetic pass; disabled control has no registered hit target",
+    "Real pointer text entry and Backspace, semantic text-field focus and F1/escape help are verified independently",
+    "Normal, selected, unavailable and focused surfaces have distinct states; no added permanent buffer or idle repaint was observed"
+  ],
+  "captures": [
+    {
+      "path": "evidence/M13/1/ordinary/component-gallery-light.png",
+      "sha256": "f9a91cb076656fd3a55642df9d66ca1a21c3c6140776d8b7db5d09619072251d"
+    },
+    {
+      "path": "evidence/M13/1/ordinary/component-gallery-dark.png",
+      "sha256": "59d0845e6f6772128ff4a6077b6331de4823447e59d7a96f973632e6ac3866a0"
+    },
+    {
+      "path": "evidence/M13/1/ordinary/component-gallery-high-contrast.png",
+      "sha256": "a193d911e05e44571eb2b62c5d1738f96b2b94bf9aa51bc135a46a81b0288521"
+    },
+    {
+      "path": "evidence/M13/1/compact/component-gallery-light.png",
+      "sha256": "261df5e704fc4ebeef700ed6bd57d6d1adb0c3d2e1c6b09677393230aca8b330"
+    },
+    {
+      "path": "evidence/M13/1/compact/component-gallery-dark.png",
+      "sha256": "da161111007030cda240eb00ecc924bdb117d4d157973da7b416776c1ec46733"
+    },
+    {
+      "path": "evidence/M13/1/compact/component-gallery-high-contrast.png",
+      "sha256": "01a40b3a04486429022639c68d7fb1e1e7894bbceab94842852529ee36cf788b"
+    },
+    {
+      "path": "evidence/M13/1/150/component-gallery-light.png",
+      "sha256": "84711d2efa1079073f456b6862065d52e462d4d7236ceedc26ee689cac3ac8ae"
+    },
+    {
+      "path": "evidence/M13/1/150/component-gallery-dark.png",
+      "sha256": "f8e58eb03a193611361a0da2e270471f4536684ab8a6cce727698def40bc0697"
+    },
+    {
+      "path": "evidence/M13/1/150/component-gallery-high-contrast.png",
+      "sha256": "9f09e61738c4206efc3eb41f55d2ea56b0a92392dcc33c1852e2d65b2f455a04"
+    },
+    {
+      "path": "evidence/M13/1/4k/component-gallery-light.png",
+      "sha256": "67f59defc6cfa151aed4ffce0ef377bec6586e9fd9fd4d1685430069bdd88d35"
+    },
+    {
+      "path": "evidence/M13/1/4k/component-gallery-dark.png",
+      "sha256": "38ca97227764fd91208e4f089fc51a4601fd00a320af79fa8e4f1dfc13eaf31c"
+    },
+    {
+      "path": "evidence/M13/1/4k/component-gallery-high-contrast.png",
+      "sha256": "0075b19525b5361514de3fe634b8b91836de175a6946198bdfaf095c82358fba"
+    }
+  ],
+  "feature_sha256": "1e24f85efe102786a5401bde1dd558ca87c58aa156835c276dd0b4db0f2985f1",
+  "limits": [
+    "Later desktop/window/Start/Files/setup refinements and full M13.12 regression are separate stages",
+    "Production website behavior requires its own live browser and publication receipts"
+  ]
+}

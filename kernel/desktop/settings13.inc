@@ -78,7 +78,7 @@ static unsigned settings_key13(int key){
 #ifdef ENGINE_M13
  if(!launcher&&!context11&&!guide_open11&&!file_dialog_state11.mode&&model.focused<DESKTOP_WINDOWS){
   desktop_window*w=&model.windows[model.focused];uint64_t token=desktop_token(&model,model.focused);
-  if(w->live&&!w->minimized&&w->app==SETTINGS&&settings_page13[model.focused]==5&&control_active&&focused_control_window==token&&focused_action==60102&&!input11_modifiers()){
+  if(w->live&&!w->minimized&&w->app==SETTINGS&&settings_page13[model.focused]==5&&control_active&&focused_control_window==token&&focused_action==60102&&!(input11_modifiers()&~2u)){
    application*a=&apps[model.focused];if(key==8){if(a->length)a->text[--a->length]=0;whole();return 1;}
    if(key>=32&&key<127){if(a->length<48){a->text[a->length++]=(char)key;a->text[a->length]=0;}whole();return 1;}
   }

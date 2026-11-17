@@ -38,8 +38,8 @@ def main():
     ptr.desktop(59003,True);ptr.desktop(59007,True);shot(g,out,'component-gallery',True)
     ptr.desktop(60100,True);ptr.desktop(60101,True);ptr.desktop(60102,True)
     for c in 'readable':key(g,c)
-    key(g,'backspace');shot(g,out,'component-gallery-interactive',True)
-    address,size=ui.symbol('apps',installed=True);assert b'readabl\0' in ui.memory(g,address,size)
+    key(g,'backspace');key(g,'shift','x');key(g,'shift','1');shot(g,out,'component-gallery-interactive',True)
+    address,size=ui.symbol('apps',installed=True);assert b'readablX!\0' in ui.memory(g,address,size)
     semantic=struct.unpack('<QII',ui.memory(g,ui.symbol('access_focus16',96,True)[0],16));assert semantic[1:]==(60102,2),semantic
     key(g,'f1');assert ui.integer(g,'access_help16',True);shot(g,out,'text-field-focus-help',True);key(g,'esc')
     count=ui.integer(g,'control_count',True);controls=ui.memory(g,ui.symbol('controls',65536,True)[0],count*32);assert all(struct.unpack_from('<iiiiQI',controls,i*32)[5]!=60103 for i in range(count))
@@ -49,7 +49,7 @@ def main():
      else:ptr.desktop(59004,True);ptr.desktop(60010,True);ptr.desktop(59000,True);ptr.desktop(44,True)
      ptr.desktop(59003,True);ptr.desktop(59007,True);shot(g,out,'component-gallery-'+theme,True)
     report['checks'].append('Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back')
-    report['checks'].append('Native gallery opens through System, activates a real button and selection, and accepts bounded editable text')
+    report['checks'].append('Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation')
    report['resources']=dict(managed_stats=list(struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32))),framebuffer_bytes=struct.unpack_from('<I',ui.physical_boot(g,True),136)[0]*struct.unpack_from('<I',ui.physical_boot(g,True),148)[0])
    key(g,'alt','f4');ptr.drain();pages_after=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32))[0];report['resources']['retained_task_delta_pages']=pages_after-pages_before;assert pages_after==pages_before
    before=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');time.sleep(.5);after=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1');assert before==after and halted==2,(before,after,halted)

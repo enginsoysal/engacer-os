@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "baseline": false,
+  "stage": "M13.1",
+  "build_id": "4a96713eaec5b2aa195b1e278be754b9",
+  "iso_sha256": "10a0ed71732652a2b5a39013d8f173214506830ef4e895440ab1f992a9fc9512",
+  "physical": [
+    1920,
+    1080
+  ],
+  "configured_guest_mib": 512,
+  "owned_fixture": "1ee8e822e63e42c2b59417516b542a35",
+  "checks": [],
+  "scale_units": 2,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\native_controls.py\", line 42, in main\n    address,size=ui.symbol('apps',installed=True);assert b'readablX!\\0' in ui.memory(g,address,size)\nAssertionError\n"
+}

@@ -1,0 +1,106 @@
+{
+  "build_id": "4a96713eaec5b2aa195b1e278be754b9",
+  "reason": "Prepublication review found the preview field rejects Shift; preserve this candidate before correction",
+  "assets": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-installed-kernel.elf",
+      "sha256": "dfacad1d793f37f2042e966bc7468438eb01e8b9fe0b3c3aad1a35b9857500f7",
+      "size": 1405308
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-installed-kernel.map",
+      "sha256": "67fcc268acf3615d3a991a5ffedf0adcac48759357d068ac536da8c0b484d96a",
+      "size": 402485
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-kernel.elf",
+      "sha256": "ae1ac1d998ca52f50f0094afba29ba0b2b54df6f3f876b1517a8327ef5396bfe",
+      "size": 3768700
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-kernel.map",
+      "sha256": "fc6088d9b1ad41a285c9e3e8e6a6d40021c2c9dd7ad327e2d27c556041ec77d1",
+      "size": 402777
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-THIRD-PARTY-NOTICES.txt",
+      "sha256": "e896c90bd87a1870d46a4dfdd03cf8b28807b7136550be8b5761b48a3f4b04ff",
+      "size": 59409
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-usb.img",
+      "sha256": "323b03c2d3123305d7557fe956425be0dd7aa8de6012feab4e19d7d084dd89b0",
+      "size": 84934656
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064
+    },
+    {
+      "name": "EngacerOS-M13STAGE1-VMware.zip",
+      "sha256": "a71da3d460c98021f566d123fb6c1c905fc961e4000d35640603981ace9f4cfa",
+      "size": 10591042
+    },
+    {
+      "name": "EngacerOS-M13STAGE1.iso",
+      "sha256": "10a0ed71732652a2b5a39013d8f173214506830ef4e895440ab1f992a9fc9512",
+      "size": 75061248
+    },
+    {
+      "name": "m13stage1-build-manifest.json",
+      "sha256": "e02fe6b01f15a4bf9f38e11e7e8e2eb56a91acb2eaa54870c2bcc8ab592074f3",
+      "size": 80735
+    },
+    {
+      "name": "M13STAGE1-SHA256SUMS.txt",
+      "sha256": "39fcc5920b2aa59e00e0d39e86f9bd28c954da1f987c9b87f4d871dbf5dd8125",
+      "size": 1839
+    },
+    {
+      "name": "m13stage1-starter-manifest.json",
+      "sha256": "f88e173457d937385bcd6a6bb83c6148375de775e8df5804ea0811e6919761ef",
+      "size": 653
+    }
+  ]
+}

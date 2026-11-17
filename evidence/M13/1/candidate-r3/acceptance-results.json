@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "stage": "M13.1",
+  "version": "0.13.1",
+  "qualification": "M13-STAGE1-VM-v1",
+  "build_id": "4a96713eaec5b2aa195b1e278be754b9",
+  "iso_sha256": "10a0ed71732652a2b5a39013d8f173214506830ef4e895440ab1f992a9fc9512",
+  "vmware_zip_sha256": "a71da3d460c98021f566d123fb6c1c905fc961e4000d35640603981ace9f4cfa",
+  "source_inputs_verified": 600,
+  "native_checks": [
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery"
+  ],
+  "vmware_checks": [
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "harness_sha256": {
+    "tests/m13/close_stage.py": "77348bf0d8c8723896edcef2fe42319f08d55d854d38d16f8d83e32fb232b49e",
+    "tests/m13/components_host.py": "8c6091c8d8d030348d921a2816c10c3cc529f5a66c311440e3c9dabc8aea6941",
+    "tests/m13/native_controls.py": "c0f45636d2a3d2354e07191b77b3b747aef45495598b89fed36a237dcb593238",
+    "tests/m13/verify_stage1.py": "0e376b7599d362839ff2cc3dcaa9d7a070eeca90f24a8486dff6a4eb31829122",
+    "tests/m13/vmware_stage.py": "1dd5845e9c2772a8cb6bece30378cb7a2553b9ce405694f2b6f2fd7ee53ac2c4"
+  },
+  "resources": "resources.json",
+  "limits": [
+    "Scoped native shared-control qualification on named virtual profiles; later M13 whole-product qualification remains M13.12",
+    "No physical/ARM, vendor GPU 3D, universal devices or general DOS/Windows qualification",
+    "Agent visual/scenario review is separate from human usability research",
+    "GitHub and public BrixCanvas acceptance remain separate publication gates"
+  ]
+}
