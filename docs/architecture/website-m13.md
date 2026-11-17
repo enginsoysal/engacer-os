@@ -28,7 +28,7 @@ The current production article renderer supplies chronological Previous/Next and
 
 The authenticated native editor exposes a Search Brix with a text field and Search submit button. Its preview and the currently published site have been inspected; these observations do not demonstrate an accessible result overlay, archive filtering or Ctrl+K. The existing content API publishes articles/settings and does not by itself add arbitrary renderer behavior.
 
-M13.0 therefore delivers an interactive offline prototype with the required states and a visible pending production-overlay item. Production implementation must either use a verified supported native search mode or a narrowly scoped BrixCanvas component/template extension with schema, ownership, keyboard/focus, ranking, mobile, failure and cross-site regression tests. Preserve ordinary fallback search until the replacement actually passes. No browser-injected JavaScript or external-hosted replacement is a production solution.
+M13.0 therefore delivers an interactive offline prototype with the required states and a visible pending production-overlay item. The tracked implementation target is M13.1. Production implementation must either use a verified supported native search mode or a narrowly scoped BrixCanvas component/template extension with schema, ownership, keyboard/focus, ranking, mobile, failure and cross-site regression tests. Preserve ordinary fallback search until the replacement actually passes. No browser-injected JavaScript or external-hosted replacement is a production solution.
 
 ## Migration and verification
 

@@ -12,6 +12,20 @@ def text(x,y,s,size=16,fill=INK,weight=400):
     return f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" font-weight="{weight}">{escape(s)}</text>'
 def button(x,y,w,label,primary=False):
     return rect(x,y,w,44,TEAL if primary else 'white',8,TEAL if primary else LINE)+text(x+18,y+28,label,16,'white' if primary else INK,600)
+def appicon(x,y,index):
+    colors=['#c69534',TEAL,'#284361','#5279b1','#5173a3','#8b669d','#b46a50','#a07b38']
+    s=rect(x,y,46,46,colors[index],12)
+    shapes=[
+      '<path d="M9 16h11l4 4h13v16H9z" fill="white"/>',
+      '<circle cx="23" cy="23" r="10" fill="none" stroke="white" stroke-width="4"/><circle cx="23" cy="23" r="3" fill="white"/>',
+      '<path d="m11 16 7 7-7 7m11 0h12" fill="none" stroke="white" stroke-width="3"/>',
+      '<rect x="12" y="9" width="23" height="28" rx="3" fill="none" stroke="white" stroke-width="2"/><path d="M16 17h15m-15 7h4m5 0h5m-14 7h4m5 0h5" stroke="white" stroke-width="3"/>',
+      '<path d="M13 9h16l6 7v21H13z" fill="white"/><path d="M18 20h12m-12 6h12m-12 5h8" stroke="#5173a3" stroke-width="2"/>',
+      '<circle cx="23" cy="23" r="14" fill="none" stroke="white" stroke-width="3"/><path d="M23 13v11l7 4" fill="none" stroke="white" stroke-width="3"/>',
+      '<rect x="10" y="12" width="27" height="25" rx="3" fill="white"/><path d="M10 20h27m-20-12v8m12-8v8" stroke="#b46a50" stroke-width="3"/><path d="M16 26h4m6 0h4m-14 6h4m6 0h4" stroke="#b46a50" stroke-width="2"/>',
+      '<rect x="10" y="12" width="27" height="25" rx="3" fill="none" stroke="white" stroke-width="2"/><path d="M10 19h27m-13 0v18m-3-13h6m-6 6h6" stroke="white" stroke-width="2"/>'
+    ]
+    return s+f'<g transform="translate({x} {y})">'+shapes[index]+'</g>'
 def base(title):
     return '<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960" role="img" aria-label="'+escape(title)+'"><style>text{font-family:Inter,Arial,sans-serif}</style>'+rect(0,0,1440,960,'#eaf0f6',0)+text(36,38,'ENGACER OS / M13.0 ORIGINAL DESIGN CONCEPT',14,TEAL,700)+text(36,68,title,22,INK,600)+text(36,935,'DESIGN ONLY · Proposed layout and sample content · Not a native OS screenshot',14,MUTED)
 def frame(title):
@@ -59,7 +73,7 @@ def desktop(kind='desktop'):
         s+=rect(272,208,640,610,'#f8fafc',16,LINE)+rect(302,238,580,44,'white',8,LINE)+text(320,266,'Search apps and settings',16,MUTED)
         s+=text(304,328,'Pinned',18,INK,600)+button(752,300,130,'All apps →')
         for i,label in enumerate(['Files','Settings','Terminal','Calculator','Text Editor','Clock','Calendar','Archives']):
-            x=346+(i%4)*144;y=386+(i//4)*120;s+=rect(x,y,46,46,['#e7bb62',TEAL,'#284361','#5279b1'][i%4],12)+text(x+12,y+30,['▰','⚙','>_','＋'][i%4],21,'white',600)+text(x-10,y+73,label,15)
+            x=346+(i%4)*144;y=386+(i//4)*120;s+=appicon(x,y,i)+text(x-10,y+73,label,15)
         s+=rect(272,738,640,80,'#edf2f7',0)+text(304,786,'●  Local user',16)+text(790,786,'Power ⏻',16)
     else:
         s+=rect(236,176,1100,620,'white',12,LINE)+text(264,212,'Settings',20,INK,600)+text(1216,212,'—   □   ×',18)+rect(256,240,222,40,'#f3f6fa',8)+text(270,266,'Search settings',15,MUTED)
