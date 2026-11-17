@@ -87,8 +87,10 @@ def main():
                 p.desktop(0,True);p.desktop(42007,True);p.desktop(42030,True);p.desktop(43302,True);p.desktop(42034,True);p.desktop(42008,True);c.key(g,'esc');assert list(s.prefs(g).task[:3])==[1,7,2] and group_order(g)==[1,7,2]
                 right_group(g,p,2);f.menu(g,p,42702);assert group_order(g)==[1,7];editor=launch(g,p,'text editor',2);assert group_order(g)==[1,7,2];right_group(g,p,2);f.menu(g,p,42702);s.close(g,p)
                 report['checks'].append('Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button')
-                pin(g,p,'calc',4);p.desktop(43104,True);assert s.windows(g,4)==1;launch(g,p,'software',11);p.desktop(10304,True);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);s.close(g,p)
-                report['checks'].append('Actual optional Calculator removal closes its real worker and removes its pin/group while the shell and Software Manager stay usable; reinstall remains available')
+                pin(g,p,'calc',4);p.desktop(43104,True);assert s.windows(g,4)==1;calculator=next(w for w in records(g) if w['app']==4);software=launch(g,p,'software',11);p.desktop(10304,True);p.desktop(10004,True)
+                assert s.windows(g,4)==1 and 4 in s.prefs(g).task[:s.prefs(g).tasks] and 'Close every window' in f.app(g)['notice'];c.shot(g,'in-use-removal-refused')
+                focus(g,p,calculator);s.close(g,p);focus(g,p,software);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);s.close(g,p)
+                report['checks'].append('Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable')
                 for name,app in [('calc',4),('clock',8),('calendar',9),('image',14),('media',16)]:pin(g,p,name,app)
                 assert list(s.prefs(g).task[:8])==[1,7,2,4,8,9,14,16]
                 for name,app in [('settings',3),('downloads',5),('monitor',6),('disk utility',10),('software',11),('recovery',12),('archive',13),('help',18)]:launch(g,p,name,app)

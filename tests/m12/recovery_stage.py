@@ -1,0 +1,47 @@
+"""Replay the compressed real installed slot, then boot its repaired BIOS files."""
+import argparse,os,json,traceback
+from pathlib import Path
+parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);parser.add_argument('--native-group',required=True);parser.add_argument('--fixture-family',required=True);args=parser.parse_args();stage=args.stage;assert 10<=stage<=18
+assert args.native_group.replace('-','').isalnum() and args.fixture_family.replace('-','').isalnum()
+os.environ['ENGACER12_IMAGE']=f'EngacerOS-M12STAGE{stage}'
+import components as c
+ui=c.ui;ROOT=ui.ROOT
+
+def main():
+    out=ROOT/f'build/m12/stage{stage}/recovery';out.mkdir(exist_ok=True);c.OUT=out
+    meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));native=json.loads((ROOT/f'build/m12/stage{stage}/{args.native_group}/results.json').read_text(encoding='utf-8'))
+    assert native['passed'] and native['build_id']==meta['build_id']
+    base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6'/args.fixture_family;work=base/native['owned_fixture'];disk=work/'owned.img'
+    assert work.resolve().is_relative_to(base.resolve()) and disk.is_file()
+    assert not native.get('development_only',False)
+    report=dict(passed=False,build_id=meta['build_id'],iso_sha256=meta['artifacts'][f'EngacerOS-M12STAGE{stage}.iso']['sha256'],checks=[])
+    try:
+        assert not (ROOT/f'evidence/M12/{stage}/publication-results.json').exists()
+        preferences=ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')
+        before=ui.q.digest(disk,2112*512,4096)
+        with disk.open('r+b') as stream:
+            stream.seek(2112*512+511);value=stream.read(1);stream.seek(-1,1);stream.write(bytes([value[0]^255]))
+        repair=ui.guest(work/'compressed-repair',disk);original=repair.wait
+        def recovery_wait(text,after=0,timeout=90):
+            if text==repair.ready:
+                original('M115_RECOVERY_WINDOW',after,timeout);ui.h.key(repair,'esc');original('M75_SETUP_OVERRIDE',after,10)
+            return original(text,after,timeout)
+        repair.wait=recovery_wait
+        with repair as g:
+            p=ui.Pointer(g)
+            for action in (50,80,100,2):c.wizard(g,p,action)
+            start=c.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240)
+            g.qmp('stop')
+            try:ui.raw_shot(g,out,'recovery-complete',False)
+            finally:g.qmp('cont')
+            (out/'recovery.log').write_bytes(g.log().encode())
+        assert ui.q.digest(disk,2112*512,4096)==before
+        report['checks'].append('Actual ISO recovery validates and decodes its on-disk compressed slot, restoring deliberately corrupted owned BIOS bytes exactly')
+        with ui.guest(work/'compressed-repaired-bios',disk,firmware='bios',media='installed',ready='M7_DESKTOP_READY') as g:
+            assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log();ui.Pointer(g).drain();c.shot(g,'repaired-disk-desktop');c.idle(g);(out/'repaired-boot.log').write_bytes(g.log().encode())
+        assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==preferences
+        report['checks'].append('Repaired BIOS disk starts without ISO and independently stored user data remains unchanged')
+        report['passed']=True
+    except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
+    finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report,indent=2),flush=True)
+if __name__=='__main__':main()

@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "stage": "M12.10",
+  "development_only": false,
+  "build_id": "229db07cfb27a2e6ed29546745d2e795",
+  "iso_sha256": "c003d666694f708eb38adcc6f6378df2fcf64ad9b6492d4ff1f5a2aa34a16678",
+  "owned_fixture": "3b45d3dd5ebd468cade718d98a1223aa",
+  "checks": [
+    "Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window",
+    "Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window",
+    "Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window",
+    "Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\taskbar_native.py\", line 90, in main\n    pin(g,p,'calc',4);p.desktop(43104,True);assert s.windows(g,4)==1;launch(g,p,'software',11);p.desktop(10304,True);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);s.close(g,p)\nAssertionError\n"
+}
