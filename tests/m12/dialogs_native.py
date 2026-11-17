@@ -20,8 +20,14 @@ def appview(g,slot=None):
 def count_windows(g):return int.from_bytes(ui.memory(g,ui.symbol('model',installed=True)[0]+232,4),'little')
 
 def task(g,p,token):
+    slot=(token&0xffffffff)-1
+    minimized=ui.memory(g,ui.symbol('model',installed=True)[0]+slot*28+25,1)!=b'\0'
+    if f.model(g)[0]==slot and not minimized and not c.flag(g,'launcher') and not c.flag(g,'desktop_focus11'):
+        assert focused_token(g)==token
+        return
     rows=[r for r in f.controls(g) if r[4]==token and r[5]==70];assert len(rows)==1,(token,rows)
     x,y,w,h,*_=rows[0];p.logical(x+w//2,y+h//2,True);p.drain()
+    assert f.model(g)[0]==slot and not c.flag(g,'desktop_focus11'),('Taskbar did not focus the requested owner',token,f.model(g)[0])
 
 def owner(g):return c.control(g,54010)[4]
 
