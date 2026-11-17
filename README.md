@@ -14,8 +14,7 @@ ordinary disk starts and real compressed boot repair pass. The switcher identifi
 actual windows; preview/cancel and optional complementary snap preserve work.
 Two deliberately different normal rectangles restore exactly. Fixed shell state
 is 552,957 bytes, 32 above M12.10; completed tasks retain zero managed pages.
-Public release and complete website verification are pending; M12.11 remains
-active until those gates close. M12.12 has not started.
+[Complete public proof](evidence/M12/11/publication-results.json) passes: twenty downloads, 357 pages and 2,457 links, plus native homepage Save and actual desktop/mobile verification. **M12.12 is active.**
 
 Previous [M12.10 complete public delivery](evidence/M12/10/publication-results.json)
 remains immutable: twenty downloads, 349 pages and 2,405 links.

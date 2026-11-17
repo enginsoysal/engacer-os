@@ -1,7 +1,7 @@
 # M12.11 — bounded native multitasking
 
-Status: M12-STAGE11-VM-v1 native qualification passes. Matching public release
-and complete website verification remain pending before M12.12.
+Status: M12-STAGE11-VM-v1 native qualification passes. Complete public delivery passes: twenty downloads, 357 pages and 2,457 links.
+M12.11 is complete; preserve its accepted media and evidence.
 
 ## How and why
 

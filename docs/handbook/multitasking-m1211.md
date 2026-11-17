@@ -1,7 +1,7 @@
 # Switch and arrange windows — M12.11
 
 M12.11 passes native qualification. Use the [matching installation guide](install-m1211.md)
-and official release assets; complete public delivery closes separately.
+and official release assets; [complete public delivery](../../evidence/M12/11/publication-results.json) passes.
 
 ## Find another window
 
