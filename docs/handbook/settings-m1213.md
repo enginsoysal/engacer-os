@@ -1,7 +1,7 @@
 # Settings and personalization — M12.13
 
-Development guide: native M12.13 tests and matching downloads are pending.
-The completed tested release remains [M12.12](install-m1212.md).
+M12.13 passes its named native qualification. Use the matching
+[installation guide](install-m1213.md) and [release scope](../releases/m1213-v0.12.13.md).
 
 Open Settings from Start. Choose Appearance, Display, Input or System.
 Tab chooses a visible control and Enter activates it. Categories retain the

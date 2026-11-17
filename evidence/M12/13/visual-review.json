@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "stage": "M12.13",
+  "build_id": "119eb7a0e54f4914b768c6d31cf3d01c",
+  "scope": "Agent review of actual native candidate captures and ordinary input/provider/disk evidence; not a human study or full accessibility qualification.",
+  "reviewed": [
+    "feature.png",
+    "settings-native/competing-preview-refused.png",
+    "settings-native/active-dialog-save-scale-refused.png",
+    "settings-native/explicit-input-preferences.png",
+    "settings-profiles/appearance-compact-dark.png",
+    "settings-profiles/appearance-4k.png",
+    "settings-profiles/scale-close-modal-refused.png",
+    "settings-invalid/malformed-record-safe-fallback.png"
+  ],
+  "findings": [
+    "The four shared Settings categories, accent/theme/wallpaper choices and preview footer remain readable and reachable at compact light/dark, actual 150% and physical 4K.",
+    "Competing visual controls are visibly disabled with an owner explanation; actual modal scale-close refusal leaves unsaved work and its dialog intact.",
+    "Input clearly says that its choices save immediately, and the real saved keyboard status is distinct from visual Apply/Cancel.",
+    "The actual malformed-record fallback remains usable and offers an explicit Apply recovery. Independent valid filesystem CRCs distinguish semantic refusal from accidental whole-volume damage."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Retain prior menu/footer/Start/Editor and background transfer/modal work. Refine the fallback wording valid record to plain user choices, and make the System category idle footer contextual instead of repeating the Input explanation."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Retain cursor/hit and explicit-scale minimum reconciliation and keyboard focus/hint refinement."
+    },
+    {
+      "stage": "M12.17",
+      "observation": "Retain bounded shadow edge-span evaluation and actual renderer equivalence."
+    },
+    {
+      "stage": "M12.18",
+      "observation": "Retain the named BIOS/AHCI observation, full controller/original-app matrix and custom-domain email-sharing observation."
+    }
+  ],
+  "capture_sha256": {
+    "feature.png": "017662334072399d92f3b5f5b5355b5acc9a22e4b182eb36bcb8c898525567ec",
+    "settings-native/competing-preview-refused.png": "1e3b738d750f21a6b28449e1102dc368c705fb773b1a647e9216c4e66eb9e63d",
+    "settings-native/active-dialog-save-scale-refused.png": "fb90539be81e764d3209916a027c9d048e09af26d03933d3b460dfa64f9a65be",
+    "settings-native/explicit-input-preferences.png": "a333a1521f654fe5ed40ef8e4ff261a071f9e8b7599f07216e8d61d82008ba19",
+    "settings-profiles/appearance-compact-dark.png": "c2b9b7a426888ccd85a39033d8c1cae4671ecd488c7f4410b0530d4ed37c7baf",
+    "settings-profiles/appearance-4k.png": "7af968ebcef43887d95301f08e47001308ee5e9387e925e6171f4449bb04618f",
+    "settings-profiles/scale-close-modal-refused.png": "af0682b21a4c454d8efd3084d6fd74194f06543c25b835b47f0f35efef4f098f",
+    "settings-invalid/malformed-record-safe-fallback.png": "d246105ed9aff51312f6ab58f3b12b8022bde4b30d7f16582c298b840166f958"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "build_id": "119eb7a0e54f4914b768c6d31cf3d01c",
+  "profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9457664,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0
+    }
+  ],
+  "checks": [
+    "An actual 150% scale preview refuses owner closure while another window owns Save As; exact unsaved work survives, and after cancelling the dialog closing restores the previous display choice",
+    "Four actual display profiles keep all four Settings categories and registered controls reachable; cancelled previews leave the complete disk unchanged, retain zero managed pages and halt at idle"
+  ]
+}

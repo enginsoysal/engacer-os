@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.13",
-  "qualified_download": "M12.12",
+  "qualified_download": "M12.13",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -151,7 +151,7 @@
     },
     {
       "id": "M12.13",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Settings and personalization",
       "requires": "M12.12",
       "deliverable": "A consistent settings hierarchy, previews, persisted preferences and explicit default restoration.",

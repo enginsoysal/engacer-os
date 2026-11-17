@@ -1,0 +1,7 @@
+{
+  "source": "actual native framebuffer physical bytes; no VGA cache or image resizing",
+  "width": 1280,
+  "height": 800,
+  "stride": 5120,
+  "raw_sha256": "1e920f73b4a80b55badac91c3c1d64f5f48500b86dd2eb41dd78238cac57ccf4"
+}

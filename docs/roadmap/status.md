@@ -1,19 +1,20 @@
 # Current status
 
-Updated 17 November 2026. **M12.12 / 0.12.12 passes M12-STAGE12-VM-v1.**
-[Install](../handbook/install-m1212.md), [system tray and quick settings](../handbook/tray-m1212.md),
-[release scope](../releases/m1212-v0.12.12.md),
-[exact-source acceptance](../../evidence/M12/12/acceptance-results.json).
-593 compiled Git inputs and 11 native task/profile checks cover real provider state,
-UTC calendar, persisted PCM level, USB generation guards, safe removal during
-actual transfer, optional-app independence and USB/PS2 ordinary starts.
+Updated 17 November 2026. **M12.13 / 0.12.13 passes M12-STAGE13-VM-v1.**
+[Install](../handbook/install-m1213.md), [Settings and personalization](../handbook/settings-m1213.md),
+[release scope](../releases/m1213-v0.12.13.md),
+[exact-source acceptance](../../evidence/M12/13/acceptance-results.json).
+595 compiled Git inputs and 9 native task/profile checks cover real visual
+Apply/Cancel/close/defaults, preview ownership, independent input preferences,
+malformed-record refusal/recovery and ordinary USB/PS2 startups.
 Compact light/dark, actual 150%/4K, enabled-device VMware, separate BIOS,
 twelve movement comparisons and real compressed boot repair pass.
-Fixed shell state is 553,196 bytes, 239 above M12.11; completed UI tasks
-retain zero managed pages. [Complete public proof](../../evidence/M12/12/publication-results.json) passes: twenty downloads, 364 pages and 2,513 HTTP links, native homepage Save and actual desktop/mobile guide/download verification. **M12.13 is active.**
+Fixed shell state is 553,228 bytes, 32 above M12.12; completed UI tasks
+retain zero managed pages. Public release and complete website verification
+are the remaining gates before M12.14.
 
-Previous [M12.11 complete public delivery](../../evidence/M12/11/publication-results.json)
-remains immutable: twenty downloads, 357 pages and 2,457 links.
+Previous [M12.12 complete public delivery](../../evidence/M12/12/publication-results.json)
+remains immutable: twenty downloads, 364 pages and 2,513 HTTP links.
 
 M12.14 retains menu/conflict and Start query/notice feedback plus background
 transfer/modal arbitration. M12.16 retains cursor/scale reconciliation, and

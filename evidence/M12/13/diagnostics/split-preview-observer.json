@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "stage": "M12.13",
+  "development_only": true,
+  "build_id": "119eb7a0e54f4914b768c6d31cf3d01c",
+  "iso_sha256": "47034f41b0880984018aa67d46265d3af069b7c57120625273ec461fef811efb",
+  "owned_fixture": "0d36460ae3c84312b6a3ad6293155f21",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\settings_smoke.py\", line 14, in main\n    p=q.install(g);baseline=f.stats(g);original=c.dark(g);before=f.sha_file(disk);c.open_settings(g,p);c.shot(g,'appearance');p.desktop(43,True);assert c.dark(g)==1 and preview(g)[0];p.desktop(59005,True);assert c.dark(g)==original and not preview(g)[0] and f.sha_file(disk)==before\n  File \"<project-root>\\tests\\m12\\settings_smoke.py\", line 7, in preview\n    def preview(g):return struct.unpack_from('<Q5I',ui.memory(g,ui.symbol('settings_preview13',32,True)[0],32))\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('settings_preview13', [])\n"
+}

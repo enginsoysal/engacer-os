@@ -1,7 +1,6 @@
 # M12.13 — Settings and personalization
 
-Status: implementation and eight M11/M12 compile guards pass. Native
-qualification and publication are pending; M12.12 remains the tested download.
+Status: M12-STAGE13-VM-v1 native qualification passes for build `119eb7a0e54f4914b768c6d31cf3d01c`. The matching public release and complete website verification close separately before M12.14.
 
 ## How and why
 
@@ -61,3 +60,7 @@ guards do not replace these native journeys; agent review is not a human study.
 
 M12.14 feedback/modal arbitration, M12.16 scale/cursor reconciliation, M12.17
 renderer work and M12.18 complete final qualification remain separate stages.
+
+## Measured receipt
+
+9 native task/profile checks, four actual display profiles, separate BIOS and exact enabled-device VMware pass. Fixed shell state is 553,228 bytes (+32); completed UI journeys retain zero pages. [Acceptance](../../evidence/M12/13/acceptance-results.json).
