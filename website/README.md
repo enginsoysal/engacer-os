@@ -255,3 +255,26 @@ download targets/checksums and every generated article/link. Retain failed reads
 and fresh successful retries. `tests/m12/close_stage.py` closes the stage only
 when the native, GitHub, workflow, download and public-browser proofs match.
 Article synchronization by itself is not complete homepage publication.
+
+## Bounded download history and immutable source
+
+The current download page contains the selected qualified release. Historical
+assets and complete checksums remain on linked, numbered archive pages, with
+Back/Previous/Next navigation and at most eight historical releases per page.
+Every generated article is checked before writes for at most 240 KiB of JSON
+and 500 blocks. This avoids a growing all-release article exceeding the scoped
+API request bounds; it does not change shared BrixCanvas platform limits.
+
+Release events pin canonical Markdown and source links to their full
+`GITHUB_SHA`, even if a later publisher-only correction exists on main. The
+publisher fetches that exact public commit if a shallow checkout lacks it.
+Ordinary push/manual runs read current HEAD. A local reproduction may set
+`ENGACER_DOCS_REF` to a full 40-character commit. The payload records both
+`source_commit` and `publisher_commit`; OS media, tags and release notes remain
+immutable. Record both references when a failed release publication is retried
+with corrected tooling. Never label new tooling as part of the old OS bytes.
+
+Archive creation retains the same ownership/collision and empty-draft recovery
+checks as other generated posts. Removed generated archive pages become drafts;
+unrelated author pages are never removed. Check every archive and download link
+in the final public crawl, not only the current release shortcuts.

@@ -7,6 +7,7 @@ import {marked} from '../public/vendor/marked.esm.js';
 import {canonicalPublicUrl,articleBranding} from './branding.mjs';
 import {documentationGroups} from './navigation.mjs';
 import {stageRelease11,stageRelease12,releaseLabel} from './releases11.mjs';
+import {releaseGroups,documentationRef,assertPostBounds} from './downloads.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
@@ -18,7 +19,9 @@ const categoryFor=p=>p.startsWith('docs/')?p.split('/')[1]:p.startsWith('evidenc
 const categoryNames={handbook:'User handbook',architecture:'Architecture',milestones:'Milestones',releases:'Release guides',roadmap:'Roadmap & status',evidence:'Test evidence',developer:'Developer guides',website:'Website maintenance',project:'Project guides',downloads:'Downloads'};
 
 export function build(output){
- const ref=git('rev-parse','HEAD').trim();
+ const publisherRef=git('rev-parse','HEAD').trim(),requested=documentationRef(process.env);
+ if(requested!=='HEAD'){try{git('cat-file','-e',requested+'^{commit}');}catch{git('fetch','--depth=1','origin',requested);}}
+ const ref=git('rev-parse',requested+'^{commit}').trim();
  const paths=git('ls-tree','-r','--name-only',ref).trim().split('\n').filter(p=>p.endsWith('.md'));
  const pathsSet=new Set(paths),slugs=new Set(),posts=[];
  const titleFor=(p,text)=>text.match(/^#\s+(.+)$/m)?.[1]||p.split('/').pop();
@@ -80,14 +83,25 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
  if(current==='M10')add('richtext',{html:`<p>M10 adds Settings > Devices, saved US QWERTY/Dvorak choices, qualified mouse scrolling and guarded FAT32 USB file copies with safe removal and reconnect. Broader network/audio/GPU hardware phases remain in progress. <a href="${SITE}/blog/docs-handbook-hardware-m10">Devices and USB tutorial</a>.</p>`,size:17});
  if(current==='M92')add('richtext',{html:`<p>M9.2 adds automatic writable IDE, supported SCSI, NVMe and VirtIO Block controller paths alongside SATA/AHCI. Qualification is per named controller and firmware, with actual installation, persisted files and independent startup. Desktop windows can overlap screen edges while keeping a reachable caption. <a href="${SITE}/blog/docs-milestones-m9-2">Controller matrix and remaining hardware work</a>.</p>`,size:17});
  if(current==='M91')add('richtext',{html:`<p>M9.1 fixes the VMware starter PCIe configuration with Ethernet and sound enabled. The included M9 ISO is unchanged. The older M9 ZIP has a known startup defect. IDE installation and unqualified SCSI controllers remain unsupported.</p>`,size:17});
- let stable=false;
- for(const r of releases){
-   const label=releaseLabel(r,stable,stage?.tag);if(!r.prerelease)stable=true;
+ let stable=false;const labels=new Map();for(const r of releases){labels.set(r.tag_name,releaseLabel(r,stable,stage?.tag));if(!r.prerelease)stable=true;}
+ const groups=releaseGroups(releases,tag);
+ const renderRelease=(add,r)=>{
+   const label=labels.get(r.tag_name);
    const displayName=(r.name||r.tag_name).replace(/\b(?:Codename:\s*)?Engine OS\b/gi,'Engacer OS');
    add('heading',{text:`${displayName} — ${label}`,level:2,size:27,color:'#152434'});
    add('richtext',{html:`<p>Published ${escape(r.published_at?.slice(0,10)||'unknown')} · <a href="${escape(r.html_url)}">Official release notes</a></p>`,size:15});
    const assets=[...r.assets].sort((a,b)=>{const rank=n=>/^EngineOS-(?:M6(?:U1|MINIMAL)|M7NIGHT|M71NIGHT|M74MINIMAL)\.iso$/i.test(n)?4:/\.iso$/i.test(n)?0:/\.img$/i.test(n)?1:/sha256/i.test(n)?2:3;return rank(a.name)-rank(b.name)});
    for(const a of assets)add('richtext',{html:`<p><a href="${escape(a.browser_download_url)}"><strong>Download ${escape(a.name)}</strong></a> — ${(a.size/1048576).toFixed(2)} MiB</p>${a.digest?`<pre><code>${escape(a.digest)}</code></pre>`:''}`,size:16});
+ };
+ for(const r of groups.current)renderRelease(add,r);
+ if(groups.archives.length)add('richtext',{html:'<h2>Earlier releases</h2><p>Historical downloads keep their original files, notices and checksums. Use the current release above for ordinary testing.</p><ul>'+groups.archives.map((rows,i)=>`<li><a href="${SITE}/blog/downloads-archive-${i+1}">Historical downloads ${i+1} — ${escape(rows[0].tag_name)} to ${escape(rows.at(-1).tag_name)}</a></li>`).join('')+'</ul>',size:17});
+ for(let i=0;i<groups.archives.length;i++){
+   const blocks=[],append=(type,props)=>blocks.push({id:`engine-download-archive-${i+1}-${blocks.length+1}`,type,props});
+   append('richtext',{html:generationSource,size:14});
+   append('richtext',{html:`<p><strong>Historical downloads — page ${i+1} of ${groups.archives.length}.</strong> Earlier releases qualify only their own bytes. <a href="${SITE}/blog/downloads">Return to current downloads</a>.</p>`,size:17});
+   for(const r of groups.archives[i])renderRelease(append,r);
+   append('richtext',{html:`<p><a href="${SITE}/blog/downloads">Current downloads</a>${i?` · <a href="${SITE}/blog/downloads-archive-${i}">Previous archive</a>`:''}${i+1<groups.archives.length?` · <a href="${SITE}/blog/downloads-archive-${i+2}">Next archive</a>`:''}</p>`,size:17});
+   posts.push({id:`engine-download-archive-${i+1}`,slug:`downloads-archive-${i+1}`,title:`Historical downloads — ${i+1} of ${groups.archives.length}`,status:'published',bodyFormat:'brix',blocks,category:'downloads',tags:['Downloads','Historical'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:false,meta:[{key:'engine_source_path',value:`@release-archive/${i+1}`},{key:'engine_source_commit',value:ref}]});
  }
  posts.push({id:'engine-downloads',slug:'downloads',title:'Downloads and SHA256 verification',status:'published',bodyFormat:'brix',blocks:downloads,category:'downloads',tags:['Downloads','Releases'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@releases'},{key:'engine_source_commit',value:ref}]});
  const index=[];const push=(type,props)=>index.push({id:`engine-docindex-${index.length+1}`,type,props});
@@ -100,7 +114,8 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
    push('richtext',{html:'<ul>'+group.posts.map(p=>`<li><a href="${SITE}/blog/${p.slug}">${escape(p.title)}</a></li>`).join('')+'</ul>',size:17});
  }
  posts.push({id:'engine-documentation',slug:'documentation',title:'Documentation — all guides',status:'published',bodyFormat:'brix',blocks:index,category:'handbook',tags:['Handbook','Index'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@index'},{key:'engine_source_commit',value:ref}]});
- const result={version:1,source_commit:ref,generated:new Date().toISOString(),site_id:'b66d0e83-7987-4856-b702-e8d93234b6cd',site_slug:'codename-engine-os-ltvck',page:{blog:{posts,categories:Object.entries(categoryNames).map(([handle,title])=>({handle,title}))}}};
+ assertPostBounds(posts);
+ const result={version:1,source_commit:ref,publisher_commit:publisherRef,generated:new Date().toISOString(),site_id:'b66d0e83-7987-4856-b702-e8d93234b6cd',site_slug:'codename-engine-os-ltvck',page:{blog:{posts,categories:Object.entries(categoryNames).map(([handle,title])=>({handle,title}))}}};
  const out=output||path.join(root,'build/brix/site-content.json');fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(result));
  console.log(JSON.stringify({documents:paths.length,articles:posts.length,releases:releases.length,blocks:posts.reduce((n,p)=>n+p.blocks.length,0),source_commit:ref,output:path.relative(root,out).replaceAll('\\','/')}));
  return result;

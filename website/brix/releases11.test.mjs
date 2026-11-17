@@ -25,3 +25,20 @@ test('M12 downloads require native assets, numeric stage order and public qualif
  assert.equal(stageRelease12([{...native(2),prerelease:true}]),null);
  assert.equal(stageRelease12([{...native(2),assets:[]}]),null);
 });
+
+import {releaseGroups,documentationRef,assertPostBounds} from './downloads.mjs';
+test('current assets remain separate and every historical release is reachable exactly once',()=>{
+ const rows=Array.from({length:44},(_,i)=>({tag_name:'release-'+i}));const g=releaseGroups(rows,'release-2');
+ assert.deepEqual(g.current,[rows[2]]);assert.equal(g.archives.length,6);assert(g.archives.every(p=>p.length<=8));
+ assert.deepEqual(new Set([...g.current,...g.archives.flat()]),new Set(rows));assert.equal(g.archives.flat().length,43);
+});
+test('publication rejects overlarge generated download or archive pages before API writes',()=>{
+ assert.doesNotThrow(()=>assertPostBounds([{slug:'downloads',blocks:[]} ]));
+ assert.throws(()=>assertPostBounds([{slug:'downloads',blocks:[],text:'x'.repeat(240*1024)}]),/payload/);
+ assert.throws(()=>assertPostBounds([{slug:'archive',blocks:Array(501).fill({})}]),/block count/);
+});
+test('release reruns keep immutable content source when publisher tooling advances',()=>{
+ const sha='a'.repeat(40);assert.equal(documentationRef({GITHUB_EVENT_NAME:'release',GITHUB_SHA:sha}),sha);
+ assert.equal(documentationRef({GITHUB_EVENT_NAME:'push',GITHUB_SHA:sha}),'HEAD');
+ assert.equal(documentationRef({ENGACER_DOCS_REF:sha}),sha);assert.throws(()=>documentationRef({ENGACER_DOCS_REF:'main; arbitrary'}),/canonical commit/);
+});

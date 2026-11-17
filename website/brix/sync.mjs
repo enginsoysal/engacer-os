@@ -51,7 +51,7 @@ export function planSync(desired,current){
  }
  for(const p of current){
    const marker=source(p);
-   if(typeof marker==='string'&&marker.endsWith('.md')&&!managed.has(marker)&&p.status==='published')operations.push({kind:'archive',post:p});
+   if(typeof marker==='string'&&(marker.endsWith('.md')||marker.startsWith('@release-archive/'))&&!managed.has(marker)&&p.status==='published')operations.push({kind:'archive',post:p});
  }
  return operations;
 }

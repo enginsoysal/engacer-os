@@ -32,3 +32,9 @@ test('recover only the exact, empty publisher-created draft',()=>{
  assert.throws(()=>planSync([post],[{...old,blocks:[{type:'text'}]}]),/Unmanaged slug collision/);
 });
 test('a mixed plan with a later collision is rejected before any operations are returned',()=>assert.throws(()=>planSync([post,{...post,slug:'second'}],[{slug:'second'}]),/Unmanaged slug collision/));
+
+test('removed generated download archive pages become drafts while author pages remain untouched',()=>{
+ const archive={...post,slug:'downloads-archive-9',meta:[{key:'engine_source_path',value:'@release-archive/9'}]};
+ assert.deepEqual(planSync([],[archive]).map(x=>x.kind),['archive']);
+ assert.deepEqual(planSync([],[{...archive,meta:[]}]),[]);
+});
