@@ -27,6 +27,7 @@ static void file_open11(const char*path,unsigned requested){uint64_t owner_token
  unsigned kind=requested?requested:file_default_app11(path);if(!kind||!file_handler11(kind)||!app7_available(kind)){
 #ifdef ENGINE_M12
  if(file_dialog_state11.mode){file_notice11(owner_token,"Finish or cancel the existing file dialog before choosing another app.");return;}
+ if(files_busy12()||w8_pending()){file_notice11(owner_token,"Wait for the file operation to finish, or cancel it in Files before choosing another app.");return;}
 #endif
  file_dialog_open11(F11_DLG_OPEN_WITH,owner_token,path);return;}
  if(kind==EDITOR&&e->size>=APP7_TEXT){file_notice11(owner_token,"Text Editor supports files smaller than 8 KiB. Your file was kept.");return;}desktop_focus11=0;launch(kind,path);whole();
@@ -79,7 +80,7 @@ static unsigned file_action11(uint64_t owner_token,unsigned command){
  {file_notice11(owner_token,"Finish or cancel the open file dialog first.");return 1;}}
  if(owner_token&&!w)return 0;
 #ifdef ENGINE_M12
- if(files_busy12()&&(command==F11_PASTE||command==F11_RENAME||command==F11_UNDO||command==F11_RECYCLE||command==F11_RESTORE||command==F11_PERMANENT||command==F11_EMPTY||command==FILE_FOLDER||command==F11_NEW_TEXT||command==F11_SHORTCUT)){file_notice11(owner_token,"Wait for the transfer or choose Cancel before changing more files.");return 1;}
+ if((files_busy12()||w8_pending())&&(command==F11_PROPERTIES||command==F11_OPEN_WITH||command==F11_JOB_DETAILS||command==F11_PASTE||command==F11_RENAME||command==F11_UNDO||command==F11_RECYCLE||command==F11_RESTORE||command==F11_PERMANENT||command==F11_EMPTY||command==FILE_FOLDER||command==F11_NEW_TEXT||command==F11_SHORTCUT)){file_notice11(owner_token,"Wait for the file operation or choose Cancel in Files before opening a dialog or changing files.");return 1;}
 #endif
  if(command==F11_JOB_DETAILS){file_dialog_open11(F11_DLG_RESULT,owner_token,0);return 1;}
  if(command==F11_PLACES){files_places_menu11(owner_token);return 1;}

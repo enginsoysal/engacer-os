@@ -1,11 +1,25 @@
 static void file_menu_add11(const char*label,unsigned command,unsigned enabled){if(file_menu_count11<12)file_menu_items11[file_menu_count11++]=(file_menu11){label,command,enabled};}
 static void file_menu_begin11(uint64_t token,unsigned x,unsigned y){file_menu_count11=file_menu_scroll11=0;file_menu_reason11[0]=0;context_window11=token;context_x11=x;context_y11=y;context_choice11=0;context11=1;launcher=0;control_active=0;}
+static unsigned file_menu_width14(void){
+#ifdef ENGINE_M12
+ return model.width>432?400:model.width-20;
+#else
+ return model.width>300?272:model.width-20;
+#endif
+}
+static unsigned file_menu_footer14(void){
+#ifdef ENGINE_M12
+ return 64;
+#else
+ return 42;
+#endif
+}
 static unsigned file_menu_visible11(void){unsigned available=model.height>130?model.height-130:114,rows=available/38;if(rows>file_menu_count11)rows=file_menu_count11;return rows?rows:1;}
 static void file_menu_fit11(void){
 #ifdef ENGINE_M12
  desktop_window*owner12=file_owner_window11(context_window11);if(owner12)for(unsigned i=0;i<file_menu_count11;++i){unsigned command=file_menu_items11[i].command;if(files_busy12()&&(command==USB_IMPORT10||command==USB_EXPORT10||command==USB_EJECT10||(command>=USB_SEND10&&command<USB_SEND10+V6_ENTRIES)))file_menu_items11[i].enabled=0;if(command==F11_COPY||command==F11_CUT||command==F11_PASTE||command==F11_RENAME||command==F11_RECYCLE||command==F11_UNDO||command==FILE_FOLDER||command==F11_NEW_TEXT)file_menu_items11[i].enabled&=files_can_command12(context_window11,command);}
 #endif
- unsigned width=model.width>300?272:model.width-20,rows=file_menu_visible11(),height=rows*38+42;if(context_x11+width>model.width-8)context_x11=model.width-width-8;if(context_y11+height>model.height-68)context_y11=model.height>height+68?model.height-height-68:8;context_choice11=files_context_next11(file_menu_count11?file_menu_count11-1:0,1);whole();}
+ unsigned width=file_menu_width14(),rows=file_menu_visible11(),height=rows*38+file_menu_footer14();if(context_x11+width>model.width-8)context_x11=model.width-width-8;if(context_y11+height>model.height-68)context_y11=model.height>height+68?model.height-height-68:8;context_choice11=files_context_next11(file_menu_count11?file_menu_count11-1:0,1);whole();}
 static unsigned files_context_next11(unsigned current,int direction){if(!file_menu_count11)return 0;for(unsigned i=0;i<file_menu_count11;++i){current=direction>0?(current+1)%file_menu_count11:(current+file_menu_count11-1)%file_menu_count11;if(file_menu_items11[current].enabled)return current;}return 0;}
 static void files_places_menu11(uint64_t token){file_menu_begin11(token,pointer_x,pointer_y);const char*names[]={"Home","Desktop","Documents","Downloads","Pictures","System drive","USB drives","Recycle Bin"};for(unsigned i=0;i<8;++i)file_menu_add11(names[i],F11_PLACE+i,1);file_menu_fit11();}
 static void files_sort_menu11(uint64_t token){file_menu_begin11(token,pointer_x,pointer_y);file_menu_add11("Name",F11_SORT_NAME,1);file_menu_add11("Size",F11_SORT_SIZE,1);file_menu_add11("Type",F11_SORT_TYPE,1);file_menu_add11("Reverse order",F11_DIRECTION,1);file_menu_fit11();}

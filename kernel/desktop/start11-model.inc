@@ -32,7 +32,7 @@ if(file_compare_text11(name,other)>=0)break;
 #endif
 start_results11[k]=prev;--k;}start_results11[k]=value;}
 }
-static void start_reset_search11(void){start_query11[0]=0;start_query_cursor11=start_query_anchor11=start_cursor11=start_page11=0;start_search_focus11=1;control_active=0;}
+static void start_reset_search11(void){start_notice11[0]=0;start_query11[0]=0;start_query_cursor11=start_query_anchor11=start_cursor11=start_page11=0;start_search_focus11=1;control_active=0;}
 static void start_open11(void){launcher=1;context11=0;start_context_from_pin11=0;start_manage11=start_name_mode11=start_confirm11=0;start_reset_search11();whole();}
 static void start_launch11(unsigned app,const char*path){if(app>=S11_APPS||!app7_available(app)){start_message11("This app is no longer installed. Use Settings to manage apps.");return;}uint64_t token=launch(app,path);if(!token){launcher=1;start_message11("Close a window before opening another. Up to eight windows can be open.");return;}start_manage11=start_name_mode11=start_confirm11=0;start_reset_search11();desktop_focus11=0;whole();}
 static void start_launch_result11(unsigned row){if(row>=start_result_count11)return;start_result11 r=start_results11[row];if(r.kind==1){start_launch11(r.id,0);return;}if(r.id>=start_preferences11.pins)return;s11_pin*p=&start_preferences11.pinned[r.id];if(p->kind==1){start_launch11(p->app,0);return;}const v6_entry*e=entry(p->path);if(!equal(p->path,"/")&&(!e||e->kind!=2)){start_message11("This pinned folder is unavailable. Right-click it to remove the pin; other files are unchanged.");return;}char path[256];copy(path,p->path,256);start_launch11(FILES,path);}

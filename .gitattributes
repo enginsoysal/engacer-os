@@ -259,3 +259,7 @@ kernel/desktop/settings13-state.inc -text whitespace=cr-at-eol
 kernel/desktop/settings13.inc -text whitespace=cr-at-eol
 kernel/desktop/appearance11.inc -text whitespace=cr-at-eol
 evidence/M12/13/** -text -whitespace
+
+# M12.14 bounded feedback and modal admission.
+kernel/desktop/feedback14.inc -text whitespace=cr-at-eol
+evidence/M12/14/** -text -whitespace

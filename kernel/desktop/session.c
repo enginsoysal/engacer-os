@@ -116,6 +116,8 @@ static uint8_t marquee_saved11[V6_ENTRIES/8];static unsigned marquee_desktop_sav
 #include "files11-state.inc"
 #ifdef ENGINE_M12
 #include "picker12-state.inc"
+static unsigned files_busy12(void);
+static i11_target feedback_target14(int,int);
 #endif
 #include "start11-state.inc"
 #include "window11-state.inc"
@@ -381,6 +383,9 @@ static uint64_t launch(unsigned kind,const char *path) {
 }
 
 static void save_document(application *app) {
+#ifdef ENGINE_M12
+    if(files_busy12()||w8_pending()){notice(app,"Wait for the file operation to finish, or cancel it in Files. Your unsaved text is kept.");return;}
+#endif
     if(!app->path[0]){notice(app,"No available document name. Open Files and try again.");return;}
     const v6_entry *current=entry(app->path);
     if((current&&(!app->existed||current->crc!=app->source_crc))||(!current&&app->existed)){
@@ -447,7 +452,7 @@ static void draw_editor(desktop_window *w,application *app,uint64_t token) {
     }
 #endif
     int bottom=w->bounds.y+w->bounds.height;
-    text(x,bottom-43,app->dirty?"Unsaved changes":"Saved document",1,app->dirty?0xd49644:ink());
+    text(x,bottom-43,app->dirty?"Unsaved changes":app->existed?"Saved document":"New document - not saved",1,app->dirty?0xd49644:ink());
     text(x,bottom-24,app->notice[0]?app->notice:"Ctrl+S save  Ctrl+C copy all  Ctrl+V paste  arrows move",1,ink());
 }
 
@@ -639,6 +644,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "chrome12.inc"
 #include "multitask12.inc"
 #include "tray12.inc"
+#include "feedback14.inc"
 #endif
 #include "guide11.inc"
 #endif
@@ -825,7 +831,9 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     }
     gui7_clip((unsigned)dirty.x,(unsigned)dirty.y,(unsigned)dirty.width,(unsigned)dirty.height);
     int bar=(int)model.height-60;
+#ifndef ENGINE_M12
     if(shell_notice[0]){gui6_rect(20,(unsigned)bar-40,model.width-40,30,paper());text(30,bar-30,shell_notice,1,ink());}
+#endif
     gui6_rect(0,(unsigned)bar,model.width,60,0x0b1922);
 #ifdef ENGINE_M11
     start_taskbar11(bar);
@@ -888,6 +896,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     draw_context11();
 #ifdef ENGINE_M12
     tray_draw12();
+    feedback_draw14();
 #endif
 #endif
     gui7_clip_reset();usb_mouse_draw();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;
@@ -925,6 +934,9 @@ static void insert(application *app,const char *bytes,unsigned count) {
 
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
+    if(command==60004)return;
+    if(command==60002){shell_notice[0]=0;whole();return;}
+    if(command==60003){desktop_window*review=desktop_lookup(&model,file_dialog_state11.owner);if(file_dialog_state11.mode&&review){desktop_minimize(&model,file_dialog_state11.owner,0);desktop_focus(&model,file_dialog_state11.owner);control_active=0;whole();}return;}
     if(tray_action12(token,command))return;
     if(settings_action13(token,command))return;
     if(window_action12(token,command))return;

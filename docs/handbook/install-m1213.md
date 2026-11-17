@@ -1,6 +1,6 @@
 # Install Engacer OS M12.13 in VMware
 
-M12.13 passes M12-STAGE11-VM-v1 native qualification. Use only its matching official release assets.
+M12.13 passes M12-STAGE13-VM-v1 native qualification. Use only its matching official release assets.
 
 M12.13 is the native Settings and personalization stage. Use its matching ISO and prepared
 VMware ZIP. The stage's exact-source acceptance passes; the

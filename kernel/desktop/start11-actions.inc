@@ -17,6 +17,7 @@ static void start_task_open11(unsigned app){
 static unsigned start_action11(uint64_t token,unsigned command){s11_preferences*p=&start_preferences11;
  if(token&&command==70){desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;unsigned active=!launcher&&!desktop_focus11&&model.focused==(unsigned)(w-model.windows)&&!w->minimized&&!file_block_owner11(token);launcher=0;if(active)desktop_minimize(&model,token,1);else{desktop_focus11=0;desktop_focus(&model,token);}whole();return 1;}
  if(!token&&!command){if(launcher){launcher=0;start_name_mode11=start_confirm11=0;whole();}else start_open11();return 1;}
+ if(command==S11_CLEAR_SEARCH){start_reset_search11();start_notice11[0]=0;whole();return 1;}
  if(command<S11_PINNED||command>=S11_END)return 0;
  if(start_name_mode11&&command!=S11_NAME_FIELD&&command!=S11_NAME_OK&&command!=S11_NAME_CANCEL){start_message11("Save or cancel the label dialog first.");return 1;}
  if(start_confirm11&&command!=S11_CONFIRM_OK&&command!=S11_CONFIRM_CANCEL){start_message11("Confirm or cancel this review first.");return 1;}

@@ -1,6 +1,12 @@
 /* Provider checks and cooperative jobs. UI never treats a queued action as success. */
 static desktop_window *file_owner_window11(uint64_t token){desktop_window*w=desktop_lookup(&model,token);return w&&w->app==FILES?w:0;}
-static void file_notice11(uint64_t token,const char*message){desktop_window*w=file_owner_window11(token);if(w){notice(&apps[w-model.windows],message);invalidate(w->bounds);}else{copy(shell_notice,message,sizeof(shell_notice));task_damage();invalidate((desktop_rect){0,(int)model.height-108,(int)model.width,48});}}
+static void file_notice11(uint64_t token,const char*message){desktop_window*w=file_owner_window11(token);if(w){notice(&apps[w-model.windows],message);invalidate(w->bounds);}else{copy(shell_notice,message,sizeof(shell_notice));task_damage();
+#ifdef ENGINE_M12
+whole();
+#else
+invalidate((desktop_rect){0,(int)model.height-108,(int)model.width,48});
+#endif
+}}
 static const char *file_error_text11(unsigned code){return code==F12_SOURCE_ERROR?"The USB source could not be read. Existing files were kept. Reconnect the drive and select it again.":code==V6_FULL?"Not enough free space or file slots. Completed items remain available.":code==V6_RO?"This disk is read-only. Use recovery to check it.":code==V6_IO?"The disk could not confirm the change. Writes are stopped; use recovery.":code==V6_EXISTS?"That name is already in use. Choose Keep both or Skip.":code==V6_LIMIT?"This operation exceeds a supported file, path or selection limit.":code==V6_NOTFOUND?"The item is no longer available. Refresh the folder and try again.":"The source changed or this operation is not supported. Check the selected items.";}
 static void file_invalidate11(void){for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==FILES)invalidate(model.windows[i].bounds);whole();}
 static void file_clear_selections11(void){memset(selected11,0,sizeof(selected11));memset(desktop_files_selected11,0,sizeof(desktop_files_selected11));desktop_selection11=0;interaction11.last_valid=0;}

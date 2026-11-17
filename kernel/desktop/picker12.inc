@@ -35,6 +35,7 @@ static void picker_visit12(const char*path,unsigned push){
 static void picker_begin12(uint64_t token,unsigned purpose){
  desktop_window*w=desktop_lookup(&model,token);if(!w)return;application*a=&apps[w-model.windows];
  if(file_dialog_state11.mode){notice(a,"Finish or cancel the current file dialog first.");whole();return;}
+ if(files_busy12()||w8_pending()){notice(a,"Wait for the file operation to finish, or cancel it in Files. Your document is kept.");whole();return;}
  if(a->stopped){notice(a,"This app is stopped. Its file dialog cannot start.");whole();return;}
  if(model.width<560||model.height<512){notice(a,"Choose a smaller display size in Settings to make room for the file dialog.");whole();return;}
  picker_load12();memset(&picker12,0,sizeof(picker12));picker12.purpose=purpose;picker12.selected=UINT32_MAX;
