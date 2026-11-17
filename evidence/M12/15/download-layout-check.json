@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "source_commit": "f2e4f9779845dbc82904b0a636df556d2a7fdf9e",
+  "download_assets_preserved": 677,
+  "pages": [
+    {
+      "slug": "downloads-archive-1",
+      "bytes": 66036,
+      "blocks": 179
+    },
+    {
+      "slug": "downloads-archive-2",
+      "bytes": 65694,
+      "blocks": 179
+    },
+    {
+      "slug": "downloads-archive-3",
+      "bytes": 47001,
+      "blocks": 133
+    },
+    {
+      "slug": "downloads-archive-4",
+      "bytes": 57634,
+      "blocks": 162
+    },
+    {
+      "slug": "downloads-archive-5",
+      "bytes": 26731,
+      "blocks": 79
+    },
+    {
+      "slug": "downloads-archive-6",
+      "bytes": 9731,
+      "blocks": 29
+    },
+    {
+      "slug": "downloads",
+      "bytes": 12267,
+      "blocks": 30
+    }
+  ]
+}

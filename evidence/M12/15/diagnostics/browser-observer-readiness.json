@@ -1,0 +1,9 @@
+{
+  "stage": "M12.15",
+  "observations": [
+    "The first homepage Save was followed by its pending autosave status; an explicit subsequent Save was observed as Saved before public verification.",
+    "An immediate post-click mobile snapshot preceded the Close menu control. The fresh verification waits for actual visible Open/Close controls, then checks the links, close action, reload and width.",
+    "A local attempt to generate a helper from a string was disallowed; the final helper was written explicitly and uses ordinary browser controls with DOM-only observations."
+  ],
+  "final_result": "Fresh desktop/mobile/current-guide/download/search/archive verification passes; no OS or site production behavior was changed for these observer waits."
+}

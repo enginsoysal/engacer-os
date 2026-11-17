@@ -1,0 +1,12 @@
+{
+  "source_commit": "f2e4f9779845dbc82904b0a636df556d2a7fdf9e",
+  "publisher_commit": "0916898a5f17df3355fa990ef3c53d5ecf48d5bd",
+  "original_run": 44049401380,
+  "original_attempt_failure": "HTTP 413 on 269746-byte, 772-block combined downloads post",
+  "recovery": "Release rerun pins canonical content to the immutable release commit while checking out the tested bounded-page publisher from main. Current/download archive link coverage is recorded separately. OS media, tag and notes are unchanged.",
+  "publisher_tests": 29,
+  "second_attempt": "Archive pages were saved but field readback failed. Explicit excerpts replace draft markers; field-level comparison remains strict.",
+  "successful_release_run": 44049401380,
+  "successful_attempt": 3,
+  "publisher_checkout_verified": "0916898a5f17df3355fa990ef3c53d5ecf48d5bd"
+}

@@ -1,0 +1,11 @@
+{
+  "observed": "Initial create succeeded but immediate tag lookup was unavailable; no asset upload or duplicate release was attempted.",
+  "readback": {
+    "id": 448354127,
+    "draft": true,
+    "tag_name": "m1215-v0.12.15",
+    "target_commitish": "f2e4f9779845dbc82904b0a636df556d2a7fdf9e",
+    "html_url": "https://github.com/enginsoysal/engacer-os/releases/tag/untagged-b871017a2d03e36dec2e",
+    "asset_count": 0
+  }
+}
