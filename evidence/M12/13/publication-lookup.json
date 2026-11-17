@@ -1,0 +1,11 @@
+{
+  "diagnostic_only": true,
+  "observation": "The first publisher created a draft, then stopped before uploads because immediate tag/list lookup did not return it. Resume only the same matching draft; never recreate or replace.",
+  "resolved_release": {
+    "id": 448223133,
+    "draft": true,
+    "tag": "m1213-v0.12.13",
+    "target": "003b062cef0998fc037d0f9147342c5dac3ef028",
+    "assets": 0
+  }
+}
