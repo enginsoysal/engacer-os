@@ -6,7 +6,10 @@ const post={slug:'docs-handbook-index',title:'Handbook',status:'published',bodyF
 test('publication retries only repeatable operations and obeys bounded server delay',()=>{
  for(const method of ['GET','PATCH']){
   assert.equal(retryDelay(method,429,0,'30'),30000);
-  assert.equal(retryDelay(method,429,0,'120'),null);
+  assert.equal(retryDelay(method,429,0,'120'),120000);
+  assert.equal(retryDelay(method,429,0,'180'),180000);
+  assert.equal(retryDelay(method,429,0,'181'),null);
+  assert.equal(retryDelay(method,429,3,'120'),null);
   assert.equal(retryDelay(method,429,0,'Mon, 16 Nov 2026 14:00:30 GMT',Date.parse('2026-11-16T14:00:00Z')),30000);
   assert.equal(retryDelay(method,502,2,null),8000);
   assert.equal(retryDelay(method,502,3,null),null);

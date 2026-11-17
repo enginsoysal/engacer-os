@@ -29,7 +29,9 @@ export function retryDelay(method,status,attempt,retryAfter,now=Date.now()){
      delay=Number.isFinite(seconds)?seconds*1000:Date.parse(retryAfter)-now;
      if(!Number.isFinite(delay)||delay<0)delay=30000;
    }
-   if(delay>60000)return null;
+   // Respect a short server cooldown without exceeding the bounded workflow.
+   // Longer waits stop with the advertised header, rather than retrying early.
+   if(delay>180000)return null;
    return Math.max(2100,delay);
  }
  return [502,503,504,'timeout'].includes(status)?2000*2**attempt:null;
@@ -87,7 +89,7 @@ async function publish(){
      }
      if(response.ok)return response.json();
      const delay=retryDelay(method,response.status,attempt,response.headers.get('retry-after'));
-     if(delay===null)throw Error(`BrixCanvas ${method} ${route.split('?')[0]} returned ${response.status}; publication stopped.`);
+     if(delay===null)throw Error(`BrixCanvas ${method} ${route.split('?')[0]} returned ${response.status}${response.status===429?` (Retry-After: ${(response.headers.get('retry-after')||'not provided').replace(/[^a-zA-Z0-9, :.-]/g,'').slice(0,80)})`:''}; publication stopped.`);
      await response.body?.cancel();
      console.warn(`BrixCanvas ${method} ${route.split('?')[0]} returned ${response.status}; bounded retry ${attempt+1}/3 after ${delay} ms.`);
      await new Promise(resolve=>setTimeout(resolve,delay));
