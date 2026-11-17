@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "stage": "M12.12",
+  "source_commit": "a8e035b04e5fb6fad4784d9c821f4d1569cce994",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1270,
+    "guides": [
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1212",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1212"
+    ],
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/12/feature.png",
+        "width": 1280
+      }
+    ],
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 1280
+  },
+  "documentation": {
+    "groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones"
+    ],
+    "installations": [
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1212",
+        "title": "Install Engacer OS M12.12 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+        "title": "Install Engacer OS M12.1 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+        "title": "Install Engacer OS M12.2 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123",
+        "title": "Install Engacer OS M12.3 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124",
+        "title": "Install Engacer OS M12.4 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125",
+        "title": "Install Engacer OS M12.5 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126",
+        "title": "Install Engacer OS M12.6 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m127",
+        "title": "Install Engacer OS M12.7 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m128",
+        "title": "Install Engacer OS M12.8 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m129",
+        "title": "Install Engacer OS M12.9 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1210",
+        "title": "Install Engacer OS M12.10 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1211",
+        "title": "Install Engacer OS M12.11 in VMware"
+      }
+    ]
+  },
+  "installation": {
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/a8e035b04e5fb6fad4784d9c821f4d1569cce994/docs/handbook/install-m1212.md"
+    ],
+    "steps": [
+      "Welcome:",
+      "Keyboard / size:",
+      "Choose a disk:",
+      "Your apps:",
+      "Your style:",
+      "Review:",
+      "Installing:",
+      "Ready:"
+    ],
+    "title": "Install Engacer OS M12.12 in VMware"
+  },
+  "current_guide": true,
+  "downloads": {
+    "iso_sha": true,
+    "links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1212-v0.12.12/EngacerOS-M12STAGE12.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1212-v0.12.12/EngacerOS-M12STAGE12-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1212-v0.12.12/EngacerOS-M12STAGE12.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1212-v0.12.12/EngacerOS-M12STAGE12-VMware.zip"
+    ],
+    "title": "Downloads and SHA256 verification",
+    "zip_sha": true
+  },
+  "matching_download": true,
+  "mobile": {
+    "document": 380,
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "tray_guide": {
+    "sections": [
+      "Quick settings",
+      "USB drives",
+      "Calendar",
+      "You might be interested in"
+    ],
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/a8e035b04e5fb6fad4784d9c821f4d1569cce994/docs/handbook/tray-m1212.md"
+    ],
+    "title": "System tray and quick settings — M12.12"
+  }
+}

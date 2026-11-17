@@ -1,0 +1,6 @@
+{
+  "stage": "M12.12",
+  "observation": "The BrixCanvas-generated article email sharing link embeds the platform brixcanvas.com host in its mailto body instead of the custom Engacer OS host. Canonical page/source/download links are checked separately; the normal HTTP crawler does not exercise email composition.",
+  "scope": "Platform-provided social sharing widget, outside native OS qualification",
+  "required_revisit": "M12.18 final website verification: inspect site-level sharing options or correct the custom-domain share URL without silently broadening shared-platform deployment authorization."
+}
