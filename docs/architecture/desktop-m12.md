@@ -180,4 +180,4 @@ M12.8. Actual compact/150%/4K routes retain zero managed pages. [M12.14 feedback
 
 ## M12.15 setup and first use
 
-[Shared setup decisions](setup-m1215.md) and [matching acceptance](../../evidence/M12/15/acceptance-results.json) qualify the responsive native wizard, base-owned first use and optional-package-independent Settings management. Public release and complete website closure remain separate before M12.16.
+[Shared setup decisions](setup-m1215.md) and [matching acceptance](../../evidence/M12/15/acceptance-results.json) qualify the responsive native wizard, base-owned first use and optional-package-independent Settings management. Complete public delivery passes: twenty assets, 387 pages and 2,697 links, native homepage Save and actual desktop/mobile/manual/download/search/archive checks. The historical 502 remains recorded; fresh readback passes. M12.16 follows in order.

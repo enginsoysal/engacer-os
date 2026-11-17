@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.15",
+  "current_stage": "M12.16",
   "qualified_download": "M12.15",
   "known_issues": [
     {
@@ -184,20 +184,20 @@
     },
     {
       "id": "M12.15",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Installer and first use",
       "requires": "M12.14",
       "deliverable": "Apply shared components and terminology across eight steps, recovery and the first installed desktop.",
       "how_and_why": "Maintain the proven destructive-consent and actual installed-boot contracts while improving consistency.",
       "acceptance": "Every setup step, Back/cancel, disk/partition operations, write failure, recovery and real reset/detached startup.",
-      "publication": "required_before_next_stage",
+      "publication": "evidence/M12/15/publication-results.json",
       "qualification": "M12-STAGE15-VM-v1",
       "build_id": "3132ae8bdbb08538362744d434153186",
       "evidence": "evidence/M12/15/acceptance-results.json"
     },
     {
       "id": "M12.16",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Accessibility",
       "requires": "M12.15",
       "deliverable": "Keyboard-complete routes, visible focus, contrast, text/display scaling, reduced motion and semantic control identities.",

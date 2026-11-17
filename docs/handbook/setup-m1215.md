@@ -1,6 +1,6 @@
 # Setup and first use — M12.15
 
-M12-STAGE15-VM-v1 native qualification passes. Use the matching M12.15 assets; complete public delivery closes separately before M12.16.
+M12-STAGE15-VM-v1 native qualification passes. Use the matching M12.15 assets; [complete public delivery](../../evidence/M12/15/publication-results.json) passes. M12.16 follows in order.
 
 ## Install in eight steps
 

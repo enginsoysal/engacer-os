@@ -1,6 +1,6 @@
 # M12.15 setup and first use
 
-M12-STAGE15-VM-v1 native qualification passes. Complete public delivery closes separately before M12.16.
+M12-STAGE15-VM-v1 native qualification passes. [Complete public delivery](../../evidence/M12/15/publication-results.json) passes. M12.16 follows in order.
 
 ## Shared visual language
 
