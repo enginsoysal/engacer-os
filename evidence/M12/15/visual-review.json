@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "stage": "M12.15",
+  "build_id": "3132ae8bdbb08538362744d434153186",
+  "scope": "Agent visual review of actual native setup/installed captures, supported by separate guest tasks and file-byte evidence. Not a participant usability study or full accessibility qualification.",
+  "reviewed": [
+    "setup-minimal/minimal-review.png",
+    "setup-minimal/back-to-required-settings.png",
+    "setup-native-ordinary/installed-first-use.png",
+    "setup-native-compact/review.png",
+    "setup-native-compact/apps.png",
+    "setup-profiles/review-4k.png",
+    "setup-profiles/keyboard-150.png",
+    "setup-safety/whole-disk-consent.png",
+    "setup-safety/write-failure-readable.png",
+    "setup-safety/recovery-complete.png"
+  ],
+  "findings": [
+    "Clarity: the actual selected disk, capacity, account, app count, appearance, size and guide are listed before writes. Replacement has a separate visible erase checkbox and disabled Install until consent.",
+    "Convenience: ordinary choices keep Back/Next visible; compact 800x600 keeps the real app, account and appearance controls while omitting decorative previews.",
+    "User friendliness: app tiles combine recognizable original icons, names and explicit checkmarks; a real minimal install retains required Settings management and returns with Back.",
+    "Graphical quality: native semantic fonts, shared palettes, measured labels, aligned full-width rows and separate footer controls remain legible at actual 150% and physical 4K/200%.",
+    "Readability: reviewed essential labels and hit targets do not overlap; failure clearly states installation is incomplete, offers Back/Details and does not show success. Recovery uses four named steps.",
+    "The themed first-start text and base actions are readable; its boundary over a similarly dark Files surface needs stronger contrast in the ordered M12.16 accessibility stage."
+  ],
+  "capture_sha256": {
+    "setup-minimal/minimal-review.png": "4e81f9100fb884229832bcd3b685107683d7d7cabe5f528e0c134f62c460db73",
+    "setup-minimal/back-to-required-settings.png": "2252f6b25b764393c8bdcb7794939469e68d5c2acf8b2aefb9845f66a04f534d",
+    "setup-native-ordinary/installed-first-use.png": "3fa2c1d12cea5e720f8e8ee5d4f435df300a252a76cd46ce138c5fb9d203abc9",
+    "setup-native-compact/review.png": "00be39a876573c0b15c76738895a8c7b73c2880c4e8b69986a1dd88a8d5831c5",
+    "setup-native-compact/apps.png": "9b000ba9826fc5635dbd3391a4897103d2cfcccd1452295c6e77c829ff798d3e",
+    "setup-profiles/review-4k.png": "4b83932d77f676df09d1c4472c3178fcc35f124edd69d8b79653bce1e14c3880",
+    "setup-profiles/keyboard-150.png": "e1dbbf5339f8e18777bd67eaa7efa7064fad84d797ed30f8bfba856fca54a4ac",
+    "setup-safety/whole-disk-consent.png": "25bd0d2875f93dfb9919de653175cbd56b616c99b8b99e42c00d04fc70f107a4",
+    "setup-safety/write-failure-readable.png": "bf91e3548d6054aae733daad53eff3f35b4c39b6bddbcc09e172dad2c85f0f78",
+    "setup-safety/recovery-complete.png": "4bae63cf852c0279812007bb8a226d02ea40c0816a1ba787618cb9db6ebc6ee7"
+  },
+  "carry_forward": [
+    {
+      "stage": "M12.16",
+      "observation": "Strengthen first-start card boundary contrast; qualify complete keyboard/focus/scale/cursor routes and accessibility themes."
+    },
+    {
+      "stage": "M12.17",
+      "observation": "Optimize and measure the software renderer without broad FPS or GPU-3D claims."
+    },
+    {
+      "stage": "M12.18",
+      "observation": "Run frozen final controller/original-app and retained BIOS/AHCI concurrency/site-sharing qualification."
+    }
+  ]
+}

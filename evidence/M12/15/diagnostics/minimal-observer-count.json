@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "4617805373f83b1cd38f29d353370c16",
+  "owned_fixture": "4be4417b28474027b439e4d11395891c",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\setup_minimal15.py\", line 12, in main\n    p=ui.Pointer(g);p.drain();z.go(g,p,2,2,100,2,50102);z.shot(g,out,'no-optional-apps');z.go(g,p,2,2);z.shot(g,out,'minimal-review');at=z.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=z.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();assert z.c.flag(g,'guide_open11');z.shot(g,out,'base-first-use',True);p.desktop(46003,True);assert not z.c.flag(g,'guide_open11') and z.s.count(g,3)==1;z.h.close(g,p);z.t.close_all(g,p)\nAttributeError: module 'start_observe' has no attribute 'count'\n"
+}

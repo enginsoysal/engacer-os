@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "build_id": "3132ae8bdbb08538362744d434153186",
+  "profiles": [
+    {
+      "name": "ordinary",
+      "physical": [
+        1280,
+        800
+      ],
+      "scale": 2,
+      "managed_current_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "owned_fixture": "2f412852ec1a4894872c19cae10fd6c6"
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "owned_fixture": "3ddb81b90b574ce8b524869a29847442"
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "owned_fixture": "3967e21a461a429383dd735803f2c20e"
+    }
+  ],
+  "checks": [
+    "All ordinary setup pages have bounded non-overlapping hit targets on actual ordinary, explicit 150% and physical 3840x2160/200% displays",
+    "Next preserves the outer frame after scaling, the complete disk is unchanged before Install, and each profile really installs and restarts into its correctly scaled first-use guide"
+  ]
+}

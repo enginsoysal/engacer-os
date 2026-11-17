@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": 295907,
+  "scope": "Actual production union/geometry bounds including corrupt IDs and unsigned width edges; real native group/close/overflow tasks remain required",
+  "source_sha256": {
+    "include/engine/ui/taskbar12.h": "d52d1c8f02ea2eb3bfaf456eedbc53683ddc9c0513d918f080e240a540fee2b9",
+    "tests/m12/taskbar_host.c": "6454d86e35f6dc8957d6c2a7ae2e5cef951fedc75899739d1962c810096d28e1",
+    "tests/m12/taskbar_host.py": "1e342ef00940f90a193e50f1501a3e06612ec7f4c18390f4b5ad598595c86939"
+  }
+}

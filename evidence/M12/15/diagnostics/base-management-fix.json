@@ -1,0 +1,11 @@
+{
+  "observed_candidate": "4617805373f83b1cd38f29d353370c16",
+  "corrected_candidate": "3132ae8bdbb08538362744d434153186",
+  "reason": "Settings System Applications launched optional Software; No optional apps therefore had no management controls. Required Settings now owns its existing bounded package view and Back returns to the remembered category.",
+  "interrupted_checks": [
+    "The first-candidate motion observer was intentionally stopped before source changes; it did not produce qualification.",
+    "An intermediate rebuild was intentionally stopped before the final Back-label fix."
+  ],
+  "evidence": "minimal-native-base-app-manager-refusal.json",
+  "scope": "Earlier candidate passes are diagnostic only and do not qualify corrected bytes."
+}

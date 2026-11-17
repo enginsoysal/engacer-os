@@ -1,6 +1,6 @@
 # M12.15 setup and first use
 
-Implementation is under test. M12.14 remains the published qualified download.
+M12-STAGE15-VM-v1 native qualification passes. Complete public delivery closes separately before M12.16.
 
 ## Shared visual language
 
@@ -8,7 +8,10 @@ The native installer uses the desktop component palette, semantic typography,
 measured labels and original application icons. Body and secondary controls use
 16-pixel logical text. Selected accents choose a contrasting foreground from
 luminance rather than assuming white is readable. No browser runtime, external
-UI framework or additional framebuffer cache is introduced.
+UI framework or additional framebuffer cache is introduced. Reusing the native
+component functions avoids a second typography/palette implementation and the
+RAM cost of a browser-based installer. Compact pages remove decorative previews
+instead of shrinking essential text or hiding the actual choices.
 
 ## Responsive guided choices
 
@@ -42,13 +45,16 @@ uses the current navigation and Apply and save / Cancel vocabulary, stays below
 the existing editor text limit and describes actual provider limitations.
 Application management lives inside required Settings, using its existing bounded
 package view and backend. The optional Software launcher is not a dependency.
-Returning from management uses Back to the remembered Settings category. This
+Returning from management uses Back to the remembered Settings category.
+The alternative of forcing Software into every package profile would weaken
+optional-app independence. Reusing the existing Settings package view keeps
+management available without changing package IDs or backend admission. This
 fix follows a real No optional apps test that exposed the previous launch
 dependency; the earlier candidate results are retained as diagnostics.
 Distribution profiles retain their validated app masks, branding, appearance
 and guide preferences; visual customization cannot bypass disk safety.
 
-## Qualification pending
+## Qualification scope
 
 Real guest journeys must cover all ordinary pages, compact and HiDPI layouts,
 Back and cancellation, exact pre-install disk preservation, partition changes,

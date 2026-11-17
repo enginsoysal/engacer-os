@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build_id": "3132ae8bdbb08538362744d434153186",
+  "owned_fixture": "e3a5ddf3bab4457a987339094c2b62ef",
+  "checks": [
+    "A real No optional apps installation reaches its base-owned first-use card; Appearance opens actual required Settings without Calculator or Editor, and the custom Alex42 account receives the exact current packaged quickstart",
+    "Offline installation starts the real Calculator worker and reviewed removal preserves the base desktop with zero completed-task page retention"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17713,
+      5
+    ],
+    "after": [
+      1047,
+      1060,
+      17713,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

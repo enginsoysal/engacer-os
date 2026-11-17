@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "development_only": true,
+  "build_id": "4617805373f83b1cd38f29d353370c16",
+  "owned_fixture": "154331f4980749168ccd77cfb75345dd",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\setup_smoke.py\", line 14, in main\n    at=z.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);p.drain();z.shot(g,out,'verified-finish');at=z.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();z.shot(g,out,'installed-first-use',True);assert z.c.flag(g,'guide_open11');z.key(g,'esc');assert not z.c.flag(g,'guide_open11');z.c.idle(g);(out/'native.log').write_bytes(g.log().encode())\nAssertionError\n"
+}

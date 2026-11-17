@@ -5,6 +5,7 @@ M12.0 established the original design and ordered plan. Native stages add
 [taskbar](taskbar-m1210.md), [window arrangements](multitasking-m1211.md),
 [quick settings](tray-m1212.md) and [personalization](settings-m1213.md).
 [Messages and recovery](feedback-m1214.md) explains safe refusals and preserved work.
+[Setup and first use](setup-m1215.md) explains the installation choices and independent base desktop.
 Each stage retains its own exact-source qualification.
 Use the [current native guide and scoped media](index.md); each newer native
 stage requires its own matching acceptance and release. [Progress and acceptance](../milestones/m12.md).

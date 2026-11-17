@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "3132ae8bdbb08538362744d434153186",
+  "profiles": [],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\setup_profiles15.py\", line 16, in main\n    at=z.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);p.drain();z.shot(g,out,'ready-'+name);at=z.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();assert z.c.flag(g,'scale73')==expected and z.c.flag(g,'guide_open11');z.shot(g,out,'first-use-'+name,True);z.key(g,'esc');z.t.close_all(g,p);z.c.idle(g);stats=z.f.stats(g);report['profiles'].append(dict(name=name,physical=list(resolution),scale=expected,managed_current_bytes=stats[0]*4096,managed_peak_bytes=stats[1]*4096,owned_fixture=work.name));(out/(name+'.log')).write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 59, in close_all\n    target=records(g)[-1];focus(g,p,target);s.close(g,p)\n  File \"<project-root>\\tests\\m12\\start_observe.py\", line 20, in close\n    slot=f.model(g)[0];rows=[r for r in f.controls(g) if r[5]==49002 and (r[4]&0xffffffff)==slot+1];assert len(rows)==1\nAssertionError\n"
+}

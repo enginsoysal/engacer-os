@@ -177,3 +177,7 @@ M12.8. Actual compact/150%/4K routes retain zero managed pages. [M12.14 feedback
 ## M12.14 native feedback
 
 [Admission and feedback decisions](feedback-m1214.md) and [matching acceptance](../../evidence/M12/14/acceptance-results.json) qualify bounded messages, complete context explanations, actionable dialog recovery and preserved work without adding fixed shell state. Complete public publication passes for M12.14; M12.15 follows in order.
+
+## M12.15 setup and first use
+
+[Shared setup decisions](setup-m1215.md) and [matching acceptance](../../evidence/M12/15/acceptance-results.json) qualify the responsive native wizard, base-owned first use and optional-package-independent Settings management. Public release and complete website closure remain separate before M12.16.

@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "4617805373f83b1cd38f29d353370c16",
+  "profiles": [],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\setup_profiles15.py\", line 12, in main\n    work=ui.q.new_work('m12-stage15-setup-profile-'+name);disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)\n  File \"<project-root>\\tests\\m6\\workspace.py\", line 14, in new_work\n    if not re.fullmatch('[a-z][a-z0-9-]{0,31}',suite):raise ValueError('Invalid test suite')\nValueError: Invalid test suite\n"
+}

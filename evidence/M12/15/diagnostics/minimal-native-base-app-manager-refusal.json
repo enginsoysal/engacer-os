@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "4617805373f83b1cd38f29d353370c16",
+  "owned_fixture": "080dd32d53754e469a08cb19b827be0a",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\setup_minimal15.py\", line 13, in main\n    assert '/Applications/Calculator/program.elf' not in z.f.entries(g) and '/Applications/Editor/program.elf' not in z.f.entries(g);before=z.f.stats(g);z.c.open_settings(g,p);p.desktop(59003,True);p.desktop(10000,True);z.h.software_change(g,p,4);assert ui.s.s.document(disk,'/Applications/Calculator/program.elf').startswith(b'\\x7fELF');p.desktop(10204,True);assert sum(w[\"app\"]==4 for w in z.t.records(g))==1;z.c.shot(g,'offline-calculator');z.h.close(g,p);z.h.software_change(g,p,4);assert '/Applications/Calculator/program.elf' not in z.f.entries(g);z.h.close(g,p);z.t.close_all(g,p);z.f.same_pages(before,z.f.stats(g));z.c.idle(g);report['resources']=dict(before=list(before),after=list(z.f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m12\\settings_observe.py\", line 26, in software_change\n    assert f.has(g,10002);p.desktop(10002,True)\nAssertionError\n"
+}

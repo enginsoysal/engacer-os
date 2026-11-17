@@ -1,7 +1,6 @@
 # Setup and first use — M12.15
 
-M12.15 is under qualification. Use the current qualified download until its
-matching release is published. This guide describes the new setup workflow.
+M12-STAGE15-VM-v1 native qualification passes. Use the matching M12.15 assets; complete public delivery closes separately before M12.16.
 
 ## Install in eight steps
 
