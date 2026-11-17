@@ -28,20 +28,35 @@ def active_click(g,p,command):
         if time.monotonic()>deadline:raise TimeoutError('Active guest input queue')
         time.sleep(.01)
 
+def wait_state(g,label,predicate):
+    deadline=time.monotonic()+15
+    while not predicate():
+        if time.monotonic()>deadline:
+            state=dict(step=label,job=job(g),dialog=c.flag(g,'file_dialog_state11'),app=f.app(g),error=c.flag(g,'file_job_error11'),destination_published='/Users/Owner/Downloads/Large.bin' in f.entries(g))
+            g.qmp('stop')
+            try:ui.raw_shot(g,c.OUT,'failure-'+label,True)
+            finally:g.qmp('cont')
+            raise AssertionError(state)
+        time.sleep(.02)
+
 def main():
     out=ROOT/'build/m12/stage14/feedback-busy';out.mkdir(parents=True,exist_ok=True);c.OUT=out
     native=json.loads((ROOT/'build/m12/stage14/feedback-native/results.json').read_text(encoding='utf-8'));meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));assert native['passed'] and native['build_id']==meta['build_id']
-    work=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m12-stage14-feedback'/native['owned_fixture'];disk=work/'owned.img';attempt=ui.q.new_work('m12-stage14-feedback-busy');report=dict(passed=False,build_id=meta['build_id'],checks=[],owned_fixture=attempt.name)
+    work=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m12-stage14-feedback'/native['owned_fixture'];disk=work/'owned.img';attempt=ui.q.new_work('m12-stage14-feedback-busy');report=dict(passed=False,build_id=meta['build_id'],checks=[],owned_fixture=attempt.name,source_read_limit_bytes_per_second=4194304,scope='Actual virtual USB hardware with a bounded source-read rate; not a throughput benchmark.')
     try:
         sys.path.insert(0,str(ROOT/'tools/local/m10-python'));from pyfatfs.PyFat import PyFat;from pyfatfs.PyFatFS import PyFatFS
         source=ui.q.sparse_disk(attempt/'owned-usb.img',1024**3);fat=PyFat();fat.mkfs(str(source),fat_type=PyFat.FAT_TYPE_FAT32,size=1024**3,label='M1214BUSY',volume_id=0x12140001);fat.close()
         payload=(bytes(range(256))*4096)*64
         with PyFatFS(str(source),preserve_case=True) as fs:fs.writebytes('/Large.bin',payload)
         source_hash=f.sha_file(source)
-        with ui.guest(attempt/'guest',disk,media='installed',ready='M7_DESKTOP_READY',extra=['-drive',f'if=none,id=feedback-large,format=raw,file={source}']) as g:
+        with ui.guest(attempt/'guest',disk,media='installed',ready='M7_DESKTOP_READY',extra=['-drive',f'if=none,id=feedback-large,format=raw,bps_rd=4194304,file={source}']) as g:
             p=ui.Pointer(g);p.drain();t.close_all(g,p);f.attach(g,p,'feedback-large','feedback-large-device');baseline=f.stats(g);editor=t.launch(g,p,'text editor',2);c.type_text(g,'Keep my active transfer document');editor_path=f.app(g)['path'];assert editor_path not in f.entries(g);p.desktop(49000,True)
-            q.open_quick(g);p.desktop(58002,True);drive=next(r for r in f.controls(g) if 58200<=r[5]<58216);p.desktop(drive[5],True);files=next(w for w in t.records(g) if w['slot']==f.model(g)[0]);p.desktop(f.row(g,'Large.bin'),True);p.desktop(40000,True)
-            active_click(g,p,21004);assert job(g)[0][0];active_key(g,'alt','ret');assert not c.flag(g,'file_dialog_state11') and job(g)[0][0] and 'file operation' in f.app(g)['notice'];active_click(g,p,43102);assert f.model(g)[0]==editor['slot'];active_click(g,p,54001);assert not c.flag(g,'file_dialog_state11') and job(g)[0][0] and 'file operation' in f.app(g)['notice'];active_click(g,p,20);assert job(g)[0][0] and 'unsaved text' in f.app(g)['notice'] and editor_path not in f.entries(g) and bytes(t.app_view(g).text)==b'Keep my active transfer document'
+            q.open_quick(g);p.desktop(58002,True);drive=next(r for r in f.controls(g) if 58200<=r[5]<58216);p.desktop(drive[5],True);files=next(w for w in t.records(g) if w['slot']==f.model(g)[0]);p.desktop(f.row(g,'Large.bin'),True);c.key(g,'ctrl','c');assert c.flag(g,'clipboard_kind11')==2
+            active_click(g,p,21004);wait_state(g,'import-started',lambda:bool(job(g)[0][0]))
+            active_key(g,'alt','ret');wait_state(g,'properties-refused',lambda:not c.flag(g,'file_dialog_state11') and bool(job(g)[0][0]) and 'file operation' in f.app(g)['notice'])
+            active_click(g,p,43102);wait_state(g,'editor-focused',lambda:f.model(g)[0]==editor['slot'])
+            active_click(g,p,54001);wait_state(g,'picker-refused',lambda:not c.flag(g,'file_dialog_state11') and bool(job(g)[0][0]) and 'file operation' in f.app(g)['notice'])
+            active_click(g,p,20);wait_state(g,'save-refused',lambda:bool(job(g)[0][0]) and 'unsaved text' in f.app(g)['notice'] and editor_path not in f.entries(g) and bytes(t.app_view(g).text)==b'Keep my active transfer document')
             painted=c.flag(g,'paints');deadline=time.monotonic()+15
             while c.flag(g,'paints')==painted:
                 assert job(g)[0][0]
@@ -55,7 +70,7 @@ def main():
                 if time.monotonic()>deadline:raise TimeoutError('Transfer cancellation')
                 time.sleep(.02)
             p.drain();assert job(g)[0][8] and not c.flag(g,'file_job_error11') and '/Users/Owner/Downloads/Large.bin' not in f.entries(g)
-            t.focus(g,p,editor);p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10;owner=int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little');t.focus(g,p,files);f.visit(g,p,'/Users/Owner/Downloads');c.key(g,'ctrl','v');assert not job(g)[0][0] and c.flag(g,'file_dialog_state11')==10 and int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little')==owner;c.shot(g,'existing-dialog-kept');t.focus(g,p,editor);assert bytes(t.app_view(g).text)==b'Keep my active transfer document';p.desktop(54010,True);t.focus(g,p,files);f.visit(g,p,'USB drives');p.desktop(f.drive(g),True);p.desktop(f.row(g,'Large.bin'),True);active_click(g,p,21004);assert job(g)[0][0];g.qmp('device_del',{'id':'feedback-large-device'});deadline=time.monotonic()+90
+            t.focus(g,p,editor);p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10;owner=int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little');t.focus(g,p,files);f.visit(g,p,'/Users/Owner/Downloads');c.key(g,'ctrl','v');assert not job(g)[0][0] and c.flag(g,'file_dialog_state11')==10 and int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little')==owner;c.shot(g,'existing-dialog-kept');t.focus(g,p,editor);assert bytes(t.app_view(g).text)==b'Keep my active transfer document';p.desktop(54010,True);t.focus(g,p,files);f.visit(g,p,'USB drives');f.double(g,p,f.drive(g));assert f.app(g)['mode']==2;p.desktop(f.row(g,'Large.bin'),True);active_click(g,p,21004);assert job(g)[0][0];g.qmp('device_del',{'id':'feedback-large-device'});deadline=time.monotonic()+90
             while job(g)[0][0]:
                 if time.monotonic()>deadline:raise TimeoutError('Removed USB transfer failure')
                 time.sleep(.02)
