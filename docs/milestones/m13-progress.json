@@ -7,7 +7,9 @@
     {
       "id": "M13.0",
       "title": "Baseline, design direction and documentation portal",
-      "status": "in_progress"
+      "status": "design_complete_publication_verifying",
+      "design_source": "706afc2b8d90d37fcbb92ce60cb831dae5c321a2",
+      "evidence": "evidence/M13/0"
     },
     {
       "id": "M13.1",

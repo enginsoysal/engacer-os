@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "mobile": {
+    "viewport": 390,
+    "width": 380
+  },
+  "menu_opens_and_closes": true,
+  "fallback_search_finds_m13_plan": true,
+  "production_search_page_retained": true
+}

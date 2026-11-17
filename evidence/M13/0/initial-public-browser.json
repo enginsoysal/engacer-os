@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "design_source": "706afc2b8d90d37fcbb92ce60cb831dae5c321a2",
+  "native_editor_save": "Saved ✓",
+  "home": {
+    "images": [
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/docs/architecture/figures/m13/desktop.svg"
+      }
+    ],
+    "viewport": 1280,
+    "width": 1270
+  },
+  "routes": [
+    {
+      "route": "start",
+      "heading": true,
+      "source": true,
+      "ordered_list": true
+    },
+    {
+      "route": "install",
+      "heading": true,
+      "source": true,
+      "ordered_list": true
+    },
+    {
+      "route": "use",
+      "heading": true,
+      "source": true,
+      "ordered_list": true
+    },
+    {
+      "route": "customize",
+      "heading": true,
+      "source": true,
+      "ordered_list": true
+    },
+    {
+      "route": "project",
+      "heading": true,
+      "source": true,
+      "ordered_list": true
+    }
+  ],
+  "production_overlay": false,
+  "final_history_sort_and_closure_readback": "pending"
+}

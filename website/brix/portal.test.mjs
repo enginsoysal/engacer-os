@@ -23,6 +23,12 @@ test('milestone identities sort numerically rather than compact filenames',()=>{
 test('missing curated source fails full publication instead of silently dropping it',()=>{
  assert.throws(()=>portalGroups([],{strict:true}),/Missing curated portal source/);
 });
+test('full history sorts M0 through M13 with decimal and legacy compact stages',()=>{
+ const paths=['docs/milestones/m12.md','docs/milestones/m4.5.md','docs/milestones/m0.md','docs/milestones/m11.md','docs/milestones/m10.md','docs/handbook/install-m45.md','docs/milestones/m2.md'];
+ const cmp=new Intl.Collator('en',{numeric:true}).compare;
+ const keys=paths.map(path=>milestoneKey(p(path))).sort(cmp);
+ assert.deepEqual(keys.map(k=>k.split(' ')[0]),['000.000','002.000','004.005','004.005','010.000','011.000','012.000']);
+});
 
 test('M13 home distinguishes design progress, current media and pending production search',()=>{
  const sections=portalDesign(),body=JSON.stringify(sections);assert.equal(sections.length,4);

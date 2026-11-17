@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "baseline_source": "07743f643687544bb21dcd92a53a993141560cdd",
+  "design_source": "706afc2b8d90d37fcbb92ce60cb831dae5c321a2",
+  "native_source_changes": [],
+  "native_tests_rerun": false,
+  "reason": "Design/content-only work; accepted M12 media and native harnesses are unchanged"
+}

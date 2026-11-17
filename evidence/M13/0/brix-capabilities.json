@@ -1,0 +1,19 @@
+{
+  "inspected": true,
+  "method": "Authenticated native BrixCanvas editor and Search preview in the agent-owned in-app browser",
+  "observed": [
+    "Site Search Brix is available in the library",
+    "Search preview exposes a query input and Search submit button",
+    "The current menu points to /search",
+    "Native article content is editable Brix with a separate saved homepage"
+  ],
+  "not_demonstrated": [
+    "same-page results overlay",
+    "Ctrl+K production opener",
+    "archive opt-in and current-guide ranking",
+    "article renderer task sidebar and curated pagination"
+  ],
+  "production_overlay_complete": false,
+  "implementation_target": "M13.1",
+  "scope": "No shared BrixCanvas deployment or external production hosting was performed"
+}

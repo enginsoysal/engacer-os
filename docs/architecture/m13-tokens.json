@@ -1,11 +1,95 @@
 {
   "version": 1,
   "status": "design-only",
-  "spacing": [4, 8, 12, 16, 24, 32],
-  "type": {"body": 16, "supporting": 14, "section": 20, "heading": 28, "hero": 36},
-  "geometry": {"control": 36, "setupPrimary": 44, "minimumPointerTarget": 32, "titlebar": 38, "taskbar": 48, "sidebar": 208},
-  "colors": {"ink": "#192838", "muted": "#556777", "accent": "#087e78", "surface": "#ffffff", "canvas": "#f3f6fa", "line": "#d7e0e8", "selected": "#d9eeeb"},
-  "states": ["normal", "hover", "pressed", "focused", "selected", "inactive-selected", "disabled", "busy", "error"],
-  "referenceProfiles": [{"width": 1920, "height": 1080, "vcpus": 2, "guestMiB": 512}, {"width": 3840, "height": 2160, "vcpus": 2, "guestMiB": 1024}],
-  "targetsNotMeasurements": {"ordinaryFeedbackP95Ms": 100, "drag1080pP95Ms": 33.3, "drag4kP95Ms": 50}
+  "spacing": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "type": {
+    "body": 16,
+    "supporting": 14,
+    "section": 20,
+    "heading": 28,
+    "hero": 36
+  },
+  "geometry": {
+    "control": 36,
+    "setupPrimary": 44,
+    "minimumPointerTarget": 32,
+    "titlebar": 38,
+    "taskbar": 48,
+    "sidebar": 208
+  },
+  "colors": {
+    "ink": "#192838",
+    "muted": "#556777",
+    "accent": "#087e78",
+    "surface": "#ffffff",
+    "canvas": "#f3f6fa",
+    "line": "#d7e0e8",
+    "selected": "#d9eeeb"
+  },
+  "states": [
+    "normal",
+    "hover",
+    "pressed",
+    "focused",
+    "selected",
+    "inactive-selected",
+    "disabled",
+    "busy",
+    "error"
+  ],
+  "referenceProfiles": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "vcpus": 2,
+      "guestMiB": 512
+    },
+    {
+      "width": 3840,
+      "height": 2160,
+      "vcpus": 2,
+      "guestMiB": 1024
+    }
+  ],
+  "targetsNotMeasurements": {
+    "ordinaryFeedbackP95Ms": 100,
+    "drag1080pP95Ms": 33.3,
+    "drag4kP95Ms": 50
+  },
+  "themes": {
+    "light": {
+      "ink": "#192838",
+      "muted": "#556777",
+      "accent": "#087e78",
+      "surface": "#ffffff",
+      "canvas": "#f3f6fa",
+      "line": "#d7e0e8",
+      "selected": "#d9eeeb"
+    },
+    "dark": {
+      "ink": "#eef4f8",
+      "muted": "#b1c0ce",
+      "accent": "#55d4c3",
+      "surface": "#172533",
+      "canvas": "#101923",
+      "line": "#66808d",
+      "selected": "#264c49"
+    },
+    "highContrast": {
+      "ink": "#ffffff",
+      "muted": "#ffffff",
+      "accent": "#ffff00",
+      "surface": "#000000",
+      "canvas": "#000000",
+      "line": "#ffffff",
+      "selected": "#000000"
+    }
+  }
 }

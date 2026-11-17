@@ -4,39 +4,140 @@
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
-    {"id": "start", "title": "Start here", "description": "Understand the current release and choose your next task.", "items": [
-      ["docs/handbook/index.md", "Read the user handbook"],
-      ["docs/roadmap/status.md", "What works today and what is still limited"],
-      ["docs/handbook/final-m1218.md", "Your first steps on the desktop"]
-    ]},
-    {"id": "install", "title": "Install", "description": "Download, prepare VMware, install and start your persistent desktop.", "items": [
-      ["@releases", "Download the tested ISO or prepared VMware package"],
-      ["docs/handbook/install-m1218.md", "Install and restart in VMware"],
-      ["docs/handbook/setup-m1215.md", "Understand setup, disk review and the first-start guide"],
-      ["docs/releases/m1218-v0.12.18.md", "Check tested configurations and known limits"]
-    ]},
-    {"id": "use", "title": "Use Engacer OS", "description": "Find apps, manage windows and work with your files.", "items": [
-      ["docs/handbook/desktop-m123.md", "Use desktop icons, shortcuts and the Recycle Bin"],
-      ["docs/handbook/start-m129.md", "Find and launch apps with Start"],
-      ["docs/handbook/taskbar-m1210.md", "Use the taskbar and switch windows"],
-      ["docs/handbook/files-m125.md", "Navigate folders and USB drives"],
-      ["docs/handbook/files-m126.md", "Choose file views, sorting and full names"],
-      ["docs/handbook/transfers-m127.md", "Copy files and handle transfer conflicts"],
-      ["docs/handbook/dialogs-m128.md", "Open, save and choose a folder"],
-      ["docs/handbook/tray-m1212.md", "Use quick settings and safely remove USB"],
-      ["docs/handbook/feedback-m1214.md", "Understand messages and recover from errors"]
-    ]},
-    {"id": "customize", "title": "Customize", "description": "Adjust supported preferences or build your own distribution.", "items": [
-      ["docs/handbook/settings-m1213.md", "Preview, apply and reset Settings"],
-      ["docs/handbook/accessibility-m1216.md", "Use keyboard navigation and accessibility options"],
-      ["docs/handbook/distributions.md", "Build your own distribution"]
-    ]},
-    {"id": "project", "title": "Project & development", "description": "Follow the current plan or explore technical reference.", "items": [
-      ["docs/milestones/m13.md", "Follow M13.0–M13.12 in order"],
-      ["docs/architecture/desktop-m13.md", "See the new installation and desktop designs"],
-      ["docs/architecture/website-m13.md", "Understand the portal and search redesign"],
-      ["docs/architecture/overview.md", "Explore the OS architecture"],
-      ["CONTRIBUTING.md", "Contribute to Engacer OS"]
-    ]}
+    {
+      "id": "start",
+      "title": "Start here",
+      "description": "Understand the current release and choose your next task.",
+      "items": [
+        [
+          "docs/handbook/index.md",
+          "Read the user handbook"
+        ],
+        [
+          "docs/roadmap/status.md",
+          "What works today and what is still limited"
+        ],
+        [
+          "docs/handbook/final-m1218.md",
+          "Your first steps on the desktop"
+        ],
+        [
+          "docs/handbook/website-m130.md",
+          "Find your way around this documentation portal"
+        ]
+      ]
+    },
+    {
+      "id": "install",
+      "title": "Install",
+      "description": "Download, prepare VMware, install and start your persistent desktop.",
+      "items": [
+        [
+          "@releases",
+          "Download the tested ISO or prepared VMware package"
+        ],
+        [
+          "docs/handbook/install-m1218.md",
+          "Install and restart in VMware"
+        ],
+        [
+          "docs/handbook/setup-m1215.md",
+          "Understand setup, disk review and the first-start guide"
+        ],
+        [
+          "docs/releases/m1218-v0.12.18.md",
+          "Check tested configurations and known limits"
+        ]
+      ]
+    },
+    {
+      "id": "use",
+      "title": "Use Engacer OS",
+      "description": "Find apps, manage windows and work with your files.",
+      "items": [
+        [
+          "docs/handbook/desktop-m123.md",
+          "Use desktop icons, shortcuts and the Recycle Bin"
+        ],
+        [
+          "docs/handbook/start-m129.md",
+          "Find and launch apps with Start"
+        ],
+        [
+          "docs/handbook/taskbar-m1210.md",
+          "Use the taskbar and switch windows"
+        ],
+        [
+          "docs/handbook/files-m125.md",
+          "Navigate folders and USB drives"
+        ],
+        [
+          "docs/handbook/files-m126.md",
+          "Choose file views, sorting and full names"
+        ],
+        [
+          "docs/handbook/transfers-m127.md",
+          "Copy files and handle transfer conflicts"
+        ],
+        [
+          "docs/handbook/dialogs-m128.md",
+          "Open, save and choose a folder"
+        ],
+        [
+          "docs/handbook/tray-m1212.md",
+          "Use quick settings and safely remove USB"
+        ],
+        [
+          "docs/handbook/feedback-m1214.md",
+          "Understand messages and recover from errors"
+        ]
+      ]
+    },
+    {
+      "id": "customize",
+      "title": "Customize",
+      "description": "Adjust supported preferences or build your own distribution.",
+      "items": [
+        [
+          "docs/handbook/settings-m1213.md",
+          "Preview, apply and reset Settings"
+        ],
+        [
+          "docs/handbook/accessibility-m1216.md",
+          "Use keyboard navigation and accessibility options"
+        ],
+        [
+          "docs/handbook/distributions.md",
+          "Build your own distribution"
+        ]
+      ]
+    },
+    {
+      "id": "project",
+      "title": "Project & development",
+      "description": "Follow the current plan or explore technical reference.",
+      "items": [
+        [
+          "docs/milestones/m13.md",
+          "Follow M13.0\u2013M13.12 in order"
+        ],
+        [
+          "docs/architecture/desktop-m13.md",
+          "See the new installation and desktop designs"
+        ],
+        [
+          "docs/architecture/website-m13.md",
+          "Understand the portal and search redesign"
+        ],
+        [
+          "docs/architecture/overview.md",
+          "Explore the OS architecture"
+        ],
+        [
+          "CONTRIBUTING.md",
+          "Contribute to Engacer OS"
+        ]
+      ]
+    }
   ]
 }

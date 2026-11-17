@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "design_only": true,
+  "minimum_text_ratio": 4.5,
+  "checks": [
+    {
+      "theme": "light",
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 14.98
+    },
+    {
+      "theme": "light",
+      "foreground": "ink",
+      "background": "canvas",
+      "ratio": 13.82
+    },
+    {
+      "theme": "light",
+      "foreground": "ink",
+      "background": "selected",
+      "ratio": 12.4
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 5.85
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "canvas",
+      "ratio": 5.39
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "selected",
+      "ratio": 4.84
+    },
+    {
+      "theme": "dark",
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 14.03
+    },
+    {
+      "theme": "dark",
+      "foreground": "ink",
+      "background": "canvas",
+      "ratio": 15.97
+    },
+    {
+      "theme": "dark",
+      "foreground": "ink",
+      "background": "selected",
+      "ratio": 8.56
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 8.38
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "canvas",
+      "ratio": 9.53
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "selected",
+      "ratio": 5.11
+    },
+    {
+      "theme": "highContrast",
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 21.0
+    },
+    {
+      "theme": "highContrast",
+      "foreground": "ink",
+      "background": "canvas",
+      "ratio": 21.0
+    },
+    {
+      "theme": "highContrast",
+      "foreground": "ink",
+      "background": "selected",
+      "ratio": 21.0
+    },
+    {
+      "theme": "highContrast",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 21.0
+    },
+    {
+      "theme": "highContrast",
+      "foreground": "muted",
+      "background": "canvas",
+      "ratio": 21.0
+    },
+    {
+      "theme": "highContrast",
+      "foreground": "muted",
+      "background": "selected",
+      "ratio": 21.0
+    }
+  ]
+}

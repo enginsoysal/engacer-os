@@ -1,0 +1,9 @@
+{
+ "production_mutation": false,
+ "observations": [
+  "Initial prototype Escape did not close while the search input handled Escape; explicit dialog handling was added and actual focus restoration passed.",
+  "Initial SVG captures used the viewport and cropped the fixed design sheet; full-page 1440x960 captures replaced them before acceptance.",
+  "Initial preflight expected HTML-escaped text in a native Heading prop; the observed native prop is correctly plain Project & development.",
+  "Full-history review found that the first sorter handled M11-M13 but not all earlier decimal/compact names; a general numeric key and regression test were added for the final website publisher."
+ ]
+}

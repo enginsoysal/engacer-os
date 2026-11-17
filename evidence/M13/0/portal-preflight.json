@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "source_commit": "706afc2b8d90d37fcbb92ce60cb831dae5c321a2",
+  "articles": 274,
+  "curated_sections": 5,
+  "generated_task_routes": 5,
+  "archive_links": 245,
+  "stable_unique_slugs": true,
+  "current_install": "M12.18",
+  "design_program": "M13.0"
+}
