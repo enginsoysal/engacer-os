@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": 16,
+  "scope": "Host production ranking; native interaction and publication pending",
+  "source_sha256": {
+    "include/engine/ui/search12.h": "9e962af3a8159f3b55bfc3b749fd9c7ea46ea85b0b05b08b822e9439a9f0ef2c",
+    "include/engine/desktop/start11.h": "9660a8a647fe0c22818ada64bda8e73bf1bb1d0d2a2f80bc9941841f9914f9b8",
+    "tests/m12/search_host.c": "04a7a2b616d3b9c7755faf3242d710f47de2948caf9b7bb276edda5616353ac2",
+    "tests/m12/search_host.py": "413e630abf5932e204f83fdd8f34e5b398d3b68466ee001cb593a28bbf81d9f6"
+  }
+}

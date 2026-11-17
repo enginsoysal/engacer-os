@@ -1,31 +1,27 @@
 # Engacer OS user handbook
 
-Current native delivery: **M12.8 / 0.12.8**, within M12-STAGE8-VM-v1.
-[Install the matching VMware media](install-m128.md),
-[Open, Save as and Choose folder](dialogs-m128.md),
-[file commands and transfers](transfers-m127.md),
-[release scope](../releases/m128-v0.12.8.md).
+Current native qualification: **M12.9 / 0.12.9**, within M12-STAGE9-VM-v1.
+[Install the matching VMware media](install-m129.md),
+[Start and local search](start-m129.md),
+[release scope](../releases/m129-v0.12.9.md).
 
 Extract the whole VMware ZIP, open EngacerOS.vmx and choose I Copied It if asked.
 Select the disk row, follow Next, review and install, then choose **Restart to
-Engacer OS**. The matching ISO may stay attached. No terminal syntax, online
-account or guest driver installer is required. [The eight steps](install-m128.md)
-include supported disk tools and explicit erasure review.
+Engacer OS**. The matching ISO may stay attached. [The eight steps](install-m129.md)
+require no terminal syntax, online account or guest driver installer.
 
-Nineteen native scenarios, real compact light/dark/150%/4K, independent stored
-bytes, exact VMware/BIOS startup, write faults, invalid preferences and actual
-compressed recovery pass. [Complete public verification](../../evidence/M12/8/publication-results.json) passes:
-twenty downloads, 337 pages and 2,305 links.
-The earlier [M12.7 complete public delivery](../../evidence/M12/7/publication-results.json)
-is preserved. Final controller/application regression remains M12.18. Finish
-transfers before opening a picker; shared background review is an M12.14 gate.
-Scale-choice reconciliation and cursor isolation remain M12.16. Agent review
-is not a human usability study.
+Nine native journeys cover local search, launch, categories, pins, optional app
+removal/reinstall and a real folder. Exact stored preferences survive two
+ordinary starts. Compact light/dark/150%/4K, matching VMware/BIOS starts, actual
+compressed repair and twelve cached/full comparisons pass. Fixed shell state
+is unchanged from M12.8 and tasks retain zero managed pages. Public release and
+complete website proof close separately before M12.10. Final matrix remains
+M12.18; feedback/arbitration remains M12.14 and scale/cursor work M12.16.
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.8](install-m128.md)
+- [Download and install M12.9](install-m129.md)
 - [Open, Save as, Cancel and choose an extraction folder](dialogs-m128.md)
 - [Copy, move, cancel and inspect transfer results](transfers-m127.md)
 - [Choose Files views, order and full names](files-m126.md)
@@ -34,13 +30,13 @@ broader original-app/USB regression; those results qualify its own bytes.
 - [Recognize original app, folder and file icons](icons-m122.md)
 - [Use the shared desktop controls and Files scrollbar](components-m121.md)
 - [Select, open and manage real Files items](files-m11.md)
-- [Use Start search, categories, pins and taskbar](start-m11.md)
+- [Use Start search, categories and pins](start-m129.md)
 - [Use title-bar controls and arrange windows](windows-m124.md)
 - [Save appearance preferences](windows-m11.md)
 - [Install, run and remove the original Windows 7-Zip console app](windows-apps-m8.md)
 - [Use the standard apps and manage optional packages](apps-m74.md)
 - [Explore the desktop and navigate your folders](desktop-m73.md)
-- [Current release, checksums and qualified limits](../releases/m128-v0.12.8.md)
+- [Current release, checksums and qualified limits](../releases/m129-v0.12.9.md)
 - [Previous M11.6 final installation and matrix](install-m116.md)
 - [Repair boot files and review recovery limits](apps-m74.md#disks-and-recovery)
 - [Manage partitions and format safely](disk-manager-m71.md)

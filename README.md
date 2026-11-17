@@ -4,28 +4,31 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**M12.8 / 0.12.8 passes M12-STAGE8-VM-v1.**
-[Install](docs/handbook/install-m128.md), [shared file dialogs](docs/handbook/dialogs-m128.md),
-[release scope](docs/releases/m128-v0.12.8.md),
-[exact-source acceptance](evidence/M12/8/acceptance-results.json).
-587 compiled Git inputs, nineteen native scenarios, compact light/dark, real
+**M12.9 / 0.12.9 passes M12-STAGE9-VM-v1.**
+[Install](docs/handbook/install-m129.md), [Start and local search](docs/handbook/start-m129.md),
+[release scope](docs/releases/m129-v0.12.9.md),
+[exact-source acceptance](evidence/M12/9/acceptance-results.json).
+588 compiled Git inputs, nine native journeys, compact light/dark, actual
 150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
-ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
-Open/Save as/Choose folder preserve work, use real files and retain zero managed
-pages after closing. Added fixed shell state is 6,449 bytes. [Complete public proof](evidence/M12/8/publication-results.json) passes:
-twenty matching assets, 337 pages and 2,305 links. **M12.9 is active.**
+ordinary disk starts pass. Real repair restores corrupted owned boot bytes.
+Start adds clearer app/folder types, local ranking, result counts and a compact
+layout while preserving categories/pins. Fixed shell state is unchanged from
+M12.8; completed tasks retain zero managed pages. **Public release and complete
+website verification are pending; M12.10 has not started.**
 
-Previous [M12.7 public delivery](evidence/M12/7/publication-results.json) remains
-immutable, including its command/transfer and compressed-slot recovery proof.
+Previous [M12.8 complete public delivery](evidence/M12/8/publication-results.json)
+remains immutable: twenty downloads, 337 pages and 2,305 links, including shared
+native file-dialog qualification.
+
+M12.14 retains menu/conflict and Start query/notice feedback plus background
+transfer/modal arbitration. M12.16 retains cursor/scale reconciliation, and
+M12.18 retains the earlier BIOS/AHCI observation and final matrix. Native stage
+proof does not imply universal hardware or Windows support. Agent review is not
+a human usability study.
 
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English manuals, matching GitHub releases and complete website
-verification after each stage. [Design](docs/architecture/desktop-m12.md),
-[user journeys](docs/handbook/desktop-m12.md). M12.8 public delivery is complete; M12.9 now develops Start and local search.
-The shared-menu footer and conflict feedback remain M12.14 refinements; HiDPI
-cursor isolation remains M12.16 and the earlier BIOS/AHCI observation remains
-M12.18. Named VM qualification does not imply universal hardware or Windows support.
-[M12.6 public delivery](evidence/M12/6/publication-results.json) is preserved.
+verification after each stage. [Design](docs/architecture/desktop-m12.md).
 
 **Previous complete M11 delivery: M11.6 / 0.11.6 - final installation and desktop qualification**,
 within **M11-FINAL-VM-v1**. [Release and checksums](docs/releases/m116-v0.11.6.md),
@@ -52,9 +55,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8.iso) ·
-[Step-by-step installation](docs/handbook/install-m128.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9.iso) ·
+[Step-by-step installation](docs/handbook/install-m129.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

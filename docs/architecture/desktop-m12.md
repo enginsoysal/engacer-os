@@ -165,3 +165,13 @@ picker adds 6449 fixed bytes; existing IPC input pages replace large temporary
 stack payloads. This does not expand the foreign Windows common-dialog ABI.
 Background transfer-review arbitration remains M12.14; small-mode scale-choice
 reconciliation and cursor isolation remain M12.16.
+
+## M12.9 native Start and local search
+
+[The bounded catalogue/layout decisions](start-m129.md) and [matching
+acceptance](../../evidence/M12/9/acceptance-results.json) qualify native local
+search, categories, pins and optional removal/reinstall with exact persisted
+preferences. Fixed shell state and shared font bytes remain unchanged from
+M12.8. Actual compact/150%/4K routes retain zero managed pages. Query-versus-
+browse affordance and notice refinement remain M12.14 feedback work; taskbar
+redesign follows M12.10 after full M12.9 public closure.

@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 552085,
+    "sections": {
+      "bss": 552057,
+      "data": 28
+    },
+    "map_sha256": "2c9d688921954a15daa8555af43a7dc7e42b571a2479e3e91471861665e22cfc"
+  },
+  "current": {
+    "bytes": 552085,
+    "sections": {
+      "bss": 552057,
+      "data": 28
+    },
+    "map_sha256": "bca8104ae50d2193c94232e8005ce88f3daa03787c97ad46df6f4a0c783478d7"
+  },
+  "added_fixed_desktop_bytes": 0,
+  "managed": {
+    "before": [
+      1047,
+      1047,
+      17721,
+      5
+    ],
+    "after": [
+      1047,
+      1060,
+      17721,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "display_profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2166784,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2166784,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9461760,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33423360,
+      "retained_pages": 0
+    }
+  ],
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "scope": "Bounded local catalogue/pin search, no index/worker/heap/raster cache. Fixed state, peak and retained pages are separate measurements."
+}

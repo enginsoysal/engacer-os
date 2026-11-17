@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "stage": "M12.9",
+  "build_id": "9eb7af562b85bcfa14609773dbd1e718",
+  "scope": "Agent visual/scenario review of exact candidate captures, not a human study or complete accessibility qualification. Native motion/recovery/BIOS and public delivery close separately.",
+  "reviewed": [
+    "feature.png",
+    "start-native/no-results.png",
+    "start-profiles/context-compact-dark.png",
+    "start-profiles/category-dialog-150.png",
+    "start-profiles/pinned-4k.png"
+  ],
+  "findings": [
+    "Clear result headings identify app/folder scope and visible range/total; icons retain actual catalogue identity.",
+    "Grid app subtitles are concise and full-width search retains readable result types; no-results feedback suggests a shorter name.",
+    "Category review separates its label, explanation, Save label and Cancel; the widened New category control is fully readable at actual 150%.",
+    "Actual compact dark context and physical 3840x2160/200% captures retain consistent native typography and distinct focus/selection without overlapping essential text.",
+    "Pins, labels and categories retain existing controls rather than introducing an account, background scanner or destructive pin action."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Retain shared-menu footer fitting, transfer conflict/modal arbitration, clear Start browse-versus-global-query affordances and relevant Start notice lifetime."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Retain cursor/hit isolation and reconciliation of explicit scale limits with compact startup modes."
+    }
+  ],
+  "capture_sha256": {
+    "feature.png": "e9491f9b4dec9063143c2db6ea44ea7c3327ef7135a1e1643c09cc26803c67d1",
+    "start-native/no-results.png": "63ef1c0d6e8b6d3c5945eb80a1e21297d0d9a2bcf57c1ac7de2aa3f0b82b558f",
+    "start-profiles/context-compact-dark.png": "0246fd7b6998549eaa9c02bba369e6d2ced0355e7246df05ff0493e274fe9cd8",
+    "start-profiles/category-dialog-150.png": "820ae5a0fff3fffe91f9ea25f6678aa80a09c77c63f37def0411e97adf5702ca",
+    "start-profiles/pinned-4k.png": "2b6801813a6aa1a47c8d99c6a0d702d75d9e39e3a077bee9c3e78d36b0b9b2d8"
+  }
+}

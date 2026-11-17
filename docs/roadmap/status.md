@@ -1,26 +1,26 @@
 # Current status
 
-Updated 17 November 2026. **M12.8 / 0.12.8 passes M12-STAGE8-VM-v1.**
-[Install](../handbook/install-m128.md), [shared file dialogs](../handbook/dialogs-m128.md),
-[release scope](../releases/m128-v0.12.8.md),
-[exact-source acceptance](../../evidence/M12/8/acceptance-results.json).
-587 compiled Git inputs, nineteen native scenarios, compact light/dark, real
+Updated 17 November 2026. **M12.9 / 0.12.9 passes M12-STAGE9-VM-v1.**
+[Install](../handbook/install-m129.md), [Start and local search](../handbook/start-m129.md),
+[release scope](../releases/m129-v0.12.9.md),
+[exact-source acceptance](../../evidence/M12/9/acceptance-results.json).
+588 compiled Git inputs, nine native journeys, compact light/dark, actual
 150%/4K, twelve cached/full comparisons, matching VMware/BIOS installation and
-ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
-Open/Save as/Choose folder preserve work, use real files and retain zero managed
-pages after closing. Added fixed shell state is 6,449 bytes. [Complete public proof](../../evidence/M12/8/publication-results.json) passes:
-twenty matching assets, 337 pages and 2,305 links. **M12.9 is active.**
-The Start/search implementation and [design decisions](../architecture/start-m129.md)
-are in progress. Compile guards and sixteen host ranking checks pass; native
-interaction, media and publication gates remain pending.
+ordinary disk starts pass. Real repair restores corrupted owned boot bytes.
+Start adds clearer app/folder types, local ranking, result counts and a compact
+layout while preserving categories/pins. Fixed shell state is unchanged from
+M12.8; completed tasks retain zero managed pages. **Public release and complete
+website verification are pending; M12.10 has not started.**
 
-Previous [M12.7 public delivery](../../evidence/M12/7/publication-results.json) remains
-immutable, including its command/transfer and compressed-slot recovery proof.
+Previous [M12.8 complete public delivery](../../evidence/M12/8/publication-results.json)
+remains immutable: twenty downloads, 337 pages and 2,305 links, including shared
+native file-dialog qualification.
 
-M12.14 retains menu/conflict feedback and background-transfer review integration.
-M12.16 retains cursor isolation and reconciliation of small startup modes with
-explicit scale choices. The earlier BIOS/AHCI stress observation remains M12.18.
-Physical/ARM, vendor GPU 3D and universal Windows support remain unqualified.
+M12.14 retains menu/conflict and Start query/notice feedback plus background
+transfer/modal arbitration. M12.16 retains cursor/scale reconciliation, and
+M12.18 retains the earlier BIOS/AHCI observation and final matrix. Native stage
+proof does not imply universal hardware or Windows support. Agent review is not
+a human usability study.
 
 **Previous M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
 [Install](../handbook/install-m126.md), [Files views](../handbook/files-m126.md),

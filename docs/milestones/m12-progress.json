@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.9",
-  "qualified_download": "M12.8",
+  "qualified_download": "M12.9",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -111,7 +111,7 @@
     },
     {
       "id": "M12.9",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Start and local search",
       "requires": "M12.8",
       "deliverable": "Recognizable app results, concise layout, categories, pins and clear result types.",

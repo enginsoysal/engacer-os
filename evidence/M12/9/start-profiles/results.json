@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "build_id": "9eb7af562b85bcfa14609773dbd1e718",
+  "profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2166784,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2166784,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9461760,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33423360,
+      "retained_pages": 0
+    }
+  ],
+  "checks": [
+    "Actual compact light/dark, 150% and physical 3840x2160/200% Start, apps, local search, context and category review use real input, retain zero pages and halt when idle"
+  ]
+}

@@ -1,6 +1,7 @@
 # M12.9 — Start and local search
 
-Status: implementation in progress; M12.8 remains the qualified download.
+Status: native qualification passes M12-STAGE9-VM-v1. Public release and
+complete website verification remain separate gates before M12.10.
 
 ## Design and decisions
 
@@ -48,3 +49,7 @@ browse-view/category affordances still refer to the saved browse preference;
 search remains a full-width global result list. Make that scope explicit in
 the visible controls and qualify it with ordinary input during feedback work.
 Until then, clear the query before choosing the browse view/category.
+Also qualify Start notice lifetime: a prior pin-success message can remain
+visible during a later search instead of the ordinary privacy/keyboard hint.
+It is informational; result matching and the no-results explanation remain
+independent. The feedback stage should make that transition explicit.

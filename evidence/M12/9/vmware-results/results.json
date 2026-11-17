@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "stage": "M12.9",
+  "build_id": "9eb7af562b85bcfa14609773dbd1e718",
+  "iso_sha256": "b56cefb8eb9d781fa308db1944ae3f60ac760e8d1767e04a93d6249bd888f104",
+  "starter_sha256": "91992a6f77745dc53da7b65a2a30424c14fe3a3c3079155376bf16c1323db0bb",
+  "checks": [
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "existing_vm_inventory_unchanged": true
+}
