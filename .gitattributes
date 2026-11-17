@@ -227,3 +227,10 @@ evidence/M12/8/** -text -whitespace
 kernel/desktop/document12.inc -text whitespace=cr-at-eol
 kernel/desktop/app.c -text whitespace=cr-at-eol
 include/engine/desktop/app.h -text whitespace=cr-at-eol
+
+# M12.9 Start presentation and local search.
+kernel/desktop/start11-ui.inc -text whitespace=cr-at-eol
+kernel/desktop/start11-model.inc -text whitespace=cr-at-eol
+kernel/desktop/start11-state.inc -text whitespace=cr-at-eol
+kernel/desktop/start11-keys.inc -text whitespace=cr-at-eol
+evidence/M12/9/** -text -whitespace

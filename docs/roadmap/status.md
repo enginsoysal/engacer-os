@@ -10,6 +10,9 @@ ordinary disk starts pass. Actual recovery restores corrupted owned boot bytes.
 Open/Save as/Choose folder preserve work, use real files and retain zero managed
 pages after closing. Added fixed shell state is 6,449 bytes. [Complete public proof](../../evidence/M12/8/publication-results.json) passes:
 twenty matching assets, 337 pages and 2,305 links. **M12.9 is active.**
+The Start/search implementation and [design decisions](../architecture/start-m129.md)
+are in progress. Compile guards and sixteen host ranking checks pass; native
+interaction, media and publication gates remain pending.
 
 Previous [M12.7 public delivery](../../evidence/M12/7/publication-results.json) remains
 immutable, including its command/transfer and compressed-slot recovery proof.

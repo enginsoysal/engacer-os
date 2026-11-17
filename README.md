@@ -52,9 +52,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m127-v0.12.7/EngacerOS-M12STAGE7.iso) ·
-[Step-by-step installation](docs/handbook/install-m127.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m128-v0.12.8/EngacerOS-M12STAGE8.iso) ·
+[Step-by-step installation](docs/handbook/install-m128.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

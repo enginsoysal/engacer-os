@@ -24,7 +24,13 @@ static void start_build_results11(void){start_result_count11=0;s11_preferences*p
  if(!start_query11[0]&&p->tab==0){for(unsigned i=0;i<p->pins;++i){s11_pin*q=&p->pinned[i];if(q->kind==1&&!app7_available(q->app))continue;start_results11[start_result_count11++]=(start_result11){q->kind==1?3u:2u,i};}return;}
  for(unsigned app=1;app<S11_APPS;++app){if(!app7_available(app)||!start_contains11(titles[app],start_query11))continue;if(!start_query11[0]&&p->tab==2&&p->assignment[app]!=start_category11)continue;start_results11[start_result_count11++]=(start_result11){1,app};}
  if(start_query11[0])for(unsigned i=0;i<p->pins;++i){s11_pin*q=&p->pinned[i];if((q->kind==2||(q->kind==1&&q->label[0]&&!start_contains11(titles[q->app],start_query11)))&&start_contains11(start_pin_name11(q),start_query11)&& (q->kind==2||app7_available(q->app)))start_results11[start_result_count11++]=(start_result11){q->kind==1?3u:2u,i};}
- for(unsigned i=1;i<start_result_count11;++i){start_result11 value=start_results11[i];const char*name=value.kind==1?titles[value.id]:start_pin_name11(&p->pinned[value.id]);unsigned k=i;while(k){start_result11 prev=start_results11[k-1];const char*other=prev.kind==1?titles[prev.id]:start_pin_name11(&p->pinned[prev.id]);if(file_compare_text11(name,other)>=0)break;start_results11[k]=prev;--k;}start_results11[k]=value;}
+ for(unsigned i=1;i<start_result_count11;++i){start_result11 value=start_results11[i];const char*name=value.kind==1?titles[value.id]:start_pin_name11(&p->pinned[value.id]);unsigned k=i;while(k){start_result11 prev=start_results11[k-1];const char*other=prev.kind==1?titles[prev.id]:start_pin_name11(&p->pinned[prev.id]);
+#ifdef ENGINE_M12
+unsigned rank=search12_rank(name,start_query11),previous=search12_rank(other,start_query11);if(rank>previous||(rank==previous&&file_compare_text11(name,other)>=0))break;
+#else
+if(file_compare_text11(name,other)>=0)break;
+#endif
+start_results11[k]=prev;--k;}start_results11[k]=value;}
 }
 static void start_reset_search11(void){start_query11[0]=0;start_query_cursor11=start_query_anchor11=start_cursor11=start_page11=0;start_search_focus11=1;control_active=0;}
 static void start_open11(void){launcher=1;context11=0;start_context_from_pin11=0;start_manage11=start_name_mode11=start_confirm11=0;start_reset_search11();whole();}

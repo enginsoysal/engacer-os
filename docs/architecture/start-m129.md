@@ -1,0 +1,38 @@
+# M12.9 — Start and local search
+
+Status: implementation in progress; M12.8 remains the qualified download.
+
+## Design and decisions
+
+Start keeps the installed catalogue IDs, 32 Start pins, eight taskbar pins and
+twelve configurable categories. The existing validated version-one preference
+record remains readable without migration. Unpinning changes references only;
+optional app removal still prunes its references without affecting the shell.
+
+The ordinary panel uses a shorter 560-logical-pixel height where space allows.
+A result heading identifies Pinned, Installed apps, a chosen category or local
+search. Existing vector icons retain app identity. Each result identifies an app
+and its category, or a pinned folder; unavailable destinations remain explicit.
+Search uses one full-width column so labels do not compete across narrow tiles.
+Grid navigation uses the same column calculation as drawing, including compact
+two-column layouts. List preference, category labels and pin order are retained.
+
+Search ranks case-insensitive exact labels, prefixes, then substrings, preserving
+alphabetical ordering within equal ranks. The maximum catalogue/pin set remains
+52 entries. It runs in response to shell drawing/input, without an index, disk
+scanner, network query, per-key process, raster cache or new allocation. This is
+installed-app/pinned-folder search, not full filesystem or Internet search.
+
+Preserve the existing Enter-to-launch, arrows, Tab, context-menu, Escape,
+category customization and explicit power confirmation routes. Typing must not
+launch a process. Native qualification must check real launches, optional
+removal/reinstall, persisted labels/pins/categories, compact/dark/HiDPI layouts,
+idle/resource behavior and ordinary installed startup. Host ranking checks and
+compile guards do not replace these guest checks or human usability studies.
+
+## Publication gate
+
+Do not mark this stage complete before matching-source native media, release
+downloads, English manuals and fresh public website/homepage verification pass.
+Later taskbar redesign remains M12.10. Existing M12.14, M12.16 and M12.18
+carry-forward observations remain open in their respective scopes.

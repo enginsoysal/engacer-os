@@ -1,4 +1,17 @@
-static unsigned start_page_size11(void){unsigned rows=start_bounds11.height>264?(unsigned)(start_bounds11.height-264)/56:1;if(!rows)rows=1;return rows*(start_preferences11.view?3u:1u);}
+static unsigned start_columns11(void){
+#ifdef ENGINE_M12
+ return start_query11[0]||!start_preferences11.view?1u:start_bounds11.width>=600?3u:2u;
+#else
+ return start_preferences11.view?3u:1u;
+#endif
+}
+static unsigned start_page_size11(void){
+#ifdef ENGINE_M12
+ unsigned reserve=284;
+#else
+ unsigned reserve=264;
+#endif
+ unsigned rows=start_bounds11.height>(int)reserve?(unsigned)(start_bounds11.height-(int)reserve)/56:1;if(!rows)rows=1;return rows*start_columns11();}
 static unsigned start_manage_rows11(void){if(start_bounds11.height<430)return 1;unsigned rows=(unsigned)(start_bounds11.height-334)/44;return rows?rows:1;}
 static void start_draw_item11(unsigned row,int x,int y,int width){
  start_result11 result=start_results11[row];const s11_pin*pin=result.kind==1?0:&start_preferences11.pinned[result.id];
@@ -12,7 +25,13 @@ static void start_draw_item11(unsigned row,int x,int y,int width){
  if(pin&&pin->kind==2)folder_icon72(x+10,y+13,25,0xf0ce87);else{ui73_round(x+10,y+10,26,26,5,preferences.accent);char letter[2]={titles[app][0],0};text(x+17,y+14,letter,1,accent_ink12(0x102d29));}
 #endif
  ui73_fit(x+45,y+4,width-54,name,1,available?ink():0x829098);
+ #ifdef ENGINE_M12
+ char detail[96];copy(detail,!available?"Unavailable":pin&&pin->kind==2?"Pinned folder":"App",sizeof(detail));
+ if(available&&(!pin||pin->kind==1)){append(detail," - ",sizeof(detail));append(detail,start_preferences11.names[start_preferences11.assignment[app]],sizeof(detail));if(start_app_pin11(app)<S11_PINS)append(detail," - pinned",sizeof(detail));}
+ ui73_fit(x+45,y+26,width-54,detail,5,preferences.dark?0xa7bcc4:0x56717d);
+#else
  ui73_fit(x+45,y+26,width-54,!available?"Unavailable":pin&&pin->kind==2?"Folder":pin&&pin->label[0]?titles[app]:"Application",5,preferences.dark?0xa7bcc4:0x56717d);
+#endif
  file_control11(0,rect,S11_RESULT+row);if(control_active&&focused_control_window==0&&focused_action==S11_RESULT+row)file_focus_rect11(rect);
 }
 static void start_draw_manage11(int x,int y,int width,int height){s11_preferences*p=&start_preferences11;unsigned count=start_manage11==1?p->categories:start_manage11==2?p->pins:p->tasks,rows=start_manage_rows11();if(start_manage_page11*rows>=count)start_manage_page11=count?(count-1)/rows:0;unsigned first=start_manage_page11*rows;int list=y+164;
@@ -32,12 +51,21 @@ static void start_draw_dialog11(int x,int y,int width,int height){if(!start_name
  if(start_name_mode11){ui73_fit(dx+20,dy+64,dw-40,"Use up to 31 characters. Only the label changes.",1,ink());file_text_field11((desktop_rect){dx+20,dy+100,dw-40,40},start_name11,start_name_cursor11,start_name_anchor11,start_name_focus11==0,0);file_control11(0,(desktop_rect){dx+20,dy+100,dw-40,40},S11_NAME_FIELD);ui73_fit(dx+20,dy+153,dw-40,start_notice11,1,0xc45b57);button(0,dx+20,dy+dh-54,125,"Save label",S11_NAME_OK,start_name_focus11==1);button(0,dx+dw-145,dy+dh-54,125,"Cancel",S11_NAME_CANCEL,start_name_focus11==2);}
  else{ui73_paragraph(dx+20,dy+65,dw-40,3,start_confirm11==3?"Restore the original categories, pins, view and taskbar alignment. Your files and installed apps are kept.":"Save your work first. Active transfers or unsaved documents block this action. Disk caches must confirm their flush.",ink());button(0,dx+20,dy+dh-54,150,start_confirm11==1?"Restart":start_confirm11==2?"Shut down":"Restore defaults",S11_CONFIRM_OK,0);button(0,dx+dw-145,dy+dh-54,125,"Cancel",S11_CONFIRM_CANCEL,1);}
 }
-static void start_draw11(void){if(!launcher)return;int width=model.width>792?760:(int)model.width-32,height=model.height>734?650:(int)model.height-84,left=16;if(start_preferences11.centered)left=((int)model.width-width)/2;int top=(int)model.height-72-height;start_bounds11=(desktop_rect){left,top,width,height};ui73_shadow(left,top,width,height);ui73_round(left,top,width,height,12,paper());text(left+20,top+18,start_manage11?"Make Start yours":"Start",2,ink());ui73_fit(left+width/2,top+23,width/2-20,owner.user,1,ink());
+static void start_draw11(void){if(!launcher)return;
+#ifdef ENGINE_M12
+ int preferred_height=560,row_top=184;
+#else
+ int preferred_height=650,row_top=164;
+#endif
+ int width=model.width>792?760:(int)model.width-32,height=(int)model.height>preferred_height+84?preferred_height:(int)model.height-84,left=16;if(start_preferences11.centered)left=((int)model.width-width)/2;int top=(int)model.height-72-height;start_bounds11=(desktop_rect){left,top,width,height};ui73_shadow(left,top,width,height);ui73_round(left,top,width,height,12,paper());text(left+20,top+18,start_manage11?"Make Start yours":"Start",2,ink());ui73_fit(left+width/2,top+23,width/2-20,owner.user,1,ink());
  if(!start_manage11){file_text_field11((desktop_rect){left+20,top+60,width-40,40},start_query11,start_query_cursor11,start_query_anchor11,start_search_focus11,0);if(!start_query11[0])ui73_fit(left+32,top+69,width-64,"Search installed apps and pinned folders",1,0x6c8390);file_control11(0,(desktop_rect){left+20,top+60,width-40,40},S11_SEARCH);
   button(0,left+20,top+112,100,"Pinned",S11_PINNED,start_preferences11.tab==0);button(0,left+128,top+112,100,"All apps",S11_ALL,start_preferences11.tab==1);button(0,left+236,top+112,115,"Categories",S11_CATEGORIES_VIEW,start_preferences11.tab==2);if(start_preferences11.tab==2)button(0,left+359,top+112,width-479,start_preferences11.names[start_category11],S11_CATEGORY_MENU,0);button(0,left+width-100,top+112,80,start_preferences11.view?"List":"Grid",S11_VIEW,0);
-  start_build_results11();unsigned page=start_page_size11(),columns=start_preferences11.view?3:1;if(start_cursor11>=start_result_count11)start_cursor11=0;if(start_page11*page>=start_result_count11)start_page11=0;unsigned first=start_page11*page;int cell=(width-32)/(int)columns;
-  for(unsigned n=0;n<page&&first+n<start_result_count11;++n)start_draw_item11(first+n,left+20+(int)(n%columns)*cell,top+164+(int)(n/columns)*56,cell-8);
-  if(!start_result_count11)ui73_paragraph(left+24,top+174,width-48,2,start_query11[0]?"No matching installed apps or pinned folders. Try a shorter name.":"Nothing here yet. Choose All apps, or right-click an app or folder to pin it.",ink());
+  start_build_results11();unsigned page=start_page_size11(),columns=start_columns11();if(start_cursor11>=start_result_count11)start_cursor11=0;if(start_page11*page>=start_result_count11)start_page11=0;unsigned first=start_page11*page;int cell=(width-32)/(int)columns;
+#ifdef ENGINE_M12
+  ui73_fit(left+24,top+156,width-48,start_query11[0]?"Search results - this device":start_preferences11.tab==0?"Pinned apps and folders":start_preferences11.tab==1?"Installed apps":start_preferences11.names[start_category11],5,ink());
+#endif
+  for(unsigned n=0;n<page&&first+n<start_result_count11;++n)start_draw_item11(first+n,left+20+(int)(n%columns)*cell,top+row_top+(int)(n/columns)*56,cell-8);
+  if(!start_result_count11)ui73_paragraph(left+24,top+row_top+4,width-48,2,start_query11[0]?"No matching installed apps or pinned folders. Try a shorter name.":"Nothing here yet. Choose All apps, or right-click an app or folder to pin it.",ink());
  }else{ui73_fit(left+20,top+65,width-40,height<430?(start_notice11[0]?start_notice11:"Changes save automatically. Files and apps are kept."):"Create, rename, hide and reorder. Files and installed apps are kept.",1,ink());button(0,left+20,top+112,128,"Categories",S11_MANAGE_CATS,start_manage11==1);button(0,left+156,top+112,120,"Start pins",S11_MANAGE_PINS,start_manage11==2);button(0,left+284,top+112,120,"Taskbar",S11_MANAGE_TASKS,start_manage11==3);start_draw_manage11(left,top,width,height);}
  if(!start_manage11||height>=430)ui73_fit(left+20,top+height-86,width-40,start_notice11[0]?start_notice11:start_query11[0]?"Search stays on this device. No new process is started while typing.":"Right-click for pins and categories. Enter opens; Escape goes back.",1,ink());
  unsigned count=start_manage11==1?start_preferences11.categories:start_manage11==2?start_preferences11.pins:start_manage11==3?start_preferences11.tasks:start_result_count11,page=start_manage11?start_manage_page11:start_page11,size=start_manage11?start_manage_rows11():start_page_size11();file_button11(0,left+20,top+height-48,40,"<",S11_PREV,page!=0,0);file_button11(0,left+68,top+height-48,40,">",S11_NEXT,(page+1)*size<count,0);
