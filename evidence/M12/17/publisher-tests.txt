@@ -1,0 +1,37 @@
+✔ old public routes move to the canonical origin without losing the destination (1.962ms)
+✔ repository links retain immutable commits, filenames, tags and anchors (0.2783ms)
+✔ old guide titles use the new brand and clearly identify their historical release (2.0957ms)
+✔ homepage separates M12 concepts from the native M11.6 download (1.7742ms)
+✔ a qualified native M12 stage uses its own real capture, guide and scope (0.3969ms)
+✔ open observed issues remain visible on the native homepage until resolved (0.4308ms)
+✔ M12 design follows tested installation without replacing its release (1.3053ms)
+✔ M12 native guides replace older installation without hiding established tasks (1.6338ms)
+✔ current install and M11 user tasks precede architecture and history (1.172ms)
+✔ numeric names sort naturally and every uncategorized article stays discoverable once (0.269ms)
+✔ a new stage replaces the previous install/release in Start here; history stays last (0.3056ms)
+✔ M11.5 is first and the older M11.4 install guide stays in the archive (0.1864ms)
+✔ active M12 design is labeled separately and cannot replace a native download (1.1528ms)
+✔ stage downloads require all matching public assets and prefer the newest stage (1.2852ms)
+✔ M12 downloads require native assets, numeric stage order and public qualification (0.4031ms)
+✔ current assets remain separate and every historical release is reachable exactly once (0.9155ms)
+✔ publication rejects overlarge generated download or archive pages before API writes (3.3866ms)
+✔ release reruns keep immutable content source when publisher tooling advances (0.3766ms)
+✔ publication retries only repeatable operations and obeys bounded server delay (1.3582ms)
+✔ reject a key for any other site before writing (1.2649ms)
+✔ accept only the renamed canonical site identity (0.2957ms)
+✔ never overwrite a matching slug owned by the author rather than the publisher (0.3563ms)
+✔ preserve unrelated author articles (1.5774ms)
+✔ archive removed generated sources as drafts rather than delete them (0.2177ms)
+✔ recover only the exact, empty publisher-created draft (0.3266ms)
+✔ a mixed plan with a later collision is rejected before any operations are returned (0.1506ms)
+✔ removed generated download archive pages become drafts while author pages remain untouched (0.1509ms)
+✔ generated archive excerpts explicitly replace the publisher-created draft marker (0.3674ms)
+✔ publication readback identifies a changed field without dumping whole article bodies (0.1785ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 171.5492

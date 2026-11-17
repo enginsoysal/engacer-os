@@ -1,0 +1,10 @@
+{
+  "ref": "refs/tags/m1217-v0.12.17",
+  "node_id": "REF_kwDOVj6ISrhyZWZzL3RhZ3MvbTEyMTctdjAuMTIuMTc",
+  "url": "https://api.github.com/repos/enginsoysal/engacer-os/git/refs/tags/m1217-v0.12.17",
+  "object": {
+    "sha": "c6a8ba317ddfc3955f90b9fb171b1229317dde8d",
+    "type": "commit",
+    "url": "https://api.github.com/repos/enginsoysal/engacer-os/git/commits/c6a8ba317ddfc3955f90b9fb171b1229317dde8d"
+  }
+}

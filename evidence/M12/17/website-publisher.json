@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "source_commit": "c6a8ba317ddfc3955f90b9fb171b1229317dde8d",
+  "publisher_commit": "c6a8ba317ddfc3955f90b9fb171b1229317dde8d",
+  "workflow_id": 44070225406,
+  "attempt": 1,
+  "scope": "Matching release-event canonical documentation; no shared platform deployment."
+}
