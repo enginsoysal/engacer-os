@@ -40,6 +40,11 @@ Appearance and dismissal actions do not require optional Calculator or Editor
 packages. Its colours follow the saved theme. The optional packaged quickstart
 uses the current navigation and Apply and save / Cancel vocabulary, stays below
 the existing editor text limit and describes actual provider limitations.
+Application management lives inside required Settings, using its existing bounded
+package view and backend. The optional Software launcher is not a dependency.
+Returning from management uses Back to the remembered Settings category. This
+fix follows a real No optional apps test that exposed the previous launch
+dependency; the earlier candidate results are retained as diagnostics.
 Distribution profiles retain their validated app masks, branding, appearance
 and guide preferences; visual customization cannot bypass disk safety.
 

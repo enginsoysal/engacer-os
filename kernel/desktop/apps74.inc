@@ -134,7 +134,13 @@ static void draw_software74(desktop_window *w,application *app,uint64_t token){
     int x=w->bounds.x+24,y=w->bounds.y+64,width=w->bounds.width-48;
     text(x,y,"Your apps, your choice",2,ink());
     ui73_paragraph(x,y+36,width,2,"Remove an app without removing your documents or shared system services. Close its windows first.",ink());
-    if(w->app==SETTINGS)button(token,x+width-105,y-6,105,"Appearance",SETTINGS_BACK74,0);
+    if(w->app==SETTINGS)button(token,x+width-105,y-6,105,
+#ifdef ENGINE_M12
+    "Back",
+#else
+    "Appearance",
+#endif
+    SETTINGS_BACK74,0);
     unsigned first=w->app==SETTINGS?app->year74:app->offset,count=0,shown=0;
     unsigned rows=(unsigned)(w->bounds.height-220)/56;if(rows>6)rows=6;
     for(unsigned kind=1;kind<APP74_KINDS;++kind){if(!app74_ready(kind))continue;

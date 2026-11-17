@@ -202,7 +202,8 @@
       "acceptance": "Keyboard-only tasks, focus order, light/dark/high-contrast, supported scales and reduced motion. Screen-reader support requires its own working protocol/reader.",
       "publication": "required_before_next_stage",
       "carry_forward": [
-        "Check the drawn guest cursor against actual caption and client hit coordinates after 150%/200% changes. M12.4 raw 4K captures suggest a cursor-position discrepancy; isolate capture timing versus native pointer rendering before final qualification."
+        "Check the drawn guest cursor against actual caption and client hit coordinates after 150%/200% changes. M12.4 raw 4K captures suggest a cursor-position discrepancy; isolate capture timing versus native pointer rendering before final qualification.",
+        "Review first-start card boundary contrast over a dark Files window. M12.15 text and actions are readable, but the similarly coloured surfaces make the card edge too subtle; qualify an explicit contrast boundary with the accessibility themes."
       ]
     },
     {
