@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "source_commit": "5e1149d1896ab1c0c98d97e31dc828e8b4ff5751",
+  "native_editor_save": "Saved ✓",
+  "matching_native_download": true,
+  "current_release": "M12.18",
+  "task_sections": [
+    "Start here",
+    "Install",
+    "Use Engacer OS",
+    "Customize",
+    "Project & development"
+  ],
+  "website_handbook_visible": true,
+  "mobile": {
+    "viewport": 390,
+    "width": 380
+  },
+  "production_overlay": false,
+  "search_prototype_passed": true
+}

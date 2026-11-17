@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "design_only": true,
+  "production_overlay": false,
+  "checks": [
+    {
+      "name": "Current Guides group is first",
+      "passed": true
+    },
+    {
+      "name": "Two current USB results",
+      "passed": true
+    },
+    {
+      "name": "Initial Up selects last result",
+      "passed": true
+    },
+    {
+      "name": "Down wraps to first",
+      "passed": true
+    },
+    {
+      "name": "Enter opens matching real guide",
+      "passed": true
+    },
+    {
+      "name": "Ctrl+K opens without navigation",
+      "passed": true
+    },
+    {
+      "name": "Helpful empty search",
+      "passed": true
+    },
+    {
+      "name": "History excluded by default",
+      "passed": true
+    },
+    {
+      "name": "History opt-in",
+      "passed": true
+    },
+    {
+      "name": "Clear query retains dialog focus",
+      "passed": true
+    },
+    {
+      "name": "Tab wraps inside dialog",
+      "passed": true
+    },
+    {
+      "name": "Reverse Tab wraps inside dialog",
+      "passed": true
+    },
+    {
+      "name": "Escape restores opener",
+      "passed": true
+    },
+    {
+      "name": "Mobile has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "Missing real index gives safe fallback",
+      "passed": true
+    },
+    {
+      "name": "Failure can close and restore focus",
+      "passed": true
+    }
+  ]
+}

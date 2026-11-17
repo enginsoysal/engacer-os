@@ -1,0 +1,30 @@
+{
+  "images": [
+    {
+      "loaded": false,
+      "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/setup.svg"
+    },
+    {
+      "loaded": false,
+      "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/disks.svg"
+    },
+    {
+      "loaded": false,
+      "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/desktop.svg"
+    },
+    {
+      "loaded": false,
+      "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/start.svg"
+    },
+    {
+      "loaded": false,
+      "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/settings.svg"
+    },
+    {
+      "loaded": false,
+      "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/portal.svg"
+    }
+  ],
+  "viewport": 1280,
+  "width": 1270
+}

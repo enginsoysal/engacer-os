@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "source_commit": "5e1149d1896ab1c0c98d97e31dc828e8b4ff5751",
+  "articles_checked": 275,
+  "pages_checked": 432,
+  "unique_links": 2954,
+  "provenance_errors": [],
+  "fresh_reads": [],
+  "current_native_download": "M12.18",
+  "design_only": "M13.0",
+  "production_overlay": false
+}

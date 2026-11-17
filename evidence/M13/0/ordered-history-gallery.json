@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "source_commit": "5e1149d1896ab1c0c98d97e31dc828e8b4ff5751",
+  "milestone_order": [
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m0",
+      "title": "M0 — completed architecture/toolchain baseline (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m1-handoff",
+      "title": "M0 → M1 handoff and current continuation (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m1",
+      "title": "M1 — original own-kernel boot (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m2",
+      "title": "M2 — protected native processes and efficient resource use (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m3",
+      "title": "M3 — scheduling, memory policy and concurrency (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-contract",
+      "title": "M4 implementation, usage and limits (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4",
+      "title": "M4 - storage, discovery and input (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-boot",
+      "title": "M4.5 original BIOS and dual-firmware media (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-owner-trust",
+      "title": "M4.5 owner signing, update and trust boundary (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-physical-qualification",
+      "title": "Physical qualification follow-up to M4.5 (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-smp-pressure",
+      "title": "M4.5 SMP pressure-response correction (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-storage",
+      "title": "M4.5 storage and trust increments (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-usb-filesystems",
+      "title": "M4.5 USB lifetime and extended read-only filesystem increment (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5-usb-topology",
+      "title": "M4.5 bounded USB topology and UAS (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m4-5",
+      "title": "M4.5 — completed virtual boot and hardware milestone (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m5",
+      "title": "M5 — native live installation and recovery (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m5-1",
+      "title": "M5.1 — guided setup and custom distributions (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m6",
+      "title": "M6 — real product installation (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m7",
+      "title": "M7 — real Engacer OS desktop (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m7-1",
+      "title": "M7.1 — installer disk and partition management (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m7-2",
+      "title": "M7.2 — installation to a usable folder desktop (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m7-3",
+      "title": "M7.3 — native visual quality and HiDPI (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m7-4",
+      "title": "M7.4 — independent standard applications (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m7-5",
+      "title": "M7.5: installer clarity and reliable installed startup (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m8-msi",
+      "title": "M8 first delivery: an original MSI and Windows console application (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m9",
+      "title": "M9 — automatic hardware, starting with responsive VM graphics (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m9-2",
+      "title": "M9.2 — automatic writable storage and reachable off-screen windows (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m10",
+      "title": "M10 — hardware foundation and everyday desktop devices (historical)"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m11",
+      "title": "M11 — familiar installation and desktop experience"
+    },
+    {
+      "href": "https://engaceros.brixcanvas.com/blog/docs-milestones-m12",
+      "title": "M12 — coherent desktop experience"
+    }
+  ],
+  "gallery": {
+    "images": [
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/setup.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/disks.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/desktop.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/start.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/settings.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/5e1149d1896ab1c0c98d97e31dc828e8b4ff5751/docs/architecture/figures/m13/portal.svg"
+      }
+    ],
+    "viewport": 1280,
+    "width": 1270,
+    "y": 6672
+  },
+  "lazy_images_checked_after_real_scrolling": true
+}

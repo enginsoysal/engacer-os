@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "stage": "M13.0",
+  "design_only": true,
+  "design_release_source": "706afc2b8d90d37fcbb92ce60cb831dae5c321a2",
+  "publication_source": "5e1149d1896ab1c0c98d97e31dc828e8b4ff5751",
+  "website": "https://engaceros.brixcanvas.com",
+  "pages_checked": 432,
+  "unique_observed_links": 2954,
+  "articles_checked": 275,
+  "native_editor_save": "Saved \u2713",
+  "current_native_download": "M12.18",
+  "new_native_iso": false,
+  "publisher_tests": 35,
+  "search_prototype_checks": 16,
+  "production_overlay": false,
+  "production_overlay_target": "M13.1",
+  "scope": "Design, actual task-first portal, scoped prototype and current public source/media; no native M13 or human study claim"
+}
