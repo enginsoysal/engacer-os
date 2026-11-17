@@ -53,7 +53,11 @@ static void open_target11(i11_target target){
  desktop_focus11=0;action(target.window,target.action);
 }
 static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
- if(switch_open11){if((event&I11_ACTIVATE)&&target.action>=W11_SWITCH&&target.action<W11_SWITCH+DESKTOP_WINDOWS)window_action11(0,target.action);return;}
+ if(switch_open11){if(event&I11_ACTIVATE){if(target.action>=W11_SWITCH&&target.action<W11_SWITCH+DESKTOP_WINDOWS)window_action11(0,target.action);
+#ifdef ENGINE_M12
+ else multitask_cancel12();
+#endif
+ }return;}
  if(start_dispatch11(target,event,x,y))return;
  if(target.action>=46000&&target.action<=46004){if(event&I11_ACTIVATE)guide_action11(target.action);return;}
  if(context11&&!(target.action>=32000&&target.action<=32031)){if(event&I11_CONTEXT)return;context11=0;whole();return;}

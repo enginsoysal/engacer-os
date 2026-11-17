@@ -625,6 +625,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "appearance11.inc"
 #ifdef ENGINE_M12
 #include "chrome12.inc"
+#include "multitask12.inc"
 #endif
 #include "guide11.inc"
 #endif

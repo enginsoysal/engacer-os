@@ -1,6 +1,10 @@
 /* Native window management. Bounds remain logical, rasterization physical. */
 static window_state11*window_state_for11(uint64_t token){desktop_window*w=desktop_lookup(&model,token);if(!w)return 0;window_state11*s=&window_geometry11[w-model.windows];if(s->token!=token){s->token=token;s->normal=w->bounds;s->mode=0;}return s;}
 static void window_minimum11(unsigned app,int*width,int*height){*width=480;*height=420;
+
+#ifdef ENGINE_M12
+ if(app==FILES)*width=500;
+#endif
  if(app==SETTINGS){*width=700;*height=550;}if(app==DOWNLOADS)*height=460;
  if(app==CALCULATOR){*width=660;*height=650;}if(app==CLOCK74){*width=700;*height=510;}
  if(app==CALENDAR74){*width=760;*height=640;}if(app==DISKS74||app==RECOVERY74){*width=850;*height=620;}
@@ -62,7 +66,13 @@ static void window_drag_update11(unsigned x,unsigned y){desktop_window*w=desktop
  if(preview!=window_snap_preview11){window_snap_preview11=preview;whole();}
  desktop_rect old=w->bounds;unsigned cache=!drag_resize&&!window_snap_preview11&&!model.damaged&&model.count&&model.order[model.count-1]==(unsigned)(w-model.windows);desktop_place(&model,drag_window,r);if(cache)(void)move_cached9(old,w->bounds);
 }
-static void window_drag_end11(unsigned cancel){unsigned redraw=cancel||window_snap_preview11;desktop_window*w=desktop_lookup(&model,drag_window);window_state11*s=window_state_for11(drag_window);if(w&&s){if(cancel){s->normal=window_normal_before11;s->mode=window_mode_before11;desktop_place(&model,drag_window,window_before11);}else if(window_snap_preview11){s->normal=window_mode_before11?window_normal_before11:window_before11;s->mode=1;window_mode11(drag_window,window_snap_preview11);}else if(!s->mode)s->normal=w->bounds;}dragging=window_keyboard_move11=window_snap_preview11=0;if(redraw)whole();}
+static void window_drag_end11(unsigned cancel){unsigned redraw=cancel||window_snap_preview11;desktop_window*w=desktop_lookup(&model,drag_window);window_state11*s=window_state_for11(drag_window);if(w&&s){if(cancel){s->normal=window_normal_before11;s->mode=window_mode_before11;desktop_place(&model,drag_window,window_before11);}else if(window_snap_preview11){s->normal=window_mode_before11?window_normal_before11:window_before11;s->mode=1;
+#ifdef ENGINE_M12
+ multitask_snap12(drag_window,window_snap_preview11);
+#else
+ window_mode11(drag_window,window_snap_preview11);
+#endif
+}else if(!s->mode)s->normal=w->bounds;}dragging=window_keyboard_move11=window_snap_preview11=0;if(redraw)whole();}
 static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window*w=desktop_lookup(&model,t.window);if(!w||!(t.kind==I11_CAPTION||(t.action>=31000&&t.action<=31025)||t.action==70
 #ifdef ENGINE_M12
  ||(t.action>=W12_MIN&&t.action<=W12_MENU)
@@ -74,27 +84,50 @@ static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window
  if((int)x<8)x=8;if((int)y<8)y=8;
 #endif
  file_menu_begin11(t.window,x,y);
- file_menu_add11("Restore",W11_RESTORE,s->mode!=0||w->minimized);file_menu_add11("Move (arrow keys)",W11_MOVE,!s->mode);file_menu_add11("Size (arrow keys)",W11_SIZE,!s->mode);file_menu_add11("Minimize",31002,1);file_menu_add11("Maximize",W11_MAX,s->mode!=1);file_menu_add11("Snap left",W11_LEFT,window_snap_allowed11(w));file_menu_add11("Snap right",W11_RIGHT,window_snap_allowed11(w));file_menu_add11("Close",31001,!file_block_owner11(t.window));copy(file_menu_reason11,"Move/size: arrow keys, Enter to keep, Escape to cancel.",128);file_menu_fit11();return 1;}
+ file_menu_add11("Restore",W11_RESTORE,s->mode!=0||w->minimized);file_menu_add11("Move (arrow keys)",W11_MOVE,!s->mode);file_menu_add11("Size (arrow keys)",W11_SIZE,!s->mode);file_menu_add11("Minimize",31002,1);file_menu_add11("Maximize",W11_MAX,s->mode!=1);file_menu_add11("Snap left",W11_LEFT,window_snap_allowed11(w));file_menu_add11("Snap right",W11_RIGHT,window_snap_allowed11(w));
+#ifdef ENGINE_M12
+ file_menu_add11("Arrange windows...",W12_ARRANGE,1);
+#endif
+ file_menu_add11("Close",31001,!file_block_owner11(t.window));copy(file_menu_reason11,"Move/size: arrow keys, Enter to keep, Escape to cancel.",128);file_menu_fit11();return 1;}
 static unsigned window_action11(uint64_t token,unsigned command){
- if(command>=W11_SWITCH&&command<W11_SWITCH+DESKTOP_WINDOWS){unsigned i=command-W11_SWITCH;if(switch_open11&&i<switch_count11&&desktop_lookup(&model,switch_tokens11[i])){desktop_focus11=0;desktop_focus(&model,switch_tokens11[i]);}switch_open11=0;control_active=0;whole();return 1;}
+ if(command>=W11_SWITCH&&command<W11_SWITCH+DESKTOP_WINDOWS){unsigned i=command-W11_SWITCH;
+#ifdef ENGINE_M12
+ if(multitask_choose12(i))return 1;
+#endif
+ if(switch_open11&&i<switch_count11&&desktop_lookup(&model,switch_tokens11[i])){desktop_focus11=0;desktop_focus(&model,switch_tokens11[i]);}switch_open11=0;control_active=0;whole();return 1;}
  if(command<W11_MAX||command>=W11_SWITCH)return 0;desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;
 #ifdef ENGINE_M12
  if(file_block_owner11(token)){copy(shell_notice,"Finish or cancel this window's dialog first.",96);whole();return 1;}
+#endif
+#ifdef ENGINE_M12
+ if(command==W12_ARRANGE){multitask_arrange12(token);return 1;}
+ if(command==W11_LEFT||command==W11_RIGHT){multitask_snap12(token,command==W11_LEFT?2:3);return 1;}
 #endif
  if(command==W11_MAX||command==W11_RESTORE||command==W11_LEFT||command==W11_RIGHT){window_mode11(token,command==W11_RESTORE?0:command==W11_LEFT?2:command==W11_RIGHT?3:1);return 1;}
  if(command==W11_MOVE||command==W11_SIZE){desktop_focus(&model,token);interaction11.x=w->bounds.x+30;interaction11.y=w->bounds.y+18;window_drag_begin11((i11_target){token,command==W11_SIZE?31020:31000,I11_CAPTION});window_keyboard_move11=1;whole();return 1;}return 1;
 }
 static void window_overlay11(void){
  if(window_snap_preview11){int x=window_snap_preview11==3?(int)model.width/2:0,width=window_snap_preview11==1?(int)model.width:(int)model.width/2,height=model.height-60;rectangle((desktop_rect){x+6,6,width-12,3},preferences.accent);rectangle((desktop_rect){x+6,height-9,width-12,3},preferences.accent);rectangle((desktop_rect){x+6,6,3,height-12},preferences.accent);rectangle((desktop_rect){x+width-9,6,3,height-12},preferences.accent);}
+
+#ifdef ENGINE_M12
+ multitask_overlay12();return;
+#endif
  if(!switch_open11)return;int width=560,height=90+(int)switch_count11*48,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;ui73_shadow(x,y,width,height);ui73_round(x,y,width,height,12,paper());text(x+20,y+18,"Switch windows",3,ink());
  for(unsigned i=0;i<switch_count11;++i){desktop_window*w=desktop_lookup(&model,switch_tokens11[i]);if(w)button(0,x+20,y+68+(int)i*48,width-40,titles[w->app],W11_SWITCH+i,i==switch_choice11);}
 }
 static unsigned window_key11(int key){
+#ifdef ENGINE_M12
+ if(multitask_key12(key))return 1;
+#endif
  if(key==135||key==143){if(dragging){window_drag_end11(1);i11_cancel(&interaction11);}if(file_drag11)files_cancel_drag11();control_active=0;}
  if(dragging&&(key==27||key==141)){window_drag_end11(1);i11_cancel(&interaction11);return 1;}
  if(window_keyboard_move11){if(key==10){window_drag_end11(0);return 1;}if((key==128||key==129||key==133||key==134)){int x=drag_x,y=drag_y;if(key==128)x-=16;if(key==129)x+=16;if(key==133)y-=16;if(key==134)y+=16;window_drag_update11(x,y);desktop_window*w=desktop_lookup(&model,drag_window);if(w)drag_bounds=w->bounds;whole();}return 1;}
  if(key==135||key==143){if(!switch_open11){switch_count11=0;for(unsigned i=model.count;i;--i)switch_tokens11[switch_count11++]=desktop_token(&model,model.order[i-1]);switch_choice11=0;switch_open11=!!switch_count11;launcher=context11=0;}if(switch_count11)switch_choice11=(switch_choice11+(key==143?switch_count11-1:1))%switch_count11;whole();return 1;}
- if(switch_open11){if(key==27||key==141){switch_open11=0;whole();return 1;}if(key==142||key==10){window_action11(0,W11_SWITCH+switch_choice11);return 1;}return 1;}
+ if(switch_open11){
+#ifdef ENGINE_M12
+ if(key==9||key==129||key==134||key==136||key==128||key==133){if(switch_count11)switch_choice11=(switch_choice11+((key==136||key==128||key==133)?switch_count11-1:1))%switch_count11;whole();return 1;}
+#endif
+ if(key==27||key==141){switch_open11=0;whole();return 1;}if(key==142||key==10){window_action11(0,W11_SWITCH+switch_choice11);return 1;}return 1;}
  if(key==142)return 1;
  uint64_t token=model.focused<DESKTOP_WINDOWS?desktop_token(&model,model.focused):0;
 #ifdef ENGINE_M12
@@ -107,7 +140,13 @@ static unsigned window_key11(int key){
  if(key>=145&&key<=149&&w&&file_block_owner11(token)){copy(shell_notice,"Finish or cancel this window's dialog first.",96);whole();return 1;}
 #endif
  if(key==145&&w){window_menu11((i11_target){token,31000,I11_CAPTION},w->bounds.x+12,w->bounds.y+40);return 1;}
- if(key>=146&&key<=149&&w){if(key==149){window_state11*s=window_state_for11(token);if(s->mode)window_mode11(token,0);else{desktop_minimize(&model,token,1);whole();}}else window_mode11(token,key==146?2:key==147?3:1);return 1;}
+ if(key>=146&&key<=149&&w){if(key==149){window_state11*s=window_state_for11(token);if(s->mode)window_mode11(token,0);else{desktop_minimize(&model,token,1);whole();}}else{
+#ifdef ENGINE_M12
+ multitask_snap12(token,key==146?2:key==147?3:1);
+#else
+ window_mode11(token,key==146?2:key==147?3:1);
+#endif
+ }return 1;}
  if(key==150){launch(FILES,0);whole();return 1;}return 0;
 }
 

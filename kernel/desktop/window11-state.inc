@@ -29,3 +29,13 @@ static unsigned window_action12(uint64_t,unsigned);
 static void window_hint_damage12(i11_target,i11_target);
 static void window_hint_draw12(void);
 #endif
+
+#ifdef ENGINE_M12
+enum {W12_ARRANGE=44006};
+static void multitask_arrange12(uint64_t);
+static void multitask_snap12(uint64_t,unsigned);
+static unsigned multitask_choose12(unsigned);
+static unsigned multitask_key12(int);
+static void multitask_overlay12(void);
+static void multitask_cancel12(void);
+#endif
