@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.17",
-  "qualified_download": "M12.16",
+  "qualified_download": "M12.17",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -218,13 +218,16 @@
     },
     {
       "id": "M12.17",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Motion and performance",
       "requires": "M12.16",
       "deliverable": "Direct feedback and bounded optional transitions, shared caches and measured CPU/RAM behavior.",
       "how_and_why": "Keep the native lightweight compositor; decoration must not impose continuous work or large per-window surfaces.",
       "acceptance": "Peak/retained memory, event/paint observations, idle CPU halt, interrupted transitions and pixel-correct ordinary/HiDPI/4K motion.",
-      "publication": "required_before_next_stage"
+      "publication": "required_before_next_stage",
+      "qualification": "M12-STAGE17-VM-v1",
+      "build_id": "cc3562fe59b46e079ec4ca287fec75bb",
+      "evidence": "evidence/M12/17/acceptance-results.json"
     },
     {
       "id": "M12.18",

@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "stage": "M12.17",
+  "build_id": "cc3562fe59b46e079ec4ca287fec75bb",
+  "scope": "Actual final-build native VRAM captures and separate pixel-exact raster/movement/keyboard tasks; agent review, not a participant usability study or native FPS benchmark.",
+  "reviewed": [
+    "performance-interrupt/cancelled-4k.png",
+    "performance-interrupt/moving-ordinary.png",
+    "access-profiles/accessibility-compact-dark.png",
+    "access-firstuse/dark-first-use.png",
+    "access-native/saved-high-contrast-and-reduced-motion.png"
+  ],
+  "findings": [
+    "Clarity: original app/folder identities, consistent title controls, navigation buttons and independent appearance/accessibility states remain readable.",
+    "Convenience: ordinary title-bar movement remains direct; Escape restores the prior rectangle and visible viewport without accepting another action. A partly off-screen move intentionally retains a reachable caption.",
+    "User friendliness: keyboard-only routes, F1 current-control help and forward/reverse panes retain real owner/generation semantics and saved choices.",
+    "Graphical quality: default shadows keep their prior edges and antialiasing; the exact production raster and twelve native cached/full comparisons preserve output while removing covered interior iteration.",
+    "Readability: reviewed ordinary, compact Dark, high-contrast and physical 4K essential labels stay legible without new overlap or clipped active controls. The first-guide boundary remains distinct over Dark Files.",
+    "Resource observations separate the constant fixed shell, managed current/peak, zero completed retention and bounded host probe buffers; host timing is not display refresh."
+  ],
+  "capture_sha256": {
+    "performance-interrupt/cancelled-4k.png": "584a91684eb35416fd08d50c496cc97295b7520ea4b14bfab7172d9d9f3b9e6d",
+    "performance-interrupt/moving-ordinary.png": "8d640958823887ba5ac6d39bca914278190832587aa952dd1090cbfd7635b5e2",
+    "access-profiles/accessibility-compact-dark.png": "aa442187dd0d8de8dc222987b099c0056c262ec84366069ff9c20c3e14808d6b",
+    "access-firstuse/dark-first-use.png": "e09e665eb0daf22479afc8bfd40556e096271ab1b2a81901ea4f7af74402a85f",
+    "access-native/saved-high-contrast-and-reduced-motion.png": "cc3d4195d6f573013857b6d9305151f3b2d32d5f3f3291722fd67f3e29280763"
+  },
+  "retained_observations": [
+    "M12.18 named controllers and original MSI lifecycle",
+    "M12.18 earlier BIOS concurrency and custom-domain email sharing observations",
+    "M12.18 high-contrast picker/notification outer-boundary polish"
+  ]
+}

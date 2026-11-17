@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "pixel_cases": 3073,
+  "baseline_visits": 25404864,
+  "current_visits": 1896768,
+  "equal_blend_calls": 1885632,
+  "equal_audio_pumps": 729,
+  "baseline_cpu_ms": 49.0,
+  "current_cpu_ms": 9.0,
+  "host_buffer_bytes": 66356224,
+  "guard_bytes_unchanged": true,
+  "scope": "Host execution of the exact production round bodies, with only identifier/loop-visit instrumentation; bounded framebuffer probes compare pixels, blending, dirty bounds and audio pump cadence. Host CPU measurements are not native FPS.",
+  "baseline_source_commit": "87fedd75c46fe4bcc3263a29f39be1491b6e7069",
+  "function_sha256": {
+    "baseline": "eb7fcfa3d592db3b2df297306c6051f2cda7205fc907d7dc8116d53459938a62",
+    "current": "a7244e452650e1e19f3ea93b68fc845b71df1dfa541196733863bb962142b5a9"
+  },
+  "source_sha256": {
+    "kernel/core/graphics73.inc": "96e9dc8871e1999c6672c0cd9ef44584467e41f6d1dbe64f560337dc344a834a",
+    "tests/m12/raster_host17.c": "c7a198628f324aac69bb58e4ef0f3aa422fa42880bdd422e1336c14e35a5e68a",
+    "tests/m12/raster_host17.py": "b11822637248ccae7e738d4aadc6bf22a6b895b954c0ecbfbfbf7fbe2e7a540c"
+  }
+}

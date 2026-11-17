@@ -1,7 +1,6 @@
 # M12.17 bounded motion and performance
 
-Status: implementation under qualification. M12.16 remains the complete public
-qualified delivery until matching M12.17 native and publication gates pass.
+M12-STAGE17-VM-v1 native qualification passes. Complete public delivery closes separately before M12.18.
 
 ## Covered shadow interiors
 
@@ -33,7 +32,7 @@ its raster algorithm. It compares 3,073 clipped/signed/scale/alpha cases and rea
 4K-sized shadow layers, exact resulting pixels, guard bytes, blend calls, dirty
 bounds and audio-pump cadence. CPU times in this host probe are not native FPS.
 
-Matching native media must separately install, start without ISO, pass complete
+Matching native media separately install, start without ISO, pass complete
 keyboard/accessibility/persistence tasks, render the five light/dark/contrast
 profiles and preserve cancelled moves. Default-effect motion must compare the
 actual cached viewport against an independently forced full repaint at 100%,

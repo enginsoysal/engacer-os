@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "build_id": "cc3562fe59b46e079ec4ca287fec75bb",
+  "profiles": [
+    {
+      "name": "ordinary",
+      "physical": [
+        1280,
+        800
+      ],
+      "scale": 2,
+      "exact_restored_bounds": [
+        100,
+        20,
+        1080,
+        700
+      ],
+      "viewport_pixels_restored": true,
+      "managed_current_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "exact_restored_bounds": [
+        200,
+        20,
+        1080,
+        720
+      ],
+      "viewport_pixels_restored": true,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "exact_restored_bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "viewport_pixels_restored": true,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0
+    }
+  ],
+  "checks": [
+    "Actual default-effect title-bar drags are interrupted by Escape at 100%, 150% and physical 4K/200%; the prior rectangle and full native viewport above the clock/taskbar restore pixel for pixel after pointer release",
+    "Cancelled moves leave exact persistent disk bytes, retain zero managed pages, add no idle paint loop and halt all CPUs at idle"
+  ]
+}

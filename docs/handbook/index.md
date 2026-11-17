@@ -1,27 +1,28 @@
 # Engacer OS user handbook
 
-**M12.16 / 0.12.16 passes M12-STAGE16-VM-v1.**
-[Install](install-m1216.md), [Keyboard and accessibility](accessibility-m1216.md),
-[release scope](../releases/m1216-v0.12.16.md),
-[exact-source acceptance](../../evidence/M12/16/acceptance-results.json).
-599 compiled Git inputs and 12 native task/profile checks cover
-keyboard-only installation and desktop tasks, F1 semantic Focus Help, F6 panes,
-independent high contrast/reduced effects, malformed records, modal ownership,
-compact Light/Dark, supported 150% and physical 4K/200% layouts. Physical cursor,
-logical input and scaled clicks agree through the screen edges. Exact enabled-device
-VMware, BIOS, twelve movement comparisons and compressed repair pass.
-Fixed shell state is 553,452 bytes (+224 from M12.15); completed tasks
-retain zero managed pages. No external screen reader is claimed.
-[Complete public proof](../../evidence/M12/16/publication-results.json) passes: twenty downloads, 395 pages and 2,749 HTTP links, explicit native homepage Save, desktop/mobile/manual/download/search/archive verification and ten fresh reads. **M12.17 is active.**
+**M12.17 / 0.12.17 passes M12-STAGE17-VM-v1.**
+[Install](install-m1217.md), [Motion and resource use](performance-m1217.md),
+[release scope](../releases/m1217-v0.12.17.md),
+[exact-source acceptance](../../evidence/M12/17/acceptance-results.json).
+599 compiled Git inputs and 16 native task/profile checks cover
+actual keyboard/accessibility carry, independent saved choices, five display
+profiles, reverse pane focus, default-effect motion and Escape-cancelled moves.
+The exact production raster matches M12.16 in 3,073 host cases while visiting
+92.5% fewer positions in its 4K shadow test; this is not native FPS.
+Exact enabled-device VMware, BIOS, twelve default-effects movement comparisons
+and compressed repair pass. Fixed shell state stays 553,452 bytes (+0);
+completed tasks retain zero managed pages. No new animation worker/cache is added.
+Public release and complete website verification remain the gates before M12.18.
 
-Previous [M12.15 complete public delivery](../../evidence/M12/15/publication-results.json)
-remains immutable: twenty downloads, 387 pages and 2,697 HTTP links.
+Previous [M12.16 complete public delivery](../../evidence/M12/16/publication-results.json)
+remains immutable: twenty downloads, 395 pages and 2,749 HTTP links.
 
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.16](install-m1216.md)
+- [Download and install M12.17](install-m1217.md)
+- [Motion and resource use](performance-m1217.md)
 - [Keyboard and accessibility](accessibility-m1216.md)
 - [Use the eight-step setup and first-start guide](setup-m1215.md)
 - [Understand messages, refusals and preserved work](feedback-m1214.md)
@@ -41,7 +42,7 @@ broader original-app/USB regression; those results qualify its own bytes.
 - [Install, run and remove the original Windows 7-Zip console app](windows-apps-m8.md)
 - [Use the standard apps and manage optional packages](apps-m74.md)
 - [Explore the desktop and navigate your folders](desktop-m73.md)
-- [Current release, checksums and qualified limits](../releases/m1216-v0.12.16.md)
+- [Current release, checksums and qualified limits](../releases/m1217-v0.12.17.md)
 - [Previous M11.6 final installation and matrix](install-m116.md)
 - [Repair boot files and review recovery limits](apps-m74.md#disks-and-recovery)
 - [Manage partitions and format safely](disk-manager-m71.md)

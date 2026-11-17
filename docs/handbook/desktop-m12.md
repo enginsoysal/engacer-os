@@ -34,3 +34,5 @@ Concepts show proposed behavior, never a completed driver or runtime feature.
 Native-stage manuals and downloads update after each accepted implementation.
 
 [Keyboard and accessibility](accessibility-m1216.md) covers native Focus Help, pane navigation and independent appearance aids.
+
+[Motion and resource use](performance-m1217.md) covers immediate feedback, Escape-cancelled moves and the bounded renderer.

@@ -1,24 +1,23 @@
 # Current status
 
-Updated 17 November 2026. **M12.16 / 0.12.16 passes M12-STAGE16-VM-v1.**
-[Install](../handbook/install-m1216.md), [Keyboard and accessibility](../handbook/accessibility-m1216.md),
-[release scope](../releases/m1216-v0.12.16.md),
-[exact-source acceptance](../../evidence/M12/16/acceptance-results.json).
-599 compiled Git inputs and 12 native task/profile checks cover
-keyboard-only installation and desktop tasks, F1 semantic Focus Help, F6 panes,
-independent high contrast/reduced effects, malformed records, modal ownership,
-compact Light/Dark, supported 150% and physical 4K/200% layouts. Physical cursor,
-logical input and scaled clicks agree through the screen edges. Exact enabled-device
-VMware, BIOS, twelve movement comparisons and compressed repair pass.
-Fixed shell state is 553,452 bytes (+224 from M12.15); completed tasks
-retain zero managed pages. No external screen reader is claimed.
-[Complete public proof](../../evidence/M12/16/publication-results.json) passes: twenty downloads, 395 pages and 2,749 HTTP links, explicit native homepage Save, desktop/mobile/manual/download/search/archive verification and ten fresh reads. **M12.17 is active.**
+Updated 17 November 2026. **M12.17 / 0.12.17 passes M12-STAGE17-VM-v1.**
+[Install](../handbook/install-m1217.md), [Motion and resource use](../handbook/performance-m1217.md),
+[release scope](../releases/m1217-v0.12.17.md),
+[exact-source acceptance](../../evidence/M12/17/acceptance-results.json).
+599 compiled Git inputs and 16 native task/profile checks cover
+actual keyboard/accessibility carry, independent saved choices, five display
+profiles, reverse pane focus, default-effect motion and Escape-cancelled moves.
+The exact production raster matches M12.16 in 3,073 host cases while visiting
+92.5% fewer positions in its 4K shadow test; this is not native FPS.
+Exact enabled-device VMware, BIOS, twelve default-effects movement comparisons
+and compressed repair pass. Fixed shell state stays 553,452 bytes (+0);
+completed tasks retain zero managed pages. No new animation worker/cache is added.
+Public release and complete website verification remain the gates before M12.18.
 
-Previous [M12.15 complete public delivery](../../evidence/M12/15/publication-results.json)
-remains immutable: twenty downloads, 387 pages and 2,697 HTTP links.
+Previous [M12.16 complete public delivery](../../evidence/M12/16/publication-results.json)
+remains immutable: twenty downloads, 395 pages and 2,749 HTTP links.
 
 
-M12.17 covers motion and performance;
 M12.18 retains the earlier BIOS/AHCI observation and final matrix. Native stage
 proof does not imply universal hardware or Windows support. Agent review is not
 a human usability study.

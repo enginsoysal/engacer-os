@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "build_id": "cc3562fe59b46e079ec4ca287fec75bb",
+  "clone": {
+    "source_sha256": "a9cbf7e523027d5b737072d14e7e5f888bf8232cf8278e0ce9c5a6bd63cbcb2a",
+    "clone_sha256": "a9cbf7e523027d5b737072d14e7e5f888bf8232cf8278e0ce9c5a6bd63cbcb2a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "F1/Escape preserves the exact real Save As state, full-generation owner, focused control and unsaved Editor bytes; F6 cannot escape the modal review and explicit cancellation/discard remain available",
+    "Closing/reopening a reused slot cannot expose the earlier generation semantic name; at the actual eight-window limit, F6/F1/Escape/Enter describes and dismisses the real notification without allocating a ninth app or changing any existing window"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18991,
+      5
+    ],
+    "after": [
+      1047,
+      1130,
+      18991,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

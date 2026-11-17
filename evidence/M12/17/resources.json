@@ -1,0 +1,371 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 553452,
+    "sections": {
+      "bss": 553424,
+      "data": 28
+    },
+    "map_sha256": "a250819b8423ead240bdb19506ac5097eaaf28059f94816614fc7ebd7bcc51e3"
+  },
+  "current": {
+    "bytes": 553452,
+    "sections": {
+      "bss": 553424,
+      "data": 28
+    },
+    "map_sha256": "58ac3b1e3047d548f2f969b0f5125f6912fbb4342f637fe54fcdbd227faad063"
+  },
+  "added_fixed_desktop_bytes": 0,
+  "managed": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "display_profiles": [
+    {
+      "name": "compact-light",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0,
+      "pointer_observations": []
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0,
+      "pointer_observations": []
+    },
+    {
+      "name": "compact-150",
+      "physical": [
+        1280,
+        1024
+      ],
+      "logical": [
+        853,
+        682
+      ],
+      "scale": 3,
+      "theme": "high contrast",
+      "managed_current_bytes": 5435392,
+      "managed_peak_bytes": 5435392,
+      "retained_pages": 0,
+      "pointer_observations": []
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "high contrast",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "retained_pages": 0,
+      "pointer_observations": [
+        {
+          "physical": [
+            960,
+            600
+          ],
+          "logical": [
+            640,
+            400
+          ],
+          "cursor_rect": [
+            960,
+            600,
+            22,
+            36
+          ],
+          "changed_pixels": 238,
+          "difference_bounds": [
+            1,
+            1,
+            15,
+            28
+          ]
+        },
+        {
+          "physical": [
+            1919,
+            1199
+          ],
+          "logical": [
+            1279,
+            799
+          ],
+          "cursor_rect": [
+            1919,
+            1199,
+            1,
+            1
+          ],
+          "changed_pixels": 0,
+          "difference_bounds": null
+        },
+        {
+          "physical": [
+            0,
+            0
+          ],
+          "logical": [
+            0,
+            0
+          ],
+          "cursor_rect": [
+            0,
+            0,
+            22,
+            36
+          ],
+          "changed_pixels": 238,
+          "difference_bounds": [
+            1,
+            1,
+            15,
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "high contrast",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0,
+      "pointer_observations": [
+        {
+          "physical": [
+            1920,
+            1080
+          ],
+          "logical": [
+            960,
+            540
+          ],
+          "cursor_rect": [
+            1920,
+            1080,
+            30,
+            48
+          ],
+          "changed_pixels": 345,
+          "difference_bounds": [
+            2,
+            2,
+            20,
+            37
+          ]
+        },
+        {
+          "physical": [
+            3839,
+            2159
+          ],
+          "logical": [
+            1919,
+            1079
+          ],
+          "cursor_rect": [
+            3839,
+            2159,
+            1,
+            1
+          ],
+          "changed_pixels": 0,
+          "difference_bounds": null
+        },
+        {
+          "physical": [
+            0,
+            0
+          ],
+          "logical": [
+            0,
+            0
+          ],
+          "cursor_rect": [
+            0,
+            0,
+            30,
+            48
+          ],
+          "changed_pixels": 378,
+          "difference_bounds": [
+            2,
+            2,
+            20,
+            37
+          ]
+        }
+      ]
+    }
+  ],
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "raster": {
+    "passed": true,
+    "pixel_cases": 3073,
+    "baseline_visits": 25404864,
+    "current_visits": 1896768,
+    "equal_blend_calls": 1885632,
+    "equal_audio_pumps": 729,
+    "baseline_cpu_ms": 49.0,
+    "current_cpu_ms": 9.0,
+    "host_buffer_bytes": 66356224,
+    "guard_bytes_unchanged": true,
+    "scope": "Host execution of the exact production round bodies, with only identifier/loop-visit instrumentation; bounded framebuffer probes compare pixels, blending, dirty bounds and audio pump cadence. Host CPU measurements are not native FPS.",
+    "baseline_source_commit": "87fedd75c46fe4bcc3263a29f39be1491b6e7069",
+    "function_sha256": {
+      "baseline": "eb7fcfa3d592db3b2df297306c6051f2cda7205fc907d7dc8116d53459938a62",
+      "current": "a7244e452650e1e19f3ea93b68fc845b71df1dfa541196733863bb962142b5a9"
+    },
+    "source_sha256": {
+      "kernel/core/graphics73.inc": "96e9dc8871e1999c6672c0cd9ef44584467e41f6d1dbe64f560337dc344a834a",
+      "tests/m12/raster_host17.c": "c7a198628f324aac69bb58e4ef0f3aa422fa42880bdd422e1336c14e35a5e68a",
+      "tests/m12/raster_host17.py": "b11822637248ccae7e738d4aadc6bf22a6b895b954c0ecbfbfbf7fbe2e7a540c"
+    }
+  },
+  "interrupted_motion": [
+    {
+      "name": "ordinary",
+      "physical": [
+        1280,
+        800
+      ],
+      "scale": 2,
+      "exact_restored_bounds": [
+        100,
+        20,
+        1080,
+        700
+      ],
+      "viewport_pixels_restored": true,
+      "managed_current_bytes": 4288512,
+      "managed_peak_bytes": 4288512,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "exact_restored_bounds": [
+        200,
+        20,
+        1080,
+        720
+      ],
+      "viewport_pixels_restored": true,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "exact_restored_bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "viewport_pixels_restored": true,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0
+    }
+  ],
+  "scope": "The optimization adds one local span counter and zero fixed state; native default-effect motion and interrupted moves are separately measured. No new worker, framebuffer cache or idle scanner. Fixed bytes, peak and completed retention are separate."
+}

@@ -185,3 +185,7 @@ M12.8. Actual compact/150%/4K routes retain zero managed pages. [M12.14 feedback
 ## M12.16 accessibility
 
 [Accessibility decisions](accessibility-m1216.md) and [matching acceptance](../../evidence/M12/16/acceptance-results.json) qualify native keyboard routes, focus names, independent contrast/reduced effects, supported scales, cursor boundaries and modal ownership.
+
+## M12.17 motion and performance
+
+[Bounded raster decisions](performance-m1217.md) and [matching acceptance](../../evidence/M12/17/acceptance-results.json) qualify equivalent shadow edge spans, direct feedback, cancelled native moves and unchanged fixed resources.

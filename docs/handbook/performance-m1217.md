@@ -1,7 +1,6 @@
 # Motion and resource use — M12.17
 
-This implementation is under qualification. Continue using the current qualified
-release until its matching M12.17 media and public checks pass.
+M12-STAGE17-VM-v1 native qualification passes. Use its matching M12.17 media; complete public delivery closes separately before M12.18.
 
 Window movement and controls respond directly. Drag a title bar to move a
 window; Escape during the move returns it to its previous position. A completed
