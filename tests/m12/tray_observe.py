@@ -13,9 +13,9 @@ def hardware_view(g):
     from focus_ownership import View
     address,size=ui.symbol('apps',installed=True);return int.from_bytes(ui.memory(g,address+f.model(g)[0]*(size//8)+ctypes.sizeof(View)+628,4),'little')
 def disks(g):
-    address,size=ui.symbol('disks',installed=True);count=c.flag(g,'disk_count');assert count<=16
-    raw=ui.memory(g,address,size);stride=size//16;assert stride>=48
-    return [struct.unpack_from('<6I Q 2I',raw,i*stride) for i in range(count)]
+    address,size=ui.symbol('disks',16*40,True);assert size==16*40
+    raw=ui.memory(g,address,size)
+    return [(i,struct.unpack_from('<6I Q 2I',raw,i*40)) for i in range(16) if struct.unpack_from('<I',raw,i*40)[0]]
 
 def install(g):
     p=ui.Pointer(g)

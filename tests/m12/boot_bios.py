@@ -1,6 +1,9 @@
 """BIOS regression for the exact M12 candidate, with unforced independent boots."""
 import json
 import traceback
+from pathlib import Path
+if (Path(__file__).resolve().parents[2]/'evidence/M12/1/publication-results.json').exists():
+    raise SystemExit('M12.1 is closed: use boot_stage.py --stage with the active stage')
 import components as c
 
 ui=c.ui;ROOT=ui.ROOT
