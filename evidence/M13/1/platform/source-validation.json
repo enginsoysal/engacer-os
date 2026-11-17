@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "scope": "Source validation only; image rollout and live Engacer acceptance remain pending",
+  "production_base_source": "4e20e9d22aca0f0fb95ec871f37e19c8b84d0c19",
+  "next": "16.4.5",
+  "node_docker_build_runtime": "22.23.5",
+  "unit_files": 316,
+  "unit_passed": 6445,
+  "unit_skipped": 1,
+  "unit_failed": 0,
+  "focused_renderer_metadata_tests": 10,
+  "chromium_desktop_mobile_tests": 8,
+  "next_production_build": true,
+  "typescript": true,
+  "notes": [
+    "The first broad run correctly rejected the old reviewed renderer hash; a deliberate source/control review was recorded and the complete rerun passed.",
+    "The new outline has one bounded post-hydration DOM/state effect warning; no repeated indexing or network fetch. Existing shared-renderer warnings remain separate.",
+    "No Azure image/configuration was changed by these source tests."
+  ]
+}

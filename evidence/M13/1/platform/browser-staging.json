@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:7c0afd2fcfd99bbd687ffc914ace62ffee94d9c01090343058765c393a2c2549",
+  "source": "dc760aa6aa1f211b2245ded83195e9f4fd7645a2",
+  "checked_at": "2026-11-17T23:34:13.610912+00:00",
+  "checks": [
+    "Owned browser health returns status ok, exact dc760aa6 source and engacer-m131-portal marker",
+    "STAGING isolation banner, synthetic owner, five sites and two existing published sites remain intact",
+    "Existing STAGING Atelier Vale editor retains menu, original content, licensed images and controls; no Save or content changes"
+  ],
+  "feature_scope": "Actual STAGING non-opt-in regression and exact-image readiness; new opt-in interactions separately passed source browser scenarios and still require actual Engacer public acceptance",
+  "unchanged_fixture_content": true
+}

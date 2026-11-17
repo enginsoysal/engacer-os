@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M12.18",
+  "currentRelease": "M13.1",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -37,7 +37,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m1218.md",
+          "docs/handbook/install-m131.md",
           "Install and restart in VMware"
         ],
         [
@@ -45,7 +45,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m1218-v0.12.18.md",
+          "docs/releases/m131-v0.13.1.md",
           "Check tested configurations and known limits"
         ]
       ]

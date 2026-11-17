@@ -1,9 +1,9 @@
 {
   "passed": true,
   "stage": "M13.1",
-  "build_id": "4a96713eaec5b2aa195b1e278be754b9",
-  "iso_sha256": "10a0ed71732652a2b5a39013d8f173214506830ef4e895440ab1f992a9fc9512",
-  "starter_sha256": "a71da3d460c98021f566d123fb6c1c905fc961e4000d35640603981ace9f4cfa",
+  "build_id": "e721ec183182aa23de268f7a6694a885",
+  "iso_sha256": "40160132f13ec5850154f548a29b33e92f6495a2d3ef83c8fea93ca35c2863da",
+  "starter_sha256": "0e02bffbdd95fd6f91baa786c44482f797a18b44eaa94c5aefe91bd87281fa6f",
   "checks": [
     "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
     "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",

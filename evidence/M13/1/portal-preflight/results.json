@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "reports": [
+    {
+      "width": 1280,
+      "passed": true,
+      "checks": [
+        "same-page search",
+        "current guides",
+        "archive opt-in",
+        "no-results/clear",
+        "focus trap/Escape/opener",
+        "Ctrl+K/arrow/Enter navigation",
+        "task next article",
+        "heading anchor",
+        "correct hydrated share domain",
+        "mobile menu and browse disclosure where applicable"
+      ],
+      "layout": {
+        "viewport": 1280,
+        "document": 1280,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/docs/architecture/figures/m13/desktop.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "page_errors": []
+    },
+    {
+      "width": 390,
+      "passed": true,
+      "checks": [
+        "same-page search",
+        "current guides",
+        "archive opt-in",
+        "no-results/clear",
+        "focus trap/Escape/opener",
+        "Ctrl+K/arrow/Enter navigation",
+        "task next article",
+        "heading anchor",
+        "correct hydrated share domain",
+        "mobile menu and browse disclosure where applicable"
+      ],
+      "layout": {
+        "viewport": 390,
+        "document": 390,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/docs/architecture/figures/m13/desktop.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "page_errors": []
+    }
+  ]
+}

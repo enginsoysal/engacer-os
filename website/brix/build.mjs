@@ -106,7 +106,7 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
  posts.push({id:'engine-downloads',slug:'downloads',title:'Downloads and SHA256 verification',excerpt:`Current ${currentLabel} downloads, exact checksums and linked historical release archives.`,status:'published',bodyFormat:'brix',blocks:downloads,category:'downloads',tags:['Downloads','Releases'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@releases'},{key:'engine_source_commit',value:ref}]});
  const index=[];const push=(type,props)=>index.push({id:`engine-docindex-${index.length+1}`,type,props});
  push('richtext',{html:generationSource,size:14});
- push('text',{text:'Choose what you want to do. These ordered guides describe the tested M12.18 release. M13 is the next design and usability program, not a new native download.',size:17,color:'#152434'});
+ push('text',{text:'Choose what you want to do. Use the current qualified download and its matching installation and release guide. Earlier guides explain retained features; their original milestone qualification remains historical.',size:17,color:'#152434'});
  push('richtext',{html:`<p><a href="${SITE}/blog/docs-handbook-index">Start with the handbook</a> · <a href="${SITE}/blog/downloads">Downloads &amp; checksums</a> · <a href="${SITE}/blog/docs-roadmap-status">Current capabilities and limitations</a></p>`,size:17});
  const organized=portalGroups(posts,{strict:true});
  for(const group of organized.groups){

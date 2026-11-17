@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "stage": "dev",
+  "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:7c0afd2fcfd99bbd687ffc914ace62ffee94d9c01090343058765c393a2c2549",
+  "source": "dc760aa6aa1f211b2245ded83195e9f4fd7645a2",
+  "revision": "ca-brixcanvas-dev-ba3b--engacer-m131",
+  "protected_configuration_unchanged": true,
+  "single_mode_route_transition": "Existing explicit 100% revision route follows the owned new revision; substituting only the prior revision exactly reproduces the original protected fingerprint",
+  "checked_at": "2026-11-17T23:31:59.315648+00:00",
+  "scope": "Image identity, readiness and preserved application configuration; actual browser feature acceptance is separate"
+}

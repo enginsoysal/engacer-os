@@ -1,0 +1,10 @@
+{
+  "source": "dc760aa6aa1f211b2245ded83195e9f4fd7645a2",
+  "checkedAt": "2026-11-17T22:52:55.7303343Z",
+  "vulnerabilities": 0,
+  "node": "22.23.5",
+  "passed": true,
+  "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:7c0afd2fcfd99bbd687ffc914ace62ffee94d9c01090343058765c393a2c2549",
+  "run": "cbwx",
+  "unexpectedSecrets": 0
+}

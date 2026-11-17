@@ -1,65 +1,65 @@
 {
   "passed": true,
   "stage": "M13.1",
-  "build_id": "4a96713eaec5b2aa195b1e278be754b9",
+  "build_id": "e721ec183182aa23de268f7a6694a885",
   "reviewer": "agent scenario and actual native-frame review; not a human usability study",
   "checks": [
     "Shared smooth typography and essential labels remain readable in compact, ordinary, 150% and physical 4K gallery captures",
     "Light/dark/high-contrast state captures and independent contrast arithmetic pass; disabled control has no registered hit target",
-    "Real pointer text entry and Backspace, semantic text-field focus and F1/escape help are verified independently",
+    "Real pointer text entry, shifted capitals/punctuation and Backspace, semantic text-field focus and F1/escape help are verified independently",
     "Normal, selected, unavailable and focused surfaces have distinct states; no added permanent buffer or idle repaint was observed"
   ],
   "captures": [
     {
       "path": "evidence/M13/1/ordinary/component-gallery-light.png",
-      "sha256": "f9a91cb076656fd3a55642df9d66ca1a21c3c6140776d8b7db5d09619072251d"
+      "sha256": "897c2bff5fbb64cf0d8f1a0e9c675e11be6942bea5954c48df9a22364d1ba986"
     },
     {
       "path": "evidence/M13/1/ordinary/component-gallery-dark.png",
-      "sha256": "59d0845e6f6772128ff4a6077b6331de4823447e59d7a96f973632e6ac3866a0"
+      "sha256": "959ea17783a4f6fa8f51c4ac4baaddfa50cc3a05dea2d05d7aaf8a78a1d18d1a"
     },
     {
       "path": "evidence/M13/1/ordinary/component-gallery-high-contrast.png",
-      "sha256": "a193d911e05e44571eb2b62c5d1738f96b2b94bf9aa51bc135a46a81b0288521"
+      "sha256": "27ec973a6cc6b79da14d6185a68df82a58c86f8bc029fb279606bbf3a66821e6"
     },
     {
       "path": "evidence/M13/1/compact/component-gallery-light.png",
-      "sha256": "261df5e704fc4ebeef700ed6bd57d6d1adb0c3d2e1c6b09677393230aca8b330"
+      "sha256": "36f6d8b5f9391420cb8a54acb8befe9955b558e252ea3b8e4c0d6c775b61c9a0"
     },
     {
       "path": "evidence/M13/1/compact/component-gallery-dark.png",
-      "sha256": "da161111007030cda240eb00ecc924bdb117d4d157973da7b416776c1ec46733"
+      "sha256": "8b264f7f0b66b4ba4756a2aee3a7c34e35b8edc4e35390cdbeff56b7165dfa89"
     },
     {
       "path": "evidence/M13/1/compact/component-gallery-high-contrast.png",
-      "sha256": "01a40b3a04486429022639c68d7fb1e1e7894bbceab94842852529ee36cf788b"
+      "sha256": "e5d33b129e089cf4a4abc158df5faf0226900a946dc75b9c65805a9a1c1f5acd"
     },
     {
       "path": "evidence/M13/1/150/component-gallery-light.png",
-      "sha256": "84711d2efa1079073f456b6862065d52e462d4d7236ceedc26ee689cac3ac8ae"
+      "sha256": "d95c09fe65b65f1bd2b2782b6b95cb5a6147aa31bd36d51537bb2fc499c42c1d"
     },
     {
       "path": "evidence/M13/1/150/component-gallery-dark.png",
-      "sha256": "f8e58eb03a193611361a0da2e270471f4536684ab8a6cce727698def40bc0697"
+      "sha256": "1bf81d5348880bd6931ab7dff1d0115b61d4a26002879b6538a002debb1987e8"
     },
     {
       "path": "evidence/M13/1/150/component-gallery-high-contrast.png",
-      "sha256": "9f09e61738c4206efc3eb41f55d2ea56b0a92392dcc33c1852e2d65b2f455a04"
+      "sha256": "af85f3106293201904e7f6676108d840913636129b0dbf8d088c5af61614b709"
     },
     {
       "path": "evidence/M13/1/4k/component-gallery-light.png",
-      "sha256": "67f59defc6cfa151aed4ffce0ef377bec6586e9fd9fd4d1685430069bdd88d35"
+      "sha256": "01795e2441e0c8cbd661ae3d7e8688f62b3f31c95f5a50408d30dd37680afd4a"
     },
     {
       "path": "evidence/M13/1/4k/component-gallery-dark.png",
-      "sha256": "38ca97227764fd91208e4f089fc51a4601fd00a320af79fa8e4f1dfc13eaf31c"
+      "sha256": "6f2ce40216c2ce37a21760d923843a869cc582c43bb1ac4cced273e08455ca41"
     },
     {
       "path": "evidence/M13/1/4k/component-gallery-high-contrast.png",
-      "sha256": "0075b19525b5361514de3fe634b8b91836de175a6946198bdfaf095c82358fba"
+      "sha256": "3b02a3cf0af156c1402dbbfadcf83f664cb8888e4ded20efc9147fb01fda6918"
     }
   ],
-  "feature_sha256": "1e24f85efe102786a5401bde1dd558ca87c58aa156835c276dd0b4db0f2985f1",
+  "feature_sha256": "2eae6a59646fd914ba767d39e825fa76d1e8a6e71489743d1f9b59909088b8f8",
   "limits": [
     "Later desktop/window/Start/Files/setup refinements and full M13.12 regression are separate stages",
     "Production website behavior requires its own live browser and publication receipts"

@@ -11,9 +11,10 @@ test('current task order is explicit and independent of publication date',()=>{
  assert.equal(new Set(result.groups.flatMap(g=>g.posts.map(p=>p.slug))).size,rows.length);
 });
 test('historical installs do not displace current instructions and all stay reachable',()=>{
- const rows=[p('docs/handbook/install-m1218.md'),p('docs/handbook/install-m112.md'),p('docs/handbook/install-m123.md'),p('unknown.md')];
- const r=portalGroups(rows);assert.equal(r.groups[0].posts[0].slug,'docs/handbook/install-m1218.md');
- assert.equal(r.archive.length,3);assert.equal(new Set([...r.groups.flatMap(g=>g.posts),...r.archive].map(p=>p.slug)).size,4);
+ const current=portal.sections.find(s=>s.id==='install').items[1][0];
+ const rows=[p(current),p('docs/handbook/install-m1218.md'),p('docs/handbook/install-m112.md'),p('docs/handbook/install-m123.md'),p('unknown.md')];
+ const r=portalGroups(rows);assert.equal(r.groups[0].posts[0].slug,current);
+ assert.equal(r.archive.length,4);assert.equal(new Set([...r.groups.flatMap(g=>g.posts),...r.archive].map(p=>p.slug)).size,5);
 });
 test('milestone identities sort numerically rather than compact filenames',()=>{
  const rows=[p('docs/handbook/install-m1210.md'),p('docs/handbook/install-m123.md'),p('docs/handbook/install-m112.md')];

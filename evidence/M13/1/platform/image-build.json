@@ -1,0 +1,7 @@
+{
+  "source": "dc760aa6aa1f211b2245ded83195e9f4fd7645a2",
+  "tag": "brixcanvas:engacer-m131-dc760aa6aa1f",
+  "run_id": "cbwx",
+  "status": "Succeeded",
+  "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:7c0afd2fcfd99bbd687ffc914ace62ffee94d9c01090343058765c393a2c2549"
+}

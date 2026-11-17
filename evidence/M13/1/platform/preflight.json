@@ -1,0 +1,31 @@
+{
+  "observed_at": "2026-11-17T22:36:39.936761+00:00",
+  "targets": {
+    "dev": {
+      "group": "rg-brixcanvas-nonprod-ba3b",
+      "name": "ca-brixcanvas-dev-ba3b",
+      "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:87780026a15438f6ca6e5b8936946d70ccf0d87c3c3db65b36c455fca33533cf",
+      "revision": "ca-brixcanvas-dev-ba3b--w47-i6-kv47",
+      "mode": "Single",
+      "protected_sha256": "1c685bf97ca70dd99e562226bef40bede6165ce2d68e9fe99cdc15202dec4cd7"
+    },
+    "staging": {
+      "group": "rg-brixcanvas-nonprod-ba3b",
+      "name": "ca-brixcanvas-staging-ba3b",
+      "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:87780026a15438f6ca6e5b8936946d70ccf0d87c3c3db65b36c455fca33533cf",
+      "revision": "ca-brixcanvas-staging-ba3b--w47-i6-kv47",
+      "mode": "Single",
+      "protected_sha256": "152bedc6a88c060044b91d1c07bd33e4c05d0eb13c77c783f0ba0563192517b0"
+    },
+    "production": {
+      "group": "rg-brixcanvas",
+      "name": "ca-brixcanvas-core",
+      "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:87780026a15438f6ca6e5b8936946d70ccf0d87c3c3db65b36c455fca33533cf",
+      "revision": "ca-brixcanvas-core--w47-i6-kv47",
+      "mode": "Single",
+      "protected_sha256": "95c97904e59928910a72fe962f389dbb9784f983218edecb4370d530392d4dca"
+    }
+  },
+  "read_only": true,
+  "secret_values_emitted": false
+}

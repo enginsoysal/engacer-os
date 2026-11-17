@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "image": "brixcanvasacr.azurecr.io/brixcanvas@sha256:7c0afd2fcfd99bbd687ffc914ace62ffee94d9c01090343058765c393a2c2549",
+  "source": "dc760aa6aa1f211b2245ded83195e9f4fd7645a2",
+  "checked_at": "2026-11-17T23:32:25.948995+00:00",
+  "checks": [
+    "Owned browser GET /api/health returns status ok, exact dc760aa6 source and engacer-m131-portal marker",
+    "Authenticated DEV dashboard retains synthetic isolation banner, existing five draft sites, Pro capacity 5/5 and zero published sites",
+    "Existing M9 Atelier Vale native editor loads ordinary non-opt-in header, portfolio and controls without saving or changing fixture content"
+  ],
+  "feature_scope": "Actual DEV non-opt-in regression and exact-image readiness; new opt-in search/sidebar interactions separately passed 8 browser scenarios in source qualification and require actual Engacer public acceptance after rollout",
+  "unchanged_fixture_content": true
+}

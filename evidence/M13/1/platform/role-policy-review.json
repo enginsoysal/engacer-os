@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checked_at": "2026-11-17T22:38:54.183905+00:00",
+  "targets": [
+    {
+      "stage": "dev",
+      "existing_pull_role_verified": true,
+      "identity_changes": false
+    },
+    {
+      "stage": "staging",
+      "existing_pull_role_verified": true,
+      "identity_changes": false
+    },
+    {
+      "stage": "production",
+      "existing_pull_role_verified": true,
+      "identity_changes": false
+    }
+  ],
+  "new_roles": false,
+  "policy_changes": false
+}
