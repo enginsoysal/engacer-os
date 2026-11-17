@@ -1,4 +1,4 @@
-# M12.9 â€” Start and local search
+# M12.9 — Start and local search
 
 Status: implementation in progress; M12.8 remains the qualified download.
 
@@ -42,3 +42,9 @@ redundant pinned text in narrow grid cells. The next candidate widens that
 button, retains pin status in full-width results, and shows result ranges. The
 old prototype reports and controlled test stop remain in diagnostics; they do
 not qualify the revised media.
+
+M12.14 feedback follow-up: while a global query is present, the existing
+browse-view/category affordances still refer to the saved browse preference;
+search remains a full-width global result list. Make that scope explicit in
+the visible controls and qualify it with ordinary input during feedback work.
+Until then, clear the query before choosing the browse view/category.

@@ -1,4 +1,4 @@
-# Start and local search â€” M12.9
+# Start and local search — M12.9
 
 Development guide. M12.9 qualification and public downloads are still pending;
 use the [qualified M12.8 installation guide](install-m128.md) meanwhile.
@@ -10,7 +10,9 @@ matches. Results identify apps and their categories, or pinned folders.
 
 Use **Pinned** for your shortcuts, **All apps** for installed apps, or
 **Categories** and its category selector. **List**/**Grid** changes presentation;
-search remains a full-width list. The heading shows the visible range and total;
+search remains a full-width list. Clear the search before changing the browse
+view or category; those choices refer to browsing rather than narrowing the
+global query. The heading shows the visible range and total;
 use the bottom arrows to see the next or previous page. Click a result to open it. In Start, arrows
 select a result and Enter opens it. Tab moves between controls. Escape first
 clears a search, then closes Start. Shift+F10 opens the selected result's menu.
