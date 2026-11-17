@@ -133,3 +133,10 @@ feedback/buttons with clear gaps at the admitted minimum height. A real
 1280x1024 framebuffer at 200% exercises that height, alongside compact
 light/dark, 150% and 4K. Smaller logical desktops receive an explicit sizing
 message rather than overlapping review controls.
+
+While a picker is open, Settings explains that it must be finished or
+cancelled before display-size changes. This preserves the admitted layout and
+all pending work across other-window use; theme changes remain independent.
+Dialog feedback uses shared readable text ink in both themes instead of the
+legacy fixed red (about 4.07:1 on light paper and lower on dark backgrounds).
+The dedicated native probe covers the scale refusal and other-owner shortcuts.

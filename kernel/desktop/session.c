@@ -1050,6 +1050,9 @@ static void action(uint64_t token,unsigned command) {
     }
 #ifdef ENGINE_M73
     if(command>=SCALE_AUTO&&command<=SCALE_200&&w->app==SETTINGS){
+#ifdef ENGINE_M12
+        if(picker_live12()){notice(app,"Finish or cancel the file dialog before changing display size.");invalidate(w->bounds);return;}
+#endif
         unsigned choice=command==SCALE_AUTO?0:command-SCALE_AUTO+1;const os_boot_info_v0 *changed=ui73_set_scale(choice);
         if(!changed)notice(app,"That size leaves too little room. Choose a smaller size.");
         else{display=changed;model.width=display->framebuffer_width;model.height=display->framebuffer_height;
