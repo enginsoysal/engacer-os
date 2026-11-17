@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "reviewer": "Agent visual review of eight actual native framebuffer PNGs, independently opened for inspection; not a participant usability study",
+  "captures": [
+    {
+      "path": "access-ownership/save-as-focus-help.png",
+      "sha256": "23a40fedaa9df0c19982c3626d48cf70ce6ac2658e8395fdfcf481f4f6741a03"
+    },
+    {
+      "path": "files-native/native-4k.png",
+      "sha256": "6e8d91aa5d82ed8c07713bd31ad061e5844ade7f47a615aad547bbd4d36da91b"
+    },
+    {
+      "path": "setup-profiles/review-4k.png",
+      "sha256": "4b83932d77f676df09d1c4472c3178fcc35f124edd69d8b79653bce1e14c3880"
+    },
+    {
+      "path": "setup-native-compact/disk-selected.png",
+      "sha256": "dbb179313b239de5b9b99d7aecd6a445d2b5cd5044599e87f6d291b587fca0ae"
+    },
+    {
+      "path": "start-native/pinned.png",
+      "sha256": "700068bc330d6dda5df7c4130b86b22a44c967c5c554826adbb3d7022945ff6c"
+    },
+    {
+      "path": "taskbar-native/overflow-with-eight-windows.png",
+      "sha256": "3482816d62c22222c1404e9353a8ae69cd4cb03eee41d3d350004588f8edb4bc"
+    },
+    {
+      "path": "desktop-native/native-4k.png",
+      "sha256": "5470bdcbea6e5738fd2422c73acbe68c556bc30f5d178f073a52a3132d0978fd"
+    },
+    {
+      "path": "access-ownership/eight-windows-notification-help.png",
+      "sha256": "9d441560df420339f0197624694b3af64b22fbc544ecd0edb9cb84bcfc7e6239"
+    }
+  ],
+  "observations": [
+    "Compact 800x600 selected-disk list has an obvious whole-row selection, readable instructions and distinct Back/Next/Disk tools without overlapping hit targets",
+    "Actual 3840x2160/200% Review has a readable summary, consistent typography and explicit final Install action",
+    "Start has recognizable original app/folder icons, clear selection/search and bounded controls; taskbar overflow remains within the viewport with readable labels and its own footer",
+    "Real 4K desktop icons and bounded multi-line names remain readable with selected Recycle Bin visibly distinct; expected long-name ellipsis preserves grid spacing",
+    "Common 4K Files navigation has Back/Forward/Up, location, Places, real USB folder content and a separate status/footer",
+    "High-contrast picker and notification now have visible white outer boundaries on black; Focus help is an intentional modal overlay, retains a readable focused action and does not claim screen-reader support"
+  ],
+  "limits": [
+    "Selected-state agent review is distinct from a human usability study or an exhaustive visual proof of every possible document/device/theme.",
+    "Named actual framebuffers only; the clipped cursor tip at the final physical pixel and logical partition-tool minimum remain documented."
+  ]
+}

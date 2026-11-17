@@ -4,27 +4,26 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**M12.17 / 0.12.17 passes M12-STAGE17-VM-v1.**
-[Install](docs/handbook/install-m1217.md), [Motion and resource use](docs/handbook/performance-m1217.md),
-[release scope](docs/releases/m1217-v0.12.17.md),
-[exact-source acceptance](evidence/M12/17/acceptance-results.json).
-599 compiled Git inputs and 16 native task/profile checks cover
-actual keyboard/accessibility carry, independent saved choices, five display
-profiles, reverse pane focus, default-effect motion and Escape-cancelled moves.
-The exact production raster matches M12.16 in 3,073 host cases while visiting
-92.5% fewer positions in its 4K shadow test; this is not native FPS.
-Exact enabled-device VMware, BIOS, twelve default-effects movement comparisons
-and compressed repair pass. Fixed shell state stays 553,452 bytes (+0);
-completed tasks retain zero managed pages. No new animation worker/cache is added.
-[Complete public proof](evidence/M12/17/publication-results.json) passes: twenty downloads, 399 pages and 2,797 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. **M12.18 is active.**
+**M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
+[Install](docs/handbook/install-m1218.md), [Final desktop guide](docs/handbook/final-m1218.md),
+[release scope](docs/releases/m1218-v0.12.18.md), [exact-source acceptance](evidence/M12/18/acceptance-results.json).
 
-Previous [M12.16 complete public delivery](evidence/M12/16/publication-results.json)
-remains immutable: twenty downloads, 395 pages and 2,749 HTTP links.
+The final frozen media bind 599 compiled inputs and 184 native task/profile checks.
+Fourteen fresh enabled-device VMware profiles cover SATA, IDE, supported SCSI
+and NVMe; the original supported 7-Zip console MSI lifecycle verifies 106 payloads.
+Real setup, independent startup, desktop/Files/USB/dialogs/Start/taskbar/Settings,
+error/recovery, keyboard/accessibility and compact/150%/physical 4K tasks pass.
+Twelve fresh concurrent BIOS/AHCI installations and 24 disk-only starts pass;
+the older failure trigger is not claimed identified or universally fixed.
 
+Fixed shell state remains 553,452 bytes (+0), fonts are unchanged and completed
+tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
+an explicit unqualified loader refusal. Named VM scope is separate from universal
+hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-M12.18 retains the earlier BIOS/AHCI observation and final matrix. Native stage
-proof does not imply universal hardware or Windows support. Agent review is not
-a human usability study.
+Matching public assets and complete website verification close separately before
+the delivery is marked complete. Earlier M12.0–M12.17 receipts remain immutable.
+
 
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
 order, with tests, English manuals, matching GitHub releases and complete website

@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "2bd6f68baca248f8861345b9b2cd7ea2",
+  "checks": [],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_presentation18.py\", line 41, in main\n    for name in ('File10.txt','File2.txt','Alpha.md','Tool.exe','Picture.bmp',long):f.create(g,p,name)\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 92, in create\n    p.desktop(26 if folder else 40018,True);assert c.flag(g,'file_dialog_state11') in (7,8)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (40018, 41)\n",
+  "idle_observations": []
+}

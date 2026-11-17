@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "11aff4c560c0474e8bb5c63484ea9985",
+  "checks": [
+    "Real installed startup and a single common frame retain Back/Forward/Home/Refresh in no-device state; hidden native scrollbars cannot steal USB keys",
+    "USB drive objects select once and Enter opens their actual lease; item pages and native/USB history restore the prior scroll offset"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_files18.py\", line 99, in main\n    p.desktop(row(g,'HELLO.TXT'),True);assert app(g)['usb_path']=='/Games/Arcade';at=len(g.log());p.desktop(21004,True);g.wait('M10_USB_FILE_IMPORTED',at,90);p.drain();assert 'Copied to Downloads' in app(g)['notice'],app(g);c.shot(g,'usb-folder-common-frame')\n  File \"<project-root>\\tests\\m6\\vm.py\", line 76, in wait\n    raise RuntimeError('Missing '+text+'; tail='+self.log()[-1500:])\nRuntimeError: Missing M10_USB_FILE_IMPORTED; tail=00000500x0x0000000000000320\nM6_STORAGE_BEGIN\nM45_AHCI_UNSUPPORTED_SIGNATURE port=0x0000000000000002 signature=0x00000000eb140101\nM4_XHCI_BAR=0x000000c000000000\nM4_XHCI_MSI=0x0000000000000000 msix=0x0000000000000090\nM4_XHCI_MSIX_TABLE=0x0000000000003000\nM4_USB_KEYBOARD_ONLINE\nM10_USB_WHEEL_DESCRIPTOR_VERIFIED\nM4_USB_MOUSE_ONLINE\nM6_PS2_MOUSE_ONLINE\nM6_INSTALLED_VOLUME\nM73_SCALE_APPLIED choice=0x0000000000000000 actual=0x0000000000000002\nM11_POWER_S5_PROVIDER_READY\nM125_LOCATION native /Users/Owner\nM7_WINDOW_OPEN app=0x0000000000000001\nM115_FIRST_START_GUIDE\nM7_DESKTOP_STATS current=0x0000000000417000 peak=0x0000000000417000 allocation_failures=0x0000000000000005 paints=0x0000000000000001 pixels=0x00000000000fa000 visible_framebuffer=0x00000000003e8000 framebuffer_range=0x00000000003e8000\nM7_DESKTOP_READY build=8ee102351039d96f68637a9edbff597b\nM115_GUIDE_DISMISSED\nM125_LOCATION native /Users/Owner/Documents\nM125_LOCATION native /Users/Owner\nM125_LOCATION native /Applications\nM45_USB_CONNECTED port=0x0000000000000003\nM45_USB_SCSI_STATUS=0x0000000000000001 opcode=0x0000000000000025\nM45_USB_SCSI_SENSE key=0x0000000000000006\nM10_USB_WRITABLE\nM45_USB_MASS_STORAGE_READY status=0x0000000000000000\nM125_LOCATION native /Users/Owner/Documents\nM11_SELECTION row=0x0000000000000000\nM11_SELECTION row=0x0000000000000000\nM11_SELECTION row=0x0000000000000000\nM11_SELECTION row=0x0000000000000000\nM12_USB_COOPERATIVE_IMPORTED\nM11_FILE_JOB_END status=0x0000000000000000 cancelled=0x0000000000000000\n\n",
+  "idle_observations": []
+}

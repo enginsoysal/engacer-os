@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "owned_fixture": "4be90b24f59342b8b543ccb6c0abfad8",
+  "checks": [
+    "An owned appearance file with independently valid GPT/native-bank/file CRCs but an invalid reserved field is semantically refused; Settings explains safe fallback, real Apply saves a valid record, and ordinary startup loads it without changing personal content or input preferences"
+  ],
+  "malformed_records": 2,
+  "replacement_sha256": "6ef0150876ac0fadc1c445e6ec7e3e8eea7cde820ef2f3278bb4610bb2fcb4d5"
+}

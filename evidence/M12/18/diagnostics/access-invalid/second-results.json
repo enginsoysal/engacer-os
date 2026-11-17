@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "checks": [],
+  "cases": [
+    {
+      "name": "magic",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    },
+    {
+      "name": "version",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_invalid18.py\", line 37, in main\n    assert not c.flag(g,'access_invalid16') and not c.flag(g,'access_flags16'),('reset failed',label,c.flag(g,'access_invalid16'),c.flag(g,'access_flags16'))\nAssertionError: ('reset failed', 'flags', 1, 0)\n"
+}

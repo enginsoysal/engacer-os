@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "checks": [
+    "Six independently CRC-valid bad magic/version/flags/reserved/short/long records activate safe defaults without silent disk writes; real keyboard Reset writes valid defaults, independent startup reloads them, and appearance/Start/source fixture bytes remain exact"
+  ],
+  "cases": [
+    {
+      "name": "magic",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    },
+    {
+      "name": "version",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    },
+    {
+      "name": "flags",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    },
+    {
+      "name": "reserved",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    },
+    {
+      "name": "short",
+      "bytes": 12,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 0
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    },
+    {
+      "name": "long",
+      "bytes": 17,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "55413136010000000000000000000000"
+    }
+  ]
+}

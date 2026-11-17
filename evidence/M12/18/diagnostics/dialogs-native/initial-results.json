@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "development_only": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "e2148fa980c840fab9b45cc4743940fd",
+  "checks": [
+    "Actual installation/retained-ISO startup; shared Save as chooses Downloads, persists exact text and keeps the original source without consuming another window slot",
+    "Cancel preserves the document/path, creates no destination and does not change the remembered successful Save location",
+    "One click selects without replacing the app document; Enter opens the actual selected validated native text file",
+    "The real CPL3 Editor loads the checked multi-page included guide through existing IPC pages without a large kernel stack buffer",
+    "Bounded eight-location history, history branching, missing/USB locations, invalid folder name, separate folder creation and automatic text extension use ordinary controls",
+    "Existing target requires an explicit replacement; default Enter returns to the picker and Cancel retains the original path",
+    "Dirty Open has a separate Save/Discard/Back/Cancel review; Back retains unsaved work and explicit Discard opens the selected original source",
+    "Explicit Save and open persists the old modified document before loading the selected new source"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_dialogs18.py\", line 122, in main\n    editor_token=owner(g);task(g,p,file_token);p.desktop(40015,True);c.key(g,'ctrl','a');c.type_text(g,'/Users/Owner/Documents');c.key(g,'ret');assert f.app(g)['path']=='/Users/Owner/Documents'\n  File \"<project-root>\\tests\\m12\\final_dialogs18.py\", line 28, in task\n    rows=[r for r in f.controls(g) if r[4]==token and r[5]==70];assert len(rows)==1,(token,rows)\nAssertionError: (4294967297, [])\n"
+}

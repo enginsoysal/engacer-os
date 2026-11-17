@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "c68f1d15738c46bc86db91d5e3b39773",
+  "checks": [
+    "Real installed startup and a single common frame retain Back/Forward/Home/Refresh in no-device state; hidden native scrollbars cannot steal USB keys",
+    "USB drive objects select once and Enter opens their actual lease; item pages and native/USB history restore the prior scroll offset"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_files18.py\", line 99, in main\n    p.desktop(row(g,'HELLO.TXT'),True);assert app(g)['usb_path']=='/Games/Arcade';p.desktop(21004,True);assert 'Copied to Downloads' in app(g)['notice'];c.shot(g,'usb-folder-common-frame')\nAssertionError\n",
+  "idle_observations": []
+}

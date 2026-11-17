@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_usb_negative18.py\", line 37, in main\n    p.desktop(f.drive(g),True);c.key(g,'ret');f.double(g,p,f.row(g,'EFI'));start=len(g.log());p.desktop(21005,True)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (21005, 34)\n"
+}

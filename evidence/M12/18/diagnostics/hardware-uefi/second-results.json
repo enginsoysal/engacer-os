@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "profile": "uefi",
+  "firmware": "uefi",
+  "physical": [
+    1280,
+    800
+  ],
+  "ram_mib": 128,
+  "usb_attach_stage": "before firmware boot",
+  "owned_fixture": "21f5bbc3d3054b0091636255e9990b66",
+  "checks": [
+    "Real graphical installation and installed retained-ISO startup",
+    "Actual USB keyboard reconnect and keyboard Start open/close"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_hardware18.py\", line 40, in main\n    s.t.launch(g,p,'files',1);p.desktop(94,True);p.desktop(26,True);c.key(g,'ctrl','a');c.key(g,'a');c.key(g,'b');c.key(g,'c');c.key(g,'ret');assert '/Users/Owner/Documents/axj' in f.entries(g)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 40, in launch\n    before=s.windows(g,kind);s.search(g,p,name);rows=s.results(g);matches=[i for i,row in enumerate(rows) if row==(1,kind)];assert len(matches)==1,rows\nAssertionError: []\n"
+}

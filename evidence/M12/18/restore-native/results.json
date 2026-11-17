@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "checks": [
+    "Ordinary Win+E opens a second real Files window; pointer movement gives the two live generation tokens different actual normal rectangles before any snap",
+    "Complementary snap places those two tokens in actual opposite halves; restoring in reverse order recovers each distinct independently observed rectangle exactly",
+    "Snap, skip assistance, maximize and restore retain the second token's original rectangle without changing the first window"
+  ],
+  "normal_before": [
+    [
+      140,
+      40,
+      1080,
+      700
+    ],
+    [
+      80,
+      30,
+      1080,
+      700
+    ]
+  ],
+  "distinct_normal_bounds": true,
+  "normal_after": [
+    [
+      140,
+      40,
+      1080,
+      700
+    ],
+    [
+      80,
+      30,
+      1080,
+      700
+    ]
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18989,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      18989,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Actual production Light/Dark/high-contrast palettes, control states and focus/scroll bounds; disabled text is not asserted as normal enabled text. Native keyboard/pixel/display tests are separate.",
+  "checks": [
+    "PASS: 16777216 accent colors; 1572864 component state cases; 4096 bounded scroll cases."
+  ],
+  "source_sha256": {
+    "include/engine/ui/components12.h": "0f5aec70d7fea7e862e79d673e38c8032468759e43399244ce1acc49b45f6f74",
+    "include/engine/ui/luminance12.h": "92f0bf404a94081c24013f0e4fb56d2967c465a195f2dd2aa3deff033fc924b1",
+    "tests/m12/components_host.c": "22c6412689e6306e7a943575f04a1ea55baaaafd95034e3e9af6de813178754d",
+    "tests/m12/final_host18.py": "e26ed34a65c0850bc87b4d474b7824a84ca3f54fbc7732c7e9ceb797839352a4"
+  }
+}

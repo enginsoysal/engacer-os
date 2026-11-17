@@ -1,0 +1,59 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "53f3be856e5042c68cee4ed298f35742",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Rename clears the prior file clipboard under the retained move policy: Paste is disabled, Ctrl+V explains that Copy/Cut is required, and the renamed payload is kept",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details",
+    "USB read-back verified import has the expected independent CRC; cancelling a real native tree copy preserves its only source and reports completed items without claiming full success",
+    "Unplugging a source during a genuine USB read stops the generation-bound job, aborts the unfinished destination and preserves previously completed data with an inspectable reason",
+    "Independent native metadata/data CRC and full payload comparison verify all confirmed files, while the whole original 1-GiB USB image remains byte-for-byte unchanged; tasks retain zero managed pages/new failures"
+  ],
+  "profiles": [],
+  "cancelled_usb_work_bytes": 335872,
+  "active_progress_damage": {
+    "frames": 9,
+    "logical_pixels": 646272,
+    "average_damage": 71808.0,
+    "whole_window_area": 756000,
+    "scope": "Damage rectangles during a running restored transfer, not hardware FPS or physical USB throughput"
+  },
+  "full_usb_copy_observer_seconds": 235.89100000000326,
+  "minimized_transfer_feedback": true,
+  "partial_copy_confirmed_files": 1,
+  "removed_source_error": 3,
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_transfers18.py\", line 206, in main\n    p=ui.Pointer(g);p.drain();assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log();p.desktop(94,True);f.double(g,p,f.item(g,p,'Source'));assert 'Large.bin' in f.names(g);c.idle(g);c.shot(g,f'disk-only-{number}');(OUT/f'disk-{number}.log').write_text(g.log(),encoding='utf-8')\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (94, 33)\n",
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 5661,
+        "paints_after": 5661
+      }
+    ]
+  ]
+}

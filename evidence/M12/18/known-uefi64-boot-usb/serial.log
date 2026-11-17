@@ -1,0 +1,5 @@
+BdsDxe: loading Boot0001 "UEFI QEMU DVD-ROM QM00005 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU DVD-ROM QM00005 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+ENGINE_OS_LOADER build=8ee102351039d96f68637a9edbff597b
+M10_KERNEL_STREAM_LOADED whole_file_copy_bytes=0
+LOADER_REJECT: allocate low pages

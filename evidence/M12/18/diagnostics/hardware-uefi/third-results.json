@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "profile": "uefi",
+  "firmware": "uefi",
+  "physical": [
+    1280,
+    800
+  ],
+  "ram_mib": 128,
+  "usb_attach_stage": "before firmware boot",
+  "owned_fixture": "a29a6d949f9245f590b41e30f0e98f4d",
+  "checks": [
+    "Real graphical installation and installed retained-ISO startup",
+    "Actual USB keyboard reconnect and keyboard Start open/close"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_hardware18.py\", line 41, in main\n    c.open_settings(g,p);p.desktop(59003,True);p.desktop(20000,True);p.desktop(20005,True);assert ui.integer(g,'layout10',True)==0;c.key(g,'alt','f4');p.drain();report['checks'].append('Devices Dvorak changes actual typed folder bytes; US layout restored')\n  File \"<project-root>\\tests\\m12\\components.py\", line 75, in open_settings\n    x,y,_,_,_,_=control(g,42200);scale=flag(g,'scale73')\n  File \"<project-root>\\tests\\m12\\components.py\", line 41, in control\n    assert found,(action,count)\nAssertionError: (42200, 49)\n"
+}

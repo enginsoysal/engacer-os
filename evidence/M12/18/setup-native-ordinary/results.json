@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "owned_fixture": "f60289ec42bd41a49318df6e5d0509e4",
+  "checks": [
+    "Real eight-step setup has bounded non-overlapping controls, no early disk writes or full-frame reload on Next, and actually installs/restarts into a dismissible themed base guide",
+    "Back retains the actual selected appearance; keyboard test and Clear work through guest input without early disk writes",
+    "A base-owned guide follows the saved theme and its dismissal persists across independent no-ISO USB and PS2 starts",
+    "Exact Start preference bytes survive both independent startups, with zero completed-task page retention"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "preferences_sha256": "72aaf3b4c9b2f0025562312690afb073cfbef51edf64fb8a8ade0912fc673b34"
+}

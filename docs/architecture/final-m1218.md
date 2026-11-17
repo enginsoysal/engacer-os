@@ -1,7 +1,8 @@
 # M12.18 final qualification
 
-Status: candidate under qualification. M12.17 remains the complete public
-qualified release until the final source/media/publication gates pass.
+Status: M12-STAGE18-VM-v1 native qualification passes for build
+`8ee102351039d96f68637a9edbff597b`. Matching public release and complete website
+verification close separately; earlier receipts remain immutable.
 
 The final stage freezes one independent-kernel ISO and its prepared VMware
 package. Earlier passing binaries do not qualify new bytes. Source hashes,
@@ -51,3 +52,35 @@ BrixCanvas homepage, verify desktop/mobile/current manuals/search/archives, then
 crawl all public HTTP links and perform fresh readback. Investigate the retained
 custom-domain email-sharing observation separately; do not silently deploy a
 shared BrixCanvas change outside the owner's approved scope.
+
+## Final native receipt
+
+599 compiled Git inputs, fourteen enabled-device VMware profiles, the original
+supported 7-Zip MSI lifecycle and 106 payload hashes match the frozen media.
+Twelve fresh BIOS/AHCI installs in three isolated batches of four concurrent
+VMs and 24 independent no-ISO starts pass, with distinct owned disks and exact
+persisted guide bytes. This is a scoped repeat; the older M12.2 trigger remains
+unidentified rather than being claimed universally fixed.
+
+Complete native setup/desktop/files/provider/error/accessibility regression,
+ordinary/compact/150%/4K pages, independent startups, twelve cached/full movement
+comparisons, three interrupted-move pixel restorations and compressed recovery
+pass. Fixed shell state remains 553,452 bytes (+0 from M12.17), shared fonts are
+unchanged, and completed tasks retain zero managed pages. Host raster checks
+remain distinct from runtime/physical throughput and frame-rate claims.
+
+The final harnesses use the current grouped taskbar, Actions menus, cooperative
+transfer completion and explicit keyboard edges. Earlier failed observations
+are retained as diagnostics; removed historical control IDs and log markers do
+not become product failures or qualify a later result. Native inputs and media
+were frozen during qualification; tests use separate owned sparse media.
+
+The 64-MiB UEFI boot-attached USB refusal remains explicitly unqualified. Its
+late-attachment low-memory counterpart and the named BIOS/UEFI/4K-hub/larger-FAT
+round trips pass. Actual write protection, first-read error, malformed metadata
+and USB quota recovery keep their real provider outcomes.
+
+[Acceptance](../../evidence/M12/18/acceptance-results.json),
+[resources](../../evidence/M12/18/resources.json),
+[installation](../handbook/install-m1218.md) and
+[final guide](../handbook/final-m1218.md) record the detailed scope.

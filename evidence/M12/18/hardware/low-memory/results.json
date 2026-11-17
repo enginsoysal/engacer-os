@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "profile": "low-memory",
+  "firmware": "uefi",
+  "physical": [
+    1280,
+    800
+  ],
+  "ram_mib": 64,
+  "usb_attach_stage": "after installed startup",
+  "owned_fixture": "548ba2da485e4110a95d4c830bc0577d",
+  "checks": [
+    "Real graphical installation and installed retained-ISO startup",
+    "Actual USB keyboard reconnect and keyboard Start open/close",
+    "Devices Dvorak changes actual typed folder bytes; US layout restored",
+    "Native USB import and create-only flushed export through actual Files controls",
+    "Independent native-volume and FAT implementations verify exact round-trip bytes and preserved original; safe removal/reconnect retains no pages",
+    "Two independent disk-only starts retain actual volume and keyboard preference without forced boot order"
+  ],
+  "resources": {
+    "before": [
+      54,
+      115,
+      1326,
+      5
+    ],
+    "after": [
+      54,
+      115,
+      1326,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "payload_sha256": "d3003f5095805ab4a1caccfb715b6781820621fd39b9083ed5b64ba29be41dde"
+}

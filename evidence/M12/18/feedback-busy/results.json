@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "checks": [
+    "During a real 64-MiB cooperative USB import, Save As and Save refuse without changing the active job, publishing the unsaved document or losing text; Cancel leaves the destination unpublished and source byte-identical",
+    "After cancellation an actual Save As opens; another Files window cannot start a paste or replace that dialog owner, and exact unsaved text survives",
+    "Removing the actual USB source during another active import reports failure and leaves its destination unpublished; the original source image remains byte-identical"
+  ],
+  "owned_fixture": "99453e5f9bd94db696aaabccd3dffe9b",
+  "source_read_limit_bytes_per_second": 4194304,
+  "scope": "Actual virtual USB hardware with a bounded source-read rate; not a throughput benchmark.",
+  "resources": {
+    "before": [
+      1054,
+      1054,
+      18991,
+      5
+    ],
+    "after": [
+      1047,
+      1066,
+      18991,
+      5
+    ],
+    "retained_pages": 0,
+    "released_pages": 7,
+    "scope": "Before app launch/transfers, after USB discovery; after cancellation, removed-source failure and closing both apps. Freed USB pages are recorded separately."
+  },
+  "clone": {
+    "source_sha256": "0f940437aed85f9d221ee2f5d1bb77cf997827031972812fa2ae6a81d91c90cd",
+    "clone_sha256": "0f940437aed85f9d221ee2f5d1bb77cf997827031972812fa2ae6a81d91c90cd",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 75497472
+  }
+}

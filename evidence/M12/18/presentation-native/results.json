@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "013961c5d41a4e5d92a2b7e391f9c7ff",
+  "checks": [
+    "Real installation/retained-ISO startup; ordinary dialogs and editor saves create actual different file sizes/types; natural names put File2 before File10 with folders first",
+    "Actual sortable Name/Size/Type headers and reverse direction match displayed metadata; folders stay first, and single/multiple selection stays bound to the same source IDs",
+    "Real details/icons use original artwork, bounded two-line ellipsis and a complete measured name tip; moving away removes it without a timer",
+    "Selection survives a second independent Files window; real visible inactive selection differs from active selection without stealing focus",
+    "Actual 500x420 minimum keeps contents below the complete toolbar; Name/Size remain readable, Type moves to the real sort menu and both views stay reachable",
+    "Actual USB objects select once/open on Enter; details/icons retain original directory order and metadata, spatial arrows reach the right item, long FAT32 names remain readable and unsupported sorting stays unavailable in both themes",
+    "Minimum-size disconnected USB retains navigation and truthful empty state; detach and view/window tasks retain zero pages/new allocation failures, with idle CPUs halted",
+    "Independent stored bytes/CRC verify real editor contents, the bundled guide and both native and 16-byte per-user USB view preferences",
+    "Two ordinary independent installed boots restore real native view/order and the separate USB view preference, including no-device state",
+    "Actual 150% and 3840x2160/200% native/USB icon views remain legible and idle; presentation never changes the owned USB image"
+  ],
+  "profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "managed_current_bytes": 9437184,
+      "managed_peak_bytes": 9437184,
+      "usb_attached": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "managed_current_bytes": 33398784,
+      "managed_peak_bytes": 33398784,
+      "usb_attached": true
+    }
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 605,
+        "paints_after": 605
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 19,
+        "paints_after": 19
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 19,
+        "paints_after": 19
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 63,
+        "paints_after": 63
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 67,
+        "paints_after": 67
+      }
+    ]
+  ]
+}

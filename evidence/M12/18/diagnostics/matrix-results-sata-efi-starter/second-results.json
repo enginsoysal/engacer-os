@@ -1,0 +1,13 @@
+{
+  "harness_sha256": "a402f7d18eb6bdc0982b0f0437a28ef19abac6ffddd90b7285f240ed34a1fc39",
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "controller": "sata",
+  "firmware": "efi",
+  "exact_starter": true,
+  "checks": [],
+  "starter_sha256": "dafd107340e11ea74898c4c7ffab45dc4e31b50856421076e0b2f4787ee5bed4",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_vmware18.py\", line 97, in main\n    folders(g,out);(out/'install.log').write_bytes(g.read().encode())\n  File \"<project-root>\\tests\\m12\\final_vmware18.py\", line 49, in folders\n    start=len(g.read());v.enter(g);g.wait('M72_FOLDER_VISIT /Users/Owner/Documents',offset=start)\n  File \"<project-root>\\tests\\m7\\vmware.py\", line 44, in wait\n    return super().wait(text,offset,timeout)\n  File \"<project-root>\\tests\\m6\\vmware.py\", line 45, in wait\n    raise RuntimeError('VMware missing '+text+': '+self.output[-1400:])\nRuntimeError: VMware missing M72_FOLDER_VISIT /Users/Owner/Documents: 00004f Installing original Windows application files.\r\nM8_PROGRESS percent=0x000000000000004f Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000050 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000051 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000051 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000052 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000053 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000053 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000054 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000055 Installing original Windows application files.\r\nM8_PROGRESS percent=0x0000000000000058 Verifying original installed files before publishing the product.\r\nM8_PROGRESS percent=0x0000000000000064 Installed 7-Zip console support. Windows GUI and shell extensions remain unavailable.\r\nM8_PROGRESS percent=0x0000000000000064 Installed 7-Zip console support. Windows GUI and shell extensions remain unavailable.\r\nM8_JOB_DONE code=0x0000000000000000\r\nM8_CPL3_CREATED command=0x0000000000000003\r\nM8_PROGRESS percent=0x0000000000000000 \r\nM8_JOB_DONE code=0x0000000000000000\r\nM125_LOCATION native /Users/Owner/Documents\r\n\n",
+  "existing_vm_inventory_unchanged": true
+}

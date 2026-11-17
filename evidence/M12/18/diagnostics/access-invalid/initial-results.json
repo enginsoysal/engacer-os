@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "checks": [],
+  "cases": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_invalid18.py\", line 31, in main\n    p=ui.Pointer(g);p.drain();assert c.flag(g,'access_invalid16')==1 and c.flag(g,'access_flags16')==0,label;c.open_settings(g,p);p.desktop(59004,True);c.shot(g,'safe-'+label);assert ui.s.s.document(disk,PATH)==payload and f.sha_file(disk)==before;a.activate(g,60012,space=True);assert not c.flag(g,'access_invalid16') and not c.flag(g,'access_flags16');a.close(g);c.idle(g);(out/(label+'.log')).write_bytes(g.log().encode())\nAssertionError\n"
+}

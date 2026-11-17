@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "checks": [
+    "Playing the included original WAV without an audio controller reaches the real provider failure state; Quick settings reports unavailable playback rather than invented hardware readiness",
+    "Actual Clock, Calendar and Media Player removal leaves the base flyout, real date and provider controls usable; missing optional launch targets explain installation, and all three apps reinstall and launch independently"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18991,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      18991,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

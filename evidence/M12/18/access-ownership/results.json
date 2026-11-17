@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "clone": {
+    "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+    "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "F1/Escape preserves the exact real Save As state, full-generation owner, focused control and unsaved Editor bytes; F6 cannot escape the modal review and explicit cancellation/discard remain available",
+    "Actual high-contrast reduced-effects picker and notification borders have white outer boundary pixels and black inner surfaces, independently read from their real physical framebuffer captures",
+    "Closing/reopening a reused slot cannot expose the earlier generation semantic name; at the actual eight-window limit, F6/F1/Escape/Enter describes and dismisses the real notification without allocating a ninth app or changing any existing window"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18991,
+      5
+    ],
+    "after": [
+      1047,
+      1130,
+      18991,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

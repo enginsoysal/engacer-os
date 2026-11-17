@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "profile": "uefi",
+  "firmware": "uefi",
+  "physical": [
+    1280,
+    800
+  ],
+  "ram_mib": 128,
+  "usb_attach_stage": "before firmware boot",
+  "owned_fixture": "24b0b27e7a434a6aa97a92d676fcfa12",
+  "checks": [
+    "Real graphical installation and installed retained-ISO startup",
+    "Actual USB keyboard reconnect and keyboard Start open/close"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_hardware18.py\", line 40, in main\n    p.desktop(94,True);p.desktop(26,True);c.key(g,'ctrl','a');c.key(g,'a');c.key(g,'b');c.key(g,'c');c.key(g,'ret');assert '/Users/Owner/Documents/axj' in f.entries(g)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (94, 12)\n"
+}

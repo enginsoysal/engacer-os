@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "9ca284ef89c44c5fae8ac37090307eea",
+  "checks": [],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_transfers18.py\", line 86, in main\n    p.desktop(94,True);create(g,p,'Source',True);f.double(g,p,f.item(g,p,'Source'));create(g,p,'Export.txt');text(g,p,'Export.txt','Native original 123')\n  File \"<project-root>\\tests\\m12\\final_transfers18.py\", line 64, in text\n    p.desktop(f.item(g,p,name),True);c.key(g,'ret');c.type_text(g,value);c.key(g,'ctrl','s');p.desktop(49002,True)\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 83, in item\n    assert has(g,command),(name,values,app(g));p.desktop(command,True)\nAssertionError: ('Export.txt', ['Export.txt'], {'slot': 0, 'path': '/Users/Owner/Documents/Source', 'notice': 'Created and saved. Double-click the new item to open it.', 'offset': 0, 'mode': 0, 'disk': 0, 'part': 0, 'context': 0, 'selected': 0, 'usb_path': ''})\n",
+  "idle_observations": []
+}

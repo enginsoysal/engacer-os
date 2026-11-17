@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "6c8a1141f6784a4cac9fd239dfb548cc",
+  "checks": [
+    "Real install and retained-ISO installed startup reach a compact Start with six real app/folder pins",
+    "Typing local search launches no window and retains no pages; Enter launches the installed Calculator",
+    "Create/rename/hide/reorder categories and context assignment preserve searchability of hidden-category apps",
+    "Renaming/reordering pins changes labels only; local alias search and two-step Escape work",
+    "Start/taskbar context pinning and explicit unpinning preserve the installed app",
+    "Empty search explains recovery; All apps grid/list and arrow movement use the drawn column count",
+    "Actual optional Calculator removal prunes both pin sets and search; reinstall restores launch without breaking the desktop",
+    "A real folder result opens its native path using stable pin identity",
+    "Two ordinary no-ISO disk starts retain exact independently read preferences and the actual folder pin"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1060,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "preferences_sha256": "aa72712c7cf6e7eae3d5a456a17d1d4db4cf834f5b43601b9ae702f1e4f88c1b"
+}

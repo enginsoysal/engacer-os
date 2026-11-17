@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "4eaf9b751cc24decbcb4c56c04eb7e1f",
+  "checks": [
+    "Real installed startup and a single common frame retain Back/Forward/Home/Refresh in no-device state; hidden native scrollbars cannot steal USB keys",
+    "USB drive objects select once and Enter opens their actual lease; item pages and native/USB history restore the prior scroll offset",
+    "Real FAT32 folders obey single-select/double-click/Enter; copy-to-Downloads, Up, drive-root breadcrumbs and Back/Forward use the same frame",
+    "A real 258-byte USB address survives edit/copy/paste and cross-provider navigation; an overlong native address preserves the prior location and remains editable",
+    "Ctrl+N copies the real provider into an independent bounded history; closing that window preserves its original owner and retains no pages",
+    "Actual detach/replacement clears drive selection; stale generation history and Refresh never retarget the new device, while explicit re-selection opens its different real contents in only that window",
+    "Safe remove plus physical detach releases device pages; browsing, long addresses and multiple windows retain zero pages and no new allocation failures; idle CPUs halt",
+    "Independent stored bytes/CRC verify the imported original file and bundled guide; both owned USB images remain byte-identical after browsing/import",
+    "Two ordinary independent installed starts preserve real data and the common provider navigation without forced boot order",
+    "Actual 150% and 3840x2160/200% frames exercise both no-device and real USB folder navigation, with native Inter/vector graphics and idle halt"
+  ],
+  "profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "managed_current_bytes": 9437184,
+      "managed_peak_bytes": 9437184,
+      "usb_attached": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "managed_current_bytes": 33398784,
+      "managed_peak_bytes": 33398784,
+      "usb_attached": true
+    }
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1054,
+      17710,
+      5
+    ],
+    "attached_before": [
+      1054,
+      1054,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 494,
+        "paints_after": 494
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 19,
+        "paints_after": 19
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 19,
+        "paints_after": 19
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 58,
+        "paints_after": 58
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 68,
+        "paints_after": 68
+      }
+    ]
+  ]
+}

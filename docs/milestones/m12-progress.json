@@ -4,16 +4,18 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.18",
-  "qualified_download": "M12.17",
+  "qualified_download": "M12.18",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
-      "status": "open",
+      "status": "not_reproduced_in_final_scoped_stress",
       "observed_in": "M12.2",
       "scope": "An earlier M12.2 candidate's initial concurrent QEMU BIOS SATA installation",
       "observation": "An earlier M12.2 candidate hit the existing AHCI timeout and installation reported failure. A fresh repeat passed; the corrected palette candidate has separate matching tests. The trigger is not isolated and stress reliability is not qualified.",
       "evidence": "evidence/M12/2/diagnostics/bios-ahci-timeout.json",
-      "required_revisit": "M12.18 installation and controller qualification"
+      "required_revisit": "M12.18 installation and controller qualification",
+      "final_evidence": "evidence/M12/18/bios-stress/results.json",
+      "final_scope": "Twelve fresh current-build BIOS/AHCI installs, three batches of four guests, 24 independent no-ISO starts; earlier trigger not identified. No universal reliability claim."
     }
   ],
   "stages": [
@@ -233,7 +235,7 @@
     },
     {
       "id": "M12.18",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Final qualification and publication",
       "requires": "M12.17",
       "deliverable": "One frozen final ISO/starter, complete task regression, release assets and fresh website/manual verification.",
@@ -243,7 +245,11 @@
       "carry_forward": [
         "Revisit the BrixCanvas article custom-domain email-sharing observation in evidence/M12/12/website-observations.json during final website qualification.",
         "Review high-contrast reduced-effects picker and notification outer boundaries: text/actions are legible, but black surfaces lack a distinct outline; see evidence/M12/16/visual-review.json."
-      ]
+      ],
+      "qualification": "M12-STAGE18-VM-v1",
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "evidence": "evidence/M12/18/acceptance-results.json",
+      "carry_forward_resolution": "Actual native white high-contrast boundaries pass; hydrated article email sharing uses the custom domain. Named final controller/MSI/device/desktop/error/resource regression and twelve fresh concurrent BIOS/AHCI lifecycles pass. The earlier BIOS trigger is not identified; 64-MiB boot-attached USB remains unqualified."
     }
   ],
   "publication_gate": [

@@ -1,0 +1,181 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "concurrent_guests": 4,
+  "batches": 3,
+  "cases": [
+    {
+      "case": 0,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "d0b6acb68d1843048fe305f97887dd19",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 1,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "3e968673d5294d259f4ffeb4cbbd731e",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 2,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "5e1e58bebcc942d493bb418da7a16019",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 3,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "7b7ba092357048e7a30bf82c2c788086",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 4,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "aae31e8cc2e246c995d8a011cf4d84d1",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 5,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "730a4fa3704a439288eead7a28ef8b3c",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 6,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "ecfe55236bd9484d9809b3bc5075abcf",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 7,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "accb82205f324a068a5062250eabb4c6",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 8,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "a70b1447988541ea8fb118c59f462318",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 9,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "26abb1638ed74d0fb5d1c712af2c1c28",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 10,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "8c126f2f788c401ba95ab3bec6de00df",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    },
+    {
+      "case": 11,
+      "passed": true,
+      "build_id": "8ee102351039d96f68637a9edbff597b",
+      "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+      "firmware": "BIOS",
+      "checks": [
+        "BIOS ISO traverses setup, installs and resets into the real installed desktop with matching media retained",
+        "BIOS disk-only startup 1 uses ordinary firmware discovery and reaches idle native desktop",
+        "BIOS disk-only startup 2 uses ordinary firmware discovery and reaches idle native desktop"
+      ],
+      "owned_fixture": "22a635f4ea244cc2b8723ea10de07f16",
+      "persisted_guide_sha256": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708"
+    }
+  ],
+  "checks": [
+    "Twelve separate fresh BIOS/AHCI installations, retained-ISO resets and 24 independent no-ISO starts in three deliberately concurrent batches"
+  ],
+  "scope": "Named owned virtual stress only. An unreproduced earlier failure trigger is not identified or claimed universally fixed."
+}

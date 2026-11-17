@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "7160429634fd4ec8b313dd0274d54be0",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Rename clears the prior file clipboard under the retained move policy: Paste is disabled, Ctrl+V explains that Copy/Cut is required, and the renamed payload is kept",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details"
+  ],
+  "profiles": [],
+  "cancelled_usb_work_bytes": 212992,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_transfers18.py\", line 152, in main\n    capture_active(g,'minimized-transfer-progress');start(g,p,70)\n  File \"<project-root>\\tests\\m12\\final_transfers18.py\", line 10, in start\n    try:x,y,w,h,_,_=c.control(g,command);break\n  File \"<project-root>\\tests\\m12\\components.py\", line 41, in control\n    assert found,(action,count)\nAssertionError: (70, 14)\n",
+  "idle_observations": []
+}

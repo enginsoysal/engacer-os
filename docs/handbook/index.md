@@ -1,27 +1,27 @@
 # Engacer OS user handbook
 
-**M12.17 / 0.12.17 passes M12-STAGE17-VM-v1.**
-[Install](install-m1217.md), [Motion and resource use](performance-m1217.md),
-[release scope](../releases/m1217-v0.12.17.md),
-[exact-source acceptance](../../evidence/M12/17/acceptance-results.json).
-599 compiled Git inputs and 16 native task/profile checks cover
-actual keyboard/accessibility carry, independent saved choices, five display
-profiles, reverse pane focus, default-effect motion and Escape-cancelled moves.
-The exact production raster matches M12.16 in 3,073 host cases while visiting
-92.5% fewer positions in its 4K shadow test; this is not native FPS.
-Exact enabled-device VMware, BIOS, twelve default-effects movement comparisons
-and compressed repair pass. Fixed shell state stays 553,452 bytes (+0);
-completed tasks retain zero managed pages. No new animation worker/cache is added.
-[Complete public proof](../../evidence/M12/17/publication-results.json) passes: twenty downloads, 399 pages and 2,797 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. **M12.18 is active.**
+**M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
+[Install](install-m1218.md), [Final desktop guide](final-m1218.md),
+[release scope](../releases/m1218-v0.12.18.md), [exact-source acceptance](../../evidence/M12/18/acceptance-results.json).
 
-Previous [M12.16 complete public delivery](../../evidence/M12/16/publication-results.json)
-remains immutable: twenty downloads, 395 pages and 2,749 HTTP links.
+The final frozen media bind 599 compiled inputs and 184 native task/profile checks.
+Fourteen fresh enabled-device VMware profiles cover SATA, IDE, supported SCSI
+and NVMe; the original supported 7-Zip console MSI lifecycle verifies 106 payloads.
+Real setup, independent startup, desktop/Files/USB/dialogs/Start/taskbar/Settings,
+error/recovery, keyboard/accessibility and compact/150%/physical 4K tasks pass.
+Twelve fresh concurrent BIOS/AHCI installations and 24 disk-only starts pass;
+the older failure trigger is not claimed identified or universally fixed.
 
+Fixed shell state remains 553,452 bytes (+0), fonts are unchanged and completed
+tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
+an explicit unqualified loader refusal. Named VM scope is separate from universal
+hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-The previous M11.6 final artifact has fourteen controller/starter profiles and a
-broader original-app/USB regression; those results qualify its own bytes.
+Matching public assets and complete website verification close separately before
+the delivery is marked complete. Earlier M12.0–M12.17 receipts remain immutable.
 
-- [Download and install M12.17](install-m1217.md)
+- [Download and install M12.18](install-m1218.md)
+- [Use the final M12 desktop and read its tested scope](final-m1218.md)
 - [Motion and resource use](performance-m1217.md)
 - [Keyboard and accessibility](accessibility-m1216.md)
 - [Use the eight-step setup and first-start guide](setup-m1215.md)

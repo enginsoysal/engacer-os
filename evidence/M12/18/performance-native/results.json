@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "e8f7b26c9c904ed5b8c606c5daaecf7d",
+  "clone": {
+    "source_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+    "clone_sha256": "69681e0a88c6c6f2fd257a3b48a10546edfaa7cecaf51d91c6aec08469693af4",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    "A separately cloned installed fixture disables accessibility effects through actual Settings Reset, retaining exact appearance and Start bytes so native movement exercises the ordinary shadow-rendering path",
+    "Actual Shift+F6 reverses Taskbar \u2192 Window \u2192 Desktop, ordinary F6 returns to the window, and F1 describes its real owner without allocating a new application"
+  ],
+  "accessibility_record_hex": "55413136010000000000000000000000"
+}

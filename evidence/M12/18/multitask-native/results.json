@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "development_only": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "1cd67f8552c745e1ac44eca44d2bae21",
+  "checks": [
+    "Real install and retained-ISO startup; discoverable Arrange windows previews without mutating bounds, Escape preserves them, and choosing the complementary real Files window places both halves with exact independent normal-bounds restoration",
+    "Actual Alt+Tab keeps a bounded MRU snapshot with original icons and document/folder identities; arrows preview choice, Alt release and mouse commit, Escape preserves focus, and selecting a minimized dirty Editor restores exact unsaved text",
+    "Active file-dialog ownership blocks Arrange/keyboard geometry changes and excludes that owner from complementary snap choices; cancellation preserves the dirty document",
+    "Actual caption edge drag previews and Escape cancel restore exact bounds; release and Win+Left/Right commit supported halves, Skip/Escape retain the other side, and Win+Down restores the original normal rectangle",
+    "Apps whose actual minimum exceeds half the display expose disabled half choices with a reason and keep their bounds; the eight-window quota refuses another window while the full switcher remains reachable",
+    "Two ordinary no-ISO starts reach the installed desktop and retain usable Arrange/Cancel without persisting transient overlays or changing firmware boot order"
+  ],
+  "preferences_sha256": "4df8a37402416fbc4ae2bc0ec285ff79b81a8ef72693941c6fee8b027172d997",
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1069,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

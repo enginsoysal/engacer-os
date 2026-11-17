@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "542ad9f1456c4f81b034062b2b9b65dd",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Rename clears the prior file clipboard under the retained move policy: Paste is disabled, Ctrl+V explains that Copy/Cut is required, and the renamed payload is kept",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details",
+    "USB read-back verified import has the expected independent CRC; cancelling a real native tree copy preserves its only source and reports completed items without claiming full success",
+    "Unplugging a source during a genuine USB read stops the generation-bound job, aborts the unfinished destination and preserves previously completed data with an inspectable reason",
+    "Independent native metadata/data CRC and full payload comparison verify all confirmed files, while the whole original 1-GiB USB image remains byte-for-byte unchanged; tasks retain zero managed pages/new failures",
+    "Two ordinary installed starts retain all independently confirmed data and provide usable Files commands without the ISO",
+    "Real 150% and 3840x2160/200% command surfaces keep readable controls, retained storage results and halted idle CPUs"
+  ],
+  "profiles": [
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale": 3,
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale": 4,
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112
+    }
+  ],
+  "cancelled_usb_work_bytes": 327680,
+  "active_progress_damage": {
+    "frames": 16,
+    "logical_pixels": 1148928,
+    "average_damage": 71808.0,
+    "whole_window_area": 756000,
+    "scope": "Damage rectangles during a running restored transfer, not hardware FPS or physical USB throughput"
+  },
+  "full_usb_copy_observer_seconds": 20.327999999994063,
+  "minimized_transfer_feedback": true,
+  "partial_copy_confirmed_files": 1,
+  "removed_source_error": 3,
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 1661,
+        "paints_after": 1661
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 24,
+        "paints_after": 24
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 23,
+        "paints_after": 23
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 67,
+        "paints_after": 67
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 71,
+        "paints_after": 71
+      }
+    ]
+  ]
+}

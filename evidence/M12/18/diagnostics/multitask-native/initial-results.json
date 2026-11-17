@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M12.18",
+  "development_only": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "owned_fixture": "f182ce1b1b214521ac9b6f6e86aeaedd",
+  "checks": [
+    "Real install and retained-ISO startup; discoverable Arrange windows previews without mutating bounds, Escape preserves them, and choosing the complementary real Files window places both halves with exact independent normal-bounds restoration",
+    "Actual Alt+Tab keeps a bounded MRU snapshot with original icons and document/folder identities; arrows preview choice, Alt release and mouse commit, Escape preserves focus, and selecting a minimized dirty Editor restores exact unsaved text",
+    "Active file-dialog ownership blocks Arrange/keyboard geometry changes and excludes that owner from complementary snap choices; cancellation preserves the dirty document"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_multitask18.py\", line 59, in main\n    t.close_all(g,p);first=t.launch(g,p,'files',1);second=t.launch(g,p,'files',1);normal=geometry(g);x,y,w,h=normal\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 61, in close_all\n    assert closing(g);p.desktop(60,True)\nAssertionError\n"
+}

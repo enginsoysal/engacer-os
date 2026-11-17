@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "native_editor_save": "Saved ✓",
+  "scope": "Own native Brix recovery page; current brand and canonical destinations, no shared-platform deployment",
+  "page": {
+    "document": 1270,
+    "links": [
+      {
+        "href": "/",
+        "label": "E_  ENGACER OS"
+      },
+      {
+        "href": "/blog/documentation",
+        "label": "Documentation"
+      },
+      {
+        "href": "/blog/downloads",
+        "label": "Downloads"
+      },
+      {
+        "href": "https://github.com/enginsoysal/engacer-os",
+        "label": "GitHub ↗"
+      },
+      {
+        "href": "/search",
+        "label": "Search"
+      },
+      {
+        "href": "/",
+        "label": "Back to the homepage →"
+      }
+    ],
+    "viewport": 1280
+  }
+}

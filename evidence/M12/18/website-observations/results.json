@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "stage": "M12.18",
+  "scope": "Actual hydrated public custom-domain article sharing; no email sent and no shared-platform deployment",
+  "article": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1217",
+  "links": [
+    {
+      "href": "mailto:?subject=Install%20Engacer%20OS%20M12.17%20in%20VMware&body=https%3A%2F%2Fengaceros.brixcanvas.com%2Fblog%2Fdocs-handbook-install-m1217",
+      "label": "E-mail"
+    }
+  ]
+}

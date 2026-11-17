@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "checks": [
+    "Eight active USB devices; ninth refused without allocating DMA pages or crashing",
+    "All five admitted child allocations reclaimed; replacement binds and the native wizard remains usable"
+  ],
+  "usb_dma_pages_before": 20,
+  "usb_dma_pages_full": 45
+}

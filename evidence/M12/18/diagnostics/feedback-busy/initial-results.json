@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "checks": [],
+  "owned_fixture": "f44574b2b1cb4e898f4ea35c4c8726f8",
+  "source_read_limit_bytes_per_second": 4194304,
+  "scope": "Actual virtual USB hardware with a bounded source-read rate; not a throughput benchmark.",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_feedback_busy18.py\", line 56, in main\n    active_key(g,'alt','ret');wait_state(g,'properties-refused',lambda:not c.flag(g,'file_dialog_state11') and bool(job(g)[0][0]) and 'file operation' in f.app(g)['notice'])\n  File \"<project-root>\\tests\\m12\\final_feedback_busy18.py\", line 39, in wait_state\n    raise AssertionError(state)\nAssertionError: {'step': 'properties-refused', 'job': ((1, 0, 1, 1, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 1), (4294967298, 134217728, 60481536, 60481536, 0, 3852)), 'dialog': 0, 'app': {'slot': 1, 'path': '/Users/Owner', 'notice': 'Copy this USB file to Downloads, then open it there.', 'offset': 0, 'mode': 2, 'disk': 1, 'part': 4294967295, 'context': 2, 'selected': 1, 'usb_path': '/'}, 'error': 0, 'destination_published': False}\n"
+}

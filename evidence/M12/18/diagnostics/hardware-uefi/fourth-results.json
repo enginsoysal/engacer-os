@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "build_id": "8ee102351039d96f68637a9edbff597b",
+  "iso_sha256": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+  "profile": "uefi",
+  "firmware": "uefi",
+  "physical": [
+    1280,
+    800
+  ],
+  "ram_mib": 128,
+  "usb_attach_stage": "before firmware boot",
+  "owned_fixture": "90ed6f8c821747f2800962cfecf5f514",
+  "checks": [
+    "Real graphical installation and installed retained-ISO startup",
+    "Actual USB keyboard reconnect and keyboard Start open/close",
+    "Devices Dvorak changes actual typed folder bytes; US layout restored"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\final_hardware18.py\", line 43, in main\n    p.desktop(21001,True);p.desktop(95,True);p.desktop(f.item(g,p,'HELLO.TXT'),True);c.key(g,'shift','f10')\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (21001, 36)\n"
+}
