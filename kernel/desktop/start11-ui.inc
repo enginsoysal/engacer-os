@@ -78,7 +78,11 @@ static void start_draw11(void){if(!launcher)return;
  if(start_manage11){button(0,left+120,top+height-48,110,"Back",S11_BACK,0);button(0,left+width-178,top+height-48,158,"Restore defaults",S11_DEFAULTS,0);}else{button(0,left+120,top+height-48,112,"Customize",S11_CUSTOMIZE,0);if(width>=600){button(0,left+240,top+height-48,65,"Files",S11_APP+FILES,0);button(0,left+313,top+height-48,85,"Settings",S11_APP+SETTINGS,0);}button(0,left+width-120,top+height-48,100,"Power",S11_POWER,0);}
  start_draw_dialog11(left,top,width,height);
 }
-static void start_taskbar11(int bar){s11_preferences*p=&start_preferences11;int clock=model.width>=1000?180:0,available=(int)model.width-clock-32,reserve=model.count?(int)model.count*44:0,budget=available-112-reserve;if(budget<0)budget=0;unsigned visible=(unsigned)budget/90;if(visible>p->tasks)visible=p->tasks;if(visible<p->tasks){budget-=52;visible=budget>0?(unsigned)budget/90:0;if(visible>p->tasks)visible=p->tasks;}unsigned more=visible<p->tasks;int pinwidth=(int)visible*90+(more?52:0),windowspace=available-112-pinwidth;unsigned overflow=model.count&&windowspace<(int)model.count*44;int windows=overflow?120:model.count?(windowspace/(int)model.count>120?120:windowspace/(int)model.count)*(int)model.count:0,total=112+pinwidth+windows;int x=p->centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
+static void start_taskbar11(int bar){
+#ifdef ENGINE_M12
+ taskbar_draw12(bar);
+#else
+s11_preferences*p=&start_preferences11;int clock=model.width>=1000?180:0,available=(int)model.width-clock-32,reserve=model.count?(int)model.count*44:0,budget=available-112-reserve;if(budget<0)budget=0;unsigned visible=(unsigned)budget/90;if(visible>p->tasks)visible=p->tasks;if(visible<p->tasks){budget-=52;visible=budget>0?(unsigned)budget/90:0;if(visible>p->tasks)visible=p->tasks;}unsigned more=visible<p->tasks;int pinwidth=(int)visible*90+(more?52:0),windowspace=available-112-pinwidth;unsigned overflow=model.count&&windowspace<(int)model.count*44;int windows=overflow?120:model.count?(windowspace/(int)model.count>120?120:windowspace/(int)model.count)*(int)model.count:0,total=112+pinwidth+windows;int x=p->centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
 #ifdef ENGINE_M12
  icon_button12(0,x,bar+15,100,"Start",0,launcher,ICON12_START);
 #else
@@ -100,4 +104,5 @@ static void start_taskbar11(int bar){s11_preferences*p=&start_preferences11;int 
 #endif
  rectangle((desktop_rect){x+(int)i*step+8,bar+54,step-24,2},active?preferences.accent:w->minimized?0x56717b:0xb6cbd1);}}}
  if(clock)task_clock74(bar);
+#endif
 }

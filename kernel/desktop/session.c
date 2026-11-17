@@ -614,6 +614,9 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "picker12.inc"
 #endif
 #include "start11-model.inc"
+#ifdef ENGINE_M12
+#include "taskbar12.inc"
+#endif
 #include "start11-ui.inc"
 #include "power11.inc"
 #include "start11-actions.inc"

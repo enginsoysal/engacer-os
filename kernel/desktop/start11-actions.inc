@@ -7,7 +7,13 @@ static void start_name_save11(void){unsigned n=length(start_name11);if(!n||n>31|
  if(start_name_mode11==1)start_manage_page11=(p->categories-1)/start_manage_rows11();start_name_mode11=0;if(!start_save11())start_message11("Label saved. Apps and folder contents are unchanged.");
 }
 static void start_categories_menu11(unsigned assign){start_menu_begin11(0,pointer_x,pointer_y);for(unsigned i=0;i<start_preferences11.categories;++i){unsigned category=start_preferences11.order[i];if(!assign&&start_preferences11.hidden[category])continue;file_menu_add11(start_preferences11.names[category],(assign?S11_ASSIGN:S11_CATEGORY)+category,1);}copy(file_menu_reason11,assign?"Only the app's category changes. Search and pins stay available.":"Hidden categories remain available through All apps and Search.",128);file_menu_fit11();}
-static void start_task_open11(unsigned app){if(!app7_available(app)){start_message11("This pinned app is no longer installed.");return;}for(unsigned i=model.count;i;--i){unsigned slot=model.order[i-1];desktop_window*w=&model.windows[slot];if(w->app!=app)continue;uint64_t window=desktop_token(&model,slot);unsigned was_open=launcher;launcher=0;if(!was_open&&model.focused==slot&&!w->minimized&&!desktop_focus11&&!file_block_owner11(window))desktop_minimize(&model,window,1);else{desktop_focus11=0;desktop_focus(&model,window);}task_damage();whole();return;}start_launch11(app,0);}
+static void start_task_open11(unsigned app){
+#ifdef ENGINE_M12
+ unsigned count12=taskbar_windows12(app,0,0);if(count12>1){taskbar_choose12(app);return;}if(!count12&&!app7_available(app))
+#else
+ if(!app7_available(app))
+#endif
+{start_message11("This pinned app is no longer installed.");return;}for(unsigned i=model.count;i;--i){unsigned slot=model.order[i-1];desktop_window*w=&model.windows[slot];if(w->app!=app)continue;uint64_t window=desktop_token(&model,slot);unsigned was_open=launcher;launcher=0;if(!was_open&&model.focused==slot&&!w->minimized&&!desktop_focus11&&!file_block_owner11(window))desktop_minimize(&model,window,1);else{desktop_focus11=0;desktop_focus(&model,window);}task_damage();whole();return;}start_launch11(app,0);}
 static unsigned start_action11(uint64_t token,unsigned command){s11_preferences*p=&start_preferences11;
  if(token&&command==70){desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;unsigned active=!launcher&&!desktop_focus11&&model.focused==(unsigned)(w-model.windows)&&!w->minimized&&!file_block_owner11(token);launcher=0;if(active)desktop_minimize(&model,token,1);else{desktop_focus11=0;desktop_focus(&model,token);}whole();return 1;}
  if(!token&&!command){if(launcher){launcher=0;start_name_mode11=start_confirm11=0;whole();}else start_open11();return 1;}
@@ -31,6 +37,10 @@ static unsigned start_action11(uint64_t token,unsigned command){s11_preferences*
  if(command==S11_TASK_UP||command==S11_TASK_DOWN){unsigned old=start_task_selected11;if(old>=p->tasks)return 1;unsigned next=command==S11_TASK_UP?(old?old-1:old):(old+1<p->tasks?old+1:old),app=p->task[old];p->task[old]=p->task[next];p->task[next]=app;start_task_selected11=next;start_manage_page11=next/start_manage_rows11();if(!start_save11())start_message11("Taskbar pin order saved. Running windows were kept.");return 1;}
  if(command>=S11_TASK_OPEN&&command<S11_TASK_OPEN+S11_APPS){start_task_open11(command-S11_TASK_OPEN);return 1;}
  if(command>=S11_WINDOW&&command<S11_WINDOW+DESKTOP_WINDOWS){uint64_t window=start_window_menu11[command-S11_WINDOW];if(desktop_lookup(&model,window)){launcher=0;desktop_focus11=0;desktop_focus(&model,window);whole();}return 1;}
+#ifdef ENGINE_M12
+ if(command==S11_MORE_PINS){taskbar_more12(1);return 1;}
+ if(command==S11_TASK_NEXT||command==S11_TASK_PREV){if(command==S11_TASK_NEXT)++taskbar_overflow_page12;else if(taskbar_overflow_page12)--taskbar_overflow_page12;taskbar_more12(0);return 1;}
+#endif
  if(command==S11_MORE_PINS){start_menu_begin11(0,pointer_x,pointer_y);for(unsigned i=0;i<p->tasks;++i)if(app7_available(p->task[i]))file_menu_add11(titles[p->task[i]],S11_TASK_OPEN+p->task[i],1);file_menu_fit11();return 1;}
  if(command==S11_WINDOWS){start_menu_begin11(0,pointer_x,pointer_y);for(unsigned i=0;i<model.count;++i){unsigned slot=model.order[i];start_window_menu11[slot]=desktop_token(&model,slot);file_menu_add11(titles[model.windows[slot].app],S11_WINDOW+slot,1);}file_menu_fit11();return 1;}
  if(command==S11_PIN_FOLDER){start_pin_folder11();return 1;}
@@ -60,10 +70,35 @@ static unsigned start_context11(i11_target target,unsigned x,unsigned y){start_c
  if(target.action>=S11_RESULT&&target.action<S11_RESULT+start_result_count11)result=start_results11[target.action-S11_RESULT];
  if(result.kind==1)app=result.id;else if(result.kind==2||result.kind==3){if(result.id>=start_preferences11.pins)return 1;s11_pin*p=&start_preferences11.pinned[result.id];start_context_pin11=*p;start_context_from_pin11=1;start_pin_selected11=result.id;if(p->kind==1)app=p->app;else{start_menu_begin11(0,x,y);file_menu_add11("Open pinned folder",S11_FOLDER_OPEN,1);file_menu_add11("Rename pin...",S11_PIN_RENAME,1);file_menu_add11("Unpin from Start",S11_PIN_REMOVE,1);copy(file_menu_reason11,"Unpinning changes the menu only. Your folder is kept.",128);file_menu_fit11();return 1;}}
  else if(target.action>=S11_TASK_SELECT&&target.action<S11_TASK_SELECT+start_preferences11.tasks)app=start_preferences11.task[target.action-S11_TASK_SELECT];else if(target.action>=S11_TASK_PIN&&target.action<S11_TASK_PIN+start_preferences11.tasks)app=start_preferences11.task[target.action-S11_TASK_PIN];else if(target.action>=S11_APP&&target.action<S11_APP+S11_APPS)app=target.action-S11_APP;
+#ifdef ENGINE_M12
+ if(target.action>S11_TASK_OPEN&&target.action<S11_TASK_OPEN+S11_APPS){app=target.action-S11_TASK_OPEN;uint64_t only=0;if(taskbar_windows12(app,0,&only)==1)target.window=only;}
+#endif
  desktop_window*w=desktop_lookup(&model,target.window);if(w&&target.action==70)app=w->app;
- if(app){start_menu_begin11(target.window,x,y);file_menu_add11("Open new window",S11_APP+app,app7_available(app));file_menu_add11(start_app_pin11(app)<S11_PINS?"Unpin from Start":"Pin to Start",S11_CONTEXT_PIN+app,app7_available(app));file_menu_add11(start_task_pin11(app)<S11_TASK_PINS?"Unpin from taskbar":"Pin to taskbar",S11_CONTEXT_TASK+app,app7_available(app));file_menu_add11("Move to category...",S11_CONTEXT_ASSIGN+app,app7_available(app));if(result.kind==3)file_menu_add11("Rename pin...",S11_PIN_RENAME,1);if(w){file_menu_add11("Minimize",31002,!file_block_owner11(target.window));file_menu_add11("Close window",31001,!file_block_owner11(target.window));}copy(file_menu_reason11,"Pins are launchers; open windows are separate. Apps launch by catalogue ID.",128);file_menu_fit11();return 1;}
+ if(app){start_menu_begin11(target.window,x,y);file_menu_add11("Open new window",S11_APP+app,app7_available(app));file_menu_add11(start_app_pin11(app)<S11_PINS?"Unpin from Start":"Pin to Start",S11_CONTEXT_PIN+app,app7_available(app));file_menu_add11(start_task_pin11(app)<S11_TASK_PINS?"Unpin from taskbar":"Pin to taskbar",S11_CONTEXT_TASK+app,app7_available(app));file_menu_add11("Move to category...",S11_CONTEXT_ASSIGN+app,app7_available(app));if(result.kind==3)file_menu_add11("Rename pin...",S11_PIN_RENAME,1);
+#ifdef ENGINE_M12
+if(target.action>S11_TASK_OPEN&&target.action<S11_TASK_OPEN+S11_APPS&&taskbar_windows12(app,0,0)>1)file_menu_add11("Choose a window...",S11_TASK_OPEN+app,1);
+#endif
+if(w){
+#ifdef ENGINE_M12
+ if(w->minimized){unsigned slot=(unsigned)(w-model.windows);start_window_menu11[slot]=target.window;file_menu_add11("Restore window",S11_WINDOW+slot,1);}else{
+#endif
+ file_menu_add11("Minimize",31002,!file_block_owner11(target.window));
+#ifdef ENGINE_M12
+ }
+#endif
+ file_menu_add11("Close window",31001,!file_block_owner11(target.window));}
+#ifdef ENGINE_M12
+copy(file_menu_reason11,"Unpinning keeps the app and its windows. Groups use catalogue identity.",128);
+#else
+copy(file_menu_reason11,"Pins are launchers; open windows are separate. Apps launch by catalogue ID.",128);
+#endif
+file_menu_fit11();return 1;}
  return 0;
 }
 static uint64_t start_pin_identity11(const s11_pin*p){return p->kind==1?(UINT64_C(1)<<60)|p->app:(UINT64_C(2)<<60)^file_path_hash11(p->path);}
-static uint64_t start_identity11(i11_target target){unsigned command=target.action;if(command>=S11_PIN_SELECT&&command<S11_PIN_SELECT+start_preferences11.pins)return start_pin_identity11(&start_preferences11.pinned[command-S11_PIN_SELECT]);if(command>=S11_TASK_SELECT&&command<S11_TASK_SELECT+start_preferences11.tasks)return(UINT64_C(1)<<60)|start_preferences11.task[command-S11_TASK_SELECT];if((command==S11_TASK_REMOVE||command==S11_TASK_UP||command==S11_TASK_DOWN)&&start_task_selected11<start_preferences11.tasks)return(UINT64_C(1)<<60)|start_preferences11.task[start_task_selected11];if(command>=S11_RESULT&&command<S11_RESULT+start_result_count11){start_result11 result=start_results11[command-S11_RESULT];return result.kind==1?(UINT64_C(1)<<60)|result.id:result.id<start_preferences11.pins?start_pin_identity11(&start_preferences11.pinned[result.id]):0;}if(command>=S11_TASK_PIN&&command<S11_TASK_PIN+start_preferences11.tasks)return(UINT64_C(1)<<60)|start_preferences11.task[command-S11_TASK_PIN];if((command==S11_PIN_REMOVE||command==S11_PIN_RENAME||command==S11_PIN_UP||command==S11_PIN_DOWN)&&start_pin_selected11<start_preferences11.pins)return start_pin_identity11(&start_preferences11.pinned[start_pin_selected11]);return 0;}
+static uint64_t start_identity11(i11_target target){unsigned command=target.action;
+#ifdef ENGINE_M12
+if(command>S11_TASK_OPEN&&command<S11_TASK_OPEN+S11_APPS)return(UINT64_C(1)<<60)|(command-S11_TASK_OPEN);
+#endif
+if(command>=S11_PIN_SELECT&&command<S11_PIN_SELECT+start_preferences11.pins)return start_pin_identity11(&start_preferences11.pinned[command-S11_PIN_SELECT]);if(command>=S11_TASK_SELECT&&command<S11_TASK_SELECT+start_preferences11.tasks)return(UINT64_C(1)<<60)|start_preferences11.task[command-S11_TASK_SELECT];if((command==S11_TASK_REMOVE||command==S11_TASK_UP||command==S11_TASK_DOWN)&&start_task_selected11<start_preferences11.tasks)return(UINT64_C(1)<<60)|start_preferences11.task[start_task_selected11];if(command>=S11_RESULT&&command<S11_RESULT+start_result_count11){start_result11 result=start_results11[command-S11_RESULT];return result.kind==1?(UINT64_C(1)<<60)|result.id:result.id<start_preferences11.pins?start_pin_identity11(&start_preferences11.pinned[result.id]):0;}if(command>=S11_TASK_PIN&&command<S11_TASK_PIN+start_preferences11.tasks)return(UINT64_C(1)<<60)|start_preferences11.task[command-S11_TASK_PIN];if((command==S11_PIN_REMOVE||command==S11_PIN_RENAME||command==S11_PIN_UP||command==S11_PIN_DOWN)&&start_pin_selected11<start_preferences11.pins)return start_pin_identity11(&start_preferences11.pinned[start_pin_selected11]);return 0;}
 static unsigned start_dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){if(!launcher)return 0;unsigned inside=(int)x>=start_bounds11.x&&(int)x<start_bounds11.x+start_bounds11.width&&(int)y>=start_bounds11.y&&(int)y<start_bounds11.y+start_bounds11.height;if(context11)return 0;if(!inside&&y<model.height-60){if(event&(I11_SELECT|I11_ACTIVATE|I11_CONTEXT)){launcher=0;start_name_mode11=start_confirm11=0;whole();}return 1;}if(start_name_mode11&&target.action!=S11_NAME_FIELD&&target.action!=S11_NAME_OK&&target.action!=S11_NAME_CANCEL&&inside)return 1;if(start_confirm11&&target.action!=S11_CONFIRM_OK&&target.action!=S11_CONFIRM_CANCEL&&inside)return 1;return 0;}

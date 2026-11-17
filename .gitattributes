@@ -234,3 +234,8 @@ kernel/desktop/start11-model.inc -text whitespace=cr-at-eol
 kernel/desktop/start11-state.inc -text whitespace=cr-at-eol
 kernel/desktop/start11-keys.inc -text whitespace=cr-at-eol
 evidence/M12/9/** -text -whitespace
+
+# M12.10 native app-group taskbar.
+kernel/desktop/taskbar12.inc -text whitespace=cr-at-eol
+kernel/desktop/start11-actions.inc -text whitespace=cr-at-eol
+evidence/M12/10/** -text -whitespace
