@@ -1,0 +1,56 @@
+{
+  "passed": false,
+  "build_id": "3d758f0a8235d34dadbdb989849e8c30",
+  "profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2166784,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2166784,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9461760,
+      "retained_pages": 0
+    }
+  ],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\start_profiles.py\", line 15, in main\n    p.desktop(0,True);p.desktop(42000,True);c.shot(g,'pinned-'+label)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 93, in desktop\n    x,y,w,h,_,_=matches[-1];at=symbol('paints',8,installed)[0];before=memory(g,at,8);self.logical(x+w//2,y+h//2,installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 41, in logical\n    scale=integer(self.guest,'scale73',installed);self.click(x*scale//2,y*scale//2)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 84, in click\n    self.down(False);self.drain()\n  File \"<project-root>\\tests\\m11\\ui.py\", line 68, in drain\n    pending=integer(self.guest,'mouse_head11',installed)!=integer(self.guest,'mouse_tail11',installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 27, in integer\n    def integer(g,name,installed=False):return struct.unpack('<I',memory(g,symbol(name,4,installed)[0],4))[0]\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 63, in qmp\n    self.stream.write((json.dumps(r)+'\\n').encode());self.stream.flush()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\start_profiles.py\", line 13, in main\n    with ui.guest(work/('profile-'+label),disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution) as g:\n  File \"<project-root>\\tests\\m74\\ui.py\", line 73, in __exit__\n    super().__exit__(*exc)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 88, in __exit__\n    self.stream.close();self.sock.close()\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n"
+}

@@ -1,0 +1,6 @@
+{
+  "build_id": "3d758f0a8235d34dadbdb989849e8c30",
+  "reason": "Agent visual review found truncated New category and redundant grid secondary text; result pagination also needs a clear count.",
+  "action": "Stopped only the identified owned QEMU 4K prototype guest before revising compiled source. Connection-reset trace is this controlled stop, not an OS crash. No later queued motion/recovery/BIOS test ran.",
+  "qualification": "Prototype observations only; repeat all required checks against the new build."
+}

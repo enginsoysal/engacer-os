@@ -27,7 +27,7 @@ static void start_draw_item11(unsigned row,int x,int y,int width){
  ui73_fit(x+45,y+4,width-54,name,1,available?ink():0x829098);
  #ifdef ENGINE_M12
  char detail[96];copy(detail,!available?"Unavailable":pin&&pin->kind==2?"Pinned folder":"App",sizeof(detail));
- if(available&&(!pin||pin->kind==1)){append(detail," - ",sizeof(detail));append(detail,start_preferences11.names[start_preferences11.assignment[app]],sizeof(detail));if(start_app_pin11(app)<S11_PINS)append(detail," - pinned",sizeof(detail));}
+ if(available&&(!pin||pin->kind==1)){append(detail," - ",sizeof(detail));append(detail,start_preferences11.names[start_preferences11.assignment[app]],sizeof(detail));if(width>400&&start_app_pin11(app)<S11_PINS)append(detail," - pinned",sizeof(detail));}
  ui73_fit(x+45,y+26,width-54,detail,5,preferences.dark?0xa7bcc4:0x56717d);
 #else
  ui73_fit(x+45,y+26,width-54,!available?"Unavailable":pin&&pin->kind==2?"Folder":pin&&pin->label[0]?titles[app]:"Application",5,preferences.dark?0xa7bcc4:0x56717d);
@@ -43,7 +43,12 @@ static void start_draw_manage11(int x,int y,int width,int height){s11_preference
  }
  if(!count)ui73_fit(x+24,list+10,width-48,"No pins. Right-click an installed app or native folder to add one.",1,ink());
  int tools=height<430?y+210:y+height-154;
- if(start_manage11==1){button(0,x+20,tools,110,"New category",S11_CAT_NEW,0);button(0,x+138,tools,100,"Rename",S11_CAT_RENAME,0);button(0,x+246,tools,100,p->hidden[start_category11]?"Show":"Hide",S11_CAT_HIDE,0);button(0,x+354,tools,54,"Up",S11_CAT_UP,0);button(0,x+416,tools,65,"Down",S11_CAT_DOWN,0);}
+#ifdef ENGINE_M12
+ int label_extra=30;
+#else
+ int label_extra=0;
+#endif
+ if(start_manage11==1){button(0,x+20,tools,110+label_extra,"New category",S11_CAT_NEW,0);button(0,x+138+label_extra,tools,100,"Rename",S11_CAT_RENAME,0);button(0,x+246+label_extra,tools,100,p->hidden[start_category11]?"Show":"Hide",S11_CAT_HIDE,0);button(0,x+354+label_extra,tools,54,"Up",S11_CAT_UP,0);button(0,x+416+label_extra,tools,65,"Down",S11_CAT_DOWN,0);}
  else if(start_manage11==2){file_button11(0,x+20,tools,95,"Remove",S11_PIN_REMOVE,count!=0,0);file_button11(0,x+123,tools,95,"Rename",S11_PIN_RENAME,count!=0,0);file_button11(0,x+226,tools,64,"Up",S11_PIN_UP,count!=0,0);file_button11(0,x+298,tools,72,"Down",S11_PIN_DOWN,count!=0,0);}
  else{file_button11(0,x+20,tools,120,"Remove pin",S11_TASK_REMOVE,count!=0,0);button(0,x+148,tools,210,p->centered?"Alignment: centered":"Alignment: left",S11_ALIGN,0);file_button11(0,x+366,tools,54,"Up",S11_TASK_UP,count&&start_task_selected11!=0,0);file_button11(0,x+428,tools,64,"Down",S11_TASK_DOWN,count&&start_task_selected11+1<count,0);}
 }
@@ -62,7 +67,8 @@ static void start_draw11(void){if(!launcher)return;
   button(0,left+20,top+112,100,"Pinned",S11_PINNED,start_preferences11.tab==0);button(0,left+128,top+112,100,"All apps",S11_ALL,start_preferences11.tab==1);button(0,left+236,top+112,115,"Categories",S11_CATEGORIES_VIEW,start_preferences11.tab==2);if(start_preferences11.tab==2)button(0,left+359,top+112,width-479,start_preferences11.names[start_category11],S11_CATEGORY_MENU,0);button(0,left+width-100,top+112,80,start_preferences11.view?"List":"Grid",S11_VIEW,0);
   start_build_results11();unsigned page=start_page_size11(),columns=start_columns11();if(start_cursor11>=start_result_count11)start_cursor11=0;if(start_page11*page>=start_result_count11)start_page11=0;unsigned first=start_page11*page;int cell=(width-32)/(int)columns;
 #ifdef ENGINE_M12
-  ui73_fit(left+24,top+156,width-48,start_query11[0]?"Search results - this device":start_preferences11.tab==0?"Pinned apps and folders":start_preferences11.tab==1?"Installed apps":start_preferences11.names[start_category11],5,ink());
+  char heading[128],number[24];copy(heading,start_query11[0]?"Search results - this device":start_preferences11.tab==0?"Pinned apps and folders":start_preferences11.tab==1?"Installed apps":start_preferences11.names[start_category11],sizeof(heading));
+  append(heading,"  |  ",sizeof(heading));if(start_result_count11){decimal(number,first+1);append(heading,number,sizeof(heading));append(heading,"-",sizeof(heading));unsigned last=first+page;if(last>start_result_count11)last=start_result_count11;decimal(number,last);append(heading,number,sizeof(heading));append(heading," of ",sizeof(heading));}decimal(number,start_result_count11);append(heading,number,sizeof(heading));if(!start_result_count11)append(heading," results",sizeof(heading));ui73_fit(left+24,top+156,width-48,heading,5,ink());
 #endif
   for(unsigned n=0;n<page&&first+n<start_result_count11;++n)start_draw_item11(first+n,left+20+(int)(n%columns)*cell,top+row_top+(int)(n/columns)*56,cell-8);
   if(!start_result_count11)ui73_paragraph(left+24,top+row_top+4,width-48,2,start_query11[0]?"No matching installed apps or pinned folders. Try a shorter name.":"Nothing here yet. Choose All apps, or right-click an app or folder to pin it.",ink());

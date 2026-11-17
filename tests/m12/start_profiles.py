@@ -15,6 +15,8 @@ def main():
                 p.desktop(0,True);p.desktop(42000,True);c.shot(g,'pinned-'+label)
                 x,y,w,h=s.bounds(g);assert x>=0 and y>=0
                 model=ui.symbol('model',installed=True)[0];logical=struct.unpack('<II',ui.memory(g,model+240,8));assert x+w<=logical[0] and y+h<=logical[1]-60
+                for _ in range(6):
+                    c.key(g,'tab');assert c.flag(g,'control_active') and 42000<=c.flag(g,'focused_action')<43400
                 p.desktop(42001,True)
                 if not s.prefs(g).view:p.desktop(42003,True)
                 c.shot(g,'all-apps-'+label)

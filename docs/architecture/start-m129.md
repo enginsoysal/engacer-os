@@ -1,4 +1,4 @@
-# M12.9 — Start and local search
+# M12.9 â€” Start and local search
 
 Status: implementation in progress; M12.8 remains the qualified download.
 
@@ -11,11 +11,11 @@ optional app removal still prunes its references without affecting the shell.
 
 The ordinary panel uses a shorter 560-logical-pixel height where space allows.
 A result heading identifies Pinned, Installed apps, a chosen category or local
-search. Existing vector icons retain app identity. Each result identifies an app
+search, and the visible range/total so pagination is discoverable. Existing vector icons retain app identity. Each result identifies an app
 and its category, or a pinned folder; unavailable destinations remain explicit.
 Search uses one full-width column so labels do not compete across narrow tiles.
-Grid navigation uses the same column calculation as drawing, including compact
-two-column layouts. List preference, category labels and pin order are retained.
+Grid navigation uses the same column calculation as drawing, including a
+defensive two-column branch for narrower logical widths. List preference, category labels and pin order are retained.
 
 Search ranks case-insensitive exact labels, prefixes, then substrings, preserving
 alphabetical ordering within equal ranks. The maximum catalogue/pin set remains
@@ -36,3 +36,9 @@ Do not mark this stage complete before matching-source native media, release
 downloads, English manuals and fresh public website/homepage verification pass.
 Later taskbar redesign remains M12.10. Existing M12.14, M12.16 and M12.18
 carry-forward observations remain open in their respective scopes.
+
+Visual review of the first prototype found a truncated New category button and
+redundant pinned text in narrow grid cells. The next candidate widens that
+button, retains pin status in full-width results, and shows result ranges. The
+old prototype reports and controlled test stop remain in diagnostics; they do
+not qualify the revised media.

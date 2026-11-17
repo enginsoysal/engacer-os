@@ -40,7 +40,7 @@ broader original-app/USB regression; those results qualify its own bytes.
 - [Install, run and remove the original Windows 7-Zip console app](windows-apps-m8.md)
 - [Use the standard apps and manage optional packages](apps-m74.md)
 - [Explore the desktop and navigate your folders](desktop-m73.md)
-- [Current release, checksums and qualified limits](../releases/m127-v0.12.7.md)
+- [Current release, checksums and qualified limits](../releases/m128-v0.12.8.md)
 - [Previous M11.6 final installation and matrix](install-m116.md)
 - [Repair boot files and review recovery limits](apps-m74.md#disks-and-recovery)
 - [Manage partitions and format safely](disk-manager-m71.md)
