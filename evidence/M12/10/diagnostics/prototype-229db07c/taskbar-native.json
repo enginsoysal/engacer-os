@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "stage": "M12.10",
+  "development_only": false,
+  "build_id": "229db07cfb27a2e6ed29546745d2e795",
+  "iso_sha256": "c003d666694f708eb38adcc6f6378df2fcf64ad9b6492d4ff1f5a2aa34a16678",
+  "owned_fixture": "df03fb6583214da2a5a9ff21a4af73e1",
+  "checks": [
+    "Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window",
+    "Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window",
+    "Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window",
+    "Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button",
+    "Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\taskbar_native.py\", line 96, in main\n    for name,app in [('settings',3),('downloads',5),('monitor',6),('disk utility',10),('software',11),('recovery',12),('archive',13),('help',18)]:launch(g,p,name,app)\n  File \"<project-root>\\tests\\m12\\taskbar_native.py\", line 41, in launch\n    before=s.windows(g,kind);s.search(g,p,name);assert s.results(g)==[(1,kind)],s.results(g);c.key(g,'ret');assert s.windows(g,kind)==before+1\nAssertionError: [(1, 5), (2, 5)]\n"
+}

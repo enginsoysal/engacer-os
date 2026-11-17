@@ -13,7 +13,7 @@ M12.8; completed tasks retain zero managed pages. [Complete public proof](../../
 passes: twenty matching downloads, 342 pages and 2,354 links, plus actual
 desktop/mobile browser verification. **M12.10 is active.**
 The [grouped taskbar implementation](../architecture/taskbar-m1210.md) is in
-progress. Compile guards and 295,901 production host bounds checks pass; native
+progress. Compile guards and 295,907 production host bounds/order checks pass; native
 group/window/context/overflow and publication gates remain pending.
 
 Previous [M12.8 complete public delivery](../../evidence/M12/8/publication-results.json)

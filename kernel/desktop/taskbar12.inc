@@ -3,11 +3,14 @@
 _Static_assert(T12_APPS==S11_APPS,"taskbar/catalogue identity bound");
 static char taskbar_labels12[DESKTOP_WINDOWS][96];
 static unsigned taskbar_overflow_page12;
-_Static_assert(sizeof(taskbar_labels12)+sizeof(taskbar_overflow_page12)<1024,"bounded shared taskbar menu state");
+static unsigned taskbar_running_order12[T12_APPS],taskbar_running_count12;
+_Static_assert(sizeof(taskbar_labels12)+sizeof(taskbar_overflow_page12)+sizeof(taskbar_running_order12)+sizeof(taskbar_running_count12)<1024,"bounded shared taskbar state");
 static unsigned taskbar_apps12(unsigned *list){
- unsigned count=0;
+ unsigned count=0,live[DESKTOP_WINDOWS];
+ for(unsigned i=0;i<model.count;++i)live[i]=model.windows[model.order[i]].app;
+ taskbar12_sync(taskbar_running_order12,&taskbar_running_count12,live,model.count);
  for(unsigned i=0;i<start_preferences11.tasks;++i){unsigned app=start_preferences11.task[i];if(app7_available(app))taskbar12_add(list,&count,app);}
- for(unsigned i=0;i<model.count;++i)taskbar12_add(list,&count,model.windows[model.order[i]].app);
+ for(unsigned i=0;i<taskbar_running_count12;++i)taskbar12_add(list,&count,taskbar_running_order12[i]);
  return count;
 }
 static unsigned taskbar_windows12(unsigned app,unsigned *shown,uint64_t *window){

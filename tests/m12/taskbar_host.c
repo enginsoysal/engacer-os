@@ -18,5 +18,12 @@ unsigned taskbar12_checks(void){
  }
  CHECK(taskbar12_visible(0,19)==0);CHECK(taskbar12_visible(144,19)==0);
  CHECK(taskbar12_visible(0x80000000u,19)==19);CHECK(taskbar12_visible(0xffffffffu,19)==19);
+ unsigned order[T12_APPS]={0},used=0,first[]={3,5,13},focus[]={5,13,3},changed[]={5,3,7};
+ taskbar12_sync(order,&used,first,3);CHECK(used==3&&order[0]==3&&order[1]==5&&order[2]==13);
+ taskbar12_sync(order,&used,focus,3);CHECK(used==3&&order[0]==3&&order[1]==5&&order[2]==13);
+ taskbar12_sync(order,&used,changed,3);CHECK(used==3&&order[0]==3&&order[1]==5&&order[2]==7);
+ taskbar12_sync(order,&used,0,0);CHECK(used==0);
+ unsigned invalid[]={0,20,0xffffffffu,7,7};taskbar12_sync(order,&used,invalid,5);CHECK(used==1&&order[0]==7);
+ used=21;taskbar12_sync(order,&used,first,3);CHECK(used==3&&order[0]==3&&order[1]==5&&order[2]==13);
  return 0;
 }

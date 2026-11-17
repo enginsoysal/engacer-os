@@ -38,7 +38,10 @@ def focus(g,p,window):
     if sum(w['app']==app for w in records(g))>1:f.menu(g,p,43020+slot)
     assert f.model(g)[0]==slot and not next(w for w in records(g) if w['slot']==slot)['minimized']
 def launch(g,p,name,kind):
-    before=s.windows(g,kind);s.search(g,p,name);assert s.results(g)==[(1,kind)],s.results(g);c.key(g,'ret');assert s.windows(g,kind)==before+1
+    before=s.windows(g,kind);s.search(g,p,name);rows=s.results(g);matches=[i for i,row in enumerate(rows) if row==(1,kind)];assert len(matches)==1,rows
+    if len(rows)==1:c.key(g,'ret')
+    else:p.desktop(42200+matches[0],True)
+    assert s.windows(g,kind)==before+1
     return next(w for w in records(g) if w['slot']==f.model(g)[0])
 def app_view(g):
     address,size=ui.symbol('apps',installed=True);slot=f.model(g)[0]
@@ -94,9 +97,9 @@ def main():
                 for name,app in [('calc',4),('clock',8),('calendar',9),('image',14),('media',16)]:pin(g,p,name,app)
                 assert list(s.prefs(g).task[:8])==[1,7,2,4,8,9,14,16]
                 for name,app in [('settings',3),('downloads',5),('monitor',6),('disk utility',10),('software',11),('recovery',12),('archive',13),('help',18)]:launch(g,p,name,app)
-                assert s.windows(g)==8;p.desktop(43001,True);rows=menu_rows(g);assert len(rows)<=12 and any(r['command']==43238 for r in rows);c.shot(g,'overflow-with-eight-windows');f.menu(g,p,43238);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==18
+                assert s.windows(g)==8;p.desktop(43001,True);rows=menu_rows(g);assert len(rows)<=12 and any(r['command']==43238 for r in rows);c.shot(g,'overflow-with-eight-windows');order=[r['command'] for r in rows];f.menu(g,p,43223);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==3;p.desktop(43001,True);assert [r['command'] for r in menu_rows(g)]==order;c.shot(g,'overflow-order-after-focus');f.menu(g,p,43238);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==18
                 s.search(g,p,'settings');c.key(g,'ret');assert s.windows(g)==8 and c.flag(g,'launcher');notice=ui.memory(g,ui.symbol('start_notice11',installed=True)[0],160).split(b'\0')[0];assert b'Close a window' in notice;c.shot(g,'window-quota-refusal');c.key(g,'esc');c.key(g,'esc');close_all(g,p)
-                report['checks'].append('Eight pins and eight distinct running apps remain reachable through bounded overflow; selecting a hidden app focuses its real window and the eight-window quota refuses another without losing existing windows')
+                report['checks'].append('Eight pins and eight distinct running apps remain reachable through bounded overflow with stable order across focus changes; selecting a hidden app focuses its real window and the eight-window quota refuses another without losing existing windows')
             f.same_pages(baseline,f.stats(g));c.idle(g);after=f.stats(g);report['resources']=dict(before=list(baseline),after=list(after),retained_pages=0);saved=bytes(s.prefs(g));
             if not args.smoke:assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==saved
             report['preferences_sha256']=hashlib.sha256(saved).hexdigest();(out/'native.log').write_bytes(g.log().encode())

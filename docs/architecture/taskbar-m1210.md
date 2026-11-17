@@ -5,7 +5,9 @@ Status: implementation in progress; M12.9 is the completed tested download.
 ## How and why
 
 Derive a unique bounded union of existing taskbar pins and live window app IDs.
-Preserve pin order, then append running apps in model order. A pinned app and
+Preserve pin order, then append running apps in first-appearance order. A
+bounded presence reconciliation keeps focus/Z-order changes from moving app
+buttons; closing the final window removes that runtime reference. A pinned app and
 its windows share one button and original icon. This avoids ambiguous duplicate
 launch/window buttons without adding a second window manager or preference ABI.
 
@@ -27,7 +29,9 @@ remain required before qualification.
 There are twenty catalogue slots, eight live windows and eight taskbar pins.
 The temporary app union is twenty integers; chooser labels are eight fixed
 96-byte strings, independent of filenames' lifetime. Existing generation-token
-storage is reused. One integer retains overflow page position. Visible app
+storage is reused. One integer retains overflow page position; twenty app IDs and a count retain
+nonpersistent first-appearance order. Together with labels this is below 1 KiB
+of logical fixed state; the complete compiled section delta is measured separately. Visible app
 buttons have 132-logical-pixel hit targets, separated by eight pixels; overflow
 reserves a distinct More apps control. Width arithmetic avoids signed overflow.
 

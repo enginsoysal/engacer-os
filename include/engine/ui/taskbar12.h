@@ -7,6 +7,17 @@ static inline void taskbar12_add(unsigned *list,unsigned *count,unsigned app){
  for(unsigned i=0;i<*count;++i)if(list[i]==app)return;
  list[(*count)++]=app;
 }
+/* Z-order changes must not reorder existing app buttons. Reconcile presence,
+ * preserving first appearance until the app's final window disappears. */
+static inline void taskbar12_sync(unsigned *order,unsigned *count,const unsigned *live,unsigned live_count){
+ unsigned mask=0;
+ for(unsigned i=0;i<live_count;++i)if(live[i]&&live[i]<T12_APPS)mask|=1u<<live[i];
+ if(*count>T12_APPS)*count=0;
+ unsigned kept=0;
+ for(unsigned i=0;i<*count;++i)if(order[i]&&order[i]<T12_APPS&&(mask&(1u<<order[i])))order[kept++]=order[i];
+ *count=kept;
+ for(unsigned i=0;i<live_count;++i)taskbar12_add(order,count,live[i]);
+}
 static inline unsigned taskbar12_visible(unsigned width,unsigned count){
  unsigned reserve=(width>=1000?180u:0u)+32u+112u;
  unsigned space=width>reserve?width-reserve:0;
