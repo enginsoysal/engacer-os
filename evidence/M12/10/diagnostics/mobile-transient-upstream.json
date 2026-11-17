@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "stage": "M12.10",
+  "source_commit": "1fdebf6ff7604bd2503bf8acf2ddfd69ade73cc2",
+  "observation": "Public mobile reload returned visible Upstream unavailable after desktop, guide, downloads and mobile menu open/close passed. Retry fresh public reads; do not treat as a successful mobile reload."
+}

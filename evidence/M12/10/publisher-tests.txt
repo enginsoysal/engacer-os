@@ -1,0 +1,31 @@
+✔ old public routes move to the canonical origin without losing the destination (1.6051ms)
+✔ repository links retain immutable commits, filenames, tags and anchors (0.3614ms)
+✔ old guide titles use the new brand and clearly identify their historical release (1.3577ms)
+✔ homepage separates M12 concepts from the native M11.6 download (3.1117ms)
+✔ a qualified native M12 stage uses its own real capture, guide and scope (0.6651ms)
+✔ open observed issues remain visible on the native homepage until resolved (0.8211ms)
+✔ M12 design follows tested installation without replacing its release (1.9808ms)
+✔ M12 native guides replace older installation without hiding established tasks (1.7136ms)
+✔ current install and M11 user tasks precede architecture and history (1.7553ms)
+✔ numeric names sort naturally and every uncategorized article stays discoverable once (0.5033ms)
+✔ a new stage replaces the previous install/release in Start here; history stays last (25.2342ms)
+✔ M11.5 is first and the older M11.4 install guide stays in the archive (0.3538ms)
+✔ active M12 design is labeled separately and cannot replace a native download (1.3305ms)
+✔ stage downloads require all matching public assets and prefer the newest stage (0.344ms)
+✔ M12 downloads require native assets, numeric stage order and public qualification (0.5324ms)
+✔ publication retries only repeatable operations and obeys bounded server delay (36.6976ms)
+✔ reject a key for any other site before writing (2.9598ms)
+✔ accept only the renamed canonical site identity (0.4732ms)
+✔ never overwrite a matching slug owned by the author rather than the publisher (0.516ms)
+✔ preserve unrelated author articles (1.63ms)
+✔ archive removed generated sources as drafts rather than delete them (0.3042ms)
+✔ recover only the exact, empty publisher-created draft (0.7487ms)
+✔ a mixed plan with a later collision is rejected before any operations are returned (0.288ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 339.9328
