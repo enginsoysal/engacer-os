@@ -45,7 +45,15 @@ def create_text(g,p,name,value):
     p.desktop(52000,True);f.menu(g,p,40018);c.key(g,'ctrl','a');c.type_text(g,name);c.key(g,'ret')
     p.desktop(f.item(g,p,name),True);c.key(g,'ret');c.type_text(g,value);c.key(g,'ctrl','s');p.desktop(49002,True)
 
-def close_focused(g,p):p.desktop(49002,True);p.drain()
+def focused_close(g):
+    slot=f.model(g)[0];rows=[r for r in f.controls(g) if r[5]==49002 and (r[4]&0xffffffff)==slot+1]
+    assert len(rows)==1,(slot,rows)
+    return rows[0]
+
+def focused_token(g):return focused_close(g)[4]
+
+def close_focused(g,p):
+    x,y,w,h,*_=focused_close(g);p.logical(x+w//2,y+h//2,True);p.drain()
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--smoke',action='store_true');args=parser.parse_args()
