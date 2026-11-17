@@ -263,3 +263,11 @@ evidence/M12/13/** -text -whitespace
 # M12.14 bounded feedback and modal admission.
 kernel/desktop/feedback14.inc -text whitespace=cr-at-eol
 evidence/M12/14/** -text -whitespace
+
+# M12.15 responsive setup and first use.
+kernel/install/wizard15-ui.inc -text whitespace=cr-at-eol
+kernel/install/wizard75-ui.inc -text whitespace=cr-at-eol
+kernel/install/setup11-ui.inc -text whitespace=cr-at-eol
+kernel/install/wizard6.c -text whitespace=cr-at-eol
+kernel/desktop/guide11.inc -text whitespace=cr-at-eol
+evidence/M12/15/** -text -whitespace

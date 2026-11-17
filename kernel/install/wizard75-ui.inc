@@ -12,10 +12,17 @@ static void outline75(control c,uint32_t color){
  gui6_rect(c.x,c.y,c.w,2,color);gui6_rect(c.x,c.y+c.h-2,c.w,2,color);gui6_rect(c.x,c.y,2,c.h,color);gui6_rect(c.x+c.w-2,c.y,2,c.h,color);
 }
 static void tap75(unsigned x,unsigned y,unsigned w,unsigned h,const char*text,unsigned action,unsigned kind){
+#ifdef ENGINE_M12
+ ui12_palette palette=ui12_theme(0,accent);unsigned state=(kind==2?UI12_DISABLED:0)|(kind!=2&&focus==controls?UI12_FOCUS:0);ui12_style style=ui12_control_style(palette,state,kind==1);if(kind==3){style.fill=0xfff1ed;style.ink=palette.ink;}
+ ui73_round(x,y,w,h,UI12_RADIUS,style.border);ui73_round(x+2,y+2,w-4,h-4,UI12_RADIUS-2,style.fill);
+ if(kind!=2&&controls<24){unsigned i=controls++;buttons[i]=(control){x,y,w,h,action};title75[i]=text;kind75[i]=kind;}
+ ui73_fit(x+12,y+(h-22)/2,w-24,text,UI12_BODY,style.ink);
+#else
  uint32_t bg=kind==1?accent:kind==2?0xeff4f7:kind==3?0xf8e9e4:0xffffff,ink=kind==1?0x102c25:kind==2?0x6a7e89:0x193746;
  ui73_round(x,y,w,h,8,kind==2?0xdce5e9:0xbacbd4);ui73_round(x+2,y+2,w-4,h-4,6,bg);
  if(kind!=2&&controls<24){unsigned i=controls++;buttons[i]=(control){x,y,w,h,action};title75[i]=text;kind75[i]=kind;}
  ui73_fit(x+16,y+(h-22)/2,w-32,text,2,ink);
+#endif
 }
 static unsigned suitable75(const storage_disk*d){return d&&d->readable&&m6_target_writable(d)&&d->sector_bytes==512&&d->sectors>=UINT64_C(4194304)&&d->sectors<=UINT64_C(4294967296);}
 static void inspect75(unsigned disk){const storage_disk*d=storage_get(disk);chosen_state75=3;if(!suitable75(d))return;unsigned status=m6_prepare(disk);chosen_state75=status==B_OK?1:status==B_IO?4:2;m6_cancel();}
@@ -39,7 +46,11 @@ static uint32_t model75(void){uint32_t h=2166136261u;const uint8_t*p=(const uint
  for(unsigned i=0;i<32;++i)h=(h^(uint8_t)keyboard_test11[i])*16777619u;if(step==3)h^=focus*211;
 #endif
 return h;}
+#ifdef ENGINE_M12
+static void __attribute__((unused)) render_legacy75(void){
+#else
 static void render72(void){
+#endif
  painting73=1;uint64_t began=counter75();unsigned oldfocus=focus;uint32_t sig=model75();gui7_clip_reset();
  unsigned x=body+12,y=top+98,cw=width-276;uint32_t ink=0x193746,muted=0x506976;
  if(framed75&&previous_mode75==0&&last_step75==5&&step==5){
@@ -160,3 +171,7 @@ for(unsigned i=0;i<controls;++i)if(kind75[i]==1)focus=i;}
  previous_focus75=focus;gui7_clip_reset();painting73=0;paint_cycles75=counter75()-began;if(paint_cycles75>longest_frame75)longest_frame75=paint_cycles75;
  serial_text("M73_VIEW step=");serial_hex(step);serial_text("\n");serial_text("M75_FRAME full=");serial_hex(full_frames75);serial_text(" content=");serial_hex(content_frames75);serial_text(" focus=");serial_hex(focus_frames75);serial_text("\n");
 }
+
+#ifdef ENGINE_M12
+#include "wizard15-ui.inc"
+#endif

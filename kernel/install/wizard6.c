@@ -1,5 +1,9 @@
 #ifdef ENGINE_M73
 #include <engine/ui/graphics73.h>
+#ifdef ENGINE_M12
+#include <engine/ui/components12.h>
+#include <engine/ui/icons12.h>
+#endif
 #ifdef ENGINE_M9
 #include <engine/ui/graphics9.h>
 #endif
@@ -34,7 +38,11 @@ unsigned m7_calculator_selection(void){return calculator_selection;}
 #endif
 typedef struct{unsigned x,y,w,h,action;} control;
 static control buttons[24];static unsigned left,top,width,height,body,bottom;
-static void label(unsigned x,unsigned y,const char*s,unsigned size,uint32_t color){gui6_text(x,y,s,size,color);}
+static void label(unsigned x,unsigned y,const char*s,unsigned size,uint32_t color){
+#ifdef ENGINE_M12
+ if(size==2)size=UI12_BODY;
+#endif
+ gui6_text(x,y,s,size,color);}
 static void decimal(uint64_t n,char*b){char temp[24];unsigned i=0,j=0;do{temp[i++]=(char)('0'+n%10);n/=10;}while(n);while(i)b[j++]=temp[--i];b[j]=0;}
 static void textnum(unsigned x,unsigned y,uint64_t n,const char*suffix){char b[64];decimal(n,b);unsigned i=0;while(b[i])++i;unsigned j=0;do{b[i+j]=suffix[j];}while(suffix[j++]);label(x,y,b,2,0xf0f5f5);}
 static void button(unsigned x,unsigned y,unsigned w,const char*title,unsigned action,unsigned primary){unsigned n=controls++;buttons[n]=(control){x,y,w,40,action};uint32_t bg=primary?accent:0x20353e;
@@ -46,7 +54,10 @@ static void button(unsigned x,unsigned y,unsigned w,const char*title,unsigned ac
  char fitted[64];unsigned columns=w>26?(w-26)/12:0;if(columns>63)columns=63;unsigned count=0;while(count<columns&&title[count]){fitted[count]=title[count];++count;}fitted[count]=0;
  if(title[count]&&count>=3){fitted[count-3]='.';fitted[count-2]='.';fitted[count-1]='.';}title=fitted;
 #endif
- #ifdef ENGINE_M73
+ #ifdef ENGINE_M12
+ ui12_palette p=ui12_theme(1,accent);ui12_style s=ui12_control_style(p,focus==n?UI12_FOCUS:0,primary);ui73_round(x,y,w,40,UI12_RADIUS,s.border);ui73_round(x+2,y+2,w-4,36,UI12_RADIUS-2,s.fill);ui73_fit(x+12,y+9,w-24,title,UI12_BODY,s.ink);
+ (void)bg;
+ #elif defined(ENGINE_M73)
  ui73_round(x,y,w,40,7,focus==n?0xe0fff5:0x3d5968);ui73_round(x+2,y+2,w-4,36,5,bg);ui73_fit(x+13,y+10,w-26,title,2,primary?0x112b24:0xffffff);
 #else
  label(x+13,y+13,title,2,primary?0x112b24:0xffffff);
@@ -94,10 +105,15 @@ static void render(void){
   if(u71_mode)u71_draw(x,y);
   else if(failure&&!diagnostics){label(x,y,"Let's get this sorted.",4,0xffffff);ui73_paragraph(x,y+72,cw,2,failure,0xffc3a9);ui73_paragraph(x,y+190,cw,2,"Keep the ISO connected for recovery. Your installation has not been marked successful.",0xb7cbd8);button(x,bottom+14,160,"Back",63,1);button(x+175,bottom+14,160,"Details",50,0);}
   else{label(x,y,"Recovery and details",4,0xffffff);ui73_paragraph(x,y+60,cw,2,"Choose an operation below. You will review the selected disk before anything is written.",0xb7cbd8);
+#ifdef ENGINE_M12
+   if(notice)ui73_paragraph(x,y+112,cw,3,notice,0xffc3a9);else{ textnum(x,y+120,pages_stats().current_pages*4," KiB managed RAM");textnum(x,y+150,pages_stats().peak_pages*4," KiB peak managed RAM");label(x,y+198,"Build",UI12_SECONDARY,0xb7cbd8);ui73_fit(x,y+222,cw,BUILD_ID,UI12_BODY,0xffffff);}
+   unsigned half=(cw-12)/2;if(!installed){button(x,y+280,half,"Repair boot files",80,0);button(x+half+12,y+280,half,"Update boot slot",81,0);button(x,y+332,half,"Roll back boot slot",82,0);}button(x+half+12,y+332,half,"Advanced terminal",64,0);button(x,bottom+14,160,"Return",62,1);
+#else
    textnum(x,y+128,pages_stats().current_pages*4," KiB managed RAM");textnum(x,y+160,pages_stats().peak_pages*4," KiB peak managed RAM");
    label(x,y+210,"Build",1,0xb7cbd8);label(x,y+238,BUILD_ID,1,0xffffff);
    if(!installed){button(x,y+300,140,"Repair",80,0);button(x+155,y+300,140,"Update",81,0);button(x+310,y+300,140,"Roll back",82,0);}
    button(x,y+360,230,"Advanced terminal",64,0);if(notice)ui73_paragraph(x,y+418,cw,2,notice,0xffc3a9);button(x,bottom+14,160,"Return",62,1);
+#endif
   }
   focus=old<controls?old:0;serial_text("M73_VIEW step=");serial_hex(step);serial_text("\n");return;
  }

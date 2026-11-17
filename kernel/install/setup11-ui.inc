@@ -64,6 +64,9 @@ static void setup_review11(unsigned x,unsigned y,unsigned cw){
 }
 static unsigned setup_action11(unsigned a){
  if(busy)return 0;
+#ifdef ENGINE_M12
+ if(a==50400&&step==3){accent=DISTRO_ACCENT;preferences.accent=accent;validation=0;render();return 1;}
+#endif
  if(a==2&&!maintenance&&step==0){if(!keyboard_page11){keyboard_page11=1;keyboard_test11[0]=0;keyboard_test_length11=0;}else{keyboard_page11=0;step=1;}validation=0;focus=0;render();return 1;}
  if(a==1&&!maintenance&&(keyboard_page11||step==1)){keyboard_page11=!keyboard_page11;step=0;replace_consent=0;m6_cancel();validation=0;focus=0;render();return 1;}
  if(a==30&&step==3){name_cursor11=0;while(preferences.user[name_cursor11])++name_cursor11;name_anchor11=0;render();return 1;}

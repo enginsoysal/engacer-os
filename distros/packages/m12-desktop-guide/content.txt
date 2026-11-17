@@ -1,91 +1,77 @@
 WELCOME TO ENGACER OS
 
-YOUR FIRST STEPS
-Click a file or desktop icon once to select it. Double-click or press Enter
-to open it. Buttons, Start results and menu commands use one click.
-Right-click an item for its actions. Escape closes a menu or cancels a drag.
+START HERE
+Your system is installed. No online account or terminal command is needed.
+Click a file once to select it. Double-click or press Enter to open it.
+Buttons and menu commands use one click. Right-click for available actions.
+Escape closes a menu or safely cancels a supported drag.
 
-START AND APPS
-Open Start to search installed apps and pinned folders. Use All apps or
-Categories to browse. Pins, categories and the taskbar can be customized.
-Optional apps are managed separately in Software Manager. Removing Calculator
-keeps your desktop, Files and base Settings working.
+FIND YOUR APPS
+Open Start to search all installed apps and pinned folders. Clear search
+returns to browsing. Pinned, All apps and Categories are separate views.
+Right-click to customize pins or categories. A taskbar badge counts windows;
+choose the particular window when an app has more than one open.
 
-YOUR FILES
-Use the Places list, Back, Forward, Up or the address field in Files.
-Select an item before choosing Copy, Cut, Recycle or Properties.
-Unavailable actions are muted. Recycle Bin has Restore and reviewed removal.
-Protected system locations are readable; their write actions stay unavailable.
+YOUR FOLDERS
+Files keeps Back, Forward, Up, Refresh, its address and Places visible.
+Home, Documents, Downloads and USB drives are in Places. One click selects a
+USB drive; double-click or Enter opens it. Back restores a previous location.
+Use Icons or Details. Name, Type and Size sort native folders; USB retains
+its directory order. Hover an abbreviated supported name to read it fully.
 
-DESKTOP OBJECTS
-My files, Documents, Appearance and Recycle Bin refer to protected services.
-Right-click one and choose Hide desktop icon to remove its desktop reference.
-Right-click empty space and choose Restore desktop icons to bring them back.
-These display choices save per user without removing any app or user file.
-Your own files and shortcuts are separate. Right-click empty space to create
-an item; its page is shown and the item is selected. Previous/Next reach more
-objects. Arrow keys follow the grid; Home/End select its first/last objects.
-Point to an object or select it to read its full name above the grid.
-Create desktop shortcut makes a reference: deleting it keeps the original.
-Recycle Bin can restore recycled files to their original folders. Recycling a
-pinned folder removes its Start pin; restore it, then pin it again if wanted.
+COPY, MOVE AND RECOVER
+Select an item, then use Copy, Cut or Paste, or open Actions.
+A menu explains protected, unavailable or busy operations. System files stay
+protected. Recycle Bin can restore your recycled files. Permanent removal
+always needs a separate review. Deleting a shortcut keeps its original.
+During a copy, read the destination and progress. Cancel stops unfinished
+work; completed files and copy sources stay. Keep both preserves a conflict
+under a new name. Do not disconnect a USB source while copying.
+USB provides supported FAT32 browsing and guarded one-file copies. Export is
+create-only and has no mid-file cancellation. Use Safe remove when finished.
+A disconnected drive keeps its identity instead of opening a replacement.
 
-SCROLLING
-When a folder has more rows than fit, use its scrollbar, wheel or page buttons.
-Drag the scrollbar thumb to move through the list. Escape during a thumb drag
-returns to its starting position. Click above or below the thumb to page.
-When the scrollbar has keyboard focus, arrows scroll and Home/End jump.
-
-KEYBOARD AND CONTROLS
-Tab and Shift+Tab move keyboard focus. The focus outline differs from selection.
-Enter activates the focused control. Releasing a pressed button outside it
-cancels that click. Text fields keep a visible caret and selection.
+SAVE YOUR WORK
+New document - not saved means no file has been saved yet. Save commits your
+text; Save as lets you choose a supported native folder and filename.
+Open, Save as and Choose folder share navigation and explicit replacement
+reviews. Cancel keeps your current work. Finish or cancel a file operation
+before saving another document. If a file changed elsewhere, use Save as
+with a new name to keep your edits before reopening the changed original.
 
 MAKE IT YOURS
-Search Start for Settings. Preview Light or Dark, accent, wallpaper and display
-size. Choose Save preferences to keep the changes after restarting.
-Auto chooses a suitable scale. Unsupported sizes preserve the usable setting.
-Move, resize, maximize, restore and snap windows; Alt+Tab switches between them.
-The app icon in a title bar opens its window menu. Point at a caption button
-for its name, or use Tab and Enter. Close still reviews unsaved editor work.
+Settings has Appearance, Display, Input and System. Appearance and Display
+have a real preview. Apply and save keeps it; Cancel preview, Escape or
+closing its owner restores the earlier choices. Restore defaults previews
+this distribution's appearance without reinstalling apps or changing files.
+Input choices save separately when clicked. If another file dialog blocks a
+Settings action, Show current dialog brings its real owner back to you.
+System opens Devices and hardware, Applications, Start and taskbar, and
+Quick settings. Remove or reinstall optional apps in Applications. Removing
+Calculator does not remove your desktop, Files or base Settings.
 
-USB DRIVES
-Files can browse supported FAT32 drives and perform guarded file copies.
-Use safe removal before unplugging. In the separate USB view, Your folders
-returns to your native folders. Device information is in Settings > Devices.
+WINDOWS AND CONTROLS
+Drag a title bar to move a window. Its icon opens the window menu. Caption
+buttons minimize, maximize/restore or close it. Closing unsaved text asks first.
+Alt+Tab switches windows. A minimized window stays available on the taskbar.
+Tab and Shift+Tab move control focus. Enter activates the focused control.
+Releasing a button outside it cancels that click. Menus close with Escape.
+
+DESKTOP AND QUICK SETTINGS
+My files, Documents, Appearance and Recycle Bin are independent references.
+Right-click a built-in icon to hide it; right-click empty space to restore
+icons. Your own files and shortcuts remain separate. Use arrow keys or the
+page controls when more desktop objects are available.
+Windows+A opens quick settings. Network and audio status describe actual
+providers. USB actions and Calendar do not require their optional apps.
+System messages have Dismiss. They do not close your other windows.
 
 INSTALLATION AND HELP
-The prepared VMware package includes a new blank disk. Select the disk row,
-review all changes, install and choose Restart to Engacer OS. The matching ISO
-may remain connected. For disk-only startup disconnect CD/DVD, keeping the
-same installed disk and VM. No online account is required.
-
-Read the matching release guide for qualified hardware and Windows-app profiles.
-English manuals and exact downloads: https://engaceros.brixcanvas.com
-Open-source code and checksums: https://github.com/enginsoysal/engacer-os
-
-Files keeps Back, Forward, Up, Refresh, the address field and Places visible for
-ordinary folders and USB. Back restores a real previous location, not just Home.
-USB drives: click a drive to select it; double-click or Enter to open it.
-Use Home or Documents in Places to leave USB. A disconnected drive keeps its
-identity in history; Refresh never silently opens a different device.
-The optional address editor accepts USB:2:/Games for drive 2. Ordinary browsing
-uses the same buttons and folders and needs no terminal command.
-USB currently provides FAT32 browsing and one-file create-only copies. Unsupported
-commands stay unavailable. Use Safe remove before disconnecting a writable drive.
-
-M12.6 Files presentation
-Use Icons or Details, or right-click the folder background to change view. Native Name, Type and Size headers change order; clicking the current header reverses it. Folders stay first and numbered names use natural order. Selection follows the actual item after sorting. Hover an abbreviated name for its complete supported name. USB keeps its real directory order; its sort controls remain unavailable. Native folders remember up to 32 view/order choices; your USB view preference is separate and does not bind a replacement device.
-Breadcrumbs show ancestors when they fit and mark skipped middle folders with an ellipsis. Edit always exposes the full supported address. Name tips disappear when their owner is covered or the pointer is no longer over that row.
-
-M12.7 File commands and transfers
-Use Actions for Copy, Cut, Paste, Rename, Recycle and supported Undo, even in
-a small Files window. During copying, read the phase and destination below.
-Cancel or Escape stops unfinished work; completed items and copy sources stay.
-Details remains available after success, cancellation or a stopped operation.
-USB Copy to Downloads uses the same conflict review as Copy/Paste. USB imports
-read and verify in small cancellable steps. USB export is create-only and
-currently cannot be cancelled mid-file. Use Safe remove before unplugging.
-
-M12.8 shared file dialogs
-Open, Save as and Choose folder use the same navigation. Click once to select, double-click or Enter to open. Cancel keeps your work. Existing files require explicit replacement review. Native app/format and provider limits still apply.
+Use the matching VMware package or ISO and its eight-step installation guide.
+Select the disk row, customize your choices, review erasure, install and
+choose Restart to Engacer OS. For disk-only startup disconnect only CD/DVD;
+keep the installed disk and the same VM. Public unsigned media use Secure
+Boot off. Keep the matching ISO for reviewed boot recovery.
+More languages, hardware and Windows apps need their own qualified profiles.
+English manuals: https://engaceros.brixcanvas.com
+Source and exact checksums: https://github.com/enginsoysal/engacer-os
