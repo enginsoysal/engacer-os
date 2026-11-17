@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "build_id": "931575f2d9d3cbfc2038125c394f7589",
+  "clone": {
+    "source_sha256": "9bbb31bc049e62221bb7fe25b81371d98516f8035e4ea9893afd073fe7fd688e",
+    "clone_sha256": "9bbb31bc049e62221bb7fe25b81371d98516f8035e4ea9893afd073fe7fd688e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "F1/Escape preserves the exact real Save As state, full-generation owner, focused control and unsaved Editor bytes; F6 cannot escape the modal review and explicit cancellation/discard remain available"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\access_ownership16.py\", line 43, in main\n    windows=t.records(g);assert len(windows)==8;a.key(g,'ctrl','esc');c.type_text(g,'calc');a.key(g,'ret');assert len(t.records(g))==8 and text(g,'shell_notice');assert not c.flag(g,'launcher')\nAssertionError\n"
+}

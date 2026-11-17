@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "build_id": "931575f2d9d3cbfc2038125c394f7589",
+  "checks": [
+    "A real Dark-style installation starts with an explicit contrasting first-guide boundary; F6 retains guide ownership and F1/Escape restores the actual guide action before explicit dismissal, with the base desktop still usable"
+  ],
+  "managed_current_bytes": 4288512
+}

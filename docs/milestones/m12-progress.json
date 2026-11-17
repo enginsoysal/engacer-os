@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.16",
-  "qualified_download": "M12.15",
+  "qualified_download": "M12.16",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -197,7 +197,7 @@
     },
     {
       "id": "M12.16",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Accessibility",
       "requires": "M12.15",
       "deliverable": "Keyboard-complete routes, visible focus, contrast, text/display scaling, reduced motion and semantic control identities.",
@@ -207,7 +207,12 @@
       "carry_forward": [
         "Check the drawn guest cursor against actual caption and client hit coordinates after 150%/200% changes. M12.4 raw 4K captures suggest a cursor-position discrepancy; isolate capture timing versus native pointer rendering before final qualification.",
         "Review first-start card boundary contrast over a dark Files window. M12.15 text and actions are readable, but the similarly coloured surfaces make the card edge too subtle; qualify an explicit contrast boundary with the accessibility themes."
-      ]
+      ],
+      "qualification": "M12-STAGE16-VM-v1",
+      "build_id": "931575f2d9d3cbfc2038125c394f7589",
+      "evidence": "evidence/M12/16/acceptance-results.json",
+      "carry_forward_status": "resolved_by_native_qualification",
+      "carry_forward_resolution": "Actual physical VRAM/input/logical/cursor edge observations at 150% and 200%, scaled client/caption clicks, and real Light/Dark first-start boundary and guide/help ownership checks pass."
     },
     {
       "id": "M12.17",
@@ -229,7 +234,8 @@
       "acceptance": "Final native desktop/setup/USB/error/memory tests, all named controller profiles, original 7-Zip MSI lifecycle, exact source/assets and public readback.",
       "publication": "required_before_next_stage",
       "carry_forward": [
-        "Revisit the BrixCanvas article custom-domain email-sharing observation in evidence/M12/12/website-observations.json during final website qualification."
+        "Revisit the BrixCanvas article custom-domain email-sharing observation in evidence/M12/12/website-observations.json during final website qualification.",
+        "Review high-contrast reduced-effects picker and notification outer boundaries: text/actions are legible, but black surfaces lack a distinct outline; see evidence/M12/16/visual-review.json."
       ]
     }
   ],

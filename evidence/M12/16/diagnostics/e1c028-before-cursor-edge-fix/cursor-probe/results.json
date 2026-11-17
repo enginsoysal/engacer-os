@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "development_only": true,
+  "clone": {
+    "source_sha256": "e2a8803fa3e7c8a6d0550d2119a0a4f9a9050ca439b048d69cbaab8df4b15e69",
+    "clone_sha256": "e2a8803fa3e7c8a6d0550d2119a0a4f9a9050ca439b048d69cbaab8df4b15e69",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "profiles": [
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "observations": [
+        {
+          "requested": [
+            960,
+            600
+          ],
+          "physical": [
+            960,
+            600
+          ],
+          "logical": [
+            640,
+            400
+          ],
+          "cursor": [
+            960,
+            600,
+            22,
+            36
+          ]
+        },
+        {
+          "requested": [
+            1919,
+            1199
+          ],
+          "physical": [
+            1905,
+            1176
+          ],
+          "logical": [
+            1270,
+            784
+          ],
+          "cursor": [
+            1898,
+            1164,
+            22,
+            36
+          ]
+        },
+        {
+          "requested": [
+            0,
+            0
+          ],
+          "physical": [
+            0,
+            0
+          ],
+          "logical": [
+            0,
+            0
+          ],
+          "cursor": [
+            0,
+            0,
+            22,
+            36
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "observations": [
+        {
+          "requested": [
+            1920,
+            1080
+          ],
+          "physical": [
+            1920,
+            1080
+          ],
+          "logical": [
+            960,
+            540
+          ],
+          "cursor": [
+            1920,
+            1080,
+            30,
+            48
+          ]
+        },
+        {
+          "requested": [
+            3839,
+            2159
+          ],
+          "physical": [
+            3810,
+            2112
+          ],
+          "logical": [
+            1905,
+            1056
+          ],
+          "cursor": [
+            3810,
+            2112,
+            30,
+            48
+          ]
+        },
+        {
+          "requested": [
+            0,
+            0
+          ],
+          "physical": [
+            0,
+            0
+          ],
+          "logical": [
+            0,
+            0
+          ],
+          "cursor": [
+            0,
+            0,
+            30,
+            48
+          ]
+        }
+      ]
+    }
+  ]
+}

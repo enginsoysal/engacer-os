@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "build_id": "db67c09096795b848c7c13dc9dce2f49",
+  "clone": {
+    "source_sha256": "cd9c1a640c48052ef923fa5a061978f3335c07bf927e12eda2b17fc8b8f674c8",
+    "clone_sha256": "cd9c1a640c48052ef923fa5a061978f3335c07bf927e12eda2b17fc8b8f674c8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\access_ownership16.py\", line 18, in main\n    baseline=f.stats(g);editor=a.launch(g,'text editor',2);c.type_text(g,'Accessibility preserves this unsaved document');a.activate(g,54001);assert c.flag(g,'file_dialog_state11')==10;before=ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0],ui.symbol('file_dialog_state11',installed=True)[1]);a.key(g,'tab');saved_focus=a.focus(g);a.key(g,'f1');assert c.flag(g,'access_help16');item=a.semantic(g,'access_help_item16');assert item['owner']==editor['token'] and item['label'];c.shot(g,'save-as-focus-help');a.key(g,'esc');assert a.focus(g)==saved_focus and ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0],len(before))==before and bytes(t.app_view(g).text)==b'Accessibility preserves this unsaved document';a.key(g,'f6');assert c.flag(g,'file_dialog_state11')==10 and not c.flag(g,'access_region16');a.activate(g,54010);assert not c.flag(g,'file_dialog_state11');a.close(g);p.desktop(60,True);assert not t.records(g)\nAssertionError\n"
+}

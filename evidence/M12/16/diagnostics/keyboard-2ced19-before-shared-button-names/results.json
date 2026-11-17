@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "development_only": true,
+  "stage": "M12.16",
+  "build_id": "2ced19f3c88e054e19b24d02e82f109a",
+  "iso_sha256": "4eff0e8f41efb1d6793f7bc9d8a840f040dab8c97aa4102f3e59787cdf3d9694",
+  "owned_fixture": "06f01095c0914519a2e959b7efef2128",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\access_native16.py\", line 18, in main\n    g.qmp=observed;p=a.keyboard_install(g,out);assert c.flag(g,'guide_open11');c.shot(g,'visible-first-guide');a.key(g,'f1');assert c.flag(g,'access_help16');item=a.semantic(g,'access_help_item16');assert item['action']==46000 and 'desktop' in item['label'];c.shot(g,'guide-help');a.key(g,'esc');assert c.flag(g,'guide_open11') and a.focus(g)==(1,0,46000);a.key(g,'esc');assert not c.flag(g,'guide_open11');a.close(g);assert not t.records(g);baseline=f.stats(g)\nAssertionError\n"
+}

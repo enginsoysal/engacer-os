@@ -1,0 +1,234 @@
+{
+  "passed": true,
+  "build_id": "931575f2d9d3cbfc2038125c394f7589",
+  "iso_sha256": "15b0ab8d350d7c157f150bb21c81dbc01bd12eab3d77fa57ff7d885eae34578a",
+  "clone": {
+    "source_sha256": "9bbb31bc049e62221bb7fe25b81371d98516f8035e4ea9893afd073fe7fd688e",
+    "clone_sha256": "9bbb31bc049e62221bb7fe25b81371d98516f8035e4ea9893afd073fe7fd688e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "profiles": [
+    {
+      "name": "compact-light",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0,
+      "pointer_observations": []
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0,
+      "pointer_observations": []
+    },
+    {
+      "name": "compact-150",
+      "physical": [
+        1280,
+        1024
+      ],
+      "logical": [
+        853,
+        682
+      ],
+      "scale": 3,
+      "theme": "high contrast",
+      "managed_current_bytes": 5435392,
+      "managed_peak_bytes": 5435392,
+      "retained_pages": 0,
+      "pointer_observations": []
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "high contrast",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "retained_pages": 0,
+      "pointer_observations": [
+        {
+          "physical": [
+            960,
+            600
+          ],
+          "logical": [
+            640,
+            400
+          ],
+          "cursor_rect": [
+            960,
+            600,
+            22,
+            36
+          ],
+          "changed_pixels": 238,
+          "difference_bounds": [
+            1,
+            1,
+            15,
+            28
+          ]
+        },
+        {
+          "physical": [
+            1919,
+            1199
+          ],
+          "logical": [
+            1279,
+            799
+          ],
+          "cursor_rect": [
+            1919,
+            1199,
+            1,
+            1
+          ],
+          "changed_pixels": 0,
+          "difference_bounds": null
+        },
+        {
+          "physical": [
+            0,
+            0
+          ],
+          "logical": [
+            0,
+            0
+          ],
+          "cursor_rect": [
+            0,
+            0,
+            22,
+            36
+          ],
+          "changed_pixels": 238,
+          "difference_bounds": [
+            1,
+            1,
+            15,
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "high contrast",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0,
+      "pointer_observations": [
+        {
+          "physical": [
+            1920,
+            1080
+          ],
+          "logical": [
+            960,
+            540
+          ],
+          "cursor_rect": [
+            1920,
+            1080,
+            30,
+            48
+          ],
+          "changed_pixels": 345,
+          "difference_bounds": [
+            2,
+            2,
+            20,
+            37
+          ]
+        },
+        {
+          "physical": [
+            3839,
+            2159
+          ],
+          "logical": [
+            1919,
+            1079
+          ],
+          "cursor_rect": [
+            3839,
+            2159,
+            1,
+            1
+          ],
+          "changed_pixels": 0,
+          "difference_bounds": null
+        },
+        {
+          "physical": [
+            0,
+            0
+          ],
+          "logical": [
+            0,
+            0
+          ],
+          "cursor_rect": [
+            0,
+            0,
+            30,
+            48
+          ],
+          "changed_pixels": 378,
+          "difference_bounds": [
+            2,
+            2,
+            20,
+            37
+          ]
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "1280x1024 permits actual 150% logical 853x682 while refusing 200% without changing the accepted scale",
+    "Five actual compact Light/Dark, compact 150%, ordinary 150% and 4K contrast profiles keep all five Settings categories and Focus Help readable and within the logical viewport",
+    "Physical front VRAM differs from the actual compositor shadow at the cursor; 150% and 200% hotspot, logical input and rendered rectangle agree at the middle and both screen corners; scaled client/caption clicks still activate their actual targets",
+    "Independent accessibility survives each profile; cancelled appearance/scale previews preserve exact appearance bytes, the source fixture remains unchanged, completed tasks retain zero pages and the desktop halts at idle"
+  ]
+}

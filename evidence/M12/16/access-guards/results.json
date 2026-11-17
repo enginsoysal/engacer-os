@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "mode": "M11",
+      "source": "kernel/core/display.c",
+      "passed": true
+    },
+    {
+      "mode": "M11",
+      "source": "kernel/input/legacy.c",
+      "passed": true
+    },
+    {
+      "mode": "M11",
+      "source": "kernel/usb/xhci.c",
+      "passed": true
+    },
+    {
+      "mode": "M12",
+      "source": "kernel/core/display.c",
+      "passed": true
+    },
+    {
+      "mode": "M12",
+      "source": "kernel/input/legacy.c",
+      "passed": true
+    },
+    {
+      "mode": "M12",
+      "source": "kernel/usb/xhci.c",
+      "passed": true
+    }
+  ],
+  "scope": "Compile-only changed display/input provider guards; native M12 runtime remains separately required, and earlier M11 binaries are not requalified.",
+  "source_sha256": {
+    "kernel/core/graphics9.inc": "3c1199b741f638ddc5c14682f8e8464bf9d0af46fd75d70fab5a356a6dbcb835",
+    "kernel/core/graphics73.inc": "1db04ba321b7e4644dde1261149f31b5e81e87a44d155e2678e92cdc49b890b8",
+    "kernel/core/display.c": "01b25eb25de61f61a194b9597c2667f627337fe7344358cc3f947504593aac5a",
+    "kernel/input/legacy.c": "47d8bb0009a7cdbd863e4c6b8d799346f842f8e69fc254f51bac1df3864bee15",
+    "kernel/usb/xhci.c": "f100b6dd495b88db683a06536e49bb8458faf8c74e9161ee04b51ba6551ceefc",
+    "tests/m12/access_guards16.py": "97adcdd0966aa669101d835b4394d66157de3c95986d7e23d2d617e5399819b2"
+  }
+}

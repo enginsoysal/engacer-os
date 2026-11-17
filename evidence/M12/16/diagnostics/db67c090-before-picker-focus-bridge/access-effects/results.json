@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "build_id": "db67c09096795b848c7c13dc9dce2f49",
+  "clone": {
+    "source_sha256": "cd9c1a640c48052ef923fa5a061978f3335c07bf927e12eda2b17fc8b8f674c8",
+    "clone_sha256": "cd9c1a640c48052ef923fa5a061978f3335c07bf927e12eda2b17fc8b8f674c8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "Ordinary and high-contrast native held-button input produces actual icon movement with effects enabled; reduced effects preserves exact icon pixels under the same real captured press, cancels release outside, adds no retained pages and halts at idle"
+  ],
+  "profiles": [
+    {
+      "flags": 0,
+      "actual_held_capture": true,
+      "icon_pixels_changed": true
+    },
+    {
+      "flags": 2,
+      "actual_held_capture": true,
+      "icon_pixels_changed": false
+    },
+    {
+      "flags": 1,
+      "actual_held_capture": true,
+      "icon_pixels_changed": true
+    },
+    {
+      "flags": 3,
+      "actual_held_capture": true,
+      "icon_pixels_changed": false
+    }
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18991,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      18991,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

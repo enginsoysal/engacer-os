@@ -1,7 +1,6 @@
 # Keyboard and accessibility — M12.16
 
-This guide describes the M12.16 implementation under qualification. Use its
-matching release only after native and public publication checks pass.
+M12-STAGE16-VM-v1 native qualification passes. Use its matching M12.16 media; complete public delivery closes separately before M12.17.
 
 ## Open Accessibility
 

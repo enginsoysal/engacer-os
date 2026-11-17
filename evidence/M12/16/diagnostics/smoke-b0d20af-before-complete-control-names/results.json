@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "development_only": true,
+  "build_id": "b0d20af48dae5689a9508d8839a9e24d",
+  "owned_fixture": "9f2e4b5850574dd5b27aa7defb5a9d03",
+  "checks": [
+    "Actual installation, guide help, settings contrast/reduced effects/reset and keyboard taskbar focus are exercised in the native guest"
+  ]
+}

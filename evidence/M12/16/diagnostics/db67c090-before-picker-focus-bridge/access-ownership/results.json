@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "build_id": "db67c09096795b848c7c13dc9dce2f49",
+  "clone": {
+    "source_sha256": "cd9c1a640c48052ef923fa5a061978f3335c07bf927e12eda2b17fc8b8f674c8",
+    "clone_sha256": "cd9c1a640c48052ef923fa5a061978f3335c07bf927e12eda2b17fc8b8f674c8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\access_ownership16.py\", line 29, in main\n    assert item['owner']==editor['token'] and item['label']\nAssertionError\n"
+}

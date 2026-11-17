@@ -1,0 +1,26 @@
+{
+  "guide": 1,
+  "before": [
+    1,
+    0,
+    46000
+  ],
+  "semantic": {
+    "owner": 0,
+    "action": 0,
+    "role": 0,
+    "label": ""
+  },
+  "help": 1,
+  "after": [
+    1,
+    0,
+    60020
+  ],
+  "help_item": {
+    "owner": 0,
+    "action": 46000,
+    "role": 1,
+    "label": "Selected control"
+  }
+}

@@ -32,3 +32,5 @@ Back, Forward, Up and Home remain distinct. Unsupported functions stay explicit.
 
 Concepts show proposed behavior, never a completed driver or runtime feature.
 Native-stage manuals and downloads update after each accepted implementation.
+
+[Keyboard and accessibility](accessibility-m1216.md) covers native Focus Help, pane navigation and independent appearance aids.

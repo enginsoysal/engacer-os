@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "build_id": "931575f2d9d3cbfc2038125c394f7589",
+  "clone": {
+    "source_sha256": "9bbb31bc049e62221bb7fe25b81371d98516f8035e4ea9893afd073fe7fd688e",
+    "clone_sha256": "9bbb31bc049e62221bb7fe25b81371d98516f8035e4ea9893afd073fe7fd688e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "F1/Escape preserves the exact real Save As state, full-generation owner, focused control and unsaved Editor bytes; F6 cannot escape the modal review and explicit cancellation/discard remain available"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\access_ownership16.py\", line 54, in main\n    assert c.flag(g,'access_region16')==3 and a.focus(g)==(1,0,60002);a.key(g,'f1');assert c.flag(g,'access_help16') and a.semantic(g,'access_help_item16')['label']=='Dismiss notification' and t.records(g)==windows;c.shot(g,'eight-windows-notification-help');a.key(g,'esc');assert a.focus(g)==(1,0,60002);a.key(g,'ret');assert not text(g,'shell_notice') and t.records(g)==windows\nAssertionError\n"
+}

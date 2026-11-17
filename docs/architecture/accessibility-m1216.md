@@ -1,7 +1,6 @@
 # M12.16 native accessibility
 
-Status: implementation under native qualification. M12.15 remains the qualified
-public download until the M12.16 media, source and publication gates pass.
+M12-STAGE16-VM-v1 native qualification passes. Complete public delivery closes separately before M12.17.
 
 ## Independent preferences
 
@@ -72,7 +71,7 @@ startup. A choice that would produce a smaller workspace remains refused;
 1280×1024 at 200% is not admitted. Legacy non-M12 scale limits stay unchanged.
 Advanced partition tools retain their separately documented 1024×768 minimum.
 
-Native tests must isolate the previous cursor observation using settled physical
+Native tests isolate the previous cursor observation using settled physical
 input coordinates, logical hit coordinates, the actual cursor rectangle and
 real front-buffer pixels at 150% and 200%. A framebuffer screenshot alone is
 insufficient to identify an input defect. Ordinary, compact and physical 4K

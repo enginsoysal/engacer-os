@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "build_id": "931575f2d9d3cbfc2038125c394f7589",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\access_firstuse16.py\", line 11, in main\n    p=ui.Pointer(g);p.drain();z.go(g,p,2,2,100,2,2,50301,2);at=z.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=z.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);ui.Pointer(g).drain();assert c.flag(g,'guide_open11') and a.h.colors(g)[1]==1;c.shot(g,'dark-first-use');rect=struct.unpack('<4i',ui.memory(g,ui.symbol('guide_bounds11',16,True)[0],16));assert rect[0]>=0 and rect[1]>=0;a.key(g,'f6');assert c.flag(g,'guide_open11') and a.focus(g)==(1,0,46000);a.key(g,'f1');assert a.semantic(g,'access_help_item16')['action']==46000;c.shot(g,'dark-guide-help');a.key(g,'esc');assert c.flag(g,'guide_open11') and a.focus(g)==(1,0,46000);a.key(g,'esc');assert not c.flag(g,'guide_open11');a.close(g);assert not a.t.records(g);c.idle(g);report['managed_current_bytes']=a.f.stats(g)[0]*4096;(out/'native.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('guide_bounds11', [])\n"
+}

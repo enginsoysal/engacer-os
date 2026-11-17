@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "stage": "M12.16",
+  "build_id": "931575f2d9d3cbfc2038125c394f7589",
+  "scope": "Agent review of actual final-build native VRAM captures, supported by separate keyboard, focus, pixel, ownership and persisted-byte tasks. Not a participant usability study or external screen-reader qualification.",
+  "reviewed": [
+    "access-native/visible-first-guide.png",
+    "access-native/saved-high-contrast-and-reduced-motion.png",
+    "access-profiles/accessibility-compact-light.png",
+    "access-profiles/accessibility-compact-dark.png",
+    "access-profiles/accessibility-4k.png",
+    "access-ownership/save-as-focus-help.png",
+    "access-ownership/eight-windows-notification-help.png",
+    "access-firstuse/dark-first-use.png"
+  ],
+  "findings": [
+    "Clarity: independent accessibility checkmarks and saved-state messages distinguish immediate accessibility saves from Appearance preview/Apply.",
+    "Convenience: actual keyboard-only installation, Start search, Files navigation and F6 panes keep ordinary tasks available without a mouse; F1/Escape retains work.",
+    "User friendliness: Focus Help uses the actual current control name and role, including the picker own focus, checkboxes and Dismiss; existing file reviews retain ownership.",
+    "Graphical quality: shared native Inter typography, measured labels, bounded layouts and explicit Focus Help/first-guide boundaries remain clear in compact Light/Dark and physical 4K high contrast.",
+    "Readability: reviewed essential controls/text have no overlap or clipping within their active surface; overlaid help intentionally covers inactive underlying controls. Light and Dark first-start cards now have visible contrasting edges.",
+    "Physical and logical pointer positions and actual rendered rectangles agree at 150%/200%, including clipped screen edges; pixel observations are separate from a capture-timing assumption.",
+    "In high-contrast reduced-effects mode, picker and notification text/actions remain legible, but their black outer surfaces do not have the explicit outline used by Focus Help. Retain this visual polish observation for the M12.18 final review."
+  ],
+  "capture_sha256": {
+    "access-native/visible-first-guide.png": "d9a7478d5f685ef7b4e53715f6436d5cb26088ae22df14f8b51368015c24a245",
+    "access-native/saved-high-contrast-and-reduced-motion.png": "31eb9f3d3f98897c8ac5ccd5ec29d205ded7530198ea7518e36188fdfa74254f",
+    "access-profiles/accessibility-compact-light.png": "028bc273b792785739db178035d52697ed9bdce7abac7d5be05b02e7d76c8882",
+    "access-profiles/accessibility-compact-dark.png": "aa442187dd0d8de8dc222987b099c0056c262ec84366069ff9c20c3e14808d6b",
+    "access-profiles/accessibility-4k.png": "e78a798ff9ae07c782ec1aad7b605199ecb62fb2562da63a27a13c3709874de2",
+    "access-ownership/save-as-focus-help.png": "3803fd93861a44578af17c077b45376de3cdff9baca02bf25188e20dc5bfefb6",
+    "access-ownership/eight-windows-notification-help.png": "5aa0459d8c73925e5afbe10f3e31c5da7764343ae8bc967cc352bfe34ae93615",
+    "access-firstuse/dark-first-use.png": "24f86c62be3e29443ffd8a75a1fe000d61f730a16e7ec4a185439c4a9a6ac915"
+  },
+  "retained_observations": [
+    "M12.17 bounded shadow raster performance",
+    "M12.18 final controller/original-app and site-sharing observations",
+    "M12.18 high-contrast picker/notification outer boundary polish"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "development_only": false,
+  "stage": "M12.16",
+  "build_id": "e1c028ccc4cea5294813a4434344ba71",
+  "iso_sha256": "2ec61cb40a0884c24b530d58dce11061172c0f494ee36e970c93a2229c1cbb07",
+  "owned_fixture": "af330bd128a74833940fcaa731e9338c",
+  "checks": [
+    "The real eight-step installation, first-start help/dismissal, Start search, Settings checkbox Space activation, taskbar and desktop F6/Enter, Files Documents/Back and exact semantic names run with no mouse events sent by the harness",
+    "High contrast and reduced effects save an exact independent 16-byte record, preserve the entire appearance record, restore the original Light theme when contrast is disabled and expose checked state through native Focus Help",
+    "Two independent no-ISO USB and PS2 startups reload exact accessibility, appearance and Start records; F1/F6 work through both real input providers and the native desktop halts at idle"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17710,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "preferences_sha256": "72aaf3b4c9b2f0025562312690afb073cfbef51edf64fb8a8ade0912fc673b34",
+  "accessibility_record_hex": "55413136010000000300000000000000"
+}

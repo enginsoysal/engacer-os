@@ -1,0 +1,158 @@
+[
+  {
+    "step": "opened",
+    "focus": [
+      0,
+      0,
+      0
+    ],
+    "semantic": {
+      "owner": 0,
+      "action": 0,
+      "role": 0,
+      "label": ""
+    },
+    "address": [
+      "",
+      0
+    ],
+    "app": {
+      "slot": 1,
+      "path": "/Users/Owner",
+      "notice": "",
+      "offset": 0,
+      "mode": 0,
+      "disk": 0,
+      "part": 0,
+      "context": 0,
+      "selected": 0,
+      "usb_path": ""
+    }
+  },
+  {
+    "step": "documents",
+    "focus": [
+      0,
+      4294967298,
+      94
+    ],
+    "semantic": {
+      "owner": 4294967298,
+      "action": 94,
+      "role": 1,
+      "label": "Documents"
+    },
+    "address": [
+      "",
+      0
+    ],
+    "app": {
+      "slot": 1,
+      "path": "/Users/Owner/Documents",
+      "notice": "",
+      "offset": 0,
+      "mode": 0,
+      "disk": 0,
+      "part": 0,
+      "context": 0,
+      "selected": 0,
+      "usb_path": ""
+    }
+  },
+  {
+    "step": "back-help",
+    "focus": [
+      1,
+      0,
+      60020
+    ],
+    "semantic": {
+      "owner": 0,
+      "action": 60020,
+      "role": 1,
+      "label": "Close"
+    },
+    "address": [
+      "",
+      0
+    ],
+    "app": {
+      "slot": 1,
+      "path": "/Users/Owner/Documents",
+      "notice": "",
+      "offset": 0,
+      "mode": 0,
+      "disk": 0,
+      "part": 0,
+      "context": 0,
+      "selected": 0,
+      "usb_path": ""
+    },
+    "help": {
+      "owner": 4294967298,
+      "action": 90,
+      "role": 1,
+      "label": "Back"
+    }
+  },
+  {
+    "step": "restored",
+    "focus": [
+      1,
+      4294967298,
+      90
+    ],
+    "semantic": {
+      "owner": 4294967298,
+      "action": 90,
+      "role": 1,
+      "label": "Back"
+    },
+    "address": [
+      "",
+      0
+    ],
+    "app": {
+      "slot": 1,
+      "path": "/Users/Owner/Documents",
+      "notice": "",
+      "offset": 0,
+      "mode": 0,
+      "disk": 0,
+      "part": 0,
+      "context": 0,
+      "selected": 0,
+      "usb_path": ""
+    }
+  },
+  {
+    "step": "back-activated",
+    "focus": [
+      0,
+      4294967298,
+      90
+    ],
+    "semantic": {
+      "owner": 4294967298,
+      "action": 90,
+      "role": 1,
+      "label": "Back"
+    },
+    "address": [
+      "",
+      0
+    ],
+    "app": {
+      "slot": 1,
+      "path": "/Users/Owner",
+      "notice": "",
+      "offset": 0,
+      "mode": 0,
+      "disk": 0,
+      "part": 0,
+      "context": 0,
+      "selected": 0,
+      "usb_path": ""
+    }
+  }
+]
