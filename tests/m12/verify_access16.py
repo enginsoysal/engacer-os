@@ -14,11 +14,11 @@ def public(data):
 
 def main():
     assert not (OUT/'publication-results.json').exists()
-    meta=load(ROOT/'dist/m12stage16-build-manifest.json');starter=load(ROOT/'dist/m12stage16-starter-manifest.json');groups=['access-native','access-profiles','access-ownership','access-invalid','access-effects','access-host','bios','vmware-results','motion','taskbar-host','pack-host','recovery'];reports={name:load(WORK/name/'results.json') for name in groups};native=reports['access-native'];profiles=reports['access-profiles'];iso=meta['artifacts']['EngacerOS-M12STAGE16.iso']['sha256']
+    meta=load(ROOT/'dist/m12stage16-build-manifest.json');starter=load(ROOT/'dist/m12stage16-starter-manifest.json');groups=['access-native','access-profiles','access-ownership','access-invalid','access-effects','access-firstuse','access-host','access-guards','bios','vmware-results','motion','taskbar-host','pack-host','recovery'];reports={name:load(WORK/name/'results.json') for name in groups};native=reports['access-native'];profiles=reports['access-profiles'];iso=meta['artifacts']['EngacerOS-M12STAGE16.iso']['sha256']
     assert meta['release_version']=='0.12.16' and meta['qualification_scope']=='M12-STAGE16-VM-v1'
     for name,row in reports.items():
         assert row['passed'],name
-        if name not in ('taskbar-host','pack-host','access-host'):assert row['build_id']==meta['build_id'],name
+        if name not in ('taskbar-host','pack-host','access-host','access-guards'):assert row['build_id']==meta['build_id'],name
         if 'iso_sha256' in row:assert row['iso_sha256']==iso,name
         if 'resources' in row:
             r=row['resources'];assert r['retained_pages']==0 and r['after'][0]<=r['before'][0] and r['before'][3]==r['after'][3],name
@@ -33,13 +33,14 @@ def main():
         assert row['retained_pages']==0
     assert len(reports['access-invalid']['cases'])==6 and len(reports['access-ownership']['checks'])>=2
     assert [p['flags'] for p in reports['access-effects']['profiles']]==[0,2,1,3]
+    assert len(reports['access-firstuse']['checks'])>=1 and len(reports['access-guards']['checks'])==6
     assert native['preferences_sha256']=='72aaf3b4c9b2f0025562312690afb073cfbef51edf64fb8a8ade0912fc673b34'
     assert native['accessibility_record_hex']=='55413136010000000300000000000000'
     assert len(reports['bios']['checks'])==len(reports['vmware-results']['checks'])==3
     assert reports['vmware-results']['existing_vm_inventory_unchanged'] and reports['vmware-results']['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
     assert len(reports['motion']['profiles'])==3 and sum(len(p['comparisons']) for p in reports['motion']['profiles'])==12 and len(reports['recovery']['checks'])==2
     assert reports['taskbar-host']['checks']>290000 and reports['pack-host']['roundtrip_pages']>500 and reports['pack-host']['malformed_and_fuzz_cases']>10000 and reports['pack-host']['guard_bytes_unchanged']
-    for name in ('taskbar-host','pack-host','access-host'):
+    for name in ('taskbar-host','pack-host','access-host','access-guards'):
         for path,digest in reports[name]['source_sha256'].items():assert sha(ROOT/path)==digest
     for path,digest in reports['pack-host']['payload_sha256'].items():assert sha(ROOT/path)==digest
     syntax=load(WORK/'syntax-results.json');assert syntax['passed'] and len(syntax['checks'])==8
@@ -61,7 +62,7 @@ def main():
             target=diagnostics/path.relative_to(WORK/'diagnostics');target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(path.read_bytes() if path.suffix=='.png' else public(path.read_bytes()))
     for source,name in [('dist/m12stage16-build-manifest.json','candidate-manifest.json'),('dist/m12stage16-starter-manifest.json','starter-manifest.json'),('build/m12/stage16/syntax-results.json','syntax-results.json')]:shutil.copyfile(ROOT/source,OUT/name)
     shutil.copyfile(WORK/'access-profiles/accessibility-4k.png',OUT/'feature.png');write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],display_profiles=profiles['profiles'],font=meta['font'],scope='Two bounded semantic records and four state words add 208 fixed bytes; direct cursor fallback adds 8 bounded bytes. No new worker, framebuffer cache or idle scanner. Fixed bytes, peak and completed retention are separate.'))
-    checks=sum((reports[name]['checks'] for name in ('access-native','access-profiles','access-ownership','access-invalid','access-effects')),[])
+    checks=sum((reports[name]['checks'] for name in ('access-native','access-profiles','access-ownership','access-invalid','access-effects','access-firstuse')),[])
     write(OUT/'acceptance-results.json',dict(passed=True,stage='M12.16',version='0.12.16',qualification='M12-STAGE16-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),artifacts_verified=len(meta['artifacts'])+1,native_checks=checks,bios_checks=reports['bios']['checks'],vmware_checks=reports['vmware-results']['checks'],cached_full_comparisons=12,resources='resources.json',feature_provenance='Actual native physical 4K/200% Accessibility and Focus Help after verified installation and independent startup; not a browser mockup',feature_sha256=sha(OUT/'feature.png'),harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m12').iterdir() if p.suffix in ('.py','.c')},limits=['Named VM profiles only; no universal hardware, GPU 3D or expanded foreign Windows compatibility.','Setup review is automated scenario verification, not a participant usability study.','M12.17 renderer and M12.18 final controller/original-app/site-sharing observations remain open; external screen reader/speech and direct-framebuffer fallback native qualification are not claimed.','Public release and complete website verification close separately.']))
     print('PASS: matching M12.16 native keyboard, contrast, cursor/scaling, modal ownership, persisted independence and bounded resources')
 

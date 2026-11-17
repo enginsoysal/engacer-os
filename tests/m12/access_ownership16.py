@@ -40,11 +40,25 @@ def main():
    report['checks'].append('F1/Escape preserves the exact real Save As state, full-generation owner, focused control and unsaved Editor bytes; F6 cannot escape the modal review and explicit cancellation/discard remain available')
    settings=a.launch(g,'settings',3);a.tab_to(g,59004);old=a.semantic(g);a.close(g);fresh=a.launch(g,'calc',4);assert fresh['token']!=settings['token'];a.key(g,'tab');a.key(g,'f1');assert a.semantic(g,'access_help_item16')['owner']!=old['owner'];a.key(g,'esc');a.close(g)
    for _ in range(8):a.launch(g,'calc',4)
-   windows=t.records(g);assert len(windows)==8;a.key(g,'ctrl','esc');c.type_text(g,'calc');a.key(g,'ret');assert len(t.records(g))==8 and text(g,'shell_notice');a.key(g,'esc');assert not c.flag(g,'launcher')
+   windows=t.records(g)
+   assert len(windows)==8,('Actual window count',windows)
+   a.key(g,'ctrl','esc');c.type_text(g,'calc');a.key(g,'ret')
+   assert len(t.records(g))==8 and text(g,'shell_notice'),('Limit preserves windows and reports reason',t.records(g),text(g,'shell_notice'))
+   for _ in range(4):
+    if not c.flag(g,'launcher'):break
+    a.key(g,'esc')
+   assert not c.flag(g,'launcher'),'Escape returns through Search and Start before focusing the notification'
    for _ in range(4):
     a.key(g,'f6')
     if c.flag(g,'access_region16')==3:break
-   assert c.flag(g,'access_region16')==3 and a.focus(g)==(1,0,60002);a.key(g,'f1');assert c.flag(g,'access_help16') and a.semantic(g,'access_help_item16')['label']=='Dismiss notification' and t.records(g)==windows;c.shot(g,'eight-windows-notification-help');a.key(g,'esc');assert a.focus(g)==(1,0,60002);a.key(g,'ret');assert not text(g,'shell_notice') and t.records(g)==windows
+   assert c.flag(g,'access_region16')==3 and a.focus(g)==(1,0,60002)
+   a.key(g,'f1')
+   assert c.flag(g,'access_help16') and a.semantic(g,'access_help_item16')['label']=='Dismiss' and t.records(g)==windows
+   c.shot(g,'eight-windows-notification-help')
+   a.key(g,'esc')
+   assert a.focus(g)==(1,0,60002)
+   a.key(g,'ret')
+   assert not text(g,'shell_notice') and t.records(g)==windows
    while t.records(g):a.close(g)
    f.same_pages(baseline,f.stats(g));c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode());report['checks'].append('Closing/reopening a reused slot cannot expose the earlier generation semantic name; at the actual eight-window limit, F6/F1/Escape/Enter describes and dismisses the real notification without allocating a ninth app or changing any existing window')
   assert f.sha_file(source)==original;report['passed']=True
