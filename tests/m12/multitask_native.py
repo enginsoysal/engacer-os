@@ -1,6 +1,7 @@
 """M12.11 native switch/arrange/snap journeys on a real installed guest."""
 import argparse,hashlib,json,os,struct,time,traceback
 os.environ['ENGACER12_IMAGE']='EngacerOS-M12STAGE11'
+from PIL import Image
 import taskbar_observe as t
 c=t.c;f=t.f;ui=t.ui;s=t.s;ROOT=t.ROOT
 
@@ -22,6 +23,13 @@ def drag(g,p,x,y,xx,yy,release=True):
     scale=c.flag(g,'scale73');p.move(x*scale//2,y*scale//2);p.drain();p.down(True);p.drain();p.move(xx*scale//2,yy*scale//2);p.drain()
     if release:p.down(False);p.drain()
 
+def selected_contrast(g,path):
+    # Default shipped dark teal requires actual light glyphs inside the selected row.
+    x,y,w,h,*_=c.control(g,44100+c.flag(g,'switch_choice11'));scale=c.flag(g,'scale73')
+    with Image.open(path) as image:
+        crop=image.convert('RGB').crop(tuple(v*scale//2 for v in (x+50,y+8,x+w-30,y+28)))
+        assert sum(pixel==(255,255,255) for pixel in crop.getdata())>=3,'Selected row is missing its shared contrast foreground'
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--smoke',action='store_true');args=parser.parse_args()
     out=ROOT/('build/m12/stage11/multitask-smoke' if args.smoke else 'build/m12/stage11/multitask-native');out.mkdir(parents=True,exist_ok=True);c.OUT=out
@@ -33,12 +41,12 @@ def main():
             for action in (2,2,100,2,2,2):c.wizard(g,p,action)
             at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();s.close(g,p);baseline=f.stats(g)
             first=t.launch(g,p,'files',1);normal_first=geometry(g);second=t.launch(g,p,'files',1);f.visit(g,p,'Documents');normal_second=geometry(g)
-            arrange(g,p);assert geometry(g)==normal_second;c.shot(g,'arrange-preview');c.key(g,'esc');assert not c.flag(g,'switch_open11') and geometry(g)==normal_second
+            arrange(g,p);assert geometry(g)==normal_second;c.shot(g,'arrange-preview');selected_contrast(g,out/'arrange-preview.png');c.key(g,'esc');assert not c.flag(g,'switch_open11') and geometry(g)==normal_second
             arrange(g,p);p.desktop(44100,True);assert geometry(g,second['slot'])==(0,0,640,740);assert c.flag(g,'switch_open11')==3 and tokens(g)==[first['token']];c.shot(g,'snap-assist');p.desktop(44100,True);assert geometry(g,first['slot'])==(640,0,640,740) and not c.flag(g,'switch_open11')
             c.shot(g,'two-real-windows-side-by-side');c.key(g,'meta_l','down');assert geometry(g)==normal_first;t.focus(g,p,second);c.key(g,'meta_l','down');assert geometry(g)==normal_second
             report['checks'].append('Real install and retained-ISO startup; discoverable Arrange windows previews without mutating bounds, Escape preserves them, and choosing the complementary real Files window places both halves with exact independent normal-bounds restoration')
             editor=t.launch(g,p,'text editor',2);c.type_text(g,'Keep this unsaved work');other=t.launch(g,p,'text editor',2);c.shot(g,'documents-before-switch')
-            alt(g,True);c.key(g,'tab');assert c.flag(g,'switch_open11')==1 and len(tokens(g))==4;before=f.model(g)[0];c.shot(g,'switcher-icons-documents');c.key(g,'down');chosen=tokens(g)[c.flag(g,'switch_choice11')];assert f.model(g)[0]==before;alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen
+            alt(g,True);c.key(g,'tab');assert c.flag(g,'switch_open11')==1 and len(tokens(g))==4;before=f.model(g)[0];c.shot(g,'switcher-icons-documents');selected_contrast(g,out/'switcher-icons-documents.png');c.key(g,'down');chosen=tokens(g)[c.flag(g,'switch_choice11')];assert f.model(g)[0]==before;alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen
             before=f.model(g)[0];alt(g,True);c.key(g,'tab');c.key(g,'esc');alt(g,False);assert f.model(g)[0]==before and not c.flag(g,'switch_open11')
             alt(g,True);c.key(g,'shift','tab');chosen=tokens(g)[c.flag(g,'switch_choice11')];alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen
             alt(g,True);c.key(g,'tab');chosen=tokens(g)[0];p.desktop(44100,True);alt(g,False);assert next(w for w in t.records(g) if w['slot']==f.model(g)[0])['token']==chosen

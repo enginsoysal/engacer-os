@@ -68,7 +68,9 @@ static void multitask_overlay12(void){
   else{desktop_window*w=desktop_lookup(&model,switch_tokens11[i]);multitask_label12(switch_tokens11[i],label,sizeof(label));enabled=w!=0;icon=w?w->app:0;}
   if(enabled)button(0,x+16,top,width-32,"",W11_SWITCH+i,i==switch_choice11);
   else component_button12(0,(desktop_rect){x+16,top,width-32,36},"",0,i==switch_choice11,0);
-  uint32_t color=enabled?palette.ink:palette.muted;ui12_icon(icon,x+26,top+6,24,preferences.dark);ui73_fit(x+64,top+9,width-96,label,UI12_BODY,color);
+  unsigned state=enabled?component_state12(0,W11_SWITCH+i):UI12_DISABLED;ui12_style style=ui12_control_style(palette,state,i==switch_choice11);
+  if(mode==2||(mode==3&&i==switch_count11))ui12_icon_ink(icon,x+26,top+6,24,style.ink);else ui12_icon(icon,x+26,top+6,24,preferences.dark);
+  ui73_fit(x+64,top+9+!!(state&UI12_PRESSED),width-96,label,UI12_BODY,style.ink);
  }
  const char*hint=mode==1?"Alt+Tab switches. Arrows choose. Enter opens. Escape cancels.":mode==2?"Preview only. Choose a layout or Cancel; your work is kept.":"Choose another window, or Escape to keep this layout.";
  if(mode==2&&switch_choice11<2&&!window_snap_allowed11(desktop_lookup(&model,arrange_owner12)))hint="This app needs more room. Choose Maximize or Cancel.";

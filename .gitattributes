@@ -243,5 +243,5 @@ evidence/M12/10/** -text -whitespace
 # M12.11 bounded multitasking overlays.
 kernel/desktop/window11.inc -text whitespace=cr-at-eol
 kernel/desktop/window11-state.inc -text whitespace=cr-at-eol
-kernel/desktop/multitask12.inc -text
+kernel/desktop/multitask12.inc -text whitespace=cr-at-eol
 evidence/M12/11/** -text -whitespace

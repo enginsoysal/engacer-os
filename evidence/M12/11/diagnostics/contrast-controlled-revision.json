@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "stage": "M12.11",
+  "build_id": "93e82866f6d79d7b4f82f1307ba612fc",
+  "observation": "Agent stopped only the identity-checked owned QEMU fixture after visual review found selected overlay labels using paper ink instead of shared contrast ink. Smoke and exact VMware passed; four full native journeys passed before controlled stop. This candidate is not qualified. Rerun all required gates after contrast revision.",
+  "partial_native": {
+    "passed": false,
+    "stage": "M12.11",
+    "development_only": false,
+    "build_id": "93e82866f6d79d7b4f82f1307ba612fc",
+    "iso_sha256": "14fe93f4b3849df5cd8d85f84af7ccf327fb58df1285326068a129e95cb7f3fd",
+    "owned_fixture": "2aa861c1ae744cb9a3f9d8322b99b242",
+    "checks": [
+      "Real install and retained-ISO startup; discoverable Arrange windows previews without mutating bounds, Escape preserves them, and choosing the complementary real Files window places both halves with exact independent normal-bounds restoration",
+      "Actual Alt+Tab keeps a bounded MRU snapshot with original icons and document/folder identities; arrows preview choice, Alt release and mouse commit, Escape preserves focus, and selecting a minimized dirty Editor restores exact unsaved text",
+      "Active file-dialog ownership blocks Arrange/keyboard geometry changes and excludes that owner from complementary snap choices; cancellation preserves the dirty document",
+      "Actual caption edge drag previews and Escape cancel restore exact bounds; release and Win+Left/Right commit supported halves, Skip/Escape retain the other side, and Win+Down restores the original normal rectangle"
+    ],
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\multitask_native.py\", line 57, in main\n    while s.windows(g)<8:t.launch(g,p,'files',1)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 40, in launch\n    before=s.windows(g,kind);s.search(g,p,name);rows=s.results(g);matches=[i for i,row in enumerate(rows) if row==(1,kind)];assert len(matches)==1,rows\n  File \"<project-root>\\tests\\m12\\start_observe.py\", line 25, in search\n    p.desktop(42004,True);c.key(g,'ctrl','a');c.type_text(g,value);p.drain()\n  File \"<project-root>\\tests\\m11\\ui.py\", line 93, in desktop\n    x,y,w,h,_,_=matches[-1];at=symbol('paints',8,installed)[0];before=memory(g,at,8);self.logical(x+w//2,y+h//2,installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 41, in logical\n    scale=integer(self.guest,'scale73',installed);self.click(x*scale//2,y*scale//2)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 84, in click\n    self.down(False);self.drain()\n  File \"<project-root>\\tests\\m11\\ui.py\", line 67, in drain\n    dirty=integer(self.guest,'mouse_dirty',installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 27, in integer\n    def integer(g,name,installed=False):return struct.unpack('<I',memory(g,symbol(name,4,installed)[0],4))[0]\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 65, in qmp\n    v=json.loads(self.stream.readline())\n  File \"<private-path>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 705, in readinto\n    return self._sock.recv_into(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\multitask_native.py\", line 31, in main\n    with ui.guest(work/'install',disk) as g:\n  File \"<project-root>\\tests\\m74\\ui.py\", line 73, in __exit__\n    super().__exit__(*exc)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 88, in __exit__\n    self.stream.close();self.sock.close()\n  File \"<private-path>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n"
+  }
+}
