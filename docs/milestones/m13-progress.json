@@ -2,7 +2,7 @@
   "version": 1,
   "current_stage": "M13.1",
   "qualified_download": "M12.18",
-  "design_only": true,
+  "design_only": false,
   "stages": [
     {
       "id": "M13.0",

@@ -40,3 +40,5 @@ test('native M13 homepage uses matching stage and validated shared header naviga
  const {portalConfiguration}=await import('./portal.mjs');const blocks=portalDesign({stage:1,searchReady:true});
  assert.deepEqual(blocks[0].props.documentationPortal,portalConfiguration());const serialized=JSON.stringify(blocks);assert(serialized.includes('Download M13.1'));assert(!serialized.includes('CURRENT DOWNLOAD · M12.18'));assert(serialized.includes('Ctrl+K'));assert(!blocks[0].props.items.some(item=>item.href==='/search'));
 });
+
+test('published search metadata includes bounded current-guide headings and task aliases',async()=>{const {portalConfiguration}=await import('./portal.mjs');const config=portalConfiguration();for(const section of config.sections)for(const entry of section.entries){assert(entry.aliases.includes(section.title));assert(entry.aliases.length<=500);}assert(config.sections.some(section=>section.entries.some(entry=>entry.slug==='downloads'&&entry.aliases.includes('ISO VMware'))));});

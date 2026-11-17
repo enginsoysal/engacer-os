@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "stdout": "PASS: 16777216 accent colors; 1572864 component state cases; 4096 bounded scroll cases.\n",
+  "stderr": ""
+}

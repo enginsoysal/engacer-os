@@ -20,5 +20,5 @@ export function portalGroups(posts,{strict=false}={}){
 }
 
 export function portalConfiguration(){
- return {version:1,sections:portal.sections.map(section=>({title:section.title,entries:section.items.map(([source,title])=>({slug:source==='@releases'?'downloads':'docs-'+source.replace(/\.md$/i,'').replace(/^docs\//,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),title,group:source==='@releases'?'Downloads':section.id==='project'?'Development':'Guides'}))}))};
+ return {version:1,sections:portal.sections.map(section=>({title:section.title,entries:section.items.map(([source,title])=>({slug:source==='@releases'?'downloads':'docs-'+source.replace(/\.md$/i,'').replace(/^docs\//,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),title,aliases:(section.title+' '+(source==='@releases'?'ISO VMware download release checksums':fs.readFileSync(new URL('../../'+source,import.meta.url),'utf8').split(/\r?\n/).filter(line=>/^#{1,3}\s/.test(line)).slice(0,12).map(line=>line.replace(/^#+\s*/,'' )).join(' '))).slice(0,500),group:source==='@releases'?'Downloads':section.id==='project'?'Development':'Guides'}))}))};
 }
