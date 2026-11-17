@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "design_only": true,
+  "production_overlay": false,
+  "checks": [
+    "pointer opens dialog without navigation",
+    "USB returns two current task guides",
+    "ArrowDown selects a real result",
+    "Enter navigates to the actual matching public guide",
+    "no-match state gives recovery advice",
+    "history excluded by default",
+    "archive opt-in reveals historical sample",
+    "Escape closes directly and restores opener focus",
+    "Ctrl+K opens dialog",
+    "Tab from last result returns to first dialog control",
+    "390px layout without horizontal overflow"
+  ],
+  "initial_issue": "Escape in a search input initially did not close the dialog; explicit handling was added and re-tested",
+  "mobile": {
+    "viewport": 390,
+    "document": 375,
+    "dialog": 336.6667
+  }
+}

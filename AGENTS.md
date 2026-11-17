@@ -13,6 +13,8 @@
 
 ## Product requirements
 
+- Owner priority, 17 November 2026: record M13.0–M13.12 and start M13.0 under docs/milestones/m13.md. Include website information architecture and same-page search design. This is the last dedicated appearance/usability sequence before hardware recognition. Close tests, English docs, GitHub and actual native Brix homepage/content/mobile/search/download checks after every stage before the next. M13.0 is design-only; M12.18 remains the native download. Preserve all accepted M12 media/evidence. Do not claim prototype search or concepts are production/native implementation.
+
 - Owner priority, 16 November 2026: execute M12.0 through M12.18 strictly in
   order under docs/milestones/m12.md and docs/architecture/desktop-m12.md.
   Close each stage with appropriate tests, English documentation, a scoped

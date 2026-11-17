@@ -5,7 +5,7 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {marked} from '../public/vendor/marked.esm.js';
 import {canonicalPublicUrl,articleBranding} from './branding.mjs';
-import {documentationGroups} from './navigation.mjs';
+import {portal,portalGroups,sourcePath as sourcePathForArchive} from './portal.mjs';
 import {stageRelease11,stageRelease12,releaseLabel} from './releases11.mjs';
 import {releaseGroups,documentationRef,assertPostBounds} from './downloads.mjs';
 
@@ -106,14 +106,25 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
  posts.push({id:'engine-downloads',slug:'downloads',title:'Downloads and SHA256 verification',excerpt:`Current ${currentLabel} downloads, exact checksums and linked historical release archives.`,status:'published',bodyFormat:'brix',blocks:downloads,category:'downloads',tags:['Downloads','Releases'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@releases'},{key:'engine_source_commit',value:ref}]});
  const index=[];const push=(type,props)=>index.push({id:`engine-docindex-${index.length+1}`,type,props});
  push('richtext',{html:generationSource,size:14});
- push('text',{text:'English manuals, architecture, release guides and evidence from the canonical Engacer OS GitHub repository. Each guide is an ordinary editable BrixCanvas article. Downloads are original GitHub release assets.',size:17,color:'#152434'});
+ push('text',{text:'Choose what you want to do. These ordered guides describe the tested M12.18 release. M13 is the next design and usability program, not a new native download.',size:17,color:'#152434'});
  push('richtext',{html:`<p><a href="${SITE}/blog/docs-handbook-index">Start with the handbook</a> · <a href="${SITE}/blog/downloads">Downloads &amp; checksums</a> · <a href="${SITE}/blog/docs-roadmap-status">Current capabilities and limitations</a></p>`,size:17});
- for(const group of documentationGroups(posts)){
+ const organized=portalGroups(posts,{strict:true});
+ for(const group of organized.groups){
+   const blocks=[{id:`portal-${group.id}-source`,type:'richtext',props:{html:generationSource,size:14}},{id:`portal-${group.id}-intro`,type:'text',props:{text:group.description,size:17}},{id:`portal-${group.id}-links`,type:'richtext',props:{html:'<ol>'+group.posts.map(p=>`<li><a href="${SITE}/blog/${p.slug}">${escape(p.readerTitle)}</a></li>`).join('')+'</ol>',size:17}},{id:`portal-${group.id}-route`,type:'richtext',props:{html:'<p><a href="'+SITE+'/blog/documentation">All current task guides</a> · '+organized.groups.map(g=>`<a href="${SITE}/blog/guide-${g.id}">${escape(g.title)}</a>`).join(' · ')+'</p>',size:15}}];
+   posts.push({id:`engine-portal-${group.id}`,slug:`guide-${group.id}`,title:group.title+' — Engacer OS guides',excerpt:group.description,status:'published',bodyFormat:'brix',blocks,category:'handbook',tags:['Current guides',group.title],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:false,meta:[{key:'engine_source_path',value:`@portal/${group.id}`},{key:'engine_source_commit',value:ref}]});
+ }
+ for(const group of organized.groups){
    push('heading',{text:group.title,level:2,size:27,color:'#152434'});
    push('text',{text:group.description,size:17,color:'#526674'});
-   push('richtext',{html:'<ul>'+group.posts.map(p=>`<li><a href="${SITE}/blog/${p.slug}">${escape(p.title)}</a></li>`).join('')+'</ul>',size:17});
+   push('richtext',{html:'<ol>'+group.posts.map(p=>`<li><a href="${SITE}/blog/${p.slug}">${escape(p.readerTitle)}</a></li>`).join('')+'</ol>',size:17});
  }
- posts.push({id:'engine-documentation',slug:'documentation',title:'Documentation — all guides',excerpt:'Current installation, user manuals, milestone guides, architecture and historical records in reader-first order.',status:'published',bodyFormat:'brix',blocks:index,category:'handbook',tags:['Handbook','Index'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@index'},{key:'engine_source_commit',value:ref}]});
+ push('richtext',{html:`<h2>Project history and full reference</h2><p>Older milestones and technical records are kept separately from the current user route. <a href="${SITE}/blog/${portal.archiveSlug}">Browse the ordered archive and full reference</a>.</p>`,size:17});
+ const archive=[{id:'engine-archive-source',type:'richtext',props:{html:generationSource+`<p>Historical guides, milestone decisions and technical reference. For ordinary use, <a href="${SITE}/blog/documentation">return to the current task guides</a>. Earlier stage scope remains historical.</p>`,size:16}}];
+ const partitions=[['Milestone plans and progress',p=>sourcePathForArchive(p).startsWith('docs/milestones/')],['Historical installation and release records',p=>sourcePathForArchive(p).startsWith('docs/releases/')||/\/install-/.test(sourcePathForArchive(p))||p.slug.startsWith('downloads-archive-')],['Technical and earlier user reference',()=>true]];
+ const left=new Map(organized.archive.map(p=>[p.slug,p]));
+ for(const [title,predicate] of partitions){const rows=[...left.values()].filter(predicate);if(!rows.length)continue;rows.forEach(p=>left.delete(p.slug));archive.push({id:`engine-archive-${archive.length}`,type:'richtext',props:{html:`<h2>${escape(title)}</h2><ul>`+rows.map(p=>`<li><a href="${SITE}/blog/${p.slug}">${escape(p.title)}</a></li>`).join('')+'</ul>',size:16}});}
+ posts.push({id:'engine-docarchive',slug:portal.archiveSlug,title:'Project history and full reference',excerpt:'Naturally ordered milestone history, earlier releases and complete technical reference. Current task guides are separate.',status:'published',bodyFormat:'brix',blocks:archive,category:'handbook',tags:['Archive','Reference'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:false,meta:[{key:'engine_source_path',value:'@documentation-archive'},{key:'engine_source_commit',value:ref}]});
+ posts.push({id:'engine-documentation',slug:'documentation',title:'Documentation — choose your task',excerpt:'Start here, install, use Engacer OS, customize, or explore project development. Current task guides first; milestone history separately archived.',status:'published',bodyFormat:'brix',blocks:index,category:'handbook',tags:['Handbook','Index'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@index'},{key:'engine_source_commit',value:ref}]});
  assertPostBounds(posts);
  const result={version:1,source_commit:ref,publisher_commit:publisherRef,generated:new Date().toISOString(),site_id:'b66d0e83-7987-4856-b702-e8d93234b6cd',site_slug:'codename-engine-os-ltvck',page:{blog:{posts,categories:Object.entries(categoryNames).map(([handle,title])=>({handle,title}))}}};
  const out=output||path.join(root,'build/brix/site-content.json');fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(result));

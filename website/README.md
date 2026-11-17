@@ -1,5 +1,26 @@
 # BrixCanvas documentation website
 
+## Current M13.0 portal work — 17 November 2026
+
+M13.0 is design-only OS work; M12.18 remains the qualified native download.
+The task-first portal is driven by `website/brix/portal.json`, validated by
+`portal.test.mjs` and published as a short current index, five ordered task-route
+pages and a separate complete naturally ordered archive. Existing article URLs
+remain stable. `design.mjs` now generates the M13.0 native homepage composition;
+the older `nativeDesign` export stays available for historical M12 tests.
+
+The [portal/search contract](../docs/architecture/website-m13.md) separates actual
+content organization from renderer capabilities. The same-page accessible search
+is an [interactive design prototype](design-m13/search-prototype.html), not a
+production claim. The native Search Brix inspected in the editor exposes a query
+and submit form; production still uses `/search`. Article-sidebars, curated
+renderer pagination and the production overlay remain explicitly tracked work.
+Do not deploy unrelated shared BrixCanvas changes or move production hosting.
+After every M13 stage, wait for content sync, refresh/save the native homepage,
+and verify current guides, archives, download hashes, source, mobile and search.
+
+Earlier sections below describe historical publication approaches and evidence.
+
 The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.18 is the final qualified native stage; all M12.0–M12.18 stages are complete within their declared scopes. Its immutable release includes the matching ISO and VMware package. The final public receipt records 406 checked pages, 2,853 HTTP links and twenty release assets. Earlier milestone sections below are historical records. The internal site ID/slug and scoped publisher key remain unchanged; historical release identities stay intact. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
 
 ## Current M12 publication

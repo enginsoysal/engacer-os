@@ -1,5 +1,7 @@
 # Engacer OS user handbook
 
+**Current development: [M13.0 — design and documentation portal](../milestones/m13.md).** M13.1–M13.12 are planned. The qualified native download remains M12.18; M13.0 is not a new OS build.
+
 **M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
 [Install](install-m1218.md), [Final desktop guide](final-m1218.md),
 [release scope](../releases/m1218-v0.12.18.md), [exact-source acceptance](../../evidence/M12/18/acceptance-results.json).

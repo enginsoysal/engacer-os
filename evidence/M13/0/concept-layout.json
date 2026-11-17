@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "design_only": true,
+  "concepts": [
+    {
+      "name": "setup",
+      "height": "960",
+      "label": "A clear beginning",
+      "outside": [],
+      "width": "1440"
+    },
+    {
+      "name": "disks",
+      "height": "960",
+      "label": "Choose where it belongs",
+      "outside": [],
+      "width": "1440"
+    },
+    {
+      "name": "desktop",
+      "height": "960",
+      "label": "Files, with room for your files",
+      "outside": [],
+      "width": "1440"
+    },
+    {
+      "name": "start",
+      "height": "960",
+      "label": "Your apps, one familiar place",
+      "outside": [],
+      "width": "1440"
+    },
+    {
+      "name": "settings",
+      "height": "960",
+      "label": "Clear choices, safe previews",
+      "outside": [],
+      "width": "1440"
+    },
+    {
+      "name": "portal",
+      "height": "960",
+      "label": "Documentation that starts with your task",
+      "outside": [],
+      "width": "1440"
+    }
+  ]
+}

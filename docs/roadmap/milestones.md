@@ -1,6 +1,10 @@
 # Milestones and acceptance contract
 
-## Current owner priority - 16 November 2026
+## Current owner priority - 17 November 2026
+
+[M13.0–M13.12](../milestones/m13.md) are the final dedicated installation, desktop appearance and everyday-usability sequence before hardware recognition. M13.0 includes the task-first BrixCanvas portal and search design. Each stage requires tests, English docs, GitHub and verified actual website publication before the next. M12.18 remains the native download until a later native stage qualifies.
+
+## Completed owner priority - 16 November 2026
 
 [M12.0 through M12.18](../milestones/m12.md) refine the complete desktop
 experience in nineteen ordered deliveries. Start with the source-backed inventory
@@ -8,8 +12,8 @@ and original design concepts, then shared controls, icons, desktop, windows,
 Files/navigation/presentation/commands/dialogs, Start, taskbar, multitasking,
 tray, Settings, feedback, setup, accessibility, measured motion/performance and
 final qualification. Tests, English guides, GitHub and complete public website
-verification close every stage before the next. M12.0 is design only; the tested
-download remains M11.6. [Contract](../architecture/desktop-m12.md).
+verification close every stage before the next. M12.0 was design only; M12.18 is now the tested
+final native download. [Contract](../architecture/desktop-m12.md).
 
 ## Completed owner priority - 11 November 2026
 

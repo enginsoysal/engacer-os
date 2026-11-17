@@ -1,5 +1,7 @@
 # Current status
 
+**Current development: [M13.0 — design and documentation portal](../milestones/m13.md).** M13.1–M13.12 are planned. The qualified native download remains M12.18; M13.0 is not a new OS build.
+
 Updated 17 November 2026.
 
 **M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "current_stage": "M13.0",
+  "qualified_download": "M12.18",
+  "design_only": true,
+  "stages": [
+    {"id":"M13.0","title":"Baseline, design direction and documentation portal","status":"in_progress"},
+    {"id":"M13.1","title":"One native visual and interaction foundation","status":"planned"},
+    {"id":"M13.2","title":"Welcoming setup and a coherent boot journey","status":"planned"},
+    {"id":"M13.3","title":"Understandable disks and safe disk tools","status":"planned"},
+    {"id":"M13.4","title":"Installation finishes at the installed desktop","status":"planned"},
+    {"id":"M13.5","title":"A finished desktop and window experience","status":"planned"},
+    {"id":"M13.6","title":"Familiar Start, taskbar and system tray","status":"planned"},
+    {"id":"M13.7","title":"Files as the everyday workspace","status":"planned"},
+    {"id":"M13.8","title":"Settings, errors and recovery form one product","status":"planned"},
+    {"id":"M13.9","title":"Smooth, readable and lightweight in motion","status":"planned"},
+    {"id":"M13.10","title":"Finish every secondary surface","status":"planned"},
+    {"id":"M13.11","title":"Complete supported personalization","status":"planned"},
+    {"id":"M13.12","title":"Final complete-product qualification","status":"planned"}
+  ],
+  "website_followups": [
+    {"id":"same-page-search","status":"design_prototype","production_complete":false,"contract":"docs/architecture/website-m13.md"},
+    {"id":"article-sidebar-and-task-pagination","status":"specified","production_complete":false,"contract":"docs/architecture/website-m13.md"}
+  ]
+}
