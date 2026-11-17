@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stage": "M12.9",
+  "qualification": "M12-STAGE9-VM-v1",
+  "source_commit": "f2ae6b1366440174517eee16212bec7ffc20e81c",
+  "build_id": "9eb7af562b85bcfa14609773dbd1e718",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m129-v0.12.9",
+  "workflow_ids": [
+    43998431489
+  ],
+  "current_native_download": "m129-v0.12.9",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 342,
+  "unique_links": 2354,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

@@ -1,0 +1,6 @@
+{
+  "stage": "M12.9",
+  "source_commit": "f2ae6b1366440174517eee16212bec7ffc20e81c",
+  "observation": "After creating the matching draft, the guarded release lookup temporarily returned no readable draft and stopped before uploads.",
+  "action": "Retain the same notes/source/assets and wait for read-only lookup to resolve the existing draft; do not recreate or replace it."
+}

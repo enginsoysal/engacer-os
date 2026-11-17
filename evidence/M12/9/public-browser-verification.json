@@ -1,0 +1,133 @@
+{
+  "passed": true,
+  "stage": "M12.9",
+  "source_commit": "f2ae6b1366440174517eee16212bec7ffc20e81c",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1270,
+    "guides": [
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m129",
+        "text": "Read the stage guide ↗"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m129",
+        "text": "Open the setup guide ↗"
+      }
+    ],
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/9/feature.png",
+        "width": 1280
+      }
+    ],
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 1280
+  },
+  "documentation": {
+    "groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones"
+    ],
+    "installationLinks": [
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m129",
+        "text": "Install Engacer OS M12.9 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+        "text": "Install Engacer OS M12.1 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+        "text": "Install Engacer OS M12.2 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123",
+        "text": "Install Engacer OS M12.3 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124",
+        "text": "Install Engacer OS M12.4 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125",
+        "text": "Install Engacer OS M12.5 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126",
+        "text": "Install Engacer OS M12.6 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m127",
+        "text": "Install Engacer OS M12.7 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m128",
+        "text": "Install Engacer OS M12.8 in VMware"
+      }
+    ]
+  },
+  "installation": {
+    "labels": [
+      "Welcome:",
+      "Keyboard / size:",
+      "Choose a disk:",
+      "Your apps:",
+      "Your style:",
+      "Review:",
+      "Installing:",
+      "Ready:"
+    ],
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/f2ae6b1366440174517eee16212bec7ffc20e81c/docs/handbook/install-m129.md"
+    ],
+    "steps": [
+      "Welcome: choose Next.",
+      "Keyboard / size: keep the defaults or choose your supported layout and\nreadable display size. Test the keyboard, then choose Next.",
+      "Choose a disk: click the disk's whole row inside the bordered list. Its\nselection is visible. Next becomes available for a usable target. Disk tools\ninspect partitions and provide separately reviewed changes.",
+      "Your apps: retain the defaults or select optional apps.",
+      "Your style: choose your local profile and appearance.",
+      "Review: check the disk and proposed changes. Existing-disk replacement\nrequires fresh explicit erasure consent. Back lets you revise choices.",
+      "Installing: wait for verified completion. A failure offers details and\nrecovery; it is not labeled a successful installation.",
+      "Ready: choose Restart to Engacer OS. The actual installed desktop\nstarts. The optional first-start guide can be dismissed with Escape."
+    ]
+  },
+  "current_guide": true,
+  "downloads": {
+    "isoHash": true,
+    "links": [
+      {
+        "href": "https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9.iso",
+        "text": "Download the standard Engacer OS M12.9 ISO"
+      },
+      {
+        "href": "https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9-VMware.zip",
+        "text": "Easiest start: download the prepared VMware ZIP"
+      },
+      {
+        "href": "https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9.iso",
+        "text": "Download EngacerOS-M12STAGE9.iso"
+      },
+      {
+        "href": "https://github.com/enginsoysal/engacer-os/releases/download/m129-v0.12.9/EngacerOS-M12STAGE9-VMware.zip",
+        "text": "Download EngacerOS-M12STAGE9-VMware.zip"
+      }
+    ],
+    "zipHash": true
+  },
+  "matching_download": true,
+  "mobile": {
+    "document": 380,
+    "viewport": 390
+  },
+  "mobile_menu": true
+}
