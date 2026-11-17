@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.14",
-  "qualified_download": "M12.13",
+  "qualified_download": "M12.14",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -161,7 +161,7 @@
     },
     {
       "id": "M12.14",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Feedback and errors",
       "requires": "M12.13",
       "deliverable": "Shared empty/loading/success/refusal/error states, useful notifications and owner-scoped reviews.",
@@ -175,7 +175,10 @@
         "Distinguish an unsaved new Editor document from a saved existing document and independently verify file absence/persistence.",
         "Fit owner-aware shared shell notices without spilling across unrelated Files footers.",
         "Use plain user-choice wording for malformed Settings recovery and a contextual System-category idle footer; provide a useful route back to an existing file review when appropriate."
-      ]
+      ],
+      "qualification": "M12-STAGE14-VM-v1",
+      "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+      "evidence": "evidence/M12/14/acceptance-results.json"
     },
     {
       "id": "M12.15",

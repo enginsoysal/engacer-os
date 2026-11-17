@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "checks": [],
+  "owned_fixture": "5da7fc3c6d4449fa88cb485c9819886c",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_busy.py\", line 58, in main\n    t.focus(g,p,editor);p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10;owner=int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little');t.focus(g,p,files);f.visit(g,p,'/Users/Owner/Downloads');c.key(g,'ctrl','v');assert not job(g)[0][0] and c.flag(g,'file_dialog_state11')==10 and int.from_bytes(ui.memory(g,ui.symbol('file_dialog_state11',installed=True)[0]+32,8),'little')==owner;c.shot(g,'existing-dialog-kept');t.focus(g,p,editor);assert bytes(t.app_view(g).text)==b'Keep my active transfer document';p.desktop(54010,True);t.focus(g,p,files);f.visit(g,p,'USB drives');p.desktop(f.drive(g),True);p.desktop(f.row(g,'Large.bin'),True);active_click(g,p,21004);assert job(g)[0][0];g.qmp('device_del',{'id':'feedback-large-device'});deadline=time.monotonic()+90\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 39, in row\n    values=usb_rows(g);index=values.index(name);assert index<6 and has(g,21200+index),(name,values);return 21200+index\nAssertionError: ('Large.bin', ['Large.bin', '', '', '', '', ''])\n"
+}

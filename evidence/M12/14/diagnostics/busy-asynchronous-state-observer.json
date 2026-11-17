@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "checks": [],
+  "owned_fixture": "bd89f9a3f8d74635bfc7e8e9c27b205f",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_busy.py\", line 44, in main\n    active_click(g,p,21004);assert job(g)[0][0];active_key(g,'alt','ret');assert not c.flag(g,'file_dialog_state11') and job(g)[0][0] and 'file operation' in f.app(g)['notice'];active_click(g,p,43102);assert f.model(g)[0]==editor['slot'];active_click(g,p,54001);assert not c.flag(g,'file_dialog_state11') and job(g)[0][0] and 'file operation' in f.app(g)['notice'];active_click(g,p,20);assert job(g)[0][0] and 'unsaved text' in f.app(g)['notice'] and editor_path not in f.entries(g) and bytes(t.app_view(g).text)==b'Keep my active transfer document'\nAssertionError\n"
+}

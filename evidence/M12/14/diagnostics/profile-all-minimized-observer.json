@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "profiles": [],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_profiles.py\", line 22, in main\n    t.focus(g,p,settings);h.close(g,p)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 28, in focus\n    if f.model(g)[0]==slot and not current['minimized'] and not c.flag(g,'launcher') and not c.flag(g,'desktop_focus11'):return\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 8, in model\n    base=ui.symbol('model',installed=True)[0];slot=int.from_bytes(ui.memory(g,base+236,4),'little');assert slot<8\nAssertionError\n"
+}

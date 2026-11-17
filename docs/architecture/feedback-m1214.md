@@ -1,6 +1,6 @@
 # M12.14 — Feedback and preserved work
 
-Status: implementation under native verification. M12.13 remains the qualified public download until the separate release and website gates pass.
+M12-STAGE14-VM-v1 native qualification passes. Use its matching release assets; complete public delivery closes separately before M12.15.
 
 ## How and why
 

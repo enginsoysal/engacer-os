@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "stage": "M12.14",
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "scope": "Agent review of actual native captures and ordinary input/provider/file-byte evidence; not a participant usability study or full accessibility qualification.",
+  "reviewed": [
+    "feedback-native/new-document-not-saved.png",
+    "feedback-native/blocked-save-show-dialog.png",
+    "feedback-native/bounded-window-limit-notice.png",
+    "feedback-profiles/menu-compact.png",
+    "feedback-profiles/menu-compact-dark.png",
+    "feedback-profiles/search-150.png",
+    "feedback-profiles/menu-4k.png",
+    "feedback-profiles/notice-4k.png",
+    "feedback-busy/busy-dialog-and-save-refused.png",
+    "feedback-busy/removed-source-transfer-failed.png"
+  ],
+  "findings": [
+    "New documents truthfully show not saved; actual successful Save has independent file-byte evidence.",
+    "The Settings recovery button and two-line refusal fit without covering each other.",
+    "Protected-item menu explanations remain complete in compact light/dark and physical 4K.",
+    "Global search has a visible Clear search control and explicit app/folder scope at 150%.",
+    "Notifications are bounded and visibly dismissible; the actual native journey verifies their body does not activate underlying windows.",
+    "Four profile tests retain zero managed pages; their quota state uses real minimized windows, while the separate native journey covers eight visible windows.",
+    "The actual busy copy has separate owner-local file-operation and unsaved-text refusals, with active progress and Cancel still visible.",
+    "Removing the real source produces a disconnected-drive recovery view, truthful disabled operations and existing-file preservation; native assertions independently verify failed destination absence and source-image equality."
+  ],
+  "capture_sha256": {
+    "feedback-native/new-document-not-saved.png": "d9c45b0ff021c9f12c2b84d91c01d9ec30bf0e9577eb3208082a2e01cf447dc8",
+    "feedback-native/blocked-save-show-dialog.png": "7964434d6354e5d4cb1705af7718198864d545885ec198dc4540a5a7ee98c6a8",
+    "feedback-native/bounded-window-limit-notice.png": "4a8610fe6e27b1731f54f061d04180249ba7b1e5b039ab71d13541bac01ed8ac",
+    "feedback-profiles/menu-compact.png": "90baae05508d278ff84734a544e190ecf729fb9feadd5006b3ffd8f5e6d2f586",
+    "feedback-profiles/menu-compact-dark.png": "89217e1c7e2d9be2b2210ed664bcd28b5ae03f4ba67022dba52f8a5b03cbda9e",
+    "feedback-profiles/search-150.png": "44a3b2bf0b26a97744f1714c35ab30c7e6457d58d64972bc8229c6670437270b",
+    "feedback-profiles/menu-4k.png": "5bc866af43838cfbc6d04a7a38518af6c261f9159c6a10840e2dc7f7f8fe6003",
+    "feedback-profiles/notice-4k.png": "551b2fd31f102470c1a6f77a768eef0de6dded4734ff36e6240735f124396397",
+    "feedback-busy/busy-dialog-and-save-refused.png": "97d7dcd3020aefa998a863c66e050fa256f0ebf0548b7a1571bcc2d0d1d95d3a",
+    "feedback-busy/removed-source-transfer-failed.png": "94ab2f2a231e6404f13674acb8101c38ed0c2f1426de296e2f8bab1e47faac1b"
+  },
+  "carry_forward": [
+    {
+      "stage": "M12.15",
+      "observation": "Complete the ordered installer and included first-use guidance stage."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Complete keyboard/focus/contrast/scale and original cursor observations; automated inspection is not screen-reader qualification."
+    },
+    {
+      "stage": "M12.17",
+      "observation": "Keep the bounded shadow-span/renderer investigation and exact pixel-equivalence tests; host TCG event-to-drain samples are not FPS."
+    },
+    {
+      "stage": "M12.18",
+      "observation": "Rerun the frozen final controller/original-app matrix, historical BIOS concurrency observation and owned-site email-sharing observation."
+    }
+  ]
+}

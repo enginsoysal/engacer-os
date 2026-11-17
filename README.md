@@ -4,23 +4,22 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
 kernel and native desktop. Convenience, readable graphics, customization and
 bounded CPU/RAM use are product requirements.
 
-**M12.13 / 0.12.13 passes M12-STAGE13-VM-v1.**
-[Install](docs/handbook/install-m1213.md), [Settings and personalization](docs/handbook/settings-m1213.md),
-[release scope](docs/releases/m1213-v0.12.13.md),
-[exact-source acceptance](evidence/M12/13/acceptance-results.json).
-595 compiled Git inputs and 9 native task/profile checks cover real visual
-Apply/Cancel/close/defaults, preview ownership, independent input preferences,
-malformed-record refusal/recovery and ordinary USB/PS2 startups.
-Compact light/dark, actual 150%/4K, enabled-device VMware, separate BIOS,
-twelve movement comparisons and real compressed boot repair pass.
-Fixed shell state is 553,228 bytes, 32 above M12.12; completed UI tasks
-retain zero managed pages. [Complete public proof](evidence/M12/13/publication-results.json) passes: twenty downloads, 370 pages and 2,568 HTTP links, native homepage Save and actual desktop/mobile guide/download/search verification. One earlier server error is retained; fresh readback passes. **M12.14 is active.**
+**M12.14 / 0.12.14 passes M12-STAGE14-VM-v1.**
+[Install](docs/handbook/install-m1214.md), [Messages and recovery](docs/handbook/feedback-m1214.md),
+[release scope](docs/releases/m1214-v0.12.14.md),
+[exact-source acceptance](evidence/M12/14/acceptance-results.json).
+596 compiled Git inputs and 13 native task/profile checks cover actual
+save/refusal states, conflict and dialog ownership, dismissible notifications,
+interrupted USB copies and independent USB/PS2 starts. Compact light/dark,
+150%/4K, enabled-device VMware, separate BIOS, twelve movement comparisons
+and compressed boot repair pass. Fixed shell state is 553,228 bytes,
+0 above M12.13; completed UI tasks retain zero managed pages.
+Public release and complete website verification remain the gates before M12.15.
 
-Previous [M12.12 complete public delivery](evidence/M12/12/publication-results.json)
-remains immutable: twenty downloads, 364 pages and 2,513 HTTP links.
+Previous [M12.13 complete public delivery](evidence/M12/13/publication-results.json)
+remains immutable: twenty downloads, 370 pages and 2,568 HTTP links.
 
-M12.14 retains menu/conflict and Start query/notice feedback plus background
-transfer/modal arbitration. M12.16 retains cursor/scale reconciliation, and
+M12.15 covers setup and first use. M12.16 retains cursor/scale reconciliation, and
 M12.18 retains the earlier BIOS/AHCI observation and final matrix. Native stage
 proof does not imply universal hardware or Windows support. Agent review is not
 a human usability study.
@@ -54,9 +53,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1211-v0.12.11/EngacerOS-M12STAGE11-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1211-v0.12.11/EngacerOS-M12STAGE11.iso) ·
-[Step-by-step installation](docs/handbook/install-m1211.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14.iso) ·
+[Step-by-step installation](docs/handbook/install-m1214.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

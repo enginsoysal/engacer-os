@@ -1,24 +1,25 @@
 # Engacer OS user handbook
 
-**M12.13 / 0.12.13 passes M12-STAGE13-VM-v1.**
-[Install](install-m1213.md), [Settings and personalization](settings-m1213.md),
-[release scope](../releases/m1213-v0.12.13.md),
-[exact-source acceptance](../../evidence/M12/13/acceptance-results.json).
-595 compiled Git inputs and 9 native task/profile checks cover real visual
-Apply/Cancel/close/defaults, preview ownership, independent input preferences,
-malformed-record refusal/recovery and ordinary USB/PS2 startups.
-Compact light/dark, actual 150%/4K, enabled-device VMware, separate BIOS,
-twelve movement comparisons and real compressed boot repair pass.
-Fixed shell state is 553,228 bytes, 32 above M12.12; completed UI tasks
-retain zero managed pages. [Complete public proof](../../evidence/M12/13/publication-results.json) passes: twenty downloads, 370 pages and 2,568 HTTP links, native homepage Save and actual desktop/mobile guide/download/search verification. One earlier server error is retained; fresh readback passes. **M12.14 is active.**
+**M12.14 / 0.12.14 passes M12-STAGE14-VM-v1.**
+[Install](install-m1214.md), [Messages and recovery](feedback-m1214.md),
+[release scope](../releases/m1214-v0.12.14.md),
+[exact-source acceptance](../../evidence/M12/14/acceptance-results.json).
+596 compiled Git inputs and 13 native task/profile checks cover actual
+save/refusal states, conflict and dialog ownership, dismissible notifications,
+interrupted USB copies and independent USB/PS2 starts. Compact light/dark,
+150%/4K, enabled-device VMware, separate BIOS, twelve movement comparisons
+and compressed boot repair pass. Fixed shell state is 553,228 bytes,
+0 above M12.13; completed UI tasks retain zero managed pages.
+Public release and complete website verification remain the gates before M12.15.
 
-Previous [M12.12 complete public delivery](../../evidence/M12/12/publication-results.json)
-remains immutable: twenty downloads, 364 pages and 2,513 HTTP links.
+Previous [M12.13 complete public delivery](../../evidence/M12/13/publication-results.json)
+remains immutable: twenty downloads, 370 pages and 2,568 HTTP links.
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.13](install-m1213.md)
+- [Download and install M12.14](install-m1214.md)
+- [Understand messages, refusals and preserved work](feedback-m1214.md)
 - [Preview, apply, cancel and reset Settings](settings-m1213.md)
 - [Use quick settings, USB safe removal and Calendar](tray-m1212.md)
 - [Open, Save as, Cancel and choose an extraction folder](dialogs-m128.md)
@@ -35,7 +36,7 @@ broader original-app/USB regression; those results qualify its own bytes.
 - [Install, run and remove the original Windows 7-Zip console app](windows-apps-m8.md)
 - [Use the standard apps and manage optional packages](apps-m74.md)
 - [Explore the desktop and navigate your folders](desktop-m73.md)
-- [Current release, checksums and qualified limits](../releases/m129-v0.12.9.md)
+- [Current release, checksums and qualified limits](../releases/m1214-v0.12.14.md)
 - [Previous M11.6 final installation and matrix](install-m116.md)
 - [Repair boot files and review recovery limits](apps-m74.md#disks-and-recovery)
 - [Manage partitions and format safely](disk-manager-m71.md)

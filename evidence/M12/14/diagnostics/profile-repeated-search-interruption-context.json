@@ -1,0 +1,6 @@
+{
+  "intentional_test_interruption": true,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "scope": "Only the verified owned headless profile-150 guest was stopped; no host desktop or other VM was controlled.",
+  "reason": "Use normal pinned Files controls and minimized live quota windows for notification-profile geometry. Search input and eight visible windows already have independent native coverage. The interrupted run is not an OS assertion failure or a passed profile."
+}

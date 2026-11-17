@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0,
+      "notification_scope": "Eight real live minimized windows; one restored/closed at a time. The independent native journey covers eight visible windows."
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0,
+      "notification_scope": "Eight real live minimized windows; one restored/closed at a time. The independent native journey covers eight visible windows."
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "retained_pages": 0,
+      "notification_scope": "Eight real live minimized windows; one restored/closed at a time. The independent native journey covers eight visible windows."
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0,
+      "notification_scope": "Eight real live minimized windows; one restored/closed at a time. The independent native journey covers eight visible windows."
+    }
+  ],
+  "checks": [
+    "Actual compact light/dark, 150% and 4K profiles display complete protected-item context explanations and explicit global-search controls within the logical display",
+    "Session-only appearance previews restore on close, leave the complete fixture disk unchanged and retain zero managed pages at idle"
+  ]
+}

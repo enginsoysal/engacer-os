@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "stage": "M12.14",
+  "build_id": "75032513812b71cf1958527b862ec0cc",
+  "iso_sha256": "7082ff18815ae12fe7c75888b8466bd2ef995479a03647ba0c81e1e05c83e279",
+  "owned_fixture": "2188c10ae75d44acad9b12c59a7ed89b",
+  "checks": [
+    "A new empty Editor document has no published disk entry; explicit Save publishes the exact text and changes its actual saved state"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_native.py\", line 17, in main\n    t.pin(g,p,'clock',8);s.search(g,p,'clock');assert not text_symbol(g,'start_notice11',128);assert any(r[5]==60001 for r in f.controls(g));c.shot(g,'global-search-clear');p.desktop(60001,True);assert not text_symbol(g,'start_query11',256);c.key(g,'esc')\nAssertionError\n"
+}

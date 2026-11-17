@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "profiles": [],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_profiles.py\", line 19, in main\n    for _ in range(7):t.launch(g,p,'files',1)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 43, in launch\n    assert s.windows(g,kind)==before+1\nAssertionError\n"
+}

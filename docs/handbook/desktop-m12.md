@@ -1,7 +1,11 @@
 # M12 desktop experience — staged development
 
-M12.0 established the original design and ordered plan. M12.8 now qualifies
-[shared native file dialogs](dialogs-m128.md); each stage retains its own scope.
+M12.0 established the original design and ordered plan. Native stages add
+[shared file dialogs](dialogs-m128.md), [Start](start-m129.md),
+[taskbar](taskbar-m1210.md), [window arrangements](multitasking-m1211.md),
+[quick settings](tray-m1212.md) and [personalization](settings-m1213.md).
+[Messages and recovery](feedback-m1214.md) explains safe refusals and preserved work.
+Each stage retains its own exact-source qualification.
 Use the [current native guide and scoped media](index.md); each newer native
 stage requires its own matching acceptance and release. [Progress and acceptance](../milestones/m12.md).
 

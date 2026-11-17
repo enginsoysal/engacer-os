@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "profiles": [],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_profiles.py\", line 33, in main\n    before_count=s.windows(g,1);p.desktop(0,True);rows=s.results(g);index=rows.index((1,1));p.desktop(42200+index,True);assert s.windows(g,1)==before_count+1;p.desktop(49000,True)\nValueError: (1, 1) is not in list\n"
+}

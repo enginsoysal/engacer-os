@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "checks": [],
+  "owned_fixture": "3371f731f0824750a7865b446342f6e5",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\feedback_busy.py\", line 43, in main\n    q.open_quick(g);p.desktop(58002,True);drive=next(r for r in f.controls(g) if 58200<=r[5]<58216);p.desktop(drive[5],True);files=next(w for w in t.records(g) if w['slot']==f.model(g)[0]);p.desktop(f.row(g,'Large.bin'),True);p.desktop(40000,True)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (40000, 39)\n"
+}

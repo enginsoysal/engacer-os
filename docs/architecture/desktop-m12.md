@@ -163,7 +163,7 @@ over screenshots alone. Each stage documents how, why, limits and verification.
 native Open/Save as/Choose folder without another app-window slot. One bounded
 picker adds 6449 fixed bytes; existing IPC input pages replace large temporary
 stack payloads. This does not expand the foreign Windows common-dialog ABI.
-Background transfer-review arbitration remains M12.14; small-mode scale-choice
+[M12.14 feedback](feedback-m1214.md) now qualifies transfer/dialog admission; small-mode scale-choice
 reconciliation and cursor isolation remain M12.16.
 
 ## M12.9 native Start and local search
@@ -172,6 +172,8 @@ reconciliation and cursor isolation remain M12.16.
 acceptance](../../evidence/M12/9/acceptance-results.json) qualify native local
 search, categories, pins and optional removal/reinstall with exact persisted
 preferences. Fixed shell state and shared font bytes remain unchanged from
-M12.8. Actual compact/150%/4K routes retain zero managed pages. Query-versus-
-browse affordance and notice refinement remain M12.14 feedback work; taskbar
-redesign follows M12.10 after full M12.9 public closure.
+M12.8. Actual compact/150%/4K routes retain zero managed pages. [M12.14 feedback](feedback-m1214.md) now qualifies query/browse scope and notice lifetime. The taskbar and window stages have their separate matching acceptance.
+
+## M12.14 native feedback
+
+[Admission and feedback decisions](feedback-m1214.md) and [matching acceptance](../../evidence/M12/14/acceptance-results.json) qualify bounded messages, complete context explanations, actionable dialog recovery and preserved work without adding fixed shell state. Public publication closes separately.
