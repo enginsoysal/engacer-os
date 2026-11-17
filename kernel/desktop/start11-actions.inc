@@ -38,6 +38,7 @@ static unsigned start_action11(uint64_t token,unsigned command){s11_preferences*
  if(command>=S11_TASK_OPEN&&command<S11_TASK_OPEN+S11_APPS){start_task_open11(command-S11_TASK_OPEN);return 1;}
  if(command>=S11_WINDOW&&command<S11_WINDOW+DESKTOP_WINDOWS){uint64_t window=start_window_menu11[command-S11_WINDOW];if(desktop_lookup(&model,window)){launcher=0;desktop_focus11=0;desktop_focus(&model,window);whole();}return 1;}
 #ifdef ENGINE_M12
+ if(command>=S11_TASK_FOCUS&&command<S11_TASK_FOCUS+S11_APPS){unsigned app=command-S11_TASK_FOCUS;uint64_t window=0;if(taskbar_windows12(app,0,&window)==1&&desktop_lookup(&model,window)){launcher=0;desktop_focus11=0;desktop_focus(&model,window);whole();}else start_task_open11(app);return 1;}
  if(command==S11_MORE_PINS){taskbar_more12(1);return 1;}
  if(command==S11_TASK_NEXT||command==S11_TASK_PREV){if(command==S11_TASK_NEXT)++taskbar_overflow_page12;else if(taskbar_overflow_page12)--taskbar_overflow_page12;taskbar_more12(0);return 1;}
 #endif

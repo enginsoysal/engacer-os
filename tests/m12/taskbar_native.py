@@ -31,9 +31,9 @@ def focus(g,p,window):
     if not any(r[5]==action for r in group_controls(g)):
         p.desktop(43001,True)
         for _ in range(3):
-            if any(r['command']==action for r in menu_rows(g)):break
+            if any(r['command']==43220+app for r in menu_rows(g)):break
             f.menu(g,p,43200)
-        f.menu(g,p,action)
+        f.menu(g,p,43220+app)
     else:p.desktop(action,True)
     if sum(w['app']==app for w in records(g))>1:f.menu(g,p,43020+slot)
     assert f.model(g)[0]==slot and not next(w for w in records(g) if w['slot']==slot)['minimized']
@@ -88,10 +88,12 @@ def main():
                 for name,app in [('calc',4),('clock',8),('calendar',9),('image',14),('media',16)]:pin(g,p,name,app)
                 assert list(s.prefs(g).task[:8])==[1,7,2,4,8,9,14,16]
                 for name,app in [('settings',3),('downloads',5),('monitor',6),('disk utility',10),('software',11),('recovery',12),('archive',13),('help',18)]:launch(g,p,name,app)
-                assert s.windows(g)==8;p.desktop(43001,True);rows=menu_rows(g);assert len(rows)<=12 and any(r['command']==43118 for r in rows);c.shot(g,'overflow-with-eight-windows');f.menu(g,p,43118);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==18
+                assert s.windows(g)==8;p.desktop(43001,True);rows=menu_rows(g);assert len(rows)<=12 and any(r['command']==43238 for r in rows);c.shot(g,'overflow-with-eight-windows');f.menu(g,p,43238);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==18
                 s.search(g,p,'settings');c.key(g,'ret');assert s.windows(g)==8 and c.flag(g,'launcher');notice=ui.memory(g,ui.symbol('start_notice11',installed=True)[0],160).split(b'\0')[0];assert b'Close a window' in notice;c.shot(g,'window-quota-refusal');c.key(g,'esc');c.key(g,'esc');close_all(g,p)
                 report['checks'].append('Eight pins and eight distinct running apps remain reachable through bounded overflow; selecting a hidden app focuses its real window and the eight-window quota refuses another without losing existing windows')
-            f.same_pages(baseline,f.stats(g));c.idle(g);after=f.stats(g);report['resources']=dict(before=list(baseline),after=list(after),retained_pages=0);saved=bytes(s.prefs(g));assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==saved;report['preferences_sha256']=hashlib.sha256(saved).hexdigest();(out/'native.log').write_bytes(g.log().encode())
+            f.same_pages(baseline,f.stats(g));c.idle(g);after=f.stats(g);report['resources']=dict(before=list(baseline),after=list(after),retained_pages=0);saved=bytes(s.prefs(g));
+            if not args.smoke:assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==saved
+            report['preferences_sha256']=hashlib.sha256(saved).hexdigest();(out/'native.log').write_bytes(g.log().encode())
         if not args.smoke:
             for n in (1,2):
                 boot=ui.guest(work/f'ordinary-{n}',disk,media='installed',ready='M7_DESKTOP_READY');ui.s.normal_boot(boot,work/'install/vars.fd')

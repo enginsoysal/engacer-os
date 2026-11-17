@@ -32,6 +32,9 @@ buttons have 132-logical-pixel hit targets, separated by eight pixels; overflow
 reserves a distinct More apps control. Width arithmetic avoids signed overflow.
 
 Overflow shows hidden apps and supports bounded next/previous pages when needed.
+Choosing from overflow focuses/restores a window instead of toggling an already
+active window into minimized state; direct single-window button clicks retain
+the normal toggle. The overflow control marks an active hidden app.
 No menu exceeds the existing twelve-item capacity. Hidden running apps remain
 reachable; all live windows remain subject to the existing eight-window quota.
 Per-user pin order/alignment and optional package removal use the unchanged

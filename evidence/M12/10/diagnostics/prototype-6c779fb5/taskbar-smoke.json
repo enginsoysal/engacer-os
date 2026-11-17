@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "stage": "M12.10",
+  "development_only": true,
+  "build_id": "6c779fb5aeed4afbb9e95b3038fa89c8",
+  "iso_sha256": "c8f01693952372239a325fdca146ecffdada41394aad677bb791b2a62ea2f311",
+  "owned_fixture": "5324b130c2334201ae4085c39d119853",
+  "checks": [
+    "Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window",
+    "Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window",
+    "Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17720,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17720,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\taskbar_native.py\", line 94, in main\n    f.same_pages(baseline,f.stats(g));c.idle(g);after=f.stats(g);report['resources']=dict(before=list(baseline),after=list(after),retained_pages=0);saved=bytes(s.prefs(g));assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==saved;report['preferences_sha256']=hashlib.sha256(saved).hexdigest();(out/'native.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m7\\session.py\", line 66, in document\n    raise AssertionError('Expected persistent file not found: '+wanted)\nAssertionError: Expected persistent file not found: /System/Settings/start11-Owner.bin\n"
+}

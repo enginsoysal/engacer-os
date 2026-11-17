@@ -34,7 +34,7 @@ static void taskbar_more12(unsigned reset){
  if(reset)taskbar_overflow_page12=0;unsigned size=hidden<=12?12:10;
  if(taskbar_overflow_page12*size>=hidden)taskbar_overflow_page12=0;
  unsigned first=visible+taskbar_overflow_page12*size;start_menu_begin11(0,pointer_x,pointer_y);
- for(unsigned i=first;i<count&&i<first+size;++i)file_menu_add11(titles[list[i]],S11_TASK_OPEN+list[i],1);
+ for(unsigned i=first;i<count&&i<first+size;++i)file_menu_add11(titles[list[i]],S11_TASK_FOCUS+list[i],1);
  if(taskbar_overflow_page12)file_menu_add11("Previous apps",S11_TASK_PREV,1);
  if(first+size<count)file_menu_add11("Next apps",S11_TASK_NEXT,1);
  copy(file_menu_reason11,"Pinned and running apps. Select an app to open or choose its windows.",128);file_menu_fit11();
