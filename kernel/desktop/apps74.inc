@@ -314,7 +314,13 @@ static void tick74(void){
     clock7_time now;
     if(!clock7_read(&now)){
         uint64_t minute=(uint64_t)now.days*1440+now.hour*60+now.minute;
-        if(minute!=task_minute74){task_minute74=minute;invalidate((desktop_rect){(int)model.width-180,(int)model.height-60,180,60});}
+        if(minute!=task_minute74){task_minute74=minute;
+#ifdef ENGINE_M12
+ tray_changed12();
+#else
+ invalidate((desktop_rect){(int)model.width-180,(int)model.height-60,180,60});
+#endif
+ }
         if(time74.alarm_enabled&&now.hour*60+now.minute==time74.alarm_minute&&time74.last_alarm_day!=now.days){time74.last_alarm_day=now.days;copy(shell_notice,"Clock: it is time for your daily alarm.",sizeof(shell_notice));whole();}
     }
     for(unsigned i=0;i<DESKTOP_WINDOWS;++i){desktop_window *w=&model.windows[i];application *app=&apps[i];

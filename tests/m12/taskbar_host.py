@@ -1,9 +1,11 @@
 """Production taskbar union/layout bounds; not native window interaction proof."""
-import ctypes,hashlib,json,sys
+import argparse,ctypes,hashlib,json,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools/build'))
 from m1 import command,pinned_tools
-work=ROOT/'build/m12/stage10/taskbar-host';work.mkdir(parents=True,exist_ok=True);t=pinned_tools()
+parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True,choices=range(12,19));stage=parser.parse_args().stage
+assert not (ROOT/f'evidence/M12/{stage}/publication-results.json').exists(),'Published stage evidence is immutable'
+work=ROOT/f'build/m12/stage{stage}/taskbar-host';work.mkdir(parents=True,exist_ok=True);t=pinned_tools()
 command([t['clang'],'--target=x86_64-pc-windows-msvc','-std=c17','-O2','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-I',ROOT/'include','-c',ROOT/'tests/m12/taskbar_host.c','-o',work/'checks.obj'])
 command([t['lld-link'],'/dll','/noentry','/nodefaultlib','/export:taskbar12_checks','/export:taskbar12_total','/out:'+str(work/'checks.dll'),work/'checks.obj'])
 dll=ctypes.CDLL(str(work/'checks.dll'));result=dll.taskbar12_checks();assert result==0,('Production taskbar assertion',result)

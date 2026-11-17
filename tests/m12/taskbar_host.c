@@ -14,7 +14,7 @@ unsigned taskbar12_checks(void){
  CHECK(taskbar12_visible(800,3)==3);CHECK(taskbar12_visible(800,16)==3);
  for(unsigned width=800;width<=8192;++width)for(unsigned apps=0;apps<20;++apps){
   unsigned visible=taskbar12_visible(width,apps);CHECK(visible<=apps);
-  unsigned used=112+visible*140+(visible<apps?108:0);CHECK(used<=width-(width>=1000?180u:0u)-32);
+  unsigned used=112+visible*140+(visible<apps?108:0);CHECK(used<=width-(width>=1000?180u:64u)-32);
  }
  CHECK(taskbar12_visible(0,19)==0);CHECK(taskbar12_visible(144,19)==0);
  CHECK(taskbar12_visible(0x80000000u,19)==19);CHECK(taskbar12_visible(0xffffffffu,19)==19);

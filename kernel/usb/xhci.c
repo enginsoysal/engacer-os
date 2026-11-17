@@ -108,7 +108,11 @@ if((data[0]&0x11)&&data[i]>=4&&data[i]<=29)c=(char)(data[i]-3);
 if(data[i]==43)c=(char)((data[0]&0x44)?135:(data[0]&0x22)?136:9);
 if(data[i]==67)c=(char)137;
 #ifdef ENGINE_M11
-if(data[0]&0x88){d->gui_used11=1;c=(char)(data[i]==80?146:data[i]==79?147:data[i]==82?148:data[i]==81?149:data[i]==8?150:0);}
+if(data[0]&0x88){d->gui_used11=1;c=(char)(data[i]==80?146:data[i]==79?147:data[i]==82?148:data[i]==81?149:data[i]==8?150:
+#ifdef ENGINE_M12
+ data[i]==4?151:
+#endif
+ 0);}
 else if((data[0]&0x44)&&data[i]==43)c=(char)((data[0]&0x22)?143:135);
 else if((data[0]&0x44)&&data[i]==61)c=(char)144;
 else if((data[0]&0x44)&&data[i]==44)c=(char)145;

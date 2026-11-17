@@ -9,6 +9,9 @@ static void select_row11(application*a,unsigned row,unsigned modifiers,unsigned 
  selection_focus11[slot]=row;serial_text("M11_SELECTION row=");serial_hex(row);serial_text("\n");
 }
 static i11_target target11(int x,int y){
+#ifdef ENGINE_M12
+ if(tray_open12)return tray_target12(x,y);
+#endif
  if(launcher&&!context11&&y<(int)model.height-60&&(x<start_bounds11.x||x>=start_bounds11.x+start_bounds11.width||y<start_bounds11.y||y>=start_bounds11.y+start_bounds11.height))return(i11_target){0,0,I11_BACKGROUND};
  if(switch_open11){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect r=c->rect;if(c->action>=W11_SWITCH&&c->action<W11_SWITCH+DESKTOP_WINDOWS&&x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,0,I11_BACKGROUND};}
  if(guide_open11&&!launcher&&!context11){desktop_rect r=guide_bounds11;if(x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect b=c->rect;if(c->action>=46000&&c->action<=46003&&x>=b.x&&x<b.x+b.width&&y>=b.y&&y<b.y+b.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,46004,I11_BUTTON};}}
@@ -53,6 +56,9 @@ static void open_target11(i11_target target){
  desktop_focus11=0;action(target.window,target.action);
 }
 static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
+#ifdef ENGINE_M12
+ if(tray_open12){if((event&I11_ACTIVATE)&&target.kind==I11_BUTTON){if(target.action>=TR12_OPEN&&target.action<TR12_END)tray_action12(target.window,target.action);else if(y>=model.height-60&&!target.window){tray_close12();open_target11(target);}}else if((event&(I11_SELECT|I11_ACTIVATE|I11_CONTEXT))&&((int)x<tray_bounds12.x||(int)y<tray_bounds12.y||(int)x>=tray_bounds12.x+tray_bounds12.width||(int)y>=tray_bounds12.y+tray_bounds12.height))tray_close12();return;}
+#endif
  if(switch_open11){if(event&I11_ACTIVATE){if(target.action>=W11_SWITCH&&target.action<W11_SWITCH+DESKTOP_WINDOWS)window_action11(0,target.action);
 #ifdef ENGINE_M12
  else multitask_cancel12();
@@ -93,7 +99,11 @@ static void marquee_update11(int x,int y){desktop_window*w=desktop_lookup(&model
  if(xx<right&&xx+ww>left&&yy<bottom&&yy+hh>top){desktop_set_selected11(i,1);desktop_item_focus11=i;}}for(unsigned i=0;i<control_count;++i){control*c=&controls[i];desktop_rect r=c->rect;if(c->window||c->action<F11_DESKTOP_ITEM||c->action>=F11_DESKTOP_ITEM+V6_ENTRIES)continue;if(r.x<right&&r.x+r.width>left&&r.y<bottom&&r.y+r.height>top){unsigned row=c->action-F11_DESKTOP_ITEM+DESKTOP_BUILTINS11;desktop_set_selected11(row,1);desktop_item_focus11=row;}}whole();return;}
  unsigned slot=(unsigned)(w-model.windows);if(dispatch_modifiers11&1)memcpy(selected11[slot],marquee_saved11,sizeof(marquee_saved11));else memset(selected11[slot],0,sizeof(selected11[slot]));for(unsigned i=0;i<control_count;++i){control*c=&controls[i];desktop_rect r=c->rect;if(c->window!=marquee_window11||c->action<FILE_ROW||c->action>=FILE_ROW+V6_ENTRIES)continue;if(r.x<right&&r.x+r.width>left&&r.y<bottom&&r.y+r.height>top){unsigned row=c->action-FILE_ROW,index=selection_index11(&apps[slot],row);if(index<V6_ENTRIES)selected11[slot][index/8]|=(uint8_t)(1u<<(index%8));selection_focus11[slot]=row;}}whole();
 }
-static unsigned keyboard11(int key){dispatch_modifiers11=input11_modifiers();if(window_key11(key))return 1;if(key==141){files_cancel_drag11();context11=marquee11=dragging=0;i11_cancel(&interaction11);whole();return 1;}if((key==27||key==137)&&(context11||interaction11.captured||marquee11||dragging||file_drag11)){files_cancel_drag11();context11=marquee11=0;i11_cancel(&interaction11);dragging=0;whole();return 1;}
+static unsigned keyboard11(int key){dispatch_modifiers11=input11_modifiers();
+#ifdef ENGINE_M12
+ if(tray_key12(key))return 1;
+#endif
+if(window_key11(key))return 1;if(key==141){files_cancel_drag11();context11=marquee11=dragging=0;i11_cancel(&interaction11);whole();return 1;}if((key==27||key==137)&&(context11||interaction11.captured||marquee11||dragging||file_drag11)){files_cancel_drag11();context11=marquee11=0;i11_cancel(&interaction11);dragging=0;whole();return 1;}
  if(start_key11(key))return 1;
  if(guide_key11(key))return 1;
  if(files_key11(key))return 1;

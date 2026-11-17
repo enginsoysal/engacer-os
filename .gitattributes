@@ -245,3 +245,11 @@ kernel/desktop/window11.inc -text whitespace=cr-at-eol
 kernel/desktop/window11-state.inc -text whitespace=cr-at-eol
 kernel/desktop/multitask12.inc -text whitespace=cr-at-eol
 evidence/M12/11/** -text -whitespace
+
+# M12.12 provider-backed tray and shortcut routing.
+kernel/desktop/tray12-state.inc -text whitespace=cr-at-eol
+kernel/desktop/tray12.inc -text whitespace=cr-at-eol
+kernel/desktop/apps74.inc -text whitespace=cr-at-eol
+kernel/input/legacy.c -text whitespace=cr-at-eol
+kernel/usb/xhci.c -text whitespace=cr-at-eol
+evidence/M12/12/** -text -whitespace

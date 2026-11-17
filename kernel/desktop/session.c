@@ -119,6 +119,9 @@ static uint8_t marquee_saved11[V6_ENTRIES/8];static unsigned marquee_desktop_sav
 #endif
 #include "start11-state.inc"
 #include "window11-state.inc"
+#ifdef ENGINE_M12
+#include "tray12-state.inc"
+#endif
 #include "appearance11-state.inc"
 static unsigned guide_open11;static desktop_rect guide_bounds11;
 static unsigned selected_row11(application*,unsigned);
@@ -626,6 +629,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #ifdef ENGINE_M12
 #include "chrome12.inc"
 #include "multitask12.inc"
+#include "tray12.inc"
 #endif
 #include "guide11.inc"
 #endif
@@ -873,6 +877,9 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     start_draw11();
     window_overlay11();
     draw_context11();
+#ifdef ENGINE_M12
+    tray_draw12();
+#endif
 #endif
     gui7_clip_reset();usb_mouse_draw();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;
 }
@@ -906,6 +913,7 @@ static void insert(application *app,const char *bytes,unsigned count) {
 
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
+    if(tray_action12(token,command))return;
     if(window_action12(token,command))return;
     if(picker_action12(token,command))return;
     if(!token&&command==DESKTOP_HIDE12){if(context_action11>=30000&&context_action11<30004)desktop_references12(desktop_hidden12|(1u<<(context_action11-30000)));return;}
@@ -1409,7 +1417,11 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
         __asm__ volatile("cli");
         if(usb_work_pending()){usb_process_changes();
 #ifdef ENGINE_M10
-            hw10_refresh();for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==FILES||model.windows[i].app==SETTINGS)){
+            hw10_refresh();
+#ifdef ENGINE_M12
+            tray_changed12();
+#endif
+            for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==FILES||model.windows[i].app==SETTINGS)){
 #ifdef ENGINE_M12
  if(model.windows[i].app==FILES&&apps[i].usb_mode10==1){apps[i].usb_selected10=0;if(focused_control_window==desktop_token(&model,i)&&focused_action>=USB_DISK10&&focused_action<USB_DISK10+STORAGE_MAX)control_active=0;}
 #endif
@@ -1445,9 +1457,17 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
         if(time_work)tick74();
         if(audio_work)audio74_pump();
         unsigned new_audio_revision=audio74_current().revision;
-        if(new_audio_revision!=audio_revision){audio_revision=new_audio_revision;for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==MEDIA74)invalidate(model.windows[i].bounds);}
+        if(new_audio_revision!=audio_revision){audio_revision=new_audio_revision;
+#ifdef ENGINE_M12
+ tray_changed12();
 #endif
-        if(network_work){net7_pump();unsigned revision=net7_current().revision;if(revision!=network_revision||download7_current().revision!=download_revision){network_revision=revision;download_revision=download7_current().revision;for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==DOWNLOADS||model.windows[i].app==DETAILS))invalidate(model.windows[i].bounds);}
+ for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==MEDIA74)invalidate(model.windows[i].bounds);}
+#endif
+        if(network_work){net7_pump();unsigned revision=net7_current().revision;if(revision!=network_revision||download7_current().revision!=download_revision){network_revision=revision;download_revision=download7_current().revision;
+#ifdef ENGINE_M12
+ tray_changed12();
+#endif
+ for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==DOWNLOADS||model.windows[i].app==DETAILS))invalidate(model.windows[i].bounds);}
 #ifdef ENGINE_M74
             browser_pump74();
             desktop_window *transfer=desktop_lookup(&model,transfer_owner74);download7_info current=download7_current();

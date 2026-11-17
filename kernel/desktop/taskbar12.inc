@@ -44,7 +44,7 @@ static void taskbar_more12(unsigned reset){
 }
 static void taskbar_draw12(int bar){
  unsigned list[T12_APPS],count=taskbar_apps12(list),visible=taskbar12_visible(model.width,count),more=visible<count;
- int clock=model.width>=1000?180:0,total=112+(int)visible*140+(more?108:0),x=start_preferences11.centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
+ int clock=model.width>=1000?180:64,total=112+(int)visible*140+(more?108:0),x=start_preferences11.centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
  icon_button12(0,x,bar+15,100,"Start",0,launcher,ICON12_START);x+=112;
  for(unsigned i=0;i<visible;++i){unsigned app=list[i],shown=0,windows=taskbar_windows12(app,&shown,0),active=taskbar_active12(app);
   button(0,x,bar+15,132,"",S11_TASK_OPEN+app,active);unsigned state=component_state12(0,S11_TASK_OPEN+app);ui12_style style=ui12_control_style(ui12_theme(preferences.dark,preferences.accent),state,active);
@@ -53,5 +53,5 @@ static void taskbar_draw12(int bar){
   if(windows){int length=active?72:shown?28:8;rectangle((desktop_rect){x+(132-length)/2,bar+54,length,3},active?preferences.accent:0xb6cbd1);if(!shown)rectangle((desktop_rect){x+74,bar+54,8,3},0xb6cbd1);}
   x+=140;
  }
- if(more){unsigned active=0;for(unsigned i=visible;i<count;++i)active|=taskbar_active12(list[i]);button(0,x,bar+15,100,"More apps",S11_MORE_PINS,active);}if(clock)task_clock74(bar);
+ if(more){unsigned active=0;for(unsigned i=visible;i<count;++i)active|=taskbar_active12(list[i]);button(0,x,bar+15,100,"More apps",S11_MORE_PINS,active);}tray_bar12(bar);
 }

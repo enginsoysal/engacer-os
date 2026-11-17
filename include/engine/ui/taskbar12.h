@@ -19,7 +19,7 @@ static inline void taskbar12_sync(unsigned *order,unsigned *count,const unsigned
  for(unsigned i=0;i<live_count;++i)taskbar12_add(order,count,live[i]);
 }
 static inline unsigned taskbar12_visible(unsigned width,unsigned count){
- unsigned reserve=(width>=1000?180u:0u)+32u+112u;
+ unsigned reserve=(width>=1000?180u:64u)+32u+112u;
  unsigned space=width>reserve?width-reserve:0;
  unsigned visible=space/140;
  if(visible<count)visible=space>108?(space-108)/140:0;
