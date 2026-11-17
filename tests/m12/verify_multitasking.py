@@ -25,6 +25,7 @@ def main():
         assert row['passed'],name
         if name!='pack-host':assert row['build_id']==meta['build_id'],name
         if 'iso_sha256' in row:assert row['iso_sha256']==iso,name
+    assert 'M7_DESKTOP_READY build='+meta['build_id'] in (WORK/'restore-native/native.log').read_text(encoding='utf-8')
     restore=reports['restore-native'];assert len(restore['checks'])==3 and restore['distinct_normal_bounds'] and restore['normal_before']==restore['normal_after'] and restore['normal_before'][0]!=restore['normal_before'][1] and restore['resources']['retained_pages']==0
     assert not native['development_only'] and len(native['checks'])>=6 and native['resources']['retained_pages']==0
     assert native['resources']['before'][0]==native['resources']['after'][0] and native['resources']['before'][3]==native['resources']['after'][3]
