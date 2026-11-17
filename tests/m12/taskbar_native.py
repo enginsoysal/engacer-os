@@ -69,7 +69,11 @@ def main():
             for action in (2,2,100,2,2,2):c.wizard(g,p,action)
             at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();s.close(g,p);baseline=f.stats(g)
             assert group_order(g)==[1,2,7] and s.windows(g)==0 and not any(r[5]==70 for r in f.controls(g));c.shot(g,'pins-no-duplicate-window-buttons')
-            p.desktop(43101,True);first=records(g)[0];assert first['app']==1 and not first['minimized'];p.desktop(43101,True);assert records(g)[0]['minimized'];c.shot(g,'single-minimized');p.desktop(43101,True);assert not records(g)[0]['minimized']
+            for _ in range(64):
+                c.key(g,'tab')
+                if c.flag(g,'control_active') and c.flag(g,'focused_action')==43101:break
+            else:raise AssertionError('Grouped Files button cannot receive keyboard focus')
+            c.shot(g,'keyboard-group-focus');c.key(g,'ret');first=records(g)[0];assert first['app']==1 and not first['minimized'];p.desktop(43101,True);assert records(g)[0]['minimized'];c.shot(g,'single-minimized');p.desktop(43101,True);assert not records(g)[0]['minimized']
             report['checks'].append('Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window')
             second=launch(g,p,'files',1);f.visit(g,p,'Documents');assert s.windows(g,1)==2 and group_order(g).count(1)==1
             p.desktop(43101,True);rows=menu_rows(g);assert sum(43020<=r['command']<43028 for r in rows)==2 and any('Documents' in r['label'] for r in rows);assert all(r['label'][0].isdigit() for r in rows[:-1]);c.shot(g,'two-files-chooser');f.menu(g,p,43020+first['slot']);assert f.model(g)[0]==first['slot']
