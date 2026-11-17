@@ -235,7 +235,7 @@
     },
     {
       "id": "M12.18",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Final qualification and publication",
       "requires": "M12.17",
       "deliverable": "One frozen final ISO/starter, complete task regression, release assets and fresh website/manual verification.",
@@ -249,7 +249,9 @@
       "qualification": "M12-STAGE18-VM-v1",
       "build_id": "8ee102351039d96f68637a9edbff597b",
       "evidence": "evidence/M12/18/acceptance-results.json",
-      "carry_forward_resolution": "Actual native white high-contrast boundaries pass; hydrated article email sharing uses the custom domain. Named final controller/MSI/device/desktop/error/resource regression and twelve fresh concurrent BIOS/AHCI lifecycles pass. The earlier BIOS trigger is not identified; 64-MiB boot-attached USB remains unqualified."
+      "carry_forward_resolution": "Actual native white high-contrast boundaries pass; hydrated article email sharing uses the custom domain. Named final controller/MSI/device/desktop/error/resource regression and twelve fresh concurrent BIOS/AHCI lifecycles pass. The earlier BIOS trigger is not identified; 64-MiB boot-attached USB remains unqualified.",
+      "publication_evidence": "evidence/M12/18/publication-results.json",
+      "publication_source": "07743f643687544bb21dcd92a53a993141560cdd"
     }
   ],
   "publication_gate": [

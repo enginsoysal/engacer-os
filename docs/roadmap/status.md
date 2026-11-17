@@ -1,5 +1,7 @@
 # Current status
 
+Updated 17 November 2026.
+
 **M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
 [Install](../handbook/install-m1218.md), [Final desktop guide](../handbook/final-m1218.md),
 [release scope](../releases/m1218-v0.12.18.md), [exact-source acceptance](../../evidence/M12/18/acceptance-results.json).
@@ -17,8 +19,7 @@ tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
 an explicit unqualified loader refusal. Named VM scope is separate from universal
 hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-Matching public assets and complete website verification close separately before
-the delivery is marked complete. Earlier M12.0–M12.17 receipts remain immutable.
+Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](../../evidence/M12/18/publication-results.json). **M12.0–M12.18 is complete.** Earlier receipts remain immutable.
 
 **Previous M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
 [Install](../handbook/install-m126.md), [Files views](../handbook/files-m126.md),

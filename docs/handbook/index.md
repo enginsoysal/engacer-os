@@ -17,8 +17,7 @@ tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
 an explicit unqualified loader refusal. Named VM scope is separate from universal
 hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-Matching public assets and complete website verification close separately before
-the delivery is marked complete. Earlier M12.0–M12.17 receipts remain immutable.
+Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](../../evidence/M12/18/publication-results.json). **M12.0–M12.18 is complete.** Earlier receipts remain immutable.
 
 - [Download and install M12.18](install-m1218.md)
 - [Use the final M12 desktop and read its tested scope](final-m1218.md)

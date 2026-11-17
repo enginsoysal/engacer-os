@@ -1,8 +1,7 @@
 # M12.18 final qualification
 
 Status: M12-STAGE18-VM-v1 native qualification passes for build
-`8ee102351039d96f68637a9edbff597b`. Matching public release and complete website
-verification close separately; earlier receipts remain immutable.
+`8ee102351039d96f68637a9edbff597b`. Complete public release and website verification passes: twenty downloads, 406 pages and 2,853 HTTP links. Earlier receipts remain immutable.
 
 The final stage freezes one independent-kernel ISO and its prepared VMware
 package. Earlier passing binaries do not qualify new bytes. Source hashes,
@@ -84,3 +83,5 @@ and USB quota recovery keep their real provider outcomes.
 [resources](../../evidence/M12/18/resources.json),
 [installation](../handbook/install-m1218.md) and
 [final guide](../handbook/final-m1218.md) record the detailed scope.
+
+[Complete public receipt](../../evidence/M12/18/publication-results.json) records native homepage Save, actual desktop/mobile/manual/search/archive checks, release source and independent download digests. All M12.0–M12.18 stages are complete within their declared scopes.

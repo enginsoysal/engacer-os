@@ -1,6 +1,6 @@
 # BrixCanvas documentation website
 
-The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.6 is the current qualified native stage; its ISO and exact VMware download have their own stage scope and retained BIOS observation. M12.0 remains the accepted design baseline, M12.5, M12.4, M12.3, M12.2 and M12.1 the previous native stages and M11.6 the earlier final matrix. The internal site ID/slug and scoped publisher key stay unchanged; historical release identities stay intact. Native homepage Save, responsive review, current article readback and exact download-hash verification are required separately for every publication. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles. Earlier milestone sections below are historical publication records, not the current release selector.
+The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.18 is the final qualified native stage; all M12.0–M12.18 stages are complete within their declared scopes. Its immutable release includes the matching ISO and VMware package. The final public receipt records 406 checked pages, 2,853 HTTP links and twenty release assets. Earlier milestone sections below are historical records. The internal site ID/slug and scoped publisher key remain unchanged; historical release identities stay intact. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
 
 ## Current M12 publication
 
@@ -13,20 +13,21 @@ roadmap, website maintenance and the archive. Every article remains discoverable
 
 Native M12 releases are selected numerically and only after their public ISO,
 VMware ZIP and build manifest exist. Design prereleases cannot become an OS
-download. M12.6's homepage uses its actual QEMU installed-guest capture and matching guide;
-the full M12 qualification remains M12.18. Refresh the editor after article sync
+download. M12.18's homepage uses its actual native 4K capture and matching guide;
+its qualification and complete public receipt are recorded in evidence/M12/18. Refresh the editor after article sync
 before changing its four native sections, then explicitly Save and verify the
 public desktop/mobile layout, links, source provenance and downloadable hashes.
 
 During M12.0 publication, real server responses included 502, 429 and a request
 timeout. The publisher now spaces requests by at least 2.1 seconds and allows at
 most three retries for repeatable GET/exact-body PATCH operations. It respects
-Retry-After up to 60 seconds and stops rather than retrying earlier when a
+Retry-After up to 180 seconds and stops rather than retrying earlier when a
 longer delay is requested. Transient gateway errors/timeouts use bounded backoff.
 POST creation is never blindly repeated; the existing exact empty-draft recovery
 rules remain authoritative. Authentication, validation and ownership failures
 stop immediately. Retry-policy and ownership tests run before publication; final
-article inventory/readback remains mandatory. This adds resilience without
+article inventory/readback remains mandatory. The publication job allows thirty minutes
+for the paced full inventory plus its bounded retries. This adds resilience without
 claiming the external service cannot fail. Keep failed/cancelled runs in the
 publication record and reload the native editor after the final successful sync.
 
