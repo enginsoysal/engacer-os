@@ -55,6 +55,9 @@ def main():
         for path in (WORK/group).iterdir():
             if path.is_file() and path.suffix in ('.json','.png','.log'):(target/path.name).write_bytes(path.read_bytes() if path.suffix=='.png' else public(path.read_bytes()))
     for source,name in [('dist/m12stage12-build-manifest.json','candidate-manifest.json'),('dist/m12stage12-starter-manifest.json','starter-manifest.json'),('build/m12/stage12/syntax-results.json','syntax-results.json')]:shutil.copyfile(ROOT/source,OUT/name)
+    diagnostics=OUT/'diagnostics';diagnostics.mkdir(exist_ok=True)
+    for path in (WORK/'diagnostics').iterdir():
+        if path.suffix in ('.json','.png'):(diagnostics/path.name).write_bytes(path.read_bytes() if path.suffix=='.png' else public(path.read_bytes()))
     shutil.copyfile(WORK/'tray-network/real-local-network.png',OUT/'feature.png')
     write(OUT/'resources.json',dict(passed=True,previous=previous,current=current,added_fixed_desktop_bytes=current['bytes']-previous['bytes'],managed=native['resources'],boot_managed=native['boot_resources'],hardware_managed=native['hardware_resources'],display_profiles=profiles['profiles'],font=meta['font'],scope='One fixed provider-backed flyout; no app slot, worker, retained pixel cache or idle scanner. Initial provider allocations and warmed completed UI journeys are reported separately.'))
     checks=sum((reports[name]['checks'] for name in ('tray-native','tray-profiles','tray-network','tray-optional','tray-busy')),[])

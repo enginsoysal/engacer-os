@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "stage": "M12.12",
+  "diagnostic_only": true,
+  "observation": "A legacy M12.1 BIOS helper did not parse --help and reran into its ignored historical scratch output. It is not M12.12 qualification and no accepted evidence, tags or media were changed. A closed-stage guard now prevents invocation; current qualification uses boot_stage.py --stage 12."
+}

@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "stage": "M12.12",
+  "build_id": "93839018f852f6b6ba79643004d5f101",
+  "scope": "Agent review of actual native candidate captures and input/provider evidence; not a human study or full accessibility qualification.",
+  "reviewed": [
+    "feature.png",
+    "tray-native/replacement-stale-press-cancelled.png",
+    "tray-profiles/calendar-compact.png",
+    "tray-profiles/quick-compact-dark.png",
+    "tray-profiles/quick-150.png",
+    "tray-profiles/calendar-4k.png",
+    "tray-optional/optional-calendar-removed.png",
+    "tray-busy/busy-provider-guards.png"
+  ],
+  "findings": [
+    "The right-aligned flyout and compact System button leave app groups and overflow reachable at all four actual display profiles.",
+    "Quick settings, USB and the UTC calendar share readable controls, original icons, consistent spacing and useful unavailable reasons in light and dark.",
+    "The real replacement case retains generation-bound USB actions; unavailable optional Calendar explains reinstall without removing the base calendar.",
+    "The final busy capture follows a completed native repaint: 80% session gain and the full save-after-operation explanation are visible while the real USB copy remains active. The earlier premature capture is retained as a diagnostic."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Retain shared-menu/footer and notice bounds, Start scope/notice lifetime, new-versus-saved Editor status and background transfer/modal arbitration."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Retain cursor/hit and explicit-scale/startup minimum reconciliation and focus refinement."
+    },
+    {
+      "stage": "M12.17",
+      "observation": "Retain bounded shadow edge-span evaluation and measured renderer equivalence."
+    },
+    {
+      "stage": "M12.18",
+      "observation": "Retain the named BIOS/AHCI observation and complete final controller/original-app qualification."
+    }
+  ],
+  "capture_sha256": {
+    "feature.png": "d313ceb76b711210266c21d08758ffa0641ccb4eb0dc188d1b966d224f3bb4d0",
+    "tray-native/replacement-stale-press-cancelled.png": "87e842a938b4f0ea2933644a3838120a64ba60e8ea9dc4e4a99b540a4e10660e",
+    "tray-profiles/calendar-compact.png": "7bac1fc8cd90267043fddc2e4e07ef2dc89ebc33ff6a0e07828f69f5faa57370",
+    "tray-profiles/quick-compact-dark.png": "ebb1599c48a37bc4ffd72672a4aea7888b7776d8c70a2bb11597d162722c9a86",
+    "tray-profiles/quick-150.png": "dd87730e4dcad2e435e735b626619af90530e29deeb0316fba56aca49f0b280e",
+    "tray-profiles/calendar-4k.png": "a31d9bd399f695ebe8b9c6a919f659f3c6684689feb152631de9e2519bdcc8c5",
+    "tray-optional/optional-calendar-removed.png": "5a98b7bd8204dd3cb1ce0e386fc137ac8e89475b114ddc711e1d85a2effe2daf",
+    "tray-busy/busy-provider-guards.png": "c4d7b48929b8f271720208a14eb9f93b4074afa3b196deb9f9f6a7ba381c6001"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "stage": "M12.12",
+  "build_id": "93839018f852f6b6ba79643004d5f101",
+  "iso_sha256": "c25247ddc6d38194bd809dae0fe905409056fc45f60946c3c306b0a1c5a4b857",
+  "owned_fixture": "20215ec4a7094c01a8b21022e45beb82",
+  "checks": [
+    "Real install/retained-ISO startup; Windows+A opens a slot-free provider-backed panel, unsupported network retry is disabled, PCM level/mute updates the actual provider, and one visible Start click switches menus",
+    "Actual UTC calendar values and bounded month navigation drive an explicit Calendar launch for the selected real date; the panel itself does not create an application window",
+    "Devices opens the required real inventory; USB excludes the system SATA disk in no-device state, keyboard focus and Escape work, and completed panel/app journeys retain zero managed pages and halt at idle",
+    "Changing PCM level while Save As owns a dirty Editor applies only to the live provider: the exact whole disk and saved level remain unchanged, and Escape preserves the picker and unsaved text"
+  ],
+  "boot_resources": {
+    "before": [
+      1047,
+      1047,
+      17714,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17714,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\tray_native.py\", line 38, in main\n    f.attach(g,p,'tray-source','tray-a');usb_panel(g,p);control=usb_control(g);index=control[5]-58200;record=dict(q.disks(g))[index]\n  File \"<project-root>\\tests\\m12\\tray_observe.py\", line 16, in disks\n    address,size=ui.symbol('disks',installed=True);assert size==16*40\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('disks', [('370960', '280'), ('373b40', 'c0')])\n"
+}

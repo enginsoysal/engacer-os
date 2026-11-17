@@ -44,6 +44,11 @@ def main():
             assert job(g)[0][0],('Transfer completed before busy observation',job(g));active_key(g,'meta_l','a');active_click(g,p,58002);assert job(g)[0][0]
             at=len(g.log());active_click(g,p,drive[5]+20);assert 'transfer' in q.notice(g).lower() and 'M10_USB_SAFE_TO_REMOVE' not in g.log()[at:] and dict(q.disks(g))[drive[5]-58200][4]
             active_click(g,p,58001);active_click(g,p,58010);assert 'session' in q.notice(g).lower() and ui.s.s.document(disk,'/System/Settings/audio74.bin')==saved_audio and job(g)[0][0]
+            painted=c.flag(g,'paints');deadline=time.monotonic()+15
+            while c.flag(g,'paints')==painted:
+                assert job(g)[0][0],'Transfer ended before its updated feedback was captured'
+                if time.monotonic()>deadline:raise TimeoutError('No completed busy-feedback repaint')
+                time.sleep(.01)
             g.qmp('stop')
             try:ui.raw_shot(g,out,'busy-provider-guards',True)
             finally:g.qmp('cont')

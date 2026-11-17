@@ -1,8 +1,6 @@
 # M12.12 — provider-backed system tray
 
-Status: implementation, compile guards and production taskbar bounds checks
-pass; native qualification and publication are pending. M12.11 remains the
-completed tested download.
+Status: M12-STAGE12-VM-v1 native qualification passes for build `93839018f852f6b6ba79643004d5f101`. The matching public release and complete website verification close separately before M12.13.
 
 ## How and why
 
@@ -74,3 +72,7 @@ retains cursor/scale/focus work; M12.17 retains measured renderer work; M12.18
 retains the earlier BIOS/AHCI observation and full controller/original-app
 matrix. No universal hardware, physical/ARM, GPU 3D or general Windows support
 is qualified by drawing tray controls.
+
+## Measured receipt
+
+11 native task/profile checks, four real display profiles, separate BIOS and exact enabled-device VMware pass. Fixed shell state is 553,196 bytes (+239); completed UI journeys retain zero pages. [Acceptance](../../evidence/M12/12/acceptance-results.json).

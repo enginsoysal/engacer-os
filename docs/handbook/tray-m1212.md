@@ -1,7 +1,7 @@
 # System tray and quick settings — M12.12
 
-Development guide: native M12.12 tests and downloads are pending. The completed
-tested release remains [M12.11](install-m1211.md).
+M12.12 passes its named native qualification. Use the matching
+[installation guide](install-m1212.md) and [release scope](../releases/m1212-v0.12.12.md).
 
 Open **System** at the right of the taskbar, or press **Windows+A**. On a wider
 desktop, the network and sound icons open Quick settings, the USB icon opens

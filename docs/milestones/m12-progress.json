@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.12",
-  "qualified_download": "M12.11",
+  "qualified_download": "M12.12",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -141,7 +141,7 @@
     },
     {
       "id": "M12.12",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "System tray and quick settings",
       "requires": "M12.11",
       "deliverable": "Clock/calendar, device status, safe removal and controls backed by real providers.",

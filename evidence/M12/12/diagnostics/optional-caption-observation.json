@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "build_id": "93839018f852f6b6ba79643004d5f101",
+  "checks": [
+    "Playing the included original WAV without an audio controller reaches the real provider failure state; Quick settings reports unavailable playback rather than invented hardware readiness"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\tray_optional.py\", line 30, in main\n    t.launch(g,p,'software',11);change(g,p,kind);s.close(g,p);t.launch(g,p,name,kind);s.close(g,p)\n  File \"<project-root>\\tests\\m12\\start_observe.py\", line 20, in close\n    slot=f.model(g)[0];rows=[r for r in f.controls(g) if r[5]==49002 and (r[4]&0xffffffff)==slot+1];assert len(rows)==1\nAssertionError\n"
+}

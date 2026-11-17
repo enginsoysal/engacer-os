@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "build_id": "93839018f852f6b6ba79643004d5f101",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\tray_busy.py\", line 37, in main\n    source=ui.q.sparse_disk(work/'tray-large.img',1024**3);fat=PyFat();fat.mkfs(str(source),fat_type=PyFat.FAT_TYPE_FAT32,size=1024**3,label='M1212BUSY',volume_id=0x12120001);fat.close()\n  File \"<project-root>\\tests\\m6\\workspace.py\", line 25, in sparse_disk\n    with path.open('xb'):pass\n  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileExistsError: [Errno 17] File exists: '<test-root>\\\\m12-stage12-tray\\\\9f10fcf3974546359f04354e1eda5a06\\\\tray-large.img'\n"
+}

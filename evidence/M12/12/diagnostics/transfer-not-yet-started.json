@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "build_id": "93839018f852f6b6ba79643004d5f101",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\tray_busy.py\", line 38, in main\n    assert job(g)[0][0],('Transfer completed before busy observation',job(g));active_key(g,'meta_l','a');active_click(g,p,58002);assert job(g)[0][0]\nAssertionError: ('Transfer completed before busy observation', ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0)))\n"
+}

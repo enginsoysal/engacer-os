@@ -1,0 +1,170 @@
+{
+  "passed": true,
+  "previous": {
+    "bytes": 552957,
+    "sections": {
+      "bss": 552929,
+      "data": 28
+    },
+    "map_sha256": "f20d188e07edfcb6068baa998fb39f6a128e32a5329cb0c38c983a2a62d5177a"
+  },
+  "current": {
+    "bytes": 553196,
+    "sections": {
+      "bss": 553168,
+      "data": 28
+    },
+    "map_sha256": "b0f10620d6f0a27905554d77455313898309e49832addd5e3347bd03d2000d32"
+  },
+  "added_fixed_desktop_bytes": 239,
+  "managed": {
+    "before": [
+      1047,
+      1059,
+      17714,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17714,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "boot_managed": {
+    "before": [
+      1047,
+      1047,
+      17714,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17714,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "hardware_managed": {
+    "before": [
+      1047,
+      1047,
+      17714,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17714,
+      5
+    ]
+  },
+  "display_profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2113536,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9408512,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33370112,
+      "retained_pages": 0
+    }
+  ],
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "scope": "One fixed provider-backed flyout; no app slot, worker, retained pixel cache or idle scanner. Initial provider allocations and warmed completed UI journeys are reported separately."
+}

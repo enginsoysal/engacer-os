@@ -1,24 +1,26 @@
 # Engacer OS user handbook
 
-**M12.11 / 0.12.11 passes M12-STAGE11-VM-v1.**
-[Install](install-m1211.md), [switch and arrange windows](multitasking-m1211.md),
-[release scope](../releases/m1211-v0.12.11.md),
-[exact-source acceptance](../../evidence/M12/11/acceptance-results.json).
-591 compiled Git inputs, eleven native task/profile checks, compact light/dark,
-actual 150%/4K, twelve movement comparisons, enabled-device VMware/BIOS installation,
-ordinary disk starts and real compressed boot repair pass. The switcher identifies
-actual windows; preview/cancel and optional complementary snap preserve work.
-Two deliberately different normal rectangles restore exactly. Fixed shell state
-is 552,957 bytes, 32 above M12.10; completed tasks retain zero managed pages.
-[Complete public proof](../../evidence/M12/11/publication-results.json) passes: twenty downloads, 357 pages and 2,457 links, plus native homepage Save and actual desktop/mobile verification. **M12.12 is active.**
+**M12.12 / 0.12.12 passes M12-STAGE12-VM-v1.**
+[Install](install-m1212.md), [system tray and quick settings](tray-m1212.md),
+[release scope](../releases/m1212-v0.12.12.md),
+[exact-source acceptance](../../evidence/M12/12/acceptance-results.json).
+593 compiled Git inputs and 11 native task/profile checks cover real provider state,
+UTC calendar, persisted PCM level, USB generation guards, safe removal during
+actual transfer, optional-app independence and USB/PS2 ordinary starts.
+Compact light/dark, actual 150%/4K, enabled-device VMware, separate BIOS,
+twelve movement comparisons and real compressed boot repair pass.
+Fixed shell state is 553,196 bytes, 239 above M12.11; completed UI tasks
+retain zero managed pages. Public release and complete website verification
+are the remaining gates before M12.13.
 
-Previous [M12.10 complete public delivery](../../evidence/M12/10/publication-results.json)
-remains immutable: twenty downloads, 349 pages and 2,405 links.
+Previous [M12.11 complete public delivery](../../evidence/M12/11/publication-results.json)
+remains immutable: twenty downloads, 357 pages and 2,457 links.
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a
 broader original-app/USB regression; those results qualify its own bytes.
 
-- [Download and install M12.11](install-m1211.md)
+- [Download and install M12.12](install-m1212.md)
+- [Use quick settings, USB safe removal and Calendar](tray-m1212.md)
 - [Open, Save as, Cancel and choose an extraction folder](dialogs-m128.md)
 - [Copy, move, cancel and inspect transfer results](transfers-m127.md)
 - [Choose Files views, order and full names](files-m126.md)

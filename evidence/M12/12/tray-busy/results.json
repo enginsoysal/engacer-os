@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build_id": "93839018f852f6b6ba79643004d5f101",
+  "checks": [
+    "During an actual 64-MiB cooperative USB import, safe removal is refused and PCM changes do not write preferences; explicit Cancel completes before removal becomes available, and the complete USB source image remains byte-identical"
+  ],
+  "owned_fixture": "5b40c08196a14dd4b19ab1f6cd374c2e",
+  "resources": {
+    "before": [
+      1047,
+      1054,
+      18995,
+      5
+    ],
+    "after": [
+      1047,
+      1054,
+      18995,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "cancel_error": 0
+}
