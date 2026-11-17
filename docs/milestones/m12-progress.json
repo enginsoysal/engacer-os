@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.13",
+  "current_stage": "M12.14",
   "qualified_download": "M12.13",
   "known_issues": [
     {
@@ -151,7 +151,7 @@
     },
     {
       "id": "M12.13",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Settings and personalization",
       "requires": "M12.12",
       "deliverable": "A consistent settings hierarchy, previews, persisted preferences and explicit default restoration.",
@@ -161,7 +161,7 @@
     },
     {
       "id": "M12.14",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Feedback and errors",
       "requires": "M12.13",
       "deliverable": "Shared empty/loading/success/refusal/error states, useful notifications and owner-scoped reviews.",
@@ -169,7 +169,12 @@
       "acceptance": "Missing USB, failed saves/transfers, notification bounds, actionable recovery and preserved work.",
       "publication": "required_before_next_stage",
       "carry_forward": [
-        "Fit the shared window-menu helper footer completely; its current bounded ellipsis and full handbook instructions are recorded during M12.4 visual review."
+        "Fit the shared window-menu helper footer completely; its current bounded ellipsis and full handbook instructions are recorded during M12.4 visual review.",
+        "Qualify active/background transfer and global picker/conflict-review admission without stealing existing owners.",
+        "Clarify Start global search versus browse scope and clear stale pin-success notices when a query changes.",
+        "Distinguish an unsaved new Editor document from a saved existing document and independently verify file absence/persistence.",
+        "Fit owner-aware shared shell notices without spilling across unrelated Files footers.",
+        "Use plain user-choice wording for malformed Settings recovery and a contextual System-category idle footer; provide a useful route back to an existing file review when appropriate."
       ]
     },
     {

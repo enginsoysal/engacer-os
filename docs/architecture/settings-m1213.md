@@ -1,6 +1,6 @@
 # M12.13 — Settings and personalization
 
-Status: M12-STAGE13-VM-v1 native qualification passes for build `119eb7a0e54f4914b768c6d31cf3d01c`. The matching public release and complete website verification close separately before M12.14.
+Status: M12-STAGE13-VM-v1 native qualification passes for build `119eb7a0e54f4914b768c6d31cf3d01c`. The complete public delivery passes: twenty downloads, 370 pages and 2,568 HTTP links, native homepage Save and actual desktop/mobile verification. M12.14 follows in order.
 
 ## How and why
 

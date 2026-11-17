@@ -10,8 +10,7 @@ malformed-record refusal/recovery and ordinary USB/PS2 startups.
 Compact light/dark, actual 150%/4K, enabled-device VMware, separate BIOS,
 twelve movement comparisons and real compressed boot repair pass.
 Fixed shell state is 553,228 bytes, 32 above M12.12; completed UI tasks
-retain zero managed pages. Public release and complete website verification
-are the remaining gates before M12.14.
+retain zero managed pages. [Complete public proof](../../evidence/M12/13/publication-results.json) passes: twenty downloads, 370 pages and 2,568 HTTP links, native homepage Save and actual desktop/mobile guide/download/search verification. One earlier server error is retained; fresh readback passes. **M12.14 is active.**
 
 Previous [M12.12 complete public delivery](../../evidence/M12/12/publication-results.json)
 remains immutable: twenty downloads, 364 pages and 2,513 HTTP links.
