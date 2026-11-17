@@ -42,7 +42,7 @@ export function nativeDesign({development=developmentProgress}={}){
    text('THE ENGACER OS KNOWLEDGE BASE',11,teal,{letterSpacing:'1.6px',weight:600,py:12}),
    heading('The M12 desktop',52,ink,{level:1,py:0,letterSpacing:'-1.8px'}),
    heading('made familiar.',52,teal,{py:0,letterSpacing:'-1.8px'}),
-   text(native?`${label} delivers ${delivery.title.toLowerCase()} in the real native desktop. Use its matching ISO, VMware package and stage guide. Each remaining M12 stage follows in order with its own tests and publication.`:'M12.0 establishes the design: recognizable app icons, consistent Files navigation, clear controls and a coherent desktop. Nineteen stages follow in order. These concepts are not a new native build; M11.6 remains the current tested VMware download.',18,muted,{py:20}),
+   text(native?`${label} delivers ${delivery.title.toLowerCase()} in the real native desktop. Use its matching ISO, VMware package and stage guide. ${number===18?'The final named-VM regression is recorded with exact source and media evidence.':'Each remaining M12 stage follows in order with its own tests and publication.'}`:'M12.0 establishes the design: recognizable app icons, consistent Files navigation, clear controls and a coherent desktop. Nineteen stages follow in order. These concepts are not a new native build; M11.6 remains the current tested VMware download.',18,muted,{py:20}),
    layout([[button('See the M12 plan →',`${site}/blog/docs-milestones-m12`,{size:'sm'})],[button(`Download ${label} ↓`,`${site}/blog/downloads`,{variant:'outline',bg:ink,size:'sm'})]]),
  ],[terminal]],{padY:52,valign:'center'});
  hero.props.columns[0].width=55;hero.props.columns[1].width=45;
