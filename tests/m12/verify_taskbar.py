@@ -29,9 +29,10 @@ def main():
     assert native['resources']['before'][0]==native['resources']['after'][0] and native['resources']['before'][3]==native['resources']['after'][3]
     assert [p['name'] for p in profiles['profiles']]==['compact','compact-dark','150','4k']
     assert [p['scale'] for p in profiles['profiles']]==[2,2,3,4]
+    assert [p['overflow_visible'] for p in profiles['profiles']]==[True,True,True,False]
     for row in profiles['profiles']:
         assert row['retained_pages']==0
-        for kind in ('groups','chooser','dirty-review','overflow'):
+        for kind in ('groups','chooser','dirty-review', 'overflow' if row['overflow_visible'] else 'all-apps-fit'):
             with Image.open(WORK/'taskbar-profiles'/f'{kind}-{row["name"]}.png') as im:assert list(im.size)==row['physical']
     assert len(reports['bios']['checks'])==len(reports['vmware-results']['checks'])==3
     assert reports['vmware-results']['existing_vm_inventory_unchanged'] and reports['vmware-results']['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
