@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "native_source_changes": [],
+  "native_release": "m1218-v0.12.18",
+  "public_asset_count": 20,
+  "verified_public_digests": {
+    "EngacerOS-M12STAGE18.iso": "f63b78973c9da269b4eead46873d947e94fcd2266dff4b4c06f2666b743aa3f9",
+    "EngacerOS-M12STAGE18-VMware.zip": "dafd107340e11ea74898c4c7ffab45dc4e31b50856421076e0b2f4787ee5bed4"
+  },
+  "native_source": "07743f643687544bb21dcd92a53a993141560cdd",
+  "design_source": "37cef383facdd4e5024dbe9e356db64f04d90315",
+  "new_native_qualification_claimed": false
+}

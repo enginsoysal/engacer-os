@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "design_only": true,
+  "source_commit": "37cef383facdd4e5024dbe9e356db64f04d90315",
+  "assets": [
+    {
+      "name": "setup",
+      "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/37cef383facdd4e5024dbe9e356db64f04d90315/docs/architecture/figures/m13/setup.svg",
+      "status": 200,
+      "source_bytes_match": true,
+      "sha256": "6b9bed88ede152cd98e5793582adfa2a9b85e65270eb9430d1ca3123c1561946"
+    },
+    {
+      "name": "disks",
+      "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/37cef383facdd4e5024dbe9e356db64f04d90315/docs/architecture/figures/m13/disks.svg",
+      "status": 200,
+      "source_bytes_match": true,
+      "sha256": "a8ba2d65528cac5f2cc9525f177e4203ab39819ac509763af31b9a9ef62e1419"
+    },
+    {
+      "name": "desktop",
+      "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/37cef383facdd4e5024dbe9e356db64f04d90315/docs/architecture/figures/m13/desktop.svg",
+      "status": 200,
+      "source_bytes_match": true,
+      "sha256": "c212cca3a26df65864e418d41ba1ac05cac8a60085402d0e32fedebd9105cac0"
+    },
+    {
+      "name": "start",
+      "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/37cef383facdd4e5024dbe9e356db64f04d90315/docs/architecture/figures/m13/start.svg",
+      "status": 200,
+      "source_bytes_match": true,
+      "sha256": "30277cfc611aeff6047412653cf887aff765fefdfcf2c913bd6815e6e2ffc117"
+    },
+    {
+      "name": "settings",
+      "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/37cef383facdd4e5024dbe9e356db64f04d90315/docs/architecture/figures/m13/settings.svg",
+      "status": 200,
+      "source_bytes_match": true,
+      "sha256": "6dbaa6a3d6d62b0fa74ba14a387b1a844231c313cad60099c5d80c2eb7c8f4bd"
+    },
+    {
+      "name": "portal",
+      "url": "https://raw.githubusercontent.com/enginsoysal/engacer-os/37cef383facdd4e5024dbe9e356db64f04d90315/docs/architecture/figures/m13/portal.svg",
+      "status": 200,
+      "source_bytes_match": true,
+      "sha256": "e166cb7ec42f4f90d6000a382f9e8d490a397fd37ff6e642a3b9e5c6facb3ee6"
+    }
+  ]
+}

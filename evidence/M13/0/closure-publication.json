@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "stage": "M13.0",
+  "design_only": true,
+  "source_commit": "37cef383facdd4e5024dbe9e356db64f04d90315",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m130-v0.13.0-design.1",
+  "website": "https://engaceros.brixcanvas.com",
+  "native_editor_save": "Saved \u2713",
+  "full_structure_audit": {
+    "source": "5e1149d1896ab1c0c98d97e31dc828e8b4ff5751",
+    "pages": 432,
+    "unique_observed_links": 2954,
+    "evidence": "website-audit.json"
+  },
+  "final_fresh_public_article_sources": 275,
+  "publisher_tests": 35,
+  "audit_tests": 3,
+  "prototype_checks": 16,
+  "prototype_exact_byte_binding": "search-prototype-byte-binding.json",
+  "current_native_download": "M12.18",
+  "new_native_iso": false,
+  "production_overlay": false,
+  "production_sidebar": false,
+  "pending_production_ui_stage": "M13.1",
+  "milestone_states": "M13.0 complete; M13.1\u2013M13.12 planned",
+  "human_usability_study": false,
+  "proof_files": [
+    "closure-public-readback.json",
+    "closure-browser.json",
+    "closure-workflow.json",
+    "downloads-final.json",
+    "search-prototype-byte-binding.json",
+    "concepts-public-byte-binding.json",
+    "native-assets-preserved.json",
+    "visual-review.json"
+  ],
+  "temporary_loopback_server_stopped": true
+}

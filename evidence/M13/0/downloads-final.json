@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "design_only": true,
+  "new_native_iso": false,
+  "tag": "m130-v0.13.0-design.1",
+  "source_commit": "37cef383facdd4e5024dbe9e356db64f04d90315",
+  "design_zip_sha256": "1b1889e80195c7f8065cc0efbd32aee4ce5c89a0bd55d2d8b6299821da3f0093",
+  "assets": [
+    {
+      "name": "EngacerOS-M13.0-Design.zip",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m130-v0.13.0-design.1/EngacerOS-M13.0-Design.zip",
+      "size": 36877,
+      "digest": "sha256:1b1889e80195c7f8065cc0efbd32aee4ce5c89a0bd55d2d8b6299821da3f0093"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m130-v0.13.0-design.1/SHA256SUMS.txt",
+      "size": 94,
+      "digest": "sha256:5b0b1ae17c97441aec171d4e6ea6879f9f9e90ad75bec5bd93844d0cb4822493"
+    }
+  ],
+  "independent_download_crc": true,
+  "prototype_bytes_match_source": true,
+  "current_native_download": "M12.18"
+}

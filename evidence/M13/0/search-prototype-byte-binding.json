@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "source_commit": "37cef383facdd4e5024dbe9e356db64f04d90315",
+  "sha256": "f554e15877d87a1a6b7c194ab6eb4288c5eda785587d8541911ba34cf8484860",
+  "actual_tested_local_bytes_match_git": true,
+  "missing_index_fixture_matches_git": true,
+  "independent_final_download_matches_git": true,
+  "checks": 16,
+  "report": "search-prototype-final-results.json",
+  "scope": "The final sixteen interaction checks belong to this refined source and final .design.1 package; the initial .design prerelease remains a separate earlier design snapshot."
+}
