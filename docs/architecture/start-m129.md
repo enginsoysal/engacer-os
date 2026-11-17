@@ -1,7 +1,7 @@
 # M12.9 — Start and local search
 
-Status: native qualification passes M12-STAGE9-VM-v1. Public release and
-complete website verification remain separate gates before M12.10.
+Status: M12-STAGE9-VM-v1 and [complete public delivery](../../evidence/M12/9/publication-results.json)
+pass before M12.10. Original accepted source/media remain immutable.
 
 ## Design and decisions
 

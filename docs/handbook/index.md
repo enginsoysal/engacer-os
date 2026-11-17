@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-Current native qualification: **M12.9 / 0.12.9**, within M12-STAGE9-VM-v1.
+Current native delivery: **M12.9 / 0.12.9**, within M12-STAGE9-VM-v1.
 [Install the matching VMware media](install-m129.md),
 [Start and local search](start-m129.md),
 [release scope](../releases/m129-v0.12.9.md).
@@ -14,8 +14,8 @@ Nine native journeys cover local search, launch, categories, pins, optional app
 removal/reinstall and a real folder. Exact stored preferences survive two
 ordinary starts. Compact light/dark/150%/4K, matching VMware/BIOS starts, actual
 compressed repair and twelve cached/full comparisons pass. Fixed shell state
-is unchanged from M12.8 and tasks retain zero managed pages. Public release and
-complete website proof close separately before M12.10. Final matrix remains
+is unchanged from M12.8 and tasks retain zero managed pages. [Complete public proof](../../evidence/M12/9/publication-results.json)
+passes: twenty downloads, 342 pages and 2,354 links. M12.10 follows in order. Final matrix remains
 M12.18; feedback/arbitration remains M12.14 and scale/cursor work M12.16.
 
 The previous M11.6 final artifact has fourteen controller/starter profiles and a

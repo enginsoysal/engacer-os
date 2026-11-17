@@ -1,7 +1,7 @@
 # Start and local search — M12.9
 
 M12.9 passes M12-STAGE9-VM-v1. Use the [matching installation guide](install-m129.md)
-and [release scope](../releases/m129-v0.12.9.md); public delivery closes separately.
+and [release scope](../releases/m129-v0.12.9.md); [complete public delivery](../../evidence/M12/9/publication-results.json) passes.
 
 Click **Start**, or press the Windows key. Type an installed app's name or a
 pinned folder's label. Search stays on this device. It does not search the

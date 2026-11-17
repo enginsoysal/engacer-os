@@ -9,8 +9,9 @@ Updated 17 November 2026. **M12.9 / 0.12.9 passes M12-STAGE9-VM-v1.**
 ordinary disk starts pass. Real repair restores corrupted owned boot bytes.
 Start adds clearer app/folder types, local ranking, result counts and a compact
 layout while preserving categories/pins. Fixed shell state is unchanged from
-M12.8; completed tasks retain zero managed pages. **Public release and complete
-website verification are pending; M12.10 has not started.**
+M12.8; completed tasks retain zero managed pages. [Complete public proof](../../evidence/M12/9/publication-results.json)
+passes: twenty matching downloads, 342 pages and 2,354 links, plus actual
+desktop/mobile browser verification. **M12.10 is active.**
 
 Previous [M12.8 complete public delivery](../../evidence/M12/8/publication-results.json)
 remains immutable: twenty downloads, 337 pages and 2,305 links, including shared

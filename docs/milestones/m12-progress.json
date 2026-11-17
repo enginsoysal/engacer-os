@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.9",
+  "current_stage": "M12.10",
   "qualified_download": "M12.9",
   "known_issues": [
     {
@@ -111,7 +111,7 @@
     },
     {
       "id": "M12.9",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Start and local search",
       "requires": "M12.8",
       "deliverable": "Recognizable app results, concise layout, categories, pins and clear result types.",
@@ -121,7 +121,7 @@
     },
     {
       "id": "M12.10",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Taskbar",
       "requires": "M12.9",
       "deliverable": "Consistent app icons, running/active/minimized states, bounded window grouping and context actions.",
