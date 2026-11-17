@@ -1,0 +1,303 @@
+{
+  "passed": true,
+  "stage": "M12.14",
+  "source_commit": "1750e648132e0f95c7be8155f6f0a14c8900c60e",
+  "native_editor_save": "Saved ✓",
+  "desktop": {
+    "document": 1270,
+    "guides": [
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1214",
+      "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1214"
+    ],
+    "images": [
+      {
+        "height": 800,
+        "loaded": true,
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M12/14/feature.png",
+        "width": 1280
+      }
+    ],
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 1280
+  },
+  "documentation": {
+    "groups": [
+      "1. Start here",
+      "2. M12 desktop experience",
+      "3. M11 desktop and installation refresh",
+      "4. Everyday use and customization",
+      "5. Architecture and development",
+      "6. Roadmap and verification",
+      "7. Website maintenance",
+      "8. Historical releases and earlier milestones"
+    ],
+    "installations": [
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1214",
+        "title": "Install Engacer OS M12.14 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m121",
+        "title": "Install Engacer OS M12.1 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m122",
+        "title": "Install Engacer OS M12.2 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m123",
+        "title": "Install Engacer OS M12.3 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m124",
+        "title": "Install Engacer OS M12.4 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m125",
+        "title": "Install Engacer OS M12.5 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m126",
+        "title": "Install Engacer OS M12.6 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m127",
+        "title": "Install Engacer OS M12.7 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m128",
+        "title": "Install Engacer OS M12.8 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m129",
+        "title": "Install Engacer OS M12.9 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1210",
+        "title": "Install Engacer OS M12.10 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1211",
+        "title": "Install Engacer OS M12.11 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1212",
+        "title": "Install Engacer OS M12.12 in VMware"
+      },
+      {
+        "href": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1213",
+        "title": "Install Engacer OS M12.13 in VMware"
+      }
+    ]
+  },
+  "installation": {
+    "source": [
+      "https://github.com/enginsoysal/engacer-os/blob/1750e648132e0f95c7be8155f6f0a14c8900c60e/docs/handbook/install-m1214.md"
+    ],
+    "steps": [
+      "Welcome:",
+      "Keyboard / size:",
+      "Choose a disk:",
+      "Your apps:",
+      "Your style:",
+      "Review:",
+      "Installing:",
+      "Ready:"
+    ],
+    "title": "Install Engacer OS M12.14 in VMware"
+  },
+  "current_guide": true,
+  "downloads": {
+    "iso_sha": true,
+    "links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-VMware.zip"
+    ],
+    "title": "Downloads and SHA256 verification",
+    "zip_sha": true
+  },
+  "matching_download": true,
+  "mobile": {
+    "document": 380,
+    "title": "Engacer OS — Documentation & Downloads",
+    "viewport": 390
+  },
+  "mobile_menu": true,
+  "feature_guide": {
+    "has_recovery": true,
+    "source_links": [
+      "https://github.com/enginsoysal/engacer-os/blob/1750e648132e0f95c7be8155f6f0a14c8900c60e/docs/handbook/feedback-m1214.md"
+    ],
+    "title": "Messages and recovery — M12.14",
+    "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-feedback-m1214"
+  },
+  "search": {
+    "links": [
+      {
+        "title": "PostEngacer OS — project instructionsProject guides — Engacer OS — project instructions. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-agents"
+      },
+      {
+        "title": "PostEngacer OSProject guides — Engacer OS. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-readme"
+      },
+      {
+        "title": "PostEngacer OS user handbookUser handbook — Engacer OS user handbook. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-index"
+      },
+      {
+        "title": "PostCurrent statusRoadmap & status — Current status. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status"
+      },
+      {
+        "title": "PostDownloads and SHA256 verificationGenerated from canonical source commit 1750e64 and official GitHub release metadata.\nM12 stage delivery: use this exact ISO and VMware package with its matching…",
+        "url": "https://engaceros.brixcanvas.com/blog/downloads"
+      },
+      {
+        "title": "PostDocumentation — all guidesGenerated from canonical source commit 1750e64 and official GitHub release metadata.\nEnglish manuals, architecture, release guides and evidence from the canonic…",
+        "url": "https://engaceros.brixcanvas.com/blog/documentation"
+      },
+      {
+        "title": "PostM12 coherent desktop design contractArchitecture — M12 coherent desktop design contract. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-desktop-m12"
+      },
+      {
+        "title": "PostM12.0 source-backed desktop inventoryArchitecture — M12.0 source-backed desktop inventory. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-m12-inventory"
+      },
+      {
+        "title": "PostM12 — coherent desktop experienceMilestones — M12 — coherent desktop experience. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m12"
+      },
+      {
+        "title": "PostM12.4 window and title-bar decisionsArchitecture — M12.4 window and title-bar decisions. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-windows-m124"
+      },
+      {
+        "title": "PostEngacer OS M12.4 / 0.12.4 — windows and title barsRelease guides — Engacer OS M12.4 / 0.12.4 — windows and title bars. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m124-v0-12-4"
+      },
+      {
+        "title": "PostM12.5 one Files environmentArchitecture — M12.5 one Files environment. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-files-m125"
+      },
+      {
+        "title": "PostEngacer OS M12.5 / 0.12.5 — one Files environmentRelease guides — Engacer OS M12.5 / 0.12.5 — one Files environment. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m125-v0-12-5"
+      },
+      {
+        "title": "PostM12.6 file presentation decisionsArchitecture — M12.6 file presentation decisions. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-files-m126"
+      },
+      {
+        "title": "PostEngacer OS M12.6 / 0.12.6 — Files presentationRelease guides — Engacer OS M12.6 / 0.12.6 — Files presentation. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m126-v0-12-6"
+      },
+      {
+        "title": "PostM12.7 file commands and transfersArchitecture — M12.7 file commands and transfers. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-transfers-m127"
+      },
+      {
+        "title": "PostEngacer OS M12.7 / 0.12.7 - File commands and transfersRelease guides — Engacer OS M12.7 / 0.12.7 - File commands and transfers. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m127-v0-12-7"
+      },
+      {
+        "title": "PostM12.8 shared native file dialogsArchitecture — M12.8 shared native file dialogs. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-dialogs-m128"
+      },
+      {
+        "title": "PostEngacer OS M12.8 / 0.12.8 - Shared native file dialogsRelease guides — Engacer OS M12.8 / 0.12.8 - Shared native file dialogs. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m128-v0-12-8"
+      },
+      {
+        "title": "PostM12.9 — Start and local searchArchitecture — M12.9 — Start and local search. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-start-m129"
+      },
+      {
+        "title": "PostEngacer OS M12.9 / 0.12.9 - Start and local searchRelease guides — Engacer OS M12.9 / 0.12.9 - Start and local search. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m129-v0-12-9"
+      },
+      {
+        "title": "PostM12.10 — grouped native taskbarArchitecture — M12.10 — grouped native taskbar. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-taskbar-m1210"
+      },
+      {
+        "title": "PostEngacer OS M12.10 / 0.12.10 - Grouped taskbarRelease guides — Engacer OS M12.10 / 0.12.10 - Grouped taskbar. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m1210-v0-12-10"
+      },
+      {
+        "title": "PostM12.11 — bounded native multitaskingArchitecture — M12.11 — bounded native multitasking. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-multitasking-m1211"
+      },
+      {
+        "title": "PostEngacer OS M12.11 / 0.12.11 - Native multitaskingRelease guides — Engacer OS M12.11 / 0.12.11 - Native multitasking. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m1211-v0-12-11"
+      },
+      {
+        "title": "PostM12.12 — provider-backed system trayArchitecture — M12.12 — provider-backed system tray. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-tray-m1212"
+      },
+      {
+        "title": "PostEngacer OS M12.12 / 0.12.12 - System tray and quick settingsRelease guides — Engacer OS M12.12 / 0.12.12 - System tray and quick settings. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m1212-v0-12-12"
+      },
+      {
+        "title": "PostM12.13 — Settings and personalizationArchitecture — M12.13 — Settings and personalization. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-settings-m1213"
+      },
+      {
+        "title": "PostEngacer OS M12.13 / 0.12.13 - Settings and personalizationRelease guides — Engacer OS M12.13 / 0.12.13 - Settings and personalization. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m1213-v0-12-13"
+      },
+      {
+        "title": "PostM12.14 — Feedback and preserved workArchitecture — M12.14 — Feedback and preserved work. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-feedback-m1214"
+      },
+      {
+        "title": "PostMessages and recovery — M12.14User handbook — Messages and recovery — M12.14. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-feedback-m1214"
+      },
+      {
+        "title": "PostInstall Engacer OS M12.14 in VMwareUser handbook — Install Engacer OS M12.14 in VMware. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1214"
+      },
+      {
+        "title": "PostEngacer OS M12.14 / 0.12.14 - Feedback and errorsRelease guides — Engacer OS M12.14 / 0.12.14 - Feedback and errors. Synced from the canonical Engacer OS repository.…",
+        "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m1214-v0-12-14"
+      }
+    ],
+    "query": "M12.14"
+  },
+  "mobile_downloads": {
+    "article_width": 380,
+    "has_version": true,
+    "links": [
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14.iso",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-usb.img",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/M12STAGE14-SHA256SUMS.txt",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/7z2606-src.tar.xz",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/COPYING.LIB",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-archives.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-browser.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-calculator.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-calendar.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-editor.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-help.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-installed-kernel.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-installed-kernel.map",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-kernel.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-kernel.map",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-THIRD-PARTY-NOTICES.txt",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-user.elf",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-VMware.zip",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/m12stage14-build-manifest.json",
+      "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/m12stage14-starter-manifest.json"
+    ],
+    "viewport": 390,
+    "width": 380
+  }
+}

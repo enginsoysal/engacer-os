@@ -1,0 +1,12 @@
+{
+  "tag": "m1214-v0.12.14",
+  "found": true,
+  "id": 448293018,
+  "draft": true,
+  "target": "1750e648132e0f95c7be8155f6f0a14c8900c60e",
+  "assets": 0,
+  "initial_create_readback_failed": true,
+  "resumed_same_draft": true,
+  "public_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1214-v0.12.14",
+  "scope": "Initial created-draft lookup was temporarily unavailable. The authenticated listing resolved the same empty draft ID and the unchanged publisher resumed it; no duplicate release or public asset replacement occurred."
+}

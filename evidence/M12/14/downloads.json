@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "stage": "M12.14",
+  "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
+  "checked_at": "2026-11-17T07:36:17.778654+00:00",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1214-v0.12.14",
+  "latest": "m1214-v0.12.14",
+  "artifacts": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/7z2606-src.tar.xz",
+      "public_head": 200
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/COPYING.LIB",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-archives.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-browser.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-calculator.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-calendar.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-editor.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-help.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-installed-kernel.elf",
+      "sha256": "5011d13a1d980e1b567142c600304ef2d68c8fd712cb55cbb0cd9599a9c44ebc",
+      "size": 1397116,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-installed-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-installed-kernel.map",
+      "sha256": "8562ba771ea9eaa14e9d8fc098e016629f103da474f8d92b6976f5c14380c503",
+      "size": 391579,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-installed-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-kernel.elf",
+      "sha256": "43f75a3e7f066481fa0ee001c70dcdf8835803f5391ac970afc4a69f68401cba",
+      "size": 3735932,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-kernel.map",
+      "sha256": "e32d9575c81fef3bc6ef29b48cfa6e36c9c9aa56a9d2e55e388c3ad48ce34d1b",
+      "size": 391871,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-THIRD-PARTY-NOTICES.txt",
+      "sha256": "6ebfdfe77167cefaada6607a95717683ba0c953a83883423371375f799499fd8",
+      "size": 59409,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-THIRD-PARTY-NOTICES.txt",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-usb.img",
+      "sha256": "08d8c12a2bc6ab997415afe90775a4be468e839adeb1c863b351ddc0b6decab5",
+      "size": 84934656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-usb.img",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-user.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14-VMware.zip",
+      "sha256": "0f8fae6023845adfd49cf052e685b20ee954c913b29d52adf6f38ac3dfe5a60e",
+      "size": 10535725,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14-VMware.zip",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M12STAGE14.iso",
+      "sha256": "7ba6267998e12f5b14f819e58e41efe7ba8d317e891b739ed6796c38a790381f",
+      "size": 75028480,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/EngacerOS-M12STAGE14.iso",
+      "public_head": 200
+    },
+    {
+      "name": "m12stage14-build-manifest.json",
+      "sha256": "1fab1972f0173d0f1046b3ff40bc0142ce01d82167c7dee955acc7debdcc840b",
+      "size": 80337,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/m12stage14-build-manifest.json",
+      "public_head": 200
+    },
+    {
+      "name": "M12STAGE14-SHA256SUMS.txt",
+      "sha256": "a0520cba2f0a4a935887703f284437179b0e97278eda5c3ba61228fa954b1838",
+      "size": 1856,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/M12STAGE14-SHA256SUMS.txt",
+      "public_head": 200
+    },
+    {
+      "name": "m12stage14-starter-manifest.json",
+      "sha256": "2ba7c1fe44542bd548acc04440fd0334ea43ff68475329d558bc2a33783b17eb",
+      "size": 656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m1214-v0.12.14/m12stage14-starter-manifest.json",
+      "public_head": 200
+    }
+  ],
+  "downloaded_zip_sha256": "0f8fae6023845adfd49cf052e685b20ee954c913b29d52adf6f38ac3dfe5a60e",
+  "downloaded_zip_crc": true,
+  "downloaded_iso_sha256": "7ba6267998e12f5b14f819e58e41efe7ba8d317e891b739ed6796c38a790381f"
+}
