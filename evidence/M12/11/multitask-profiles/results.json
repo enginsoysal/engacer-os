@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "build_id": "72213fbfbc4e2bb33001b0a8b12ace54",
+  "profiles": [
+    {
+      "name": "compact",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "half_available": false,
+      "theme": "light",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2203648,
+      "retained_pages": 0
+    },
+    {
+      "name": "compact-dark",
+      "physical": [
+        800,
+        600
+      ],
+      "logical": [
+        800,
+        600
+      ],
+      "scale": 2,
+      "half_available": false,
+      "theme": "dark",
+      "managed_current_bytes": 2113536,
+      "managed_peak_bytes": 2203648,
+      "retained_pages": 0
+    },
+    {
+      "name": "150",
+      "physical": [
+        1920,
+        1200
+      ],
+      "logical": [
+        1280,
+        800
+      ],
+      "scale": 3,
+      "half_available": true,
+      "theme": "light",
+      "managed_current_bytes": 9408512,
+      "managed_peak_bytes": 9498624,
+      "retained_pages": 0
+    },
+    {
+      "name": "4k",
+      "physical": [
+        3840,
+        2160
+      ],
+      "logical": [
+        1920,
+        1080
+      ],
+      "scale": 4,
+      "half_available": true,
+      "theme": "light",
+      "managed_current_bytes": 33370112,
+      "managed_peak_bytes": 33460224,
+      "retained_pages": 0
+    }
+  ],
+  "checks": [
+    "Actual compact light/dark and physical 150%/3840x2160/200% show all eight switch rows within the work area, preserve dirty work and exercise real selection without retained pages or idle painting",
+    "Compact 800x600 truthfully disables halves that cannot fit Files; real 1280/1920-logical desktops preview, pair and restore independently measured windows"
+  ]
+}

@@ -4,7 +4,7 @@
   "milestone": "M12",
   "authorized": "2026-11-16",
   "current_stage": "M12.11",
-  "qualified_download": "M12.10",
+  "qualified_download": "M12.11",
   "known_issues": [
     {
       "id": "bios-ahci-concurrent-timeout",
@@ -131,7 +131,7 @@
     },
     {
       "id": "M12.11",
-      "status": "in_progress",
+      "status": "native_qualified_publication_pending",
       "title": "Multitasking",
       "requires": "M12.10",
       "deliverable": "Refined switcher and discoverable snap choices/assist within actual window and display limits.",

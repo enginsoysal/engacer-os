@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "stage": "M12.11",
+  "build_id": "72213fbfbc4e2bb33001b0a8b12ace54",
+  "scope": "Agent review of actual native candidate captures and task evidence; not a human study or complete accessibility qualification. Public delivery closes separately.",
+  "reviewed": [
+    "feature.png",
+    "multitask-native/arrange-preview.png",
+    "multitask-profiles/minimum-compact.png",
+    "multitask-profiles/switcher-compact-dark.png",
+    "multitask-profiles/paired-4k.png",
+    "multitask-profiles/switcher-4k.png",
+    "restore-native/different-normal-rectangles-restored.png"
+  ],
+  "findings": [
+    "Original icons and numbered document/folder identities remain readable in the real eight-window switcher at compact dark and physical 4K.",
+    "Selected labels and layout action glyphs now use shared contrast ink; native pixel checks cover light/dark and actual scales. The rejected visual prototype is retained separately.",
+    "Arrangement explains preview versus commitment; compact unsupported halves are disabled with a readable reason while Maximize and Cancel remain available.",
+    "Actual paired windows and distinct restored rectangles agree with independently observed native geometry; no per-window thumbnail surfaces are introduced."
+  ],
+  "carry_forward": [
+    {
+      "stage": "M12.14",
+      "observation": "Retain shared-menu footer fitting, transfer/modal arbitration, Start scope/notice lifetime and new-versus-saved Editor status. Fit the shared shell notice so it does not spill into unrelated window footers."
+    },
+    {
+      "stage": "M12.16",
+      "observation": "Retain cursor/hit and scale reconciliation; refine keyboard focus visibility when explaining disabled choices."
+    },
+    {
+      "stage": "M12.17",
+      "observation": "Measure eight-window repaint separately from instrumented observer latency. Evaluate bounded shadow edge-span traversal while preserving alpha, clipping, audio pumping and full-frame equivalence."
+    }
+  ],
+  "capture_sha256": {
+    "feature.png": "c2f6240e605490cce7cdedb7d153ef322efa0c1b4654cd48f6ba492cf8762ed7",
+    "multitask-native/arrange-preview.png": "06ee07b4b07c0aabf5bf5d2a66eecaa5dd2193cadef4c0ad182ebb841096927a",
+    "multitask-profiles/minimum-compact.png": "cd32dce0bbcc0e0541f5f37abf26933b1b109c59fded27e7666e21c14beafab3",
+    "multitask-profiles/switcher-compact-dark.png": "c1883732299b7678f04dc753d021af616973ae80948da10b4a80afc74d45e49b",
+    "multitask-profiles/paired-4k.png": "75f0501ab97c2a0b4e3d2c7fdcd99e289cca883808d625fd2c13b658e1ea2bf5",
+    "multitask-profiles/switcher-4k.png": "cbbaf17d518932383205eff84335fe14743279c4b5cd48ef31a4b8d7deb4ea4c",
+    "restore-native/different-normal-rectangles-restored.png": "05595eae1d6995576f7732f1281ebd9aa20c104be192bbd2bc309c730c32478e"
+  }
+}

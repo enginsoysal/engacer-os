@@ -1,19 +1,20 @@
 # Current status
 
-Updated 17 November 2026. **M12.10 / 0.12.10 passes M12-STAGE10-VM-v1.**
-[Install](../handbook/install-m1210.md), [grouped taskbar](../handbook/taskbar-m1210.md),
-[release scope](../releases/m1210-v0.12.10.md),
-[exact-source acceptance](../../evidence/M12/10/acceptance-results.json).
-590 compiled Git inputs, nine native task/profile checks, compact light/dark,
+Updated 17 November 2026. **M12.11 / 0.12.11 passes M12-STAGE11-VM-v1.**
+[Install](../handbook/install-m1211.md), [switch and arrange windows](../handbook/multitasking-m1211.md),
+[release scope](../releases/m1211-v0.12.11.md),
+[exact-source acceptance](../../evidence/M12/11/acceptance-results.json).
+591 compiled Git inputs, eleven native task/profile checks, compact light/dark,
 actual 150%/4K, twelve movement comparisons, enabled-device VMware/BIOS installation,
-two ordinary disk starts and real compressed boot repair pass. Unique app groups,
-numbered window choice, bounded paginated overflow, pin order and safe removal are
-checked. Fixed shell state is 552,925 bytes, 840 above M12.9; tasks retain zero
-managed pages. [Complete public proof](../../evidence/M12/10/publication-results.json) passes: twenty downloads, 349 pages and 2,405 links, plus actual desktop/mobile browser checks. **M12.11 is active.**
+ordinary disk starts and real compressed boot repair pass. The switcher identifies
+actual windows; preview/cancel and optional complementary snap preserve work.
+Two deliberately different normal rectangles restore exactly. Fixed shell state
+is 552,957 bytes, 32 above M12.10; completed tasks retain zero managed pages.
+Public release and complete website verification are pending; M12.11 remains
+active until those gates close. M12.12 has not started.
 
-Previous [M12.8 complete public delivery](../../evidence/M12/8/publication-results.json)
-remains immutable: twenty downloads, 337 pages and 2,305 links, including shared
-native file-dialog qualification.
+Previous [M12.10 complete public delivery](../../evidence/M12/10/publication-results.json)
+remains immutable: twenty downloads, 349 pages and 2,405 links.
 
 M12.14 retains menu/conflict and Start query/notice feedback plus background
 transfer/modal arbitration. M12.16 retains cursor/scale reconciliation, and

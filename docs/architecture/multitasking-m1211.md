@@ -1,7 +1,7 @@
 # M12.11 — bounded native multitasking
 
-Status: implementation and native qualification in progress. M12.10 remains the
-completed tested download until the matching M12.11 publication gates close.
+Status: M12-STAGE11-VM-v1 native qualification passes. Matching public release
+and complete website verification remain pending before M12.12.
 
 ## How and why
 

@@ -1,7 +1,7 @@
 # Switch and arrange windows — M12.11
 
-Development guide: matching M12.11 tests and downloads are pending. The completed
-tested release remains [M12.10](install-m1210.md).
+M12.11 passes native qualification. Use the [matching installation guide](install-m1211.md)
+and official release assets; complete public delivery closes separately.
 
 ## Find another window
 
