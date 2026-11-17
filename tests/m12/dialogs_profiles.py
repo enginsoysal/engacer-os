@@ -1,5 +1,5 @@
 """Ordinary installed starts and physical display profiles for shared dialogs."""
-import json,os,traceback
+import json,os,struct,traceback
 from pathlib import Path
 import dialogs_native as d
 c=d.c;f=d.f;ui=d.ui;ROOT=d.ROOT
@@ -24,7 +24,7 @@ def main():
                 f.visit(g,p,'Documents');p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10
                 c.shot(g,'save-as-'+label);p.desktop(54024,True);c.shot(g,'new-folder-'+label);p.desktop(54026,True);p.desktop(54011,True);assert d.picker(g).phase==1;c.shot(g,'replace-'+label);p.desktop(54026,True);p.desktop(54010,True)
                 p.desktop(54000,True);c.shot(g,'open-'+label);p.desktop(54010,True);c.key(g,'end');c.type_text(g,' ui');p.desktop(54000,True);p.desktop(54016,True);d.choose(g,p,'First.txt');c.key(g,'ret');assert d.picker(g).phase==2;c.shot(g,'dirty-'+label);p.desktop(54028,True);d.close_focused(g,p);f.same_pages(before,f.stats(g));c.idle(g)
-                stats=f.stats(g);report['profiles'].append(dict(physical=list(resolution),theme='dark' if label=='compact-dark' else 'light',scale=c.flag(g,'scale73'),managed_current_bytes=stats[0]*4096,managed_peak_bytes=stats[1]*4096,retained_pages=0))
+                stats=f.stats(g);report['profiles'].append(dict(physical=list(resolution),logical=list(struct.unpack('<II',ui.memory(g,ui.symbol('model',installed=True)[0]+240,8))),theme='dark' if label=='compact-dark' else 'light',scale=c.flag(g,'scale73'),managed_current_bytes=stats[0]*4096,managed_peak_bytes=stats[1]*4096,retained_pages=0))
                 (out/(label+'.log')).write_bytes(g.log().encode())
         report['checks'].append('Actual compact, 150% and 3840x2160/200% Open/Save/new-folder controls retain zero pages and halted idle CPUs')
         report['passed']=True
