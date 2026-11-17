@@ -39,8 +39,8 @@ def main():
         with PyFatFS(str(source),preserve_case=True) as fs:fs.writebytes('/Large.bin',payload)
         source_hash=f.sha_file(source)
         with ui.guest(attempt/'guest',disk,media='installed',ready='M7_DESKTOP_READY',extra=['-drive',f'if=none,id=feedback-large,format=raw,file={source}']) as g:
-            p=ui.Pointer(g);p.drain();t.close_all(g,p);editor=t.launch(g,p,'text editor',2);c.type_text(g,'Keep my active transfer document');editor_path=f.app(g)['path'];assert editor_path not in f.entries(g);p.desktop(49000,True)
-            f.attach(g,p,'feedback-large','feedback-large-device');q.open_quick(g);p.desktop(58002,True);drive=next(r for r in f.controls(g) if 58200<=r[5]<58216);p.desktop(drive[5],True);files=next(w for w in t.records(g) if w['slot']==f.model(g)[0]);p.desktop(f.row(g,'Large.bin'),True);p.desktop(40000,True)
+            p=ui.Pointer(g);p.drain();t.close_all(g,p);f.attach(g,p,'feedback-large','feedback-large-device');baseline=f.stats(g);editor=t.launch(g,p,'text editor',2);c.type_text(g,'Keep my active transfer document');editor_path=f.app(g)['path'];assert editor_path not in f.entries(g);p.desktop(49000,True)
+            q.open_quick(g);p.desktop(58002,True);drive=next(r for r in f.controls(g) if 58200<=r[5]<58216);p.desktop(drive[5],True);files=next(w for w in t.records(g) if w['slot']==f.model(g)[0]);p.desktop(f.row(g,'Large.bin'),True);p.desktop(40000,True)
             active_click(g,p,21004);assert job(g)[0][0];active_key(g,'alt','ret');assert not c.flag(g,'file_dialog_state11') and job(g)[0][0] and 'file operation' in f.app(g)['notice'];active_click(g,p,43102);assert f.model(g)[0]==editor['slot'];active_click(g,p,54001);assert not c.flag(g,'file_dialog_state11') and job(g)[0][0] and 'file operation' in f.app(g)['notice'];active_click(g,p,20);assert job(g)[0][0] and 'unsaved text' in f.app(g)['notice'] and editor_path not in f.entries(g) and bytes(t.app_view(g).text)==b'Keep my active transfer document'
             painted=c.flag(g,'paints');deadline=time.monotonic()+15
             while c.flag(g,'paints')==painted:
@@ -60,7 +60,7 @@ def main():
                 if time.monotonic()>deadline:raise TimeoutError('Removed USB transfer failure')
                 time.sleep(.02)
             p.drain();assert c.flag(g,'file_job_error11') and '/Users/Owner/Downloads/Large.bin' not in f.entries(g);c.shot(g,'removed-source-transfer-failed');t.close_all(g,p)
-            assert f.sha_file(source)==source_hash;baseline=f.stats(g);c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode())
+            assert f.sha_file(source)==source_hash;after=f.stats(g);assert after[0]<=baseline[0] and after[3]==baseline[3],(baseline,after);c.idle(g);report['resources']=dict(before=list(baseline),after=list(after),retained_pages=0,released_pages=baseline[0]-after[0],scope='Before app launch/transfers, after USB discovery; after cancellation, removed-source failure and closing both apps. Freed USB pages are recorded separately.');(out/'native.log').write_bytes(g.log().encode())
         report['checks'].append('During a real 64-MiB cooperative USB import, Save As and Save refuse without changing the active job, publishing the unsaved document or losing text; Cancel leaves the destination unpublished and source byte-identical')
         report['checks'].append('After cancellation an actual Save As opens; another Files window cannot start a paste or replace that dialog owner, and exact unsaved text survives')
         report['checks'].append('Removing the actual USB source during another active import reports failure and leaves its destination unpublished; the original source image remains byte-identical')
