@@ -13,6 +13,9 @@ static void appearance_load11(void){appearance11=(appearance_record11){0x4131314
 static unsigned appearance_save11(void){appearance11.accent=preferences.accent;appearance11.dark=preferences.dark;appearance11.scale=ui73_scale_choice();for(unsigned i=0;i<model.count;++i){unsigned slot=model.order[i];desktop_window*w=&model.windows[slot];window_state11*s=window_state_for11(desktop_token(&model,slot));if(w->app<20)appearance11.normal[w->app]=s->mode?s->normal:w->bounds;}char path[256];appearance_path11(path);return v6_put(m6_volume(),path,sizeof(appearance11),memory_source,&appearance11);}
 static uint32_t desktop_ink11(void){
 #ifdef ENGINE_M12
+ if(access_flags16&1)return 0xffffff;
+#endif
+#ifdef ENGINE_M12
  return ui12_foreground(appearance11.wallpaper);
 #else
 unsigned c=appearance11.wallpaper,r=c>>16,g=(c>>8)&255,b=c&255;return r*299+g*587+b*114>150000?0x183240:0xe5f0f3;

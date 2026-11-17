@@ -19,7 +19,7 @@ static void media_draw74(desktop_window *w,application *app,uint64_t token){
         return;}
     int x=w->bounds.x+24,y=w->bounds.y+58,width=w->bounds.width-48;audio74_info audio=audio74_current();
     button(token,x,y,170,"Choose audio",MEDIA_CHOOSE74,0);ui73_fit(x+185,y+10,width-185,app->path,1,ink());
-    ui73_round(x,y+66,width,128,11,preferences.dark?0x203c45:0xe6f2ee);
+    ui73_round(x,y+66,width,128,11,desktop_dark16()?0x203c45:0xe6f2ee);
     ui73_round(x+25,y+92,76,76,18,preferences.accent);
     rectangle((desktop_rect){x+58,y+108,5,39},0x183c36);rectangle((desktop_rect){x+62,y+108,19,5},0x183c36);
     ui73_round(x+44,y+137,21,15,7,0x183c36);
@@ -27,7 +27,7 @@ static void media_draw74(desktop_window *w,application *app,uint64_t token){
     ui73_fit(x+126,y+93,width-148,name,2,ink());
     char value[80],part[32];decimal(value,audio.rate);append(value," Hz  -  ",80);append(value,audio.channels==1?"Mono source":"Stereo source",80);text(x+126,y+140,value,1,ink());
     media_duration74(value,audio.frames,audio.rate);append(value," / ",80);media_duration74(part,audio.total_frames,audio.rate);append(value,part,80);
-    text(x,y+222,value,2,ink());ui73_round(x,y+264,width,7,3,preferences.dark?0x2c4551:0xd7e4e7);
+    text(x,y+222,value,2,ink());ui73_round(x,y+264,width,7,3,desktop_dark16()?0x2c4551:0xd7e4e7);
     unsigned filled=audio.total_frames?(unsigned)(audio.frames*(unsigned)width/audio.total_frames):0;if(filled)ui73_round(x,y+264,filled,7,3,preferences.accent);
     button(token,x,y+297,165,audio.state==AUDIO74_PLAYING?"Pause":audio.state==AUDIO74_PAUSED?"Resume":"Play",MEDIA_PRIMARY74,1);
     button(token,x+180,y+297,120,"Stop",MEDIA_STOP74,0);

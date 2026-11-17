@@ -127,6 +127,7 @@ static i11_target feedback_target14(int,int);
 #include "appearance11-state.inc"
 #ifdef ENGINE_M12
 #include "settings13-state.inc"
+#include "accessibility16-state.inc"
 #endif
 static unsigned guide_open11;static desktop_rect guide_bounds11;
 static unsigned selected_row11(application*,unsigned);
@@ -200,18 +201,30 @@ static void rectangle(desktop_rect r,uint32_t color) {
     )
         gui6_rect((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height,color);
 }
+static unsigned desktop_dark16(void){
+#ifdef ENGINE_M12
+ return (access_flags16&1)||preferences.dark;
+#else
+ return preferences.dark;
+#endif
+}
+#ifdef ENGINE_M12
+static void desktop_shadow16(unsigned x,unsigned y,unsigned width,unsigned height){if(!(access_flags16&2))ui73_shadow(x,y,width,height);}
+#else
+#define desktop_shadow16 ui73_shadow
+#endif
 static uint32_t ink(void) {
 #ifdef ENGINE_M12
- return ui12_theme(preferences.dark,preferences.accent).ink;
+ return desktop_palette16().ink;
 #else
- return preferences.dark?0xe5eef2:0x1b3441;
+ return desktop_dark16()?0xe5eef2:0x1b3441;
 #endif
 }
 static uint32_t paper(void) {
 #ifdef ENGINE_M12
- return ui12_theme(preferences.dark,preferences.accent).paper;
+ return desktop_palette16().paper;
 #else
- return preferences.dark?0x172933:0xf8fafb;
+ return desktop_dark16()?0x172933:0xf8fafb;
 #endif
 }
 static uint32_t accent_ink12(uint32_t legacy){
@@ -247,10 +260,10 @@ static void button(uint64_t window,int x,int y,int width,const char *label,unsig
 #ifdef ENGINE_M12
     component_button12(window,r,label,action,primary,1);
 #elif defined(ENGINE_M73)
-    ui73_round((unsigned)x,(unsigned)y,(unsigned)width,36,6,primary?preferences.accent:preferences.dark?0x2a414f:0xe6edf0);
+    ui73_round((unsigned)x,(unsigned)y,(unsigned)width,36,6,primary?preferences.accent:desktop_dark16()?0x2a414f:0xe6edf0);
     ui73_fit((unsigned)x+10,(unsigned)y+8,(unsigned)(width>20?width-20:0),label,1,primary?0x102d29:ink());
 #else
-    rectangle(r,primary?preferences.accent:preferences.dark?0x2a414f:0xe6edf0);
+    rectangle(r,primary?preferences.accent:desktop_dark16()?0x2a414f:0xe6edf0);
     char fitted[64];unsigned columns=width>18?(unsigned)(width-18)/8:0;
     if(columns>sizeof(fitted)-1)columns=sizeof(fitted)-1;
     unsigned count=length(label);if(count>columns)count=columns;
@@ -261,7 +274,7 @@ static void button(uint64_t window,int x,int y,int width,const char *label,unsig
     if(control_active&&focused_control_window==window&&focused_action==action){
 #ifndef ENGINE_M12
 #ifdef ENGINE_M73
-        ui73_round(x,y,width,36,7,ink());ui73_round(x+2,y+2,width-4,32,5,primary?preferences.accent:preferences.dark?0x2a414f:0xe6edf0);ui73_fit(x+10,y+8,width-20,label,1,primary?0x102d29:ink());
+        ui73_round(x,y,width,36,7,ink());ui73_round(x+2,y+2,width-4,32,5,primary?preferences.accent:desktop_dark16()?0x2a414f:0xe6edf0);ui73_fit(x+10,y+8,width-20,label,1,primary?0x102d29:ink());
 #else
         rectangle((desktop_rect){x,y,width,2},ink());rectangle((desktop_rect){x,y+28,width,2},ink());
         rectangle((desktop_rect){x,y,2,30},ink());rectangle((desktop_rect){x+width-2,y,2,30},ink());
@@ -422,7 +435,7 @@ static void draw_editor(desktop_window *w,application *app,uint64_t token) {
 #else
     text(x,y+44,app->path,1,ink());
 #endif
-    rectangle((desktop_rect){x,y+66,right-x,w->bounds.height-155},preferences.dark?0x10212a:0xffffff);
+    rectangle((desktop_rect){x,y+66,right-x,w->bounds.height-155},desktop_dark16()?0x10212a:0xffffff);
     int tx=x+10,ty=y+78;
 #ifdef ENGINE_M73
     unsigned available=(unsigned)(right-x-20),rows=(unsigned)(w->bounds.height-180)/24;
@@ -576,7 +589,7 @@ static void draw_calculator(desktop_window *w,application *app,uint64_t token) {
     draw_calculator74(w,app,token);return;
 #endif
     int x=w->bounds.x+22,y=w->bounds.y+55;char number[32];integer(number,app->number);
-    rectangle((desktop_rect){x,y,w->bounds.width-44,50},preferences.dark?0x10212a:0xe5eeed);
+    rectangle((desktop_rect){x,y,w->bounds.width-44,50},desktop_dark16()?0x10212a:0xe5eeed);
     text(x+14,y+16,app->calc_error?"Out of range / invalid operation":number,2,ink());
     const char *labels[]={"7","8","9","/","4","5","6","*","1","2","3","-","C","0","=","+"};
     for(unsigned i=0;i<16;++i)button(token,x+(int)(i%4)*62,y+72+(int)(i/4)*42,52,labels[i],CALC_KEY+i,0);
@@ -594,7 +607,7 @@ static void terminal_output(char c,void *context){
 static void draw_terminal(desktop_window *w,application *app,uint64_t token){
     desktop_rect r=w->bounds;button(token,r.x+16,r.y+45,100,"Clear",TERMINAL_CLEAR,0);
     text(r.x+135,r.y+56,"Optional advanced commands. Type help; Escape closes.",1,ink());
-    rectangle((desktop_rect){r.x+12,r.y+88,r.width-24,r.height-104},preferences.dark?0x10212a:0xffffff);
+    rectangle((desktop_rect){r.x+12,r.y+88,r.width-24,r.height-104},desktop_dark16()?0x10212a:0xffffff);
     #ifdef ENGINE_M73
     unsigned cell_width=16,cell_height=24;
 #else
@@ -647,6 +660,9 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "feedback14.inc"
 #endif
 #include "guide11.inc"
+#ifdef ENGINE_M12
+#include "accessibility16.inc"
+#endif
 #endif
 unsigned desktop74_in_use(unsigned kind){
     for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==kind)return 1;return 0;
@@ -663,15 +679,15 @@ static void draw_window(unsigned slot) {
 #ifdef ENGINE_M12
     window_frame12(w);
 #elif defined(ENGINE_M73)
-    ui73_shadow((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height);
-    ui73_round((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height,12,preferences.dark?0x47606e:0xc9d7df);
+    desktop_shadow16((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height);
+    ui73_round((unsigned)r.x,(unsigned)r.y,(unsigned)r.width,(unsigned)r.height,12,desktop_dark16()?0x47606e:0xc9d7df);
     ui73_round((unsigned)r.x+1,(unsigned)r.y+1,(unsigned)r.width-2,(unsigned)r.height-2,11,paper());
-    ui73_round((unsigned)r.x+1,(unsigned)r.y+1,(unsigned)r.width-2,39,11,preferences.dark?0x253c49:0xe9f0f4);
-    rectangle((desktop_rect){r.x+1,r.y+23,r.width-2,16},preferences.dark?0x253c49:0xe9f0f4);
+    ui73_round((unsigned)r.x+1,(unsigned)r.y+1,(unsigned)r.width-2,39,11,desktop_dark16()?0x253c49:0xe9f0f4);
+    rectangle((desktop_rect){r.x+1,r.y+23,r.width-2,16},desktop_dark16()?0x253c49:0xe9f0f4);
 #else
     rectangle(r,model.focused==slot?preferences.accent:0x58717c);
     rectangle((desktop_rect){r.x+1,r.y+1,r.width-2,r.height-2},paper());
-    rectangle((desktop_rect){r.x+1,r.y+1,r.width-2,34},preferences.dark?0x253c49:0xdce8ec);
+    rectangle((desktop_rect){r.x+1,r.y+1,r.width-2,34},desktop_dark16()?0x253c49:0xdce8ec);
 #endif
 #ifdef ENGINE_M11
     window_caption11(w);
@@ -685,7 +701,7 @@ static void draw_window(unsigned slot) {
 #endif
     if(app->closing==3){
         text(r.x+22,r.y+75,"Save document as",2,ink());text(r.x+22,r.y+110,"New filename in your Documents folder",1,ink());
-        rectangle((desktop_rect){r.x+22,r.y+135,r.width-44,32},app->name_selected?preferences.accent:preferences.dark?0x10212a:0xffffff);
+        rectangle((desktop_rect){r.x+22,r.y+135,r.width-44,32},app->name_selected?preferences.accent:desktop_dark16()?0x10212a:0xffffff);
         text(r.x+30,r.y+147,app->pending,1,app->name_selected?accent_ink12(0x102d29):ink());
         if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{r.x+22,r.y+135,r.width-44,32},token,FILENAME_FOCUS};
         button(token,r.x+22,r.y+190,150,"Save as",CONFIRM_FILENAME,1);button(token,r.x+185,r.y+190,150,"Cancel",KEEP_EDITING,0);
@@ -782,6 +798,9 @@ static void render(void) {
         uint32_t base=
 #ifdef ENGINE_M11
 appearance11.wallpaper;shade=appearance11.pattern==1?0:appearance11.pattern==2?((unsigned)row*40/model.height):shade;
+#ifdef ENGINE_M12
+ if(access_flags16&1){base=0;shade=0;}
+#endif
 #else
 DISTRO_DESKTOP_WALLPAPER;
 #endif
@@ -897,6 +916,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
 #ifdef ENGINE_M12
     tray_draw12();
     feedback_draw14();
+    access_draw16();
 #endif
 #endif
     gui7_clip_reset();usb_mouse_draw();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;
@@ -934,6 +954,7 @@ static void insert(application *app,const char *bytes,unsigned count) {
 
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
+    if(access_action16(token,command))return;
     if(command==60004)return;
     if(command==60002){shell_notice[0]=0;whole();return;}
     if(command==60003){desktop_window*review=desktop_lookup(&model,file_dialog_state11.owner);if(file_dialog_state11.mode&&review){desktop_minimize(&model,file_dialog_state11.owner,0);desktop_focus(&model,file_dialog_state11.owner);control_active=0;whole();}return;}
@@ -1275,6 +1296,7 @@ if(r.height<minimum)r.height=minimum;}else{r.x+=dx;r.y+=dy;}
 
 static void keyboard(int key) {
 #ifdef ENGINE_M12
+    if(access_key16(key))return;
     if(picker_shortcut12(key))return;
     if(component_scroll_key12(key))return;
 #endif
@@ -1317,7 +1339,11 @@ static void keyboard(int key) {
 #endif
         return;
     }
-    if(key==10&&control_active){uint64_t target=focused_control_window;unsigned command=focused_action;control_active=0;action(target,command);whole();return;}
+    if((key==10
+#ifdef ENGINE_M12
+        ||key==32
+#endif
+    )&&control_active){uint64_t target=focused_control_window;unsigned command=focused_action;control_active=0;action(target,command);whole();return;}
     if(control_active){control_active=0;whole();}
     if(key==27){if(launcher){launcher=0;whole();}else if(model.focused<DESKTOP_WINDOWS){
         application *focused=&apps[model.focused];if(focused->closing==3||focused->closing==4){focused->closing=0;invalidate(model.windows[model.focused].bounds);}else close_window(desktop_token(&model,model.focused),0);}return;}
@@ -1423,7 +1449,7 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
 #ifdef ENGINE_M11
     appearance_load11();file_settings_load11();power_init11(boot);start_load11();
 #ifdef ENGINE_M12
-    desktop_load12();
+    desktop_load12();access_load16();
 #endif
 #endif
     launch(FILES,0);

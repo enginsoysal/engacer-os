@@ -23,7 +23,11 @@ unsigned ui73_scale_choice(void){return choice73;}
 const char *ui73_font_license(void){return font73_license;}
 const os_boot_info_v0 *ui73_set_scale(unsigned choice){
  unsigned wanted=choice?choice:screen->framebuffer_width>=3840&&screen->framebuffer_height>=2000?4:screen->framebuffer_width>=2560&&screen->framebuffer_height>=1400?3:2;
- if(wanted<2||wanted>4||screen->framebuffer_width*2/wanted<1024||screen->framebuffer_height*2/wanted<768)return 0;
+ unsigned min_width=1024,min_height=768;
+#ifdef ENGINE_M12
+ min_width=800;min_height=600;
+#endif
+ if(wanted<2||wanted>4||screen->framebuffer_width*2/wanted<min_width||screen->framebuffer_height*2/wanted<min_height)return 0;
  scale73=wanted;choice73=choice;view73.framebuffer_width=screen->framebuffer_width*2/wanted;view73.framebuffer_height=screen->framebuffer_height*2/wanted;gui6_repaint=1;
  serial_text("M73_SCALE_APPLIED choice=");serial_hex(choice);serial_text(" actual=");serial_hex(wanted);serial_text("\n");return &view73;
 }
@@ -179,12 +183,24 @@ static void cursor73(unsigned x,unsigned y){
  if(shadow9){graphics9_cursor(x,y,scale73);return;}
 #endif
  static uint32_t saved[32*48];static unsigned ox,oy,visible;
+#ifdef ENGINE_M12
+ static unsigned ow,oh;
+#endif
  unsigned w=phys73(15),h=phys73(24);if(gui6_repaint){visible=0;gui6_repaint=0;}
+#ifdef ENGINE_M12
+ if(visible)for(unsigned j=0;j<oh;++j)for(unsigned i=0;i<ow;++i){volatile uint32_t*p=(volatile uint32_t*)(uintptr_t)(screen->framebuffer.physical_address+(uint64_t)(oy+j)*screen->framebuffer_stride_bytes+(ox+i)*4);*p=saved[j*ow+i];}
+ if(x>=screen->framebuffer_width||y>=screen->framebuffer_height){visible=0;return;}
+ if(w>screen->framebuffer_width-x)w=screen->framebuffer_width-x;if(h>screen->framebuffer_height-y)h=screen->framebuffer_height-y;
+#else
  if(visible)for(unsigned j=0;j<h;++j)for(unsigned i=0;i<w;++i){volatile uint32_t*p=(volatile uint32_t*)(uintptr_t)(screen->framebuffer.physical_address+(uint64_t)(oy+j)*screen->framebuffer_stride_bytes+(ox+i)*4);*p=saved[j*w+i];}
  if(x+w>screen->framebuffer_width)x=screen->framebuffer_width-w;if(y+h>screen->framebuffer_height)y=screen->framebuffer_height-h;
+#endif
  for(unsigned j=0;j<h;++j)for(unsigned i=0;i<w;++i){volatile uint32_t*p=(volatile uint32_t*)(uintptr_t)(screen->framebuffer.physical_address+(uint64_t)(y+j)*screen->framebuffer_stride_bytes+(x+i)*4);saved[j*w+i]=*p;
  unsigned covered=0,edge=0;for(unsigned sy=0;sy<4;++sy)for(unsigned sx=0;sx<4;++sx){int lx=(int)(i*8+sx*2+1)*2/(int)scale73,ly=(int)(j*8+sy*2+1)*2/(int)scale73;
  if(lx>=8&&ly>=8&&lx<=ly/2+8&&ly<152){++covered;if(lx<16||lx>ly/2||ly>136)++edge;}}
  if(covered)blend73(x+i,y+j,edge*2>=covered?0x173442:0xffffff,covered*255/16,0);}
+#ifdef ENGINE_M12
+ ow=w;oh=h;
+#endif
  ox=x;oy=y;visible=1;
 }

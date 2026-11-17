@@ -13,17 +13,19 @@ static void tray_button12(uint64_t owner,int x,int y,int width,const char*label,
 static unsigned tray_usb_count12(void){unsigned count=0;for(unsigned i=0;i<storage_count();++i){const storage_disk*d=storage_get(i);if(d&&d->transport==STORAGE_USB&&d->readable)++count;}return count;}
 static uint64_t tray_drive_owner12(unsigned index,const storage_disk*d){return UINT64_C(0x8000000000000000)|((uint64_t)d->context<<16)|(index+1);}
 static void tray_bar12(int bar){
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
  if(model.width<1000){icon_button12(0,(int)model.width-56,bar+15,40,"",TR12_OPEN,tray_open12,ICON12_SETTINGS);return;}
  unsigned count=control_count;task_clock74(bar);if(control_count==count+1)--control_count;
  clock7_time now;if(clock7_read(&now)){ui73_fit((int)model.width-82,bar+12,64,"System",1,0xe5eef2);text((int)model.width-168,bar+34,"Time unavailable",5,0xabb7c6);}
  else{char value[40],part[8];padded74(value,now.hour);append(value,":",40);padded74(part,now.minute);append(value,part,40);append(value," UTC",40);rectangle((desktop_rect){(int)model.width-96,bar+2,96,28},0x0b1922);ui73_fit((int)model.width-96,bar+8,88,value,1,0xe5eef2);}
+ access_capture16(0,TR12_DATE,"Date and time",1);
+ if(component_state12(0,TR12_DATE)&UI12_FOCUS){rectangle((desktop_rect){(int)model.width-96,bar+2,94,2},0xffffff);rectangle((desktop_rect){(int)model.width-96,bar+56,94,2},0xffffff);rectangle((desktop_rect){(int)model.width-96,bar+2,2,56},0xffffff);rectangle((desktop_rect){(int)model.width-4,bar+2,2,56},0xffffff);}
  if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{(int)model.width-180,bar,180,60},0,TR12_DATE};
  const unsigned actions[]={TR12_NETWORK,TR12_USB_OPEN,TR12_SOUND};const unsigned icons[]={ICON12_NETWORK,ICON12_USB,ICON12_SOUND};
  net7_configuration net=net7_current();audio74_info audio=audio74_current();
  for(unsigned i=0;i<3;++i){int x=(int)model.width-172+(int)i*26;unsigned active=i==0?net.state==NET7_CONNECTED:i==1?tray_usb_count12()!=0:audio.state==AUDIO74_PLAYING;
   ui12_icon_ink(icons[i],x,bar+8,20,active?0x62e5bd:0xabb7c6);
-  if(component_state12(0,actions[i])&UI12_FOCUS)rectangle((desktop_rect){x,bar+31,22,2},p.on_accent);
+  access_capture16(0,actions[i],i==0?"Network status":i==1?"USB drives":"Sound and volume",1);
+  if(component_state12(0,actions[i])&UI12_FOCUS)rectangle((desktop_rect){x,bar+31,22,2},0xffffff);
   if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{x-2,bar+4,24,28},0,actions[i]};
  }
  if(tray_open12||(component_state12(0,TR12_DATE)&UI12_FOCUS))rectangle((desktop_rect){(int)model.width-176,bar+57,168,2},preferences.accent);
@@ -35,7 +37,7 @@ static unsigned tray_navigation12(unsigned index,control*out){
  }return found;
 }
 static void tray_quick12(int x,int y,int width){
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);net7_configuration net=net7_current();audio74_info audio=audio74_current();char value[96],part[24];
+ ui12_palette p=desktop_palette16();net7_configuration net=net7_current();audio74_info audio=audio74_current();char value[96],part[24];
  ui12_icon(ICON12_NETWORK,x,y,24,preferences.dark);ui73_fit(x+34,y+3,width-34,net.state==NET7_CONNECTED?"Local network connected":net.state==NET7_CONFIGURING?"Connecting to the local network":net.state==NET7_NO_INTERFACE?"No supported network interface":net.state==NET7_FAILED?"Network setup failed":"Network disconnected",1,p.ink);
  if(net.state==NET7_CONNECTED){copy(value,"IPv4 ",96);for(unsigned i=0;i<4;++i){decimal(part,(net.address>>(24-i*8))&255);append(value,part,96);if(i<3)append(value,".",96);}append(value," - Internet not checked",96);}
  else copy(value,net.state==NET7_NO_INTERFACE?"No compatible wired-network provider is active.":net.state==NET7_CONFIGURING?"Automatic DHCP is in progress.":"Check the connection, then choose Retry.",96);
@@ -49,7 +51,7 @@ static void tray_quick12(int x,int y,int width){
  ui73_fit(x,y+306,width,"Wi-Fi, Bluetooth and battery controls: unavailable.",5,p.muted);ui73_fit(x,y+326,width,"Those providers are not implemented in this build.",5,p.muted);
 }
 static void tray_drives12(int x,int y,int width){
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);unsigned count=tray_usb_count12();if(tray_usb_page12*4>=count)tray_usb_page12=0;
+ ui12_palette p=desktop_palette16();unsigned count=tray_usb_count12();if(tray_usb_page12*4>=count)tray_usb_page12=0;
  ui73_fit(x,y,width,"Open a drive, or flush and safely remove it.",1,p.ink);
  if(!count){ui73_paragraph(x,y+52,width,3,"No readable USB drive is connected. Connect one to use it. Opening this panel never formats or erases a disk.",p.ink);}
  unsigned ordinal=0,shown=0;
@@ -61,7 +63,7 @@ static void tray_drives12(int x,int y,int width){
  tray_button12(0,x,y+300,100,"Previous",TR12_USB_PREV,0,tray_usb_page12!=0);tray_button12(0,x+108,y+300,100,"Next",TR12_USB_NEXT,0,(tray_usb_page12+1)*4<count);tray_button12(0,x+216,y+300,width-216,"Refresh",TR12_REFRESH,0,1);
 }
 static void tray_calendar12(int x,int y,int width){
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);clock7_time now;
+ ui12_palette p=desktop_palette16();clock7_time now;
  unsigned unavailable=clock7_read(&now);if(!unavailable&&!tray_year12&&now.year>=2000&&now.year<=2099){tray_year12=now.year;tray_month12=now.month;tray_day12=now.day;}
  if(unavailable||!tray_year12){ui73_paragraph(x,y,width,3,"Calendar is unavailable for this clock value. Supported years: 2000-2099. Other quick controls remain available.",p.ink);return;}
  static const char*months[]={"January","February","March","April","May","June","July","August","September","October","November","December"};char title[64],number[24];copy(title,months[tray_month12-1],64);append(title," ",64);decimal(number,tray_year12);append(title,number,64);append(title," - UTC",64);
@@ -72,8 +74,8 @@ static void tray_calendar12(int x,int y,int width){
  tray_button12(0,x,y+304,100,"Today",TR12_TODAY,0,1);tray_button12(0,x+108,y+304,width-108,"Open Calendar",TR12_CALENDAR_APP,0,1);
 }
 static void tray_draw12(void){
- if(!tray_open12)return;tray_bounds12=(desktop_rect){(int)model.width-456,(int)model.height-584,440,508};desktop_rect r=tray_bounds12;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
- ui73_shadow(r.x,r.y,r.width,r.height);ui73_round(r.x,r.y,r.width,r.height,12,p.paper);ui73_fit(r.x+16,r.y+15,r.width-112,"System",3,p.ink);tray_button12(0,r.x+r.width-92,r.y+10,76,"Close",TR12_CLOSE,0,1);
+ if(!tray_open12)return;tray_bounds12=(desktop_rect){(int)model.width-456,(int)model.height-584,440,508};desktop_rect r=tray_bounds12;ui12_palette p=desktop_palette16();
+ desktop_shadow16(r.x,r.y,r.width,r.height);ui73_round(r.x,r.y,r.width,r.height,12,p.paper);ui73_fit(r.x+16,r.y+15,r.width-112,"System",3,p.ink);tray_button12(0,r.x+r.width-92,r.y+10,76,"Close",TR12_CLOSE,0,1);
  const char*tabs[]={"Quick settings","USB drives","Calendar"};for(unsigned i=0;i<3;++i)tray_button12(0,r.x+16+(int)i*136,r.y+54,128,tabs[i],TR12_QUICK+i,tray_open12==i+1,1);
  int x=r.x+16,y=r.y+104,width=r.width-32;if(tray_open12==1)tray_quick12(x,y,width);else if(tray_open12==2)tray_drives12(x,y,width);else tray_calendar12(x,y,width);
  if(tray_notice12[0])ui73_paragraph(x,r.y+r.height-56,width,2,tray_notice12,p.ink);else ui73_fit(x,r.y+r.height-36,width,"Tab chooses a control. Enter opens. Escape closes.",5,p.muted);

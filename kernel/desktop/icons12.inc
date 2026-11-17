@@ -31,8 +31,9 @@ static void shell_file_icon12(int x,int y,unsigned size,const v6_entry*e){
 }
 static void icon_button12(uint64_t token,int x,int y,int width,const char*label,unsigned action,unsigned primary,unsigned icon){
  button(token,x,y,width,"",action,primary);
+ access_capture16(token,action,label[0]?label:action==58000?"Quick settings":"Open app",1);
  unsigned state=component_state12(token,action);
- ui12_style style=ui12_control_style(ui12_theme(preferences.dark,preferences.accent),state,primary);
+ ui12_style style=ui12_control_style(desktop_palette16(),state,primary);
  ui12_icon(icon,x+7,y+10+!!(state&UI12_PRESSED),16,preferences.dark);
  if(width>=60)ui73_fit(x+29,y+8+!!(state&UI12_PRESSED),width-35,label,1,style.ink);
 }

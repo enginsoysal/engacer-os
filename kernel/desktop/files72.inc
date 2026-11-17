@@ -60,7 +60,7 @@ static void folder_dialog72(desktop_window*w,application*app,uint64_t token){
  int x=w->bounds.x+28,y=w->bounds.y+76;
  folder_icon72(x,y,44,0xf0ce87);text(x+65,y+8,"A new place for your files",2,ink());
  text(x,y+78,"Folder name",1,ink());
- rectangle((desktop_rect){x,y+103,w->bounds.width-56,42},preferences.dark?0x10212a:0xe6eee7);
+ rectangle((desktop_rect){x,y+103,w->bounds.width-56,42},desktop_dark16()?0x10212a:0xe6eee7);
  #ifdef ENGINE_M73
  ui73_fit(x+12,y+114,w->bounds.width-80,app->pending,1,ink());
 #else
@@ -82,7 +82,7 @@ static void draw_files72(desktop_window *w,application *app,uint64_t token){
  button(token,x+190,y,130,"New folder",FILE_FOLDER,1);
  if(cw>=760)button(token,x+332,y,128,"Appearance",OPEN_SETTINGS+100,0);
  int side=156,list=x+side+15,list_width=cw-side-47;
- rectangle((desktop_rect){x,y+48,side-4,w->bounds.height-115},preferences.dark?0x213b43:0xeaf0e9);
+ rectangle((desktop_rect){x,y+48,side-4,w->bounds.height-115},desktop_dark16()?0x213b43:0xeaf0e9);
  text(x+12,y+65,"YOUR PLACES",1,ink());
  const char*places[]={"Home","Desktop","Documents","Downloads","Pictures","System drive"};
  for(unsigned i=0;i<6;++i){button(token,x+8,y+92+(int)i*37,side-20,"",NAV_HOME+i,0);unsigned scale=length(places[i])*12u<=(unsigned)(side-36)?2:1;text(x+16,y+101+(int)i*37+(scale==1?4:0),places[i],scale,ink());}
@@ -97,7 +97,7 @@ static void draw_files72(desktop_window *w,application *app,uint64_t token){
 #else
  text(list,y+74,path,1,ink());
 #endif
- rectangle((desktop_rect){list,y+95,list_width,1},preferences.dark?0x35515a:0xd7e1d8);
+ rectangle((desktop_rect){list,y+95,list_width,1},desktop_dark16()?0x35515a:0xd7e1d8);
  unsigned rows=w->bounds.height>220?(unsigned)(w->bounds.height-220)/44:1;if(rows>14)rows=14;if(!rows)rows=1;
  unsigned total=children72(app);
  if(app->offset>=total)app->offset=total?total-1:0;

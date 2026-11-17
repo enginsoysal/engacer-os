@@ -17,8 +17,11 @@ static void start_draw_item11(unsigned row,int x,int y,int width){
  start_result11 result=start_results11[row];const s11_pin*pin=result.kind==1?0:&start_preferences11.pinned[result.id];
  unsigned app=result.kind==1?result.id:pin->kind==1?pin->app:FILES;
  const char*name=pin?start_pin_name11(pin):titles[app];
+#ifdef ENGINE_M12
+ access_capture16(0,S11_RESULT+row,name,3);
+#endif
  unsigned available=pin&&pin->kind==2?equal(pin->path,"/")||(entry(pin->path)&&entry(pin->path)->kind==2):app7_available(app);
- desktop_rect rect={x,y,width,48};ui73_round(x,y,width,48,6,row==start_cursor11&&!start_search_focus11?file_tint11():preferences.dark?0x20343d:0xeaf0f2);
+ desktop_rect rect={x,y,width,48};ui73_round(x,y,width,48,6,row==start_cursor11&&!start_search_focus11?file_tint11():desktop_dark16()?0x20343d:0xeaf0f2);
 #ifdef ENGINE_M12
  ui12_icon(pin&&pin->kind==2?(equal(pin->path,"/")?ICON12_VOLUME:ICON12_FOLDER):app,x+10,y+10,26,preferences.dark);
 #else
@@ -28,9 +31,9 @@ static void start_draw_item11(unsigned row,int x,int y,int width){
  #ifdef ENGINE_M12
  char detail[96];copy(detail,!available?"Unavailable":pin&&pin->kind==2?"Pinned folder":"App",sizeof(detail));
  if(available&&(!pin||pin->kind==1)){append(detail," - ",sizeof(detail));append(detail,start_preferences11.names[start_preferences11.assignment[app]],sizeof(detail));if(width>400&&start_app_pin11(app)<S11_PINS)append(detail," - pinned",sizeof(detail));}
- ui73_fit(x+45,y+26,width-54,detail,5,preferences.dark?0xa7bcc4:0x56717d);
+ ui73_fit(x+45,y+26,width-54,detail,5,desktop_dark16()?0xa7bcc4:0x56717d);
 #else
- ui73_fit(x+45,y+26,width-54,!available?"Unavailable":pin&&pin->kind==2?"Folder":pin&&pin->label[0]?titles[app]:"Application",5,preferences.dark?0xa7bcc4:0x56717d);
+ ui73_fit(x+45,y+26,width-54,!available?"Unavailable":pin&&pin->kind==2?"Folder":pin&&pin->label[0]?titles[app]:"Application",5,desktop_dark16()?0xa7bcc4:0x56717d);
 #endif
  file_control11(0,rect,S11_RESULT+row);if(control_active&&focused_control_window==0&&focused_action==S11_RESULT+row)file_focus_rect11(rect);
 }
@@ -52,7 +55,7 @@ static void start_draw_manage11(int x,int y,int width,int height){s11_preference
  else if(start_manage11==2){file_button11(0,x+20,tools,95,"Remove",S11_PIN_REMOVE,count!=0,0);file_button11(0,x+123,tools,95,"Rename",S11_PIN_RENAME,count!=0,0);file_button11(0,x+226,tools,64,"Up",S11_PIN_UP,count!=0,0);file_button11(0,x+298,tools,72,"Down",S11_PIN_DOWN,count!=0,0);}
  else{file_button11(0,x+20,tools,120,"Remove pin",S11_TASK_REMOVE,count!=0,0);button(0,x+148,tools,210,p->centered?"Alignment: centered":"Alignment: left",S11_ALIGN,0);file_button11(0,x+366,tools,54,"Up",S11_TASK_UP,count&&start_task_selected11!=0,0);file_button11(0,x+428,tools,64,"Down",S11_TASK_DOWN,count&&start_task_selected11+1<count,0);}
 }
-static void start_draw_dialog11(int x,int y,int width,int height){if(!start_name_mode11&&!start_confirm11)return;int dw=width>660?600:width-32,dh=260,dx=x+(width-dw)/2,dy=y+(height-dh)/2;if(dy<8)dy=8;ui73_shadow(dx,dy,dw,dh);ui73_round(dx,dy,dw,dh,12,paper());const char*title=start_name_mode11==1?"New category":start_name_mode11==2?"Rename category":start_name_mode11==3?"Rename pin":start_confirm11==1?"Restart Engacer OS?":start_confirm11==2?"Shut down Engacer OS?":"Restore the default layout?";ui73_fit(dx+20,dy+18,dw-40,title,2,ink());
+static void start_draw_dialog11(int x,int y,int width,int height){if(!start_name_mode11&&!start_confirm11)return;int dw=width>660?600:width-32,dh=260,dx=x+(width-dw)/2,dy=y+(height-dh)/2;if(dy<8)dy=8;desktop_shadow16(dx,dy,dw,dh);ui73_round(dx,dy,dw,dh,12,paper());const char*title=start_name_mode11==1?"New category":start_name_mode11==2?"Rename category":start_name_mode11==3?"Rename pin":start_confirm11==1?"Restart Engacer OS?":start_confirm11==2?"Shut down Engacer OS?":"Restore the default layout?";ui73_fit(dx+20,dy+18,dw-40,title,2,ink());
  if(start_name_mode11){ui73_fit(dx+20,dy+64,dw-40,"Use up to 31 characters. Only the label changes.",1,ink());file_text_field11((desktop_rect){dx+20,dy+100,dw-40,40},start_name11,start_name_cursor11,start_name_anchor11,start_name_focus11==0,0);file_control11(0,(desktop_rect){dx+20,dy+100,dw-40,40},S11_NAME_FIELD);ui73_fit(dx+20,dy+153,dw-40,start_notice11,1,0xc45b57);button(0,dx+20,dy+dh-54,125,"Save label",S11_NAME_OK,start_name_focus11==1);button(0,dx+dw-145,dy+dh-54,125,"Cancel",S11_NAME_CANCEL,start_name_focus11==2);}
  else{ui73_paragraph(dx+20,dy+65,dw-40,3,start_confirm11==3?"Restore the original categories, pins, view and taskbar alignment. Your files and installed apps are kept.":"Save your work first. Active transfers or unsaved documents block this action. Disk caches must confirm their flush.",ink());button(0,dx+20,dy+dh-54,150,start_confirm11==1?"Restart":start_confirm11==2?"Shut down":"Restore defaults",S11_CONFIRM_OK,0);button(0,dx+dw-145,dy+dh-54,125,"Cancel",S11_CONFIRM_CANCEL,1);}
 }
@@ -62,7 +65,7 @@ static void start_draw11(void){if(!launcher)return;
 #else
  int preferred_height=650,row_top=164;
 #endif
- int width=model.width>792?760:(int)model.width-32,height=(int)model.height>preferred_height+84?preferred_height:(int)model.height-84,left=16;if(start_preferences11.centered)left=((int)model.width-width)/2;int top=(int)model.height-72-height;start_bounds11=(desktop_rect){left,top,width,height};ui73_shadow(left,top,width,height);ui73_round(left,top,width,height,12,paper());text(left+20,top+18,start_manage11?"Make Start yours":"Start",2,ink());ui73_fit(left+width/2,top+23,width/2-20,owner.user,1,ink());
+ int width=model.width>792?760:(int)model.width-32,height=(int)model.height>preferred_height+84?preferred_height:(int)model.height-84,left=16;if(start_preferences11.centered)left=((int)model.width-width)/2;int top=(int)model.height-72-height;start_bounds11=(desktop_rect){left,top,width,height};desktop_shadow16(left,top,width,height);ui73_round(left,top,width,height,12,paper());text(left+20,top+18,start_manage11?"Make Start yours":"Start",2,ink());ui73_fit(left+width/2,top+23,width/2-20,owner.user,1,ink());
  if(!start_manage11){file_text_field11((desktop_rect){left+20,top+60,width-40,40},start_query11,start_query_cursor11,start_query_anchor11,start_search_focus11,0);if(!start_query11[0])ui73_fit(left+32,top+69,width-64,"Search installed apps and pinned folders",1,0x6c8390);file_control11(0,(desktop_rect){left+20,top+60,width-40,40},S11_SEARCH);
   button(0,left+20,top+112,100,"Pinned",S11_PINNED,!start_query11[0]&&start_preferences11.tab==0);button(0,left+128,top+112,100,"All apps",S11_ALL,!start_query11[0]&&start_preferences11.tab==1);button(0,left+236,top+112,115,"Categories",S11_CATEGORIES_VIEW,!start_query11[0]&&start_preferences11.tab==2);if(!start_query11[0]&&start_preferences11.tab==2)button(0,left+359,top+112,width-479,start_preferences11.names[start_category11],S11_CATEGORY_MENU,0);if(start_query11[0])button(0,left+width-132,top+112,112,"Clear search",S11_CLEAR_SEARCH,0);else button(0,left+width-100,top+112,80,start_preferences11.view?"List":"Grid",S11_VIEW,0);
   start_build_results11();unsigned page=start_page_size11(),columns=start_columns11();if(start_cursor11>=start_result_count11)start_cursor11=0;if(start_page11*page>=start_result_count11)start_page11=0;unsigned first=start_page11*page;int cell=(width-32)/(int)columns;

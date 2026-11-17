@@ -94,7 +94,12 @@ void graphics9_end_batch(void){if(batch9&&!--batch9)graphics9_flush();}
 static void graphics9_cursor(unsigned x,unsigned y,unsigned scale){
  if(batch9)return;
  graphics9_hide_cursor();graphics9_flush();unsigned w=15*scale/2,h=24*scale/2;
+#ifdef ENGINE_M12
+ if(x>=screen->framebuffer_width||y>=screen->framebuffer_height)return;
+ if(w>screen->framebuffer_width-x)w=screen->framebuffer_width-x;if(h>screen->framebuffer_height-y)h=screen->framebuffer_height-y;
+#else
  if(x+w>screen->framebuffer_width)x=screen->framebuffer_width-w;if(y+h>screen->framebuffer_height)y=screen->framebuffer_height-h;
+#endif
  for(unsigned j=0;j<h;++j)for(unsigned i=0;i<w;++i){unsigned covered=0,edge=0;
   for(unsigned sy=0;sy<4;++sy)for(unsigned sx=0;sx<4;++sx){int lx=(int)(i*8+sx*2+1)*2/(int)scale,ly=(int)(j*8+sy*2+1)*2/(int)scale;
    if(lx>=8&&ly>=8&&lx<=ly/2+8&&ly<152){++covered;if(lx<16||lx>ly/2||ly>136)++edge;}}

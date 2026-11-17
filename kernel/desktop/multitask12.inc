@@ -60,7 +60,7 @@ static void multitask_overlay12(void){
   multitask_preview12((desktop_rect){choice==1?width/2:0,0,choice==2?width:choice==0?width/2:width-width/2,height});
  }}
  int width=model.width<680?(int)model.width-32:640,height=108+(int)count*48,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;
- ui12_palette palette=ui12_theme(preferences.dark,preferences.accent);ui73_shadow(x,y,width,height);ui73_round(x,y,width,height,12,paper());
+ ui12_palette palette=desktop_palette16();desktop_shadow16(x,y,width,height);ui73_round(x,y,width,height,12,paper());
  ui73_fit(x+20,y+18,width-40,mode==1?"Switch windows":mode==2?"Arrange this window":"Choose a window for the other side",UI12_SECTION,palette.ink);
  for(unsigned i=0;i<count;++i){int top=y+60+(int)i*48;char label[160];unsigned icon=0,enabled=1;
   if(mode==2){const char*names[]={"Left half","Right half","Maximize","Cancel"};copy(label,names[i],sizeof(label));desktop_window*w=desktop_lookup(&model,arrange_owner12);enabled=i>=2||window_snap_allowed11(w);icon=i==0?ICON12_BACK:i==1?ICON12_FORWARD:i==2?ICON12_MAXIMIZE:ICON12_CLOSE;}

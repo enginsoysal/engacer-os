@@ -2,8 +2,8 @@
 static unsigned window_active12(desktop_window*w){return model.focused==(unsigned)(w-model.windows)&&!desktop_focus11&&!launcher&&!switch_open11;}
 static desktop_rect window_control_rect12(desktop_window*w,unsigned part){ui12_caption_rect r=ui12_caption_bounds(w->bounds.width,part);return(desktop_rect){w->bounds.x+r.x,w->bounds.y+r.y,r.width,r.height};}
 static void window_frame12(desktop_window*w){
- desktop_rect r=w->bounds;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);unsigned active=window_active12(w),border=active?2:1;
- ui73_shadow(r.x,r.y,r.width,r.height);
+ desktop_rect r=w->bounds;ui12_palette p=desktop_palette16();unsigned active=window_active12(w),border=active?2:1;
+ desktop_shadow16(r.x,r.y,r.width,r.height);
  ui73_round(r.x,r.y,r.width,r.height,10,active?p.ink:p.control_border);
  ui73_round(r.x+(int)border,r.y+(int)border,r.width-2*border,r.height-2*border,10-border,paper());
  uint32_t fill=ui12_caption_fill(p,active);
@@ -12,7 +12,7 @@ static void window_frame12(desktop_window*w){
  if(active)rectangle((desktop_rect){r.x+12,r.y+38,r.width-24,2},preferences.accent);
 }
 static void window_caption12(desktop_window*w){
- desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];ui12_palette p=ui12_theme(preferences.dark,preferences.accent);unsigned active=window_active12(w),enabled=!file_block_owner11(token);
+ desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];ui12_palette p=desktop_palette16();unsigned active=window_active12(w),enabled=!file_block_owner11(token);
  char title[320];copy(title,titles[w->app],sizeof(title));
  if((w->app==FILES||w->app==EDITOR)&&a->path[0]){const char*name=a->path;for(unsigned i=0;a->path[i];++i)if(a->path[i]=='/'&&a->path[i+1])name=a->path+i+1;copy(title,a->dirty?"* ":"",sizeof(title));append(title,equal(a->path,"/")?"System drive":name,sizeof(title));append(title," - ",sizeof(title));append(title,titles[w->app],sizeof(title));}
  if(w->app==FILES&&a->usb_mode10)files_title12(a,title,sizeof(title));
@@ -70,7 +70,7 @@ static void window_hint_damage12(i11_target before,i11_target after){
 }
 static void window_hint_draw12(void){
  i11_target target=window_hint_target12(hover12);if(!target.window)return;
- desktop_rect r=window_hint_rect12(target);ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
+ desktop_rect r=window_hint_rect12(target);ui12_palette p=desktop_palette16();
  ui73_round(r.x,r.y,r.width,r.height,4,p.control_border);ui73_round(r.x+1,r.y+1,r.width-2,r.height-2,3,p.surface);
  ui73_fit(r.x+8,r.y+6,r.width-16,window_hint_label12(target),UI12_SECONDARY,p.ink);
 }

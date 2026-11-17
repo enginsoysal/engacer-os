@@ -11,13 +11,15 @@ static unsigned component_state12(uint64_t window,unsigned action){
   if(interaction11.captured==1&&!interaction11.dragged&&interaction11.down.window==window&&interaction11.down.action==action)state|=UI12_PRESSED;
  }
  if(control_active&&focused_control_window==window&&focused_action==action)state|=UI12_FOCUS;
+ if(access_flags16&2)state&=~(UI12_HOVER|UI12_PRESSED);
  return state;
 }
 static void component_button12(uint64_t window,desktop_rect r,const char*label,unsigned action,unsigned primary,unsigned enabled){
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
+ if(enabled)access_capture16(window,action,label,1);
+ ui12_palette p=desktop_palette16();
  unsigned state=enabled?component_state12(window,action):UI12_DISABLED;
  ui12_style s=ui12_control_style(p,state,primary);
- unsigned inset=(state&UI12_FOCUS)?2:1;
+ unsigned inset=(state&UI12_FOCUS)?3:1;
  ui73_round(r.x,r.y,r.width,r.height,UI12_RADIUS,s.border);
  if(r.width>(int)(2*inset)&&r.height>(int)(2*inset))ui73_round(r.x+inset,r.y+inset,r.width-2*inset,r.height-2*inset,UI12_RADIUS-inset,s.fill);
  ui73_fit(r.x+10,r.y+8+!!(state&UI12_PRESSED),r.width>20?(unsigned)r.width-20:0,label,UI12_BODY,s.ink);
@@ -38,7 +40,7 @@ static void component_hover12(i11_target next,unsigned buttons){
  hover12=next;
 }
 static void component_field12(desktop_rect r,unsigned active){
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);unsigned inset=active?2:1;
+ ui12_palette p=desktop_palette16();unsigned inset=active?2:1;
  ui73_round(r.x,r.y,r.width,r.height,UI12_RADIUS,active?p.ink:p.control_border);
  if(r.width>(int)(2*inset)&&r.height>(int)(2*inset))ui73_round(r.x+inset,r.y+inset,r.width-2*inset,r.height-2*inset,UI12_RADIUS-inset,p.surface);
 }
@@ -47,7 +49,7 @@ static void component_scrollbar12(uint64_t owner_id,desktop_rect track,unsigned 
  scroll_record12*r=&scroll_records12[w-model.windows];r->owner=0;
  if(track.width<12||track.height<24||!total||visible>=total||!step)return;
  *r=(scroll_record12){owner_id,track,total,visible,step};
- ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
+ ui12_palette p=desktop_palette16();
  ui73_round(track.x,track.y,track.width,track.height,6,p.surface);
  unsigned size=ui12_scroll_size(track.height,visible,total),offset=ui12_scroll_offset(track.height,visible,total,first);
  uint32_t tint=scroll_capture12.owner==owner_id||((component_state12(owner_id,SCROLLBAR12)&(UI12_HOVER|UI12_FOCUS)))?p.ink:p.control_border;

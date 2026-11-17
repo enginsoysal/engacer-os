@@ -1,5 +1,5 @@
 /* One visual preview owner, five original values, and eight category bytes. */
-enum {S13_APPEARANCE=59000,S13_DISPLAY,S13_INPUT,S13_SYSTEM,S13_CANCEL=59005,S13_DEFAULTS,
+enum {S13_APPEARANCE=59000,S13_DISPLAY,S13_INPUT,S13_SYSTEM,S13_ACCESS,S13_CANCEL=59005,S13_DEFAULTS,
  S13_ACCENT_DEFAULT=59010,S13_CLICK_FAST=59020,S13_CLICK_NORMAL,S13_CLICK_SLOW};
 typedef struct {uint64_t owner;unsigned accent,dark,scale,wallpaper,pattern;} settings_preview_record13;
 static settings_preview_record13 settings_preview13;

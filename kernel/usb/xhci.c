@@ -118,6 +118,9 @@ else if((data[0]&0x44)&&data[i]==61)c=(char)144;
 else if((data[0]&0x44)&&data[i]==44)c=(char)145;
 if(data[i]==41&&(data[0]&0x11))c=(char)137;
 if(data[i]==59)c=(char)139;
+#ifdef ENGINE_M12
+if(data[i]==58)c=(char)153;if(data[i]==63)c=(char)152;
+#endif
 if(data[i]==67&&(data[0]&0x22))c=(char)140;
 if(data[i]==101)c=(char)140;
 #endif
@@ -429,7 +432,9 @@ void usb_mouse_limits(unsigned w,unsigned h){
 #ifdef ENGINE_M9
  if(w&&h){mouse_width9=w;mouse_height9=h;}
 #endif
-#ifdef ENGINE_M73
+#ifdef ENGINE_M12
+ mouse_limit_x=w?(int)w-1:0;mouse_limit_y=h?(int)h-1:0;
+#elif defined(ENGINE_M73)
  extern unsigned ui73_scale(void);unsigned cw=15*ui73_scale()/2,ch=24*ui73_scale()/2;mouse_limit_x=w>cw?(int)(w-cw):0;mouse_limit_y=h>ch?(int)(h-ch):0;
 #else
  mouse_limit_x=w>9?(int)w-9:0;mouse_limit_y=h>15?(int)h-15:0;

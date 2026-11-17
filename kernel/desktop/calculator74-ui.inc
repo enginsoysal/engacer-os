@@ -4,7 +4,7 @@ static void draw_calculator74(desktop_window *w,application *app,uint64_t token)
     int x=w->bounds.x+24,y=w->bounds.y+56,width=w->bounds.width-48;
     const char *tabs[]={"Calculator","Scientific","Convert"};
     for(unsigned i=0;i<3;++i)button(token,x+(int)i*(width/3),y,width/3-8,tabs[i],CALC74_BASIC+i,app->offset==i);
-    ui73_round(x,y+53,width,72,9,preferences.dark?0x10212a:0xe7f0ee);
+    ui73_round(x,y+53,width,72,9,desktop_dark16()?0x10212a:0xe7f0ee);
     ui73_fit(x+16,y+73,(unsigned)width-32,app->calc_error?"Cannot calculate. Clear or edit the value.":app->length?app->text:"0",3,ink());
     int keyboard=y+151;
     if(app->offset==1){

@@ -40,7 +40,8 @@ before saving another document. If a file changed elsewhere, use Save as
 with a new name to keep your edits before reopening the changed original.
 
 MAKE IT YOURS
-Settings has Appearance, Display, Input and System. Appearance and Display
+Settings has Appearance, Display, Input, System and Accessibility. Appearance
+and Display
 have a real preview. Apply and save keeps it; Cancel preview, Escape or
 closing its owner restores the earlier choices. Restore defaults previews
 this distribution's appearance without reinstalling apps or changing files.
@@ -50,11 +51,20 @@ System opens Devices and hardware, Applications, Start and taskbar, and
 Quick settings. Remove or reinstall optional apps in Applications. Removing
 Calculator does not remove your desktop, Files or base Settings.
 
+ACCESSIBILITY
+Settings > Accessibility offers High contrast and Reduced motion. These choices
+save separately from appearance. High contrast keeps your normal theme intact;
+turn it off to restore that theme. Reduced motion removes shadows and decorative
+control movement. Reset accessibility changes only these two choices.
+
 WINDOWS AND CONTROLS
 Drag a title bar to move a window. Its icon opens the window menu. Caption
 buttons minimize, maximize/restore or close it. Closing unsaved text asks first.
 Alt+Tab switches windows. A minimized window stays available on the taskbar.
-Tab and Shift+Tab move control focus. Enter activates the focused control.
+Tab and Shift+Tab move control focus. Enter and Space activate supported buttons.
+F6 changes between window, taskbar, desktop and visible messages; Shift+F6
+goes back. F1 names the focused control. Escape closes help and keeps work.
+Finish or cancel a review, menu, guide, tray or drag before changing panes.
 Releasing a button outside it cancels that click. Menus close with Escape.
 
 DESKTOP AND QUICK SETTINGS

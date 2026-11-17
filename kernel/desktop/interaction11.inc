@@ -10,6 +10,7 @@ static void select_row11(application*a,unsigned row,unsigned modifiers,unsigned 
 }
 static i11_target target11(int x,int y){
 #ifdef ENGINE_M12
+ if(access_help16)return access_target16(x,y);
  i11_target message14=feedback_target14(x,y);if(message14.action)return message14;
  if(tray_open12)return tray_target12(x,y);
 #endif
@@ -58,6 +59,7 @@ static void open_target11(i11_target target){
 }
 static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
 #ifdef ENGINE_M12
+ if(access_help16){if((event&I11_ACTIVATE)&&target.action==ACCESS_HELP_CLOSE16)access_action16(0,ACCESS_HELP_CLOSE16);return;}
  if(tray_open12){if((event&I11_ACTIVATE)&&target.kind==I11_BUTTON){if(target.action>=TR12_OPEN&&target.action<TR12_END)tray_action12(target.window,target.action);else if(y>=model.height-60&&!target.window){tray_close12();open_target11(target);}}else if((event&(I11_SELECT|I11_ACTIVATE|I11_CONTEXT))&&((int)x<tray_bounds12.x||(int)y<tray_bounds12.y||(int)x>=tray_bounds12.x+tray_bounds12.width||(int)y>=tray_bounds12.y+tray_bounds12.height))tray_close12();return;}
 #endif
  if(switch_open11){if(event&I11_ACTIVATE){if(target.action>=W11_SWITCH&&target.action<W11_SWITCH+DESKTOP_WINDOWS)window_action11(0,target.action);

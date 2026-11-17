@@ -23,7 +23,7 @@ static unsigned files_column_action12(desktop_window*w,application*a,uint64_t to
  if(w->app==FILES&&!a->usb_mode10&&!file_block_owner11(token))files_order12(w,a,command-F12_COLUMN_NAME,1);return 1;
 }
 static void files_header_cell12(desktop_window*w,uint64_t token,desktop_rect r,const char*label,unsigned key,unsigned enabled){
- file_window11*f=&file_windows11[w-model.windows];unsigned command=F12_COLUMN_NAME+key,state=enabled?component_state12(token,command):0;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
+ file_window11*f=&file_windows11[w-model.windows];unsigned command=F12_COLUMN_NAME+key,state=enabled?component_state12(token,command):0;ui12_palette p=desktop_palette16();
  if(state&(UI12_HOVER|UI12_PRESSED|UI12_FOCUS)){ui12_style s=ui12_control_style(p,state,0);ui73_round(r.x,r.y,r.width,r.height,4,s.fill);if(state&UI12_FOCUS)file_focus_rect11(r);}
  ui73_fit(r.x+10,r.y+8,r.width-20,label,UI12_BODY,p.ink);if(enabled){file_control11(token,r,command);if(f->sort==key){int x=r.x+18+(int)ui73_measure(label,UI12_BODY),y=r.y+14;for(int n=0;n<5;++n)rectangle((desktop_rect){x+n,y+(f->descending?n:4-n),9-2*n,1},p.ink);}}
 }
@@ -31,7 +31,7 @@ static void files_details_header12(desktop_window*w,uint64_t token,int x,int top
  ui12_file_columns c=ui12_file_details(width);files_header_cell12(w,token,(desktop_rect){x,top,c.name,32},"Name",0,native);
  if(c.type_visible)files_header_cell12(w,token,(desktop_rect){x+c.name+12,top,c.type,32},"Type",2,native);
  if(c.size_visible)files_header_cell12(w,token,(desktop_rect){x+width-c.size,top,c.size,32},"Size",1,native);
- rectangle((desktop_rect){x,top+34,width,1},ui12_theme(preferences.dark,preferences.accent).line);
+ rectangle((desktop_rect){x,top+34,width,1},desktop_palette16().line);
 }
 static void files_details_text12(desktop_rect r,const char*name,const char*type,uint64_t bytes,unsigned folder){
  ui12_file_columns c=ui12_file_details(r.width);ui73_fit(r.x+44,r.y+8,c.name-46,name,UI12_BODY,ink());
@@ -39,7 +39,7 @@ static void files_details_text12(desktop_rect r,const char*name,const char*type,
  if(c.size_visible){char size[48];if(folder)copy(size,"-",48);else file_size_text11(size,bytes);ui73_fit(r.x+r.width-c.size+10,r.y+8,c.size-12,size,UI12_BODY,ink());}
 }
 static void files_row_state12(desktop_window*w,uint64_t token,desktop_rect r,unsigned command,unsigned chosen){
- unsigned active=model.focused==(unsigned)(w-model.windows)&&!desktop_focus11,hover=hover12.window==token&&hover12.action==command&&hover12.kind==I11_ITEM;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);
+ unsigned active=model.focused==(unsigned)(w-model.windows)&&!desktop_focus11,hover=hover12.window==token&&hover12.action==command&&hover12.kind==I11_ITEM;ui12_palette p=desktop_palette16();
  if(chosen)ui73_round(r.x,r.y,r.width,r.height,6,active?file_tint11():ui12_mix(p.paper,p.ink,1,12));else if(hover)ui73_round(r.x,r.y,r.width,r.height,6,ui12_mix(p.paper,p.ink,1,24));
  unsigned row=command>=USB_ROW10&&command<USB_ROW10+6?apps[w-model.windows].offset+command-USB_ROW10:command-FILE_ROW;
  if(active&&((!control_active&&selection_focus11[w-model.windows]==row)||chosen))file_focus_rect11(r);
@@ -71,7 +71,7 @@ static void files_name_tip_draw12(void){
  /* Keyboard window/location changes can leave the last pointer target stale. */
  if(desktop_hit(&model,(int)pointer_x,(int)pointer_y)!=hover12.window)return;
  unsigned under=0;for(unsigned i=0;i<control_count;++i){control*c=&controls[i];desktop_rect r=c->rect;if(c->window==hover12.window&&c->action==hover12.action&&(int)pointer_x>=r.x&&(int)pointer_x<r.x+r.width&&(int)pointer_y>=r.y&&(int)pointer_y<r.y+r.height)under=1;}if(!under)return;
- char lines[12][64];desktop_rect r;unsigned n=files_tip_content12(hover12,lines,&r);if(!n)return;files_tip_bounds12=r;ui12_palette p=ui12_theme(preferences.dark,preferences.accent);ui73_round(r.x,r.y,r.width,r.height,6,p.ink);ui73_round(r.x+1,r.y+1,r.width-2,r.height-2,5,p.surface);for(unsigned i=0;i<n;++i)text(r.x+12,r.y+8+(int)i*21,lines[i],UI12_SECONDARY,p.ink);
+ char lines[12][64];desktop_rect r;unsigned n=files_tip_content12(hover12,lines,&r);if(!n)return;files_tip_bounds12=r;ui12_palette p=desktop_palette16();ui73_round(r.x,r.y,r.width,r.height,6,p.ink);ui73_round(r.x+1,r.y+1,r.width-2,r.height-2,5,p.surface);for(unsigned i=0;i<n;++i)text(r.x+12,r.y+8+(int)i*21,lines[i],UI12_SECONDARY,p.ink);
 }
 static void files_native_breadcrumbs12(application*a,uint64_t token,desktop_rect field){
  component_field12(field,0);file_control11(token,field,F11_ADDRESS);int edit=field.width>=130?52:0,right=field.x+field.width-edit;

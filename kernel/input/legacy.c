@@ -112,6 +112,9 @@ unsigned input_irq(uint64_t *frame){
         if(alt_modifier&&code==57){enqueue(145);continue;}
         if(alt_modifier&&code==15){enqueue(shift?143:135);continue;}
         if(code==60){enqueue(139);continue;}
+#ifdef ENGINE_M12
+        if(code==59){enqueue(153);continue;}if(code==64){enqueue(152);continue;}
+#endif
         if(code==68&&shift){enqueue(140);continue;}
 #endif
         if(code==0xe0){extended=1;continue;}if(code==0xfa)continue;

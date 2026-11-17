@@ -38,7 +38,7 @@ desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);ap
  ui73_fit(r.x+16,r.y+11,r.width-166,title,1,ink());
 #endif
  unsigned hover_y=pointer_y>=(unsigned)r.y+2&&pointer_y<(unsigned)r.y+38;
- for(unsigned i=0;i<3;++i){int x=r.x+r.width-140+(int)i*44;if(hover_y&&(int)pointer_x>=x&&(int)pointer_x<x+40)ui73_round(x,r.y+2,40,36,5,i==2?0xc84d58:preferences.dark?0x3c5665:0xd7e3e9);}
+ for(unsigned i=0;i<3;++i){int x=r.x+r.width-140+(int)i*44;if(hover_y&&(int)pointer_x>=x&&(int)pointer_x<x+40)ui73_round(x,r.y+2,40,36,5,i==2?0xc84d58:desktop_dark16()?0x3c5665:0xd7e3e9);}
 #ifdef ENGINE_M12
  window_state11*s=window_state_for11(token);
  ui12_icon(ICON12_MINIMIZE,r.x+r.width-134,r.y+9,24,preferences.dark);
@@ -112,7 +112,7 @@ static void window_overlay11(void){
 #ifdef ENGINE_M12
  multitask_overlay12();return;
 #endif
- if(!switch_open11)return;int width=560,height=90+(int)switch_count11*48,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;ui73_shadow(x,y,width,height);ui73_round(x,y,width,height,12,paper());text(x+20,y+18,"Switch windows",3,ink());
+ if(!switch_open11)return;int width=560,height=90+(int)switch_count11*48,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;desktop_shadow16(x,y,width,height);ui73_round(x,y,width,height,12,paper());text(x+20,y+18,"Switch windows",3,ink());
  for(unsigned i=0;i<switch_count11;++i){desktop_window*w=desktop_lookup(&model,switch_tokens11[i]);if(w)button(0,x+20,y+68+(int)i*48,width-40,titles[w->app],W11_SWITCH+i,i==switch_choice11);}
 }
 static unsigned window_key11(int key){

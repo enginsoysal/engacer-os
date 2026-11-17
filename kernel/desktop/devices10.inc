@@ -19,7 +19,7 @@ static void draw_devices10(desktop_window*w,application*app,uint64_t token){
 #else
  text(x+8,top,label,1,ink());ui73_fit(x+8,top+23,width-16,d->detail,1,ink());
 #endif
- rectangle((desktop_rect){x,top+46,width,1},preferences.dark?0x35515a:0xd7e1d8);}
+ rectangle((desktop_rect){x,top+46,width,1},desktop_dark16()?0x35515a:0xd7e1d8);}
  int bottom=w->bounds.y+w->bounds.height-135;button(token,x,bottom,95,"Previous",DEVICES_PREV10,0);button(token,x+105,bottom,95,"Next",DEVICES_NEXT10,0);
  text(x,bottom+48,"Keyboard layout",1,ink());button(token,x+170,bottom+35,135,"US QWERTY",LAYOUT_US10,!input10_layout());button(token,x+315,bottom+35,135,"US Dvorak",LAYOUT_DVORAK10,input10_layout()==1);
  ui73_fit(x,w->bounds.y+w->bounds.height-28,width,app->notice[0]?app->notice:"Keyboard choice is saved automatically. Hardware support expands by tested profiles.",1,ink());

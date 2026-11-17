@@ -94,13 +94,13 @@ static void browser_draw74(desktop_window *w,application *app,uint64_t token){
     if(w->app!=BROWSER74)return;int x=w->bounds.x+24,y=w->bounds.y+55,width=w->bounds.width-48;
     button(token,x,y,100,"Back",BROWSER_BACK74,0);button(token,x+112,y,100,"Home",BROWSER_HOME74,0);button(token,x+224,y,100,"Stop",BROWSER_STOP74,0);
     text(x+345,y+10,"Basic static-page browser",1,ink());
-    ui73_round(x,y+49,width-94,36,6,app->name_selected?preferences.accent:preferences.dark?0x10212a:0xffffff);
+    ui73_round(x,y+49,width-94,36,6,app->name_selected?preferences.accent:desktop_dark16()?0x10212a:0xffffff);
     char visible[256];unsigned start=0;copy(visible,app->pending,256);
     while(visible[start]&&ui73_measure(visible+start,1)>(unsigned)(width-120))++start;
     text(x+10,y+59,visible+start,1,app->name_selected?0x102d29:ink());
     if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{x,y+49,width-94,36},token,BROWSER_ADDRESS74};
     button(token,x+width-82,y+49,82,"Go",BROWSER_GO74,1);
-    int body=y+108;unsigned rows=(unsigned)(w->bounds.height-255)/24;ui73_round(x,body,width,w->bounds.height-223,7,preferences.dark?0x10212a:0xffffff);
+    int body=y+108;unsigned rows=(unsigned)(w->bounds.height-255)/24;ui73_round(x,body,width,w->bounds.height-223,7,desktop_dark16()?0x10212a:0xffffff);
     if(app->month74){
         for(unsigned i=0;i<8&&app->year74+i<app->count74;++i){unsigned index=app->year74+i;
             const char *label=app->text+APP74_HTML_LINK_OFFSET+index*32;

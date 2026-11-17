@@ -34,7 +34,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   button(token,x+372,y+340,150,"Licenses",LICENSE8,0);return;
  }
  if(!installed){
-  ui73_round(x,y+132,width,76,8,preferences.dark?0x142b35:0xe8f0f4);
+  ui73_round(x,y+132,width,76,8,desktop_dark16()?0x142b35:0xe8f0f4);
   text(x+14,y+145,"Included installer",1,ink());ui73_fit(x+14,y+177,width-28,app->path,1,ink());
  }
  int actions=y+(installed?140:226);
@@ -54,7 +54,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   info->state==1?"7-Zip is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?"Ready. Open the original Windows app or try creating and extracting a test archive.":"Choose Install 7-Zip to get started. Other Windows installers are not supported in this first release.";
  ui73_paragraph(x,y+294,width,info->command==W8_RUN?2:3,message,ink());
  if(info->state==1&&info->command!=W8_RUN){
-  unsigned filled=(unsigned)width*info->percent/100;ui73_round(x,y+374,width,8,4,preferences.dark?0x233c47:0xdce8ee);
+  unsigned filled=(unsigned)width*info->percent/100;ui73_round(x,y+374,width,8,4,desktop_dark16()?0x233c47:0xdce8ee);
   if(filled)ui73_round(x,y+374,(int)filled,8,4,preferences.accent);
   char progress[40];decimal(progress,info->percent);append(progress,"% complete",40);text(x,y+390,progress,1,ink());
  }

@@ -146,7 +146,7 @@ static void draw_software74(desktop_window *w,application *app,uint64_t token){
     for(unsigned kind=1;kind<APP74_KINDS;++kind){if(!app74_ready(kind))continue;
         if(count++<first)continue;if(shown==rows)break;
         int row=y+100+(int)shown++*56;
-        ui73_round(x,row,width,49,7,preferences.dark?0x203843:0xeaf0f3);
+        ui73_round(x,row,width,49,7,desktop_dark16()?0x203843:0xeaf0f3);
         ui73_fit(x+12,row+15,(unsigned)(width-310),titles[kind],1,ink());
         unsigned available=app7_available(kind);
         if(available)button(token,x+width-286,row+6,92,"Open",PACKAGE_OPEN74+kind,0);
@@ -203,7 +203,7 @@ static void draw_calendar74(desktop_window *w,application *app,uint64_t token){
     for(unsigned day=1;day<=days;++day){unsigned p=leading+day-1;decimal(part,day);
         button(token,x+(int)(p%7)*cell,y+90+(int)(p/7)*40,cell-8,part,DAY74+day,app->day74==day);}
     text(x,y+342,"Private note for the selected day",1,ink());
-    ui73_round(x,y+369,w->bounds.width-48,84,7,preferences.dark?0x10212a:0xffffff);
+    ui73_round(x,y+369,w->bounds.width-48,84,7,desktop_dark16()?0x10212a:0xffffff);
     note_view74(x+10,y+375,w->bounds.width-68,app);
     button(token,x,y+465,150,"Save note",NOTE_SAVE74,1);button(token,x+165,y+465,160,"Clear note",NOTE_DELETE74,0);
     ui73_fit(x,w->bounds.y+w->bounds.height-28,w->bounds.width-48,app->notice[0]?app->notice:app->dirty?"Unsaved note. Ctrl+S saves.":"Choose a day, type a note, then save. Notes stay on this computer.",1,ink());

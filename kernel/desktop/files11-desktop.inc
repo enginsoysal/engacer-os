@@ -49,6 +49,7 @@ static void desktop_label12(desktop_rect r,const char*label,uint32_t foreground)
  if(label[used]){width=ui73_measure(label+used,UI12_BODY);int x=width<=(unsigned)r.width-12?r.x+(r.width-(int)width)/2:r.x+6;ui73_fit(x,r.y+84,r.width-12,label+used,UI12_BODY,foreground);}
 }
 static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsigned focused,unsigned icon,const v6_entry*entry12,const char*label){
+ access_capture16(0,action,label,3);
  unsigned hovered=hover12.kind==I11_ITEM&&!hover12.window&&hover12.action==action;
  uint32_t foreground=desktop_ink11();
  if(selected||hovered){ui73_round(r.x,r.y,r.width,r.height,UI12_RADIUS,selected?0x315b62:0x29454e);foreground=0xe5f0f3;}
