@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.10",
+  "current_stage": "M12.11",
   "qualified_download": "M12.10",
   "known_issues": [
     {
@@ -121,7 +121,7 @@
     },
     {
       "id": "M12.10",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Taskbar",
       "requires": "M12.9",
       "deliverable": "Consistent app icons, running/active/minimized states, bounded window grouping and context actions.",
@@ -131,7 +131,7 @@
     },
     {
       "id": "M12.11",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Multitasking",
       "requires": "M12.10",
       "deliverable": "Refined switcher and discoverable snap choices/assist within actual window and display limits.",

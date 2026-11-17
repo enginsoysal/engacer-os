@@ -1,6 +1,6 @@
 # M12.10 — grouped native taskbar
 
-Status: M12-STAGE10-VM-v1 native qualification passes. Matching public release and website gates are pending before M12.11.
+Status: M12-STAGE10-VM-v1 native qualification passes. Matching public delivery passes: twenty downloads, 349 pages and 2,405 links. M12.10 is complete; preserve its accepted media and evidence.
 
 ## How and why
 

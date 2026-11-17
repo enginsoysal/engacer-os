@@ -1,6 +1,6 @@
 # Install Engacer OS M12.10 in VMware
 
-M12.10 passes M12-STAGE10-VM-v1 native qualification. Publication verification is pending; use only the matching official release assets once visible.
+M12.10 passes M12-STAGE10-VM-v1 native qualification. Matching public release and website verification pass; use its official release assets.
 
 M12.10 is the grouped taskbar stage. Use its matching ISO and prepared
 VMware ZIP. The stage's exact-source acceptance passes; the

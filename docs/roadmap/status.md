@@ -9,8 +9,7 @@ actual 150%/4K, twelve movement comparisons, enabled-device VMware/BIOS installa
 two ordinary disk starts and real compressed boot repair pass. Unique app groups,
 numbered window choice, bounded paginated overflow, pin order and safe removal are
 checked. Fixed shell state is 552,925 bytes, 840 above M12.9; tasks retain zero
-managed pages. Public release and complete website verification are pending;
-M12.10 remains active until those gates close. M12.11 has not started.
+managed pages. [Complete public proof](../../evidence/M12/10/publication-results.json) passes: twenty downloads, 349 pages and 2,405 links, plus actual desktop/mobile browser checks. **M12.11 is active.**
 
 Previous [M12.8 complete public delivery](../../evidence/M12/8/publication-results.json)
 remains immutable: twenty downloads, 337 pages and 2,305 links, including shared

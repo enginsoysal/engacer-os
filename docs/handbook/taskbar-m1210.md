@@ -1,6 +1,6 @@
 # Use the grouped taskbar — M12.10
 
-M12.10 native qualification passes. Use the [matching installation guide](install-m1210.md). Public release and website verification close separately before M12.11.
+M12.10 native qualification passes. Use the [matching installation guide](install-m1210.md). The matching release and complete public website verification pass.
 
 Each app has one taskbar button, combining its pin and open windows. The icon
 and name identify the app. A number appears when it has several windows. The
