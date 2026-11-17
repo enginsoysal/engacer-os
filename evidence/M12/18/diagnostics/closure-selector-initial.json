@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "documentation_commit": "f5f0b36419f83f6d52bff8fb280750dc6fab3a8b",
+  "native_source_commit": "07743f643687544bb21dcd92a53a993141560cdd",
+  "status_page": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+  "complete_status_visible": true,
+  "actual_source_link": true,
+  "pages": 406,
+  "links": 2853,
+  "critical_pages": [
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m1218",
+      "heading": true,
+      "source": true
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-final-m1218",
+      "heading": true,
+      "source": true
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/downloads",
+      "heading": true,
+      "source": false
+    }
+  ],
+  "homepage_current": true
+}

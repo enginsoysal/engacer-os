@@ -1,0 +1,6 @@
+{
+  "expected_refusal_verified": true,
+  "command": "python tests/m12/verify_final18.py",
+  "reason": "The qualification generator intentionally refuses to run after publication-results.json exists; the previously committed native acceptance and published receipt remain unchanged.",
+  "native_retest_claimed": false
+}

@@ -1,0 +1,270 @@
+sync	Set up job	﻿2026-11-17T13:10:39.7811844Z Current runner version: '2.338.2'
+sync	Set up job	2026-11-17T13:10:39.7828449Z ##[group]Runner Image Provisioner
+sync	Set up job	2026-11-17T13:10:39.7829486Z Hosted Compute Agent
+sync	Set up job	2026-11-17T13:10:39.7829987Z Version: 20261103.629
+sync	Set up job	2026-11-17T13:10:39.7830441Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+sync	Set up job	2026-11-17T13:10:39.7831027Z Build Date: 2026-11-03T17:26:59Z
+sync	Set up job	2026-11-17T13:10:39.7831526Z Worker ID: {eea6ffb4-3e57-464c-a8b8-5ed4e3e20669}
+sync	Set up job	2026-11-17T13:10:39.7832052Z Region: us-west-2
+sync	Set up job	2026-11-17T13:10:39.7832482Z Cloud: AWS
+sync	Set up job	2026-11-17T13:10:39.7832859Z ##[endgroup]
+sync	Set up job	2026-11-17T13:10:39.7833853Z ##[group]Operating System
+sync	Set up job	2026-11-17T13:10:39.7834302Z Ubuntu
+sync	Set up job	2026-11-17T13:10:39.7834680Z 26.04.1
+sync	Set up job	2026-11-17T13:10:39.7835141Z LTS
+sync	Set up job	2026-11-17T13:10:39.7835560Z ##[endgroup]
+sync	Set up job	2026-11-17T13:10:39.7835954Z ##[group]Runner Image
+sync	Set up job	2026-11-17T13:10:39.7836396Z Image: ubuntu-26.04
+sync	Set up job	2026-11-17T13:10:39.7836816Z Version: 20261111.82.6
+sync	Set up job	2026-11-17T13:10:39.7837759Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.82/images/ubuntu/Ubuntu2604-Readme.md
+sync	Set up job	2026-11-17T13:10:39.7839142Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.82
+sync	Set up job	2026-11-17T13:10:39.7839895Z ##[endgroup]
+sync	Set up job	2026-11-17T13:10:39.7840704Z ##[group]GITHUB_TOKEN Permissions
+sync	Set up job	2026-11-17T13:10:39.7842379Z Contents: read
+sync	Set up job	2026-11-17T13:10:39.7842775Z Metadata: read
+sync	Set up job	2026-11-17T13:10:39.7843191Z ##[endgroup]
+sync	Set up job	2026-11-17T13:10:39.7844806Z Secret source: Actions
+sync	Set up job	2026-11-17T13:10:39.7845474Z Cache mode: write
+sync	Set up job	2026-11-17T13:10:39.7845960Z Prepare workflow directory
+sync	Set up job	2026-11-17T13:10:39.8070433Z Prepare all required actions
+sync	Set up job	2026-11-17T13:10:39.8106003Z Getting action download info
+sync	Set up job	2026-11-17T13:10:40.1378066Z Download action repository 'actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+sync	Set up job	2026-11-17T13:10:42.7744986Z Download action repository 'actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38' (SHA:249970729cb0ef3589644e2896645e5dc5ba9c38)
+sync	Set up job	2026-11-17T13:10:43.0047443Z Complete job name: sync
+sync	Read canonical documentation from main	﻿2026-11-17T13:10:43.0646060Z ##[group]Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0647005Z with:
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0647401Z   ref: main
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0647825Z   persist-credentials: false
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0648328Z   repository: enginsoysal/engacer-os
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0651855Z   token: ***
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0652345Z   ssh-strict: true
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0652766Z   ssh-user: git
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0653171Z   clean: true
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0653606Z   sparse-checkout-cone-mode: true
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0654093Z   fetch-depth: 1
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0654562Z   fetch-tags: false
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0654983Z   show-progress: true
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0655417Z   lfs: false
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0655819Z   submodules: false
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0656266Z   set-safe-directory: true
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0656757Z   allow-unsafe-pr-checkout: false
+sync	Read canonical documentation from main	2026-11-17T13:10:43.0657458Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9613761Z Syncing repository: enginsoysal/engacer-os
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9616197Z ##[group]Getting Git version info
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9616937Z Working directory is '/home/runner/work/engacer-os/engacer-os'
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9617966Z [command]/usr/bin/git version
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9618359Z git version 2.56.1
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9622076Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9633294Z Temporarily overriding HOME='/home/runner/work/_temp/38c816e0-8842-44f9-974a-d9e4630767fd' before making global git config changes
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9634459Z Adding repository directory to the temporary git global config as a safe directory
+sync	Read canonical documentation from main	2026-11-17T13:10:46.9636977Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/engacer-os/engacer-os
+sync	Read canonical documentation from main	2026-11-17T13:10:47.0002098Z Deleting the contents of '/home/runner/work/engacer-os/engacer-os'
+sync	Read canonical documentation from main	2026-11-17T13:10:47.0004402Z ##[group]Determining repository object format
+sync	Read canonical documentation from main	2026-11-17T13:10:47.2776487Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:47.2777395Z ##[group]Initializing the repository
+sync	Read canonical documentation from main	2026-11-17T13:10:47.2778036Z [command]/usr/bin/git init /home/runner/work/engacer-os/engacer-os
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4015889Z hint: Using 'master' as the name for the initial branch. This default branch name
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4016692Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4017195Z hint: to use in all of your new repositories, which will suppress this warning,
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4017574Z hint: call:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4017836Z hint:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4018175Z hint: 	git config --global init.defaultBranch <name>
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4018488Z hint:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4018808Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4019484Z hint: 'development'. The just-created branch can be renamed via this command:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4019918Z hint:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4020167Z hint: 	git branch -m <name>
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4020436Z hint:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4020785Z hint: Disable this message with "git config set advice.defaultBranchName false"
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4040919Z Initialized empty Git repository in /home/runner/work/engacer-os/engacer-os/.git/
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4051482Z [command]/usr/bin/git remote add origin https://github.com/enginsoysal/engacer-os
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4115934Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4116481Z ##[group]Disabling automatic garbage collection
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4118700Z [command]/usr/bin/git config --local gc.auto 0
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4141604Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4142098Z ##[group]Setting up auth
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4142487Z Removing SSH command configuration
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4146323Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Read canonical documentation from main	2026-11-17T13:10:47.4170929Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8098763Z Removing HTTP extra header
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8103816Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8130080Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8303056Z Removing includeIf entries pointing to credentials config files
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8309636Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8337742Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8509850Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8565992Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/engacer-os/engacer-os/.git.path /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8587217Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/engacer-os/engacer-os/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8612730Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8634882Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8655361Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8655775Z ##[group]Fetching the repository
+sync	Read canonical documentation from main	2026-11-17T13:10:47.8663372Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4151847Z From https://github.com/enginsoysal/engacer-os
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4152580Z  * [new branch]      main       -> origin/main
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4158833Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4159752Z ##[group]Determining the checkout info
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4164754Z [command]/usr/bin/git branch --list --remote origin/main
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4186671Z   origin/main
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4189418Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4194438Z [command]/usr/bin/git sparse-checkout disable
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4244604Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4266527Z ##[group]Checking out the ref
+sync	Read canonical documentation from main	2026-11-17T13:10:58.4269885Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+sync	Read canonical documentation from main	2026-11-17T13:10:59.4399905Z Updating files:  74% (7401/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.4436985Z Updating files:  75% (7491/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.4596208Z Updating files:  76% (7591/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.4884323Z Updating files:  77% (7691/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5084477Z Updating files:  78% (7791/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5289445Z Updating files:  79% (7891/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5469103Z Updating files:  80% (7991/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5496434Z Updating files:  81% (8091/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5528348Z Updating files:  82% (8191/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5640380Z Updating files:  83% (8291/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5776648Z Updating files:  84% (8390/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.5989369Z Updating files:  85% (8490/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6116946Z Updating files:  86% (8590/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6213664Z Updating files:  87% (8690/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6326742Z Updating files:  88% (8790/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6409739Z Updating files:  89% (8890/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6456433Z Updating files:  90% (8990/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6494155Z Updating files:  91% (9090/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6525657Z Updating files:  92% (9189/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6560062Z Updating files:  93% (9289/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6593131Z Updating files:  94% (9389/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6688262Z Updating files:  95% (9489/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6713669Z Updating files:  96% (9589/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6747638Z Updating files:  97% (9689/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6836193Z Updating files:  98% (9789/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6871679Z Updating files:  99% (9889/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6872235Z Updating files: 100% (9988/9988)
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6872594Z Updating files: 100% (9988/9988), done.
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6944554Z Switched to a new branch 'main'
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6952237Z branch 'main' set up to track 'origin/main'.
+sync	Read canonical documentation from main	2026-11-17T13:10:59.6986510Z ##[endgroup]
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7046626Z [command]/usr/bin/git log -1 --format=%H
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7066964Z f5f0b36419f83f6d52bff8fb280750dc6fab3a8b
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7074238Z ##[group]Removing auth
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7074749Z Removing SSH command configuration
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7078465Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7101440Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7292068Z Removing HTTP extra header
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7294966Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7324218Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7503041Z Removing includeIf entries pointing to credentials config files
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7503480Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7520899Z includeif.gitdir:/home/runner/work/engacer-os/engacer-os/.git.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7521602Z includeif.gitdir:/home/runner/work/engacer-os/engacer-os/.git/worktrees/*.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7522296Z includeif.gitdir:/github/workspace/.git.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7523029Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7527675Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/engacer-os/engacer-os/.git.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7544192Z /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7550846Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/engacer-os/engacer-os/.git.path /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7573136Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/engacer-os/engacer-os/.git/worktrees/*.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7588798Z /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7593984Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/engacer-os/engacer-os/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7620472Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7636695Z /github/runner_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7642077Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7669219Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7684960Z /github/runner_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7690935Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7715123Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7891241Z Removing credentials config '/home/runner/work/_temp/git-credentials-9f44e08c-0baf-48d2-aad7-68ff92e895a2.config'
+sync	Read canonical documentation from main	2026-11-17T13:10:59.7893257Z ##[endgroup]
+sync	Use the supported JavaScript runtime	﻿2026-11-17T13:10:59.8092441Z ##[group]Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+sync	Use the supported JavaScript runtime	2026-11-17T13:10:59.8092767Z with:
+sync	Use the supported JavaScript runtime	2026-11-17T13:10:59.8093017Z   node-version: 24
+sync	Use the supported JavaScript runtime	2026-11-17T13:10:59.8093231Z   check-latest: false
+sync	Use the supported JavaScript runtime	2026-11-17T13:10:59.8094953Z   token: ***
+sync	Use the supported JavaScript runtime	2026-11-17T13:10:59.8095171Z   package-manager-cache: true
+sync	Use the supported JavaScript runtime	2026-11-17T13:10:59.8095398Z ##[endgroup]
+sync	Use the supported JavaScript runtime	2026-11-17T13:11:00.0449636Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+sync	Use the supported JavaScript runtime	2026-11-17T13:11:00.0452271Z ##[group]Environment details
+sync	Use the supported JavaScript runtime	2026-11-17T13:11:05.5368181Z node: v24.22.2
+sync	Use the supported JavaScript runtime	2026-11-17T13:11:05.5369125Z npm: 11.19.1
+sync	Use the supported JavaScript runtime	2026-11-17T13:11:05.5369813Z yarn: 1.22.22
+sync	Use the supported JavaScript runtime	2026-11-17T13:11:05.5370564Z ##[endgroup]
+sync	Verify publisher ownership and recovery boundaries	﻿2026-11-17T13:11:05.5471375Z ##[group]Run node --test website/brix/branding.test.mjs website/brix/sync.test.mjs website/brix/navigation.test.mjs website/brix/releases11.test.mjs
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:05.5472242Z [36;1mnode --test website/brix/branding.test.mjs website/brix/sync.test.mjs website/brix/navigation.test.mjs website/brix/releases11.test.mjs[0m
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:05.5874080Z shell: /usr/bin/bash -e {0}
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:05.5874389Z ##[endgroup]
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:05.7123347Z ✔ old public routes move to the canonical origin without losing the destination (0.676464ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:05.7124768Z ✔ repository links retain immutable commits, filenames, tags and anchors (0.183677ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:05.7125698Z ✔ old guide titles use the new brand and clearly identify their historical release (0.809638ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1300129Z ✔ homepage separates M12 concepts from the native M11.6 download (1.342906ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1305751Z ✔ a qualified native M12 stage uses its own real capture, guide and scope (0.378587ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1309447Z ✔ open observed issues remain visible on the native homepage until resolved (0.48593ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1310055Z ✔ M12 design follows tested installation without replacing its release (0.936963ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1311117Z ✔ M12 native guides replace older installation without hiding established tasks (1.995473ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1311853Z ✔ current install and M11 user tasks precede architecture and history (0.342372ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1315344Z ✔ numeric names sort naturally and every uncategorized article stays discoverable once (0.231554ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1316166Z ✔ a new stage replaces the previous install/release in Start here; history stays last (0.219159ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1321219Z ✔ M11.5 is first and the older M11.4 install guide stays in the archive (0.215406ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1367944Z ✔ active M12 design is labeled separately and cannot replace a native download (0.69993ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1369288Z ✔ stage downloads require all matching public assets and prefer the newest stage (0.861776ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1370265Z ✔ M12 downloads require native assets, numeric stage order and public qualification (0.343294ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1371193Z ✔ current assets remain separate and every historical release is reachable exactly once (0.813154ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1372198Z ✔ publication rejects overlarge generated download or archive pages before API writes (1.239482ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1373149Z ✔ release reruns keep immutable content source when publisher tooling advances (0.277139ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1374110Z ✔ publication retries only repeatable operations and obeys bounded server delay (0.764771ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1374807Z ✔ reject a key for any other site before writing (0.859078ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1375388Z ✔ accept only the renamed canonical site identity (0.354581ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1376184Z ✔ never overwrite a matching slug owned by the author rather than the publisher (0.351413ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1376902Z ✔ preserve unrelated author articles (1.14934ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1377615Z ✔ archive removed generated sources as drafts rather than delete them (0.228397ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1378363Z ✔ recover only the exact, empty publisher-created draft (0.260649ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1379459Z ✔ a mixed plan with a later collision is rejected before any operations are returned (0.128127ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1380552Z ✔ removed generated download archive pages become drafts while author pages remain untouched (0.180744ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1381564Z ✔ generated archive excerpts explicitly replace the publisher-created draft marker (0.390394ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1382555Z ✔ publication readback identifies a changed field without dumping whole article bodies (0.174169ms)
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1383151Z ℹ tests 29
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1383416Z ℹ suites 0
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1383747Z ℹ pass 29
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1384106Z ℹ fail 0
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1384396Z ℹ cancelled 0
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1384720Z ℹ skipped 0
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1384977Z ℹ todo 0
+sync	Verify publisher ownership and recovery boundaries	2026-11-17T13:11:06.1385549Z ℹ duration_ms 513.201482
+sync	Verify audit redirect and failure handling	﻿2026-11-17T13:11:06.1433749Z ##[group]Run python website/brix/audit_test.py
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.1434072Z [36;1mpython website/brix/audit_test.py[0m
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.1450881Z shell: /usr/bin/bash -e {0}
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.1451200Z ##[endgroup]
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.3185809Z /usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.3186500Z   _warnings.warn(self.warn_message, ResourceWarning)
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.3300735Z ../usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 308: 'The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nPermanent Redirect'>
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.3301560Z   _warnings.warn(self.warn_message, ResourceWarning)
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.8304891Z .
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.8305536Z ----------------------------------------------------------------------
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.8306236Z Ran 3 tests in 0.547s
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.8306429Z 
+sync	Verify audit redirect and failure handling	2026-11-17T13:11:06.8306584Z OK
+sync	Synchronize and verify native BrixCanvas articles	﻿2026-11-17T13:11:06.8462056Z ##[group]Run node website/brix/sync.mjs
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8462394Z [36;1mnode website/brix/sync.mjs[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8462807Z [36;1mecho 'Updated native articles on https://engaceros.brixcanvas.com' >> "$GITHUB_STEP_SUMMARY"[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8463348Z [36;1mecho 'The publisher verified its website identity and every generated article.' >> "$GITHUB_STEP_SUMMARY"[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8464089Z [36;1mecho 'Homepage design/version copy is a separate native Brix edit: verify Save and fresh public readback before declaring a website release complete. See website/README.md.' >> "$GITHUB_STEP_SUMMARY"[0m
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8478543Z shell: /usr/bin/bash -e {0}
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8478783Z env:
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8480856Z   GH_TOKEN: ***
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8481168Z   BRIXCANVAS_ENGINEOS_KEY: ***
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:06.8481399Z ##[endgroup]
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:11:12.1049296Z {"documents":255,"articles":263,"releases":47,"blocks":4881,"source_commit":"f5f0b36419f83f6d52bff8fb280750dc6fab3a8b","output":"build/brix/site-content.json"}
+sync	Synchronize and verify native BrixCanvas articles	2026-11-17T13:20:37.7043045Z {"passed":true,"checked_at":"2026-11-17T13:20:37.703Z","website":"https://engaceros.brixcanvas.com","source_commit":"f5f0b36419f83f6d52bff8fb280750dc6fab3a8b","articles":263,"created":0,"updated":263,"archived":0,"unrelated_articles_preserved":0}
+sync	Post Use the supported JavaScript runtime	﻿2026-11-17T13:20:37.7214169Z Post job cleanup.
+sync	Post Read canonical documentation from main	﻿2026-11-17T13:20:37.8221859Z Post job cleanup.
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8844625Z [command]/usr/bin/git version
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8873646Z git version 2.56.1
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8907110Z Temporarily overriding HOME='/home/runner/work/_temp/53feb04d-46c3-4512-a191-4eb38dbc86e7' before making global git config changes
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8907900Z Adding repository directory to the temporary git global config as a safe directory
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8911625Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/engacer-os/engacer-os
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8946586Z Removing SSH command configuration
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8947042Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.8967234Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.9160788Z Removing HTTP extra header
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.9164214Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.9187226Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.9370093Z Removing includeIf entries pointing to credentials config files
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.9374418Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Post Read canonical documentation from main	2026-11-17T13:20:37.9396992Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Complete job	﻿2026-11-17T13:20:37.9692422Z Cleaning up orphan processes
