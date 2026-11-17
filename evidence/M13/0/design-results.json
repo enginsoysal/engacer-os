@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "stage": "M13.0",
+  "design_only": true,
+  "new_native_iso": false,
+  "qualified_download": "M12.18",
+  "ordered_stages": 13,
+  "original_svg_concepts": 6,
+  "publisher_tests": 34,
+  "audit_unit_tests": 3,
+  "review": "Agent review of complete rendered original concepts and retained M12.18 Files/disk captures; no human study",
+  "production_search_overlay": false,
+  "production_article_sidebar": false,
+  "public_delivery": "pending actual Brix save and current readback"
+}
