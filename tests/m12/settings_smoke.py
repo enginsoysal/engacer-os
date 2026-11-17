@@ -4,7 +4,7 @@ os.environ['ENGACER12_IMAGE']='EngacerOS-M12STAGE13'
 import tray_observe as q
 c=q.c;f=q.f;s=q.s;t=q.t;ui=q.ui;ROOT=q.ROOT
 
-def preview(g):return struct.unpack_from('<Q5I',ui.memory(g,ui.symbol('settings_preview13',32,True)[0],32))
+def preview(g):return tuple(int.from_bytes(c.field(g,'settings_preview13',i,8 if i==0 else 4),'little') for i in range(6))
 
 def main():
     out=ROOT/'build/m12/stage13/settings-smoke';out.mkdir(parents=True,exist_ok=True);c.OUT=out

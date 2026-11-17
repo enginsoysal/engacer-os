@@ -38,7 +38,15 @@ def main():
             with ui.guest(work/label,disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution,ps2_only=scale==2) as g:
                 assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log()
                 p=ui.Pointer(g);p.drain()
-                if scale==3:c.open_settings(g,p);p.desktop(112,True);p.close_app(3,True);p.drain()
+                if scale==3:
+                    c.open_settings(g,p)
+                    if stage>=13:p.desktop(59001,True)
+                    p.desktop(112,True)
+                    # A M12.13 preview is explicitly cancelled on close. Minimize
+                    # its owner during this session-only rendering observation.
+                    if stage>=13:p.desktop(49000,True)
+                    else:p.close_app(3,True)
+                    p.drain()
                 assert c.flag(g,'scale73')==scale
                 model=ui.symbol('model',installed=True)[0]
                 width,height=struct.unpack('<2I',ui.memory(g,model+240,8))

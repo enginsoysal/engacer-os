@@ -54,7 +54,10 @@ def main():
             at=len(g.read());v.enter(g);g.wait('M7_WINDOW_OPEN app=0x0000000000000003',offset=at)
             v.shot(g,out,'shared-components')
             sx=(width-700)//2+24;sy=(height-60-550)//2+56
-            m.guest_click10(g,sx+52,sy+244);m.guest_click10(g,sx+52,sy+370)
+            if stage>=13:
+                # M12.13 Appearance uses category tabs and an explicit footer.
+                m.guest_click10(g,sx+164,sy+304);m.guest_click10(g,sx+82,sy+396)
+            else:m.guest_click10(g,sx+52,sy+244);m.guest_click10(g,sx+52,sy+370)
             g.wait('M11_APPEARANCE_SAVED');v.shot(g,out,'saved-appearance')
             (out/'install.log').write_bytes(g.read().encode())
         report['checks'].append('Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP')
