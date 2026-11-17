@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "stage": "M12.9",
+  "build_id": "3d758f0a8235d34dadbdb989849e8c30",
+  "iso_sha256": "d4eb057123dde81ff92607c9abf2284c1536ed3f20b9b45a278084628ce7056f",
+  "owned_fixture": "94880a16645c45669b64dd9fcd40552c",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\start_native.py\", line 41, in main\n    p.desktop(0,True);assert bounds(g)[3]==560 and len(results(g))==6;c.shot(g,'pinned')\n  File \"<project-root>\\tests\\m12\\start_native.py\", line 16, in bounds\n    def bounds(g):return struct.unpack('<4i',ui.memory(g,ui.symbol('start_bounds11',16,True)[0],16))\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('start_bounds11', [])\n"
+}

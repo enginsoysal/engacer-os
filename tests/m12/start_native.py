@@ -13,7 +13,7 @@ def results(g):
     count=c.flag(g,'start_result_count11');assert count<=52
     raw=ui.memory(g,ui.symbol('start_results11',installed=True)[0],count*8)
     return list(struct.iter_unpack('<II',raw))
-def bounds(g):return struct.unpack('<4i',ui.memory(g,ui.symbol('start_bounds11',16,True)[0],16))
+def bounds(g):return tuple(int.from_bytes(c.field(g,'start_bounds11',i,4),'little',signed=True) for i in range(4))
 def windows(g,kind=None):
     raw=ui.memory(g,ui.symbol('model',installed=True)[0],224)
     return sum(bool(raw[i*28+24]) and (kind is None or struct.unpack_from('<I',raw,i*28+20)[0]==kind) for i in range(8))
@@ -50,7 +50,7 @@ def main():
             report['checks'].append('Create/rename/hide/reorder categories and context assignment preserve searchability of hidden-category apps')
             p.desktop(42007,True);p.desktop(42029,True);p.desktop(42402,True);p.desktop(42032,True);label(g,p,'Command Center');p.desktop(42016,True)
             saved=prefs(g);assert saved.pinned[1].app==7 and saved.pinned[1].label==b'Command Center';p.desktop(42008,True);search(g,p,'command');assert results(g)==[(3,1)];c.shot(g,'renamed-pin-search')
-            c.key(g,'esc');assert not c.flag(g,'start_query11') and c.flag(g,'launcher');c.key(g,'esc');assert not c.flag(g,'launcher')
+            c.key(g,'esc');assert ui.memory(g,ui.symbol('start_query11',installed=True)[0],1)==b'\0' and c.flag(g,'launcher');c.key(g,'esc');assert not c.flag(g,'launcher')
             report['checks'].append('Renaming/reordering pins changes labels only; local alias search and two-step Escape work')
             search(g,p,'calc');context(g,p);f.menu(g,p,42604);context(g,p);f.menu(g,p,42704);saved=prefs(g);assert any(saved.pinned[i].app==4 for i in range(saved.pins)) and 4 in saved.task[:saved.tasks]
             p.desktop(42007,True);p.desktop(42029,True);p.desktop(42401,True);p.desktop(42015,True);assert windows(g,7)==0

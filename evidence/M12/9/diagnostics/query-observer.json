@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "stage": "M12.9",
+  "build_id": "3d758f0a8235d34dadbdb989849e8c30",
+  "iso_sha256": "d4eb057123dde81ff92607c9abf2284c1536ed3f20b9b45a278084628ce7056f",
+  "owned_fixture": "1bb4c5d29c514533a0562715a410233d",
+  "checks": [
+    "Real install and retained-ISO installed startup reach a compact Start with six real app/folder pins",
+    "Typing local search launches no window and retains no pages; Enter launches the installed Calculator",
+    "Create/rename/hide/reorder categories and context assignment preserve searchability of hidden-category apps"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m12\\start_native.py\", line 53, in main\n    c.key(g,'esc');assert not c.flag(g,'start_query11') and c.flag(g,'launcher');c.key(g,'esc');assert not c.flag(g,'launcher')\nAssertionError\n"
+}
