@@ -1,6 +1,6 @@
 # Motion and resource use — M12.17
 
-M12-STAGE17-VM-v1 native qualification passes. Use its matching M12.17 media; complete public delivery closes separately before M12.18.
+M12-STAGE17-VM-v1 native qualification passes. Use its matching M12.17 media; complete public delivery passes: twenty downloads, 399 pages and 2,797 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. M12.18 follows in order.
 
 Window movement and controls respond directly. Drag a title bar to move a
 window; Escape during the move returns it to its previous position. A completed

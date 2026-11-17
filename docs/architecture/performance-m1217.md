@@ -1,6 +1,6 @@
 # M12.17 bounded motion and performance
 
-M12-STAGE17-VM-v1 native qualification passes. Complete public delivery closes separately before M12.18.
+M12-STAGE17-VM-v1 native qualification passes. Complete public delivery passes: twenty downloads, 399 pages and 2,797 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. M12.18 follows in order.
 
 ## Covered shadow interiors
 

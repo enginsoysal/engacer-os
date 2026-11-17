@@ -16,7 +16,7 @@ The exact production raster matches M12.16 in 3,073 host cases while visiting
 Exact enabled-device VMware, BIOS, twelve default-effects movement comparisons
 and compressed repair pass. Fixed shell state stays 553,452 bytes (+0);
 completed tasks retain zero managed pages. No new animation worker/cache is added.
-Public release and complete website verification remain the gates before M12.18.
+[Complete public proof](evidence/M12/17/publication-results.json) passes: twenty downloads, 399 pages and 2,797 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. **M12.18 is active.**
 
 Previous [M12.16 complete public delivery](evidence/M12/16/publication-results.json)
 remains immutable: twenty downloads, 395 pages and 2,749 HTTP links.

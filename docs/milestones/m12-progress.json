@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.17",
+  "current_stage": "M12.18",
   "qualified_download": "M12.17",
   "known_issues": [
     {
@@ -218,7 +218,7 @@
     },
     {
       "id": "M12.17",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Motion and performance",
       "requires": "M12.16",
       "deliverable": "Direct feedback and bounded optional transitions, shared caches and measured CPU/RAM behavior.",
@@ -227,11 +227,13 @@
       "publication": "required_before_next_stage",
       "qualification": "M12-STAGE17-VM-v1",
       "build_id": "cc3562fe59b46e079ec4ca287fec75bb",
-      "evidence": "evidence/M12/17/acceptance-results.json"
+      "evidence": "evidence/M12/17/acceptance-results.json",
+      "publication_evidence": "evidence/M12/17/publication-results.json",
+      "publication_source": "c6a8ba317ddfc3955f90b9fb171b1229317dde8d"
     },
     {
       "id": "M12.18",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Final qualification and publication",
       "requires": "M12.17",
       "deliverable": "One frozen final ISO/starter, complete task regression, release assets and fresh website/manual verification.",
