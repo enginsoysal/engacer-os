@@ -278,3 +278,8 @@ Archive creation retains the same ownership/collision and empty-draft recovery
 checks as other generated posts. Removed generated archive pages become drafts;
 unrelated author pages are never removed. Check every archive and download link
 in the final public crawl, not only the current release shortcuts.
+
+Generated download and archive posts supply an explicit excerpt so promoting an
+owned empty draft also replaces its temporary draft marker. Final readback
+compares every published field and reports mismatched field names without
+printing an entire archive body. This check must pass before homepage Save.

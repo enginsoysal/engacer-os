@@ -38,3 +38,13 @@ test('removed generated download archive pages become drafts while author pages 
  assert.deepEqual(planSync([],[archive]).map(x=>x.kind),['archive']);
  assert.deepEqual(planSync([],[{...archive,meta:[]}]),[]);
 });
+
+import {assertPostEqual} from './sync.mjs';
+test('generated archive excerpts explicitly replace the publisher-created draft marker',()=>{
+ const expected={...post,excerpt:'Historical release assets and checksums.'};
+ assert.doesNotThrow(()=>assertPostEqual(expected,{...expected}));
+ assert.throws(()=>assertPostEqual(expected,{...expected,excerpt:'Engacer OS generated draft: @release-archive/1'}),/mismatched fields excerpt/);
+});
+test('publication readback identifies a changed field without dumping whole article bodies',()=>{
+ assert.throws(()=>assertPostEqual({...post,blocks:[]},{...post,blocks:[{type:'text'}]}),/mismatched fields blocks/);
+});

@@ -13,6 +13,11 @@ const canonical=value=>JSON.stringify(value,(_key,v)=>v&&typeof v==='object'&&!A
 const select=p=>Object.fromEntries(fields.map(key=>[key,p[key]]));
 const source=p=>p.meta?.find(m=>m.key==='engine_source_path')?.value;
 const pending=p=>`Engacer OS generated draft: ${source(p)}`;
+export function assertPostEqual(expected,actual){
+ const mismatches=fields.filter(key=>canonical(actual?.[key])!==canonical(expected[key]));
+ assert.equal(mismatches.join(', '),'',`Verification failed for ${expected.slug}: mismatched fields ${mismatches.join(', ')}`);
+}
+
 
 // GET and exact-body PATCH are repeatable. Never blindly retry article creation.
 export function retryDelay(method,status,attempt,retryAfter,now=Date.now()){
@@ -107,7 +112,7 @@ async function publish(){
    }
  }
  const final=await inventory(),bySlug=new Map(final.map(p=>[p.slug,p]));
- for(const p of desired){assert.equal(canonical(select(bySlug.get(p.slug))),canonical(select(p)),`Verification failed for ${p.slug}`);}
+ for(const p of desired)assertPostEqual(p,bySlug.get(p.slug));
  for(const operation of operations.filter(o=>o.kind==='archive'))assert.equal(bySlug.get(operation.post.slug)?.status,'draft');
  const report={passed:true,checked_at:new Date().toISOString(),website:'https://engaceros.brixcanvas.com',source_commit:payload.source_commit,articles:desired.length,...result,unrelated_articles_preserved:initial.filter(p=>!source(p)).length};
  const out=path.join(root,'build/brix/sync-results.json');fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');

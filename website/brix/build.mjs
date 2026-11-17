@@ -86,7 +86,7 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
  let stable=false;const labels=new Map();for(const r of releases){labels.set(r.tag_name,releaseLabel(r,stable,stage?.tag));if(!r.prerelease)stable=true;}
  const groups=releaseGroups(releases,tag);
  const renderRelease=(add,r)=>{
-   const label=labels.get(r.tag_name);
+   const label=groups.current.includes(r)?labels.get(r.tag_name):r.prerelease?'Design only — no ISO':'Earlier release';
    const displayName=(r.name||r.tag_name).replace(/\b(?:Codename:\s*)?Engine OS\b/gi,'Engacer OS');
    add('heading',{text:`${displayName} — ${label}`,level:2,size:27,color:'#152434'});
    add('richtext',{html:`<p>Published ${escape(r.published_at?.slice(0,10)||'unknown')} · <a href="${escape(r.html_url)}">Official release notes</a></p>`,size:15});
@@ -101,9 +101,9 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
    append('richtext',{html:`<p><strong>Historical downloads — page ${i+1} of ${groups.archives.length}.</strong> Earlier releases qualify only their own bytes. <a href="${SITE}/blog/downloads">Return to current downloads</a>.</p>`,size:17});
    for(const r of groups.archives[i])renderRelease(append,r);
    append('richtext',{html:`<p><a href="${SITE}/blog/downloads">Current downloads</a>${i?` · <a href="${SITE}/blog/downloads-archive-${i}">Previous archive</a>`:''}${i+1<groups.archives.length?` · <a href="${SITE}/blog/downloads-archive-${i+2}">Next archive</a>`:''}</p>`,size:17});
-   posts.push({id:`engine-download-archive-${i+1}`,slug:`downloads-archive-${i+1}`,title:`Historical downloads — ${i+1} of ${groups.archives.length}`,status:'published',bodyFormat:'brix',blocks,category:'downloads',tags:['Downloads','Historical'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:false,meta:[{key:'engine_source_path',value:`@release-archive/${i+1}`},{key:'engine_source_commit',value:ref}]});
+   posts.push({id:`engine-download-archive-${i+1}`,slug:`downloads-archive-${i+1}`,title:`Historical downloads — ${i+1} of ${groups.archives.length}`,excerpt:`Historical Engacer OS release assets and complete checksums, page ${i+1}. Use current downloads for the qualified release.`,status:'published',bodyFormat:'brix',blocks,category:'downloads',tags:['Downloads','Historical'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:false,meta:[{key:'engine_source_path',value:`@release-archive/${i+1}`},{key:'engine_source_commit',value:ref}]});
  }
- posts.push({id:'engine-downloads',slug:'downloads',title:'Downloads and SHA256 verification',status:'published',bodyFormat:'brix',blocks:downloads,category:'downloads',tags:['Downloads','Releases'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@releases'},{key:'engine_source_commit',value:ref}]});
+ posts.push({id:'engine-downloads',slug:'downloads',title:'Downloads and SHA256 verification',excerpt:`Current ${currentLabel} downloads, exact checksums and linked historical release archives.`,status:'published',bodyFormat:'brix',blocks:downloads,category:'downloads',tags:['Downloads','Releases'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@releases'},{key:'engine_source_commit',value:ref}]});
  const index=[];const push=(type,props)=>index.push({id:`engine-docindex-${index.length+1}`,type,props});
  push('richtext',{html:generationSource,size:14});
  push('text',{text:'English manuals, architecture, release guides and evidence from the canonical Engacer OS GitHub repository. Each guide is an ordinary editable BrixCanvas article. Downloads are original GitHub release assets.',size:17,color:'#152434'});
@@ -113,7 +113,7 @@ if(['M9','M91','M92','M10'].includes(current))add('richtext',{html:`<p>M9 adds a
    push('text',{text:group.description,size:17,color:'#526674'});
    push('richtext',{html:'<ul>'+group.posts.map(p=>`<li><a href="${SITE}/blog/${p.slug}">${escape(p.title)}</a></li>`).join('')+'</ul>',size:17});
  }
- posts.push({id:'engine-documentation',slug:'documentation',title:'Documentation — all guides',status:'published',bodyFormat:'brix',blocks:index,category:'handbook',tags:['Handbook','Index'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@index'},{key:'engine_source_commit',value:ref}]});
+ posts.push({id:'engine-documentation',slug:'documentation',title:'Documentation — all guides',excerpt:'Current installation, user manuals, milestone guides, architecture and historical records in reader-first order.',status:'published',bodyFormat:'brix',blocks:index,category:'handbook',tags:['Handbook','Index'],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:true,meta:[{key:'engine_source_path',value:'@index'},{key:'engine_source_commit',value:ref}]});
  assertPostBounds(posts);
  const result={version:1,source_commit:ref,publisher_commit:publisherRef,generated:new Date().toISOString(),site_id:'b66d0e83-7987-4856-b702-e8d93234b6cd',site_slug:'codename-engine-os-ltvck',page:{blog:{posts,categories:Object.entries(categoryNames).map(([handle,title])=>({handle,title}))}}};
  const out=output||path.join(root,'build/brix/site-content.json');fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(result));
