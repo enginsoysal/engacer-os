@@ -10,7 +10,7 @@ interrupted USB copies and independent USB/PS2 starts. Compact light/dark,
 150%/4K, enabled-device VMware, separate BIOS, twelve movement comparisons
 and compressed boot repair pass. Fixed shell state is 553,228 bytes,
 0 above M12.13; completed UI tasks retain zero managed pages.
-Public release and complete website verification remain the gates before M12.15.
+[Complete public proof](../../evidence/M12/14/publication-results.json) passes: twenty downloads, 375 pages and 2,617 HTTP links, native homepage Save, desktop/mobile/manual/download/search verification and ten fresh critical reads. **M12.15 is active.**
 
 Previous [M12.13 complete public delivery](../../evidence/M12/13/publication-results.json)
 remains immutable: twenty downloads, 370 pages and 2,568 HTTP links.

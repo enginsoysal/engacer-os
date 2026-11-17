@@ -176,4 +176,4 @@ M12.8. Actual compact/150%/4K routes retain zero managed pages. [M12.14 feedback
 
 ## M12.14 native feedback
 
-[Admission and feedback decisions](feedback-m1214.md) and [matching acceptance](../../evidence/M12/14/acceptance-results.json) qualify bounded messages, complete context explanations, actionable dialog recovery and preserved work without adding fixed shell state. Public publication closes separately.
+[Admission and feedback decisions](feedback-m1214.md) and [matching acceptance](../../evidence/M12/14/acceptance-results.json) qualify bounded messages, complete context explanations, actionable dialog recovery and preserved work without adding fixed shell state. Complete public publication passes for M12.14; M12.15 follows in order.

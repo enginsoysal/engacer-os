@@ -1,6 +1,6 @@
 # M12.14 — Feedback and preserved work
 
-M12-STAGE14-VM-v1 native qualification passes. Use its matching release assets; complete public delivery closes separately before M12.15.
+M12-STAGE14-VM-v1 native qualification and complete public delivery pass: twenty downloads, 375 pages and 2,617 HTTP links, native homepage Save and fresh desktop/mobile verification. M12.15 follows in order.
 
 ## How and why
 

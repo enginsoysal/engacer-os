@@ -3,7 +3,7 @@
   "product": "Engacer OS",
   "milestone": "M12",
   "authorized": "2026-11-16",
-  "current_stage": "M12.14",
+  "current_stage": "M12.15",
   "qualified_download": "M12.14",
   "known_issues": [
     {
@@ -161,7 +161,7 @@
     },
     {
       "id": "M12.14",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "title": "Feedback and errors",
       "requires": "M12.13",
       "deliverable": "Shared empty/loading/success/refusal/error states, useful notifications and owner-scoped reviews.",
@@ -178,11 +178,13 @@
       ],
       "qualification": "M12-STAGE14-VM-v1",
       "build_id": "2587bc314f61f7e9f5b61ba3f884c95d",
-      "evidence": "evidence/M12/14/acceptance-results.json"
+      "evidence": "evidence/M12/14/acceptance-results.json",
+      "publication_evidence": "evidence/M12/14/publication-results.json",
+      "carry_resolved_by": "evidence/M12/14/acceptance-results.json"
     },
     {
       "id": "M12.15",
-      "status": "not_started",
+      "status": "in_progress",
       "title": "Installer and first use",
       "requires": "M12.14",
       "deliverable": "Apply shared components and terminology across eight steps, recovery and the first installed desktop.",

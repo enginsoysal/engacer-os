@@ -1,6 +1,6 @@
 # Messages and recovery — M12.14
 
-M12-STAGE14-VM-v1 native qualification passes. Use its matching release assets; complete public delivery closes separately before M12.15.
+M12-STAGE14-VM-v1 native qualification and complete public delivery pass: twenty downloads, 375 pages and 2,617 HTTP links, native homepage Save and fresh desktop/mobile verification. M12.15 follows in order.
 
 - A shell message appears in a small card. Choose Dismiss when you have read it. Existing windows remain open.
 - A grey file action is unavailable for the current selection, folder or active operation. Read the explanation at the bottom of the menu. Use Home for your own files; close an app using an item before moving, renaming or recycling it.
