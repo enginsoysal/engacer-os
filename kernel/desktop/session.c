@@ -123,6 +123,9 @@ static uint8_t marquee_saved11[V6_ENTRIES/8];static unsigned marquee_desktop_sav
 #include "tray12-state.inc"
 #endif
 #include "appearance11-state.inc"
+#ifdef ENGINE_M12
+#include "settings13-state.inc"
+#endif
 static unsigned guide_open11;static desktop_rect guide_bounds11;
 static unsigned selected_row11(application*,unsigned);
 static void draw_context11(void);
@@ -371,6 +374,9 @@ static uint64_t launch(unsigned kind,const char *path) {
     #ifdef ENGINE_M11
     window_admit11(token);
 #endif
+    #ifdef ENGINE_M12
+    if(kind==SETTINGS)settings_open13(token);
+    #endif
     launcher=0;task_damage();serial_text("M7_WINDOW_OPEN app=");serial_hex(kind);serial_text("\n");return token;
 }
 
@@ -626,6 +632,9 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "start11-keys.inc"
 #include "window11.inc"
 #include "appearance11.inc"
+#ifdef ENGINE_M12
+#include "settings13.inc"
+#endif
 #ifdef ENGINE_M12
 #include "chrome12.inc"
 #include "multitask12.inc"
@@ -891,6 +900,9 @@ static void calculator(application *app,char key) {
 static void close_window(uint64_t token,int discard) {
     desktop_window *w=desktop_lookup(&model,token);if(!w)return;
     application *app=&apps[w-model.windows];
+    #ifdef ENGINE_M12
+    if(w->app==SETTINGS&&!settings_close13(token))return;
+    #endif
     if((w->app==EDITOR
 #ifdef ENGINE_M74
         ||w->app==CALENDAR74
@@ -914,6 +926,7 @@ static void insert(application *app,const char *bytes,unsigned count) {
 static void action(uint64_t token,unsigned command) {
 #ifdef ENGINE_M12
     if(tray_action12(token,command))return;
+    if(settings_action13(token,command))return;
     if(window_action12(token,command))return;
     if(picker_action12(token,command))return;
     if(!token&&command==DESKTOP_HIDE12){if(context_action11>=30000&&context_action11<30004)desktop_references12(desktop_hidden12|(1u<<(context_action11-30000)));return;}

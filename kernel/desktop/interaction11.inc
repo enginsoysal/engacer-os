@@ -107,6 +107,9 @@ if(window_key11(key))return 1;if(key==141){files_cancel_drag11();context11=marqu
  if(start_key11(key))return 1;
  if(guide_key11(key))return 1;
  if(files_key11(key))return 1;
+#ifdef ENGINE_M12
+ if(settings_key13(key))return 1;
+#endif
  desktop_window*w=model.focused<DESKTOP_WINDOWS?&model.windows[model.focused]:0;
  if(key==140){i11_target target={0,0,I11_BACKGROUND};if(desktop_focus11&&(desktop_selection11||(desktop_item_focus11>=DESKTOP_BUILTINS11&&file_selected_desktop11(desktop_item_focus11-DESKTOP_BUILTINS11)))){target.kind=I11_ITEM;target.action=desktop_item_focus11<DESKTOP_BUILTINS11?30000+desktop_item_focus11:F11_DESKTOP_ITEM+desktop_item_focus11-DESKTOP_BUILTINS11;}else if(!desktop_focus11&&w&&w->live){target.window=desktop_token(&model,model.focused);application*a=&apps[model.focused];if(w->app==FILES&&!a->usb_mode10&&children72(a)){target.kind=I11_ITEM;target.action=FILE_ROW+selection_focus11[model.focused];}else if(w->app==FILES&&a->usb_mode10==2&&a->usb_selected10){a->offset=a->usb_selected10-1;target.kind=I11_ITEM;target.action=USB_ROW10;}}dispatch11(target,I11_CONTEXT,pointer_x,pointer_y);return 1;}
  if(context11){if(key==10||key==32){files_context_invoke11(context_choice11);return 1;}if(key==9||key==134){context_choice11=files_context_next11(context_choice11,1);whole();}else if(key==136||key==133){context_choice11=files_context_next11(context_choice11,-1);whole();}else if(key==138){int wheel=input10_take_wheel();while(wheel){context_choice11=files_context_next11(context_choice11,wheel<0?1:-1);wheel+=wheel<0?1:-1;}whole();}return 1;}

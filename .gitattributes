@@ -253,3 +253,9 @@ kernel/desktop/apps74.inc -text whitespace=cr-at-eol
 kernel/input/legacy.c -text whitespace=cr-at-eol
 kernel/usb/xhci.c -text whitespace=cr-at-eol
 evidence/M12/12/** -text -whitespace
+
+# M12.13 bounded settings categories and preview ownership.
+kernel/desktop/settings13-state.inc -text whitespace=cr-at-eol
+kernel/desktop/settings13.inc -text whitespace=cr-at-eol
+kernel/desktop/appearance11.inc -text whitespace=cr-at-eol
+evidence/M12/13/** -text -whitespace
