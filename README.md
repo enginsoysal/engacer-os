@@ -1,9 +1,9 @@
 # Engacer OS
 
-**Current development: [M13.8 - Settings, errors and recovery](docs/milestones/m13-8.md). Native qualification, release and independent downloads pass; complete public website verification is in progress.** M13.9-M13.12 have not started.
-**M13.8 / 0.13.8 passes M13-STAGE8-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8), [find and change settings](docs/handbook/settings-m138.md). 80 native task/profile checks, five complete Settings search/display/theme/message journeys, preference/optional-app/recovery tasks and exact enabled-device VMware startup bind these media. Complete public website verification is in progress.
+**Current development: [M13.8 - Settings, errors and recovery](docs/milestones/m13-8.md). Native qualification, release, independent downloads and complete public website verification pass.** M13.9-M13.12 have not started.
+**M13.8 / 0.13.8 passes M13-STAGE8-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8), [find and change settings](docs/handbook/settings-m138.md). 80 native task/profile checks, five complete Settings search/display/theme/message journeys, preference/optional-app/recovery tasks and exact enabled-device VMware startup bind these media. Public delivery passes: 477 pages, 306 exact-source articles and 3,364 links. [Publication receipt](evidence/M13/8/publication-results.json).
 
-**Reported stability issue:** the owner observed a long-uptime freeze on M13.7. Its cause and duration are not established. M13.9 investigates and corrects it; M13.12 must repeat real-duration qualification. The scoped M13.8 Settings work does not claim a fix. The optional screensaver is planned for M13.11.
+**Reported stability issue:** the owner observed a long-uptime freeze on M13.7. An exact M13.7 VMware baseline retained input processing after one real hour, but its last 44 frame samples stayed identical from about sixteen minutes and the final image did not show the serial-confirmed new app. Presentation stability therefore fails this diagnostic; the cause remains under investigation. M13.9 investigates and corrects it; M13.12 must repeat real-duration qualification. The scoped M13.8 Settings work does not claim a fix. The optional screensaver is planned for M13.11.
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,

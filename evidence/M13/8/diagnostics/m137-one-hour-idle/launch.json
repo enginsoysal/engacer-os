@@ -1,0 +1,9 @@
+{
+  "owned_fixture": "75e5ac1a734b435e85d64ffe0bdbe78f",
+  "requested_idle_seconds": 3600,
+  "observed_release": "M13.7",
+  "script_sha256": "9bfbfc4fe6dfd27fdc5576e83d747e066c64f82ca15262f104cb6853fefe1851",
+  "observer_sha256": "65f1f84d7a955e43624d80c4e5c1b89c5ad222dc82fc450a840db5c23c41cf0d",
+  "launched_from_unchanged_working_sources": true,
+  "recorded_at": "2026-11-18T09:57:17.105312+00:00"
+}

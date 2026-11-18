@@ -78,9 +78,10 @@
     {
       "id": "M13.8",
       "title": "Settings, errors and recovery form one product",
-      "status": "in_progress",
+      "status": "complete",
       "native_qualification": "M13-STAGE8-VM-v1",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8",
+      "publication_evidence": "evidence/M13/8/publication-results.json"
     },
     {
       "id": "M13.9",

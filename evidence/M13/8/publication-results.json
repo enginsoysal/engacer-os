@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "qualification": "M13-STAGE8-VM-v1",
+  "source_commit": "6b413b4d5eb7c7aca2e3e32c95fec04f1e1264d4",
+  "release_source_commit": "4f8da11c8ef217a9256f0bbfbde52a350e86176e",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8",
+  "workflow_ids": [
+    44284982319
+  ],
+  "current_native_download": "m138-v0.13.8",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 477,
+  "unique_links": 3364,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

@@ -1,0 +1,19 @@
+{
+  "diagnostic_only": true,
+  "observed_version": "M13.7",
+  "idle_seconds": 3600.7810000000172,
+  "ordinary_input_after_idle": true,
+  "frame_samples": 59,
+  "largest_sample_gap_seconds": 61.15700000000652,
+  "frame_hashes_verified": true,
+  "source_commit": "71f9d64",
+  "interpretation": "Suspected visual freeze reproduced after approximately sixteen minutes on the exact M13.7 starter. Input processing remains alive. M13.9 must diagnose presentation/timer progression and correct and requalify it; this is not an M13.8 fix.",
+  "passed": false,
+  "visual_responsiveness": false,
+  "ordinary_input_processing": true,
+  "identical_tail_frames": 44,
+  "unchanged_frame_first_seconds": 970.4219999999914,
+  "unchanged_frame_last_seconds": 3592.1719999999914,
+  "serial_observation": "M9_SVGA_QUARANTINED timeout occurs before the final Calculator M7_WINDOW_OPEN app=4 record.",
+  "visual_observation": "The final image still shows Files and an unchanged 11:11 taskbar clock, although the later serial record says Calculator opened. Raw results.json passed only its serial-input assertion and is not a visual stability pass."
+}

@@ -1,6 +1,6 @@
 # M13 product design contract
 
-M13.0 design baseline, 17 November 2026, with staged native implementation. M13.1 shared controls, M13.2 welcoming setup and M13.3 disk tools have separate exact-media native qualification. M13.4 progress/recovery, M13.5 desktop/windows, M13.6 Start/taskbar and M13.7 Files also pass their separate exact native and public qualifications. M13.8 native qualification passes; public delivery is pending; later proposals are not shipped M13 features. [Ordered stages](../milestones/m13.md), [inventory](m13-inventory.md), [website](website-m13.md).
+M13.0 design baseline, 17 November 2026, with staged native implementation. M13.1 shared controls, M13.2 welcoming setup and M13.3 disk tools have separate exact-media native qualification. M13.4 progress/recovery, M13.5 desktop/windows, M13.6 Start/taskbar and M13.7 Files also pass their separate exact native and public qualifications. M13.8 native and public qualifications pass; later proposals are not shipped M13 features. [Ordered stages](../milestones/m13.md), [inventory](m13-inventory.md), [website](website-m13.md).
 
 ## Direction: calm, familiar, unmistakably Engacer
 
@@ -80,7 +80,7 @@ M13.7 implementation: a fixed 88-byte record per existing Files window binds que
 
 Native implementation: eight generation-bound fixed search records reuse the existing Settings categories and checked preview transaction. Search result commands open real categories; no device controls or persistence are invented. Empty search hints use semantic muted colors in Settings and Start. Settings has a 700x600 minimum and an 800x650 initial window to fit the extra row with its existing footer. Appearance/display keep Apply/Cancel; input/accessibility retain labelled immediate saves. Shell messages prefer lower workspace corners and scan above intersecting captions with bounded work; if every ordinary corner is crowded, the focused caption remains protected. This changes neither file-dialog ownership nor the explicit Dismiss action.
 
-M13.8 observers cache only immutable map symbol locations and set TCP_NODELAY on the owned QMP client. Every mutable guest value is still freshly read. This reduces host observation overhead; its settling times are not native FPS or latency. Exact native qualification passes; complete public delivery remains pending.
+M13.8 observers cache only immutable map symbol locations and set TCP_NODELAY on the owned QMP client. Every mutable guest value is still freshly read. This reduces host observation overhead; its settling times are not native FPS or latency. Exact native qualification and complete public delivery pass. The recorded secondary-surface finishing items remain assigned to M13.10 before final M13.12.
 
 M13.8 display admission checks physical dimensions against an 800x660 logical desktop before mutating scale, so the new 600-high Settings frame fits above the reserved taskbar. Startup sanitizes a formerly valid saved undersized workspace to Automatic for the session, retaining its valid appearance and personal files. The existing warning word distinguishes unreadable appearance (1) from saved-size fallback (2); actual Apply clears the warning and saves the current scale. The added 1920x1200/200% refusal and legacy-record startup tasks must qualify the corrected artifact, not the earlier complete candidate.
 

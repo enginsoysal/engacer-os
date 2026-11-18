@@ -1,0 +1,328 @@
+{
+  "status": "completed",
+  "passed": true,
+  "diagnostic_only": true,
+  "observed_version": "M13.7",
+  "build_id": "a86d9e57c392217a7fe051454180d6df",
+  "iso_sha256": "51516058e73d0353c18e4fb8e1340d06d5655235e8e3eb40e7824c335c071dae",
+  "starter_sha256": "d251f5071d129d51678ca567160e6456c0943c8d330121993ec385a3c9084cc6",
+  "requested_idle_seconds": 3600,
+  "owned_fixture": "75e5ac1a734b435e85d64ffe0bdbe78f",
+  "frames": [
+    {
+      "elapsed_seconds": 60.76600000000326,
+      "png": "idle-60.png",
+      "sha256": "0f3d2dbe010985e7d5037fbe20ae4611827d7e9e7d7134e761f7d056d6874dc0"
+    },
+    {
+      "elapsed_seconds": 121.04699999999139,
+      "png": "idle-121.png",
+      "sha256": "55953ace2ab768f70b07c33349ae93c9274d178e6d747d11f5f591b8bb952fc6"
+    },
+    {
+      "elapsed_seconds": 181.125,
+      "png": "idle-181.png",
+      "sha256": "dda6b7bde64d7af610b82828ce3cc6bdaf0111b9b2d03189e319db41f19011c4"
+    },
+    {
+      "elapsed_seconds": 241.78100000001723,
+      "png": "idle-241.png",
+      "sha256": "a9419b8e5c1d2a0305f0a3f8635c7c1311586a8be0a33419768e4a664ca66d95"
+    },
+    {
+      "elapsed_seconds": 302.53100000001723,
+      "png": "idle-302.png",
+      "sha256": "e82786892dcc7e05850518e0b9c4f63e396ecbe688b91d657560b9036b15be11"
+    },
+    {
+      "elapsed_seconds": 363.0940000000119,
+      "png": "idle-363.png",
+      "sha256": "ce61679899b3a51a149bca0fa8d70d6c95b4f008e8ad14c1b480746d711d993a"
+    },
+    {
+      "elapsed_seconds": 423.81200000000536,
+      "png": "idle-423.png",
+      "sha256": "a3682eae742da87794ee398c3fc0a309bea04701eeecca41448f773e11cea1a1"
+    },
+    {
+      "elapsed_seconds": 484.6719999999914,
+      "png": "idle-484.png",
+      "sha256": "1b83e31e004a6fcc622ced631c012a9a4be452686c3a711eadbace122a3b7810"
+    },
+    {
+      "elapsed_seconds": 545.5310000000172,
+      "png": "idle-545.png",
+      "sha256": "85a7543ba335aea71e5ff1588080bb2ad3119e3da4c91b6612c21eb2aec30579"
+    },
+    {
+      "elapsed_seconds": 606.3440000000119,
+      "png": "idle-606.png",
+      "sha256": "1c5ebc922666aea5393f3a4877ece2119121cf30a7a08eaa8beb590d949ded25"
+    },
+    {
+      "elapsed_seconds": 666.75,
+      "png": "idle-666.png",
+      "sha256": "380e8fceef30a2092127ac0a506f4a9b08e1bf8fa7c30043b57f226ec313d90f"
+    },
+    {
+      "elapsed_seconds": 727.0,
+      "png": "idle-727.png",
+      "sha256": "17b1ea9e642ca2bc7ca7593e54258a584250e220be041b59a439b52b9c1a2b55"
+    },
+    {
+      "elapsed_seconds": 787.9530000000086,
+      "png": "idle-787.png",
+      "sha256": "8c0d3e916079a393bf06f13963d4b40eade1ca3e8bc0a2deab279870d2eae415"
+    },
+    {
+      "elapsed_seconds": 848.4690000000119,
+      "png": "idle-848.png",
+      "sha256": "fc491dcc95320df3ad3cbf691c8060628dd57d498852328a8775d5d613a30d87"
+    },
+    {
+      "elapsed_seconds": 909.625,
+      "png": "idle-909.png",
+      "sha256": "bf7c8a3d46225156df7044d4278f3eda716676f8b6498e337c1edc16ed393d52"
+    },
+    {
+      "elapsed_seconds": 970.4219999999914,
+      "png": "idle-970.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1030.5940000000119,
+      "png": "idle-1030.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1091.5780000000086,
+      "png": "idle-1091.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1152.5620000000054,
+      "png": "idle-1152.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1213.5310000000172,
+      "png": "idle-1213.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1274.5469999999914,
+      "png": "idle-1274.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1335.5,
+      "png": "idle-1335.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1396.5160000000033,
+      "png": "idle-1396.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1457.5,
+      "png": "idle-1457.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1518.4370000000054,
+      "png": "idle-1518.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1579.4530000000086,
+      "png": "idle-1579.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1640.4839999999967,
+      "png": "idle-1640.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1701.4530000000086,
+      "png": "idle-1701.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1762.3910000000033,
+      "png": "idle-1762.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1823.4219999999914,
+      "png": "idle-1823.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1884.3440000000119,
+      "png": "idle-1884.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 1945.4219999999914,
+      "png": "idle-1945.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2006.5469999999914,
+      "png": "idle-2006.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2067.4839999999967,
+      "png": "idle-2067.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2128.4839999999967,
+      "png": "idle-2128.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2189.5160000000033,
+      "png": "idle-2189.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2250.4839999999967,
+      "png": "idle-2250.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2311.0620000000054,
+      "png": "idle-2311.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2371.875,
+      "png": "idle-2371.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2432.8280000000086,
+      "png": "idle-2432.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2493.8120000000054,
+      "png": "idle-2493.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2554.7660000000033,
+      "png": "idle-2554.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2615.844000000012,
+      "png": "idle-2615.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2676.7969999999914,
+      "png": "idle-2676.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2737.7810000000172,
+      "png": "idle-2737.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2798.719000000012,
+      "png": "idle-2798.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2859.7030000000086,
+      "png": "idle-2859.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2920.6089999999967,
+      "png": "idle-2920.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 2981.7660000000033,
+      "png": "idle-2981.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3042.7339999999967,
+      "png": "idle-3042.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3103.7810000000172,
+      "png": "idle-3103.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3164.8120000000054,
+      "png": "idle-3164.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3225.9219999999914,
+      "png": "idle-3225.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3287.0,
+      "png": "idle-3287.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3348.125,
+      "png": "idle-3348.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3409.1410000000033,
+      "png": "idle-3409.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3470.1410000000033,
+      "png": "idle-3470.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3531.2339999999967,
+      "png": "idle-3531.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    },
+    {
+      "elapsed_seconds": 3592.1719999999914,
+      "png": "idle-3592.png",
+      "sha256": "132f5af0aeffc0bdbc1b1178fa4e57eb73c671a9f9b8420ed63c5271cada3f22"
+    }
+  ],
+  "scope": "Real elapsed idle on a new exact-starter VMware fixture, then ordinary guest keyboard launch. No accelerated uptime, host desktop input or claim that a freeze is fixed.",
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "idle_started_at": "2026-11-18T09:55:36.986379+00:00",
+  "idle_elapsed_seconds": 3600.7810000000172,
+  "idle_finished_at": "2026-11-18T10:55:37.805332+00:00",
+  "ordinary_input_after_idle": true,
+  "interpretation": "No freeze observed in this named real-duration idle baseline; this does not disprove the owner report or qualify active/idle transitions or a correction.",
+  "before_inventory_sha256": [
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "after_inventory_sha256": [
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "existing_vm_inventory_unchanged": true,
+  "completed_at": "2026-11-18T10:55:41.327570+00:00"
+}
