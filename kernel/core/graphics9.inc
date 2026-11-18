@@ -23,10 +23,20 @@ static inline uint32_t in9(uint16_t port){uint32_t value;__asm__ volatile("inl %
 static uint32_t pci9(unsigned bdf,unsigned reg){out9(0xcf8,0x80000000u|(bdf<<8)|(reg&252));return in9(0xcfc);}
 static uint32_t svga9_read(unsigned reg){out9(svga9_io,reg);return in9(svga9_io+1);}
 static void svga9_write(unsigned reg,uint32_t value){out9(svga9_io,reg);out9(svga9_io+1,value);}
+static void svga9_quarantine(const char *reason){
+ /* Stop explicit FIFO ownership before falling back to framebuffer writes.
+    Leaving CONFIG_DONE set makes a live desktop depend on a discarded FIFO. */
+ ++graphics9.fifo_failures;svga9_write(20,0);fifo9=0;graphics9.backend=1;
+ serial_text("M9_SVGA_QUARANTINED ");serial_text(reason);serial_text("\n");
+ /* Repaint after changing device ownership so the fallback observes fresh
+    writes, including the pixels copied before this command failed. */
+ graphics9_present(0,0,screen->framebuffer_width,screen->framebuffer_height);
+ serial_text("M139_SVGA_FRAMEBUFFER_RECOVERY\n");
+}
 static unsigned svga9_sync(void){
  if(!fifo9)return 0;svga9_write(21,1);uint64_t start=m3_clock_ticks();
  for(unsigned i=0;i<2048;++i){if(!svga9_read(22))return 1;if(m3_clock_ticks()-start>=5)break;__asm__ volatile("pause");}
- ++graphics9.fifo_failures;fifo9=0;graphics9.backend=1;serial_text("M9_SVGA_QUARANTINED timeout\n");return 0;
+ svga9_quarantine("timeout");return 0;
 }
 static unsigned svga9_command(const uint32_t*words,unsigned count){
  if(!fifo9||count>8)return 0;unsigned min=fifo9[0],max=fifo9[1],next=fifo9[2],stop=fifo9[3];
@@ -34,7 +44,7 @@ static unsigned svga9_command(const uint32_t*words,unsigned count){
  unsigned free=stop>next?stop-next:max-next+stop-min;if(free<=count*4)goto bad;
  for(unsigned i=0;i<count;++i){fifo9[next/4]=words[i];next+=4;if(next==max)next=min;}
  __asm__ volatile("mfence":::"memory");fifo9[2]=next;return svga9_sync();
- bad:++graphics9.fifo_failures;fifo9=0;graphics9.backend=1;serial_text("M9_SVGA_QUARANTINED ring\n");return 0;
+ bad:svga9_quarantine("ring");return 0;
 }
 static void svga9_begin(void){
  unsigned found=0;
