@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.4",
-  "qualified_download": "M13.3",
+  "qualified_download": "M13.4",
   "design_only": false,
   "stages": [
     {
@@ -44,7 +44,8 @@
       "title": "Installation finishes at the installed desktop",
       "status": "in_progress",
       "native_qualification": "M13-STAGE4-VM-v1",
-      "evidence": "evidence/M13/4"
+      "evidence": "evidence/M13/4",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4"
     },
     {
       "id": "M13.5",

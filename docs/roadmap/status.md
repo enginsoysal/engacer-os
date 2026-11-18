@@ -1,7 +1,7 @@
 # Current status
 
-**Current development: [M13.4 - installation, recovery and installed startup](../milestones/m13-4.md). Native qualification passes; public release and complete website closure are being completed.** M13.5-M13.12 have not started.
-**M13.3 / 0.13.3 passes M13-STAGE3-VM-v1 native qualification.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m133-v0.13.3), [follow setup and disk tools](../handbook/install-m133.md). Named native disk safety, five reference displays and the exact enabled-device VMware starter pass. Matching public website verification passes: 448 pages, 286 exact-source articles, native homepage Save and desktop/mobile/search/download checks. M13.4 development is in progress; its new media are not yet qualified.
+**Current development: [M13.4 - installation, recovery and installed startup](../milestones/m13-4.md). Native qualification and the GitHub release pass; complete public website verification is in progress.** M13.5-M13.12 have not started.
+**M13.4 / 0.13.4 passes M13-STAGE4-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4), [follow setup and recovery](../handbook/install-m134.md). Fourteen fresh enabled-device VMware profiles, five reference displays, real progress and fault/recovery checks bind the exact media. Website publication is being verified before the next stage.
 
 
 Updated 18 November 2026.
