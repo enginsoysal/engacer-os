@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.8",
+  "currentRelease": "M13.9",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m138.md",
+          "docs/handbook/install-m139.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m136-v0.13.6.md",
+          "docs/releases/m139-v0.13.9.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -54,6 +54,10 @@
         [
           "docs/handbook/desktop-m135.md",
           "Use your desktop and manage windows"
+        ],
+        [
+          "docs/handbook/motion-m139.md",
+          "Move, resize and recognize pointer feedback"
         ],
         [
           "docs/handbook/start-m136.md",

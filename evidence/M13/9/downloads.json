@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "stage": "M13.9",
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "checked_at": "2026-11-18T15:36:12.762189+00:00",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m139-v0.13.9",
+  "latest": "m139-v0.13.9",
+  "artifacts": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/7z2606-src.tar.xz",
+      "public_head": 200
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/COPYING.LIB",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-archives.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-browser.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-calculator.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-calendar.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-editor.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-help.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-installed-kernel.elf",
+      "sha256": "141e03a08b8875b372bd01cf06983ea484256406f6f6e306d597be9c073638b5",
+      "size": 1429884,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-installed-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-installed-kernel.map",
+      "sha256": "449870252a554e29a7c07486ace6e571292a5d13cffe2af5b1308f705db004d6",
+      "size": 406227,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-installed-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-kernel.elf",
+      "sha256": "9386b8c853d9f873d3d3b2e243c669140c2831459bbfd3014dd021a39b02af72",
+      "size": 3834236,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-kernel.map",
+      "sha256": "8ec9dd54a68a38611247bf046f3e785a312b3fee8e86b17cea1505e5ee2a78a5",
+      "size": 406519,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-THIRD-PARTY-NOTICES.txt",
+      "sha256": "e896c90bd87a1870d46a4dfdd03cf8b28807b7136550be8b5761b48a3f4b04ff",
+      "size": 59409,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-THIRD-PARTY-NOTICES.txt",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-usb.img",
+      "sha256": "0340e14684402ea3c60a0a591960abdc756afc6d3c106bbeb771bb4794dc036f",
+      "size": 84934656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-usb.img",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-user.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-VMware.zip",
+      "sha256": "c69860a8171ee914f7fd88e470f3927f26a2b5d5acc7be8b96ff88d3b6ff68ae",
+      "size": 10689444,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9-VMware.zip",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE9.iso",
+      "sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440",
+      "size": 75126784,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/EngacerOS-M13STAGE9.iso",
+      "public_head": 200
+    },
+    {
+      "name": "m13stage9-build-manifest.json",
+      "sha256": "cf41840ddb7095e86d0e357adf6b08c947d1034458fb0ae6e9949f817d0cd981",
+      "size": 81918,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/m13stage9-build-manifest.json",
+      "public_head": 200
+    },
+    {
+      "name": "M13STAGE9-SHA256SUMS.txt",
+      "sha256": "9c57a5b0f0cbfbd3bd2d689f87a40542166bc139c7abe5a97b38f3bd163494cd",
+      "size": 1839,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/M13STAGE9-SHA256SUMS.txt",
+      "public_head": 200
+    },
+    {
+      "name": "m13stage9-starter-manifest.json",
+      "sha256": "8ed65ca5ec87cffb3cf1c6ace4b451f6b37e5793da2164d48b5c5b2bf86f8aee",
+      "size": 653,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m139-v0.13.9/m13stage9-starter-manifest.json",
+      "public_head": 200
+    }
+  ],
+  "downloaded_zip_sha256": "c69860a8171ee914f7fd88e470f3927f26a2b5d5acc7be8b96ff88d3b6ff68ae",
+  "downloaded_zip_crc": true,
+  "downloaded_iso_sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440"
+}

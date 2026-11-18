@@ -1,8 +1,9 @@
 # Engacer OS user handbook
 
-**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9-M13.12 finish the product in order; [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
+**Stability pending - testing only.** Earlier M13.8 freeze reports remain documented. Stability investigation and duration/reset qualification occur exclusively in M13.13, after finishing M13.9-M13.12 in order. Do not use these testing media for everyday work.
 
-**Current download: [Engacer OS M13.8](https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8).** [Install and recover](install-m138.md), [find and change settings](settings-m138.md), [navigate and filter folders](files-m137.md), [use system controls](start-m136.md), [manage windows](desktop-m135.md). This stage qualifies bounded supported-category search, real appearance/display/input and optional-app transactions, recovery/feedback and exact VMware startup. [Release scope](../releases/m138-v0.13.8.md). Complete public delivery passes: 477 pages and 306 exact-source articles. [Receipt](../../evidence/M13/8/publication-results.json). Later M13 stages remain separate.
+**Current testing download: [Engacer OS M13.9](https://github.com/enginsoysal/engacer-os/releases/tag/m139-v0.13.9).** [Install in VMware](install-m139.md), [move/resize and pointer feedback](motion-m139.md), [exact release scope](../releases/m139-v0.13.9.md). Five native control/window/cursor profiles, clipped repaint comparisons, declared native processing budgets and the exact enabled-device VMware startup pass. Public website closure is being completed before M13.10. No stability or external scanout/FPS guarantee is claimed.
+
 
 Earlier desktop guides remain useful for retained features. Their original test records qualify their historical media, not untested new bytes. Use the current installation/release guide for the new download.
 
