@@ -74,6 +74,9 @@ static void render(void);
 #include "disk74-service.inc"
 #endif
 #endif
+#ifdef ENGINE_M13
+#include "recovery14-ui.inc"
+#endif
 #ifdef ENGINE_M72
 #ifdef ENGINE_M73
 #ifdef ENGINE_M75
@@ -91,7 +94,8 @@ static void render_body9(void){
 static void render(void){
 #endif
 #ifdef ENGINE_M13
- if(u71_mode){previous_mode75=1;controls=0;gui7_clip_reset();u13_frame();u71_draw(body+12,top+98);serial_text("M73_VIEW step=");serial_hex(step);serial_text("\n");return;}u13_framed=0;
+ if(u71_mode){framed14=0;previous_mode75=1;controls=0;gui7_clip_reset();u13_frame();u71_draw(body+12,top+98);serial_text("M73_VIEW step=");serial_hex(step);serial_text("\n");return;}u13_framed=0;
+ if(diagnostics||failure){previous_mode75=1;controls=0;gui7_clip_reset();recovery14();serial_text("M73_VIEW step=");serial_hex(step);serial_text("\n");return;}framed14=0;
 #endif
 #ifdef ENGINE_M72
  if(!u71_mode&&!diagnostics&&!failure&&!installed){render72();return;}
@@ -181,9 +185,17 @@ label(x,y+310,maintenance?"Select an " ENGINE_PRODUCT_NAME " installation to mai
 static void render(void){graphics9_hide_cursor();render_body9();graphics9_flush();usb_mouse_draw();}
 #endif
 void m6_progress(unsigned p,const char*s){
+#ifdef ENGINE_M13
+/* Callers pass immutable stage labels; coalesce identical visible progress. */
+unsigned changed=percent!=p||stage!=s;
+#endif
 percent=p;stage=s;
 #ifdef ENGINE_M74
-extern unsigned quiet_progress74;if(!quiet_progress74){render();}
+extern unsigned quiet_progress74;if(!quiet_progress74
+#ifdef ENGINE_M13
+ &&changed
+#endif
+){render();}
 extern void audio74_pump(void);audio74_pump();
 #else
 render();
@@ -221,7 +233,11 @@ static void action(unsigned a){
  if(!u71_mode&&!diagnostics&&!failure&&setup_action11(a))return;
  if(a==63){replace_consent=0;keyboard_page11=0;}
 #endif
- if(a==84&&step==6&&!failure){serial_text("M75_USER_RESTART\n");out8(0xcf9,6);for(unsigned i=0;i<100000;++i){if(!(in8(0x64)&2)){out8(0x64,0xfe);break;}}failure="Restart did not complete. Power this VM off and start it again. Keep the hard disk connected.";render();return;}
+ if((a==84&&step==6&&!failure)
+#ifdef ENGINE_M13
+ ||(a==86&&!busy&&failure&&(!m6_live()||step==6))
+#endif
+ ){serial_text("M75_USER_RESTART\n");out8(0xcf9,6);for(unsigned i=0;i<100000;++i){if(!(in8(0x64)&2)){out8(0x64,0xfe);break;}}failure="Restart did not complete. Power this VM off and start it again. Keep the hard disk connected.";render();return;}
  if(a==85){validation=0;render();return;}
  if(a==86){diagnostics=1;focus=0;render();return;}
 #endif
@@ -372,6 +388,9 @@ serial_text("M6_STORAGE_BEGIN\n");usb_mouse_limits(
 #endif
 #ifdef ENGINE_M13
  if(u71_mode==2&&focus<controls&&(buttons[focus].action==220||buttons[focus].action==222)&&key!=9&&key!=136&&key!=10&&key!=27&&u71_key(key))continue;
+#endif
+#ifdef ENGINE_M13
+ if(key==27&&diagnostics){action(62);continue;}if(key==27&&failure){if(m6_live()&&step!=6)action(63);continue;}
 #endif
 #ifdef ENGINE_M75
  if(key==27&&step>0&&step<5&&!diagnostics&&!u71_mode){action(1);continue;}

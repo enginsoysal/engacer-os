@@ -41,7 +41,7 @@ static void diskname75(unsigned disk,char*out){memcpy(out,"Disk ",5);decimal(dis
  const storage_disk*d=storage_get(disk);const char*name=!d?"":d->transport==STORAGE_AHCI?" - SATA/AHCI":d->transport==STORAGE_IDE?" - IDE":d->transport==STORAGE_SCSI?" - SCSI":d->transport==STORAGE_NVME?" - NVMe":d->transport==STORAGE_VIRTIO?" - VirtIO":" - USB";unsigned n=0;while(out[n])++n;while(*name)out[n++]=*name++;out[n]=0;
 #endif
 }
-static void capacity75(const storage_disk*d,char*out){decimal(d->sectors/2097152,out);unsigned n=0;while(out[n])++n;memcpy(out+n," GiB",5);}
+static void capacity75(const storage_disk*d,char*out){if(!d||!d->sector_bytes||d->sector_bytes>1073741824u||1073741824u%d->sector_bytes){memcpy(out,"Unknown",8);return;}decimal(d->sectors/(1073741824u/d->sector_bytes),out);unsigned n=0;while(out[n])++n;memcpy(out+n," GiB",5);}
 static void art75(unsigned x,unsigned y,unsigned w){
  ui73_round(x,y,w,128,12,0xe4f2ed);unsigned mid=x+w/2;
  ui73_round(mid-111,y+20,222,83,9,0x193c4c);ui73_round(mid-104,y+27,208,65,5,0xf5fafc);

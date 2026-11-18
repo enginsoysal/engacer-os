@@ -34,7 +34,7 @@ static unsigned u13_same(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}r
 static void u71_draw(unsigned unused_x,unsigned unused_y){
  (void)unused_x;(void)unused_y;unsigned x=body+12,y=top+98,w=width-276,h=bottom-y-12;ui12_palette p=ui12_theme(0,accent);unsigned old=focus;
  const char*title=u71_mode==1?"Disks and partitions":u71_mode==2?"Create a partition":u71_mode==3?"Choose a format":u71_mode==5?"Repair the partition table":"Review disk changes";
- label(x,y,title,UI12_HEADING,p.ink);char identity[64]="Disk ";decimal(u71_disk+1,identity+5);unsigned at=0;while(identity[at])++at;identity[at++]=' ';identity[at++]='/';identity[at++]=' ';decimal(u71_target.sectors/2048,identity+at);while(identity[at])++at;memcpy(identity+at," MiB",5);
+ label(x,y,title,UI12_HEADING,p.ink);char identity[64]="Disk ";decimal(u71_disk+1,identity+5);unsigned at=0;while(identity[at])++at;identity[at++]=' ';identity[at++]='/';identity[at++]=' ';if(u71_target.sector_bytes&&u71_target.sector_bytes<=1048576u&&!(1048576u%u71_target.sector_bytes)){decimal(u71_target.sectors/(1048576u/u71_target.sector_bytes),identity+at);while(identity[at])++at;memcpy(identity+at," MiB",5);}else memcpy(identity+at,"Size unavailable",17);
  label(x,y+44,identity,UI12_BODY,p.ink);ui73_fit(x,y+70,w,u71_scheme(),UI12_SECONDARY,p.muted);
  unsigned writable=u71_state.sectors&&u71_device.sector_bytes==512,part=u71_row<u71_state.count,gap=u71_row>=u71_state.count&&u71_row<u71_state.count+u71_state.gaps;
  unsigned editable=writable&&u71_state.editable,mutable_part=editable&&part&&!u71_state.parts[u71_row].protected;

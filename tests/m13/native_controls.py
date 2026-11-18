@@ -7,6 +7,9 @@ p=argparse.ArgumentParser();p.add_argument('--baseline',action='store_true');p.a
 os.environ['ENGACER12_IMAGE']='EngacerOS-M12STAGE18' if args.baseline else f'EngacerOS-M13STAGE{args.stage}'
 sys.path.insert(0,str(ROOT/'tests/m12'))
 import ui
+if args.stage>=4 and not args.baseline:
+ import capture14
+ capture14.bind(ui)
 
 def key(g,*keys):
  g.qmp('send-key',{'keys':[{'type':'qcode','data':k} for k in keys],'hold-time':50});time.sleep(.12);ui.Pointer(g).drain()

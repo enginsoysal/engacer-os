@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.3",
+  "current_stage": "M13.4",
   "qualified_download": "M13.3",
   "design_only": false,
   "stages": [
@@ -42,7 +42,7 @@
     {
       "id": "M13.4",
       "title": "Installation finishes at the installed desktop",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.5",
