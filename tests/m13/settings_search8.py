@@ -35,7 +35,7 @@ def main():
             at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();t.close_all(g,p);baseline=f.stats(g)
             first=t.launch(g,p,'settings',3);initial=h.colors(g);before=f.sha_file(disk);c.shot(g,'settings-common-frame')
             for term,page in [('dark',0),('dark mode',0),('scale',1),('double',2),('devices',3),('apps',3),('contrast',4)]:
-                search(g,p,term);matches=[r[5]-61210 for r in f.current_controls(g) if 61210<=r[5]<61215];assert matches==[page],(term,matches);c.shot(g,'search-'+term);c.key(g,'ret');assert h.page(g)==page and query(g)==''
+                search(g,p,term);matches=[r[5]-61210 for r in f.current_controls(g) if 61210<=r[5]<61215];assert matches==[page],(term,matches);c.shot(g,'search-'+term.replace(' ','-'));c.key(g,'ret');assert h.page(g)==page and query(g)==''
             assert f.sha_file(disk)==before and h.colors(g)==initial
             report['checks'].append('Actual Ctrl+F, text editing, supported category results and Enter navigate all five real categories without writing preferences or changing appearance')
             previous_scale=c.flag(g,'scale73');previous_disk=f.sha_file(disk);p.desktop(59001,True)
@@ -56,8 +56,14 @@ def main():
             report['checks'].append('Two live generations retain independent temporary queries; the actual minimum 700x600 window retains search, categories, matching results and Apply/Restore controls inside its bounds')
             for name,dark in [('dark',1),('light',0)]:
                 p.desktop(59000,True);p.desktop(43 if dark else 44,True);h.save(g,p);saved=h.record(disk);assert struct.unpack_from('<I',saved,12)[0]==dark and h.colors(g)[1]==dark;c.shot(g,'applied-'+name)
-            p.desktop(59004,True);p.desktop(60010,True);assert c.flag(g,'access_flags16')&1;search(g,p,'contrast');c.shot(g,'high-contrast-search');p.desktop(61201,True);p.desktop(60010,True);assert not(c.flag(g,'access_flags16')&1);h.close(g,p)
+            p.desktop(59004,True);p.desktop(60010,True);assert c.flag(g,'access_flags16')&1;search(g,p,'contrast');c.shot(g,'high-contrast-search');p.desktop(61201,True);p.desktop(60010,True);assert not(c.flag(g,'access_flags16')&1)
             report['checks'].append('Light/dark are actually applied and independently read from the saved appearance record; high-contrast search uses the real accessibility flag and remains reachable at the minimum window size')
+            t.right_group(g,p,3);f.menu(g,p,42703);p.drain();assert 3 in h.s.prefs(g).task[:h.s.prefs(g).tasks];dismiss=next(r for r in f.controls(g) if r[5]==60002);toast=(dismiss[0]-372,dismiss[1]-8,480,116);raw=ui.memory(g,ui.symbol('model',installed=True)[0],224)
+            for slot in range(8):
+                x,y,w,hh,generation,app,live,minimized=struct.unpack_from('<4iII2B',raw,slot*28)
+                if live and not minimized:assert not(toast[0]<x+w and toast[0]+toast[2]>x and toast[1]<y+40 and toast[1]+toast[3]>y),(toast,(x,y,w,hh))
+            c.shot(g,'caption-safe-feedback');p.desktop(60002,True);h.close(g,p)
+            report['checks'].append('A real saved taskbar-pin notification uses the lower caption-safe rectangle; every live caption remains outside it and actual Dismiss clears the message')
             saved=h.record(disk);f.same_pages(baseline,f.stats(g));c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);report['saved_appearance_sha256']=hashlib.sha256(saved).hexdigest();(out/'native.log').write_text(g.log(),encoding='utf-8')
         for n in (1,2):
             boot=ui.guest(work/('disk-only-'+str(n)),disk,resolution=resolution,ram=ram,media='installed',ready='M7_DESKTOP_READY');ui.s.normal_boot(boot,work/'install/vars.fd')

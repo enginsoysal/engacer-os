@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M13.8",
+  "build_id": "c267be5af6d7d6d18727f899ecd84865",
+  "iso_sha256": "5acc2161dbad44a515e95ac7202eb15a3e1b282edeee56bcbe1bfe462cc53e37",
+  "starter_sha256": "a02afdcf21cbd92f498256c9faf94905ae769e16bb6cb1e415637ed89bff4bca",
+  "checks": [
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "existing_vm_inventory_unchanged": false,
+  "interpretation": "All three exact-starter runtime tasks passed, but the immediate final running-VM inventory differed. No pass is claimed. The observer now waits up to 20 seconds only for its own already-stopped VM to disappear from the running list, records path hashes and still requires the full before/after inventories to match; no other VM is stopped or ignored."
+}

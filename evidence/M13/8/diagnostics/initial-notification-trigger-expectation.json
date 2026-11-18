@@ -1,0 +1,64 @@
+{
+  "passed": false,
+  "interpretation": "The five actual Settings/search/theme phases passed, but the observer tried to find a shell notification after pinning inside Start. That action correctly keeps feedback inside Start. The repeated test pins the running Settings group through its actual taskbar context menu, which produces a real shell message, and retains the same caption/dismiss checks.",
+  "profiles": [
+    {
+      "passed": false,
+      "stage": "M13.8",
+      "build_id": "c267be5af6d7d6d18727f899ecd84865",
+      "iso_sha256": "5acc2161dbad44a515e95ac7202eb15a3e1b282edeee56bcbe1bfe462cc53e37",
+      "physical": [
+        1920,
+        1080
+      ],
+      "configured_guest_mib": 512,
+      "owned_fixture": "6159fe0469d34424b4df7ac873022a5f",
+      "host_observer": {
+        "immutable_map_sha256": {
+          "false": "1a1a28d59429fd413de5fa631d472bb385df8e0dfb734bfdebbecb937a08237e",
+          "true": "cc18aa20999bec3ecefe96a9f13115f0ba03507d2230c8c2843c2f13754dcd26"
+        },
+        "maximum_symbol_cache_entries": 512,
+        "mutable_guest_state_cached": false,
+        "qmp_client_tcp_nodelay": true
+      },
+      "checks": [
+        "Actual Ctrl+F, text editing, supported category results and Enter navigate all five real categories without writing preferences or changing appearance",
+        "Actual display-size preview and Cancel restore the previous scale, or a too-small physical profile refuses 200% with recovery text; the complete disk is unchanged",
+        "No-results/Clear recover browsing; Escape clears search then leaves it before cancelling only the owning appearance preview, with an independently identical complete disk",
+        "Two live generations retain independent temporary queries; the actual minimum 700x600 window retains search, categories, matching results and Apply/Restore controls inside its bounds",
+        "Light/dark are actually applied and independently read from the saved appearance record; high-contrast search uses the real accessibility flag and remains reachable at the minimum window size"
+      ],
+      "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_search8.py\", line 61, in main\n    t.pin(g,p,'clock',8);p.drain();dismiss=next(r for r in f.controls(g) if r[5]==60002);toast=(dismiss[0]-372,dismiss[1]-8,480,116);raw=ui.memory(g,ui.symbol('model',installed=True)[0],224)\nStopIteration\n"
+    },
+    {
+      "passed": false,
+      "stage": "M13.8",
+      "build_id": "c267be5af6d7d6d18727f899ecd84865",
+      "iso_sha256": "5acc2161dbad44a515e95ac7202eb15a3e1b282edeee56bcbe1bfe462cc53e37",
+      "physical": [
+        1280,
+        800
+      ],
+      "configured_guest_mib": 128,
+      "owned_fixture": "db604274a6e1402caafd9fe6de9e177c",
+      "host_observer": {
+        "immutable_map_sha256": {
+          "false": "1a1a28d59429fd413de5fa631d472bb385df8e0dfb734bfdebbecb937a08237e",
+          "true": "cc18aa20999bec3ecefe96a9f13115f0ba03507d2230c8c2843c2f13754dcd26"
+        },
+        "maximum_symbol_cache_entries": 512,
+        "mutable_guest_state_cached": false,
+        "qmp_client_tcp_nodelay": true
+      },
+      "checks": [
+        "Actual Ctrl+F, text editing, supported category results and Enter navigate all five real categories without writing preferences or changing appearance",
+        "Actual display-size preview and Cancel restore the previous scale, or a too-small physical profile refuses 200% with recovery text; the complete disk is unchanged",
+        "No-results/Clear recover browsing; Escape clears search then leaves it before cancelling only the owning appearance preview, with an independently identical complete disk",
+        "Two live generations retain independent temporary queries; the actual minimum 700x600 window retains search, categories, matching results and Apply/Restore controls inside its bounds",
+        "Light/dark are actually applied and independently read from the saved appearance record; high-contrast search uses the real accessibility flag and remains reachable at the minimum window size"
+      ],
+      "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_search8.py\", line 61, in main\n    t.pin(g,p,'clock',8);p.drain();dismiss=next(r for r in f.controls(g) if r[5]==60002);toast=(dismiss[0]-372,dismiss[1]-8,480,116);raw=ui.memory(g,ui.symbol('model',installed=True)[0],224)\nStopIteration\n"
+    }
+  ]
+}

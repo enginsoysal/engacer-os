@@ -26,7 +26,7 @@ def corrupt_semantic_record(disk):
 
 def main():
     out=ROOT/'build/m13/stage8/settings-invalid';out.mkdir(parents=True,exist_ok=True);c.OUT=out
-    native=json.loads((ROOT/'build/m13/stage8/settings-native/results.json').read_text(encoding='utf-8'));meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));assert native['passed'] and native['build_id']==meta['build_id'];base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m138-settings';work=base/native['owned_fixture'];disk=work/'owned.img';assert disk.resolve().is_relative_to(base.resolve());attempt=ui.q.new_work('m138-settings-invalid');report=dict(passed=False,build_id=meta['build_id'],owned_fixture=attempt.name,checks=[])
+    native=json.loads((ROOT/'build/m13/stage8/settings-native/results.json').read_text(encoding='utf-8'));meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));assert native['passed'] and native['build_id']==meta['build_id'];base=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m138-settings';work=base/native['owned_fixture'];disk=work/'owned.img';assert disk.resolve().is_relative_to(base.resolve());attempt=ui.q.new_work('m138-settings-invalid');report=dict(passed=False,stage='M13.8',iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],build_id=meta['build_id'],owned_fixture=attempt.name,checks=[])
     try:
         personal=ui.s.s.document(disk,'/Users/Owner/Documents/Welcome.txt');report['malformed_records']=corrupt_semantic_record(disk)
         with ui.guest(attempt/'refused',disk,media='installed',ready='M7_DESKTOP_READY') as g:
