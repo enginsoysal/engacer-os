@@ -123,11 +123,12 @@
     {
       "id": "M13.13",
       "title": "Blocking stability qualification and release",
-      "status": "native_complete_publication_pending",
+      "status": "complete",
       "release_blocking": true,
       "native_qualification": "M13-STAGE13-VM-v1",
       "evidence": "evidence/M13/13",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1313-v0.13.13"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1313-v0.13.13",
+      "publication_evidence": "evidence/M13/13/publication-results.json"
     }
   ],
   "website_followups": [

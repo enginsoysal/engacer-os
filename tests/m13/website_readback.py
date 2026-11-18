@@ -54,7 +54,7 @@ def main():
     parser.add_argument('--reuse-verified-audit', action='store_true')
     parser.add_argument('--save', type=Path)
     args = parser.parse_args()
-    assert 0 <= args.stage <= 12
+    assert 0 <= args.stage <= 13
     report = json.loads(args.audit.read_text(encoding='utf-8'))
     payload = json.loads(args.payload.read_text(encoding='utf-8'))
     if args.reuse_verified_audit:

@@ -1,0 +1,5 @@
+{
+  "scope": "Final publication observer admission correction only; no native implementation or published-media change",
+  "initial_error": "website_readback.py stage argument asserted at most 12",
+  "correction": "Admit the already planned final stage13 while retaining the bound; actual complete stage13 readback and close_stage gates subsequently passed"
+}

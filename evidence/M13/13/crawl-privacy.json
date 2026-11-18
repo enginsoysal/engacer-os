@@ -1,0 +1,27 @@
+{
+  "scope": "Only local-host-path text in one already-public historical excerpt is redacted per crawl artifact. URLs, source identities, statuses, link targets and tested counts are unchanged. Original full crawler outputs are retained in ignored local scratch.",
+  "files": [
+    {
+      "file": "website-audit.json",
+      "original_sha256": "70fe48c783ca4ff1d1c0ef31041ae1be159892faeb203f750783820de85c0861",
+      "public_sha256": "6ca3f9a4b51f2ec127bceb18aa9e80fcaf9a35d3c5289c4dc55330a98ddf1e71",
+      "redactions": [
+        {
+          "field": "pages[58].legacy_text[3]",
+          "original_excerpt_sha256": "bc6c7d0b38effaf46f6cd79452a360a97e5f536358bcfc8e34d1610bf7bfb164"
+        }
+      ]
+    },
+    {
+      "file": "website-readback.json",
+      "original_sha256": "42587c93e6ad76becc07bc0c43eed024026003dff0e9d7c092181420b2b522b4",
+      "public_sha256": "8a653cd5391f9e2f1df4ff63c51bcc216e63386467c7ecaf846c5533b2190c7c",
+      "redactions": [
+        {
+          "field": "pages[58].legacy_text[3]",
+          "original_excerpt_sha256": "bc6c7d0b38effaf46f6cd79452a360a97e5f536358bcfc8e34d1610bf7bfb164"
+        }
+      ]
+    }
+  ]
+}

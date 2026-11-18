@@ -1,0 +1,8 @@
+{
+  "scope": "Transient publication lookup failure recovered without replacing public assets",
+  "draft_id": 450651015,
+  "source_commit": "48585b41acbc1627800f34d09bb198f214495440",
+  "initial_error": "Created draft is not readable; stop before uploads",
+  "recovery": "Read exact matching draft from authenticated release listing, resumed matching draft, verified all twenty assets before public promotion",
+  "public_tag": "m1313-v0.13.13"
+}

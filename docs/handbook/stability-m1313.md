@@ -1,6 +1,6 @@
 # Stability, saved work and useful diagnostics
 
-**M13.13 final checks use the owner-revised ninety-minute observation scope.** The actual candidate observation reached 108.78 minutes. The original eight-hour/two-hour idle gate was stopped at explicit owner direction and did not pass. Do not use testing media as the only copy of important work.
+**M13.13 is complete within the owner-revised ninety-minute observation scope.** The actual candidate observation reached 108.78 minutes. The original eight-hour/two-hour idle gate was stopped at explicit owner direction and did not pass. Do not use testing media as the only copy of important work.
 
 ## Keep your work
 
