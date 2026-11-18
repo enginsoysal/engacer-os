@@ -14,5 +14,6 @@ void graphics9_end_batch(void);
 unsigned graphics9_move(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 #ifdef ENGINE_M13
 unsigned graphics9_recovery_selftest(void);
+void graphics9_cursor_kind(unsigned);
 #endif
 #endif

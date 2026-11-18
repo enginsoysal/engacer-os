@@ -1220,6 +1220,16 @@ static void pointer(void) {
 #ifdef ENGINE_M11
     unsigned released=!(buttons&1)&&(previous_buttons&1);
     i11_target hit11=target11((int)x,(int)y);
+#ifdef ENGINE_M13
+    unsigned cursor19=0,edges19=dragging&&drag_resize?window_drag_edges11:hit11.kind==I11_CAPTION&&hit11.action>=31011&&hit11.action<=31025?hit11.action-31010:0;
+    if(edges19){cursor19=(edges19&3)&&(edges19&12)?((edges19==5||edges19==10)?4:5):(edges19&3)?2:3;}
+    else if(hit11.action==S11_SEARCH||hit11.action==S11_NAME_FIELD||hit11.action==S18_SEARCH||hit11.action==F11_ADDRESS_FIELD||hit11.action==F11_NAME_FIELD||hit11.action==P12_ADDRESS||hit11.action==P12_NAME||hit11.action==URL_FOCUS)cursor19=1;
+    else if(hit11.kind==I11_BACKGROUND&&hit11.window&&!file_block_owner11(hit11.window)){
+      desktop_window*edit19=desktop_lookup(&model,hit11.window);
+      if(edit19&&edit19->app==EDITOR&&!apps[edit19-model.windows].closing&&!apps[edit19-model.windows].stopped&&(int)y>=edit19->bounds.y+98&&(int)y<edit19->bounds.y+edit19->bounds.height-34&&(int)x>=edit19->bounds.x+18&&(int)x<edit19->bounds.x+edit19->bounds.width-18)cursor19=1;
+    }
+    graphics9_cursor_kind(cursor19);
+#endif
 #ifdef ENGINE_M12
     component_hover12(hit11,buttons);
     if(component_scroll_pointer12(hit11,(int)y,buttons)){

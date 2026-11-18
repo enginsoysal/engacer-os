@@ -1,0 +1,7 @@
+{
+  "status": "Owned diagnostic deliberately stopped at owner request; partial run is not a pass",
+  "reason": "Owner explicitly defers all stability work to M13.13; resume M13.9-M13.12 in order",
+  "owned_fixture": "a87e7fc1653c48729b2ffca8cdc9e65c",
+  "timestamp": "2026-11-18T13:51:21.500846+00:00",
+  "qualification": false
+}

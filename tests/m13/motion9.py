@@ -4,7 +4,7 @@ Only a new authenticated loopback QEMU display is used. No host desktop input,
 guest-memory writes or image scaling. Times include VNC scanout/transport and
 observation overhead; they are not hardware refresh rates or native GPU FPS.
 """
-import argparse,hashlib,importlib.util,json,os,secrets,socket,statistics,struct,sys,time,traceback
+import argparse,hashlib,importlib.util,json,os,secrets,socket,statistics,struct,sys,time,traceback,zlib
 from pathlib import Path
 from PIL import Image
 
@@ -18,6 +18,28 @@ ui=c.ui
 observer8.bind(ui);capture14.bind(ui)
 spec=importlib.util.spec_from_file_location('motion_rfb9',ROOT/'tests/m7/rfb.py')
 rfb=importlib.util.module_from_spec(spec);spec.loader.exec_module(rfb)
+
+
+class LosslessRFB9(rfb.RFB):
+    """Observe identical native pixels using QEMU's lossless zlib transport."""
+    def __init__(self,port,password):
+        super().__init__(port,password)
+        self.decoder=zlib.decompressobj();self.rectangle_stats=[]
+        self.socket.sendall(struct.pack('!BBHiii',2,0,3,6,0,-255))
+    def pixels(self,width,height,encoding):
+        expected=width*height*4
+        if encoding==0:
+            raw=self.read(expected);compressed=expected
+        else:
+            assert encoding==6,'Only lossless raw/zlib encodings allowed'
+            compressed=struct.unpack('!I',self.read(4))[0]
+            assert 0<compressed<=expected+65536
+            raw=self.decoder.decompress(self.read(compressed),expected+1)
+            assert len(raw)==expected and not self.decoder.unconsumed_tail,'Wrong bounded decoded rectangle size'
+        self.rectangle_stats.append(dict(raw_bytes=expected,wire_bytes=compressed,encoding=encoding))
+        return raw
+    def shot(self,path):
+        region(self,(0,0,self.width,self.height)).save(path)
 
 
 def region(display,rect):
@@ -35,8 +57,11 @@ def region(display,rect):
                 display.socket.sendall(struct.pack('!BBHHHH',3,0,x,y,w,h));continue
             for _ in range(count):
                 rx,ry,rw,rh,encoding=struct.unpack('!HHHHi',display.read(12))
-                assert encoding==0 and rw<=display.width-rx and rh<=display.height-ry
-                raw=display.read(rw*rh*4)
+                assert rw<=display.width-rx and rh<=display.height-ry
+                if hasattr(display,'pixels'):raw=display.pixels(rw,rh,encoding)
+                else:
+                    assert encoding==0
+                    raw=display.read(rw*rh*4)
                 piece=Image.frombytes('RGB',(rw,rh),raw,'raw','BGRX')
                 image.paste(piece,(rx-x,ry-y));coverage.paste(1,(rx-x,ry-y,rx-x+rw,ry-y+rh))
             assert coverage.getextrema()==(1,1),'No complete requested native patch received'
@@ -57,7 +82,7 @@ def quantiles(values):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--burst',action='store_true');parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--burst',action='store_true');parser.add_argument('--encoding',choices=['raw','zlib'],default='raw');parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
     assert not args.whpx_legacy_irq or args.accel=='whpx'
     assert 16<=args.samples<=120 and not (ROOT/'evidence/M13/9/publication-results.json').exists()
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
@@ -65,7 +90,7 @@ def main():
     assert native['passed'] and native['build_id']==meta['build_id']
     source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m13-stage9-ordinary'/native['owned_fixture']/'owned.img'
     work,disk,cloned=clone(ui,source,'m139-motion-'+args.profile)
-    label=args.accel+('-legacy' if args.whpx_legacy_irq else '')+'-'+args.profile+('-burst' if args.burst else '')
+    label=args.accel+('-legacy' if args.whpx_legacy_irq else '')+'-'+args.profile+('-burst' if args.burst else '')+('-zlib' if args.encoding=='zlib' else '')
     out=ROOT/'build/m13/stage9/motion'/label;out.mkdir(parents=True,exist_ok=True);c.OUT=out
     physical,ram,scale,limit={'ordinary':((1920,1080),512,2,33.3),'4k':((3840,2160),1024,4,50)}[args.profile]
     # Owned test listeners stay outside this host's outgoing ephemeral range.
@@ -93,10 +118,20 @@ def main():
             windows=[struct.unpack_from('<4iII2B',raw,i*28) for i in range(8)]
             files=next(row for row in windows if row[5]==1 and row[6]);x,y,w,h=files[:4]
             before=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32))
-            display=rfb.RFB(port,password);display.socket.setsockopt(socket.IPPROTO_TCP,socket.TCP_NODELAY,1)
+            display=(LosslessRFB9 if args.encoding=='zlib' else rfb.RFB)(port,password);display.socket.setsockopt(socket.IPPROTO_TCP,socket.TCP_NODELAY,1)
             try:
                 assert (display.width,display.height)==physical
                 display.shot(out/'before-drag.png')
+                if args.encoding=='zlib':
+                    # Independently compare against a second authenticated raw
+                    # connection before trusting lossless decoding for timing.
+                    raw_display=rfb.RFB(port,password)
+                    try:raw_display.shot(out/'raw-reference-before-drag.png')
+                    finally:raw_display.close()
+                    with Image.open(out/'before-drag.png') as decoded,Image.open(out/'raw-reference-before-drag.png') as raw:
+                        crop=(0,0,physical[0],physical[1]-120)
+                        assert decoded.crop(crop).tobytes()==raw.crop(crop).tobytes(),'Lossless transport differs from independent raw native pixels'
+                    report['lossless_matches_independent_raw']=True
                 factor=scale/2
                 patch=(int((x+12)*factor),int((y+8)*factor),int(110*factor),int(24*factor))
                 title=region(display,patch);assert len(title.getcolors(100000))>4;title.save(out/'reference-title.png')
@@ -175,7 +210,10 @@ def main():
                 report['ordinary_feedback_target_ms']=100
                 report['ordinary_feedback_target_passed']=report['drag_feedback']['p95_ms']<=100
                 report['checks'].append('Final burst title position is independently visible; intermediate positions may coalesce and are not asserted' if args.burst else 'Every requested held-pointer drag position has an independently observed exact native title patch at its translated physical location')
-            finally:display.close()
+            finally:
+                if hasattr(display,'rectangle_stats'):report['lossless_transport_rectangles']=display.rectangle_stats
+                report['observation_encoding']=args.encoding
+                display.close()
             after=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32));assert after[0]==before[0] and after[3]==before[3]
             c.idle(g)
             report['resources']=dict(managed_before=list(before),managed_after=list(after),retained_task_delta_pages=0,all_cpus_halted_when_idle=True)

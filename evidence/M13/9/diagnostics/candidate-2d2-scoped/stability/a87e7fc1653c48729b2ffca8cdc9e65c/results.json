@@ -1,0 +1,214 @@
+{
+  "passed": false,
+  "status": "failed",
+  "stage": "M13.9",
+  "build_id": "2d2b1df5cb74d2beadcf1286191b0d91",
+  "iso_sha256": "c9dec0fbe7803ad751dc96a23c08d77e9d11f6aa28ad56219841b6088d959544",
+  "starter_sha256": "6f9b36e5ce94762461c70a68dd63243f266bfb33bf56fc7b63118a409803c6cd",
+  "owned_fixture": "a87e7fc1653c48729b2ffca8cdc9e65c",
+  "frames": [
+    {
+      "elapsed_seconds": 60.53100000001723,
+      "png": "idle-60.png",
+      "sha256": "556b51e0c426d67ebbf485dd2eaa5230f5440bc84daaa306219edc52bf6e2cfa"
+    },
+    {
+      "elapsed_seconds": 120.98399999999674,
+      "png": "idle-120.png",
+      "sha256": "708c2c0f081b67aa67e695e5b2f65777072c8b153edc5e123f7ef0294bb0376b"
+    },
+    {
+      "elapsed_seconds": 181.48399999999674,
+      "png": "idle-181.png",
+      "sha256": "eb254f3e031573d08ef11d3f94f614db3ffab028b5218424771335230a655d48"
+    },
+    {
+      "elapsed_seconds": 241.93700000000536,
+      "png": "idle-241.png",
+      "sha256": "b5f870384c0ae5a069232eb5e0cd48865efcdf2cc3e80ef2e7fe8e239466c2f6"
+    },
+    {
+      "elapsed_seconds": 302.51600000000326,
+      "png": "idle-302.png",
+      "sha256": "1243d6fbefcd76e9e3997e0dc742c6d36d585a25041552b0dd47edc7f1a68d8c"
+    },
+    {
+      "elapsed_seconds": 363.0,
+      "png": "idle-363.png",
+      "sha256": "c5b7295ea8b38edc7fae04301e8f7bb113cbd7dfb95d268e49a2c6128efd61e8"
+    },
+    {
+      "elapsed_seconds": 423.4690000000119,
+      "png": "idle-423.png",
+      "sha256": "617eba922438358d755b943efd102b3dabddc6beab63bf129fe4010d49c36ff4"
+    },
+    {
+      "elapsed_seconds": 483.9690000000119,
+      "png": "idle-483.png",
+      "sha256": "7c67ca67d6d2803f9599bf57dda4a72389810b1a1c36f3d9dace7b881f8a3b53"
+    },
+    {
+      "elapsed_seconds": 544.5780000000086,
+      "png": "idle-544.png",
+      "sha256": "18f8190d619952b1a1b0cc9b27b744c89a1046af59890de89281f29615f4fbeb"
+    },
+    {
+      "elapsed_seconds": 605.0780000000086,
+      "png": "idle-605.png",
+      "sha256": "091c0d015fcd094662d85a1246977bd50303cecee666435200bfdc6b5535ff8f"
+    },
+    {
+      "elapsed_seconds": 665.8440000000119,
+      "png": "idle-665.png",
+      "sha256": "7642f62b7528dfabbe3ef235b31f21002b09e76b5066a08399fb6ff3d9275c47"
+    },
+    {
+      "elapsed_seconds": 726.4839999999967,
+      "png": "idle-726.png",
+      "sha256": "fca9023491ae68300cabd866149ce203d742ab9cb9981122e5c9a33b99c470ae"
+    },
+    {
+      "elapsed_seconds": 786.9530000000086,
+      "png": "idle-786.png",
+      "sha256": "9b14edb26f2384be0962155d95031ec469356a735eee40b0abd8b13ae64f130f"
+    },
+    {
+      "elapsed_seconds": 847.5,
+      "png": "idle-847.png",
+      "sha256": "994d324e11a1ea078ce6090273901c10268ea03e428fb1df86b407157372004a"
+    },
+    {
+      "elapsed_seconds": 908.4219999999914,
+      "png": "idle-908.png",
+      "sha256": "de65de0058c4fa09774dd39062977b662e84d41513dc7dd91d94b76b2d312e66"
+    },
+    {
+      "elapsed_seconds": 968.8910000000033,
+      "png": "idle-968.png",
+      "sha256": "feb44cfa2715af76fd2fdb4f49e8778fbba90a1d798066e150ae1bc5fd038430"
+    },
+    {
+      "elapsed_seconds": 1029.3440000000119,
+      "png": "idle-1029.png",
+      "sha256": "7e276247da6c89d48ff50e7c42961a4acc66c425571a222ae5c48ca169ceda69"
+    },
+    {
+      "elapsed_seconds": 1089.8440000000119,
+      "png": "idle-1089.png",
+      "sha256": "f99fb65c727867578a40e1281313fac332e7e4a227addeb841491084646c4038"
+    },
+    {
+      "elapsed_seconds": 1150.375,
+      "png": "idle-1150.png",
+      "sha256": "c929767c7ce483e31eb65ce5139b7cc70cfa97a3260501e9044bff45e035ab93"
+    },
+    {
+      "elapsed_seconds": 1210.8589999999967,
+      "png": "idle-1210.png",
+      "sha256": "24eb782ff64e513c52230de56dd6b5262d25c2e909a351fb35b4e6007f2409c9"
+    },
+    {
+      "elapsed_seconds": 1271.375,
+      "png": "idle-1271.png",
+      "sha256": "17941c7ada1ae508c826eed10429d8d615ea246d9605d2f7ee2b36a3a740584b"
+    },
+    {
+      "elapsed_seconds": 1331.8120000000054,
+      "png": "idle-1331.png",
+      "sha256": "0dd8bb88f90f5d252a1e548fc5d6440b2899c20b5c9104a29ab3c4fc84a9e12f"
+    },
+    {
+      "elapsed_seconds": 1392.2969999999914,
+      "png": "idle-1392.png",
+      "sha256": "3aac285bebdc508cfcb8243b9123b15c72aa413f2c3ec3a36b6beb70e9474ba9"
+    },
+    {
+      "elapsed_seconds": 1453.0,
+      "png": "idle-1453.png",
+      "sha256": "0768f2ce2b176e45215708a1ee0223bd40aabced35a0bf4c157035caee3be97d"
+    },
+    {
+      "elapsed_seconds": 1513.1870000000054,
+      "png": "idle-1513.png",
+      "sha256": "d8fb8a7f76d6f7b882f8146a073a68a257e54cee333784e7d39cee9854e12ed7"
+    },
+    {
+      "elapsed_seconds": 1574.1870000000054,
+      "png": "idle-1574.png",
+      "sha256": "219552daf3c12ad072b92d722b8b95017bbb1faf693c9df2f92c12e7ca39b2d6"
+    },
+    {
+      "elapsed_seconds": 1634.7810000000172,
+      "png": "idle-1634.png",
+      "sha256": "b8e92433dfc72a81042555015171cf35c92d3b450403488eba0ee3464c8412f8"
+    },
+    {
+      "elapsed_seconds": 1695.25,
+      "png": "idle-1695.png",
+      "sha256": "b943a1fdc62bd5d1141115c15fccf07384be274d985f958ecc76d3d0627fdded"
+    },
+    {
+      "elapsed_seconds": 1755.9530000000086,
+      "png": "idle-1755.png",
+      "sha256": "b24ecbb71119087415d1184b573fd4bcdb2b3bf51a35771855d32e3902ba4d81"
+    },
+    {
+      "elapsed_seconds": 1816.8589999999967,
+      "png": "idle-1816.png",
+      "sha256": "be1bc01835251ddbc0610af1f4a202a547d181f6d7fa0cc942bcf14110d4248c"
+    },
+    {
+      "elapsed_seconds": 1877.5940000000119,
+      "png": "idle-1877.png",
+      "sha256": "51f37aec5fee737f178f157276baa97e7a83407601ec135bf0de2d47df296748"
+    },
+    {
+      "elapsed_seconds": 1938.3280000000086,
+      "png": "idle-1938.png",
+      "sha256": "160a0373bd83482da0932bd19e1684a88a4baacc4e3c1ab246a98ee6f5a45fd9"
+    },
+    {
+      "elapsed_seconds": 1999.0,
+      "png": "idle-1999.png",
+      "sha256": "f72560c3fed31a4fa10fd6cad28999e50f3e2bde707f5a95fb1c1620a1c0250e"
+    },
+    {
+      "elapsed_seconds": 2059.7969999999914,
+      "png": "idle-2059.png",
+      "sha256": "9155604394572a6753afe8e60ea16c743b6d94beb2d0549501a67b2326bef8a3"
+    },
+    {
+      "elapsed_seconds": 2120.4060000000172,
+      "png": "idle-2120.png",
+      "sha256": "3ee75bc80c7952b52ec571f81e3033727379e415e7e721c13be55be0b7cc52ba"
+    },
+    {
+      "elapsed_seconds": 2181.3910000000033,
+      "png": "idle-2181.png",
+      "sha256": "996d910de0ee5cd2ea9ceba56906412211527ac5ff4341e77582f21c59b8bc11"
+    },
+    {
+      "elapsed_seconds": 2241.8589999999967,
+      "png": "idle-2241.png",
+      "sha256": "461b8ad207cf9da7284f4181cad65b5bff6feda249d0a615ea0c4fe2c7f2227b"
+    }
+  ],
+  "visible_launches": [],
+  "requested_idle_seconds": 3600,
+  "requested_cycles": 3,
+  "cycle_idle_seconds": 300,
+  "scope": "Real elapsed uninterrupted idle followed by ordinary-input/idle cycles on a new exact enabled-device starter. Serial liveness alone never passes visible recovery.",
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "idle_started_at": "2026-11-18T13:13:43.217312+00:00",
+  "idle_elapsed_seconds": 2241.8910000000033,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\stability9.py\", line 91, in main\n    log=g.read()\n  File \"<project-root>\\tests\\m6\\vmware.py\", line 35, in read\n    if not api.PeekNamedPipe(handle,None,0,None,ctypes.byref(count),None):raise ctypes.WinError(ctypes.get_last_error())\nBrokenPipeError: [WinError 109] The pipe has been ended.\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\stability9.py\", line 83, in main\n    with g:\n  File \"<project-root>\\tests\\m7\\vmware.py\", line 41, in __exit__\n    return super().__exit__(*args)\n  File \"<project-root>\\tests\\m6\\vmware.py\", line 53, in __exit__\n    if r.returncode:raise RuntimeError('Owned VMware stop failed')\nRuntimeError: Owned VMware stop failed\n",
+  "fifo_quarantines": 0,
+  "framebuffer_recoveries": 0,
+  "existing_vm_inventory_unchanged": true,
+  "completed_at": "2026-11-18T13:51:23.794342+00:00"
+}

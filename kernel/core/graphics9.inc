@@ -117,7 +117,49 @@ void graphics9_flush(void){
 }
 void graphics9_begin_batch(void){graphics9_hide_cursor();++batch9;}
 void graphics9_end_batch(void){if(batch9&&!--batch9)graphics9_flush();}
+#ifdef ENGINE_M13
+/* Original scalable cursor outlines: arrow, text, horizontal/vertical resize
+   and both diagonals. Only a four-byte kind is retained; no cursor bitmap. */
+static unsigned cursor_kind19;
+void graphics9_cursor_kind(unsigned kind){
+ if(kind>5)kind=0;
+ if(cursor_kind19!=kind){graphics9_hide_cursor();cursor_kind19=kind;}
+}
+static unsigned cursor_inside19(int x,int y,unsigned kind){
+ if(kind==1)return(x>=84&&x<=100&&y>=24&&y<=168)||(((y>=24&&y<=40)||(y>=152&&y<=168))&&x>=52&&x<=132);
+ if(kind==3){int swap=x;x=y;y=swap;kind=2;}
+ if(kind==2){int d=y-96;if(d<0)d=-d;return(x>=24&&x<=168&&d<=8)||(x>=24&&x<=56&&d<=x-24)||(x>=136&&x<=168&&d<=168-x);}
+ if(kind==5)x=192-x;
+ int d=x-y;if(d<0)d=-d;
+ return(x>=28&&x<=164&&y>=28&&y<=164&&d<=8)||(x>=28&&x<=72&&y>=28&&y<=72&&x+y<=100)||(x>=120&&x<=164&&y>=120&&y<=164&&x+y>=284);
+}
+static void cursor_draw19(unsigned px,unsigned py,unsigned scale){
+ graphics9_hide_cursor();graphics9_flush();
+ int ox=(int)px-(int)(12*scale/2),oy=(int)py-(int)(12*scale/2);
+ int left=ox<0?0:ox,top=oy<0?0:oy,right=ox+(int)(24*scale/2),bottom=oy+(int)(24*scale/2);
+ if(right>(int)screen->framebuffer_width)right=screen->framebuffer_width;
+ if(bottom>(int)screen->framebuffer_height)bottom=screen->framebuffer_height;
+ if(left>=right||top>=bottom)return;
+ for(int y=top;y<bottom;++y)for(int x=left;x<right;++x){
+  unsigned covered=0,edge=0;
+  for(unsigned sy=0;sy<4;++sy)for(unsigned sx=0;sx<4;++sx){
+   int lx=((x-ox)*8+(int)sx*2+1)*2/(int)scale,ly=((y-oy)*8+(int)sy*2+1)*2/(int)scale;
+   if(cursor_inside19(lx,ly,cursor_kind19)){++covered;if(!cursor_inside19(lx-8,ly,cursor_kind19)||!cursor_inside19(lx+8,ly,cursor_kind19)||!cursor_inside19(lx,ly-8,cursor_kind19)||!cursor_inside19(lx,ly+8,cursor_kind19))++edge;}
+  }
+  if(covered){unsigned alpha=covered*255/16;uint32_t fg=color(edge*2>=covered?0x173442:0xffffff),bg=*pixel9(x,y),value=0;
+   for(unsigned shift=0;shift<24;shift+=8)value|=(((((fg>>shift)&255)*alpha+((bg>>shift)&255)*(255-alpha)+127)/255)<<shift);
+   *(volatile uint32_t*)(uintptr_t)(screen->framebuffer.physical_address+(uint64_t)y*screen->framebuffer_stride_bytes+(uint64_t)x*4)=value;
+  }
+ }
+ __asm__ volatile("sfence":::"memory");uint32_t words[]={1,(unsigned)left,(unsigned)top,(unsigned)(right-left),(unsigned)(bottom-top)};
+ if(svga9_command(words,5))++graphics9.fifo_updates;
+ cursor9_x=left;cursor9_y=top;cursor9_w=right-left;cursor9_h=bottom-top;cursor9_visible=1;
+}
+#endif
 static void graphics9_cursor(unsigned x,unsigned y,unsigned scale){
+#ifdef ENGINE_M13
+ if(cursor_kind19){cursor_draw19(x,y,scale);return;}
+#endif
  if(batch9)return;
  graphics9_hide_cursor();graphics9_flush();unsigned w=15*scale/2,h=24*scale/2;
 #ifdef ENGINE_M12
