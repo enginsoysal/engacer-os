@@ -10,7 +10,7 @@ def main():
     names=('ordinary','compact','1024','150','4k')
     profiles={n:read(work/n/'results.json') for n in names}
     searches={n:read(work/('search-'+n)/'results.json') for n in names}
-    tasks={n:read(work/n/'results.json') for n in ('settings-native','settings-invalid','feedback-native')}
+    tasks={n:read(work/n/'results.json') for n in ('settings-native','settings-invalid','feedback-native','hint-themes')}
     vm=read(work/'vmware-results/results.json')
     assert meta['release_version']=='0.13.8' and meta['qualification_scope']=='M13-STAGE8-VM-v1'
     for r in [*profiles.values(),*searches.values(),*tasks.values(),vm]:
@@ -24,6 +24,10 @@ def main():
             assert (capture['width'],capture['height'])==tuple(r['physical'])
     for name in ('settings-native','feedback-native'):assert tasks[name]['resources']['retained_pages']==0 and len(tasks[name]['checks'])>=6
     assert tasks['settings-invalid']['malformed_records'] and tasks['settings-invalid']['checks']
+    assert tasks['hint-themes']['resources']['retained_pages']==0 and len(tasks['hint-themes']['themes'])==3
+    for name in ('light','dark','high-contrast'):
+        for surface in ('start','settings'):
+            capture=read(work/'hint-themes'/(surface+'-'+name+'-capture.json'));assert (capture['width'],capture['height'])==(1920,1080)
     assert vm['existing_vm_inventory_unchanged'] and vm['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive']) and starter['passed']
     rules.git_inputs(meta['source_sha256'])
     for n,r in meta['artifacts'].items():assert sha(ROOT/'dist'/n)==r['sha256']
