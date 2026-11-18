@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "build_id": "fd173865af63691840baef35ba866d63",
+  "iso_sha256": "1ed3c01eaba44b4cfb5bfd471b49566e0ef982333487c51797e50a668ba2fa92",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\disk_protection3.py\", line 17, in main\n    s.go(g,p,202,300);assert 211 not in d.controls(g) and 212 not in d.controls(g);s.shot(g,out,'damaged-backup');s.go(g,p,215);assert 229 in d.controls(g) and 230 not in d.controls(g);s.shot(g,out,'verified-copy-choice');s.go(g,p,229);assert 228 not in d.controls(g)\nAssertionError\n"
+}

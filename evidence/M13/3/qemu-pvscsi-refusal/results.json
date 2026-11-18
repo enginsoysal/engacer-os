@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build_id": "fc8a640435f9bcea632a784a715ec718",
+  "iso_sha256": "e4e356cb3d87d3442bf33963abc542cd9b1b2fd960320bb79dfbac504d143afb",
+  "scope": "Expected refusal only; QEMU PVSCSI is not qualified for disk operations or installation",
+  "checks": [
+    "Adapter is observed but no inconsistent disk is admitted",
+    "Readable no-disk state retains navigation and no active Next",
+    "Complete owned disk remains byte-identical"
+  ]
+}

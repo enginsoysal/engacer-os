@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "build_id": "fc8a640435f9bcea632a784a715ec718",
+  "iso_sha256": "e4e356cb3d87d3442bf33963abc542cd9b1b2fd960320bb79dfbac504d143afb",
+  "physical": [
+    3840,
+    2160
+  ],
+  "controller": "sata",
+  "keyboard_only": false,
+  "blank": false,
+  "checks": [
+    "Native bounded non-overlapping targets and readable physical capture dimensions",
+    "No active Format/Delete without partition selection; no active Apply before consent",
+    "Ordinary field activation replaces suggested size; Ctrl+A and a real space in the partition name work",
+    "Independent GPT header/table CRC, 128-MiB named entry and actual FAT32 bytes verified",
+    "Unrelated partition entry and payload remain byte-identical"
+  ]
+}

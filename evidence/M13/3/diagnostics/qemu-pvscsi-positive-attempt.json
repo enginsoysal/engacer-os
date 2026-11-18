@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "build_id": "fd173865af63691840baef35ba866d63",
+  "iso_sha256": "1ed3c01eaba44b4cfb5bfd471b49566e0ef982333487c51797e50a668ba2fa92",
+  "physical": [
+    1280,
+    800
+  ],
+  "controller": "pvscsi",
+  "keyboard_only": false,
+  "blank": true,
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\disk_profiles3.py\", line 32, in main\n    act(2);act(choice);act(2);act(100);act(90);s.shot(g,out,'partitions');assert 211 not in controls(g) and 212 not in controls(g)\n  File \"<project-root>\\tests\\m13\\disk_profiles3.py\", line 31, in <lambda>\n    p=ui.Pointer(g);p.drain();act=lambda a:go(g,p,a,args.keyboard)\n  File \"<project-root>\\tests\\m13\\disk_profiles3.py\", line 9, in go\n    if not keyboard:return s.wizard(g,p,action)\n  File \"<project-root>\\tests\\m12\\setup_observe.py\", line 17, in wizard\n    def wizard(g,p,command):return c.wizard(g,p,command)\n  File \"<project-root>\\tests\\m12\\components.py\", line 62, in wizard\n    assert len(found)==1,(action,found)\nAssertionError: (100, [])\n"
+}

@@ -1,0 +1,166 @@
+{
+  "passed": true,
+  "fixed_desktop": {
+    "bytes": 553452,
+    "sections": {
+      "bss": 553424,
+      "data": 28
+    },
+    "map_sha256": "07578f250d8556a88768fd289c87fec8a7cec642a572a7d798ec146a8debf746"
+  },
+  "baseline_fixed_desktop": {
+    "bytes": 553452,
+    "sections": {
+      "bss": 553424,
+      "data": 28
+    },
+    "map_sha256": "b4a61491a4d77a2536f028073dc2094fe0b4c72c36b07d2c8e90a30b32ae88ba"
+  },
+  "fixed_installer": {
+    "bytes": 48396,
+    "sections": {
+      "bss": 48228,
+      "data": 168
+    }
+  },
+  "baseline_fixed_installer": {
+    "bytes": 48369,
+    "sections": {
+      "bss": 48204,
+      "data": 165
+    }
+  },
+  "installer_delta_bytes": 27,
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "disk_tool_allocator": {
+    "passed": true,
+    "build_id": "fc8a640435f9bcea632a784a715ec718",
+    "iso_sha256": "e4e356cb3d87d3442bf33963abc542cd9b1b2fd960320bb79dfbac504d143afb",
+    "before": [
+      1044,
+      1044,
+      17863,
+      5
+    ],
+    "after": [
+      1044,
+      1044,
+      17863,
+      5
+    ],
+    "repeated_format": [
+      [
+        1044,
+        1044,
+        17863,
+        5
+      ],
+      [
+        1044,
+        1044,
+        17863,
+        5
+      ],
+      [
+        1044,
+        1044,
+        17863,
+        5
+      ]
+    ],
+    "retained_delta_pages": 0,
+    "both_cpus_halted": true,
+    "scope": "Allocator current/peak page counts and allocation/free counters are distinct from fixed installer state and configured 128-MiB RAM"
+  },
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116014,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17707,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17707,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
+    "150": {
+      "managed_stats": [
+        2297,
+        2297,
+        116014,
+        5
+      ],
+      "framebuffer_bytes": 9216000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247084,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "scope": "Fixed state, font masks, framebuffer storage, allocator current/peak pages and configured guest RAM are separate."
+}

@@ -1,0 +1,25 @@
+{
+  "passed": false,
+  "build_id": "fc8a640435f9bcea632a784a715ec718",
+  "iso_sha256": "e4e356cb3d87d3442bf33963abc542cd9b1b2fd960320bb79dfbac504d143afb",
+  "observed_second_disk": {
+    "index": 1,
+    "state": [
+      2,
+      1,
+      0
+    ],
+    "actions": [
+      300,
+      301,
+      302,
+      201,
+      202,
+      205,
+      214,
+      215,
+      200
+    ]
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\disk_protection3.py\", line 24, in main\n    pixels=image.convert('RGB').crop((s.flag(g,'body')+12,s.flag(g,'bottom')-42,s.flag(g,'left')+s.flag(g,'width')-24,s.flag(g,'bottom')-14))\n  File \"<project-root>\\tests\\m12\\setup_observe.py\", line 9, in flag\n    address,size=ui.symbol(name,4 if name=='controls' else None,installed=installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('body', [('2aea60', '249'), ('6b5090', '4')])\n"
+}

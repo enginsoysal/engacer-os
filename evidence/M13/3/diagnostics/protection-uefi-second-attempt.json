@@ -1,0 +1,26 @@
+{
+  "passed": false,
+  "build_id": "fd173865af63691840baef35ba866d63",
+  "iso_sha256": "1ed3c01eaba44b4cfb5bfd471b49566e0ef982333487c51797e50a668ba2fa92",
+  "observed_second_disk": {
+    "index": 1,
+    "state": [
+      2,
+      3,
+      1
+    ],
+    "actions": [
+      300,
+      301,
+      302,
+      201,
+      202,
+      205,
+      212,
+      211,
+      214,
+      200
+    ]
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\disk_protection3.py\", line 17, in main\n    s.go(g,p,202,300);s.shot(g,out,'damaged-backup');report['observed_second_disk']=dict(index=s.flag(g,'u71_disk'),state=list(struct.unpack('<3I',ui.memory(g,ui.symbol('u71_state')[0],12))),actions=d.controls(g));assert 211 not in d.controls(g) and 212 not in d.controls(g),report['observed_second_disk']\nAssertionError: {'index': 1, 'state': [2, 3, 1], 'actions': [300, 301, 302, 201, 202, 205, 212, 211, 214, 200]}\n"
+}

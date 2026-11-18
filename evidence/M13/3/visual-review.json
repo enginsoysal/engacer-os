@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "stage": "M13.3",
+  "build_id": "fc8a640435f9bcea632a784a715ec718",
+  "reviewer": "Agent scenario and actual native-frame review; not a human novice study",
+  "checks": [
+    "Bounded native compact, 150% and actual 4K partition/free-space list, create fields and explicit format review",
+    "Actual names, sizes and protection remain legible; unsupported and unchecked destructive actions have no active hit target",
+    "Default values replace naturally and real spaces survive independent GPT readback",
+    "Successful repair is normal ink, verified in actual native screenshot pixels; errors remain warning ink",
+    "Working reviewed operations preserve unrelated data and reuse the existing compositor with zero retained managed pages"
+  ],
+  "captures": [
+    {
+      "path": "evidence/M13/3/feature.png",
+      "sha256": "b55a3f51b9d843ee41b1ece17f62f8a6c4be61c2af9d56b9e9db4857f5bf13da"
+    },
+    {
+      "path": "evidence/M13/3/disk-compact-sata-keyboard/create-fields.png",
+      "sha256": "7dae353cf270eb2a06fddef35022f162c8358fe462afb7c4b8381b8168424834"
+    },
+    {
+      "path": "evidence/M13/3/disk-150-sata/partitions.png",
+      "sha256": "c779c0a3fd16bb99f0f579741ef90fdcd0cc77b9e02e72202df389a85ca7e27d"
+    },
+    {
+      "path": "evidence/M13/3/disk-4k-sata/format-review.png",
+      "sha256": "11e1411dd7d498cd8446a7822419f53cd82ce9f59503a0064fcca9ffe24b9c20"
+    },
+    {
+      "path": "evidence/M13/3/disk-protection/protected-selection.png",
+      "sha256": "5349e70f4229ad2ab7e77b03fa7c3ba19b6d64b9443c6204d2b83bd7a9d74279"
+    },
+    {
+      "path": "evidence/M13/3/disk-protection/repair-complete.png",
+      "sha256": "1aaf9b283130b79ae6ad38365802361789da9cbdb969960195c5aa9729edaa70"
+    }
+  ]
+}

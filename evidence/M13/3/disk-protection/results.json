@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "build_id": "fc8a640435f9bcea632a784a715ec718",
+  "iso_sha256": "e4e356cb3d87d3442bf33963abc542cd9b1b2fd960320bb79dfbac504d143afb",
+  "observed_second_disk": {
+    "index": 1,
+    "state": [
+      2,
+      1,
+      0
+    ],
+    "actions": [
+      300,
+      301,
+      302,
+      201,
+      202,
+      205,
+      214,
+      215,
+      200
+    ]
+  },
+  "checks": [
+    "Protected selected GPT partition has no active Format/Delete",
+    "Damaged backup retains read-only partition actions and only verified primary repair is offered",
+    "No disk bytes change during inspect/review; explicit consent repairs both verified copies",
+    "Every protected-disk byte and all repaired-disk bytes outside GPT metadata stay identical"
+  ]
+}
