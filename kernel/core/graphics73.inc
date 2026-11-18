@@ -75,6 +75,10 @@ static void blend73(unsigned x,unsigned y,uint32_t rgb,unsigned a,unsigned clipp
 #ifdef ENGINE_M12
 #include "icons12.inc"
 #endif
+static inline void fill_row73(unsigned x,unsigned y,unsigned width,uint32_t value){
+ uint32_t*p=(uint32_t*)pixel73(x,y);size_t count=width;
+ __asm__ volatile("cld; rep stosl":"+D"(p),"+c"(count):"a"(value):"memory","cc");
+}
 static void rect73(unsigned x,unsigned y,unsigned w,unsigned h,uint32_t rgb){
  if(!x&&!y)gui6_repaint=1;
 #ifdef ENGINE_M92
@@ -97,10 +101,9 @@ static void rect73(unsigned x,unsigned y,unsigned w,unsigned h,uint32_t rgb){
 #endif
  /* Fill the bounded clipped row in one architectural string operation.
     This keeps stride/audio servicing intact without per-pixel loop overhead. */
- uint32_t*p=(uint32_t*)pixel73(px,j);size_t count=pr-px;
- __asm__ volatile("cld; rep stosl":"+D"(p),"+c"(count):"a"(value):"memory","cc");}
+ fill_row73(px,j,pr-px,value);}
 }
-static void round_alpha73(unsigned x,unsigned y,unsigned w,unsigned h,unsigned radius,uint32_t rgb,unsigned alpha){
+static void round_alpha73(unsigned x,unsigned y,unsigned w,unsigned h,unsigned radius,uint32_t rgb,unsigned alpha,const int64_t*cover){
  if(!w||!h)return;
 #ifdef ENGINE_M92
  int px=signed_phys92((int32_t)x),py=signed_phys92((int32_t)y);int ex=signed_phys92((int64_t)(int32_t)x+w),ey=signed_phys92((int64_t)(int32_t)y+h);
@@ -120,11 +123,26 @@ static void round_alpha73(unsigned x,unsigned y,unsigned w,unsigned h,unsigned r
 #ifdef ENGINE_M9
  if(l<right&&t<bottom)graphics9_dirty(l,t,right-l,bottom-t);
 #endif
+ uint32_t opaque_value=alpha==255?color(rgb):0;
  for(unsigned yy=t;yy<bottom;++yy){
 #ifdef ENGINE_M74
  if(!(yy&15)&&audio74_pending())audio74_pump();
 #endif
+ /* Opaque straight spans need one bounded fill. Shadows may omit only
+    pixels guaranteed covered by their immediately following opaque surface. */
+ unsigned span_left=right,span_right=right,dy_row=yy-py;
+ if(alpha==255){
+  int64_t left=l,end=right;
+  if(r&&(dy_row<r||dy_row>=ph-r)){if(left<(int64_t)px+r)left=(int64_t)px+r;if(end>(int64_t)px+pw-r)end=(int64_t)px+pw-r;}
+  if(left<end){span_left=(unsigned)left;span_right=(unsigned)end;}
+ }else if(cover&&(int64_t)yy>=cover[1]&&(int64_t)yy<cover[3]){
+  int64_t left=cover[0],end=cover[2];
+  if((int64_t)yy<cover[1]+cover[4]||(int64_t)yy>=cover[3]-cover[4]){left+=cover[4];end-=cover[4];}
+  if(left<(int64_t)l)left=l;if(end>(int64_t)right)end=right;
+  if(left<end){span_left=(unsigned)left;span_right=(unsigned)end;}
+ }
  for(unsigned xx=l;xx<right;++xx){
+ if(xx==span_left&&span_left<span_right){if(alpha==255)fill_row73(span_left,yy,span_right-span_left,opaque_value);xx=span_right-1;continue;}
  unsigned dx=xx-px,dy=yy-py;
  /* Shadow interiors are covered by the opaque surface: never blend them. */
  if(alpha<255&&dx>=r&&dx<pw-r&&dy>=r&&dy<ph-r){
@@ -139,13 +157,17 @@ static void round_alpha73(unsigned x,unsigned y,unsigned w,unsigned h,unsigned r
  for(unsigned sy=0;sy<4;++sy)for(unsigned sx=0;sx<4;++sx){int vx=(int)dx*8+(int)sx*2+1-cx*8,vy=(int)dy*8+(int)sy*2+1-cy*8;if(vx*vx+vy*vy<=(int)(r*r*64))++covered;}
  blend73(xx,yy,rgb,(covered*alpha+8)/16,0);}}
 }
-void ui73_round(unsigned x,unsigned y,unsigned w,unsigned h,unsigned r,uint32_t c){round_alpha73(x,y,w,h,r,c,255);}
+void ui73_round(unsigned x,unsigned y,unsigned w,unsigned h,unsigned r,uint32_t c){round_alpha73(x,y,w,h,r,c,255,0);}
 void ui73_shadow(unsigned x,unsigned y,unsigned w,unsigned h){
+ /* Current callers immediately paint an opaque surface, radius <=16.
+    Keep all corner antialiasing and exterior shadow pixels; skip its covered
+    cross-shaped interior. Stack-only geometry adds no retained state. */
+ int64_t cover[5]={phys73(x),phys73(y),phys73(x+w),phys73(y+h),(16*scale73+1)/2};
  for(unsigned i=8;i;--i)
 #ifndef ENGINE_M92
  if(x>=i&&y>=i)
 #endif
- round_alpha73(x-i,y-i+4,w+2*i,h+2*i,12+i,0x081824,3);
+ round_alpha73(x-i,y-i+4,w+2*i,h+2*i,12+i,0x081824,3,cover);
 }
 static const font73_face *face73(unsigned role){
 #ifdef ENGINE_M12
