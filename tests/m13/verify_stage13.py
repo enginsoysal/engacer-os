@@ -69,7 +69,7 @@ def main():
         assert 'M6_INSTALLED_VOLUME' in log and draft.decode() in log
 
     reports = {}
-    for name in ['active-idle-constrained', 'active-idle-4k', 'screensaver-native', 'screensaver-persistence', 'screensaver-invalid', 'settings-write-failure', 'vmware-results']:
+    for name in ['ordinary', 'active-idle-constrained', 'active-idle-4k', 'screensaver-native', 'screensaver-persistence', 'screensaver-invalid', 'settings-write-failure', 'vmware-results']:
         row = read(work / name / 'results.json')
         assert row['passed'] and row['build_id'] == meta['build_id'] and row['iso_sha256'] == iso, name
         reports[name] = row
