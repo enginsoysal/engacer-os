@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 import re
 import shutil
+import socket
+import subprocess
 import traceback
 import time
 import uuid
@@ -15,6 +17,22 @@ ROOT=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location('shared_devices_vmware',ROOT/'tests/m10/vmware.py')
 m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 v=m.v
+
+def observer_port8():
+    # Keep observation listeners outside the host's actual outbound TCP range.
+    text=subprocess.check_output(['netsh','int','ipv4','show','dynamicport','tcp']).decode('utf-8',errors='replace')
+    values=[int(v) for v in re.findall(r':\s*(\d+)',text)];assert len(values)==2 and 1<=values[0]<65536 and 1<=values[1]<=65536-values[0]
+    first,count=values
+    for _ in range(128):
+        port=40000+uuid.uuid4().int%8000
+        if first<=port<first+count:continue
+        try:
+            with socket.socket() as probe:
+                if hasattr(socket,'SO_EXCLUSIVEADDRUSE'):probe.setsockopt(socket.SOL_SOCKET,socket.SO_EXCLUSIVEADDRUSE,1)
+                probe.bind(('127.0.0.1',port))
+            return port,dict(outbound_start=first,outbound_count=count,listener_outside_outbound_range=True,loopback_only=True)
+        except OSError:continue
+    raise RuntimeError('No free owned loopback observation port outside the outbound range')
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);stage=parser.parse_args().stage
@@ -30,6 +48,8 @@ def main():
             assert bundle.testzip() is None;bundle.extractall(work)
         folder=work/'EngacerOS';original=(folder/'EngacerOS.vmx').read_text()
         g=v.Guest(work/'same-vm',folder/'EngacerOS.vmdk','efi')
+        g.rfb_port,report['observation_port_policy']=observer_port8()
+        cfg=g.vmx.read_text(encoding='utf-8');cfg=re.sub(r'(?m)^RemoteDisplay\.vnc\.port\s*=.*$', 'RemoteDisplay.vnc.port = '+json.dumps(str(g.rfb_port)),cfg);g.vmx.write_text(cfg,encoding='utf-8')
         observation='\n'.join(line for line in g.vmx.read_text().splitlines() if line.startswith(('serial0.','RemoteDisplay.')))+'\n'
         for file in folder.iterdir():shutil.copyfile(file,g.folder/file.name)
         g.vmx=g.folder/'EngacerOS.vmx';g.vmx.write_bytes((original+observation).encode())

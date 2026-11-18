@@ -13,6 +13,8 @@
 
 ## Product requirements
 
+- Owner addition, 18 November 2026: M13.7 reportedly freezes after long uptime. Continue the current stage sequence while collecting an owned baseline; investigate/correct long-idle and active/idle behavior in M13.9 and repeat real-duration qualification on the exact M13.12 media. This is a blocking final acceptance item, not a presumed GPU fault or something a screensaver fixes. Add an optional lightweight, configurable native screensaver to M13.11, with safe input wake, retained desktop/documents, validated preferences and no new idle polling loop.
+
 - Owner clarification, 18 November 2026: use the existing BrixCanvas editor and publication features for the website. Report missing platform capabilities to the owner instead of starting another BrixCanvas production-source investigation or platform change as part of the OS milestone work. Continue publishing Engacer OS code, documentation and releases to its canonical GitHub repository after each milestone.
 
 - Owner priority, 17 November 2026: complete M13.1–M13.12 strictly in order after accepted M13.0 under docs/milestones/m13.md. Include website information architecture and same-page search design. This is the last dedicated appearance/usability sequence before hardware recognition. Close tests, English docs, GitHub and actual native Brix homepage/content/mobile/search/download checks after every stage before the next. M13.0 is design-only; M12.18 remains the native download. Preserve all accepted M12 media/evidence. Do not claim prototype search or concepts are production/native implementation.

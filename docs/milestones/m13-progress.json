@@ -118,5 +118,22 @@
       "target_stage": "M13.1",
       "evidence": "evidence/M13/1/portal-preflight/results.json"
     }
+  ],
+  "owner_additions": [
+    {
+      "id": "long-uptime-freeze",
+      "reported_in": "M13.7",
+      "status": "investigation_planned",
+      "target_stage": "M13.9",
+      "final_gate": "M13.12",
+      "scope": "Real-duration idle and active/idle reproduction, timer/input/render/resource diagnosis and corrected-media repeat; a screensaver is not a fix"
+    },
+    {
+      "id": "screensaver",
+      "status": "planned",
+      "target_stage": "M13.11",
+      "final_gate": "M13.12",
+      "scope": "Optional bounded native idle activation, preview/preferences, safe mouse/keyboard wake and preserved desktop state"
+    }
   ]
 }

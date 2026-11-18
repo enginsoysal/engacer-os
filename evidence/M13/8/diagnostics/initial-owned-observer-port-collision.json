@@ -1,0 +1,24 @@
+{
+  "passed": false,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "starter_sha256": "64798e58c8924bb651b25bebe0c9e28e8830f47cb8c814bebf14c425f9865f92",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\vmware_stage8.py\", line 39, in main\n    v.shot(g,out,'welcome');v.enter(g);v.shot(g,out,'keyboard');v.enter(g);v.enter(g);v.tab(g,3);v.enter(g)\n  File \"<project-root>\\tests\\m71\\vmware.py\", line 43, in shot\n    def shot(g,out,name):g.connect_display().shot(out/(name+'.png'))\n  File \"<project-root>\\tests\\m7\\vmware.py\", line 36, in connect_display\n    assert 'Started VNC server, listening at 127.0.0.1:'+str(self.rfb_port) in log,'Owned display must bind only loopback'\nAssertionError: Owned display must bind only loopback\n",
+  "inventory_cleanup_observations": [
+    {
+      "count": 1,
+      "owned_test_still_listed": false,
+      "matches_before": true
+    }
+  ],
+  "before_inventory_sha256": [
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "after_inventory_sha256": [
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "existing_vm_inventory_unchanged": true,
+  "interpretation": "The owned VMware log confirms the observation server could not bind because its temporary port was already in use. No framebuffer connection occurred and existing VM inventory is unchanged. The observer now verifies the actual Windows outbound TCP range and selects an exclusive-probed loopback port outside that range. The exact loopback-log guard remains unchanged; no existing VM, firewall, dynamic range or shipped device is modified."
+}
