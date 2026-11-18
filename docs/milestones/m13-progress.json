@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.2",
-  "qualified_download": "M13.1",
+  "qualified_download": "M13.2",
   "design_only": false,
   "stages": [
     {
@@ -24,7 +24,10 @@
     {
       "id": "M13.2",
       "title": "Welcoming setup and a coherent boot journey",
-      "status": "in_progress"
+      "status": "native_qualified_publication_in_progress",
+      "native_qualification": "M13-STAGE2-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2",
+      "evidence": "evidence/M13/2"
     },
     {
       "id": "M13.3",

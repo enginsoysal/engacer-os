@@ -1,7 +1,7 @@
 # Engacer OS
 
-**Current development: [M13.2 — welcoming setup](docs/milestones/m13-2.md), implementation and qualification in progress.** M13.1 remains the qualified public download. M13.3–M13.12 follow strictly after each complete public closure.
-**M13.1 / 0.13.1 passes M13-STAGE1-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m131-v0.13.1), [install and try the shared controls](docs/handbook/install-m131.md). Production documentation search, task sidebar and heading navigation have passed desktop/mobile browser checks. Later M13 stages and full-product qualification remain separate.
+**Current development: [M13.2 — welcoming setup](docs/milestones/m13-2.md), implementation and qualification in progress.** M13.2 native qualification and matching GitHub media pass; complete public website closure is in progress. M13.3–M13.12 follow strictly after each complete public closure.
+**M13.2 / 0.13.2 passes M13-STAGE2-VM-v1 native qualification.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2), [follow setup](docs/handbook/install-m132.md). The scoped release covers welcome/setup, five reference displays, real installation and independent startup. Matching public website verification is in progress; M13.3 has not started.
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
