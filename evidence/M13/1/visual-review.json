@@ -63,5 +63,12 @@
   "limits": [
     "Later desktop/window/Start/Files/setup refinements and full M13.12 regression are separate stages",
     "Production website behavior requires its own live browser and publication receipts"
-  ]
+  ],
+  "product_review": {
+    "clarity": "The Interface preview heading, descriptive text and named Back to System action identify the current task.",
+    "convenience": "The gallery opens from ordinary Start search and System; pointer editing, Backspace and F1/Escape use normal input.",
+    "user_friendliness": "The preview states that it does not write files/preferences; unavailable controls cannot be activated.",
+    "graphic_quality": "Shared smooth typography, aligned controls and distinct light/dark/high-contrast surfaces were reviewed in actual native frames.",
+    "readability": "Essential labels fit compact, ordinary, 150% and actual 4K 200% views; the shifted-input result and focus help remain readable."
+  }
 }

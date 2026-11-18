@@ -35,10 +35,11 @@
     "tests/m13/components_host.py": "8c6091c8d8d030348d921a2816c10c3cc529f5a66c311440e3c9dabc8aea6941",
     "tests/m13/downloads.py": "1f892fd61cc933994e880ec6c199686dda04e25a8b7587eee2f3d6fa6bd33162",
     "tests/m13/native_controls.py": "f1075bce8408b33ce707d5a84d355a0c36d5b83b3efe07793ce7371d1ac128e3",
+    "tests/m13/publication_source_check.py": "548206a592d51166e5c65288792a2da5a4dad6a8904acdaf8bb744935491cb6b",
     "tests/m13/source_binding_test.py": "7e50792ab1c341a2fe2f9afa94f49c1fc9114c5253c0cf418674cc79a420b4ae",
     "tests/m13/verify_stage1.py": "0e376b7599d362839ff2cc3dcaa9d7a070eeca90f24a8486dff6a4eb31829122",
     "tests/m13/vmware_stage.py": "1dd5845e9c2772a8cb6bece30378cb7a2553b9ce405694f2b6f2fd7ee53ac2c4",
-    "tests/m13/website_readback.py": "39cb3ac31d9ae347aaeae47b89cec5f58e00e13ca538d9dd3f48d00c06b89c4b"
+    "tests/m13/website_readback.py": "4446faf466af0badfd502864d0471b0da0b3894760cae76d68c281bb711e3689"
   },
   "resources": "resources.json",
   "limits": [

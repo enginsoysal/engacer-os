@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {marked} from '../public/vendor/marked.esm.js';
 import {canonicalPublicUrl,articleBranding} from './branding.mjs';
 import {portal,portalGroups,sourcePath as sourcePathForArchive} from './portal.mjs';
+import {documentRevision} from './provenance.mjs';
 import {stageRelease11,stageRelease12,stageRelease13,releaseLabel} from './releases11.mjs';
 import {releaseGroups,documentationRef,assertPostBounds} from './downloads.mjs';
 
@@ -22,25 +23,29 @@ export function build(output){
  const publisherRef=git('rev-parse','HEAD').trim(),requested=documentationRef(process.env);
  if(requested!=='HEAD'){try{git('cat-file','-e',requested+'^{commit}');}catch{git('fetch','--depth=1','origin',requested);}}
  const ref=git('rev-parse',requested+'^{commit}').trim();
- const paths=git('ls-tree','-r','--name-only',ref).trim().split('\n').filter(p=>p.endsWith('.md'));
+ if(git('rev-parse','--is-shallow-repository').trim()!=='false')throw Error('Full Git history is required for document provenance');
+ const allPaths=git('ls-tree','-r','--name-only',ref).trim().split('\n'),allPathsSet=new Set(allPaths),paths=allPaths.filter(p=>p.endsWith('.md'));
+ const revisions=new Map();const revisionFor=p=>{if(!revisions.has(p))revisions.set(p,documentRevision(p,ref,git));return revisions.get(p);};
  const pathsSet=new Set(paths),slugs=new Set(),posts=[];
  const titleFor=(p,text)=>text.match(/^#\s+(.+)$/m)?.[1]||p.split('/').pop();
  const link=(href,source,image=false)=>{
    if(/^https?:\/\//i.test(href)||/^mailto:/i.test(href))return canonicalPublicUrl(href);
    if(href.startsWith('//')||/^[a-z][a-z0-9+.-]*:/i.test(href))return '#';
    const u=new URL(href,`https://source.local/${source}`),p=decodeURIComponent(u.pathname.slice(1));
-   if(image)return `https://raw.githubusercontent.com/enginsoysal/engacer-os/${ref}/${p}`;
-   // Native heading Brix do not supply GitHub heading anchors; preserve exact anchor navigation at the source.
-   return pathsSet.has(p)&&!u.hash?`${SITE}/blog/${slugFor(p)}`:`${GH}/blob/${ref}/${p}${u.hash}`;
+   if(!image&&pathsSet.has(p)&&!u.hash)return `${SITE}/blog/${slugFor(p)}`;
+   const targetRef=allPathsSet.has(p)?revisionFor(p).commit:ref;
+   // Images and source anchors follow their own current bytes, even when the referring document is unchanged.
+   return image?`https://raw.githubusercontent.com/enginsoysal/engacer-os/${targetRef}/${p}`:`${GH}/blob/${targetRef}/${p}${u.hash}`;
  };
  for(const p of paths){
+   const revision=revisionFor(p),documentRef=revision.commit;
    const text=git('show',`${ref}:${p}`),identity=articleBranding(p,titleFor(p,text)),title=identity.title,slug=slugFor(p);
    if(slugs.has(slug))throw Error(`Documentation slug collision: ${slug}`);slugs.add(slug);
    const tokens=marked.lexer(text);
    marked.walkTokens(tokens,t=>{if(t.type==='link'||t.type==='image')t.href=link(t.href,p,t.type==='image')});
    const blocks=[];
    const add=(type,props)=>blocks.push({id:`${slug}-${blocks.length+1}`,type,props});
-   add('richtext',{html:`<p><strong>Canonical source:</strong> <a href="${GH}/blob/${ref}/${p}">${escape(p)}</a> · commit ${ref.slice(0,7)} · <a href="${SITE}/blog/documentation">All guides</a></p>`,size:14});
+   add('richtext',{html:`<p><strong>Canonical source:</strong> <a href="${GH}/blob/${documentRef}/${p}">${escape(p)}</a> · commit ${documentRef.slice(0,7)} · <a href="${SITE}/blog/documentation">All guides</a></p>`,size:14});
    if(identity.historical)add('richtext',{html:`<p><strong>Historical documentation.</strong> The current product is Engacer OS. Older releases used the name Engine OS; their original screen labels, commands, filenames and test records below remain unchanged. <a href="${SITE}/blog/docs-handbook-index">Use the current handbook</a> for the latest release.</p>`,size:15});
    if(['third_party/bearssl-port/README.md','third_party/miniz-port/README.md','third_party/mozilla-ca/README.md'].includes(p))add('richtext',{html:'<p><strong>Pinned source documentation.</strong> The current project is Engacer OS. This source record is part of the accepted build identity; its earlier product names and original notices are preserved.</p>',size:15});
    for(const token of tokens){
@@ -54,7 +59,7 @@ export function build(output){
        const t=token.tokens[0];add('image',{url:t.href,alt:t.text,naturalSize:true,radius:6});
      }else add('richtext',{html:marked.parser([token]),size:17});
    }
-   const post={id:slug,slug,title,status:'published',bodyFormat:'brix',blocks,excerpt:`${categoryNames[categoryFor(p)]} — ${title}. Synced from the canonical Engacer OS repository.`,category:categoryFor(p),tags:['Engacer OS',categoryNames[categoryFor(p)]],author:'Engacer OS project',date:new Date().toISOString().slice(0,10),featured:p==='docs/handbook/index.md',meta:[{key:'engine_source_path',value:p},{key:'engine_source_commit',value:ref}]};
+   const post={id:slug,slug,title,status:'published',bodyFormat:'brix',blocks,excerpt:`${categoryNames[categoryFor(p)]} — ${title}. Synced from the canonical Engacer OS repository.`,category:categoryFor(p),tags:['Engacer OS',categoryNames[categoryFor(p)]],author:'Engacer OS project',date:revision.date,featured:p==='docs/handbook/index.md',meta:[{key:'engine_source_path',value:p},{key:'engine_source_commit',value:documentRef}]};
    if(Buffer.byteLength(JSON.stringify(post))>240*1024)throw Error(`Article exceeds the bounded API payload: ${p}`);
    posts.push(post);
  }

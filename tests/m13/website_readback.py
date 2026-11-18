@@ -39,7 +39,7 @@ def main():
         if path in critical_paths:
             url = audit.SITE+'/blog/'+post['slug']
             required.add(url)
-            expected_sources[url] = 'https://github.com/enginsoysal/engacer-os/blob/'+payload['source_commit']+'/'+path
+            expected_sources[url] = 'https://github.com/enginsoysal/engacer-os/blob/'+next(m['value'] for m in post['meta'] if m['key']=='engine_source_commit')+'/'+path
     assert len(expected_sources) == len(critical_paths), 'A current stage article is missing from the publication payload'
     pending = required | {r['url'] for r in initial_errors}
     attempts = []
