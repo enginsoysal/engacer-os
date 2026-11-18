@@ -44,14 +44,29 @@ static void taskbar_more12(unsigned reset){
 }
 static void taskbar_draw12(int bar){
  unsigned list[T12_APPS],count=taskbar_apps12(list),visible=taskbar12_visible(model.width,count),more=visible<count;
- int clock=model.width>=1000?180:64,total=112+(int)visible*140+(more?108:0),x=start_preferences11.centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
+#ifdef ENGINE_M13
+ const int step=112,button_width=104;
+#else
+ const int step=140,button_width=132;
+#endif
+ int clock=model.width>=1000?180:64,total=112+(int)visible*step+(more?108:0),x=start_preferences11.centered?((int)model.width-clock-total)/2:16;if(x<16)x=16;
  icon_button12(0,x,bar+15,100,"Start",0,launcher,ICON12_START);x+=112;
  for(unsigned i=0;i<visible;++i){unsigned app=list[i],shown=0,windows=taskbar_windows12(app,&shown,0),active=taskbar_active12(app);
-  button(0,x,bar+15,132,"",S11_TASK_OPEN+app,active);access_capture16(0,S11_TASK_OPEN+app,titles[app],1);unsigned state=component_state12(0,S11_TASK_OPEN+app);ui12_style style=ui12_control_style(desktop_palette16(),state,active);
+  unsigned action=S11_TASK_OPEN+app,state=component_state12(0,action);access_capture16(0,action,titles[app],1);
+#ifdef ENGINE_M13
+  desktop_rect hit={x,bar+10,button_width,44};
+  if(active||(state&(UI12_HOVER|UI12_PRESSED|UI12_FOCUS)))ui73_round(x,bar+10,button_width,44,7,active?0x28434d:0x20343e);
+  file_control11(0,hit,action);if(state&UI12_FOCUS)file_focus_rect11(hit);
+  ui12_icon(app,x+8,bar+17+!!(state&UI12_PRESSED),28,preferences.dark);
+  ui73_fit(x+43,bar+23+!!(state&UI12_PRESSED),windows>1?38:55,titles[app],5,0xe5eef2);
+  if(windows>1){char number[24];decimal(number,windows);ui73_round(x+82,bar+12,18,18,4,0x49636b);ui73_fit(x+87,bar+14,13,number,5,0xffffff);}
+#else
+  button(0,x,bar+15,button_width,"",action,active);ui12_style style=ui12_control_style(desktop_palette16(),state,active);
   ui12_icon(app,x+10,bar+21+!!(state&UI12_PRESSED),24,preferences.dark);ui73_fit(x+42,bar+23+!!(state&UI12_PRESSED),windows>1?58:82,titles[app],1,style.ink);
   if(windows>1){char number[24];decimal(number,windows);ui73_round(x+105,bar+23,20,21,5,desktop_dark16()?0x334954:0xe0e8ec);ui73_fit(x+111,bar+26,14,number,5,ink());}
-  if(windows){int length=active?72:shown?28:8;rectangle((desktop_rect){x+(132-length)/2,bar+54,length,3},active?preferences.accent:0xb6cbd1);if(!shown)rectangle((desktop_rect){x+74,bar+54,8,3},0xb6cbd1);}
-  x+=140;
+#endif
+  if(windows){int length=active?56:shown?24:8;rectangle((desktop_rect){x+(button_width-length)/2,bar+54,length,3},active?preferences.accent:0xb6cbd1);if(!shown)rectangle((desktop_rect){x+button_width/2+8,bar+54,8,3},0xb6cbd1);}
+  x+=step;
  }
  if(more){unsigned active=0;for(unsigned i=visible;i<count;++i)active|=taskbar_active12(list[i]);button(0,x,bar+15,100,"More apps",S11_MORE_PINS,active);}tray_bar12(bar);
 }

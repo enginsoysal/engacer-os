@@ -21,8 +21,13 @@ static inline void taskbar12_sync(unsigned *order,unsigned *count,const unsigned
 static inline unsigned taskbar12_visible(unsigned width,unsigned count){
  unsigned reserve=(width>=1000?180u:64u)+32u+112u;
  unsigned space=width>reserve?width-reserve:0;
- unsigned visible=space/140;
- if(visible<count)visible=space>108?(space-108)/140:0;
+ #ifdef ENGINE_M13
+ const unsigned step=112;
+#else
+ const unsigned step=140;
+#endif
+ unsigned visible=space/step;
+ if(visible<count)visible=space>108?(space-108)/step:0;
  return visible<count?visible:count;
 }
 #endif

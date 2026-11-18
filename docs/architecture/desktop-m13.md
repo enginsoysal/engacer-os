@@ -65,3 +65,7 @@ For every stage show actual native before/after frames and complete tasks. Origi
 ### Documentation portal
 
 ![Original M13 portal concept; sidebar and same-page search remain renderer work](figures/m13/portal.svg)
+
+## M13.6 Start and taskbar implementation
+
+Use the existing original icon catalogue and bounded app/pin results, with a 96-unit tile stride and shared adaptive column count for drawing, pagination and arrows. A tile has an 88-unit hit rectangle; search and List remain 56-unit descriptive rows. This changes presentation without a new index worker, preference schema, allocated per-item surface or process. Taskbar app groups use a 112-unit stride and quiet unopened-pin state; live window count, active/shown/minimized indicators, stable pin/MRU order and generation-bound window menus are preserved. Capacity computation uses the same stride and reserves the existing Start, overflow and provider-tray areas. Actual unavailable-provider labels stay truthful. Native qualification/publication remain separate from implementation.

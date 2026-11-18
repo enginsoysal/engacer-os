@@ -1,4 +1,15 @@
+static unsigned start_tile16(void){
+#ifdef ENGINE_M13
+ return !start_query11[0]&&start_preferences11.view;
+#else
+ return 0;
+#endif
+}
+static unsigned start_stride16(void){return start_tile16()?96u:56u;}
 static unsigned start_columns11(void){
+#ifdef ENGINE_M13
+ if(start_tile16())return start_bounds11.width>=700?5u:start_bounds11.width>=560?4u:3u;
+#endif
 #ifdef ENGINE_M12
  return start_query11[0]||!start_preferences11.view?1u:start_bounds11.width>=600?3u:2u;
 #else
@@ -11,7 +22,7 @@ static unsigned start_page_size11(void){
 #else
  unsigned reserve=264;
 #endif
- unsigned rows=start_bounds11.height>(int)reserve?(unsigned)(start_bounds11.height-(int)reserve)/56:1;if(!rows)rows=1;return rows*start_columns11();}
+ unsigned rows=start_bounds11.height>(int)reserve?(unsigned)(start_bounds11.height-(int)reserve)/start_stride16():1;if(!rows)rows=1;return rows*start_columns11();}
 static unsigned start_manage_rows11(void){if(start_bounds11.height<430)return 1;unsigned rows=(unsigned)(start_bounds11.height-334)/44;return rows?rows:1;}
 static void start_draw_item11(unsigned row,int x,int y,int width){
  start_result11 result=start_results11[row];const s11_pin*pin=result.kind==1?0:&start_preferences11.pinned[result.id];
@@ -21,6 +32,18 @@ static void start_draw_item11(unsigned row,int x,int y,int width){
  access_capture16(0,S11_RESULT+row,name,3);
 #endif
  unsigned available=pin&&pin->kind==2?equal(pin->path,"/")||(entry(pin->path)&&entry(pin->path)->kind==2):app7_available(app);
+ #ifdef ENGINE_M13
+ if(start_tile16()){
+  desktop_rect tile={x,y,width,88};unsigned selected=row==start_cursor11&&!start_search_focus11;
+  unsigned state=component_state12(0,S11_RESULT+row);ui12_palette colors=desktop_palette16();
+  if(selected||(state&(UI12_HOVER|UI12_FOCUS|UI12_PRESSED)))ui73_round(x,y,width,88,8,selected?file_tint11():colors.surface);
+  ui12_icon(pin&&pin->kind==2?(equal(pin->path,"/")?ICON12_VOLUME:ICON12_FOLDER):app,x+(width-40)/2,y+8+!!(state&UI12_PRESSED),40,preferences.dark);
+  unsigned label_width=ui73_measure(name,1);if(label_width>(unsigned)(width-12))label_width=(unsigned)(width-12);
+  ui73_fit(x+(width-(int)label_width)/2,y+56,label_width,name,1,available?ink():colors.muted);
+  if(!available)ui73_fit(x+6,y+75,width-12,"Unavailable",5,colors.muted);
+  file_control11(0,tile,S11_RESULT+row);if(control_active&&focused_control_window==0&&focused_action==S11_RESULT+row)file_focus_rect11(tile);return;
+ }
+#endif
  desktop_rect rect={x,y,width,48};ui73_round(x,y,width,48,6,row==start_cursor11&&!start_search_focus11?file_tint11():desktop_dark16()?0x20343d:0xeaf0f2);
 #ifdef ENGINE_M12
  ui12_icon(pin&&pin->kind==2?(equal(pin->path,"/")?ICON12_VOLUME:ICON12_FOLDER):app,x+10,y+10,26,preferences.dark);
@@ -73,7 +96,7 @@ static void start_draw11(void){if(!launcher)return;
   char heading[128],number[24];copy(heading,start_query11[0]?"All apps and pinned folders":start_preferences11.tab==0?"Pinned apps and folders":start_preferences11.tab==1?"Installed apps":start_preferences11.names[start_category11],sizeof(heading));
   append(heading,"  |  ",sizeof(heading));if(start_result_count11){decimal(number,first+1);append(heading,number,sizeof(heading));append(heading,"-",sizeof(heading));unsigned last=first+page;if(last>start_result_count11)last=start_result_count11;decimal(number,last);append(heading,number,sizeof(heading));append(heading," of ",sizeof(heading));}decimal(number,start_result_count11);append(heading,number,sizeof(heading));if(!start_result_count11)append(heading," results",sizeof(heading));ui73_fit(left+24,top+156,width-48,heading,5,ink());
 #endif
-  for(unsigned n=0;n<page&&first+n<start_result_count11;++n)start_draw_item11(first+n,left+20+(int)(n%columns)*cell,top+row_top+(int)(n/columns)*56,cell-8);
+  for(unsigned n=0;n<page&&first+n<start_result_count11;++n)start_draw_item11(first+n,left+20+(int)(n%columns)*cell,top+row_top+(int)(n/columns)*(int)start_stride16(),cell-8);
   if(!start_result_count11)ui73_paragraph(left+24,top+row_top+4,width-48,2,start_query11[0]?"No matching installed apps or pinned folders. Try a shorter name.":"Nothing here yet. Choose All apps, or right-click an app or folder to pin it.",ink());
  }else{ui73_fit(left+20,top+65,width-40,height<430?(start_notice11[0]?start_notice11:"Changes save automatically. Files and apps are kept."):"Create, rename, hide and reorder. Files and installed apps are kept.",1,ink());button(0,left+20,top+112,128,"Categories",S11_MANAGE_CATS,start_manage11==1);button(0,left+156,top+112,120,"Start pins",S11_MANAGE_PINS,start_manage11==2);button(0,left+284,top+112,120,"Taskbar",S11_MANAGE_TASKS,start_manage11==3);start_draw_manage11(left,top,width,height);}
  if(!start_manage11||height>=430)ui73_fit(left+20,top+height-86,width-40,start_notice11[0]?start_notice11:start_query11[0]?"All apps and pinned folders. Clear search returns to browsing.":"Right-click for pins and categories. Enter opens; Escape goes back.",1,ink());

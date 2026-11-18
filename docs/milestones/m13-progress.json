@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.5",
+  "current_stage": "M13.6",
   "qualified_download": "M13.5",
   "design_only": false,
   "stages": [
@@ -60,7 +60,8 @@
     {
       "id": "M13.6",
       "title": "Familiar Start, taskbar and system tray",
-      "status": "planned"
+      "status": "in_progress",
+      "evidence": "evidence/M13/6"
     },
     {
       "id": "M13.7",

@@ -1,6 +1,6 @@
 # Engacer OS
 
-**Current development: [M13.5 - desktop and window experience](docs/milestones/m13-5.md). Native qualification, GitHub release and complete public website verification pass.** M13.6-M13.12 have not started.
+**Current development: [M13.6 - Start, taskbar and system tray](docs/milestones/m13-6.md). Native implementation and qualification are in progress.** M13.5 remains the current qualified download. M13.7-M13.12 have not started.
 **M13.5 / 0.13.5 passes M13-STAGE5-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5), [use your desktop and windows](docs/handbook/desktop-m135.md). Sixty-two native task/profile checks, six window profiles, seventeen original-icon comparisons, twelve cached/full viewport comparisons and exact enabled-device VMware startup bind these media. Public delivery passes: 458 pages, 293 exact-source articles and 3,197 links. [Publication receipt](evidence/M13/5/publication-results.json).
 
 
