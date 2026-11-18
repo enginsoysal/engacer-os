@@ -18,7 +18,7 @@ Choose Customize to manage Start pins, category names/order/visibility and taskb
 
 The taskbar has one icon and short label per pinned or running app. An unopened pin has no running mark. A running app has an underline; the active app has a longer accent mark. An app whose windows are all minimized has two small marks. Several windows show a count. Choose its group to select the particular window; dirty documents and minimized windows are identified in the chooser. A single active-window group minimizes it; choose it again to restore. More apps exposes groups that do not fit. Alt+Tab switches real windows.
 
-Right-click an app group for supported window and pin commands. Unsaved documents and active file pickers keep their existing reviews and ownership guards. Removing an optional app cannot remove the desktop; close its active windows before removal. An eight-window limit explains when a window must be closed first.
+Right-click an app group for supported window and pin commands. A saved-layout notification has a visible Dismiss; use it before a caption that it covers. Compact notification placement is being refined in M13.8. Unsaved documents and active file pickers keep their existing reviews and ownership guards. Removing an optional app cannot remove the desktop; close its active windows before removal. An eight-window limit explains when a window must be closed first.
 
 ## Network, sound, USB and time
 
