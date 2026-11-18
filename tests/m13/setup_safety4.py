@@ -26,6 +26,7 @@ def apply(g,p,operation):
  s.wizard(g,p,226);start=s.wizard(g,p,228);g.wait('M71_DISK_APPLIED op=0x'+format(operation,'016x'),start,120)
 
 def main():
+ assert not (ROOT/'evidence/M13/4/publication-results.json').exists(),'Accepted stage is immutable'
  work=ui.q.new_work('m134-setup-safety');meta=json.loads((ui.manifest_path12()).read_text());report={'passed':False,'build_id':meta['build_id'],'iso_sha256':meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],'checks':[]}
  try:
   disk=ui.q.sparse_disk(work/'target.img',2*1024**3);parts=fixture.fixture(disk);foreign=ui.q.sparse_disk(work/'foreign.img',2*1024**3);fixture.fixture(foreign)

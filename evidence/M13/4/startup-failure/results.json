@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "checks": [
+    "Deliberately corrupted owned data-volume banks produce a readable installed-start failure",
+    "Without matching live ISO, unavailable boot maintenance is absent; Details and Escape remain safe",
+    "Restart performs a real firmware reset and returns to truthful failure without claiming desktop success or modifying disk"
+  ],
+  "failure_state": {
+    "failure": 2980071,
+    "busy": 0,
+    "installed": 0,
+    "step": 0
+  },
+  "failure_controls": [
+    [
+      292,
+      604,
+      436,
+      40,
+      86
+    ],
+    [
+      740,
+      604,
+      436,
+      40,
+      50
+    ]
+  ]
+}

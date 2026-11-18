@@ -42,7 +42,9 @@
     {
       "id": "M13.4",
       "title": "Installation finishes at the installed desktop",
-      "status": "in_progress"
+      "status": "in_progress",
+      "native_qualification": "M13-STAGE4-VM-v1",
+      "evidence": "evidence/M13/4"
     },
     {
       "id": "M13.5",

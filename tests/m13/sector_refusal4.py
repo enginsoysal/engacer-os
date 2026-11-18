@@ -7,6 +7,7 @@ ui=s.ui
 import capture14
 capture14.bind(ui)
 def main():
+ assert not (ROOT/'evidence/M13/4/publication-results.json').exists(),'Accepted stage is immutable'
  out=ROOT/'build/m13/stage4/4kn-refusal';out.mkdir(parents=True,exist_ok=True);work=ui.q.new_work('m134-4kn-refusal');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3);before=ui.q.digest(disk);meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));report=dict(passed=False,build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],scope='Correct observed 4Kn NVMe capacity; installer writes remain unsupported')
  try:
   guest=ui.guest(work/'refusal',disk,controller='nvme',ram=256);at=next(i for i,a in enumerate(guest.args) if a.startswith('nvme,serial='));guest.args[at]+=',logical_block_size=4096,physical_block_size=4096'

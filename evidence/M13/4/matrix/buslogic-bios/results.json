@@ -1,0 +1,24 @@
+{
+  "harness_sha256": "10ef0e255c4df6597391755e050f10c4c80884c7a157d585ef4e6aae6c84ff26",
+  "passed": true,
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "controller": "buslogic",
+  "firmware": "bios",
+  "exact_starter": false,
+  "checks": [
+    "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+    "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+    "Every distribution guide and binary sample independently matches its exact stored bytes"
+  ],
+  "persisted_distribution_sha256": {
+    "/Users/Owner/Documents/Welcome.txt": "92ce5911dbe13a388e97db3c92e855437b94094e289a46b34e30929e88751708",
+    "/Users/Owner/Downloads/ArchiveSample.zip": "d9901670502a168d99e282769cc767901a58ed2890c4a2b4c5ba46054426e859",
+    "/Users/Owner/Pictures/ColorStudy.bmp": "13743257b3389ea8e83202e82864369228b2092dc27dc396741081aa5cd6bfe3",
+    "/Users/Owner/Music/Chime.wav": "5cb76cbf638407893f5b18353e82aedc4c82e10b7e55fd0f515e9aa54085646f"
+  },
+  "boot_order_forced": false,
+  "same_vm_reused": true,
+  "all_shipped_devices_enabled": true,
+  "existing_vm_inventory_unchanged": true
+}

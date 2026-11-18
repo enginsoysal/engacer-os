@@ -1,6 +1,6 @@
 # Install and feel at home in Engacer OS M13.4
 
-This guide describes the M13.4 installation and recovery candidate. Qualification and release publication are still pending; M13.3 remains the tested public download. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
+This guide covers the M13.4 installation and recovery release, qualified within its named VM profiles. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
 
 ## The easiest start
 

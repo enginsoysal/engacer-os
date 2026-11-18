@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "stage": "M13.4",
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "method": "Agent inspection of actual physical native framebuffer captures; separate from a human novice study and from full stage/publication acceptance",
+  "frames": [
+    {
+      "path": "progress-recovery/finish.png",
+      "sha256": "0d5881158fc25d480ccdf0e98f9b2bcde97685a5ec526ff136b2c56bfdb5524d"
+    },
+    {
+      "path": "progress-compact/finish.png",
+      "sha256": "796d10f78d024792b657b22d9b3b9e4e7228d2dea4a87cd6d36213f594a36949"
+    },
+    {
+      "path": "progress-compact/recovery.png",
+      "sha256": "69df05aeef5fde3892050d77201a8b844945b480cab1fbab5470b8011b8c884c"
+    },
+    {
+      "path": "progress-compact800/finish.png",
+      "sha256": "5f280273581fa39cd798ccdf8f66cea796527251c2d06ef1a2698aff49aac656"
+    },
+    {
+      "path": "progress-compact800/recovery.png",
+      "sha256": "d31d6d03f527e5d417f6ff1e1d6ed5a40ae8ff873343ab400bf7ad376990182d"
+    },
+    {
+      "path": "progress-150/recovery.png",
+      "sha256": "dac461cfd6b38b71afe460432501636290eeed1fbb8bfd95c3117b4084048a79"
+    },
+    {
+      "path": "progress-4k/actual-progress.png",
+      "sha256": "2f3798a72da7abd96266296211e7b4edad183b85890220a360f5c401f3882e38"
+    },
+    {
+      "path": "progress-4k/finish.png",
+      "sha256": "1dbeabce2d1ae2ca3d3770180e09885728e0ad9004862584bd05872b4defa9d7"
+    },
+    {
+      "path": "progress-midwrite/actual-progress.png",
+      "sha256": "c7674f92640b352cc513d30c40ff7d608ac849caa144556c3719a25962233440"
+    },
+    {
+      "path": "setup-safety/write-failure-readable.png",
+      "sha256": "8368638313ea5919cf2ca7f2c95c5396a770e1e89581d131059b226d93c73e19"
+    },
+    {
+      "path": "startup-failure/installed-start-failure.png",
+      "sha256": "6d912ad89c655ebd13eba7b1c35e626aaf63052d37d35250425b8ecf2c38b2d9"
+    },
+    {
+      "path": "startup-failure/no-iso-repair-hidden.png",
+      "sha256": "92259ca4903aba7d5012e36ad902d34eb2e2f13b8678a90c7a724393c48fc2f7"
+    },
+    {
+      "path": "4kn-refusal/no-admitted-disk.png",
+      "sha256": "aff5a28176bdfd2629c26a476f747417b4b40a4e17e4434f334147af4aa351dd"
+    }
+  ],
+  "criteria": {
+    "clarity": "Current operation, verified result and failed outcome are distinct; restart instructions identify the installed disk and ISO",
+    "convenience": "Normal completion has one primary restart action; failure retains a safe disk-selection or restart route and secondary details",
+    "user_friendliness": "No terminal syntax is required; unavailable boot maintenance is absent without the matching live ISO",
+    "appearance": "Shared licensed Inter typography, semantic ink, original check/warning silhouettes and consistent panel spacing",
+    "readability": "Reviewed compact 800x600 and 1024x768, ordinary, 150% and physical 3840x2160 frames; essential actions and messages are readable without overlap"
+  },
+  "limits": [
+    "Agent review does not establish outcomes for actual children or older novice users",
+    "Named reference display captures are not universal GPU or physical-display qualification",
+    "Boot repair does not promise recovery of arbitrary damaged personal files"
+  ]
+}

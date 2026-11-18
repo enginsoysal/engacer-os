@@ -1,0 +1,177 @@
+{
+  "passed": true,
+  "stage": "M13.4",
+  "version": "0.13.4",
+  "qualification": "M13-STAGE4-VM-v1",
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "vmware_zip_sha256": "7df4d7178f6ee76dfdff2beeb1d16a903dd228439adf474809715f57b1b58599",
+  "source_inputs_verified": 602,
+  "native_checks": [
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery",
+    "Native FAT32 and native-volume format, partition delete/create and separate unchecked/cancelled consent preserve foreign partition payload and every byte of the other equal-capacity disk",
+    "Whole-disk replacement needs fresh separate Review consent after Back; actual copy/readback/reset succeeds and the unselected disk remains byte-identical",
+    "Missing and undersized disks retain actionable guidance and disabled Next without pretending installation is possible",
+    "Injected first-write failure never reports success; Back keeps choices and clears consent, quarantined I/O cannot enable Next, and a real retry on the same disk/NVRAM succeeds after removing the external fault and power-cycling",
+    "The ISO recovery route restores a deliberately corrupted owned BIOS payload from the checked slot, followed by actual disk-only installed desktop startup",
+    "Deliberately corrupted owned data-volume banks produce a readable installed-start failure",
+    "Without matching live ISO, unavailable boot maintenance is absent; Details and Escape remain safe",
+    "Restart performs a real firmware reset and returns to truthful failure without claiming desktop success or modifying disk",
+    "Actual 4096-byte-sector NVMe disk remains inspectable with correct 2-GiB capacity",
+    "Unsupported installer sector width cannot enable Next",
+    "Complete owned disk remains byte-identical",
+    "Actual verified installation emits more progress callbacks than visible frame events",
+    "At most 110 visible progress/result frame events and at most one full-frame repaint",
+    "Skipped duplicate visible progress never skips successful actual installation"
+  ],
+  "vmware_checks": {
+    "sata-efi": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "sata-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "ide-efi": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "ide-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "lsilogic-efi": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "lsilogic-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "lsisas1068-efi": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "lsisas1068-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "pvscsi-efi": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "pvscsi-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "nvme-efi": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "nvme-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "buslogic-bios": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes"
+    ],
+    "sata-efi-starter": [
+      "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+      "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+      "Every distribution guide and binary sample independently matches its exact stored bytes",
+      "Original 7-Zip MSI install/run/archive/extract/remove/reinstall, protected-worker hardware input, 106 payload hashes and exact archived/extracted document bytes"
+    ]
+  },
+  "harness_sha256": {
+    "tests/m13/capture14.py": "abad7cd34224b09438d8716c50cb7b353fd676c1733a844b697aefbaca1c6bb5",
+    "tests/m13/close_stage.py": "2b9fe7370e6e55f2d8a5a5124659d2a839a4bdb81849947a7ba09c99fb6e3cf1",
+    "tests/m13/components_host.py": "064b765ff91d5e91ccefa3233e518ecaf40044229a2416edd68dff2df60713a8",
+    "tests/m13/disk_profiles3.py": "17c70547bee4df967b7778b5d0de7ae6150db5bdf9cc9697bb37af6daa929678",
+    "tests/m13/disk_protection3.py": "e7807615efdbc88951ac57b882ef896b08dda5d4192120e3b3358f17b5cd7f42",
+    "tests/m13/disk_refusal3.py": "b067a178db771a81b02583fc0b55ca715f5172ff18a94c277596b02a9f6ba4f7",
+    "tests/m13/disk_resources3.py": "eea4e4e2339475d9f9be1e2e3172dd926bde01f5f0a296ee5ba5963f3ce4f41d",
+    "tests/m13/disk_safety3.py": "1f5708050100acfc6fbdd829121eafe3f70e10eb026ef0c2b9d09a1142ab33f7",
+    "tests/m13/downloads.py": "1f892fd61cc933994e880ec6c199686dda04e25a8b7587eee2f3d6fa6bd33162",
+    "tests/m13/native_controls.py": "72bb763600022a704ccf2dcdbf8df663459e776355f682b74b867918701b8d7a",
+    "tests/m13/progress_midwrite4.py": "ed8ddb2dfbc88e2cc018a46f825fd5c2a2ebe16b6f2f78ec1e4eb32bde43f63f",
+    "tests/m13/progress_profiles4.py": "cebc6de65a04586346720532c10f21b913e79189a52e23d3e985eea04b832ff5",
+    "tests/m13/progress_resources4.py": "072e3218b2f760456c037e34cb6b8ae1943dd02acfdd4a6936aed685e6a78bd8",
+    "tests/m13/publication_source_check.py": "548206a592d51166e5c65288792a2da5a4dad6a8904acdaf8bb744935491cb6b",
+    "tests/m13/sector_refusal4.py": "aa90323424a489d82814a1adfaab3cd6837aeb4aac1c602a1a8ee27335e2422e",
+    "tests/m13/setup_journey2.py": "dfe325ef56b52361754f0d69ddb40fc0e9c8652e7102c17f72b18083c398a979",
+    "tests/m13/setup_safety4.py": "973075850b52f88505c52df0f75ecbbdc5978f6490c489e13b69a5321953e9e4",
+    "tests/m13/setup_smoke2.py": "fbc7e69b9f2ac67d172edefe7c5afc417bc945348a493bb5b306d54430b3cca8",
+    "tests/m13/setup_smoke4.py": "b15db7e65e40bc2638aa72cd33acf1e560b71fa82912f484e05d0de51b435172",
+    "tests/m13/source_binding_test.py": "7e50792ab1c341a2fe2f9afa94f49c1fc9114c5253c0cf418674cc79a420b4ae",
+    "tests/m13/startup_failure4.py": "fa1b5cc49c809225eee9755f8e33b6b14dd995f1593d4f54608a2095477da326",
+    "tests/m13/verify_stage1.py": "3b523a7319ff5cb0d0f3dd0bf3f71661b0c37d88159b5570f5c4497daee26970",
+    "tests/m13/verify_stage2.py": "c5be5127c66d3eca363d46e1dcec6d9ec71b2268764d897f664bd005a9972d2f",
+    "tests/m13/verify_stage3.py": "b5927a2b086d9bf1629c8dbfe677b733cafcbbda5eb41ba96773b86752bffd13",
+    "tests/m13/verify_stage4.py": "ddfc8757c185f700453268b14e6c1a51ea8e0f20ea8f8b5e710d85acf8e9238a",
+    "tests/m13/vmware_matrix4.py": "10ef0e255c4df6597391755e050f10c4c80884c7a157d585ef4e6aae6c84ff26",
+    "tests/m13/vmware_stage.py": "1dd5845e9c2772a8cb6bece30378cb7a2553b9ce405694f2b6f2fd7ee53ac2c4",
+    "tests/m13/website_readback.py": "22b1a289a6a21e04962ec88195ee2b0e5a9eb167a9eb6a950b6109b98195ead3",
+    "tests/m13/public_site.mjs": "8adf0c1bc79bcd37b54f02279297ab3c0464d4ed88039ae211140ab83ec3fde3"
+  },
+  "resources": "resources.json",
+  "vmware_profiles": [
+    "sata-efi",
+    "sata-bios",
+    "ide-efi",
+    "ide-bios",
+    "lsilogic-efi",
+    "lsilogic-bios",
+    "lsisas1068-efi",
+    "lsisas1068-bios",
+    "pvscsi-efi",
+    "pvscsi-bios",
+    "nvme-efi",
+    "nvme-bios",
+    "buslogic-bios",
+    "sata-efi-starter"
+  ],
+  "limits": [
+    "Named virtual profiles are separate from universal or physical hardware support",
+    "QEMU PVSCSI remains unqualified; actual VMware PVSCSI is separately tested",
+    "4096-byte-sector NVMe inspection does not qualify installer writes",
+    "Whole-disk installation; no data-preserving resize or dual boot",
+    "Boot-slot repair does not repair arbitrary personal data corruption",
+    "Secure Boot signing, vendor GPU 3D and general Windows compatibility remain outside this stage",
+    "Agent scenario and visual review are not a human novice study",
+    "Public release and full website closure remain separate gates"
+  ]
+}

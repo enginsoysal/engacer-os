@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "checks": [
+    "Native FAT32 and native-volume format, partition delete/create and separate unchecked/cancelled consent preserve foreign partition payload and every byte of the other equal-capacity disk",
+    "Whole-disk replacement needs fresh separate Review consent after Back; actual copy/readback/reset succeeds and the unselected disk remains byte-identical",
+    "Missing and undersized disks retain actionable guidance and disabled Next without pretending installation is possible",
+    "Injected first-write failure never reports success; Back keeps choices and clears consent, quarantined I/O cannot enable Next, and a real retry on the same disk/NVRAM succeeds after removing the external fault and power-cycling"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\setup_safety4.py\", line 77, in main\n    p=ui.Pointer(g);assert 'M75_SETUP_OVERRIDE' in g.log();go(g,p,50,80,100,2);assert s.flag(g,'step')==4;start=s.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240);capture(g,'recovery-complete');(out/'recovery.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m13\\setup_safety4.py\", line 23, in go\n    for c in commands:s.wizard(g,p,c)\n  File \"<project-root>\\tests\\m12\\setup_observe.py\", line 17, in wizard\n    def wizard(g,p,command):return c.wizard(g,p,command)\n  File \"<project-root>\\tests\\m12\\components.py\", line 62, in wizard\n    assert len(found)==1,(action,found)\nAssertionError: (50, [])\n"
+}

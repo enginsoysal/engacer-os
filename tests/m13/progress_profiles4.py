@@ -7,7 +7,8 @@ ui=s.ui
 import capture14
 capture14.bind(ui)
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','150','4k'],required=True);args=parser.parse_args();resolution,ram,scale={'compact':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[args.profile]
+ assert not (ROOT/'evidence/M13/4/publication-results.json').exists(),'Accepted stage is immutable'
+ parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact800','compact','150','4k'],required=True);args=parser.parse_args();resolution,ram,scale={'compact800':((800,600),128,50011),'compact':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[args.profile]
  out=ROOT/'build/m13/stage4'/('progress-'+args.profile);out.mkdir(parents=True,exist_ok=True);work=ui.q.new_work('m134-progress-'+args.profile);disk=ui.q.sparse_disk(work/'owned.img',2*1024**3);meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));report=dict(passed=False,build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'])
  try:
   report['physical']=list(resolution);guest=ui.guest(work/'install',disk,resolution=resolution,ram=ram);at=next(i for i,a in enumerate(guest.args) if a.startswith('if=none,id=target,'));guest.args[at]+=',bps_wr=1048576'

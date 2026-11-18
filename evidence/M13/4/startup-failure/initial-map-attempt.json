@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "checks": [],
+  "failure_state": {
+    "failure": 0,
+    "busy": 0,
+    "installed": 0,
+    "step": 0
+  },
+  "failure_controls": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\startup_failure4.py\", line 22, in main\n    p=ui.Pointer(g);p.drain();report['failure_state']={k:s.flag(g,k) for k in ('failure','busy','installed','step')};report['failure_controls']=s.controls(g);s.shot(g,out,'observed-failure');(out/'boot.log').write_bytes(g.log().encode());assert s.flag(g,'failure') and not s.flag(g,'busy');assert s.has(g,86) and s.has(g,50);assert not any(s.has(g,a) for a in (80,81,82,63));s.shot(g,out,'installed-start-failure');s.key(g,'esc');assert s.has(g,86)\n  File \"<project-root>\\tests\\m12\\setup_observe.py\", line 34, in shot\n    try:ui.raw_shot(g,out,name,installed)\n  File \"<project-root>\\tests\\m13\\capture14.py\", line 13, in raw_shot\n    boot=ui.physical_boot(g,installed);address=struct.unpack_from('<Q',boot,80)[0];stride,fmt,w,h=struct.unpack_from('<4I',boot,136)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 43, in physical_boot\n    assert candidates,'No validated physical boot framebuffer found'\nAssertionError: No validated physical boot framebuffer found\n"
+}

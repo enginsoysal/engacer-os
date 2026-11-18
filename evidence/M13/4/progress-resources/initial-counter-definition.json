@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "before": {
+    "full_frames75": 1,
+    "content_frames75": 7
+  },
+  "after": {
+    "full_frames75": 1,
+    "content_frames75": 9
+  },
+  "progress_callbacks": 96,
+  "content_repaints": 2,
+  "checks": [
+    "Actual verified installation emits more progress callbacks than content repaints",
+    "At most 110 visible progress/result content paints and at most one full-frame repaint",
+    "Skipped duplicate visible progress never skips successful actual installation"
+  ]
+}

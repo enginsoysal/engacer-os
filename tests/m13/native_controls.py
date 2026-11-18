@@ -22,6 +22,7 @@ def shot(g,out,name,installed=False):
  try:ui.raw_shot(g,out,name,installed)
  finally:g.qmp('cont')
 def main():
+ if not args.baseline:assert not (ROOT/f'evidence/M13/{args.stage}/publication-results.json').exists(),'Accepted stage is immutable'
  label='baseline' if args.baseline else 'stage'+str(args.stage)
  out=ROOT/'build/m13'/label/args.profile;out.mkdir(parents=True,exist_ok=True)
  resolution,ram,scale={'ordinary':((1920,1080),512,50011),'compact':((1280,800),128,50011),'1024':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[args.profile]

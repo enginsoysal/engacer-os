@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "iso_sha256": "2f18d630cc695cbd1218b14d47ef34d4ada238bf32ad06daef845a03c44d0fb5",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\startup_failure4.py\", line 22, in main\n    p=ui.Pointer(g);p.drain();assert s.flag(g,'failure') and not s.flag(g,'busy');assert s.has(g,86) and s.has(g,50);assert not any(s.has(g,a) for a in (80,81,82,63));s.shot(g,out,'installed-start-failure');s.key(g,'esc');assert s.has(g,86)\nAssertionError\n"
+}

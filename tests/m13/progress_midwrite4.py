@@ -7,6 +7,7 @@ ui=s.ui
 import capture14
 capture14.bind(ui)
 def main():
+ assert not (ROOT/'evidence/M13/4/publication-results.json').exists(),'Accepted stage is immutable'
  out=ROOT/'build/m13/stage4/progress-midwrite';out.mkdir(parents=True,exist_ok=True);work=ui.q.new_work('m134-progress-midwrite');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3);before=ui.q.digest(disk);meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));report=dict(passed=False,build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'])
  try:
   guest=ui.guest(work/'install',disk);at=next(i for i,a in enumerate(guest.args) if a.startswith('if=none,id=target,'));guest.args[at]+=',bps_wr=1048576'
