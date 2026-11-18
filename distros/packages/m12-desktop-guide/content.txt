@@ -58,8 +58,7 @@ Escape clears search, then leaves it, before cancelling an appearance preview.
 
 MAKE IT YOURS
 Settings has Appearance, Display, Input, System and Accessibility. Appearance
-and Display
-have a real preview. Apply and save keeps it; Cancel preview, Escape or
+and Display have a real preview. Apply and save keeps it; Cancel preview, Escape or
 closing its owner restores the earlier choices. Restore defaults previews
 this distribution's appearance without reinstalling apps or changing files.
 Input choices save separately when clicked. If another file dialog blocks a
@@ -67,6 +66,15 @@ Settings action, Show current dialog brings its real owner back to you.
 System opens Devices and hardware, Applications, Start and taskbar, and
 Quick settings. Remove or reinstall optional apps in Applications. Removing
 Calculator does not remove your desktop, Files or base Settings.
+
+SCREENSAVER
+Open Settings > Appearance > Screensaver. Off is the default. Choose On,
+a timeout (1, 5 or 10 minutes) and Engacer logo, Clock or Blank. Preview does
+not save. Apply and save keeps your choices; Cancel changes or leaving the
+page restores saved choices. Restore defaults previews Off. Move the mouse
+or press a key to return; the wake gesture is consumed, keeping your work.
+Reduced motion keeps the logo still. This is not a password lock or power
+management. Removing the optional Clock app does not remove this feature.
 
 ACCESSIBILITY
 Settings > Accessibility offers High contrast and Reduced motion. These choices

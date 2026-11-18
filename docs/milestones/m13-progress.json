@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.11",
+  "current_stage": "M13.12",
   "qualified_download": "M13.11",
   "design_only": false,
   "stages": [
@@ -114,7 +114,7 @@
     {
       "id": "M13.12",
       "title": "Complete-product integration qualification",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.13",

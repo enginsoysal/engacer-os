@@ -55,7 +55,7 @@ static void saver_draw21(void){
  rectangle((desktop_rect){0,0,(int)model.width,(int)model.height},0);if(saver_style21==2)return;
  int width=(int)model.width,height=(int)model.height,x=(width-320)/2,y=(height-180)/2;
  if(!(access_flags16&2)){unsigned dx=(unsigned)(width-360),dy=(unsigned)(height-220);x=20+(int)(saver_frame21*13%(dx?dx:1));y=20+(int)(saver_frame21*7%(dy?dy:1));}
- if(saver_style21==1){clock7_time now;char label[32]="Clock unavailable";if(!clock7_read(&now)){padded74(label,now.hour);append(label,":",32);char part[8];padded74(part,now.minute);append(label,part,32);append(label," UTC",32);}ui73_fit(x,y+40,320,label,6,0xffffff);}
- else{ui12_icon_ink(ICON12_START,x+130,y,60,0xffffff);ui73_fit(x+48,y+90,272,ENGINE_PRODUCT_NAME,UI12_HEADING,0xffffff);}
+ if(saver_style21==1){clock7_time now;char label[32]="Clock unavailable";if(!clock7_read(&now)){padded74(label,now.hour);append(label,":",32);char part[8];padded74(part,now.minute);append(label,part,32);append(label," UTC",32);}unsigned measured=ui73_measure(label,6);if(measured>320)measured=320;ui73_fit(x+(320-(int)measured)/2,y+40,320,label,6,0xffffff);}
+ else{ui12_icon_ink(ICON12_START,x+130,y,60,0xffffff);unsigned measured=ui73_measure(ENGINE_PRODUCT_NAME,UI12_HEADING);if(measured>320)measured=320;ui73_fit(x+(320-(int)measured)/2,y+90,320,ENGINE_PRODUCT_NAME,UI12_HEADING,0xffffff);}
  ui73_fit(24,height-42,width-48,"Move the mouse or press a key to return.",UI12_BODY,0xffffff);
 }
