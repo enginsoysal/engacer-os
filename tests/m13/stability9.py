@@ -22,7 +22,8 @@ def changed_pixels(left, right):
         # alone cannot make a newly opened native window visibly responsive.
         crop=(100,70,a.width-100,a.height-100)
         difference=ImageChops.difference(a.convert('RGB').crop(crop),b.convert('RGB').crop(crop))
-        return sum(1 for pixel in difference.getdata() if pixel!=(0,0,0))
+        mask=difference.convert('L')
+        return mask.width*mask.height-mask.histogram()[0]
 
 
 def main():
@@ -95,6 +96,9 @@ def main():
                     report['idle_elapsed_seconds']=time.monotonic()-began;save();next_sample=time.monotonic()+60
                 time.sleep(1)
             report.update(status='visible-recovery',idle_elapsed_seconds=time.monotonic()-began,idle_finished_at=datetime.now(timezone.utc).isoformat());save()
+            if args.seconds>=600:
+                report['distinct_idle_frames']=len({f['sha256'] for f in report['frames']})
+                assert report['distinct_idle_frames']>=args.seconds//120,'Idle clock/presentation stopped progressing'
             launch(g,'calculator',4,'after-uninterrupted-idle')
             # Close only the just-opened foreground test app, retaining Files.
             display=g.connect_display();display.key(0xffe9,True);display.press(0xffc1);display.key(0xffe9,False)
@@ -104,16 +108,23 @@ def main():
                 launch(g,'calculator',4,'cycle-'+str(cycle))
                 # Use a normal shortcut chord through the authenticated guest.
                 display=g.connect_display();display.key(0xffe9,True);display.press(0xffc1);display.key(0xffe9,False)
+            g.read()
             report.update(passed=True,status='completed',visible_responsiveness=True)
     except Exception:
         report.update(status='failed',error=v.old.v.redact(traceback.format_exc()))
         raise
     finally:
         if 'g' in locals():
-            (out/'native.log').write_text(g.read(),encoding='utf-8')
-            report['fifo_quarantines']=g.read().count('M9_SVGA_QUARANTINED')
-            report['framebuffer_recoveries']=g.read().count('M139_SVGA_FRAMEBUFFER_RECOVERY')
-        after=v.old.v.inventory();report['existing_vm_inventory_unchanged']=before==after
+            # The owned guest context has already closed COM1. Keep the log
+            # drained while it was live rather than reading a closed pipe.
+            log=g.output
+            (out/'native.log').write_text(log,encoding='utf-8')
+            report['fifo_quarantines']=log.count('M9_SVGA_QUARANTINED')
+            report['framebuffer_recoveries']=log.count('M139_SVGA_FRAMEBUFFER_RECOVERY')
+        after=v.old.v.inventory();deadline=time.monotonic()+20
+        while 'g' in locals() and str(g.vmx) in after and time.monotonic()<deadline:
+            time.sleep(.2);after=v.old.v.inventory()
+        report['existing_vm_inventory_unchanged']=before==after
         report['passed']=report['passed'] and before==after
         report['completed_at']=datetime.now(timezone.utc).isoformat();save()
         print(json.dumps({k:report.get(k) for k in ('status','passed','owned_fixture','idle_elapsed_seconds','visible_responsiveness','fifo_quarantines','framebuffer_recoveries','error')},indent=2),flush=True)
