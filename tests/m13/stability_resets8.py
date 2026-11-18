@@ -80,6 +80,7 @@ def main():
             report['passed']=True
         # Full power-off/start is recorded separately from powered-on resets.
         if report.get('natural_visible_freeze'):
+            (out/'post-resets-native.log').write_text(g.output,encoding='utf-8')
             g.output='';g.pipe=None;g.rfb=None;g.installed=True
             try:
                 with g:
@@ -92,6 +93,8 @@ def main():
     finally:
         if 'g' in locals():
             (out/'native.log').write_text(g.output,encoding='utf-8');report['fifo_quarantines']=g.output.count('M9_SVGA_QUARANTINED')
+            report['quarantine_count_scope']='Final COM1 session; pre-reset and post-reset logs are separate and may overlap'
+            report['fifo_quarantines_by_phase']={name:(out/name).read_text(encoding='utf-8').count('M9_SVGA_QUARANTINED') for name in ('before-reset-native.log','post-resets-native.log','native.log') if (out/name).exists()}
         after=v.old.v.inventory();deadline=time.monotonic()+20
         while 'g' in locals() and str(g.vmx) in after and time.monotonic()<deadline:time.sleep(.2);after=v.old.v.inventory()
         report['existing_vm_inventory_unchanged']=before==after;report['passed']=report['passed'] and before==after;save()

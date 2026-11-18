@@ -1,0 +1,7 @@
+{
+  "read_only": true,
+  "user_vm_modified": false,
+  "matching_m138_profiles": [],
+  "matching_profiles_found": 0,
+  "scope": "Hardware keys only from local VM configs referencing the exact M13.8 ISO; no claim that any matched config is the reported failing machine"
+}

@@ -1,0 +1,9 @@
+{
+  "observed_natural_visible_freeze": true,
+  "failed_position": 184,
+  "pre_reset_quarantine_count": 2,
+  "all_three_warm_resets_visibly_responsive": true,
+  "owner_immediate_post_freeze_reset_failure_reproduced": false,
+  "raw_report_count_limit": "fifo_quarantines=0 counts only the final cold-start COM1 session, not the pre-freeze session. Preserve the original report; this review distinguishes the phases.",
+  "qualification": "Diagnostic only; no stability pass and no universal reset-fix claim"
+}
