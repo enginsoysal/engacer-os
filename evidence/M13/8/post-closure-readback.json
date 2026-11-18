@@ -1,0 +1,139 @@
+{
+  "source": "84fe83c576e5497ab648a73c6672aa45b398c29a",
+  "articles": [
+    {
+      "slug": "docs-readme",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-readme",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-handbook-index",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-index",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-milestones-m13-8",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m13-8",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-milestones-m13",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m13",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-releases-m138-v0-13-8",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m138-v0-13-8",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-roadmap-status",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-website-readme",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-website-readme",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-handbook-settings-m138",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-settings-m138",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-architecture-desktop-m13",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-desktop-m13",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    }
+  ],
+  "compiled_inputs": 610,
+  "passed": true,
+  "final_workflow_id": 44296133943,
+  "final_workflow_conclusion": "success",
+  "native_editor_save": "Saved ✓",
+  "current_homepage_verified": true,
+  "owner_issue_visible": true,
+  "checked_at": "2026-11-18T11:39:41.190Z"
+}
