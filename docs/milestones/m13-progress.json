@@ -33,10 +33,11 @@
     {
       "id": "M13.3",
       "title": "Understandable disks and safe disk tools",
-      "status": "native_qualified_publication_in_progress",
+      "status": "complete",
       "native_qualification": "M13-STAGE3-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m133-v0.13.3",
-      "evidence": "evidence/M13/3"
+      "evidence": "evidence/M13/3",
+      "publication_evidence": "evidence/M13/3/publication-results.json"
     },
     {
       "id": "M13.4",
