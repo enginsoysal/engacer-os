@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "physical": [
+    1280,
+    800
+  ],
+  "configured_guest_mib": 128,
+  "owned_fixture": "1a087493e16848b38db3fab52635c1e2",
+  "host_observer": {
+    "immutable_map_sha256": {
+      "false": "13a7c2ac539e979ff8c55cef72e859af011cc1ec1e763a80f68ae2a8df5ca2ff",
+      "true": "a8378f0748a53bf557b5abada61a48b3b7d74a19d6428f3eebba263dda277300"
+    },
+    "maximum_symbol_cache_entries": 512,
+    "mutable_guest_state_cached": false,
+    "qmp_client_tcp_nodelay": true
+  },
+  "checks": [
+    "Actual Ctrl+F, text editing, supported category results and Enter navigate all five real categories without writing preferences or changing appearance",
+    "Actual display-size preview and Cancel restore the previous scale, or a too-small physical profile refuses 200% with recovery text; the complete disk is unchanged",
+    "No-results/Clear recover browsing; Escape clears search then leaves it before cancelling only the owning appearance preview, with an independently identical complete disk",
+    "Two live generations retain independent temporary queries; the actual minimum 700x600 window retains search, categories, matching results and Apply/Restore controls inside its bounds",
+    "Light/dark are actually applied and independently read from the saved appearance record; high-contrast search uses the real accessibility flag and remains reachable at the minimum window size",
+    "A real saved taskbar-pin notification uses the lower caption-safe rectangle; every live caption remains outside it and actual Dismiss clears the message",
+    "Two ordinary no-ISO disk startups reload exact saved appearance and minimum bounds, clear temporary searches, navigate a real result and halt at idle"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17704,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17704,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "saved_appearance_sha256": "404957d584f1fdc3da2b98820767e9296d4125e9209a6b46eb1a483631645d9b"
+}

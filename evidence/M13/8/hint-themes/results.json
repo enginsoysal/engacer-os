@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "owned_fixture": "07decd0c8d4c45d38328287446794b19",
+  "checks": [
+    "Actual Apply and independent appearance bytes, plus the real high-contrast flag, bind empty Start and Settings hint captures in all three themes; cancelled previews never qualify them",
+    "Start opens with a genuinely empty query and returns to the same Settings owner; all windows close with zero retained managed pages and idle CPUs halt"
+  ],
+  "themes": [
+    {
+      "name": "dark",
+      "dark": 1,
+      "high_contrast": false,
+      "appearance_record_sha256": "f5cfbd0c077be8bad483777f863d1381566fd8db746e96d8d7720db76970af1e"
+    },
+    {
+      "name": "high-contrast",
+      "dark": 1,
+      "high_contrast": true,
+      "appearance_record_sha256": "f5cfbd0c077be8bad483777f863d1381566fd8db746e96d8d7720db76970af1e"
+    },
+    {
+      "name": "light",
+      "dark": 0,
+      "high_contrast": false,
+      "appearance_record_sha256": "67a4a70cf177299d3d90eaca1d8f6a42b1574f4e372cdc79f4ba962ee9d0ab27"
+    }
+  ],
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      116011,
+      5
+    ],
+    "after": [
+      2072,
+      2072,
+      116011,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

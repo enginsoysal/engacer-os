@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "physical": [
+    1280,
+    800
+  ],
+  "configured_guest_mib": 128,
+  "owned_fixture": "07b1d9eb0f5b4b27bc8827c8e132c6d1",
+  "checks": [
+    "Mouse focuses the real search field and chooses real dark-mode, keyboard and uppercase DISPLAY results; Apply and an immediate input choice produce independently verified appearance/input bytes",
+    "Mouse Clear recovers from an unavailable query to the same category; close retains no managed pages and idle CPUs halt"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17704,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17704,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "saved_appearance_sha256": "acaeebdccfddb9ccad9ebd7c42f0d664f473569bc511fa5708160bf579df882c"
+}

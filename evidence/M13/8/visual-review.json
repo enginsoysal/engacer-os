@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "reviewer": "Agent visual and ordinary-input task review; no human novice study",
+  "criteria": {
+    "clarity": {
+      "passed": true,
+      "notes": "Five categories and bounded two-line search results expose implemented controls; no-results and scale refusal explain recovery. Search heading and idle footer wording remain explicit M13.10 finishing items."
+    },
+    "convenience": {
+      "passed": true,
+      "notes": "Mouse and Ctrl+F routes, clear and layered Escape keep navigation local. Scale admission preserves a usable workspace; legacy oversized preferences fall back without discarding appearance."
+    },
+    "friendliness": {
+      "passed": true,
+      "notes": "Preview, Apply and Cancel retain ownership. Document conflict keeps dirty text, feedback can be dismissed, and notices avoid captions. No human novice study is claimed."
+    },
+    "graphics": {
+      "passed": true,
+      "notes": "Shared smooth type, semantic light/dark/high-contrast palettes and coherent Settings controls are retained across compact, ordinary, 150% and physical 4K frames. High-contrast Start outer separation remains M13.11."
+    },
+    "readability": {
+      "passed": true,
+      "notes": "Reviewed result cards, category controls, status text, notice and document-conflict explanation remain readable without essential overlap in the named frames."
+    }
+  },
+  "reviewed_native_frames": [
+    {
+      "path": "search-ordinary/settings-common-frame.png",
+      "png_sha256": "5327587125fbe5df3cefcad224298b474dc72830acdfa6fc2bf7586b7cb7abed",
+      "physical_dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "search-compact/minimum-search-results.png",
+      "png_sha256": "3445b99da5f63789dae9e022425a8ecff2ef627f00c56dc4779b11b05f4e12fd",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "search-compact/caption-safe-feedback.png",
+      "png_sha256": "65aee1a8defdfb4fec26468adffd4c17450d1d423c6ae3a5a3d82de82903f043",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "search-1024/applied-dark.png",
+      "png_sha256": "0eda5dca369c779cc2e776b05025b2900b296c7f9f174b5b8743d973ec665f1f",
+      "physical_dimensions": [
+        1024,
+        768
+      ]
+    },
+    {
+      "path": "search-150/search-scale.png",
+      "png_sha256": "e48a20eb767db5ad33762b7bde5ad7905b3c18378f101c8aab92110058989058",
+      "physical_dimensions": [
+        1920,
+        1200
+      ]
+    },
+    {
+      "path": "scale-edge/200-percent-admission.png",
+      "png_sha256": "18c5eb66d4a494f2ab4e88c382fd261fe84aa5ca82b5b136b2ddfdf8cd6cd4a8",
+      "physical_dimensions": [
+        1920,
+        1200
+      ]
+    },
+    {
+      "path": "search-4k/high-contrast-search.png",
+      "png_sha256": "fc15d12b4ddee784f2c4ee97ed8d62cf48f1788f25ed18468625c3c3f11cc48b",
+      "physical_dimensions": [
+        3840,
+        2160
+      ]
+    },
+    {
+      "path": "feedback-native/changed-file-save-refused.png",
+      "png_sha256": "411203f3b3fee20c8316de73a8386a83df04b5724ce2681989154c868b3c8154",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "saved-scale/saved-size-fallback.png",
+      "png_sha256": "dde5faac8dd97e53872fba60ee7c342175c040c1f8f4c21108591a7262b5b9a4",
+      "physical_dimensions": [
+        1920,
+        1200
+      ]
+    },
+    {
+      "path": "hint-themes/start-dark.png",
+      "png_sha256": "0b6c5cf77b7e87bfc499d5667719e41e9095ca427a70e2c60b3061effdaf21b4",
+      "physical_dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "hint-themes/start-high-contrast.png",
+      "png_sha256": "049872d300ce86989ccbf8ca580505f7bc1d0546c7952202ab689fb8eae6bb8e",
+      "physical_dimensions": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "scope": "Scoped M13.8 visual acceptance, not final M13.12 qualification or long-session stability. Owner-reported M13.7 freeze remains under investigation in M13.9.",
+  "retained_finishing": [
+    "M13.10 search heading, idle appearance footer, explicit clear help and plain save-error copy",
+    "M13.11 high-contrast Start panel and Files current-place separation",
+    "M13.11 optional screensaver; M13.12 real-duration freeze and wake qualification"
+  ]
+}

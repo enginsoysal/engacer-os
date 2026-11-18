@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "physical": [
+    1920,
+    1200
+  ],
+  "owned_fixture": "2177fa1ebc0747c5956f3214a3c5070e",
+  "checks": [
+    "On the actual 1920x1200 display, 200% is refused before changing the 150% session because the complete Settings frame needs a 660-high desktop; preferences remain byte-identical and every category stays reachable",
+    "Appearance and the complete Interface preview remain reachable after refusal; close retains no managed pages and idle CPUs halt"
+  ],
+  "observed_scale_units": 3,
+  "bounds": [
+    240,
+    45,
+    800,
+    650
+  ],
+  "resources": {
+    "before": [
+      2297,
+      2297,
+      116011,
+      5
+    ],
+    "after": [
+      2297,
+      2297,
+      116011,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

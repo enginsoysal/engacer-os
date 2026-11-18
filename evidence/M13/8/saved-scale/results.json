@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+  "physical": [
+    1920,
+    1200
+  ],
+  "owned_fixture": "749ce7bfa98e4530afce21b8c0f6cd20",
+  "checks": [
+    "A CRC-valid legacy 200% preference on a real 1920x1200 framebuffer falls back to Automatic before windows open, preserves dark appearance/personal bytes, explains the session fallback in Settings and leaves the original record unchanged until Apply",
+    "Actual Apply saves Automatic; a second independent no-ISO start reloads the exact corrected appearance without the warning, and completed tasks retain zero managed pages and halt at idle"
+  ],
+  "legacy_scale_records": 2,
+  "resources": {
+    "before": [
+      2297,
+      2297,
+      117290,
+      5
+    ],
+    "after": [
+      2297,
+      2297,
+      117290,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "replacement_sha256": "fab0c10049787439ef9d60a6ec805b467590af7d80b8788cd26f0552ba5f924e"
+}
