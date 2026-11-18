@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "stage": "M13.11",
+  "build_id": "ec856eaf2d403f8f4e15757cc0f4a8da",
+  "iso_sha256": "c4365e42e5ab0801d8b571bd31db700b4d262c6eeee0f7974a01df342110d974",
+  "owned_fixture": "f8fe36870940439ca4aeaeebec1588ff",
+  "checks": [
+    "Off defaults and all three actual previews work without writing the complete disk; Cancel restores the saved state and wake returns to the same Settings page without click-through",
+    "Only the draft owner can edit or Apply; Escape, leaving the page and Restore defaults/Cancel preserve the exact independently read twenty-byte saved record"
+  ],
+  "scope": "One-minute idle activation is a functional feature task; natural freezes and duration/reset-chain qualification remain exclusively M13.13",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\saver_native11.py\", line 61, in main\n    assert c.flag(g,'focused_action')==60209\nAssertionError\n"
+}
