@@ -57,7 +57,12 @@ def main():
     assert day['harness_sha256'] == sha(ROOT / 'tests/m13/workday13.py')
     for name, digest in day['dependencies_sha256'].items():
         assert sha(ROOT / name) == digest, name
-    for frame in day['frames']:
+    # A visible-launch retry replaces its same-name provisional PNG. Bind every
+    # retained final image; keep earlier hashes as superseded observations, not
+    # as independently preserved screenshots. The frozen observer stays intact.
+    final_frames = {frame['png']: frame for frame in day['frames']}
+    superseded = [frame for frame in day['frames'] if frame is not final_frames[frame['png']]]
+    for frame in final_frames.values():
         assert sha(source.parent / frame['png']) == frame['sha256']
     native = (source.parent / 'native.log').read_text(encoding='utf-8')
     assert 'M6_INSTALL_PASS' in native and 'M7_DOCUMENT_SAVED' in native
@@ -127,6 +132,7 @@ def main():
             raw = path.read_bytes()
             (dest / path.name).write_bytes(raw if path.suffix == '.png' else public(raw))
     write(out / 'resources.json', dict(passed=True, fixed_desktop=fixed, fixed_installer=setup, font_coverage_bytes=251248, workday_baseline=baseline, peak_budget_bytes=day['managed_peak_budget_bytes'], measured_peak_bytes=max(r['peak_bytes'] for r in day['resources']), retained_managed_bytes=0, new_allocation_failures=0, supplementary={name: row.get('resources') for name, row in reports.items() if 'resources' in row}))
+    write(out / 'capture-retention.json', dict(scope='All final retained PNGs are SHA-256 verified. Same-name provisional launch-retry frames were superseded in the frozen observer and their earlier hashes are metadata only, not preserved image evidence.', final_images=len(final_frames), superseded_provisional_observations=superseded))
     accepted = dict(passed=True, stage='M13.13', version='0.13.13', qualification='M13-STAGE13-VM-v1', build_id=meta['build_id'], iso_sha256=iso, vmware_zip_sha256=starter['sha256'], source_inputs_verified=len(meta['source_sha256']), actual_workday_seconds=day['elapsed_seconds'], uninterrupted_idle_seconds=idle[0]['actual_seconds'], active_cycles=len(day['cycles']), visible_launches=len(day['launches']), native_checks=day['checks'] + [check for row in reports.values() for check in row.get('checks', [])], vmware_checks=vm['checks'], resources='resources.json', harness_sha256={p.relative_to(ROOT).as_posix(): sha(p) for p in [Path(__file__), ROOT / 'tests/m13/workday13.py', ROOT / 'tests/m13/recovery13.py', ROOT / 'tests/m13/active_idle13.py', ROOT / 'tests/m13/vmware_stage13.py']}, limits=['Eight-hour qualification applies to the named exact enabled-device VMware starter; not universal physical hardware or arbitrary uptime', 'Three warm resets follow a labelled injected display timeout; this does not establish the cause of historical natural M13.7/M13.8 freezes or reproduce their reset chain', 'Separate constrained/physical-4K native tasks last fifteen real idle minutes each, not eight hours', 'Native source remains identical to M13.12; its fourteen-controller integration matrix is historical evidence, not a repeated M13.13 matrix', 'No vendor GPU 3D, universal Windows/MSI support, physical device study or human novice study is claimed'])
     write(out / 'acceptance-results.json', accepted)
     print('PASS M13.13: exact frozen eight-real-hour workday, independent data starts, labelled recovery, constrained/4K resources and screensaver regression')
