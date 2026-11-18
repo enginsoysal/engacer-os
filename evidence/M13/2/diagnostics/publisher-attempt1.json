@@ -1,0 +1,9 @@
+{
+  "workflow_id": 44213806817,
+  "attempt": 1,
+  "passed": false,
+  "source_commit": "f3b6bed46907a4e8e677fd4f839603f3e1b12a04",
+  "step": "Synchronize and verify native BrixCanvas articles",
+  "observed_error": "fetch failed after successful 283-article payload generation",
+  "action": "Retry the failed idempotent publisher job; retain actual final workflow outcome separately"
+}

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.2",
+  "qualification": "M13-STAGE2-VM-v1",
+  "source_commit": "f3b6bed46907a4e8e677fd4f839603f3e1b12a04",
+  "release_source_commit": "4e442e330a119eb613504b5e9b2cea2cc3cad25f",
+  "build_id": "a44917c5c8ed173c85420988300ac26a",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2",
+  "workflow_ids": [
+    44213806817
+  ],
+  "current_native_download": "m132-v0.13.2",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 444,
+  "unique_links": 3058,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

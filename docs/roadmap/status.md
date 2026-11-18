@@ -1,13 +1,13 @@
 # Current status
 
-**Current development: [M13.2 — welcoming setup](../milestones/m13-2.md), implementation and qualification in progress.** M13.2 native qualification and matching GitHub media pass; complete public website closure is in progress. M13.3–M13.12 follow strictly after each complete public closure.
-**M13.2 / 0.13.2 passes M13-STAGE2-VM-v1 native qualification.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2), [follow setup](../handbook/install-m132.md). The scoped release covers welcome/setup, five reference displays, real installation and independent startup. Matching public website verification is in progress; M13.3 has not started.
+**Current development: [M13.2 — welcoming setup](../milestones/m13-2.md), complete within its native setup and public website scope.** M13.2 is the current qualified download. M13.3–M13.12 follow strictly after each complete public closure.
+**M13.2 / 0.13.2 passes M13-STAGE2-VM-v1 native qualification.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2), [follow setup](../handbook/install-m132.md). The scoped release covers welcome/setup, five reference displays, real installation and independent startup. Matching public website verification passes: 444 pages, 283 exact-source articles, native homepage Save and desktop/mobile/search/download checks. M13.3 follows next.
 
 
 Updated 18 November 2026.
 
 
-M13.0 is complete within its design-and-portal scope: thirteen ordered stages, six original concepts, a tested search prototype and the live task-first documentation portal. Its design prerelease has no native ISO. Production same-page search and task article navigation are implemented in M13.1 and pass desktop/mobile public checks. M13.1 native and public delivery is complete; M13.2 is in progress; M13.3–M13.12 have not started. Public verification passes: 432 pages, 275 exact-source articles and the saved responsive homepage. [Publication receipt](../../evidence/M13/0/publication-results.json).
+M13.0 is complete within its design-and-portal scope: thirteen ordered stages, six original concepts, a tested search prototype and the live task-first documentation portal. Its design prerelease has no native ISO. Production same-page search and task article navigation are implemented in M13.1 and pass desktop/mobile public checks. M13.1 native and public delivery is complete; M13.2 native and public delivery is complete; M13.3–M13.12 have not started. Public verification passes: 432 pages, 275 exact-source articles and the saved responsive homepage. [Publication receipt](../../evidence/M13/0/publication-results.json).
 
 **M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
 [Install](../handbook/install-m1218.md), [Final desktop guide](../handbook/final-m1218.md),

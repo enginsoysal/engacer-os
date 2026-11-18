@@ -24,10 +24,11 @@
     {
       "id": "M13.2",
       "title": "Welcoming setup and a coherent boot journey",
-      "status": "native_qualified_publication_in_progress",
+      "status": "complete",
       "native_qualification": "M13-STAGE2-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2",
-      "evidence": "evidence/M13/2"
+      "evidence": "evidence/M13/2",
+      "publication_evidence": "evidence/M13/2/publication-results.json"
     },
     {
       "id": "M13.3",
