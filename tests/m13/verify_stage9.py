@@ -26,6 +26,7 @@ def main():
   assert r['native_budget_trace']['matched_positions']==r['native_budget_trace']['offered_positions']>=32 and r['resources']['retained_task_delta_pages']==0
   assert r['qualification_method'].startswith('native receipt-to-framebuffer')
  assert vm['existing_vm_inventory_unchanged'] and vm['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
+ identity=read(work/'rowfill-pixel-identity.json');assert identity['passed']
  previous=read(ROOT/'evidence/M13/8/acceptance-results.json')
  assert sha(ROOT/'dist/EngacerOS-M13STAGE8.iso')==previous['iso_sha256'] and sha(ROOT/'dist/EngacerOS-M13STAGE8-VMware.zip')==previous['vmware_zip_sha256']
  rules.git_inputs(meta['source_sha256'])
@@ -40,13 +41,18 @@ def main():
   for label in (n,'windows-'+n,'cursors-'+n):
    dest=out/'native'/label;dest.mkdir(parents=True,exist_ok=True)
    for p in (work/label).iterdir():
-    if p.suffix in ('.json','.png','.log'):shutil.copyfile(p,dest/p.name)
+    if p.suffix in ('.json','.png','.log'):
+     (dest/p.name).write_bytes(p.read_bytes() if p.suffix=='.png' else p.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
  for label in ('motion','motion/whpx-legacy-ordinary','motion/whpx-legacy-4k','vmware-results'):
   src=work/label
   if not src.exists():continue
   dest=out/'native'/label;dest.mkdir(parents=True,exist_ok=True)
   for p in src.iterdir():
-   if p.suffix in ('.json','.png','.log'):shutil.copyfile(p,dest/p.name)
+   if p.suffix in ('.json','.png','.log'):
+    (dest/p.name).write_bytes(p.read_bytes() if p.suffix=='.png' else p.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
+ accepted=read(out/'acceptance-results.json')
+ accepted['harness_sha256']={p.relative_to(ROOT).as_posix():sha(p) for p in [*(ROOT/'tests/m13').glob('*.py'),*(ROOT/'tests/m13').glob('*.mjs'),*(ROOT/'tests/m13').glob('*.c')]}
+ write(out/'acceptance-results.json',accepted)
  print('PASS scoped M13.9 exact native motion, cursor, processing budgets and VMware tasks; stability remains M13.13')
 
 if __name__=='__main__':main()

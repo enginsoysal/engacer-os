@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "iso_sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440",
+  "physical": [
+    3840,
+    2160
+  ],
+  "checks": [
+    "Minimize/exact-owner restore, maximize/normal restore, pointer move and resize cancellation preserve real bounds",
+    "Actual edge preview cancels safely; release and complementary-window choice place exact left/right halves and restore each independent normal rectangle",
+    "Dirty editor text survives minimizing, switching and snapping; a partially off-screen window retains a reachable real Move menu and returns on screen",
+    "Tasks retain zero managed pages and stable idle halt; two ordinary no-ISO boots start without persisting transient snap overlays"
+  ],
+  "clone": {
+    "source_sha256": "899e8ea759e1133a572ae3e71b184214833313c3362c121436d3d9481aa789c8",
+    "clone_sha256": "899e8ea759e1133a572ae3e71b184214833313c3362c121436d3d9481aa789c8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "logical": [
+    1920,
+    1080
+  ],
+  "scale_units": 4,
+  "before_close": {
+    "windows": [
+      {
+        "slot": 0,
+        "token": 8589934593,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 1,
+        "token": 4294967298,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 2,
+        "token": 4294967299,
+        "app": 2,
+        "minimized": false
+      }
+    ],
+    "focused": 1,
+    "context": 0,
+    "keyboard_move": 0
+  },
+  "resources": {
+    "before": [
+      8147,
+      8147,
+      248360,
+      5
+    ],
+    "after": [
+      8147,
+      8159,
+      248360,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 366,
+      "after": 366,
+      "halted": 2
+    },
+    {
+      "before": 366,
+      "after": 366,
+      "halted": 2
+    },
+    {
+      "before": 366,
+      "after": 366,
+      "halted": 2
+    }
+  ]
+}

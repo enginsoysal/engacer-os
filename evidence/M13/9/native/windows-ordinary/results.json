@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "iso_sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440",
+  "physical": [
+    1920,
+    1080
+  ],
+  "checks": [
+    "Minimize/exact-owner restore, maximize/normal restore, pointer move and resize cancellation preserve real bounds",
+    "Actual edge preview cancels safely; release and complementary-window choice place exact left/right halves and restore each independent normal rectangle",
+    "Dirty editor text survives minimizing, switching and snapping; a partially off-screen window retains a reachable real Move menu and returns on screen",
+    "Tasks retain zero managed pages and stable idle halt; two ordinary no-ISO boots start without persisting transient snap overlays"
+  ],
+  "clone": {
+    "source_sha256": "5dc30a3b0015252722b24ede7a20fa5bb158c5985bdcd77cd8d19f53bf4cd133",
+    "clone_sha256": "5dc30a3b0015252722b24ede7a20fa5bb158c5985bdcd77cd8d19f53bf4cd133",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "logical": [
+    1920,
+    1080
+  ],
+  "scale_units": 2,
+  "before_close": {
+    "windows": [
+      {
+        "slot": 0,
+        "token": 8589934593,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 1,
+        "token": 4294967298,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 2,
+        "token": 4294967299,
+        "app": 2,
+        "minimized": false
+      }
+    ],
+    "focused": 1,
+    "context": 0,
+    "keyboard_move": 0
+  },
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      117290,
+      5
+    ],
+    "after": [
+      2072,
+      2084,
+      117290,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 322,
+      "after": 322,
+      "halted": 2
+    },
+    {
+      "before": 322,
+      "after": 322,
+      "halted": 2
+    },
+    {
+      "before": 322,
+      "after": 322,
+      "halted": 2
+    }
+  ]
+}

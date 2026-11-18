@@ -1,0 +1,1243 @@
+{
+  "passed": true,
+  "stage": "M13.9",
+  "profile": "4k",
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "iso_sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440",
+  "physical": [
+    3840,
+    2160
+  ],
+  "configured_guest_mib": 1024,
+  "cpus": 2,
+  "owned_fixture": "29e37e5cdb3f48db88728b26ab7349d5",
+  "clone": {
+    "source_sha256": "899e8ea759e1133a572ae3e71b184214833313c3362c121436d3d9481aa789c8",
+    "clone_sha256": "899e8ea759e1133a572ae3e71b184214833313c3362c121436d3d9481aa789c8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "method": "Host ordinary pointer event to exact translated native title patch over authenticated loopback RFB; includes scanout, transport and observer overhead, not GPU FPS",
+  "checks": [
+    "Every requested held-pointer drag position has an independently observed exact native title patch at its translated physical location",
+    "Completed motion retains zero managed pages, adds no allocation failures and returns all CPUs to idle halt"
+  ],
+  "acceleration": "whpx",
+  "legacy_irq_profile": true,
+  "initial_cpu_monitor": {
+    "halted": 2,
+    "cpus": 2,
+    "input": {
+      "mouse_dirty": 0,
+      "mouse_head11": 0,
+      "mouse_tail11": 0,
+      "head": 0,
+      "tail": 0
+    }
+  },
+  "pointer_calibration": [
+    {
+      "step": "before",
+      "mouse_x": 600,
+      "mouse_y": 80,
+      "mouse_buttons": 0,
+      "pointer_x": 300,
+      "pointer_y": 40,
+      "previous_buttons": 0
+    },
+    {
+      "step": "qmp-origin",
+      "mouse_x": 1300,
+      "mouse_y": 336,
+      "mouse_buttons": 0,
+      "pointer_x": 650,
+      "pointer_y": 168,
+      "previous_buttons": 0
+    },
+    {
+      "step": "rfb-origin",
+      "mouse_x": 1299,
+      "mouse_y": 335,
+      "mouse_buttons": 0,
+      "pointer_x": 649,
+      "pointer_y": 167,
+      "previous_buttons": 0
+    },
+    {
+      "step": "rfb-down",
+      "mouse_x": 1299,
+      "mouse_y": 335,
+      "mouse_buttons": 1,
+      "pointer_x": 649,
+      "pointer_y": 167,
+      "previous_buttons": 1
+    }
+  ],
+  "native_budget_trace": {
+    "method": "Separate ordinary-input pass: no host framebuffer requests during timing; read bounded native receipt/completion records after release and idle. Following pass independently observes exact pixels at all requested positions.",
+    "offered_interval_ms": 100,
+    "offered_positions": 32,
+    "matched_positions": 32,
+    "capacity": 64,
+    "samples": [
+      {
+        "sequence": 10,
+        "received_us": 11271170,
+        "completed_us": 11297959,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 11
+      },
+      {
+        "sequence": 11,
+        "received_us": 11369265,
+        "completed_us": 11401673,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 15
+      },
+      {
+        "sequence": 12,
+        "received_us": 11483913,
+        "completed_us": 11508986,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 19
+      },
+      {
+        "sequence": 13,
+        "received_us": 11580723,
+        "completed_us": 11608371,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 23
+      },
+      {
+        "sequence": 14,
+        "received_us": 11701761,
+        "completed_us": 11731756,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 27
+      },
+      {
+        "sequence": 15,
+        "received_us": 11801003,
+        "completed_us": 11827319,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 31
+      },
+      {
+        "sequence": 16,
+        "received_us": 11923224,
+        "completed_us": 11949431,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 35
+      },
+      {
+        "sequence": 17,
+        "received_us": 12021365,
+        "completed_us": 12047110,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 39
+      },
+      {
+        "sequence": 18,
+        "received_us": 12139551,
+        "completed_us": 12170558,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 43
+      },
+      {
+        "sequence": 19,
+        "received_us": 12233553,
+        "completed_us": 12257118,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 47
+      },
+      {
+        "sequence": 20,
+        "received_us": 12356016,
+        "completed_us": 12379828,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 51
+      },
+      {
+        "sequence": 21,
+        "received_us": 12448843,
+        "completed_us": 12470069,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 55
+      },
+      {
+        "sequence": 22,
+        "received_us": 12566369,
+        "completed_us": 12585814,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 59
+      },
+      {
+        "sequence": 23,
+        "received_us": 12669020,
+        "completed_us": 12688031,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 63
+      },
+      {
+        "sequence": 24,
+        "received_us": 12784251,
+        "completed_us": 12802976,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 67
+      },
+      {
+        "sequence": 25,
+        "received_us": 12880936,
+        "completed_us": 12902498,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 71
+      },
+      {
+        "sequence": 26,
+        "received_us": 12999903,
+        "completed_us": 13017183,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 75
+      },
+      {
+        "sequence": 27,
+        "received_us": 13099361,
+        "completed_us": 13115873,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 79
+      },
+      {
+        "sequence": 28,
+        "received_us": 13217294,
+        "completed_us": 13233923,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 83
+      },
+      {
+        "sequence": 29,
+        "received_us": 13316321,
+        "completed_us": 13335467,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 87
+      },
+      {
+        "sequence": 30,
+        "received_us": 13435258,
+        "completed_us": 13453753,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 91
+      },
+      {
+        "sequence": 31,
+        "received_us": 13532287,
+        "completed_us": 13551394,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 95
+      },
+      {
+        "sequence": 32,
+        "received_us": 13650135,
+        "completed_us": 13668973,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 99
+      },
+      {
+        "sequence": 33,
+        "received_us": 13746682,
+        "completed_us": 13765744,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 103
+      },
+      {
+        "sequence": 34,
+        "received_us": 13863995,
+        "completed_us": 13882666,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 107
+      },
+      {
+        "sequence": 35,
+        "received_us": 13961750,
+        "completed_us": 13980818,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 111
+      },
+      {
+        "sequence": 36,
+        "received_us": 14077919,
+        "completed_us": 14096348,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 115
+      },
+      {
+        "sequence": 37,
+        "received_us": 14175410,
+        "completed_us": 14196737,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 119
+      },
+      {
+        "sequence": 38,
+        "received_us": 14294028,
+        "completed_us": 14310763,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 123
+      },
+      {
+        "sequence": 39,
+        "received_us": 14393247,
+        "completed_us": 14412177,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 127
+      },
+      {
+        "sequence": 40,
+        "received_us": 14510257,
+        "completed_us": 14529943,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 131
+      },
+      {
+        "sequence": 41,
+        "received_us": 14611457,
+        "completed_us": 14629450,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 135
+      }
+    ],
+    "completion_latency": {
+      "median_ms": 19.2955,
+      "p95_ms": 31.007,
+      "maximum_ms": 32.408,
+      "samples_ms": [
+        26.789,
+        32.408,
+        25.073,
+        27.648,
+        29.995,
+        26.316,
+        26.207,
+        25.745,
+        31.007,
+        23.565,
+        23.812,
+        21.226,
+        19.445,
+        19.011,
+        18.725,
+        21.562,
+        17.28,
+        16.512,
+        16.629,
+        19.146,
+        18.495,
+        19.107,
+        18.838,
+        19.062,
+        18.671,
+        19.068,
+        18.429,
+        21.327,
+        16.735,
+        18.93,
+        19.686,
+        17.993
+      ]
+    }
+  },
+  "native_trace": {
+    "total_samples": 76,
+    "capacity": 64,
+    "overwritten_samples": 12,
+    "samples": [
+      {
+        "sequence": 13,
+        "received_us": 11580723,
+        "completed_us": 11608371,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 23
+      },
+      {
+        "sequence": 14,
+        "received_us": 11701761,
+        "completed_us": 11731756,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 27
+      },
+      {
+        "sequence": 15,
+        "received_us": 11801003,
+        "completed_us": 11827319,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 31
+      },
+      {
+        "sequence": 16,
+        "received_us": 11923224,
+        "completed_us": 11949431,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 35
+      },
+      {
+        "sequence": 17,
+        "received_us": 12021365,
+        "completed_us": 12047110,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 39
+      },
+      {
+        "sequence": 18,
+        "received_us": 12139551,
+        "completed_us": 12170558,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 43
+      },
+      {
+        "sequence": 19,
+        "received_us": 12233553,
+        "completed_us": 12257118,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 47
+      },
+      {
+        "sequence": 20,
+        "received_us": 12356016,
+        "completed_us": 12379828,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 51
+      },
+      {
+        "sequence": 21,
+        "received_us": 12448843,
+        "completed_us": 12470069,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 55
+      },
+      {
+        "sequence": 22,
+        "received_us": 12566369,
+        "completed_us": 12585814,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 59
+      },
+      {
+        "sequence": 23,
+        "received_us": 12669020,
+        "completed_us": 12688031,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 63
+      },
+      {
+        "sequence": 24,
+        "received_us": 12784251,
+        "completed_us": 12802976,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 67
+      },
+      {
+        "sequence": 25,
+        "received_us": 12880936,
+        "completed_us": 12902498,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 71
+      },
+      {
+        "sequence": 26,
+        "received_us": 12999903,
+        "completed_us": 13017183,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 75
+      },
+      {
+        "sequence": 27,
+        "received_us": 13099361,
+        "completed_us": 13115873,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 79
+      },
+      {
+        "sequence": 28,
+        "received_us": 13217294,
+        "completed_us": 13233923,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 83
+      },
+      {
+        "sequence": 29,
+        "received_us": 13316321,
+        "completed_us": 13335467,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 87
+      },
+      {
+        "sequence": 30,
+        "received_us": 13435258,
+        "completed_us": 13453753,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 91
+      },
+      {
+        "sequence": 31,
+        "received_us": 13532287,
+        "completed_us": 13551394,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 95
+      },
+      {
+        "sequence": 32,
+        "received_us": 13650135,
+        "completed_us": 13668973,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 99
+      },
+      {
+        "sequence": 33,
+        "received_us": 13746682,
+        "completed_us": 13765744,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 103
+      },
+      {
+        "sequence": 34,
+        "received_us": 13863995,
+        "completed_us": 13882666,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 107
+      },
+      {
+        "sequence": 35,
+        "received_us": 13961750,
+        "completed_us": 13980818,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 111
+      },
+      {
+        "sequence": 36,
+        "received_us": 14077919,
+        "completed_us": 14096348,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 115
+      },
+      {
+        "sequence": 37,
+        "received_us": 14175410,
+        "completed_us": 14196737,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 119
+      },
+      {
+        "sequence": 38,
+        "received_us": 14294028,
+        "completed_us": 14310763,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 123
+      },
+      {
+        "sequence": 39,
+        "received_us": 14393247,
+        "completed_us": 14412177,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 127
+      },
+      {
+        "sequence": 40,
+        "received_us": 14510257,
+        "completed_us": 14529943,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 131
+      },
+      {
+        "sequence": 41,
+        "received_us": 14611457,
+        "completed_us": 14629450,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 135
+      },
+      {
+        "sequence": 42,
+        "received_us": 14720000,
+        "completed_us": 14743914,
+        "x": 649,
+        "y": 167,
+        "flags": 0,
+        "paint": 135
+      },
+      {
+        "sequence": 43,
+        "received_us": 14860000,
+        "completed_us": 14911211,
+        "x": 649,
+        "y": 167,
+        "flags": 256,
+        "paint": 136
+      },
+      {
+        "sequence": 44,
+        "received_us": 14999723,
+        "completed_us": 15017514,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 140
+      },
+      {
+        "sequence": 45,
+        "received_us": 15168201,
+        "completed_us": 15197455,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 144
+      },
+      {
+        "sequence": 46,
+        "received_us": 15306160,
+        "completed_us": 15324829,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 148
+      },
+      {
+        "sequence": 47,
+        "received_us": 15470354,
+        "completed_us": 15495914,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 152
+      },
+      {
+        "sequence": 48,
+        "received_us": 15618321,
+        "completed_us": 15634959,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 156
+      },
+      {
+        "sequence": 49,
+        "received_us": 15789988,
+        "completed_us": 15817997,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 160
+      },
+      {
+        "sequence": 50,
+        "received_us": 15940467,
+        "completed_us": 15959635,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 164
+      },
+      {
+        "sequence": 51,
+        "received_us": 16111814,
+        "completed_us": 16143193,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 168
+      },
+      {
+        "sequence": 52,
+        "received_us": 16252627,
+        "completed_us": 16271544,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 172
+      },
+      {
+        "sequence": 53,
+        "received_us": 16413540,
+        "completed_us": 16439803,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 176
+      },
+      {
+        "sequence": 54,
+        "received_us": 16558895,
+        "completed_us": 16577278,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 180
+      },
+      {
+        "sequence": 55,
+        "received_us": 16732197,
+        "completed_us": 16760744,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 184
+      },
+      {
+        "sequence": 56,
+        "received_us": 16879893,
+        "completed_us": 16898203,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 188
+      },
+      {
+        "sequence": 57,
+        "received_us": 17047669,
+        "completed_us": 17076736,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 192
+      },
+      {
+        "sequence": 58,
+        "received_us": 17205599,
+        "completed_us": 17228765,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 196
+      },
+      {
+        "sequence": 59,
+        "received_us": 17395035,
+        "completed_us": 17414211,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 200
+      },
+      {
+        "sequence": 60,
+        "received_us": 17582187,
+        "completed_us": 17603674,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 204
+      },
+      {
+        "sequence": 61,
+        "received_us": 17741214,
+        "completed_us": 17768666,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 208
+      },
+      {
+        "sequence": 62,
+        "received_us": 17886273,
+        "completed_us": 17905404,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 212
+      },
+      {
+        "sequence": 63,
+        "received_us": 18051127,
+        "completed_us": 18081788,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 216
+      },
+      {
+        "sequence": 64,
+        "received_us": 18197727,
+        "completed_us": 18213009,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 220
+      },
+      {
+        "sequence": 65,
+        "received_us": 18394849,
+        "completed_us": 18409369,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 224
+      },
+      {
+        "sequence": 66,
+        "received_us": 18581432,
+        "completed_us": 18601884,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 228
+      },
+      {
+        "sequence": 67,
+        "received_us": 18773970,
+        "completed_us": 18796575,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 232
+      },
+      {
+        "sequence": 68,
+        "received_us": 18947891,
+        "completed_us": 18984368,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 236
+      },
+      {
+        "sequence": 69,
+        "received_us": 19104236,
+        "completed_us": 19126126,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 240
+      },
+      {
+        "sequence": 70,
+        "received_us": 19291242,
+        "completed_us": 19311434,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 244
+      },
+      {
+        "sequence": 71,
+        "received_us": 19479608,
+        "completed_us": 19501475,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 248
+      },
+      {
+        "sequence": 72,
+        "received_us": 19667296,
+        "completed_us": 19686994,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 252
+      },
+      {
+        "sequence": 73,
+        "received_us": 19863328,
+        "completed_us": 19885087,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 256
+      },
+      {
+        "sequence": 74,
+        "received_us": 20014304,
+        "completed_us": 20048695,
+        "x": 673,
+        "y": 187,
+        "flags": 257,
+        "paint": 260
+      },
+      {
+        "sequence": 75,
+        "received_us": 20170997,
+        "completed_us": 20193263,
+        "x": 649,
+        "y": 167,
+        "flags": 257,
+        "paint": 264
+      },
+      {
+        "sequence": 76,
+        "received_us": 20360000,
+        "completed_us": 20380575,
+        "x": 649,
+        "y": 167,
+        "flags": 0,
+        "paint": 264
+      }
+    ],
+    "drag_samples": 61,
+    "scope": "Native IRQ receipt to CPU composition/framebuffer/cursor completion; excludes external scanout and transport. Button-edge receipts are rounded down by up to 10 ms.",
+    "completion_intervals": {
+      "median_ms": 129.786,
+      "p95_ms": 196.36,
+      "maximum_ms": 388.064,
+      "samples_ms": [
+        123.385,
+        95.563,
+        122.112,
+        97.679,
+        123.448,
+        86.56,
+        122.71,
+        90.241,
+        115.745,
+        102.217,
+        114.945,
+        99.522,
+        114.685,
+        98.69,
+        118.05,
+        101.544,
+        118.286,
+        97.641,
+        117.579,
+        96.771,
+        116.922,
+        98.152,
+        115.53,
+        100.389,
+        114.026,
+        101.414,
+        117.766,
+        99.507,
+        388.064,
+        179.941,
+        127.374,
+        171.085,
+        139.045,
+        183.038,
+        141.638,
+        183.558,
+        128.351,
+        168.259,
+        137.475,
+        183.466,
+        137.459,
+        178.533,
+        152.029,
+        185.446,
+        189.463,
+        164.992,
+        136.738,
+        176.384,
+        131.221,
+        196.36,
+        192.515,
+        194.691,
+        187.793,
+        141.758,
+        185.308,
+        190.041,
+        185.519,
+        198.093,
+        163.608,
+        144.568
+      ]
+    },
+    "drag_completion_latency": {
+      "median_ms": 20.192,
+      "p95_ms": 31.007,
+      "maximum_ms": 36.477,
+      "samples_ms": [
+        27.648,
+        29.995,
+        26.316,
+        26.207,
+        25.745,
+        31.007,
+        23.565,
+        23.812,
+        21.226,
+        19.445,
+        19.011,
+        18.725,
+        21.562,
+        17.28,
+        16.512,
+        16.629,
+        19.146,
+        18.495,
+        19.107,
+        18.838,
+        19.062,
+        18.671,
+        19.068,
+        18.429,
+        21.327,
+        16.735,
+        18.93,
+        19.686,
+        17.993,
+        17.791,
+        29.254,
+        18.669,
+        25.56,
+        16.638,
+        28.009,
+        19.168,
+        31.379,
+        18.917,
+        26.263,
+        18.383,
+        28.547,
+        18.31,
+        29.067,
+        23.166,
+        19.176,
+        21.487,
+        27.452,
+        19.131,
+        30.661,
+        15.282,
+        14.52,
+        20.452,
+        22.605,
+        36.477,
+        21.89,
+        20.192,
+        21.867,
+        19.698,
+        21.759,
+        34.391,
+        22.266
+      ]
+    }
+  },
+  "drag_feedback": {
+    "median_ms": 175.86279999977705,
+    "p95_ms": 195.35129999985656,
+    "maximum_ms": 199.44009999971968,
+    "samples_ms": [
+      177.70420000033482,
+      128.59619999971983,
+      173.58920000015132,
+      138.63809999975274,
+      180.96189999960188,
+      138.01859999966837,
+      183.83640000001833,
+      131.72929999973348,
+      169.68420000011974,
+      135.60869999992065,
+      183.27249999993,
+      138.91629999989163,
+      176.33669999986523,
+      144.96039999994537,
+      192.70410000035554,
+      182.21400000038557,
+      171.00310000023455,
+      137.13840000036726,
+      175.38889999968887,
+      135.3383999999096,
+      195.35129999985656,
+      189.26390000024185,
+      189.9169999996957,
+      187.08180000021457,
+      142.9511999999704,
+      188.85090000003402,
+      186.4215000000513,
+      185.90350000022227,
+      199.44009999971968,
+      162.72509999998874,
+      145.44649999970716,
+      191.92770000017845
+    ]
+  },
+  "observed_position_intervals": {
+    "median_ms": 175.4011999996692,
+    "p95_ms": 195.36379999999554,
+    "maximum_ms": 199.45319999987987,
+    "samples_ms": [
+      128.6056999997527,
+      173.59990000022663,
+      138.64849999981743,
+      180.971899999804,
+      138.02910000003976,
+      183.84680000008302,
+      131.74239999989368,
+      169.69490000019505,
+      135.61939999999595,
+      183.28359999986787,
+      138.92699999996694,
+      176.35180000024775,
+      144.97119999987262,
+      192.71800000024086,
+      182.2243999999955,
+      171.01339999999254,
+      137.15000000001965,
+      175.4011999996692,
+      135.3490999999849,
+      195.36379999999554,
+      189.27460000031715,
+      189.9289999996654,
+      187.09520000038538,
+      142.96429999967586,
+      188.86650000013105,
+      186.43380000003162,
+      185.91349999996964,
+      199.45319999987987,
+      162.735899999916,
+      145.45920000000478,
+      191.9452000001911
+    ]
+  },
+  "requested_positions": 32,
+  "visible_positions": 32,
+  "missed_requested_positions": 0,
+  "drag_interval_target_ms": 50,
+  "drag_interval_target_passed": false,
+  "ordinary_feedback_target_ms": 100,
+  "ordinary_feedback_target_passed": false,
+  "observation_encoding": "raw",
+  "resources": {
+    "managed_before": [
+      8147,
+      8147,
+      249384,
+      5
+    ],
+    "managed_after": [
+      8147,
+      8147,
+      249384,
+      5
+    ],
+    "retained_task_delta_pages": 0,
+    "all_cpus_halted_when_idle": true
+  },
+  "external_goals_passed": false,
+  "native_completion_budget_ms": 50,
+  "native_completion_budget_passed": true,
+  "qualification_method": "native receipt-to-framebuffer completion plus independent exact visible positions; external goals reported separately"
+}

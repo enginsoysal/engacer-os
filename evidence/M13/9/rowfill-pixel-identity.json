@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "baseline_build_id": "756ec126dcd3190845e8d148b98fed02",
+  "box": [
+    400,
+    130,
+    1520,
+    890
+  ],
+  "changed_window_and_exterior_shadow_pixels": 0,
+  "baseline_png_sha256": "ab7525e66602643bae2225c0f6053175b8938b00ce8ed8547b73ecae3db3cd6e",
+  "current_png_sha256": "38b61bfc9579d9620118378db71b36eac80e2fb5cf3e3956b06d6206c90cc6e5",
+  "scope": "Actual native window, geometric cursor, rounded antialiasing and full exterior shadow before/after the row/opaque-span/covered-shadow optimizations; no scaling and no changed image data"
+}

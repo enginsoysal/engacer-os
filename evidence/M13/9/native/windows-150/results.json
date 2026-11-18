@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "iso_sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440",
+  "physical": [
+    1920,
+    1200
+  ],
+  "checks": [
+    "Minimize/exact-owner restore, maximize/normal restore, pointer move and resize cancellation preserve real bounds",
+    "Actual edge preview cancels safely; release and complementary-window choice place exact left/right halves and restore each independent normal rectangle",
+    "Dirty editor text survives minimizing, switching and snapping; a partially off-screen window retains a reachable real Move menu and returns on screen",
+    "Tasks retain zero managed pages and stable idle halt; two ordinary no-ISO boots start without persisting transient snap overlays"
+  ],
+  "clone": {
+    "source_sha256": "baf985d78798e5e4c3487e0088f84c07fd612af12f13f634b4c49d3e4370dec5",
+    "clone_sha256": "baf985d78798e5e4c3487e0088f84c07fd612af12f13f634b4c49d3e4370dec5",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "logical": [
+    1280,
+    800
+  ],
+  "scale_units": 3,
+  "before_close": {
+    "windows": [
+      {
+        "slot": 0,
+        "token": 8589934593,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 1,
+        "token": 4294967298,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 2,
+        "token": 4294967299,
+        "app": 2,
+        "minimized": false
+      }
+    ],
+    "focused": 1,
+    "context": 0,
+    "keyboard_move": 0
+  },
+  "resources": {
+    "before": [
+      2297,
+      2297,
+      117290,
+      5
+    ],
+    "after": [
+      2297,
+      2309,
+      117290,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 290,
+      "after": 290,
+      "halted": 2
+    },
+    {
+      "before": 290,
+      "after": 290,
+      "halted": 2
+    },
+    {
+      "before": 290,
+      "after": 290,
+      "halted": 2
+    }
+  ]
+}

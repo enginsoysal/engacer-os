@@ -1,0 +1,81 @@
+{
+  "desktop_fixed": {
+    "bytes": 557404,
+    "sections": {
+      "bss": 557376,
+      "data": 28
+    },
+    "map_sha256": "449870252a554e29a7c07486ace6e571292a5d13cffe2af5b1308f705db004d6"
+  },
+  "previous_m138_fixed": {
+    "bytes": 554844,
+    "sections": {
+      "bss": 554816,
+      "data": 28
+    },
+    "map_sha256": "50d14251b43ef920a1da5f23a841dc194c5f3e9106b5f361cf89731b356cd224"
+  },
+  "desktop_delta_bytes": 2560,
+  "cursor_kind_extra_core_bytes": 4,
+  "input_timestamp_extra_usb_bytes": 16,
+  "setup": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116009,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17702,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17702,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
+    "150": {
+      "managed_stats": [
+        2297,
+        2297,
+        116009,
+        5
+      ],
+      "framebuffer_bytes": 9216000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247079,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "scope": "Native pointer ring and kind only; no new framebuffer, bitmap cache or idle worker. Configured RAM and framebuffer bytes remain separate from fixed/managed memory."
+}

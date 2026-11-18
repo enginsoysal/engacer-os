@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "iso_sha256": "7d17b7bac7813f76c2c26de7df02fcb5d1e35c3f3c13e2283b6454e701dcb440",
+  "physical": [
+    1920,
+    1080
+  ],
+  "clone": {
+    "source_sha256": "5dc30a3b0015252722b24ede7a20fa5bb158c5985bdcd77cd8d19f53bf4cd133",
+    "clone_sha256": "5dc30a3b0015252722b24ede7a20fa5bb158c5985bdcd77cd8d19f53bf4cd133",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    "Native edge/corner hover shows both axial and diagonal resize cursors; real resize changes bounds and Escape restores the exact original geometry",
+    "Actual Start search field uses a scalable text cursor at the unchanged native hit coordinate; leaving it restores context, and completed cursor tasks retain zero managed pages"
+  ],
+  "observations": [
+    {
+      "name": "horizontal-resize",
+      "kind": 2,
+      "logical_position": [
+        421,
+        510
+      ]
+    },
+    {
+      "name": "vertical-resize",
+      "kind": 3,
+      "logical_position": [
+        960,
+        151
+      ]
+    },
+    {
+      "name": "northwest-resize",
+      "kind": 4,
+      "logical_position": [
+        421,
+        151
+      ]
+    },
+    {
+      "name": "northeast-resize",
+      "kind": 5,
+      "logical_position": [
+        1499,
+        151
+      ]
+    },
+    {
+      "name": "southeast-resize",
+      "kind": 4,
+      "logical_position": [
+        1498,
+        868
+      ]
+    },
+    {
+      "name": "caption-arrow",
+      "kind": 0,
+      "logical_position": [
+        580,
+        168
+      ]
+    },
+    {
+      "name": "start-search-text",
+      "kind": 1,
+      "logical_position": [
+        396,
+        528
+      ]
+    }
+  ],
+  "resources": {
+    "retained_pages": 0,
+    "all_cpus_halted_when_idle": true,
+    "cursor_kind_fixed_bytes": 4
+  }
+}
