@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.10",
+  "currentRelease": "M13.11",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m1310.md",
+          "docs/handbook/install-m1311.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m1310-v0.13.10.md",
+          "docs/releases/m1311-v0.13.11.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -91,7 +91,11 @@
       "description": "Adjust supported preferences or build your own distribution.",
       "items": [
         [
-          "docs/handbook/settings-m1310.md",
+          "docs/handbook/personalization-m1311.md",
+          "Personalize your desktop and configure the screensaver"
+        ],
+        [
+          "docs/handbook/settings-m1311.md",
           "Find, preview, apply and reset Settings"
         ],
         [

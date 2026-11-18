@@ -2,9 +2,9 @@
 
 **Stability pending - testing only.** Earlier M13.8 freeze reports remain documented. Stability investigation and duration/reset qualification occur exclusively in M13.13, after finishing M13.9-M13.12 in order. Do not use these testing media for everyday work.
 
-**Current testing download: [Engacer OS M13.10](https://github.com/enginsoysal/engacer-os/releases/tag/m1310-v0.13.10).** [Install in VMware](docs/handbook/install-m1310.md), [Settings](docs/handbook/settings-m1310.md), [common dialogs](docs/handbook/dialogs-m1310.md), [exact release scope](docs/releases/m1310-v0.13.10.md). Exact qualification passes 133 native checks, 133 app-frame captures and three enabled-device VMware checks; twenty matching release assets are published. Fixed desktop state remains 557,404 bytes and completed tasks retain zero managed pages. Complete public delivery passes: 495 pages, 318 exact-source articles and 3,497 links, with zero known broken targets and 13 explicitly unverified external HEAD references. M13.10 is complete within its scope; M13.11 follows. Stability remains exclusively M13.13.
+**Current testing download: [Engacer OS M13.11](https://github.com/enginsoysal/engacer-os/releases/tag/m1311-v0.13.11).** [Install in VMware](docs/handbook/install-m1311.md), [Settings](docs/handbook/settings-m1311.md), [personalization and screensaver](docs/handbook/personalization-m1311.md), [exact release scope](docs/releases/m1311-v0.13.11.md). Exact qualification passes 62 native checks, 57 app-frame captures and four enabled-device VMware checks; twenty matching release assets are published. Fixed desktop state is 557,516 bytes (+112); measured completed tasks retain zero managed pages. Public website verification is being completed before M13.12 begins. Stability remains exclusively M13.13.
 
-**Reported stability issue:** the owner reports frequent freezes on M13.8, in addition to the earlier M13.7 report. An exact M13.7 VMware baseline retained input processing after one real hour, but its last 44 frame samples stayed identical from about sixteen minutes and the final image did not show the serial-confirmed new app. Presentation stability therefore fails this diagnostic; the cause remains under investigation. The owner explicitly schedules investigation, correction and the eight-real-hour stability gate for M13.13, after completing M13.9-M13.12 in order. The scoped M13.8 Settings work does not claim a fix. The optional screensaver is planned for M13.11.
+**Reported stability issue:** the owner reports frequent freezes on M13.8, in addition to the earlier M13.7 report. An exact M13.7 VMware baseline retained input processing after one real hour, but its last 44 frame samples stayed identical from about sixteen minutes and the final image did not show the serial-confirmed new app. Presentation stability therefore fails this diagnostic; the cause remains under investigation. The owner explicitly schedules investigation, correction and the eight-real-hour stability gate for M13.13, after completing M13.9-M13.12 in order. The scoped M13.8 Settings work does not claim a fix. The optional screensaver passes scoped M13.11 feature qualification; it does not qualify stability.
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
@@ -60,9 +60,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8.iso) ·
-[Step-by-step installation](docs/handbook/install-m138.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1311-v0.13.11/EngacerOS-M13STAGE11-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1311-v0.13.11/EngacerOS-M13STAGE11.iso) ·
+[Step-by-step installation](docs/handbook/install-m1311.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.
