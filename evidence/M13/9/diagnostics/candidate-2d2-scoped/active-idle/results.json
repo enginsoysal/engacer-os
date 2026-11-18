@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "stage": "M13.9",
+  "build_id": "2d2b1df5cb74d2beadcf1286191b0d91",
+  "iso_sha256": "c9dec0fbe7803ad751dc96a23c08d77e9d11f6aa28ad56219841b6088d959544",
+  "owned_fixture": "cc5280c6c1894d7bbdbd192dc9179eba",
+  "requested_idle_seconds_per_cycle": 180,
+  "cycles": [
+    {
+      "real_idle_seconds": 180.78100000001723,
+      "rtc_seconds_before": 36,
+      "rtc_seconds_after": 217,
+      "dirty_text_sha256": "27e6a50d7c429f55a3045b1226792f1e61deac16c2de044ac6c6b519ceabfc83",
+      "saved_file_unchanged": true,
+      "same_window_owner": true,
+      "retained_pages": 0,
+      "ordinary_input_after_idle": true
+    },
+    {
+      "real_idle_seconds": 180.79699999999139,
+      "rtc_seconds_before": 221,
+      "rtc_seconds_after": 402,
+      "dirty_text_sha256": "9987c0f37aa8b6fda7011ed15bdd4da8684d1e5735bfb0058c0e098790df35b9",
+      "saved_file_unchanged": true,
+      "same_window_owner": true,
+      "retained_pages": 0,
+      "ordinary_input_after_idle": true
+    },
+    {
+      "real_idle_seconds": 180.25,
+      "rtc_seconds_before": 406,
+      "rtc_seconds_after": 587,
+      "dirty_text_sha256": "79c562f5686938bf28ebe4817365907222aa475e24bf648aa5df2a8b5263c145",
+      "saved_file_unchanged": true,
+      "same_window_owner": true,
+      "retained_pages": 0,
+      "ordinary_input_after_idle": true
+    }
+  ],
+  "checks": [
+    "Explicit Save creates independently read exact bytes before idle; subsequent unsaved edits remain owned by the same live Editor",
+    "Three separately recorded real active/idle cycles retain dirty text and original saved bytes, advance RTC interrupts, accept ordinary text input and retain zero managed pages",
+    "Explicit final Save publishes the retained draft; two independent disk-only starts reopen the actual document with exact bytes and correct saved state",
+    "Closing the task returns to baseline managed pages and idle CPUs halt without a new polling worker"
+  ],
+  "scope": "Real elapsed native active/idle, RTC and document/persistent-data checks on a separate owned raw-disk fixture. Raw VRAM captures are not vendor GPU/scanout qualification; the exact VMware soak is separate.",
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      116009,
+      5
+    ],
+    "after": [
+      2072,
+      2084,
+      116009,
+      5
+    ],
+    "retained_task_delta_pages": 0,
+    "all_cpus_halted_when_idle": true
+  },
+  "saved_document_sha256": "79c562f5686938bf28ebe4817365907222aa475e24bf648aa5df2a8b5263c145",
+  "document_path": "/Users/Owner/Documents/Note1.txt"
+}
