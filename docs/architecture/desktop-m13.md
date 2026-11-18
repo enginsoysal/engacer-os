@@ -120,4 +120,8 @@ Physical legacy/USB key holds, genuine raw motion/buttons and wheel changes prov
 
 High contrast outlines Start and the current Files place using existing primitives. The current candidate's measured fixed desktop increase is 112 bytes and physical-input module BSS increase is 76 bytes including alignment; code and buffers remain separately accounted. Exact native functional qualification and matching GitHub/actual website publication pass; the immutable M13.11 receipt records their complete scoped closure. [Implementation, alternatives and acceptance](../milestones/m13-11.md), [user guide](../handbook/personalization-m1311.md).
 
-The retained offline guide remains a general desktop overview; the new screensaver instructions are currently in the matching manual. Final M13.12 integration will refresh the offline guide's current button names and screensaver instructions before its frozen whole-product qualification.
+At M13.11 the offline guide remained a general desktop overview. M13.12 refreshes its actual current button names and screensaver instructions; all fourteen final controller profiles independently read the installed distribution bytes.
+
+## M13.12 integrated final build
+
+Measured label alignment reuses existing font metrics and the same 320-unit saver region. The Appearance search detail now names screensaver. No runtime state, framebuffer, cache or worker is added. Exact whole-product qualification passes 162 native and 47 VMware checks, fourteen controller profiles, 106 original application payloads and 95 app frames. Fixed desktop state remains 557,516 bytes; measured completed tasks retain zero managed pages. [Final implementation and limits](../milestones/m13-12.md), [beginner guide](../handbook/final-m1312.md). Public delivery closes separately; all stability investigation and duration/reset work remain M13.13.

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "scope": "Correct observed 4Kn NVMe capacity; installer writes remain unsupported",
+  "checks": [
+    "Actual 4096-byte-sector NVMe disk remains inspectable with correct 2-GiB capacity",
+    "Unsupported installer sector width cannot enable Next",
+    "Complete owned disk remains byte-identical"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "stage": "M13.12",
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "reviewer": "Agent review of actual native captures; no human participant study",
+  "criteria": {
+    "clear": "Named pages, visible native navigation, consistent selection and bounded dialogs; automated task gates remain separately required",
+    "convenient": "Common navigation and keyboard actions remain reachable in the named layouts",
+    "user_friendly": "Plain action names, independent preview/save/cancel and visible unavailable actions",
+    "graphical_quality": "Consistent original vector icons, themes, spacing and measured saver title alignment",
+    "readable": "Reviewed compact and real 4K captures have legible native fonts and no essential text overlap or clipped controls"
+  },
+  "reviewed": [
+    {
+      "label": "compact Settings",
+      "capture": "native/personalization-compact/light-screensaver-settings.png",
+      "sha256": "ccfc336a5f1965cec10fcf6bc4989c345434ed0c88096933f10f30826aeaf4dc"
+    },
+    {
+      "label": "centered native saver",
+      "capture": "native/personalization-compact/light-logo-preview.png",
+      "sha256": "ed8d7a3bec3e8dd1ecc67f0f1b0178a72ce674750e9d0aedc5264029c8dd284c"
+    },
+    {
+      "label": "physical 4K dark Settings",
+      "capture": "native/personalization-4k/dark-screensaver-settings.png",
+      "sha256": "43a8e796c392f3bc218224fc3d297eefe79a9471c29c09e1ed985ff1d67e3153"
+    },
+    {
+      "label": "physical 4K High-contrast Files",
+      "capture": "native/personalization-4k/high-contrast-current-place.png",
+      "sha256": "e46938cd210c495f2e4bdb2644b1610a2fa518868106d3b84fd5f77a9ea134eb"
+    },
+    {
+      "label": "physical 4K desktop overflow",
+      "capture": "native/desktop-native/native-4k.png",
+      "sha256": "6c3c1a0b43d28d0d1fc905549c9c4a7d12c49c2034012b666e6365b0e0d5ebe5"
+    },
+    {
+      "label": "compact Files",
+      "capture": "native/apps-1024/light-1.png",
+      "sha256": "c1a1a840984932ea6af6731f074c0d544e96a02b859334f780ec0596014e6c07"
+    }
+  ],
+  "scope": "These representative images were individually viewed. Automated owner/caption bounds cover all 95 declared app frames; this is not a claim that an agent manually inspected every pixel of every frame. Whole-product acceptance and public delivery remain separate gates."
+}

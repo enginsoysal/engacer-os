@@ -1,0 +1,458 @@
+{
+  "passed": true,
+  "fixed_desktop": {
+    "bytes": 557516,
+    "sections": {
+      "bss": 557488,
+      "data": 28
+    },
+    "map_sha256": "a3478f519939b734d6d07bb5cda262b4522aca28b49eaf3aa8ed0555766ecd30"
+  },
+  "previous_fixed": {
+    "bytes": 557516,
+    "sections": {
+      "bss": 557488,
+      "data": 28
+    },
+    "map_sha256": "7cbdc2f149a8c69a2d7e92d24e584b35259e872df037dc3c5fb5baf718656d9c"
+  },
+  "fixed_delta_bytes": 0,
+  "fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "tasks": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17699,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
+    "150": {
+      "managed_stats": [
+        2297,
+        2297,
+        116006,
+        5
+      ],
+      "framebuffer_bytes": 9216000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247076,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    },
+    "personalization-ordinary": {
+      "before": [
+        2072,
+        2072,
+        117287,
+        5
+      ],
+      "after": [
+        2072,
+        2072,
+        117287,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "personalization-compact": {
+      "before": [
+        1047,
+        1047,
+        18980,
+        5
+      ],
+      "after": [
+        1047,
+        1047,
+        18980,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "personalization-1024": {
+      "before": [
+        815,
+        815,
+        18980,
+        5
+      ],
+      "after": [
+        815,
+        815,
+        18980,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "personalization-150": {
+      "before": [
+        2297,
+        2297,
+        117287,
+        5
+      ],
+      "after": [
+        2297,
+        2297,
+        117287,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "personalization-4k": {
+      "before": [
+        8147,
+        8147,
+        248357,
+        5
+      ],
+      "after": [
+        8147,
+        8147,
+        248357,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "screensaver-native": {
+      "before": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "after": [
+        2072,
+        2084,
+        116006,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "screensaver-persistence": {
+      "retained_pages": 0
+    },
+    "settings-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1060,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "search-ordinary": {
+      "before": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "after": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "settings-write-failure": {
+      "before": [
+        1047,
+        1047,
+        18978,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        18978,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "dialogs-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1119,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "feedback-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1069,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "transfers-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "desktop-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "files-ordinary": {
+      "before": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "after": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "usb-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1054,
+        17699,
+        5
+      ],
+      "attached_before": [
+        1054,
+        1054,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "apps-ordinary": {
+      "before": [
+        2072,
+        2088,
+        117287,
+        5
+      ],
+      "after": [
+        2072,
+        2088,
+        117287,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "apps-1024": {
+      "before": [
+        815,
+        815,
+        18980,
+        5
+      ],
+      "after": [
+        815,
+        831,
+        18980,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "apps-4k": {
+      "before": [
+        8147,
+        8147,
+        248357,
+        5
+      ],
+      "after": [
+        8147,
+        8163,
+        248357,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "windows-4k": {
+      "before": [
+        8147,
+        8147,
+        247076,
+        5
+      ],
+      "after": [
+        8147,
+        8159,
+        247076,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "start-ordinary": {
+      "before": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "after": [
+        2072,
+        2085,
+        116006,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "taskbar-native": {
+      "before": [
+        1047,
+        1047,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1073,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "tray-native": {
+      "before": [
+        1047,
+        1059,
+        17699,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        17699,
+        5
+      ],
+      "retained_pages": 0
+    }
+  },
+  "scope": "Fixed state, code, configured guest RAM, framebuffer/shadow and managed peak/retained pages are separate. No added native state, cache, worker or idle polling loop."
+}

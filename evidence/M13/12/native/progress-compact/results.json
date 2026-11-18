@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "physical": [
+    1024,
+    768
+  ],
+  "observed_percent": 5,
+  "observed_step": 5,
+  "observed_busy": 1
+}

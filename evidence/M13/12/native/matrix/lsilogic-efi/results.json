@@ -1,0 +1,24 @@
+{
+  "harness_sha256": "0dfdf9ae941b2d85aaad848dec9c69b6c34c0f600f7738ec8da303d65cde8e4a",
+  "passed": true,
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "controller": "lsilogic",
+  "firmware": "efi",
+  "exact_starter": false,
+  "checks": [
+    "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+    "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+    "Every distribution guide and binary sample independently matches its exact stored bytes"
+  ],
+  "persisted_distribution_sha256": {
+    "/Users/Owner/Documents/Welcome.txt": "8b06df17dae97c34a261301d83e870d7ca50f84f041c0a6f1323c84bf51a6ab3",
+    "/Users/Owner/Downloads/ArchiveSample.zip": "d9901670502a168d99e282769cc767901a58ed2890c4a2b4c5ba46054426e859",
+    "/Users/Owner/Pictures/ColorStudy.bmp": "13743257b3389ea8e83202e82864369228b2092dc27dc396741081aa5cd6bfe3",
+    "/Users/Owner/Music/Chime.wav": "5cb76cbf638407893f5b18353e82aedc4c82e10b7e55fd0f515e9aa54085646f"
+  },
+  "boot_order_forced": false,
+  "same_vm_reused": true,
+  "all_shipped_devices_enabled": true,
+  "existing_vm_inventory_unchanged": true
+}

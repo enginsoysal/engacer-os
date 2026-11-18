@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "stage": "M13.12",
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "owned_fixture": "7049d59d1fb845959130c857b02cea5c",
+  "checks": [
+    "A new empty Editor document has no published disk entry; explicit Save publishes the exact text and changes its actual saved state",
+    "Global app/folder search exposes Clear search and removes stale pin notices; Clear returns to browsing without launching an app",
+    "A real protected System item exposes the complete source-specific context-menu explanation without a destructive action",
+    "Settings refuses persistence during another window Save As; Show current dialog returns to the exact generation owner and preserves its unsaved text",
+    "An actual same-folder copy collision retains its Files review owner while another Editor is refused a picker; Keep both produces independently verified identical file bytes and preserves the other unsaved document",
+    "Two real Editors open the same existing file: after one commits, the other Save refuses the changed source, preserves exact unsaved text and leaves committed bytes untouched; missing USB also has a real empty view",
+    "The eight-window limit leaves all existing windows intact and exposes a bounded, explicitly dismissible notice instead of covering the Files footer",
+    "Independent no-ISO USB and PS/2 startups retain exact saved document and Start preferences, clear transient dialogs/messages and halt at idle"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17699,
+      5
+    ],
+    "after": [
+      1047,
+      1069,
+      17699,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "preferences_sha256": "72aaf3b4c9b2f0025562312690afb073cfbef51edf64fb8a8ade0912fc673b34"
+}

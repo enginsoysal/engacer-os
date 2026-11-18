@@ -1,8 +1,8 @@
 # Install and feel at home in Engacer OS M13.12
 
-**Candidate pending qualification:** M13.12 whole-product integration is being tested. Until its matching release is published, use M13.11. Long-duration stability is not qualified; the owner schedules that work exclusively for M13.13 after M13.12.
+**Testing release:** M13.12 passes exact whole-product integration qualification. Use the matching M13.12 release after publication. Long-duration stability is not qualified; the owner schedules that work exclusively for M13.13 after M13.12.
 
-This guide describes the M13.12 candidate; final native acceptance and public website delivery remain pending. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
+This guide describes the qualified M13.12 testing media. Matching GitHub and actual website delivery close separately. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
 
 ## The easiest start
 

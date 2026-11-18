@@ -114,7 +114,9 @@
     {
       "id": "M13.12",
       "title": "Complete-product integration qualification",
-      "status": "in_progress"
+      "status": "native_qualified_publication_pending",
+      "native_qualification": "M13-STAGE12-VM-v1",
+      "evidence": "evidence/M13/12"
     },
     {
       "id": "M13.13",

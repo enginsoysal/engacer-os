@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "stage": "M13.12",
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "physical": [
+    1920,
+    1080
+  ],
+  "configured_guest_mib": 512,
+  "owned_fixture": "99789fab3206453e9aeaa35673c41500",
+  "host_observer": {
+    "immutable_map_sha256": {
+      "false": "7e7b77ead3278e2b884447344ce158221ddf8097f586b4b9f14c0cee86d51da6",
+      "true": "4ead29a60349d0c3fa8965c2c401de595c629506c1b06ba450d81513c7d648de"
+    },
+    "maximum_symbol_cache_entries": 512,
+    "mutable_guest_state_cached": false,
+    "qmp_client_tcp_nodelay": true,
+    "functional_barrier": {
+      "method": "Three consecutive fresh stable input/paint samples and all CPUs halted",
+      "maximum_group_bytes": 65536,
+      "mutable_guest_state_cached": false,
+      "guest_memory_written": false
+    }
+  },
+  "checks": [
+    "Readable semantic Clear search and result-only footer preserve actual Ctrl+F, text editing, supported category results and Enter navigate all five real categories without writing preferences or changing appearance",
+    "Actual display-size preview and Cancel restore the previous scale, or a too-small physical profile refuses 200% with recovery text; the complete disk is unchanged",
+    "No-results/Clear recover browsing; Escape clears search then leaves it before cancelling only the owning appearance preview, with an independently identical complete disk",
+    "Two live generations retain independent temporary queries; the actual minimum 700x600 window retains search, categories, matching results and Apply/Restore controls inside its bounds",
+    "Light/dark are actually applied and independently read from the saved appearance record; high-contrast search uses the real accessibility flag and remains reachable at the minimum window size",
+    "A real saved taskbar-pin notification uses the lower caption-safe rectangle; every live caption remains outside it and actual Dismiss clears the message",
+    "Two ordinary no-ISO disk startups reload exact saved appearance and minimum bounds, clear temporary searches, navigate a real result and halt at idle"
+  ],
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      116006,
+      5
+    ],
+    "after": [
+      2072,
+      2072,
+      116006,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "saved_appearance_sha256": "e0a86278db4b57a033616e55292066ad3c4dc8b77ddda182dbc78bdd83e167b9"
+}

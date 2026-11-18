@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "stage": "M13.12",
+  "development_only": false,
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "owned_fixture": "3fa59900bbd64ea6a3a9c50c2b77d730",
+  "checks": [
+    "Actual installation/retained-ISO startup; shared Save as chooses Downloads, persists exact text and keeps the original source without consuming another window slot",
+    "Cancel preserves the document/path, creates no destination and does not change the remembered successful Save location",
+    "One click selects without replacing the app document; Enter opens the actual selected validated native text file",
+    "The real CPL3 Editor loads the checked multi-page included guide through existing IPC pages without a large kernel stack buffer",
+    "Bounded eight-location history, history branching, missing/USB locations, invalid folder name, separate folder creation and automatic text extension use ordinary controls",
+    "Existing target requires an explicit replacement; default Enter returns to the picker and Cancel retains the original path",
+    "Dirty Open has a separate Save/Discard/Back/Cancel review; Back retains unsaved work and explicit Discard opens the selected original source",
+    "Explicit Save and open persists the old modified document before loading the selected new source",
+    "Another window remains usable during review; changing and saving the target invalidates the old replacement review, followed by a fresh explicit replacement",
+    "Image Viewer uses the common picker to open an actual native BMP while retaining its existing format checks",
+    "Archive Manager opens a real ZIP and extracts into a newly created subfolder at the destination chosen through the shared folder dialog",
+    "At the eight-window limit keyboard Save as uses its owner without a ninth slot; Alt+F4 cannot bypass it and Cancel returns all window resources"
+  ],
+  "profiles": [],
+  "extracted_folder": "/Users/Owner/Documents/Extracted1",
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17699,
+      5
+    ],
+    "after": [
+      1047,
+      1119,
+      17699,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

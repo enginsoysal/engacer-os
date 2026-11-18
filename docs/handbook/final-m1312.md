@@ -1,6 +1,6 @@
 # Your first day with Engacer OS M13.12
 
-Status: final integration candidate, qualification pending. Use the matching release only after publication. Stability remains unqualified until M13.13; this is controlled testing, not an everyday system recommendation.
+Status: exact M13-STAGE12-VM-v1 integration qualification passes. Use the matching M13.12 testing release after publication. Stability remains unqualified until M13.13; this is controlled testing, not an everyday system recommendation.
 
 ## Start with the prepared VMware package
 
@@ -35,3 +35,15 @@ Tab / Shift+Tab move focus; Enter activates a focused control. Escape dismisses 
 Read the message before changing a disk. A failed install is not successful completion. Keep the ISO for same-build recovery. Record the release, action and visible message; historical M13.7/M13.8 freezes remain open for M13.13. Do not assume the screensaver establishes stability. Automated novice scenarios and visual checks do not substitute for a participant usability study.
 
 [Current status](../roadmap/status.md) | [M13.12 contract](../milestones/m13-12.md) | [Exact release scope](../releases/m1312-v0.13.12.md)
+
+## Native before and after
+
+These are real captures from their named releases, not concepts or a performance comparison. The M12.18 image shows its qualified 4K USB folder; the M13.12 4K image shows Documents in Light mode. The different folder contents and themes are explicit. Compare the navigation hierarchy, original icons, command spacing and persistent Places/status frame.
+
+![Historical M12.18 native 4K Files](../../evidence/M12/18/feature.png)
+
+![M13.12 native 4K Files in Documents](../../evidence/M13/12/native/personalization-4k/light-current-place.png)
+
+The current compact Home frame also preserves Back, Forward, Up, Refresh, address editing, filtering and folder places within the smaller window.
+
+![M13.12 compact native Home](../../evidence/M13/12/feature.png)
