@@ -1,3 +1,14 @@
+/* Preflight physical dimensions before the renderer mutates its active scale. */
+static unsigned settings_scale_fits18(unsigned choice){
+ unsigned width=ui73_width(),height=ui73_height();unsigned units=choice?choice:width>=3840&&height>=2000?4:width>=2560&&height>=1400?3:2;
+ return units>=2&&units<=4&&width*2/units>=800&&height*2/units>=660;
+}
+static void settings_restore_scale18(void){
+ if(settings_scale_fits18(ui73_scale_choice())||!settings_scale_fits18(0))return;
+ const os_boot_info_v0*changed=ui73_set_scale(0);if(!changed)return;display=changed;model.width=changed->framebuffer_width;model.height=changed->framebuffer_height;
+ /* Reuse the existing warning reason: 1 unreadable record, 2 safe scale fallback. */
+ if(!settings_invalid13)settings_invalid13=2;
+}
 static const char*settings_names18[]={"Appearance","Display","Mouse and keyboard","System","Accessibility"};
 static const char*settings_details18[]={"Accent, light or dark, wallpaper and restore defaults","Display size, scale, automatic scaling, 100%, 150% and 200%","Double-click speed and keyboard layout","Devices, apps, applications, Start, taskbar and quick settings","High contrast, reduced motion and keyboard navigation"};
 static const char*settings_keywords18[]={"color colour theme dark mode light mode background reset restore defaults","scale scaling display size zoom text size automatic","mouse keyboard typing double click double-click speed input layout dvorak qwerty","devices hardware network status sound audio volume apps applications software installed start menu taskbar quick settings","accessibility high contrast reduced motion keyboard navigation"};

@@ -1475,7 +1475,11 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
     desktop_init(&model,display->framebuffer_width,display->framebuffer_height);
     usb_mouse_state(&pointer_x,&pointer_y,&previous_buttons);
 #ifdef ENGINE_M11
-    appearance_load11();file_settings_load11();power_init11(boot);start_load11();
+    appearance_load11();
+#ifdef ENGINE_M13
+    settings_restore_scale18();
+#endif
+    file_settings_load11();power_init11(boot);start_load11();
 #ifdef ENGINE_M12
     desktop_load12();access_load16();
 #endif

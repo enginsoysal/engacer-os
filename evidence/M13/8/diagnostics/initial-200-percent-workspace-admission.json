@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "stage": "M13.8",
+  "build_id": "c267be5af6d7d6d18727f899ecd84865",
+  "iso_sha256": "5acc2161dbad44a515e95ac7202eb15a3e1b282edeee56bcbe1bfe462cc53e37",
+  "physical": [
+    1920,
+    1200
+  ],
+  "owned_fixture": "1cfd074ab5df4c058ac1469cc2b63c36",
+  "checks": [],
+  "observed_scale_units": 4,
+  "bounds": [
+    160,
+    0,
+    800,
+    540
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_scale_edge8.py\", line 24, in main\n    assert c.flag(g,'scale73')==3,'200% would leave only 960x600 logical pixels and a 540-high workspace'\nAssertionError: 200% would leave only 960x600 logical pixels and a 540-high workspace\n"
+}
