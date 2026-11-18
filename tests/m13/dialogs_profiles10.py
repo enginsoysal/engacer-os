@@ -6,7 +6,7 @@ import settings_observe as h
 import observe20
 from access_fixtures16 import clone
 c=d.c;f=d.f;ui=d.ui;ROOT=d.ROOT;t=d.t
-# dialogs_native10 imports the retained barrier; select its original base once.
+# Select the original pointer beneath the imported barrier; never nest barriers.
 assert ui.Pointer.__qualname__=='bind.<locals>.Pointer'
 barrier=observe20.bind(ui,ui.Pointer.__bases__[0])
 

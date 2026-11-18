@@ -7,8 +7,8 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'m12'))
 import files_observe as f
 c=f.c;ui=f.ui;ROOT=f.ROOT
 from focus_ownership import View
-import capture14,observer8,observe6,taskbar_observe as t
-capture14.bind(ui);observe6.bind(ui);observer8.bind(ui)
+import capture14,observer8,observe20,taskbar_observe as t
+capture14.bind(ui);observe20.bind(ui);observer8.bind(ui)
 
 class Picker(ctypes.Structure):
     _fields_=[(n,ctypes.c_uint32) for n in ('purpose','phase','filter','selected','offset','count','rows','history_count','history_position','address_cursor','address_anchor','name_cursor','name_anchor')]+[(n,ctypes.c_uint64) for n in ('generation','target_first','target_size','selected_first','selected_size')]+[(n,ctypes.c_uint32) for n in ('target_crc','selected_crc','selected_kind')]+[(n,ctypes.c_char*256) for n in ('path','address','name','pending','selected_path')]+[('error',ctypes.c_char*160),('history',(ctypes.c_char*256)*8),('order',ctypes.c_uint16*1024)]

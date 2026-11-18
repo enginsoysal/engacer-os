@@ -19,10 +19,10 @@ APPS = [('files',1), ('text editor',2), ('settings',3), ('calc',4),
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--profile', choices=['ordinary','compact','150','4k'], required=True)
+    parser.add_argument('--profile', choices=['ordinary','compact','1024','150','4k'], required=True)
     a=parser.parse_args()
     physical,ram={'ordinary':((1920,1080),512),'compact':((1280,800),128),
-                  '150':((1920,1200),512),'4k':((3840,2160),1024)}[a.profile]
+                  '1024':((1024,768),128),'150':((1920,1200),512),'4k':((3840,2160),1024)}[a.profile]
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
     native=json.loads((ROOT/'build/m13/stage10'/a.profile/'results.json').read_text(encoding='utf-8'))
     assert native['passed'] and native['build_id']==meta['build_id']
@@ -48,6 +48,9 @@ def main():
                     rows=[r for r in f.controls(g) if r[4]==app['token'] and 49000<=r[5]<=49003]
                     assert {r[5] for r in rows}=={49000,49001,49002,49003}
                     assert all(r[2]>=32 and r[3]>=28 for r in rows)
+                    owned=[r for r in f.controls(g) if r[4]==app['token']]
+                    outside=[list(r) for r in owned if r[0]<bounds[0] or r[1]<bounds[1] or r[0]+r[2]>bounds[0]+bounds[2] or r[1]+r[3]>bounds[1]+bounds[3]]
+                    assert not outside,(name,theme,bounds,outside)
                     label=theme+'-'+str(kind);c.shot(g,label)
                     report['frames'].append(dict(theme=theme,app=kind,name=name,bounds=list(bounds),capture=label+'.png'))
                     t.close_all(g,p);f.same_pages(baseline,f.stats(g))

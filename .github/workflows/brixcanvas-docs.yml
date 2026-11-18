@@ -43,6 +43,8 @@ jobs:
         run: python website/brix/audit_test.py
       - name: Verify bounded fresh readback and retained retry observations
         run: python tests/m13/website_readback_test.py
+      - name: Verify same-source post-Save crawl reuse boundaries
+        run: python tests/m13/website_fresh_audit_test.py
       - name: Synchronize and verify native BrixCanvas articles
         env:
           GH_TOKEN: ${{ github.token }}
