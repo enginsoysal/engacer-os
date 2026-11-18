@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "phase": "initial Git source binding",
+  "reason": "New screensaver include was compiled with CRLF while Git normalized its initial blob to LF; all content was identical after newline normalization",
+  "correction": "Preserve the exact measured include bytes with an explicit -text attribute and recommit the unchanged native file",
+  "compiled_native_bytes_changed": false,
+  "rebuild_required": false,
+  "attributes_are_compiled_inputs": false,
+  "qualification_requires_fresh_successful_binding": true
+}

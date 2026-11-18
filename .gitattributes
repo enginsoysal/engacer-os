@@ -292,3 +292,6 @@ include/engine/ui/taskbar12.h -text whitespace=cr-at-eol
 # Preserve exact M13.9 cursor input bytes measured by the frozen candidate.
 include/engine/ui/graphics9.h -text whitespace=cr-at-eol
 kernel/core/graphics9.inc -text whitespace=cr-at-eol
+
+# Preserve exact M13.11 screensaver bytes in native source qualification.
+kernel/desktop/saver21.inc -text whitespace=cr-at-eol
