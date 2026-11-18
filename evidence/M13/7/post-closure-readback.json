@@ -1,0 +1,130 @@
+{
+  "passed": true,
+  "stage": "M13.7",
+  "post_closure_source": "c3dc809983e804ddd6e45b2a4ba3644cc17f222f",
+  "checked_at": "2026-11-18T08:22:46.293Z",
+  "scope": "Immutable complete publication receipt plus eight final status/manual reads after their successful publisher run; all 608 compiled source blobs still match the released media.",
+  "articles": [
+    {
+      "slug": "docs-readme",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-readme",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-handbook-index",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-index",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-milestones-m13-7",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m13-7",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-milestones-m13",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m13",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-releases-m137-v0-13-7",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m137-v0-13-7",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-roadmap-status",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-website-readme",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-website-readme",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    },
+    {
+      "slug": "docs-handbook-files-m137",
+      "status": 200,
+      "matching_canonical_source": true,
+      "attempts": [
+        {
+          "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-files-m137",
+          "attempt": 1,
+          "status": 200,
+          "error": null,
+          "soft_404": false
+        }
+      ]
+    }
+  ],
+  "compiled_inputs": 608,
+  "workflow": {
+    "databaseId": 44265937324,
+    "headSha": "c3dc809983e804ddd6e45b2a4ba3644cc17f222f",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "native_home_save": "Saved ✓",
+  "public_current_download": "M13.7"
+}
