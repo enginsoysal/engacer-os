@@ -26,6 +26,7 @@ static void files_frame17(desktop_window*w,application*a,uint64_t token){
    unsigned chosen=i==6?a->usb_mode10!=0:!a->usb_mode10&&equal(path,a->path),command=i<6?NAV_HOME+i:i==6?USB_OPEN10:F11_BIN;
    desktop_rect r={x+4,top+8+(int)i*38,168,36};unsigned state=component_state12(token,command);
    if(chosen||(state&(UI12_HOVER|UI12_PRESSED|UI12_FOCUS)))ui73_round(r.x,r.y,r.width,r.height,5,chosen?file_tint11():p.surface);
+   if(chosen&&(access_flags16&1)){rectangle((desktop_rect){r.x,r.y,3,r.height},0xffffff);rectangle((desktop_rect){r.x+4,r.y,r.width-4,1},0xffffff);rectangle((desktop_rect){r.x+4,r.y+r.height-1,r.width-4,1},0xffffff);}
    ui12_icon_ink(icons[i],r.x+8,r.y+8,20,p.ink);ui73_fit(r.x+36,r.y+8,r.width-44,places[i],UI12_BODY,p.ink);file_control11(token,r,command);access_capture16(token,command,places[i],1);if(state&UI12_FOCUS)file_focus_rect11(r);
   }
  }

@@ -132,6 +132,7 @@ static i11_target feedback_target14(int,int);
 #include "settings13-state.inc"
 #ifdef ENGINE_M13
 #include "settings18-state.inc"
+#include "saver21-state.inc"
 #endif
 #include "accessibility16-state.inc"
 #endif
@@ -670,6 +671,9 @@ static void snap_outline15(desktop_rect r);
 #endif
 #ifdef ENGINE_M12
 #include "settings13.inc"
+#ifdef ENGINE_M13
+#include "saver21.inc"
+#endif
 #endif
 #ifdef ENGINE_M12
 #include "chrome12.inc"
@@ -813,6 +817,9 @@ static void render(void) {
     if(!desktop_take_damage(&model,&dirty))return;
     gui7_clip((unsigned)dirty.x,(unsigned)dirty.y,(unsigned)dirty.width,(unsigned)dirty.height);
     control_count=0;
+#ifdef ENGINE_M13
+    if(saver_phase21==2){saver_draw21();gui7_clip_reset();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;return;}
+#endif
 #ifdef ENGINE_M13
     wallpaper15(dirty);
 #else
@@ -1517,6 +1524,9 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
 #ifdef ENGINE_M11
     appearance_load11();
 #ifdef ENGINE_M13
+    saver_load21();
+#endif
+#ifdef ENGINE_M13
     settings_restore_scale18();
 #endif
     file_settings_load11();power_init11(boot);start_load11();
@@ -1570,7 +1580,12 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
 #else
         unsigned windows_work=0;
 #endif
-        if(key<0&&!network_work&&!time_work&&!audio_work&&!windows_work
+#ifdef ENGINE_M13
+        unsigned saver_work=saver_work21(key);
+#else
+        unsigned saver_work=0;
+#endif
+        if(key<0&&!network_work&&!time_work&&!audio_work&&!windows_work&&!saver_work
 #ifdef ENGINE_M11
         &&!file_work11
 #endif
@@ -1611,6 +1626,9 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
                 }
             }
         }
+#endif
+#ifdef ENGINE_M13
+        if(saver_capture21(key)){files_pump11();files_poll11();render();continue;}
 #endif
         if(key<0){
 #ifdef ENGINE_M11

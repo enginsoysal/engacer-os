@@ -72,6 +72,7 @@ static void submit_input(device *d){push(&d->interrupt,d->buffer+512,d->packet,(
 void m6_pointer_report(int dx,int dy,unsigned buttons){
 #ifdef ENGINE_M13
     mouse_received_us13=m3_clock_microseconds();
+    input13_pointer(dx,dy,buttons);
 #endif
     mouse_x+=dx;mouse_y+=dy;if(mouse_x<0)mouse_x=0;if(mouse_y<0)mouse_y=0;if(mouse_x>mouse_limit_x)mouse_x=mouse_limit_x;if(mouse_y>mouse_limit_y)mouse_y=mouse_limit_y;
     unsigned old_buttons=mouse_buttons;mouse_buttons=buttons&7;
@@ -92,9 +93,15 @@ void m9_pointer_absolute(unsigned x,unsigned y,unsigned buttons){
 }
 #endif
 #endif
+#ifdef ENGINE_M13
+static void usb_keyboard_activity21(unsigned changed){unsigned held=0;for(unsigned i=0;i<device_count;++i){device*d=&devices[i];if(!d->slot||d->dead||d->kind!=1)continue;for(unsigned b=0;b<8;++b)held+=!!(d->last[0]&(1u<<b));for(unsigned k=2;k<8;++k)held+=d->last[k]>3;}input13_usb_keyboard(changed,held);}
+#endif
 static void input_complete(device *d,unsigned bytes){
     uint8_t *data=(uint8_t*)(uintptr_t)(d->buffer+512);if(d->kind==9){for(unsigned i=0;i<bytes;++i)if(data[i]){__atomic_fetch_or(&pending_hubs,1u<<(unsigned)(d-devices),__ATOMIC_RELEASE);break;}return;}
     if(d->kind==1&&bytes>=8){
+#ifdef ENGINE_M13
+unsigned changed21=memcmp(d->last,data,8)!=0;
+#endif
 #ifdef ENGINE_M11
 input11_usb_modifiers(data[0]);
 if((data[0]&0x88)&&!(d->last[0]&0x88))d->gui_used11=0;
@@ -132,7 +139,11 @@ if(data[i]==67&&(data[0]&0x22))c=(char)140;
 if(data[i]==101)c=(char)140;
 #endif
 #endif
-if(c){input_feed((uint8_t)c);++key_events;}}}memcpy(d->last,data,8);}
+if(c){input_feed((uint8_t)c);++key_events;}}}memcpy(d->last,data,8);
+#ifdef ENGINE_M13
+usb_keyboard_activity21(changed21);
+#endif
+}
     if(d->kind==2&&bytes>=3){
 #ifdef ENGINE_M10
         if(d->wheel10&&bytes>=4&&(int8_t)data[3])input10_wheel((int8_t)data[3]);
@@ -323,7 +334,11 @@ static void release_device(unsigned index){
 #ifdef ENGINE_M11
     if(d->slot&&(d->kind==1||d->kind==2)){input11_usb_modifiers(0);input_feed(141);if(d->kind==2){mouse_head11=mouse_tail11=mouse_press_pending=mouse_buttons=mouse_block11=0;__atomic_store_n(&mouse_dirty,1,__ATOMIC_RELEASE);}}
 #endif
-    d->dead=1;if(d->kind==3&&d->storage_index<STORAGE_MAX)storage_unavailable(d->storage_index);
+    d->dead=1;
+#ifdef ENGINE_M13
+    if(d->kind==1)usb_keyboard_activity21(1);if(d->kind==2)input13_pointer(0,0,0);
+#endif
+    if(d->kind==3&&d->storage_index<STORAGE_MAX)storage_unavailable(d->storage_index);
     if(d->slot){if(!command(0,(10u<<10)|(d->slot<<24))){serial_text("M45_USB_DISABLE_FAILED_DMA_RETAINED\n");return;}consume();dcbaa[d->slot]=0;__asm__ volatile("mfence":::"memory");}
     uint64_t pages[]={d->input,d->output,d->buffer,(uint64_t)(uintptr_t)d->control.base,(uint64_t)(uintptr_t)d->interrupt.base,(uint64_t)(uintptr_t)d->bulk_out.base,d->data,(uint64_t)(uintptr_t)d->uas_status.base};for(unsigned i=0;i<8;++i)if(pages[i]){page_free(pages[i]);--dma_pages;}
     unsigned generation=d->generation+1;memset(d,0,sizeof(*d));d->generation=generation;d->storage_index=STORAGE_MAX;

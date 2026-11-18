@@ -18,6 +18,14 @@ uint64_t input11_pointer_ms(void);
 void input11_usb_modifiers(unsigned);
 void input11_legacy_modifiers(unsigned);
 #endif
+#ifdef ENGINE_M13
+uint64_t input13_activity(void);
+unsigned input13_held(void);
+void input13_note(void);
+void input13_legacy_key(unsigned);
+void input13_usb_keyboard(unsigned,unsigned);
+void input13_pointer(int,int,unsigned);
+#endif
 void input10_toggle_caps(void);
 void input10_set_layout(unsigned);
 unsigned input10_hid(unsigned,unsigned);

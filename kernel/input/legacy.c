@@ -98,6 +98,9 @@ unsigned input_irq(uint64_t *frame){
 #endif
             continue;
         }
+#ifdef ENGINE_M13
+        input13_legacy_key(code);
+#endif
 #ifdef ENGINE_M11
         /* Publish the current state before queuing an ordinary key. */
         input11_legacy_modifiers((control_modifier?1u:0u)|(shift?2u:0u)|(alt_modifier?4u:0u)|(gui_modifier11?8u:0u));

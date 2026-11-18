@@ -11,7 +11,7 @@ static void settings_restore_scale18(void){
 }
 static const char*settings_names18[]={"Appearance","Display","Mouse and keyboard","System","Accessibility"};
 static const char*settings_details18[]={"Accent, light or dark, wallpaper and restore defaults","Display size, scale, automatic scaling, 100%, 150% and 200%","Double-click speed and keyboard layout","Devices, apps, applications, Start, taskbar and quick settings","High contrast, reduced motion and keyboard navigation"};
-static const char*settings_keywords18[]={"color colour theme dark mode light mode background reset restore defaults","scale scaling display size zoom text size automatic","mouse keyboard typing double click double-click speed input layout dvorak qwerty","devices hardware network status sound audio volume apps applications software installed start menu taskbar quick settings","accessibility high contrast reduced motion keyboard navigation"};
+static const char*settings_keywords18[]={"color colour theme dark mode light mode background reset restore defaults screensaver screen saver idle blank clock","scale scaling display size zoom text size automatic","mouse keyboard typing double click double-click speed input layout dvorak qwerty","devices hardware network status sound audio volume apps applications software installed start menu taskbar quick settings","accessibility high contrast reduced motion keyboard navigation"};
 static settings_search_record18*settings_query18(uint64_t token){
  desktop_window*w=desktop_lookup(&model,token);if(!w||w->app!=SETTINGS)return 0;
  settings_search_record18*q=&settings_search18[w-model.windows];if(q->owner!=token){memset(q,0,sizeof(*q));q->owner=token;}return q;

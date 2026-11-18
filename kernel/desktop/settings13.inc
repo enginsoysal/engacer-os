@@ -10,14 +10,18 @@ static unsigned settings_scale13(application*a,unsigned choice){if(picker_live12
 #endif
  const os_boot_info_v0*changed=ui73_set_scale(choice);if(!changed){notice(a,"That size leaves too little room. Choose a smaller size.");return 0;}display=changed;model.width=changed->framebuffer_width;model.height=changed->framebuffer_height;for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live)desktop_place(&model,desktop_token(&model,i),model.windows[i].bounds);window_reflow11();usb_mouse_state(&pointer_x,&pointer_y,&previous_buttons);whole();return 1;}
 static unsigned settings_cancel13(uint64_t token){desktop_window*w=desktop_lookup(&model,token);if(!w||settings_preview13.owner!=token)return 1;application*a=&apps[w-model.windows];if(ui73_scale_choice()!=settings_preview13.scale&&!settings_scale13(a,settings_preview13.scale)){whole();return 0;}preferences.accent=settings_preview13.accent;preferences.dark=settings_preview13.dark;appearance11.accent=preferences.accent;appearance11.dark=preferences.dark;appearance11.scale=settings_preview13.scale;appearance11.wallpaper=settings_preview13.wallpaper;appearance11.pattern=settings_preview13.pattern;settings_preview13.owner=0;notice(a,"Preview cancelled. Your previous session appearance is restored; no settings were written.");whole();return 1;}
-static unsigned settings_close13(uint64_t token){desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;if(!settings_cancel13(token))return 0;settings_page13[w-model.windows]=0;return 1;}
+static unsigned settings_close13(uint64_t token){
+#ifdef ENGINE_M13
+ saver_cancel21(token);
+#endif
+desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;if(!settings_cancel13(token))return 0;settings_page13[w-model.windows]=0;return 1;}
 static void settings_button13(uint64_t token,int x,int y,int width,const char*label,unsigned command,unsigned selected,unsigned enabled){if(enabled)access_capture16(token,command,label,1);ui12_palette p=desktop_palette16();unsigned state=enabled?component_state12(token,command):UI12_DISABLED;ui12_style style=ui12_control_style(p,state|(selected?UI12_SELECTED:0),0);unsigned inset=(state&UI12_FOCUS)?3:1;ui73_round(x,y,width,36,6,style.border);ui73_round(x+inset,y+inset,width-2*inset,36-2*inset,6-inset,style.fill);ui73_fit(x+10,y+8,width-20,label,UI12_BODY,style.ink);if(enabled&&control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{x,y,width,36},token,command};}
 #ifdef ENGINE_M13
 #include "settings18-model.inc"
 #endif
 static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x=w->bounds.x+24,y=w->bounds.y+56,width=w->bounds.width-48;unsigned page=settings_page13[w-model.windows],other=settings_other13(token);ui12_palette p=desktop_palette16();const char*titles13[]={"Appearance","Display","Mouse and keyboard","System","Accessibility"
 #ifdef ENGINE_M13
- ,"Interface preview"
+ ,"Interface preview","Screensaver"
 #endif
  };
 #ifdef ENGINE_M13
@@ -25,7 +29,10 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #else
  const char*heading20=titles13[page];
 #endif
- ui73_fit(x,y,width,heading20,UI12_HEADING,p.ink);
+ ui73_fit(x,y,width-180,heading20,UI12_HEADING,p.ink);
+#ifdef ENGINE_M13
+ if(page==0){desktop_rect entry21={x+width-168,y-2,168,28};component_button12(token,entry21,"Screensaver",S21_OPEN,0,1);}
+#endif
  const char*names[]={"Appearance","Display","Input","System","Accessibility"};int tab=(width-32)/5;
 #ifdef ENGINE_M13
  settings_search_record18*search=settings_query18(token);settings_search_draw18(w,token,x,y+34,width);
@@ -33,8 +40,9 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #else
  int tabs=y+40,top=y+96;
 #endif
- for(unsigned i=0;i<5;++i)settings_button13(token,x+(tab+8)*(int)i,tabs,tab,names[i],S13_APPEARANCE+i,page==i,1);
+ for(unsigned i=0;i<5;++i)settings_button13(token,x+(tab+8)*(int)i,tabs,tab,names[i],S13_APPEARANCE+i,page==i||(page==6&&i==0),1);
 #ifdef ENGINE_M13
+ if(page==6&&!search->query[0]){saver_settings21(w,a,token,x,top,width);return;}
  if(search->query[0]){settings_search_results18(token,x,top,width);ui73_paragraph(x,w->bounds.y+w->bounds.height-64,width,2,settings_dirty13()?"Your appearance preview is not saved. Clear search to apply or cancel it.":"Search covers supported settings. Clear search returns to browsing categories.",p.muted);return;}
 #endif
  if(page==0){ui73_fit(x,top,width,"Accent color",UI12_BODY,p.ink);const char*colors[]={"Mint","Lavender","Amber","Default"};const unsigned values[]={0x62e5bd,0x9caeff,0xf4c47c,DISTRO_ACCENT};for(unsigned i=0;i<4;++i)settings_button13(token,x+(int)i*112,top+26,104,colors[i],i==3?S13_ACCENT_DEFAULT:STYLE_MINT+i,preferences.accent==values[i],!other);
@@ -63,7 +71,7 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #endif
  }else{ui73_paragraph(x,top,width,2,"Required system services stay independent of optional applications.",p.ink);settings_button13(token,x,top+64,224,"Devices and hardware",DEVICES10,0,1);settings_button13(token,x+240,top+64,width-240,"Applications",10000,0,1);settings_button13(token,x,top+120,224,"Start and taskbar",45004,0,1);settings_button13(token,x+240,top+120,width-240,"Quick settings",TR12_OPEN,0,1);
 #ifdef ENGINE_M13
- settings_button13(token,x,top+176,224,"Interface preview",59007,0,1);
+ settings_button13(token,x,top+176,224,"Interface preview","Screensaver",59007,0,1);
 #endif
  ui73_paragraph(x,top+224,width,2,"Removing an optional app does not remove the desktop, tray or your personal files.",p.muted);}
  int footer=w->bounds.y+w->bounds.height-116;if(page<2){settings_button13(token,x,footer,164,"Apply and save",PREFERENCES_SAVE,0,!other);settings_button13(token,x+176,footer,164,"Cancel preview",S13_CANCEL,0,settings_preview13.owner==token);settings_button13(token,x+352,footer,width-352,"Restore defaults",S13_DEFAULTS,0,!other);}
@@ -71,9 +79,14 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 }
 static unsigned settings_action13(uint64_t token,unsigned command){desktop_window*w=desktop_lookup(&model,token);if(!w||w->app!=SETTINGS)return command>=S13_APPEARANCE&&command<=S13_CLICK_SLOW;application*a=&apps[w-model.windows];unsigned slot=w-model.windows;
 #ifdef ENGINE_M13
+ if(saver_action21(token,command))return 1;
  if(settings_search_action18(token,command))return 1;
 #endif
- if(command>=S13_APPEARANCE&&command<=S13_ACCESS){settings_page13[slot]=command-S13_APPEARANCE;
+ if(command>=S13_APPEARANCE&&command<=S13_ACCESS){
+#ifdef ENGINE_M13
+ saver_cancel21(token);
+#endif
+ settings_page13[slot]=command-S13_APPEARANCE;
 #ifdef ENGINE_M13
  settings_search_clear18(token);
 #endif
@@ -105,6 +118,7 @@ static unsigned settings_action13(uint64_t token,unsigned command){desktop_windo
 }
 static unsigned settings_key13(int key){
 #ifdef ENGINE_M13
+ if(key==27&&!launcher&&!context11&&!guide_open11&&!file_dialog_state11.mode&&model.focused<DESKTOP_WINDOWS&&settings_page13[model.focused]==6&&saver_owner21==desktop_token(&model,model.focused)){saver_action21(saver_owner21,S21_CANCEL);return 1;}
  if(settings_search_key18(key))return 1;
  if(!launcher&&!context11&&!guide_open11&&!file_dialog_state11.mode&&model.focused<DESKTOP_WINDOWS){
   desktop_window*w=&model.windows[model.focused];uint64_t token=desktop_token(&model,model.focused);

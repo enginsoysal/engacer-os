@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.10",
+  "current_stage": "M13.11",
   "qualified_download": "M13.10",
   "design_only": false,
   "stages": [
@@ -105,7 +105,7 @@
     {
       "id": "M13.11",
       "title": "Complete supported personalization",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.12",
