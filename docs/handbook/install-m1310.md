@@ -1,8 +1,8 @@
 # Install and feel at home in Engacer OS M13.10
 
-**Testing release:** M13.10 is a secondary-surface candidate. Its media require matching native acceptance before publication. Long-duration stability is not qualified; the owner schedules that work exclusively for M13.13 after M13.10-M13.12.
+**Testing release:** M13.10 passes exact native secondary-surface qualification. Long-duration stability is not qualified; the owner schedules that work exclusively for M13.13 after M13.10-M13.12.
 
-This guide describes the M13.10 candidate; use the exact matching release only after its acceptance is published. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
+This guide describes the published M13.10 testing release and its exact native acceptance. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
 
 ## The easiest start
 
