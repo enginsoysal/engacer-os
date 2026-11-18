@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "stage": "M13.11",
+  "build_id": "61034b7befcf6135226d034f0c437d28",
+  "iso_sha256": "60b894d7ce5c251641794b9d0fa047762b2b8b9d718468af9062949a5e73fdc8",
+  "starter_sha256": "898960cec8ec36a7ca5dfcdcadcbdb1a258e6beefcd0dab90ec44c1d29dd323b",
+  "checks": [
+    "Actual RFB mouse opens Screensaver settings, shows native preview and returns without operating the underlying Preview control",
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "visible_preview_wake_observations": [
+    {
+      "phase": "preview",
+      "black_fraction": 0.9929211934407552
+    },
+    {
+      "phase": "wake",
+      "body_restored": true,
+      "unchanged_settings_fraction": 0.9874692874692874
+    }
+  ],
+  "inventory_cleanup_observations": [
+    {
+      "count": 0,
+      "owned_test_still_listed": false,
+      "matches_before": true
+    }
+  ],
+  "before_inventory_sha256": [],
+  "after_inventory_sha256": [],
+  "existing_vm_inventory_unchanged": true
+}

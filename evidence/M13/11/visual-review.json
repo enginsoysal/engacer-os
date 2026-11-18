@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "stage": "M13.11",
+  "build_id": "61034b7befcf6135226d034f0c437d28",
+  "iso_sha256": "60b894d7ce5c251641794b9d0fa047762b2b8b9d718468af9062949a5e73fdc8",
+  "reviewer": "Agent actual native visual and ordinary-input task review; no human novice study",
+  "criteria": {
+    "clarity": {
+      "passed": true,
+      "notes": "The actual Settings page groups Off/On, three named timeouts, three implemented styles, Preview/Back and explicit Apply/Cancel/defaults; its route is Appearance -> Screensaver."
+    },
+    "convenience": {
+      "passed": true,
+      "notes": "Off is the default, Preview never writes, the complete wake gesture is consumed, and all offered saved field values survive paired ordinary USB/PS2 starts without a second application."
+    },
+    "friendliness": {
+      "passed": true,
+      "notes": "Eight real windows and exact dirty text survive wake. Separate preview ownership and complete controlled write-refusal recovery preserve personal bytes; malformed choices fall back to Off."
+    },
+    "graphics": {
+      "passed": true,
+      "notes": "Reviewed compact Dark, physical 4K Light and High-contrast Files use smooth native fonts and original vectors. Actual VMware RFB independently shows the saver and retained Settings afterward. Small logo/title optical-centering refinement is reserved for the final M13.12 integration image; no essential control is hidden."
+    },
+    "readability": {
+      "passed": true,
+      "notes": "All offered controls remain within the real minimum 700x600 Settings owner. Reviewed actual frames have readable wrapping and separate action rows. High-contrast current-place and Start edges are independently checked white pixels."
+    }
+  },
+  "reviewed_native_frames": [
+    {
+      "path": "native/personalization-compact/dark-screensaver-settings.png",
+      "png_sha256": "d4cd8fa2a27f645762c37457f9219491cb6c48c406945b0c408e72967a0846e6",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "native/personalization-1024/high-contrast-current-place.png",
+      "png_sha256": "0797ace5dcbf3a18101f84a35f4800c8b6e5404faf4a107da7bee35fc6b35ddf",
+      "physical_dimensions": [
+        1024,
+        768
+      ]
+    },
+    {
+      "path": "native/personalization-4k/light-screensaver-settings.png",
+      "png_sha256": "965e2f49093b78989495d1e80c20e08bc95f4c7faea0eb5629eee8db7f13d4ae",
+      "physical_dimensions": [
+        3840,
+        2160
+      ]
+    },
+    {
+      "path": "native/vmware-results/screensaver-preview.png",
+      "png_sha256": "623f1552665e9cc9076fb87624b3488dfc6f50c491c03b1b9f01ea3369031d6d",
+      "physical_dimensions": [
+        1024,
+        768
+      ]
+    },
+    {
+      "path": "native/vmware-results/screensaver-wake.png",
+      "png_sha256": "e7a8fa4b6d156a7cad26b8946574cbbc87d8569625416873c7cf20219cb10072",
+      "physical_dimensions": [
+        1024,
+        768
+      ]
+    }
+  ],
+  "human_novice_study": false,
+  "scope": "Supported personalization, ordinary feature wake and exact startup only; stability remains M13.13"
+}

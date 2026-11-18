@@ -1,6 +1,6 @@
 # Find and change settings in Engacer OS M13.11
 
-Development guide: use the matching qualified M13.11 testing release when published. Exact functional qualification is in progress; stability remains M13.13. [Release scope](../releases/m1311-v0.13.11.md).
+Use the matching M13.11 testing release. Exact native functional qualification passes; whole-product integration follows in M13.12 and stability remains exclusively M13.13.
 
 Open Settings from Start or Appearance. Choose Appearance, Display, Input, System or Accessibility. Every available choice corresponds to an implemented control; unavailable hardware features are not simulated.
 

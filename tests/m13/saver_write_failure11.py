@@ -32,7 +32,7 @@ def main():
             settings=t.launch(g,p,'settings',3);c.key(g,'ctrl','f');c.type_text(g,'screen saver');assert f.has(g,61210);c.key(g,'ret');p.desktop(60200,True);p.desktop(60202,True)
             p.desktop(60210,True);message=f.app(g)['notice'];report['message']=message
             assert 'could not be saved' in message and 'Cancel changes' in message and len(message.encode('ascii'))<96
-            assert c.flag(g,'saver_owner21',8)==settings['token']
+            assert int.from_bytes(ui.memory(g,ui.symbol('saver_owner21',8,True)[0],8),'little')==settings['token']
             c.shot(g,'readable-write-refusal');p.desktop(60211,True);assert not c.flag(g,'saver_owner21',8)
             h.close(g,p);t.focus(g,p,editor);assert bytes(t.app_view(g).text)==text and t.app_view(g).dirty
             c.shot(g,'cancel-restores-choices-keeps-work');t.close_all(g,p);f.same_pages(baseline,f.stats(g));c.idle(g)

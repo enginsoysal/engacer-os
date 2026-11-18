@@ -1,6 +1,6 @@
 # Make Engacer OS M13.11 yours
 
-Development guide: use the matching qualified M13.11 testing release when published. Whole-product integration follows in M13.12; stability qualification is exclusively M13.13.
+Use the matching M13.11 testing release. Exact native functional qualification passes; whole-product integration follows in M13.12 and stability remains exclusively M13.13.
 
 ## Choose a comfortable appearance
 
@@ -19,7 +19,9 @@ Use **Display** for a supported size. A size that leaves too little room is refu
 
 Preview never saves or changes your files. It waits until the key or mouse button used to start it is released. Your windows, folder locations and unsaved documents remain in place. A second Settings window explains when another window owns unsaved changes.
 
-The screensaver is a built-in, optional Settings feature, not a separate app to launch or uninstall. Off disables automatic activation. It does not lock your computer or turn off the display. Logo movement uses the existing renderer at most once a second, Clock updates once a minute and Blank has no animation. No extra framebuffer or background app is created.
+The screensaver is a built-in, optional Settings feature, not a separate app to launch or uninstall. Off disables automatic activation. It does not lock your computer or turn off the display. Logo movement updates at most once a second, Clock updates once a minute and Blank has no animation. The existing renderer also handles ordinary shared-service redraws. No extra framebuffer or background app is created.
+
+![Actual M13.11 Screensaver settings in the exact VMware preflight](../../evidence/M13/11/feature.png)
 
 ## If saved choices cannot be used
 

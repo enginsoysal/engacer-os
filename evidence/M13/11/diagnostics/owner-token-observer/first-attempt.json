@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "build_id": "61034b7befcf6135226d034f0c437d28",
+  "iso_sha256": "60b894d7ce5c251641794b9d0fa047762b2b8b9d718468af9062949a5e73fdc8",
+  "clone": {
+    "source_sha256": "28d0b25338f18c31960eaebea012e9b70afe35879174d8e8b705d8ddb1cae1d8",
+    "clone_sha256": "28d0b25338f18c31960eaebea012e9b70afe35879174d8e8b705d8ddb1cae1d8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [],
+  "injected_fault": {
+    "event": "write_aio",
+    "errno": 5,
+    "once": true,
+    "immediately": true
+  },
+  "message": "Screensaver could not be saved. Try Apply again or Cancel changes.",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\saver_write_failure11.py\", line 35, in main\n    assert c.flag(g,'saver_owner21',8)==settings['token']\nAssertionError\n"
+}

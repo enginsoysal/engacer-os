@@ -1,0 +1,5 @@
+{
+  "scope": "Host observation correction only; native bytes unchanged",
+  "reason": "The shared c.flag helper reads at most four bytes, even when given a symbol width of eight. A generation-scoped window token must be compared as all eight bytes.",
+  "correction": "Read the actual eight-byte saver owner directly before comparing it to the window token. Repeat only the failed controlled write task on the same frozen media; the five unchanged successful prefix tasks remain valid."
+}

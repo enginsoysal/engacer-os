@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "build_id": "61034b7befcf6135226d034f0c437d28",
+  "iso_sha256": "60b894d7ce5c251641794b9d0fa047762b2b8b9d718468af9062949a5e73fdc8",
+  "clone": {
+    "source_sha256": "28d0b25338f18c31960eaebea012e9b70afe35879174d8e8b705d8ddb1cae1d8",
+    "clone_sha256": "28d0b25338f18c31960eaebea012e9b70afe35879174d8e8b705d8ddb1cae1d8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    "Actual Ctrl+F screen saver search reaches Appearance and its real Screensaver page without saving preferences",
+    "Declared real screensaver write refusal explains the retained draft and Cancel changes route; Cancel restores the saved screensaver choices, another Editor retains exact unsaved text, original personal bytes and source image remain unchanged, and the task retains zero managed pages"
+  ],
+  "injected_fault": {
+    "event": "write_aio",
+    "errno": 5,
+    "once": true,
+    "immediately": true
+  },
+  "message": "Screensaver could not be saved. Try Apply again or Cancel changes.",
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18978,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      18978,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

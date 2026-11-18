@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "build_id": "61034b7befcf6135226d034f0c437d28",
+  "iso_sha256": "60b894d7ce5c251641794b9d0fa047762b2b8b9d718468af9062949a5e73fdc8",
+  "physical": [
+    1280,
+    800
+  ],
+  "clone": {
+    "source_sha256": "66f243ebc2b298aac776bc04aa76c582cfa4277281f4e1cf3505f47a86dd6c69",
+    "clone_sha256": "66f243ebc2b298aac776bc04aa76c582cfa4277281f4e1cf3505f47a86dd6c69",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "themes": [
+    "light",
+    "dark",
+    "high-contrast"
+  ],
+  "checks": [
+    "All actual saver controls stay inside their owner at the named scale in Light, Dark and High contrast",
+    "Preview and wake preserve the independently identical complete disk; reduced motion retains an independently identical visible logo frame",
+    "Current-place and Start captures retain real navigation; the High-contrast Start perimeter has independently read white pixels"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18980,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      18980,
+      5
+    ],
+    "retained_pages": 0
+  }
+}
