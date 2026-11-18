@@ -2,7 +2,7 @@
 
 **Stability pending - testing only.** Earlier M13.8 freeze reports remain documented. Stability investigation and duration/reset qualification occur exclusively in M13.13, after finishing M13.9-M13.12 in order. Do not use these testing media for everyday work.
 
-**Current testing download: [Engacer OS M13.12](https://github.com/enginsoysal/engacer-os/releases/tag/m1312-v0.13.12).** [Install in VMware](docs/handbook/install-m1312.md), [first-day guide](docs/handbook/final-m1312.md), [personalization and screensaver](docs/handbook/personalization-m1311.md), [exact release scope](docs/releases/m1312-v0.13.12.md). Exact final integration passes 162 native checks, 47 VMware checks, fourteen controller profiles, 106 original MSI payload hashes and 95 app frames across 613 compiled inputs. Twenty matching release assets are independently verified. Fixed desktop state remains 557,516 bytes (+0 from M13.11); measured completed tasks retain zero managed pages. Actual website publication is being verified before M13.13 begins. Stability remains exclusively M13.13.
+**Current testing download: [Engacer OS M13.12](https://github.com/enginsoysal/engacer-os/releases/tag/m1312-v0.13.12).** [Install in VMware](docs/handbook/install-m1312.md), [first-day guide](docs/handbook/final-m1312.md), [personalization and screensaver](docs/handbook/personalization-m1311.md), [exact release scope](docs/releases/m1312-v0.13.12.md). Exact final integration passes 162 native checks, 47 VMware checks, fourteen controller profiles, 106 original MSI payload hashes and 95 app frames across 613 compiled inputs. Twenty matching release assets are independently verified. Fixed desktop state remains 557,516 bytes (+0 from M13.11); measured completed tasks retain zero managed pages. Complete actual public delivery passes: 508 pages, 327 exact-source articles and 3,606 links, with zero known broken targets and 13 explicitly unverified external HEAD references. M13.0-M13.12 is complete within the recorded stage scopes; M13.13 follows. Stability remains exclusively M13.13.
 
 **Reported stability issue:** the owner reports frequent freezes on M13.8, in addition to the earlier M13.7 report. An exact M13.7 VMware baseline retained input processing after one real hour, but its last 44 frame samples stayed identical from about sixteen minutes and the final image did not show the serial-confirmed new app. Presentation stability therefore fails this diagnostic; the cause remains under investigation. The owner explicitly schedules investigation, correction and the eight-real-hour stability gate for M13.13, after completing M13.9-M13.12 in order. The scoped M13.8 Settings work does not claim a fix. The optional screensaver passes scoped M13.11 feature qualification; it does not qualify stability.
 
@@ -76,12 +76,13 @@ CD/DVD and keep the same installed hard disk connected.
 
 ## Hardware and original-app qualification
 
-[M11.6 acceptance](evidence/M11/6/acceptance-results.json) reruns the controller,
-device and original-app tasks on the final bytes. [M10](docs/releases/m10-v0.10.0.md)
+[Current M13.12 acceptance](evidence/M13/12/acceptance-results.json) repeats the
+controller, device, desktop and supported original-app integration on its final bytes.
+[M11.6 acceptance](evidence/M11/6/acceptance-results.json) remains historical. [M10](docs/releases/m10-v0.10.0.md)
 remains a separate historical record; its hashes are preserved.
 
 - Automatic supported-device binding and common capability/status reporting in
-  **Start → Settings → Devices**. Ready, Limited, Detected and Unavailable reflect
+  **Start → Settings → System → Devices and hardware**. Ready, Limited, Detected and Unavailable reflect
   actual providers; recognition alone is not usable functionality.
 - Saved US QWERTY/Dvorak choices, qualified keyboard/mouse/wheel input, supported
   xHCI HID/hubs, disconnect and reconnect.

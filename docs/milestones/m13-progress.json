@@ -114,9 +114,11 @@
     {
       "id": "M13.12",
       "title": "Complete-product integration qualification",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "native_qualification": "M13-STAGE12-VM-v1",
-      "evidence": "evidence/M13/12"
+      "evidence": "evidence/M13/12",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1312-v0.13.12",
+      "publication_evidence": "evidence/M13/12/publication-results.json"
     },
     {
       "id": "M13.13",
