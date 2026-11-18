@@ -54,7 +54,7 @@ test('revised-scope publication rejects a short observation, diagnostic result o
  const complete={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',duration_scope:'owner_revised_90_minutes',functional_completion_separate_from_duration:true,eight_hour_gate_passed:false,actual_observed_seconds:5400};
  for(const result of [undefined,{...complete,passed:false},{...complete,diagnostic_only:true},{...complete,actual_observed_seconds:5399},{...complete,functional_completion_separate_from_duration:false},{...complete,stage:'M13.12'},{...complete,actual_observed_seconds:Infinity}]){
   assert.equal(stabilityScopeQualified13(result),false);
-  const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result}));
+  const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result??null}));
   assert(home.includes('STABILITY PENDING · TESTING ONLY'));
   assert(!home.includes('NAMED VM STABILITY CHECKS COMPLETE'));
   assert(stabilityWarning13({owner_additions:ownerIssues,stability_qualification:result}).includes('Stability is not qualified'));
@@ -65,7 +65,7 @@ test('qualified revised-scope copy preserves historical cause and duration/devic
  const {stabilityWarning13}=await import('./downloads.mjs');
  const result={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',duration_scope:'owner_revised_90_minutes',functional_completion_separate_from_duration:true,eight_hour_gate_passed:false,actual_observed_seconds:6526};
  const ownerIssues=[{id:'long-uptime-freeze',status:'qualified_current_candidate'}];
- const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result}));
+ const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result??null}));
  for(const term of ['NAMED VM STABILITY CHECKS COMPLETE','Next: hardware recognition.','Historical natural-freeze causes remain unestablished','unlimited uptime are not qualified'])assert(home.includes(term),term);
  assert(!home.includes('STABILITY PENDING · TESTING ONLY'));
  assert(!home.includes('Download M13.13 (testing only)'));

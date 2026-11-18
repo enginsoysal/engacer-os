@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.12",
+  "currentRelease": "M13.13",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m1312.md",
+          "docs/handbook/install-m1313.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m1312-v0.13.12.md",
+          "docs/releases/m1313-v0.13.13.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/final-m1312.md",
+          "docs/handbook/final-m1313.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -86,6 +86,10 @@
         [
           "docs/handbook/apps-m1310.md",
           "Use the standard apps and remove optional packages"
+        ],
+        [
+          "docs/handbook/stability-m1313.md",
+          "Keep saved work and understand stability limits"
         ]
       ]
     },
@@ -119,7 +123,7 @@
       "items": [
         [
           "docs/milestones/m13.md",
-          "Follow M13.0\u2013M13.12 in order"
+          "Follow M13.0\u2013M13.13 in order"
         ],
         [
           "docs/architecture/desktop-m13.md",

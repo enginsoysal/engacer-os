@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.13",
-  "qualified_download": "M13.12",
+  "qualified_download": "M13.13",
   "design_only": false,
   "stages": [
     {
@@ -123,8 +123,11 @@
     {
       "id": "M13.13",
       "title": "Blocking stability qualification and release",
-      "status": "in_progress",
-      "release_blocking": true
+      "status": "native_complete_publication_pending",
+      "release_blocking": true,
+      "native_qualification": "M13-STAGE13-VM-v1",
+      "evidence": "evidence/M13/13",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1313-v0.13.13"
     }
   ],
   "website_followups": [
@@ -149,16 +152,18 @@
     {
       "id": "long-uptime-freeze",
       "reported_in": "M13.8",
-      "status": "in_progress_m13_13",
+      "status": "qualified_current_candidate",
       "target_stage": "M13.13",
       "final_gate": "M13.13",
-      "scope": "Investigation, natural-freeze/reset reproduction and real-duration qualification exclusively in M13.13; finish M13.9-M13.12 first per explicit owner direction.",
+      "scope": "Owner explicitly accepted ninety minutes instead of eight hours. Actual 108.78-minute observation and separate exact-candidate data/startup/resource/saver/labelled recovery tasks pass. Historical natural-freeze cause remains unestablished; owner attributes their issue to laptop.",
       "baseline": "evidence/M13/8/diagnostics/m137-one-hour-idle/review.json",
       "reported_versions": [
         "M13.7",
         "M13.8"
       ],
-      "integration_gate": "M13.13"
+      "integration_gate": "M13.13",
+      "duration_scope": "owner_revised_90_minutes",
+      "historical_cause": "unestablished"
     },
     {
       "id": "screensaver",
@@ -168,7 +173,18 @@
       "scope": "Optional bounded native idle activation, preview/preferences, safe mouse/keyboard wake and preserved desktop state"
     }
   ],
-  "download_health": "testing_only_stability_pending",
+  "download_health": "named_vm_owner_revised_scope_qualified",
   "stable_release": null,
-  "stability_gate": "M13.13"
+  "stability_gate": "M13.13",
+  "stability_qualification": {
+    "passed": true,
+    "stage": "M13.13",
+    "qualification": "M13-STAGE13-VM-v1",
+    "duration_scope": "owner_revised_90_minutes",
+    "actual_observed_seconds": 6526.844000000001,
+    "minimum_observed_seconds": 5400,
+    "eight_hour_gate_passed": false,
+    "functional_completion_separate_from_duration": true,
+    "evidence": "evidence/M13/13/acceptance-results.json"
+  }
 }
