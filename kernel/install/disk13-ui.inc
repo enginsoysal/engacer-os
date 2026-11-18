@@ -30,6 +30,7 @@ static void u13_working(void){
  ui12_palette p=ui12_theme(0,accent);unsigned x=body+12,y=top+98,w=width-276;
  gui6_rect(x,y,w,bottom-y,p.paper);label(x,y,"Applying disk changes",UI12_HEADING,p.ink);ui73_paragraph(x,y+64,w,3,"Keep the disk connected. The operation will be checked before it is reported complete.",p.muted);graphics9_flush();
 }
+static unsigned u13_same(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
 static void u71_draw(unsigned unused_x,unsigned unused_y){
  (void)unused_x;(void)unused_y;unsigned x=body+12,y=top+98,w=width-276,h=bottom-y-12;ui12_palette p=ui12_theme(0,accent);unsigned old=focus;
  const char*title=u71_mode==1?"Disks and partitions":u71_mode==2?"Create a partition":u71_mode==3?"Choose a format":u71_mode==5?"Repair the partition table":"Review disk changes";
@@ -77,7 +78,7 @@ static void u71_draw(unsigned unused_x,unsigned unused_y){
   u13_button(x,y+h-164,w,u71_consent?"[x] I understand these disk changes":"[ ] I understand these disk changes",226,1,0,u71_consent);
   unsigned cell=(w-12)/2;u13_button(x,y+h-114,cell,"Keep / Cancel",227,1,1,0);u13_button(x+cell+12,y+h-114,cell,"Apply changes",228,u71_consent,0,0);
  }
- if(u71_notice)ui73_paragraph(x,bottom-42,w,2,u71_notice,0x994334);
+ if(u71_notice)ui73_paragraph(x,bottom-42,w,2,u71_notice,u13_same(u71_notice,d71_error(D71_OK))||u13_same(u71_notice,"Cancelled. Nothing was written.")?p.ink:0x994334);
  else if(u71_mode==1)ui73_paragraph(x,bottom-42,w,2,!writable?"Inspection only. This device cannot be changed by the supported disk tools.":"Select a partition to format or delete it; select free space to create one. Every change needs review.",p.muted);
  u13_button(x,bottom+24,180,u71_mode==1?"Back to setup":"Back",200,1,0,0);
  focus=old<controls?old:0;if(focus<controls)u13_outline(buttons[focus],p.ink);
