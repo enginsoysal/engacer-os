@@ -41,7 +41,12 @@ def main():
                 p.desktop(59000,True);p.desktop(43 if theme=='dark' else 44,True);h.save(g,p);h.close(g,p)
                 baseline=f.stats(g)
                 t.launch(g,p,'files',1);f.visit(g,p,'Documents');p.desktop(f.item(g,p,long_name),True)
-                p.desktop(52000,True);f.menu(g,p,40008);assert c.flag(g,'file_dialog_state11')==3;c.shot(g,theme+'-properties-long-location');p.desktop(40021,True)
+                p.desktop(52000,True);f.menu(g,p,40008);assert c.flag(g,'file_dialog_state11')==3;c.shot(g,theme+'-properties-long-location')
+                if theme=='high-contrast':
+                    width,height=struct.unpack('<II',ui.memory(g,ui.symbol('model',installed=True)[0]+240,8))
+                    dialog_width=660 if width>720 else width-40
+                    assert c.pixel(g,width//2,(height-60-420)//2)==0xffffff
+                p.desktop(40021,True)
                 assert f.entries(g)['/Users/Owner/Documents/'+long_name]['size']==len(b'M13.10 metadata')
                 p.desktop(f.item(g,p,'Existing.txt'),True);c.key(g,'ret');p.desktop(54001,True);assert d.picker(g).purpose==2;c.shot(g,theme+'-save-as')
                 p.desktop(54024,True);d.field(g,p,54020,'Bad/Name');p.desktop(54011,True);assert d.picker(g).phase==3 and d.picker(g).error;c.shot(g,theme+'-folder-name-error');p.desktop(54026,True)
