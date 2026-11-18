@@ -32,7 +32,8 @@ def main():
  font=read(ROOT/'build/m13-native/font73-manifest.json');assert font['coverage_bytes']==251248
  assert font['header_sha256']==read(ROOT/'third_party/inter/raster-lock12.json')['header_sha256']
  old=read(ROOT/'evidence/M13/1/acceptance-results.json');assert sha(ROOT/'dist/EngacerOS-M13STAGE1.iso')==old['iso_sha256'];assert sha(ROOT/'dist/EngacerOS-M13STAGE1-VMware.zip')==old['vmware_zip_sha256']
- resources=dict(passed=True,fixed_desktop=current,baseline_fixed_desktop=baseline,font=font,profiles={n:r['resources'] for n,r in profiles.items()},scope='Fixed shell, immutable fonts, framebuffer and managed task allocations are separate; configured RAM is not kernel consumption.')
+ setup=fixed_setup(ROOT/'dist/EngacerOS-M13STAGE2-kernel.map');old_setup=fixed_setup(ROOT/'dist/EngacerOS-M13STAGE1-kernel.map')
+ resources=dict(passed=True,fixed_desktop=current,baseline_fixed_desktop=baseline,fixed_installer=setup,baseline_fixed_installer=old_setup,installer_delta_bytes=setup['bytes']-old_setup['bytes'],font=font,profiles={n:r['resources'] for n,r in profiles.items()},scope='Fixed shell, installer, immutable fonts, framebuffer and managed task allocations are separate; configured RAM is not kernel consumption.')
  out.mkdir(parents=True,exist_ok=True)
  for n in [*profiles,'vmware-results','journey-pointer','journey-keyboard-compact','candidate3-smoke']:rules.copy_report(work/n,out/n)
  shutil.copyfile(work/'host-results.json',out/'host-results.json');shutil.copyfile(work/'candidate3-smoke/welcome.png',out/'feature.png');write(out/'resources.json',resources)

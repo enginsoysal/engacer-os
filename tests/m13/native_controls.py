@@ -52,7 +52,12 @@ def main():
     report['checks'].append('Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation')
    report['resources']=dict(managed_stats=list(struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32))),framebuffer_bytes=struct.unpack_from('<I',ui.physical_boot(g,True),136)[0]*struct.unpack_from('<I',ui.physical_boot(g,True),148)[0])
    key(g,'alt','f4');ptr.drain();pages_after=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32))[0];report['resources']['retained_task_delta_pages']=pages_after-pages_before;assert pages_after==pages_before
-   before=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');time.sleep(.5);after=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1');assert before==after and halted==2,(before,after,halted)
+   idle=[]
+   for attempt in range(20):
+    ptr.drain();before=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');time.sleep(.5);after=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1');idle.append(dict(before=before,after=after,halted=halted))
+    if len(idle)>=3 and all(r['before']==r['after'] and r['halted']==2 for r in idle[-3:]):break
+   report['idle_observations']=idle
+   assert len(idle)>=3 and all(r['before']==r['after'] and r['halted']==2 for r in idle[-3:]),idle
    report['checks'].append('Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass')
    (out/'install.log').write_text(g.log(),encoding='utf-8')
   for n in (1,2):
