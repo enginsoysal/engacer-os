@@ -1,5 +1,7 @@
 # Install and feel at home in Engacer OS M13.8
 
+**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9 addresses the faults; M13.12 covers integration and [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
+
 This guide covers the M13.8 release within its named native qualification. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
 
 ## The easiest start

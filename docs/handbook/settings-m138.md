@@ -1,5 +1,7 @@
 # Find and change settings in Engacer OS M13.8
 
+**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9 addresses the faults; M13.12 covers integration and [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
+
 Use the matching [M13.8 release](../releases/m138-v0.13.8.md) and [installation guide](install-m138.md). Its named native Settings, feedback and display qualification is separate from later M13 integration and hardware work.
 
 ## Find a supported setting

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "purpose": "Corrective stability warning, not new native qualification",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8",
+  "tag": "m138-v0.13.8",
+  "previous_title": "Engacer OS M13.8 / 0.13.8 - Settings, errors and recovery",
+  "current_title": "Engacer OS M13.8 / 0.13.8 - TESTING ONLY: known freezes",
+  "release_notes_unchanged": true,
+  "tag_target_unchanged": true,
+  "all_twenty_assets_unchanged": true,
+  "reported_affected_versions": [
+    "M13.7",
+    "M13.8"
+  ],
+  "stability_gate": "M13.13"
+}

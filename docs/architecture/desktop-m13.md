@@ -93,3 +93,7 @@ M13.11 adds an optional bounded native screensaver with actual idle timeout, sup
 ## M13.9 presentation recovery candidate
 
 Implementation in progress; no native qualification is claimed. The M13.7 baseline retains serial input processing while its image stops updating. The existing SVGA quarantine discards FIFO ownership in software without clearing the device CONFIG_DONE register. The candidate clears that register before discarding the pointer, retains the same firmware mode/shadow buffer and replays the full framebuffer once after the ownership change. Subsequent CPU writes must be visibly observed on the actual device; a serial-only assertion is insufficient. The change adds no new fixed state, framebuffer or idle loop. Real-duration and native motion measurements remain blocking before release. [Stage plan](../milestones/m13-9.md).
+
+## Stability priority and M13.13 extension
+
+Frequent freezes are now reported on M13.8 as well as M13.7. Historic task-level qualification does not establish stability; current M13.8 media are testing-only. M13.9 addresses the faults before further appearance refinement. M13.12 remains integration qualification; [M13.13](../milestones/m13-13.md) adds an eight-real-hour release-blocking stability trial before hardware expansion. Pending M13.9 trace and timeout self-test code is unqualified until rebuilt and tested on frozen media.

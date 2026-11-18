@@ -100,8 +100,14 @@
     },
     {
       "id": "M13.12",
-      "title": "Final complete-product qualification",
+      "title": "Complete-product integration qualification",
       "status": "planned"
+    },
+    {
+      "id": "M13.13",
+      "title": "Blocking stability qualification and release",
+      "status": "planned",
+      "release_blocking": true
     }
   ],
   "website_followups": [
@@ -125,12 +131,17 @@
   "owner_additions": [
     {
       "id": "long-uptime-freeze",
-      "reported_in": "M13.7",
+      "reported_in": "M13.8",
       "status": "investigating",
       "target_stage": "M13.9",
-      "final_gate": "M13.12",
-      "scope": "Real-duration idle and active/idle reproduction, timer/input/render/resource diagnosis and corrected-media repeat; a screensaver is not a fix",
-      "baseline": "evidence/M13/8/diagnostics/m137-one-hour-idle/review.json"
+      "final_gate": "M13.13",
+      "scope": "Owner reports frequent M13.8 freezes; exact M13.7 visual-freeze evidence is preserved. Stability takes priority now in M13.9, then integration in M13.12 and eight-real-hour blocking stability qualification in M13.13.",
+      "baseline": "evidence/M13/8/diagnostics/m137-one-hour-idle/review.json",
+      "reported_versions": [
+        "M13.7",
+        "M13.8"
+      ],
+      "integration_gate": "M13.12"
     },
     {
       "id": "screensaver",
@@ -139,5 +150,8 @@
       "final_gate": "M13.12",
       "scope": "Optional bounded native idle activation, preview/preferences, safe mouse/keyboard wake and preserved desktop state"
     }
-  ]
+  ],
+  "download_health": "testing_only_known_freezes",
+  "stable_release": null,
+  "stability_gate": "M13.13"
 }

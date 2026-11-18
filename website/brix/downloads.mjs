@@ -1,5 +1,9 @@
 // Keep current downloads obvious and historical pages bounded as releases grow.
 import assert from 'node:assert/strict';
+export function stabilityWarning13(progress){
+ if(!(progress.owner_additions||[]).some(issue=>issue.id==='long-uptime-freeze'&&issue.status!=='resolved'))return '';
+ return '<p><strong>Known freezes — testing only.</strong> Frequent freezes are reported on M13.8, following the earlier M13.7 report. Do not use these media for everyday work. Stability is not qualified. M13.9 addresses the faults; M13.12 covers integration and <a href="/blog/docs-milestones-m13-13">M13.13 is the blocking eight-hour stability release gate</a>. Historical task checks do not establish stability.</p>';
+}
 export function releaseGroups(releases,currentTag){
  const current=releases.find(r=>r.tag_name===currentTag)||releases[0];
  const history=releases.filter(r=>r!==current),archives=[];

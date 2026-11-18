@@ -13,6 +13,8 @@
 
 ## Product requirements
 
+- Owner priority, 18 November 2026: M13.8 is also reported to freeze frequently. Stability takes priority over further visual refinement. Investigate and correct the freezes now in M13.9; M13.12 remains integration qualification and new M13.13 is a blocking stability release gate before further hardware expansion. Treat current M13.8 downloads as testing-only with known freezes; scoped historical task passes are not stability qualification. M13.13 requires eight real hours of idle and active/idle use, visible responsiveness, saved/unsaved data checks, restart coverage and bounded resources; any unexpected hang/restart blocks release.
+
 - Owner addition, 18 November 2026: M13.7 reportedly freezes after long uptime. Continue the current stage sequence while collecting an owned baseline; investigate/correct long-idle and active/idle behavior in M13.9 and repeat real-duration qualification on the exact M13.12 media. This is a blocking final acceptance item, not a presumed GPU fault or something a screensaver fixes. Add an optional lightweight, configurable native screensaver to M13.11, with safe input wake, retained desktop/documents, validated preferences and no new idle polling loop.
 
 - Owner clarification, 18 November 2026: use the existing BrixCanvas editor and publication features for the website. Report missing platform capabilities to the owner instead of starting another BrixCanvas production-source investigation or platform change as part of the OS milestone work. Continue publishing Engacer OS code, documentation and releases to its canonical GitHub repository after each milestone.
