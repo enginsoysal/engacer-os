@@ -1,6 +1,10 @@
 // Keep current downloads obvious and historical pages bounded as releases grow.
 import assert from 'node:assert/strict';
+export function workdayQualified13(result){
+ return result?.passed===true&&result.diagnostic_only!==true&&result.stage==='M13.13'&&result.qualification==='M13-STAGE13-VM-v1'&&Number.isFinite(result.actual_workday_seconds)&&result.actual_workday_seconds>=28800&&Number.isFinite(result.uninterrupted_idle_seconds)&&result.uninterrupted_idle_seconds>=7200;
+}
 export function stabilityWarning13(progress){
+ if(workdayQualified13(progress.stability_qualification))return '<p><strong>Eight-hour VMware workday qualified.</strong> M13.13 passed its named enabled-device VMware scenario, including two uninterrupted idle hours, active tasks and independent saved-data starts. This does not promise universal hardware or unlimited uptime. Historical M13.7/M13.8 natural-freeze reports remain recorded; the simulated recovery test does not establish their cause. Read the <a href="/blog/docs-handbook-stability-m1313">stability scope and data guide</a>.</p>';
  if(!(progress.owner_additions||[]).some(issue=>issue.id==='long-uptime-freeze'&&issue.status!=='resolved'))return '';
  return '<p><strong>Known freezes — testing only.</strong> Frequent freezes are reported on M13.8, following the earlier M13.7 report. Do not use these media for everyday work. Stability is not qualified. M13.9-M13.12 finish the product in order; <a href="/blog/docs-milestones-m13-13">M13.13 is the blocking eight-hour stability release gate</a>. Historical task checks do not establish stability.</p>';
 }
