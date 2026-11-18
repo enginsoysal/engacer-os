@@ -288,3 +288,7 @@ tests/m13/*.mjs -text whitespace=cr-at-eol
 
 # Preserve the exact newly compiled M13.6 taskbar capacity bytes.
 include/engine/ui/taskbar12.h -text whitespace=cr-at-eol
+
+# Preserve exact M13.9 cursor input bytes measured by the frozen candidate.
+include/engine/ui/graphics9.h -text whitespace=cr-at-eol
+kernel/core/graphics9.inc -text whitespace=cr-at-eol
