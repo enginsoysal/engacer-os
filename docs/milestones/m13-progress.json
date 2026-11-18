@@ -51,10 +51,11 @@
     {
       "id": "M13.5",
       "title": "A finished desktop and window experience",
-      "status": "in_progress",
+      "status": "complete",
       "native_qualification": "M13-STAGE5-VM-v1",
       "evidence": "evidence/M13/5",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5",
+      "publication_evidence": "evidence/M13/5/publication-results.json"
     },
     {
       "id": "M13.6",

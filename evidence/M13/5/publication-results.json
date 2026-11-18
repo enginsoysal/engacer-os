@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.5",
+  "qualification": "M13-STAGE5-VM-v1",
+  "source_commit": "e39508e280bf633f5be0043d414cb40ea0693704",
+  "release_source_commit": "e441c6a39b64fa4486226f0a35f43b2c6b2124db",
+  "build_id": "57c2d93b6a9b2cc3578c4e606751629f",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5",
+  "workflow_ids": [
+    44234869293
+  ],
+  "current_native_download": "m135-v0.13.5",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 458,
+  "unique_links": 3197,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

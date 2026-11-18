@@ -1,7 +1,7 @@
 # Engacer OS
 
-**Current development: [M13.5 - desktop and window experience](docs/milestones/m13-5.md). Native qualification and the GitHub release pass; complete public website verification is in progress.** M13.6-M13.12 have not started.
-**M13.5 / 0.13.5 passes M13-STAGE5-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5), [use your desktop and windows](docs/handbook/desktop-m135.md). Sixty-two native task/profile checks, six window profiles, seventeen original-icon comparisons, twelve cached/full viewport comparisons and exact enabled-device VMware startup bind these media. Full public website verification is in progress.
+**Current development: [M13.5 - desktop and window experience](docs/milestones/m13-5.md). Native qualification, GitHub release and complete public website verification pass.** M13.6-M13.12 have not started.
+**M13.5 / 0.13.5 passes M13-STAGE5-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5), [use your desktop and windows](docs/handbook/desktop-m135.md). Sixty-two native task/profile checks, six window profiles, seventeen original-icon comparisons, twelve cached/full viewport comparisons and exact enabled-device VMware startup bind these media. Public delivery passes: 458 pages, 293 exact-source articles and 3,197 links. [Publication receipt](evidence/M13/5/publication-results.json).
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,
@@ -57,9 +57,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1217-v0.12.17/EngacerOS-M12STAGE17-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1217-v0.12.17/EngacerOS-M12STAGE17.iso) ·
-[Step-by-step installation](docs/handbook/install-m1217.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m135-v0.13.5/EngacerOS-M13STAGE5-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m135-v0.13.5/EngacerOS-M13STAGE5.iso) ·
+[Step-by-step installation](docs/handbook/install-m135.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.
