@@ -105,10 +105,11 @@
     {
       "id": "M13.11",
       "title": "Complete supported personalization",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "native_qualification": "M13-STAGE11-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1311-v0.13.11",
-      "evidence": "evidence/M13/11"
+      "evidence": "evidence/M13/11",
+      "publication_evidence": "evidence/M13/11/publication-results.json"
     },
     {
       "id": "M13.12",
