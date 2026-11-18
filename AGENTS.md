@@ -13,6 +13,8 @@
 
 ## Product requirements
 
+- Owner clarification, 18 November 2026: use the existing BrixCanvas editor and publication features for the website. Report missing platform capabilities to the owner instead of starting another BrixCanvas production-source investigation or platform change as part of the OS milestone work. Continue publishing Engacer OS code, documentation and releases to its canonical GitHub repository after each milestone.
+
 - Owner priority, 17 November 2026: complete M13.1–M13.12 strictly in order after accepted M13.0 under docs/milestones/m13.md. Include website information architecture and same-page search design. This is the last dedicated appearance/usability sequence before hardware recognition. Close tests, English docs, GitHub and actual native Brix homepage/content/mobile/search/download checks after every stage before the next. M13.0 is design-only; M12.18 remains the native download. Preserve all accepted M12 media/evidence. Do not claim prototype search or concepts are production/native implementation.
 
 - Owner priority, 16 November 2026: execute M12.0 through M12.18 strictly in
