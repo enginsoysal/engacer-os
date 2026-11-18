@@ -7,13 +7,23 @@ static unsigned framed75,previous_focus75=UINT32_MAX,previous_count75,previous_m
 static const char*title75[24];static unsigned kind75[24];
 static uint32_t signature75,previous_accent75;
 static unsigned chosen_state75;
+#ifdef ENGINE_M13
+enum {TAP_SELECTED13=4};
+#endif
 static uint64_t counter75(void){uint32_t a,d;__asm__ volatile("rdtsc":"=a"(a),"=d"(d));return ((uint64_t)d<<32)|a;}
 static void outline75(control c,uint32_t color){
  gui6_rect(c.x,c.y,c.w,2,color);gui6_rect(c.x,c.y+c.h-2,c.w,2,color);gui6_rect(c.x,c.y,2,c.h,color);gui6_rect(c.x+c.w-2,c.y,2,c.h,color);
 }
 static void tap75(unsigned x,unsigned y,unsigned w,unsigned h,const char*text,unsigned action,unsigned kind){
 #ifdef ENGINE_M12
- ui12_palette palette=ui12_theme(0,accent);unsigned state=(kind==2?UI12_DISABLED:0)|(kind!=2&&focus==controls?UI12_FOCUS:0);ui12_style style=ui12_control_style(palette,state,kind==1);if(kind==3){style.fill=0xfff1ed;style.ink=palette.ink;}
+ ui12_palette palette=ui12_theme(0,accent);unsigned state=(kind==2?UI12_DISABLED:0);
+#ifndef ENGINE_M13
+ state|=(kind!=2&&focus==controls?UI12_FOCUS:0);
+#endif
+#ifdef ENGINE_M13
+ if(kind==TAP_SELECTED13)state|=UI12_SELECTED;
+#endif
+ ui12_style style=ui12_control_style(palette,state,kind==1);if(kind==3){style.fill=0xfff1ed;style.ink=palette.ink;}
  ui73_round(x,y,w,h,UI12_RADIUS,style.border);ui73_round(x+2,y+2,w-4,h-4,UI12_RADIUS-2,style.fill);
  if(kind!=2&&controls<24){unsigned i=controls++;buttons[i]=(control){x,y,w,h,action};title75[i]=text;kind75[i]=kind;}
  ui73_fit(x+12,y+(h-22)/2,w-24,text,UI12_BODY,style.ink);
@@ -44,6 +54,9 @@ static uint32_t model75(void){uint32_t h=2166136261u;const uint8_t*p=(const uint
 #ifdef ENGINE_M11
  const uint8_t*q=(const uint8_t*)&setup11;for(unsigned i=0;i<sizeof(setup11);++i)h=(h^q[i])*16777619u;h^=keyboard_page11*65537+apps_page11*4099+name_cursor11*13+name_anchor11*17;
  for(unsigned i=0;i<32;++i)h=(h^(uint8_t)keyboard_test11[i])*16777619u;if(step==3)h^=focus*211;
+#endif
+#ifdef ENGINE_M13
+h^=startup_options13*0x4351u;
 #endif
 return h;}
 #ifdef ENGINE_M12

@@ -316,7 +316,11 @@ NORETURN void m6_start(const os_boot_info_v0*boot){
 #ifdef ENGINE_M73
  left=(boot->framebuffer_width-width)/2;top=(boot->framebuffer_height-height)/2;
 #endif
- body=left+220;bottom=top+height-70;serial_text("M6_STORAGE_BEGIN\n");usb_mouse_limits(
+ body=left+220;bottom=top+height-70;
+#ifdef ENGINE_M13
+ ui13_startup(1,"Finding your disks");
+#endif
+serial_text("M6_STORAGE_BEGIN\n");usb_mouse_limits(
 #ifdef ENGINE_M73
  ui73_width(),ui73_height()
 #else
@@ -326,7 +330,14 @@ NORETURN void m6_start(const os_boot_info_v0*boot){
 #ifdef ENGINE_M92
 (void)scsi92_discover();
 #endif
-(void)virtio_discover();(void)usb_init();input_init();
+(void)virtio_discover();
+#ifdef ENGINE_M13
+ ui13_startup(2,"Connecting keyboard, mouse and USB");
+#endif
+(void)usb_init();input_init();
+#ifdef ENGINE_M13
+ ui13_startup(3,m6_live()?"Opening setup":"Opening your installed system");
+#endif
  if(!m6_live()){unsigned s=m6_open();if(s)failure="Installed data volume could not be opened. Boot the ISO for recovery.";else{installed=1;if(m6_settings(&preferences))failure="Saved user settings failed integrity validation.";else accent=preferences.accent;}}
 #ifdef ENGINE_M7
  if(installed&&!failure)desktop_start(boot,&preferences);

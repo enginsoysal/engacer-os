@@ -64,10 +64,17 @@ static void setup_review11(unsigned x,unsigned y,unsigned cw){
 }
 static unsigned setup_action11(unsigned a){
  if(busy)return 0;
+#ifdef ENGINE_M13
+ if(a==50500&&step==0&&!keyboard_page11){startup_options13^=1;validation=0;render();return 1;}
+#endif
 #ifdef ENGINE_M12
  if(a==50400&&step==3){accent=DISTRO_ACCENT;preferences.accent=accent;validation=0;render();return 1;}
 #endif
- if(a==2&&!maintenance&&step==0){if(!keyboard_page11){keyboard_page11=1;keyboard_test11[0]=0;keyboard_test_length11=0;}else{keyboard_page11=0;step=1;}validation=0;focus=0;render();return 1;}
+ if(a==2&&!maintenance&&step==0){if(!keyboard_page11){keyboard_page11=1;
+#ifndef ENGINE_M13
+keyboard_test11[0]=0;keyboard_test_length11=0;
+#endif
+}else{keyboard_page11=0;step=1;}validation=0;focus=0;render();return 1;}
  if(a==1&&!maintenance&&(keyboard_page11||step==1)){keyboard_page11=!keyboard_page11;step=0;replace_consent=0;m6_cancel();validation=0;focus=0;render();return 1;}
  if(a==30&&step==3){name_cursor11=0;while(preferences.user[name_cursor11])++name_cursor11;name_anchor11=0;render();return 1;}
  if(a>=50000&&a<=50003&&keyboard_page11){if(a<50002){setup11.layout=a-50000;input10_set_layout(setup11.layout);}else if(a==50003){keyboard_test11[0]=0;keyboard_test_length11=0;}validation=0;render();return 1;}
@@ -79,8 +86,15 @@ static unsigned setup_action11(unsigned a){
  return 0;
 }
 static unsigned setup_key11(int key){
+#ifdef ENGINE_M13
+ if(key==27&&step==0&&!keyboard_page11&&startup_options13){setup_action11(50500);return 1;}
+#endif
  if(key==27&&keyboard_page11){setup_action11(1);return 1;}
- if(keyboard_page11&&focus<controls&&buttons[focus].action==50002){if(key==8&&keyboard_test_length11)keyboard_test11[--keyboard_test_length11]=0;else if(key>=32&&key<=126&&keyboard_test_length11<31){keyboard_test11[keyboard_test_length11++]=(char)key;keyboard_test11[keyboard_test_length11]=0;}else return 0;render();return 1;}
+ if(keyboard_page11&&focus<controls&&buttons[focus].action==50002){
+#ifdef ENGINE_M13
+ if(key==10){setup_action11(2);return 1;}if(input11_modifiers()&~2u)return 1;
+#endif
+if(key==8&&keyboard_test_length11)keyboard_test11[--keyboard_test_length11]=0;else if(key>=32&&key<=126&&keyboard_test_length11<31){keyboard_test11[keyboard_test_length11++]=(char)key;keyboard_test11[keyboard_test_length11]=0;}else return 0;render();return 1;}
  if(step!=3||focus>=controls||buttons[focus].action!=30)return 0;
  unsigned n=0;while(preferences.user[n])++n;unsigned shift=!!(input11_modifiers()&2),lo=name_cursor11<name_anchor11?name_cursor11:name_anchor11,hi=name_cursor11>name_anchor11?name_cursor11:name_anchor11;
  if(key==1||((input11_modifiers()&1)&&key=='a')){name_anchor11=0;name_cursor11=n;}

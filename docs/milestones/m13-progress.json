@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.1",
+  "current_stage": "M13.2",
   "qualified_download": "M13.1",
   "design_only": false,
   "stages": [
@@ -24,7 +24,7 @@
     {
       "id": "M13.2",
       "title": "Welcoming setup and a coherent boot journey",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.3",

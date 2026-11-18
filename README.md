@@ -1,6 +1,6 @@
 # Engacer OS
 
-**Current development: [M13.1 — native visual foundation](docs/milestones/m13-1.md), complete within its native and public website scope.** M13.2–M13.12 follow in order after each public closure. M13.1 is the qualified scoped native download.
+**Current development: [M13.2 — welcoming setup](docs/milestones/m13-2.md), implementation and qualification in progress.** M13.1 remains the qualified public download. M13.3–M13.12 follow strictly after each complete public closure.
 **M13.1 / 0.13.1 passes M13-STAGE1-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m131-v0.13.1), [install and try the shared controls](docs/handbook/install-m131.md). Production documentation search, task sidebar and heading navigation have passed desktop/mobile browser checks. Later M13 stages and full-product qualification remain separate.
 
 

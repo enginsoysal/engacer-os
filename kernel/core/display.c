@@ -2,6 +2,9 @@
 #include "distro.h"
 #endif
 #include <engine/base.h>
+#ifdef ENGINE_M13
+#include <engine/ui/components12.h>
+#endif
 #include <engine/boot/boot_v0.h>
 #include "build.h"
 /* Original 5x7 uppercase bitmap alphabet for this minimal boot console. */
@@ -96,10 +99,32 @@ static void text(unsigned x,unsigned y,const char *s,unsigned scale,uint32_t rgb
         }
     }
 }
+#ifdef ENGINE_M13
+static unsigned startup_drawn13;
+static volatile unsigned startup_phase13;
+void ui13_startup(unsigned phase,const char *message){
+ if(!active73||!screen||!screen->framebuffer.byte_length)return;
+ unsigned w=view73.framebuffer_width,h=view73.framebuffer_height;if(w<320||h<280)return;
+ gui7_clip_reset();ui12_palette p=ui12_theme(1,DISTRO_ACCENT);unsigned mid=w/2,y=h/2;
+ if(!startup_drawn13){
+  rect73(0,0,w,h,UI13_SETUP_BACKDROP);ui73_round(mid-32,y-112,64,64,14,p.ink);ui73_round(mid-30,y-110,60,60,12,p.accent);
+  unsigned glyph=ui73_measure("E",UI12_HEADING);text73(mid-glyph/2,y-96,"E",UI12_HEADING,p.on_accent);
+  unsigned title=ui73_measure(ENGINE_PRODUCT_NAME,UI12_HEADING);text73(mid-title/2,y-20,ENGINE_PRODUCT_NAME,UI12_HEADING,p.ink);startup_drawn13=1;
+ }
+ rect73(24,y+36,w-48,34,UI13_SETUP_BACKDROP);unsigned length=ui73_measure(message,UI12_BODY);
+ if(length<=w-64)text73(mid-length/2,y+42,message,UI12_BODY,p.muted);else ui73_fit(32,y+42,w-64,message,UI12_BODY,p.muted);
+ unsigned current=phase>2?2:phase?phase-1:0;for(unsigned i=0;i<3;++i)ui73_round(mid-104+i*72,y+92,64,4,2,i==current?p.accent:p.line);
+ startup_phase13=phase;graphics9_flush();serial_text("M13_STARTUP_PHASE value=");serial_hex(phase);serial_text("\n");
+}
+#endif
 void display_boot(const os_boot_info_v0 *boot) {
     screen=boot;if(!boot->framebuffer.byte_length)return;
 #ifdef ENGINE_M73
-    const os_boot_info_v0*v=ui73_begin(boot);rect73(0,0,v->framebuffer_width,v->framebuffer_height,0x101f2c);
+    const os_boot_info_v0*v=ui73_begin(boot);
+#ifdef ENGINE_M13
+    (void)v;ui13_startup(0,"Starting your system");return;
+#endif
+    rect73(0,0,v->framebuffer_width,v->framebuffer_height,0x101f2c);
     unsigned x=v->framebuffer_width/2-120,y=v->framebuffer_height/2-40;text73(x,y,"" ENGINE_PRODUCT_NAME "",4,0xf2f8fa);text73(x,y+56,"Preparing your workspace...",1,0xa7bbc7);return;
 #endif
     uint32_t accent=color(0x39d5bb),background=color(0x101d2b);

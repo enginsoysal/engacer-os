@@ -2,6 +2,9 @@
 #define ENGINE_UI_GRAPHICS73_H
 #include <engine/boot/boot_v0.h>
 const os_boot_info_v0 *ui73_begin(const os_boot_info_v0 *);
+#ifdef ENGINE_M13
+void ui13_startup(unsigned phase,const char *message);
+#endif
 unsigned ui73_scale(void);
 unsigned ui73_scale_choice(void);
 const os_boot_info_v0 *ui73_set_scale(unsigned);
