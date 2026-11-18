@@ -71,12 +71,12 @@ static void disk15(unsigned x,unsigned y,unsigned w,unsigned h){
  for(unsigned row=0;row<4;++row){unsigned index=disk_page*4+row;if(index>=count)break;const storage_disk*d=storage_get(index);unsigned yy=panel+28+row*row_height,hh=row_height-2;char name[40],size[32];diskname75(index,name);capacity75(d,size);unsigned selected=chosen==index;uint32_t bg=selected?p.selection:p.surface;gui6_rect(x+4,yy,w-8,hh,bg);if(selected)gui6_rect(x+4,yy,4,hh,p.accent);
   if(controls<24){unsigned at=controls++;buttons[at]=(control){x+4,yy,w-8,hh,100+index};title75[at]="";kind75[at]=0;}
   ui73_round(x+16,yy+(hh-16)/2,16,16,8,selected?p.accent:p.control_border);ui73_round(x+19,yy+(hh-16)/2+3,10,10,5,bg);if(selected)ui73_round(x+22,yy+(hh-16)/2+6,4,4,2,p.accent);
-  ui73_fit(x+42,yy+(small?8:4),w-164,name,UI12_BODY,suitable75(d)?p.ink:p.muted);label(x+w-112,yy+(small?8:14),size,UI12_BODY,p.ink);
-  if(!small)ui73_fit(x+42,yy+28,w-164,suitable75(d)?(selected?(chosen_state75==1?"Selected - empty disk":chosen_state75==2?"Selected - existing data":"Selected - check connection"):"Supported hard disk"):"Inspection only",UI12_SECONDARY,p.muted);
+  ui73_fit(x+42,yy+(small?2:4),w-164,name,UI12_BODY,suitable75(d)?p.ink:p.muted);label(x+w-112,yy+(small?10:14),size,UI12_BODY,p.ink);
+  ui73_fit(x+42,yy+(small?20:28),w-164,suitable75(d)?(selected?(chosen_state75==1?"Selected - ready for setup":chosen_state75==2?"Selected - existing data":"Selected - check connection"):"Supported hard disk"):"Inspection only",UI12_SECONDARY,p.muted);
  }
  unsigned tools=panel+panel_height+12;tap75(x,tools,128,40,"Disk tools...",90,chosen<count?0:2);unsigned next=140;if(count>4){tap75(x+next,tools,56,40,"<",94,disk_page?0:2);tap75(x+next+64,tools,56,40,">",95,(disk_page+1)*4<count?0:2);next+=132;}
  if(!maintenance&&chosen_state75==2)tap75(x+next,tools,w-next,40,replace_selected?"[x] Replace disk":"[ ] Replace disk",91,replace_selected?3:0);
- const char*help=chosen>=count?"Select a disk row to enable Next.":chosen_state75==1?"Empty disk selected. Next will prepare it automatically.":chosen_state75==3?"Inspection only. Installation needs a supported writable disk, 2 GiB to 2 TiB.":chosen_state75==4?"The disk could not be read. Check its connection and try again.":replace_selected?"Review will ask again before erasing this disk. Other disks are kept.":"This disk has existing data. Back it up before choosing Replace disk.";
+ const char*help=chosen>=count?"Select a disk row to enable Next.":chosen_state75==1?"Ready for whole-disk setup. Review names this disk before writing.":chosen_state75==3?"Inspection only. Installation needs a supported writable disk, 2 GiB to 2 TiB.":chosen_state75==4?"The disk could not be read. Check its connection and try again.":replace_selected?"Review will ask again before erasing this disk. Other disks are kept.":"This disk has existing data. Back it up before choosing Replace disk.";
  hint15(x,y+h-44,w,2,help);
 }
 static void apps15(unsigned x,unsigned y,unsigned w,unsigned h){

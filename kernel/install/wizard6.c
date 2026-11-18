@@ -370,6 +370,9 @@ serial_text("M6_STORAGE_BEGIN\n");usb_mouse_limits(
 #ifdef ENGINE_M7
  if(key==136&&controls){focus=(focus+controls-1)%controls;render();continue;}
 #endif
+#ifdef ENGINE_M13
+ if(u71_mode==2&&focus<controls&&(buttons[focus].action==220||buttons[focus].action==222)&&key!=9&&key!=136&&key!=10&&key!=27&&u71_key(key))continue;
+#endif
 #ifdef ENGINE_M75
  if(key==27&&step>0&&step<5&&!diagnostics&&!u71_mode){action(1);continue;}
  if(key==32&&controls&&buttons[focus].action!=30){action(buttons[focus].action);continue;}

@@ -68,7 +68,16 @@ u13_working();
 label(body,top+110,"Working. Keep the disk connected.",2,0xffffff);
 #endif
 unsigned s=d71_apply(&u71_device,&u71_state,&u71_plan,m71_workspace());u71_mode=1;u71_consent=0;u71_refresh();u71_notice=d71_error(s);serial_text(s?"M71_DISK_FAILED code=":"M71_DISK_APPLIED op=");serial_hex(s?s:u71_op);serial_text("\n");}}
+
+#ifdef ENGINE_M13
+ else if(a==220||a==222)u13_select=a;
+#endif
  else if(a!=220&&a!=222)return 1;
  render();return 1;
 }
-static unsigned u71_key(int key){if(!u71_mode)return 0;if(key==27){u71_mode=1;u71_consent=0;u71_notice="Cancelled. Nothing was written.";render();return 1;}if(u71_mode==2&&focus<controls){unsigned a=buttons[focus].action;char*p=a==220?u71_size:a==222?u71_name:0;if(p){unsigned n=0;while(p[n])++n;if(key==8&&n)p[n-1]=0;else if(n<(a==220?10u:36u)&&((a==220&&key>='0'&&key<='9')||(a==222&&key>=32&&key<=126))){p[n]=(char)key;p[n+1]=0;}render();return 1;}}return 0;}
+static unsigned u71_key(int key){if(!u71_mode)return 0;if(key==27){u71_mode=1;u71_consent=0;u71_notice="Cancelled. Nothing was written.";render();return 1;}if(u71_mode==2&&focus<controls){unsigned a=buttons[focus].action;char*p=a==220?u71_size:a==222?u71_name:0;if(p){
+#ifdef ENGINE_M13
+ if(key==1||((input11_modifiers()&1)&&key=='a')){u13_select=a;render();return 1;}if(input11_modifiers()&~2u)return 1;
+ if(u13_select==a&&(key==8||(key>=32&&key<=126))){p[0]=0;u13_select=0;}
+#endif
+unsigned n=0;while(p[n])++n;if(key==8&&n)p[n-1]=0;else if(n<(a==220?10u:36u)&&((a==220&&key>='0'&&key<='9')||(a==222&&key>=32&&key<=126))){p[n]=(char)key;p[n+1]=0;}render();return 1;}}return 0;}
