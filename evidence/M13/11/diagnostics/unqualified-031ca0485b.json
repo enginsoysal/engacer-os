@@ -1,0 +1,10 @@
+{
+  "build_id": "031ca0485b7038b59975d6e6c744423c",
+  "iso_sha256": "b2477a9d5c528227d4614335c006a513683a6d074b449f67172c18818337d7f8",
+  "source_commit": "bfceb37",
+  "qualified": false,
+  "reason": "Pre-task review found the new short header button drawn without an ordinary hit registry entry, and screensaver records needed an explicit exact file-size check",
+  "correction": "Register the real header target and require exactly twenty stored bytes before running native qualification",
+  "tests_started": false,
+  "natural_freeze": false
+}

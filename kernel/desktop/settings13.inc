@@ -31,7 +31,7 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #endif
  ui73_fit(x,y,width-180,heading20,UI12_HEADING,p.ink);
 #ifdef ENGINE_M13
- if(page==0){desktop_rect entry21={x+width-168,y-2,168,28};component_button12(token,entry21,"Screensaver",S21_OPEN,0,1);}
+ if(page==0){desktop_rect entry21={x+width-168,y-2,168,28};component_button12(token,entry21,"Screensaver",S21_OPEN,0,1);file_control11(token,entry21,S21_OPEN);}
 #endif
  const char*names[]={"Appearance","Display","Input","System","Accessibility"};int tab=(width-32)/5;
 #ifdef ENGINE_M13

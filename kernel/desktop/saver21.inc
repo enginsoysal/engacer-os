@@ -3,7 +3,7 @@ static saver_record21 saver_defaults21(void){return (saver_record21){0x31325345,
 static void saver_path21(char*path){copy(path,"/System/Settings/screensaver21-",256);append(path,owner.user,256);append(path,".bin",256);}
 static void saver_load21(void){
  saver_saved21=saver_defaults21();char path[256];saver_path21(path);saver_record21 p;unsigned bytes=0;
- if(entry(path)){saver_invalid21=1;if(!v6_verify(m6_volume(),path)&&!v6_read(m6_volume(),path,0,&p,sizeof(p),&bytes)&&bytes==sizeof(p)&&p.magic==saver_saved21.magic&&p.version==1&&p.enabled<=1&&(p.seconds==60||p.seconds==300||p.seconds==600)&&p.style<=2){saver_saved21=p;saver_invalid21=0;}}
+ const v6_entry*stored=entry(path);if(stored){saver_invalid21=1;if(stored->size==sizeof(p)&&!v6_verify(m6_volume(),path)&&!v6_read(m6_volume(),path,0,&p,sizeof(p),&bytes)&&bytes==sizeof(p)&&p.magic==saver_saved21.magic&&p.version==1&&p.enabled<=1&&(p.seconds==60||p.seconds==300||p.seconds==600)&&p.style<=2){saver_saved21=p;saver_invalid21=0;}}
  saver_draft21=saver_saved21;saver_input21=input13_activity();saver_idle21=m3_clock_ticks();
 }
 static void saver_cancel21(uint64_t token){if(saver_owner21==token){saver_draft21=saver_saved21;saver_owner21=0;}}
