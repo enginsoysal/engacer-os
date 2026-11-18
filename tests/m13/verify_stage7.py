@@ -25,7 +25,7 @@ def main():
  for name in [*profiles,*['files-'+n for n in files],'usb-native','transfers-native','vmware-results']:
   dest=out/name;dest.mkdir(parents=True,exist_ok=True)
   for p in (work/name).iterdir():
-   if p.is_file() and p.suffix in ('.json','.png','.log'):
+   if p.is_file() and p.suffix in ('.json','.png','.log') and not any(mark in p.name for mark in ('failure','unavailable-item')):
     if p.suffix=='.png':shutil.copyfile(p,dest/p.name)
     else:(dest/p.name).write_bytes(p.read_bytes().replace(str(ROOT).encode(),b'<project-root>'))
  shutil.copyfile(work/'files-ordinary/common-frame.png',out/'feature.png');shutil.copyfile(work/'host-results.json',out/'host-results.json')
