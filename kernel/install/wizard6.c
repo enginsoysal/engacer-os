@@ -210,7 +210,14 @@ static void terminal_command(void){
  extern unsigned verbose73;verbose73=0;
 #endif
  render();return;}
- if(!memcmp(command,"help",5))console_text("menu | help | volume | ls | cat PATH | write PATH TEXT | rm PATH\n");
+ if(!memcmp(command,"help",5)){console_text("menu | help | volume | ls | cat PATH | write PATH TEXT | rm PATH\n");
+#ifdef ENGINE_M13
+ console_text("display selftest: test SVGA timeout recovery; use framebuffer mode until restart.\n");
+#endif
+ }
+#ifdef ENGINE_M13
+ else if(!memcmp(command,"display selftest",17))console_text(graphics9_recovery_selftest()?"Simulated display timeout handled. Check that this window still updates.\n":"Display uses framebuffer presentation; no SVGA test was run.\n");
+#endif
  else if(!v)console_text("Boot the installed system to access persistent files.\n");
  else if(!memcmp(command,"volume",7)){console_text("Data capacity bytes: ");console_decimal(v6_capacity(v));console_text("\nCurrent file allocation bytes: ");console_decimal(v6_used(v));console_text("\n");}
  else if(!memcmp(command,"ls",3)){for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind){console_text(v->entries[i].path);console_text(v->entries[i].kind==2?"/\n":"\n");}}

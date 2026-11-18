@@ -1193,14 +1193,23 @@ static unsigned move_cached9(desktop_rect old,desktop_rect moved){
  graphics9_begin_batch();
  if(!graphics9_move(sx,sy,dx,dy,w,h)){graphics9_end_batch();return 0;}
  model.damaged=0;
- redraw_outside9((desktop_rect){old.x-12,old.y-12,old.width+24,old.height+24},inner);
- redraw_outside9((desktop_rect){moved.x-12,moved.y-12,moved.width+24,moved.height+24},inner);
+ /* Recompose each exposed strip once. Old/new outer rectangles overlap
+    heavily during ordinary motion; repainting both duplicates captions,
+    controls, wallpaper and glyph work around the same copied interior. */
+ int union_left=(old.x<moved.x?old.x:moved.x)-12;
+ int union_top=(old.y<moved.y?old.y:moved.y)-12;
+ int union_right=(old.x+old.width>moved.x+moved.width?old.x+old.width:moved.x+moved.width)+12;
+ int union_bottom=(old.y+old.height>moved.y+moved.height?old.y+old.height:moved.y+moved.height)+12;
+ redraw_outside9((desktop_rect){union_left,union_top,union_right-union_left,union_bottom-union_top},inner);
  graphics9_end_batch();
  return 1;
 }
 #endif
 #ifdef ENGINE_M11
 #include "interaction11.inc"
+#endif
+#ifdef ENGINE_M13
+#include "motion19.inc"
 #endif
 static void pointer(void) {
     unsigned x,y,buttons;usb_mouse_state(&x,&y,&buttons);
@@ -1214,7 +1223,11 @@ static void pointer(void) {
 #ifdef ENGINE_M12
     component_hover12(hit11,buttons);
     if(component_scroll_pointer12(hit11,(int)y,buttons)){
-        interaction11.buttons=buttons;pointer_x=x;pointer_y=y;render();previous_buttons=buttons;usb_mouse_draw();return;
+        interaction11.buttons=buttons;pointer_x=x;pointer_y=y;render();previous_buttons=buttons;usb_mouse_draw();
+#ifdef ENGINE_M13
+        motion_record19(buttons,4);
+#endif
+        return;
     }
 #endif
     if(buttons!=previous_buttons)interaction11.target_identity=hit11.kind==I11_ITEM?file_item_identity11(hit11):start_identity11(hit11);
@@ -1317,6 +1330,9 @@ if(r.height<minimum)r.height=minimum;}else{r.x+=dx;r.y+=dy;}
     if(x!=pointer_x||y!=pointer_y){for(unsigned i=0;i<model.count;++i){desktop_window*w=&model.windows[model.order[i]];desktop_rect r=w->bounds;if(!w->minimized&&(((int)y>=r.y&&(int)y<r.y+40)||((int)pointer_y>=r.y&&(int)pointer_y<r.y+40))&&((int)x>r.x+r.width-144||(int)pointer_x>r.x+r.width-144))invalidate((desktop_rect){r.x,r.y,r.width,40});}}
 #endif
     pointer_x=x;pointer_y=y;render();previous_buttons=buttons;usb_mouse_draw();
+#ifdef ENGINE_M13
+    motion_record19(buttons,0);
+#endif
 #ifdef ENGINE_M9
     if(moved9){uint64_t elapsed=m3_clock_ticks()-began9;++drag9.frames;drag9.ticks+=elapsed;if(elapsed>drag9.longest)drag9.longest=elapsed;++drag9.bins[elapsed<15?elapsed:15];}
 #endif

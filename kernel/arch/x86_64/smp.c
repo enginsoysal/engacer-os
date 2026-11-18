@@ -149,6 +149,12 @@ void m3_smp_stop(void){command(3);wait_all();for(unsigned i=1;i<cpu_count;++i)if
 uint64_t m3_smp_pages(void){return retained;}
 
 uint64_t m3_clock_ticks(void){return hpet[30]/clock_divisor;}
+uint64_t m3_clock_microseconds(void){
+    /* Interpolate the already validated 10-ms HPET divisor without multiplying
+       an unbounded uptime counter or allocating another clock/timer. */
+    uint64_t count=hpet[30];
+    return count/clock_divisor*10000+(count%clock_divisor)*10000/clock_divisor;
+}
 void m3_clock_probe(void){
     uint64_t before=m3_clock_ticks();unsigned n=0;while(m3_clock_ticks()<before+3&&++n<20000000)__asm__ volatile("pause");
     if(n==20000000)bad("monotonic clock probe timeout");serial_text("M3_MONOTONIC_CLOCK_CATCHUP_OK\n");

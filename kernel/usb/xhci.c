@@ -16,6 +16,10 @@ unsigned gui_used11;
 #define USB_MAX_DEVICES 8
 static device devices[USB_MAX_DEVICES];static unsigned device_count,active,context_size,event_index,event_cycle=1,mouse_dirty,mouse_buttons;static int mouse_x=600,mouse_y=80;
 static int mouse_limit_x=1200,mouse_limit_y=650;
+#ifdef ENGINE_M13
+static uint64_t mouse_received_us13,pointer_us13;
+uint64_t input13_pointer_us(void){return pointer_us13;}
+#endif
 #ifdef ENGINE_M9
 static unsigned mouse_width9=1215,mouse_height9=674;
 #endif
@@ -66,6 +70,9 @@ static char key(unsigned code,unsigned shifted){
 static void submit_input(device *d){push(&d->interrupt,d->buffer+512,d->packet,(1u<<10)|(1u<<5)|(1u<<2));__asm__ volatile("mfence":::"memory");doorbell[d->slot]=d->endpoint;}
 #ifdef ENGINE_M6
 void m6_pointer_report(int dx,int dy,unsigned buttons){
+#ifdef ENGINE_M13
+    mouse_received_us13=m3_clock_microseconds();
+#endif
     mouse_x+=dx;mouse_y+=dy;if(mouse_x<0)mouse_x=0;if(mouse_y<0)mouse_y=0;if(mouse_x>mouse_limit_x)mouse_x=mouse_limit_x;if(mouse_y>mouse_limit_y)mouse_y=mouse_limit_y;
     unsigned old_buttons=mouse_buttons;mouse_buttons=buttons&7;
 #ifdef ENGINE_M11
@@ -443,8 +450,17 @@ void usb_mouse_limits(unsigned w,unsigned h){
 void usb_mouse_state(unsigned*x,unsigned*y,unsigned*b){
     /* Snapshot the BSP-routed IRQ state without losing a press/release during repaint. */
     uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");
+#ifdef ENGINE_M13
+    pointer_us13=mouse_received_us13;
+#endif
 #ifdef ENGINE_M11
-    if(mouse_head11!=mouse_tail11){mouse_edge11 edge=mouse_edges11[mouse_tail11];mouse_tail11=(mouse_tail11+1)&15;*x=edge.x;*y=edge.y;*b=edge.buttons;pointer_ms11=edge.ms;pointer_modifiers11=edge.modifiers;mouse_press_pending=mouse_head11!=mouse_tail11;__atomic_store_n(&mouse_dirty,1,__ATOMIC_RELEASE);}
+    if(mouse_head11!=mouse_tail11){mouse_edge11 edge=mouse_edges11[mouse_tail11];mouse_tail11=(mouse_tail11+1)&15;*x=edge.x;*y=edge.y;*b=edge.buttons;pointer_ms11=edge.ms;pointer_modifiers11=edge.modifiers;
+#ifdef ENGINE_M13
+    /* Button edges already carry an IRQ receipt timestamp rounded down to
+       10 ms. Its latency is a conservative upper bound, not extra precision. */
+    pointer_us13=edge.ms*1000;
+#endif
+    mouse_press_pending=mouse_head11!=mouse_tail11;__atomic_store_n(&mouse_dirty,1,__ATOMIC_RELEASE);}
 #else
     if(mouse_press_pending){*x=mouse_press_x;*y=mouse_press_y;*b=mouse_buttons|1u;mouse_press_pending=0;__atomic_store_n(&mouse_dirty,1,__ATOMIC_RELEASE);}
 #endif

@@ -26,16 +26,20 @@ static void svga9_write(unsigned reg,uint32_t value){out9(svga9_io,reg);out9(svg
 static void svga9_quarantine(const char *reason){
  /* Stop explicit FIFO ownership before falling back to framebuffer writes.
     Leaving CONFIG_DONE set makes a live desktop depend on a discarded FIFO. */
- ++graphics9.fifo_failures;svga9_write(20,0);fifo9=0;graphics9.backend=1;
+ ++graphics9.fifo_failures;svga9_write(20,0);
+ /* The negotiated SVGA-II interface provides explicit trace control. Keep
+    framebuffer observation enabled after abandoning explicit FIFO updates. */
+ if(svga9_read(0)==0x90000002u)svga9_write(45,1);
+ fifo9=0;graphics9.backend=1;
  serial_text("M9_SVGA_QUARANTINED ");serial_text(reason);serial_text("\n");
  /* Repaint after changing device ownership so the fallback observes fresh
     writes, including the pixels copied before this command failed. */
  graphics9_present(0,0,screen->framebuffer_width,screen->framebuffer_height);
  serial_text("M139_SVGA_FRAMEBUFFER_RECOVERY\n");
 }
-static unsigned svga9_sync(void){
+static unsigned svga9_sync(unsigned force_timeout){
  if(!fifo9)return 0;svga9_write(21,1);uint64_t start=m3_clock_ticks();
- for(unsigned i=0;i<2048;++i){if(!svga9_read(22))return 1;if(m3_clock_ticks()-start>=5)break;__asm__ volatile("pause");}
+ for(unsigned i=0;i<2048;++i){if(!force_timeout&&!svga9_read(22))return 1;if(m3_clock_ticks()-start>=5)break;__asm__ volatile("pause");}
  svga9_quarantine("timeout");return 0;
 }
 static unsigned svga9_command(const uint32_t*words,unsigned count){
@@ -43,7 +47,7 @@ static unsigned svga9_command(const uint32_t*words,unsigned count){
  if(min!=4096||max!=fifo9_limit||max<=min||((min|max|next|stop)&3)||next<min||next>=max||stop<min||stop>=max)goto bad;
  unsigned free=stop>next?stop-next:max-next+stop-min;if(free<=count*4)goto bad;
  for(unsigned i=0;i<count;++i){fifo9[next/4]=words[i];next+=4;if(next==max)next=min;}
- __asm__ volatile("mfence":::"memory");fifo9[2]=next;return svga9_sync();
+ __asm__ volatile("mfence":::"memory");fifo9[2]=next;return svga9_sync(0);
  bad:svga9_quarantine("ring");return 0;
 }
 static void svga9_begin(void){
@@ -61,7 +65,7 @@ static void svga9_begin(void){
  uint64_t physical=(uint64_t)(fb&~15u)+svga9_read(14);unsigned size=svga9_read(19),base=mem&~15u;
  if(physical!=screen->framebuffer.physical_address||svga9_read(2)!=screen->framebuffer_width||svga9_read(3)!=screen->framebuffer_height||svga9_read(7)!=32||svga9_read(12)!=screen->framebuffer_stride_bytes||base<0x10000000||size<16384||size>16*1024*1024||(uint64_t)base+size>UINT64_C(0x100000000))return;
  graphics9.capabilities=svga9_read(17);fifo9=(volatile uint32_t*)(uintptr_t)base;
- if(!svga9_sync())return;
+ if(!svga9_sync(0))return;
  svga9_write(20,0);unsigned limit=size&~3u;fifo9_limit=limit;
  fifo9[0]=4096;fifo9[1]=limit;fifo9[2]=fifo9[3]=4096;__asm__ volatile("mfence":::"memory");svga9_write(20,1);
  graphics9.backend=2;serial_text("M9_VMWARE_SVGA_FIFO_ACTIVE\n");
@@ -78,6 +82,18 @@ static void graphics9_begin(void){
  serial_text("M9_GRAPHICS backend=");serial_hex(graphics9.backend);serial_text(" adapter=");serial_hex(graphics9.adapter_id);serial_text(" shadow_bytes=");serial_hex(graphics9.shadow_bytes);serial_text("\n");
 }
 const graphics9_info *graphics9_current(void){return &graphics9;}
+#ifdef ENGINE_M13
+unsigned graphics9_recovery_selftest(void){
+ if(!fifo9)return 0;
+ /* Deliberately withhold successful completion from the bounded wait, then
+    exercise the production timeout/recovery path on the actual device.
+    This is a labelled simulation, not a claim of a physical device failure. */
+ serial_text("M139_DISPLAY_RECOVERY_SELFTEST_BEGIN\n");
+ (void)svga9_sync(1);
+ serial_text("M139_DISPLAY_RECOVERY_SELFTEST_TRANSITION\n");
+ return !fifo9&&graphics9.backend==1&&!svga9_read(20);
+}
+#endif
 static volatile uint32_t *pixel9(unsigned x,unsigned y){
  return (volatile uint32_t*)(uintptr_t)((shadow9?(uint64_t)(uintptr_t)shadow9:screen->framebuffer.physical_address)+(uint64_t)y*screen->framebuffer_stride_bytes+(uint64_t)x*4);
 }

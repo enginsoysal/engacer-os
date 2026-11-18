@@ -30,5 +30,8 @@ unsigned usb_mouse_pending(void);
 void usb_info(void);
 int input_pop(void);
 uint64_t input_dropped(void);
+#ifdef ENGINE_M13
+uint64_t input13_pointer_us(void);
+#endif
 NORETURN void m4_start(const os_boot_info_v0*,unsigned);
 #endif

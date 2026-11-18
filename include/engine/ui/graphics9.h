@@ -12,4 +12,7 @@ void graphics9_flush(void);
 void graphics9_begin_batch(void);
 void graphics9_end_batch(void);
 unsigned graphics9_move(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
+#ifdef ENGINE_M13
+unsigned graphics9_recovery_selftest(void);
+#endif
 #endif

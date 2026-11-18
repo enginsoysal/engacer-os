@@ -17,6 +17,7 @@ unsigned m3_smp_pressure(unsigned);
 void m3_smp_stop(void);
 unsigned m3_cpu(void);
 uint64_t m3_clock_ticks(void);
+uint64_t m3_clock_microseconds(void);
 void m3_clock_probe(void);
 void m3_smp_launch(unsigned);
 NORETURN void m3_ap_enter(void);
