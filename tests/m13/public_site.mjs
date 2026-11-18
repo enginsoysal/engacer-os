@@ -6,12 +6,14 @@ const require=createRequire(process.env.ENGACER_PLAYWRIGHT_ROOT?path.resolve(pro
 const {chromium,expect}=require('@playwright/test');
 import fs from 'node:fs/promises';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-const {values}=parseArgs({options:{stage:{type:'string'},source:{type:'string'},save:{type:'string'},payload:{type:'string'}}});
+const {values}=parseArgs({options:{stage:{type:'string'},source:{type:'string'},save:{type:'string'},payload:{type:'string'},output:{type:'string'}}});
 const stage=Number(values.stage),ref=values.source;if(!Number.isInteger(stage)||stage<1||stage>12||!/^([0-9a-f]{40})$/.test(ref||''))throw Error('Provide stage 1–12 and exact documentation source commit');
 const saved=JSON.parse(await fs.readFile(values.save,'utf8'));if(saved.source_commit!==ref||!saved.home.startsWith('Saved')||!saved.recovery.startsWith('Saved'))throw Error('Matching actual native editor Save observations required');
 const payload=JSON.parse(await fs.readFile(values.payload,'utf8'));if(payload.source_commit!==ref)throw Error('Wrong publication payload source');const guide=payload.page.blog.posts.find(p=>p.slug==='docs-handbook-install-m13'+stage);const guideRef=guide.meta.find(m=>m.key==='engine_source_commit').value;
 const accepted=JSON.parse(await fs.readFile(root+'/evidence/M13/'+stage+'/acceptance-results.json','utf8'));
-const out=root+'/build/m13/stage'+stage+'/public-browser';await fs.mkdir(out,{recursive:true});
+const out=values.output?path.resolve(root,values.output):root+'/build/m13/stage'+stage+'/public-browser';
+if(!out.startsWith(path.resolve(root,'build/m13')+path.sep))throw Error('Browser evidence must stay inside owned M13 scratch');
+await fs.mkdir(out,{recursive:true});
 const browser=await chromium.launch({headless:true});const reports=[];let completed=false;
 try{for(const width of [1280,390]){
 const page=await browser.newPage({viewport:{width,height:900}});const errors=[];page.on('pageerror',e=>errors.push(String(e)));

@@ -1,5 +1,7 @@
 # BrixCanvas documentation website
 
+**Known freezes — testing only:** frequent freezes are reported on M13.8, following M13.7. Historical scoped task passes do not qualify stability. M13.9 addresses the faults now; M13.13 is the blocking eight-real-hour stability gate.
+
 ## Current portal — 18 November 2026
 
 M13.8 is the current qualified native release; its twenty matching assets and independent ISO/VMware downloads pass. Native homepage/recovery Saves and fresh public desktop/mobile/search/source/link verification pass: 477 pages, 306 exact-source articles and 3,364 links. The audit retains 13 unverified external HEAD references, with zero known broken targets. [Receipt](../evidence/M13/8/publication-results.json). Current install and Settings guides lead their reader tasks; retained Files/Start/desktop guides keep their versioned scope. Per-document provenance and pinned image/source blobs remain authoritative.
