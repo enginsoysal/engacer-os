@@ -72,7 +72,7 @@ export function nativeDesign({development=developmentProgress}={}){
  const footer=b('socialcircles',{copyright:'Engacer OS / MIT licensed · Documentation & releases on GitHub',bg:paper,circleBg:teal,items:[{label:'github',href:'https://github.com/enginsoysal/engacer-os'},{label:'website',href:`${site}/blog/documentation`}]});
  return [header,status,main,footer];
 }
-export function portalDesign({stage=0,searchReady=false}={}){
+export function portalDesign({stage=0,searchReady=false,ownerIssues=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m13-progress.json',import.meta.url),'utf8')).owner_additions||[]}={}){
  if(!Number.isInteger(stage)||stage<0||stage>12)throw Error('Invalid qualified M13 stage');
  const current=stage?`M13.${stage}`:'M12.18';
  sequence=0;
@@ -88,8 +88,9 @@ export function portalDesign({stage=0,searchReady=false}={}){
  card('02 / EVERYDAY USE','Feel at home','Find apps, switch windows, navigate folders and work with USB drives.','Use your desktop →','guide-use'),
  card('03 / YOUR CHOICES','Make it yours','Change supported preferences or build your own distribution.','Explore customization →','guide-customize')
  ],{bg:{kind:'color',color:'#ffffff'},border:1,borderColor:'#dbe3e6',divided:true,ruleColor:'#dbe3e6',radius:6,padY:22});choices.props.columns.forEach(c=>c.width=100/3);
+ const reportedIssues=stage>=7?ownerIssues.filter(issue=>issue.id==='long-uptime-freeze'&&issue.status!=='resolved').map(()=>b('alert',{variant:'info',title:'Long-session stability is under investigation',text:'A freeze after long uptime was reported on M13.7. M13.9 investigates and corrects it, with extended final testing in M13.12. This scoped download does not claim a fix. Read the matching release notes before testing.'})):[];
  const main=layout([[
- hero,choices,heading('Next: a desktop that feels finished.',28,ink,{py:28}),text(stage?`M13.${stage} is the current scoped native delivery. Install its matching ISO or prepared VMware package, read its release guide and explore the documented changes. The M13.0–M13.12 program follows one published stage at a time; later hardware and Windows work remains separate.`:'M13.0 records the complete M13.0–M13.12 plan, original installation and desktop concepts, and the documentation/search design. It is design work, not a new native OS release. M12.18 remains the tested ISO and VMware download.',17),
+ hero,...reportedIssues,choices,heading('Next: a desktop that feels finished.',28,ink,{py:28}),text(stage?`M13.${stage} is the current scoped native delivery. Install its matching ISO or prepared VMware package, read its release guide and explore the documented changes. The M13.0–M13.12 program follows one published stage at a time; later hardware and Windows work remains separate.`:'M13.0 records the complete M13.0–M13.12 plan, original installation and desktop concepts, and the documentation/search design. It is design work, not a new native OS release. M12.18 remains the tested ISO and VMware download.',17),
  button('See the M13 plan and progress →',site+'/blog/docs-milestones-m13'),
  b('image',{url:stage?`https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/${stage}/feature.png`:'https://raw.githubusercontent.com/enginsoysal/engacer-os/main/docs/architecture/figures/m13/desktop.svg',alt:stage?`Actual Engacer OS M13.${stage} native capture from the matching stage qualification.`:'Original M13.0 desktop and Files design concept. Proposed layout, not a native screenshot or implemented M13 behavior.',naturalSize:true,radius:8}),
  button('Explore all M13 concepts →',site+'/blog/docs-architecture-desktop-m13'),
