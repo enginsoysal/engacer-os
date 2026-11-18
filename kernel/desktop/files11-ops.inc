@@ -70,6 +70,9 @@ static unsigned file_job_nodes11(void){file_job11*j=&file_job_state11;v6_volume*
  return V6_OK;
 }
 static void file_job_finish11(unsigned status,unsigned cancelled){file_job11*j=&file_job_state11;v6_stream_abort(m6_volume());
+#ifdef ENGINE_M13
+ if(!status&&!cancelled&&(j->mode==F11_JOB_COPY||j->mode==F11_JOB_MOVE)){desktop_window*w=file_owner_window11(j->owner);if(w)files_filter17_clear(&apps[w-model.windows]);}
+#endif
 #ifdef ENGINE_M12
  rem12_read_close();
 #endif

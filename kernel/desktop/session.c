@@ -114,6 +114,9 @@ static uint64_t context_window11;
 static unsigned marquee11;static uint64_t marquee_window11;static desktop_rect marquee_rect11;
 static uint8_t marquee_saved11[V6_ENTRIES/8];static unsigned marquee_desktop_saved11;
 #include "files11-state.inc"
+#ifdef ENGINE_M13
+#include "files17-state.inc"
+#endif
 #ifdef ENGINE_M12
 #include "picker12-state.inc"
 static unsigned files_busy12(void);
@@ -986,6 +989,9 @@ static void action(uint64_t token,unsigned command) {
     if(command==PREFERENCES_SAVE){desktop_window*w=desktop_lookup(&model,token);if(w&&w->app==SETTINGS){unsigned status=appearance_save11();notice(&apps[w-model.windows],status?"Preferences could not be saved. Your files are unchanged.":"Appearance and normal window sizes saved for your user.");serial_text(status?"M11_APPEARANCE_SAVE_FAILED\n":"M11_APPEARANCE_SAVED\n");whole();return;}}
     if(window_action11(token,command))return;
     if(start_action11(token,command))return;
+    #ifdef ENGINE_M13
+    if(files_filter17_action(token,command))return;
+#endif
     if(file_action11(token,command))return;
 #endif
     if(!token){if(!command){launcher^=1;whole();return;}launch(command,0);whole();return;}

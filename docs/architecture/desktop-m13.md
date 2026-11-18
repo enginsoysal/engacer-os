@@ -10,7 +10,7 @@ Original concept gallery (all design-only): [Setup](figures/m13/setup.svg), [Dis
 
 ## Common geometry and states
 
-Logical units scale with display size; density is a separate preference. Body 16, supporting 14, section 20, page heading 28, hero 36. Use existing licensed Inter, measured wrapping and consistent baseline alignment. Base spacing 4 with 8/12/16/24/32 grouping. Normal control height 36, setup primary 44, pointer target at least 32; touch support remains separately qualified. Title bars normally 36–40, taskbar 48, Files sidebar 192–224. These are default targets to fit by measured content, not excuses to clip text.
+Logical units scale with display size; density is a separate preference. Body 16, supporting 14, section 20, page heading 28, hero 36. Use existing licensed Inter, measured wrapping and consistent baseline alignment. Base spacing 4 with 8/12/16/24/32 grouping. Normal control height 36, setup primary 44, pointer target at least 32; touch support remains separately qualified. Title bars normally 36â€“40, taskbar 48, Files sidebar 192â€“224. These are default targets to fit by measured content, not excuses to clip text.
 
 Use an off-white content surface, dark ink, a restrained teal accent, original wallpaper and recognizable app silhouettes. Dark and high contrast use semantic roles, not independent layouts. Subtle depth cannot require a full-screen blur buffer. Selected, inactive-selected, focus, hover and pressed are distinct. Never use accent on every ordinary button.
 
@@ -40,7 +40,7 @@ For every stage show actual native before/after frames and complete tasks. Origi
 - Keep advanced disk controls optional: fewer ordinary decisions without concealing erase consent or unsupported data-preserving operations.
 - Finish every secondary surface before hardware priority: no planned legacy visual exceptions behind a polished main screen.
 
-## Original concept sheets — design only
+## Original concept sheets â€” design only
 
 ### Setup
 
@@ -71,3 +71,7 @@ For every stage show actual native before/after frames and complete tasks. Origi
 Use the existing original icon catalogue and bounded app/pin results, with a 96-unit tile stride and shared adaptive column count for drawing, pagination and arrows. A tile has an 88-unit hit rectangle; search and List remain 56-unit descriptive rows. This changes presentation without a new index worker, preference schema, allocated per-item surface or process. Taskbar app groups use a 112-unit stride and quiet unopened-pin state; live window count, active/shown/minimized indicators, stable pin/MRU order and generation-bound window menus are preserved. Capacity computation uses the same stride and reserves the existing Start, overflow and provider-tray areas. Actual unavailable-provider labels stay truthful. Native qualification/publication remain separate from implementation.
 
 The matching M13.6 native qualification passes its five complete display/Start profiles, applied-theme tasks, grouped-window/provider ownership, independent layout persistence and exact enabled-device VMware starter. Native fixed desktop/installer/font state remains unchanged, named completed tasks retain zero managed pages and idle CPUs halt. Corrected theme proof explicitly Applies Dark before closing Settings; cancelled previews stay diagnostic. Public publication and later M13 integration remain separate.
+
+## M13.7 current-folder filtering
+
+Implementation in progress: a fixed 88-byte record per existing Files window binds query and caret to its generation token. The native bounded name scan reuses the existing sorted listing; even empty results rebuild that cache before drawing. Query changes clear invisible selection, navigation clears queries, and successful creates/copies/moves reveal their resulting name. No background index or heap cache is added. USB filtering remains explicitly unavailable. Common frame/places/footer changes preserve provider identity, mutation consent and safe removal. Exact-media native and public qualification remain pending.

@@ -1,6 +1,9 @@
 static const char *file_basename11(const char*path){const char*name=path;for(unsigned n=0;path[n];++n)if(path[n]=='/')name=path+n+1;return name;}
 static unsigned file_within11(const char*path,const char*root){unsigned n=0;while(root[n]&&path[n]==root[n])++n;return !root[n]&&(!path[n]||path[n]=='/');}
 static unsigned lower11(unsigned c){return c>='A'&&c<='Z'?c+32:c;}
+#ifdef ENGINE_M13
+#include "files17-model.inc"
+#endif
 static int file_compare_text11(const char*a,const char*b){while(*a&&lower11((uint8_t)*a)==lower11((uint8_t)*b)){++a;++b;}unsigned x=lower11((uint8_t)*a),y=lower11((uint8_t)*b);return x<y?-1:x>y?1:0;}
 static uint64_t file_path_hash11(const char*p){uint64_t value=UINT64_C(1469598103934665603);for(unsigned i=0;p[i]&&i<256;++i)value=(value^(uint8_t)p[i])*UINT64_C(1099511628211);return value;}
 static void file_bin_path11(char*out,unsigned meta){copy(out,meta?"/System/RecycleMetadata/":"/System/Recycle/",256);append(out,owner.user,256);}
@@ -30,10 +33,17 @@ static void file_heap11(file_listing11*l,unsigned start,unsigned count){
 }
 static file_listing11 *file_listing11_for(unsigned slot,const char*path,unsigned sort,unsigned descending){
  file_listing11*l=&file_lists11[slot];v6_volume*v=m6_volume();
+#ifdef ENGINE_M13
+ (void)files_filter17_for(slot);
+#endif
  if(l->generation==v->generation&&equal(l->path,path)&&l->sort==sort&&l->descending==descending)return l;
  if(file_in_bin11(path))file_refresh_trash_names11();
  l->count=0;l->sort=sort;l->descending=descending;copy(l->path,path,256);
- for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&file_direct_child11(v->entries[i].path,path))l->order[l->count++]=(uint16_t)i;
+ for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&file_direct_child11(v->entries[i].path,path)
+#ifdef ENGINE_M13
+ &&files_filter17_matches(slot,&v->entries[i])
+#endif
+ )l->order[l->count++]=(uint16_t)i;
  for(unsigned i=l->count/2;i;--i)file_heap11(l,i-1,l->count);
  for(unsigned i=l->count;i>1;--i){uint16_t swap=l->order[0];l->order[0]=l->order[i-1];l->order[i-1]=swap;file_heap11(l,0,i-1);}
  l->generation=v->generation;return l;

@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "build_id": "ae027a3d31b486bd42e0b30c11018117",
+  "iso_sha256": "2ff75d70e6bab1a5ec8f071dd4d1bb66ed5b98c9e5bb9e23069861668ab117ad",
+  "physical": [
+    1920,
+    1080
+  ],
+  "owned_fixture": "fbbbfddbd7a44da3b7c4077693f7ebb7",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\files_native7.py\", line 44, in main\n    filter_name(g,p,'notfound');assert not f.names(g) and not f.selected(g);c.shot(g,'no-matching-names');c.key(g,'esc');assert query(g)=='' and set(f.names(g))>={'Alpha','ALPINE','Beta'};c.key(g,'esc')\nAssertionError\n"
+}

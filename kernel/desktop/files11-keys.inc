@@ -34,11 +34,17 @@ static unsigned file_address_commit11(desktop_window*w,application*a){file_windo
  if(!file_compare_text11(value,"Home"))home72(path);else if(!file_compare_text11(value,"Desktop"))root_path(path,"Desktop");else if(!file_compare_text11(value,"Documents"))root_path(path,"Documents");else if(!file_compare_text11(value,"Downloads"))root_path(path,"Downloads");else if(!file_compare_text11(value,"Pictures"))root_path(path,"Pictures");else if(!file_compare_text11(value,"System drive"))copy(path,"/",256);else if(!file_compare_text11(value,"Recycle Bin")){file_action11(desktop_token(&model,(unsigned)(w-model.windows)),F11_BIN);return 1;}else if(!file_compare_text11(value,"USB drives")){devices_action10(w,a,desktop_token(&model,(unsigned)(w-model.windows)),USB_OPEN10);f->address_active=0;return 1;}else if(value[0]=='/')copy(path,value,256);else if(file_join11(path,a->path,value)){notice(a,"This path is too long.");return 1;}
  if(!equal(path,"/")){const v6_entry*e=file_case_entry11(path);if(!e||e->kind!=2){notice(a,"That folder is not available. Your current folder was kept.");invalidate(w->bounds);return 1;}copy(path,e->path,256);}visit72(a,path,1);f->address_active=0;invalidate(w->bounds);return 1;
 }
+#ifdef ENGINE_M13
+#include "files17-keys.inc"
+#endif
 static unsigned files_key11(int key){
  if(file_drag11){if(key==27||key==135||key==137){files_cancel_drag11();if(key==27)return 1;}else return 1;}
  if(file_dialog_key11(key))return 1;if(context11)return 0;
  desktop_window*w=model.focused<DESKTOP_WINDOWS?&model.windows[model.focused]:0;uint64_t token=w&&w->live?desktop_token(&model,model.focused):0;application*a=w&&w->live&&w->app==FILES?&apps[w-model.windows]:0;unsigned desktop=desktop_focus11||!token;
  if(!desktop&&!a)return 0;
+#ifdef ENGINE_M13
+ if(a&&files_filter17_key(w,a,token,key))return 1;
+#endif
  if(a&&file_windows11[a-apps].address_active){file_window11*f=&file_windows11[a-apps];if(key==27){f->address_active=0;invalidate(w->bounds);return 1;}if(key==10)return file_address_commit11(w,a);if(file_text_capacity11(f->address,sizeof(f->address),&f->cursor,&f->anchor,key)){invalidate(w->bounds);return 1;}return key!=9&&key!=136;}
  if(a&&a->closing)return 0;unsigned modifiers=input11_modifiers();uint64_t owner_token=desktop?0:token;
  if(key==27&&file_job_state11.active&&file_job_state11.owner==owner_token){file_job_state11.cancel=1;return 1;}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.6",
+  "current_stage": "M13.7",
   "qualified_download": "M13.6",
   "design_only": false,
   "stages": [
@@ -69,7 +69,8 @@
     {
       "id": "M13.7",
       "title": "Files as the everyday workspace",
-      "status": "planned"
+      "status": "in_progress",
+      "evidence": "evidence/M13/7"
     },
     {
       "id": "M13.8",

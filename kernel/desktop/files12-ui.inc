@@ -1,6 +1,6 @@
 /* One frame for the native volume, USB collection, USB folders and empty/error states. */
 static void files_nav_button12(uint64_t token,int x,int y,unsigned command,unsigned icon,unsigned enabled){
- const char*name=command==NAV_BACK?"Back":command==NAV_FORWARD?"Forward":command==FILE_UP?"Up one level":command==F12_REFRESH?"Refresh":"Navigate folders";
+ const char*name=command==NAV_BACK?"Back":command==NAV_FORWARD?"Forward":command==FILE_UP?"Up one level":command==F12_REFRESH?"Refresh":command==NAV_PREVIOUS?"Previous page":command==NAV_NEXT?"Next page":"Navigate folders";
  desktop_rect r={x,y,44,36};component_button12(token,r,"",command,0,enabled);
  ui12_palette p=desktop_palette16();ui12_style s=ui12_control_style(p,enabled?component_state12(token,command):UI12_DISABLED,0);
  ui12_icon_ink(icon,x+10,y+6,24,s.ink);if(enabled){access_capture16(token,command,name,1);file_control11(token,r,command);}
@@ -19,7 +19,13 @@ static const char*files_nav_hint12(uint64_t token,i11_target target){
 static void files_hint_damage12(i11_target before,i11_target after){
  i11_target targets[]={before,after};for(unsigned i=0;i<2;++i){desktop_window*w=desktop_lookup(&model,targets[i].window);if(w&&w->app==FILES&&files_nav_hint12(targets[i].window,targets[i]))invalidate((desktop_rect){w->bounds.x+12,w->bounds.y+w->bounds.height-32,w->bounds.width-24,30});}
 }
+#ifdef ENGINE_M13
+#include "files17-frame.inc"
+#endif
 static void files_frame12(desktop_window*w,application*a,uint64_t token){
+#ifdef ENGINE_M13
+ files_frame17(w,a,token);return;
+#endif
  int x=w->bounds.x+16,y=w->bounds.y+49,width=w->bounds.width;unsigned sidebar=file_sidebar11(w),compact=width<600;navigation72*h=&navigation[a-apps];
  files_nav_button12(token,x,y,NAV_BACK,ICON12_BACK,ui12_history_can(h,0));files_nav_button12(token,x+52,y,NAV_FORWARD,ICON12_FORWARD,ui12_history_can(h,1));
  unsigned up=a->usb_mode10==2||(!a->usb_mode10&&!equal(a->path,"/"));files_nav_button12(token,x+104,y,FILE_UP,ICON12_UP,up);files_nav_button12(token,x+156,y,F12_REFRESH,ICON12_REFRESH,1);
@@ -41,6 +47,9 @@ static void files_frame12(desktop_window*w,application*a,uint64_t token){
   for(unsigned i=0;i<8;++i){char place[256];if(!i)home72(place);else if(i<5)root_path(place,places[i]);else if(i==5)copy(place,"/",256);else if(i==7)file_bin_path11(place,0);else place[0]=0;unsigned selected=i==6?a->usb_mode10!=0:!a->usb_mode10&&equal(place,a->path);button(token,x+6,top+38+(int)i*38,142,places[i],i<6?NAV_HOME+i:i==6?USB_OPEN10:F11_BIN,selected);}}
 }
 static void files_footer12(desktop_window*w,application*a,uint64_t token,unsigned count,unsigned selected,const char*message){
+#ifdef ENGINE_M13
+ files_footer17(w,a,token,count,selected,message);return;
+#endif
  int x=w->bounds.x+16,footer=w->bounds.y+w->bounds.height-76,width=w->bounds.width;unsigned page=a->usb_mode10?files_usb_rows12(w):file_page_size11(w);
  ui73_fit(x,footer+9,40,"Page",UI12_SECONDARY,ink());file_button11(token,x+48,footer,64,"Prev",NAV_PREVIOUS,count&&a->offset!=0,0);file_button11(token,x+120,footer,64,"Next",NAV_NEXT,a->offset+page<count,0);char info[96],n[24];decimal(n,count);copy(info,n,96);append(info,count==1?" item | ":" items | ",96);decimal(n,selected);append(info,n,96);append(info," selected",96);ui73_fit(x+208,footer+9,width-240-(file_job_result11[0]?108:0),info,UI12_SECONDARY,ink());if(file_job_result11[0]&&!files_busy12())button(token,w->bounds.x+width-118,footer,102,"Details",F11_JOB_DETAILS,0);
  const char*hint=files_nav_hint12(token,hover12);if(!hint&&control_active)hint=files_nav_hint12(token,(i11_target){focused_control_window,focused_action,I11_BUTTON});ui73_fit(x,w->bounds.y+w->bounds.height-26,width-32,a->notice[0]?a->notice:hint?hint:message,UI12_SECONDARY,ink());if(file_job_state11.active&&file_job_state11.owner==token)file_job_draw11(token,x,w->bounds.y+w->bounds.height-138,width-32);
@@ -50,7 +59,19 @@ static void files_empty12(int x,int y,int width,int height,unsigned icon,const c
  else{ui12_icon(icon,x+20,y+12,40,preferences.dark);ui73_fit(x+20,y+68,width-40,title,UI12_SECTION,ink());ui73_paragraph(x+20,y+104,width-40,3,detail,ink());}
 }
 static void files_usb_body12(desktop_window*w,application*a,uint64_t token){
- int x=w->bounds.x+16+(file_sidebar11(w)?170:0),top=file_body_top11(w),width=w->bounds.width-56-(file_sidebar11(w)?170:0);
+ int x=w->bounds.x+16+(int)
+#ifdef ENGINE_M13
+ files_sidebar_width17(w)
+#else
+ (file_sidebar11(w)?170:0)
+#endif
+ ,top=file_body_top11(w),width=w->bounds.width-56-(int)
+#ifdef ENGINE_M13
+ files_sidebar_width17(w)
+#else
+ (file_sidebar11(w)?170:0)
+#endif
+ ;
  unsigned icons=file_windows11[a-apps].view,columns=file_columns11(w),rows=files_usb_rows12(w),count=0,selected=0,status=0;int start=top+(icons?6:42);
  if(!icons)files_details_header12(w,token,x,top,width,0);
  if(a->usb_mode10==1){const storage_disk*d=a->usb_selected10?storage_get(a->usb_selected10-1):0;if(d&&(!d->readable||d->transport!=STORAGE_USB||d->context!=a->usb_context10)){a->usb_selected10=0;d=0;}selected=d&&d->readable&&d->transport==STORAGE_USB;count=files_drive_count12();if(a->offset>=count)a->offset=0;}

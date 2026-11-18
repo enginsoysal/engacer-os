@@ -9,7 +9,11 @@ static navigation72 navigation[DESKTOP_WINDOWS];
 static unsigned children72(application *app){
  unsigned total=0,size=equal(app->path,"/")?0:length(app->path);v6_volume*v=m6_volume();
  for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*f=&v->entries[i];if(!f->kind||memcmp(f->path,app->path,size)||f->path[size]!='/')continue;
- const char*tail=f->path+size+1;unsigned n=0;while(tail[n]&&tail[n]!='/')++n;if(!tail[n])++total;}
+ const char*tail=f->path+size+1;unsigned n=0;while(tail[n]&&tail[n]!='/')++n;if(!tail[n]
+#ifdef ENGINE_M13
+ &&files_filter17_matches((unsigned)(app-apps),f)
+#endif
+ )++total;}
  return total;
 }
 static void folder_icon72(int x,int y,unsigned size,uint32_t tint){

@@ -8,13 +8,29 @@ static unsigned file_sidebar11(const desktop_window*w){
 }
 static int file_body_top11(const desktop_window*w){
 #ifdef ENGINE_M12
+ #ifdef ENGINE_M13
+ return w->bounds.y+132;
+#else
  return w->bounds.y+142;
+#endif
 #else
  return w->bounds.y+(w->bounds.height>=360?142:98);
 #endif
 }
-static int file_body_bottom11(const desktop_window*w){uint64_t token=desktop_token(&model,(unsigned)(w-model.windows));return w->bounds.y+w->bounds.height-82-(file_job_state11.active&&file_job_state11.owner==token?64:0);}
-static unsigned file_columns11(const desktop_window*w){unsigned slot=(unsigned)(w-model.windows);if(!file_windows11[slot].view)return 1;int width=w->bounds.width-32-(file_sidebar11(w)?170:0);
+static int file_body_bottom11(const desktop_window*w){uint64_t token=desktop_token(&model,(unsigned)(w-model.windows));
+#ifdef ENGINE_M13
+ unsigned reserve=apps[w-model.windows].notice[0]?82:54;
+#else
+ unsigned reserve=82;
+#endif
+ return w->bounds.y+w->bounds.height-(int)reserve-(file_job_state11.active&&file_job_state11.owner==token?64:0);}
+static unsigned file_columns11(const desktop_window*w){unsigned slot=(unsigned)(w-model.windows);if(!file_windows11[slot].view)return 1;int width=w->bounds.width-32-(file_sidebar11(w)?
+#ifdef ENGINE_M13
+ 192
+#else
+ 170
+#endif
+ :0);
 #ifdef ENGINE_M12
  width-=24;
 #endif
@@ -72,6 +88,9 @@ static void file_text_field11(desktop_rect rect,const char*value,unsigned cursor
  unsigned n=length(value);if(cursor>n)cursor=n;if(anchor>n)anchor=n;unsigned start=0;char prefix[320];for(;;){copy(prefix,value+start,cursor-start+1);if(ui73_measure(prefix,1)<(unsigned)(rect.width-24)||start==cursor)break;++start;}
  if(active&&cursor!=anchor){unsigned lo=cursor<anchor?cursor:anchor,hi=cursor>anchor?cursor:anchor;if(lo<start)lo=start;if(hi>start){copy(prefix,value+start,lo-start+1);unsigned left=ui73_measure(prefix,1);copy(prefix,value+start,hi-start+1);unsigned right=ui73_measure(prefix,1);if(left>(unsigned)(rect.width-20))left=rect.width-20;if(right>(unsigned)(rect.width-20))right=rect.width-20;if(right>left)rectangle((desktop_rect){rect.x+10+(int)left,rect.y+7,(int)(right-left),22},file_tint11());}}
  ui73_fit(rect.x+10,rect.y+8,rect.width-20,value+start,1,ink());if(active){copy(prefix,value+start,cursor-start+1);unsigned caret=ui73_measure(prefix,1);if(caret<(unsigned)(rect.width-20))rectangle((desktop_rect){rect.x+10+(int)caret,rect.y+7,1,22},ink());}if(set_field){file_field_rect11=rect;file_field_scroll11=start;}}
+#ifdef ENGINE_M13
+#include "files17-ui.inc"
+#endif
 static void file_breadcrumbs11(desktop_window*w,application*a,uint64_t token,desktop_rect field){
  (void)w;file_window11*f=&file_windows11[a-apps];
  if(f->address_active){file_text_field11(field,f->address,f->cursor,f->anchor,1,0);file_control11(token,field,F11_ADDRESS_FIELD);return;}
@@ -108,6 +127,10 @@ file_job11*j=&file_job_state11;const char*phase=j->mode==F11_JOB_COPY?(j->phase=
 static void draw_files11(desktop_window*w,application*a,uint64_t token){
 #ifdef ENGINE_M12
  files_frame12(w,a,token);if(a->usb_mode10){files_usb_body12(w,a,token);return;}
+
+#ifdef ENGINE_M13
+ (void)file_listing11_for((unsigned)(a-apps),a->path,file_windows11[a-apps].sort,file_windows11[a-apps].descending);
+#endif
  int x=w->bounds.x+16,width=w->bounds.width;unsigned sidebar=file_sidebar11(w);
 #else
 if(a->usb_mode10){draw_usb10(w,a,token);return;}int x=w->bounds.x+16,y=w->bounds.y+49,width=w->bounds.width;unsigned compact=width<600,sidebar=file_sidebar11(w);button(token,x,y,44,"<",NAV_BACK,0);int nav=52;if(!compact){button(token,x+nav,y,44,">",NAV_FORWARD,0);nav+=52;}button(token,x+nav,y,44,"Up",FILE_UP,0);nav+=52;if(!sidebar){button(token,x+nav,y,85,"Places",F11_PLACES,0);nav+=93;}int tools=compact?0:184,address_width=width-32-nav-tools;if(address_width<48)address_width=48;file_breadcrumbs11(w,a,token,(desktop_rect){x+nav,y,address_width,36});if(!compact){button(token,w->bounds.x+width-190,y,82,file_windows11[a-apps].view?"Details":"Icons",F11_VIEW,0);button(token,w->bounds.x+width-100,y,84,"Sort",F11_SORT,0);}
@@ -120,7 +143,19 @@ if(a->usb_mode10){draw_usb10(w,a,token);return;}int x=w->bounds.x+16,y=w->bounds
 #else
  unsigned bin=file_is_bin11(a->path),writable=writable72(a->path);
 #endif
- int top=file_body_top11(w),bottom=file_body_bottom11(w),list=x+(sidebar?170:0),list_width=width-32-(sidebar?170:0);
+ int top=file_body_top11(w),bottom=file_body_bottom11(w),list=x+(sidebar?
+#ifdef ENGINE_M13
+ 192
+#else
+ 170
+#endif
+ :0),list_width=width-32-(sidebar?
+#ifdef ENGINE_M13
+ 192
+#else
+ 170
+#endif
+ :0);
 #ifdef ENGINE_M12
  list_width-=24;
 #endif
@@ -170,6 +205,9 @@ if(a->usb_mode10){draw_usb10(w,a,token);return;}int x=w->bounds.x+16,y=w->bounds
  }
  if(!count){
 #ifdef ENGINE_M12
+ #ifdef ENGINE_M13
+ file_filter17*filter=files_filter17_for((unsigned)(a-apps));if(filter&&filter->query[0])files_empty12(list,start,list_width,bottom-start,ICON12_FOLDER,"No matching names","Clear the filter or try a shorter name. Your files have not changed.");else
+#endif
  files_empty12(list,start,list_width,bottom-start,bin?ICON12_TRASH:ICON12_FOLDER,bin?"The Recycle Bin is empty.":"This folder is empty.",bin?"Recycled items appear here.":writable?"Use New folder or Paste.":"Choose Home for your files.");
 #else
 if(bottom-start>=145){folder_icon72(list+22,start+18,50,0xf0ce87);ui73_fit(list+22,start+84,list_width-44,bin?"The Recycle Bin is empty.":"This folder is empty.",2,ink());ui73_fit(list+22,start+120,list_width-44,bin?"Recycled items will appear here with Restore actions.":writable?"Create a folder, create a text file, or Paste items here.":"This location is protected.",1,ink());}else ui73_fit(list+12,start+12,list_width-24,bin?"The Recycle Bin is empty.":"This folder is empty.",1,ink());
