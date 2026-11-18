@@ -33,6 +33,17 @@ def editor_view(g,slot):
     return View.from_buffer_copy(ui.memory(g,address+slot*(size//8),ctypes.sizeof(View)))
 
 
+def close_focused(g,p):
+    while t.records(g):
+        before=len(t.records(g));active=f.model(g)[0]
+        if not any(w['slot']==active and not w['minimized'] for w in t.records(g)):
+            c.key(g,'alt','tab');c.key(g,'ret')
+        c.key(g,'alt','f4')
+        if len(t.records(g))==before and t.closing(g):p.desktop(60,True)
+        assert len(t.records(g))==before-1,('Focused close did not finish',before,t.records(g))
+    p.drain()
+
+
 def main():
     out=ROOT/'build/m13/stage11/screensaver-native';out.mkdir(parents=True,exist_ok=True);c.OUT=out
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));work=ui.q.new_work('m1311-saver');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
@@ -73,7 +84,7 @@ def main():
             for _ in range(6):t.launch(g,p,'files',1)
             assert len(t.records(g))==8;t.focus(g,p,settings);tokens=t.records(g);preview(g,p);c.shot(g,'eight-window-preview');wake(g,'a');assert t.records(g)==tokens
             assert bytes(editor_view(g,editor['slot']).text)==dirty and editor_view(g,editor['slot']).dirty
-            t.close_all(g,p);assert ui.s.s.document(disk,'/Users/Owner/Documents/Welcome.txt')==welcome
+            c.shot(g,'eight-window-restored');report['restored_window_controls']=[r[5] for r in f.controls(g) if r[4]==0];assert {43101,43102,43103}<=set(report['restored_window_controls']);close_focused(g,p);assert ui.s.s.document(disk,'/Users/Owner/Documents/Welcome.txt')==welcome
             report['checks'].append('Eight actual window generations and exact unsaved Editor text survive a consumed letter wake; explicit later Discard closes the work and the original personal document remains independently unchanged')
             # Native base Settings can remove Clock independently of this feature.
             open_saver(g,p);p.desktop(59003,True);p.desktop(10000,True);h.software_change(g,p,8);p.desktop(10005,True);open_saver(g,p);p.desktop(60207,True);preview(g,p);c.shot(g,'clock-with-clock-app-removed');wake(g)

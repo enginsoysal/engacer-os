@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "build_id": "ec856eaf2d403f8f4e15757cc0f4a8da",
+  "iso_sha256": "c4365e42e5ab0801d8b571bd31db700b4d262c6eeee0f7974a01df342110d974",
+  "physical": [
+    1920,
+    1200
+  ],
+  "clone": {
+    "source_sha256": "c3af33a62568ddb19848d2031e73bdc7d653cf611123c8c931d56665744c540a",
+    "clone_sha256": "c3af33a62568ddb19848d2031e73bdc7d653cf611123c8c931d56665744c540a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\saver_profiles11.py\", line 41, in main\n    b=n.s.bounds(g);assert c.pixel(g,b[0]+b[2]//2,b[1])==0xffffff\n  File \"<project-root>\\tests\\m13\\observer8.py\", line 18, in symbol\n    return base(name, size, installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('start_bounds11', [])\n"
+}

@@ -111,3 +111,13 @@ The owner explicitly requires finishing M13.9-M13.12 before any further stabilit
 ## M13.10 secondary surfaces
 
 Exact native M13-STAGE10-VM-v1 passes: Settings result-only search and complete bounded failure recovery, shared vector picker navigation, semantic file-dialog headers and high-contrast boundaries, and cursor-context refresh after keyboard scene changes. All 133 declared app frames and 133 native checks pass across five display profiles; fixed desktop state and installer state are unchanged and completed tasks retain zero pages. [Implementation and matrix](../milestones/m13-10.md). Matching GitHub downloads and complete actual public website delivery also pass; M13.11 follows. Natural-freeze and duration investigation remain exclusively M13.13.
+
+## M13.11 personalization implementation
+
+The new optional, Off-by-default screensaver is a native Settings page, not another app process, package identity or appearance ABI revision. A strict separate twenty-byte per-user record and one generation-owned edit transaction preserve independent appearance, accessibility, Start and app choices. All existing recipes default the feature to Off; schema-3 data-file roots do not allow seeding this system record and no new recipe field is claimed.
+
+Physical legacy/USB key holds, genuine raw motion/buttons and wheel changes provide activity independently of translated key events. Identical USB reports do not postpone idle. A Preview activation-release state and complete wake-gesture drain prevent click-through and dirty-document edits. The existing timer/main loop and composition buffers are reused: at most one logo repaint per second, Clock once a minute, Blank none; reduced motion keeps the logo still. No authentication, DPMS or stability fix is implied.
+
+High contrast outlines Start and the current Files place using existing primitives. The current candidate's measured fixed desktop increase is 112 bytes and physical-input module BSS increase is 76 bytes including alignment; code and buffers remain separately accounted. Exact native functional qualification/publication are still in progress. [Implementation, alternatives and acceptance](../milestones/m13-11.md), [user guide](../handbook/personalization-m1311.md).
+
+The retained offline guide remains a general desktop overview; the new screensaver instructions are currently in the matching manual. Final M13.12 integration will refresh the offline guide's current button names and screensaver instructions before its frozen whole-product qualification.

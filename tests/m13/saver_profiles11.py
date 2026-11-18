@@ -38,7 +38,7 @@ def main():
                     row=next(r for r in f.current_controls(g) if r[5]==94);assert c.pixel(g,row[0],row[1]+row[3]//2)==0xffffff
                 h.close(g,p);p.desktop(0,True);c.shot(g,theme+'-start-outline')
                 if theme=='high-contrast':
-                    b=struct.unpack('<4i',ui.memory(g,ui.symbol('start_bounds11',16,True)[0],16));assert c.pixel(g,b[0]+b[2]//2,b[1])==0xffffff
+                    b=n.s.bounds(g);assert c.pixel(g,b[0]+b[2]//2,b[1])==0xffffff
                 c.key(g,'esc');f.same_pages(baseline,f.stats(g));report['themes'].append(theme)
             report['checks']=['All actual saver controls stay inside their owner at the named scale in Light, Dark and High contrast','Preview and wake preserve the independently identical complete disk; reduced motion retains an independently identical visible logo frame','Current-place and Start captures retain real navigation; the High-contrast Start perimeter has independently read white pixels']
             c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode())
