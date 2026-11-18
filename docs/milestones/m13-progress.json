@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.8",
+  "current_stage": "M13.9",
   "qualified_download": "M13.8",
   "design_only": false,
   "stages": [
@@ -86,7 +86,7 @@
     {
       "id": "M13.9",
       "title": "Smooth, readable and lightweight in motion",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.10",
@@ -126,10 +126,11 @@
     {
       "id": "long-uptime-freeze",
       "reported_in": "M13.7",
-      "status": "investigation_planned",
+      "status": "investigating",
       "target_stage": "M13.9",
       "final_gate": "M13.12",
-      "scope": "Real-duration idle and active/idle reproduction, timer/input/render/resource diagnosis and corrected-media repeat; a screensaver is not a fix"
+      "scope": "Real-duration idle and active/idle reproduction, timer/input/render/resource diagnosis and corrected-media repeat; a screensaver is not a fix",
+      "baseline": "evidence/M13/8/diagnostics/m137-one-hour-idle/review.json"
     },
     {
       "id": "screensaver",
