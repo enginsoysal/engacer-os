@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.4",
+  "currentRelease": "M13.5",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -18,10 +18,6 @@
           "What works today and what is still limited"
         ],
         [
-          "docs/handbook/final-m1218.md",
-          "Your first steps on the desktop"
-        ],
-        [
           "docs/handbook/website-m130.md",
           "Find your way around this documentation portal"
         ]
@@ -37,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m134.md",
+          "docs/handbook/install-m135.md",
           "Install and restart in VMware"
         ],
         [
@@ -45,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m134-v0.13.4.md",
+          "docs/releases/m135-v0.13.5.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -56,8 +52,8 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/desktop-m123.md",
-          "Use desktop icons, shortcuts and the Recycle Bin"
+          "docs/handbook/desktop-m135.md",
+          "Use your desktop and manage windows"
         ],
         [
           "docs/handbook/start-m129.md",

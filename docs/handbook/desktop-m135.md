@@ -10,6 +10,8 @@ Selected objects have a filled highlight; keyboard focus has an outline. A small
 
 Right-click a built-in reference to hide it. Hiding Appearance does not remove Settings or delete your files. Restore desktop defaults restores the built-in references. Your own files and folders remain separate. Use the existing Files and Recycle Bin actions to manage real items.
 
+![Actual M13.5 native desktop with the original wallpaper and a Files window](../../evidence/M13/5/feature.png)
+
 ## Move, resize and switch windows
 
 Drag a title bar to move a window. Drag a side or corner to resize it. Escape cancels an active move/resize and restores its previous position. A window can partly cross a screen edge while keeping a reachable title-bar area. To bring it back, use its window menu, **Move (arrow keys)**, the arrow keys and Enter; Escape cancels. Alt+Space opens the focused window's menu. Win+Up maximizes it.
@@ -21,6 +23,8 @@ The caption buttons minimize, maximize/restore and close. A subtle border and ti
 Drag a title bar to a screen edge. The outline describes the actual proposed position; the label tells you how to apply it. Release to place the window, or Escape to cancel. The left and right choices require enough room for the app's minimum size. A refusal explains when Maximize is the suitable choice.
 
 After placing one half, choose another existing window for the other side, or Escape to keep that side unchanged. This chooser is temporary; finish or cancel it before using the taskbar. Win+Left and Win+Right provide explicit keyboard snap choices. Win+Down restores the window's own normal rectangle. Keyboard Move uses its arrow-key position, without creating a snap from a virtual off-screen cursor.
+
+![Two real Files windows placed side by side on a native 150% display](../../evidence/M13/5/windows-odd150/two-real-windows.png)
 
 ## Make it yours and keep it readable
 

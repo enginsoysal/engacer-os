@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.5",
-  "qualified_download": "M13.4",
+  "qualified_download": "M13.5",
   "design_only": false,
   "stages": [
     {
@@ -53,7 +53,8 @@
       "title": "A finished desktop and window experience",
       "status": "in_progress",
       "native_qualification": "M13-STAGE5-VM-v1",
-      "evidence": "evidence/M13/5"
+      "evidence": "evidence/M13/5",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5"
     },
     {
       "id": "M13.6",

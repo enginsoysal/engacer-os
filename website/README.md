@@ -2,7 +2,7 @@
 
 ## Current portal — 18 November 2026
 
-M13.4 is the current qualified public native delivery. [Publication receipt](../evidence/M13/4/publication-results.json): 453 pages, 289 exact-source articles, native Home/recovery Saves and public desktop/mobile/search/download checks pass. Repository and download targets pass; thirteen external references remain explicitly HEAD-unverified. Production same-page search and task navigation retain their M13.1 implementation. Each stage requires its own public closure. Per-document Git provenance retains the actual last edit of unchanged articles; image/source links bind their own exact blobs. Minimal HTTP-404 recovery retains a static Search route because it has no documentation index.
+M13.5 is the current qualified native release; matching ISO and VMware assets are published. Full native homepage/recovery Save and fresh public desktop/mobile/search/download/source checks are being completed before M13.6. The current desktop/window guide replaces the historical desktop guide in everyday use; first steps point through the current handbook. Historical guides stay archived with their original qualification. Per-document provenance and pinned image/source blobs remain authoritative. Fresh source readback uses at most four independent GETs and retains every retry/soft-404 observation; three CI fixtures cover that bound and failure handling.
 
 ## Historical M13.0 portal baseline — 17 November 2026
 
