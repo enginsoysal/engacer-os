@@ -1,6 +1,6 @@
 # Standard apps and independent removal in Engacer OS M13.10
 
-Candidate guide. The matching M13.10 native acceptance must pass before release. Frame/ordinary-task checks are separate from stability, general Windows compatibility and vendor GPU acceleration.
+Use the matching M13.10 testing release. Exact native functional qualification passes; stability remains M13.13. [Release scope](../releases/m1310-v0.13.10.md).
 
 Files and Settings belong to the base desktop. Optional applications use separate catalog identities; removing Calculator does not remove Files, Settings, the taskbar or your personal documents. Use Software Manager to manage available optional apps. Hiding a desktop shortcut does not uninstall its app.
 

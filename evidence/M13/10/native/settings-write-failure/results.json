@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "iso_sha256": "97477f70da45047f2344baa9bcfd9db41ad10cc0f2dee7890910b3d1ffa8f2a7",
+  "clone": {
+    "source_sha256": "c92d1be8a2b9b6ff3bcb0467ecb5d1afb573a15d6f76f0562b18a4b5c1facbbc",
+    "clone_sha256": "c92d1be8a2b9b6ff3bcb0467ecb5d1afb573a15d6f76f0562b18a4b5c1facbbc",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "Declared real write refusal explains the retained preview and Cancel route; Cancel restores the previous look, another Editor retains exact unsaved text, original personal bytes and source image remain unchanged, and the task retains zero managed pages"
+  ],
+  "injected_fault": {
+    "event": "write_aio",
+    "errno": 5,
+    "once": true,
+    "immediately": true
+  },
+  "message": "Appearance could not be saved. Preview stays on. Try Apply again or Cancel preview.",
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18980,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      18980,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "iso_sha256": "97477f70da45047f2344baa9bcfd9db41ad10cc0f2dee7890910b3d1ffa8f2a7",
+  "physical": [
+    1920,
+    1080
+  ],
+  "clone": {
+    "source_sha256": "df756de288ac4c637861c5c1f79b8cc777a03de5ca466750de610ce46b460869",
+    "clone_sha256": "df756de288ac4c637861c5c1f79b8cc777a03de5ca466750de610ce46b460869",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "host_observer": {
+    "method": "Three consecutive fresh stable input/paint samples and all CPUs halted",
+    "maximum_group_bytes": 65536,
+    "mutable_guest_state_cached": false,
+    "guest_memory_written": false
+  },
+  "checks": [],
+  "themes": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\dialogs_profiles10.py\", line 31, in main\n    t.launch(g,p,'settings',3);p.desktop(59001,True);p.desktop(scale,True);h.save(g,p);h.close(g,p)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (50011, 29)\n"
+}
+Traceback (most recent call last):
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m13\dialogs_profiles10.py", line 76, in <module>
+    if __name__=='__main__':main()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m13\dialogs_profiles10.py", line 31, in main
+    t.launch(g,p,'settings',3);p.desktop(59001,True);p.desktop(scale,True);h.save(g,p);h.close(g,p)
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m11\ui.py", line 91, in desktop
+    if time.monotonic()>until:raise AssertionError((action,count))
+AssertionError: (50011, 29)

@@ -1,0 +1,26 @@
+{
+  "passed": false,
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "group": "large",
+  "steps": [
+    {
+      "command": [
+        "apps_scaled10.py",
+        "--profile",
+        "150"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 228.5
+    },
+    {
+      "command": [
+        "dialogs_profiles10.py",
+        "--profile",
+        "150"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 37.11000000000058
+    }
+  ],
+  "scope": "Secondary/app/ordinary functional tasks only; stability is M13.13"
+}

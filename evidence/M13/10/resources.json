@@ -1,0 +1,273 @@
+{
+  "passed": true,
+  "fixed_desktop": {
+    "bytes": 557404,
+    "sections": {
+      "bss": 557376,
+      "data": 28
+    },
+    "map_sha256": "76362f4231fadcdb62744bf5cb8c548ca6d7cf481da17459d2e9d0d541eacceb"
+  },
+  "previous_fixed": {
+    "bytes": 557404,
+    "sections": {
+      "bss": 557376,
+      "data": 28
+    },
+    "map_sha256": "449870252a554e29a7c07486ace6e571292a5d13cffe2af5b1308f705db004d6"
+  },
+  "fixed_delta_bytes": 0,
+  "fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116008,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17701,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17701,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
+    "150": {
+      "managed_stats": [
+        2297,
+        2297,
+        116008,
+        5
+      ],
+      "framebuffer_bytes": 9216000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247078,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "app_profiles": {
+    "ordinary": {
+      "before": [
+        2072,
+        2088,
+        117289,
+        5
+      ],
+      "after": [
+        2072,
+        2088,
+        117289,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "compact": {
+      "before": [
+        1047,
+        1047,
+        18982,
+        5
+      ],
+      "after": [
+        1047,
+        1063,
+        18982,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "1024": {
+      "before": [
+        815,
+        815,
+        18982,
+        5
+      ],
+      "after": [
+        815,
+        831,
+        18982,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "150": {
+      "before": [
+        2297,
+        2297,
+        117289,
+        5
+      ],
+      "after": [
+        2297,
+        2313,
+        117289,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "4k": {
+      "before": [
+        8147,
+        8147,
+        248359,
+        5
+      ],
+      "after": [
+        8147,
+        8163,
+        248359,
+        5
+      ],
+      "retained_pages": 0
+    }
+  },
+  "task_resources": {
+    "dialogs-native": {
+      "before": [
+        1047,
+        1047,
+        17701,
+        5
+      ],
+      "after": [
+        1047,
+        1119,
+        17701,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "settings-native": {
+      "before": [
+        1047,
+        1047,
+        17701,
+        5
+      ],
+      "after": [
+        1047,
+        1060,
+        17701,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "feedback-native": {
+      "before": [
+        1047,
+        1047,
+        17701,
+        5
+      ],
+      "after": [
+        1047,
+        1069,
+        17701,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "transfers-native": {
+      "before": [
+        1047,
+        1047,
+        17701,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        17701,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "settings-write-failure": {
+      "before": [
+        1047,
+        1047,
+        18980,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        18980,
+        5
+      ],
+      "retained_pages": 0
+    }
+  },
+  "scope": "No additional fixed desktop state, bitmap, framebuffer, cache, timer or idle worker. Managed peak and retained allocations are separate from configured guest RAM, native code and framebuffer bytes."
+}

@@ -1,6 +1,6 @@
 # Open, save, review and recover in Engacer OS M13.10
 
-Candidate guide; matching native acceptance and public media must be published before this is a qualified download. Stability qualification remains M13.13.
+Use the matching M13.10 testing release. Exact native functional qualification passes; stability remains M13.13. [Release scope](../releases/m1310-v0.13.10.md).
 
 ## Find the file or folder
 

@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--group',choices=['ordinary','small','large'],required=True);a=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--group',choices=['ordinary','small','large'],required=True);parser.add_argument('--resume',action='store_true');a=parser.parse_args()
     manifest=ROOT/'dist/m13stage10-build-manifest.json';frozen=manifest.read_bytes();meta=json.loads(frozen)
     commands=[]
     if a.group=='ordinary':
@@ -17,8 +17,17 @@ def main():
         commands.append(['settings_native10.py' if a.group=='small' else 'feedback_native10.py'])
     out=ROOT/'build/m13/stage10'/('journeys-'+a.group);out.mkdir(parents=True,exist_ok=True)
     report=dict(passed=False,build_id=meta['build_id'],group=a.group,steps=[],scope='Secondary/app/ordinary functional tasks only; stability is M13.13')
+    completed=0
+    if a.resume:
+        prior=json.loads((out/'results.json').read_text(encoding='utf-8'))
+        assert prior['build_id']==meta['build_id'] and not prior['passed']
+        for step in prior['steps']:
+            if step['exit_code']:break
+            assert step['command']==commands[completed]
+            report['steps'].append(step);completed+=1
     try:
         for number,command in enumerate(commands,1):
+            if number<=completed:continue
             assert manifest.read_bytes()==frozen,'Frozen candidate changed'
             print('M13.10 '+a.group+' journey '+str(number)+'/'+str(len(commands))+': '+' '.join(command),flush=True)
             began=time.monotonic()

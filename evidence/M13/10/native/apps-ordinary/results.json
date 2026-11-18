@@ -1,0 +1,728 @@
+{
+  "passed": true,
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "iso_sha256": "97477f70da45047f2344baa9bcfd9db41ad10cc0f2dee7890910b3d1ffa8f2a7",
+  "physical": [
+    1920,
+    1080
+  ],
+  "clone": {
+    "source_sha256": "c92d1be8a2b9b6ff3bcb0467ecb5d1afb573a15d6f76f0562b18a4b5c1facbbc",
+    "clone_sha256": "c92d1be8a2b9b6ff3bcb0467ecb5d1afb573a15d6f76f0562b18a4b5c1facbbc",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "host_observer": {
+    "method": "Three consecutive fresh stable input/paint samples and all CPUs halted",
+    "maximum_group_bytes": 65536,
+    "mutable_guest_state_cached": false,
+    "guest_memory_written": false
+  },
+  "checks": [
+    "light: nineteen actual base/optional app frames open with owner-bound captions, close independently and retain zero managed pages",
+    "dark: nineteen actual base/optional app frames open with owner-bound captions, close independently and retain zero managed pages",
+    "high-contrast: nineteen actual base/optional app frames open with owner-bound captions, close independently and retain zero managed pages"
+  ],
+  "frames": [
+    {
+      "theme": "light",
+      "app": 1,
+      "name": "files",
+      "bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "capture": "light-1.png"
+    },
+    {
+      "theme": "light",
+      "app": 2,
+      "name": "text editor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-2.png"
+    },
+    {
+      "theme": "light",
+      "app": 3,
+      "name": "settings",
+      "bounds": [
+        560,
+        185,
+        800,
+        650
+      ],
+      "capture": "light-3.png"
+    },
+    {
+      "theme": "light",
+      "app": 4,
+      "name": "calc",
+      "bounds": [
+        610,
+        30,
+        700,
+        650
+      ],
+      "capture": "light-4.png"
+    },
+    {
+      "theme": "light",
+      "app": 5,
+      "name": "downloads",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-5.png"
+    },
+    {
+      "theme": "light",
+      "app": 6,
+      "name": "system monitor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-6.png"
+    },
+    {
+      "theme": "light",
+      "app": 7,
+      "name": "terminal",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-7.png"
+    },
+    {
+      "theme": "light",
+      "app": 8,
+      "name": "clock",
+      "bounds": [
+        610,
+        80,
+        700,
+        510
+      ],
+      "capture": "light-8.png"
+    },
+    {
+      "theme": "light",
+      "app": 9,
+      "name": "calendar",
+      "bounds": [
+        580,
+        35,
+        760,
+        640
+      ],
+      "capture": "light-9.png"
+    },
+    {
+      "theme": "light",
+      "app": 10,
+      "name": "disk utility",
+      "bounds": [
+        535,
+        45,
+        850,
+        620
+      ],
+      "capture": "light-10.png"
+    },
+    {
+      "theme": "light",
+      "app": 11,
+      "name": "software",
+      "bounds": [
+        550,
+        50,
+        820,
+        620
+      ],
+      "capture": "light-11.png"
+    },
+    {
+      "theme": "light",
+      "app": 12,
+      "name": "recovery",
+      "bounds": [
+        170,
+        90,
+        850,
+        620
+      ],
+      "capture": "light-12.png"
+    },
+    {
+      "theme": "light",
+      "app": 13,
+      "name": "archive manager",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "light-13.png"
+    },
+    {
+      "theme": "light",
+      "app": 14,
+      "name": "image viewer",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-14.png"
+    },
+    {
+      "theme": "light",
+      "app": 15,
+      "name": "screenshot",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "light-15.png"
+    },
+    {
+      "theme": "light",
+      "app": 16,
+      "name": "media player",
+      "bounds": [
+        580,
+        65,
+        760,
+        580
+      ],
+      "capture": "light-16.png"
+    },
+    {
+      "theme": "light",
+      "app": 17,
+      "name": "browser",
+      "bounds": [
+        535,
+        35,
+        850,
+        650
+      ],
+      "capture": "light-17.png"
+    },
+    {
+      "theme": "light",
+      "app": 18,
+      "name": "help",
+      "bounds": [
+        170,
+        90,
+        700,
+        560
+      ],
+      "capture": "light-18.png"
+    },
+    {
+      "theme": "light",
+      "app": 19,
+      "name": "windows apps",
+      "bounds": [
+        490,
+        35,
+        960,
+        730
+      ],
+      "capture": "light-19.png"
+    },
+    {
+      "theme": "dark",
+      "app": 1,
+      "name": "files",
+      "bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "capture": "dark-1.png"
+    },
+    {
+      "theme": "dark",
+      "app": 2,
+      "name": "text editor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-2.png"
+    },
+    {
+      "theme": "dark",
+      "app": 3,
+      "name": "settings",
+      "bounds": [
+        560,
+        185,
+        800,
+        650
+      ],
+      "capture": "dark-3.png"
+    },
+    {
+      "theme": "dark",
+      "app": 4,
+      "name": "calc",
+      "bounds": [
+        610,
+        30,
+        700,
+        650
+      ],
+      "capture": "dark-4.png"
+    },
+    {
+      "theme": "dark",
+      "app": 5,
+      "name": "downloads",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-5.png"
+    },
+    {
+      "theme": "dark",
+      "app": 6,
+      "name": "system monitor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-6.png"
+    },
+    {
+      "theme": "dark",
+      "app": 7,
+      "name": "terminal",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-7.png"
+    },
+    {
+      "theme": "dark",
+      "app": 8,
+      "name": "clock",
+      "bounds": [
+        610,
+        80,
+        700,
+        510
+      ],
+      "capture": "dark-8.png"
+    },
+    {
+      "theme": "dark",
+      "app": 9,
+      "name": "calendar",
+      "bounds": [
+        580,
+        35,
+        760,
+        640
+      ],
+      "capture": "dark-9.png"
+    },
+    {
+      "theme": "dark",
+      "app": 10,
+      "name": "disk utility",
+      "bounds": [
+        535,
+        45,
+        850,
+        620
+      ],
+      "capture": "dark-10.png"
+    },
+    {
+      "theme": "dark",
+      "app": 11,
+      "name": "software",
+      "bounds": [
+        550,
+        50,
+        820,
+        620
+      ],
+      "capture": "dark-11.png"
+    },
+    {
+      "theme": "dark",
+      "app": 12,
+      "name": "recovery",
+      "bounds": [
+        170,
+        90,
+        850,
+        620
+      ],
+      "capture": "dark-12.png"
+    },
+    {
+      "theme": "dark",
+      "app": 13,
+      "name": "archive manager",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "dark-13.png"
+    },
+    {
+      "theme": "dark",
+      "app": 14,
+      "name": "image viewer",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-14.png"
+    },
+    {
+      "theme": "dark",
+      "app": 15,
+      "name": "screenshot",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "dark-15.png"
+    },
+    {
+      "theme": "dark",
+      "app": 16,
+      "name": "media player",
+      "bounds": [
+        580,
+        65,
+        760,
+        580
+      ],
+      "capture": "dark-16.png"
+    },
+    {
+      "theme": "dark",
+      "app": 17,
+      "name": "browser",
+      "bounds": [
+        535,
+        35,
+        850,
+        650
+      ],
+      "capture": "dark-17.png"
+    },
+    {
+      "theme": "dark",
+      "app": 18,
+      "name": "help",
+      "bounds": [
+        170,
+        90,
+        700,
+        560
+      ],
+      "capture": "dark-18.png"
+    },
+    {
+      "theme": "dark",
+      "app": 19,
+      "name": "windows apps",
+      "bounds": [
+        490,
+        35,
+        960,
+        730
+      ],
+      "capture": "dark-19.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 1,
+      "name": "files",
+      "bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "capture": "high-contrast-1.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 2,
+      "name": "text editor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "high-contrast-2.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 3,
+      "name": "settings",
+      "bounds": [
+        560,
+        185,
+        800,
+        650
+      ],
+      "capture": "high-contrast-3.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 4,
+      "name": "calc",
+      "bounds": [
+        610,
+        30,
+        700,
+        650
+      ],
+      "capture": "high-contrast-4.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 5,
+      "name": "downloads",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "high-contrast-5.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 6,
+      "name": "system monitor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "high-contrast-6.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 7,
+      "name": "terminal",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "high-contrast-7.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 8,
+      "name": "clock",
+      "bounds": [
+        610,
+        80,
+        700,
+        510
+      ],
+      "capture": "high-contrast-8.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 9,
+      "name": "calendar",
+      "bounds": [
+        580,
+        35,
+        760,
+        640
+      ],
+      "capture": "high-contrast-9.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 10,
+      "name": "disk utility",
+      "bounds": [
+        535,
+        45,
+        850,
+        620
+      ],
+      "capture": "high-contrast-10.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 11,
+      "name": "software",
+      "bounds": [
+        550,
+        50,
+        820,
+        620
+      ],
+      "capture": "high-contrast-11.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 12,
+      "name": "recovery",
+      "bounds": [
+        170,
+        90,
+        850,
+        620
+      ],
+      "capture": "high-contrast-12.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 13,
+      "name": "archive manager",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "high-contrast-13.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 14,
+      "name": "image viewer",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "high-contrast-14.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 15,
+      "name": "screenshot",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "high-contrast-15.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 16,
+      "name": "media player",
+      "bounds": [
+        580,
+        65,
+        760,
+        580
+      ],
+      "capture": "high-contrast-16.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 17,
+      "name": "browser",
+      "bounds": [
+        535,
+        35,
+        850,
+        650
+      ],
+      "capture": "high-contrast-17.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 18,
+      "name": "help",
+      "bounds": [
+        170,
+        90,
+        700,
+        560
+      ],
+      "capture": "high-contrast-18.png"
+    },
+    {
+      "theme": "high-contrast",
+      "app": 19,
+      "name": "windows apps",
+      "bounds": [
+        490,
+        35,
+        960,
+        730
+      ],
+      "capture": "high-contrast-19.png"
+    }
+  ],
+  "resources": {
+    "before": [
+      2072,
+      2088,
+      117289,
+      5
+    ],
+    "after": [
+      2072,
+      2088,
+      117289,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "scale_units": 2
+}

@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "stage": "M13.10",
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "iso_sha256": "97477f70da45047f2344baa9bcfd9db41ad10cc0f2dee7890910b3d1ffa8f2a7",
+  "owned_fixture": "22dfb59561f64befad9b7bc735844c60",
+  "checks": [
+    "Actual install/retained-ISO startup exposes five native categories; Cancel and closing restore previous visual state with an independently identical complete disk and no preference writes",
+    "A second real Settings generation cannot overwrite the first visual preview; its disabled controls explain ownership, closing it preserves the first, and Escape cancels only the actual owner",
+    "A real dirty Editor Save As retains its owner and exact text while Settings refuses persistence and scale changes; the complete disk remains unchanged and closing a color preview leaves the file dialog intact",
+    "Cancelling and applying distribution defaults do not restore a separately removed Calculator: actual package removal remains independent, while reinstall launches without breaking Settings or the desktop",
+    "Apply saves exact validated appearance bytes; explicit 200/500/900-ms intervals and QWERTY/Dvorak write their actual independent records, and real Devices Back returns to the remembered System category",
+    "Two ordinary no-ISO USB/PS2 startups reload exact appearance, click interval and Start records; Settings opens in Appearance without a stale preview or validation warning and idles without polling"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17701,
+      5
+    ],
+    "after": [
+      1047,
+      1060,
+      17701,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "preferences_sha256": "72aaf3b4c9b2f0025562312690afb073cfbef51edf64fb8a8ade0912fc673b34",
+  "appearance_sha256": "fbb48d57c09107794f8347ca82b1d5be15c57e95c6c1c89a74e03cefd579c6e7",
+  "record_hex": "4531314101000000bde562000100000000000000392018000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f00000002d000000200300008a02000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+}

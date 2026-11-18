@@ -13,8 +13,8 @@ barrier=observe20.bind(ui,ui.Pointer.__bases__[0])
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','compact','1024','150','4k'],required=True);a=parser.parse_args()
-    physical,ram,scale={'ordinary':((1920,1080),512,50011),'compact':((1280,800),128,50011),
-                        '1024':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[a.profile]
+    physical,ram,scale={'ordinary':((1920,1080),512,111),'compact':((1280,800),128,111),
+                        '1024':((1024,768),128,111),'150':((1920,1200),512,112),'4k':((3840,2160),1024,113)}[a.profile]
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
     native=json.loads((ROOT/'build/m13/stage10/dialogs-native/results.json').read_text(encoding='utf-8'))
     assert native['passed'] and not native['development_only'] and native['build_id']==meta['build_id']

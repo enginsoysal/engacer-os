@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "iso_sha256": "97477f70da45047f2344baa9bcfd9db41ad10cc0f2dee7890910b3d1ffa8f2a7",
+  "physical": [
+    1920,
+    1080
+  ],
+  "clone": {
+    "source_sha256": "c92d1be8a2b9b6ff3bcb0467ecb5d1afb573a15d6f76f0562b18a4b5c1facbbc",
+    "clone_sha256": "c92d1be8a2b9b6ff3bcb0467ecb5d1afb573a15d6f76f0562b18a4b5c1facbbc",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    "Native edge/corner hover shows both axial and diagonal resize cursors; real resize changes bounds and Escape restores the exact original geometry",
+    "Keyboard closing/reopening Start refreshes arrow/text context at an independently unchanged pointer position; the shared preview field also exposes its real text cursor",
+    "Actual Start search field uses a scalable text cursor at the unchanged native hit coordinate; leaving it restores context, and completed cursor tasks retain zero managed pages"
+  ],
+  "observations": [
+    {
+      "name": "horizontal-resize",
+      "kind": 2,
+      "logical_position": [
+        421,
+        510
+      ]
+    },
+    {
+      "name": "vertical-resize",
+      "kind": 3,
+      "logical_position": [
+        960,
+        151
+      ]
+    },
+    {
+      "name": "northwest-resize",
+      "kind": 4,
+      "logical_position": [
+        421,
+        151
+      ]
+    },
+    {
+      "name": "northeast-resize",
+      "kind": 5,
+      "logical_position": [
+        1499,
+        151
+      ]
+    },
+    {
+      "name": "southeast-resize",
+      "kind": 4,
+      "logical_position": [
+        1498,
+        868
+      ]
+    },
+    {
+      "name": "caption-arrow",
+      "kind": 0,
+      "logical_position": [
+        580,
+        168
+      ]
+    },
+    {
+      "name": "start-search-text",
+      "kind": 1,
+      "logical_position": [
+        396,
+        528
+      ]
+    },
+    {
+      "name": "keyboard-closed-start",
+      "kind": 0,
+      "unchanged_pointer": [
+        396,
+        528
+      ]
+    },
+    {
+      "name": "keyboard-opened-start",
+      "kind": 1,
+      "unchanged_pointer": [
+        396,
+        528
+      ]
+    },
+    {
+      "name": "preview-field-text",
+      "kind": 1,
+      "logical_position": [
+        960,
+        519
+      ]
+    }
+  ],
+  "resources": {
+    "retained_pages": 0,
+    "all_cpus_halted_when_idle": true,
+    "cursor_kind_fixed_bytes": 4
+  }
+}
