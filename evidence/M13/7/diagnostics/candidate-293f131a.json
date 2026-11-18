@@ -1,0 +1,14 @@
+{
+  "build_id": "293f131ad5ceb58416dc178f9cb864d0",
+  "qualified": false,
+  "observations": [
+    "Current-folder filter checks passed; Enter opened a new window and violated same-window history expectation",
+    "USB capture showed clipped Safe remove label",
+    "Compact controls and exact starter passed on this candidate, not carried to later bytes"
+  ],
+  "cancelled": [
+    "Remaining native control profile loop",
+    "USB provider task before completion"
+  ],
+  "reason": "Correct native source and rebuild before qualifying any final media"
+}

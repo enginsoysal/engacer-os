@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "build_id": "293f131ad5ceb58416dc178f9cb864d0",
+  "iso_sha256": "7d3b899485e74a615dfae2f7dc92c766e77668abe766efaeefcf445f5feba236",
+  "physical": [
+    1920,
+    1080
+  ],
+  "owned_fixture": "a612043eaedd4d51aff2a29651dcd18d",
+  "checks": [
+    "Actual current-folder case-insensitive filtering, hidden-selection reset, filtered Ctrl+A, non-launching Enter, Refresh retention and recoverable empty state"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\files_native7.py\", line 48, in main\n    p.desktop(90,True);assert f.app(g)['path']==original and query(g)=='';p.desktop(91,True);assert f.app(g)['path']==original+'/Beta';p.desktop(24,True);assert f.app(g)['path']==original\nAssertionError\n"
+}

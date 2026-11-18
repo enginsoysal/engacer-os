@@ -14,7 +14,7 @@ static void files_frame17(desktop_window*w,application*a,uint64_t token){
   file_button11(token,x+next,by,72,"More",F12_COMMANDS,1,0);
  }else if(a->usb_mode10==2){unsigned ready=files_usb_ready12(a),can_copy=ready&&!files_busy12()&&(a->usb_source10[0]?storage_writable(storage_get(a->usb_disk10)):files_can_command12(token,F11_COPY));
   file_button11(token,x+next,by,168,a->usb_source10[0]?"Copy here":"Copy to Downloads",a->usb_source10[0]?USB_EXPORT10:USB_IMPORT10,can_copy,1);next+=176;
-  file_button11(token,x+next,by,112,"Safe remove",USB_EJECT10,ready&&!files_busy12(),0);next+=120;
+  file_button11(token,x+next,by,112,"Eject",USB_EJECT10,ready&&!files_busy12(),0);next+=120;
   if(width>=800)file_button11(token,x+next,by,72,"More",F12_COMMANDS,1,0);
  }else ui73_fit(x+next,by+9,width-next-216,"Connected USB drives",UI12_SECONDARY,ink());
  file_button11(token,w->bounds.x+width-(a->usb_mode10&&width<600?100:188),by,84,file_windows11[a-apps].view?"Details":"Icons",F11_VIEW,1,0);

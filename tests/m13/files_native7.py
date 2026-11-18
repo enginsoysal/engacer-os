@@ -1,5 +1,5 @@
 """M13.7 actual installed Files input, filter ownership and persistence."""
-import argparse,hashlib,json,os,struct,sys,traceback
+import argparse,hashlib,json,os,struct,sys,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 os.environ['ENGACER12_IMAGE']='EngacerOS-M13STAGE7'
@@ -20,6 +20,13 @@ def close(g,p):
 
 def filter_name(g,p,value):
  c.key(g,'ctrl','f');c.key(g,'ctrl','a');c.type_text(g,value);p.drain();assert query(g)==value
+
+def finish_job(g,p):
+ deadline=time.monotonic()+90
+ while c.flag(g,'file_job_state11'):
+  if time.monotonic()>deadline:raise TimeoutError('Owned file task')
+  time.sleep(.05)
+ p.drain();assert not c.flag(g,'file_job_error11')
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','compact','1024','150','4k'],default='ordinary');a=parser.parse_args()
@@ -44,16 +51,31 @@ def main():
    filter_name(g,p,'notfound');assert not f.names(g) and not f.selected(g),(f.names(g),f.selected(g),query(g));c.shot(g,'no-matching-names');c.key(g,'esc');assert query(g)=='' and set(f.names(g))>={'Alpha','ALPINE','Beta'};c.key(g,'esc')
    report['checks'].append('Actual current-folder case-insensitive filtering, hidden-selection reset, filtered Ctrl+A, non-launching Enter, Refresh retention and recoverable empty state')
    filter_name(g,p,'Beta');p.desktop(61001,True);assert query(g)=='' and not f.selected(g)
-   filter_name(g,p,'Alpha');c.key(g,'esc');c.key(g,'esc');filter_name(g,p,'Beta');c.key(g,'ret');c.key(g,'ret');p.drain();assert f.app(g)['path']==original+'/Beta' and query(g)==''
-   p.desktop(90,True);assert f.app(g)['path']==original and query(g)=='';p.desktop(91,True);assert f.app(g)['path']==original+'/Beta';p.desktop(24,True);assert f.app(g)['path']==original
-   filter_name(g,p,'Alpha');c.key(g,'tab');f.create(g,p,'Gamma',True);assert query(g)=='' and 'Gamma' in f.names(g)
+   filter_name(g,p,'Alpha');c.key(g,'esc');c.key(g,'esc');filter_name(g,p,'Beta');c.key(g,'ret');c.key(g,'ret');p.drain();assert f.app(g)['path']==original+'/Beta' and query(g)=='' and f.model(g)[0]==first['slot']
+   p.desktop(90,True);assert f.app(g)['path']==original and query(g)=='',('Back',f.app(g),query(g),f.history(g));p.desktop(91,True);assert f.app(g)['path']==original+'/Beta',('Forward',f.app(g),f.history(g));p.desktop(24,True);assert f.app(g)['path']==original,('Up',f.app(g),f.history(g))
+   filter_name(g,p,'Alpha');c.key(g,'tab');p.desktop(26,True);assert c.flag(g,'file_dialog_state11')==7;c.key(g,'ctrl','f');assert query(g)=='Alpha' and c.flag(g,'file_dialog_state11')==7;c.key(g,'esc');assert query(g)=='Alpha';f.create(g,p,'Gamma',True);assert query(g)=='' and 'Gamma' in f.names(g)
    report['checks'].append('Clear, child/Back/Forward/Up navigation and successful create preserve reachable unfiltered names and actual path history')
+   if a.profile=='ordinary':
+    filter_name(g,p,'Alpha');c.key(g,'ret');c.key(g,'ctrl','c');f.visit(g,p,original+'/Beta');filter_name(g,p,'missing');c.key(g,'ret');c.key(g,'ctrl','v');finish_job(g,p);assert query(g)=='' and 'Alpha' in f.names(g)
+    p.desktop(f.item(g,p,'Alpha'),True);c.key(g,'ctrl','x');f.visit(g,p,original+'/Gamma');filter_name(g,p,'missing');c.key(g,'ret');c.key(g,'ctrl','v');finish_job(g,p);assert query(g)=='' and 'Alpha' in f.names(g) and original+'/Beta/Alpha' not in f.entries(g) and original+'/Gamma/Alpha' in f.entries(g)
+    f.visit(g,p,original);report['checks'].append('Real filtered selection copy and move clear only the completed destination query, reveal the resulting name and independently expose the correct native paths')
    filter_name(g,p,'alp');second=t.launch(g,p,'files',1);p.desktop(94,True);assert query(g)=='';filter_name(g,p,'Beta');t.focus(g,p,first);assert query(g)=='alp';t.focus(g,p,second);close(g,p);replacement=t.launch(g,p,'files',1);assert replacement['slot']==second['slot'] and replacement['token']!=second['token'] and query(g)==''
    report['checks'].append('Two real Files windows keep independent queries; closing and reusing a generation clears the old query and cached listing')
    p.desktop(21000,True);assert f.app(g)['mode']==1 and not f.has(g,61000) and f.has(g,90);c.key(g,'ctrl','f');assert 'system folders' in f.app(g)['notice'];c.shot(g,'usb-no-device');p.desktop(90,True);assert not f.app(g)['mode'] and query(g)==''
    if a.profile=='ordinary':
     f.resize(g,p,500,420);c.shot(g,'minimum-frame');rows=f.current_controls(g);toolbar=[r for r in rows if r[1]==f.model(g)[1][1]+86];assert all(a[0]+a[2]<=b[0] for a,b in zip(sorted(toolbar),sorted(toolbar)[1:])),toolbar
    report['checks'].append('USB no-device frame retains real Back and truthful unavailable filter; compact command targets remain separate')
+   for theme in ('dark','high-contrast','light'):
+    t.launch(g,p,'settings',3)
+    if theme=='high-contrast':
+     p.desktop(59004,True)
+     if not c.flag(g,'access_flags16')&1:p.desktop(60010,True)
+    else:
+     if c.flag(g,'access_flags16')&1:p.desktop(59004,True);p.desktop(60010,True)
+     p.desktop(59000,True);p.desktop(43 if theme=='dark' else 44,True);p.desktop(47,True)
+     assert struct.unpack_from('<I',ui.s.s.document(disk,'/System/Settings/appearance11-Owner.bin'),12)[0]==(theme=='dark')
+    close(g,p);assert struct.unpack_from('<I',ui.memory(g,ui.symbol('preferences',24,True)[0],24),12)[0]==(theme!='light');c.shot(g,theme)
+   report['checks'].append('Actual Files dark/high-contrast/light surfaces follow applied settings after the settings window closes; saved light/dark appearance bytes are independently read')
    t.close_all(g,p);f.same_pages(baseline,f.stats(g));c.idle(g);report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);(out/'native.log').write_bytes(g.log().encode())
   for n in (1,2):
    boot=ui.guest(work/f'disk-{n}',disk,resolution=resolution,ram=ram,media='installed',ready='M7_DESKTOP_READY');ui.s.normal_boot(boot,work/'install/vars.fd')

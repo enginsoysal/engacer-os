@@ -40,7 +40,12 @@ static void file_apply_undo11(uint64_t owner_token){file_undo11*u=&file_undo_sta
  else{status=v6_move_tree11(m6_volume(),u->target,u->source,0);if(!status){file_follow_move11(u->target,u->source);if(u->kind==F11_JOB_RECYCLE){recycle_record11 record;char meta[256];if(!file_trash_record11(u->target,&record,meta))status=v6_remove(m6_volume(),meta);}}}
  if(status)file_notice11(owner_token,file_error_text11(status));else{u->kind=0;file_clear_selections11();file_notice11(owner_token,"The last supported action was undone.");file_invalidate11();}
 }
-static void file_open_selection11(uint64_t owner_token){desktop_focus11=!owner_token;unsigned count=0,status=file_collect11(owner_token,file_drag_roots11,&count);if(status){file_notice11(owner_token,"Select an item to open it.");return;}if(count>DESKTOP_WINDOWS-model.count){file_notice11(owner_token,"Select fewer items or close a window. Up to eight windows can be open.");return;}
+static void file_open_selection11(uint64_t owner_token){desktop_focus11=!owner_token;unsigned count=0,status=file_collect11(owner_token,file_drag_roots11,&count);if(status){file_notice11(owner_token,"Select an item to open it.");return;}
+#ifdef ENGINE_M13
+ if(owner_token&&count==1&&file_drag_roots11[0].provider==F11_NATIVE){desktop_window*w=file_owner_window11(owner_token);const v6_entry*e=entry(file_drag_roots11[0].source);
+  if(w&&e&&e->kind==2){char folder[256];copy(folder,e->path,sizeof(folder));visit72(&apps[w-model.windows],folder,1);invalidate(w->bounds);return;}}
+#endif
+if(count>DESKTOP_WINDOWS-model.count){file_notice11(owner_token,"Select fewer items or close a window. Up to eight windows can be open.");return;}
  for(unsigned i=0;i<count;++i)if(file_drag_roots11[i].provider!=F11_NATIVE||(count>1&&(!file_default_app11(file_drag_roots11[i].source)||file_suffix11(file_drag_roots11[i].source,"link")))){file_notice11(owner_token,"Open this file type one item at a time. USB files can be copied to Downloads.");return;}
  for(unsigned i=0;i<count;++i)file_open11(file_drag_roots11[i].source,0);
 }

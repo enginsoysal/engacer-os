@@ -22,7 +22,7 @@ New folder starts a naming dialog. Copy, Cut and Paste use the existing supporte
 
 ## USB drives
 
-Choose USB drives, select a listed drive, then double-click or press Enter. Back, Forward, Up and address editing use the same frame. Copy to Downloads and Safe remove use the actual attached device. Opening a drive does not format it. A disconnected drive keeps its history without silently switching to a replacement; explicitly select the new drive.
+Choose USB drives, select a listed drive, then double-click or press Enter. Back, Forward, Up and address editing use the same frame. Copy to Downloads and Eject (safe removal) use the actual attached device. Opening a drive does not format it. A disconnected drive keeps its history without silently switching to a replacement; explicitly select the new drive.
 
 USB filename filtering is currently unavailable: the disabled field says System folders only. Ctrl+F explains this limit. The current filter does not imply recursive USB search, NTFS/exFAT writing or new hardware support. Follow the existing [USB transfer guide](transfers-m127.md) for supported operations and safe removal.
 
