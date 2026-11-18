@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.6",
-  "qualified_download": "M13.5",
+  "qualified_download": "M13.6",
   "design_only": false,
   "stages": [
     {
@@ -62,7 +62,8 @@
       "title": "Familiar Start, taskbar and system tray",
       "status": "in_progress",
       "evidence": "evidence/M13/6",
-      "native_qualification": "M13-STAGE6-VM-v1"
+      "native_qualification": "M13-STAGE6-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6"
     },
     {
       "id": "M13.7",

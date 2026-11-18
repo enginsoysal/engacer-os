@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-**Current download: [Engacer OS M13.5](https://github.com/enginsoysal/engacer-os/releases/tag/m135-v0.13.5).** [Install and recover](install-m135.md), [use your desktop and windows](desktop-m135.md). This stage qualifies the new desktop/window presentation, exact native task profiles and enabled-device VMware startup. [Release scope](../releases/m135-v0.13.5.md). Complete public delivery passes: 458 pages and 293 exact-source articles. [Receipt](../../evidence/M13/5/publication-results.json). Later M13 stages remain separate.
+**Current download: [Engacer OS M13.6](https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6).** [Install and recover](install-m136.md), [find apps and use the taskbar/system tray](start-m136.md), [manage desktop windows](desktop-m135.md). This stage qualifies five native Start/display profiles, applied themes, grouped windows, real providers, saved alignment and exact enabled-device VMware startup. [Release scope](../releases/m136-v0.13.6.md). Full public website verification is in progress; later M13 stages remain separate.
 
 Earlier desktop guides remain useful for retained features. Their original test records qualify their historical media, not untested new bytes. Use the current installation/release guide for the new download.
 

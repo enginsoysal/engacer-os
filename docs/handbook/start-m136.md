@@ -1,6 +1,6 @@
 # Find apps and switch work in Engacer OS M13.6
 
-This guide describes the M13.6 Start, taskbar and system-tray implementation. Qualification and current downloads are reported in the [stage record](../milestones/m13-6.md); do not assume a development build is already the qualified download.
+Use the [matching M13.6 release](../releases/m136-v0.13.6.md) and [installation guide](install-m136.md). These native Start, taskbar and system-tray tasks pass within the named qualification; broader hardware and Windows application support remain separate.
 
 ## Find and open an app
 
@@ -9,6 +9,8 @@ Choose **Start**, or press the Windows key. Pinned shows recognizable app and fo
 Type an installed app or pinned-folder name into Search. Results update locally without opening an app; Enter opens the chosen result. Up/Down and Left/Right navigate the actual drawn grid. Home/End reach its ends. Tab moves through controls. Clear search returns to browsing. Escape first clears a nonempty query; another Escape closes Start. No-results offers a shorter query or All apps. Search covers app names, pin labels and category aliases, not full-disk file contents.
 
 All apps lists the installed catalogue. Grid/List changes presentation. Categories is optional. Previous/Next page through larger result sets without hiding controls. Right-click a result (or Shift+F10) to see its supported pin/category actions. Unpin removes a shortcut, not the installed app or folder.
+
+![Actual M13.6 native Start with original app icons](../../evidence/M13/6/feature.png)
 
 ## Keep your own layout
 
@@ -20,6 +22,8 @@ The taskbar has one icon and short label per pinned or running app. An unopened 
 
 Right-click an app group for supported window and pin commands. A saved-layout notification has a visible Dismiss; use it before a caption that it covers. Compact notification placement is being refined in M13.8. Unsaved documents and active file pickers keep their existing reviews and ownership guards. Removing an optional app cannot remove the desktop; close its active windows before removal. An eight-window limit explains when a window must be closed first.
 
+![Actual applied dark-mode Start after saving and closing Settings](../../evidence/M13/6/themes-ordinary/dark.png)
+
 ## Network, sound, USB and time
 
 Choose a status icon or press Windows+A for the system panel. Quick settings reports the real local wired-network state and software PCM playback level. A local DHCP address does not prove Internet access. Wi-Fi, Bluetooth and battery providers are explicitly unavailable in this build. Volume changes while a picker owns dirty work are session-only and do not interrupt that work.
@@ -30,4 +34,4 @@ The date/time area opens the UTC calendar. Previous/Next month and Today use the
 
 ## Power and safe cancellation
 
-Start > Power offers Restart and Shut down with explicit confirmation. Cancel keeps the session. Save dirty work and finish/cancel transfers before power actions. A refused flush or owned operation cannot be reported as successful shutdown. Use the [installation and recovery instructions](install-m135.md) appropriate to the currently qualified release until the M13.6 release is published.
+Start > Power offers Restart and Shut down with explicit confirmation. Cancel keeps the session. Save dirty work and finish/cancel transfers before power actions. A refused flush or owned operation cannot be reported as successful shutdown. Use the [matching installation and recovery instructions](install-m136.md).

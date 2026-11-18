@@ -2,7 +2,7 @@
 
 ## Current portal — 18 November 2026
 
-M13.5 is the current qualified native release; matching ISO and VMware assets are published. Native homepage/recovery Save and fresh public desktop/mobile/search/download/source checks pass: 458 pages, 293 exact-source articles and 3,197 links. Fourteen external HEAD references remain unverified, with zero known broken targets. [Receipt](../evidence/M13/5/publication-results.json). The current desktop/window guide replaces the historical desktop guide in everyday use; first steps point through the current handbook. Historical guides stay archived with their original qualification. Per-document provenance and pinned image/source blobs remain authoritative. Fresh source readback uses at most four independent GETs and retains every retry/soft-404 observation; three CI fixtures cover that bound and failure handling.
+M13.6 is the current qualified native release; its twenty matching assets and independent ISO/VMware downloads pass. Complete native homepage/recovery Save and fresh public desktop/mobile/search/source/link verification are in progress before M13.7. Current install and Start/taskbar/tray instructions lead their reader tasks; older Start/taskbar/tray manuals remain archived. The illustrated desktop/window guide remains available. Per-document provenance and pinned image/source blobs stay authoritative.
 
 ## Historical M13.0 portal baseline — 17 November 2026
 

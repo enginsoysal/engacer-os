@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.5",
+  "currentRelease": "M13.6",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m135.md",
+          "docs/handbook/install-m136.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m135-v0.13.5.md",
+          "docs/releases/m136-v0.13.6.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -56,12 +56,8 @@
           "Use your desktop and manage windows"
         ],
         [
-          "docs/handbook/start-m129.md",
-          "Find and launch apps with Start"
-        ],
-        [
-          "docs/handbook/taskbar-m1210.md",
-          "Use the taskbar and switch windows"
+          "docs/handbook/start-m136.md",
+          "Find apps, switch windows and use system controls"
         ],
         [
           "docs/handbook/files-m125.md",
@@ -78,10 +74,6 @@
         [
           "docs/handbook/dialogs-m128.md",
           "Open, save and choose a folder"
-        ],
-        [
-          "docs/handbook/tray-m1212.md",
-          "Use quick settings and safely remove USB"
         ],
         [
           "docs/handbook/feedback-m1214.md",
