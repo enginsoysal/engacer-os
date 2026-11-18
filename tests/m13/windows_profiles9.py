@@ -25,13 +25,20 @@ def idle(g):
  raise AssertionError(observations)
 def main():
  assert not (ROOT/'evidence/M13/9/publication-results.json').exists(),'Accepted stage is immutable'
- parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','compact','1024','150','4k'],required=True);a=parser.parse_args();resolution,ram,scale={'ordinary':((1920,1080),512,50011),'compact':((1280,800),128,50011),'1024':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[a.profile]
+ parser=argparse.ArgumentParser();parser.add_argument('--fixture',action='store_true');parser.add_argument('--profile',choices=['ordinary','compact','1024','150','4k'],required=True);a=parser.parse_args();resolution,ram,scale={'ordinary':((1920,1080),512,50011),'compact':((1280,800),128,50011),'1024':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[a.profile]
  out=ROOT/'build/m13/stage9'/('windows-'+a.profile);out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));work=ui.q.new_work('m139-windows-'+a.profile);disk=ui.q.sparse_disk(work/'owned.img',2*1024**3);report=dict(passed=False,build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],physical=list(resolution),checks=[])
+ if a.fixture:
+  from access_fixtures16 import clone
+  native=json.loads((ROOT/'build/m13/stage9'/a.profile/'results.json').read_text());assert native['passed'] and native['build_id']==meta['build_id']
+  source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6'/('m13-stage9-'+a.profile)/native['owned_fixture']/'owned.img'
+  work,disk,report['clone']=clone(ui,source,'m139-windows-clone-'+a.profile)
  try:
-  with ui.guest(work/'install',disk,resolution=resolution,ram=ram) as g:
+  with ui.guest(work/'install',disk,resolution=resolution,ram=ram,**(dict(media='installed',ready='M7_DESKTOP_READY') if a.fixture else {})) as g:
    p=ui.Pointer(g)
-   for action in (2,scale,2,100,2,2,2):c.wizard(g,p,action)
-   at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);baseline=f.stats(g);c.shot(g,'desktop');first=t.launch(g,p,'files',1);normal_first=geometry(g);second=t.launch(g,p,'files',1);normal=geometry(g);width,height=struct.unpack('<II',ui.memory(g,ui.symbol('model',installed=True)[0]+240,8));report['logical']=[width,height];report['scale_units']=c.flag(g,'scale73');c.shot(g,'active-inactive')
+   if not a.fixture:
+    for action in (2,scale,2,100,2,2,2):c.wizard(g,p,action)
+    at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180)
+   p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);baseline=f.stats(g);c.shot(g,'desktop');first=t.launch(g,p,'files',1);normal_first=geometry(g);second=t.launch(g,p,'files',1);normal=geometry(g);width,height=struct.unpack('<II',ui.memory(g,ui.symbol('model',installed=True)[0]+240,8));report['logical']=[width,height];report['scale_units']=c.flag(g,'scale73');c.shot(g,'active-inactive')
    p.desktop(49000,True);assert next(w for w in t.records(g) if w['token']==second['token'])['minimized'];t.focus(g,p,second);assert geometry(g)==normal;c.key(g,'meta_l','up');assert geometry(g)==(0,0,width,height-60);c.key(g,'meta_l','down');assert geometry(g)==normal
    x,y,w,h=normal;drag(g,p,x+180,y+18,x+224,y+42,False);assert geometry(g)!=normal;c.key(g,'esc');p.down(False);p.drain();assert geometry(g)==normal
    drag(g,p,x+w-2,y+h-2,x+w+6,y+h+6,False);assert geometry(g)[2:]!=normal[2:];c.key(g,'esc');p.down(False);p.drain();assert geometry(g)==normal

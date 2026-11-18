@@ -95,7 +95,10 @@ static void rect73(unsigned x,unsigned y,unsigned w,unsigned h,uint32_t rgb){
 #ifdef ENGINE_M74
  if(!(j&15)&&audio74_pending())audio74_pump();
 #endif
- volatile uint32_t*p=pixel73(px,j);for(unsigned i=px;i<pr;++i)*p++=value;}
+ /* Fill the bounded clipped row in one architectural string operation.
+    This keeps stride/audio servicing intact without per-pixel loop overhead. */
+ uint32_t*p=(uint32_t*)pixel73(px,j);size_t count=pr-px;
+ __asm__ volatile("cld; rep stosl":"+D"(p),"+c"(count):"a"(value):"memory","cc");}
 }
 static void round_alpha73(unsigned x,unsigned y,unsigned w,unsigned h,unsigned radius,uint32_t rgb,unsigned alpha){
  if(!w||!h)return;

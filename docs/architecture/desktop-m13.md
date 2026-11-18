@@ -97,3 +97,13 @@ Implementation in progress; no native qualification is claimed. The M13.7 baseli
 ## Stability priority and M13.13 extension
 
 Frequent freezes are now reported on M13.8 as well as M13.7. Historic task-level qualification does not establish stability; current M13.8 media are testing-only. The owner explicitly requires finishing M13.9-M13.12 before stability work begins in M13.13. M13.12 remains integration qualification; [M13.13](../milestones/m13-13.md) adds an eight-real-hour release-blocking stability trial before hardware expansion. Pending M13.9 trace and timeout self-test code is unqualified until rebuilt and tested on frozen media.
+
+## Current M13.9 motion and pointer implementation
+
+The frozen motion candidate composes the union of old/new exposed strips once around the reused window interior. Independent full-repaint comparisons cover off-screen clipping and ordinary/150%/physical-4K scales. It reuses the existing shadow/framebuffer and allocates no per-window pixel cache.
+
+Original geometric text and axial/diagonal resize cursors follow native semantic hit targets. Their centered hotspots retain the actual input coordinates and signed clipping keeps framebuffer writes within the current physical output. Arrow behavior is retained on captions and ordinary controls. Cursor kind adds four fixed core bytes, with no bitmap allocation or idle animation. Existing very-low-resource direct rendering retains its legacy arrow fallback rather than allocating another surface.
+
+A bounded 64-entry native pointer ring records receipt and completed CPU/framebuffer/cursor presentation separately from external scanout. Net desktop-state growth is 2,560 bytes against M13.8; USB receipt timestamps add 16 bytes outside that desktop total. The existing validated HPET divisor supplies interpolation without a second clock, background worker or polling loop. Button-edge receipt timestamps retain their conservative 10-ms rounding. Configured RAM, fixed state, framebuffer/shadow bytes and managed peak/retained pages remain separate.
+
+The owner explicitly requires finishing M13.9-M13.12 before any further stability investigation. Earlier failure/recovery diagnostics remain preserved; they do not qualify the current candidate or a stable release. Natural-freeze reproduction, duration trials and reset-chain diagnosis resume only in M13.13.

@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "stage": "M13.9",
+  "build_id": "756ec126dcd3190845e8d148b98fed02",
+  "iso_sha256": "e68a724cda4d7bf81769adb11f43551d5d2c23f434611bb8607a275974bfc803",
+  "reviewer": "Agent visual and ordinary-input task review; no human novice study",
+  "criteria": {
+    "clarity": {
+      "passed": true,
+      "notes": "Actual edge/text hit targets expose the relevant cursor without adding instructions or a mode switch."
+    },
+    "convenience": {
+      "passed": true,
+      "notes": "Resize and Escape restore exact bounds; one click still selects and ordinary caption/menu/keyboard actions remain available."
+    },
+    "friendliness": {
+      "passed": true,
+      "notes": "Pointer movement does not launch an app, select a file or destroy dirty documents; owner-bound movement/cancel tasks are separately tested."
+    },
+    "graphics": {
+      "passed": true,
+      "notes": "Original antialiased geometric cursor outlines retain centered hotspots at supported scales, with no bitmap stretching; compact/150%/physical-4K frames are actual native captures."
+    },
+    "readability": {
+      "passed": true,
+      "notes": "Reviewed Files/Start and cursor captures retain smooth type, readable controls and no essential overlap. Existing high-contrast boundary refinements remain M13.11."
+    }
+  },
+  "reviewed_native_frames": [
+    {
+      "path": "native/cursors-ordinary/horizontal-resize.png",
+      "png_sha256": "ab7525e66602643bae2225c0f6053175b8938b00ce8ed8547b73ecae3db3cd6e",
+      "physical_dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "native/cursors-compact/start-search-text.png",
+      "png_sha256": "266be01b531029c0a54b82f8e5d4c0662b26f80874c534bf98f448949c2d2b78",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "native/cursors-150/start-search-text.png",
+      "png_sha256": "619f5d80e710734569157bd44d0fa6d310f6d43a399117486a7bff5acb596f7d",
+      "physical_dimensions": [
+        1920,
+        1200
+      ]
+    },
+    {
+      "path": "native/cursors-4k/southeast-resize.png",
+      "png_sha256": "34ee4072b1e299aeaba44c8299194895e5f9dd33fc7c83df4083b455ac750618",
+      "physical_dimensions": [
+        3840,
+        2160
+      ]
+    }
+  ],
+  "human_novice_study": false,
+  "limits": [
+    "Visual/scoped functional review only; not duration or stability qualification",
+    "Native processing completion and external scanout remain different measurements",
+    "Full integration and subsequent final stability remain M13.12 and M13.13 respectively"
+  ]
+}

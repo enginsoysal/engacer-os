@@ -81,14 +81,24 @@ def quantiles(values):
     return dict(median_ms=statistics.median(values),p95_ms=ordered[min(len(ordered)-1,int(.95*len(ordered)))],maximum_ms=max(values),samples_ms=values)
 
 
+def trace_samples(g,after=0):
+    raw=ui.memory(g,ui.symbol('motion19',2568,True)[0],2568)
+    total=struct.unpack_from('<Q',raw)[0];rows=[]
+    for offset in range(64):
+        sequence,received,finished,x,y,flags,paint=struct.unpack_from('<QQQiiII',raw,8+40*offset)
+        if max(1,total-63,after+1)<=sequence<=total:
+            rows.append(dict(sequence=sequence,received_us=received,completed_us=finished,x=x,y=y,flags=flags,paint=paint))
+    return total,sorted(rows,key=lambda row:row['sequence'])
+
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--burst',action='store_true');parser.add_argument('--encoding',choices=['raw','zlib'],default='raw');parser.add_argument('--native-budget',action='store_true');parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
     assert not args.whpx_legacy_irq or args.accel=='whpx'
     assert 16<=args.samples<=120 and not (ROOT/'evidence/M13/9/publication-results.json').exists()
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
-    native=json.loads((ROOT/'build/m13/stage9/ordinary/results.json').read_text(encoding='utf-8'))
+    native=json.loads((ROOT/'build/m13/stage9'/args.profile/'results.json').read_text(encoding='utf-8'))
     assert native['passed'] and native['build_id']==meta['build_id']
-    source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m13-stage9-ordinary'/native['owned_fixture']/'owned.img'
+    source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6'/('m13-stage9-'+args.profile)/native['owned_fixture']/'owned.img'
     work,disk,cloned=clone(ui,source,'m139-motion-'+args.profile)
     label=args.accel+('-legacy' if args.whpx_legacy_irq else '')+'-'+args.profile+('-burst' if args.burst else '')+('-zlib' if args.encoding=='zlib' else '')
     out=ROOT/'build/m13/stage9/motion'/label;out.mkdir(parents=True,exist_ok=True);c.OUT=out
@@ -108,7 +118,7 @@ def main():
             report['initial_cpu_monitor']=dict(halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1'),cpus=len(g.qmp('query-cpus-fast')),input={name:ui.integer(g,name,True) for name in ('mouse_dirty','mouse_head11','mouse_tail11','head','tail')})
             p=ui.Pointer(g);p.drain()
             g.qmp('send-key',{'keys':[{'type':'qcode','data':'esc'}],'hold-time':30});time.sleep(.15);p.drain()
-            if scale==4:
+            if scale==4 and c.flag(g,'scale73')!=4:
                 # The cloned ordinary fixture explicitly saves 100%. Apply
                 # 200% through actual Settings on this owned clone only.
                 c.open_settings(g,p);p.desktop(59001,True);p.desktop(113,True);p.desktop(47,True);p.close_app(3,True);p.drain()
@@ -149,6 +159,28 @@ def main():
                 # crosses the existing threshold. The translated visible
                 # patch below, rather than mouse-down alone, proves motion.
                 latencies=[];visible=[];completed=[]
+                if args.native_budget:
+                    # Measure CPU/framebuffer completion without concurrently
+                    # requesting multi-megabyte VNC scanout of the dirty window.
+                    # A separate following pass independently observes every
+                    # same requested position; no physical FPS claim follows.
+                    first,_=trace_samples(g)
+                    bx,by=c.flag(g,'pointer_x'),c.flag(g,'pointer_y')
+                    offered=[]
+                    for number in range(args.samples):
+                        dx,dy=(24,20) if number%2==0 else (0,0)
+                        pointer(display,int(grab_x+dx*factor),int(grab_y+dy*factor),1)
+                        offered.append((bx+dx,by+dy));time.sleep(.1)
+                    pointer(display,grab_x,grab_y,0);p.drain()
+                    total,rows=trace_samples(g,first)
+                    dragged=[row for row in rows if row['flags']&1 and row['flags']&256]
+                    matched=[];at=0
+                    for x,y in offered:
+                        while at<len(dragged) and (dragged[at]['x'],dragged[at]['y'])!=(x,y):at+=1
+                        assert at<len(dragged),'Native timing pass coalesced or missed a requested position'
+                        matched.append(dragged[at]);at+=1
+                    report['native_budget_trace']=dict(method='Separate ordinary-input pass: no host framebuffer requests during timing; read bounded native receipt/completion records after release and idle. Following pass independently observes exact pixels at all requested positions.',offered_interval_ms=100,offered_positions=len(offered),matched_positions=len(matched),capacity=64,samples=matched,completion_latency=quantiles([(row['completed_us']-row['received_us'])/1000 for row in matched]))
+                    pointer(display,grab_x,grab_y,1);p.drain()
                 for number in range(0 if args.burst else args.samples):
                     dx,dy=(24,20) if number%2==0 else (0,0)
                     target=(int(patch[0]+dx*factor),int(patch[1]+dy*factor),patch[2],patch[3])
@@ -221,7 +253,7 @@ def main():
             (out/'native.log').write_text(g.log(),encoding='utf-8')
             report['external_goals_passed']=report['drag_interval_target_passed'] and report['ordinary_feedback_target_passed']
             report['native_completion_budget_ms']=limit
-            report['native_completion_budget_passed']=report['native_trace']['drag_samples']>=args.samples and report['native_trace']['drag_completion_latency']['p95_ms']<=limit
+            report['native_completion_budget_passed']=bool(args.native_budget and report['native_budget_trace']['matched_positions']==args.samples and report['native_budget_trace']['completion_latency']['p95_ms']<=limit)
             report['qualification_method']='native receipt-to-framebuffer completion plus independent exact visible positions; external goals reported separately' if args.native_budget else 'external observed latency and cadence'
             report['passed']=report['native_completion_budget_passed'] if args.native_budget else report['external_goals_passed']
     except Exception:

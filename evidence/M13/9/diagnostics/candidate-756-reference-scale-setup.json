@@ -1,0 +1,42 @@
+{
+  "passed": false,
+  "stage": "M13.9",
+  "profile": "4k",
+  "build_id": "756ec126dcd3190845e8d148b98fed02",
+  "iso_sha256": "e68a724cda4d7bf81769adb11f43551d5d2c23f434611bb8607a275974bfc803",
+  "physical": [
+    3840,
+    2160
+  ],
+  "configured_guest_mib": 1024,
+  "cpus": 2,
+  "owned_fixture": "8f7ce64972cb4cc694d19e78ef40cb01",
+  "clone": {
+    "source_sha256": "86bfc2095a46935ec0e3822d6cb78d3ee8074a4ef8fa971093ebf03f1f957b21",
+    "clone_sha256": "86bfc2095a46935ec0e3822d6cb78d3ee8074a4ef8fa971093ebf03f1f957b21",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "method": "Host ordinary pointer event to exact translated native title patch over authenticated loopback RFB; includes scanout, transport and observer overhead, not GPU FPS",
+  "checks": [],
+  "acceleration": "whpx",
+  "legacy_irq_profile": true,
+  "initial_cpu_monitor": {
+    "halted": 1,
+    "cpus": 2,
+    "input": {
+      "mouse_dirty": 0,
+      "mouse_head11": 0,
+      "mouse_tail11": 0,
+      "head": 0,
+      "tail": 0
+    }
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\motion9.py\", line 114, in main\n    c.open_settings(g,p);p.desktop(59001,True);p.desktop(113,True);p.desktop(47,True);p.close_app(3,True);p.drain()\n  File \"<project-root>\\tests\\m12\\components.py\", line 71, in open_settings\n    p.desktop(42004,True)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (42004, 43)\n"
+}

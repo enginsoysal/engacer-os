@@ -23,9 +23,11 @@ def main():
  assert len(motion['profiles'])==3
  for n,r in reference.items():
   assert r['native_completion_budget_passed'] and r['visible_positions']==r['requested_positions']>=32 and r['missed_requested_positions']==0
-  assert r['native_trace']['drag_samples']>=32 and r['resources']['retained_task_delta_pages']==0
+  assert r['native_budget_trace']['matched_positions']==r['native_budget_trace']['offered_positions']>=32 and r['resources']['retained_task_delta_pages']==0
   assert r['qualification_method'].startswith('native receipt-to-framebuffer')
  assert vm['existing_vm_inventory_unchanged'] and vm['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
+ previous=read(ROOT/'evidence/M13/8/acceptance-results.json')
+ assert sha(ROOT/'dist/EngacerOS-M13STAGE8.iso')==previous['iso_sha256'] and sha(ROOT/'dist/EngacerOS-M13STAGE8-VMware.zip')==previous['vmware_zip_sha256']
  rules.git_inputs(meta['source_sha256'])
  for name,value in meta['artifacts'].items():assert sha(ROOT/'dist'/name)==value['sha256']
  current=rules.desktop_state(ROOT/'dist/EngacerOS-M13STAGE9-installed-kernel.map');old=rules.desktop_state(ROOT/'dist/EngacerOS-M13STAGE8-installed-kernel.map');assert current['bytes']-old['bytes']==2560
