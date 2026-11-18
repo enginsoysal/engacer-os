@@ -284,3 +284,4 @@ evidence/M12/18/** -text -whitespace
 distros/engacer-desktop-m13.json -text whitespace=cr-at-eol
 evidence/M13/** -text -whitespace
 tests/m13/*.py -text whitespace=cr-at-eol
+tests/m13/*.mjs -text whitespace=cr-at-eol
