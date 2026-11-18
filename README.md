@@ -1,7 +1,7 @@
 # Engacer OS
 
-**Current development: [M13.7 - Files as the everyday workspace](docs/milestones/m13-7.md). Native qualification, release and independent downloads pass; complete public website verification is in progress.** M13.8-M13.12 have not started.
-**M13.7 / 0.13.7 passes M13-STAGE7-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7), [navigate and filter folders](docs/handbook/files-m137.md). 75 native task/profile checks, five complete Files display journeys, applied themes, real provider/transfer tasks and exact enabled-device VMware startup bind these media. Complete public website verification is in progress.
+**Current development: [M13.7 - Files as the everyday workspace](docs/milestones/m13-7.md). Native qualification, release, independent downloads and complete public website verification pass.** M13.8-M13.12 have not started.
+**M13.7 / 0.13.7 passes M13-STAGE7-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7), [navigate and filter folders](docs/handbook/files-m137.md). 75 native task/profile checks, five complete Files display journeys, applied themes, real provider/transfer tasks and exact enabled-device VMware startup bind these media. Public delivery passes: 471 pages, 302 exact-source articles and 3,311 links. [Publication receipt](evidence/M13/7/publication-results.json).
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,

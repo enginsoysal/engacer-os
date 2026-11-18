@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "source_commit": "88a0281f88dba3a546e55218a70a67ad5066984f",
+  "error": "The public homepage connection closed during navigation at public_site.mjs:18. This failed standard browser run does not qualify public delivery.",
+  "partial_result": {
+    "passed": false,
+    "stage": "M13.7",
+    "source_commit": "88a0281f88dba3a546e55218a70a67ad5066984f",
+    "native_editor_save": "Saved \u2713",
+    "recovery_editor_save": "Saved \u2713",
+    "production_search": false,
+    "task_sidebar": false,
+    "ordered_task_navigation": false,
+    "current_guide": false,
+    "matching_download": false,
+    "mobile_menu": false,
+    "reports": []
+  }
+}

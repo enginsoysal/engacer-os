@@ -1,0 +1,59 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "source_commit": "88a0281f88dba3a546e55218a70a67ad5066984f",
+  "error": "Public homepage navigation exceeded the 30000-ms full-load deadline during the standard browser journey at public_site.mjs:29. This failed run does not qualify the public delivery.",
+  "partial_result": {
+    "passed": false,
+    "stage": "M13.7",
+    "source_commit": "88a0281f88dba3a546e55218a70a67ad5066984f",
+    "native_editor_save": "Saved \u2713",
+    "recovery_editor_save": "Saved \u2713",
+    "production_search": false,
+    "task_sidebar": false,
+    "ordered_task_navigation": false,
+    "current_guide": false,
+    "matching_download": false,
+    "mobile_menu": false,
+    "desktop": {
+      "viewport": 1280,
+      "document": 1280,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/7/feature.png",
+          "loaded": true
+        }
+      ]
+    },
+    "reports": [
+      {
+        "width": 1280,
+        "passed": true,
+        "search_opener_contrast": 16.96572538438515,
+        "checks": [
+          "same-page search",
+          "current guides",
+          "archive opt-in",
+          "no-results/clear",
+          "focus trap/Escape/opener",
+          "Ctrl+K/arrow/Enter navigation",
+          "task next article",
+          "heading anchor",
+          "correct hydrated share domain",
+          "mobile menu and browse disclosure where applicable"
+        ],
+        "layout": {
+          "viewport": 1280,
+          "document": 1280,
+          "images": [
+            {
+              "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/7/feature.png",
+              "loaded": true
+            }
+          ]
+        },
+        "page_errors": []
+      }
+    ]
+  }
+}

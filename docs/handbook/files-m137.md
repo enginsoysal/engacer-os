@@ -1,6 +1,6 @@
 # Files - navigation and current-folder filtering
 
-M13.7 passes its named native qualification. Use the [matching release](../releases/m137-v0.13.7.md) and [installation guide](install-m137.md). Complete public website verification remains a separate gate.
+M13.7 passes its named native qualification. Use the [matching release](../releases/m137-v0.13.7.md) and [installation guide](install-m137.md). Complete public website verification passes; see the receipt below.
 
 ## Find your way
 
@@ -50,3 +50,7 @@ The [milestone record](../milestones/m13-7.md) and [exact acceptance](../../evid
 ![Current-folder filename filter and matching native rows](../../evidence/M13/7/files-ordinary/filtered-names.png)
 
 ![Actual supported USB folder with the same navigation frame](../../evidence/M13/7/usb-native/usb-folder-common-frame.png)
+
+## Public delivery
+
+The exact twenty GitHub assets, native homepage/recovery Saves and public desktop/mobile search, task navigation, manuals, matching downloads and responsive layouts pass. Fresh reads verify 471 pages, all 302 article source references and 3,311 unique links. The link audit has zero known broken targets and 13 explicitly unverified external HEAD references. [Publication receipt](../../evidence/M13/7/publication-results.json), [fresh readback](../../evidence/M13/7/website-readback.json), [link audit](../../evidence/M13/7/website-links.json).

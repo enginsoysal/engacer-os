@@ -69,10 +69,11 @@
     {
       "id": "M13.7",
       "title": "Files as the everyday workspace",
-      "status": "in_progress",
+      "status": "complete",
       "evidence": "evidence/M13/7",
       "native_qualification": "M13-STAGE7-VM-v1",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7",
+      "publication_evidence": "evidence/M13/7/publication-results.json"
     },
     {
       "id": "M13.8",

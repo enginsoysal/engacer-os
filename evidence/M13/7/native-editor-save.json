@@ -1,0 +1,18 @@
+{
+  "source_commit": "88a0281f88dba3a546e55218a70a67ad5066984f",
+  "home": "Saved ✓",
+  "recovery": "Saved ✓",
+  "checked_at": "2026-11-18T07:51:46.727Z",
+  "owned_native_editor": true,
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "payload_sha256": {
+    "1.json": "30bef39c10e273f2eb3a48837ca5b62de376ce297ed8b740625358a8cdacbcfe",
+    "2.json": "14ca3a2dd3db37432c1cf7df966b9f0a50822ccf542a8bc2eac54af5ab515c2c",
+    "3.json": "80db42b06b34fb13d4efd6be784455174f091ca891a35309e5ee50ef5eda787e",
+    "4.json": "1e3f5b0949b11ee67d912ae4c6a73d32b956958f44b2f64d8589eace09ff9420",
+    "404-1.json": "45f738c82a3706cdc12ae5e6de9dcbea6bef906043bb5dbf8150ef5e7e4e8f13",
+    "404-2.json": "3b96f64eb312f35b8e7595835e9d4bbad7d6f014d9fbf7c05c7e517727eb6032"
+  },
+  "stale_version_recovery": "Initial stale editor refused concurrent publication; fresh editor loaded latest server version before applying the four roots. No platform source change."
+}

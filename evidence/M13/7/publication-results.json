@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.7",
+  "qualification": "M13-STAGE7-VM-v1",
+  "source_commit": "88a0281f88dba3a546e55218a70a67ad5066984f",
+  "release_source_commit": "90d4070b7255c181419d79f0cdfe16ee252319f9",
+  "build_id": "a86d9e57c392217a7fe051454180d6df",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7",
+  "workflow_ids": [
+    44260871987
+  ],
+  "current_native_download": "m137-v0.13.7",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 471,
+  "unique_links": 3311,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
