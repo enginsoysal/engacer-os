@@ -1,6 +1,10 @@
 # BrixCanvas documentation website
 
-## Current M13.0 portal work — 17 November 2026
+## Current portal — 18 November 2026
+
+M13.1 is the current qualified public native delivery. Its production same-page search, current/archive filtering, keyboard operation, reader-task sidebar, heading navigation and mobile layout pass live public checks. [M13.1 public receipt](../evidence/M13/1/publication-results.json). M13.2 welcome/setup qualification is in progress; each later stage must finish source/media, English guides and a real native BrixCanvas Save plus fresh public readback before the next. Per-document Git provenance retains the actual last edit of unchanged articles; image/source links bind their own exact blobs. Minimal HTTP-404 recovery retains a static Search route because it has no documentation index.
+
+## Historical M13.0 portal baseline — 17 November 2026
 
 M13.0 is design-only OS work; M12.18 remains the qualified native download.
 The task-first portal is driven by `website/brix/portal.json`, validated by
@@ -21,7 +25,7 @@ and verify current guides, archives, download hashes, source, mobile and search.
 
 Earlier sections below describe historical publication approaches and evidence.
 
-The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.18 is the final qualified native stage; all M12.0–M12.18 stages are complete within their declared scopes. Its immutable release includes the matching ISO and VMware package. The final public receipt records 406 checked pages, 2,853 HTTP links and twenty release assets. Earlier milestone sections below are historical records. The internal site ID/slug and scoped publisher key remain unchanged; historical release identities stay intact. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
+The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.18 is the frozen final M12 native stage; all M12.0–M12.18 stages are complete within their declared scopes. Its immutable release includes the matching ISO and VMware package. The final public receipt records 406 checked pages, 2,853 HTTP links and twenty release assets. Earlier milestone sections below are historical records. The internal site ID/slug and scoped publisher key remain unchanged; historical release identities stay intact. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
 
 ## Current M12 publication
 

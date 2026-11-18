@@ -36,13 +36,14 @@ def digest(path):
   for chunk in iter(lambda:f.read(1024**2),b''):h.update(chunk)
  return h.hexdigest()
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--keyboard',action='store_true');parser.add_argument('--compact',action='store_true');args=parser.parse_args()
- label=('keyboard' if args.keyboard else 'pointer')+('-compact' if args.compact else '')
+ parser=argparse.ArgumentParser();parser.add_argument('--keyboard',action='store_true');parser.add_argument('--compact',action='store_true');parser.add_argument('--profile',choices=['ordinary','150','4k'],default='ordinary');args=parser.parse_args()
+ label=('keyboard' if args.keyboard else 'pointer')+('-compact' if args.compact else '-'+args.profile if args.profile!='ordinary' else '')
  out=ROOT/'build/m13/stage2'/('journey-'+label);out.mkdir(parents=True,exist_ok=True)
  work=ui.q.new_work('m132-'+label);disk=ui.q.sparse_disk(work/'owned.img',2*1024**3);before=digest(disk)
  meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));report=dict(passed=False,build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],input='keyboard only' if args.keyboard else 'pointer navigation with typing',checks=[])
  try:
-  with ui.guest(work/'setup',disk,resolution=(1024,768) if args.compact else (1920,1080),ram=128 if args.compact else 512) as g:
+  resolution,ram,scale={'ordinary':((1920,1080),512,0),'150':((1920,1200),512,3),'4k':((3840,2160),1024,4)}[args.profile]
+  with ui.guest(work/'setup',disk,resolution=(1024,768) if args.compact else resolution,ram=128 if args.compact else ram) as g:
    p=ui.Pointer(g);p.drain();go=lambda a:activate(g,p,a,args.keyboard)
    assert 50 not in actions(g) and 83 not in actions(g)
    go(50500);assert 50 in actions(g) and 83 in actions(g);shot(g,out,'advanced')
@@ -53,6 +54,7 @@ def main():
    if args.compact:
     go(50012);assert value(g,'validation',8)!=0 and ui.integer(g,'scale73')==2
     go(50013);assert value(g,'validation',8)!=0 and ui.integer(g,'scale73')==2
+   if scale:go(50009+scale)
    go(50002)
    for c in 'hello':key(g,c)
    key(g,'shift','1');key(g,'backspace');key(g,'shift','x');assert sample(g)==b'helloX'
@@ -69,7 +71,7 @@ def main():
    report['checks']=['Advanced options disclose, Escape closes and blank installed-start fails safely','Real keyboard layout, shifted text, modifiers, Clear and Enter; Back retains sample','Unsupported compact scales refuse and retain readable viewport' if args.compact else 'Ordinary viewport retains its size','No-optional-app, dark wallpaper/accent choices survive Back/Next','Every ordinary page keeps the outer frame; complete disk SHA unchanged before Install']
    at=len(g.log());go(2);g.wait('M6_INSTALL_PASS',at,240);p.drain()
    appearance=ui.s.s.document(disk,'/System/Settings/appearance11-Owner.bin')
-   assert len(appearance)==352 and struct.unpack_from('<8I',appearance)==(0x41313145,1,0x9caeff,1,0,0x182039,0,0)
+   assert len(appearance)==352 and struct.unpack_from('<8I',appearance)==(0x41313145,1,0x9caeff,1,scale,0x182039,0,0)
    assert ui.s.s.document(disk,'/System/Settings/keyboard10.bin')==struct.pack('<II',0x30314c4b,0)
    at=len(g.log());go(84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();key(g,'esc');shot(g,out,'customized-installed',True)
    assert 'M6_INSTALLED_VOLUME' in g.log()[at:] and 'M6_WIZARD_READY' not in g.log()[at:]

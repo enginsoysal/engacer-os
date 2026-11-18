@@ -15,7 +15,7 @@ def fixed_setup(path):
 def main():
  out=ROOT/'evidence/M13/2';assert not (out/'publication-results.json').exists()
  work=ROOT/'build/m13/stage2';meta=read(ROOT/'dist/m13stage2-build-manifest.json');starter=read(ROOT/'dist/m13stage2-starter-manifest.json')
- iso=meta['artifacts']['EngacerOS-M13STAGE2.iso']['sha256'];profiles={n:read(work/n/'results.json') for n in ('ordinary','compact','1024','150','4k')};journeys={n:read(work/('journey-'+n)/'results.json') for n in ('pointer','keyboard-compact')};vm=read(work/'vmware-results/results.json');smoke=read(work/'candidate3-smoke/results.json')
+ iso=meta['artifacts']['EngacerOS-M13STAGE2.iso']['sha256'];profiles={n:read(work/n/'results.json') for n in ('ordinary','compact','1024','150','4k')};journeys={n:read(work/('journey-'+n)/'results.json') for n in ('pointer','keyboard-compact','pointer-150','pointer-4k')};vm=read(work/'vmware-results/results.json');smoke=read(work/'candidate3-smoke/results.json')
  for r in [*profiles.values(),*journeys.values(),vm]:assert r['passed'] and r['build_id']==meta['build_id'] and r['iso_sha256']==iso
  assert smoke['passed'] and smoke['build_id']==meta['build_id'] and smoke['observed_startup_phase'] in (1,2,3)
  assert all(len(r['checks'])==6 for r in journeys.values())
@@ -35,7 +35,7 @@ def main():
  setup=fixed_setup(ROOT/'dist/EngacerOS-M13STAGE2-kernel.map');old_setup=fixed_setup(ROOT/'dist/EngacerOS-M13STAGE1-kernel.map')
  resources=dict(passed=True,fixed_desktop=current,baseline_fixed_desktop=baseline,fixed_installer=setup,baseline_fixed_installer=old_setup,installer_delta_bytes=setup['bytes']-old_setup['bytes'],font=font,profiles={n:r['resources'] for n,r in profiles.items()},scope='Fixed shell, installer, immutable fonts, framebuffer and managed task allocations are separate; configured RAM is not kernel consumption.')
  out.mkdir(parents=True,exist_ok=True)
- for n in [*profiles,'vmware-results','journey-pointer','journey-keyboard-compact','candidate3-smoke']:rules.copy_report(work/n,out/n)
+ for n in [*profiles,'vmware-results',*['journey-'+n for n in journeys],'candidate3-smoke']:rules.copy_report(work/n,out/n)
  shutil.copyfile(work/'host-results.json',out/'host-results.json');shutil.copyfile(work/'candidate3-smoke/welcome.png',out/'feature.png');write(out/'resources.json',resources)
  accepted=dict(passed=True,stage='M13.2',version='0.13.2',qualification='M13-STAGE2-VM-v1',build_id=meta['build_id'],iso_sha256=iso,vmware_zip_sha256=starter['sha256'],source_inputs_verified=len(meta['source_sha256']),native_checks=[c for r in [*profiles.values(),*journeys.values()] for c in r['checks']],vmware_checks=vm['checks'],harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in [*(ROOT/'tests/m13').glob('*.py'),*(ROOT/'tests/m13').glob('*.mjs')]},resources='resources.json',limits=['Named VM setup/control profiles, not the M13.4 controller matrix or M13.12 whole product gate','No universal hardware, GPU 3D or general Windows compatibility','Agent scenario/visual review is not a human novice study','Public release/site closure is a separate gate'])
  write(out/'acceptance-results.json',accepted);print(json.dumps(accepted,indent=2))
