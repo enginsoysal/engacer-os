@@ -21,7 +21,7 @@ def main():
    assert ui.q.digest(owned)==protected_hash and ui.q.digest(repair)==repair_hash;d.apply(g,p,7,False);s.shot(g,out,'repair-complete');state=struct.unpack('<3I',ui.memory(g,ui.symbol('u71_state')[0],12));assert state[1:]==(3,1),state;d.table(repair)
    assert s.flag(g,'scale73')==2
    with Image.open(out/'repair-complete.png') as image:
-    pixels=image.convert('RGB').crop((s.flag(g,'body')+12,s.flag(g,'bottom')-42,s.flag(g,'left')+s.flag(g,'width')-24,s.flag(g,'bottom')-14))
+    pixels=image.convert('RGB').crop((ui.integer(g,'body')+12,ui.integer(g,'bottom')-42,ui.integer(g,'left')+ui.integer(g,'width')-24,ui.integer(g,'bottom')-14))
     assert not any(r>g*1.3 and r>b*1.3 and r-g>30 for r,g,b in pixels.getdata()),'Successful completion is painted as a red error'
    assert ui.q.digest(owned)==protected_hash and ui.q.digest(repair,34*512,repair.stat().st_size-67*512)==data_hash
    report.update(passed=True,checks=['Protected selected GPT partition has no active Format/Delete','Damaged backup retains read-only partition actions and only verified primary repair is offered','No disk bytes change during inspect/review; explicit consent repairs both verified copies','Every protected-disk byte and all repaired-disk bytes outside GPT metadata stay identical']);(out/'boot.log').write_bytes(g.log().encode())
