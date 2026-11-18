@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "build_id": "f75973fdc3df5b84742b7732b245c3be",
+  "iso_sha256": "df3ebc122b0f577ff64139f6da9b1fb7550820564bbbb41f238b02933396c657",
+  "physical": [
+    1024,
+    768
+  ],
+  "checks": [
+    "Minimize/exact-owner restore, maximize/normal restore, pointer move and resize cancellation preserve real bounds",
+    "Actual edge preview cancels safely; release and complementary-window choice place exact left/right halves and restore each independent normal rectangle",
+    "Dirty editor text survives minimizing, switching and snapping; a partially off-screen window retains a reachable real Move menu and returns on screen"
+  ],
+  "logical": [
+    1024,
+    768
+  ],
+  "scale_units": 2,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\windows_profiles5.py\", line 44, in main\n    t.close_all(g,p);f.same_pages(baseline,f.stats(g));report['resources']=dict(before=list(baseline),after=list(f.stats(g)),retained_pages=0);report['idle_observations']=idle(g);(out/'install.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 59, in close_all\n    target=records(g)[-1];focus(g,p,target);s.close(g,p)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 38, in focus\n    assert f.model(g)[0]==slot and not next(w for w in records(g) if w['slot']==slot)['minimized']\nAssertionError\n"
+}

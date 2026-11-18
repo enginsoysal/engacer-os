@@ -1,6 +1,6 @@
 # Current status
 
-**Current development: [M13.5 - desktop and window experience](../milestones/m13-5.md), in progress.** M13.4 remains the qualified download. M13.6-M13.12 have not started.
+**Current development: [M13.5 - desktop and window experience](../milestones/m13-5.md). Native qualification passes; its GitHub release and complete website closure are being completed.** M13.6-M13.12 have not started.
 **M13.4 / 0.13.4 passes M13-STAGE4-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4), [follow setup and recovery](../handbook/install-m134.md). Fourteen enabled-device VMware profiles, five reference displays, real progress and fault/recovery checks bind the exact media. Public verification passes: 453 pages, 289 exact-source articles, actual homepage/recovery Saves and desktop/mobile/search/download checks.
 
 

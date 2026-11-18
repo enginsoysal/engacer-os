@@ -1,0 +1,70 @@
+{
+  "passed": false,
+  "stage": "M13.5",
+  "build_id": "f75973fdc3df5b84742b7732b245c3be",
+  "iso_sha256": "df3ebc122b0f577ff64139f6da9b1fb7550820564bbbb41f238b02933396c657",
+  "owned_fixture": "eccf0b567f154beebac2852400a13715",
+  "checks": [
+    "Real UEFI install/retained-ISO restart; one click selects, double-click opens Documents, Enter opens My files and Recycle Bin, protected launcher deletion leaves core objects unchanged",
+    "Background and keyboard menus create/rename/pin a real folder; validated shortcut opens its target, recycling the shortcut preserves the target, and Recycle Bin restores the original folder"
+  ],
+  "profiles": [],
+  "icon_comparisons": [
+    {
+      "action": 30000,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30001,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30002,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30003,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30000,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30001,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30002,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 30003,
+      "theme": 0,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    },
+    {
+      "action": 33001,
+      "theme": 1,
+      "physical_size": 48,
+      "max_channel_difference": 0
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\desktop_native5.py\", line 173, in main\n    assert a.crop((30*scale//2,82*scale//2,(1280-30)*scale//2,110*scale//2)).tobytes()==b.crop((30*scale//2,82*scale//2,(1280-30)*scale//2,110*scale//2)).tobytes()\nAssertionError\n",
+  "idle_observations": []
+}

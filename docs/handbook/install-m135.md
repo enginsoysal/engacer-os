@@ -1,6 +1,6 @@
 # Install and feel at home in Engacer OS M13.5
 
-Development guide: M13.5 is being qualified; M13.4 remains the public qualified download until this delivery finishes. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
+This guide covers the M13.5 release within its named native qualification. Use its matching ISO or VMware package. Later M13 stages remain separate; this is not universal hardware or Windows application support.
 
 ## The easiest start
 

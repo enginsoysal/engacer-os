@@ -22,7 +22,7 @@ def fresh_reads(urls, fetch=None, pause=None):
         attempts = []
         for attempt in range(3):
             row = fetch(url)
-            attempts.append({'url': url, 'attempt': attempt+1, 'status': row['status'], 'error': row.get('error')})
+            attempts.append({'url': url, 'attempt': attempt+1, 'status': row['status'], 'error': row.get('error'), 'soft_404': bool(row.get('soft_404'))})
             if row['status'] == 200 and not row.get('soft_404'):
                 break
             if attempt < 2:

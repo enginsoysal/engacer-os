@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "stage": "M13.5",
+  "build_id": "f75973fdc3df5b84742b7732b245c3be",
+  "iso_sha256": "df3ebc122b0f577ff64139f6da9b1fb7550820564bbbb41f238b02933396c657",
+  "owned_fixture": "3405e4033c08437d83ab675374615186",
+  "checks": [
+    "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds"
+  ],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\chrome_native5.py\", line 70, in main\n    target=next(row for row in t.records(g) if row['token']==owner);t.focus(g,p,target);p.drain();assert geometry(g)==normal\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 28, in focus\n    if f.model(g)[0]==slot and not current['minimized'] and not c.flag(g,'launcher') and not c.flag(g,'desktop_focus11'):return\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 8, in model\n    base=ui.symbol('model',installed=True)[0];slot=int.from_bytes(ui.memory(g,base+236,4),'little');assert slot<8\nAssertionError\n",
+  "idle_observations": []
+}

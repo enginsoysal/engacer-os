@@ -1,5 +1,5 @@
 """Fresh readback retains failures and bounds independent GET concurrency."""
-import threading,unittest
+import threading,time,unittest
 import website_readback as subject
 class FreshReads(unittest.TestCase):
  def test_four_parallel_reads_remain_complete_and_stable(self):
@@ -7,10 +7,10 @@ class FreshReads(unittest.TestCase):
   def fetch(url):
    nonlocal active,peak
    with lock:active+=1;peak=max(peak,active)
-   barrier.wait(timeout=3)
+   barrier.wait(timeout=3);time.sleep(.02)
    with lock:active-=1
    return dict(url=url,status=200)
-  rows=subject.fresh_reads(['d','c','b','a'],fetch=fetch);self.assertEqual([r[0] for r in rows],list('abcd'));self.assertEqual(peak,4);self.assertTrue(all(len(r[2])==1 for r in rows))
+  rows=subject.fresh_reads(list('hgfedcba'),fetch=fetch);self.assertEqual([r[0] for r in rows],list('abcdefgh'));self.assertEqual(peak,4);self.assertTrue(all(len(r[2])==1 for r in rows))
  def test_transient_and_permanent_failures_are_all_retained(self):
   calls={};pauses=[]
   def fetch(url):
@@ -21,5 +21,5 @@ class FreshReads(unittest.TestCase):
   calls=[]
   def fetch(url):
    calls.append(url);return dict(url=url,status=200,soft_404=len(calls)<3)
-  rows=subject.fresh_reads(['guide'],fetch=fetch,pause=lambda _:None);self.assertEqual(len(calls),3);self.assertFalse(rows[0][1]['soft_404']);self.assertEqual(len(rows[0][2]),3)
+  rows=subject.fresh_reads(['guide'],fetch=fetch,pause=lambda _:None);self.assertEqual(len(calls),3);self.assertFalse(rows[0][1]['soft_404']);self.assertEqual(len(rows[0][2]),3);self.assertEqual([r['soft_404'] for r in rows[0][2]],[True,True,False])
 if __name__=='__main__':unittest.main()

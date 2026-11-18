@@ -1,12 +1,12 @@
 # Your Engacer OS M13.5 desktop and windows
 
-Development guide: M13.5 qualification and publication are in progress. M13.4 remains the qualified download until that delivery finishes. Later Start, Files and Settings refinements remain separate stages.
+This guide covers the M13.5 desktop/window release within its named native qualification. Later Start, Files and Settings refinements remain separate stages.
 
 ## Start with your desktop
 
 The large desktop name banner is replaced by an uncluttered workspace. My files, Documents, Appearance and Recycle Bin have recognizable icons at the left. One click selects an item. Double-click or Enter opens it. Buttons and menu commands need one click. Right-click shows the actions available for that object. Escape dismisses a menu or safely cancels a supported drag.
 
-Selected objects have a filled highlight; keyboard focus has an outline. A small backing keeps labels readable over your wallpaper. Long desktop names have a full-name strip above the desktop paging controls. When a desktop has more objects than fit, use Previous/Next or the keyboard to reach the other page. Home/End and arrows operate on actual visible object positions.
+Selected objects have a filled highlight; keyboard focus has an outline. A small backing keeps labels readable over your wallpaper. Long desktop names have more room in the information strip above desktop paging. Use Properties for item details when a name still needs more room. When a desktop has more objects than fit, use Previous/Next or the keyboard to reach the other page. Home/End and arrows operate on actual visible object positions.
 
 Right-click a built-in reference to hide it. Hiding Appearance does not remove Settings or delete your files. Restore desktop defaults restores the built-in references. Your own files and folders remain separate. Use the existing Files and Recycle Bin actions to manage real items.
 

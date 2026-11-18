@@ -124,7 +124,7 @@ def main():
         report['checks'].append('Matching installed guide and two independent ordinary disk starts retain usable window controls')
         for label,resolution,scale_action in [('150',(1920,1200),112),('4k',(3840,2160),113)]:
             with ui.guest(work/label,disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution) as g:
-                p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(59001,True);p.desktop(scale_action,True);p.close_app(3,True);p.drain();assert c.flag(g,'scale73')==(3 if label=='150' else 4)
+                p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(59001,True);p.desktop(scale_action,True);at=len(g.log());p.desktop(47,True);g.wait('M11_APPEARANCE_SAVED',at,60);p.close_app(3,True);p.drain();assert c.flag(g,'scale73')==(3 if label=='150' else 4)
                 caption_states(g,p,'native-'+label);c.shot(g,'native-'+label);c.idle(g);report['profiles'].append(dict(physical=list(resolution),scale=c.flag(g,'scale73')))
         report['checks'].append('Actual 1920x1200/150% and 3840x2160/200% framebuffers exercise the same caption controls and idle halt without image resizing')
         report['passed']=True

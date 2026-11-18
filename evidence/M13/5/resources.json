@@ -1,0 +1,397 @@
+{
+  "passed": true,
+  "fixed_desktop": {
+    "bytes": 553436,
+    "sections": {
+      "bss": 553408,
+      "data": 28
+    },
+    "map_sha256": "68158332726aed2ff70bd5369b56e9a1959b4bd36003966c252472ccd7f3162d"
+  },
+  "baseline_fixed_desktop": {
+    "bytes": 553452,
+    "sections": {
+      "bss": 553424,
+      "data": 28
+    },
+    "map_sha256": "d17fa9a21df5be249e7690fd5ab9be470d0cc6333b7433cdf805b1afb449f509"
+  },
+  "fixed_desktop_delta_bytes": -16,
+  "fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "baseline_fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116013,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17706,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17706,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
+    "150": {
+      "managed_stats": [
+        2297,
+        2297,
+        116013,
+        5
+      ],
+      "framebuffer_bytes": 9216000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247083,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "window_profiles": {
+    "ordinary": {
+      "before": [
+        2072,
+        2072,
+        116013,
+        5
+      ],
+      "after": [
+        2072,
+        2084,
+        116013,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "compact": {
+      "before": [
+        1047,
+        1047,
+        17706,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        17706,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "1024": {
+      "before": [
+        815,
+        815,
+        17706,
+        5
+      ],
+      "after": [
+        815,
+        827,
+        17706,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "150": {
+      "before": [
+        2297,
+        2297,
+        116013,
+        5
+      ],
+      "after": [
+        2297,
+        2309,
+        116013,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "4k": {
+      "before": [
+        8147,
+        8147,
+        247083,
+        5
+      ],
+      "after": [
+        8147,
+        8159,
+        247083,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "odd150": {
+      "before": [
+        2351,
+        2351,
+        116012,
+        5
+      ],
+      "after": [
+        2351,
+        2363,
+        116012,
+        5
+      ],
+      "retained_pages": 0
+    }
+  },
+  "cached_move_profiles": [
+    {
+      "physical": [
+        1280,
+        800
+      ],
+      "scale_percent": 100,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 4247552,
+      "managed_bytes_after": 4247552,
+      "managed_peak_bytes": 4247552,
+      "cached_copy_frames": 24,
+      "event_to_drain_ms": [
+        567.3615999985486,
+        1088.7924999988172,
+        621.7134000035003,
+        746.573599986732
+      ],
+      "median_ms": 684.1434999951161,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        1920,
+        1200
+      ],
+      "scale_percent": 150,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1080,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            692,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            460,
+            182,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 9408512,
+      "managed_bytes_after": 9408512,
+      "managed_peak_bytes": 9408512,
+      "cached_copy_frames": 6,
+      "event_to_drain_ms": [
+        1398.5731000138912,
+        1924.40180000267,
+        953.9751000120305,
+        1487.4893000232987
+      ],
+      "median_ms": 1443.031200018595,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    },
+    {
+      "physical": [
+        3840,
+        2160
+      ],
+      "scale_percent": 200,
+      "comparisons": [
+        {
+          "bounds": [
+            -160,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            1720,
+            142,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            972,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        },
+        {
+          "bounds": [
+            780,
+            182,
+            1080,
+            720
+          ],
+          "cached_equals_full_viewport": true
+        }
+      ],
+      "managed_bytes_before": 33370112,
+      "managed_bytes_after": 33370112,
+      "managed_peak_bytes": 33370112,
+      "cached_copy_frames": 22,
+      "event_to_drain_ms": [
+        1376.9171000167262,
+        3095.136099989759,
+        1827.8493999969214,
+        2278.4039999824017
+      ],
+      "median_ms": 2053.1266999896616,
+      "measurement": "Host event through completed native composition including observation; not FPS or display refresh",
+      "all_cpus_halted_when_idle": true,
+      "idle_paints_unchanged": true
+    }
+  ],
+  "scope": "Fixed state, font masks, framebuffer bytes and managed current/peak/retained pages are separate. Wallpaper uses existing damage and no new framebuffer, cache, worker or timer. Motion latency targets remain M13.9."
+}

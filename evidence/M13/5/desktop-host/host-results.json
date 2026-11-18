@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "stage": "M13.5",
+  "checks": "PASS: 10296 layouts, 1025459 bounded non-overlapping objects, 504876 spatial-key cases.",
+  "source_sha256": {
+    "include/engine/ui/desktop12.h": "7c8ccda0fd772131435730fbdd2e8068eb3aad9967747748de08c35c72453012",
+    "tests/m13/desktop_host5.c": "c07f9006900d0f2051140ad3cbd44b82abe44b9d1a6c7c045d7dceea0293e6af"
+  }
+}

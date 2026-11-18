@@ -1,0 +1,57 @@
+{
+  "passed": false,
+  "stage": "M13.5",
+  "build_id": "57c2d93b6a9b2cc3578c4e606751629f",
+  "iso_sha256": "cca77e50c8ef92da043467141a8ef1b6e9f1fb16043339bd28824afd014ee90f",
+  "owned_fixture": "ff5e5db284ef451693ed772b7a5a1109",
+  "checks": [
+    "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds",
+    "Inactive frame differs visibly from the active owner; Minimize and its exact taskbar target restore the normal window",
+    "App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits",
+    "All eight resize edges/corners operate alongside the caption hit rectangles; Escape restores a captured move",
+    "Partially off-screen windows keep a reachable menu; desktop Alt+F4/Alt+Space cannot act on a background window",
+    "Caption Close preserves unsaved text behind review; Keep editing returns to the same owner; file dialog blocks its owner caption/menu/Win-key geometry routes while unrelated captions remain available; explicit Discard closes it",
+    "Light/dark caption journeys retain zero managed pages and no new allocation failures; idle CPUs halt without repaint polling",
+    "Matching installed guide and two independent ordinary disk starts retain usable window controls"
+  ],
+  "profiles": [],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17706,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\chrome_native5.py\", line 127, in main\n    p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(59001,True);p.desktop(scale_action,True);p.close_app(3,True);p.drain();assert c.flag(g,'scale73')==(3 if label=='150' else 4)\nAssertionError\n",
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 327,
+        "paints_after": 327
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 7,
+        "paints_after": 7
+      }
+    ],
+    [
+      {
+        "attempt": 1,
+        "paints_before": 7,
+        "paints_after": 7
+      }
+    ]
+  ]
+}

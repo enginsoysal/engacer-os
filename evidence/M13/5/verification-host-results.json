@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "command": [
+    "python",
+    "tests/m13/website_readback_test.py"
+  ],
+  "stdout": "",
+  "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.060s\n\nOK\n",
+  "harness_sha256": "2016dad78a4945faf2ce734d15e18861d819fd9efb7391539796f583289bbd10",
+  "scope": "Host-only fresh GET concurrency, retained retry and soft-404 fixtures; not OS runtime performance"
+}

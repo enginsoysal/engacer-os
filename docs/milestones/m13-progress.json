@@ -51,7 +51,9 @@
     {
       "id": "M13.5",
       "title": "A finished desktop and window experience",
-      "status": "in_progress"
+      "status": "in_progress",
+      "native_qualification": "M13-STAGE5-VM-v1",
+      "evidence": "evidence/M13/5"
     },
     {
       "id": "M13.6",

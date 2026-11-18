@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "stage": "M13.5",
+  "build_id": "57c2d93b6a9b2cc3578c4e606751629f",
+  "method": "Agent inspection of actual native physical framebuffer captures; pixel equality and source/media binding are separate checks, and this is not a human novice study",
+  "frames": [
+    {
+      "path": "ordinary/desktop.png",
+      "sha256": "b9ca2056e06a006a7f853f3d688c20860e2e8decc5a4b14561bc1c4eb9616bae"
+    },
+    {
+      "path": "ordinary/component-gallery-high-contrast.png",
+      "sha256": "76fc2b091e7131b0529092c896decce8b24550da791a97c5db8f5edf492ddf90"
+    },
+    {
+      "path": "desktop-native/desktop-paper-wallpaper.png",
+      "sha256": "dc00136f85a0a9d9b42b9682943c1aebf550a64c0e0333c9e231a0f69db1f774"
+    },
+    {
+      "path": "chrome-native/dark-close-hover.png",
+      "sha256": "c002be65b6efdfc225bfe3358e343b9ab118eed642a660ec4c4e38dc0dcf9212"
+    },
+    {
+      "path": "windows-1024/offscreen-recovered.png",
+      "sha256": "e4256b6f0ef97e2714b4801db05bf8b1ef202cb64f3e9ca51c117e03cfe66aef"
+    },
+    {
+      "path": "windows-odd150/edge-preview.png",
+      "sha256": "eae922e0abbd75105317246843b73a0438635599264109bcb4df8909cb275d7d"
+    }
+  ],
+  "criteria": {
+    "clarity": "Top-aligned recognizable desktop identities, distinct selection/focus and exact snap proposal labels",
+    "convenience": "Single-click selects, direct caption/window-menu actions, keyboard recovery and independent normal bounds remain usable",
+    "user_friendliness": "Dirty work survives movement and switching; destructive close remains explicit and owner-bound",
+    "appearance": "Original folded-light wallpaper, reduced desktop clutter, restrained active/inactive hairlines and the shared native licensed font/icon system",
+    "readability": "Normal and Paper labels have measured contrast-safe backings; dark and high-contrast frames remain legible; compact and scaled physical captures accompany the native tasks"
+  },
+  "limits": [
+    "Named display/profile inspection is separate from universal hardware or GPU 3D qualification",
+    "Host observation timings in the cached-move report are not FPS or M13.9 latency qualification",
+    "Agent review is separate from actual novice-user research"
+  ]
+}

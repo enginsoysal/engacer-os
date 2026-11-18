@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "build_id": "57c2d93b6a9b2cc3578c4e606751629f",
+  "iso_sha256": "cca77e50c8ef92da043467141a8ef1b6e9f1fb16043339bd28824afd014ee90f",
+  "physical": [
+    2048,
+    1152
+  ],
+  "checks": [
+    "Minimize/exact-owner restore, maximize/normal restore, pointer move and resize cancellation preserve real bounds",
+    "Actual edge preview cancels safely; release and complementary-window choice place exact left/right halves and restore each independent normal rectangle",
+    "Dirty editor text survives minimizing, switching and snapping; a partially off-screen window retains a reachable real Move menu and returns on screen",
+    "Tasks retain zero managed pages and stable idle halt; two ordinary no-ISO boots start without persisting transient snap overlays"
+  ],
+  "logical": [
+    1365,
+    768
+  ],
+  "scale_units": 3,
+  "before_close": {
+    "windows": [
+      {
+        "slot": 0,
+        "token": 8589934593,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 1,
+        "token": 4294967298,
+        "app": 1,
+        "minimized": false
+      },
+      {
+        "slot": 2,
+        "token": 4294967299,
+        "app": 2,
+        "minimized": false
+      }
+    ],
+    "focused": 1,
+    "context": 0,
+    "keyboard_move": 0
+  },
+  "resources": {
+    "before": [
+      2351,
+      2351,
+      116012,
+      5
+    ],
+    "after": [
+      2351,
+      2363,
+      116012,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 326,
+      "after": 326,
+      "halted": 2
+    },
+    {
+      "before": 326,
+      "after": 327,
+      "halted": 2
+    },
+    {
+      "before": 327,
+      "after": 327,
+      "halted": 2
+    },
+    {
+      "before": 327,
+      "after": 327,
+      "halted": 2
+    },
+    {
+      "before": 327,
+      "after": 327,
+      "halted": 2
+    }
+  ]
+}
