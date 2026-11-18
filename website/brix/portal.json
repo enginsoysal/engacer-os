@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.11",
+  "currentRelease": "M13.12",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m1311.md",
+          "docs/handbook/install-m1312.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m1311-v0.13.11.md",
+          "docs/releases/m1312-v0.13.12.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -51,6 +51,10 @@
       "title": "Use Engacer OS",
       "description": "Find apps, manage windows and work with your files.",
       "items": [
+        [
+          "docs/handbook/final-m1312.md",
+          "Start your first day with the finished desktop"
+        ],
         [
           "docs/handbook/desktop-m135.md",
           "Use your desktop and manage windows"

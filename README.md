@@ -2,7 +2,7 @@
 
 **Stability pending - testing only.** Earlier M13.8 freeze reports remain documented. Stability investigation and duration/reset qualification occur exclusively in M13.13, after finishing M13.9-M13.12 in order. Do not use these testing media for everyday work.
 
-**Current testing download: [Engacer OS M13.11](https://github.com/enginsoysal/engacer-os/releases/tag/m1311-v0.13.11).** [Install in VMware](docs/handbook/install-m1311.md), [Settings](docs/handbook/settings-m1311.md), [personalization and screensaver](docs/handbook/personalization-m1311.md), [exact release scope](docs/releases/m1311-v0.13.11.md). Exact qualification passes 62 native checks, 57 app-frame captures and four enabled-device VMware checks; twenty matching release assets are published. Fixed desktop state is 557,516 bytes (+112); measured completed tasks retain zero managed pages. Complete public delivery passes: 502 pages, 323 exact-source articles and 3,554 links, zero known broken targets and 13 explicitly unverified external HEAD references. M13.11 is complete within its scope; M13.12 follows. Stability remains exclusively M13.13.
+**Current testing download: [Engacer OS M13.12](https://github.com/enginsoysal/engacer-os/releases/tag/m1312-v0.13.12).** [Install in VMware](docs/handbook/install-m1312.md), [first-day guide](docs/handbook/final-m1312.md), [personalization and screensaver](docs/handbook/personalization-m1311.md), [exact release scope](docs/releases/m1312-v0.13.12.md). Exact final integration passes 162 native checks, 47 VMware checks, fourteen controller profiles, 106 original MSI payload hashes and 95 app frames across 613 compiled inputs. Twenty matching release assets are independently verified. Fixed desktop state remains 557,516 bytes (+0 from M13.11); measured completed tasks retain zero managed pages. Actual website publication is being verified before M13.13 begins. Stability remains exclusively M13.13.
 
 **Reported stability issue:** the owner reports frequent freezes on M13.8, in addition to the earlier M13.7 report. An exact M13.7 VMware baseline retained input processing after one real hour, but its last 44 frame samples stayed identical from about sixteen minutes and the final image did not show the serial-confirmed new app. Presentation stability therefore fails this diagnostic; the cause remains under investigation. The owner explicitly schedules investigation, correction and the eight-real-hour stability gate for M13.13, after completing M13.9-M13.12 in order. The scoped M13.8 Settings work does not claim a fix. The optional screensaver passes scoped M13.11 feature qualification; it does not qualify stability.
 
@@ -60,9 +60,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1311-v0.13.11/EngacerOS-M13STAGE11-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1311-v0.13.11/EngacerOS-M13STAGE11.iso) ·
-[Step-by-step installation](docs/handbook/install-m1311.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1312-v0.13.12/EngacerOS-M13STAGE12-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1312-v0.13.12/EngacerOS-M13STAGE12.iso) ·
+[Step-by-step installation](docs/handbook/install-m1312.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.
