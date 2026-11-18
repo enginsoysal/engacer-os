@@ -199,6 +199,15 @@ static unsigned picker_shortcut12(int key){
  if(key==15||(key==19&&(input11_modifiers()&2))){picker_begin12(desktop_token(&model,model.focused),key==15?P12_TEXT_OPEN:P12_TEXT_SAVE);return 1;}return 0;
 }
 static void picker_button12(int x,int y,int width,const char*label,unsigned command,unsigned enabled,unsigned primary,unsigned focus){file_dialog_button11(x,y,width,label,command,enabled,primary,focus,command==P12_REPLACE||command==P12_DISCARD_OPEN);}
+#ifdef ENGINE_M13
+static void picker_nav20(int x,int y,unsigned command,unsigned icon,const char*name,unsigned enabled,unsigned focus){
+ file_dialog11*d=&file_dialog_state11;desktop_rect r={x,y,44,36};ui12_palette p=desktop_palette16();
+ component_button12(d->owner,r,"",command,0,enabled);
+ ui12_style style=ui12_control_style(p,enabled?component_state12(d->owner,command):UI12_DISABLED,0);
+ ui12_icon_ink(icon,x+10,y+6,24,style.ink);
+ if(enabled){file_control11(d->owner,r,command);access_capture16(d->owner,command,name,1);if(d->focus==focus)file_focus_rect11((desktop_rect){x-2,y-2,48,40});}
+}
+#endif
 static unsigned picker_draw12(void){
  if(!picker_live12())return 0;if(!desktop_lookup(&model,file_dialog_state11.owner)){file_dialog_state11.mode=0;return 1;}if(!file_dialog_owner_focused11())return 1;
  file_dialog11*d=&file_dialog_state11;int width=model.width>900?860:(int)model.width-40,height=model.height>712?620:(int)model.height-92,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;
@@ -212,7 +221,11 @@ static unsigned picker_draw12(void){
   picker_button12(x+24,y+height-54,bw,"Back",P12_REVIEW_BACK,1,0,5);picker_button12(x+32+bw,y+height-54,bw,"Cancel",P12_CANCEL,1,0,7);return 1;
  }
  ui73_fit(x+24,y+54,width-48,"Native files. For USB files, first copy them into Downloads with Files.",UI12_SECONDARY,ink());
+#ifdef ENGINE_M13
+ picker_nav20(x+24,y+84,P12_BACK,ICON12_BACK,"Back",picker12.history_position>0,6);picker_nav20(x+76,y+84,P12_FORWARD,ICON12_FORWARD,"Forward",picker12.history_position+1<picker12.history_count,7);picker_nav20(x+128,y+84,P12_UP,ICON12_UP,"Up one level",!equal(picker12.path,"/"),8);
+#else
  picker_button12(x+24,y+84,44,"<",P12_BACK,picker12.history_position>0,0,6);picker_button12(x+76,y+84,44,">",P12_FORWARD,picker12.history_position+1<picker12.history_count,0,7);picker_button12(x+128,y+84,44,"Up",P12_UP,!equal(picker12.path,"/"),0,8);
+#endif
  desktop_rect address={x+184,y+84,width-208,36};file_text_field11(address,picker12.address,picker12.address_cursor,picker12.address_anchor,d->focus==0,0);file_control11(d->owner,address,P12_ADDRESS);
  const char*places[]={"Home","Documents","Downloads","Pictures"};unsigned commands[]={P12_HOME,P12_DOCUMENTS,P12_DOWNLOADS,P12_PICTURES};int pw=(width-72)/4;
  for(unsigned i=0;i<4;++i)picker_button12(x+24+(pw+8)*(int)i,y+130,pw,places[i],commands[i],1,0,9+i);

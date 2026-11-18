@@ -74,6 +74,11 @@ save separately from appearance. High contrast keeps your normal theme intact;
 turn it off to restore that theme. Reduced motion removes shadows and decorative
 control movement. Reset accessibility changes only these two choices.
 
+POINTER FEEDBACK
+The pointer changes to a text caret over supported editable fields and to
+resize arrows at window edges. Keyboard-opened menus and dialogs update it
+without requiring another mouse movement. Escape keeps or restores your work.
+
 WINDOWS AND CONTROLS
 Drag a title bar to move a window. Its icon opens the window menu. Caption
 buttons minimize, maximize/restore or close it. Closing unsaved text asks first.

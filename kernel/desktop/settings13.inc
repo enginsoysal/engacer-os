@@ -19,7 +19,13 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #ifdef ENGINE_M13
  ,"Interface preview"
 #endif
- };ui73_fit(x,y,width,titles13[page],UI12_HEADING,p.ink);
+ };
+#ifdef ENGINE_M13
+ const char*heading20=settings_query18(token)->query[0]?"Search results":titles13[page];
+#else
+ const char*heading20=titles13[page];
+#endif
+ ui73_fit(x,y,width,heading20,UI12_HEADING,p.ink);
  const char*names[]={"Appearance","Display","Input","System","Accessibility"};int tab=(width-32)/5;
 #ifdef ENGINE_M13
  settings_search_record18*search=settings_query18(token);settings_search_draw18(w,token,x,y+34,width);
@@ -29,7 +35,7 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #endif
  for(unsigned i=0;i<5;++i)settings_button13(token,x+(tab+8)*(int)i,tabs,tab,names[i],S13_APPEARANCE+i,page==i,1);
 #ifdef ENGINE_M13
- if(search->query[0]){settings_search_results18(token,x,top,width);goto settings_footer18;}
+ if(search->query[0]){settings_search_results18(token,x,top,width);ui73_paragraph(x,w->bounds.y+w->bounds.height-64,width,2,settings_dirty13()?"Your appearance preview is not saved. Clear search to apply or cancel it.":"Search covers supported settings. Clear search returns to browsing categories.",p.muted);return;}
 #endif
  if(page==0){ui73_fit(x,top,width,"Accent color",UI12_BODY,p.ink);const char*colors[]={"Mint","Lavender","Amber","Default"};const unsigned values[]={0x62e5bd,0x9caeff,0xf4c47c,DISTRO_ACCENT};for(unsigned i=0;i<4;++i)settings_button13(token,x+(int)i*112,top+26,104,colors[i],i==3?S13_ACCENT_DEFAULT:STYLE_MINT+i,preferences.accent==values[i],!other);
   ui73_fit(x,top+82,width,"Windows",UI12_BODY,p.ink);settings_button13(token,x,top+108,148,"Light",STYLE_PAPER,!preferences.dark,!other);settings_button13(token,x+160,top+108,148,"Dark",STYLE_DARK,preferences.dark,!other);
@@ -60,9 +66,6 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
  settings_button13(token,x,top+176,224,"Interface preview",59007,0,1);
 #endif
  ui73_paragraph(x,top+224,width,2,"Removing an optional app does not remove the desktop, tray or your personal files.",p.muted);}
-#ifdef ENGINE_M13
- settings_footer18:;
-#endif
  int footer=w->bounds.y+w->bounds.height-116;if(page<2){settings_button13(token,x,footer,164,"Apply and save",PREFERENCES_SAVE,0,!other);settings_button13(token,x+176,footer,164,"Cancel preview",S13_CANCEL,0,settings_preview13.owner==token);settings_button13(token,x+352,footer,width-352,"Restore defaults",S13_DEFAULTS,0,!other);}
  const char*message=other?"Apply or cancel the preview in the other Settings window first.":a->notice[0]?a->notice:settings_dirty13()?"Appearance preview is not saved. Apply keeps it; Cancel or closing restores it.":page<2?"Preview changes before saving. Restore defaults previews this distribution's appearance.":page==2?"Input choices save immediately. Appearance previews keep their separate Apply / Cancel controls.":page==4?(access_invalid16?"Saved accessibility choices were invalid. Safe defaults are active; choose a setting to save a valid record.":"Choices save independently. High contrast overrides your theme; switching it off restores it. Reduced motion removes shadows and decorative control movement."):"Choose Devices, installed apps or Start preferences to manage your system.";unsigned review=file_dialog_state11.mode&&desktop_lookup(&model,file_dialog_state11.owner)&&file_dialog_state11.owner!=token&&a->notice[0];if(review)button(token,x+width-172,w->bounds.y+w->bounds.height-64,172,"Show current dialog",60003,0);ui73_paragraph(x,w->bounds.y+w->bounds.height-64,width-(review?184:0),2,message,p.ink);
 }
@@ -85,7 +88,7 @@ static unsigned settings_action13(uint64_t token,unsigned command){desktop_windo
  }
 #endif
  if(command==S13_CANCEL){settings_cancel13(token);return 1;}
- if(command==PREFERENCES_SAVE){if(settings_other13(token)){notice(a,"Apply or cancel the preview in the other Settings window first.");whole();return 1;}if(settings_busy13()){notice(a,"Finish or cancel the file operation before saving appearance. Your preview is kept.");whole();return 1;}unsigned status=appearance_save11();if(!status){settings_preview13.owner=0;settings_invalid13=0;}notice(a,status?"Saving failed. The preview remains active; retry or Cancel. Startup persistence is not claimed.":"Appearance and normal window sizes saved for your user.");serial_text(status?"M11_APPEARANCE_SAVE_FAILED\n":"M11_APPEARANCE_SAVED\n");whole();return 1;}
+ if(command==PREFERENCES_SAVE){if(settings_other13(token)){notice(a,"Apply or cancel the preview in the other Settings window first.");whole();return 1;}if(settings_busy13()){notice(a,"Finish or cancel the file operation before saving appearance. Your preview is kept.");whole();return 1;}unsigned status=appearance_save11();if(!status){settings_preview13.owner=0;settings_invalid13=0;}notice(a,status?"Your appearance could not be saved. Your preview is still on screen. Try Apply again or Cancel preview to restore your previous look.":"Appearance and normal window sizes saved for your user.");serial_text(status?"M11_APPEARANCE_SAVE_FAILED\n":"M11_APPEARANCE_SAVED\n");whole();return 1;}
  if(command==32100||(command>=S13_CLICK_FAST&&command<=S13_CLICK_SLOW)||command==LAYOUT_US10||command==LAYOUT_DVORAK10){if(settings_busy13()){notice(a,"Finish or cancel the file operation before saving input preferences.");whole();return 1;}if(command==LAYOUT_US10||command==LAYOUT_DVORAK10)return 0;unsigned speed=interaction11.double_ms?interaction11.double_ms:500;speed=command==32100?(speed==200?500:speed==500?900:200):(command==S13_CLICK_FAST?200:command==S13_CLICK_NORMAL?500:900);unsigned record[2]={0x31314955,speed};unsigned status=v6_put(m6_volume(),"/System/Settings/input11.bin",sizeof(record),memory_source,record);if(!status)interaction11.double_ms=speed;notice(a,status?"The double-click interval could not be saved. The previous setting is kept.":"Double-click interval saved. Keyboard and mouse selection behavior are unchanged.");whole();return 1;}
  if(command==10000){a->offset=74;a->year74=0;a->notice[0]=0;control_active=0;whole();return 1;}
  if(command==45004){start_open11();start_manage11=3;whole();return 1;}

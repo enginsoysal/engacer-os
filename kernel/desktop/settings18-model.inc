@@ -28,9 +28,9 @@ static unsigned settings_search_action18(uint64_t token,unsigned command){
  if(command>=S18_RESULT&&command<S18_RESULT+5){unsigned page=command-S18_RESULT;if(!q->query[0]||!settings_match18(page,q->query))return 1;settings_search_clear18(token);settings_action13(token,S13_APPEARANCE+page);return 1;}return 0;
 }
 static void settings_search_draw18(desktop_window*w,uint64_t token,int x,int y,int width){
- settings_search_record18*q=settings_query18(token);ui12_palette p=desktop_palette16();desktop_rect field={x,y,width-48,40};unsigned focused=q->active&&control_active&&focused_control_window==token&&focused_action==S18_SEARCH;
- file_text_field11(field,q->query,q->cursor,q->anchor,focused,0);if(!q->query[0])ui73_fit(x+12,y+10,width-72,"Find a setting (Ctrl+F)",UI12_BODY,p.muted);
- access_capture16(token,S18_SEARCH,"Find a supported setting",2);file_control11(token,field,S18_SEARCH);settings_button13(token,x+width-40,y+2,40,"x",S18_CLEAR,0,q->query[0]!=0);(void)w;
+ settings_search_record18*q=settings_query18(token);ui12_palette p=desktop_palette16();desktop_rect field={x,y,width-128,40};unsigned focused=q->active&&control_active&&focused_control_window==token&&focused_action==S18_SEARCH;
+ file_text_field11(field,q->query,q->cursor,q->anchor,focused,0);if(!q->query[0])ui73_fit(x+12,y+10,width-152,"Find a setting (Ctrl+F)",UI12_BODY,p.muted);
+ access_capture16(token,S18_SEARCH,"Find a supported setting",2);file_control11(token,field,S18_SEARCH);settings_button13(token,x+width-120,y+2,120,"Clear search",S18_CLEAR,0,q->query[0]!=0);(void)w;
 }
 static void settings_search_results18(uint64_t token,int x,int top,int width){
  settings_search_record18*q=settings_query18(token);ui12_palette p=desktop_palette16();unsigned row=0;

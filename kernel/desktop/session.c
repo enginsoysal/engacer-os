@@ -797,6 +797,10 @@ static void draw_window(unsigned slot) {
     rectangle((desktop_rect){r.x+r.width-7,r.y+r.height-9,4,2},0x6a858e);
 }
 
+#ifdef ENGINE_M13
+static i11_target target11(int,int);
+static void cursor_context20(i11_target,unsigned,unsigned);
+#endif
 static void render(void) {
     desktop_rect dirty;
     if(!model.damaged)return;
@@ -941,7 +945,11 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
     access_draw16();
 #endif
 #endif
-    gui7_clip_reset();usb_mouse_draw();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;
+    gui7_clip_reset();
+#ifdef ENGINE_M13
+    cursor_context20(target11((int)pointer_x,(int)pointer_y),pointer_x,pointer_y);
+#endif
+    usb_mouse_draw();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;
 }
 
 static void calculator(application *app,char key) {
@@ -1211,6 +1219,19 @@ static unsigned move_cached9(desktop_rect old,desktop_rect moved){
 #ifdef ENGINE_M13
 #include "motion19.inc"
 #endif
+#ifdef ENGINE_M13
+/* Refresh from actual hit targets after keyboard as well as pointer changes. */
+static void cursor_context20(i11_target hit11,unsigned x,unsigned y){
+    unsigned cursor19=0,edges19=dragging&&drag_resize?window_drag_edges11:hit11.kind==I11_CAPTION&&hit11.action>=31011&&hit11.action<=31025?hit11.action-31010:0;
+    if(edges19){cursor19=(edges19&3)&&(edges19&12)?((edges19==5||edges19==10)?4:5):(edges19&3)?2:3;}
+    else if(hit11.action==S11_SEARCH||hit11.action==S11_NAME_FIELD||hit11.action==S18_SEARCH||hit11.action==F11_ADDRESS_FIELD||hit11.action==F11_NAME_FIELD||hit11.action==P12_ADDRESS||hit11.action==P12_NAME||hit11.action==URL_FOCUS||hit11.action==FILENAME_FOCUS||hit11.action==60102)cursor19=1;
+    else if(hit11.kind==I11_BACKGROUND&&hit11.window&&!file_block_owner11(hit11.window)){
+      desktop_window*edit19=desktop_lookup(&model,hit11.window);
+      if(edit19&&edit19->app==EDITOR&&!apps[edit19-model.windows].closing&&!apps[edit19-model.windows].stopped&&(int)y>=edit19->bounds.y+98&&(int)y<edit19->bounds.y+edit19->bounds.height-34&&(int)x>=edit19->bounds.x+18&&(int)x<edit19->bounds.x+edit19->bounds.width-18)cursor19=1;
+    }
+    graphics9_cursor_kind(cursor19);
+}
+#endif
 static void pointer(void) {
     unsigned x,y,buttons;usb_mouse_state(&x,&y,&buttons);
 #ifdef ENGINE_M9
@@ -1221,14 +1242,7 @@ static void pointer(void) {
     unsigned released=!(buttons&1)&&(previous_buttons&1);
     i11_target hit11=target11((int)x,(int)y);
 #ifdef ENGINE_M13
-    unsigned cursor19=0,edges19=dragging&&drag_resize?window_drag_edges11:hit11.kind==I11_CAPTION&&hit11.action>=31011&&hit11.action<=31025?hit11.action-31010:0;
-    if(edges19){cursor19=(edges19&3)&&(edges19&12)?((edges19==5||edges19==10)?4:5):(edges19&3)?2:3;}
-    else if(hit11.action==S11_SEARCH||hit11.action==S11_NAME_FIELD||hit11.action==S18_SEARCH||hit11.action==F11_ADDRESS_FIELD||hit11.action==F11_NAME_FIELD||hit11.action==P12_ADDRESS||hit11.action==P12_NAME||hit11.action==URL_FOCUS)cursor19=1;
-    else if(hit11.kind==I11_BACKGROUND&&hit11.window&&!file_block_owner11(hit11.window)){
-      desktop_window*edit19=desktop_lookup(&model,hit11.window);
-      if(edit19&&edit19->app==EDITOR&&!apps[edit19-model.windows].closing&&!apps[edit19-model.windows].stopped&&(int)y>=edit19->bounds.y+98&&(int)y<edit19->bounds.y+edit19->bounds.height-34&&(int)x>=edit19->bounds.x+18&&(int)x<edit19->bounds.x+edit19->bounds.width-18)cursor19=1;
-    }
-    graphics9_cursor_kind(cursor19);
+    cursor_context20(hit11,x,y);
 #endif
 #ifdef ENGINE_M12
     component_hover12(hit11,buttons);

@@ -1,6 +1,6 @@
 # M13 product design contract
 
-M13.0 design baseline, 17 November 2026, with staged native implementation. M13.1 shared controls, M13.2 welcoming setup and M13.3 disk tools have separate exact-media native qualification. M13.4 progress/recovery, M13.5 desktop/windows, M13.6 Start/taskbar and M13.7 Files also pass their separate exact native and public qualifications. M13.8 native and public qualifications pass; later proposals are not shipped M13 features. [Ordered stages](../milestones/m13.md), [inventory](m13-inventory.md), [website](website-m13.md).
+M13.0 design baseline, 17 November 2026, with staged native implementation. M13.1 shared controls, M13.2 welcoming setup and M13.3 disk tools have separate exact-media native qualification. M13.4 progress/recovery, M13.5 desktop/windows, M13.6 Start/taskbar and M13.7 Files also pass their separate exact native and public qualifications. M13.8 and M13.9 native and public qualifications pass within their recorded scopes. M13.10 secondary-surface finishing is in development; later proposals are not shipped M13 features. Stability qualification remains exclusively M13.13. [Ordered stages](../milestones/m13.md), [inventory](m13-inventory.md), [website](website-m13.md).
 
 ## Direction: calm, familiar, unmistakably Engacer
 
