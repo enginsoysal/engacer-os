@@ -14,7 +14,7 @@ def main():
     out=ROOT/'evidence/M13/11';out.mkdir(parents=True,exist_ok=True);assert not (out/'publication-results.json').exists()
     work=ROOT/'build/m13/stage11';meta=read(ROOT/'dist/m13stage11-build-manifest.json');starter=read(ROOT/'dist/m13stage11-starter-manifest.json');iso=meta['artifacts']['EngacerOS-M13STAGE11.iso']['sha256']
     names=('ordinary','compact','1024','150','4k');profiles={n:read(work/n/'results.json') for n in names};personal={n:read(work/('personalization-'+n)/'results.json') for n in names}
-    labels=('screensaver-native','screensaver-invalid','settings-native','apps-ordinary','settings-write-failure','search-ordinary');tasks={n:read(work/n/'results.json') for n in labels};vm=read(work/'vmware-results/results.json')
+    labels=('screensaver-native','screensaver-invalid','screensaver-persistence','settings-native','apps-ordinary','settings-write-failure','search-ordinary');tasks={n:read(work/n/'results.json') for n in labels};vm=read(work/'vmware-results/results.json')
     reports=[*profiles.values(),*personal.values(),*tasks.values(),vm]
     for r in reports:assert r['passed'] and r['build_id']==meta['build_id'] and r['iso_sha256']==iso
     for name in names:
@@ -32,6 +32,7 @@ def main():
     assert {43101,43102,43103}<=set(saver['restored_window_controls']) and saver['saved_record_hex']=='4553323101000000000000005802000002000000'
     invalid=tasks['screensaver-invalid'];assert {c['name'] for c in invalid['cases']}=={'magic','version','enabled','timeout','style','short','long'}
     assert all(c['valid_filesystem_banks']>=1 and c['replacement_hex']=='4553323101000000000000003c00000000000000' for c in invalid['cases'])
+    persistence=tasks['screensaver-persistence'];assert {x['name'] for x in persistence['cases']}=={'logo-one-minute','clock-five-minutes'} and all(len(x['boots'])==2 for x in persistence['cases'])
     assert len(tasks['settings-native']['checks'])==6 and len(tasks['search-ordinary']['checks'])==7
     apps=tasks['apps-ordinary'];assert len(apps['frames'])==57 and {x['app'] for x in apps['frames']}==set(range(1,20)) and {x['theme'] for x in apps['frames']}=={'light','dark','high-contrast'}
     failure=tasks['settings-write-failure'];assert failure['injected_fault']['once'] and 'Cancel changes' in failure['message'] and len(failure['message'].encode('ascii'))<96 and len(failure['checks'])==2
