@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.10",
-  "qualified_download": "M13.9",
+  "qualified_download": "M13.10",
   "design_only": false,
   "stages": [
     {
@@ -96,7 +96,10 @@
     {
       "id": "M13.10",
       "title": "Finish every secondary surface",
-      "status": "in_progress"
+      "status": "native_qualified_publication_pending",
+      "native_qualification": "M13-STAGE10-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1310-v0.13.10",
+      "evidence": "evidence/M13/10"
     },
     {
       "id": "M13.11",
