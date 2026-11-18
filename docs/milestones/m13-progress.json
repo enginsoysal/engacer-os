@@ -60,10 +60,11 @@
     {
       "id": "M13.6",
       "title": "Familiar Start, taskbar and system tray",
-      "status": "in_progress",
+      "status": "complete",
       "evidence": "evidence/M13/6",
       "native_qualification": "M13-STAGE6-VM-v1",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6",
+      "publication_evidence": "evidence/M13/6/publication-results.json"
     },
     {
       "id": "M13.7",

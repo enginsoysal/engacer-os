@@ -1,7 +1,7 @@
 # Engacer OS
 
-**Current development: [M13.6 - Start, taskbar and system tray](docs/milestones/m13-6.md). Native qualification, release and independent downloads pass; complete public website verification is in progress.** M13.7-M13.12 have not started.
-**M13.6 / 0.13.6 passes M13-STAGE6-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6), [use Start, taskbar and system controls](docs/handbook/start-m136.md). Ninety native task/profile checks, five complete display/Start journeys, five independently applied theme profiles, grouped-window/provider ownership and exact enabled-device VMware startup bind these media. Complete public website verification is in progress.
+**Current development: [M13.6 - Start, taskbar and system tray](docs/milestones/m13-6.md). Native qualification, release, independent downloads and complete public website verification pass.** M13.7-M13.12 have not started.
+**M13.6 / 0.13.6 passes M13-STAGE6-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6), [use Start, taskbar and system controls](docs/handbook/start-m136.md). Ninety native task/profile checks, five complete display/Start journeys, five independently applied theme profiles, grouped-window/provider ownership and exact enabled-device VMware startup bind these media. Public delivery passes: 465 pages, 297 exact-source articles and 3,253 links. [Publication receipt](evidence/M13/6/publication-results.json).
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,

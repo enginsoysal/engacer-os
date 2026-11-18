@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.6",
+  "qualification": "M13-STAGE6-VM-v1",
+  "source_commit": "e950487d28a3b227a4350db8619fc5bce775ceb2",
+  "release_source_commit": "270e8cbb233519db14de4278febc4bf57237cbd7",
+  "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m136-v0.13.6",
+  "workflow_ids": [
+    44243469695
+  ],
+  "current_native_download": "m136-v0.13.6",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 465,
+  "unique_links": 3253,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

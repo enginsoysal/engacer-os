@@ -1,0 +1,17 @@
+{
+  "source_commit": "e950487d28a3b227a4350db8619fc5bce775ceb2",
+  "home": "Saved ✓",
+  "recovery": "Saved ✓",
+  "checked_at": "2026-11-18T05:22:44.682Z",
+  "owned_native_editor": true,
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "payload_sha256": {
+    "1.json": "fa2db108fa150027074978fe1da4e3e2fff146b427e0743959f6ce2c7cf5cc27",
+    "2.json": "e403488649ab9f6272a461934898a66a1fbeec8483089e0eb78c48135dc24f1c",
+    "3.json": "8443faac362ff18fe406c3eebe1ca7bd6b372f9bb7c51882d818bc70f348e277",
+    "4.json": "1e3f5b0949b11ee67d912ae4c6a73d32b956958f44b2f64d8589eace09ff9420",
+    "404-1.json": "45f738c82a3706cdc12ae5e6de9dcbea6bef906043bb5dbf8150ef5e7e4e8f13",
+    "404-2.json": "3b96f64eb312f35b8e7595835e9d4bbad7d6f014d9fbf7c05c7e517727eb6032"
+  }
+}

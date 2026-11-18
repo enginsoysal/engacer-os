@@ -1,0 +1,8 @@
+{
+  "source_commit": "e950487d28a3b227a4350db8619fc5bce775ceb2",
+  "action": "Launch an additional ad hoc headless browser verification through PowerShell",
+  "executed": false,
+  "retried": false,
+  "reason": "Automatic approval review rejected process creation: blocked by policy",
+  "scope": "The standard public_site.mjs desktop/mobile verification passed. The optional extra shell launch was not executed; the already-open owned browser remains available for ordinary guide inspection."
+}

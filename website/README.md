@@ -2,7 +2,7 @@
 
 ## Current portal — 18 November 2026
 
-M13.6 is the current qualified native release; its twenty matching assets and independent ISO/VMware downloads pass. Complete native homepage/recovery Save and fresh public desktop/mobile/search/source/link verification are in progress before M13.7. Current install and Start/taskbar/tray instructions lead their reader tasks; older Start/taskbar/tray manuals remain archived. The illustrated desktop/window guide remains available. Per-document provenance and pinned image/source blobs stay authoritative.
+M13.6 is the current qualified native release; its twenty matching assets and independent ISO/VMware downloads pass. Native homepage/recovery Saves and fresh public desktop/mobile/search/source/link verification pass: 465 pages, 297 exact-source articles and 3,253 links. The link audit retains 13 unverified external HEAD references, with zero known broken targets. [Receipt](../evidence/M13/6/publication-results.json). Current install and Start/taskbar/tray instructions lead their reader tasks; older Start/taskbar/tray manuals remain archived. The illustrated desktop/window guide remains available. Per-document provenance and pinned image/source blobs stay authoritative.
 
 ## Historical M13.0 portal baseline — 17 November 2026
 
