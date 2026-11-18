@@ -10,7 +10,7 @@ def main():
     names=('ordinary','compact','1024','150','4k')
     profiles={n:read(work/n/'results.json') for n in names}
     searches={n:read(work/('search-'+n)/'results.json') for n in names}
-    tasks={n:read(work/n/'results.json') for n in ('settings-native','settings-invalid','feedback-native','hint-themes')}
+    tasks={n:read(work/n/'results.json') for n in ('settings-native','settings-invalid','feedback-native','hint-themes','mouse-compact','mouse-4k')}
     vm=read(work/'vmware-results/results.json')
     assert meta['release_version']=='0.13.8' and meta['qualification_scope']=='M13-STAGE8-VM-v1'
     for r in [*profiles.values(),*searches.values(),*tasks.values(),vm]:
@@ -25,6 +25,9 @@ def main():
     for name in ('settings-native','feedback-native'):assert tasks[name]['resources']['retained_pages']==0 and len(tasks[name]['checks'])>=6
     assert tasks['settings-invalid']['malformed_records'] and tasks['settings-invalid']['checks']
     assert tasks['hint-themes']['resources']['retained_pages']==0 and len(tasks['hint-themes']['themes'])==3
+    for name,physical in [('mouse-compact',(1280,800)),('mouse-4k',(3840,2160))]:
+        assert tasks[name]['resources']['retained_pages']==0 and len(tasks[name]['checks'])==2
+        capture=read(work/name/'mouse-result-capture.json');assert (capture['width'],capture['height'])==physical
     for name in ('light','dark','high-contrast'):
         for surface in ('start','settings'):
             capture=read(work/'hint-themes'/(surface+'-'+name+'-capture.json'));assert (capture['width'],capture['height'])==(1920,1080)
