@@ -34,6 +34,24 @@ def busy_frame(g):
         if time.monotonic()>deadline:raise TimeoutError('No visible Cancel frame for a running job')
         time.sleep(.01)
 
+def progress_snapshot7(g,clear_notice=False):
+    # A running compositor rebuilds controls in place. Pause only to observe a
+    # completed Files/tray registry; do not treat a transient prefix as failure.
+    deadline=time.monotonic()+15
+    while True:
+        result=None;g.qmp('stop')
+        try:
+            rows=f.controls(g);cancel=[r for r in rows if r[5]==40019 and r[4]!=0]
+            ready=cancel and any(r[5]==50000 for r in rows) and any(r[5]==58005 for r in rows)
+            queued=ui.integer(g,'mouse_head11',True)!=ui.integer(g,'mouse_tail11',True)
+            if ready and not queued and not ui.integer(g,'mouse_dirty',True):
+                notice=f.app(g)['notice']
+                if not clear_notice or not notice:result=(cancel[-1][:4],notice,job(g)[0][0])
+        finally:g.qmp('cont')
+        if result:return result
+        if time.monotonic()>deadline:raise TimeoutError('No complete active Files/tray control snapshot')
+        time.sleep(.005)
+
 def capture_active(g,name):
     g.qmp('stop')
     try:ui.raw_shot(g,OUT,name,True)
@@ -111,7 +129,7 @@ def main():
             at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();before=f.stats(g)
             p.desktop(94,True);create(g,p,'Source',True);f.double(g,p,item18(g,p,'Source'));create(g,p,'Export.txt');text(g,p,'Export.txt','Native original 123')
             p.desktop(item18(g,p,'Export.txt'),True);action(g,p,40000);f.visit(g,p,'Desktop');action(g,p,40002);wait(g,p);assert '/Users/Owner/Desktop/Export.txt' in f.entries(g);details(g,p)
-            report['checks'].append('Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion')
+            report['checks'].append('Real graphical installation and retained-ISO startup; More/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion')
             f.visit(g,p,'/Users/Owner/Documents/Source');p.desktop(item18(g,p,'Export.txt'),True);c.key(g,'ctrl','c');c.key(g,'f2');c.key(g,'ctrl','a');c.type_text(g,'Renamed.txt');c.key(g,'ret')
             f.visit(g,p,'Desktop');p.desktop(52000,True);assert menu_items(g)[40002]==0;c.key(g,'esc');c.key(g,'ctrl','v')
             assert not job(g)[0][0] and 'Copy or Cut a file or folder first' in f.app(g)['notice']
@@ -132,7 +150,7 @@ def main():
             f.visit(g,p,'/Users/Owner/Documents/Source');f.resize(g,p,500,420);p.desktop(item18(g,p,'Export.txt'),True);p.desktop(52000,True);commands=menu_items(g);assert all(commands[x] for x in (40000,40001,40003,40004,40018));c.shot(g,'compact-actions');c.key(g,'esc')
             c.open_settings(g,p);p.desktop(59000,True);p.desktop(43,True);p.desktop(47,True);p.close_app(3,True);p.drain();assert c.dark(g)==1;p.desktop(52000,True);c.shot(g,'compact-dark-actions');c.key(g,'esc')
             c.open_settings(g,p);p.desktop(59000,True);p.desktop(44,True);p.desktop(47,True);p.close_app(3,True);p.drain();f.resize(g,p,1080,700)
-            report['checks'].append('The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar')
+            report['checks'].append('The actual minimum 500x420 window keeps More visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar')
             row=f.names(g).index('Export.txt');rect=c.control(g,1000+row);f.right(g,p,rect[0]+60,rect[1]+15);f.menu(g,p,18000+row)
             assert f.app(g)['mode']==1;f.attach(g,p,'transfer-source','transfer-usb');p.desktop(f.drive(g),True);c.key(g,'ret');p.desktop(21005,True)
             assert 'No file was replaced.' in f.app(g)['notice'];c.shot(g,'usb-export-refusal')
@@ -184,12 +202,12 @@ def main():
             while int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')==restored_paints:
                 if time.monotonic()>deadline:raise TimeoutError('Restored Files did not finish its frame')
                 time.sleep(.01)
-            cancel_before=c.control(g,40019)[:4];refresh_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');start(g,p,50000)
+            cancel_before=progress_snapshot7(g)[0];refresh_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');start(g,p,50000)
             deadline=time.monotonic()+15
             while int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')==refresh_paints:
                 if time.monotonic()>deadline:raise TimeoutError('Refresh did not finish its active-transfer frame')
                 time.sleep(.01)
-            assert job(g)[0][0] and f.app(g)['notice']=='' and c.control(g,40019)[:4]==cancel_before
+            cancel_after,notice_after,still_active=progress_snapshot7(g,clear_notice=True);assert still_active and notice_after=='' and cancel_after==cancel_before
             capture_active(g,'refreshed-transfer-progress');report['refresh_keeps_active_progress_geometry']=True
             before_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');before_pixels=int.from_bytes(ui.memory(g,ui.symbol('painted_pixels',8,True)[0],8),'little')
             time.sleep(.75)

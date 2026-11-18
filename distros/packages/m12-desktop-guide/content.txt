@@ -13,14 +13,24 @@ Right-click to customize pins or categories. A taskbar badge counts windows;
 choose the particular window when an app has more than one open.
 
 YOUR FOLDERS
-Files keeps Back, Forward, Up, Refresh, its address and Places visible.
+Files keeps Back, Forward, Up, Refresh and its address visible.
+Small windows use Places for folders and Address for editing a path.
 Home, Documents, Downloads and USB drives are in Places. One click selects a
 USB drive; double-click or Enter opens it. Back restores a previous location.
 Use Icons or Details. Name, Type and Size sort native folders; USB retains
 its directory order. Hover an abbreviated supported name to read it fully.
 
+FILTER THIS FOLDER
+Ctrl+F filters displayed names in the current system folder, not subfolders.
+Letter case does not matter. Enter selects the first match without opening it.
+Escape clears the filter, then leaves the field; x also clears it. Navigation
+clears it. Each window has its own temporary query, up to 63 ASCII characters.
+USB filtering is unavailable. A successful create, copy or move reveals its
+new name by clearing the destination window filter. Clear a Recycle Bin
+filter before Empty Bin, which affects all of its items.
+
 COPY, MOVE AND RECOVER
-Select an item, then use Copy, Cut or Paste, or open Actions.
+Select an item, then use Copy, Cut or Paste, or open More.
 A menu explains protected, unavailable or busy operations. System files stay
 protected. Recycle Bin can restore your recycled files. Permanent removal
 always needs a separate review. Deleting a shortcut keeps its original.
@@ -28,7 +38,7 @@ During a copy, read the destination and progress. Cancel stops unfinished
 work; completed files and copy sources stay. Keep both preserves a conflict
 under a new name. Do not disconnect a USB source while copying.
 USB provides supported FAT32 browsing and guarded one-file copies. Export is
-create-only and has no mid-file cancellation. Use Safe remove when finished.
+create-only and has no mid-file cancellation. Use Eject for safe removal when finished.
 A disconnected drive keeps its identity instead of opening a replacement.
 
 SAVE YOUR WORK

@@ -1,0 +1,16 @@
+{
+  "build_id": "5873d0dc2869338599f4d76d3974d728",
+  "qualified": false,
+  "harness_phase_source": "c6a885052cc19bec31bef89e7bd9af62ecd852d4",
+  "observations": [
+    "Exact starter and compact/ordinary/1024 shared controls passed on these bytes",
+    "The newly added active-transfer assertion read the control registry while the compositor was rebuilding it; only five controls were present",
+    "Built-in Welcome guide still used the old Actions and Safe remove button names"
+  ],
+  "cancelled": [
+    "Ordinary Files task before completion",
+    "USB provider task before completion",
+    "Remaining shared-control profile loop"
+  ],
+  "next": "Observe a paused complete Files-and-tray control snapshot without writing guest memory; update bundled instructions and repeat qualification on the resulting exact media"
+}

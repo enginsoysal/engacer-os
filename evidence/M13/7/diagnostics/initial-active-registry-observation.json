@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "build_id": "5873d0dc2869338599f4d76d3974d728",
+  "iso_sha256": "723f65c09b3aecc342f4eddce178b3169d52d4b6c335c5b1547edfd46a369504",
+  "owned_fixture": "a2b6f4f81e444cd8983e7afe060b420e",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Rename clears the prior file clipboard under the retained move policy: Paste is disabled, Ctrl+V explains that Copy/Cut is required, and the renamed payload is kept",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details"
+  ],
+  "profiles": [],
+  "cancelled_usb_work_bytes": 1511424,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\transfers_native7.py\", line 187, in main\n    cancel_before=c.control(g,40019)[:4];refresh_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');start(g,p,50000)\n  File \"<project-root>\\tests\\m12\\components.py\", line 41, in control\n    assert found,(action,count)\nAssertionError: (40019, 5)\n",
+  "idle_observations": []
+}
