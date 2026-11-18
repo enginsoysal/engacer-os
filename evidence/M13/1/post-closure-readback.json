@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "stage": "M13.1",
+  "post_closure_source": "f0eeb5d27c7ea088a65e5f35436c2f74fdf4b0da",
+  "checked_at": "2026-11-18T00:41:35.013684+00:00",
+  "scope": "Publication receipt remains immutable; final closure/status/manual changes independently verified after their successful publisher run. Native media and homepage version stay M13.1.",
+  "articles": [
+    {
+      "slug": "docs-readme",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-roadmap-status",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-handbook-index",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-milestones-m13",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-milestones-m13-1",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-releases-m131-v0-13-1",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-architecture-website-m13",
+      "status": 200,
+      "matching_canonical_source": true
+    }
+  ],
+  "native_home_save": "Saved ✓",
+  "homepage_release": "M13.1"
+}
