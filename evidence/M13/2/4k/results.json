@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "baseline": false,
+  "stage": "M13.2",
+  "build_id": "a44917c5c8ed173c85420988300ac26a",
+  "iso_sha256": "0518841371dc69d8fc94321799bd7fcd9ec1317f6a3b379aab073df7453c5540",
+  "physical": [
+    3840,
+    2160
+  ],
+  "configured_guest_mib": 1024,
+  "owned_fixture": "4842e44bdbb64b7eb3c03b116268ac23",
+  "checks": [
+    "Light, dark and high-contrast native gallery frames; disabled action absent from the hit registry; edited text independently read back",
+    "Native gallery opens through System, activates a real button and selection, and accepts bounded editable text including shifted capitals and punctuation",
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery"
+  ],
+  "scale_units": 4,
+  "resources": {
+    "managed_stats": [
+      8147,
+      8147,
+      247086,
+      5
+    ],
+    "framebuffer_bytes": 33177600,
+    "retained_task_delta_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 143,
+      "after": 143,
+      "halted": 2
+    },
+    {
+      "before": 143,
+      "after": 143,
+      "halted": 2
+    },
+    {
+      "before": 143,
+      "after": 143,
+      "halted": 2
+    }
+  ]
+}

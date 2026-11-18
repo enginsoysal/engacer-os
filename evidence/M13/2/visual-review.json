@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "stage": "M13.2",
+  "build_id": "a44917c5c8ed173c85420988300ac26a",
+  "reviewer": "Agent scenario and actual native-frame review; not a human novice study",
+  "checks": [
+    "Actual centered boot status and original vector welcome, with ordinary Next and optional startup disclosure",
+    "Readable compact welcome, keyboard input, selected appearance and explicit review at 150% and actual 4K",
+    "Primary, selected and focused states are distinct; observed provisional double-focus rendering corrected before qualification",
+    "No pre-Install disk changes, retained sample and choices, independently saved settings and actual installed startup are tested"
+  ],
+  "captures": [
+    {
+      "path": "evidence/M13/2/feature.png",
+      "sha256": "da22a138705eedf6b0ce6f560ebb87d07b699923d044264fde4fa694f40e9014"
+    },
+    {
+      "path": "evidence/M13/2/candidate3-smoke/actual-startup.png",
+      "sha256": "ebdd8d1fbf440b1746fc0d9e81d98ad477b697a68934c6ed1e96735a3cd6551c"
+    },
+    {
+      "path": "evidence/M13/2/1024/welcome.png",
+      "sha256": "214ccf01b68470b425e15f86433f599be2ba585859404b22e40a6bac85858a10"
+    },
+    {
+      "path": "evidence/M13/2/journey-keyboard-compact/appearance.png",
+      "sha256": "e69d7343c0396f3c6b0ea869540918b0518b586e2d5d0737c0b5a15389d7f892"
+    },
+    {
+      "path": "evidence/M13/2/journey-pointer-150/keyboard-preview.png",
+      "sha256": "0d5031eaecd224e87f7da95ed802ba7e0fb1688982000a5bd34bb4616947a547"
+    },
+    {
+      "path": "evidence/M13/2/journey-pointer-4k/review.png",
+      "sha256": "8852a28f35612d1df2093712e44c04731d7daa20202d14cab62310b61b63a99a"
+    }
+  ]
+}

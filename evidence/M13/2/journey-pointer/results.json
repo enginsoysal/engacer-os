@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build_id": "a44917c5c8ed173c85420988300ac26a",
+  "iso_sha256": "0518841371dc69d8fc94321799bd7fcd9ec1317f6a3b379aab073df7453c5540",
+  "input": "pointer navigation with typing",
+  "checks": [
+    "Advanced options disclose, Escape closes and blank installed-start fails safely",
+    "Real keyboard layout, shifted text, modifiers, Clear and Enter; Back retains sample",
+    "Ordinary viewport retains its size",
+    "No-optional-app, dark wallpaper/accent choices survive Back/Next",
+    "Every ordinary page keeps the outer frame; complete disk SHA unchanged before Install",
+    "Custom no-optional-app installation independently verifies saved keyboard/appearance bytes and retained-ISO installed startup"
+  ]
+}
