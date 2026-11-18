@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.7",
-  "qualified_download": "M13.6",
+  "qualified_download": "M13.7",
   "design_only": false,
   "stages": [
     {
@@ -71,7 +71,8 @@
       "title": "Files as the everyday workspace",
       "status": "in_progress",
       "evidence": "evidence/M13/7",
-      "native_qualification": "M13-STAGE7-VM-v1"
+      "native_qualification": "M13-STAGE7-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7"
     },
     {
       "id": "M13.8",

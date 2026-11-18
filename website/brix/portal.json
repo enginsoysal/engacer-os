@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.6",
+  "currentRelease": "M13.7",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m136.md",
+          "docs/handbook/install-m137.md",
           "Install and restart in VMware"
         ],
         [
@@ -60,15 +60,11 @@
           "Find apps, switch windows and use system controls"
         ],
         [
-          "docs/handbook/files-m125.md",
-          "Navigate folders and USB drives"
+          "docs/handbook/files-m137.md",
+          "Navigate folders, filter names and use USB drives"
         ],
         [
-          "docs/handbook/files-m126.md",
-          "Choose file views, sorting and full names"
-        ],
-        [
-          "docs/handbook/transfers-m127.md",
+          "docs/handbook/transfers-m137.md",
           "Copy files and handle transfer conflicts"
         ],
         [
