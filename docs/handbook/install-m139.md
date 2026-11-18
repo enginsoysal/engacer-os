@@ -53,7 +53,7 @@ If firmware reports **No Media**, power off and check that the installed virtual
 
 The matching ISO may remain connected for the first restart. For disk-only startup, disconnect only CD/DVD, retain the installed disk and use the same VM/firmware variables. Keep the matching ISO for recovery. These unsigned development media require Secure Boot off.
 
-One click selects a file; double-click or Enter opens it. Current [Files navigation and filtering](files-m137.md), [Start, taskbar and tray](start-m136.md), [Settings](settings-m139.md) and [keyboard/accessibility](accessibility-m1216.md) guides explain retained features. Their historical qualification does not certify untested configurations of this ISO.
+One click selects a file; double-click or Enter opens it. Current [Files navigation and filtering](files-m137.md), [Start, taskbar and tray](start-m136.md), [Settings](settings-m138.md) and [keyboard/accessibility](accessibility-m1216.md) guides explain retained features. Their historical qualification does not certify untested configurations of this ISO.
 
 ## Readable display choices
 
