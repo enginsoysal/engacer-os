@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "stage": "M13.8",
+  "build_id": "f909d62ef8a6a2c28b8a7128dc8a3066",
+  "checked_at": "2026-11-18T10:23:03.852384+00:00",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8",
+  "latest": "m138-v0.13.8",
+  "artifacts": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/7z2606-src.tar.xz",
+      "public_head": 200
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/COPYING.LIB",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-archives.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-browser.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-calculator.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-calendar.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-editor.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-help.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-installed-kernel.elf",
+      "sha256": "e5d606582b7ff5a5e94b77c00496a4d4ead8620550d327f12d7d7fbbd3f1ca4c",
+      "size": 1425788,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-installed-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-installed-kernel.map",
+      "sha256": "50d14251b43ef920a1da5f23a841dc194c5f3e9106b5f361cf89731b356cd224",
+      "size": 405062,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-installed-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-kernel.elf",
+      "sha256": "d3fcba9d92ae6fbf7171adfe58fdedf0b55e5688cb110c21e8a158656b8c140a",
+      "size": 3826044,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-kernel.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-kernel.map",
+      "sha256": "70f31fae3a18f99c20eda9c6cc9bb28fca26a7425d2db3bffc8c912da1234102",
+      "size": 405354,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-kernel.map",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-THIRD-PARTY-NOTICES.txt",
+      "sha256": "e896c90bd87a1870d46a4dfdd03cf8b28807b7136550be8b5761b48a3f4b04ff",
+      "size": 59409,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-THIRD-PARTY-NOTICES.txt",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-usb.img",
+      "sha256": "6fa942ec7c6f37f64606fae54591c55e9926fcdf3daf9eabbb2703c29126123f",
+      "size": 84934656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-usb.img",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-user.elf",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8-VMware.zip",
+      "sha256": "64798e58c8924bb651b25bebe0c9e28e8830f47cb8c814bebf14c425f9865f92",
+      "size": 10678751,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-VMware.zip",
+      "public_head": 200
+    },
+    {
+      "name": "EngacerOS-M13STAGE8.iso",
+      "sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f",
+      "size": 75094016,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8.iso",
+      "public_head": 200
+    },
+    {
+      "name": "m13stage8-build-manifest.json",
+      "sha256": "0e60b2b3b5a1996b20d2f7abce6413bc2e9faa5c7c5fe9019f0ce9938626748a",
+      "size": 81815,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/m13stage8-build-manifest.json",
+      "public_head": 200
+    },
+    {
+      "name": "M13STAGE8-SHA256SUMS.txt",
+      "sha256": "ed03893f7b6a13cc4db5b94c56685e9276a19c58a89aca8364be1361ad682a41",
+      "size": 1839,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/M13STAGE8-SHA256SUMS.txt",
+      "public_head": 200
+    },
+    {
+      "name": "m13stage8-starter-manifest.json",
+      "sha256": "dc63c96eae31df2bacee3e62c30d57d12e9c4b64ccab921815b73c68fc96bb1d",
+      "size": 653,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/m13stage8-starter-manifest.json",
+      "public_head": 200
+    }
+  ],
+  "downloaded_zip_sha256": "64798e58c8924bb651b25bebe0c9e28e8830f47cb8c814bebf14c425f9865f92",
+  "downloaded_zip_crc": true,
+  "downloaded_iso_sha256": "65b920c7ba5d19f15173271724298d6539247666be6061319d5108835cede51f"
+}

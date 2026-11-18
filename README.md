@@ -1,7 +1,7 @@
 # Engacer OS
 
-**Current development: [M13.8 - Settings, errors and recovery](docs/milestones/m13-8.md). Implementation and native tests are in progress. M13.7 remains the qualified download.** M13.8 is in progress; M13.9-M13.12 have not started.
-**M13.7 / 0.13.7 passes M13-STAGE7-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7), [navigate and filter folders](docs/handbook/files-m137.md). 75 native task/profile checks, five complete Files display journeys, applied themes, real provider/transfer tasks and exact enabled-device VMware startup bind these media. Public delivery passes: 471 pages, 302 exact-source articles and 3,311 links. [Publication receipt](evidence/M13/7/publication-results.json).
+**Current development: [M13.8 - Settings, errors and recovery](docs/milestones/m13-8.md). Native qualification, release and independent downloads pass; complete public website verification is in progress.** M13.9-M13.12 have not started.
+**M13.8 / 0.13.8 passes M13-STAGE8-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8), [find and change settings](docs/handbook/settings-m138.md). 80 native task/profile checks, five complete Settings search/display/theme/message journeys, preference/optional-app/recovery tasks and exact enabled-device VMware startup bind these media. Complete public website verification is in progress.
 
 **Reported stability issue:** the owner observed a long-uptime freeze on M13.7. Its cause and duration are not established. M13.9 investigates and corrects it; M13.12 must repeat real-duration qualification. The scoped M13.8 Settings work does not claim a fix. The optional screensaver is planned for M13.11.
 
@@ -59,9 +59,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m137-v0.13.7/EngacerOS-M13STAGE7-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m137-v0.13.7/EngacerOS-M13STAGE7.iso) ·
-[Step-by-step installation](docs/handbook/install-m137.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8.iso) ·
+[Step-by-step installation](docs/handbook/install-m138.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current_stage": "M13.8",
-  "qualified_download": "M13.7",
+  "qualified_download": "M13.8",
   "design_only": false,
   "stages": [
     {
@@ -79,7 +79,8 @@
       "id": "M13.8",
       "title": "Settings, errors and recovery form one product",
       "status": "in_progress",
-      "native_qualification": "M13-STAGE8-VM-v1"
+      "native_qualification": "M13-STAGE8-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8"
     },
     {
       "id": "M13.9",

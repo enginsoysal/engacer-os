@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.7",
+  "currentRelease": "M13.8",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m137.md",
+          "docs/handbook/install-m138.md",
           "Install and restart in VMware"
         ],
         [
@@ -83,8 +83,8 @@
       "description": "Adjust supported preferences or build your own distribution.",
       "items": [
         [
-          "docs/handbook/settings-m1213.md",
-          "Preview, apply and reset Settings"
+          "docs/handbook/settings-m138.md",
+          "Find, preview, apply and reset Settings"
         ],
         [
           "docs/handbook/accessibility-m1216.md",

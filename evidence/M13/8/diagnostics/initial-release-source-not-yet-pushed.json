@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "operation": "Create matching M13.8 draft release",
+  "http_status": 422,
+  "reason": "Release target commit was not yet available because its Git push was still running. No release was created.",
+  "correction": "Waited for successful push of 4f8da11 before resuming the existing validated publication routine; no assets or tags replaced."
+}
