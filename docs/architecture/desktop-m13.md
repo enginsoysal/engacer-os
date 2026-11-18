@@ -10,7 +10,7 @@ Original concept gallery (all design-only): [Setup](figures/m13/setup.svg), [Dis
 
 ## Common geometry and states
 
-Logical units scale with display size; density is a separate preference. Body 16, supporting 14, section 20, page heading 28, hero 36. Use existing licensed Inter, measured wrapping and consistent baseline alignment. Base spacing 4 with 8/12/16/24/32 grouping. Normal control height 36, setup primary 44, pointer target at least 32; touch support remains separately qualified. Title bars normally 36â€“40, taskbar 48, Files sidebar 192â€“224. These are default targets to fit by measured content, not excuses to clip text.
+Logical units scale with display size; density is a separate preference. Body 16, supporting 14, section 20, page heading 28, hero 36. Use existing licensed Inter, measured wrapping and consistent baseline alignment. Base spacing 4 with 8/12/16/24/32 grouping. Normal control height 36, setup primary 44, pointer target at least 32; touch support remains separately qualified. Title bars normally 36–40, taskbar 48, Files sidebar 192–224. These are default targets to fit by measured content, not excuses to clip text.
 
 Use an off-white content surface, dark ink, a restrained teal accent, original wallpaper and recognizable app silhouettes. Dark and high contrast use semantic roles, not independent layouts. Subtle depth cannot require a full-screen blur buffer. Selected, inactive-selected, focus, hover and pressed are distinct. Never use accent on every ordinary button.
 
@@ -40,7 +40,7 @@ For every stage show actual native before/after frames and complete tasks. Origi
 - Keep advanced disk controls optional: fewer ordinary decisions without concealing erase consent or unsupported data-preserving operations.
 - Finish every secondary surface before hardware priority: no planned legacy visual exceptions behind a polished main screen.
 
-## Original concept sheets â€” design only
+## Original concept sheets — design only
 
 ### Setup
 

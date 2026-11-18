@@ -7,7 +7,7 @@ const {chromium,expect}=require('@playwright/test');
 import fs from 'node:fs/promises';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const {values}=parseArgs({options:{stage:{type:'string'},source:{type:'string'},save:{type:'string'},payload:{type:'string'}}});
-const stage=Number(values.stage),ref=values.source;if(!Number.isInteger(stage)||stage<1||stage>12||!/^([0-9a-f]{40})$/.test(ref||''))throw Error('Provide stage 1â€“12 and exact documentation source commit');
+const stage=Number(values.stage),ref=values.source;if(!Number.isInteger(stage)||stage<1||stage>12||!/^([0-9a-f]{40})$/.test(ref||''))throw Error('Provide stage 1–12 and exact documentation source commit');
 const saved=JSON.parse(await fs.readFile(values.save,'utf8'));if(saved.source_commit!==ref||!saved.home.startsWith('Saved')||!saved.recovery.startsWith('Saved'))throw Error('Matching actual native editor Save observations required');
 const payload=JSON.parse(await fs.readFile(values.payload,'utf8'));if(payload.source_commit!==ref)throw Error('Wrong publication payload source');const guide=payload.page.blog.posts.find(p=>p.slug==='docs-handbook-install-m13'+stage);const guideRef=guide.meta.find(m=>m.key==='engine_source_commit').value;
 const accepted=JSON.parse(await fs.readFile(root+'/evidence/M13/'+stage+'/acceptance-results.json','utf8'));
@@ -16,7 +16,7 @@ const browser=await chromium.launch({headless:true});const reports=[];let comple
 try{for(const width of [1280,390]){
 const page=await browser.newPage({viewport:{width,height:900}});const errors=[];page.on('pageerror',e=>errors.push(String(e)));
 await page.goto('https://engaceros.brixcanvas.com');const opener=page.getByRole('button',{name:'Search documentation',exact:true});await expect(opener).toBeVisible();
-await expect(page.locator('body')).toContainText('CURRENT DOWNLOAD Â· M13.'+stage);
+await expect(page.locator('body')).toContainText('CURRENT DOWNLOAD · M13.'+stage);
 const openerColor=await opener.evaluate(e=>({ink:getComputedStyle(e).color,paper:getComputedStyle(e.closest('nav')).backgroundColor}));
 function lum(rgb){const channels=rgb.match(/\d+(?:\.\d+)?/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;});return channels[0]*.2126+channels[1]*.7152+channels[2]*.0722;}const a=lum(openerColor.ink),b=lum(openerColor.paper);const contrast=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);if(contrast<4.5)throw Error('Search header contrast below 4.5:1');
 const before=page.url();await opener.click();const dialog=page.getByRole('dialog',{name:'Search documentation'});await expect(dialog).toBeVisible();const query=dialog.getByRole('textbox');await expect(query).toBeFocused();await query.fill('usb');await expect(dialog.getByRole('link',{name:stage>=7?'Guides Navigate folders, filter names and use USB drives':'Guides Navigate folders and USB drives',exact:true})).toBeVisible();if(page.url()!==before)throw Error('Search navigated');
