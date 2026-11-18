@@ -86,7 +86,8 @@
     {
       "id": "M13.9",
       "title": "Smooth, readable and lightweight in motion",
-      "status": "in_progress"
+      "status": "in_progress",
+      "scope": "Motion, pointer and desktop finishing. Owner explicitly defers all stability investigation, freeze reproduction and duration/reset trials to M13.13; complete M13.9-M13.12 in order."
     },
     {
       "id": "M13.10",

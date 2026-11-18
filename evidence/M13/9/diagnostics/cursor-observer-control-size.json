@@ -1,0 +1,69 @@
+{
+  "passed": false,
+  "build_id": "756ec126dcd3190845e8d148b98fed02",
+  "iso_sha256": "e68a724cda4d7bf81769adb11f43551d5d2c23f434611bb8607a275974bfc803",
+  "physical": [
+    1920,
+    1080
+  ],
+  "clone": {
+    "source_sha256": "86bfc2095a46935ec0e3822d6cb78d3ee8074a4ef8fa971093ebf03f1f957b21",
+    "clone_sha256": "86bfc2095a46935ec0e3822d6cb78d3ee8074a4ef8fa971093ebf03f1f957b21",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    "Native edge/corner hover shows both axial and diagonal resize cursors; real resize changes bounds and Escape restores the exact original geometry"
+  ],
+  "observations": [
+    {
+      "name": "horizontal-resize",
+      "kind": 2,
+      "logical_position": [
+        421,
+        510
+      ]
+    },
+    {
+      "name": "vertical-resize",
+      "kind": 3,
+      "logical_position": [
+        960,
+        151
+      ]
+    },
+    {
+      "name": "northwest-resize",
+      "kind": 4,
+      "logical_position": [
+        421,
+        151
+      ]
+    },
+    {
+      "name": "northeast-resize",
+      "kind": 5,
+      "logical_position": [
+        1499,
+        151
+      ]
+    },
+    {
+      "name": "southeast-resize",
+      "kind": 4,
+      "logical_position": [
+        1498,
+        868
+      ]
+    },
+    {
+      "name": "caption-arrow",
+      "kind": 0,
+      "logical_position": [
+        580,
+        168
+      ]
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\cursors9.py\", line 41, in main\n    c.key(g,'meta_l');count=ui.integer(g,'control_count',True);raw=ui.memory(g,ui.symbol('controls',16384,True)[0],count*32)\n  File \"<project-root>\\tests\\m13\\observer8.py\", line 18, in symbol\n    return base(name, size, installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('controls', [])\n"
+}

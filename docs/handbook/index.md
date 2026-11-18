@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9 addresses the faults; M13.12 covers integration and [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
+**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9-M13.12 finish the product in order; [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
 
 **Current download: [Engacer OS M13.8](https://github.com/enginsoysal/engacer-os/releases/tag/m138-v0.13.8).** [Install and recover](install-m138.md), [find and change settings](settings-m138.md), [navigate and filter folders](files-m137.md), [use system controls](start-m136.md), [manage windows](desktop-m135.md). This stage qualifies bounded supported-category search, real appearance/display/input and optional-app transactions, recovery/feedback and exact VMware startup. [Release scope](../releases/m138-v0.13.8.md). Complete public delivery passes: 477 pages and 306 exact-source articles. [Receipt](../../evidence/M13/8/publication-results.json). Later M13 stages remain separate.
 

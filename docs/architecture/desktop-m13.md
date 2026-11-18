@@ -96,4 +96,4 @@ Implementation in progress; no native qualification is claimed. The M13.7 baseli
 
 ## Stability priority and M13.13 extension
 
-Frequent freezes are now reported on M13.8 as well as M13.7. Historic task-level qualification does not establish stability; current M13.8 media are testing-only. M13.9 addresses the faults before further appearance refinement. M13.12 remains integration qualification; [M13.13](../milestones/m13-13.md) adds an eight-real-hour release-blocking stability trial before hardware expansion. Pending M13.9 trace and timeout self-test code is unqualified until rebuilt and tested on frozen media.
+Frequent freezes are now reported on M13.8 as well as M13.7. Historic task-level qualification does not establish stability; current M13.8 media are testing-only. The owner explicitly requires finishing M13.9-M13.12 before stability work begins in M13.13. M13.12 remains integration qualification; [M13.13](../milestones/m13-13.md) adds an eight-real-hour release-blocking stability trial before hardware expansion. Pending M13.9 trace and timeout self-test code is unqualified until rebuilt and tested on frozen media.

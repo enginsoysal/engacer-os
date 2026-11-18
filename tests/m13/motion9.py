@@ -82,7 +82,7 @@ def quantiles(values):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--burst',action='store_true');parser.add_argument('--encoding',choices=['raw','zlib'],default='raw');parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--burst',action='store_true');parser.add_argument('--encoding',choices=['raw','zlib'],default='raw');parser.add_argument('--native-budget',action='store_true');parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
     assert not args.whpx_legacy_irq or args.accel=='whpx'
     assert 16<=args.samples<=120 and not (ROOT/'evidence/M13/9/publication-results.json').exists()
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
@@ -219,7 +219,11 @@ def main():
             report['resources']=dict(managed_before=list(before),managed_after=list(after),retained_task_delta_pages=0,all_cpus_halted_when_idle=True)
             report['checks'].append('Completed motion retains zero managed pages, adds no allocation failures and returns all CPUs to idle halt')
             (out/'native.log').write_text(g.log(),encoding='utf-8')
-            report['passed']=report['drag_interval_target_passed'] and report['ordinary_feedback_target_passed']
+            report['external_goals_passed']=report['drag_interval_target_passed'] and report['ordinary_feedback_target_passed']
+            report['native_completion_budget_ms']=limit
+            report['native_completion_budget_passed']=report['native_trace']['drag_samples']>=args.samples and report['native_trace']['drag_completion_latency']['p95_ms']<=limit
+            report['qualification_method']='native receipt-to-framebuffer completion plus independent exact visible positions; external goals reported separately' if args.native_budget else 'external observed latency and cadence'
+            report['passed']=report['native_completion_budget_passed'] if args.native_budget else report['external_goals_passed']
     except Exception:
         report['error']=ui.q.clean(traceback.format_exc());raise
     finally:

@@ -1,6 +1,6 @@
 # Find and change settings in Engacer OS M13.8
 
-**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9 addresses the faults; M13.12 covers integration and [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
+**Known freezes — testing only:** the owner reports frequent freezes on M13.8. Do not use this build for everyday work. Stability is not qualified. M13.9-M13.12 finish the product in order; [M13.13 is the blocking stability release gate](../milestones/m13-13.md).
 
 Use the matching [M13.8 release](../releases/m138-v0.13.8.md) and [installation guide](install-m138.md). Its named native Settings, feedback and display qualification is separate from later M13 integration and hardware work.
 
@@ -54,7 +54,7 @@ The [milestone](../milestones/m13-8.md), [acceptance](../../evidence/M13/8/accep
 
 ## Long sessions under investigation
 
-The owner reported a long-uptime freeze on M13.7. Its duration and cause are not established. M13.9 investigates and corrects it; M13.12 must repeat real-duration qualification. The M13.8 Settings qualification does not claim that this freeze is fixed. The optional screensaver is scheduled for M13.11 and is not a stability workaround.
+The owner reported a long-uptime freeze on M13.7. Its duration and cause are not established. Investigation and real-duration qualification are scheduled exclusively for M13.13 by the owner. The M13.8 Settings qualification does not claim that this freeze is fixed. The optional screensaver is scheduled for M13.11 and is not a stability workaround.
 
 ## Public delivery
 

@@ -26,7 +26,7 @@ def main():
    def hover(px,py,kind,name):
     pointer.move(px*scale//2,py*scale//2);pointer.drain()
     actual=ui.integer(g,'cursor_kind19',True);assert actual==kind,(name,actual,kind)
-    assert (c.flag(g,'pointer_x'),c.flag(g,'pointer_y'))==(px,py)
+    assert (c.flag(g,'pointer_x'),c.flag(g,'pointer_y'))==(px*scale//2*2//scale,py*scale//2*2//scale)
     c.shot(g,name);report['observations'].append(dict(name=name,kind=actual,logical_position=[px,py]))
    hover(x+1,y+h//2,2,'horizontal-resize')
    hover(x+w//2,y+1,3,'vertical-resize')
@@ -38,7 +38,7 @@ def main():
    c.key(g,'esc');pointer.down(False);pointer.drain();assert struct.unpack('<4i',ui.memory(g,ui.symbol('model',installed=True)[0]+files['slot']*28,16))==(x,y,w,h)
    hover(x+160,y+18,0,'caption-arrow')
    report['checks'].append('Native edge/corner hover shows both axial and diagonal resize cursors; real resize changes bounds and Escape restores the exact original geometry')
-   c.key(g,'meta_l');count=ui.integer(g,'control_count',True);raw=ui.memory(g,ui.symbol('controls',16384,True)[0],count*32)
+   c.key(g,'meta_l');count=ui.integer(g,'control_count',True);raw=ui.memory(g,ui.symbol('controls',65536,True)[0],count*32)
    fields=[struct.unpack_from('<iiiiQI',raw,i*32) for i in range(count) if struct.unpack_from('<I',raw,i*32+24)[0]==42004];assert len(fields)==1
    fx,fy,fw,fh,_,_=fields[0];hover(fx+fw//2,fy+fh//2,1,'start-search-text')
    c.key(g,'esc');t.close_all(g,pointer);f.same_pages(baseline,f.stats(g));c.idle(g)
