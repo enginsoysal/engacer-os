@@ -35,7 +35,7 @@ def observer_port8():
     raise RuntimeError('No free owned loopback observation port outside the outbound range')
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);stage=parser.parse_args().stage
+    parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);parser.add_argument('--inspect-input',action='store_true');args=parser.parse_args();stage=args.stage
     assert stage==11
     image=f'EngacerOS-M13STAGE{stage}';archive=ROOT/'dist'/(image+'-VMware.zip')
     meta=json.loads((ROOT/f'dist/m13stage{stage}-build-manifest.json').read_text())
@@ -80,13 +80,44 @@ def main():
             g.wait('M11_APPEARANCE_SAVED');v.shot(g,out,'saved-appearance')
             # Ordinary visible RFB input: open Screensaver and return to the same Settings frame.
             m.guest_click10(g,sx+660,sy+12);v.shot(g,out,'screensaver-settings')
-            m.guest_click10(g,sx+76,sy+144+250);time.sleep(.3);v.shot(g,out,'screensaver-preview')
-            m.guest_click10(g,sx+76,sy+144+250);time.sleep(.3);v.shot(g,out,'screensaver-wake')
             from PIL import Image,ImageChops
-            with Image.open(out/'screensaver-settings.png') as a,Image.open(out/'screensaver-preview.png') as b,Image.open(out/'screensaver-wake.png') as awake:
-                assert b.convert('L').histogram()[0]/(b.width*b.height)>.9,'Preview did not visibly replace the desktop'
-                assert awake.getpixel((sx+400,sy+200))[:3]==a.getpixel((sx+400,sy+200))[:3]!=(0,0,0),'Wake did not visibly restore the Settings body'
-                box=(sx,sy,sx+740,sy+550);diff=ImageChops.difference(a.convert('RGB').crop(box),awake.convert('RGB').crop(box)).convert('L');assert diff.histogram()[0]/(diff.width*diff.height)>.95,'Wake did not retain the visible Settings frame'
+            with Image.open(out/'screensaver-settings.png') as original_frame:original_frame=original_frame.convert('RGB').copy()
+            observations=[]
+            m.guest_click10(g,sx+76,sy+144+250)
+            deadline=time.monotonic()+10
+            while True:
+                v.shot(g,out,'screensaver-preview')
+                with Image.open(out/'screensaver-preview.png') as frame:ratio=frame.convert('L').histogram()[0]/(frame.width*frame.height)
+                observations.append(dict(phase='preview',black_fraction=ratio))
+                if ratio>.9:break
+                if time.monotonic()>deadline:
+                    if args.inspect_input:
+                        # Owned fresh test guest only: a stopped physical-memory read,
+                        # never guest writes or a user VM, to explain this new Preview failure.
+                        result=v.old.v.run('suspend',g.vmx,'hard');assert result.returncode==0,'Owned diagnostic suspend failed';g.owned=False
+                        memories=list(g.folder.glob('*.vmem'));assert len(memories)==1
+                        mapping=(ROOT/'dist/EngacerOS-M13STAGE11-installed-kernel.map').read_text(encoding='utf-8')
+                        values={}
+                        with memories[0].open('rb') as ram:
+                            for name in ['saver_saved21','saver_phase21','activity21','legacy_held21','usb_held21','pointer_held21','legacy_pressed21','pause21','prefix21','control_modifier','shift','usb_modifiers11']:
+                                found=re.findall(r'^\s*([0-9a-f]+)\s+[0-9a-f]+\s+([0-9a-f]+)\s+\d+\s+'+re.escape(name)+r'$',mapping,re.M);assert len(found)==1,name
+                                address,size=[int(x,16) for x in found[0]];ram.seek(address);raw=ram.read(size);assert len(raw)==size;values[name]=raw.hex() if size>8 else int.from_bytes(raw,'little')
+                        assert values['saver_saved21'].startswith('4553323101000000'),'Physical memory layout was not independently anchored'
+                        (out/'preview-input.json').write_text(json.dumps(dict(build_id=meta['build_id'],scope='Read-only stopped owned test RAM for a functional Preview failure; not stability qualification',fields=values),indent=2)+'\n',encoding='utf-8')
+                    raise AssertionError('Preview did not visibly replace the desktop in fresh owned RFB observations')
+                time.sleep(.15)
+            m.guest_click10(g,sx+76,sy+144+250)
+            deadline=time.monotonic()+10
+            while True:
+                v.shot(g,out,'screensaver-wake')
+                with Image.open(out/'screensaver-wake.png') as awake:
+                    point=awake.getpixel((sx+400,sy+200))[:3];expected=original_frame.getpixel((sx+400,sy+200))[:3]
+                    box=(sx,sy,sx+740,sy+550);diff=ImageChops.difference(original_frame.crop(box),awake.convert('RGB').crop(box)).convert('L');same=diff.histogram()[0]/(diff.width*diff.height)
+                observations.append(dict(phase='wake',body_restored=point==expected and point!=(0,0,0),unchanged_settings_fraction=same))
+                if point==expected and point!=(0,0,0) and same>.95:break
+                if time.monotonic()>deadline:raise AssertionError('Wake did not visibly restore and retain the Settings frame')
+                time.sleep(.15)
+            report['visible_preview_wake_observations']=observations
             report['checks'].append('Actual RFB mouse opens Screensaver settings, shows native preview and returns without operating the underlying Preview control')
             (out/'install.log').write_bytes(g.read().encode())
         report['checks'].append('Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP')

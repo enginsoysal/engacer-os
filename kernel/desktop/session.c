@@ -818,7 +818,7 @@ static void render(void) {
     gui7_clip((unsigned)dirty.x,(unsigned)dirty.y,(unsigned)dirty.width,(unsigned)dirty.height);
     control_count=0;
 #ifdef ENGINE_M13
-    if(saver_phase21==2){saver_draw21();gui7_clip_reset();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;return;}
+    if(saver_phase21==2){saver_draw21();gui7_clip_reset();graphics9_flush();++paints;painted_pixels+=(uint64_t)dirty.width*dirty.height;return;}
 #endif
 #ifdef ENGINE_M13
     wallpaper15(dirty);

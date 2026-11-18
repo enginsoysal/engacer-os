@@ -1,0 +1,10 @@
+{
+  "qualified": false,
+  "build_id": "ec856eaf2d403f8f4e15757cc0f4a8da",
+  "iso_sha256": "c4365e42e5ab0801d8b571bd31db700b4d262c6eeee0f7974a01df342110d974",
+  "source_commit": "e0259fed20ffbd25545220326bb4286fc5c9367a",
+  "reason": "The new saver render branch wrote composition pixels but returned before the graphics presentation flush normally reached through cursor drawing. Actual VMware RFB stayed on Settings while read-only stopped owned RAM independently confirmed phase 2 and no held keys/buttons.",
+  "correction": "Explicitly flush the existing graphics damage after drawing the saver without drawing a cursor; no new buffer, state, worker, device mode or stability experiment.",
+  "scope": "QEMU feature/control/preference checks pass on this unqualified candidate; exact VMware display does not. One confirmed owned app-frame guest was intentionally stopped before changing native source, not a natural hang.",
+  "fresh_qualification_required": true
+}

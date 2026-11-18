@@ -1,0 +1,423 @@
+{
+  "passed": false,
+  "build_id": "ec856eaf2d403f8f4e15757cc0f4a8da",
+  "iso_sha256": "c4365e42e5ab0801d8b571bd31db700b4d262c6eeee0f7974a01df342110d974",
+  "physical": [
+    1920,
+    1080
+  ],
+  "clone": {
+    "source_sha256": "c4f23f952f3553cdb7f0147fbf1e563b8a6348e86553b4592716530d2975410e",
+    "clone_sha256": "c4f23f952f3553cdb7f0147fbf1e563b8a6348e86553b4592716530d2975410e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "host_observer": {
+    "method": "Three consecutive fresh stable input/paint samples and all CPUs halted",
+    "maximum_group_bytes": 65536,
+    "mutable_guest_state_cached": false,
+    "guest_memory_written": false
+  },
+  "checks": [
+    "light: nineteen actual base/optional app frames open with owner-bound captions, close independently and retain zero managed pages"
+  ],
+  "frames": [
+    {
+      "theme": "light",
+      "app": 1,
+      "name": "files",
+      "bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "capture": "light-1.png"
+    },
+    {
+      "theme": "light",
+      "app": 2,
+      "name": "text editor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-2.png"
+    },
+    {
+      "theme": "light",
+      "app": 3,
+      "name": "settings",
+      "bounds": [
+        560,
+        185,
+        800,
+        650
+      ],
+      "capture": "light-3.png"
+    },
+    {
+      "theme": "light",
+      "app": 4,
+      "name": "calc",
+      "bounds": [
+        610,
+        30,
+        700,
+        650
+      ],
+      "capture": "light-4.png"
+    },
+    {
+      "theme": "light",
+      "app": 5,
+      "name": "downloads",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-5.png"
+    },
+    {
+      "theme": "light",
+      "app": 6,
+      "name": "system monitor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-6.png"
+    },
+    {
+      "theme": "light",
+      "app": 7,
+      "name": "terminal",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-7.png"
+    },
+    {
+      "theme": "light",
+      "app": 8,
+      "name": "clock",
+      "bounds": [
+        610,
+        80,
+        700,
+        510
+      ],
+      "capture": "light-8.png"
+    },
+    {
+      "theme": "light",
+      "app": 9,
+      "name": "calendar",
+      "bounds": [
+        580,
+        35,
+        760,
+        640
+      ],
+      "capture": "light-9.png"
+    },
+    {
+      "theme": "light",
+      "app": 10,
+      "name": "disk utility",
+      "bounds": [
+        535,
+        45,
+        850,
+        620
+      ],
+      "capture": "light-10.png"
+    },
+    {
+      "theme": "light",
+      "app": 11,
+      "name": "software",
+      "bounds": [
+        550,
+        50,
+        820,
+        620
+      ],
+      "capture": "light-11.png"
+    },
+    {
+      "theme": "light",
+      "app": 12,
+      "name": "recovery",
+      "bounds": [
+        170,
+        90,
+        850,
+        620
+      ],
+      "capture": "light-12.png"
+    },
+    {
+      "theme": "light",
+      "app": 13,
+      "name": "archive manager",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "light-13.png"
+    },
+    {
+      "theme": "light",
+      "app": 14,
+      "name": "image viewer",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "light-14.png"
+    },
+    {
+      "theme": "light",
+      "app": 15,
+      "name": "screenshot",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "light-15.png"
+    },
+    {
+      "theme": "light",
+      "app": 16,
+      "name": "media player",
+      "bounds": [
+        580,
+        65,
+        760,
+        580
+      ],
+      "capture": "light-16.png"
+    },
+    {
+      "theme": "light",
+      "app": 17,
+      "name": "browser",
+      "bounds": [
+        535,
+        35,
+        850,
+        650
+      ],
+      "capture": "light-17.png"
+    },
+    {
+      "theme": "light",
+      "app": 18,
+      "name": "help",
+      "bounds": [
+        170,
+        90,
+        700,
+        560
+      ],
+      "capture": "light-18.png"
+    },
+    {
+      "theme": "light",
+      "app": 19,
+      "name": "windows apps",
+      "bounds": [
+        490,
+        35,
+        960,
+        730
+      ],
+      "capture": "light-19.png"
+    },
+    {
+      "theme": "dark",
+      "app": 1,
+      "name": "files",
+      "bounds": [
+        420,
+        150,
+        1080,
+        720
+      ],
+      "capture": "dark-1.png"
+    },
+    {
+      "theme": "dark",
+      "app": 2,
+      "name": "text editor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-2.png"
+    },
+    {
+      "theme": "dark",
+      "app": 3,
+      "name": "settings",
+      "bounds": [
+        560,
+        185,
+        800,
+        650
+      ],
+      "capture": "dark-3.png"
+    },
+    {
+      "theme": "dark",
+      "app": 4,
+      "name": "calc",
+      "bounds": [
+        610,
+        30,
+        700,
+        650
+      ],
+      "capture": "dark-4.png"
+    },
+    {
+      "theme": "dark",
+      "app": 5,
+      "name": "downloads",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-5.png"
+    },
+    {
+      "theme": "dark",
+      "app": 6,
+      "name": "system monitor",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-6.png"
+    },
+    {
+      "theme": "dark",
+      "app": 7,
+      "name": "terminal",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-7.png"
+    },
+    {
+      "theme": "dark",
+      "app": 8,
+      "name": "clock",
+      "bounds": [
+        610,
+        80,
+        700,
+        510
+      ],
+      "capture": "dark-8.png"
+    },
+    {
+      "theme": "dark",
+      "app": 9,
+      "name": "calendar",
+      "bounds": [
+        580,
+        35,
+        760,
+        640
+      ],
+      "capture": "dark-9.png"
+    },
+    {
+      "theme": "dark",
+      "app": 10,
+      "name": "disk utility",
+      "bounds": [
+        535,
+        45,
+        850,
+        620
+      ],
+      "capture": "dark-10.png"
+    },
+    {
+      "theme": "dark",
+      "app": 11,
+      "name": "software",
+      "bounds": [
+        550,
+        50,
+        820,
+        620
+      ],
+      "capture": "dark-11.png"
+    },
+    {
+      "theme": "dark",
+      "app": 12,
+      "name": "recovery",
+      "bounds": [
+        170,
+        90,
+        850,
+        620
+      ],
+      "capture": "dark-12.png"
+    },
+    {
+      "theme": "dark",
+      "app": 13,
+      "name": "archive manager",
+      "bounds": [
+        170,
+        90,
+        700,
+        530
+      ],
+      "capture": "dark-13.png"
+    },
+    {
+      "theme": "dark",
+      "app": 14,
+      "name": "image viewer",
+      "bounds": [
+        170,
+        90,
+        700,
+        470
+      ],
+      "capture": "dark-14.png"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\apps_frames11.py\", line 46, in main\n    app=t.launch(g,p,name,kind)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 40, in launch\n    before=s.windows(g,kind);s.search(g,p,name);rows=s.results(g);matches=[i for i,row in enumerate(rows) if row==(1,kind)];assert len(matches)==1,rows\n  File \"<project-root>\\tests\\m12\\start_observe.py\", line 25, in search\n    p.desktop(42004,True);c.key(g,'ctrl','a');c.type_text(g,value);p.drain()\n  File \"<project-root>\\tests\\m12\\components.py\", line 35, in type_text\n    else:key(g,{' ':'spc','/':'slash','.':'dot','-':'minus'}.get(c,c))\n  File \"<project-root>\\tests\\m12\\components.py\", line 30, in key\n    ui.Pointer(g).drain()\n  File \"<project-root>\\tests\\m13\\observe20.py\", line 46, in drain\n    current=sample(ui,g,plan)\n  File \"<project-root>\\tests\\m13\\observe20.py\", line 23, in sample\n    raw=ui.memory(g,start,end-start)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 63, in qmp\n    self.stream.write((json.dumps(r)+'\\n').encode());self.stream.flush()\n  File \"C:\\Users\\EnginSoysal\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\apps_frames11.py\", line 35, in main\n    with ui.guest(work/'installed',disk,resolution=physical,ram=ram,media='installed',ready='M7_DESKTOP_READY') as g:\n  File \"<project-root>\\tests\\m74\\ui.py\", line 73, in __exit__\n    super().__exit__(*exc)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 88, in __exit__\n    self.stream.close();self.sock.close()\n  File \"C:\\Users\\EnginSoysal\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 723, in write\n    return self._sock.send(b)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\n"
+}

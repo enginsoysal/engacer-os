@@ -1,0 +1,18 @@
+{
+  "build_id": "ec856eaf2d403f8f4e15757cc0f4a8da",
+  "scope": "Read-only stopped owned test RAM for a functional Preview failure; not stability qualification",
+  "fields": {
+    "saver_saved21": "4553323101000000000000003c00000000000000",
+    "saver_phase21": 2,
+    "activity21": 39,
+    "legacy_held21": 0,
+    "usb_held21": 0,
+    "pointer_held21": 0,
+    "legacy_pressed21": "0000000000000000000000000000000000000000000000000000000000000000",
+    "pause21": 0,
+    "prefix21": 0,
+    "control_modifier": 0,
+    "shift": 0,
+    "usb_modifiers11": 0
+  }
+}

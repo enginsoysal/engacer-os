@@ -23,7 +23,7 @@ def search(g,p,value):
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','compact','1024','150','4k'],default='ordinary');args=parser.parse_args()
-    assert not (ROOT/'evidence/M13/10/publication-results.json').exists()
+    assert not (ROOT/'evidence/M13/11/publication-results.json').exists()
     resolution,ram,scale={'ordinary':((1920,1080),512,50011),'compact':((1280,800),128,50011),'1024':((1024,768),128,50011),'150':((1920,1200),512,50012),'4k':((3840,2160),1024,50013)}[args.profile]
     out=ROOT/'build/m13/stage11'/('search-'+args.profile);out.mkdir(parents=True,exist_ok=True);c.OUT=out
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));work=ui.q.new_work('m1311-search-'+args.profile);disk=ui.q.sparse_disk(work/'owned.img',2*1024**3)
