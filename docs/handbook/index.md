@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-**Current download: [Engacer OS M13.4](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4).** [Install, restart and recover](install-m134.md). This stage qualifies fourteen named VMware startup profiles, real progress, completion, failure and recovery, plus five reference display/control installations. [Release scope](../releases/m134-v0.13.4.md). Later M13 stages remain separate; complete public website verification is in progress.
+**Current download: [Engacer OS M13.4](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4).** [Install, restart and recover](install-m134.md). This stage qualifies fourteen named VMware startup profiles, real progress, completion, failure and recovery, plus five reference display/control installations. [Release scope](../releases/m134-v0.13.4.md). Later M13 stages remain separate; matching public website verification passes.
 
 Earlier desktop guides remain useful for retained features. Their original test records qualify their historical media, not untested new bytes. Use the current installation/release guide for the new download.
 

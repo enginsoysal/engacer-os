@@ -42,10 +42,11 @@
     {
       "id": "M13.4",
       "title": "Installation finishes at the installed desktop",
-      "status": "in_progress",
+      "status": "complete",
       "native_qualification": "M13-STAGE4-VM-v1",
       "evidence": "evidence/M13/4",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4",
+      "publication_evidence": "evidence/M13/4/publication-results.json"
     },
     {
       "id": "M13.5",

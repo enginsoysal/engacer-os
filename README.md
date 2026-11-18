@@ -1,7 +1,7 @@
 # Engacer OS
 
-**Current development: [M13.4 - installation, recovery and installed startup](docs/milestones/m13-4.md). Native qualification and the GitHub release pass; complete public website verification is in progress.** M13.5-M13.12 have not started.
-**M13.4 / 0.13.4 passes M13-STAGE4-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4), [follow setup and recovery](docs/handbook/install-m134.md). Fourteen fresh enabled-device VMware profiles, five reference displays, real progress and fault/recovery checks bind the exact media. Website publication is being verified before the next stage.
+**Current delivery: [M13.4 - installation, recovery and installed startup](docs/milestones/m13-4.md), complete within its native and public website scope.** M13.4 is the qualified download. M13.5-M13.12 follow strictly after each complete public closure.
+**M13.4 / 0.13.4 passes M13-STAGE4-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4), [follow setup and recovery](docs/handbook/install-m134.md). Fourteen enabled-device VMware profiles, five reference displays, real progress and fault/recovery checks bind the exact media. Public verification passes: 453 pages, 289 exact-source articles, actual homepage/recovery Saves and desktop/mobile/search/download checks.
 
 
 An independent, MIT-licensed operating system with its own BIOS/UEFI loaders,

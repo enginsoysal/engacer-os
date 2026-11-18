@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.4",
+  "qualification": "M13-STAGE4-VM-v1",
+  "source_commit": "2785311a599fd53757be56c9ff44cadc86824e8e",
+  "release_source_commit": "21d6bc100e87a95fd01573dff9346c444d551614",
+  "build_id": "8764f1439e79ea937d27ac5e268697eb",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4",
+  "workflow_ids": [
+    44227855365
+  ],
+  "current_native_download": "m134-v0.13.4",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 453,
+  "unique_links": 3147,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}
