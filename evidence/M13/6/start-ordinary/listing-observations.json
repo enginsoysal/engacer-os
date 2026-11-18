@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "observations": [
+    {
+      "name": "Pinned Work",
+      "attempts": 1,
+      "matched": true,
+      "host_observation_seconds": 0.15599999998812564,
+      "scope": "Read-only wait for rendered list cache after independently observed filesystem mutation, not native latency/FPS"
+    }
+  ]
+}

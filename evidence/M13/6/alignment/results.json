@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "stage": "M13.6",
+  "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+  "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+  "checks": [
+    "Actual left/center/left/center customization moves both Start and real taskbar groups, preserves all targets and independently matches saved preference bytes",
+    "Two ordinary no-ISO startups at physical 1080p and 4K preserve exact centered preferences and independently fit the real Start/taskbar controls"
+  ],
+  "layouts": [
+    {
+      "name": "left-default",
+      "centered": 0,
+      "start_button": [
+        16,
+        755,
+        100,
+        36
+      ],
+      "start_panel": [
+        16,
+        168,
+        760,
+        560
+      ],
+      "physical_width": 1280,
+      "logical_width": 1280
+    },
+    {
+      "name": "center-preview",
+      "centered": 1,
+      "start_button": [
+        326,
+        755,
+        100,
+        36
+      ],
+      "start_panel": [
+        260,
+        168,
+        760,
+        560
+      ],
+      "physical_width": 1280,
+      "logical_width": 1280
+    },
+    {
+      "name": "left-restored",
+      "centered": 0,
+      "start_button": [
+        16,
+        755,
+        100,
+        36
+      ],
+      "start_panel": [
+        16,
+        168,
+        760,
+        560
+      ],
+      "physical_width": 1280,
+      "logical_width": 1280
+    },
+    {
+      "name": "center-saved",
+      "centered": 1,
+      "start_button": [
+        326,
+        755,
+        100,
+        36
+      ],
+      "start_panel": [
+        260,
+        168,
+        760,
+        560
+      ],
+      "physical_width": 1280,
+      "logical_width": 1280
+    },
+    {
+      "name": "disk-only-1",
+      "centered": 1,
+      "start_button": [
+        326,
+        755,
+        100,
+        36
+      ],
+      "start_panel": [
+        260,
+        168,
+        760,
+        560
+      ],
+      "physical_width": 1280,
+      "logical_width": 1280
+    },
+    {
+      "name": "disk-only-2",
+      "centered": 1,
+      "start_button": [
+        326,
+        755,
+        100,
+        36
+      ],
+      "start_panel": [
+        260,
+        168,
+        760,
+        560
+      ],
+      "physical_width": 1280,
+      "logical_width": 1280
+    }
+  ],
+  "observed_state": {
+    "launcher": 1,
+    "guide": 0,
+    "context": 0,
+    "bounds": [
+      260,
+      168,
+      760,
+      560
+    ],
+    "controls": [
+      [
+        326,
+        755,
+        100,
+        36,
+        0,
+        0
+      ]
+    ]
+  },
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

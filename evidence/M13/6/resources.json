@@ -1,0 +1,325 @@
+{
+  "passed": true,
+  "fixed_desktop": {
+    "bytes": 553436,
+    "sections": {
+      "bss": 553408,
+      "data": 28
+    },
+    "map_sha256": "6d3285b8823446d2819b50a1f578fa7b50ed989eb51ba9ae1990b02255eac265"
+  },
+  "baseline_fixed_desktop": {
+    "bytes": 553436,
+    "sections": {
+      "bss": 553408,
+      "data": 28
+    },
+    "map_sha256": "68158332726aed2ff70bd5369b56e9a1959b4bd36003966c252472ccd7f3162d"
+  },
+  "fixed_desktop_delta_bytes": 0,
+  "fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "baseline_fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "font": {
+    "font": "Inter",
+    "license": "OFL-1.1",
+    "source_sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "sizes": [
+      16,
+      24,
+      32,
+      36,
+      48,
+      64
+    ],
+    "secondary_sizes": [
+      14,
+      21,
+      28
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "glyphs": 1045,
+    "coverage_bytes": 251248,
+    "pillow": "12.3.0",
+    "freetype": "2.14.3",
+    "header_sha256": "6c3599e5c80ce09d3583f771b89247f4bae098c7979e2ee0d249428a8506d8d3",
+    "semantic_sizes": {
+      "section": [
+        21,
+        32,
+        42
+      ],
+      "heading": [
+        28,
+        42,
+        56
+      ]
+    }
+  },
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116013,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17706,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17706,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
+    "150": {
+      "managed_stats": [
+        2297,
+        2297,
+        116013,
+        5
+      ],
+      "framebuffer_bytes": 9216000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247083,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "start_profiles": {
+    "ordinary": {
+      "before": [
+        2072,
+        2072,
+        116013,
+        5
+      ],
+      "after": [
+        2072,
+        2085,
+        116013,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "compact": {
+      "before": [
+        1047,
+        1047,
+        17706,
+        5
+      ],
+      "after": [
+        1047,
+        1060,
+        17706,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "1024": {
+      "before": [
+        815,
+        815,
+        17706,
+        5
+      ],
+      "after": [
+        815,
+        828,
+        17706,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "150": {
+      "before": [
+        2297,
+        2297,
+        116013,
+        5
+      ],
+      "after": [
+        2297,
+        2310,
+        116013,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "4k": {
+      "before": [
+        8147,
+        8147,
+        247083,
+        5
+      ],
+      "after": [
+        8147,
+        8160,
+        247083,
+        5
+      ],
+      "retained_pages": 0
+    }
+  },
+  "applied_theme_profiles": {
+    "ordinary": {
+      "before": [
+        2072,
+        2072,
+        117292,
+        5
+      ],
+      "after": [
+        2072,
+        2072,
+        117292,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "compact": {
+      "before": [
+        1047,
+        1047,
+        18985,
+        5
+      ],
+      "after": [
+        1047,
+        1047,
+        18985,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "1024": {
+      "before": [
+        815,
+        815,
+        18985,
+        5
+      ],
+      "after": [
+        815,
+        815,
+        18985,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "150": {
+      "before": [
+        2297,
+        2297,
+        117292,
+        5
+      ],
+      "after": [
+        2297,
+        2297,
+        117292,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "4k": {
+      "before": [
+        8147,
+        8147,
+        248362,
+        5
+      ],
+      "after": [
+        8147,
+        8147,
+        248362,
+        5
+      ],
+      "retained_pages": 0
+    }
+  },
+  "alignment": {
+    "before": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "taskbar": {
+    "before": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "after": [
+      1047,
+      1073,
+      17706,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "tray": {
+    "before": [
+      1047,
+      1059,
+      17706,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17706,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "scope": "Fixed state, immutable font masks, framebuffer/configured guest RAM and managed peak/current/retained pages are separate; no indexing worker or per-keystroke process. Motion targets remain M13.9."
+}

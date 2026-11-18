@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "stage": "M13.6",
+  "development_only": false,
+  "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+  "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+  "owned_fixture": "6722e6db27294cba8bf8614821ea354d",
+  "checks": [
+    "Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window",
+    "Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window",
+    "Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window",
+    "Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button",
+    "Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable",
+    "Eight pins and eight distinct running apps remain reachable through bounded overflow with stable order across focus changes; selecting a hidden app focuses its real window and the eight-window quota refuses another without losing existing windows",
+    "Two fresh ordinary no-ISO starts preserve exact independently read eight-pin preferences, show all eight groups and minimize/restore the real Files window"
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17706,
+      5
+    ],
+    "after": [
+      1047,
+      1073,
+      17706,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "preferences_sha256": "c3069ddfdf44b98a63d8557ba83041585fc9ba95d16cadae8411e1cfacf35ee8",
+  "continuation": {
+    "reason": "Only the final startup capacity assertion changed, from six to eight visible groups. Retain original failed observation; repeat both disk-only starts without modifying the frozen media or preceding task phase.",
+    "original_failed_report": "diagnostics/initial-taskbar-order.json",
+    "native_task_phase_source": "7714f5d",
+    "boot_checks": [
+      {
+        "start": 1,
+        "pins": [
+          1,
+          7,
+          2,
+          4,
+          8,
+          9,
+          14,
+          16
+        ],
+        "sha256": "c3069ddfdf44b98a63d8557ba83041585fc9ba95d16cadae8411e1cfacf35ee8",
+        "minimize_restore": true
+      },
+      {
+        "start": 2,
+        "pins": [
+          1,
+          7,
+          2,
+          4,
+          8,
+          9,
+          14,
+          16
+        ],
+        "sha256": "c3069ddfdf44b98a63d8557ba83041585fc9ba95d16cadae8411e1cfacf35ee8",
+        "minimize_restore": true
+      }
+    ]
+  }
+}

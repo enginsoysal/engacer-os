@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "stage": "M13.6",
+  "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+  "reviewer": "Agent visual/scenario review; not a human novice study",
+  "fields": {
+    "clarity": "Recognizable app tiles, readable labels, actual group counts and supported provider states.",
+    "convenience": "Local search, visible app groups, preserved work, guided pin/customization and ordinary Dismiss remain available.",
+    "user_friendliness": "Mouse and keyboard controls share visible geometry, with empty/unavailable states and safe power cancellation.",
+    "graphical_quality": "Original smooth icons and measured centered labels, restrained taskbar surfaces and visible white keyboard focus.",
+    "readability": "Actual compact/ordinary/150%/physical-4K frames and real applied dark/high-contrast/light surfaces have no clipped essential labels or overlapping controls in the reviewed captures."
+  },
+  "images": [
+    {
+      "path": "feature.png",
+      "sha256": "e4e0fe4f6a8ea3278ca0e09db24e6abd28e53a6546b06dbf0cebd3192293b825"
+    },
+    {
+      "path": "themes-ordinary/dark.png",
+      "sha256": "ef96773369f1b4ad4c618c653953725a6954ed4620a20a895ddca83278d13598"
+    },
+    {
+      "path": "themes-4k/dark.png",
+      "sha256": "34252f4f3e17e9b16955a5da59a3d00d939d5b86b5d8841c94a8f7cbfd95bbf3"
+    },
+    {
+      "path": "themes-compact/high-contrast.png",
+      "sha256": "ac0c8bd2c548f22c7344ead772514ac23f78d02f2473a8350759c3cb7f332151"
+    },
+    {
+      "path": "start-150/start-light.png",
+      "sha256": "7d905dd5c8a7855e5c21808157efd11168691638cf1ba244ebe15c91b0aea4ee"
+    },
+    {
+      "path": "alignment/center-preview.png",
+      "sha256": "e9b239aa5cf979e2601fada47a0b933ac842dcdfb98376c91156e919bf7a4caa"
+    },
+    {
+      "path": "taskbar-native/keyboard-group-focus.png",
+      "sha256": "a5ddc3a16a33739b896709cb975d1f13529a013c52ea8f62f9bff1529ee28aa6"
+    },
+    {
+      "path": "taskbar-native/overflow-with-eight-windows.png",
+      "sha256": "a5035476228406083c1948b95dba5d14f271927cd08f80da393b5e18dd890601"
+    }
+  ],
+  "limits": [
+    "Persistent pin notices may cover a caption until Dismiss; M13.8 tracks notification positioning",
+    "Shared semantic search-hint colors remain tracked with the M13.8 search/feedback consolidation",
+    "No vendor GPU 3D, universal hardware, native FPS/latency target or human novice-study claim"
+  ]
+}

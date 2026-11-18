@@ -61,7 +61,8 @@
       "id": "M13.6",
       "title": "Familiar Start, taskbar and system tray",
       "status": "in_progress",
-      "evidence": "evidence/M13/6"
+      "evidence": "evidence/M13/6",
+      "native_qualification": "M13-STAGE6-VM-v1"
     },
     {
       "id": "M13.7",

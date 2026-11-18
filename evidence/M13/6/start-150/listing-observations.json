@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "observations": [
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "name": "Pinned Work",
+      "attempts": 1,
+      "matched": true,
+      "host_observation_seconds": 0.09399999998277053,
+      "scope": "Read-only wait for rendered list cache after independently observed filesystem mutation, not native latency/FPS"
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    },
+    {
+      "type": "caption-ready",
+      "attempts": 1,
+      "matched": true
+    }
+  ]
+}

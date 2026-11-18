@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "stage": "M13.6",
+  "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+  "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+  "profile": "compact",
+  "physical": [
+    1280,
+    800
+  ],
+  "checks": [
+    "Actual Dark Apply, high contrast and Light Apply survive closing Settings; native Start surfaces, real flags and independently read appearance bytes agree at the named physical profile"
+  ],
+  "themes": [
+    {
+      "theme": "dark",
+      "dark": 1,
+      "high_contrast": false,
+      "actual_surface_rgb": "0x101923",
+      "bounds": [
+        16,
+        168,
+        760,
+        560
+      ],
+      "after_settings_close": true
+    },
+    {
+      "theme": "high-contrast",
+      "dark": 1,
+      "high_contrast": true,
+      "actual_surface_rgb": "0x0",
+      "bounds": [
+        16,
+        168,
+        760,
+        560
+      ],
+      "after_settings_close": true
+    },
+    {
+      "theme": "light",
+      "dark": 0,
+      "high_contrast": false,
+      "actual_surface_rgb": "0xf3f6fa",
+      "bounds": [
+        16,
+        168,
+        760,
+        560
+      ],
+      "after_settings_close": true
+    }
+  ],
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      18985,
+      5
+    ],
+    "after": [
+      1047,
+      1047,
+      18985,
+      5
+    ],
+    "retained_pages": 0
+  }
+}
