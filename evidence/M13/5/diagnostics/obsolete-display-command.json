@@ -1,0 +1,62 @@
+{
+  "qualification_excluded": true,
+  "superseded_build": "f75973fdc3df5b84742b7732b245c3be",
+  "replacement_build": "57c2d93b6a9b2cc3578c4e606751629f",
+  "observation": {
+    "passed": false,
+    "stage": "M13.5",
+    "build_id": "f75973fdc3df5b84742b7732b245c3be",
+    "iso_sha256": "df3ebc122b0f577ff64139f6da9b1fb7550820564bbbb41f238b02933396c657",
+    "owned_fixture": "028abda5e3be44539d5d1481482c93ac",
+    "checks": [
+      "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds",
+      "Inactive frame differs visibly from the active owner; Minimize and its exact taskbar target restore the normal window",
+      "App icon and Alt+Space expose the same real menu; keyboard Move cancels and Size commits",
+      "All eight resize edges/corners operate alongside the caption hit rectangles; Escape restores a captured move",
+      "Partially off-screen windows keep a reachable menu; desktop Alt+F4/Alt+Space cannot act on a background window",
+      "Caption Close preserves unsaved text behind review; Keep editing returns to the same owner; file dialog blocks its owner caption/menu/Win-key geometry routes while unrelated captions remain available; explicit Discard closes it",
+      "Light/dark caption journeys retain zero managed pages and no new allocation failures; idle CPUs halt without repaint polling",
+      "Matching installed guide and two independent ordinary disk starts retain usable window controls"
+    ],
+    "profiles": [],
+    "resources": {
+      "before": [
+        1047,
+        1047,
+        17706,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        17706,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\chrome_native5.py\", line 127, in main\n    p=ui.Pointer(g);p.drain();c.open_settings(g,p);p.desktop(scale_action,True);p.close_app(3,True);p.drain();assert c.flag(g,'scale73')==(3 if label=='150' else 4)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (112, 64)\n",
+    "idle_observations": [
+      [
+        {
+          "attempt": 1,
+          "paints_before": 332,
+          "paints_after": 332
+        }
+      ],
+      [
+        {
+          "attempt": 1,
+          "paints_before": 7,
+          "paints_after": 7
+        }
+      ],
+      [
+        {
+          "attempt": 1,
+          "paints_before": 8,
+          "paints_after": 8
+        }
+      ]
+    ]
+  }
+}

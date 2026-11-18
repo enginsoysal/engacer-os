@@ -1,0 +1,75 @@
+{
+  "qualification_excluded": true,
+  "superseded_build": "f75973fdc3df5b84742b7732b245c3be",
+  "replacement_build": "57c2d93b6a9b2cc3578c4e606751629f",
+  "observation": {
+    "passed": false,
+    "build_id": "f75973fdc3df5b84742b7732b245c3be",
+    "iso_sha256": "df3ebc122b0f577ff64139f6da9b1fb7550820564bbbb41f238b02933396c657",
+    "physical": [
+      1024,
+      768
+    ],
+    "checks": [
+      "Minimize/exact-owner restore, maximize/normal restore, pointer move and resize cancellation preserve real bounds",
+      "Actual edge preview cancels safely; release and complementary-window choice place exact left/right halves and restore each independent normal rectangle",
+      "Dirty editor text survives minimizing, switching and snapping; a partially off-screen window retains a reachable real Move menu and returns on screen"
+    ],
+    "logical": [
+      1024,
+      768
+    ],
+    "scale_units": 2,
+    "before_close": {
+      "windows": [
+        {
+          "slot": 0,
+          "token": 8589934593,
+          "app": 1,
+          "minimized": false
+        },
+        {
+          "slot": 1,
+          "token": 4294967298,
+          "app": 1,
+          "minimized": false
+        },
+        {
+          "slot": 2,
+          "token": 4294967299,
+          "app": 2,
+          "minimized": false
+        }
+      ],
+      "focused": 1,
+      "context": 0,
+      "keyboard_move": 0
+    },
+    "close_failure": {
+      "windows": [
+        {
+          "slot": 0,
+          "token": 8589934593,
+          "app": 1,
+          "minimized": false
+        },
+        {
+          "slot": 1,
+          "token": 4294967298,
+          "app": 1,
+          "minimized": false
+        },
+        {
+          "slot": 2,
+          "token": 4294967299,
+          "app": 2,
+          "minimized": false
+        }
+      ],
+      "focused": 1,
+      "context": 0,
+      "menu": []
+    },
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\windows_profiles5.py\", line 45, in main\n    try:t.close_all(g,p)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 59, in close_all\n    target=records(g)[-1];focus(g,p,target);s.close(g,p)\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 38, in focus\n    assert f.model(g)[0]==slot and not next(w for w in records(g) if w['slot']==slot)['minimized']\nAssertionError\n"
+  }
+}

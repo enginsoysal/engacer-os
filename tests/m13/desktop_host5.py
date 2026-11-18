@@ -2,6 +2,7 @@
 import hashlib,json,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
+assert not (ROOT/'evidence/M13/5/publication-results.json').exists(),'Accepted stage is immutable'
 sys.path.insert(0,str(ROOT/'tools/build'))
 from m2 import pinned_tools
 OUT=ROOT/'build/m13/stage5/desktop-host';OUT.mkdir(parents=True,exist_ok=True)

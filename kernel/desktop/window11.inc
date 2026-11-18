@@ -62,7 +62,13 @@ static void window_drag_update11(unsigned x,unsigned y){desktop_window*w=desktop
  if(window_drag_edges11){if(window_drag_edges11&1){r.x+=dx;r.width-=dx;}if(window_drag_edges11&2)r.width+=dx;if(window_drag_edges11&4){r.y+=dy;r.height-=dy;}if(window_drag_edges11&8)r.height+=dy;
  if(r.width<minw){if(window_drag_edges11&1)r.x-=minw-r.width;r.width=minw;}if(r.height<minh){if(window_drag_edges11&4)r.y-=minh-r.height;r.height=minh;}}
  else{r.x+=dx;r.y+=dy;}
- unsigned preview=!drag_resize?(y<8?1:x<12?2:x>model.width-13?3:0):0;if(preview>=2&&!window_snap_allowed11(w))preview=0;
+ /* Keyboard Move uses a virtual grip that may be off screen. Only the
+    real pointer can propose an edge snap; Win+Left/Right remain explicit. */
+ unsigned preview=!drag_resize
+#ifdef ENGINE_M13
+ &&!window_keyboard_move11
+#endif
+ ?(y<8?1:x<12?2:x>model.width-13?3:0):0;if(preview>=2&&!window_snap_allowed11(w))preview=0;
  if(preview!=window_snap_preview11){window_snap_preview11=preview;whole();}
  desktop_rect old=w->bounds;unsigned cache=!drag_resize&&!window_snap_preview11&&!model.damaged&&model.count&&model.order[model.count-1]==(unsigned)(w-model.windows);desktop_place(&model,drag_window,r);if(cache)(void)move_cached9(old,w->bounds);
 }

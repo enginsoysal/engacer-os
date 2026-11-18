@@ -9,6 +9,7 @@ on:
       - 'docs/**'
       - '**/*.md'
       - '.github/workflows/brixcanvas-docs.yml'
+      - 'tests/m13/website_readback*.py'
   release:
     types: [published, edited]
   workflow_dispatch:
@@ -40,6 +41,8 @@ jobs:
         run: node --test website/brix/branding.test.mjs website/brix/sync.test.mjs website/brix/navigation.test.mjs website/brix/releases11.test.mjs website/brix/portal.test.mjs website/brix/provenance.test.mjs
       - name: Verify audit redirect and failure handling
         run: python website/brix/audit_test.py
+      - name: Verify bounded fresh readback and retained retry observations
+        run: python tests/m13/website_readback_test.py
       - name: Synchronize and verify native BrixCanvas articles
         env:
           GH_TOKEN: ${{ github.token }}

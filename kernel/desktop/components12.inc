@@ -30,7 +30,7 @@ static void component_hover12(i11_target next,unsigned buttons){
  if(i11_same(next,hover12)&&buttons==previous_buttons)return;
  window_hint_damage12(hover12,next);files_hint_damage12(hover12,next);
  files_name_tip_damage12(next);
- /* The full desktop name lives above the grid, outside the hovered tile. */
+ /* Full-name feedback lives outside the hovered tile and must repaint too. */
  if((!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+V6_ENTRIES)||(!next.window&&next.action>=F11_DESKTOP_ITEM&&next.action<F11_DESKTOP_ITEM+V6_ENTRIES))invalidate((desktop_rect){30,
 #ifdef ENGINE_M13
  (int)model.height-144,

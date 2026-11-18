@@ -1,0 +1,18 @@
+{
+  "qualification_excluded": true,
+  "superseded_build": "f75973fdc3df5b84742b7732b245c3be",
+  "replacement_build": "57c2d93b6a9b2cc3578c4e606751629f",
+  "observation": {
+    "passed": false,
+    "stage": "M13.5",
+    "build_id": "f75973fdc3df5b84742b7732b245c3be",
+    "iso_sha256": "df3ebc122b0f577ff64139f6da9b1fb7550820564bbbb41f238b02933396c657",
+    "owned_fixture": "ec86e1dc517a4d349b4128f3f51f961c",
+    "checks": [
+      "Caption hover/press/focus are distinct actual pixels; release outside cancels; Tab/Enter maximize and pointer restore preserve exact normal bounds"
+    ],
+    "profiles": [],
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\chrome_native5.py\", line 69, in main\n    task=next(r for r in controls(g) if r[4]==owner and r[5]==70);p.logical(task[0]+task[2]//2,task[1]+task[3]//2,True);p.drain();assert geometry(g)==normal\nStopIteration\n",
+    "idle_observations": []
+  }
+}

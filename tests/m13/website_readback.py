@@ -1,5 +1,6 @@
 """Retain failed reads while refreshing the current publication and crawl closure."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import importlib.util
 import json
@@ -12,6 +13,24 @@ ROOT = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location('site_audit', ROOT / 'website/brix/audit.py')
 audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(audit)
+
+def fresh_reads(urls, fetch=None, pause=None):
+    """Four independent read-only requests; retain every retry in stable URL order."""
+    fetch = fetch or audit.fetch
+    pause = pause or time.sleep
+    def one(url):
+        attempts = []
+        for attempt in range(3):
+            row = fetch(url)
+            attempts.append({'url': url, 'attempt': attempt+1, 'status': row['status'], 'error': row.get('error')})
+            if row['status'] == 200 and not row.get('soft_404'):
+                break
+            if attempt < 2:
+                pause(2*(attempt+1))
+        return url, row, attempts
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        return list(pool.map(one, sorted(urls)))
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -48,24 +67,19 @@ def main():
     pending = required | {r['url'] for r in initial_errors}
     attempts = []
     while pending:
-        url = sorted(pending)[0]
-        pending.remove(url)
-        assert len(results) < 600
-        for attempt in range(3):
-            row = audit.fetch(url)
-            attempts.append({'url': url, 'attempt': attempt+1, 'status': row['status'], 'error': row.get('error')})
-            if row['status'] == 200 and not row.get('soft_404'):
-                break
-            if attempt < 2:
-                time.sleep(2*(attempt+1))
-        results[url] = row
-        for href in row.get('links', []):
-            parsed = urlsplit(href)
-            query = parse_qs(parsed.query)
-            paging = set(query) == {'page'} and len(query['page']) == 1 and query['page'][0].isdigit() and 1 <= int(query['page'][0]) <= 100
-            normalized = urldefrag(href)[0]
-            if parsed.netloc == 'engaceros.brixcanvas.com' and (not parsed.query or paging) and not parsed.path.startswith(('/api/', '/_next/')) and normalized not in results:
-                pending.add(normalized)
+        batch = sorted(pending)
+        pending.clear()
+        assert len(set(results) | set(batch)) < 600
+        for url, row, reads in fresh_reads(batch):
+            attempts.extend(reads)
+            results[url] = row
+            for href in row.get('links', []):
+                parsed = urlsplit(href)
+                query = parse_qs(parsed.query)
+                paging = set(query) == {'page'} and len(query['page']) == 1 and query['page'][0].isdigit() and 1 <= int(query['page'][0]) <= 100
+                normalized = urldefrag(href)[0]
+                if parsed.netloc == 'engaceros.brixcanvas.com' and (not parsed.query or paging) and not parsed.path.startswith(('/api/', '/_next/')) and normalized not in results and normalized not in batch:
+                    pending.add(normalized)
     links = sorted({u for row in results.values() for u in row.get('links', [])})
     errors = [r for r in results.values() if r['status'] != 200 or r.get('soft_404')]
     stale = [u for u in links if urlsplit(u).netloc in audit.OLD_HOSTS or re.search(r'github(?:usercontent)?\.com/enginsoysal/codename-engine-os(?:/|$)', u)]
