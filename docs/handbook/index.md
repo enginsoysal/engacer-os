@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-**Current download: [Engacer OS M13.2](https://github.com/enginsoysal/engacer-os/releases/tag/m132-v0.13.2).** [Install in VMware](install-m132.md). This stage qualifies the welcoming setup journey on its named virtual profiles, including actual installed startup. [Release scope](../releases/m132-v0.13.2.md). Remaining M13 stages and final whole-product qualification are separate; matching public website verification passes.
+**Current download: [Engacer OS M13.3](https://github.com/enginsoysal/engacer-os/releases/tag/m133-v0.13.3).** [Install and use disk tools](install-m133.md). This stage qualifies the scoped native disk workspace, named virtual transport profiles and installed startup. [Release scope](../releases/m133-v0.13.3.md). Remaining M13 stages and final whole-product qualification are separate; matching public website verification is in progress.
 
 Earlier desktop guides remain useful for retained features. Their original test records qualify their historical media, not untested new bytes. Use the current installation/release guide for the new download.
 

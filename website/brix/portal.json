@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.2",
+  "currentRelease": "M13.3",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -37,7 +37,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m132.md",
+          "docs/handbook/install-m133.md",
           "Install and restart in VMware"
         ],
         [
@@ -45,7 +45,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m132-v0.13.2.md",
+          "docs/releases/m133-v0.13.3.md",
           "Check tested configurations and known limits"
         ]
       ]

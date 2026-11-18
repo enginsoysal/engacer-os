@@ -1,0 +1,47 @@
+✔ old public routes move to the canonical origin without losing the destination (1.6594ms)
+✔ repository links retain immutable commits, filenames, tags and anchors (0.4354ms)
+✔ old guide titles use the new brand and clearly identify their historical release (2.0962ms)
+✔ homepage separates M12 concepts from the native M11.6 download (2.784ms)
+✔ a qualified native M12 stage uses its own real capture, guide and scope (0.5042ms)
+✔ open observed issues remain visible on the native homepage until resolved (0.6082ms)
+✔ M12 design follows tested installation without replacing its release (1.5808ms)
+✔ M12 native guides replace older installation without hiding established tasks (2.3381ms)
+✔ current install and M11 user tasks precede architecture and history (0.3712ms)
+✔ numeric names sort naturally and every uncategorized article stays discoverable once (0.3259ms)
+✔ a new stage replaces the previous install/release in Start here; history stays last (0.4068ms)
+✔ M11.5 is first and the older M11.4 install guide stays in the archive (0.2669ms)
+✔ current task order is explicit and independent of publication date (2.515ms)
+✔ historical installs do not displace current instructions and all stay reachable (0.9872ms)
+✔ milestone identities sort numerically rather than compact filenames (0.3841ms)
+✔ missing curated source fails full publication instead of silently dropping it (0.7459ms)
+✔ full history sorts M0 through M13 with decimal and legacy compact stages (0.4049ms)
+✔ M13 home distinguishes design progress, current media and pending production search (1.132ms)
+✔ native M13 homepage uses matching stage and validated shared header navigation (42.7746ms)
+✔ published search metadata includes bounded current-guide headings and task aliases (16.8552ms)
+✔ unchanged docs retain their real revision; changed or falsely attributed bytes cannot pass (713.1678ms)
+✔ active M12 design is labeled separately and cannot replace a native download (1.7622ms)
+✔ stage downloads require all matching public assets and prefer the newest stage (0.3648ms)
+✔ M12 downloads require native assets, numeric stage order and public qualification (0.5323ms)
+✔ current assets remain separate and every historical release is reachable exactly once (1.5072ms)
+✔ publication rejects overlarge generated download or archive pages before API writes (2.8073ms)
+✔ release reruns keep immutable content source when publisher tooling advances (0.4797ms)
+✔ M13 selector requires published matching native media (0.4771ms)
+✔ publication retries only repeatable operations and obeys bounded server delay (1.828ms)
+✔ reject a key for any other site before writing (1.3636ms)
+✔ accept only the renamed canonical site identity (0.3049ms)
+✔ never overwrite a matching slug owned by the author rather than the publisher (0.4161ms)
+✔ preserve unrelated author articles (0.9783ms)
+✔ archive removed generated sources as drafts rather than delete them (0.2284ms)
+✔ recover only the exact, empty publisher-created draft (0.3804ms)
+✔ a mixed plan with a later collision is rejected before any operations are returned (0.191ms)
+✔ removed generated download archive pages become drafts while author pages remain untouched (0.1925ms)
+✔ generated archive excerpts explicitly replace the publisher-created draft marker (0.4058ms)
+✔ publication readback identifies a changed field without dumping whole article bodies (0.2305ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 845.283
