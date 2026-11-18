@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M13.8",
+  "build_id": "27d2c73f087a81d36ef7e71d6d11a966",
+  "iso_sha256": "ec24fe46cb8db16ee11d1cc4e2b6791d45083010aa5f6c20c045cb57a5939349",
+  "owned_fixture": "c55b446f437d41a98b590c89defdd623",
+  "checks": [
+    "Actual install/retained-ISO startup exposes four native categories; Cancel and closing restore previous visual state with an independently identical complete disk and no preference writes",
+    "A second real Settings generation cannot overwrite the first visual preview; its disabled controls explain ownership, closing it preserves the first, and Escape cancels only the actual owner",
+    "A real dirty Editor Save As retains its owner and exact text while Settings refuses persistence and scale changes; the complete disk remains unchanged and closing a color preview leaves the file dialog intact"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_native8.py\", line 26, in main\n    c.open_settings(g,p);settings=next(w for w in t.records(g) if w['app']==3);p.desktop(43,True);software=t.launch(g,p,'software',11);h.software_change(g,p,4);h.close(g,p);t.focus(g,p,settings);p.desktop(59005,True);assert h.colors(g)==initial;s.search(g,p,'calc');assert (1,4) not in s.results(g);c.key(g,'esc');c.key(g,'esc');t.focus(g,p,settings);p.desktop(59006,True);h.save(g,p);assert h.colors(g)==(0x087c71,0);assert h.appearance(g)[5:7]==(0x142c35,0);h.close(g,p);s.search(g,p,'calc');assert (1,4) not in s.results(g);c.key(g,'esc');c.key(g,'esc');t.launch(g,p,'software',11);h.software_change(g,p,4);h.close(g,p);t.launch(g,p,'calc',4);h.close(g,p)\nAssertionError\n",
+  "interpretation": "The inherited M12 assertion hard-coded its old default accent 0x087c71, while the actual M13 distribution declares 0x087e78. The adapted test now reads the shipped distribution default; no runtime default is changed to satisfy the stale expectation. Earlier failed results are not qualification."
+}

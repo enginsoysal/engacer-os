@@ -49,6 +49,13 @@ reviews. Cancel keeps your current work. Finish or cancel a file operation
 before saving another document. If a file changed elsewhere, use Save as
 with a new name to keep your edits before reopening the changed original.
 
+FIND A SETTING
+Open Settings and type in Find a setting, or press Ctrl+F. Search finds
+actually supported categories such as dark, scale, keyboard and contrast.
+Choose a result or press Enter to open it. Clear search returns to browsing.
+Search stays in its window and does not save or change a preference.
+Escape clears search, then leaves it, before cancelling an appearance preview.
+
 MAKE IT YOURS
 Settings has Appearance, Display, Input, System and Accessibility. Appearance
 and Display

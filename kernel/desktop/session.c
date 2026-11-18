@@ -130,6 +130,9 @@ static i11_target feedback_target14(int,int);
 #include "appearance11-state.inc"
 #ifdef ENGINE_M12
 #include "settings13-state.inc"
+#ifdef ENGINE_M13
+#include "settings18-state.inc"
+#endif
 #include "accessibility16-state.inc"
 #endif
 static unsigned guide_open11;static desktop_rect guide_bounds11;
@@ -365,7 +368,13 @@ static uint64_t launch(unsigned kind,const char *path) {
 #endif
     }
 #ifdef ENGINE_M73
-    if(kind==SETTINGS)desktop_place(&model,token,(desktop_rect){((int)model.width-700)/2,((int)model.height-60-550)/2,700,550});
+    if(kind==SETTINGS){
+#ifdef ENGINE_M13
+ desktop_place(&model,token,(desktop_rect){((int)model.width-800)/2,((int)model.height-60-650)/2,800,650});
+#else
+ desktop_place(&model,token,(desktop_rect){((int)model.width-700)/2,((int)model.height-60-550)/2,700,550});
+#endif
+ }
 #endif
     if(kind==TERMINAL){copy(app->text,"" ENGINE_PRODUCT_NAME " advanced terminal. Type help for commands.\nUse menu, exit or Escape to close this window.\nengine> ",sizeof(app->text));app->length=length(app->text);}
     if(kind==DOWNLOADS){copy(app->text,"https://raw.githubusercontent.com/enginsoysal/engacer-os/main/LICENSE",sizeof(app->text));app->length=app->cursor=length(app->text);}
@@ -1246,6 +1255,9 @@ static void pointer(void) {
         if(drag_resize){r.width+=dx;r.height+=dy;if(r.width<480)r.width=480;desktop_window *resizing=desktop_lookup(&model,drag_window);int minimum=resizing&&resizing->app==DOWNLOADS?460:420;
 #ifdef ENGINE_M73
         if(resizing&&resizing->app==SETTINGS)minimum=550;
+#ifdef ENGINE_M13
+        if(resizing&&resizing->app==SETTINGS)minimum=600;
+#endif
 #endif
 #ifdef ENGINE_M74
         if(resizing){int width=480;

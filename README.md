@@ -1,6 +1,6 @@
 # Engacer OS
 
-**Current development: [M13.7 - Files as the everyday workspace](docs/milestones/m13-7.md). Native qualification, release, independent downloads and complete public website verification pass.** M13.8-M13.12 have not started.
+**Current development: [M13.8 - Settings, errors and recovery](docs/milestones/m13-8.md). Implementation and native tests are in progress. M13.7 remains the qualified download.** M13.8 is in progress; M13.9-M13.12 have not started.
 **M13.7 / 0.13.7 passes M13-STAGE7-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m137-v0.13.7), [navigate and filter folders](docs/handbook/files-m137.md). 75 native task/profile checks, five complete Files display journeys, applied themes, real provider/transfer tasks and exact enabled-device VMware startup bind these media. Public delivery passes: 471 pages, 302 exact-source articles and 3,311 links. [Publication receipt](evidence/M13/7/publication-results.json).
 
 

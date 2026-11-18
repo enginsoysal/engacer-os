@@ -1,0 +1,23 @@
+{
+  "passed": false,
+  "stage": "M13.8",
+  "build_id": "27d2c73f087a81d36ef7e71d6d11a966",
+  "iso_sha256": "ec24fe46cb8db16ee11d1cc4e2b6791d45083010aa5f6c20c045cb57a5939349",
+  "physical": [
+    1920,
+    1080
+  ],
+  "configured_guest_mib": 512,
+  "owned_fixture": "5654f3c9f2184c499a6a29d0caf8b7e2",
+  "host_observer": {
+    "immutable_map_sha256": {
+      "false": "b40ed13cd552653dae515fd20693a541ee6652a3208bb3daa75f80a74725dbc6",
+      "true": "cfc93f20a0257fb5e4e66f3afd6174a0063fcf3858d0f798cad6d89542d44cba"
+    },
+    "maximum_symbol_cache_entries": 512,
+    "mutable_guest_state_cached": false,
+    "qmp_client_tcp_nodelay": true
+  },
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_search8.py\", line 38, in main\n    search(g,p,term);matches=[r[5]-61210 for r in f.current_controls(g) if 61210<=r[5]<61215];assert matches==[page],(term,matches);c.shot(g,'search-'+term);c.key(g,'ret');assert h.page(g)==page and query(g)==''\nAssertionError: ('scale', [])\n"
+}

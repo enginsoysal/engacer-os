@@ -5,7 +5,11 @@ static void window_minimum11(unsigned app,int*width,int*height){*width=480;*heig
 #ifdef ENGINE_M12
  if(app==FILES)*width=500;
 #endif
- if(app==SETTINGS){*width=700;*height=550;}if(app==DOWNLOADS)*height=460;
+ if(app==SETTINGS){*width=700;*height=550;
+#ifdef ENGINE_M13
+ *height=600;
+#endif
+ }if(app==DOWNLOADS)*height=460;
  if(app==CALCULATOR){*width=660;*height=650;}if(app==CLOCK74){*width=700;*height=510;}
  if(app==CALENDAR74){*width=760;*height=640;}if(app==DISKS74||app==RECOVERY74){*width=850;*height=620;}
  if(app==SOFTWARE74){*width=820;*height=620;}if(app==IMAGES74)*width=640;

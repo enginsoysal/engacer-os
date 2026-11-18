@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.7",
+  "current_stage": "M13.8",
   "qualified_download": "M13.7",
   "design_only": false,
   "stages": [
@@ -78,7 +78,7 @@
     {
       "id": "M13.8",
       "title": "Settings, errors and recovery form one product",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.9",

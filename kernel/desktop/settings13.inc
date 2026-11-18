@@ -8,13 +8,25 @@ static unsigned settings_scale13(application*a,unsigned choice){if(picker_live12
 static unsigned settings_cancel13(uint64_t token){desktop_window*w=desktop_lookup(&model,token);if(!w||settings_preview13.owner!=token)return 1;application*a=&apps[w-model.windows];if(ui73_scale_choice()!=settings_preview13.scale&&!settings_scale13(a,settings_preview13.scale)){whole();return 0;}preferences.accent=settings_preview13.accent;preferences.dark=settings_preview13.dark;appearance11.accent=preferences.accent;appearance11.dark=preferences.dark;appearance11.scale=settings_preview13.scale;appearance11.wallpaper=settings_preview13.wallpaper;appearance11.pattern=settings_preview13.pattern;settings_preview13.owner=0;notice(a,"Preview cancelled. Your previous session appearance is restored; no settings were written.");whole();return 1;}
 static unsigned settings_close13(uint64_t token){desktop_window*w=desktop_lookup(&model,token);if(!w)return 1;if(!settings_cancel13(token))return 0;settings_page13[w-model.windows]=0;return 1;}
 static void settings_button13(uint64_t token,int x,int y,int width,const char*label,unsigned command,unsigned selected,unsigned enabled){if(enabled)access_capture16(token,command,label,1);ui12_palette p=desktop_palette16();unsigned state=enabled?component_state12(token,command):UI12_DISABLED;ui12_style style=ui12_control_style(p,state|(selected?UI12_SELECTED:0),0);unsigned inset=(state&UI12_FOCUS)?3:1;ui73_round(x,y,width,36,6,style.border);ui73_round(x+inset,y+inset,width-2*inset,36-2*inset,6-inset,style.fill);ui73_fit(x+10,y+8,width-20,label,UI12_BODY,style.ink);if(enabled&&control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){{x,y,width,36},token,command};}
+#ifdef ENGINE_M13
+#include "settings18-model.inc"
+#endif
 static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x=w->bounds.x+24,y=w->bounds.y+56,width=w->bounds.width-48;unsigned page=settings_page13[w-model.windows],other=settings_other13(token);ui12_palette p=desktop_palette16();const char*titles13[]={"Appearance","Display","Mouse and keyboard","System","Accessibility"
 #ifdef ENGINE_M13
  ,"Interface preview"
 #endif
  };ui73_fit(x,y,width,titles13[page],UI12_HEADING,p.ink);
- const char*names[]={"Appearance","Display","Input","System","Accessibility"};int tab=(width-32)/5;for(unsigned i=0;i<5;++i)settings_button13(token,x+(tab+8)*(int)i,y+40,tab,names[i],S13_APPEARANCE+i,page==i,1);
- int top=y+96;
+ const char*names[]={"Appearance","Display","Input","System","Accessibility"};int tab=(width-32)/5;
+#ifdef ENGINE_M13
+ settings_search_record18*search=settings_query18(token);settings_search_draw18(w,token,x,y+34,width);
+ int tabs=y+84,top=y+144;
+#else
+ int tabs=y+40,top=y+96;
+#endif
+ for(unsigned i=0;i<5;++i)settings_button13(token,x+(tab+8)*(int)i,tabs,tab,names[i],S13_APPEARANCE+i,page==i,1);
+#ifdef ENGINE_M13
+ if(search->query[0]){settings_search_results18(token,x,top,width);goto settings_footer18;}
+#endif
  if(page==0){ui73_fit(x,top,width,"Accent color",UI12_BODY,p.ink);const char*colors[]={"Mint","Lavender","Amber","Default"};const unsigned values[]={0x62e5bd,0x9caeff,0xf4c47c,DISTRO_ACCENT};for(unsigned i=0;i<4;++i)settings_button13(token,x+(int)i*112,top+26,104,colors[i],i==3?S13_ACCENT_DEFAULT:STYLE_MINT+i,preferences.accent==values[i],!other);
   ui73_fit(x,top+82,width,"Windows",UI12_BODY,p.ink);settings_button13(token,x,top+108,148,"Light",STYLE_PAPER,!preferences.dark,!other);settings_button13(token,x+160,top+108,148,"Dark",STYLE_DARK,preferences.dark,!other);
   ui73_fit(x,top+164,width,"Wallpaper",UI12_BODY,p.ink);const char*papers[]={"Ocean","Night","Paper"};const unsigned paper_colors[]={0x142c35,0x182039,0xd7e4e9};for(unsigned i=0;i<3;++i)settings_button13(token,x+(int)i*112,top+190,104,papers[i],45000+i,appearance11.wallpaper==paper_colors[i],!other);settings_button13(token,x+336,top+190,width-336,appearance11.pattern==0?"Gradient":appearance11.pattern==1?"Solid":"Horizon",45003,0,!other);
@@ -44,11 +56,21 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
  settings_button13(token,x,top+176,224,"Interface preview",59007,0,1);
 #endif
  ui73_paragraph(x,top+224,width,2,"Removing an optional app does not remove the desktop, tray or your personal files.",p.muted);}
+#ifdef ENGINE_M13
+ settings_footer18:;
+#endif
  int footer=w->bounds.y+w->bounds.height-116;if(page<2){settings_button13(token,x,footer,164,"Apply and save",PREFERENCES_SAVE,0,!other);settings_button13(token,x+176,footer,164,"Cancel preview",S13_CANCEL,0,settings_preview13.owner==token);settings_button13(token,x+352,footer,width-352,"Restore defaults",S13_DEFAULTS,0,!other);}
  const char*message=other?"Apply or cancel the preview in the other Settings window first.":a->notice[0]?a->notice:settings_dirty13()?"Appearance preview is not saved. Apply keeps it; Cancel or closing restores it.":page<2?"Preview changes before saving. Restore defaults previews this distribution's appearance.":page==2?"Input choices save immediately. Appearance previews keep their separate Apply / Cancel controls.":page==4?(access_invalid16?"Saved accessibility choices were invalid. Safe defaults are active; choose a setting to save a valid record.":"Choices save independently. High contrast overrides your theme; switching it off restores it. Reduced motion removes shadows and decorative control movement."):"Choose Devices, installed apps or Start preferences to manage your system.";unsigned review=file_dialog_state11.mode&&desktop_lookup(&model,file_dialog_state11.owner)&&file_dialog_state11.owner!=token&&a->notice[0];if(review)button(token,x+width-172,w->bounds.y+w->bounds.height-64,172,"Show current dialog",60003,0);ui73_paragraph(x,w->bounds.y+w->bounds.height-64,width-(review?184:0),2,message,p.ink);
 }
 static unsigned settings_action13(uint64_t token,unsigned command){desktop_window*w=desktop_lookup(&model,token);if(!w||w->app!=SETTINGS)return command>=S13_APPEARANCE&&command<=S13_CLICK_SLOW;application*a=&apps[w-model.windows];unsigned slot=w-model.windows;
- if(command>=S13_APPEARANCE&&command<=S13_ACCESS){settings_page13[slot]=command-S13_APPEARANCE;a->hardware_view10=0;a->offset=0;a->notice[0]=0;control_active=0;whole();return 1;}
+#ifdef ENGINE_M13
+ if(settings_search_action18(token,command))return 1;
+#endif
+ if(command>=S13_APPEARANCE&&command<=S13_ACCESS){settings_page13[slot]=command-S13_APPEARANCE;
+#ifdef ENGINE_M13
+ settings_search_clear18(token);
+#endif
+ a->hardware_view10=0;a->offset=0;a->notice[0]=0;control_active=0;whole();return 1;}
 #ifdef ENGINE_M13
  if(command==59007){settings_page13[slot]=5;a->length=0;a->text[0]=0;a->year74=0;a->notice[0]=0;control_active=0;whole();return 1;}
  if(settings_page13[slot]==5&&command>=60100&&command<=60103){
@@ -76,6 +98,7 @@ static unsigned settings_action13(uint64_t token,unsigned command){desktop_windo
 }
 static unsigned settings_key13(int key){
 #ifdef ENGINE_M13
+ if(settings_search_key18(key))return 1;
  if(!launcher&&!context11&&!guide_open11&&!file_dialog_state11.mode&&model.focused<DESKTOP_WINDOWS){
   desktop_window*w=&model.windows[model.focused];uint64_t token=desktop_token(&model,model.focused);
   if(w->live&&!w->minimized&&w->app==SETTINGS&&settings_page13[model.focused]==5&&control_active&&focused_control_window==token&&focused_action==60102&&!(input11_modifiers()&~2u)){
