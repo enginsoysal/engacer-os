@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "status": "blocked_by_automatic_execution_review",
+  "stated_reason": "blocked by policy",
+  "scope": "Requested removal of 28 newly generated M13.2/M13.3 disposable QEMU fixture suites after publication; canonical source, evidence, dist and historical workspaces were excluded",
+  "files_removed": 0,
+  "action_retried": false,
+  "milestone_work_continues": true
+}
