@@ -1,0 +1,180 @@
+{
+  "passed": false,
+  "status": "partial_integration_checkpoint_remaining_native_tasks_running",
+  "checked_at": "2026-11-18T19:32:03.343635+00:00",
+  "stage": "M13.12",
+  "build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "iso_sha256": "1ea953fb49bb4e73a0468eaeda7f5005deeab0f07f9f89db071b1f2613b0c688",
+  "completed_controller_profiles": [
+    {
+      "profile": "buslogic-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "aedc0ed223396d72c5e4e30af2d3c495b17df1e1284df5caf2f81fa09866f36e"
+    },
+    {
+      "profile": "ide-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "ce847d5b6540645a0be9cdcc4cae3e5a553c4351427050f75a128bae25418f25"
+    },
+    {
+      "profile": "ide-efi",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "030266e63e17074b82e53e6220bea4f8244c3c25c6468414f90a6f899b06a132"
+    },
+    {
+      "profile": "lsilogic-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "67c72df782ce705554d493e0fb35879e222030f13f7f645093657e2f3d8144b0"
+    },
+    {
+      "profile": "lsilogic-efi",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "d712d48b913fcd94059c9daf573fd83085662a89368d644f670ebfbd6ae94ec2"
+    },
+    {
+      "profile": "lsisas1068-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "2283d9e6a1bf0059ba9d57bc6b47a628b351dbb8d8b6152e92d2cb26ef77b0ff"
+    },
+    {
+      "profile": "lsisas1068-efi",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "9bf7dc5d16ffa6012952bfea2b2900a34756089c38277f9986151fb753300e83"
+    },
+    {
+      "profile": "nvme-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "c8038ea3fdf55f5a5125671da095338f04d9fee8c6fd59acea82aad49af5e650"
+    },
+    {
+      "profile": "nvme-efi",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "4877ac4ccadae91db7c42f54fc3aec36ecf89a527b10f066e826c5180d2a64bc"
+    },
+    {
+      "profile": "pvscsi-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "ad8e32b872a379880ad770fc0dcd5beeef846d98fb2f2015973a69d88f26c405"
+    },
+    {
+      "profile": "pvscsi-efi",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "82d736fb2ef5a34ea893832b14b21a1de9fceb10318666b9bfc2613220e3634e"
+    },
+    {
+      "profile": "sata-bios",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "b5488da3501c75afd33e42fe8e816f0f772ec5f24e6068a822d47484a4175658"
+    },
+    {
+      "profile": "sata-efi",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 0,
+      "report_sha256": "824b7cab573d1e9749471de455626738aa58f383513201701b77306f048b79bf"
+    },
+    {
+      "profile": "sata-efi-starter",
+      "checks": [
+        "All shipped devices enabled: real eight-step 20-GiB installation, retained-ISO reset into the actual installed kernel, DHCP and persistent graphical folder creation",
+        "Same VMX, disk and firmware variables: two disk-only starts with CD disconnected and no forced firmware boot order; independently verified persistent folder",
+        "Every distribution guide and binary sample independently matches its exact stored bytes",
+        "Original 7-Zip MSI install/run/archive/extract/remove/reinstall, protected-worker hardware input, 106 payload hashes and exact archived/extracted document bytes"
+      ],
+      "all_shipped_devices_enabled": true,
+      "existing_vm_inventory_unchanged": true,
+      "original_payload_count": 106,
+      "report_sha256": "360bdc407a51ddca80e4209dd556fa7d3f185abe8700d217ea553d4728bcd07e"
+    }
+  ],
+  "scope": "All fourteen installation/retained-ISO/two-independent-start controller profiles and original MSI lifecycle pass. Remaining native task, source/media, release and website gates are not yet complete. Stability remains exclusively M13.13."
+}
