@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "stage": "M13.4",
+  "post_closure_source": "37fe2584e83a00f0670e1f67afa6e35f601ac1c3",
+  "checked_at": "2026-11-18T03:20:30.446597+00:00",
+  "scope": "Immutable full publication receipt plus final status/manual readback after its successful publisher run; all 602 compiled source blobs still match the released media.",
+  "articles": [
+    {
+      "slug": "docs-readme",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-handbook-index",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-milestones-m13-4",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-milestones-m13",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-releases-m134-v0-13-4",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-roadmap-status",
+      "status": 200,
+      "matching_canonical_source": true
+    },
+    {
+      "slug": "docs-website-readme",
+      "status": 200,
+      "matching_canonical_source": true
+    }
+  ],
+  "workflow_id": 44229454980,
+  "native_home_save": "Saved ✓",
+  "homepage_release": "M13.4"
+}
