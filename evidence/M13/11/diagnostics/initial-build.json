@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "phase": "compile",
+  "reason": "Settings Interface preview button received an extra title-array string argument; compiler refused the build before any candidate qualification",
+  "correction": "Restrict the Screensaver label to the title array; retain the existing Interface preview signature",
+  "natural_freeze": false
+}

@@ -71,7 +71,7 @@ static void settings_draw13(desktop_window*w,application*a,uint64_t token){int x
 #endif
  }else{ui73_paragraph(x,top,width,2,"Required system services stay independent of optional applications.",p.ink);settings_button13(token,x,top+64,224,"Devices and hardware",DEVICES10,0,1);settings_button13(token,x+240,top+64,width-240,"Applications",10000,0,1);settings_button13(token,x,top+120,224,"Start and taskbar",45004,0,1);settings_button13(token,x+240,top+120,width-240,"Quick settings",TR12_OPEN,0,1);
 #ifdef ENGINE_M13
- settings_button13(token,x,top+176,224,"Interface preview","Screensaver",59007,0,1);
+ settings_button13(token,x,top+176,224,"Interface preview",59007,0,1);
 #endif
  ui73_paragraph(x,top+224,width,2,"Removing an optional app does not remove the desktop, tray or your personal files.",p.muted);}
  int footer=w->bounds.y+w->bounds.height-116;if(page<2){settings_button13(token,x,footer,164,"Apply and save",PREFERENCES_SAVE,0,!other);settings_button13(token,x+176,footer,164,"Cancel preview",S13_CANCEL,0,settings_preview13.owner==token);settings_button13(token,x+352,footer,width-352,"Restore defaults",S13_DEFAULTS,0,!other);}
