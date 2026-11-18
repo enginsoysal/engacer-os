@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.2",
+  "current_stage": "M13.3",
   "qualified_download": "M13.2",
   "design_only": false,
   "stages": [
@@ -33,7 +33,7 @@
     {
       "id": "M13.3",
       "title": "Understandable disks and safe disk tools",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.4",

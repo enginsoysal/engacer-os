@@ -11,11 +11,13 @@ static void u71_open(unsigned disk){if(screen->framebuffer_width<1024||screen->f
 static const char*u71_scheme(void){switch(u71_state.scheme){case D71_BLANK:return "Blank boot metadata";case D71_GPT:return u71_state.editable?"GPT - verified mirrors":"GPT - needs repair / read-only";case D71_MBR:return u71_state.editable?"MBR - primary partitions":"MBR - damaged / read-only";case D71_DAMAGED:return "Damaged or unsupported GPT";default:return "Unknown disk contents";}}
 static const char*u71_title(unsigned op){switch(op){case D71_ERASE:return "Clear ALL partition metadata";case D71_INITIALIZE:return "Create an empty GPT table";case D71_CREATE:return "Create a data partition";case D71_DELETE:return "Delete this partition";case D71_FAT32:return "Quick format as FAT32";case D71_NATIVE:return "Quick format as native data";case D71_REPAIR_PRIMARY:return "Rebuild GPT from primary copy";default:return "Rebuild GPT from backup copy";}}
 #ifdef ENGINE_M73
-static void u71_identity(unsigned x,unsigned y){char b[32]="Disk ";decimal((uint64_t)u71_disk+1,b+5);label(x,y,b,1,0xffffff);textnum(x+125,y,u71_target.sectors/2048," MiB");label(x,y+28,m6_target_writable(&u71_target)&&u71_target.sector_bytes==512?"supported disk - 512-byte sectors":"Inspection only - unsupported installation target",1,0xb7cbd8);}
+static void __attribute__((unused)) u71_identity(unsigned x,unsigned y){char b[32]="Disk ";decimal((uint64_t)u71_disk+1,b+5);label(x,y,b,1,0xffffff);textnum(x+125,y,u71_target.sectors/2048," MiB");label(x,y+28,m6_target_writable(&u71_target)&&u71_target.sector_bytes==512?"supported disk - 512-byte sectors":"Inspection only - unsupported installation target",1,0xb7cbd8);}
 #else
-static void u71_identity(unsigned x,unsigned y){char b[32]="Disk ";decimal((uint64_t)u71_disk+1,b+5);label(x,y,b,2,0xffffff);textnum(x+125,y,u71_target.sectors/2048," MiB");textnum(x,y+28,u71_target.bdf," controller BDF");textnum(x+250,y+28,u71_target.unit," port/unit");}
+static void __attribute__((unused)) u71_identity(unsigned x,unsigned y){char b[32]="Disk ";decimal((uint64_t)u71_disk+1,b+5);label(x,y,b,2,0xffffff);textnum(x+125,y,u71_target.sectors/2048," MiB");textnum(x,y+28,u71_target.bdf," controller BDF");textnum(x+250,y+28,u71_target.unit," port/unit");}
 #endif
-#ifdef ENGINE_M73
+#if defined(ENGINE_M13)
+#include "disk13-ui.inc"
+#elif defined(ENGINE_M73)
 #include "disk73-ui.inc"
 #else
 static void u71_draw(unsigned x,unsigned y){
@@ -59,7 +61,13 @@ static unsigned u71_action(unsigned a){if(!u71_mode)return 0;if(a>=210&&a<=230&&
  else if(a==221){if(u71_row>=u71_state.count&&u71_row<u71_state.count+u71_state.gaps){d71_gap g=u71_state.free[u71_row-u71_state.count];decimal((g.last-g.first+1)/2048,u71_size);}}
  else if(a==223)u71_review(D71_CREATE);else if(a==224)u71_review(D71_FAT32);else if(a==225)u71_review(D71_NATIVE);
  else if(a==226)u71_consent^=1;else if(a==227){u71_mode=1;u71_consent=0;u71_notice="Cancelled. Nothing was written.";}
- else if(a==228){if(!u71_consent)u71_notice="Confirm the checkbox first, or Keep / Cancel.";else {label(body,top+110,"Working. Keep the disk connected.",2,0xffffff);unsigned s=d71_apply(&u71_device,&u71_state,&u71_plan,m71_workspace());u71_mode=1;u71_consent=0;u71_refresh();u71_notice=d71_error(s);serial_text(s?"M71_DISK_FAILED code=":"M71_DISK_APPLIED op=");serial_hex(s?s:u71_op);serial_text("\n");}}
+ else if(a==228){if(!u71_consent)u71_notice="Confirm the checkbox first, or Keep / Cancel.";else {
+#ifdef ENGINE_M13
+u13_working();
+#else
+label(body,top+110,"Working. Keep the disk connected.",2,0xffffff);
+#endif
+unsigned s=d71_apply(&u71_device,&u71_state,&u71_plan,m71_workspace());u71_mode=1;u71_consent=0;u71_refresh();u71_notice=d71_error(s);serial_text(s?"M71_DISK_FAILED code=":"M71_DISK_APPLIED op=");serial_hex(s?s:u71_op);serial_text("\n");}}
  else if(a!=220&&a!=222)return 1;
  render();return 1;
 }

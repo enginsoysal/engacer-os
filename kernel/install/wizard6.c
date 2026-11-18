@@ -90,6 +90,9 @@ static void render_body9(void){
 #else
 static void render(void){
 #endif
+#ifdef ENGINE_M13
+ if(u71_mode){previous_mode75=1;controls=0;gui7_clip_reset();u13_frame();u71_draw(body+12,top+98);serial_text("M73_VIEW step=");serial_hex(step);serial_text("\n");return;}u13_framed=0;
+#endif
 #ifdef ENGINE_M72
  if(!u71_mode&&!diagnostics&&!failure&&!installed){render72();return;}
 #endif

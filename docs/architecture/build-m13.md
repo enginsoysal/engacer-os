@@ -6,7 +6,7 @@ Prepare the external scratch directory once, then build the next authorized stag
 
 ```powershell
 pwsh -NoProfile -File tools/build/prepare-m13.ps1
-python tools/build/m13.py --stage 1
+python tools/build/m13.py --stage 3
 ```
 
 The preparation script creates `build/m13-native` as a junction to LocalAppData `EngacerOS/Build/m13`. It never deletes or replaces an existing path. Keep the final directory named `m13`: retained font/package generators dispatch on this isolated build identity. The separate `build/m13` folder contains small reports and design metadata. Large VM fixtures and raw framebuffer observations stay in external owned workspaces.
