@@ -1,0 +1,13 @@
+{
+  "qualification_excluded": true,
+  "reason": "The new alignment test read zero launcher bounds after its initial action. Preserve the failure and add an actual frame/state diagnostic before interpreting it as native behavior.",
+  "observation": {
+    "passed": false,
+    "stage": "M13.6",
+    "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+    "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+    "checks": [],
+    "layouts": [],
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\alignment6.py\", line 22, in <module>\n    at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();t.close(g,p);before=f.stats(g);check(g,'left-default',0)\n  File \"<project-root>\\tests\\m13\\alignment6.py\", line 16, in check\n    assert b[0]==((logical_width-b[2])//2 if centered else 16),(b,logical_width)\nAssertionError: ((0, 0, 0, 0), 1280)\n"
+  }
+}

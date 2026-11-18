@@ -119,7 +119,7 @@ def main():
             for n in (1,2):
                 boot=ui.guest(work/f'ordinary-{n}',disk,media='installed',ready='M7_DESKTOP_READY');ui.s.normal_boot(boot,work/'install/vars.fd')
                 with boot as g:
-                    p=ui.Pointer(g);p.drain();assert bytes(s.prefs(g))==saved and group_order(g)==[1,7,2,4,8,9];assert len(group_controls(g))==8;c.shot(g,f'ordinary-{n}');p.desktop(43101,True);assert records(g)[0]['minimized'];p.desktop(43101,True);c.idle(g);(out/f'ordinary-{n}.log').write_bytes(g.log().encode())
+                    p=ui.Pointer(g);p.drain();assert bytes(s.prefs(g))==saved and group_order(g)==[1,7,2,4,8,9,14,16];assert len(group_controls(g))==8;c.shot(g,f'ordinary-{n}');p.desktop(43101,True);assert records(g)[0]['minimized'];p.desktop(43101,True);c.idle(g);(out/f'ordinary-{n}.log').write_bytes(g.log().encode())
             report['checks'].append('Two ordinary no-ISO starts preserve exact independently read pin/order preferences and restore the live Files group without a duplicate window button')
         report['passed']=True
     except Exception:report['error']=ui.q.clean(traceback.format_exc());raise

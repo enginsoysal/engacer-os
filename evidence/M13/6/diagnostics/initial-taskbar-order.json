@@ -1,0 +1,38 @@
+{
+  "qualification_excluded": true,
+  "reason": "All native interaction/resource tasks passed; the first disk-only-start assertion retained the old six-group capacity while simultaneously asserting eight controls. Correct expectation is all eight retained pins; repeat both independent starts on the exact same disk/media.",
+  "harness_sha256": "82916968718aa74c5a11e7d563365b4d9817d7d9a1b801ce3cf167308e9a13d1",
+  "observation": {
+    "passed": false,
+    "stage": "M13.6",
+    "development_only": false,
+    "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+    "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+    "owned_fixture": "6722e6db27294cba8bf8614821ea354d",
+    "checks": [
+      "Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window",
+      "Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window",
+      "Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window",
+      "Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button",
+      "Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable",
+      "Eight pins and eight distinct running apps remain reachable through bounded overflow with stable order across focus changes; selecting a hidden app focuses its real window and the eight-window quota refuses another without losing existing windows"
+    ],
+    "resources": {
+      "before": [
+        1047,
+        1047,
+        17706,
+        5
+      ],
+      "after": [
+        1047,
+        1073,
+        17706,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "preferences_sha256": "c3069ddfdf44b98a63d8557ba83041585fc9ba95d16cadae8411e1cfacf35ee8",
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\taskbar_native6.py\", line 122, in main\n    p=ui.Pointer(g);p.drain();assert bytes(s.prefs(g))==saved and group_order(g)==[1,7,2,4,8,9];assert len(group_controls(g))==8;c.shot(g,f'ordinary-{n}');p.desktop(43101,True);assert records(g)[0]['minimized'];p.desktop(43101,True);c.idle(g);(out/f'ordinary-{n}.log').write_bytes(g.log().encode())\nAssertionError\n"
+  }
+}

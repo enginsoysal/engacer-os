@@ -1,0 +1,66 @@
+{
+  "qualification_excluded": true,
+  "reason": "Retained original observation before normal Dismiss and consecutive-idle/rendered-target readiness were applied by the new read-only test observer; native source/media remain unchanged.",
+  "observation": {
+    "passed": false,
+    "stage": "M13.6",
+    "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+    "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+    "owned_fixture": "a6f54df3abb14f598e6a1ce8a7218f86",
+    "profile": "150",
+    "physical": [
+      1920,
+      1200
+    ],
+    "checks": [
+      "Real install and retained-ISO installed startup reach a compact Start with six real app/folder pins",
+      "Typing local search launches no window and retains no pages; Enter launches the installed Calculator",
+      "Create/rename/hide/reorder categories and context assignment preserve searchability of hidden-category apps",
+      "Renaming/reordering pins changes labels only; local alias search and two-step Escape work",
+      "Start/taskbar context pinning and explicit unpinning preserve the installed app",
+      "Empty search explains recovery; All apps grid/list and arrow movement use the drawn column count",
+      "Actual optional Calculator removal prunes both pin sets and search; reinstall restores launch without breaking the desktop",
+      "A real folder result opens its native path using stable pin identity",
+      "Real light/dark/high-contrast Start frames use the same catalogue, icon hit targets and readable focus; Settings changes return to the same independent desktop"
+    ],
+    "pinned_tiles": [
+      [
+        36,
+        352,
+        137,
+        88
+      ],
+      [
+        181,
+        352,
+        137,
+        88
+      ],
+      [
+        326,
+        352,
+        137,
+        88
+      ],
+      [
+        471,
+        352,
+        137,
+        88
+      ],
+      [
+        616,
+        352,
+        137,
+        88
+      ],
+      [
+        36,
+        448,
+        137,
+        88
+      ]
+    ],
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\start_native6.py\", line 91, in main\n    p.desktop(0,True);p.desktop(42019,True);f.menu(g,p,42020);assert c.flag(g,'start_confirm11')==1;c.shot(g,'restart-review');p.desktop(42022,True);assert not c.flag(g,'start_confirm11');c.key(g,'esc');assert windows(g)==0\nAssertionError\n"
+  }
+}

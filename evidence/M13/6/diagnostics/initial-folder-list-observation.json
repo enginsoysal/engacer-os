@@ -1,0 +1,64 @@
+{
+  "qualification_excluded": true,
+  "reason": "Filesystem helper already independently confirmed the new directory, but an immediate read of the renderer list cache did not include it. A bounded read-only observation wait is under test, without forced Refresh or guest memory writes.",
+  "observation": {
+    "passed": false,
+    "stage": "M13.6",
+    "build_id": "43fb63246919e57cbca51fb54bdc4be1",
+    "iso_sha256": "9817308547a48622c02ef17f83d4b7b58078c29c317670ad9a380752f55d71b5",
+    "owned_fixture": "a009123f66c844668deb37a7beeca9e1",
+    "profile": "ordinary",
+    "physical": [
+      1920,
+      1080
+    ],
+    "checks": [
+      "Real install and retained-ISO installed startup reach a compact Start with six real app/folder pins",
+      "Typing local search launches no window and retains no pages; Enter launches the installed Calculator",
+      "Create/rename/hide/reorder categories and context assignment preserve searchability of hidden-category apps",
+      "Renaming/reordering pins changes labels only; local alias search and two-step Escape work",
+      "Start/taskbar context pinning and explicit unpinning preserve the installed app",
+      "Empty search explains recovery; All apps grid/list and arrow movement use the drawn column count",
+      "Actual optional Calculator removal prunes both pin sets and search; reinstall restores launch without breaking the desktop"
+    ],
+    "pinned_tiles": [
+      [
+        36,
+        632,
+        137,
+        88
+      ],
+      [
+        181,
+        632,
+        137,
+        88
+      ],
+      [
+        326,
+        632,
+        137,
+        88
+      ],
+      [
+        471,
+        632,
+        137,
+        88
+      ],
+      [
+        616,
+        632,
+        137,
+        88
+      ],
+      [
+        36,
+        728,
+        137,
+        88
+      ]
+    ],
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\start_native6.py\", line 79, in main\n    launch(g,p,'files',1);f.visit(g,p,'Documents');f.create(g,p,'Pinned Work',folder=True);p.desktop(f.item(g,p,'Pinned Work'),True);c.key(g,'shift','f10');f.menu(g,p,43000);close(g,p)\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 79, in item\n    values=names(g);row=values.index(name);action=1000+row\nValueError: 'Pinned Work' is not in list\n"
+  }
+}
