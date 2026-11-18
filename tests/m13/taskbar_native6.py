@@ -62,9 +62,13 @@ def pin(g,p,name,app):
     if app in s.prefs(g).task[:s.prefs(g).tasks]:return
     s.search(g,p,name);c.key(g,'shift','f10');f.menu(g,p,42700+app);c.key(g,'esc');c.key(g,'esc')
     assert app in s.prefs(g).task[:s.prefs(g).tasks]
+def close(g,p):
+    if any(r[5]==60002 for r in f.controls(g)):p.desktop(60002,True)
+    s.close(g,p)
+
 def close_all(g,p):
     while records(g):
-        target=records(g)[-1];focus(g,p,target);s.close(g,p)
+        target=records(g)[-1];focus(g,p,target);close(g,p)
         if any(w['token']==target['token'] for w in records(g)):
             assert closing(g);p.desktop(60,True)
     p.drain()
@@ -77,7 +81,7 @@ def main():
         with ui.guest(work/'install',disk) as g:
             p=ui.Pointer(g)
             for action in (2,2,100,2,2,2):c.wizard(g,p,action)
-            at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();s.close(g,p);baseline=f.stats(g)
+            at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();close(g,p);baseline=f.stats(g)
             assert group_order(g)==[1,2,7] and s.windows(g)==0 and not any(r[5]==70 for r in f.controls(g));c.shot(g,'pins-no-duplicate-window-buttons')
             for _ in range(64):
                 c.key(g,'tab')
@@ -88,18 +92,18 @@ def main():
             second=launch(g,p,'files',1);f.visit(g,p,'Documents');assert s.windows(g,1)==2 and group_order(g).count(1)==1
             p.desktop(43101,True);rows=menu_rows(g);assert sum(43020<=r['command']<43028 for r in rows)==2 and any('Documents' in r['label'] for r in rows);assert all(r['label'][0].isdigit() for r in rows[:-1]);c.shot(g,'two-files-chooser');f.menu(g,p,43020+first['slot']);assert f.model(g)[0]==first['slot']
             p.desktop(43101,True);expected=menu_rows(g)[c.flag(g,'context_choice11')]['command']-43020;c.key(g,'ret');assert f.model(g)[0]==expected
-            focus(g,p,second);s.close(g,p);assert s.windows(g,1)==1;right_group(g,p,1);f.menu(g,p,31002);assert records(g)[0]['minimized'];right_group(g,p,1);assert any(r['label']=='Restore window' for r in menu_rows(g));f.menu(g,p,43020+first['slot']);assert not records(g)[0]['minimized'];right_group(g,p,1);f.menu(g,p,31001);assert s.windows(g)==0
+            focus(g,p,second);close(g,p);assert s.windows(g,1)==1;right_group(g,p,1);f.menu(g,p,31002);assert records(g)[0]['minimized'];right_group(g,p,1);assert any(r['label']=='Restore window' for r in menu_rows(g));f.menu(g,p,43020+first['slot']);assert not records(g)[0]['minimized'];right_group(g,p,1);f.menu(g,p,31001);assert s.windows(g)==0
             report['checks'].append('Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window')
             p.desktop(43102,True);editor=records(g)[0];c.type_text(g,'Keep my work');assert app_view(g).dirty;right_group(g,p,2);f.menu(g,p,31001);assert closing(g)==1 and s.windows(g,2)==1;c.shot(g,'dirty-group-close');p.desktop(61,True);assert not closing(g) and bytes(app_view(g).text)==b'Keep my work'
-            p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10;p.desktop(43102,True);assert c.flag(g,'file_dialog_state11')==10 and not records(g)[0]['minimized'];right_group(g,p,2);assert all(not r['enabled'] for r in menu_rows(g) if r['command'] in (31001,31002));c.key(g,'esc');p.desktop(54010,True);s.close(g,p);p.desktop(60,True);assert s.windows(g)==0
+            p.desktop(54001,True);assert c.flag(g,'file_dialog_state11')==10;p.desktop(43102,True);assert c.flag(g,'file_dialog_state11')==10 and not records(g)[0]['minimized'];right_group(g,p,2);assert all(not r['enabled'] for r in menu_rows(g) if r['command'] in (31001,31002));c.key(g,'esc');p.desktop(54010,True);close(g,p);p.desktop(60,True);assert s.windows(g)==0
             report['checks'].append('Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window')
             if not args.smoke:
                 p.desktop(0,True);p.desktop(42007,True);p.desktop(42030,True);p.desktop(43302,True);p.desktop(42034,True);p.desktop(42008,True);c.key(g,'esc');assert list(s.prefs(g).task[:3])==[1,7,2] and group_order(g)==[1,7,2]
-                right_group(g,p,2);f.menu(g,p,42702);assert group_order(g)==[1,7];editor=launch(g,p,'text editor',2);assert group_order(g)==[1,7,2];right_group(g,p,2);f.menu(g,p,42702);focus(g,p,editor);s.close(g,p);assert not any(w['token']==editor['token'] for w in records(g));assert not records(g),dict(after='editor pin/close',windows=records(g))
+                right_group(g,p,2);f.menu(g,p,42702);assert group_order(g)==[1,7];editor=launch(g,p,'text editor',2);assert group_order(g)==[1,7,2];right_group(g,p,2);f.menu(g,p,42702);focus(g,p,editor);close(g,p);assert not any(w['token']==editor['token'] for w in records(g));assert not records(g),dict(after='editor pin/close',windows=records(g))
                 report['checks'].append('Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button')
                 pin(g,p,'calc',4);p.desktop(43104,True);assert s.windows(g,4)==1 and len(records(g))==1,dict(after='calculator launch',windows=records(g));calculator=next(w for w in records(g) if w['app']==4);software=launch(g,p,'software',11);p.desktop(10304,True);p.desktop(10004,True)
                 assert s.windows(g,4)==1 and 4 in s.prefs(g).task[:s.prefs(g).tasks] and 'Close every window' in f.app(g)['notice'];c.shot(g,'in-use-removal-refused')
-                focus(g,p,calculator);s.close(g,p);focus(g,p,software);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);focus(g,p,software);s.close(g,p);assert not records(g),records(g)
+                focus(g,p,calculator);close(g,p);focus(g,p,software);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);focus(g,p,software);close(g,p);assert not records(g),records(g)
                 report['checks'].append('Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable')
                 for name,app in [('calc',4),('clock',8),('calendar',9),('image',14),('media',16)]:
                     pin(g,p,name,app);assert not records(g),dict(after_pin=name,windows=records(g))

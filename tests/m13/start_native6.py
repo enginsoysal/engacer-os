@@ -79,6 +79,15 @@ def main():
             launch(g,p,'files',1);f.visit(g,p,'Documents');f.create(g,p,'Pinned Work',folder=True);p.desktop(f.item(g,p,'Pinned Work'),True);c.key(g,'shift','f10');f.menu(g,p,43000);close(g,p)
             search(g,p,'Pinned Work');assert results(g)[0][0]==2;c.shot(g,'folder-result');c.key(g,'ret');assert f.app(g)['path']=='/Users/Owner/Documents/Pinned Work';close(g,p)
             report['checks'].append('A real folder result opens its native path using stable pin identity')
+            for theme in ('dark','high-contrast','light'):
+                launch(g,p,'settings',3)
+                if theme=='dark':p.desktop(59000,True);p.desktop(43,True)
+                elif theme=='high-contrast':p.desktop(59004,True);p.desktop(60010,True)
+                else:p.desktop(59004,True);p.desktop(60010,True);p.desktop(59000,True);p.desktop(44,True)
+                close(g,p);p.desktop(0,True);p.desktop(42000,True);
+                if not prefs(g).view:p.desktop(42003,True)
+                c.shot(g,'start-'+theme);assert len([r for r in f.controls(g) if 42200<=r[5]<42252])>0;c.key(g,'esc')
+            report['checks'].append('Real light/dark/high-contrast Start frames use the same catalogue, icon hit targets and readable focus; Settings changes return to the same independent desktop')
             p.desktop(0,True);p.desktop(42019,True);f.menu(g,p,42020);assert c.flag(g,'start_confirm11')==1;c.shot(g,'restart-review');p.desktop(42022,True);assert not c.flag(g,'start_confirm11');c.key(g,'esc');assert windows(g)==0
             report['checks'].append('Actual Power menu opens the separate Restart review; Cancel preserves the installed session and existing files')
             saved=bytes(prefs(g));assert ui.s.s.document(disk,'/System/Settings/start11-Owner.bin')==saved
