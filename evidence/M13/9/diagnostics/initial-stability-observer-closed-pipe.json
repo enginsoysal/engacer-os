@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "scope": "Host observer preflight, not native qualification",
+  "owned_fixture": "38c6440e1987498f99d2e504d78f2337",
+  "build_id": "5be0523bd6b6827021b5f5d4403c2422",
+  "source_commit": "8cbe71f",
+  "failure": "The observer attempted to read COM1 after the owned guest context had closed its pipe; its finally block raised ValueError before saving the final report.",
+  "correction": "Drain the live log before leaving the guest and retain g.output afterward, plus bounded owned-inventory cleanup observation. A separate fresh preflight completed successfully.",
+  "native_media_rebuilt": false
+}

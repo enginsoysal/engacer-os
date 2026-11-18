@@ -1,0 +1,5 @@
+{
+  "passed": false,
+  "observer_source_sha256": "c5f94320fd9fb44b79e5159b3c1e3b598ecd02ba57bb99e0c9c02f1344ef9f14",
+  "reason": "The new QEMU RFB observer assumed its first absolute pointer packet repositioned the relative guest mouse. The native frame instead shows a desktop marquee; Files geometry is unchanged and dragging is false. Establish the native relative pointer origin through ordinary QMP input before timing RFB deltas. This is not a native motion pass."
+}

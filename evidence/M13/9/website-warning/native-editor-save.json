@@ -1,0 +1,18 @@
+{
+  "source_commit": "3693b9c96859093feef5d4d5cd3401365d5d3923",
+  "home": "Saved \u2713",
+  "recovery": "Saved \u2713",
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "observed_at": "2026-11-18T13:19:18.629571+00:00",
+  "method": "Actual owned browser native editor Save, fresh DOM confirmation and public homepage reload",
+  "public_warning_visible": true,
+  "payload_sha256": {
+    "build/brix/m138-stability-warning/1.json": "8ed34284a41af695a7a01d4226128caef44c3ccbd14a367c870087313ffded5a",
+    "build/brix/m138-stability-warning/2.json": "3349142492b2d275461318153f448b35e99909f3cb468c1ffbc63a4212874270",
+    "build/brix/m138-stability-warning/3.json": "2b501d5e477819a5570874fc1fc9b8b977a7b5940bbdda9c1a76971e677b1b07",
+    "build/brix/m138-stability-warning/4.json": "37620b348290ec7dad9aee588b1445ed165c694eb9791b1e240a6703a47643cc",
+    "build/brix/m131-final/404-1.json": "45f738c82a3706cdc12ae5e6de9dcbea6bef906043bb5dbf8150ef5e7e4e8f13",
+    "build/brix/m131-final/404-2.json": "3b96f64eb312f35b8e7595835e9d4bbad7d6f014d9fbf7c05c7e517727eb6032"
+  }
+}

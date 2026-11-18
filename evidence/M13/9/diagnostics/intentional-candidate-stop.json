@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "diagnostic_only": true,
+  "owned_fixture": "f2a64570fa19402eaaa76483abfebbcd",
+  "candidate_build_id": "5be0523bd6b6827021b5f5d4403c2422",
+  "idle_seconds_at_stop_request": 1935.4689999999828,
+  "reason": "Candidate misses the required performance targets and needs native changes. End this unqualified diagnostic before changing frozen source/media, preserving its partial results. The corrected final candidate must repeat the complete real-duration test.",
+  "target_verified_inside_owned_fixture": true,
+  "before_inventory_sha256": [
+    "46d7da5eca4b3daf16e32b6148b0f64824f4037520dddcc8776af077a668f9f5",
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "stop_returncode": 0
+}

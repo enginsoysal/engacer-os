@@ -57,7 +57,7 @@ def quantiles(values):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['ordinary','4k'],required=True);parser.add_argument('--samples',type=int,default=32);parser.add_argument('--burst',action='store_true');parser.add_argument('--accel',choices=['tcg','whpx'],required=True);parser.add_argument('--whpx-legacy-irq',action='store_true');args=parser.parse_args()
     assert not args.whpx_legacy_irq or args.accel=='whpx'
     assert 16<=args.samples<=120 and not (ROOT/'evidence/M13/9/publication-results.json').exists()
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
@@ -65,7 +65,7 @@ def main():
     assert native['passed'] and native['build_id']==meta['build_id']
     source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m13-stage9-ordinary'/native['owned_fixture']/'owned.img'
     work,disk,cloned=clone(ui,source,'m139-motion-'+args.profile)
-    label=args.accel+('-legacy' if args.whpx_legacy_irq else '')+'-'+args.profile
+    label=args.accel+('-legacy' if args.whpx_legacy_irq else '')+'-'+args.profile+('-burst' if args.burst else '')
     out=ROOT/'build/m13/stage9/motion'/label;out.mkdir(parents=True,exist_ok=True);c.OUT=out
     physical,ram,scale,limit={'ordinary':((1920,1080),512,2,33.3),'4k':((3840,2160),1024,4,50)}[args.profile]
     # Owned test listeners stay outside this host's outgoing ephemeral range.
@@ -114,7 +114,7 @@ def main():
                 # crosses the existing threshold. The translated visible
                 # patch below, rather than mouse-down alone, proves motion.
                 latencies=[];visible=[];completed=[]
-                for number in range(args.samples):
+                for number in range(0 if args.burst else args.samples):
                     dx,dy=(24,20) if number%2==0 else (0,0)
                     target=(int(patch[0]+dx*factor),int(patch[1]+dy*factor),patch[2],patch[3])
                     began=time.perf_counter();pointer(display,int(grab_x+dx*factor),int(grab_y+dy*factor),1)
@@ -130,15 +130,51 @@ def main():
                             raise AssertionError('Native title did not reach the requested position')
                         image=region(display,target)
                     done=time.perf_counter();latencies.append((done-began)*1000);visible.append(done);completed.append([dx,dy])
-                pointer(display,grab_x,grab_y,0);p.drain();display.shot(out/'after-drag.png')
+                if args.burst:
+                    # A fixed offered input stream avoids serializing each new
+                    # event behind a host RFB request/response round trip.
+                    # Intermediate input may legitimately coalesce; expose it.
+                    began_burst=time.perf_counter();offered=[]
+                    for number in range(args.samples):
+                        deadline=began_burst+number*.01
+                        remaining=deadline-time.perf_counter()
+                        if remaining>0:time.sleep(remaining)
+                        dx=(number+1)*2
+                        pointer(display,int(grab_x+dx*factor),grab_y,1)
+                        offered.append(time.perf_counter())
+                    target=(int(patch[0]+dx*factor),patch[1],patch[2],patch[3])
+                    deadline=time.monotonic()+5;image=region(display,target)
+                    while image.tobytes()!=reference:
+                        assert time.monotonic()<deadline,'Burst final native title never became visible'
+                        image=region(display,target)
+                    latencies=[(time.perf_counter()-offered[-1])*1000]
+                    visible=[time.perf_counter()];completed=[[dx,0]]
+                    report['offered_input']=dict(count=len(offered),interval_target_ms=10,intervals=quantiles([(b-a)*1000 for a,b in zip(offered,offered[1:])]),coalescing_allowed=True)
+                pointer(display,int(grab_x+(dx*factor if args.burst else 0)),grab_y,0);p.drain();display.shot(out/'after-drag.png')
+                # Read the bounded native receipt/completion ring without guest
+                # memory writes. Completion excludes host scanout/transport.
+                trace=ui.memory(g,ui.symbol('motion19',2568,True)[0],2568)
+                total=struct.unpack_from('<Q',trace)[0];native_samples=[]
+                for offset in range(64):
+                    sequence,received,finished,px,py,flags,paint=struct.unpack_from('<QQQiiII',trace,8+40*offset)
+                    if sequence and max(1,total-63)<=sequence<=total:
+                        native_samples.append(dict(sequence=sequence,received_us=received,completed_us=finished,x=px,y=py,flags=flags,paint=paint))
+                native_samples.sort(key=lambda item:item['sequence'])
+                dragged=[row for row in native_samples if row['flags']&1 and row['flags']&256]
+                report['native_trace']=dict(total_samples=total,capacity=64,overwritten_samples=max(0,total-64),samples=native_samples,drag_samples=len(dragged),scope='Native IRQ receipt to CPU composition/framebuffer/cursor completion; excludes external scanout and transport. Button-edge receipts are rounded down by up to 10 ms.')
+                if len(dragged)>1:
+                    report['native_trace']['completion_intervals']=quantiles([(b['completed_us']-a['completed_us'])/1000 for a,b in zip(dragged,dragged[1:])])
+                if dragged:
+                    report['native_trace']['drag_completion_latency']=quantiles([(row['completed_us']-row['received_us'])/1000 for row in dragged])
+                (out/'native.log').write_text(g.log(),encoding='utf-8')
                 report['drag_feedback']=quantiles(latencies)
-                report['observed_position_intervals']=quantiles([(b-a)*1000 for a,b in zip(visible,visible[1:])])
-                report['requested_positions']=args.samples;report['visible_positions']=len(completed);report['missed_requested_positions']=args.samples-len(completed)
+                report['observed_position_intervals']=quantiles([(b-a)*1000 for a,b in zip(visible,visible[1:])]) if len(visible)>1 else dict(p95_ms=None,scope='A final visible patch does not measure external frame cadence')
+                report['requested_positions']=args.samples;report['visible_positions']=len(completed);report['missed_requested_positions']=None if args.burst else args.samples-len(completed)
                 report['drag_interval_target_ms']=limit
-                report['drag_interval_target_passed']=report['observed_position_intervals']['p95_ms']<=limit
+                report['drag_interval_target_passed']=report['observed_position_intervals']['p95_ms'] is not None and report['observed_position_intervals']['p95_ms']<=limit
                 report['ordinary_feedback_target_ms']=100
                 report['ordinary_feedback_target_passed']=report['drag_feedback']['p95_ms']<=100
-                report['checks'].append('Every requested held-pointer drag position has an independently observed exact native title patch at its translated physical location')
+                report['checks'].append('Final burst title position is independently visible; intermediate positions may coalesce and are not asserted' if args.burst else 'Every requested held-pointer drag position has an independently observed exact native title patch at its translated physical location')
             finally:display.close()
             after=struct.unpack('<4Q',ui.memory(g,ui.symbol('stats',32,True)[0],32));assert after[0]==before[0] and after[3]==before[3]
             c.idle(g)
@@ -151,7 +187,8 @@ def main():
     finally:
         (out/'results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(report,indent=2),flush=True)
-    assert report['passed'],'Published reference performance targets are not met'
+    if not args.burst:assert report['passed'],'Published reference performance targets are not met'
+    else:print('DIAGNOSTIC ONLY: burst native completion and final visibility do not qualify external cadence',flush=True)
 
 
 if __name__=='__main__':main()

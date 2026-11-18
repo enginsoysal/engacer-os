@@ -1,0 +1,91 @@
+{
+  "passed": false,
+  "candidate_build_id": "5be0523bd6b6827021b5f5d4403c2422",
+  "compiled_source_ref": "8cbe71f63e870157af3c1e6035ed42d23f5de673",
+  "reason": "All five common functional display profiles and exact VMware startup pass, but the measured TCG and WHPX reference movement targets fail. The separate 32-minute VMware soak was intentionally stopped before native changes and is not a one-hour stability qualification. No FIFO quarantine occurred during that partial run, so recovery is not yet runtime-qualified.",
+  "media": [
+    {
+      "name": "EngacerOS-M13STAGE9-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-installed-kernel.elf",
+      "sha256": "16e4e65608a8ee67c7df843e86b163d84c23bf39c21e9e01f1f3c35a23fbbe77",
+      "size": 1429884
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-installed-kernel.map",
+      "sha256": "da81a4089a623dc67a30fee80a052c9931ba3580cf104434c9559b9507f01270",
+      "size": 405145
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-kernel.elf",
+      "sha256": "949de6ddc85a05158c038e9aecd8c35d560374d9495b7110378edb858eb475e2",
+      "size": 3834236
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-kernel.map",
+      "sha256": "b996a67a13e464402451e4c9ffefeeb9c6800bd368beed84ebcaff2b984da6c1",
+      "size": 405437
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064
+    },
+    {
+      "name": "EngacerOS-M13STAGE9-VMware.zip",
+      "sha256": "7bc05ff0a9118dce0e6faf0e9b60ad500711771724d47bf102ad5fe5c0b13115",
+      "size": 10683816
+    },
+    {
+      "name": "EngacerOS-M13STAGE9.iso",
+      "sha256": "4a1520a7ed5e0017e7ba897e73343ca5d3c70cccb3216b1db68a2392688e713d",
+      "size": 75126784
+    },
+    {
+      "name": "m13stage9-build-manifest.json",
+      "sha256": "85f90d670345c05e76d0562c67c2d11690e3ea0515211ff6e90230563b762e61",
+      "size": 81815
+    },
+    {
+      "name": "M13STAGE9-SHA256SUMS.txt",
+      "sha256": "6846ea5e5b95e0f42a378e0dac217f8e1c1e3bafdf750abdc99410d0b0ada7ca",
+      "size": 1276
+    },
+    {
+      "name": "m13stage9-starter-manifest.json",
+      "sha256": "01e834304235e9eae879cad7bd63ecadf7cc37d81334b16bfbc64b8c1dc8ca55",
+      "size": 653
+    }
+  ],
+  "observations_copied": 264,
+  "usb_image_not_used_by_these_tests": true,
+  "archive_location": "Owned local scratch outside OneDrive; immutable native source remains in Git"
+}

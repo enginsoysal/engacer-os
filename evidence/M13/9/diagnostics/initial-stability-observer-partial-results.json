@@ -1,0 +1,40 @@
+{
+  "passed": false,
+  "status": "active-idle-cycle",
+  "stage": "M13.9",
+  "build_id": "5be0523bd6b6827021b5f5d4403c2422",
+  "iso_sha256": "4a1520a7ed5e0017e7ba897e73343ca5d3c70cccb3216b1db68a2392688e713d",
+  "starter_sha256": "7bc05ff0a9118dce0e6faf0e9b60ad500711771724d47bf102ad5fe5c0b13115",
+  "owned_fixture": "38c6440e1987498f99d2e504d78f2337",
+  "frames": [],
+  "visible_launches": [
+    {
+      "name": "after-uninterrupted-idle",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "cycle-0",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    }
+  ],
+  "requested_idle_seconds": 60,
+  "requested_cycles": 1,
+  "cycle_idle_seconds": 10,
+  "scope": "Real elapsed uninterrupted idle followed by ordinary-input/idle cycles on a new exact enabled-device starter. Serial liveness alone never passes visible recovery.",
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "idle_started_at": "2026-11-18T11:50:20.155202+00:00",
+  "idle_elapsed_seconds": 60.485000000015134,
+  "idle_finished_at": "2026-11-18T11:51:20.645068+00:00",
+  "active_cycle": 0
+}

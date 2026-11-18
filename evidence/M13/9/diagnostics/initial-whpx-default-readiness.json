@@ -1,0 +1,30 @@
+{
+  "passed": false,
+  "stage": "M13.9",
+  "profile": "ordinary",
+  "build_id": "5be0523bd6b6827021b5f5d4403c2422",
+  "iso_sha256": "4a1520a7ed5e0017e7ba897e73343ca5d3c70cccb3216b1db68a2392688e713d",
+  "physical": [
+    1920,
+    1080
+  ],
+  "configured_guest_mib": 512,
+  "cpus": 2,
+  "owned_fixture": "04c9ebdc34e546deb4c865188d16aaf5",
+  "clone": {
+    "source_sha256": "98f2d8ae542064b0795bd9a025edef0c709f88293e7dd5beef55bbe254fe2e87",
+    "clone_sha256": "98f2d8ae542064b0795bd9a025edef0c709f88293e7dd5beef55bbe254fe2e87",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "method": "Host ordinary pointer event to exact translated native title patch over authenticated loopback RFB; includes scanout, transport and observer overhead, not GPU FPS",
+  "checks": [],
+  "acceleration": "whpx",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\motion9.py\", line 80, in main\n    p=ui.Pointer(g);p.drain()\n  File \"<project-root>\\tests\\m11\\ui.py\", line 79, in drain\n    if time.monotonic()>deadline:raise TimeoutError('Guest did not consume the previous pointer edge')\nTimeoutError: Guest did not consume the previous pointer edge\n"
+}

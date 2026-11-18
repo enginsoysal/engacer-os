@@ -1,0 +1,182 @@
+{
+  "passed": false,
+  "stage": "M13.9",
+  "profile": "ordinary",
+  "build_id": "2d2b1df5cb74d2beadcf1286191b0d91",
+  "iso_sha256": "c9dec0fbe7803ad751dc96a23c08d77e9d11f6aa28ad56219841b6088d959544",
+  "physical": [
+    1920,
+    1080
+  ],
+  "configured_guest_mib": 512,
+  "cpus": 2,
+  "owned_fixture": "cdffa5c3706246fca90bdaad0597362a",
+  "clone": {
+    "source_sha256": "36ad6e23a9fb3ab9b0705bd1a68e26ad0be9587f1a14ba3178662ff54489f77c",
+    "clone_sha256": "36ad6e23a9fb3ab9b0705bd1a68e26ad0be9587f1a14ba3178662ff54489f77c",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "method": "Host ordinary pointer event to exact translated native title patch over authenticated loopback RFB; includes scanout, transport and observer overhead, not GPU FPS",
+  "checks": [
+    "Every requested held-pointer drag position has an independently observed exact native title patch at its translated physical location",
+    "Completed motion retains zero managed pages, adds no allocation failures and returns all CPUs to idle halt"
+  ],
+  "acceleration": "whpx",
+  "legacy_irq_profile": true,
+  "initial_cpu_monitor": {
+    "halted": 1,
+    "cpus": 2,
+    "input": {
+      "mouse_dirty": 0,
+      "mouse_head11": 0,
+      "mouse_tail11": 0,
+      "head": 0,
+      "tail": 0
+    }
+  },
+  "pointer_calibration": [
+    {
+      "step": "before",
+      "mouse_x": 600,
+      "mouse_y": 80,
+      "mouse_buttons": 0,
+      "pointer_x": 600,
+      "pointer_y": 80,
+      "previous_buttons": 0
+    },
+    {
+      "step": "qmp-origin",
+      "mouse_x": 650,
+      "mouse_y": 168,
+      "mouse_buttons": 0,
+      "pointer_x": 650,
+      "pointer_y": 168,
+      "previous_buttons": 0
+    },
+    {
+      "step": "rfb-origin",
+      "mouse_x": 650,
+      "mouse_y": 168,
+      "mouse_buttons": 0,
+      "pointer_x": 650,
+      "pointer_y": 168,
+      "previous_buttons": 0
+    },
+    {
+      "step": "rfb-down",
+      "mouse_x": 650,
+      "mouse_y": 168,
+      "mouse_buttons": 1,
+      "pointer_x": 650,
+      "pointer_y": 168,
+      "previous_buttons": 1
+    }
+  ],
+  "drag_feedback": {
+    "median_ms": 91.17079999123234,
+    "p95_ms": 150.3517999954056,
+    "maximum_ms": 153.52960000745952,
+    "samples_ms": [
+      128.57889998122118,
+      113.61999998916872,
+      87.60520000942051,
+      111.37289999169298,
+      124.873499997193,
+      100.17150000203401,
+      63.42599997879006,
+      131.08869999996386,
+      140.58619999559596,
+      150.3517999954056,
+      67.37090001115575,
+      84.01320001576096,
+      141.7653000098653,
+      153.52960000745952,
+      92.97420000075363,
+      89.36739998171106,
+      70.52730000577867,
+      100.386999984039,
+      54.78509998647496,
+      47.72400000365451,
+      76.8681000045035,
+      110.70240000844933,
+      75.03260002704337,
+      96.00250000949018,
+      39.25270002218895,
+      88.2139999885112,
+      78.7642999785021,
+      129.90249998983927,
+      106.72849998809397,
+      88.92819998436607,
+      66.45109999226406,
+      86.60009998129681
+    ]
+  },
+  "observed_position_intervals": {
+    "median_ms": 89.41190000041388,
+    "p95_ms": 150.36299999337643,
+    "maximum_ms": 153.540500003146,
+    "samples_ms": [
+      113.63040001015179,
+      87.61290000984445,
+      111.38249997748062,
+      124.90660001640208,
+      100.18810001201928,
+      63.44499997794628,
+      131.09790001180954,
+      140.62960000592284,
+      150.36299999337643,
+      67.3806999984663,
+      84.02330000535585,
+      141.7895999911707,
+      153.540500003146,
+      92.98379998654127,
+      89.41190000041388,
+      70.5352000077255,
+      100.39619999588467,
+      54.79389999527484,
+      47.732100007124245,
+      76.89970001229085,
+      110.70869999821298,
+      75.04150000750087,
+      96.02040000027046,
+      39.26119999960065,
+      88.22559998952784,
+      78.77349999034777,
+      129.9124000070151,
+      106.74829999334179,
+      88.96809999714606,
+      66.46890001138672,
+      86.60829998552799
+    ]
+  },
+  "requested_positions": 32,
+  "visible_positions": 32,
+  "missed_requested_positions": 0,
+  "drag_interval_target_ms": 33.3,
+  "drag_interval_target_passed": false,
+  "ordinary_feedback_target_ms": 100,
+  "ordinary_feedback_target_passed": false,
+  "resources": {
+    "managed_before": [
+      2072,
+      2072,
+      118314,
+      5
+    ],
+    "managed_after": [
+      2072,
+      2072,
+      118314,
+      5
+    ],
+    "retained_task_delta_pages": 0,
+    "all_cpus_halted_when_idle": true
+  }
+}
