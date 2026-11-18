@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "stage": "M13.9",
+  "source_commit": "c8f6b86b08c8ae59aa5605392a47aa4ea9ef924f",
+  "native_editor_save": "Saved ✓",
+  "recovery_editor_save": "Saved ✓",
+  "production_search": true,
+  "task_sidebar": true,
+  "ordered_task_navigation": true,
+  "current_guide": true,
+  "matching_download": true,
+  "mobile_menu": true,
+  "desktop": {
+    "viewport": 1280,
+    "document": 1280,
+    "images": [
+      {
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/9/feature.png",
+        "loaded": true
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": 390,
+    "document": 390,
+    "images": [
+      {
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/9/feature.png",
+        "loaded": true
+      }
+    ]
+  },
+  "reports": [
+    {
+      "width": 1280,
+      "passed": true,
+      "search_opener_contrast": 16.96572538438515,
+      "checks": [
+        "same-page search",
+        "current guides",
+        "archive opt-in",
+        "no-results/clear",
+        "focus trap/Escape/opener",
+        "Ctrl+K/arrow/Enter navigation",
+        "task next article",
+        "heading anchor",
+        "correct hydrated share domain",
+        "mobile menu and browse disclosure where applicable"
+      ],
+      "layout": {
+        "viewport": 1280,
+        "document": 1280,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/9/feature.png",
+            "loaded": true
+          }
+        ]
+      },
+      "page_errors": []
+    },
+    {
+      "width": 390,
+      "passed": true,
+      "search_opener_contrast": 16.96572538438515,
+      "checks": [
+        "same-page search",
+        "current guides",
+        "archive opt-in",
+        "no-results/clear",
+        "focus trap/Escape/opener",
+        "Ctrl+K/arrow/Enter navigation",
+        "task next article",
+        "heading anchor",
+        "correct hydrated share domain",
+        "mobile menu and browse disclosure where applicable"
+      ],
+      "layout": {
+        "viewport": 390,
+        "document": 390,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M13/9/feature.png",
+            "loaded": true
+          }
+        ]
+      },
+      "page_errors": []
+    }
+  ]
+}

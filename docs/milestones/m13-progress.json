@@ -86,11 +86,12 @@
     {
       "id": "M13.9",
       "title": "Smooth, readable and lightweight in motion",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "scope": "Motion, pointer and desktop finishing. Owner explicitly defers all stability investigation, freeze reproduction and duration/reset trials to M13.13; complete M13.9-M13.12 in order.",
       "native_qualification": "M13-STAGE9-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m139-v0.13.9",
-      "evidence": "evidence/M13/9"
+      "evidence": "evidence/M13/9",
+      "publication_evidence": "evidence/M13/9/publication-results.json"
     },
     {
       "id": "M13.10",

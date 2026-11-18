@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.9",
+  "qualification": "M13-STAGE9-VM-v1",
+  "source_commit": "f9fdd3a7d5652e705ad2b627e5a2544fa190c182",
+  "release_source_commit": "7bad4bc4b9e9277b2ba9a9c815ea0d6e71e5979f",
+  "build_id": "f50619e899f5566d42d210f363dc8217",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m139-v0.13.9",
+  "workflow_ids": [
+    44340921143
+  ],
+  "current_native_download": "m139-v0.13.9",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 488,
+  "unique_links": 3441,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

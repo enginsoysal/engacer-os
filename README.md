@@ -2,7 +2,7 @@
 
 **Stability pending - testing only.** Earlier M13.8 freeze reports remain documented. Stability investigation and duration/reset qualification occur exclusively in M13.13, after finishing M13.9-M13.12 in order. Do not use these testing media for everyday work.
 
-**Current testing download: [Engacer OS M13.9](https://github.com/enginsoysal/engacer-os/releases/tag/m139-v0.13.9).** [Install in VMware](docs/handbook/install-m139.md), [move/resize and pointer feedback](docs/handbook/motion-m139.md), [exact release scope](docs/releases/m139-v0.13.9.md). Five native control/window/cursor profiles, clipped repaint comparisons, declared native processing budgets and the exact enabled-device VMware startup pass. Public website closure is being completed before M13.10. No stability or external scanout/FPS guarantee is claimed.
+**Current testing download: [Engacer OS M13.9](https://github.com/enginsoysal/engacer-os/releases/tag/m139-v0.13.9).** [Install in VMware](docs/handbook/install-m139.md), [move/resize and pointer feedback](docs/handbook/motion-m139.md), [exact release scope](docs/releases/m139-v0.13.9.md). Five native control/window/cursor profiles, clipped repaint comparisons, declared native processing budgets and the exact enabled-device VMware startup pass. Public delivery passes: 488 pages, 313 exact-source articles and 3,441 links, with zero known broken targets and 13 explicitly unverified external HEAD references. [Publication receipt](evidence/M13/9/publication-results.json). M13.9 is complete within this scope; M13.10 follows. No stability or external scanout/FPS guarantee is claimed.
 
 **Reported stability issue:** the owner reports frequent freezes on M13.8, in addition to the earlier M13.7 report. An exact M13.7 VMware baseline retained input processing after one real hour, but its last 44 frame samples stayed identical from about sixteen minutes and the final image did not show the serial-confirmed new app. Presentation stability therefore fails this diagnostic; the cause remains under investigation. The owner explicitly schedules investigation, correction and the eight-real-hour stability gate for M13.13, after completing M13.9-M13.12 in order. The scoped M13.8 Settings work does not claim a fix. The optional screensaver is planned for M13.11.
 
@@ -28,7 +28,7 @@ tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
 an explicit unqualified loader refusal. Named VM scope is separate from universal
 hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](evidence/M12/18/publication-results.json). **M12.0–M12.18 is complete.** Earlier receipts remain immutable.
+Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](evidence/M12/18/publication-results.json). **M12.0â€“M12.18 is complete.** Earlier receipts remain immutable.
 
 
 The owner authorized [M12.0 through M12.18](docs/milestones/m12.md) strictly in
@@ -60,9 +60,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8.iso) ·
-[Step-by-step installation](docs/handbook/install-m138.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8-VMware.zip) Â·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m138-v0.13.8/EngacerOS-M13STAGE8.iso) Â·
+[Step-by-step installation](docs/handbook/install-m138.md) Â·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.
@@ -81,11 +81,11 @@ device and original-app tasks on the final bytes. [M10](docs/releases/m10-v0.10.
 remains a separate historical record; its hashes are preserved.
 
 - Automatic supported-device binding and common capability/status reporting in
-  **Start → Settings → Devices**. Ready, Limited, Detected and Unavailable reflect
+  **Start â†’ Settings â†’ Devices**. Ready, Limited, Detected and Unavailable reflect
   actual providers; recognition alone is not usable functionality.
 - Saved US QWERTY/Dvorak choices, qualified keyboard/mouse/wheel input, supported
   xHCI HID/hubs, disconnect and reconnect.
-- **Files → USB drives**: browse supported FAT32 media, copy files to Downloads,
+- **Files â†’ USB drives**: browse supported FAT32 media, copy files to Downloads,
   right-click a native file and choose **Copy to USB...**, flush, safely remove and reconnect.
 - Ordinary and actual 4K presentation, reachable partially off-screen windows,
   checked repaint, stable retained pages during movement and halted idle CPUs.
@@ -94,9 +94,9 @@ remains a separate historical record; its hashes are preserved.
 - The exact prepared ZIP also passes native Devices/layout interaction and the
   original 7-Zip 26.06 x64 MSI install/run/archive/extract/remove/reinstall task.
 
-[Current device and USB tutorial](docs/handbook/install-m116.md#use-a-usb-drive) ·
-[Hardware architecture: how and why](docs/architecture/hardware-m10.md) ·
-[Standard applications](docs/handbook/apps-m74.md) ·
+[Current device and USB tutorial](docs/handbook/install-m116.md#use-a-usb-drive) Â·
+[Hardware architecture: how and why](docs/architecture/hardware-m10.md) Â·
+[Standard applications](docs/handbook/apps-m74.md) Â·
 [Original Windows app guide](docs/handbook/windows-apps-m8.md).
 
 ## Boundaries and next work
@@ -125,9 +125,9 @@ python tools/release/vmware_starter10.py
 python tests/m10/verify.py
 ```
 
-[Host tools](tools/README.md) · [Qualification commands](tests/m10/README.md) ·
-[Custom distributions](docs/handbook/distributions.md) ·
-[Contributing](CONTRIBUTING.md) · [Architecture](docs/architecture/overview.md) ·
+[Host tools](tools/README.md) Â· [Qualification commands](tests/m10/README.md) Â·
+[Custom distributions](docs/handbook/distributions.md) Â·
+[Contributing](CONTRIBUTING.md) Â· [Architecture](docs/architecture/overview.md) Â·
 [OS folder structure](docs/architecture/filesystem.md).
 Optional apps remain separate from required Files/Settings/services. A changed
 profile needs its own qualification; the standard ISO's evidence does not
