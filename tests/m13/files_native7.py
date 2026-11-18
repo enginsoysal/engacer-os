@@ -56,7 +56,7 @@ def main():
    p.desktop(50000,True);assert query(g)=='alp' and set(f.names(g))=={'Alpha','ALPINE'}
    filter_name(g,p,'notfound');assert not f.names(g) and not f.selected(g),(f.names(g),f.selected(g),query(g));c.shot(g,'no-matching-names');c.key(g,'esc');assert query(g)=='' and set(f.names(g))>={'Alpha','ALPINE','Beta'};c.key(g,'esc')
    report['checks'].append('Actual current-folder case-insensitive filtering, hidden-selection reset, filtered Ctrl+A, retained sort/view, non-launching Enter, Refresh retention and recoverable empty state')
-   filter_name(g,p,'Beta');p.desktop(61001,True);assert query(g)=='' and not f.selected(g)
+   filter_name(g,p,'.txt');assert f.names(g)==['Welcome.txt'];window_count=len(t.records(g));c.key(g,'ret');assert len(t.records(g))==window_count and f.selected(g)==[original+'/Welcome.txt'];filter_name(g,p,'Beta');p.desktop(61001,True);assert query(g)=='' and not f.selected(g)
    filter_name(g,p,'Alpha');c.key(g,'esc');c.key(g,'esc');filter_name(g,p,'Beta');c.key(g,'ret');c.key(g,'ret');p.drain();assert f.app(g)['path']==original+'/Beta' and query(g)=='' and f.model(g)[0]==first['slot']
    p.desktop(90,True);assert f.app(g)['path']==original and query(g)=='',('Back',f.app(g),query(g),f.history(g));p.desktop(91,True);assert f.app(g)['path']==original+'/Beta',('Forward',f.app(g),f.history(g));p.desktop(24,True);assert f.app(g)['path']==original,('Up',f.app(g),f.history(g))
    filter_name(g,p,'Alpha');c.key(g,'tab');p.desktop(26,True);assert c.flag(g,'file_dialog_state11')==7;c.key(g,'ctrl','f');assert query(g)=='Alpha' and c.flag(g,'file_dialog_state11')==7;c.key(g,'esc');assert query(g)=='Alpha';f.create(g,p,'Gamma',True);assert query(g)=='' and 'Gamma' in f.names(g)
