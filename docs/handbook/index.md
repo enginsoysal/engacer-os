@@ -24,7 +24,7 @@ tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
 an explicit unqualified loader refusal. Named VM scope is separate from universal
 hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](../../evidence/M12/18/publication-results.json). **M12.0â€“M12.18 is complete.** Earlier receipts remain immutable.
+Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](../../evidence/M12/18/publication-results.json). **M12.0–M12.18 is complete.** Earlier receipts remain immutable.
 
 - [Download and install M12.18](install-m1218.md)
 - [Use the final M12 desktop and read its tested scope](final-m1218.md)
@@ -65,8 +65,8 @@ The prepared VM has a new empty growable 20-GiB SATA disk, two CPUs, 128 MiB RAM
 
 M11 installation and desktop qualification is complete within its named VM scope.
 M11.0 design, M11.1 input, M11.2 Files, M11.3 Start/taskbar, M11.4 windows/appearance and M11.5 guided setup are complete
-within their stage scopes. [M11 progress](../milestones/m11.md) Â·
-[Files user guide](files-m11.md) Â· [Start/taskbar guide](start-m11.md) Â· [setup/desktop contract](desktop-install-m11.md).
+within their stage scopes. [M11 progress](../milestones/m11.md) ·
+[Files user guide](files-m11.md) · [Start/taskbar guide](start-m11.md) · [setup/desktop contract](desktop-install-m11.md).
 M11.6 adds [the full matching regression](../../evidence/M11/6/acceptance-results.json), final media and current manuals. Publication also requires fresh release/site/download verification. Later hardware and Windows expansion are separate milestones.
 The earlier [M9 graphics record](../milestones/m9.md) remains historical; it does
 not claim 3D acceleration or runtime physical-mode switching.
