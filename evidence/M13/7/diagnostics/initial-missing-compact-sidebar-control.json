@@ -1,0 +1,35 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "build_id": "7d32da42cd38b5f55450cbbedd8834e7",
+  "iso_sha256": "c0a392b97c322930de8a2616d7fe1f114f2bb6476cf8798ce7d6047721c76dab",
+  "physical": [
+    1920,
+    1080
+  ],
+  "owned_fixture": "4eccfbe96b714bb89e2b90d8c174b090",
+  "checks": [
+    "Actual current-folder case-insensitive filtering, hidden-selection reset, filtered Ctrl+A, non-launching Enter, Refresh retention and recoverable empty state",
+    "Clear, child/Back/Forward/Up navigation and successful create preserve reachable unfiltered names and actual path history",
+    "Real filtered selection copy and move clear only the completed destination query, reveal the resulting name and independently expose the correct native paths",
+    "Two real Files windows keep independent queries; closing and reusing a generation clears the old query and cached listing",
+    "USB no-device frame retains real Back and truthful unavailable filter; compact command targets remain separate",
+    "Actual Files dark/high-contrast/light surfaces follow applied settings after the settings window closes; saved light/dark appearance bytes are independently read"
+  ],
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      116012,
+      5
+    ],
+    "after": [
+      2072,
+      2072,
+      116012,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\files_native7.py\", line 83, in main\n    p=ui.Pointer(g);p.drain();t.close_all(g,p);t.launch(g,p,'files',1);p.desktop(94,True);assert query(g)=='' and set(f.names(g))>={'Alpha','ALPINE','Beta','Gamma'};c.shot(g,f'disk-only-{n}');c.idle(g);(out/f'disk-{n}.log').write_bytes(g.log().encode())\n  File \"<project-root>\\tests\\m11\\ui.py\", line 91, in desktop\n    if time.monotonic()>until:raise AssertionError((action,count))\nAssertionError: (94, 34)\n"
+}

@@ -31,7 +31,7 @@ static void files_frame17(desktop_window*w,application*a,uint64_t token){
  }
 }
 static void files_footer17(desktop_window*w,application*a,uint64_t token,unsigned count,unsigned selected,const char*message){
- int x=w->bounds.x+16,width=w->bounds.width,reserve=a->notice[0]?76:48,y=w->bounds.y+w->bounds.height-reserve;
+ int x=w->bounds.x+16,width=w->bounds.width,reserve=a->notice[0]||(file_job_state11.active&&file_job_state11.owner==token)?76:48,y=w->bounds.y+w->bounds.height-reserve;
  unsigned page=a->usb_mode10?files_usb_rows12(w):file_page_size11(w);file_filter17*f=files_filter17_for((unsigned)(a-apps));
  files_nav_button12(token,x,y,NAV_PREVIOUS,ICON12_BACK,count&&a->offset!=0);files_nav_button12(token,x+48,y,NAV_NEXT,ICON12_FORWARD,a->offset+page<count);
  char info[128],number[24];decimal(number,count);copy(info,number,sizeof(info));append(info,!a->usb_mode10&&f&&f->query[0]?" matches | ":count==1?" item | ":" items | ",sizeof(info));decimal(number,selected);append(info,number,sizeof(info));append(info," selected",sizeof(info));

@@ -19,7 +19,7 @@ static int file_body_top11(const desktop_window*w){
 }
 static int file_body_bottom11(const desktop_window*w){uint64_t token=desktop_token(&model,(unsigned)(w-model.windows));
 #ifdef ENGINE_M13
- unsigned reserve=apps[w-model.windows].notice[0]?82:54;
+ unsigned reserve=apps[w-model.windows].notice[0]||(file_job_state11.active&&file_job_state11.owner==token)?82:54;
 #else
  unsigned reserve=82;
 #endif
@@ -94,6 +94,9 @@ static void file_text_field11(desktop_rect rect,const char*value,unsigned cursor
 static void file_breadcrumbs11(desktop_window*w,application*a,uint64_t token,desktop_rect field){
  (void)w;file_window11*f=&file_windows11[a-apps];
  if(f->address_active){file_text_field11(field,f->address,f->cursor,f->anchor,1,0);file_control11(token,field,F11_ADDRESS_FIELD);return;}
+#ifdef ENGINE_M13
+ if(field.width<150){button(token,field.x,field.y,field.width,"Address",F11_ADDRESS,0);access_capture16(token,F11_ADDRESS,"Edit folder address (Alt+D)",1);return;}
+#endif
 #ifdef ENGINE_M12
  if(a->usb_mode10){files_breadcrumbs12(w,a,token,field);return;}
  files_native_breadcrumbs12(a,token,field);return;

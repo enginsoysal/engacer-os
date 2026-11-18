@@ -1,0 +1,59 @@
+{
+  "passed": false,
+  "stage": "M13.7",
+  "build_id": "7d32da42cd38b5f55450cbbedd8834e7",
+  "iso_sha256": "c0a392b97c322930de8a2616d7fe1f114f2bb6476cf8798ce7d6047721c76dab",
+  "owned_fixture": "10c153147c384a5f8e2acbff62a5a5b4",
+  "checks": [
+    "Real graphical installation and retained-ISO startup; Actions/toolbar Copy/Paste publishes actual bytes, preserves the source and offers details after successful completion",
+    "Rename clears the prior file clipboard under the retained move policy: Paste is disabled, Ctrl+V explains that Copy/Cut is required, and the renamed payload is kept",
+    "Cut/Paste moves a native file; guarded single-action Undo restores its original location without changing its contents",
+    "Conflicts require a safe review: Escape writes nothing, Keep both creates a separate verified copy, Skip keeps the existing file, and explicit Replace stages/verifies the changed destination",
+    "Recycle/Restore retains original location; System mutation commands are visibly disabled and keyboard Cut cannot bypass the storage guard",
+    "The actual minimum 500x420 window keeps Actions visible in light and dark; Copy/Cut/Paste/Rename/Recycle/New text/Undo remain reachable without relying on a hidden toolbar",
+    "A real native-to-USB create-only export refuses an existing filename with a clear reason and keeps both original source and destination",
+    "USB Copy to Downloads uses the same cooperative job and conflict review as Copy/Paste; folders are unavailable, Keep both preserves existing contents, and unsupported USB Replace is disabled",
+    "A genuine 64-MiB USB import exposes source/destination/verified progress and Cancel; cancellation aborts the unpublished stream, retains the source and leaves accessible completed-result details",
+    "USB read-back verified import has the expected independent CRC; cancelling a real native tree copy preserves its only source and reports completed items without claiming full success",
+    "Unplugging a source during a genuine USB read stops the generation-bound job, aborts the unfinished destination and preserves previously completed data with an inspectable reason",
+    "Independent native metadata/data CRC and full payload comparison verify all confirmed files, while the whole original 1-GiB USB image remains byte-for-byte unchanged; tasks retain zero managed pages/new failures"
+  ],
+  "profiles": [],
+  "cancelled_usb_work_bytes": 344064,
+  "active_progress_damage": {
+    "frames": 16,
+    "logical_pixels": 1148928,
+    "average_damage": 71808.0,
+    "whole_window_area": 756000,
+    "scope": "Damage rectangles during a running restored transfer, not hardware FPS or physical USB throughput"
+  },
+  "full_usb_copy_observer_seconds": 19.953000000008615,
+  "minimized_transfer_feedback": true,
+  "partial_copy_confirmed_files": 1,
+  "removed_source_error": 9,
+  "resources": {
+    "before": [
+      1047,
+      1047,
+      17705,
+      5
+    ],
+    "after": [
+      1047,
+      1059,
+      17705,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\transfers_native7.py\", line 225, in main\n    p=ui.Pointer(g);p.drain();assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log();c.shot(g,f'before-disk-navigation-{number}');f.visit(g,p,'Documents');f.double(g,p,item18(g,p,'Source'));assert 'Large.bin' in f.names(g);c.idle(g);c.shot(g,f'disk-only-{number}');(OUT/f'disk-{number}.log').write_text(g.log(),encoding='utf-8')\n  File \"<project-root>\\tests\\m13\\transfers_native7.py\", line 75, in item18\n    raise AssertionError(('No visible item control',name,f.app(g),[r[5] for r in f.controls(g)]))\nAssertionError: ('No visible item control', 'Source', {'slot': 6, 'path': '/Users/Owner/Pictures', 'notice': '', 'offset': 0, 'mode': 0, 'disk': 0, 'part': 0, 'context': 0, 'selected': 0, 'usb_path': ''}, [30000, 30001, 30002, 30003, 33000, 33001, 49000, 49001, 49002, 49003, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 1000, 1001, 1002, 1003, 47000, 99, 49000, 49001, 49002, 49003, 90, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 49000, 49001, 49002, 49003, 90, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 1000, 1001, 49000, 49001, 49002, 49003, 90, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 1000, 1001, 49000, 49001, 49002, 49003, 90, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 1000, 1001, 1002, 1003, 47000, 99, 49000, 49001, 49002, 49003, 90, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 1000, 49000, 49001, 49002, 49003, 90, 24, 50000, 40015, 41012, 61000, 40016, 26, 52000, 40012, 40013, 51000, 51001, 1000, 0, 43101, 43102, 43107, 58006, 58004, 58008, 58005])\n",
+  "idle_observations": [
+    [
+      {
+        "attempt": 1,
+        "paints_before": 1663,
+        "paints_after": 1663
+      }
+    ]
+  ]
+}

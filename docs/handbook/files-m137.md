@@ -4,7 +4,7 @@ M13.7 development guide. M13.7 qualification is still in progress; M13.6 remains
 
 ## Find your way
 
-Open Files from Start or the taskbar. The left sidebar contains Home, Desktop, Documents, Downloads, Pictures, the system drive, USB drives and Recycle Bin. A small window uses Places instead of the sidebar. Back and Forward retrace visited locations; Up opens the parent folder. Refresh checks the same location. Click the address or Edit to enter a native path or supported USB address.
+Open Files from Start or the taskbar. The left sidebar contains Home, Desktop, Documents, Downloads, Pictures, the system drive, USB drives and Recycle Bin. A small window uses Places instead of the sidebar. Back and Forward retrace visited locations; Up opens the parent folder. Refresh checks the same location. A very narrow address area becomes an explicit Address button. Click Address, the address area or Edit to enter a native path or supported USB address.
 
 Click an item once to select it. Double-click or press Enter to open the selected folder. Use Icons or Details to change the view, and Sort for native folder ordering. More contains additional commands that may not fit the compact toolbar. Right-click and the existing keyboard shortcuts remain available. Previous/next arrows at the bottom change item pages, not navigation history.
 

@@ -93,6 +93,13 @@ def fixture(work):
 def details(g,p):
     assert f.has(g,40034);p.desktop(40034,True);assert c.flag(g,'file_dialog_state11')==9;c.key(g,'esc')
 
+def visit_checked7(g,p,value):
+ p.desktop(40015,True)
+ assert f.address(g)[1],('Address input did not activate',f.app(g),f.model(g))
+ c.key(g,'ctrl','a');f.type_text(g,value);c.key(g,'ret');p.drain()
+ assert not f.address(g)[1],('Address input did not commit',f.app(g))
+f.visit=visit_checked7
+
 def main():
     meta=json.loads(ui.manifest_path12().read_text());work=ui.q.new_work('m137-transfers');disk=ui.q.sparse_disk(work/'owned.img',2*1024**3);usb,payload=fixture(work);usb_sha=f.sha_file(usb)
     extra=['-drive',f'if=none,id=transfer-source,format=raw,file={usb}'];report=dict(passed=False,stage='M13.7',build_id=meta['build_id'],iso_sha256=meta['artifacts'][ui.IMAGE12+'.iso']['sha256'],owned_fixture=work.name,checks=[],profiles=[])
@@ -177,6 +184,13 @@ def main():
             while int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')==restored_paints:
                 if time.monotonic()>deadline:raise TimeoutError('Restored Files did not finish its frame')
                 time.sleep(.01)
+            cancel_before=c.control(g,40019)[:4];refresh_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');start(g,p,50000)
+            deadline=time.monotonic()+15
+            while int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')==refresh_paints:
+                if time.monotonic()>deadline:raise TimeoutError('Refresh did not finish its active-transfer frame')
+                time.sleep(.01)
+            assert job(g)[0][0] and f.app(g)['notice']=='' and c.control(g,40019)[:4]==cancel_before
+            capture_active(g,'refreshed-transfer-progress');report['refresh_keeps_active_progress_geometry']=True
             before_paints=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little');before_pixels=int.from_bytes(ui.memory(g,ui.symbol('painted_pixels',8,True)[0],8),'little')
             time.sleep(.75)
             frames=int.from_bytes(ui.memory(g,ui.symbol('paints',8,True)[0],8),'little')-before_paints;pixels=int.from_bytes(ui.memory(g,ui.symbol('painted_pixels',8,True)[0],8),'little')-before_pixels

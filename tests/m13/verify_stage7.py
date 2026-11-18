@@ -10,10 +10,10 @@ def main():
  for r in [*profiles.values(),*files.values(),usb,transfers,vm]:assert r['passed'] and r['build_id']==meta['build_id'] and r['iso_sha256']==iso
  for n,r in profiles.items():
   assert r['resources']['retained_task_delta_pages']==0 and files[n]['resources']['retained_pages']==0 and len(files[n]['checks'])>=6
-  for frame in ('common-frame','filtered-names','no-matching-names','disk-only-1','disk-only-2'):
+  for frame in ('common-frame','filtered-names','no-matching-names','disk-only-1','disk-only-2','dark','high-contrast','light','filtered-icons'):
    capture=read(work/('files-'+n)/(frame+'-capture.json'));assert (capture['width'],capture['height'])==tuple(files[n]['physical'])
  assert usb['resources']['retained_pages']==0 and len(usb['checks'])>=8 and len(usb['profiles'])==2
- assert transfers['resources']['retained_pages']==0 and len(transfers['checks'])>=6
+ assert transfers['resources']['retained_pages']==0 and len(transfers['checks'])>=14 and transfers['refresh_keeps_active_progress_geometry']
  assert vm['existing_vm_inventory_unchanged'] and vm['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive']) and starter['passed']
  rules.git_inputs(meta['source_sha256'])
  for n,r in meta['artifacts'].items():assert sha(ROOT/'dist'/n)==r['sha256']
