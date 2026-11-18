@@ -74,7 +74,7 @@ def main():
    return wait_original(text,after,timeout)
   repair.wait=recovery_wait
   with repair as g:
-   p=ui.Pointer(g);assert 'M75_SETUP_OVERRIDE' in g.log();go(g,p,50,80,100,2);assert s.flag(g,'step')==4;start=s.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240);capture(g,'recovery-complete');(out/'recovery.log').write_bytes(g.log().encode())
+   p=ui.Pointer(g);assert 'M75_SETUP_OVERRIDE' in g.log();go(g,p,50500,50,80,100,2);assert s.flag(g,'step')==4;start=s.wizard(g,p,2);g.wait('M6_MAINTENANCE_PASS',start,240);capture(g,'recovery-complete');(out/'recovery.log').write_bytes(g.log().encode())
   with ui.guest(work/'repaired-bios',failed,firmware='bios',media='installed',ready='M7_DESKTOP_READY') as g:
    assert 'M7_DESKTOP_READY build='+meta['build_id'] in g.log();(out/'repaired-boot.log').write_bytes(g.log().encode())
   report['checks'].append('The ISO recovery route restores a deliberately corrupted owned BIOS payload from the checked slot, followed by actual disk-only installed desktop startup')

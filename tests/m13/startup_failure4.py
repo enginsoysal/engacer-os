@@ -17,9 +17,11 @@ def main():
    for bank in (0,1):
     f.seek(data+bank*71*4096);original=f.read(8);assert original==b'ENGINEV6';f.seek(-8,1);f.write(b'BROKENV6')
   before=ui.q.digest(disk)
+  # The failure UI runs in the installed ELF; observe that image, not the live bundle.
+  ui.MAPS74[False]=ui.MAPS74[True]
   boot=ui.guest(work/'failed-start',disk,media='installed',ready='M6_WIZARD_READY');ui.s.normal_boot(boot,work/'install/vars.fd')
   with boot as g:
-   p=ui.Pointer(g);p.drain();assert s.flag(g,'failure') and not s.flag(g,'busy');assert s.has(g,86) and s.has(g,50);assert not any(s.has(g,a) for a in (80,81,82,63));s.shot(g,out,'installed-start-failure');s.key(g,'esc');assert s.has(g,86)
+   p=ui.Pointer(g);p.drain();report['failure_state']={k:s.flag(g,k) for k in ('failure','busy','installed','step')};report['failure_controls']=s.controls(g);s.shot(g,out,'observed-failure');(out/'boot.log').write_bytes(g.log().encode());assert s.flag(g,'failure') and not s.flag(g,'busy');assert s.has(g,86) and s.has(g,50);assert not any(s.has(g,a) for a in (80,81,82,63));s.shot(g,out,'installed-start-failure');s.key(g,'esc');assert s.has(g,86)
    s.go(g,p,50);assert not any(s.has(g,a) for a in (80,81,82));s.shot(g,out,'no-iso-repair-hidden');s.key(g,'esc');assert s.has(g,86)
    at=s.wizard(g,p,86);g.wait('M75_USER_RESTART',at,30);g.wait('M6_WIZARD_READY',at,180);p.drain();assert s.flag(g,'failure') and 'M7_DESKTOP_READY' not in g.log();s.shot(g,out,'failed-start-after-restart');(out/'boot.log').write_bytes(g.log().encode())
   assert ui.q.digest(disk)==before;report['checks']=['Deliberately corrupted owned data-volume banks produce a readable installed-start failure','Without matching live ISO, unavailable boot maintenance is absent; Details and Escape remain safe','Restart performs a real firmware reset and returns to truthful failure without claiming desktop success or modifying disk'];report['passed']=True

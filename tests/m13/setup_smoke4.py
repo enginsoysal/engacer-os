@@ -1,4 +1,4 @@
-"""Development native M13.4 progress, recovery and completion frames."""
+"""Native M13.4 actual progress, recovery and completion frames."""
 import json,os,sys,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];os.environ['ENGACER12_IMAGE']='EngacerOS-M13STAGE4';sys.path.insert(0,str(ROOT/'tests/m12'))
