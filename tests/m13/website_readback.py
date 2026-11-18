@@ -34,13 +34,17 @@ def main():
         critical_paths.update({f'docs/milestones/m13-{args.stage}.md',
                               f'docs/handbook/install-{suffix}.md',
                               f'docs/releases/{suffix}-v0.13.{args.stage}.md'})
+    seen_critical = set()
     for post in payload['page']['blog']['posts']:
-        path = next(m['value'] for m in post['meta'] if m['key'] == 'engine_source_path')
+        meta = {item['key']:item['value'] for item in post['meta']}
+        path = meta['engine_source_path']
         if path in critical_paths:
-            url = audit.SITE+'/blog/'+post['slug']
-            required.add(url)
-            expected_sources[url] = 'https://github.com/enginsoysal/engacer-os/blob/'+next(m['value'] for m in post['meta'] if m['key']=='engine_source_commit')+'/'+path
-    assert len(expected_sources) == len(critical_paths), 'A current stage article is missing from the publication payload'
+            seen_critical.add(path)
+        url = audit.SITE+'/blog/'+post['slug']
+        required.add(url)
+        expected_sources[url] = ('https://github.com/enginsoysal/engacer-os/blob/'+meta['engine_source_commit']+'/'+path
+                                 if path.endswith('.md') else 'https://github.com/enginsoysal/engacer-os/tree/'+payload['source_commit'])
+    assert seen_critical == critical_paths, 'A current stage article is missing from the publication payload'
     pending = required | {r['url'] for r in initial_errors}
     attempts = []
     while pending:
@@ -77,7 +81,7 @@ def main():
     provenance_errors = [{'url': url, 'expected': expected} for url, expected in expected_sources.items() if expected not in results[url].get('links', [])]
     report.update(passed=not errors and not stale and not branding and not provenance_errors,
                   checked_at=datetime.now(timezone.utc).isoformat(),
-                  source_commit=payload['source_commit'], initial_page_errors=initial_errors,
+                  source_commit=payload['source_commit'], exact_source_articles_verified=len(expected_sources), initial_page_errors=initial_errors,
                   fresh_readback_attempts=attempts, pages=list(results.values()),
                   pages_checked=len(results), unique_links=len(links),
                   page_errors=errors, stale_links=stale, branding_errors=branding, provenance_errors=provenance_errors)
