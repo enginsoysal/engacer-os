@@ -234,9 +234,11 @@ static void files_draw_dialog11(void){
 #endif
 file_dialog11*d=&file_dialog_state11;if(!d->mode||!file_dialog_owner_focused11())return;int width=model.width>720?660:(int)model.width-40,height=d->mode==F11_DLG_PROPERTIES||d->mode==F11_DLG_RESULT?420:d->mode==F11_DLG_OPEN_WITH?370:d->mode==F11_DLG_CONFLICT?340:300;if(height>(int)model.height-100)height=(int)model.height-100;if(height<180)height=180;int x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;if(y<8)y=8;desktop_shadow16(x,y,width,height);
 #ifdef ENGINE_M13
- if(access_flags16&1){ui73_round(x,y,width,height,12,ink());ui73_round(x+2,y+2,width-4,height-4,10,paper());}else
+ if(access_flags16&1){ui73_round(x,y,width,height,12,ink());ui73_round(x+2,y+2,width-4,height-4,10,paper());}else{ui73_round(x,y,width,height,12,paper());}
+#else
+ ui73_round(x,y,width,height,12,paper());
 #endif
- ui73_round(x,y,width,height,12,paper());const char*title=d->mode==F11_DLG_RENAME?"Rename item":d->mode==F11_DLG_NEW_FOLDER?"Create a folder":d->mode==F11_DLG_NEW_TEXT?"Create a text file":d->mode==F11_DLG_CONFLICT?"Choose what to keep":d->mode==F11_DLG_PROPERTIES?"Properties":d->mode==F11_DLG_OPEN_WITH?"Choose an app":d->mode==F11_DLG_RESULT?"File operation details":"Delete permanently?";
+ const char*title=d->mode==F11_DLG_RENAME?"Rename item":d->mode==F11_DLG_NEW_FOLDER?"Create a folder":d->mode==F11_DLG_NEW_TEXT?"Create a text file":d->mode==F11_DLG_CONFLICT?"Choose what to keep":d->mode==F11_DLG_PROPERTIES?"Properties":d->mode==F11_DLG_OPEN_WITH?"Choose an app":d->mode==F11_DLG_RESULT?"File operation details":"Delete permanently?";
 #ifdef ENGINE_M13
  unsigned icon20=d->mode==F11_DLG_PROPERTIES?ICON12_DOCUMENT:d->mode==F11_DLG_NEW_FOLDER?ICON12_FOLDER:d->mode==F11_DLG_NEW_TEXT?ICON12_TEXT:(d->mode==F11_DLG_REMOVE||d->mode==F11_DLG_EMPTY)?ICON12_WARNING:ICON12_FILES;
  if(access_flags16&1)ui12_icon_ink(icon20,x+24,y+18,28,ink());else ui12_icon(icon20,x+24,y+18,28,preferences.dark);ui73_fit(x+64,y+22,width-88,title,UI12_SECTION,ink());
