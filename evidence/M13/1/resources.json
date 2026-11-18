@@ -77,6 +77,16 @@
       "framebuffer_bytes": 4096000,
       "retained_task_delta_pages": 0
     },
+    "1024": {
+      "managed_stats": [
+        815,
+        815,
+        17709,
+        5
+      ],
+      "framebuffer_bytes": 3145728,
+      "retained_task_delta_pages": 0
+    },
     "150": {
       "managed_stats": [
         2297,

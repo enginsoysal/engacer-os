@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "from": "190caa3caf77afa45e2d424c34e8b52492359a5f",
+  "to": "a1edd55d289e0b7712dfe742d5126ed04afa2b65",
+  "total_articles": 280,
+  "article_updates": 23,
+  "unchanged_articles": 257,
+  "scope": "Two actual documentation-only source snapshots with identical 600 compiled inputs; exact desired-content comparison retains unchanged article bodies/source dates"
+}

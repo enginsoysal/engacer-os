@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-**Current download: [Engacer OS M13.1](https://github.com/enginsoysal/engacer-os/releases/tag/m131-v0.13.1).** [Install in VMware](install-m131.md), then open Settings → System → Interface preview to try the shared controls. This stage passes its named native profiles; the remaining M13 stages and final whole-product qualification are separate. Final matching-release website verification is in progress.
+**Current download: [Engacer OS M13.1](https://github.com/enginsoysal/engacer-os/releases/tag/m131-v0.13.1).** [Install in VMware](install-m131.md), then open Settings → System → Interface preview to try the shared controls. This stage passes its named native profiles; the remaining M13 stages and final whole-product qualification are separate. The matching public website and downloads pass verification; see the [release scope](../releases/m131-v0.13.1.md).
 
 Earlier desktop guides remain useful for retained features. Their original test records qualify their historical media, not untested new bytes. Use the current installation/release guide for the new download.
 

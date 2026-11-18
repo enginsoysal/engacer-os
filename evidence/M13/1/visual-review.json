@@ -57,6 +57,18 @@
     {
       "path": "evidence/M13/1/4k/component-gallery-high-contrast.png",
       "sha256": "3b02a3cf0af156c1402dbbfadcf83f664cb8888e4ded20efc9147fb01fda6918"
+    },
+    {
+      "path": "evidence/M13/1/1024/component-gallery-light.png",
+      "sha256": "d86439a1fd201c68087e6a452f478316203bfc143a26f74d994c17f4a94ee3ce"
+    },
+    {
+      "path": "evidence/M13/1/1024/component-gallery-dark.png",
+      "sha256": "6f0a843c269f3f60c1a9ed66d338f2a483d113e5b4d6b52aa057d884776fe606"
+    },
+    {
+      "path": "evidence/M13/1/1024/component-gallery-high-contrast.png",
+      "sha256": "42a0de0b51b85ac0649bab3fe518fd00a7df44209cd24835882080553e876af3"
     }
   ],
   "feature_sha256": "2eae6a59646fd914ba767d39e825fa76d1e8a6e71489743d1f9b59909088b8f8",
@@ -69,6 +81,6 @@
     "convenience": "The gallery opens from ordinary Start search and System; pointer editing, Backspace and F1/Escape use normal input.",
     "user_friendliness": "The preview states that it does not write files/preferences; unavailable controls cannot be activated.",
     "graphic_quality": "Shared smooth typography, aligned controls and distinct light/dark/high-contrast surfaces were reviewed in actual native frames.",
-    "readability": "Essential labels fit compact, ordinary, 150% and actual 4K 200% views; the shifted-input result and focus help remain readable."
+    "readability": "Essential labels fit actual 1024x768, 1280x800, ordinary, 150% and actual 4K 200% views; the shifted-input result and focus help remain readable."
   }
 }

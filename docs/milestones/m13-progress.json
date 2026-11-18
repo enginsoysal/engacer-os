@@ -15,10 +15,11 @@
     {
       "id": "M13.1",
       "title": "One native visual and interaction foundation",
-      "status": "in_progress",
+      "status": "complete",
       "native_qualification": "M13-STAGE1-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m131-v0.13.1",
-      "remaining": "Final matching-release homepage Save and complete source/link readback"
+      "evidence": "evidence/M13/1",
+      "publication_evidence": "evidence/M13/1/publication-results.json"
     },
     {
       "id": "M13.2",

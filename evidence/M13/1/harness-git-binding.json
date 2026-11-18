@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "verification_source_commit": "4fb44f5e761569b96c58fbde7ca250ff7b379acd",
+  "release_source_commit": "190caa3caf77afa45e2d424c34e8b52492359a5f",
+  "compiled_inputs_at_both_refs": 600,
+  "committed_verification_files": 10,
+  "scope": "All compiled bytes match at release/current verification refs; every recorded M13 harness byte version matches Git and the actual working file. The previously normalized 13-line host wrapper is now stored with its exact executed CRLF bytes; no semantic test change."
+}
