@@ -1,0 +1,1068 @@
+{
+  "passed": false,
+  "diagnostic_only": false,
+  "status": "uninterrupted-idle",
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "starter_sha256": "c1c1df9523fd8fd7ebf517a4be32c344dfcd3ba27cc74e14fc81d32b68bb8854",
+  "owned_fixture": "6e666e49fd334921ac9b0c3f1f162e6b",
+  "requested_seconds": 28800,
+  "requested_uninterrupted_idle_seconds": 7200,
+  "frames": [
+    {
+      "name": "seed-editor-before",
+      "png": "seed-editor-before.png",
+      "sha256": "bc9ed588ea79719bddfe6ba84b1fc166e2437e687b4ef8bbe5a5bf02a0ee6170",
+      "observed_at": "2026-11-18T20:50:46.962729+00:00",
+      "monotonic": 23789.421
+    },
+    {
+      "name": "seed-editor-after",
+      "png": "seed-editor-after.png",
+      "sha256": "4194b4f50229159d2d94559a7a59268fad6dd1ae53e6cc6002b6a296bb058ef9",
+      "observed_at": "2026-11-18T20:50:49.506972+00:00",
+      "monotonic": 23791.968
+    },
+    {
+      "name": "retained-draft-seed",
+      "png": "retained-draft-seed.png",
+      "sha256": "1cb85090ead09d94d119ca5aad028040f0fbbda0160c7bfa5c2eacfc9c2555a5",
+      "observed_at": "2026-11-18T20:50:59.661286+00:00",
+      "monotonic": 23802.125
+    },
+    {
+      "name": "baseline-before",
+      "png": "baseline-before.png",
+      "sha256": "1cb85090ead09d94d119ca5aad028040f0fbbda0160c7bfa5c2eacfc9c2555a5",
+      "observed_at": "2026-11-18T20:51:00.193171+00:00",
+      "monotonic": 23802.656
+    },
+    {
+      "name": "baseline-after",
+      "png": "baseline-after.png",
+      "sha256": "0eb51bf79018dbea379d845d2c2b53ace97970b34d7ac2c520682f3fda6a701b",
+      "observed_at": "2026-11-18T20:51:03.212614+00:00",
+      "monotonic": 23805.671
+    },
+    {
+      "name": "baseline-after",
+      "png": "baseline-after.png",
+      "sha256": "ebb97fe3aa1cea047fd3348981fab70feceb976fa9929973c900745e653ee25d",
+      "observed_at": "2026-11-18T20:51:03.382775+00:00",
+      "monotonic": 23805.843
+    },
+    {
+      "name": "cycle-0-draft-before",
+      "png": "cycle-0-draft-before.png",
+      "sha256": "0eb51bf79018dbea379d845d2c2b53ace97970b34d7ac2c520682f3fda6a701b",
+      "observed_at": "2026-11-18T20:51:03.844379+00:00",
+      "monotonic": 23806.296
+    },
+    {
+      "name": "cycle-0-files-before",
+      "png": "cycle-0-files-before.png",
+      "sha256": "dbb13e21ab68fb54f2952700c8de922bc2dae12778cb21a41ba07532a4957160",
+      "observed_at": "2026-11-18T20:51:03.917896+00:00",
+      "monotonic": 23806.375
+    },
+    {
+      "name": "cycle-0-files-after",
+      "png": "cycle-0-files-after.png",
+      "sha256": "d36152950b0816ea8126a43a69cf58ea1b62f314e003b243237d52e909b078f5",
+      "observed_at": "2026-11-18T20:51:05.418581+00:00",
+      "monotonic": 23807.875
+    },
+    {
+      "name": "cycle-0-page-before",
+      "png": "cycle-0-page-before.png",
+      "sha256": "a674ab408da0d21db240ab141746ed9e5b94e0aa2c1fa030eec1258d3ab26b0b",
+      "observed_at": "2026-11-18T20:51:19.478824+00:00",
+      "monotonic": 23821.937
+    },
+    {
+      "name": "cycle-0-page-after",
+      "png": "cycle-0-page-after.png",
+      "sha256": "956a72b9645f27c168ae67531d00c0edea9d524f1b61eb400d96bb31e62ebb54",
+      "observed_at": "2026-11-18T20:51:19.992459+00:00",
+      "monotonic": 23822.453
+    },
+    {
+      "name": "cycle-0-menu-before",
+      "png": "cycle-0-menu-before.png",
+      "sha256": "17b60a10f259d80dc5368106bf7554a033f4462cf68dc5b4b4e2573e49146708",
+      "observed_at": "2026-11-18T20:51:20.518989+00:00",
+      "monotonic": 23822.968
+    },
+    {
+      "name": "cycle-0-menu-after",
+      "png": "cycle-0-menu-after.png",
+      "sha256": "83217b1bd2eb3e3f0b2867195ce2793b2f55475c10b51824597e6a9ebed55de2",
+      "observed_at": "2026-11-18T20:51:21.046725+00:00",
+      "monotonic": 23823.5
+    },
+    {
+      "name": "cycle-0-move-before",
+      "png": "cycle-0-move-before.png",
+      "sha256": "afd97cee03ac65d8cb5d9541c23824e5ee0e0e197e4a3090b5488a2e9bfe9464",
+      "observed_at": "2026-11-18T20:51:21.508176+00:00",
+      "monotonic": 23823.968
+    },
+    {
+      "name": "cycle-0-move-after",
+      "png": "cycle-0-move-after.png",
+      "sha256": "3101e970824a88b267192107304f6c55f21401be77cc8cb5745d3aba56a5c34d",
+      "observed_at": "2026-11-18T20:51:22.398277+00:00",
+      "monotonic": 23824.859
+    },
+    {
+      "name": "cycle-0-size-before",
+      "png": "cycle-0-size-before.png",
+      "sha256": "bc57309dd86193527f3eb8b0ab7a86477623d4084ca4e660bf300e529dab1734",
+      "observed_at": "2026-11-18T20:51:23.294417+00:00",
+      "monotonic": 23825.75
+    },
+    {
+      "name": "cycle-0-size-after",
+      "png": "cycle-0-size-after.png",
+      "sha256": "4a58f410238972978d935d9a7f12b10c080cb2e7fd116205b1c2bfc42b7208c9",
+      "observed_at": "2026-11-18T20:51:24.166923+00:00",
+      "monotonic": 23826.625
+    },
+    {
+      "name": "cycle-0-settings-before",
+      "png": "cycle-0-settings-before.png",
+      "sha256": "7ccc588ce903ef58216e181c25f79665816e20ad85c256ee3202676df51c7142",
+      "observed_at": "2026-11-18T20:51:24.693774+00:00",
+      "monotonic": 23827.156
+    },
+    {
+      "name": "cycle-0-settings-after",
+      "png": "cycle-0-settings-after.png",
+      "sha256": "26763b66c5daeb90e56a90da0b80ad0864fe1bc94de8e06409a65a747225743b",
+      "observed_at": "2026-11-18T20:51:26.711133+00:00",
+      "monotonic": 23829.171
+    },
+    {
+      "name": "cycle-0-search",
+      "png": "cycle-0-search.png",
+      "sha256": "420f466ed30f617a609a8b0065cbb92f9908f0f500688b6fb34e347d7e222b2e",
+      "observed_at": "2026-11-18T20:51:28.784453+00:00",
+      "monotonic": 23831.234
+    },
+    {
+      "name": "cycle-0-theme-before",
+      "png": "cycle-0-theme-before.png",
+      "sha256": "06cea443b7ba8813a4b4f6d8dd762339941d3dac49920ce906bbb79914f4ceb5",
+      "observed_at": "2026-11-18T20:51:29.282897+00:00",
+      "monotonic": 23831.734
+    },
+    {
+      "name": "cycle-0-theme-after",
+      "png": "cycle-0-theme-after.png",
+      "sha256": "8dbed7c8480f408ea08c3787b7fffb5682bf6ad4c3f3dd4b661314dfbf7e2440",
+      "observed_at": "2026-11-18T20:51:29.782682+00:00",
+      "monotonic": 23832.234
+    },
+    {
+      "name": "cycle-0-calculator-before",
+      "png": "cycle-0-calculator-before.png",
+      "sha256": "df1bf83b1671539c2c593348b7f92e18e02ae4820e52399f539a7706f0bbc94b",
+      "observed_at": "2026-11-18T20:51:31.628391+00:00",
+      "monotonic": 23834.078
+    },
+    {
+      "name": "cycle-0-calculator-after",
+      "png": "cycle-0-calculator-after.png",
+      "sha256": "13b8dba64d18da3b0183108fb69a09ba1463aacab2a2200b4347bd6be7cf8e54",
+      "observed_at": "2026-11-18T20:51:33.950452+00:00",
+      "monotonic": 23836.406
+    },
+    {
+      "name": "cycle-0-retained-draft",
+      "png": "cycle-0-retained-draft.png",
+      "sha256": "dbb13e21ab68fb54f2952700c8de922bc2dae12778cb21a41ba07532a4957160",
+      "observed_at": "2026-11-18T20:51:34.461408+00:00",
+      "monotonic": 23836.921
+    },
+    {
+      "name": "cycle-0-resources-before",
+      "png": "cycle-0-resources-before.png",
+      "sha256": "dbb13e21ab68fb54f2952700c8de922bc2dae12778cb21a41ba07532a4957160",
+      "observed_at": "2026-11-18T20:51:35.000805+00:00",
+      "monotonic": 23837.453
+    },
+    {
+      "name": "cycle-0-resources-after",
+      "png": "cycle-0-resources-after.png",
+      "sha256": "a3925abd285cf388b1cd022c1b92dc421282deb68b5ea705859bcce3435000c7",
+      "observed_at": "2026-11-18T20:51:38.018808+00:00",
+      "monotonic": 23840.468
+    },
+    {
+      "name": "uninterrupted-idle-0",
+      "png": "uninterrupted-idle-0.png",
+      "sha256": "974a4861c07264debcaf5f8fa1b17024055e5fb533ee700576002ec127469908",
+      "observed_at": "2026-11-18T20:52:38.836753+00:00",
+      "monotonic": 23901.296
+    },
+    {
+      "name": "uninterrupted-idle-1",
+      "png": "uninterrupted-idle-1.png",
+      "sha256": "a1729da788ededbebb27e10bd70f7aa91939f6f11974cdbfddfd80ce17f26730",
+      "observed_at": "2026-11-18T20:53:39.241898+00:00",
+      "monotonic": 23961.703
+    },
+    {
+      "name": "uninterrupted-idle-2",
+      "png": "uninterrupted-idle-2.png",
+      "sha256": "db63b69936182ba9f93dd22c4ae862c4d304e86b0d7e9af6cbc9fd909d883b63",
+      "observed_at": "2026-11-18T20:54:39.728661+00:00",
+      "monotonic": 24022.187
+    },
+    {
+      "name": "uninterrupted-idle-3",
+      "png": "uninterrupted-idle-3.png",
+      "sha256": "e0025ad4533a0caf1bf53180d1ddf8299d09b338cd88d45d5b907c64339b71ce",
+      "observed_at": "2026-11-18T20:55:40.157740+00:00",
+      "monotonic": 24082.609
+    },
+    {
+      "name": "uninterrupted-idle-4",
+      "png": "uninterrupted-idle-4.png",
+      "sha256": "f84b5d0df82f4f12337a1138b6487b4a8ae077f93f827b44d64cba38563c6db7",
+      "observed_at": "2026-11-18T20:56:40.586923+00:00",
+      "monotonic": 24143.046
+    },
+    {
+      "name": "uninterrupted-idle-5",
+      "png": "uninterrupted-idle-5.png",
+      "sha256": "4fc371555f1c94bae7f33ff0d52e4ecaad0fe7243b5efec99962319e4d8b8085",
+      "observed_at": "2026-11-18T20:57:41.006015+00:00",
+      "monotonic": 24203.453
+    },
+    {
+      "name": "uninterrupted-idle-6",
+      "png": "uninterrupted-idle-6.png",
+      "sha256": "92f023368e4e1fed0ea73bf636c56200881fdbf5c59ad9c3f9a4d6154ee341aa",
+      "observed_at": "2026-11-18T20:58:41.392042+00:00",
+      "monotonic": 24263.843
+    },
+    {
+      "name": "uninterrupted-idle-7",
+      "png": "uninterrupted-idle-7.png",
+      "sha256": "78c75afbef8d9c881284ab5339bcc3c2a23bbb8efa7f6d8f3300ed77bb36dc19",
+      "observed_at": "2026-11-18T20:59:41.797146+00:00",
+      "monotonic": 24324.25
+    },
+    {
+      "name": "uninterrupted-idle-8",
+      "png": "uninterrupted-idle-8.png",
+      "sha256": "f357b374f57ee1de3c47d44dda3e01bc79f0197cc2d294e0e63a2c115ce0ca4f",
+      "observed_at": "2026-11-18T21:00:42.230064+00:00",
+      "monotonic": 24384.687
+    },
+    {
+      "name": "uninterrupted-idle-9",
+      "png": "uninterrupted-idle-9.png",
+      "sha256": "6780695428ef916ec63bff243f0a58347ba2f391e8e72e2d0a6f0546a5d43669",
+      "observed_at": "2026-11-18T21:01:42.644847+00:00",
+      "monotonic": 24445.093
+    },
+    {
+      "name": "uninterrupted-idle-10",
+      "png": "uninterrupted-idle-10.png",
+      "sha256": "8786f4febb725e968cbfb35048b84d2a1ae7d613e4b524e6db429f0baa546704",
+      "observed_at": "2026-11-18T21:02:43.023460+00:00",
+      "monotonic": 24505.484
+    },
+    {
+      "name": "uninterrupted-idle-11",
+      "png": "uninterrupted-idle-11.png",
+      "sha256": "3c6c853217ccffeeb7987695810617827ecd169c838f2d8891f9e3da225bc13a",
+      "observed_at": "2026-11-18T21:03:43.448446+00:00",
+      "monotonic": 24565.906
+    },
+    {
+      "name": "uninterrupted-idle-12",
+      "png": "uninterrupted-idle-12.png",
+      "sha256": "d2766ed85af17975110d1f15dacfdce09924bbebe166a9835f50b4188b81eb14",
+      "observed_at": "2026-11-18T21:04:43.844674+00:00",
+      "monotonic": 24626.296
+    },
+    {
+      "name": "uninterrupted-idle-13",
+      "png": "uninterrupted-idle-13.png",
+      "sha256": "c150c7e0e731a75515b74a3cc06590487ae23d70903c178ee79731d44e715d9b",
+      "observed_at": "2026-11-18T21:05:44.214448+00:00",
+      "monotonic": 24686.671
+    },
+    {
+      "name": "uninterrupted-idle-14",
+      "png": "uninterrupted-idle-14.png",
+      "sha256": "adbc6130ef54e5fcd009dd1060d34e3e236dcb65d6dfbec5668673a31bbe58a6",
+      "observed_at": "2026-11-18T21:06:44.659565+00:00",
+      "monotonic": 24747.109
+    },
+    {
+      "name": "uninterrupted-idle-15",
+      "png": "uninterrupted-idle-15.png",
+      "sha256": "3247475c11ecfa1d19548c1d76c541a33caf8cd6083d488900034aa20ef9733b",
+      "observed_at": "2026-11-18T21:07:45.129960+00:00",
+      "monotonic": 24807.578
+    },
+    {
+      "name": "uninterrupted-idle-16",
+      "png": "uninterrupted-idle-16.png",
+      "sha256": "3c78c71d39d2b4367d5f9d0f4941521c4b803a3bb39b65c70a9ecceb220ce5c7",
+      "observed_at": "2026-11-18T21:08:45.542342+00:00",
+      "monotonic": 24868.0
+    },
+    {
+      "name": "uninterrupted-idle-17",
+      "png": "uninterrupted-idle-17.png",
+      "sha256": "79577aeda08294d0ebe6c7dbe139bbfd6e5d1446bd9c937a5b2231450e823952",
+      "observed_at": "2026-11-18T21:09:46.024051+00:00",
+      "monotonic": 24928.468
+    },
+    {
+      "name": "uninterrupted-idle-18",
+      "png": "uninterrupted-idle-18.png",
+      "sha256": "76a56456655c43ea1a1a440835c7910742760a3b2fd268c15ca07fe7a3a55551",
+      "observed_at": "2026-11-18T21:10:46.460879+00:00",
+      "monotonic": 24988.906
+    },
+    {
+      "name": "uninterrupted-idle-19",
+      "png": "uninterrupted-idle-19.png",
+      "sha256": "cc3957c00ecd30770b3c21d612df5578e7524a28b82c65d1ac38548b15400cc9",
+      "observed_at": "2026-11-18T21:11:46.928969+00:00",
+      "monotonic": 25049.375
+    },
+    {
+      "name": "uninterrupted-idle-20",
+      "png": "uninterrupted-idle-20.png",
+      "sha256": "7b0a36d746cac84a61ad36ca4e7cac94e7812c549b77828becde367512125d6e",
+      "observed_at": "2026-11-18T21:12:47.330805+00:00",
+      "monotonic": 25109.781
+    },
+    {
+      "name": "uninterrupted-idle-21",
+      "png": "uninterrupted-idle-21.png",
+      "sha256": "1ce5fcf4c3c1e7e261819141d6d0d0618eae5b76f7994f9d5084380b47de6902",
+      "observed_at": "2026-11-18T21:13:47.793648+00:00",
+      "monotonic": 25170.25
+    },
+    {
+      "name": "uninterrupted-idle-22",
+      "png": "uninterrupted-idle-22.png",
+      "sha256": "3718df097e17e7542386bb1cdce8164706d9831246afda1548d6ae0c8539f6c2",
+      "observed_at": "2026-11-18T21:14:48.214077+00:00",
+      "monotonic": 25230.671
+    },
+    {
+      "name": "uninterrupted-idle-23",
+      "png": "uninterrupted-idle-23.png",
+      "sha256": "d86c55a69fde74e69695be7c6d16e92faf44423373187a1fb08885e35e6a6111",
+      "observed_at": "2026-11-18T21:15:48.645931+00:00",
+      "monotonic": 25291.093
+    },
+    {
+      "name": "uninterrupted-idle-24",
+      "png": "uninterrupted-idle-24.png",
+      "sha256": "d1da2f7f8dde86b4cdb334bfd4786f23a023afffe32de8096318b527684fa86b",
+      "observed_at": "2026-11-18T21:16:49.107541+00:00",
+      "monotonic": 25351.562
+    },
+    {
+      "name": "uninterrupted-idle-25",
+      "png": "uninterrupted-idle-25.png",
+      "sha256": "ea6745471d3f0e1842d3eb22478a4771dbfb7a85a6d43cd3591f621354e483cc",
+      "observed_at": "2026-11-18T21:17:49.567960+00:00",
+      "monotonic": 25412.015
+    },
+    {
+      "name": "uninterrupted-idle-26",
+      "png": "uninterrupted-idle-26.png",
+      "sha256": "e83cb8eb5903b0ae7d83aa920cfd6d4db582f9b05f0a456d8d7253610dd05f8d",
+      "observed_at": "2026-11-18T21:18:49.975939+00:00",
+      "monotonic": 25472.421
+    },
+    {
+      "name": "uninterrupted-idle-27",
+      "png": "uninterrupted-idle-27.png",
+      "sha256": "97ea2618588a14f661a4e18dcaccd3cc4aa2badb41842f4d469ab7577834d820",
+      "observed_at": "2026-11-18T21:19:50.380571+00:00",
+      "monotonic": 25532.828
+    },
+    {
+      "name": "uninterrupted-idle-28",
+      "png": "uninterrupted-idle-28.png",
+      "sha256": "2c8b935cf88e39a5288a803fe20124ccd047287cbc8d24329cd6a1991dec8b6c",
+      "observed_at": "2026-11-18T21:20:50.796244+00:00",
+      "monotonic": 25593.25
+    },
+    {
+      "name": "uninterrupted-idle-29",
+      "png": "uninterrupted-idle-29.png",
+      "sha256": "f7847bb42c2312e30874c4834a264a7ad7043e66471ad83826aaff0f843981cf",
+      "observed_at": "2026-11-18T21:21:51.215054+00:00",
+      "monotonic": 25653.656
+    },
+    {
+      "name": "uninterrupted-idle-30",
+      "png": "uninterrupted-idle-30.png",
+      "sha256": "90186167a1bf07aace361bcc6a39abd5e956e5237b5e05b4730bee80eb88231a",
+      "observed_at": "2026-11-18T21:22:51.554480+00:00",
+      "monotonic": 25714.0
+    },
+    {
+      "name": "uninterrupted-idle-31",
+      "png": "uninterrupted-idle-31.png",
+      "sha256": "534e8e02a9c9cd7c050618ae185c24a5700da350fb5a6bd618fcdd68f784aacb",
+      "observed_at": "2026-11-18T21:23:51.930966+00:00",
+      "monotonic": 25774.375
+    },
+    {
+      "name": "uninterrupted-idle-32",
+      "png": "uninterrupted-idle-32.png",
+      "sha256": "4c4256fb1ca69572a3b9ad501f7dca01f15d128bc199f95ae50e0a006f2123f7",
+      "observed_at": "2026-11-18T21:24:52.335128+00:00",
+      "monotonic": 25834.781
+    },
+    {
+      "name": "uninterrupted-idle-33",
+      "png": "uninterrupted-idle-33.png",
+      "sha256": "c7c10a685e8cbac5b0a4c5f1e6c425a5e3e85e2e88abe354b0f0fb62b73a76ec",
+      "observed_at": "2026-11-18T21:25:52.661925+00:00",
+      "monotonic": 25895.109
+    },
+    {
+      "name": "uninterrupted-idle-34",
+      "png": "uninterrupted-idle-34.png",
+      "sha256": "19631e48cf0d38cf50271da194637d085c40b036c21bacd86849e4d246b02831",
+      "observed_at": "2026-11-18T21:26:53.120230+00:00",
+      "monotonic": 25955.562
+    },
+    {
+      "name": "uninterrupted-idle-35",
+      "png": "uninterrupted-idle-35.png",
+      "sha256": "a0a4126e423e355a7a535af6bb3093a2758437acceed44c177d7e3e104f72f5f",
+      "observed_at": "2026-11-18T21:27:53.587731+00:00",
+      "monotonic": 26016.031
+    },
+    {
+      "name": "uninterrupted-idle-36",
+      "png": "uninterrupted-idle-36.png",
+      "sha256": "58d06f8637b3943e35626f62cb5ba1bb60f6f4af8d52f909a14a143cb136a805",
+      "observed_at": "2026-11-18T21:28:54.002609+00:00",
+      "monotonic": 26076.453
+    },
+    {
+      "name": "uninterrupted-idle-37",
+      "png": "uninterrupted-idle-37.png",
+      "sha256": "660c3983311177d5e4f43ec1c805816e86270cccbb7763ef8b3a472f9ea1e61f",
+      "observed_at": "2026-11-18T21:29:54.410094+00:00",
+      "monotonic": 26136.859
+    },
+    {
+      "name": "uninterrupted-idle-38",
+      "png": "uninterrupted-idle-38.png",
+      "sha256": "0f95b8e1a6f97533e6ddbbba328fdf5e185ff1e37bc0f61052ad7a54e31abed1",
+      "observed_at": "2026-11-18T21:30:54.832890+00:00",
+      "monotonic": 26197.281
+    },
+    {
+      "name": "uninterrupted-idle-39",
+      "png": "uninterrupted-idle-39.png",
+      "sha256": "6d9c01371fb2adcb7669eb32df7567df87311c69cedf890512b02edf31a467aa",
+      "observed_at": "2026-11-18T21:31:55.262395+00:00",
+      "monotonic": 26257.703
+    },
+    {
+      "name": "uninterrupted-idle-40",
+      "png": "uninterrupted-idle-40.png",
+      "sha256": "cadd02ed01048b32ad4ad4ae410493adfb32e5914811e9471587ce08054525a4",
+      "observed_at": "2026-11-18T21:32:55.669376+00:00",
+      "monotonic": 26318.109
+    },
+    {
+      "name": "uninterrupted-idle-41",
+      "png": "uninterrupted-idle-41.png",
+      "sha256": "b55fef6e0743f78907d2bcb810adf81ad16af4d1e7a983d05e290e19ec2fac55",
+      "observed_at": "2026-11-18T21:33:56.078697+00:00",
+      "monotonic": 26378.531
+    },
+    {
+      "name": "uninterrupted-idle-42",
+      "png": "uninterrupted-idle-42.png",
+      "sha256": "90cd7fa1d471f18d719a328d4bb4a00630b2ac9c4480473927c281383416fbd7",
+      "observed_at": "2026-11-18T21:34:56.516833+00:00",
+      "monotonic": 26438.968
+    },
+    {
+      "name": "uninterrupted-idle-43",
+      "png": "uninterrupted-idle-43.png",
+      "sha256": "a3e427764d7e56dcc73c3d94b1bf7178578f8cd056dc777e729fec0b0261e9e8",
+      "observed_at": "2026-11-18T21:35:56.928392+00:00",
+      "monotonic": 26499.375
+    },
+    {
+      "name": "uninterrupted-idle-44",
+      "png": "uninterrupted-idle-44.png",
+      "sha256": "68311c65acf3759bf1c90bb3da12fcf95c02f10b773d46edf165d0ce6ae666b3",
+      "observed_at": "2026-11-18T21:36:57.330903+00:00",
+      "monotonic": 26559.781
+    },
+    {
+      "name": "uninterrupted-idle-45",
+      "png": "uninterrupted-idle-45.png",
+      "sha256": "2f9f04c10d99fab67fd70facbc879cc9a133285a6dd909828e1e70012fa26b40",
+      "observed_at": "2026-11-18T21:37:57.753698+00:00",
+      "monotonic": 26620.203
+    },
+    {
+      "name": "uninterrupted-idle-46",
+      "png": "uninterrupted-idle-46.png",
+      "sha256": "dd82d04d063cbe3c0bd215c51fce23b098466b7d7623daa66efdb89622c72948",
+      "observed_at": "2026-11-18T21:38:58.212250+00:00",
+      "monotonic": 26680.656
+    },
+    {
+      "name": "uninterrupted-idle-47",
+      "png": "uninterrupted-idle-47.png",
+      "sha256": "48ee0e452f60574535b5d93845960f6b0f592571e8224c0e1d223db1ea0731a0",
+      "observed_at": "2026-11-18T21:39:58.568265+00:00",
+      "monotonic": 26741.015
+    },
+    {
+      "name": "uninterrupted-idle-48",
+      "png": "uninterrupted-idle-48.png",
+      "sha256": "2ddef01a4fa50f8b6eef502d70f7efdc02a555e8ac5db29af6b27d6868d61b88",
+      "observed_at": "2026-11-18T21:40:59.033094+00:00",
+      "monotonic": 26801.484
+    },
+    {
+      "name": "uninterrupted-idle-49",
+      "png": "uninterrupted-idle-49.png",
+      "sha256": "9f0b967fbb56fa31e010a1acad5ec7be43a23612873719d94fde3a8160398138",
+      "observed_at": "2026-11-18T21:41:59.403685+00:00",
+      "monotonic": 26861.843
+    },
+    {
+      "name": "uninterrupted-idle-50",
+      "png": "uninterrupted-idle-50.png",
+      "sha256": "28b478c7717fcc19094ffd012bb6fb5e2cfbd1a1be63ccac436b18b759f2067e",
+      "observed_at": "2026-11-18T21:42:59.811868+00:00",
+      "monotonic": 26922.25
+    },
+    {
+      "name": "uninterrupted-idle-51",
+      "png": "uninterrupted-idle-51.png",
+      "sha256": "4cb984c34abdcc2707654fc53f19a1ebfee9b3a6e735f05d806bde7339dc9ee9",
+      "observed_at": "2026-11-18T21:44:00.226870+00:00",
+      "monotonic": 26982.671
+    },
+    {
+      "name": "uninterrupted-idle-52",
+      "png": "uninterrupted-idle-52.png",
+      "sha256": "58e718c6aa38d0bdf16e39b7daa9619ecdcd5e0a1639077edf00adb6c2de5d2f",
+      "observed_at": "2026-11-18T21:45:00.637489+00:00",
+      "monotonic": 27043.078
+    },
+    {
+      "name": "uninterrupted-idle-53",
+      "png": "uninterrupted-idle-53.png",
+      "sha256": "c2211179fdd057320174226022e1ce08c86613c617bed81c4e0261b10b73b8de",
+      "observed_at": "2026-11-18T21:46:01.035406+00:00",
+      "monotonic": 27103.484
+    },
+    {
+      "name": "uninterrupted-idle-54",
+      "png": "uninterrupted-idle-54.png",
+      "sha256": "1949380a3d0739c3b5a716a6d37c7ee00035b0ad423e58d92bc6142ee7b2bd21",
+      "observed_at": "2026-11-18T21:47:01.493704+00:00",
+      "monotonic": 27163.937
+    },
+    {
+      "name": "uninterrupted-idle-55",
+      "png": "uninterrupted-idle-55.png",
+      "sha256": "642d75a7d1300b468864f37c3d6f1ae1b9bac8e045556db43c64ecc03540c2ee",
+      "observed_at": "2026-11-18T21:48:01.957415+00:00",
+      "monotonic": 27224.406
+    },
+    {
+      "name": "uninterrupted-idle-56",
+      "png": "uninterrupted-idle-56.png",
+      "sha256": "17a96ce062ecd8bcaadc2fa76b7af563afdf49d757626da31c83be5df7e26ce1",
+      "observed_at": "2026-11-18T21:49:02.394345+00:00",
+      "monotonic": 27284.843
+    },
+    {
+      "name": "uninterrupted-idle-57",
+      "png": "uninterrupted-idle-57.png",
+      "sha256": "6099309ea850f478b1073ae451a7b23810784b4007831fa02641c53187eed3e6",
+      "observed_at": "2026-11-18T21:50:02.856382+00:00",
+      "monotonic": 27345.296
+    },
+    {
+      "name": "uninterrupted-idle-58",
+      "png": "uninterrupted-idle-58.png",
+      "sha256": "4308c18e507a641fc332f9449a33a70bad53ff13032117c842ee1669b09f558c",
+      "observed_at": "2026-11-18T21:51:03.258057+00:00",
+      "monotonic": 27405.703
+    },
+    {
+      "name": "uninterrupted-idle-59",
+      "png": "uninterrupted-idle-59.png",
+      "sha256": "82fec6353815636e008068b97a574934150efa9f75357cfffef1ab14ed3c49c2",
+      "observed_at": "2026-11-18T21:52:03.633551+00:00",
+      "monotonic": 27466.078
+    },
+    {
+      "name": "uninterrupted-idle-60",
+      "png": "uninterrupted-idle-60.png",
+      "sha256": "f7a519c8e657ddbd1c8127688986dcf6d92d0f601c54718c54573c0e47141bca",
+      "observed_at": "2026-11-18T21:53:03.991589+00:00",
+      "monotonic": 27526.437
+    },
+    {
+      "name": "uninterrupted-idle-61",
+      "png": "uninterrupted-idle-61.png",
+      "sha256": "fd1b811311408b4ca35aefdfb70176696a33e8bc3d43310dd24b48f489699cd1",
+      "observed_at": "2026-11-18T21:54:04.430157+00:00",
+      "monotonic": 27586.875
+    },
+    {
+      "name": "uninterrupted-idle-62",
+      "png": "uninterrupted-idle-62.png",
+      "sha256": "dcf34260cc6a8644504b8149cfd2078c85e219fc8595aa8e15f38b64328309fc",
+      "observed_at": "2026-11-18T21:55:04.821328+00:00",
+      "monotonic": 27647.265
+    },
+    {
+      "name": "uninterrupted-idle-63",
+      "png": "uninterrupted-idle-63.png",
+      "sha256": "b7801e756e281c758604cf299997999b66056e7ca457aaa45acfd6c65ebf8bda",
+      "observed_at": "2026-11-18T21:56:05.263836+00:00",
+      "monotonic": 27707.703
+    },
+    {
+      "name": "uninterrupted-idle-64",
+      "png": "uninterrupted-idle-64.png",
+      "sha256": "f0f184658e42d098472646f31081261e09da821e364125b70f12b60bfd1199e9",
+      "observed_at": "2026-11-18T21:57:05.677016+00:00",
+      "monotonic": 27768.125
+    },
+    {
+      "name": "uninterrupted-idle-65",
+      "png": "uninterrupted-idle-65.png",
+      "sha256": "a3809aa07d7bcdc00df7257a04ea609ea3b816847af6caf03f1e3352d7db388f",
+      "observed_at": "2026-11-18T21:58:06.139374+00:00",
+      "monotonic": 27828.578
+    },
+    {
+      "name": "uninterrupted-idle-66",
+      "png": "uninterrupted-idle-66.png",
+      "sha256": "db906b143ecf02c6892069db8c6281fc461c7e818ff2fdc545af942ed9524762",
+      "observed_at": "2026-11-18T21:59:06.534761+00:00",
+      "monotonic": 27888.984
+    },
+    {
+      "name": "uninterrupted-idle-67",
+      "png": "uninterrupted-idle-67.png",
+      "sha256": "22b032ad69956994d1b5c2660896dd6bb04c47b1461cc222e411d59a6519d06d",
+      "observed_at": "2026-11-18T22:00:06.958443+00:00",
+      "monotonic": 27949.406
+    },
+    {
+      "name": "uninterrupted-idle-68",
+      "png": "uninterrupted-idle-68.png",
+      "sha256": "29e66535087fad5c04eb6b72d3db105b14e6721b8bfa38f2715992b4fe60f583",
+      "observed_at": "2026-11-18T22:01:07.351697+00:00",
+      "monotonic": 28009.796
+    },
+    {
+      "name": "uninterrupted-idle-69",
+      "png": "uninterrupted-idle-69.png",
+      "sha256": "ca7d81c52acc16922098ec807c78f3931851ac37d0edbd17d0e8feb36f8abee1",
+      "observed_at": "2026-11-18T22:02:07.775185+00:00",
+      "monotonic": 28070.218
+    },
+    {
+      "name": "uninterrupted-idle-70",
+      "png": "uninterrupted-idle-70.png",
+      "sha256": "08516f585789cb2c564f8902f59db199d36ed69eb520ee5d9d7b4357bdb50b4a",
+      "observed_at": "2026-11-18T22:03:08.158165+00:00",
+      "monotonic": 28130.593
+    },
+    {
+      "name": "uninterrupted-idle-71",
+      "png": "uninterrupted-idle-71.png",
+      "sha256": "04940b08603321b55455e2916c5d6ef9d34da270232908431fd2baaed5d7becd",
+      "observed_at": "2026-11-18T22:04:08.529566+00:00",
+      "monotonic": 28190.968
+    },
+    {
+      "name": "uninterrupted-idle-72",
+      "png": "uninterrupted-idle-72.png",
+      "sha256": "287f66ed0f84b48f048523562c336fcc7995f3ddbfec51b0f77a4b7f4124630d",
+      "observed_at": "2026-11-18T22:05:08.916313+00:00",
+      "monotonic": 28251.359
+    },
+    {
+      "name": "uninterrupted-idle-73",
+      "png": "uninterrupted-idle-73.png",
+      "sha256": "8563d0f1e0cee8dfaea9caa5a6c99a31b003e0ec31706138025da4ce1335f9f5",
+      "observed_at": "2026-11-18T22:06:09.351742+00:00",
+      "monotonic": 28311.796
+    },
+    {
+      "name": "uninterrupted-idle-74",
+      "png": "uninterrupted-idle-74.png",
+      "sha256": "940a8e05eae178b31ce50085845b4bcb510fbe418fef97bd6a4164cd79b5475b",
+      "observed_at": "2026-11-18T22:07:09.783033+00:00",
+      "monotonic": 28372.218
+    },
+    {
+      "name": "uninterrupted-idle-75",
+      "png": "uninterrupted-idle-75.png",
+      "sha256": "ea5943daa303981213a1b84b3b661b1c0e9ea0d991f75a694a4b7fc5d38ac8f1",
+      "observed_at": "2026-11-18T22:08:10.182000+00:00",
+      "monotonic": 28432.625
+    },
+    {
+      "name": "uninterrupted-idle-76",
+      "png": "uninterrupted-idle-76.png",
+      "sha256": "7caabbc4d1627ab0464d4d95f89e7ff7df707bb2dcf65d6cc02e3921ca0dde6e",
+      "observed_at": "2026-11-18T22:09:10.639479+00:00",
+      "monotonic": 28493.078
+    },
+    {
+      "name": "uninterrupted-idle-77",
+      "png": "uninterrupted-idle-77.png",
+      "sha256": "0256564be0ffb7bff937b9766a73dd84a21396dea0931e58428c5ed0c015e808",
+      "observed_at": "2026-11-18T22:10:11.095006+00:00",
+      "monotonic": 28553.531
+    },
+    {
+      "name": "uninterrupted-idle-78",
+      "png": "uninterrupted-idle-78.png",
+      "sha256": "15d906fb47ab7ea2c1c8bd718b21efc10c44887640a24a7233800899a76524b6",
+      "observed_at": "2026-11-18T22:11:11.584661+00:00",
+      "monotonic": 28614.031
+    },
+    {
+      "name": "uninterrupted-idle-79",
+      "png": "uninterrupted-idle-79.png",
+      "sha256": "99371342041e5e4a0415875dd18892b33b38a8e6095fbc2b6190dfeaffc65898",
+      "observed_at": "2026-11-18T22:12:11.994440+00:00",
+      "monotonic": 28674.437
+    },
+    {
+      "name": "uninterrupted-idle-80",
+      "png": "uninterrupted-idle-80.png",
+      "sha256": "9f4d62c49204b39921bace1f4d54a37a21a74ae90300d62f7d0b8fdd3b93137e",
+      "observed_at": "2026-11-18T22:13:12.423863+00:00",
+      "monotonic": 28734.859
+    },
+    {
+      "name": "uninterrupted-idle-81",
+      "png": "uninterrupted-idle-81.png",
+      "sha256": "946589df3d16116110b9efa881a785c5ed4dd5e9f2890db58f021f5e8de2b347",
+      "observed_at": "2026-11-18T22:14:12.856753+00:00",
+      "monotonic": 28795.296
+    },
+    {
+      "name": "uninterrupted-idle-82",
+      "png": "uninterrupted-idle-82.png",
+      "sha256": "fed609c89c456e47cfd7ab145d1e789bd6a4ffeef042e8ca386f51e267dbeb38",
+      "observed_at": "2026-11-18T22:15:13.239168+00:00",
+      "monotonic": 28855.687
+    },
+    {
+      "name": "uninterrupted-idle-83",
+      "png": "uninterrupted-idle-83.png",
+      "sha256": "ec18285c93e7d9847fee79b90c5153ad8b6e3ab3668281bf955cf56ded88626d",
+      "observed_at": "2026-11-18T22:16:13.665347+00:00",
+      "monotonic": 28916.109
+    },
+    {
+      "name": "uninterrupted-idle-84",
+      "png": "uninterrupted-idle-84.png",
+      "sha256": "7e75717a84d24f81ca064fcfea36e5ee89dc58ca3b50234afce26d5c89679cc1",
+      "observed_at": "2026-11-18T22:17:14.058475+00:00",
+      "monotonic": 28976.5
+    },
+    {
+      "name": "uninterrupted-idle-85",
+      "png": "uninterrupted-idle-85.png",
+      "sha256": "631cccd4e6525c0eb97094dedf02b6783ca9171e355710d378f96ea90de76f74",
+      "observed_at": "2026-11-18T22:18:14.414795+00:00",
+      "monotonic": 29036.859
+    },
+    {
+      "name": "uninterrupted-idle-86",
+      "png": "uninterrupted-idle-86.png",
+      "sha256": "c3f8c74d65b8bba3b0dc825fdd401789f579009ab465ef61c7629888817f8b3c",
+      "observed_at": "2026-11-18T22:19:14.837900+00:00",
+      "monotonic": 29097.281
+    },
+    {
+      "name": "uninterrupted-idle-87",
+      "png": "uninterrupted-idle-87.png",
+      "sha256": "db959366955e9f8cd3153c69515841a54747a2cde4d6ad47dcbe5c45a4041704",
+      "observed_at": "2026-11-18T22:20:15.217256+00:00",
+      "monotonic": 29157.656
+    },
+    {
+      "name": "uninterrupted-idle-88",
+      "png": "uninterrupted-idle-88.png",
+      "sha256": "5e77daaf5d48c4b7f8b12b2bf1d9b6f7272cd159323c5ed89802870867cd9219",
+      "observed_at": "2026-11-18T22:21:15.679146+00:00",
+      "monotonic": 29218.125
+    },
+    {
+      "name": "uninterrupted-idle-89",
+      "png": "uninterrupted-idle-89.png",
+      "sha256": "a617ee17d6f486e7e9a67a826656a113ff4b16185ac488701a0f82b8cc919b0e",
+      "observed_at": "2026-11-18T22:22:16.164167+00:00",
+      "monotonic": 29278.609
+    },
+    {
+      "name": "uninterrupted-idle-90",
+      "png": "uninterrupted-idle-90.png",
+      "sha256": "cb4b5161180845be7886687a537badff4ca839d6e08b0b1c7e41c0a20b3429db",
+      "observed_at": "2026-11-18T22:23:16.578914+00:00",
+      "monotonic": 29339.015
+    },
+    {
+      "name": "uninterrupted-idle-91",
+      "png": "uninterrupted-idle-91.png",
+      "sha256": "39979b15c4f9443fcd7607db5b7cbad0f8c65515f16740989055f739ae5f77c7",
+      "observed_at": "2026-11-18T22:24:17.078053+00:00",
+      "monotonic": 29399.515
+    },
+    {
+      "name": "uninterrupted-idle-92",
+      "png": "uninterrupted-idle-92.png",
+      "sha256": "98b231d894e5e4cc84c4ebdac343ce35cff4efe1aa6f528796692e14cb92a5da",
+      "observed_at": "2026-11-18T22:25:17.640458+00:00",
+      "monotonic": 29460.078
+    },
+    {
+      "name": "uninterrupted-idle-93",
+      "png": "uninterrupted-idle-93.png",
+      "sha256": "e07aeb1feae5d85dc262db16bd67e22b3f068c97fb8a2c6096da26497fb85a41",
+      "observed_at": "2026-11-18T22:26:18.100151+00:00",
+      "monotonic": 29520.546
+    },
+    {
+      "name": "uninterrupted-idle-94",
+      "png": "uninterrupted-idle-94.png",
+      "sha256": "ccc6fc818655478808d94fa34fb0e386ad9901e025ca704aa67a1bf4de14757d",
+      "observed_at": "2026-11-18T22:27:18.558098+00:00",
+      "monotonic": 29581.0
+    },
+    {
+      "name": "uninterrupted-idle-95",
+      "png": "uninterrupted-idle-95.png",
+      "sha256": "79d3c9bdcffe835b4f56c0e71dd04f38041f21bf00bd5f94dea0643aaa92e74e",
+      "observed_at": "2026-11-18T22:28:19.010240+00:00",
+      "monotonic": 29641.453
+    },
+    {
+      "name": "uninterrupted-idle-96",
+      "png": "uninterrupted-idle-96.png",
+      "sha256": "64b0cf1b84e7dce1d07e7a41f5cc7fe5fef40b19f05fab71da1228e0689232b2",
+      "observed_at": "2026-11-18T22:29:19.431208+00:00",
+      "monotonic": 29701.875
+    },
+    {
+      "name": "uninterrupted-idle-97",
+      "png": "uninterrupted-idle-97.png",
+      "sha256": "cccc2a8133cb168b4a6cc60a8a79b79f2fed7567e887dbf3f211198b4b037235",
+      "observed_at": "2026-11-18T22:30:19.919341+00:00",
+      "monotonic": 29762.359
+    },
+    {
+      "name": "uninterrupted-idle-98",
+      "png": "uninterrupted-idle-98.png",
+      "sha256": "33da6972405f0d3eb18d71b3f3dc53aecb35a4778a2b57b4b66f81e90954d591",
+      "observed_at": "2026-11-18T22:31:20.370442+00:00",
+      "monotonic": 29822.812
+    },
+    {
+      "name": "uninterrupted-idle-99",
+      "png": "uninterrupted-idle-99.png",
+      "sha256": "8bbcfdbae8daf27cde11a1589ccc958bf84d627507624c3bd4ebd4a27e030c95",
+      "observed_at": "2026-11-18T22:32:20.850225+00:00",
+      "monotonic": 29883.296
+    },
+    {
+      "name": "uninterrupted-idle-100",
+      "png": "uninterrupted-idle-100.png",
+      "sha256": "f35471147f42e9f58a050a06d4900f668f17cd77be0e4cb567e0cbda4218b181",
+      "observed_at": "2026-11-18T22:33:21.327546+00:00",
+      "monotonic": 29943.765
+    },
+    {
+      "name": "uninterrupted-idle-101",
+      "png": "uninterrupted-idle-101.png",
+      "sha256": "629fb6599d1d5e61e56e4f8a1410220175532f227a39cd270866086933d9b1a4",
+      "observed_at": "2026-11-18T22:34:21.868313+00:00",
+      "monotonic": 30004.312
+    },
+    {
+      "name": "uninterrupted-idle-102",
+      "png": "uninterrupted-idle-102.png",
+      "sha256": "1a879d110420a45525cb45e414c903ecc38f4790d8f5e7fea4db36289acfee37",
+      "observed_at": "2026-11-18T22:35:22.656891+00:00",
+      "monotonic": 30065.093
+    },
+    {
+      "name": "uninterrupted-idle-103",
+      "png": "uninterrupted-idle-103.png",
+      "sha256": "d82e28894bd0813008a15da34cc8f4934207c49957d984e5ac92ef1fbfaada8c",
+      "observed_at": "2026-11-18T22:36:23.328354+00:00",
+      "monotonic": 30125.765
+    },
+    {
+      "name": "uninterrupted-idle-104",
+      "png": "uninterrupted-idle-104.png",
+      "sha256": "932a4d9f63d3719a17a92bb6f5412725bc3a1d78fa5ee52bd9152f0f3529721d",
+      "observed_at": "2026-11-18T22:37:23.837841+00:00",
+      "monotonic": 30186.281
+    },
+    {
+      "name": "uninterrupted-idle-105",
+      "png": "uninterrupted-idle-105.png",
+      "sha256": "93f839be44da9aabf3e45545e63187b8aadf2a1ac424995b60ff2516dcef94ad",
+      "observed_at": "2026-11-18T22:38:24.326389+00:00",
+      "monotonic": 30246.765
+    },
+    {
+      "name": "uninterrupted-idle-106",
+      "png": "uninterrupted-idle-106.png",
+      "sha256": "25a4287b22d3493d0398a0a17a235211ad2b0883a70a5513db6de41fbe5c5e71",
+      "observed_at": "2026-11-18T22:39:24.843350+00:00",
+      "monotonic": 30307.281
+    },
+    {
+      "name": "uninterrupted-idle-107",
+      "png": "uninterrupted-idle-107.png",
+      "sha256": "b2be1f475bb93b9f36d47eba8e931d2fe2727b70680fedf4e37b749b0e3bafcb",
+      "observed_at": "2026-11-18T22:40:25.319332+00:00",
+      "monotonic": 30367.765
+    }
+  ],
+  "launches": [
+    {
+      "label": "seed-editor",
+      "kind": 2,
+      "changed_central_pixels": 328888,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "baseline",
+      "kind": 6,
+      "changed_central_pixels": 271576,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-files",
+      "kind": 1,
+      "changed_central_pixels": 408946,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-settings",
+      "kind": 3,
+      "changed_central_pixels": 395265,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-calculator",
+      "kind": 4,
+      "changed_central_pixels": 293622,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-resources",
+      "kind": 6,
+      "changed_central_pixels": 330478,
+      "serial_event": true,
+      "visible": true
+    }
+  ],
+  "resources": [
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3387392,
+      "allocation_failures": 5,
+      "paints": 565,
+      "pixels": 397120568,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "baseline",
+      "observed_at": "2026-11-18T20:51:03.398886+00:00"
+    },
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3440640,
+      "allocation_failures": 5,
+      "paints": 735,
+      "pixels": 498750104,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "cycle-0-resources",
+      "observed_at": "2026-11-18T20:51:38.029586+00:00"
+    }
+  ],
+  "cycles": [
+    {
+      "number": 0,
+      "actual_active_seconds": 34.60900000000038,
+      "dirty_body_changed_pixels": 0,
+      "retained_managed_bytes": 0,
+      "visible_and_serial": true
+    }
+  ],
+  "idle_intervals": [],
+  "checks": [
+    "Fresh exact enabled-device starter installs, retains ISO, types/saves a real original document and retains its dirty suffix through full visible file/window/menu/settings/search/preview/cancel/apply/app/resource tasks"
+  ],
+  "started_at": "2026-11-18T20:48:40.526229+00:00",
+  "harness_sha256": "62a4856c9d4727fd71c0f493016362837ddfd09baba9dbfd1b7aa97c44b8c564",
+  "dependencies_sha256": {
+    "tests/m13/workday13.py": "62a4856c9d4727fd71c0f493016362837ddfd09baba9dbfd1b7aa97c44b8c564",
+    "tests/m13/vmware_stage12.py": "9683c5cd8eee2d9e8c1819be3d61239b1c6f5616253543fffb93ed07dcb667a4",
+    "tests/m13/close_stage.py": "54fc13038cd708f0c984bef0acbf09787c7b5e5f30581a43038eaeeb5995db9a",
+    "tests/m10/vmware.py": "82da2726c58c3e96c04432fb7265dc94cf5c7745eeedd1d99f0c315bdda67a2b",
+    "tests/m9/rfb.py": "7248e2821e8a93f87b9659089a0c3efadeead2ca5f675a8df48aa079711a62ec",
+    "tests/m71/vmware.py": "ff3a676690680fee56e23c0a580a449fec9c25be21c2c04ba313f10864b3d146",
+    "tests/m7/vmware.py": "4684dae66347ae00013269af8237a752a166baad7e2b765d30ba870e7adc3efb",
+    "tests/m7/rfb.py": "fba81d95c1deb59e83b0aa63fab72bdc60f6a9fdf6c9ce27a89d2f9ae879541f",
+    "tests/m6/vmware.py": "c1e610cd5a8c9116f41103c09aa8ee91ddf652849371f43093460cd6c4b689d0"
+  },
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "boot_allocation_failures": 5,
+  "physical": [
+    1024,
+    768
+  ],
+  "managed_peak_budget_bytes": 11776000,
+  "gate_started_at": "2026-11-18T20:51:38.406517+00:00",
+  "gate_monotonic": 23840.859,
+  "elapsed_seconds": 6526.844000000001
+}

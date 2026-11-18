@@ -1,10 +1,10 @@
 # Stability, saved work and useful diagnostics
 
-**M13.13 qualification is in progress. M13.12 remains the current testing download.** The eight-hour candidate run has started but has not passed yet. Do not use testing media as the only copy of important work.
+**M13.13 final checks use the owner-revised ninety-minute observation scope.** The actual candidate observation reached 108.78 minutes. The original eight-hour/two-hour idle gate was stopped at explicit owner direction and did not pass. Do not use testing media as the only copy of important work.
 
 ## Keep your work
 
-In Text Editor, use **Save** or **Ctrl+S**. An unsaved edit remains part of the open window until you save it; a VM reset cannot promise to recover unsaved work. During qualification, the test deliberately keeps a saved document and an unsaved suffix open for the full session, checks both independently, then explicitly saves and reopens the exact bytes after two ordinary disk-only starts.
+In Text Editor, use **Save** or **Ctrl+S**. An unsaved edit remains part of the open window until you save it; a VM reset cannot promise to recover unsaved work. During qualification, the test deliberately keeps a saved document and an unsaved suffix open during observed tasks, checks both independently, then explicitly saves and reopens the exact bytes after two ordinary disk-only starts.
 
 The screensaver is optional and starts **Off**. Open **Start > Settings > Appearance > Screensaver** to choose a supported timeout and style, use **Preview**, then **Apply** to keep your choices or **Cancel changes** to restore them. Keyboard or mouse input wakes the screen; that first gesture is consumed so it cannot accidentally operate the covered desktop. A screensaver does not save a document, authenticate a user, repair a freeze or switch off the display.
 
@@ -16,8 +16,8 @@ Before a reset, retain any existing screenshot and available test logs. Resettin
 
 ## What the qualification actually measures
 
-The frozen enabled-device VMware candidate must complete eight actual hours, starting with two uninterrupted hours without injected input and continuing with repeated real file, window, search, Settings and app tasks. The observer checks visible presentation as well as native events, retained dirty text, explicit saved bytes, bounded peak memory, no unexplained retained memory or new allocation refusals, and two independent ordinary starts without the ISO. Unexpected hangs, restarts, data loss or observation gaps above the declared limit block release.
+The owner accepted ninety minutes instead of the earlier eight-hour requirement. The frozen enabled-device VMware candidate reached 108.78 observed minutes with no injected input during its idle observation. Separate fresh tasks complete real file, window, search, Settings, app and saved-data/startup checks. The observer checks visible presentation as well as native events, retained dirty text, explicit saved bytes, bounded peak memory, no unexplained retained memory or new allocation refusals, and two independent ordinary starts without the ISO. Unexpected hangs, restarts, data loss or unexplained observation gaps block the corresponding qualification claim.
 
-Separate checks cover constrained-memory and physical 4K native tasks, screensaver preferences and wake behavior, and a clearly labelled simulated display-timeout recovery followed by three warm resets. Short feature checks do not replace eight elapsed hours. A simulated timeout does not prove the cause of the historical M13.7/M13.8 natural freezes. A successful named-VM workday would qualify that candidate and scenario, not every device, every VM configuration or unlimited uptime.
+Separate checks cover constrained-memory and physical 4K native tasks, screensaver preferences and wake behavior, and a clearly labelled simulated display-timeout recovery followed by three warm resets. The original eight-hour and two-hour idle gates did not complete; no short check is presented as their replacement or pass. A simulated timeout does not prove the cause of the historical M13.7/M13.8 natural freezes. Successful revised-scope checks qualify that candidate and scenario, not every device, every VM configuration or unlimited uptime.
 
-The [M13.13 milestone](../milestones/m13-13.md) records the acceptance contract and current state. The [current installation guide](install-m1312.md) remains the guide for the available M13.12 download until the new candidate passes and its exact media are published.
+The [M13.13 milestone](../milestones/m13-13.md) records the acceptance contract and current state. The [current installation guide](install-m1313.md) describes the matching M13.13 media; use it after that exact release is published.

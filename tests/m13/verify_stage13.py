@@ -1,9 +1,9 @@
-"""Fail closed until the frozen M13.13 real-workday and supplementary gates pass."""
+"""Bind the owner-revised M13.13 duration scope and separate completion tasks."""
 import hashlib
 import json
 import os
-from datetime import datetime
 from pathlib import Path
+from PIL import Image, ImageChops
 
 import verify_stage2 as base
 from close_stage import verify_inputs_at_commit
@@ -21,28 +21,47 @@ def main():
     iso = meta['artifacts']['EngacerOS-M13STAGE13.iso']['sha256']
     assert meta['release_version'] == '0.13.13'
     pointer = read(work / 'workday/current.json')
-    source = ROOT / pointer['report']
-    assert source.resolve().is_relative_to((work / 'workday').resolve())
+    observed_source = ROOT / pointer['report']
+    assert observed_source.resolve().is_relative_to((work / 'workday').resolve())
+    observed = read(observed_source)
+    owner = read(out / 'owner-duration-scope.json')
+    assert owner['minimum_observed_seconds'] == 5400
+    assert owner['observed_seconds'] == observed['elapsed_seconds'] >= 5400
+    assert owner['eight_hour_gate_passed'] is False and owner['two_hour_idle_gate_passed'] is False
+    assert not observed['passed'] and 'error' not in observed
+    assert observed['status'] == 'uninterrupted-idle'
+    assert observed['build_id'] == meta['build_id'] and observed['iso_sha256'] == iso
+    assert observed['starter_sha256'] == starter['sha256']
+    assert observed['harness_sha256'] == sha(ROOT / 'tests/m13/workday13.py')
+    for name, digest in observed['dependencies_sha256'].items():
+        assert sha(ROOT / name) == digest, name
+    observed_frames = {frame['png']: frame for frame in observed['frames']}
+    for frame in observed_frames.values():
+        assert sha(observed_source.parent / frame['png']) == frame['sha256']
+    samples = [frame for frame in observed_frames.values() if frame['png'].startswith('uninterrupted-idle-')]
+    assert len(samples) >= 89
+    clock_hashes = set()
+    with Image.open(observed_source.parent / 'retained-draft-seed.png') as image:
+        body = image.convert('RGB').crop((194, 216, 846, 440))
+    for sample in samples:
+        with Image.open(observed_source.parent / sample['png']) as image:
+            image = image.convert('RGB')
+            clock_hashes.add(hashlib.sha256(image.crop((image.width-250, image.height-60, image.width, image.height)).tobytes()).hexdigest())
+            difference = ImageChops.difference(body, image.crop((194, 216, 846, 440))).convert('L')
+            assert difference.width * difference.height - difference.histogram()[0] <= 100
+    assert len(clock_hashes) >= 80, 'Require actual visible clock/presentation progress'
+    gaps = [b['monotonic'] - a['monotonic'] for a, b in zip(samples, samples[1:])]
+    assert gaps and max(gaps) <= 90
+    # The owner stopped the original gate early. Its incomplete report is never
+    # relabelled. A separate fresh diagnostic completes final Save/data/starts.
+    source = ROOT / read(work / 'preflight/current.json')['report']
+    assert source.resolve().is_relative_to((work / 'preflight').resolve())
     day = read(source)
-    assert day['passed'] is True and day['diagnostic_only'] is False
-    assert day['status'] == 'duration-gate-passed' and 'error' not in day
+    assert day['passed'] is False and day['diagnostic_only'] is True
+    assert day['preflight_successful'] and day['status'] == 'diagnostic-preflight-complete' and 'error' not in day
     assert day['build_id'] == meta['build_id'] and day['iso_sha256'] == iso
     assert day['starter_sha256'] == starter['sha256']
-    assert day['requested_seconds'] == 28800 and day['elapsed_seconds'] >= 28800
-    assert day['requested_uninterrupted_idle_seconds'] == 7200
-    wall = (datetime.fromisoformat(day['completed_at']) - datetime.fromisoformat(day['gate_started_at'])).total_seconds()
-    assert wall >= day['elapsed_seconds'], 'Wall time cannot be shorter than qualified time'
-    idle = day['idle_intervals']
-    assert idle[0]['uninterrupted_no_input'] and idle[0]['actual_seconds'] >= 7200
-    assert len(idle[0]['observations']) >= 118
-    for interval in idle:
-        assert interval['maximum_observer_gap_seconds'] <= 15
-        observations = interval['observations']
-        for observation in observations:
-            assert (source.parent / observation['png']).is_file()
-        if interval['actual_seconds'] >= 180:
-            assert len({r['clock_region_sha256'] for r in observations}) >= 2
-    assert len(day['cycles']) >= 60, 'Require repeated tasks throughout six active hours'
+    assert len(day['cycles']) >= 1
     assert all(c['retained_managed_bytes'] == 0 and c['visible_and_serial'] and c['dirty_body_changed_pixels'] <= 100 for c in day['cycles'])
     assert all(l['visible'] and l['serial_event'] and l['changed_central_pixels'] >= 10000 for l in day['launches'])
     baseline = day['resources'][0]
@@ -123,7 +142,7 @@ def main():
                         raw = raw.replace(variant.encode(), b'<redacted-local-root>')
         return raw
 
-    for name, folder in [('workday', source.parent), ('recovery', recovery_sources[0].parent), *[(name, work / name) for name in reports]]:
+    for name, folder in [('owner-shortened-observation', observed_source.parent), ('functional-completion', source.parent), ('recovery', recovery_sources[0].parent), *[(name, work / name) for name in reports]]:
         dest = out / 'native' / name
         dest.mkdir(parents=True, exist_ok=True)
         for path in folder.iterdir():
@@ -133,9 +152,9 @@ def main():
             (dest / path.name).write_bytes(raw if path.suffix == '.png' else public(raw))
     write(out / 'resources.json', dict(passed=True, fixed_desktop=fixed, fixed_installer=setup, font_coverage_bytes=251248, workday_baseline=baseline, peak_budget_bytes=day['managed_peak_budget_bytes'], measured_peak_bytes=max(r['peak_bytes'] for r in day['resources']), retained_managed_bytes=0, new_allocation_failures=0, supplementary={name: row.get('resources') for name, row in reports.items() if 'resources' in row}))
     write(out / 'capture-retention.json', dict(scope='All final retained PNGs are SHA-256 verified. Same-name provisional launch-retry frames were superseded in the frozen observer and their earlier hashes are metadata only, not preserved image evidence.', final_images=len(final_frames), superseded_provisional_observations=superseded))
-    accepted = dict(passed=True, stage='M13.13', version='0.13.13', qualification='M13-STAGE13-VM-v1', build_id=meta['build_id'], iso_sha256=iso, vmware_zip_sha256=starter['sha256'], source_inputs_verified=len(meta['source_sha256']), actual_workday_seconds=day['elapsed_seconds'], uninterrupted_idle_seconds=idle[0]['actual_seconds'], active_cycles=len(day['cycles']), visible_launches=len(day['launches']), native_checks=day['checks'] + [check for row in reports.values() for check in row.get('checks', [])], vmware_checks=vm['checks'], resources='resources.json', harness_sha256={p.relative_to(ROOT).as_posix(): sha(p) for p in [Path(__file__), ROOT / 'tests/m13/workday13.py', ROOT / 'tests/m13/recovery13.py', ROOT / 'tests/m13/active_idle13.py', ROOT / 'tests/m13/vmware_stage13.py']}, limits=['Eight-hour qualification applies to the named exact enabled-device VMware starter; not universal physical hardware or arbitrary uptime', 'Three warm resets follow a labelled injected display timeout; this does not establish the cause of historical natural M13.7/M13.8 freezes or reproduce their reset chain', 'Separate constrained/physical-4K native tasks last fifteen real idle minutes each, not eight hours', 'Native source remains identical to M13.12; its fourteen-controller integration matrix is historical evidence, not a repeated M13.13 matrix', 'No vendor GPU 3D, universal Windows/MSI support, physical device study or human novice study is claimed'])
+    accepted = dict(passed=True, stage='M13.13', version='0.13.13', qualification='M13-STAGE13-VM-v1', duration_scope='owner_revised_90_minutes', build_id=meta['build_id'], iso_sha256=iso, vmware_zip_sha256=starter['sha256'], source_inputs_verified=len(meta['source_sha256']), actual_observed_seconds=observed['elapsed_seconds'], minimum_observed_seconds=5400, eight_hour_gate_passed=False, two_hour_idle_gate_passed=False, visible_idle_samples=len(samples), unique_clock_captures=len(clock_hashes), maximum_recorded_capture_gap_seconds=max(gaps), active_cycles=len(day['cycles']), visible_launches=len(day['launches']), functional_completion_separate_from_duration=True, native_checks=['Owner-revised ninety-minute minimum met by actual frozen enabled-device VMware observation; retained dirty text and independently hashed clock progression in every recorded idle sample'] + day['checks'] + [check for row in reports.values() for check in row.get('checks', [])], vmware_checks=vm['checks'], resources='resources.json', harness_sha256={p.relative_to(ROOT).as_posix(): sha(p) for p in [Path(__file__), ROOT / 'tests/m13/workday13.py', ROOT / 'tests/m13/recovery13.py', ROOT / 'tests/m13/active_idle13.py', ROOT / 'tests/m13/vmware_stage13.py']}, limits=['Owner explicitly shortened the duration requirement to ninety minutes; the original eight-hour/two-hour gate was interrupted and did not pass', 'The long observation has preserved reports/screenshots; its early stop does not supply completed interval maxima or a final native session log. Saved-data finalization and independent boots are separately tested on a fresh exact candidate', 'Three warm resets follow a labelled injected display timeout; this does not establish the cause of historical natural M13.7/M13.8 freezes or reproduce their reset chain', 'Separate constrained/physical-4K native tasks last fifteen real idle minutes each', 'Native source remains identical to M13.12; its fourteen-controller integration matrix is historical evidence, not a repeated M13.13 matrix', 'No universal stability, vendor GPU 3D, universal Windows/MSI support, physical device study or human novice study is claimed'])
     write(out / 'acceptance-results.json', accepted)
-    print('PASS M13.13: exact frozen eight-real-hour workday, independent data starts, labelled recovery, constrained/4K resources and screensaver regression')
+    print('PASS owner-revised M13.13: actual ninety-minute-plus observation, separate saved-data/independent starts, labelled recovery, constrained/4K and screensaver regression; not an eight-hour pass')
 
 
 if __name__ == '__main__':

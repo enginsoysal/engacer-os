@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "checks": [
+    "Seven independent CRC-valid malformed magic/version/enabled/timeout/style/short/long records activate Off without silent writes; actual Restore defaults/Apply and ordinary startup recover valid choices while preserving personal and source bytes"
+  ],
+  "cases": [
+    {
+      "name": "magic",
+      "bytes": 20,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    },
+    {
+      "name": "version",
+      "bytes": 20,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    },
+    {
+      "name": "enabled",
+      "bytes": 20,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    },
+    {
+      "name": "timeout",
+      "bytes": 20,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    },
+    {
+      "name": "style",
+      "bytes": 20,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    },
+    {
+      "name": "short",
+      "bytes": 16,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    },
+    {
+      "name": "long",
+      "bytes": 21,
+      "valid_filesystem_banks": 2,
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "replacement_hex": "4553323101000000000000003c00000000000000"
+    }
+  ]
+}

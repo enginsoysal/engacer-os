@@ -1,0 +1,111 @@
+{
+  "passed": true,
+  "fixed_desktop": {
+    "bytes": 557516,
+    "sections": {
+      "bss": 557488,
+      "data": 28
+    },
+    "map_sha256": "a3478f519939b734d6d07bb5cda262b4522aca28b49eaf3aa8ed0555766ecd30"
+  },
+  "fixed_installer": {
+    "bytes": 48412,
+    "sections": {
+      "bss": 48244,
+      "data": 168
+    }
+  },
+  "font_coverage_bytes": 251248,
+  "workday_baseline": {
+    "current_bytes": 3387392,
+    "peak_bytes": 3387392,
+    "allocation_failures": 5,
+    "paints": 565,
+    "pixels": 397120568,
+    "visible_framebuffer_bytes": 3145728,
+    "framebuffer_range_bytes": 3145728,
+    "label": "baseline",
+    "observed_at": "2026-11-18T22:43:38.693595+00:00"
+  },
+  "peak_budget_bytes": 11776000,
+  "measured_peak_bytes": 3440640,
+  "retained_managed_bytes": 0,
+  "new_allocation_failures": 0,
+  "supplementary": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "active-idle-constrained": {
+      "before": [
+        815,
+        815,
+        17699,
+        5
+      ],
+      "after": [
+        815,
+        827,
+        17699,
+        5
+      ],
+      "retained_task_delta_pages": 0,
+      "all_cpus_halted_when_idle": true
+    },
+    "active-idle-4k": {
+      "before": [
+        8147,
+        8147,
+        247076,
+        5
+      ],
+      "after": [
+        8147,
+        8159,
+        247076,
+        5
+      ],
+      "retained_task_delta_pages": 0,
+      "all_cpus_halted_when_idle": true
+    },
+    "screensaver-native": {
+      "before": [
+        2072,
+        2072,
+        116006,
+        5
+      ],
+      "after": [
+        2072,
+        2084,
+        116006,
+        5
+      ],
+      "retained_pages": 0
+    },
+    "screensaver-persistence": {
+      "retained_pages": 0
+    },
+    "settings-write-failure": {
+      "before": [
+        1047,
+        1047,
+        18978,
+        5
+      ],
+      "after": [
+        1047,
+        1059,
+        18978,
+        5
+      ],
+      "retained_pages": 0
+    }
+  }
+}

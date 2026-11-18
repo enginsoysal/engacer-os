@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "physical": [
+    1024,
+    768
+  ],
+  "configured_guest_mib": 128,
+  "profile": "constrained",
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "owned_fixture": "c08d6069832d42b2b81e6a82202d4430",
+  "requested_idle_seconds_per_cycle": 300,
+  "cycles": [
+    {
+      "real_idle_seconds": 300.1100000000006,
+      "rtc_seconds_before": 32,
+      "rtc_seconds_after": 332,
+      "dirty_text_sha256": "ea6b03374813fde9338e47ddaa70d2c32820ee22abeea273272eea8bab72300e",
+      "saved_file_unchanged": true,
+      "same_window_owner": true,
+      "retained_pages": 0,
+      "ordinary_input_after_idle": true
+    },
+    {
+      "real_idle_seconds": 300.1100000000006,
+      "rtc_seconds_before": 336,
+      "rtc_seconds_after": 636,
+      "dirty_text_sha256": "a034cf6834de4b66d995232087a6999f3a4f904dbf4dab6ec4b765c094d71d93",
+      "saved_file_unchanged": true,
+      "same_window_owner": true,
+      "retained_pages": 0,
+      "ordinary_input_after_idle": true
+    },
+    {
+      "real_idle_seconds": 300.4060000000027,
+      "rtc_seconds_before": 639,
+      "rtc_seconds_after": 939,
+      "dirty_text_sha256": "8c524eaa4a3cb435b0623181bb40692e8df69027a075f49d371d266769eba808",
+      "saved_file_unchanged": true,
+      "same_window_owner": true,
+      "retained_pages": 0,
+      "ordinary_input_after_idle": true
+    }
+  ],
+  "checks": [
+    "Explicit Save creates independently read exact bytes before idle; subsequent unsaved edits remain owned by the same live Editor",
+    "Three separately recorded real active/idle cycles retain dirty text and original saved bytes, advance RTC interrupts, accept ordinary text input and retain zero managed pages",
+    "Explicit final Save publishes the retained draft; two independent disk-only starts reopen the actual document with exact bytes and correct saved state",
+    "Closing the task returns to baseline managed pages and idle CPUs halt without a new polling worker"
+  ],
+  "scope": "Real elapsed native active/idle, RTC and document/persistent-data checks on a separate owned raw-disk fixture. Raw VRAM captures are not vendor GPU/scanout qualification; the exact VMware soak is separate.",
+  "resources": {
+    "before": [
+      815,
+      815,
+      17699,
+      5
+    ],
+    "after": [
+      815,
+      827,
+      17699,
+      5
+    ],
+    "retained_task_delta_pages": 0,
+    "all_cpus_halted_when_idle": true
+  },
+  "saved_document_sha256": "8c524eaa4a3cb435b0623181bb40692e8df69027a075f49d371d266769eba808",
+  "document_path": "/Users/Owner/Documents/Note1.txt"
+}

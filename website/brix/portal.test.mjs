@@ -46,30 +46,30 @@ test('published search metadata includes bounded current-guide headings and task
 
 test('current download retains an unresolved owner stability report without claiming a fix',()=>{const ownerIssues=[{id:'long-uptime-freeze',status:'investigation_planned'}];const current=JSON.stringify(portalDesign({stage:8,searchReady:true,ownerIssues}));assert(current.includes('Known freezes: testing only'));assert(current.includes('does not claim a fix'));assert(!JSON.stringify(portalDesign({stage:6,ownerIssues})).includes('Known freezes: testing only'));assert(!JSON.stringify(portalDesign({stage:9,ownerIssues:[{id:'long-uptime-freeze',status:'resolved'}]})).includes('Known freezes: testing only'));});
 
-test('known M13 freezes have visible testing-only status and a blocking stability gate',async()=>{const issues=[{id:"long-uptime-freeze",status:"investigating"}];const home=JSON.stringify(portalDesign({stage:8,searchReady:true,ownerIssues:issues}));for(const term of ["KNOWN FREEZES · TESTING ONLY","M13.8 (testing only)","Do not use this build for everyday work","M13.13","Stability is not qualified"])assert(home.includes(term),term);const {stabilityWarning13}=await import("./downloads.mjs");const warning=stabilityWarning13({owner_additions:issues});for(const term of ["M13.8","testing only","M13.13","eight-hour"])assert(warning.includes(term),term);assert.equal(stabilityWarning13({owner_additions:[{id:"long-uptime-freeze",status:"resolved"}]}),"");});
+test('known M13 freezes have visible testing-only status and a blocking stability gate',async()=>{const issues=[{id:"long-uptime-freeze",status:"investigating"}];const home=JSON.stringify(portalDesign({stage:8,searchReady:true,ownerIssues:issues}));for(const term of ["KNOWN FREEZES · TESTING ONLY","M13.8 (testing only)","Do not use this build for everyday work","M13.13","Stability is not qualified"])assert(home.includes(term),term);const {stabilityWarning13}=await import("./downloads.mjs");const warning=stabilityWarning13({owner_additions:issues});for(const term of ["M13.8","testing only","M13.13","owner-revised"])assert(warning.includes(term),term);assert.equal(stabilityWarning13({owner_additions:[{id:"long-uptime-freeze",status:"resolved"}]}),"");});
 
-test('workday publication cannot replace pending status with a partial duration or diagnostic pass',async()=>{
- const {workdayQualified13,stabilityWarning13}=await import('./downloads.mjs');
+test('revised-scope publication rejects a short observation, diagnostic result or missing functional completion',async()=>{
+ const {stabilityScopeQualified13,stabilityWarning13}=await import('./downloads.mjs');
  const ownerIssues=[{id:'long-uptime-freeze',status:'qualified_current_candidate'}];
- const complete={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',actual_workday_seconds:28800,uninterrupted_idle_seconds:7200};
- for(const result of [undefined,{...complete,passed:false},{...complete,diagnostic_only:true},{...complete,actual_workday_seconds:28799},{...complete,uninterrupted_idle_seconds:7199},{...complete,stage:'M13.12'},{...complete,actual_workday_seconds:Infinity}]){
-  assert.equal(workdayQualified13(result),false);
+ const complete={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',duration_scope:'owner_revised_90_minutes',functional_completion_separate_from_duration:true,eight_hour_gate_passed:false,actual_observed_seconds:5400};
+ for(const result of [undefined,{...complete,passed:false},{...complete,diagnostic_only:true},{...complete,actual_observed_seconds:5399},{...complete,functional_completion_separate_from_duration:false},{...complete,stage:'M13.12'},{...complete,actual_observed_seconds:Infinity}]){
+  assert.equal(stabilityScopeQualified13(result),false);
   const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result}));
   assert(home.includes('STABILITY PENDING · TESTING ONLY'));
-  assert(!home.includes('EIGHT-HOUR VM WORKDAY QUALIFIED'));
+  assert(!home.includes('NAMED VM STABILITY CHECKS COMPLETE'));
   assert(stabilityWarning13({owner_additions:ownerIssues,stability_qualification:result}).includes('Stability is not qualified'));
  }
 });
 
-test('qualified named-workday copy preserves historical cause and device limitations',async()=>{
+test('qualified revised-scope copy preserves historical cause and duration/device limitations',async()=>{
  const {stabilityWarning13}=await import('./downloads.mjs');
- const result={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',actual_workday_seconds:28801,uninterrupted_idle_seconds:7201};
+ const result={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',duration_scope:'owner_revised_90_minutes',functional_completion_separate_from_duration:true,eight_hour_gate_passed:false,actual_observed_seconds:6526};
  const ownerIssues=[{id:'long-uptime-freeze',status:'qualified_current_candidate'}];
  const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result}));
- for(const term of ['EIGHT-HOUR VM WORKDAY QUALIFIED','Next: hardware recognition.','Historical natural-freeze causes remain unestablished','unlimited uptime are not qualified'])assert(home.includes(term),term);
+ for(const term of ['NAMED VM STABILITY CHECKS COMPLETE','Next: hardware recognition.','Historical natural-freeze causes remain unestablished','unlimited uptime are not qualified'])assert(home.includes(term),term);
  assert(!home.includes('STABILITY PENDING · TESTING ONLY'));
  assert(!home.includes('Download M13.13 (testing only)'));
  const warning=stabilityWarning13({owner_additions:ownerIssues,stability_qualification:result});
- for(const term of ['Eight-hour VMware workday qualified','M13.7/M13.8','does not establish their cause','stability-m1313'])assert(warning.includes(term),term);
- assert(!JSON.stringify(portalDesign({stage:12,ownerIssues,stabilityQualification:result})).includes('EIGHT-HOUR VM WORKDAY QUALIFIED'));
+ for(const term of ['Named VMware checks complete','M13.7/M13.8','does not establish their cause','stability-m1313'])assert(warning.includes(term),term);
+ assert(!JSON.stringify(portalDesign({stage:12,ownerIssues,stabilityQualification:result})).includes('NAMED VM STABILITY CHECKS COMPLETE'));
 });

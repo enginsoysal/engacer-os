@@ -1,0 +1,6 @@
+{
+  "scope": "Cleanup of only the explicitly owner-stopped interrupted observation fixture; no user VM is targeted",
+  "owned_fixture": "6e666e49fd334921ac9b0c3f1f162e6b",
+  "owned_still_running_before_cleanup": true,
+  "owned_stopped": true
+}

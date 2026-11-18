@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "owned_fixture": "2c9ad585e07c47cdafe771f494935bd9",
+  "checks": [
+    "Off defaults and all three actual previews work without writing the complete disk; Cancel restores the saved state and wake returns to the same Settings page without click-through",
+    "Only the draft owner can edit or Apply; Escape, leaving the page and Restore defaults/Cancel preserve the exact independently read twenty-byte saved record",
+    "A genuinely held Enter activation arms until release; a held Ctrl wake remains consumed until release, leaves no modifier state and wheel input also returns without scrolling the Settings behind the saver",
+    "Eight actual window generations and exact unsaved Editor text survive a consumed letter wake; explicit later Discard closes the work and the original personal document remains independently unchanged",
+    "Removing and reinstalling the optional Clock through base Settings does not break the actual Clock screensaver, Files or Settings; the saver uses the shared native clock service",
+    "The enabled one-minute choice activates after actual elapsed keyboard/mouse inactivity and wakes to the retained desktop; this is a functional timeout check, not a stability soak",
+    "Two ordinary no-ISO USB/PS2 starts load exact saved Off/ten-minute/Blank choices, preview/wake with real input, preserve personal bytes and halt at idle"
+  ],
+  "scope": "One-minute idle activation is a functional feature task; natural freezes and duration/reset-chain qualification remain exclusively M13.13",
+  "restored_window_controls": [
+    30000,
+    30001,
+    30002,
+    30003,
+    0,
+    43101,
+    43102,
+    43107,
+    43103,
+    58006,
+    58004,
+    58008,
+    58005
+  ],
+  "actual_idle_feature_seconds": 60.0470000000023,
+  "start_ticks": 138,
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      116006,
+      5
+    ],
+    "after": [
+      2072,
+      2084,
+      116006,
+      5
+    ],
+    "retained_pages": 0
+  },
+  "saved_record_hex": "4553323101000000000000005802000002000000"
+}

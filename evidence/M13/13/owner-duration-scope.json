@@ -1,0 +1,12 @@
+{
+  "scope": "Owner superseding instruction: ninety minutes of testing is sufficient; finish M13.13 now. Host-laptop attribution is the owner report, not an independently established root cause.",
+  "minimum_observed_seconds": 5400,
+  "observed_seconds": 6526.844000000001,
+  "original_requested_seconds": 28800,
+  "eight_hour_gate_passed": false,
+  "two_hour_idle_gate_passed": false,
+  "termination": "Stopped at explicit owner direction; original report remains incomplete and unchanged, not relabelled as passed",
+  "source_report": "build/m13/stage13/workday/6e666e49fd334921ac9b0c3f1f162e6b/results.json",
+  "required_remaining": "Fresh exact-starter functional/data/startup completion plus independent release and website publication",
+  "recorded_at": "2026-11-18T22:41:17.078947+00:00"
+}

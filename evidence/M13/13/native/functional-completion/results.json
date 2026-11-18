@@ -1,0 +1,412 @@
+{
+  "passed": false,
+  "diagnostic_only": true,
+  "status": "diagnostic-preflight-complete",
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "starter_sha256": "c1c1df9523fd8fd7ebf517a4be32c344dfcd3ba27cc74e14fc81d32b68bb8854",
+  "owned_fixture": "9d8866346a714a8aab9ddc3b987f5b18",
+  "requested_seconds": 28800,
+  "requested_uninterrupted_idle_seconds": 7200,
+  "frames": [
+    {
+      "name": "seed-editor-before",
+      "png": "seed-editor-before.png",
+      "sha256": "219f9db24695919fb8a43f57c4ea33d94862841a21503d3d28ad7b9c940fdad7",
+      "observed_at": "2026-11-18T22:43:22.407438+00:00",
+      "monotonic": 30544.843
+    },
+    {
+      "name": "seed-editor-after",
+      "png": "seed-editor-after.png",
+      "sha256": "ce21ecad5bb95d5bf7fc97d415902cf4a087b12b725400a0ef36b1679ed9af99",
+      "observed_at": "2026-11-18T22:43:24.961403+00:00",
+      "monotonic": 30547.406
+    },
+    {
+      "name": "retained-draft-seed",
+      "png": "retained-draft-seed.png",
+      "sha256": "3efbb19b1e7ce68dabeea4285dc664a8e82db8fc1f7f9a80e44cbc4864aabc03",
+      "observed_at": "2026-11-18T22:43:35.114819+00:00",
+      "monotonic": 30557.562
+    },
+    {
+      "name": "baseline-before",
+      "png": "baseline-before.png",
+      "sha256": "3efbb19b1e7ce68dabeea4285dc664a8e82db8fc1f7f9a80e44cbc4864aabc03",
+      "observed_at": "2026-11-18T22:43:35.651071+00:00",
+      "monotonic": 30558.093
+    },
+    {
+      "name": "baseline-after",
+      "png": "baseline-after.png",
+      "sha256": "db689d1a95152e22e49a3de10dfa1a5e3eae0d6a7ef470736a12e4a1347a8d54",
+      "observed_at": "2026-11-18T22:43:38.680604+00:00",
+      "monotonic": 30561.125
+    },
+    {
+      "name": "cycle-0-draft-before",
+      "png": "cycle-0-draft-before.png",
+      "sha256": "3efbb19b1e7ce68dabeea4285dc664a8e82db8fc1f7f9a80e44cbc4864aabc03",
+      "observed_at": "2026-11-18T22:43:39.124982+00:00",
+      "monotonic": 30561.562
+    },
+    {
+      "name": "cycle-0-files-before",
+      "png": "cycle-0-files-before.png",
+      "sha256": "82c32616e7efd70d43deb7913406caf71d0f60f0e2445c1bc860636797ba15a0",
+      "observed_at": "2026-11-18T22:43:39.208091+00:00",
+      "monotonic": 30561.656
+    },
+    {
+      "name": "cycle-0-files-after",
+      "png": "cycle-0-files-after.png",
+      "sha256": "a97c1c9174b5f77d1fdb6c23a64499906d811012b827b1b9b542e9b6cbf6973b",
+      "observed_at": "2026-11-18T22:43:40.711072+00:00",
+      "monotonic": 30563.156
+    },
+    {
+      "name": "cycle-0-page-before",
+      "png": "cycle-0-page-before.png",
+      "sha256": "32cd6bb9f2e6157f146d55eac592736cae84f35591fc51b6ec6fd591f5966d6a",
+      "observed_at": "2026-11-18T22:43:54.700883+00:00",
+      "monotonic": 30577.14
+    },
+    {
+      "name": "cycle-0-page-after",
+      "png": "cycle-0-page-after.png",
+      "sha256": "ff67f733e50497d5157231dfccc715b8cd577ca375042b215184c7cfcb35ac12",
+      "observed_at": "2026-11-18T22:43:55.212283+00:00",
+      "monotonic": 30577.656
+    },
+    {
+      "name": "cycle-0-menu-before",
+      "png": "cycle-0-menu-before.png",
+      "sha256": "d8bedabc73e512bfb87da13f82d7b5a045d70f17c064dfe64cf8965c328157af",
+      "observed_at": "2026-11-18T22:43:55.744848+00:00",
+      "monotonic": 30578.187
+    },
+    {
+      "name": "cycle-0-menu-after",
+      "png": "cycle-0-menu-after.png",
+      "sha256": "2fdd00583ab185ba21d5ee016874c8a33faef6127c751deea11fc295689e963d",
+      "observed_at": "2026-11-18T22:43:56.257930+00:00",
+      "monotonic": 30578.703
+    },
+    {
+      "name": "cycle-0-move-before",
+      "png": "cycle-0-move-before.png",
+      "sha256": "f03cfd96f4c210d80e6fff58e0179e8d87ab908a55bfa3f666efef68890cf12f",
+      "observed_at": "2026-11-18T22:43:56.495588+00:00",
+      "monotonic": 30578.937
+    },
+    {
+      "name": "cycle-0-move-after",
+      "png": "cycle-0-move-after.png",
+      "sha256": "40a22878965da04650c09564dac60f822f6a7aea29ca17711123e9577d66c4f9",
+      "observed_at": "2026-11-18T22:43:57.412863+00:00",
+      "monotonic": 30579.859
+    },
+    {
+      "name": "cycle-0-size-before",
+      "png": "cycle-0-size-before.png",
+      "sha256": "cea2e40ea66d89ae0fbee1f9ca9f9e616c859330abfbade1264089feaf37d000",
+      "observed_at": "2026-11-18T22:43:58.342059+00:00",
+      "monotonic": 30580.781
+    },
+    {
+      "name": "cycle-0-size-after",
+      "png": "cycle-0-size-after.png",
+      "sha256": "08562864998d8f1446a19078f33fedff1a16de165cae4b41f973061c5613a5dd",
+      "observed_at": "2026-11-18T22:43:59.225695+00:00",
+      "monotonic": 30581.671
+    },
+    {
+      "name": "cycle-0-settings-before",
+      "png": "cycle-0-settings-before.png",
+      "sha256": "c67b6a237d8ea70a4f570ea40f6712188ce1a3578c65e9dbccfdaf980bbaa299",
+      "observed_at": "2026-11-18T22:43:59.738845+00:00",
+      "monotonic": 30582.171
+    },
+    {
+      "name": "cycle-0-settings-after",
+      "png": "cycle-0-settings-after.png",
+      "sha256": "32aff37c80ec8404637c35bb82650a5db58653b3c659213609b01ef4fd30bd44",
+      "observed_at": "2026-11-18T22:44:01.743474+00:00",
+      "monotonic": 30584.187
+    },
+    {
+      "name": "cycle-0-search",
+      "png": "cycle-0-search.png",
+      "sha256": "796e00caacb4d23975191b23122bbb8d36b5494ff534c762d3e5ce9e7647e398",
+      "observed_at": "2026-11-18T22:44:03.799727+00:00",
+      "monotonic": 30586.234
+    },
+    {
+      "name": "cycle-0-theme-before",
+      "png": "cycle-0-theme-before.png",
+      "sha256": "a706eb41c812747c3a47d23ada570870082ab9b25faa50355e497d5348031bf9",
+      "observed_at": "2026-11-18T22:44:04.305527+00:00",
+      "monotonic": 30586.75
+    },
+    {
+      "name": "cycle-0-theme-after",
+      "png": "cycle-0-theme-after.png",
+      "sha256": "8896ec0d887e30b6468479bbe1c8ecbce574ba4b4e1303eb3a6b4b634aaea0d1",
+      "observed_at": "2026-11-18T22:44:04.824879+00:00",
+      "monotonic": 30587.265
+    },
+    {
+      "name": "cycle-0-calculator-before",
+      "png": "cycle-0-calculator-before.png",
+      "sha256": "bdb111078f9676ff141f2389a90985f7ea949c35ffb3a907315b639d01c13e06",
+      "observed_at": "2026-11-18T22:44:06.658505+00:00",
+      "monotonic": 30589.093
+    },
+    {
+      "name": "cycle-0-calculator-after",
+      "png": "cycle-0-calculator-after.png",
+      "sha256": "dc904e2662f8116bfb34f1af476d1e7003cc1840e2096826875dc1bade836b3b",
+      "observed_at": "2026-11-18T22:44:08.980292+00:00",
+      "monotonic": 30591.421
+    },
+    {
+      "name": "cycle-0-retained-draft",
+      "png": "cycle-0-retained-draft.png",
+      "sha256": "df7e76996cd315850dad1c44fbc3cb99e6856d47285a01333fead7588fcd9657",
+      "observed_at": "2026-11-18T22:44:09.471257+00:00",
+      "monotonic": 30591.906
+    },
+    {
+      "name": "cycle-0-resources-before",
+      "png": "cycle-0-resources-before.png",
+      "sha256": "df7e76996cd315850dad1c44fbc3cb99e6856d47285a01333fead7588fcd9657",
+      "observed_at": "2026-11-18T22:44:10.027201+00:00",
+      "monotonic": 30592.468
+    },
+    {
+      "name": "cycle-0-resources-after",
+      "png": "cycle-0-resources-after.png",
+      "sha256": "c94dd5b251e227549678511f5213442deb3defd8e3478fdcb007bbd7bea8ccf1",
+      "observed_at": "2026-11-18T22:44:13.016369+00:00",
+      "monotonic": 30595.453
+    },
+    {
+      "name": "before-final-save",
+      "png": "before-final-save.png",
+      "sha256": "df7e76996cd315850dad1c44fbc3cb99e6856d47285a01333fead7588fcd9657",
+      "observed_at": "2026-11-18T22:44:13.444351+00:00",
+      "monotonic": 30595.89
+    },
+    {
+      "name": "final-readback-before",
+      "png": "final-readback-before.png",
+      "sha256": "01b6b40fa823f437e9d6de14224934c5eb8b9dd3e9a6a7d373c86d83faed0a08",
+      "observed_at": "2026-11-18T22:44:14.240223+00:00",
+      "monotonic": 30596.687
+    },
+    {
+      "name": "final-readback-after",
+      "png": "final-readback-after.png",
+      "sha256": "a2aebe58db259fcd2ad51140633f1d65c5906c108182d1ec1c1944b358049b33",
+      "observed_at": "2026-11-18T22:44:16.253773+00:00",
+      "monotonic": 30598.687
+    },
+    {
+      "name": "final-native-readback",
+      "png": "final-native-readback.png",
+      "sha256": "75210d6576d9d691d674cee04ad3788a3ced87bfb402f8d85b85c191ca39e990",
+      "observed_at": "2026-11-18T22:44:23.694201+00:00",
+      "monotonic": 30606.14
+    },
+    {
+      "name": "disk-only-0-before",
+      "png": "disk-only-0-before.png",
+      "sha256": "88f4d767f484c34d6b33bdf709fc2922ad722bb63f8942c444e1227d51bc3e52",
+      "observed_at": "2026-11-18T22:44:32.624461+00:00",
+      "monotonic": 30615.062
+    },
+    {
+      "name": "disk-only-0-after",
+      "png": "disk-only-0-after.png",
+      "sha256": "862c3eb526249fa4e03ac49f51e47c0001d6ffb11f11bbf733374cca7969a69d",
+      "observed_at": "2026-11-18T22:44:34.648087+00:00",
+      "monotonic": 30617.093
+    },
+    {
+      "name": "disk-only-0-actual-readback",
+      "png": "disk-only-0-actual-readback.png",
+      "sha256": "aeaef2ee4f7927437cab3c942ca436f19ca277f27b3d9a63a4487ecbacf69566",
+      "observed_at": "2026-11-18T22:44:42.018443+00:00",
+      "monotonic": 30624.453
+    },
+    {
+      "name": "disk-only-1-before",
+      "png": "disk-only-1-before.png",
+      "sha256": "1f334d86be7c4b31eead37c68f2687d111e2e7d0ad2581a7eb4b1aa11e1a1083",
+      "observed_at": "2026-11-18T22:44:50.615249+00:00",
+      "monotonic": 30633.062
+    },
+    {
+      "name": "disk-only-1-after",
+      "png": "disk-only-1-after.png",
+      "sha256": "862c3eb526249fa4e03ac49f51e47c0001d6ffb11f11bbf733374cca7969a69d",
+      "observed_at": "2026-11-18T22:44:52.654643+00:00",
+      "monotonic": 30635.093
+    },
+    {
+      "name": "disk-only-1-actual-readback",
+      "png": "disk-only-1-actual-readback.png",
+      "sha256": "aeaef2ee4f7927437cab3c942ca436f19ca277f27b3d9a63a4487ecbacf69566",
+      "observed_at": "2026-11-18T22:45:00.048510+00:00",
+      "monotonic": 30642.484
+    }
+  ],
+  "launches": [
+    {
+      "label": "seed-editor",
+      "kind": 2,
+      "changed_central_pixels": 328888,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "baseline",
+      "kind": 6,
+      "changed_central_pixels": 330417,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-files",
+      "kind": 1,
+      "changed_central_pixels": 408946,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-settings",
+      "kind": 3,
+      "changed_central_pixels": 395265,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-calculator",
+      "kind": 4,
+      "changed_central_pixels": 293622,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-resources",
+      "kind": 6,
+      "changed_central_pixels": 330478,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "final-readback",
+      "kind": 7,
+      "changed_central_pixels": 328949,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "disk-only-0",
+      "kind": 7,
+      "changed_central_pixels": 272843,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "disk-only-1",
+      "kind": 7,
+      "changed_central_pixels": 272843,
+      "serial_event": true,
+      "visible": true
+    }
+  ],
+  "resources": [
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3387392,
+      "allocation_failures": 5,
+      "paints": 565,
+      "pixels": 397120568,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "baseline",
+      "observed_at": "2026-11-18T22:43:38.693595+00:00"
+    },
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3440640,
+      "allocation_failures": 5,
+      "paints": 736,
+      "pixels": 498760904,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "cycle-0-resources",
+      "observed_at": "2026-11-18T22:44:13.027983+00:00"
+    }
+  ],
+  "cycles": [
+    {
+      "number": 0,
+      "actual_active_seconds": 34.34300000000076,
+      "dirty_body_changed_pixels": 0,
+      "retained_managed_bytes": 0,
+      "visible_and_serial": true
+    }
+  ],
+  "idle_intervals": [],
+  "checks": [
+    "Fresh exact enabled-device starter installs, retains ISO, types/saves a real original document and retains its dirty suffix through full visible file/window/menu/settings/search/preview/cancel/apply/app/resource tasks",
+    "Explicit final GUI Save, two independent ordinary no-ISO starts, actual native file readback and independent stopped-image CRC/data inspection preserve all exact saved/dirty bytes and created folders"
+  ],
+  "started_at": "2026-11-18T22:41:17.711455+00:00",
+  "harness_sha256": "62a4856c9d4727fd71c0f493016362837ddfd09baba9dbfd1b7aa97c44b8c564",
+  "dependencies_sha256": {
+    "tests/m13/workday13.py": "62a4856c9d4727fd71c0f493016362837ddfd09baba9dbfd1b7aa97c44b8c564",
+    "tests/m13/vmware_stage12.py": "9683c5cd8eee2d9e8c1819be3d61239b1c6f5616253543fffb93ed07dcb667a4",
+    "tests/m13/close_stage.py": "54fc13038cd708f0c984bef0acbf09787c7b5e5f30581a43038eaeeb5995db9a",
+    "tests/m10/vmware.py": "82da2726c58c3e96c04432fb7265dc94cf5c7745eeedd1d99f0c315bdda67a2b",
+    "tests/m9/rfb.py": "7248e2821e8a93f87b9659089a0c3efadeead2ca5f675a8df48aa079711a62ec",
+    "tests/m71/vmware.py": "ff3a676690680fee56e23c0a580a449fec9c25be21c2c04ba313f10864b3d146",
+    "tests/m7/vmware.py": "4684dae66347ae00013269af8237a752a166baad7e2b765d30ba870e7adc3efb",
+    "tests/m7/rfb.py": "fba81d95c1deb59e83b0aa63fab72bdc60f6a9fdf6c9ce27a89d2f9ae879541f",
+    "tests/m6/vmware.py": "c1e610cd5a8c9116f41103c09aa8ee91ddf652849371f43093460cd6c4b689d0"
+  },
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "boot_allocation_failures": 5,
+  "physical": [
+    1024,
+    768
+  ],
+  "managed_peak_budget_bytes": 11776000,
+  "independent_starts": [
+    {
+      "number": 1,
+      "no_iso": true,
+      "ordinary_firmware": true,
+      "actual_native_readback": true
+    },
+    {
+      "number": 2,
+      "no_iso": true,
+      "ordinary_firmware": true,
+      "actual_native_readback": true
+    }
+  ],
+  "saved_document_sha256": "2933b18768a5ad3e03b58b5e4184868c874fb446e61713e94130a674cc86395b",
+  "preflight_successful": true,
+  "existing_vm_inventory_unchanged": true,
+  "completed_at": "2026-11-18T22:45:01.261237+00:00"
+}

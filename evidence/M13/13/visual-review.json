@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "reviewer": "Agent review of five actual native captures; no human participant study",
+  "criteria": {
+    "clear": "Named navigation, current file path and explicit saved/unsaved state",
+    "convenient": "Visible Back/Up, Start and taskbar routes remain available",
+    "user_friendly": "Plain preview/wake/save actions and retained work",
+    "graphical_quality": "Unchanged coherent original icons/themes and native typography",
+    "readable": "Reviewed 1024x768 and actual 3840x2160 frames keep essential text and controls readable"
+  },
+  "reviewed": [
+    {
+      "label": "Installed first-start guide",
+      "capture": "native/vmware-results/installed-desktop.png",
+      "sha256": "e6d102d23a62ea96560a70d45f5b8fd4b1fa0f06dca96c766fe2e142bafe5498"
+    },
+    {
+      "label": "Visible logo preview",
+      "capture": "native/vmware-results/screensaver-preview.png",
+      "sha256": "34a2003f188fa185beaae0efc3e86a68d0a2830ea50aaa9973078e9d86b81089"
+    },
+    {
+      "label": "Returned Settings",
+      "capture": "native/vmware-results/screensaver-wake.png",
+      "sha256": "b0635489491c6fd4236333b25381016d4ba52540c976466e243f764b145bbf0b"
+    },
+    {
+      "label": "Saved text after independent actual 4K startup",
+      "capture": "native/active-idle-4k/disk-only-2-saved-document.png",
+      "sha256": "944f5005777249e60bb3f6c59dbbfdde19ba96737aca7b07d0daa6ce0a0e0c45"
+    },
+    {
+      "label": "Retained idle draft",
+      "capture": "native/owner-shortened-observation/uninterrupted-idle-12.png",
+      "sha256": "d2766ed85af17975110d1f15dacfdce09924bbebe166a9835f50b4188b81eb14"
+    }
+  ],
+  "scope": "Representative actual capture review, not a new appearance program, exhaustive pixel audit, smoothness measurement or universal stability claim"
+}

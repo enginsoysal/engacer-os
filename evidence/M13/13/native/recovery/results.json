@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "status": "completed",
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "starter_sha256": "c1c1df9523fd8fd7ebf517a4be32c344dfcd3ba27cc74e14fc81d32b68bb8854",
+  "owned_fixture": "a2863bf19db749eaa6d46b4c8e2099e2",
+  "frames": [],
+  "visible_launches": [
+    {
+      "name": "selftest-terminal",
+      "app": 7,
+      "changed_central_pixels": 272843,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "after-injected-display-timeout",
+      "app": 4,
+      "changed_central_pixels": 288763,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "after-uninterrupted-idle",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "cycle-0",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "after-warm-reset-0",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "after-warm-reset-1",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    },
+    {
+      "name": "after-warm-reset-2",
+      "app": 4,
+      "changed_central_pixels": 196520,
+      "serial_event": true,
+      "visible_frame": true
+    }
+  ],
+  "requested_idle_seconds": 60,
+  "requested_cycles": 1,
+  "cycle_idle_seconds": 10,
+  "scope": "Real elapsed uninterrupted idle followed by ordinary-input/idle cycles on a new exact enabled-device starter. Serial liveness alone never passes visible recovery.",
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "labelled_simulated_timeout": true,
+  "idle_started_at": "2026-11-18T20:40:47.957834+00:00",
+  "idle_elapsed_seconds": 60.32900000000154,
+  "idle_finished_at": "2026-11-18T20:41:48.291508+00:00",
+  "active_cycle": 0,
+  "warm_resets": [
+    {
+      "number": 1,
+      "fresh_boot": true,
+      "visible_launch": true,
+      "full_power_cycle": false
+    },
+    {
+      "number": 2,
+      "fresh_boot": true,
+      "visible_launch": true,
+      "full_power_cycle": false
+    },
+    {
+      "number": 3,
+      "fresh_boot": true,
+      "visible_launch": true,
+      "full_power_cycle": false
+    }
+  ],
+  "visible_responsiveness": true,
+  "fifo_quarantines": 1,
+  "framebuffer_recoveries": 1,
+  "existing_vm_inventory_unchanged": true,
+  "completed_at": "2026-11-18T20:42:24.753648+00:00"
+}

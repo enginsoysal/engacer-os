@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "checks": [
+    "Additional On/one-minute/logo and On/five-minute/Clock records each survive two ordinary USB/PS2 starts and visible native preview/wake; together with the full task Off/ten-minute/Blank covers every offered field value, without claiming every Cartesian combination"
+  ],
+  "cases": [
+    {
+      "name": "logo-one-minute",
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "boots": [
+        {
+          "number": 1,
+          "ps2_only": false,
+          "record_hex": "4553323101000000010000003c00000000000000",
+          "before": [
+            1047,
+            1047,
+            18980,
+            5
+          ],
+          "after": [
+            1047,
+            1047,
+            18980,
+            5
+          ]
+        },
+        {
+          "number": 2,
+          "ps2_only": true,
+          "record_hex": "4553323101000000010000003c00000000000000",
+          "before": [
+            1037,
+            1037,
+            18987,
+            5
+          ],
+          "after": [
+            1037,
+            1037,
+            18987,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "name": "clock-five-minutes",
+      "clone": {
+        "source_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "clone_sha256": "cbfa07e7b01e2a202a72b170c1d25437b5d4ff291444c5e410471675d614b297",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "boots": [
+        {
+          "number": 1,
+          "ps2_only": false,
+          "record_hex": "4553323101000000010000002c01000001000000",
+          "before": [
+            1047,
+            1047,
+            18980,
+            5
+          ],
+          "after": [
+            1047,
+            1047,
+            18980,
+            5
+          ]
+        },
+        {
+          "number": 2,
+          "ps2_only": true,
+          "record_hex": "4553323101000000010000002c01000001000000",
+          "before": [
+            1037,
+            1037,
+            18987,
+            5
+          ],
+          "after": [
+            1037,
+            1037,
+            18987,
+            5
+          ]
+        }
+      ]
+    }
+  ],
+  "resources": {
+    "retained_pages": 0
+  }
+}
