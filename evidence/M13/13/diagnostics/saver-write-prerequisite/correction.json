@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "scope": "Observer setup failure before any fault guest starts; not a native OS failure or completed stability test",
+  "error": "Missing build/m13/stage13/ordinary/results.json prerequisite",
+  "correction": "Run the real stage-13 ordinary native controls task to create its separately owned installed fixture, then rerun the declared write-refusal check; no native code change"
+}

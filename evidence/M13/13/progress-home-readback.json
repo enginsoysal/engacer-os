@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checked_at": "2026-11-18T20:59:00.648620+00:00",
+  "http_status": 200,
+  "website": "https://engaceros.brixcanvas.com",
+  "current_testing_download": "M13.12",
+  "active_stage": "M13.13",
+  "scope": "Read-only public progress copy verification, not final stability/release qualification"
+}
