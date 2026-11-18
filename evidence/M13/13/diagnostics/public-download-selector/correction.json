@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "scope": "Actual public browser release gate correctly failed, not a native OS failure",
+  "source_commit": "5ca89c98300ead6f5040faf33d6aad85bb81b8b2",
+  "failure": "Downloads selected M13.12 because website stageRelease13 iteration ended at 12",
+  "correction": "Extend bounded selector to stage13, retain published matching-media requirements, add regression against premature/missing/draft promotion, republish and repeat actual native Save/browser/crawl checks"
+}

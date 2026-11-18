@@ -28,7 +28,7 @@ export function stageRelease12(releases){
 }
 
 export function stageRelease13(releases){
- for(let number=12;number>=1;number--){
+ for(let number=13;number>=1;number--){
   const tag=`m13${number}-v0.13.${number}`,image=`EngacerOS-M13STAGE${number}`;
   const release=releases.find(r=>r.tag_name===tag&&!r.draft&&!r.prerelease);
   if(!release)continue;

@@ -49,3 +49,10 @@ test('M13 selector requires published matching native media',()=>{
  const release={tag_name:'m131-v0.13.1',draft:false,prerelease:false,assets:['EngacerOS-M13STAGE1.iso','EngacerOS-M13STAGE1-VMware.zip','m13stage1-build-manifest.json'].map(name=>({name}))};
  assert.equal(stageRelease13([{...release,prerelease:true}]),null);assert.equal(stageRelease13([{...release,assets:release.assets.slice(0,2)}]),null);assert.equal(stageRelease13([release]).label,'M13.1');assert.equal(stageRelease13([{tag_name:'m130-v0.13.0-design.1',prerelease:true,assets:[]}]),null);
 });
+
+test('final M13.13 media supersede M13.12 only when published and complete',()=>{
+ const native=n=>({tag_name:`m13${n}-v0.13.${n}`,draft:false,prerelease:false,assets:[`EngacerOS-M13STAGE${n}.iso`,`EngacerOS-M13STAGE${n}-VMware.zip`,`m13stage${n}-build-manifest.json`].map(name=>({name}))});
+ const previous=native(12),current=native(13);
+ assert.equal(stageRelease13([previous,current]).label,'M13.13');
+ for(const incomplete of [{...current,draft:true},{...current,prerelease:true},{...current,assets:current.assets.slice(0,2)}])assert.equal(stageRelease13([incomplete,previous]).label,'M13.12');
+});
