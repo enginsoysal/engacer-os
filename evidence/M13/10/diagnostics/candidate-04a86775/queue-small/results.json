@@ -1,0 +1,48 @@
+{
+  "passed": false,
+  "build_id": "04a867752f69d85effed58b10a144443",
+  "group": "small",
+  "steps": [
+    {
+      "command": [
+        "native_controls8.py",
+        "--stage",
+        "10",
+        "--profile",
+        "compact"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 61.0
+    },
+    {
+      "command": [
+        "settings_fast10.py",
+        "--profile",
+        "compact"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 187.04699999999957
+    },
+    {
+      "command": [
+        "cursors10.py",
+        "--profile",
+        "compact"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 31.51600000000053
+    },
+    {
+      "command": [
+        "native_controls8.py",
+        "--stage",
+        "10",
+        "--profile",
+        "1024"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 41.85899999999947
+    }
+  ],
+  "scope": "Functional tasks only; stability remains M13.13"
+}

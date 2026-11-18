@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "build_id": "04a867752f69d85effed58b10a144443",
+  "iso_sha256": "40a6c253384c1598c35593ddaeb19eef425f7c3097bdd1ba81d70542206034b5",
+  "clone": {
+    "source_sha256": "e9058f84fcb5073b8adf24f3b4d39181d8e7736657e4281914b2ed0cf572d6b6",
+    "clone_sha256": "e9058f84fcb5073b8adf24f3b4d39181d8e7736657e4281914b2ed0cf572d6b6",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [],
+  "injected_fault": {
+    "event": "write_aio",
+    "errno": 5,
+    "once": true,
+    "immediately": true
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_write_failure10.py\", line 34, in main\n    assert 'could not be saved' in message and 'Cancel preview' in message\nAssertionError\n"
+}

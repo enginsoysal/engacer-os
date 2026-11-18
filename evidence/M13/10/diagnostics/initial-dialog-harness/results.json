@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "stage": "M13.10",
+  "development_only": false,
+  "build_id": "04a867752f69d85effed58b10a144443",
+  "iso_sha256": "40a6c253384c1598c35593ddaeb19eef425f7c3097bdd1ba81d70542206034b5",
+  "owned_fixture": "df83e8a7fc49466bb659d394b34ad2a5",
+  "checks": [],
+  "profiles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\dialogs_native10.py\", line 79, in main\n    for command in (2,2,2,100,2,2,2):c.wizard(g,p,command)\n  File \"<project-root>\\tests\\m12\\components.py\", line 62, in wizard\n    assert len(found)==1,(action,found)\nAssertionError: (2, [])\n"
+}

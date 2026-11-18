@@ -51,6 +51,7 @@ def fetch(url):
     except Exception as e:return {'url':url,'status':getattr(e,'code',0),'error':str(e)}
 
 def main():
+    started_at=datetime.now(timezone.utc).isoformat()
     p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,default=ROOT/'build/brix/site-content.json');p.add_argument('--output',type=Path,default=ROOT/'build/brix/audit.json');a=p.parse_args()
     payload=json.loads(a.payload.read_text(encoding='utf-8'));posts=payload['page']['blog']['posts'];source_by_url={SITE+'/blog/'+p['slug']:next(x['value'] for x in p['meta'] if x['key']=='engine_source_path') for p in posts}
     pending={SITE+'/',*source_by_url};results={}
@@ -81,6 +82,7 @@ def main():
             if key in ('title','og:title','twitter:title','og:site_name','canonical','og:url') and re.search(r'(?i)\bEngine OS\b|(?:engineos|engacer)\.brixcanvas\.com|github\.com/enginsoysal/codename-engine-os',value):branding.append({'url':r['url'],'field':key,'value':value})
         if not r['lang'].startswith('en'):branding.append({'url':r['url'],'field':'lang','value':r['lang']})
     report={'passed':not errors and not stale and not branding,'checked_at':datetime.now(timezone.utc).isoformat(),'website':SITE,'source_commit':payload['source_commit'],'expected_articles':len(posts),'pages_checked':len(results),'unique_links':len(links),'stale_links':stale,'page_errors':errors,'branding_errors':branding,'pages':list(results.values())}
+    report['started_at']=started_at
     a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:report[k] for k in ['pages_checked','unique_links','expected_articles']}),'stale links',len(stale),'page errors',len(errors),'legacy-containing pages',sum(bool(r.get('legacy_text')) for r in results.values()),flush=True)
 

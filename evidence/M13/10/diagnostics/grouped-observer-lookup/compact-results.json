@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "stage": "M13.10",
+  "build_id": "04a867752f69d85effed58b10a144443",
+  "iso_sha256": "40a6c253384c1598c35593ddaeb19eef425f7c3097bdd1ba81d70542206034b5",
+  "physical": [
+    1280,
+    800
+  ],
+  "configured_guest_mib": 128,
+  "owned_fixture": "f2d51a3b68ef4e94a0cceca1d4925b08",
+  "host_observer": {
+    "immutable_map_sha256": {
+      "false": "b8117ce35282697d11831489560b441239ee7a54b8dca622f50145ef35fd99ee",
+      "true": "6647ec12b219ae3deaabfdb691718738832d99a3f70052d78dbfc51cd0a90a40"
+    },
+    "maximum_symbol_cache_entries": 512,
+    "mutable_guest_state_cached": false,
+    "qmp_client_tcp_nodelay": true,
+    "functional_barrier": {
+      "method": "Three consecutive fresh stable input/paint samples and all CPUs halted",
+      "maximum_group_bytes": 65536,
+      "mutable_guest_state_cached": false,
+      "guest_memory_written": false
+    }
+  },
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\settings_search10.py\", line 35, in main\n    at=c.wizard(g,p,2);g.wait('M6_INSTALL_PASS',at,240);at=c.wizard(g,p,84);g.wait('M7_DESKTOP_READY',at,180);p=ui.Pointer(g);p.drain();t.close_all(g,p);baseline=f.stats(g)\n  File \"<project-root>\\tests\\m12\\components.py\", line 65, in wizard\n    p.logical(x+w//2,y+h//2)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 41, in logical\n    scale=integer(self.guest,'scale73',installed);self.click(x*scale//2,y*scale//2)\n  File \"<project-root>\\tests\\m11\\ui.py\", line 84, in click\n    self.down(False);self.drain()\n  File \"<project-root>\\tests\\m13\\observe20.py\", line 38, in drain\n    address,size=ui.symbol(name,installed=True)\n  File \"<project-root>\\tests\\m13\\observer8.py\", line 18, in symbol\n    return base(name, size, installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('head', [('37b208', '4'), ('526470', '200')])\n"
+}

@@ -1,0 +1,11 @@
+{
+  "qualified": false,
+  "build_id": "04a867752f69d85effed58b10a144443",
+  "reason": "Controlled appearance write refusal exposed a 133-byte recovery message copied into a 96-byte notice. The required Cancel preview phrase was truncated. Shorten the message and repeat exact-media functional qualification.",
+  "cancelled_owned_qemu_pids": [
+    26640,
+    7280
+  ],
+  "intentional_cancellation": "Remaining old-candidate functional tasks stopped before any native source edit. Resulting interrupted reports are not natural freeze observations.",
+  "stability_scope": "All natural-freeze, duration and reset-chain work remains M13.13"
+}

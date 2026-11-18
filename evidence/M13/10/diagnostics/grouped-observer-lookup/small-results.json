@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "build_id": "04a867752f69d85effed58b10a144443",
+  "group": "small",
+  "steps": [
+    {
+      "command": [
+        "native_controls8.py",
+        "--stage",
+        "10",
+        "--profile",
+        "compact"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 61.0
+    },
+    {
+      "command": [
+        "settings_fast10.py",
+        "--profile",
+        "compact"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 22.07800000000043
+    }
+  ],
+  "scope": "Functional tasks only; stability remains M13.13"
+}

@@ -14,6 +14,19 @@ spec = importlib.util.spec_from_file_location('site_audit', ROOT / 'website/brix
 audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(audit)
 
+
+def validate_fresh_audit(report, payload, saved, now=None):
+    """Reuse only a complete same-source crawl begun after the actual native Save."""
+    assert report['source_commit'] == payload['source_commit'] == saved['source_commit']
+    assert saved['home'].startswith('Saved') and saved['recovery'].startswith('Saved')
+    parse = lambda value: datetime.fromisoformat(value.replace('Z', '+00:00'))
+    began, ended, saved_at = map(parse, (report['started_at'], report['checked_at'], saved['checked_at']))
+    now = now or datetime.now(timezone.utc)
+    assert saved_at <= began <= ended <= now
+    assert 0 <= (now-began).total_seconds() <= 1800, 'Fresh audit expired'
+    assert report['pages_checked'] == len(report['pages'])
+    assert len({row['url'] for row in report['pages']}) == len(report['pages'])
+
 def fresh_reads(urls, fetch=None, pause=None):
     """Four independent read-only requests; retain every retry in stable URL order."""
     fetch = fetch or audit.fetch
@@ -38,10 +51,15 @@ def main():
     parser.add_argument('--payload', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--stage', type=int, default=0)
+    parser.add_argument('--reuse-verified-audit', action='store_true')
+    parser.add_argument('--save', type=Path)
     args = parser.parse_args()
     assert 0 <= args.stage <= 12
     report = json.loads(args.audit.read_text(encoding='utf-8'))
     payload = json.loads(args.payload.read_text(encoding='utf-8'))
+    if args.reuse_verified_audit:
+        assert args.save, 'Matching actual native Save receipt required'
+        validate_fresh_audit(report, payload, json.loads(args.save.read_text(encoding='utf-8')))
     results = {r['url']: r for r in report['pages']}
     initial_errors = list(report['page_errors'])
     expected_sources = {}
@@ -54,17 +72,24 @@ def main():
                               f'docs/handbook/install-{suffix}.md',
                               f'docs/releases/{suffix}-v0.13.{args.stage}.md'})
     seen_critical = set()
+    critical_urls = set(required)
     for post in payload['page']['blog']['posts']:
         meta = {item['key']:item['value'] for item in post['meta']}
         path = meta['engine_source_path']
         if path in critical_paths:
             seen_critical.add(path)
         url = audit.SITE+'/blog/'+post['slug']
+        if path in critical_paths:
+            critical_urls.add(url)
         required.add(url)
         expected_sources[url] = ('https://github.com/enginsoysal/engacer-os/blob/'+meta['engine_source_commit']+'/'+path
                                  if path.endswith('.md') else 'https://github.com/enginsoysal/engacer-os/tree/'+payload['source_commit'])
     assert seen_critical == critical_paths, 'A current stage article is missing from the publication payload'
     pending = required | {r['url'] for r in initial_errors}
+    if args.reuse_verified_audit:
+        pending = critical_urls | {r['url'] for r in initial_errors}
+        pending.update(url for url in required if url not in results or results[url]['status'] != 200 or results[url].get('soft_404'))
+        pending.update(url for url, source in expected_sources.items() if source not in results.get(url, {}).get('links', []))
     attempts = []
     while pending:
         batch = sorted(pending)
@@ -94,6 +119,7 @@ def main():
             branding.append({'url': row['url'], 'field': 'lang', 'value': row['lang']})
     provenance_errors = [{'url': url, 'expected': expected} for url, expected in expected_sources.items() if expected not in results[url].get('links', [])]
     report.update(passed=not errors and not stale and not branding and not provenance_errors,
+                  readback_method=('Complete fresh post-Save same-source audit plus independent current/failed/provenance-mismatched reads' if args.reuse_verified_audit else 'Independent complete article readback'),
                   checked_at=datetime.now(timezone.utc).isoformat(),
                   source_commit=payload['source_commit'], exact_source_articles_verified=len(expected_sources), initial_page_errors=initial_errors,
                   fresh_readback_attempts=attempts, pages=list(results.values()),
