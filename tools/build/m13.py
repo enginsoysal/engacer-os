@@ -4,7 +4,7 @@ from pathlib import Path
 from m6 import build
 ROOT=Path(__file__).resolve().parents[2]
 def main():
- p=argparse.ArgumentParser();p.add_argument('--stage',type=int,required=True,choices=range(1,13));a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--stage',type=int,required=True,choices=range(1,14));a=p.parse_args()
  previous=ROOT/f'evidence/M13/{a.stage-1}/publication-results.json'
  if a.stage==1:previous=ROOT/'evidence/M13/0/closure-publication.json'
  proof=json.loads(previous.read_text(encoding='utf-8'));assert proof['passed'] and proof.get('stage')==f'M13.{a.stage-1}','Close the preceding public delivery first'

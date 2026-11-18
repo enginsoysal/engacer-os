@@ -50,7 +50,7 @@ def check_release(release,expected,reference,body,draft):
     return [row['name'] for row in expected if row['name'] not in names]
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',type=int,required=True);p.add_argument('--publish',action='store_true');stage=p.parse_args();number=stage.stage;assert 1<=number<=12
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',type=int,required=True);p.add_argument('--publish',action='store_true');stage=p.parse_args();number=stage.stage;assert 1<=number<=13
     work=ROOT/f'build/m13/stage{number}';evidence=ROOT/f'evidence/M13/{number}';tag=f'm13{number}-v0.13.{number}'
     assert not (evidence/'publication-results.json').exists(),'This stage is already closed and immutable'
     previous=ROOT/('evidence/M13/0/closure-publication.json' if number==1 else f'evidence/M13/{number-1}/publication-results.json')

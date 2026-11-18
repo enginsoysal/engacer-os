@@ -21,7 +21,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--stage', type=int, required=True)
     stage = parser.parse_args().stage
-    assert 1 <= stage <= 12
+    assert 1 <= stage <= 13
     prefix = f'm13stage{stage}'
     image = f'EngacerOS-M13STAGE{stage}'
     dist = ROOT / 'dist'

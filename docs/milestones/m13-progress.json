@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.12",
+  "current_stage": "M13.13",
   "qualified_download": "M13.12",
   "design_only": false,
   "stages": [
@@ -123,7 +123,7 @@
     {
       "id": "M13.13",
       "title": "Blocking stability qualification and release",
-      "status": "planned",
+      "status": "in_progress",
       "release_blocking": true
     }
   ],

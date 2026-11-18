@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);parser.add_argument('--ref',default='HEAD');args=parser.parse_args()
-    assert 1<=args.stage<=12
+    assert 1<=args.stage<=13
     ref=subprocess.check_output(['git','rev-parse',args.ref+'^{commit}'],cwd=ROOT).decode('ascii').strip()
     path=f'docs/releases/m13{args.stage}-v0.13.{args.stage}.md'
     source=subprocess.check_output(['git','show',ref+':'+path],cwd=ROOT).decode('utf-8')

@@ -17,7 +17,7 @@ spec=importlib.util.spec_from_file_location('starter11',ROOT/'tools/release/vmwa
 base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True,choices=range(1,13));args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True,choices=range(1,14));args=parser.parse_args()
     assert not (ROOT/f'evidence/M13/{args.stage}/publication-results.json').exists(),'Published media are immutable'
     image=f'EngacerOS-M13STAGE{args.stage}'
     meta=json.loads((ROOT/f'dist/m13stage{args.stage}-build-manifest.json').read_text())
