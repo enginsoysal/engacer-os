@@ -14,7 +14,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--stage', type=int, required=True)
     stage = parser.parse_args().stage
-    assert 1 <= stage <= 12
+    assert 1 <= stage <= 13
     tag = f'm13{stage}-v0.13.{stage}'
     out = ROOT / f'evidence/M13/{stage}'
     expected = json.loads((ROOT / f'build/m13/stage{stage}/release-assets.json').read_text())

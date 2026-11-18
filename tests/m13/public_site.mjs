@@ -7,7 +7,7 @@ const {chromium,expect}=require('@playwright/test');
 import fs from 'node:fs/promises';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const {values}=parseArgs({options:{stage:{type:'string'},source:{type:'string'},save:{type:'string'},payload:{type:'string'},output:{type:'string'}}});
-const stage=Number(values.stage),ref=values.source;if(!Number.isInteger(stage)||stage<1||stage>12||!/^([0-9a-f]{40})$/.test(ref||''))throw Error('Provide stage 1–12 and exact documentation source commit');
+const stage=Number(values.stage),ref=values.source;if(!Number.isInteger(stage)||stage<1||stage>13||!/^([0-9a-f]{40})$/.test(ref||''))throw Error('Provide stage 1–13 and exact documentation source commit');
 const saved=JSON.parse(await fs.readFile(values.save,'utf8'));if(saved.source_commit!==ref||!saved.home.startsWith('Saved')||!saved.recovery.startsWith('Saved'))throw Error('Matching actual native editor Save observations required');
 const payload=JSON.parse(await fs.readFile(values.payload,'utf8'));if(payload.source_commit!==ref)throw Error('Wrong publication payload source');const guide=payload.page.blog.posts.find(p=>p.slug==='docs-handbook-install-m13'+stage);const guideRef=guide.meta.find(m=>m.key==='engine_source_commit').value;
 const accepted=JSON.parse(await fs.readFile(root+'/evidence/M13/'+stage+'/acceptance-results.json','utf8'));

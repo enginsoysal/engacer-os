@@ -1,0 +1,18 @@
+{
+  "native_code_changed": false,
+  "observer_error": "The initial preflight incorrectly required the cumulative allocation failure counter to start at zero. M13.12 native resource records also have five baseline failures and require no NEW failures. The revised observer records this candidate boot value and requires every warmup/cycle to retain that exact value.",
+  "initial_resource_record": [
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3387392,
+      "allocation_failures": 5,
+      "paints": 565,
+      "pixels": 397120568,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "baseline",
+      "observed_at": "2026-11-18T20:33:48.561182+00:00"
+    }
+  ],
+  "log_limitation": "This first diagnostic did not retain its full COM1 log on early failure; only the recorded resource value and actual captures are available. The corrected observer always preserves COM1, including failure."
+}

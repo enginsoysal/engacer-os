@@ -1,0 +1,11 @@
+{
+  "previous_build_id": "fb63c329a93bb9e33eef13e05b6723d2",
+  "candidate_build_id": "49a6fe1047488276f64b7d12433c0113",
+  "source_inputs": 613,
+  "changed_build_inputs": [
+    "distros/engacer-desktop-m13.json",
+    "tools/build/m13.py"
+  ],
+  "native_runtime_source_changes": [],
+  "scope": "Release profile identity and bounded build-stage admission changed. Native implementation is byte-identical at source level; rebuilt binaries and new media still require independent M13.13 runtime qualification."
+}

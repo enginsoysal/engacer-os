@@ -26,7 +26,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--stage', type=int, required=True)
     stage = parser.parse_args().stage
-    assert 1 <= stage <= 12
+    assert 1 <= stage <= 13
     out = ROOT / f'evidence/M13/{stage}'
     def load(name):
         return json.loads((out / name).read_text(encoding='utf-8-sig'))

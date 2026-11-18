@@ -1,0 +1,11 @@
+{
+  "diagnostic_only": true,
+  "qualifies_eight_hours": false,
+  "functional_preflight_successful": true,
+  "native_code_changed": false,
+  "observer_corrections": [
+    "Compare cumulative allocation failures with this candidate boot baseline, not zero",
+    "Final observer rejects unexpected boot entries and observation gaps above fifteen seconds, binds its imported dependencies and keeps the full workday log separately from later startup logs"
+  ],
+  "preflight_log_limit": "This successful diagnostic retained its later disk-start logs but the final-session writer overwrote the first-session native.log; the final duration observer now preserves distinct first/last session logs."
+}

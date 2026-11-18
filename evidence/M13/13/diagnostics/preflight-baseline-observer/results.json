@@ -1,0 +1,96 @@
+{
+  "passed": false,
+  "diagnostic_only": true,
+  "status": "failed",
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "starter_sha256": "c1c1df9523fd8fd7ebf517a4be32c344dfcd3ba27cc74e14fc81d32b68bb8854",
+  "owned_fixture": "c3ea338eba704a718ecb99e4d07d9a47",
+  "requested_seconds": 28800,
+  "requested_uninterrupted_idle_seconds": 7200,
+  "frames": [
+    {
+      "name": "seed-editor-before",
+      "png": "seed-editor-before.png",
+      "sha256": "1b983dd0d7993b9e9282b616f8ebb852ab677e82374b07c7a793933b6045505f",
+      "observed_at": "2026-11-18T20:33:32.208686+00:00",
+      "monotonic": 22754.671
+    },
+    {
+      "name": "seed-editor-after",
+      "png": "seed-editor-after.png",
+      "sha256": "bc6596ed9b69ed93dda97f46877ea4754487d48c49630462779020bb1346ec85",
+      "observed_at": "2026-11-18T20:33:34.770326+00:00",
+      "monotonic": 22757.234
+    },
+    {
+      "name": "retained-draft-seed",
+      "png": "retained-draft-seed.png",
+      "sha256": "32361beaef3774aa0949396ee63ba7ece4e166f774067484840409ab6af54de7",
+      "observed_at": "2026-11-18T20:33:44.979082+00:00",
+      "monotonic": 22767.437
+    },
+    {
+      "name": "baseline-before",
+      "png": "baseline-before.png",
+      "sha256": "32361beaef3774aa0949396ee63ba7ece4e166f774067484840409ab6af54de7",
+      "observed_at": "2026-11-18T20:33:45.524723+00:00",
+      "monotonic": 22767.984
+    },
+    {
+      "name": "baseline-after",
+      "png": "baseline-after.png",
+      "sha256": "9a2dc72c6820f7747c4254480ff0598b21fc973580ae5fc1f94428c0d08b72d4",
+      "observed_at": "2026-11-18T20:33:48.541796+00:00",
+      "monotonic": 22771.0
+    }
+  ],
+  "launches": [
+    {
+      "label": "seed-editor",
+      "kind": 2,
+      "changed_central_pixels": 328888,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "baseline",
+      "kind": 6,
+      "changed_central_pixels": 330417,
+      "serial_event": true,
+      "visible": true
+    }
+  ],
+  "resources": [
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3387392,
+      "allocation_failures": 5,
+      "paints": 565,
+      "pixels": 397120568,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "baseline",
+      "observed_at": "2026-11-18T20:33:48.561182+00:00"
+    }
+  ],
+  "cycles": [],
+  "idle_intervals": [],
+  "checks": [],
+  "started_at": "2026-11-18T20:31:27.350793+00:00",
+  "harness_sha256": "b79fef5b23ca9360f40e440247ba0a2a150918e657eb0455c51a277448f8285a",
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "physical": [
+    1024,
+    768
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\workday13.py\", line 124, in main\n    baseline=resource(g,'baseline');assert baseline['allocation_failures']==0\nAssertionError\n",
+  "existing_vm_inventory_unchanged": true,
+  "completed_at": "2026-11-18T20:33:49.984096+00:00"
+}

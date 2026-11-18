@@ -1,0 +1,400 @@
+{
+  "passed": false,
+  "diagnostic_only": true,
+  "status": "diagnostic-preflight-complete",
+  "stage": "M13.13",
+  "build_id": "49a6fe1047488276f64b7d12433c0113",
+  "iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "starter_sha256": "c1c1df9523fd8fd7ebf517a4be32c344dfcd3ba27cc74e14fc81d32b68bb8854",
+  "owned_fixture": "09671a94253b40c4afbf1fda6a29f5a4",
+  "requested_seconds": 28800,
+  "requested_uninterrupted_idle_seconds": 7200,
+  "frames": [
+    {
+      "name": "seed-editor-before",
+      "png": "seed-editor-before.png",
+      "sha256": "74ecf1cf204ab5ebe74d7dc62880f6bdeb2273e2629d2bc1fe6d6dbda0680726",
+      "observed_at": "2026-11-18T20:37:06.980244+00:00",
+      "monotonic": 22969.437
+    },
+    {
+      "name": "seed-editor-after",
+      "png": "seed-editor-after.png",
+      "sha256": "89f1b62121bba4d336e3c3904edabbf3f47159cfa9f547fdf14f753112f4f079",
+      "observed_at": "2026-11-18T20:37:09.533839+00:00",
+      "monotonic": 22972.0
+    },
+    {
+      "name": "retained-draft-seed",
+      "png": "retained-draft-seed.png",
+      "sha256": "ec4a81f549c375d1b9506fcca5f704f204ecf8c61c486fc37e63f8d62dbd4dd2",
+      "observed_at": "2026-11-18T20:37:19.660147+00:00",
+      "monotonic": 22982.125
+    },
+    {
+      "name": "baseline-before",
+      "png": "baseline-before.png",
+      "sha256": "ec4a81f549c375d1b9506fcca5f704f204ecf8c61c486fc37e63f8d62dbd4dd2",
+      "observed_at": "2026-11-18T20:37:20.195553+00:00",
+      "monotonic": 22982.656
+    },
+    {
+      "name": "baseline-after",
+      "png": "baseline-after.png",
+      "sha256": "a9e6c88fefbc5065fabebddf46201d2078016d2fc41080e0a30b37dcfe1e4639",
+      "observed_at": "2026-11-18T20:37:23.215640+00:00",
+      "monotonic": 22985.671
+    },
+    {
+      "name": "cycle-0-draft-before",
+      "png": "cycle-0-draft-before.png",
+      "sha256": "ec4a81f549c375d1b9506fcca5f704f204ecf8c61c486fc37e63f8d62dbd4dd2",
+      "observed_at": "2026-11-18T20:37:23.674858+00:00",
+      "monotonic": 22986.14
+    },
+    {
+      "name": "cycle-0-files-before",
+      "png": "cycle-0-files-before.png",
+      "sha256": "078d33417283ea1713976103a6e67e44ebec090e5fb16ca7ad6c21999e162f63",
+      "observed_at": "2026-11-18T20:37:23.765081+00:00",
+      "monotonic": 22986.234
+    },
+    {
+      "name": "cycle-0-files-after",
+      "png": "cycle-0-files-after.png",
+      "sha256": "d82551671d6cc16766722b82e7bc7308db201a3fcd0fa29db475880c370b1373",
+      "observed_at": "2026-11-18T20:37:25.267696+00:00",
+      "monotonic": 22987.734
+    },
+    {
+      "name": "cycle-0-page-before",
+      "png": "cycle-0-page-before.png",
+      "sha256": "4f4c95357bead96dc93800034a233f60741213be29d4694fc40f80f6958e2598",
+      "observed_at": "2026-11-18T20:37:39.321608+00:00",
+      "monotonic": 23001.781
+    },
+    {
+      "name": "cycle-0-page-after",
+      "png": "cycle-0-page-after.png",
+      "sha256": "639a0832b609d4640ec6b3e2668dae5702971f46895002c1d030c84e94290fdf",
+      "observed_at": "2026-11-18T20:37:39.830784+00:00",
+      "monotonic": 23002.296
+    },
+    {
+      "name": "cycle-0-menu-before",
+      "png": "cycle-0-menu-before.png",
+      "sha256": "a351ad39865db26f4c302839c261f505b511e2a870947fd222ea7a306697f542",
+      "observed_at": "2026-11-18T20:37:40.359354+00:00",
+      "monotonic": 23002.828
+    },
+    {
+      "name": "cycle-0-menu-after",
+      "png": "cycle-0-menu-after.png",
+      "sha256": "28e4750813dfec2eff2e84cdf946361706df9c1137fd841174ae16f39cdd1d6e",
+      "observed_at": "2026-11-18T20:37:40.871969+00:00",
+      "monotonic": 23003.328
+    },
+    {
+      "name": "cycle-0-move-before",
+      "png": "cycle-0-move-before.png",
+      "sha256": "172e62da8126c1e74075462c8ceefe3efe8bc8bc25589739ecc28e552702001e",
+      "observed_at": "2026-11-18T20:37:41.133334+00:00",
+      "monotonic": 23003.593
+    },
+    {
+      "name": "cycle-0-move-after",
+      "png": "cycle-0-move-after.png",
+      "sha256": "dcf2fdbb6dcef1441236e0f8a7abc654a843f8a8266c1f39c28062f607f8df54",
+      "observed_at": "2026-11-18T20:37:42.012825+00:00",
+      "monotonic": 23004.468
+    },
+    {
+      "name": "cycle-0-size-before",
+      "png": "cycle-0-size-before.png",
+      "sha256": "19108793622589e046590136670a54478fefac357f0442e491b3038a46e2dc7f",
+      "observed_at": "2026-11-18T20:37:42.913100+00:00",
+      "monotonic": 23005.375
+    },
+    {
+      "name": "cycle-0-size-after",
+      "png": "cycle-0-size-after.png",
+      "sha256": "125dc04addac039384c0669e289c0ab35767d6ad715615a81e9d5017d81cc262",
+      "observed_at": "2026-11-18T20:37:43.812626+00:00",
+      "monotonic": 23006.281
+    },
+    {
+      "name": "cycle-0-settings-before",
+      "png": "cycle-0-settings-before.png",
+      "sha256": "c5b1b2bf3783c92118f98d53389ef861774f460cf1c23e8e855d057d420a19ae",
+      "observed_at": "2026-11-18T20:37:44.314405+00:00",
+      "monotonic": 23006.781
+    },
+    {
+      "name": "cycle-0-settings-after",
+      "png": "cycle-0-settings-after.png",
+      "sha256": "0f715ef9c522daada9be26636cef97729c8a4db54a256660bb702d1d24ad4c82",
+      "observed_at": "2026-11-18T20:37:46.335500+00:00",
+      "monotonic": 23008.796
+    },
+    {
+      "name": "cycle-0-search",
+      "png": "cycle-0-search.png",
+      "sha256": "810e6f009528c913af421e26938d94c20548d66fb164e5feb53827531ebd4b32",
+      "observed_at": "2026-11-18T20:37:48.399264+00:00",
+      "monotonic": 23010.859
+    },
+    {
+      "name": "cycle-0-theme-before",
+      "png": "cycle-0-theme-before.png",
+      "sha256": "c7cfb7934800e901312166734f64e53c71c9e9e8406a1cda6d16ad77d53a6ad6",
+      "observed_at": "2026-11-18T20:37:48.951382+00:00",
+      "monotonic": 23011.406
+    },
+    {
+      "name": "cycle-0-theme-after",
+      "png": "cycle-0-theme-after.png",
+      "sha256": "f7aaec2fc46014da0adba4930cfa860f6f8e5d1f3318f0dce7170f495dfcde4b",
+      "observed_at": "2026-11-18T20:37:49.475965+00:00",
+      "monotonic": 23011.937
+    },
+    {
+      "name": "cycle-0-calculator-before",
+      "png": "cycle-0-calculator-before.png",
+      "sha256": "6e56e23985aa7c6bbd175ce3141bcb4d53f3d25a6f5897a3503653dd6eef3cc0",
+      "observed_at": "2026-11-18T20:37:51.324174+00:00",
+      "monotonic": 23013.781
+    },
+    {
+      "name": "cycle-0-calculator-after",
+      "png": "cycle-0-calculator-after.png",
+      "sha256": "2aa7c0301e358ebf55ece336afe5bf47fc53ee743e11b0146134a84808395446",
+      "observed_at": "2026-11-18T20:37:53.654608+00:00",
+      "monotonic": 23016.109
+    },
+    {
+      "name": "cycle-0-retained-draft",
+      "png": "cycle-0-retained-draft.png",
+      "sha256": "078d33417283ea1713976103a6e67e44ebec090e5fb16ca7ad6c21999e162f63",
+      "observed_at": "2026-11-18T20:37:54.154888+00:00",
+      "monotonic": 23016.625
+    },
+    {
+      "name": "cycle-0-resources-before",
+      "png": "cycle-0-resources-before.png",
+      "sha256": "078d33417283ea1713976103a6e67e44ebec090e5fb16ca7ad6c21999e162f63",
+      "observed_at": "2026-11-18T20:37:54.709880+00:00",
+      "monotonic": 23017.171
+    },
+    {
+      "name": "cycle-0-resources-after",
+      "png": "cycle-0-resources-after.png",
+      "sha256": "ea3d53069e36c013b691f4a3bd91c7d1ad98a1293b11f09c57382e089ba45139",
+      "observed_at": "2026-11-18T20:37:57.725960+00:00",
+      "monotonic": 23020.187
+    },
+    {
+      "name": "before-final-save",
+      "png": "before-final-save.png",
+      "sha256": "078d33417283ea1713976103a6e67e44ebec090e5fb16ca7ad6c21999e162f63",
+      "observed_at": "2026-11-18T20:37:58.185640+00:00",
+      "monotonic": 23020.64
+    },
+    {
+      "name": "final-readback-before",
+      "png": "final-readback-before.png",
+      "sha256": "2548a0e10d276a37572ef0d3d8affeb06f5881c1c85b6a3a46868727007c9110",
+      "observed_at": "2026-11-18T20:37:58.987872+00:00",
+      "monotonic": 23021.453
+    },
+    {
+      "name": "final-readback-after",
+      "png": "final-readback-after.png",
+      "sha256": "c1323ec389b53800e1ac3631caa22f505674a07d18d8a5b0474879525f3b9802",
+      "observed_at": "2026-11-18T20:38:00.995683+00:00",
+      "monotonic": 23023.453
+    },
+    {
+      "name": "final-native-readback",
+      "png": "final-native-readback.png",
+      "sha256": "2c2ae008833afd3fee6b4283876e20fecf8e80a3975d35cd32d24f34e88ef8e2",
+      "observed_at": "2026-11-18T20:38:08.474132+00:00",
+      "monotonic": 23030.937
+    },
+    {
+      "name": "disk-only-0-before",
+      "png": "disk-only-0-before.png",
+      "sha256": "6a91d36d0da058e9b5231e64a9767a38e67e8660ea55a271b6e0ffde9cc374b0",
+      "observed_at": "2026-11-18T20:38:14.836957+00:00",
+      "monotonic": 23037.296
+    },
+    {
+      "name": "disk-only-0-after",
+      "png": "disk-only-0-after.png",
+      "sha256": "6a8a85b05f8e6f55b3d09f83f94213b76069c93bf28e64d33013f124c8fe5d97",
+      "observed_at": "2026-11-18T20:38:16.868051+00:00",
+      "monotonic": 23039.328
+    },
+    {
+      "name": "disk-only-0-actual-readback",
+      "png": "disk-only-0-actual-readback.png",
+      "sha256": "98c5359796bdf4a5c6970667882dd4a7944ce61f49b19ede61a4a38888313acb",
+      "observed_at": "2026-11-18T20:38:24.298959+00:00",
+      "monotonic": 23046.765
+    },
+    {
+      "name": "disk-only-1-before",
+      "png": "disk-only-1-before.png",
+      "sha256": "38b94fa3d89799e6fc138b9d54a7d05d7b2fd5f87ffca30d89f0a4cab1dfaa9c",
+      "observed_at": "2026-11-18T20:38:32.873054+00:00",
+      "monotonic": 23055.328
+    },
+    {
+      "name": "disk-only-1-after",
+      "png": "disk-only-1-after.png",
+      "sha256": "6a8a85b05f8e6f55b3d09f83f94213b76069c93bf28e64d33013f124c8fe5d97",
+      "observed_at": "2026-11-18T20:38:34.896797+00:00",
+      "monotonic": 23057.359
+    },
+    {
+      "name": "disk-only-1-actual-readback",
+      "png": "disk-only-1-actual-readback.png",
+      "sha256": "98c5359796bdf4a5c6970667882dd4a7944ce61f49b19ede61a4a38888313acb",
+      "observed_at": "2026-11-18T20:38:42.319679+00:00",
+      "monotonic": 23064.781
+    }
+  ],
+  "launches": [
+    {
+      "label": "seed-editor",
+      "kind": 2,
+      "changed_central_pixels": 328888,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "baseline",
+      "kind": 6,
+      "changed_central_pixels": 330417,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-files",
+      "kind": 1,
+      "changed_central_pixels": 408946,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-settings",
+      "kind": 3,
+      "changed_central_pixels": 395265,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-calculator",
+      "kind": 4,
+      "changed_central_pixels": 293622,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "cycle-0-resources",
+      "kind": 6,
+      "changed_central_pixels": 330478,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "final-readback",
+      "kind": 7,
+      "changed_central_pixels": 328949,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "disk-only-0",
+      "kind": 7,
+      "changed_central_pixels": 272843,
+      "serial_event": true,
+      "visible": true
+    },
+    {
+      "label": "disk-only-1",
+      "kind": 7,
+      "changed_central_pixels": 272843,
+      "serial_event": true,
+      "visible": true
+    }
+  ],
+  "resources": [
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3387392,
+      "allocation_failures": 5,
+      "paints": 565,
+      "pixels": 397120568,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "baseline",
+      "observed_at": "2026-11-18T20:37:23.237197+00:00"
+    },
+    {
+      "current_bytes": 3387392,
+      "peak_bytes": 3440640,
+      "allocation_failures": 5,
+      "paints": 735,
+      "pixels": 498750104,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "cycle-0-resources",
+      "observed_at": "2026-11-18T20:37:57.740022+00:00"
+    }
+  ],
+  "cycles": [
+    {
+      "number": 0,
+      "actual_active_seconds": 34.48500000000058,
+      "dirty_body_changed_pixels": 0,
+      "retained_managed_bytes": 0,
+      "visible_and_serial": true
+    }
+  ],
+  "idle_intervals": [],
+  "checks": [
+    "Fresh exact enabled-device starter installs, retains ISO, types/saves a real original document and retains its dirty suffix through full visible file/window/menu/settings/search/preview/cancel/apply/app/resource tasks",
+    "Explicit final GUI Save, two independent ordinary no-ISO starts, actual native file readback and independent stopped-image CRC/data inspection preserve all exact saved/dirty bytes and created folders"
+  ],
+  "started_at": "2026-11-18T20:35:02.613139+00:00",
+  "harness_sha256": "ab5c6928092a1ef0bb1b4c206ec1918b08b4e2e6a0bd04054ea0344a6b760b3c",
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "boot_allocation_failures": 5,
+  "physical": [
+    1024,
+    768
+  ],
+  "independent_starts": [
+    {
+      "number": 1,
+      "no_iso": true,
+      "ordinary_firmware": true,
+      "actual_native_readback": true
+    },
+    {
+      "number": 2,
+      "no_iso": true,
+      "ordinary_firmware": true,
+      "actual_native_readback": true
+    }
+  ],
+  "saved_document_sha256": "2933b18768a5ad3e03b58b5e4184868c874fb446e61713e94130a674cc86395b",
+  "preflight_successful": true,
+  "existing_vm_inventory_unchanged": true,
+  "completed_at": "2026-11-18T20:38:43.513562+00:00"
+}
