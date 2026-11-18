@@ -1,6 +1,6 @@
 # Files - navigation and current-folder filtering
 
-M13.7 development guide. M13.7 qualification is still in progress; M13.6 remains the qualified download.
+M13.7 passes its named native qualification. Use the [matching release](../releases/m137-v0.13.7.md) and [installation guide](install-m137.md). Complete public website verification remains a separate gate.
 
 ## Find your way
 
@@ -24,7 +24,7 @@ New folder starts a naming dialog. Copy, Cut and Paste use the existing supporte
 
 Choose USB drives, select a listed drive, then double-click or press Enter. Back, Forward, Up and address editing use the same frame. Copy to Downloads and Eject (safe removal) use the actual attached device. Opening a drive does not format it. A disconnected drive keeps its history without silently switching to a replacement; explicitly select the new drive.
 
-USB filename filtering is currently unavailable: the disabled field says System folders only. Ctrl+F explains this limit. The current filter does not imply recursive USB search, NTFS/exFAT writing or new hardware support. Follow the existing [USB transfer guide](transfers-m127.md) for supported operations and safe removal.
+USB filename filtering is currently unavailable: the disabled field says System folders only. Ctrl+F explains this limit. The current filter does not imply recursive USB search, NTFS/exFAT writing or new hardware support. Follow the existing [USB transfer guide](transfers-m137.md) for supported operations and safe removal.
 
 ## Keyboard reference
 
@@ -41,4 +41,12 @@ USB filename filtering is currently unavailable: the disabled field says System 
 | F2 | Rename selected item |
 | Ctrl+C / Ctrl+X / Ctrl+V | Copy / Cut / Paste |
 
-This guide describes the M13.7 candidate. The milestone record will link exact accepted media and native proof only after those gates pass.
+The [milestone record](../milestones/m13-7.md) and [exact acceptance](../../evidence/M13/7/acceptance-results.json) describe the named native scope. Later M13 stages remain separate.
+
+## Actual native views
+
+![Native Files common frame on the exact M13.7 media](../../evidence/M13/7/feature.png)
+
+![Current-folder filename filter and matching native rows](../../evidence/M13/7/files-ordinary/filtered-names.png)
+
+![Actual supported USB folder with the same navigation frame](../../evidence/M13/7/usb-native/usb-folder-common-frame.png)

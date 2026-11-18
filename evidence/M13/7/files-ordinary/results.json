@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "stage": "M13.7",
+  "build_id": "a86d9e57c392217a7fe051454180d6df",
+  "iso_sha256": "51516058e73d0353c18e4fb8e1340d06d5655235e8e3eb40e7824c335c071dae",
+  "physical": [
+    1920,
+    1080
+  ],
+  "owned_fixture": "e9a18b36a9a441c29ae4a29686095df4",
+  "checks": [
+    "Actual current-folder case-insensitive filtering, hidden-selection reset, filtered Ctrl+A, retained sort/view, non-launching Enter, Refresh retention and recoverable empty state",
+    "Clear, child/Back/Forward/Up navigation and successful create preserve reachable unfiltered names and actual path history",
+    "Real filtered selection copy and move clear only the completed destination query, reveal the resulting name and independently expose the correct native paths",
+    "Two real Files windows keep independent queries; closing and reusing a generation clears the old query and cached listing",
+    "USB no-device frame retains real Back and truthful unavailable filter; compact command targets remain separate",
+    "Actual Files dark/high-contrast/light surfaces follow applied settings after the settings window closes; saved light/dark appearance bytes are independently read",
+    "Completed tasks retain zero managed pages and idle CPUs halt; two independent no-ISO boots retain actual created folders and clear transient filters"
+  ],
+  "resources": {
+    "before": [
+      2072,
+      2072,
+      116012,
+      5
+    ],
+    "after": [
+      2072,
+      2072,
+      116012,
+      5
+    ],
+    "retained_pages": 0
+  }
+}

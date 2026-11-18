@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "stage": "M13.7",
+  "build_id": "a86d9e57c392217a7fe051454180d6df",
+  "reviewer": "Agent visual and ordinary-input task review; no human novice study",
+  "before": {
+    "path": "evidence/M13/6/vmware-results/restored-files.png",
+    "png_sha256": "1595f6d15f78667f3ec6617e80b77e148129da09609b8f0a2ccfcf6bd8b6eadc",
+    "scope": "Accepted native M13.6 chrome at 1024x768, compared qualitatively with M13.7 files-1024/common-frame.png; directory contents differ"
+  },
+  "criteria": {
+    "clarity": {
+      "passed": true,
+      "notes": "Back/Forward/Up/Refresh, explicit compact Address, recognizable places, More and item/match counts have distinct purposes. Query Enter selects without launching and no-match text explains recovery."
+    },
+    "convenience": {
+      "passed": true,
+      "notes": "Single-click selection, existing context commands, current-folder filtering, preserved sort/view and same-window Enter navigation keep ordinary tasks local; small windows retain Places and More."
+    },
+    "friendliness": {
+      "passed": true,
+      "notes": "Native dialogs retain cancel/consent, protected actions remain unavailable, USB filtering is explicitly unavailable, and Eject keeps the flush guard. Offline and website instructions use matching labels."
+    },
+    "graphics": {
+      "passed": true,
+      "notes": "Original scalable app/place artwork, shared Inter type, quiet sidebar and two-row common frame remain coherent across ordinary, compact, 150% and actual 4K profiles."
+    },
+    "readability": {
+      "passed": true,
+      "notes": "Reviewed native light/dark/high-contrast captures retain readable labels and field content. Minimum 500-unit controls fit; physical 4K uses native smooth type. Optional footer hints may ellipsize without hiding primary actions or errors."
+    }
+  },
+  "reviewed_native_frames": [
+    {
+      "path": "feature.png",
+      "width": 1920,
+      "height": 1080,
+      "png_sha256": "799f0d9e562083283cee0f429133ec8efe0a1e7541fc9f0cb5437ac15b7e372b"
+    },
+    {
+      "path": "files-ordinary/minimum-frame.png",
+      "width": 1920,
+      "height": 1080,
+      "png_sha256": "94d27d2547003d725a54b9d6391ca0fdf2c8f4da1e01993ad6308ea086e222ea"
+    },
+    {
+      "path": "files-ordinary/dark.png",
+      "width": 1920,
+      "height": 1080,
+      "png_sha256": "a36d57f67d0b58728429d6acb88ee6b7235b76c491145cd06046b2cea4aa20ac"
+    },
+    {
+      "path": "files-ordinary/high-contrast.png",
+      "width": 1920,
+      "height": 1080,
+      "png_sha256": "843bda90dc8c9581e8a3533bb385361b5be3095a1858edd36fbc51299848c94a"
+    },
+    {
+      "path": "files-compact/high-contrast.png",
+      "width": 1280,
+      "height": 800,
+      "png_sha256": "76c80039d7fa74dd4e4afa60093eec116765f2433279e73f8f0f623311ca340e"
+    },
+    {
+      "path": "files-1024/dark.png",
+      "width": 1024,
+      "height": 768,
+      "png_sha256": "a34e0460b2313b2c9097fca9746854acf2aa7801322876a75a2565b45df157a2"
+    },
+    {
+      "path": "files-150/filtered-icons.png",
+      "width": 1920,
+      "height": 1200,
+      "png_sha256": "2b1a44c3a8a24835ece32c5b13d5b68a43c00b5e938e8689c9fc569167f2ab1c"
+    },
+    {
+      "path": "files-150/high-contrast.png",
+      "width": 1920,
+      "height": 1200,
+      "png_sha256": "87ed238a6d35a1c71f1ceab292b83896855e1969918957e935a6bf3e5daca97d"
+    },
+    {
+      "path": "files-4k/common-frame.png",
+      "width": 3840,
+      "height": 2160,
+      "png_sha256": "1f4450a9f6d75e5120d94db471ddedc94616c3ed53647fa2a9363e1f5e79899d"
+    },
+    {
+      "path": "files-4k/dark.png",
+      "width": 3840,
+      "height": 2160,
+      "png_sha256": "3bfd09b7c9a3489ef49a09c64f565baadefa8887c3449148c9a53de7710c8cd6"
+    },
+    {
+      "path": "files-4k/high-contrast.png",
+      "width": 3840,
+      "height": 2160,
+      "png_sha256": "3359a79ea2f4bd908267bbbaf21337698c3d22c9730f1d2774167f5db99ab9ba"
+    },
+    {
+      "path": "transfers-native/compact-actions.png",
+      "width": 1280,
+      "height": 800,
+      "png_sha256": "2260cf5a3647bfc09e0f5ee3eba4ee7f1f838d33e8e203891693eeebf51fcaa5"
+    },
+    {
+      "path": "transfers-native/refreshed-transfer-progress.png",
+      "width": 1280,
+      "height": 800,
+      "png_sha256": "d46c816560686dff24b7cf6ee9d2768f31a538e29001b8dc3bd2d8f2fa0f68d2"
+    },
+    {
+      "path": "usb-native/usb-folder-common-frame.png",
+      "width": 1280,
+      "height": 800,
+      "png_sha256": "f90def864d10a29e723dc2a10d81c063e2d40beea90ba2e16b0591765b538ad7"
+    }
+  ],
+  "resource_scope": "Fixed query state is 704 bytes across eight slots; no new index worker, heap cache or per-keystroke process. Native frame timing remains M13.9.",
+  "carry_forward": [
+    {
+      "stage": "M13.11",
+      "severity": "state-emphasis refinement",
+      "item": "Give the readable high-contrast current-place sidebar a stronger explicit boundary; location remains clear in the caption/breadcrumb. Final M13.12 repeats this check."
+    },
+    {
+      "stage": "M13.8",
+      "item": "Retain the previously recorded notification placement and shared Start/Settings search-hint color work."
+    }
+  ],
+  "scope": "Named native tasks and agent visual judgement; no universal ease, screen-reader, physical-device, GPU-3D or Windows capability parity claim. Matching public release/website closure remains separate."
+}
