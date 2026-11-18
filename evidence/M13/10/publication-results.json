@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M13.10",
+  "qualification": "M13-STAGE10-VM-v1",
+  "source_commit": "6fdea1c142459452533d198252c99943c4fbdd66",
+  "release_source_commit": "e83df9e814547a54bc4515e28a47592f37a1b342",
+  "build_id": "9f0aa4da90a258c8027b557544666fdf",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1310-v0.13.10",
+  "workflow_ids": [
+    44359251970
+  ],
+  "current_native_download": "m1310-v0.13.10",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 495,
+  "unique_links": 3497,
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json"
+}

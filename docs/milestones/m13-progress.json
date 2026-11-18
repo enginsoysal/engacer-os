@@ -96,10 +96,11 @@
     {
       "id": "M13.10",
       "title": "Finish every secondary surface",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "native_qualification": "M13-STAGE10-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1310-v0.13.10",
-      "evidence": "evidence/M13/10"
+      "evidence": "evidence/M13/10",
+      "publication_evidence": "evidence/M13/10/publication-results.json"
     },
     {
       "id": "M13.11",
