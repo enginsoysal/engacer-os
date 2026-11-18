@@ -1,0 +1,20 @@
+{
+  "qualification_excluded": true,
+  "reason": "Development test retained an extra Editor before requesting eight additional apps. The real ninth-window refusal is correct; explicit owner focus/close and zero-window preconditions are being verified rather than weakening the OS quota.",
+  "observation": {
+    "passed": false,
+    "stage": "M13.6",
+    "development_only": false,
+    "build_id": "1b2ff9522b1002a19b1517f9fb97d21f",
+    "iso_sha256": "b9fd2a93b5afd2f88cbed974261e691115714acb89d37c5032636e692f01c0fd",
+    "owned_fixture": "f445cabd8eff4b56a5897854fddc4eb5",
+    "checks": [
+      "Actual install/retained-ISO startup; unopened pins share one group with their app, and single-window group clicks minimize and restore the real window",
+      "Multiple Files windows share one numbered chooser; mouse and Enter select actual generation tokens, and right-click minimize/restore/close controls the one intended remaining window",
+      "Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window",
+      "Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button",
+      "Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable"
+    ],
+    "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m13\\taskbar_native6.py\", line 106, in main\n    for name,app in [('settings',3),('downloads',5),('monitor',6),('disk utility',10),('software',11),('recovery',12),('archive',13),('help',18)]:launch(g,p,name,app)\n  File \"<project-root>\\tests\\m13\\taskbar_native6.py\", line 51, in launch\n    c.shot(g,'launch-failure');raise AssertionError(dict(name=name,kind=kind,before=before,after=s.windows(g,kind),records=records(g),launcher=c.flag(g,'launcher'),notice=ui.memory(g,ui.symbol('start_notice11',installed=True)[0],160).split(b'\\0')[0].decode()))\nAssertionError: {'name': 'help', 'kind': 18, 'before': 0, 'after': 0, 'records': [{'slot': 0, 'token': 17179869185, 'app': 2, 'minimized': False}, {'slot': 1, 'token': 12884901890, 'app': 3, 'minimized': False}, {'slot': 2, 'token': 8589934595, 'app': 5, 'minimized': False}, {'slot': 3, 'token': 4294967300, 'app': 6, 'minimized': False}, {'slot': 4, 'token': 4294967301, 'app': 10, 'minimized': False}, {'slot': 5, 'token': 4294967302, 'app': 11, 'minimized': False}, {'slot': 6, 'token': 4294967303, 'app': 12, 'minimized': False}, {'slot': 7, 'token': 4294967304, 'app': 13, 'minimized': False}], 'launcher': 1, 'notice': 'Close a window before opening another. Up to eight windows can be open.'}\n"
+  }
+}

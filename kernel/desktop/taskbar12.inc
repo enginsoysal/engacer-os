@@ -56,7 +56,7 @@ static void taskbar_draw12(int bar){
 #ifdef ENGINE_M13
   desktop_rect hit={x,bar+10,button_width,44};
   if(active||(state&(UI12_HOVER|UI12_PRESSED|UI12_FOCUS)))ui73_round(x,bar+10,button_width,44,7,active?0x28434d:0x20343e);
-  file_control11(0,hit,action);if(state&UI12_FOCUS)file_focus_rect11(hit);
+  file_control11(0,hit,action);if(state&UI12_FOCUS){rectangle((desktop_rect){x,bar+10,button_width,2},0xffffff);rectangle((desktop_rect){x,bar+52,button_width,2},0xffffff);rectangle((desktop_rect){x,bar+10,2,44},0xffffff);rectangle((desktop_rect){x+button_width-2,bar+10,2,44},0xffffff);}
   ui12_icon(app,x+8,bar+17+!!(state&UI12_PRESSED),28,preferences.dark);
   ui73_fit(x+43,bar+23+!!(state&UI12_PRESSED),windows>1?38:55,titles[app],5,0xe5eef2);
   if(windows>1){char number[24];decimal(number,windows);ui73_round(x+82,bar+12,18,18,4,0x49636b);ui73_fit(x+87,bar+14,13,number,5,0xffffff);}

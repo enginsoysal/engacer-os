@@ -46,7 +46,7 @@ def launch(g,p,name,kind):
     before=s.windows(g,kind);s.search(g,p,name);rows=s.results(g);matches=[i for i,row in enumerate(rows) if row==(1,kind)];assert len(matches)==1,rows
     if len(rows)==1:c.key(g,'ret')
     else:p.desktop(42200+matches[0],True)
-    
+
     if s.windows(g,kind)!=before+1:
         c.shot(g,'launch-failure');raise AssertionError(dict(name=name,kind=kind,before=before,after=s.windows(g,kind),records=records(g),launcher=c.flag(g,'launcher'),notice=ui.memory(g,ui.symbol('start_notice11',installed=True)[0],160).split(b'\0')[0].decode()))
     return next(w for w in records(g) if w['slot']==f.model(g)[0])
@@ -95,13 +95,14 @@ def main():
             report['checks'].append('Group close retains dirty Editor work until explicit review; Keep editing preserves exact text, and an active file picker blocks owner minimize/close without consuming another window')
             if not args.smoke:
                 p.desktop(0,True);p.desktop(42007,True);p.desktop(42030,True);p.desktop(43302,True);p.desktop(42034,True);p.desktop(42008,True);c.key(g,'esc');assert list(s.prefs(g).task[:3])==[1,7,2] and group_order(g)==[1,7,2]
-                right_group(g,p,2);f.menu(g,p,42702);assert group_order(g)==[1,7];editor=launch(g,p,'text editor',2);assert group_order(g)==[1,7,2];right_group(g,p,2);f.menu(g,p,42702);s.close(g,p)
+                right_group(g,p,2);f.menu(g,p,42702);assert group_order(g)==[1,7];editor=launch(g,p,'text editor',2);assert group_order(g)==[1,7,2];right_group(g,p,2);f.menu(g,p,42702);focus(g,p,editor);s.close(g,p);assert not any(w['token']==editor['token'] for w in records(g));assert not records(g),dict(after='editor pin/close',windows=records(g))
                 report['checks'].append('Existing per-user pin reordering and unpinning are reflected immediately; an unpinned running app remains reachable and can be pinned again without duplicating a button')
-                pin(g,p,'calc',4);p.desktop(43104,True);assert s.windows(g,4)==1;calculator=next(w for w in records(g) if w['app']==4);software=launch(g,p,'software',11);p.desktop(10304,True);p.desktop(10004,True)
+                pin(g,p,'calc',4);p.desktop(43104,True);assert s.windows(g,4)==1 and len(records(g))==1,dict(after='calculator launch',windows=records(g));calculator=next(w for w in records(g) if w['app']==4);software=launch(g,p,'software',11);p.desktop(10304,True);p.desktop(10004,True)
                 assert s.windows(g,4)==1 and 4 in s.prefs(g).task[:s.prefs(g).tasks] and 'Close every window' in f.app(g)['notice'];c.shot(g,'in-use-removal-refused')
-                focus(g,p,calculator);s.close(g,p);focus(g,p,software);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);s.close(g,p)
+                focus(g,p,calculator);s.close(g,p);focus(g,p,software);p.desktop(10004,True);assert s.windows(g,4)==0 and 4 not in s.prefs(g).task[:s.prefs(g).tasks] and 4 not in group_order(g);c.shot(g,'optional-app-removal');p.desktop(10304,True);focus(g,p,software);s.close(g,p);assert not records(g),records(g)
                 report['checks'].append('Optional Calculator removal first refuses while its real window is in use; after closing it, removal prunes the pin/group and reinstall works while the shell and Software Manager remain usable')
-                for name,app in [('calc',4),('clock',8),('calendar',9),('image',14),('media',16)]:pin(g,p,name,app)
+                for name,app in [('calc',4),('clock',8),('calendar',9),('image',14),('media',16)]:
+                    pin(g,p,name,app);assert not records(g),dict(after_pin=name,windows=records(g))
                 assert list(s.prefs(g).task[:8])==[1,7,2,4,8,9,14,16]
                 for name,app in [('settings',3),('downloads',5),('monitor',6),('disk utility',10),('software',11),('recovery',12),('archive',13),('help',18)]:launch(g,p,name,app)
                 assert s.windows(g)==8;p.desktop(43001,True);rows=menu_rows(g);assert len(rows)<=12 and any(r['command']==43238 for r in rows);c.shot(g,'overflow-with-eight-windows');order=[r['command'] for r in rows];f.menu(g,p,43223);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==3;p.desktop(43001,True);assert [r['command'] for r in menu_rows(g)]==order;c.shot(g,'overflow-order-after-focus');f.menu(g,p,43238);assert next(w for w in records(g) if w['slot']==f.model(g)[0])['app']==18
