@@ -18,7 +18,7 @@ Text Editor opens and saves supported native text files. **Save as** lets you ch
 
 ## Make it yours
 
-Settings has Appearance, Display, Mouse and keyboard, System and Accessibility. Type in **Find a setting**, or press Ctrl+F. Results describe implemented categories; searching itself changes nothing. Appearance/Display preview choices. **Apply and save** keeps them; Cancel preview, Escape or closing the owner restores the previous choices. Input and accessibility save separately. System leads to Devices, optional Applications, Start/taskbar and Quick settings.
+Settings has Appearance, Display, Input, System and Accessibility. Input contains mouse and keyboard choices. Type in **Find a setting**, or press Ctrl+F. Results describe implemented categories; searching itself changes nothing. Appearance/Display preview choices. **Apply and save** keeps them; Cancel preview, Escape or closing the owner restores the previous choices. Input and accessibility save separately. System leads to Devices, optional Applications, Start/taskbar and Quick settings.
 
 Appearance > Screensaver offers Off/On, one/five/ten minutes, Engacer logo, Clock and Blank. Preview never saves. **Apply and save** keeps choices; **Cancel changes** or leaving restores saved choices. Move the mouse or press a key to return; that wake gesture is consumed so it cannot activate something underneath. Reduced motion keeps the logo still. This is neither a password lock nor display power management. Clock saver does not depend on the optional Clock app. [Full personalization instructions](personalization-m1311.md).
 
