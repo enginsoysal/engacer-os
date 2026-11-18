@@ -40,13 +40,24 @@ static unsigned desktop_capacity11(void){
 #endif
 }
 #ifdef ENGINE_M12
-static void desktop_label12(desktop_rect r,const char*label,uint32_t foreground){
+static void desktop_label12(desktop_rect r,const char*label,uint32_t foreground,uint32_t backing){
+#ifndef ENGINE_M13
+ (void)backing;
+#endif
  char first[64];unsigned used=0,last_space=0;
  while(label[used]&&used<63){first[used]=label[used];first[used+1]=0;if(ui73_measure(first,UI12_BODY)>(unsigned)r.width-12){first[used]=0;break;}if(label[used]==' ')last_space=used;++used;}
  first[used]=0;if(label[used]&&last_space){used=last_space;first[used]=0;}
  while(label[used]==' ')++used;
- unsigned width=ui73_measure(first,UI12_BODY);ui73_fit(r.x+(r.width-(int)width)/2,r.y+60,r.width-12,first,UI12_BODY,foreground);
- if(label[used]){width=ui73_measure(label+used,UI12_BODY);int x=width<=(unsigned)r.width-12?r.x+(r.width-(int)width)/2:r.x+6;ui73_fit(x,r.y+84,r.width-12,label+used,UI12_BODY,foreground);}
+ unsigned width=ui73_measure(first,UI12_BODY);
+#ifdef ENGINE_M13
+ ui73_round(r.x+(r.width-(int)width)/2-3,r.y+58,width+6,22,4,backing);
+#endif
+ ui73_fit(r.x+(r.width-(int)width)/2,r.y+60,r.width-12,first,UI12_BODY,foreground);
+ if(label[used]){width=ui73_measure(label+used,UI12_BODY);int x=width<=(unsigned)r.width-12?r.x+(r.width-(int)width)/2:r.x+6;
+#ifdef ENGINE_M13
+ unsigned shown=width<(unsigned)r.width-12?width:(unsigned)r.width-12;ui73_round(x-3,r.y+82,shown+6,22,4,backing);
+#endif
+ ui73_fit(x,r.y+84,r.width-12,label+used,UI12_BODY,foreground);}
 }
 static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsigned focused,unsigned icon,const v6_entry*entry12,const char*label){
  access_capture16(0,action,label,3);
@@ -57,7 +68,7 @@ static void desktop_tile12(desktop_rect r,unsigned action,unsigned selected,unsi
  unsigned icon_dark=selected||hovered||foreground==0xffffff;
  if(entry12){ui12_icon(shell_entry_icon12(entry12),r.x+36,r.y+6,48,icon_dark);if(shell_suffix12(file_label11(entry12),"link"))ui12_icon(ICON12_SHORTCUT,r.x+36,r.y+30,24,icon_dark);}
  else ui12_icon(icon,r.x+36,r.y+6,48,icon_dark);
- desktop_label12(r,label,foreground);
+ desktop_label12(r,label,foreground,selected?0x315b62:hovered?0x29454e:(access_flags16&1)?0:appearance11.wallpaper);
  if(control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,action};
 }
 static void draw_desktop_builtin12(void){
@@ -90,7 +101,13 @@ if(desktop_page11*page>=count)desktop_page11=count?(count-1)/page:0;unsigned sta
  unsigned caption=V6_ENTRIES;
  if(hover12.kind==I11_ITEM&&!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+count)caption=hover12.action-F11_DESKTOP_ITEM;
  else if(desktop_focus11&&desktop_item_focus11>=DESKTOP_BUILTINS11&&desktop_item_focus11-DESKTOP_BUILTINS11<count&&file_selected_desktop11(desktop_item_focus11-DESKTOP_BUILTINS11))caption=desktop_item_focus11-DESKTOP_BUILTINS11;
- if(caption<count){const v6_entry*e=desktop_child11(caption);ui73_fit(38,86,model.width-76,file_label11(e),UI12_SECONDARY,desktop_ink11());}
+ if(caption<count){const v6_entry*e=desktop_child11(caption);
+#ifdef ENGINE_M13
+ ui73_round(30,model.height-144,model.width-60,28,4,(access_flags16&1)?0:appearance11.wallpaper);ui73_fit(38,model.height-140,model.width-76,file_label11(e),UI12_SECONDARY,desktop_ink11());
+#else
+ ui73_fit(38,86,model.width-76,file_label11(e),UI12_SECONDARY,desktop_ink11());
+#endif
+ }
  if(count>page){int y=(int)model.height-105;unsigned actions[]={F11_DESKTOP_PREV,F11_DESKTOP_NEXT};const char*names[]={"Previous","Next"};for(unsigned i=0;i<2;++i){desktop_rect r={30+(int)i*124,y,112,36};unsigned enabled=i?start+page<count:desktop_page11!=0;component_button12(0,r,names[i],actions[i],0,enabled);if(enabled&&control_count<DESKTOP_CONTROLS)controls[control_count++]=(control){r,0,actions[i]};}char info[64],number[24];copy(info,"Desktop page ",64);decimal(number,desktop_page11+1);append(info,number,64);append(info," of ",64);decimal(number,(count+page-1)/page);append(info,number,64);text(290,y+8,info,1,desktop_ink11());}
 #else
 if(count>page){int y=(int)model.height-105;button(0,176,y,65,"<",F11_DESKTOP_PREV,0);button(0,249,y,65,">",F11_DESKTOP_NEXT,0);char info[64],number[24];decimal(number,desktop_page11+1);copy(info,"Desktop page ",64);append(info,number,64);text(326,y+9,info,1,desktop_ink11());}

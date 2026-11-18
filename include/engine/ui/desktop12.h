@@ -4,7 +4,11 @@
 typedef struct { int x,y,width,height; } ui12_desktop_cell;
 enum { UI12_DESKTOP_BUILTINS=4, UI12_DESKTOP_PITCH_X=128, UI12_DESKTOP_PITCH_Y=120 };
 static inline unsigned ui12_desktop_rows(unsigned height) {
+    #ifdef ENGINE_M13
+    unsigned rows=height>164?(height-164)/UI12_DESKTOP_PITCH_Y:0;
+#else
     unsigned rows=height>218?(height-218)/UI12_DESKTOP_PITCH_Y:0;
+#endif
     return rows?rows:1;
 }
 static inline unsigned ui12_desktop_reserved(unsigned height) {
@@ -22,7 +26,11 @@ static inline ui12_desktop_cell ui12_desktop_position(unsigned height,unsigned i
     unsigned rows=ui12_desktop_rows(height);
     unsigned column=index/rows+(builtin?0:ui12_desktop_reserved(height));
     return (ui12_desktop_cell){30+(int)column*UI12_DESKTOP_PITCH_X,
+#ifdef ENGINE_M13
+        24+(int)(index%rows)*UI12_DESKTOP_PITCH_Y,120,112};
+#else
         110+(int)(index%rows)*UI12_DESKTOP_PITCH_Y,120,112};
+#endif
 }
 /* Find the next real object on the same row or column, skipping reserved gaps. */
 static inline unsigned ui12_desktop_neighbor_visible(unsigned height,unsigned index,unsigned total,unsigned key,unsigned visible) {

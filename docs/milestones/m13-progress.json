@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "current_stage": "M13.4",
+  "current_stage": "M13.5",
   "qualified_download": "M13.4",
   "design_only": false,
   "stages": [
@@ -51,7 +51,7 @@
     {
       "id": "M13.5",
       "title": "A finished desktop and window experience",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M13.6",

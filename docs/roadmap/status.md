@@ -1,13 +1,13 @@
 # Current status
 
-**Current delivery: [M13.4 - installation, recovery and installed startup](../milestones/m13-4.md), complete within its native and public website scope.** M13.4 is the qualified download. M13.5-M13.12 follow strictly after each complete public closure.
+**Current development: [M13.5 - desktop and window experience](../milestones/m13-5.md), in progress.** M13.4 remains the qualified download. M13.6-M13.12 have not started.
 **M13.4 / 0.13.4 passes M13-STAGE4-VM-v1.** [Download the ISO or VMware package](https://github.com/enginsoysal/engacer-os/releases/tag/m134-v0.13.4), [follow setup and recovery](../handbook/install-m134.md). Fourteen enabled-device VMware profiles, five reference displays, real progress and fault/recovery checks bind the exact media. Public verification passes: 453 pages, 289 exact-source articles, actual homepage/recovery Saves and desktop/mobile/search/download checks.
 
 
 Updated 18 November 2026.
 
 
-M13.0 is complete within its design-and-portal scope: thirteen ordered stages, six original concepts, a tested search prototype and the live task-first documentation portal. Its design prerelease has no native ISO. Production same-page search and task article navigation are implemented in M13.1 and pass desktop/mobile public checks. M13.1 native and public delivery is complete; M13.2 native and public delivery is complete; M13.3 native and public delivery is complete; M13.4 native and public delivery is complete; M13.5-M13.12 have not started. Public verification passes: 432 pages, 275 exact-source articles and the saved responsive homepage. [Publication receipt](../../evidence/M13/0/publication-results.json).
+M13.0 is complete within its design-and-portal scope: thirteen ordered stages, six original concepts, a tested search prototype and the live task-first documentation portal. Its design prerelease has no native ISO. Production same-page search and task article navigation are implemented in M13.1 and pass desktop/mobile public checks. M13.1 native and public delivery is complete; M13.2 native and public delivery is complete; M13.3 native and public delivery is complete; M13.4 native and public delivery is complete; M13.5 is in progress; M13.6-M13.12 have not started. Public verification passes: 432 pages, 275 exact-source articles and the saved responsive homepage. [Publication receipt](../../evidence/M13/0/publication-results.json).
 
 **M12.18 / 0.12.18 passes M12-STAGE18-VM-v1 native qualification.**
 [Install](../handbook/install-m1218.md), [Final desktop guide](../handbook/final-m1218.md),

@@ -3,13 +3,24 @@ static unsigned window_active12(desktop_window*w){return model.focused==(unsigne
 static desktop_rect window_control_rect12(desktop_window*w,unsigned part){ui12_caption_rect r=ui12_caption_bounds(w->bounds.width,part);return(desktop_rect){w->bounds.x+r.x,w->bounds.y+r.y,r.width,r.height};}
 static void window_frame12(desktop_window*w){
  desktop_rect r=w->bounds;ui12_palette p=desktop_palette16();unsigned active=window_active12(w),border=active?2:1;
+#ifdef ENGINE_M13
+ border=(access_flags16&1)?2:1;
+#endif
  desktop_shadow16(r.x,r.y,r.width,r.height);
+ #ifdef ENGINE_M13
+ ui73_round(r.x,r.y,r.width,r.height,10,(access_flags16&1)?p.ink:active?blend15(p.line,p.accent,96):p.line);
+#else
  ui73_round(r.x,r.y,r.width,r.height,10,active?p.ink:p.control_border);
+#endif
  ui73_round(r.x+(int)border,r.y+(int)border,r.width-2*border,r.height-2*border,10-border,paper());
  uint32_t fill=ui12_caption_fill(p,active);
  ui73_round(r.x+(int)border,r.y+(int)border,r.width-2*border,UI12_CAPTION_HEIGHT-border,10-border,fill);
  rectangle((desktop_rect){r.x+(int)border,r.y+22,r.width-2*(int)border,18},fill);
+ #ifdef ENGINE_M13
+ rectangle((desktop_rect){r.x+1,r.y+39,r.width-2,1},active?blend15(p.line,p.accent,48):p.line);
+#else
  if(active)rectangle((desktop_rect){r.x+12,r.y+38,r.width-24,2},preferences.accent);
+#endif
 }
 static void window_caption12(desktop_window*w){
  desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];ui12_palette p=desktop_palette16();unsigned active=window_active12(w),enabled=!file_block_owner11(token);

@@ -107,7 +107,11 @@ static unsigned window_action11(uint64_t token,unsigned command){
  if(command==W11_MOVE||command==W11_SIZE){desktop_focus(&model,token);interaction11.x=w->bounds.x+30;interaction11.y=w->bounds.y+18;window_drag_begin11((i11_target){token,command==W11_SIZE?31020:31000,I11_CAPTION});window_keyboard_move11=1;whole();return 1;}return 1;
 }
 static void window_overlay11(void){
+#ifdef ENGINE_M13
+ if(window_snap_preview11){int x=window_snap_preview11==3?(int)model.width/2:0,width=window_snap_preview11==1?(int)model.width:window_snap_preview11==2?(int)model.width/2:(int)model.width-x,height=model.height-60;snap_outline15((desktop_rect){x,0,width,height});ui12_palette p=desktop_palette16();unsigned label_width=width>304?280:width-24;int label_x=x+(width-(int)label_width)/2;ui73_round(label_x,20,label_width,40,6,p.line);ui73_round(label_x+1,21,label_width-2,38,5,p.surface);ui73_fit(label_x+12,31,label_width-24,window_keyboard_move11?"Enter applies; Escape cancels":window_snap_preview11==1?"Release to maximize":window_snap_preview11==2?"Release to snap left":"Release to snap right",UI12_BODY,p.ink);}
+#else
  if(window_snap_preview11){int x=window_snap_preview11==3?(int)model.width/2:0,width=window_snap_preview11==1?(int)model.width:(int)model.width/2,height=model.height-60;rectangle((desktop_rect){x+6,6,width-12,3},preferences.accent);rectangle((desktop_rect){x+6,height-9,width-12,3},preferences.accent);rectangle((desktop_rect){x+6,6,3,height-12},preferences.accent);rectangle((desktop_rect){x+width-9,6,3,height-12},preferences.accent);}
+#endif
 
 #ifdef ENGINE_M12
  multitask_overlay12();return;

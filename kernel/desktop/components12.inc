@@ -31,7 +31,13 @@ static void component_hover12(i11_target next,unsigned buttons){
  window_hint_damage12(hover12,next);files_hint_damage12(hover12,next);
  files_name_tip_damage12(next);
  /* The full desktop name lives above the grid, outside the hovered tile. */
- if((!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+V6_ENTRIES)||(!next.window&&next.action>=F11_DESKTOP_ITEM&&next.action<F11_DESKTOP_ITEM+V6_ENTRIES))invalidate((desktop_rect){30,82,(int)model.width-60,28});
+ if((!hover12.window&&hover12.action>=F11_DESKTOP_ITEM&&hover12.action<F11_DESKTOP_ITEM+V6_ENTRIES)||(!next.window&&next.action>=F11_DESKTOP_ITEM&&next.action<F11_DESKTOP_ITEM+V6_ENTRIES))invalidate((desktop_rect){30,
+#ifdef ENGINE_M13
+ (int)model.height-144,
+#else
+ 82,
+#endif
+ (int)model.width-60,28});
  for(unsigned i=0;i<control_count;++i){control*c=&controls[i];
   unsigned before=(hover12.kind==I11_BUTTON||hover12.kind==I11_ITEM)&&c->window==hover12.window&&c->action==hover12.action;
   unsigned after=(next.kind==I11_BUTTON||next.kind==I11_ITEM)&&c->window==next.window&&c->action==next.action;

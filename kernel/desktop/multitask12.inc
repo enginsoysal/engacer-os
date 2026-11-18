@@ -45,6 +45,9 @@ static unsigned multitask_key12(int key){
  return 1;
 }
 static void multitask_preview12(desktop_rect bounds){
+#ifdef ENGINE_M13
+ snap_outline15(bounds);return;
+#endif
  int edge=3;uint32_t color=preferences.accent;
  rectangle((desktop_rect){bounds.x+6,bounds.y+6,bounds.width-12,edge},color);
  rectangle((desktop_rect){bounds.x+6,bounds.y+bounds.height-9,bounds.width-12,edge},color);

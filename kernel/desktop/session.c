@@ -648,8 +648,14 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "power11.inc"
 #include "start11-actions.inc"
 #include "start11-keys.inc"
+#ifdef ENGINE_M13
+static void snap_outline15(desktop_rect r);
+#endif
 #include "window11.inc"
 #include "appearance11.inc"
+#ifdef ENGINE_M13
+#include "wallpaper15.inc"
+#endif
 #ifdef ENGINE_M12
 #include "settings13.inc"
 #endif
@@ -791,6 +797,9 @@ static void render(void) {
     if(!desktop_take_damage(&model,&dirty))return;
     gui7_clip((unsigned)dirty.x,(unsigned)dirty.y,(unsigned)dirty.width,(unsigned)dirty.height);
     control_count=0;
+#ifdef ENGINE_M13
+    wallpaper15(dirty);
+#else
     gui6_rect(0,0,model.width,model.height,DISTRO_DESKTOP_WALLPAPER);
 #ifdef ENGINE_M72
     /* Restrict wallpaper work to the damaged rows; no extra framebuffer allocation. */
@@ -811,6 +820,7 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
 #endif
 #endif
     text(36,30,DISTRO_NAME,3,desktop_ink11());text(38,64,DISTRO_DESKTOP_TAGLINE,1,desktop_ink11());
+#endif
 #ifdef ENGINE_M12
     draw_desktop_builtin12();draw_desktop_files11();
 #else
