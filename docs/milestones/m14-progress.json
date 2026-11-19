@@ -2,7 +2,7 @@
   "version": 1,
   "program": "M14",
   "current_stage": "M14.3",
-  "current_native_download": "M14.2",
+  "current_native_download": "M14.3",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
   "optimization_core_requirement": true,
@@ -49,7 +49,11 @@
       "deliver": "Expand Unicode/case/path/share/delete/locking semantics, temporary files, environment and registry behavior.",
       "how_and_why": "Translate Windows expectations to native storage with explicit access grants; keep user data separate from product ownership.",
       "acceptance": "Selected app preferences/files survive independent starts; conflicting access and missing/denied paths return correct errors without corrupting data.",
-      "status": "in_progress"
+      "status": "complete",
+      "evidence": "evidence/M14/3",
+      "qualification": "M14-STAGE3-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3",
+      "publication_evidence": "evidence/M14/3/publication-results.json"
     },
     {
       "id": "M14.4",
@@ -148,5 +152,5 @@
       "status": "planned"
     }
   ],
-  "next_stage": "M14.1"
+  "next_stage": "M14.4"
 }
