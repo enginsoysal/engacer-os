@@ -6,7 +6,7 @@ The [documentation portal](https://engaceros.brixcanvas.com/blog/documentation) 
 2. **Install:** download the ISO or prepared VMware ZIP, follow installation, then check the matching tested scope.
 3. **Use Engacer OS:** apps, windows, folders, file transfers, dialogs and USB removal.
 4. **Customize:** supported Settings, keyboard/accessibility and distribution profiles.
-5. **Project & development:** the current M13 plan, original concepts, architecture and contributing.
+5. **Project & development:** the current roadmap, Windows compatibility work, architecture and contributing. Historical M13 plans and original concepts remain in the archive.
 6. **Downloads:** the qualified native release and checksums; older downloads remain separately archived.
 
 The [history and full reference](https://engaceros.brixcanvas.com/blog/documentation-archive) retains previous milestones and earlier technical/user documents. An old installation article does not become current because its publication date changed. Existing article URLs remain available.

@@ -145,9 +145,11 @@ homepage editing and public release verification are separate required checks.
 Historical Engine OS tags, binaries, evidence and internal ABI identities remain
 unchanged. The previous releases below are historical qualification, not new media.
 
-## Current development priority
+## Historical M12 development snapshots
 
-**M12.0 through M12.3 are closed; M12.4 windows and title bars is in progress.**
+The following records describe earlier M12 work, not the current development state. M12.0-M12.18 are complete within their recorded scopes. M14.2 is the current implementation stage.
+
+**Historical snapshot: M12.0 through M12.3 closed; M12.4 windows and title bars in progress.**
 [Design acceptance](../../evidence/M12/0/acceptance-results.json) and
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website
@@ -157,7 +159,7 @@ its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
 [source-backed inventory](../architecture/m12-inventory.md) and
 [expected journeys](../handbook/desktop-m12.md). Concepts are explicitly labeled;
-M12.0 provides no new native ISO. M12.6 has the current scoped download;
+M12.0 provided no new native ISO. M12.6 had a separately scoped historical download;
 M11.6's broader final matrix remains historical proof for its own frozen bytes.
 
 ### Completed M11 development sequence

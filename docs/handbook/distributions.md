@@ -45,14 +45,14 @@ python tools/build/m11.py --profile distros/my-edition.json --revision custom
 Outputs use `EngacerOS-M11CUSTOM`. Keep accepted STAGE1/STAGE2/STAGE3/STAGE4 media
 unchanged and qualify your changed recipe independently. Schema 3 controls the
 name/version, welcome message, accent, wallpaper, light/dark default, optional
-native apps and bounded data packages. `m11-desktop-guide` supplies the current
+native apps and bounded data packages. `m11-desktop-guide` supplied that edition's
 offline Welcome text and original sample media; it is not a dependency of the
 kernel or desktop. Omitting a guide or optional Calculator must not remove Files,
 Settings or required shared services. Destructive-operation guards stay enforced.
 
 The native Appearance and Start customization routes save per-user choices
 separately from distribution defaults. [Window/appearance guide](windows-m11.md),
-[Start categories and pins](start-m11.md), [current install guide](install-m114.md).
+[Start categories and pins](start-m11.md), [historical M11.4 install guide](install-m114.md).
 Changing branding or theme does not grant unsupported hardware capabilities,
 arbitrary driver plugins, Windows APIs or a different kernel at runtime.
 

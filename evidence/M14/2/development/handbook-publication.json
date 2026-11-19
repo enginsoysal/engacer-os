@@ -1,0 +1,11 @@
+{
+  "scope": "Actual published handbook article readback only; complete website audit and homepage Save remain stage-closure gates",
+  "checked_at": "2026-11-19T15:18:23.331186+00:00",
+  "source_commit": "e47596a98f8b02476c033224c0020d3e390c03bc",
+  "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-index",
+  "status": 200,
+  "body_sha256": "9e771d0cb22b023f627121ed30c09e9cac85df04329cc4fce080a1e51e7e8bb2",
+  "current_reader_tasks_visible": true,
+  "stale_current_release_label_absent": true,
+  "passed": true
+}
