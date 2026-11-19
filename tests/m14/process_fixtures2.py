@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools/build
 from m1 import pinned_tools,command
 def build():
  work=ROOT/'build/m14-native/stage2/process-fixtures';work.mkdir(parents=True,exist_ok=True);tools=pinned_tools()
- exports=['DeleteFileW','GetLastError','CreateProcessW','GetCurrentProcessId','GetCurrentProcess','GetProcessId','GetThreadId','GetExitCodeProcess','GetExitCodeThread','WaitForSingleObject','WaitForMultipleObjects','ResumeThread','TerminateProcess','CloseHandle','ExitProcess','Sleep','GetStdHandle','WriteFile','CreateFileW','GetCommandLineW','TlsAlloc','TlsSetValue','TlsGetValue']
+ exports=['CreateThread','ExitThread','DeleteFileW','GetLastError','CreateProcessW','GetCurrentProcessId','GetCurrentProcess','GetProcessId','GetThreadId','GetExitCodeProcess','GetExitCodeThread','WaitForSingleObject','WaitForMultipleObjects','ResumeThread','TerminateProcess','CloseHandle','ExitProcess','Sleep','GetStdHandle','WriteFile','CreateFileW','GetCommandLineW','TlsAlloc','TlsSetValue','TlsGetValue']
  (work/'kernel32.def').write_bytes(('LIBRARY kernel32.dll\nEXPORTS\n'+'\n'.join(exports)+'\n').encode('utf-8'))
  command([tools['lld-link'],'/lib','/machine:x64','/def:'+str(work/'kernel32.def'),'/out:'+str(work/'kernel32.lib')])
  for mode in ['parent','survivor']:

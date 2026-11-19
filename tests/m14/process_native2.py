@@ -25,7 +25,7 @@ def main():
    before=f.stats(g)[0];samples=[]
    for turn in range(20):
     text=task(g,p,12005);assert 'M142_PROCESSES_ISOLATION_ORIGINAL_CHILDREN_PASS' in text,text;delta=f.stats(g)[0]-before;assert not delta,(turn,delta);samples.append({'turn':turn+1,'retained_pages':delta})
-   report['process_samples']=samples;report['parent_output']=text;(out/'processes.log').write_bytes(g.log().encode('utf-8'));t.close_all(g,p)
+   report['process_samples']=samples;report['child_fault_isolated']=True;report['primary_thread_exits_before_worker_process']=True;report['parent_output']=text;(out/'processes.log').write_bytes(g.log().encode('utf-8'));t.close_all(g,p)
   archives={}
   for name in ['child-a.zip','child-b.zip']:
    data=ui.s.s.document(disk,documents+'/'+name,8*1024**2)

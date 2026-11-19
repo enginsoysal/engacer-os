@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "build_id": "7c5d4dd1d70386b60dcbf652adb6744b",
+  "scope": "Synthetic Windows parent/isolation plus actual unmodified original 7-Zip children; not generic Win64 compatibility",
+  "process_samples": [
+    {
+      "turn": 1,
+      "retained_pages": 0
+    },
+    {
+      "turn": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 3,
+      "retained_pages": 0
+    },
+    {
+      "turn": 4,
+      "retained_pages": 0
+    },
+    {
+      "turn": 5,
+      "retained_pages": 0
+    },
+    {
+      "turn": 6,
+      "retained_pages": 0
+    },
+    {
+      "turn": 7,
+      "retained_pages": 0
+    },
+    {
+      "turn": 8,
+      "retained_pages": 0
+    },
+    {
+      "turn": 9,
+      "retained_pages": 0
+    },
+    {
+      "turn": 10,
+      "retained_pages": 0
+    },
+    {
+      "turn": 11,
+      "retained_pages": 0
+    },
+    {
+      "turn": 12,
+      "retained_pages": 0
+    },
+    {
+      "turn": 13,
+      "retained_pages": 0
+    },
+    {
+      "turn": 14,
+      "retained_pages": 0
+    },
+    {
+      "turn": 15,
+      "retained_pages": 0
+    },
+    {
+      "turn": 16,
+      "retained_pages": 0
+    },
+    {
+      "turn": 17,
+      "retained_pages": 0
+    },
+    {
+      "turn": 18,
+      "retained_pages": 0
+    },
+    {
+      "turn": 19,
+      "retained_pages": 0
+    },
+    {
+      "turn": 20,
+      "retained_pages": 0
+    }
+  ],
+  "child_fault_isolated": true,
+  "primary_thread_exits_before_worker_process": true,
+  "parent_output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=808049121\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=20480 source-fnv32=808049121\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=20480 source-fnv32=808049121\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=20480 source-fnv32=808049121\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=20480 source-fnv32=808049121\nRunning the original Windows executable in a protected process.\n\nMapped original image: original7z.exe bytes=598016 source-fnv32=3630620550\nMapped original image: original7z.exe bytes=598016 source-fnv32=3630620550\nRunning the original Windows executable in a protected process.\n\nRunning the original Windows executable in a protected process.\n\n\n7-Zip 26.06 (x64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-11-06\n\n\n7-Zip 26.06 (x64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-11-06\n\nMapped original image: 7z.dll bytes=1966080 source-fnv32=3718685405\nMapped original image: 7z.dll bytes=1966080 source-fnv32=3718685405\nScanning the drive:\n  0M Scan \r          \r1 file, 56 bytes (1 KiB)\n\nCreating archive: child-b.zip\n\nScanning the drive:\n  0M Scan \r          \r1 file, 56 bytes (1 KiB)\n\nCreating archive: child-a.zip\n\nAdd new data to archive: 1 file, 56 bytes (1 KiB)\n\nAdd new data to archive: 1 file, 56 bytes (1 KiB)\n\n  0%  0%\r    \r100% 1 + child-input.txt\r    \r100% 1 + child-input.txt\r                        \r\nFiles read from disk: 1\nArchive size: 220 bytes (1 KiB)\nEverything is Ok\n\r                        \r\nFiles read from disk: 1\nArchive size: 220 bytes (1 KiB)\nEverything is Ok\nM142_PROCESSES_ISOLATION_ORIGINAL_CHILDREN_PASS\n",
+  "actual_original_archives": {
+    "child-a.zip": {
+      "sha256": "74f5a1abb4df0e56ed6fdba7e4685a005d85d13f03e38fa0e754e65a1548c65f",
+      "original_child_output_matches": true
+    },
+    "child-b.zip": {
+      "sha256": "74f5a1abb4df0e56ed6fdba7e4685a005d85d13f03e38fa0e754e65a1548c65f",
+      "original_child_output_matches": true
+    }
+  },
+  "original_7zip_exe_sha256": "dc0493429fe28136fcb177a0e77c9875cbb3b0bff5f2f8eeba4df302e98cef76",
+  "survivor_samples": [
+    {
+      "turn": 1,
+      "retained_pages": 4,
+      "root_exit_precedes_child_exit": true
+    },
+    {
+      "turn": 2,
+      "retained_pages": 0,
+      "root_exit_precedes_child_exit": true
+    }
+  ],
+  "survivor_output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=2624543516\nRunning the original Windows executable in a protected process.\n\nM142_PARENT_EXIT_BEGIN\nMapped original image: child.exe bytes=20480 source-fnv32=808049121\nRunning the original Windows executable in a protected process.\n\nM142_CHILD_SURVIVED_PARENT_PASS\n",
+  "survivor_saved_sha256": "e8daa0b0d91edbc2e5af04b0946197278acf9cf6d4e5e312054b56fb77f6f8d0"
+}

@@ -1,0 +1,37 @@
+{
+  "scope": "Incremental source-document maintenance during M14.2; full actual website audit remains pending",
+  "current_qualified_release": "M14.1",
+  "development_stage": "M14.2",
+  "corrected": [
+    {
+      "source": "docs/handbook/distributions.md",
+      "change": "Current M14 recipe and qualified base lead; old M11 installation link explicitly historical"
+    },
+    {
+      "source": "docs/handbook/index.md",
+      "change": "Task-first reader navigation; obsolete M12.17 current-release link removed"
+    },
+    {
+      "source": "docs/roadmap/status.md",
+      "change": "Old M12.4 in-progress and M12.6 current-download snapshot explicitly historical"
+    },
+    {
+      "source": "docs/handbook/website-m130.md",
+      "change": "Development navigation describes current roadmap rather than current M13 plan"
+    },
+    {
+      "source": "website/README.md",
+      "change": "M14.2 development state and historical M13.9 receipt accurately labelled"
+    }
+  ],
+  "local_relative_routes_checked": {
+    "handbook_index": 35,
+    "four_other_updated_documents": 170
+  },
+  "actual_handbook_readback": "handbook-publication.json",
+  "remaining": [
+    "Full fresh post-Save site crawl at stage closure",
+    "Every current reader route and example reviewed against final M14.2 supported behavior",
+    "Search, archive, mobile and official downloads checked against exact final release"
+  ]
+}
