@@ -178,3 +178,6 @@ admission/arbitration alongside prior menu feedback. M12.16 must isolate the
 cursor observation and reconcile explicit scale limits with compact startup
 modes; 1280x1024 refused 200%, while actual 150%/4K/200% passed separately.
 Keep the earlier BIOS/AHCI stress observation open for M12.18.
+
+
+M14.0 research and M14.1 M14-STAGE1-VM-v1 native/public delivery are accepted within their recorded scopes. Preserve M14STAGE1 media, tags and native evidence. New native work uses M14STAGE2 or later and evidence/M14/2 or later. Firefox is a verified installer download only, not a working modern browser. M14.2 remains separately authorized work; do not infer completed threads, TLS or Windows GUI from this loader stage.

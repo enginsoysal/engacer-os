@@ -38,7 +38,14 @@ def main():
     tag = load('github-tag.json')
     visual = load('visual-review.json')
     workflows = load('publication-workflows.json')
-    assert all(r['passed'] for r in (accepted, downloads, site, browser, visual))
+    links=load('website-links.json');source=load('publication-source.json');saved=load('native-editor-save.json');publisher_exit=load('publisher-exit.json')
+    assert all(r['passed'] for r in (accepted, downloads, site, browser, visual, links, source, publisher_exit))
+    assert not links['broken'] and publisher_exit['exit_code']==0 and publisher_exit['tests']>=48
+    assert source['source_commit']==saved['source_commit']==site['source_commit']
+    assert source['document_bytes_verified']>=326 and source['pinned_image_bytes_verified']>=58
+    assert saved['home_roots']==4 and saved['recovery_roots']==2 and saved['owned_native_editor']
+    assert saved['home'].startswith('Saved') and saved['recovery'].startswith('Saved')
+    assert all(row['downloaded_sha256']==row['sha256'] and row['downloaded_bytes']==row['size'] for row in downloads['artifacts'])
     assert accepted['build_id'] == downloads['build_id'] == visual['build_id']
     assert downloads['downloaded_zip_sha256'] == accepted['vmware_zip_sha256']
     assert downloads['downloaded_iso_sha256'] == accepted['iso_sha256']
@@ -66,13 +73,19 @@ def main():
     successful = [w for w in workflows if w['headSha'] == site['source_commit'] and w['status'] == 'completed' and w['conclusion'] == 'success']
     assert successful, 'No successful publisher run for the verified current source'
     for path, digest in accepted['harness_sha256'].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
+        if path=='tests/m14/public_site1.mjs':
+            # The native acceptance snapshot predates the corrected public-site observer.
+            historical=subprocess.check_output(['git','show',tag['object']['sha']+':'+path],cwd=ROOT)
+            assert hashlib.sha256(historical).hexdigest()==digest,path
+            assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==browser['observer_sha256'],path
+        else:
+            assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
     tap = (out / 'publisher-tests.txt').read_text(encoding='utf-8-sig')
     count = re.search(r'(?:#|ℹ) tests (\d+)\b', tap)
     assert count and int(count[1]) >= 22 and re.search(r'(?:#|ℹ) fail 0\b', tap)
     target = out / 'publication-results.json'
     assert not target.exists(), 'Accepted publication proof is immutable'
-    result = dict(passed=True, stage=f'M14.{stage}', qualification=accepted['qualification'], source_commit=site['source_commit'], release_source_commit=tag['object']['sha'], build_id=accepted['build_id'], website='https://engaceros.brixcanvas.com', github_release=release['html_url'], workflow_ids=[w['databaseId'] for w in successful], current_native_download=downloads['latest'], design_only=False, new_iso=True, pages_checked=site['pages_checked'], unique_links=site['unique_links'], full_audit='website-audit.json', fresh_readback='website-readback.json', browser_readback='public-browser-verification.json', downloads='downloads.json')
+    result = dict(passed=True, stage=f'M14.{stage}', qualification=accepted['qualification'], source_commit=site['source_commit'], release_source_commit=tag['object']['sha'], build_id=accepted['build_id'], website='https://engaceros.brixcanvas.com', github_release=release['html_url'], workflow_ids=[w['databaseId'] for w in successful], current_native_download=downloads['latest'], design_only=False, new_iso=True, pages_checked=site['pages_checked'], exact_source_articles_verified=site['exact_source_articles_verified'], unique_links=site['unique_links'], known_broken=0, unverified_external_references=len(links['unverified']), links='website-links.json', publication_source='publication-source.json', native_editor_save='native-editor-save.json', full_audit='website-audit.json', fresh_readback='website-readback.json', browser_readback='public-browser-verification.json', downloads='downloads.json')
     target.write_bytes((json.dumps(result, indent=2) + '\n').encode())
     print(f'PASS: M14.{stage} matching native source/media, GitHub downloads and current public website.')
 

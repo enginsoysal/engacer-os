@@ -1,6 +1,6 @@
 # Install the M14.1 development candidate in VMware
 
-Status: native qualification passes. The matching M14.1 native release is published; actual website verification is pending.
+Status: native qualification passes. The matching M14.1 native release is published; actual website verification also passes.
 
 ## Before starting
 

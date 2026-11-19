@@ -1,0 +1,13 @@
+{
+  "scope": "Clarification of the frozen worker memory counters; no post-qualification runtime change.",
+  "source": "kernel/windows8/process.c",
+  "source_sha256": "d0a6fc9f6487853796e24482a765e3831b2728ad1a39bb8bf43a03e2be24dfcf",
+  "private_owned_page_limit": 10000,
+  "additional_lazy_kernel_file_writer_page_limit": 2048,
+  "peak_counter_formula": "count8 + write_count8; includes owned mappings/page tables and the separately allocated single-writer buffer",
+  "one_time_shared_transition_stack_pages": 4,
+  "whole_os_accounting": "Kernel/desktop fixed reservations, device buffers and framebuffers are separate from the worker page limit and remain part of whole-system accounting. Configured VM RAM is not process consumption.",
+  "measured_synthetic_probe_peak_pages": 134,
+  "probe_writer_pages": 0,
+  "general_windows_gui_performance_qualified": false
+}

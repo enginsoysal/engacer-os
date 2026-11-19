@@ -1,0 +1,27 @@
+{
+  "scope": "Only private host paths in already-public historical text excerpts are redacted; URLs, source identities, counts and all test results are unchanged. Original outputs remain in ignored local scratch.",
+  "files": [
+    {
+      "file": "website-audit.json",
+      "original_sha256": "1838abb7fa53f52d9a6f3f451a292cc44498230084b2a1e44509bfe6a12d7e26",
+      "public_sha256": "db5b27f4a133b77b4d4a7788db7c998261581d3ac6ea38ca459bc3ebc2a05a05",
+      "redactions": [
+        {
+          "field": "pages[60].legacy_text[3]",
+          "original_excerpt_sha256": "bc6c7d0b38effaf46f6cd79452a360a97e5f536358bcfc8e34d1610bf7bfb164"
+        }
+      ]
+    },
+    {
+      "file": "website-readback.json",
+      "original_sha256": "9a3d2a380dabd81353dd5e51652d2d6489b7269f193d153566750f165c7ba854",
+      "public_sha256": "8dc07b760ca4152ca48e8ba43796907999605a0a7a36846d81354e35d9662fd9",
+      "redactions": [
+        {
+          "field": "pages[60].legacy_text[3]",
+          "original_excerpt_sha256": "bc6c7d0b38effaf46f6cd79452a360a97e5f536358bcfc8e34d1610bf7bfb164"
+        }
+      ]
+    }
+  ]
+}

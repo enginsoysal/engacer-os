@@ -25,10 +25,11 @@
       "deliver": "Extend checked PE32+ mapping, relocations, imports/forwarders/delay imports, module lifetime and dependencies.",
       "how_and_why": "Replace the current fixed eight-module/eight-MiB assumptions with explicit tested per-process quotas and demand-backed mappings, not unbounded allocations.",
       "acceptance": "Original selected binaries load correctly with access violations, invalid images and missing required functions refused clearly; no GUI compatibility claim from loading alone.",
-      "status": "native_qualified_publication_pending",
+      "status": "complete",
       "evidence": "evidence/M14/1",
       "qualification": "M14-STAGE1-VM-v1",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1",
+      "publication_evidence": "evidence/M14/1/publication-results.json"
     },
     {
       "id": "M14.2",

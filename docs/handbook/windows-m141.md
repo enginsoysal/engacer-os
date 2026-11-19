@@ -1,6 +1,6 @@
 # Windows files and browser downloads in M14.1
 
-Status: native qualification and GitHub release pass; actual website verification is pending. Read the matching release scope before testing.
+Status: native qualification and GitHub release pass; actual website verification also passes. Read the matching release scope before testing.
 
 ## Use the included Windows app
 

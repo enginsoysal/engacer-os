@@ -55,6 +55,11 @@
       "accepted": false,
       "observation": "The stronger callback/order assertion found that the forwarding fixture also auto-exported delayed(), allowing the linker to bind it directly rather than produce the intended delay path.",
       "correction": "Use a forwarding-only DLL object with no leaf exports; assert a real PE delay-import directory exists, then require 48 actual detach callbacks, 50 attachment callbacks and a fresh dynamic DLL map after DELAY_CALL_BEGIN in the native worker."
+    },
+    {
+      "kind": "public_observer_stage_transition",
+      "observation": "The first M14.1 public observer retained an M13 stage-number conditional, selecting an obsolete Files guide label and synthesizing M14 desktop guide paths. The actual public search returned the current retained M13.7 guide.",
+      "correction": "Use the actual curated retained Files/Transfers routes, the new Follow setup anchor, and explicitly verify the new Firefox tutorial search result. No production site behavior was changed for this observer correction."
     }
   ]
 }
