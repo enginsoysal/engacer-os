@@ -39,7 +39,7 @@ typedef struct {uint64_t offset,length;uint32_t flags,reserved;} w8_file_lock_re
 typedef struct {uint64_t root,name,data,result;uint32_t access,flags,bytes,type,index,name_capacity;uint64_t name_output;} w8_registry_request143;
 typedef struct {uint64_t handle,time;uint32_t type,bytes,name_units,disposition;} w8_registry_result143;
 typedef struct {uint64_t teb;uint32_t id,state;} w8_thread_snapshot;
-typedef struct {uint64_t size,time[3];uint32_t attributes,crc,kind;char name[256];} w8_file_info;
+typedef struct {uint64_t size,time[3];uint32_t attributes,crc,kind;char name[256];uint64_t identity;} w8_file_info;
 typedef struct {
  uint32_t magic,command,status,percent;
  char source[256],product_root[256],user_root[256],windows_root[256],arguments[1024];

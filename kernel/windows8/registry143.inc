@@ -15,13 +15,10 @@ static unsigned registry_hkcu143(uint64_t handle){return handle==UINT64_C(0x8000
 static unsigned registry_fold143(const char*source,char*out,unsigned cap){
  unsigned bytes=length8(source),at=0,used=0;while(at<bytes){uint32_t scalar;if(!decode_utf8_143(source,bytes,&at,&scalar)||!encode_utf8_143(fold143(scalar),out,cap-1,&used))return 206;}out[used]=0;return 0;
 }
-static void registry_hash143(const char*text,char*out){uint8_t hash[32];static const char hex[]="0123456789abcdef";engine_sha256(text,length8(text),hash);for(unsigned i=0;i<16;++i){out[i*2]=hex[hash[i]>>4];out[i*2+1]=hex[hash[i]&15];}out[32]=0;}
-static void registry_root143(char*out){char hash[33];registry_hash143(input8.user_root,hash);copy8(out,"/Data/Windows/",256);path_append143(out,hash,256);path_append143(out,"/Registry",256);}
+#define registry_hash143 protected_hash143
+#define registry_prepare143 protected_prepare143
+static void registry_root143(char*out){protected_root143("Registry",out);}
 static void registry_directory143(const char*canonical,char*out){char hash[33];registry_hash143(canonical,hash);registry_root143(out);path_append143(out,"/k",256);path_append143(out,hash,256);}
-static unsigned registry_mkdir143(const char*path){const v6_entry*entry=find8(path);if(entry)return entry->kind==2?0:13;return v6_mkdir(m6_volume(),path)?1117:0;}
-static unsigned registry_prepare143(const char*directory){
- char path[256];copy8(path,directory,256);for(unsigned i=1;path[i];++i)if(path[i]=='/'){path[i]=0;unsigned error=registry_mkdir143(path);path[i]='/';if(error)return error;}return registry_mkdir143(path);
-}
 static unsigned registry_load_key143(const char*canonical,const char*directory,registry_key_record143*out){
  char path[256];copy8(path,directory,256);path_append143(path,"/$key",256);const v6_entry*entry=find8(path);if(!entry)return 2;
  unsigned got=0;if(entry->kind!=1||entry->size!=sizeof(*out)||v6_verify(m6_volume(),path)||v6_read(m6_volume(),path,0,out,sizeof(*out),&got)||got!=sizeof(*out))return 13;

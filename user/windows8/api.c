@@ -108,9 +108,9 @@ static int64_t file_api143(HANDLE handle,unsigned operation,uint64_t a,uint64_t 
  int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,handle,operation,a,b,0);if(result<0)last8((unsigned)-result);return result;
 }
 static HANDLE MS f_CreateFileW(const WCHAR*name,unsigned access,unsigned share,void*security,unsigned creation,unsigned flags,HANDLE template){
- if(security||template){last8(50);return UINT64_MAX;}if(access&~0xc0010000u||share&~7u){last8(87);return UINT64_MAX;}
- if(flags&~0x0c0000a0u){last8(50);return UINT64_MAX;}if(flags&0x08000000u){last8(50);return UINT64_MAX;}
- w8_file_request143 request={.access=((access&0x80000000u)?1u:0u)|((access&0x40000000u)?2u:0u)|((access&0x10000u)?4u:0u),.share=share,.creation=creation,.flags=flags&0x04000000u};
+ if(security||template){last8(50);return UINT64_MAX;}if(access&~0xc0010180u||share&~7u){last8(87);return UINT64_MAX;}
+ if(flags&~0x0c0000a7u){last8(50);return UINT64_MAX;}if(flags&0x08000000u){last8(50);return UINT64_MAX;}
+ w8_file_request143 request={.access=((access&0x80000000u)?9u:0u)|((access&0x40000000u)?18u:0u)|((access&0x10000u)?4u:0u)|((access&0x80u)?8u:0u)|((access&0x100u)?16u:0u),.share=share,.creation=creation,.flags=flags&0x040000a7u};
  if(!nativepath8(name,request.path))return UINT64_MAX;
  w8_file_info info;int exists=!stat8(request.path,&info);
  int64_t result=(int64_t)sys8(W8_SYS_FILE_OPEN143,(uint64_t)&request,0,0,0,0);if(result<0){last8((unsigned)-result);return UINT64_MAX;}
@@ -148,16 +148,17 @@ static int MS f_LockFile(HANDLE h,unsigned offset,unsigned offset_high,unsigned 
 static int MS f_UnlockFile(HANDLE h,unsigned offset,unsigned offset_high,unsigned low,unsigned high){overlapped143 request={.offset=offset,.offset_high=offset_high};return f_UnlockFileEx(h,0,low,high,&request);}
 static int MS f_GetFileInformationByHandle(HANDLE h,void*out){
  if(!out){last8(87);return 0;}w8_file_info info;if(file_api143(h,8,(uint64_t)&info,0)<0)return 0;
- memset(out,0,52);uint8_t*b=out;*(uint32_t*)b=info.attributes;memcpy(b+4,info.time,24);*(uint32_t*)(b+28)=0x454e474e;*(uint32_t*)(b+32)=(uint32_t)(info.size>>32);*(uint32_t*)(b+36)=(uint32_t)info.size;*(uint32_t*)(b+40)=1;*(uint32_t*)(b+48)=(uint32_t)h;return 1;
+ memset(out,0,52);uint8_t*b=out;*(uint32_t*)b=info.attributes;memcpy(b+4,info.time,24);*(uint32_t*)(b+28)=0x454e474e;*(uint32_t*)(b+32)=(uint32_t)(info.size>>32);*(uint32_t*)(b+36)=(uint32_t)info.size;*(uint32_t*)(b+40)=1;*(uint32_t*)(b+44)=(uint32_t)(info.identity>>32);*(uint32_t*)(b+48)=(uint32_t)info.identity;return 1;
 }
 static int MS f_SetFileTime(HANDLE h,const FILETIME*creation,const FILETIME*access,const FILETIME*write){
  w8_file_info info;if(file_api143(h,8,(uint64_t)&info,0)<0)return 0;if(creation)memcpy(info.time,creation,8);if(access)memcpy(info.time+1,access,8);if(write)memcpy(info.time+2,write,8);return file_api143(h,9,(uint64_t)&info,0)>=0;
 }
-static unsigned MS f_GetFileAttributesW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path)||stat8(path,&info)){last8(2);return UINT32_MAX;}return info.attributes;}
-static int MS f_SetFileAttributesW(const WCHAR*name,unsigned attributes){char path[256];if(!nativepath8(name,path)){last8(3);return 0;}int h=open8(path,0);if(h<0){last8(2);return 0;}w8_file_info info;int result=sys8(W8_SYS_METADATA,(unsigned)h,0,(uint64_t)&info,0,0)?0:1;if(result){info.attributes=attributes?attributes:128;result=sys8(W8_SYS_METADATA,(unsigned)h,1,(uint64_t)&info,0,0)==0;}close8(h);if(!result)last8(50);return result;}
-static int MS f_CreateDirectoryW(const WCHAR*name,void*security){(void)security;char path[256];w8_file_info info;if(!nativepath8(name,path)){last8(3);return 0;}if(!stat8(path,&info)){last8(183);return 0;}if(mkdir8(path)){last8(5);return 0;}return 1;}
-static int MS f_DeleteFileW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path))return 0;if(stat8(path,&info)){last8(2);return 0;}if(info.kind!=1){last8(5);return 0;}int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,0,10,(uint64_t)path,0,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
-static int MS f_RemoveDirectoryW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path)||stat8(path,&info)){last8(3);return 0;}if(info.kind!=2||remove8(path)){last8(145);return 0;}return 1;}
+static int file_path_api143(unsigned operation,const WCHAR*name,w8_file_info*information,unsigned attributes){char path[256];if(!nativepath8(name,path))return 0;int64_t status=(int64_t)sys8(W8_SYS_FILE_OP143,0,operation,(uint64_t)path,information?(uint64_t)information:attributes,0);if(status<0){last8((unsigned)-status);return 0;}return 1;}
+static unsigned MS f_GetFileAttributesW(const WCHAR*name){w8_file_info information;if(!file_path_api143(15,name,&information,0))return UINT32_MAX;return information.attributes;}
+static int MS f_SetFileAttributesW(const WCHAR*name,unsigned attributes){return file_path_api143(14,name,0,attributes);}
+static int MS f_CreateDirectoryW(const WCHAR*name,void*security){if(security){last8(50);return 0;}return file_path_api143(16,name,0,0);}
+static int MS f_DeleteFileW(const WCHAR*name){w8_file_info information;if(!file_path_api143(15,name,&information,0))return 0;if(information.kind!=1){last8(5);return 0;}return file_path_api143(10,name,0,0);}
+static int MS f_RemoveDirectoryW(const WCHAR*name){return file_path_api143(17,name,0,0);}
 static int MS f_MoveFileExW(const WCHAR*from,const WCHAR*to,unsigned flags){char a[256],b[256];if(flags&~1u){last8(50);return 0;}if(!nativepath8(from,a)||!nativepath_mode143(to,b,4))return 0;int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,0,11,(uint64_t)a,(uint64_t)b,flags);if(result<0){last8((unsigned)-result);return 0;}return 1;}
 static int MS f_MoveFileW(const WCHAR*a,const WCHAR*b){return f_MoveFileExW(a,b,0);}
 static int MS f_MoveFileWithProgressW(const WCHAR*a,const WCHAR*b,uint64_t callback,void*data,unsigned flags){if(callback){last8(50);return 0;}(void)data;return f_MoveFileExW(a,b,flags);}

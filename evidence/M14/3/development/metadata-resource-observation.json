@@ -1,0 +1,11 @@
+{
+  "scope": "Same synthetic file scenario; additional durable metadata semantics change I/O work. Observer wall times are not CPU-time benchmarks.",
+  "old_build": "b531ab7e2b17f442ac00d031e1211024",
+  "new_build": "bf2e677364e330838feb52b05290d8a2",
+  "old_peak_pages": 324,
+  "new_peak_pages": 306,
+  "old_observer_wall_median_seconds": 1.3439999999973224,
+  "new_observer_wall_median_seconds": 1.8980000000010477,
+  "retained_pages": 0,
+  "tradeoff": "The former private per-application metadata database was incorrect across processes/removal. File-owned COW records add real storage work; M14.15 must measure and optimize that work without hiding writeback."
+}
