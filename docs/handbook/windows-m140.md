@@ -15,3 +15,5 @@ The measured Notepad++ 8.9.9.1 x64 EXE installer is itself 32-bit. Its original 
 CPU, RAM and storage traffic are core requirements for the whole OS. Every implementation stage measures its resource effects. M14.15 blocks final release until the same real app tasks, correctness and optimization checks pass. Current research contains no invented performance figures for unsupported apps. [Architecture and measurement protocol](../architecture/windows-m14.md).
 
 Read the [sixteen-stage plan](../milestones/m14.md), [M14.0 findings](../milestones/m14-0.md) and [exact target inventory](../roadmap/m14-targets.json). Use the [current install guide](install-m1313.md) for the available native media.
+
+The [corrected M14.0 research release](https://github.com/enginsoysal/engacer-os/releases/tag/m140-v0.14.0-research.2) provides the plan, inspection tools and reports. It contains no new OS image or downloaded third-party app binaries.

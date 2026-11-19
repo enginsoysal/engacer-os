@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "stage": "M14.0",
+  "source_commit": "50bca524fc8c611ac491dff5c8dbd8c77664e40e",
+  "research_only": true,
+  "new_iso": false,
+  "current_native_download": "M13.13",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m140-v0.14.0-research.2",
+  "assets": [
+    {
+      "name": "EngacerOS-M14.0-Research-2.zip",
+      "sha256": "c614d2acd2f42498f754ac4b2cba101ffc009a9a033c8b91dce1f5c9b301be66",
+      "bytes": 143489,
+      "independently_downloaded": true
+    },
+    {
+      "name": "M14.0-Research-2-SHA256SUMS.txt",
+      "sha256": "9fc9fd9ce1d6f90f86f8b14b11909197a33738221489bd80c70469bd0b14204b",
+      "bytes": 97,
+      "independently_downloaded": true
+    }
+  ],
+  "archive_crc_verified": true
+}
