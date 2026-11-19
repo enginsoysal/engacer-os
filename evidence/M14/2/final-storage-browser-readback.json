@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "source_commit": "5a7f67d60c27b51495167c91b7b73e200383a5aa",
+  "scope": "Additional actual isolated-browser readback of the presentation-only closing correction",
+  "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-vmware-storage",
+  "checks": [
+    "Rendered article heading is VMware disks and installation storage without the historical suffix",
+    "The article opens with Current M14.2 installer and its matching installation link",
+    "Canonical document link retains a80a5df9 because that file did not change in the presentation-only closing commit",
+    "The old M4.5 commands remain in an explicitly historical subsection; current disk selection and erasure guidance leads"
+  ]
+}

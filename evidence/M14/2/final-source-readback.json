@@ -1,0 +1,181 @@
+{
+  "passed": true,
+  "stage": "M14.2",
+  "checked_at": "2026-11-19T17:37:12.206621+00:00",
+  "source_commit": "5a7f67d60c27b51495167c91b7b73e200383a5aa",
+  "full_crawl_source": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "frozen_native_inputs_verified": 626,
+  "changed_published_articles_verified": [
+    {
+      "path": "CONTRIBUTING.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-contributing",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/CONTRIBUTING.md",
+      "source_sha256": "a8e8b65169e06dc7b2c9fb3f194aa74a6052f05231ba4b3301553fa09d46f271",
+      "observed_html_sha256": "65c4580b693a79a67abf4fcdd26ce369a889c075a87b5c5ec327b8630c041ea0"
+    },
+    {
+      "path": "README.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-readme",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/README.md",
+      "source_sha256": "22d3ce4befcd8cbd58464889c6bcff1245bc466e4ace6968197e7f2da7ac295a",
+      "observed_html_sha256": "a13cbc326c4d5c91e6e20da3bfaca4331e19cebc66ddb8edce8ede638760552a"
+    },
+    {
+      "path": "distros/README.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-distros-readme",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/distros/README.md",
+      "source_sha256": "ab7b77ea6864ae62b0cfe8d9d807d796a19f23b656fd9cbe3b89f01a2c16c6c0",
+      "observed_html_sha256": "60713fde77d03692ddbe2d5af7ead234c795242cc3ab0efc3ad9c1f1f0afd7b6"
+    },
+    {
+      "path": "docs/architecture/children-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-children-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/architecture/children-m142.md",
+      "source_sha256": "87e7d9fee10838dc5402aa45894916637d689dce4b024e93490f427a3fb96c84",
+      "observed_html_sha256": "f0af83abf776d10f97b3b3005d46041106a4eb051268ba6a72abe67836cfcdb3"
+    },
+    {
+      "path": "docs/architecture/exceptions-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-exceptions-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/architecture/exceptions-m142.md",
+      "source_sha256": "f65a96e1de3fb60cd9dcad69dee20b57726f90027bcc1d357fe1ce8cf41e2595",
+      "observed_html_sha256": "7e00cf94350050ae3b10ccf55472eb4cc1ed161eebf881a79513d78c4598791c"
+    },
+    {
+      "path": "docs/architecture/runtime-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-runtime-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/architecture/runtime-m142.md",
+      "source_sha256": "e47ce08a8ea67a22529e4c98e476c181f09d2038ebebc531a731317905be4f8c",
+      "observed_html_sha256": "0a74b39a0cae61b67f596698a2431d8d1f2d4935d92d5dc0746716ce2b324c8f"
+    },
+    {
+      "path": "docs/architecture/synchronization-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-synchronization-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/architecture/synchronization-m142.md",
+      "source_sha256": "8e09f9b9177d6a1ebb3aac571309f6ed5f96aec8a0ac4c743d15399a9deb356e",
+      "observed_html_sha256": "46701ef135962f503244d1224717befa8e36e22db911420efb49e628d0d2c249"
+    },
+    {
+      "path": "docs/architecture/windows-m14.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-windows-m14",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/architecture/windows-m14.md",
+      "source_sha256": "8410d9943eda62aae5451bb9698488ff1e0eb513b4310ca1c5875fc75eafe1f4",
+      "observed_html_sha256": "5b686533209e8f1143d0c9e7bcdde8e52d3b045d43f5df683c4b94672d28b6c8"
+    },
+    {
+      "path": "docs/handbook/distributions.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-distributions",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/handbook/distributions.md",
+      "source_sha256": "69aac740b9df2d6c1e2b964f4596920fd16edb419d5f38904f5251f38a8e1176",
+      "observed_html_sha256": "fcb8ee482271f6657e1622c1ff264f0ecd8393a2569dea9ec19dc032d9e4434a"
+    },
+    {
+      "path": "docs/handbook/first-day-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-first-day-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/handbook/first-day-m142.md",
+      "source_sha256": "f4c47da5e90a4ab530bc22295912cf4450b09fddde67738a95489312a86f03ea",
+      "observed_html_sha256": "262a338fe1202410ab7a5d41f5b0ffe1b829920818b2a4c72abeee4bf1814d7e"
+    },
+    {
+      "path": "docs/handbook/index.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-index",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/handbook/index.md",
+      "source_sha256": "98cc8af1b53864542086bfd38eccc46e881916e8874f02a670eeaf5f4793b8b9",
+      "observed_html_sha256": "59cd2980103c5a64f9ce8697437feb5fb09945d2f79baad223acd5dc94a40da5"
+    },
+    {
+      "path": "docs/handbook/install-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/handbook/install-m142.md",
+      "source_sha256": "8ee1c1c0abd5cb5f8135dab23aa3600606dab00edd7cd8b1ae590e828447586b",
+      "observed_html_sha256": "52e079179cad78252b15671dd89cc437be55f42f094d5773a4ca666ffce99d51"
+    },
+    {
+      "path": "docs/handbook/windows-m142.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-windows-m142",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/handbook/windows-m142.md",
+      "source_sha256": "645d0c922d4633fd464af6266764e3e92321cac3e56eac2ede460fb12fb13e08",
+      "observed_html_sha256": "8c501636ab4da9e2223c5681596e02b11cb9fa926862cdeaa65ed52ff25894cf"
+    },
+    {
+      "path": "docs/milestones/m14-2.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-2",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/milestones/m14-2.md",
+      "source_sha256": "ba58f280c2e591322f174bb5a892748de2ff6b9e7646088c79f768b7b418301b",
+      "observed_html_sha256": "ed2fdcce24f761126729c3aaaf0bf14a1476003500216596e69c6dedde60ad58"
+    },
+    {
+      "path": "docs/milestones/m14.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/milestones/m14.md",
+      "source_sha256": "cd2303f31300257a329af139dd9f60e8eb550f7f30d3af889cf4187751b59f72",
+      "observed_html_sha256": "99d6b1b71712673c360fee6267f282b07efe73fc1142fdbb62f6492c113664df"
+    },
+    {
+      "path": "docs/releases/m142-v0.14.2.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-releases-m142-v0-14-2",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/releases/m142-v0.14.2.md",
+      "source_sha256": "723721dfa639d7c4e107917fd38e957688810ae8bae68278b3442758800c86ce",
+      "observed_html_sha256": "77966007234def2024c7ae64929b74490418722dca7e0686f41fc8937f418bfe"
+    },
+    {
+      "path": "docs/roadmap/milestones.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-milestones",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/roadmap/milestones.md",
+      "source_sha256": "978214de9ec60d8f2caf304a8894e6f4b933e5553e666ebbdad85936a4f74a1b",
+      "observed_html_sha256": "0c7fd660d1a4899955f1aa68b73b1a2ef14cf1ba823cf138b507f69a39f57504"
+    },
+    {
+      "path": "docs/roadmap/status.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/docs/roadmap/status.md",
+      "source_sha256": "548d455913f1663918609d16bfc83289fa8cf2f30c380580b03e587bde3c1191",
+      "observed_html_sha256": "1a73d392d00556859010176a34c2e982ee3fef28ca91ff6568bd5e13bec2e7f8"
+    },
+    {
+      "path": "tools/README.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-tools-readme",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/tools/README.md",
+      "source_sha256": "8651a59857a32560a3ab8c35c36f24629f49465666c80b1f9f48281f4f7f362e",
+      "observed_html_sha256": "335ac9540950f4394b1a6def99b42f438a7d1c47b47273d22223855166ceeb62"
+    },
+    {
+      "path": "website/README.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-website-readme",
+      "status": 200,
+      "source": "https://github.com/enginsoysal/engacer-os/blob/5a7f67d60c27b51495167c91b7b73e200383a5aa/website/README.md",
+      "source_sha256": "fcc33edb96836d50929fb149cd975d8fe73c28905e6f7adf04452830dfdfd687",
+      "observed_html_sha256": "3f047d8a4f38ededa1b4e22676604a1df875f7594dad752bd579e98cdf90fe18"
+    }
+  ],
+  "changed_source_relative_links_verified": 471,
+  "workflow": {
+    "conclusion": "success",
+    "databaseId": 44578634163,
+    "headSha": "5a7f67d60c27b51495167c91b7b73e200383a5aa",
+    "status": "completed"
+  },
+  "latest_release": "m142-v0.14.2",
+  "home_status": 200,
+  "scope": "Closing documentation text/source updates after the accepted complete current-source crawl; native media and public layout/navigation are unchanged"
+}
