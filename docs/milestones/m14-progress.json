@@ -13,8 +13,11 @@
       "deliver": "Pin original packages, inspect installer/payload/custom-action architectures, inventory static dependencies and native gaps, and freeze functional/performance protocols.",
       "how_and_why": "Read-only PE/MSI analysis and exact source references avoid guessing from an x64 download label. Do not execute downloaded apps on the development host.",
       "acceptance": "Version/hash inventory, installation-chain decisions, per-app task corpus, bounded performance protocol, source/native baseline, honest unknowns and complete public research delivery.",
-      "status": "research_complete_publication_pending",
-      "evidence": "evidence/M14/0"
+      "status": "complete",
+      "evidence": "evidence/M14/0",
+      "qualification": "M14-RESEARCH0-v1",
+      "publication_evidence": "evidence/M14/0/publication-results.json",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m140-v0.14.0-research.2"
     },
     {
       "id": "M14.1",
@@ -136,5 +139,6 @@
       "acceptance": "Functional correctness, resource budgets and no-regression gates all pass; publish measurements and limits, exact final ISO/VMware media, English guides, GitHub and complete actual website verification. Only now release final M14.",
       "status": "planned"
     }
-  ]
+  ],
+  "next_stage": "M14.1"
 }

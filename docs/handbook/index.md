@@ -1,6 +1,6 @@
 # Engacer OS user handbook
 
-**Current development: [M14.0 - original Windows x64 investigation](../milestones/m14.md).** Sixteen ordered stages are recorded through mandatory whole-system optimization and final release in M14.15. M14.0 is research only; M13.13 remains the native download. Original GUI target execution and app performance are not yet qualified. Windows x64 now takes priority over further hardware expansion under the owner's 19 November instruction.
+**Current development: [M14.0 - original Windows x64 investigation](../milestones/m14.md).** Sixteen ordered stages are recorded through mandatory whole-system optimization and final release in M14.15. M14.0 is research only; M13.13 remains the native download. Original GUI target execution and app performance are not yet qualified. Windows x64 now takes priority over further hardware expansion under the owner's 19 November instruction. M14.0 is complete within its research scope: 521 public pages and 3706 links checked. [Public receipt](../../evidence/M14/0/publication-results.json). M14.1 has not started.
 
 **M13.0-M13.13 complete within the recorded and owner-revised scopes.** The owner accepted ninety minutes; actual observation reached 108.78 minutes. The original eight-hour/two-hour gates were stopped and did not pass. This is development media with named virtual scope, not universal stability or unlimited uptime.
 

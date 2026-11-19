@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": "M14.0",
+  "qualification": "M14-RESEARCH0-v1",
+  "research_only": true,
+  "new_iso": false,
+  "current_native_download": "M13.13",
+  "source_commit": "9134e32df06185a89f60a58b360ae866937cbd3b",
+  "research_source_commit": "50bca524fc8c611ac491dff5c8dbd8c77664e40e",
+  "research_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m140-v0.14.0-research.2",
+  "website": "https://engaceros.brixcanvas.com",
+  "original_containers": 6,
+  "original_pe_payloads": 23,
+  "independent_pe_checks": 25,
+  "native_inputs_unchanged": 613,
+  "pages_checked": 521,
+  "exact_source_articles_verified": 336,
+  "unique_links": 3706,
+  "known_broken": 0,
+  "unverified_external_references": 13,
+  "scope": "Investigation/plan/measurement protocol and actual public research delivery only; original GUI app execution and performance remain future stages"
+}
