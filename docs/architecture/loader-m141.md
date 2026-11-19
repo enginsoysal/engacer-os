@@ -1,6 +1,6 @@
 # M14.1 loader design and qualification
 
-Status: native M14-STAGE1-VM-v1 qualification passes. GitHub release and actual website publication close separately; M13.13 remains the published native download until those gates close.
+Status: native M14-STAGE1-VM-v1 qualification passes. The matching GitHub release is published; actual website verification remains the final closing gate.
 
 ## Mapping and resource ownership
 

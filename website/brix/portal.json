@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M13.13",
+  "currentRelease": "M14.1",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m1313.md",
+          "docs/handbook/install-m141.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m1313-v0.13.13.md",
+          "docs/releases/m141-v0.14.1.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/final-m1313.md",
+          "docs/handbook/first-day-m141.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -92,8 +92,8 @@
           "Keep saved work and understand stability limits"
         ],
         [
-          "docs/handbook/windows-m140.md",
-          "Understand current Windows apps and M14 targets"
+          "docs/handbook/windows-m141.md",
+          "Use Windows file checks and browser downloads"
         ]
       ]
     },
@@ -130,6 +130,10 @@
           "Follow M14.0\u2013M14.15 in order"
         ],
         [
+          "docs/milestones/m14-1.md",
+          "Read the current loader stage and its tests"
+        ],
+        [
           "docs/milestones/m14-0.md",
           "Review original x64 app and installer findings"
         ],
@@ -156,5 +160,5 @@
       ]
     }
   ],
-  "developmentProgram": "M14.0"
+  "developmentProgram": "M14.1"
 }

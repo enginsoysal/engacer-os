@@ -2,7 +2,7 @@
   "version": 1,
   "program": "M14",
   "current_stage": "M14.1",
-  "current_native_download": "M13.13",
+  "current_native_download": "M14.1",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
   "optimization_core_requirement": true,
@@ -27,7 +27,8 @@
       "acceptance": "Original selected binaries load correctly with access violations, invalid images and missing required functions refused clearly; no GUI compatibility claim from loading alone.",
       "status": "native_qualified_publication_pending",
       "evidence": "evidence/M14/1",
-      "qualification": "M14-STAGE1-VM-v1"
+      "qualification": "M14-STAGE1-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1"
     },
     {
       "id": "M14.2",

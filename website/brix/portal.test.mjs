@@ -82,7 +82,7 @@ test('qualified revised-scope copy preserves historical cause and duration/devic
 });
 
 test('M14.0 research progress preserves the exact current native download',()=>{
- const home=JSON.stringify(portalDesign({stage:13,searchReady:true}));
+ const home=JSON.stringify(portalDesign({stage:13,searchReady:true,developmentProgram:'M14.0'}));
  for(const term of ['CURRENT DOWNLOAD · M13.13','Now: original Windows x64 apps.','M14.0-M14.15','mandatory final optimization','research, not new GUI compatibility','docs-milestones-m14'])assert(home.includes(term),term);
  assert(!home.includes('Download M14'));
 });

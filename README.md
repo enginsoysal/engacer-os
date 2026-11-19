@@ -1,10 +1,10 @@
 # Engacer OS
 
-**Current development: [M14.1 - Win64 loader and browser downloads](docs/milestones/m14-1.md).** Native M14-STAGE1-VM-v1 qualification passes on the frozen candidate. GitHub release and actual complete website publication remain pending, so M13.13 remains the published native download for now. Original Notepad++/Sumatra images can be mapped and inspected; their GUI is not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. The ordered M14.0-M14.15 program retains mandatory whole-system optimization in M14.15.
+**Current native download: [Engacer OS M14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1).** The Win64 loader stage passes exact-source native and VMware qualification. [Install](docs/handbook/install-m141.md), [Windows files and browser downloads](docs/handbook/windows-m141.md), [release scope](docs/releases/m141-v0.14.1.md). Original Notepad++/Sumatra images can be mapped and inspected; their GUI is not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Complete actual website verification remains pending. M14.15 remains the mandatory whole-system optimization gate.
 
 **M13.0-M13.13 complete within the recorded and owner-revised scopes.** The owner accepted ninety minutes; actual observation reached 108.78 minutes. The original eight-hour/two-hour gates were stopped and did not pass. This is development media with named virtual scope, not universal stability or unlimited uptime.
 
-**Current development download: [Engacer OS M13.13](https://github.com/enginsoysal/engacer-os/releases/tag/m1313-v0.13.13).** [Install in VMware](docs/handbook/install-m1313.md), [first day](docs/handbook/final-m1313.md), [saved work and stability](docs/handbook/stability-m1313.md), [exact release scope](docs/releases/m1313-v0.13.13.md). Separate exact-candidate tasks verify real installation, retained-ISO startup, saved/dirty data, independent disk-only starts, constrained/4K resources, screensaver behavior and labelled recovery. Twenty public assets are independently downloaded and verified. Fixed desktop state remains 557,516 bytes; measured completed tasks retain zero managed pages. Actual final website delivery passes: 512 pages, 331 exact-source articles and 3,656 links, zero known broken targets and 13 explicitly unverified external references. [Publication receipt](evidence/M13/13/publication-results.json).
+**Historical M13.13 delivery: [Engacer OS M13.13](https://github.com/enginsoysal/engacer-os/releases/tag/m1313-v0.13.13).** [Install in VMware](docs/handbook/install-m1313.md), [first day](docs/handbook/final-m1313.md), [saved work and stability](docs/handbook/stability-m1313.md), [exact release scope](docs/releases/m1313-v0.13.13.md). Separate exact-candidate tasks verify real installation, retained-ISO startup, saved/dirty data, independent disk-only starts, constrained/4K resources, screensaver behavior and labelled recovery. Twenty public assets are independently downloaded and verified. Fixed desktop state remains 557,516 bytes; measured completed tasks retain zero managed pages. Actual final website delivery passes: 512 pages, 331 exact-source articles and 3,656 links, zero known broken targets and 13 explicitly unverified external references. [Publication receipt](evidence/M13/13/publication-results.json).
 
 **Historical observations remain preserved.** M13.7/M13.8 natural-freeze causes are not independently established. The owner attributes their issue to their laptop. Labelled injected recovery is not reproduction of that historical cause. M13.12's fourteen-controller matrix and original supported MSI lifecycle remain historical integration evidence, not repeated M13.13 matrix/MSI checks.
 
@@ -62,9 +62,9 @@ with the final publication evidence. Earlier accepted releases remain immutable.
 
 ## Try it in VMware
 
-[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m1312-v0.13.12/EngacerOS-M13STAGE12-VMware.zip) ·
-[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m1312-v0.13.12/EngacerOS-M13STAGE12.iso) ·
-[Step-by-step installation](docs/handbook/install-m1312.md) ·
+[Download the prepared VMware ZIP](https://github.com/enginsoysal/engacer-os/releases/download/m141-v0.14.1/EngacerOS-M14STAGE1-VMware.zip) ·
+[Standalone ISO](https://github.com/enginsoysal/engacer-os/releases/download/m141-v0.14.1/EngacerOS-M14STAGE1.iso) ·
+[Step-by-step installation](docs/handbook/install-m141.md) ·
 [English documentation and downloads](https://engaceros.brixcanvas.com).
 
 Extract the whole ZIP, open **EngacerOS.vmx**, and choose **I Copied It** if asked.

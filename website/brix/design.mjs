@@ -73,11 +73,11 @@ export function nativeDesign({development=developmentProgress}={}){
  const footer=b('socialcircles',{copyright:'Engacer OS / MIT licensed · Documentation & releases on GitHub',bg:paper,circleBg:teal,items:[{label:'github',href:'https://github.com/enginsoysal/engacer-os'},{label:'website',href:`${site}/blog/documentation`}]});
  return [header,status,main,footer];
 }
-export function portalDesign({stage=0,searchReady=false,ownerIssues=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m13-progress.json',import.meta.url),'utf8')).owner_additions||[],stabilityQualification=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m13-progress.json',import.meta.url),'utf8')).stability_qualification}={}){
+export function portalDesign({stage=0,searchReady=false,developmentProgram=portal.developmentProgram,ownerIssues=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m13-progress.json',import.meta.url),'utf8')).owner_additions||[],stabilityQualification=JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m13-progress.json',import.meta.url),'utf8')).stability_qualification}={}){
  if(!Number.isInteger(stage)||stage<0||stage>14)throw Error('Invalid qualified native stage');
  const windowsLoader=stage===14;
  const current=windowsLoader?(portal.currentRelease.startsWith('M14.')?portal.currentRelease:'M14.1'):stage?`M13.${stage}`:'M12.18';
- const windowsResearch=stage===13&&portal.developmentProgram==='M14.0';
+ const windowsResearch=stage===13&&developmentProgram==='M14.0';
  const stabilityWork=stage===12&&JSON.parse(fs.readFileSync(new URL('../../docs/milestones/m13-progress.json',import.meta.url),'utf8')).current_stage==='M13.13';
  const workdayQualified=stage===13&&stabilityScopeQualified13(stabilityQualification);
  const unstable=!windowsLoader&&!workdayQualified&&stage>=7&&ownerIssues.some(issue=>issue.id==='long-uptime-freeze'&&issue.status!=='resolved');

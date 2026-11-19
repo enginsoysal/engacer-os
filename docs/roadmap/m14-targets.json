@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "program": "M14",
-  "qualification_status": "research_only",
+  "qualification_status": "original_gui_execution_unqualified",
   "targets": [
     {
       "id": "7zip",
@@ -4605,5 +4605,7 @@
     }
   ],
   "source_inventory": "evidence/M14/0/binary-inventory.json",
-  "msi_inventory": "evidence/M14/0/msi-inventory.json"
+  "msi_inventory": "evidence/M14/0/msi-inventory.json",
+  "current_stage": "M14.1",
+  "loader_evidence": "evidence/M14/1/acceptance-results.json"
 }
