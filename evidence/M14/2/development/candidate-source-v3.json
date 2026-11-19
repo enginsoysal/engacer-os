@@ -620,5 +620,24 @@
     "user/windows8/runtime.h": "3577abcdb795bc1cff90f6c1a62b171cb134965cb4670e640b1e79b0adb22019",
     "user/windows8/sync142.inc": "a9e925bfcf4bb45d18d1f87f35189469d9f0b11eb6d68fe150100d69e8267910"
   },
-  "qualification": "Development thread/synchronization candidate only; M14.2 incomplete"
+  "qualification": "Development thread/synchronization candidate only; M14.2 incomplete",
+  "development_line_ending_note": "Development proofs bind exact recorded working bytes. These three text files normalize to LF in Git. Final qualification media must be rebuilt from canonical committed bytes. No final release qualification is claimed.",
+  "normalization_records": [
+    {
+      "source": "kernel/arch/x86_64/interrupts.c",
+      "compiled_working_bytes_sha256": "9dce263a35e0ddff4e121bc6bf8033dd1a971844cc0f49f92c17e0e1d38de5ab",
+      "canonical_lf_sha256": "bc0f04d8812512c40f09a5618d9ceca37c40bb5e3773f9e6c2c325031e2f4388"
+    },
+    {
+      "source": "kernel/arch/x86_64/timer.c",
+      "compiled_working_bytes_sha256": "4c23a5820319a5e373201081f0a52244af5f0e70180cc9f733573b8f6eb62ee0",
+      "canonical_lf_sha256": "435fadf24052ac264f91e9f3bad09d78aa7e19bbf1dad269ffdac95355804aec"
+    },
+    {
+      "source": "kernel/network/network.c",
+      "compiled_working_bytes_sha256": "ac864d4b02ae5ad77e024630333695bd13ddc89ec7c50ba7b70f4ff50685342a",
+      "canonical_lf_sha256": "71f9ecf1b81e5350ba40f1f4d49d4731689f6f761922af84a9d608b1e491aac4"
+    }
+  ],
+  "canonical_source_commit": "6c796dd0c19af29009c92b2e100c1d808ecd85ca"
 }
