@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "build_id": "d5bf58b38587bffa8e78e90a72e11593",
+  "scope": "Native checked exception return rejects privileged RIP and invalid MXCSR",
+  "cases": [
+    {
+      "name": "invalid-mxcsr",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225512,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225512,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "invalid-rip",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225512,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225512,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # M14.2 - Native x64 exception dispatch design
 
-Status: design for the remaining M14.2 gate. No handled-exception or unwind compatibility is qualified by this document. Existing unhandled-fault containment and child-process proofs remain separate.
+Status: vectored hardware-fault continuation has scoped native development proof. Structured exception dispatch, x64 metadata unwinding and full M14.2 release qualification remain incomplete. Existing child-process proofs remain separate.
 
 ## Capture and continuation boundary
 
@@ -25,3 +25,11 @@ The compatibility runtime itself uses a different compiler ABI and currently lac
 Test real handled access violations with altered continuation, compiler-generated C try/except and try/finally, saved nonvolatile registers/XMM state, nested faults and invalid continuation. Check unhandled child faults leave their parent and desktop usable. Include malformed/chained metadata, callback faults, explicit cancellation and twenty close/reuse cycles with zero unexplained retained pages. Host structure/parser checks are only supporting evidence. Qualify the final frozen ISO independently after these native tasks pass.
 
 Sources: [Microsoft x64 exception handling](https://learn.microsoft.com/en-us/cpp/build/exception-handling-x64), [AMD64 CONTEXT](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-context), [prolog and epilog rules](https://learn.microsoft.com/en-us/cpp/build/prolog-and-epilog), [vectored handler order](https://learn.microsoft.com/en-us/windows/win32/debug/vectored-exception-handling).
+
+## Initial native implementation
+
+Candidate `d5bf58b38587bffa8e78e90a72e11593` implements process-local exception/continue-handler registration, ordered bounded handler snapshots, a top-level filter, real AMD64 fault/context packets and checked kernel exception return. Its dedicated 32-KiB stack is allocated only for a thread that actually dispatches a fault; nested depth is capped at four. The handler table has 64 generation-checked records shared between exception and continue handlers. Closed registrations reject stale tokens.
+
+[Native vectored continuation proof](../../evidence/M14/2/development/vectored-faults-native-v8.json) exercises 24 actual access violations and 24 illegal instructions per execution, handler order, access-direction/address/register fields, changed continuation RIP, continue callbacks and 128 registration-reuse cycles. Twenty repeated process closes retain zero managed pages. This is actual CPL3 execution, not a host parser check. [Compact installation and independent starts](../../evidence/M14/2/development/compact-startup-v8.json) and [the original 7-Zip lifecycle](../../evidence/M14/2/development/original-apps-native-v8.json) also pass on this candidate.
+
+No Windows structured language handler, C++ personality, RaiseException bridge, dynamic unwind table or x64 stack-unwind compatibility is inferred from these tests. The existing structured-unwind guard remains explicit until implemented. [Native invalid-context checks](../../evidence/M14/2/development/invalid-exception-context-native-v8.json) reject a privileged continuation RIP and unsupported MXCSR bits with status `0xc0000028`, preserve a responsive desktop and retain zero pages on the second run after four one-time transition pages. Full nested-handler, secondary-thread fault and original unhandled-fault regressions remain separate required checks.

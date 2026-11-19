@@ -268,9 +268,11 @@ static void *MS f_MapViewOfFile(HANDLE mapping,unsigned access,unsigned high,uns
 static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 
 #include "process142.inc"
+#include "exception142.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(AddVectoredExceptionHandler,1),API8(AddVectoredContinueHandler,1),API8(RemoveVectoredExceptionHandler,1),API8(RemoveVectoredContinueHandler,1),API8(SetUnhandledExceptionFilter,1),
  API8(exit,2),API8(_exit,2),API8(_cexit,2),API8(_c_exit,2),API8(_onexit,2),API8(__dllonexit,2),API8(_initterm,2),API8(__set_app_type,2),API8(__setusermatherr,2),API8(__getmainargs,2),
  API8(malloc,2),API8(free,2),API8(realloc,2),API8(memcpy,2),API8(memmove,2),API8(memset,2),API8(memcmp,2),API8(strlen,2),API8(strcmp,2),API8(wcscmp,2),API8(strchr,2),API8(strstr,2),API8(wcsstr,2),API8(fputc,2),API8(fputs,2),API8(fflush,2),API8(fgetc,2),API8(_isatty,2),API8(_get_osfhandle,2),API8(_beginthreadex,2),API8(_endthreadex,2),
  {"_iob",iob8,2},{"__initenv",&initenv8,2},{"_fmode",&fmode8,2},{"_commode",&commode8,2},
@@ -286,6 +288,7 @@ void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provide
  if(provider&&name){for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;return 0;}return pe8_import(dll,name,ordinal);
 }
 void init_win8(void){
+ if(sys8(W8_SYS_EXCEPTION_REGISTER,(uint64_t)(uintptr_t)exception_entry142,0,0,0,0))fail8("Native exception dispatcher registration failed.");
  char win[512];if(job8->startup_command[0])copy8(command_utf8,job8->startup_command,sizeof(command_utf8));else{winpath8(job8->source,win,sizeof(win));copy8(command_utf8,"\"",sizeof(command_utf8));append8(command_utf8,win,sizeof(command_utf8));append8(command_utf8,"\" ",sizeof(command_utf8));append8(command_utf8,job8->arguments,sizeof(command_utf8));}if(utf8_to16(command_utf8,command8,1200)<0)fail8("Windows command line exceeds its bound.");
  char cwd[256];if(job8->startup_directory[0])copy8(cwd,job8->startup_directory,256);else{copy8(cwd,job8->user_root,256);append8(cwd,"/Documents",256);}winpath8(cwd,win,sizeof(win));if(utf8_to16(win,cwd8,256)<0)fail8("Windows working directory is too long.");
  unsigned at=0,out=0;while(command_utf8[at]&&argc8<63){while(command_utf8[at]==' '||command_utf8[at]=='\t')++at;if(!command_utf8[at])break;argv8[argc8++]=argv_text8+out;unsigned quoted=0;while(command_utf8[at]){char c=command_utf8[at++];if(c=='\"'){quoted^=1;continue;}if(!quoted&&(c==' '||c=='\t'))break;if(out+1>=sizeof(argv_text8))fail8("Windows arguments exceed their bound.");argv_text8[out++]=c;}argv_text8[out++]=0;}argv8[argc8]=0;

@@ -20,7 +20,8 @@ enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED};
 typedef struct {
  trap_frame frame;_Alignas(16) uint8_t fx[512];
  uint64_t deadline,address,teb,low,top;
- unsigned state,generation,code,closed,exiting;
+ unsigned state,generation,code,closed,exiting,exception_depth;
+ uint64_t exception_stack,exception_packets[4];
 } thread142;
 typedef struct {unsigned live,generation,object,kind;} process_handle142;
 typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code,refs,slot;} process_object142;
@@ -29,7 +30,7 @@ typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,write_pages[WRITE8_PAGES],virtual_pages,lazy_faults;
  unsigned count,writer,write_count,cancel,metadata_dirty,created_root,current,cursor,object;
  process_handle142 handles[32];
- file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
+ uint64_t exception_entry;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
  w8_info child_info;
 } private_space142;
 #define SPACES142 4u
@@ -165,9 +166,9 @@ static void release8(void){if(!spaces142[active_space142])return;release_grants1
 
 static void reap_threads142(void){
  for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED)continue;
-  if(t->teb){for(unsigned range=0;range<2;++range){uint64_t low=range?t->teb:t->low,top=range?t->teb+8192:t->top;
+  if(t->teb){for(unsigned range=0;range<3;++range){uint64_t low=range==2?t->exception_stack:range?t->teb:t->low,top=range==2?(low?low+32768:0):range?t->teb+8192:t->top;
    for(uint64_t va=low;va<top;va+=4096){uint64_t*p=pte8(va,0);if(p&&(*p&(1|RESERVED141))){if(*p&1)free_owned8(*p&UINT64_C(0x000ffffffffff000));*p=0;--virtual_pages141;}}
-  }t->teb=t->low=t->top=0;}
+  }t->teb=t->low=t->top=t->exception_stack=0;t->exception_depth=0;}
   if(i&&t->closed)memset(t,0,sizeof(*t));
  }
 }
@@ -242,11 +243,14 @@ static void information8(const v6_entry*e,w8_file_info*out){
  const char*name=e->path;for(unsigned i=0;e->path[i];++i)if(e->path[i]=='/')name=e->path+i+1;copy8(out->name,name,256);
 }
 static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i]==page){owned8[i]=owned8[--count8];page_free(page);return;}}
+#include "exception142.inc"
 static int64_t dispatch8(trap_frame*f){
  uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10;char path[256];
  switch(f->rax){
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
+ case W8_SYS_EXCEPTION_REGISTER:if(!access_exception142(a,4))return -1;spaces142[active_space142]->exception_entry=a;return 0;
+ case W8_SYS_EXCEPTION_RETURN:return return_exception142(f,a);
  case W8_SYS_VMINFO:{uint64_t values[4]={virtual_pages141,count8,lazy_faults141,OWN8};return user8(a,values,sizeof(values),1)?-1:0;}
  case W8_SYS_UNMAP:case W8_SYS_PROTECT:{
   if(!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -1;
@@ -345,6 +349,7 @@ trap_frame *w8_trap(trap_frame*f){
  }
  if(f->vector==128){f->rax=(uint64_t)dispatch8(f);return f;}
  if(f->vector==32){out8(0x20,0x20);if(++quantum8<1)return f;context8=*f;w8_active=0;w8_escape();}
+ uint64_t fault_address;__asm__ volatile("movq %%cr2,%0":"=r"(fault_address));if((f->vector==14||f->vector==6||f->vector==0)&&enter_exception142(f,fault_address))return f;
  serial_text("M8_PROCESS_FAULT vector=");serial_hex(f->vector);serial_text(" rip=");serial_hex(f->rip);serial_text(" address=");uint64_t addr;__asm__ volatile("movq %%cr2,%0":"=r"(addr));serial_hex(addr);serial_text("\n");
  copy8(info8.message,"The Windows process stopped after an unsupported operation or memory fault.",sizeof(info8.message));info8.state=3;info8.status=f->vector==14?0xc0000005u:f->vector==6?0xc000001du:f->vector==0?0xc0000094u:0xc0000001u;w8_active=0;w8_escape();
 }
