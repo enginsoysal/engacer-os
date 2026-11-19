@@ -25,7 +25,7 @@ enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED};
 typedef struct {
  trap_frame frame;_Alignas(16) uint8_t fx[512];
  uint64_t deadline,address,teb,low,top;
- unsigned state,generation,code,closed;
+ unsigned state,generation,code,closed,exiting;
 } thread142;
 static thread142 threads142[THREADS142];
 static unsigned current142,cursor142,generation142;
@@ -246,7 +246,12 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_QUIESCE:for(unsigned i=0;i<THREADS142;++i)if(i!=current142&&threads142[i].state){threads142[i].state=T142_EXITED;threads142[i].code=(unsigned)a;}return 0;
  case W8_SYS_THREAD_CLOSE:{int slot=thread_slot142(a);if(slot<0)return -1;threads142[slot].closed=1;return 0;}
  case W8_SYS_THREAD_RESUME:{int slot=thread_slot142(a);if(slot<0||threads142[slot].state==T142_EXITED)return -1;unsigned suspended=threads142[slot].state==T142_SUSPENDED;if(suspended)threads142[slot].state=T142_READY;return suspended;}
- case W8_SYS_THREAD_STATUS:{int slot=thread_slot142(a);if(slot<0)return -1;thread142*t=threads142+slot;if(b&&user8(b,&t->code,4,1))return -1;return t->state==T142_EXITED?0:259;}
+ case W8_SYS_THREAD_STATUS:{int slot=a==UINT64_MAX-1?(int)current142:thread_slot142(a);if(slot<0)return -1;thread142*t=threads142+slot;if(b&&user8(b,&t->code,4,1))return -1;return t->state==T142_EXITED?0:259;}
+ case W8_SYS_THREAD_BEGIN_EXIT:{
+  thread142*t=threads142+current142;if(t->exiting)return 0;unsigned live=0;
+  for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED&&!threads142[i].exiting)++live;
+  if(live==1)return 1;t->exiting=1;return 0;
+ }
  case W8_SYS_THREAD_EXIT:{
   threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;
   for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}

@@ -35,3 +35,7 @@ Require exact-source native concurrency probes, original console-task regression
 Only after these checks pass may M14.2 replace M14.1 on GitHub downloads and the actual BrixCanvas homepage. Update English manuals, source links, site search/mobile/navigation, release assets and independent checksums together. No original GUI/browser compatibility is inferred from this stage.
 
 Sources: [ExitProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess), [wait-all semantics](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitformultipleobjects), [DllMain lifetime](https://learn.microsoft.com/en-us/windows/win32/dlls/dllmain), [x64 exception handling](https://learn.microsoft.com/en-us/cpp/build/exception-handling-x64), [PE format and TLS](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format).
+
+## Last thread and child-process follow-up
+
+The scoped native follow-up implements an atomic begin-exit decision before thread TLS cleanup. The final surviving thread must route through process termination while its own TLS is still available; freeing that TLS first would make process-detach callbacks unsafe. Loader notifications are serialized before quiescing other threads. A separate native last-thread fixture passes twenty repeated closes with zero retained managed pages; complete M14.2 qualification is still pending. [Planned child-process isolation and lazy metadata](children-m142.md) remains a design, not completed behavior.

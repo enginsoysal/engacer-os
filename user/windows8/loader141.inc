@@ -95,7 +95,7 @@ static uint64_t load141(const char*path,unsigned external){
 }
 static unsigned terminating142;
 #include "lifetime142.inc"
-NORETURN void pe8_exit(unsigned code){sys8(W8_SYS_QUIESCE,code,0,0,0,0);pe8_shutdown();exit8(code);}
+NORETURN void pe8_exit(unsigned code){lock_enter142(&loader_lock142);sys8(W8_SYS_QUIESCE,code,0,0,0,0);pe8_shutdown();exit8(code);}
 static uint64_t pe8_load_impl142(const char*path){return terminating142?0:load141(path,1);}
 static uint64_t pe8_named_impl142(const char*name){
  if(terminating142||!leaf141(name))return 0;uint64_t loaded=pe8_module(name);if(loaded)return load141(pe8_path(loaded),1);

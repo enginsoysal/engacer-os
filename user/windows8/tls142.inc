@@ -9,7 +9,7 @@ static void tls_allocate142(module141*m,unsigned index,unsigned row){
  memcpy(data,(void*)(uintptr_t)m->tls_template,m->tls_bytes);memset(data+m->tls_bytes,0,m->tls_zero);
  tls_storage142[row][index]=storage;tls_vector142[row][index]=data;
 }
-static unsigned tls_terminating142;
+static unsigned tls_terminating142,tls_attaching142[16],tls_detaching142[16];
 static void tls_notify_impl142(module141*m,unsigned reason){
  if(!m->tls_callbacks)return;
  for(unsigned i=0;i<64;++i){uint64_t callback=u64(rva141(m,(uint64_t)m->tls_callbacks+i*8,8));if(!callback)return;
@@ -41,5 +41,5 @@ static void tls_thread_notify142(unsigned reason){
   tls_notify_impl142(m,reason);if(m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,reason,0);
  }
 }
-void pe8_thread_attach(void){lock_enter142(&loader_lock142);unsigned row=tid142()&255;for(unsigned i=0;i<MODULES141;++i)if(modules141[i].state)tls_allocate142(modules141+i,i,row);tls_vector_bind142();tls_thread_notify142(2);lock_leave142(&loader_lock142);}
-void pe8_thread_detach(void){lock_enter142(&loader_lock142);tls_thread_notify142(3);unsigned row=tid142()&255;for(unsigned i=0;i<MODULES141;++i){free8(tls_storage142[row][i]);tls_storage142[row][i]=tls_vector142[row][i]=0;}lock_leave142(&loader_lock142);}
+void pe8_thread_attach(void){lock_enter142(&loader_lock142);unsigned row=tid142()&255;for(unsigned i=0;i<MODULES141;++i)if(modules141[i].state)tls_allocate142(modules141+i,i,row);tls_vector_bind142();tls_attaching142[row]=1;tls_thread_notify142(2);tls_attaching142[row]=0;lock_leave142(&loader_lock142);}
+void pe8_thread_detach(void){lock_enter142(&loader_lock142);unsigned row=tid142()&255;if(tls_attaching142[row]||tls_detaching142[row])fail8("A Windows TLS callback attempted recursive thread termination.");tls_detaching142[row]=1;tls_thread_notify142(3);for(unsigned i=0;i<MODULES141;++i){free8(tls_storage142[row][i]);tls_storage142[row][i]=tls_vector142[row][i]=0;}tls_detaching142[row]=0;lock_leave142(&loader_lock142);}

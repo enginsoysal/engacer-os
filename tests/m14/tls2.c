@@ -7,6 +7,7 @@ __declspec(dllimport) unsigned WaitForMultipleObjects(unsigned,const U*,int,unsi
 __declspec(dllimport) void Sleep(unsigned);
 __declspec(dllimport) int CloseHandle(U);
 __declspec(dllimport) void ExitProcess(unsigned);
+__declspec(dllimport) void ExitThread(unsigned);
 __declspec(dllimport) U GetStdHandle(unsigned);
 __declspec(dllimport) int WriteFile(U,const void*,unsigned,unsigned*,void*);
 __declspec(dllimport) U LoadLibraryA(const char*);
@@ -29,7 +30,11 @@ static void callback(void*base,unsigned reason,void*reserved){
  if(reason==2){if(local!=17||zero)ExitProcess(62);__atomic_add_fetch(&attached,1,__ATOMIC_SEQ_CST);}
  if(reason==3){
 #ifndef TLS_DLL142
+  #ifdef TLS_LAST142
+  if(local!=42||tail()[0]!=99)ExitProcess(75);static const char main_end[]="M142_TLS_MAIN_THREAD_EXIT_PASS\n";print(main_end,sizeof(main_end)-1);
+#else
   if(local<100||local>103||tail()[0]!=local-99)ExitProcess(75);
+#endif
 #endif
   __atomic_add_fetch(&detached,1,__ATOMIC_SEQ_CST);
  }
@@ -37,7 +42,12 @@ static void callback(void*base,unsigned reason,void*reserved){
 #ifdef TLS_DLL142
   static const char normal[]="M142_TLS_DLL_PROCESS_END\n",unload[]="M142_TLS_DLL_FREE\n";print(reserved?normal:unload,reserved?sizeof(normal)-1:sizeof(unload)-1);
 #else
-  if(local!=42||tail()[0]!=99||!reserved)ExitProcess(63);static const char end[]="M142_TLS_PROCESS_DETACH_PASS\n";print(end,sizeof(end)-1);
+  #ifdef TLS_LAST142
+  if(local!=100||tail()[0]!=1||!reserved)ExitProcess(63);static const char end[]="M142_TLS_LAST_THREAD_PROCESS_DETACH_PASS\n";
+#else
+  if(local!=42||tail()[0]!=99||!reserved)ExitProcess(63);static const char end[]="M142_TLS_PROCESS_DETACH_PASS\n";
+#endif
+  print(end,sizeof(end)-1);
 #endif
  }
 }
@@ -54,6 +64,9 @@ void entry(void);
 void* volatile relocation_anchor=&entry;
 void entry(void){
  if(process_attached!=1||local!=17||zero||swap(75)!=17)ExitProcess(67);local=42;tail()[0]=99;
+#ifdef TLS_LAST142
+ if(!CreateThread(0,0,worker,0,0,0))ExitProcess(77);ExitThread(0);ExitProcess(78);
+#endif
  U threads[4];for(unsigned i=0;i<4;++i){threads[i]=CreateThread(0,0,worker,(void*)(U)i,4,0);if(!threads[i])ExitProcess(68);}
  for(unsigned i=0;i<8;++i){U dll=LoadLibraryA("tlsdynamic.dll");if(!dll)ExitProcess(69);unsigned(*fn)(unsigned)=(unsigned(*)(unsigned))GetProcAddress(dll,"swap");if(!fn||fn(77)!=17||fn(88)!=77||!FreeLibrary(dll))ExitProcess(70);}
  for(unsigned i=0;i<4;++i)if(ResumeThread(threads[i])!=1)ExitProcess(71);

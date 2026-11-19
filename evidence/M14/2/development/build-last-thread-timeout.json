@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "stage": "M14.2 development",
+  "component": "kernel/desktop/session.c compilation",
+  "failure": "Compiler subprocess exceeded the existing 60-second build limit",
+  "source_error_established": false,
+  "native_candidate_qualified": false,
+  "next_action": "Retry the unchanged source once; preserve runtime tests and their deadlines"
+}
