@@ -1,0 +1,11 @@
+{
+  "scope": "Compiler-derived production structure storage, not total OS RAM or a native lifetime pass",
+  "production_source_sha256": "a4047657cfb54693abb6e90470874f326328f0deb904e4d70cced2a5f78a6d73",
+  "private_record_bytes": 174016,
+  "mapped_metadata_pages_per_active_process": 43,
+  "maximum_metadata_bytes_per_slot": 196608,
+  "slots": 4,
+  "moved_component_storage_bytes": 157120,
+  "fixed_metadata_administration_bytes": 1588,
+  "idle_process_metadata_pages": 0
+}

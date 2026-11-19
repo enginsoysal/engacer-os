@@ -1,6 +1,6 @@
 # M14.2 - Child-process ownership design
 
-Status: **design for the next implementation step; not delivered child-process compatibility**. Native threads, synchronization and static TLS have separate scoped development evidence. M14.2 remains incomplete.
+Status: **child-process design; its lazy kernel metadata foundation passes scoped root-task native checks, but child-process compatibility is not delivered yet**. Native threads, synchronization and static TLS have separate scoped development evidence. M14.2 remains incomplete.
 
 ## Native execution and address spaces
 
@@ -10,7 +10,7 @@ Keep four simultaneous process address spaces and sixteen threads per process as
 
 ## Lazy kernel metadata
 
-Duplicating the current large static ownership tables four times would increase idle kernel reservations and pressure the boot image's bounded address layout. Instead, allocate a bounded kernel-only metadata slab only for each live process. Reserve up to 192 KiB per process in four separate strides within the existing shared upper-half kernel page-table window, starting one MiB above KERNEL_STACK. Existing AP, emergency, native-app and Windows trap stacks remain below that window. Validate empty page-table slots and enforce the slab size at compile time; map only supervisor read/write, non-executable pages.
+Duplicating the current large static ownership tables four times would increase idle kernel reservations and pressure the boot image's bounded address layout. The first implemented step allocates a bounded kernel-only metadata slab for the current root task; the next step extends this to child address spaces. Reserve up to 192 KiB per process in four separate strides within the existing shared upper-half kernel page-table window, starting one MiB above KERNEL_STACK. Existing AP, emergency, native-app and Windows trap stacks remain below that window. Validate empty page-table slots and enforce the slab size at compile time; map only supervisor read/write, non-executable pages.
 
 Store the slab backing-page list outside the slab so teardown can unmap/free it without reading already freed memory. Finish status/object updates and file/rollback cleanup before releasing the slab. Return all slab pages at process close. Report their memory separately and include them in total process-related peak accounting. Keep the existing root UI information object stable so native desktop observers and user-facing progress retain their owner.
 
