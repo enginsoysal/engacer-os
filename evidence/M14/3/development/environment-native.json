@@ -1,0 +1,163 @@
+{
+  "passed": true,
+  "stage": "M14.3 development",
+  "scope": "Synthetic native process-local environments, copied child blocks and atomic temporary files",
+  "build_id": "b531ab7e2b17f442ac00d031e1211024",
+  "clone": {
+    "source_sha256": "fc71f51b463525cb82d3e670c873dc04c51c36646f3d24b90367032142b1b8f5",
+    "clone_sha256": "fc71f51b463525cb82d3e670c873dc04c51c36646f3d24b90367032142b1b8f5",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "owned_fixture": "09c86da9438540ba9bff1ad9af37ba1a",
+  "fixture_sha256": "a0f71789928e8790e9e89ed793834f86f4a994e1042395541f0cf97c7502b0df",
+  "warm_output": "Mapped original image: 7z.exe bytes=28672 source-fnv32=4259602113\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=28672 source-fnv32=4259602113\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=28672 source-fnv32=4259602113\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=28672 source-fnv32=4259602113\nRunning the original Windows executable in a protected process.\n\nM143_NATIVE_ENVIRONMENT_TEMP_PASS\n",
+  "temporary_files_remaining": [],
+  "protected_root_and_query_only_directory_verified": true,
+  "samples": [
+    {
+      "turn": 1,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 19,
+      "observer_wall_seconds": 1.0
+    },
+    {
+      "turn": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 20,
+      "observer_wall_seconds": 0.9850000000005821
+    },
+    {
+      "turn": 3,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 22,
+      "observer_wall_seconds": 0.9689999999973224
+    },
+    {
+      "turn": 4,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 15,
+      "observer_wall_seconds": 0.8899999999994179
+    },
+    {
+      "turn": 5,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 22,
+      "observer_wall_seconds": 0.9850000000005821
+    },
+    {
+      "turn": 6,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 22,
+      "observer_wall_seconds": 0.9679999999934807
+    },
+    {
+      "turn": 7,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 19,
+      "observer_wall_seconds": 0.9690000000118744
+    },
+    {
+      "turn": 8,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 19,
+      "observer_wall_seconds": 1.0
+    },
+    {
+      "turn": 9,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 22,
+      "observer_wall_seconds": 0.8129999999946449
+    },
+    {
+      "turn": 10,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 19,
+      "observer_wall_seconds": 0.8899999999994179
+    },
+    {
+      "turn": 11,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 21,
+      "observer_wall_seconds": 1.0310000000026776
+    },
+    {
+      "turn": 12,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 17,
+      "observer_wall_seconds": 0.9069999999919673
+    },
+    {
+      "turn": 13,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 22,
+      "observer_wall_seconds": 0.9530000000086147
+    },
+    {
+      "turn": 14,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 25,
+      "observer_wall_seconds": 0.9689999999973224
+    },
+    {
+      "turn": 15,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 21,
+      "observer_wall_seconds": 0.9839999999967404
+    },
+    {
+      "turn": 16,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 20,
+      "observer_wall_seconds": 0.9689999999973224
+    },
+    {
+      "turn": 17,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 20,
+      "observer_wall_seconds": 0.8899999999994179
+    },
+    {
+      "turn": 18,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 19,
+      "observer_wall_seconds": 0.875
+    },
+    {
+      "turn": 19,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 18,
+      "observer_wall_seconds": 0.9690000000118744
+    },
+    {
+      "turn": 20,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 332,
+      "observed_worker_quanta": 18,
+      "observer_wall_seconds": 0.9379999999946449
+    }
+  ],
+  "observer_sha256": {
+    "tests/m14/environment143_native.py": "5c63ecb032db7be8f3f9f67a1c193cad85b32ffc00881904401706f762da572a",
+    "tests/m14/environment143_native.c": "d9e678294e3350df0bf315ff1377446ea4b7c45698a948e8759448147fba7759"
+  }
+}

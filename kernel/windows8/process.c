@@ -249,6 +249,7 @@ static int64_t dispatch8(trap_frame*f){
  switch(f->rax){
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);
+ case W8_SYS_TEXT143:return a!=1||d||e?-87:text_compare143(b,c);
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
  case W8_SYS_SYNC_CREATE:return create_sync142(a,b,c);

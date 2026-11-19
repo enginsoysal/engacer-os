@@ -130,11 +130,12 @@ static unsigned registry_delete_key143(const w8_registry_request143*request,void
 }
 static int64_t registry_syscall143(uint64_t operation,uint64_t address){
  w8_registry_request143 request;w8_registry_result143 result={0};if(user8(address,&request,sizeof(request),0))return -998;
- if(operation==1||operation==2){if(!request.result)return -87;unsigned error=registry_open143(&request,operation==2,&result);if(error)return -(int64_t)error;if(user8(request.result,&result,sizeof(result),1)){(void)registry_close143(result.handle);return -998;}return 0;}
+ if(operation==1||operation==2){if(!request.result)return -87;if(user8(request.result,&result,sizeof(result),1))return -998;unsigned error=registry_open143(&request,operation==2,&result);if(error)return -(int64_t)error;if(user8(request.result,&result,sizeof(result),1)){(void)registry_close143(result.handle);return -998;}return 0;}
+ if(request.flags)return -87;
  if(operation==5)return -(int64_t)registry_close143(request.root);
  if(operation==10){uint64_t temporary=registry_page143();if(!temporary)return -8;unsigned error=registry_delete_key143(&request,(void*)(uintptr_t)temporary);registry_free143(temporary);return -(int64_t)error;}
  int slot=registry_slot143(request.root);if(slot<0)return -6;registry_cap143*cap=spaces142[active_space142]->registry_handles+slot;registry_object143*object=registry_objects143[cap->object];if(object->deleted)return -1018;
- if(operation==8)return 0;
+ if(operation==8)return cap->access&1?0:-5;
  if(operation==7||operation==9){if(!(cap->access&(operation==7?1u:8u)))return -5;uint64_t temporary=registry_page143();if(!temporary)return -8;unsigned error=registry_enum143((unsigned)operation,object,&request,&result,(void*)(uintptr_t)temporary);if(request.result&&user8(request.result,&result,sizeof(result),1))error=998;registry_free143(temporary);return -(int64_t)error;}
  if(operation!=3&&operation!=4&&operation!=6)return -50;
  if(!(cap->access&(operation==4?1u:2u)))return -5;

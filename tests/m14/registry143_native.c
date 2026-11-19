@@ -58,6 +58,7 @@ void entry(void){
  require(!RegSetValueExW(key,0,0,3,0,0),24);bytes=99;require(!RegQueryValueExW(key,0,0,&type,0,&bytes)&&type==3&&!bytes,25);
  U read=0;require(!RegOpenKeyExW(HKCU,L"software\\engacerm143\\R\u00c9SUM\u00c9-\U0001f642",0,1,&read),26);
  require(count_value(read)==value&&RegSetValueExW(read,L"Count",0,4,&value,4)==5,27);
+ U write_only=0;require(!RegOpenKeyExW(HKCU,key_name,0,2,&write_only)&&RegFlushKey(write_only)==5&&!RegCloseKey(write_only),49);
  U stale=read;require(!RegCloseKey(read)&&!RegOpenKeyExW(HKCU,key_name,0,1,&read)&&read!=stale,28);
  bytes=4;require(RegQueryValueExW(stale,L"Count",0,&type,&value,&bytes)==6&&!RegCloseKey(read),29);
  unsigned entries=0;for(unsigned i=0;i<8;++i){W name[256];unsigned units=256;unsigned char data[2048];bytes=sizeof(data);int status=RegEnumValueW(key,i,name,&units,0,&type,data,&bytes);if(status==259)break;require(!status&&units<256&&name[units]==0,30);++entries;}require(entries==4,31);

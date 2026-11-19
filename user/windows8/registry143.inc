@@ -37,7 +37,7 @@ static int MS f_RegQueryValueExW(HANDLE handle,const WCHAR*name,unsigned*reserve
  if(!status||status==234){if(type)*type=result.type;if(bytes)*bytes=result.bytes;}if(view!=handle)f_RegCloseKey(view);return status;
 }
 static int MS f_RegSetValueExW(HANDLE handle,const WCHAR*name,unsigned reserved,unsigned type,const void*data,unsigned bytes){
- if(reserved||(!data&&bytes))return 87;if((handle&UINT64_C(0xfffffffff0000000))==UINT64_C(0xc0000000)||registry_predefined143(handle,0x80000002u))return 5;
+ if(reserved||(!data&&bytes))return 87;if(bytes>2048)return 1450;if((handle&UINT64_C(0xfffffffff0000000))==UINT64_C(0xc0000000)||registry_predefined143(handle,0x80000002u))return 5;
  HANDLE view=0;int status=registry_root_view143(handle,3,1,&view);if(status)return status;w8_registry_request143 request={.root=view,.name=(uint64_t)(uintptr_t)name,.data=(uint64_t)(uintptr_t)data,.bytes=bytes,.type=type};status=registry_api143(3,&request,0);if(view!=handle)f_RegCloseKey(view);return status;
 }
 static int MS f_RegDeleteValueW(HANDLE handle,const WCHAR*name){HANDLE view=0;int status=registry_root_view143(handle,2,0,&view);if(status)return status;w8_registry_request143 request={.root=view,.name=(uint64_t)(uintptr_t)name};status=registry_api143(6,&request,0);if(view!=handle)f_RegCloseKey(view);return status;}

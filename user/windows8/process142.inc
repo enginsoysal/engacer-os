@@ -7,7 +7,7 @@ static int first_executable142(const WCHAR*command,WCHAR*out,unsigned cap){unsig
 }
 static int MS f_CreateProcessW(const WCHAR*application,WCHAR*command,void*process_security,void*thread_security,int inherit,unsigned flags,void*environment,const WCHAR*directory,startup142*startup,w8_process_result*result){
  if(!result||!startup||startup->size!=sizeof(*startup)||(!application&&!command)){last8(87);return 0;}memset(result,0,sizeof(*result));
- if(process_security||thread_security||inherit||environment||(flags&~0x424u)||startup->flags||startup->reserved||startup->desktop||startup->title||startup->reserved_bytes||startup->reserved_data){last8(50);return 0;}
+ if(process_security||thread_security||inherit||(flags&~0x424u)||startup->flags||startup->reserved||startup->desktop||startup->title||startup->reserved_bytes||startup->reserved_data){last8(50);return 0;}
  w8_process_request request;memset(&request,0,sizeof(request));request.flags=flags;WCHAR executable[256];const WCHAR*name=application;
  if(!name){if(!first_executable142(command,executable,256)){last8(87);return 0;}name=executable;}
  if(!*name){last8(2);return 0;}if(utf16_to8(command?command:name,request.command,sizeof(request.command))<0){last8(206);return 0;}
@@ -16,8 +16,10 @@ static int MS f_CreateProcessW(const WCHAR*application,WCHAR*command,void*proces
   char leaf[256];if(utf16_to8(name,leaf,256)<0){last8(206);return 0;}copy8(request.source,job8->source,256);char*end=request.source+len8(request.source);while(end>request.source&&end[-1]!='/')--end;*end=0;append8(request.source,leaf,256);w8_file_info info;if(stat8(request.source,&info)||info.kind!=1)request.source[0]=0;
  }
  if(!request.source[0]&&!nativepath8(name,request.source)){last8(5);return 0;}
- if(!nativepath8(directory?directory:cwd8,request.directory)){last8(3);return 0;}
+ WCHAR working[512];if(!directory){lock_enter142(&cwd_lock143);widecopy8(working,cwd8,512);lock_leave142(&cwd_lock143);}if(!nativepath8(directory?directory:working,request.directory))return 0;
+ unsigned environment_bytes=0;WCHAR*snapshot=environment_snapshot143(environment,flags,&environment_bytes);if(!snapshot)return 0;request.environment=(uint64_t)(uintptr_t)snapshot;request.environment_bytes=environment_bytes;
  int64_t status=(int64_t)sys8(W8_SYS_PROCESS_CREATE,(uint64_t)(uintptr_t)&request,(uint64_t)(uintptr_t)result,0,0,0);
+ if(environment)free8(snapshot);else f_FreeEnvironmentStringsW(snapshot);
  if(status<0){last8((unsigned)-status);return 0;}last8(0);return 1;
 }
 static int MS f_CreateProcessA(const char*application,char*command,void*process_security,void*thread_security,int inherit,unsigned flags,void*environment,const char*directory,startup142*startup,w8_process_result*result){

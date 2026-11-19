@@ -21,3 +21,9 @@ static int64_t path_syscall143(uint64_t name,uint64_t directory,uint64_t output,
  if(!(flags&2)&&!path8(result.native,0))return -5;
  return user8(output,&result,sizeof(result),1)?-998:0;
 }
+static int64_t text_compare143(uint64_t first,uint64_t second){
+ char a[1024],b[1024];unsigned error=path_user_string143(first,a,sizeof(a));if(!error)error=path_user_string143(second,b,sizeof(b));if(error)return -(int64_t)error;
+ unsigned at=0,bt=0,an=length8(a),bn=length8(b);
+ while(at<an&&bt<bn){uint32_t x,y;if(!decode_utf8_143(a,an,&at,&x)||!decode_utf8_143(b,bn,&bt,&y))return -1113;x=fold143(x);y=fold143(y);if(x!=y)return x<y?1:2;}
+ return at==an&&bt==bn?0:at==an?1:2;
+}

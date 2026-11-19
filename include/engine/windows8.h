@@ -6,6 +6,8 @@
 #define W8_BASE UINT64_C(0x100000000)
 #define W8_LIMIT UINT64_C(0x140000000)
 #define W8_MAILBOX UINT64_C(0x100800000)
+#define W8_ENVIRONMENT143 UINT64_C(0x100900000)
+#define W8_ENVIRONMENT_LIMIT143 16384u
 #define W8_STACK_LOW UINT64_C(0x10a000000)
 #define W8_STACK_TOP UINT64_C(0x10a800000)
 #define W8_TEB UINT64_C(0x100a00000)
@@ -20,10 +22,10 @@ enum {W8_SYS_MAP=0x800,W8_SYS_UNMAP,W8_SYS_PROTECT,W8_SYS_OPEN,W8_SYS_READ,
  W8_SYS_METADATA,W8_SYS_INFO,W8_SYS_TRUNCATE,W8_SYS_RESERVE,W8_SYS_VMINFO,
  W8_SYS_THREAD_CREATE,W8_SYS_THREAD_EXIT,W8_SYS_THREAD_RESUME,
  W8_SYS_THREAD_STATUS,W8_SYS_SLEEP,W8_SYS_PARK,W8_SYS_WAKE,W8_SYS_THREAD_CLOSE,W8_SYS_QUIESCE,W8_SYS_THREAD_LIST,W8_SYS_ACCESS,W8_SYS_THREAD_BEGIN_EXIT,W8_SYS_PROCESS_CREATE,W8_SYS_PROCESS_STATUS,
- W8_SYS_PROCESS_CLOSE,W8_SYS_PROCESS_ID,W8_SYS_THREAD_ID,W8_SYS_PROCESS_TERMINATE,W8_SYS_EXCEPTION_REGISTER,W8_SYS_EXCEPTION_RETURN,W8_SYS_PROCESS_EPOCH,W8_SYS_SYNC_CREATE,W8_SYS_SYNC_OPERATION,W8_SYS_SYNC_CLOSE,W8_SYS_WAIT_OBJECTS,W8_SYS_PATH143,W8_SYS_FILE_OPEN143,W8_SYS_FILE_OP143,W8_SYS_REGISTRY143};
+ W8_SYS_PROCESS_CLOSE,W8_SYS_PROCESS_ID,W8_SYS_THREAD_ID,W8_SYS_PROCESS_TERMINATE,W8_SYS_EXCEPTION_REGISTER,W8_SYS_EXCEPTION_RETURN,W8_SYS_PROCESS_EPOCH,W8_SYS_SYNC_CREATE,W8_SYS_SYNC_OPERATION,W8_SYS_SYNC_CLOSE,W8_SYS_WAIT_OBJECTS,W8_SYS_PATH143,W8_SYS_FILE_OPEN143,W8_SYS_FILE_OP143,W8_SYS_REGISTRY143,W8_SYS_TEXT143};
 #define W8_PROCESS_TAG UINT64_C(0x80000000)
 #define W8_HANDLE_TAG_MASK UINT64_C(0xffffffffe0000000)
-typedef struct {char source[256],command[1200],directory[256];uint32_t flags;} w8_process_request;
+typedef struct {char source[256],command[1200],directory[256];uint32_t flags;uint64_t environment;uint32_t environment_bytes,reserved;} w8_process_request;
 typedef struct {uint64_t process,thread;uint32_t process_id,thread_id;} w8_process_result;
 typedef struct {uint32_t kind,manual;int32_t count,maximum;uint32_t access;uint16_t name[96];} w8_sync_request142;
 typedef struct {uint64_t handle;uint32_t existed,pad;} w8_sync_result142;
@@ -47,6 +49,7 @@ typedef struct {
  char message[192];
  char startup_command[1200],startup_directory[256];
  uint32_t process_id,startup_flags;
+ uint64_t environment;uint32_t environment_bytes,reserved143;
 } w8_mailbox;
 _Static_assert(sizeof(w8_mailbox)<=4096,"Windows startup mailbox must fit its checked page");
 #ifndef W8_USER

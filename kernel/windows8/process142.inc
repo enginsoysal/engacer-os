@@ -51,15 +51,36 @@ static unsigned child_image142(const char*source){
  if(at>e->size-96||exact8(source,at,pe,24)||memcmp(pe,"PE\0\0",4))return 193;uint16_t machine,flags,magic,subsystem,bytes;memcpy(&machine,pe+4,2);memcpy(&bytes,pe+20,2);memcpy(&flags,pe+22,2);
  if(machine!=0x8664||(flags&0x2000)||bytes<72||exact8(source,(uint64_t)at+24,optional,72))return 193;memcpy(&magic,optional,2);memcpy(&subsystem,optional+68,2);if(magic!=0x20b)return 193;return subsystem==3?0:50;
 }
+static unsigned environment_validate143(const w8_process_request*request){
+ unsigned bytes=request->environment_bytes;if(request->reserved)return 87;if(!bytes)return request->environment?87:0;
+ if(!request->environment||bytes<4||bytes>W8_ENVIRONMENT_LIMIT143||(bytes&1))return 87;
+ if(bytes==4){uint16_t empty[2];if(user8(request->environment,empty,4,0))return 998;if(!empty[0]&&!empty[1])return 0;}
+ unsigned ended=0,value=0,name_units=0,value_units=0,entries=0,surrogate=0;
+ for(unsigned offset=0;offset<bytes;offset+=2){uint16_t unit;if(user8(request->environment+offset,&unit,2,0))return 998;
+  if(!unit){if(surrogate)return 1113;if(ended)return offset+2==bytes?0:87;if(!value||!name_units)return 87;if(++entries>64)return 8;ended=1;value=name_units=value_units=0;continue;}
+  ended=0;if(surrogate){if(unit<0xdc00||unit>0xdfff)return 1113;surrogate=0;}else if(unit>=0xd800&&unit<=0xdbff)surrogate=1;else if(unit>=0xdc00&&unit<=0xdfff)return 1113;
+  if(unit=='='&&!value){if(!name_units)return 87;value=1;continue;}
+  if(value){if(++value_units>2047)return 206;}else if(++name_units>255)return 206;
+ }return 87;
+}
+static unsigned environment_copy143(const w8_process_request*request,unsigned caller,unsigned target){
+ if(!request->environment_bytes)return 0;unsigned bytes=request->environment_bytes;active_space142=target;
+ if(map8(W8_ENVIRONMENT143,(bytes+4095u)&~UINT64_C(4095),3)){active_space142=caller;return 8;}
+ for(unsigned offset=0;offset<bytes;){unsigned count=bytes-offset;if(count>4096)count=4096;active_space142=caller;
+  if(user8(request->environment+offset,io8,count,0))return 998;active_space142=target;if(user8(W8_ENVIRONMENT143+offset,io8,count,1)){active_space142=caller;return 998;}offset+=count;}
+ input8.environment=W8_ENVIRONMENT143;input8.environment_bytes=bytes;
+ unsigned error=user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;return error;
+}
 static int64_t create_process142(uint64_t request_address,uint64_t result_address){
  w8_process_request request;w8_process_result result={0};if(user8(request_address,&request,sizeof(request),0)||user8(result_address,&result,sizeof(result),1))return -87;
  if(!terminated142(request.source,sizeof(request.source))||!terminated142(request.command,sizeof(request.command))||!terminated142(request.directory,sizeof(request.directory))||(request.flags&~0x424u))return -87;
- if(!path8(request.source,0)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=child_image142(request.source);if(error)return -(int64_t)error;
+ if(!path8(request.source,0)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);if(error)return -(int64_t)error;
  unsigned caller=active_space142,target=1,free_handles=0;while(target<SPACES142&&spaces142[target])++target;for(unsigned i=0;i<32;++i)if(!spaces142[caller]->handles[i].live)++free_handles;if(target==SPACES142||free_handles<2)return -8;
  int object=new_process_object142();if(object<0)return -8;
  const w8_mailbox*parent=&spaces142[caller]->input;
  unsigned status=start_space142(W8_RUN,request.source,parent->product_root,parent->user_root,"",target,(unsigned)object,&request);active_space142=caller;
  if(status){drop_process_object142((unsigned)object);return -8;}
+ error=environment_copy143(&request,caller,target);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  result.process=new_process_handle142((unsigned)object,1);result.thread=new_process_handle142((unsigned)object,2);
  if(!result.process||!result.thread){if(result.process)close_process_handle142(result.process);if(result.thread)close_process_handle142(result.thread);active_space142=target;info8.status=8;info8.state=3;end_space142(target,8);active_space142=caller;return -8;}
  result.process_id=process_objects142[object].pid;result.thread_id=process_objects142[object].primary_id;
