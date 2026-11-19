@@ -1,0 +1,6 @@
+{
+  "scope": "Development compile guard, not native runtime proof",
+  "passed": false,
+  "failure": "The optional child-output tail initially had eight bytes of trailing structure padding, so the new strict tail assertion refused the layout.",
+  "correction": "Align the final child-output field explicitly to 16 bytes; retain the strict assertion instead of weakening it. The root metadata mapping uses only the complete required prefix."
+}

@@ -29,7 +29,8 @@ static void virtual_unwind142(w8_context142*c,uint64_t pc,unwind_frame142*out){
  memset(out,0,sizeof(*out));module141*m=unwind_image142(pc);if(!m)unwind_fail142("Unwinding through an unsupported compatibility-runtime frame is unavailable.");out->module=m;out->pc=pc;uint8_t*function=unwind_function142(m,pc);out->function=function;out->establisher=c->rsp;
  if(!function){c->rip=stack_word142(c->rsp);c->rsp+=8;return;}
  uint32_t data=u32(function+8);uint8_t*initial=unwind_data142(m,data,4);if((initial[0]&7)!=1)unwind_fail142("This Windows unwind metadata version is unsupported.");
- if(pc-(uint64_t)m->base-u32(function)>=initial[1]&&epilog_unwind142(m,pc,c))return;
+ /* A caller walk names the pre-return call site; its epilog has not run. */
+ if(pc==c->rip&&pc-(uint64_t)m->base-u32(function)>=initial[1]&&epilog_unwind142(m,pc,c))return;
  for(unsigned chain=0;chain<32;++chain){uint8_t*info=unwind_data142(m,data,4);unsigned version=info[0]&7,flags=info[0]>>3,count=info[2],frame=info[3]&15,frame_offset=info[3]>>4;if(version!=1||(flags&~7u)||((flags&4)&&(flags&3))||(frame&&!nonvolatile142(frame)))unwind_fail142("Windows unwind flags or frame register are invalid.");
   uint8_t*codes=unwind_data142(m,(uint64_t)data+4,((count+1)&~1u)*2+((flags&4)?12:(flags&3)?4:0));uint64_t control=pc-(uint64_t)m->base-u32(function);unsigned previous=256;
   if(frame){unsigned established=control>=info[1];for(unsigned i=0;i<count;){unsigned op=codes[i*2+1]&15,reg=codes[i*2+1]>>4,slots=op==1?(reg==0?2:reg==1?3:0):(op==4||op==8)?2:(op==5||op==9)?3:1;if(!slots||slots>count-i)unwind_fail142("Invalid frame-pointer unwind operands.");if(op==3&&codes[i*2]<=control)established=1;i+=slots;}if(established)out->establisher=*context_register142(c,frame)-frame_offset*16u;}

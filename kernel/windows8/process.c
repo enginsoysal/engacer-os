@@ -32,11 +32,12 @@ typedef struct {
  unsigned count,writer,write_count,cancel,metadata_dirty,created_root,current,cursor,object;
  process_handle142 handles[32];sync_cap142 sync_handles[64];
  uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
- w8_info child_info;
+ _Alignas(16) w8_info child_info;
 } private_space142;
 #define SPACES142 4u
 #define META_PAGES142 48u
 #define META_BASE142(i) (KERNEL_STACK+0x100000+(uint64_t)(i)*0x30000)
+_Static_assert(offsetof(private_space142,child_info)+sizeof(w8_info)==sizeof(private_space142),"Child output must remain the optional metadata tail");
 _Static_assert(sizeof(private_space142)<=META_PAGES142*4096,"Windows metadata exceeds its bounded kernel slab");
 static private_space142 *spaces142[SPACES142];
 static uint64_t metadata_backing142[SPACES142][META_PAGES142];
@@ -96,7 +97,7 @@ static void free_space142(unsigned slot){
  while(metadata_pages142[slot]){unsigned i=--metadata_pages142[slot];uint64_t va=base+(uint64_t)i*4096;pt[((va>>12)&511)]=0;__asm__ volatile("invlpg (%0)"::"r"(va):"memory");page_free(metadata_backing142[slot][i]);metadata_backing142[slot][i]=0;}
 }
 static unsigned allocate_space142(unsigned slot){
- if(slot>=SPACES142||spaces142[slot])return 1;unsigned pages=(sizeof(private_space142)+4095)/4096;
+ if(slot>=SPACES142||spaces142[slot])return 1;unsigned bytes=slot?sizeof(private_space142):offsetof(private_space142,child_info);unsigned pages=(bytes+4095)/4096;
  uint64_t base=META_BASE142(slot),*pt=(void*)(uintptr_t)kernel_entry_pt();
  for(unsigned i=0;i<pages;++i)if(pt[(((base>>12)+i)&511)])return 1;
  for(unsigned i=0;i<pages;++i){uint64_t physical=page_alloc();if(!physical){free_space142(slot);return 1;}metadata_backing142[slot][i]=physical;++metadata_pages142[slot];group_peak142();uint64_t va=base+(uint64_t)i*4096;pt[((va>>12)&511)]=physical|3|NX;__asm__ volatile("invlpg (%0)"::"r"(va):"memory");}

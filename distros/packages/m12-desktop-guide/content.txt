@@ -12,6 +12,20 @@ returns to browsing. Pinned, All apps and Categories are separate views.
 Right-click to customize pins or categories. A taskbar badge counts windows;
 choose the particular window when an app has more than one open.
 
+WINDOWS APPS
+Open Start, search for Windows Apps and open it. Install 7-Zip shows a
+review before installing the supported original x64 console application.
+Open 7-Zip runs its original executable. The archive actions use separate
+sample documents; Remove app preserves personal work and modified files.
+Check a Windows file inspects an EXE or DLL without installing or starting it.
+A successful inspection does not mean all of that application's APIs work.
+The current profile supports selected native x64 console tasks and helper
+processes. Other installers and original Windows graphical apps need their
+own supported profiles; they are not made compatible by changing a filename.
+Browser > Browser choices can download the original Firefox installer.
+Downloading does not install or start Firefox; browser execution remains
+unsupported in this profile. Read the matching Windows guide on our website.
+
 YOUR FOLDERS
 Files keeps Back, Forward, Up, Refresh and its address visible.
 Small windows use Places for folders and Address for editing a path.

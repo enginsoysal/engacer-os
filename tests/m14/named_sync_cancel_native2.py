@@ -38,12 +38,13 @@ def main():
     assert g.log()[at:].count('M142_CHILD_CREATED')==3
     p.drain()
     raw=ui.memory(g,ui.symbol('info8',installed=True)[0],40);assert struct.unpack_from('<I',raw)[0]==1
+    metadata=list(struct.unpack('<4I',ui.memory(g,ui.symbol('metadata_pages142',installed=True)[0],16)));assert metadata==[41,45,45,45],metadata;active_registry=ui.integer(g,'sync_resident142',True);assert active_registry==1,active_registry
     halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1')
     p.desktop(12008,True);assert g.log()[at:].count('M142_CHILD_EXIT')==3;raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496)
     assert struct.unpack_from('<I',raw)[0]==3 and b'cancel' in raw[304:].lower(),raw[:40].hex()
-    retained=f.stats(g)[0]-before;assert retained==(4 if n==0 else 0),(n,retained)
+    registry=ui.integer(g,'sync_resident142',True);assert registry==0;peak=struct.unpack_from('<Q',raw,24)[0];retained=f.stats(g)[0]-before;assert retained==(4 if n==0 else 0),(n,retained)
     if not n:before=f.stats(g)[0]
-    samples.append(dict(turn=n+1,halted_cpus_observed_while_blocked=halted,retained_pages=retained))
+    samples.append(dict(turn=n+1,halted_cpus_observed_while_blocked=halted,retained_pages=retained,peak_group_owned_pages=peak,shared_registry_pages_after_cancel=registry,shared_registry_pages_while_blocked=active_registry,metadata_pages_while_blocked=metadata))
    report.update(passed=True,samples=samples,fixture_sha256=hashlib.sha256(binary.read_bytes()).hexdigest());t.close_all(g,p);t.launch(g,p,'clock',8);t.close_all(g,p);(out/'native.log').write_bytes(g.log().encode('utf-8'))
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
  finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode('utf-8'));print(json.dumps(report,indent=2),flush=True)
