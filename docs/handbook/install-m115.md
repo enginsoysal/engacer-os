@@ -1,6 +1,6 @@
 # Install Engacer OS M11.5 in VMware (historical)
 
-Historical M11 stage guide. For current media use [M14.2 installation](install-m142.md). [M11.6 installation](install-m116.md) remains the final guide for that older series.
+Historical M11 stage guide. For current media use [M14.3 installation](install-m143.md). [M11.6 installation](install-m116.md) remains the final guide for that older series.
 
 M11.5 / 0.11.5 is the expanded guided-setup stage, qualified within
 **M11-STAGE5-VM-v1**. [Exact release, checksums and boundaries](../releases/m115-v0.11.5.md).

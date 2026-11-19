@@ -1,0 +1,55 @@
+{
+  "passed": false,
+  "stage": "M14.3",
+  "observer_sha256": "e46166a7b02cb54d55f07b53f8b949cace8330e67bacf9e6e7ffacc5506b4713",
+  "current_native_stage": "M14.3",
+  "source_commit": "a0ce3941901a2e92afc7f53f51622fa1a7fcfbdb",
+  "native_editor_save": "Saved automatically ✓",
+  "recovery_editor_save": "Saved automatically ✓",
+  "production_search": false,
+  "task_sidebar": false,
+  "ordered_task_navigation": false,
+  "current_guide": false,
+  "matching_download": false,
+  "mobile_menu": false,
+  "desktop": {
+    "viewport": 1280,
+    "document": 1280,
+    "images": [
+      {
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/3/feature.png",
+        "loaded": true
+      }
+    ]
+  },
+  "reports": [
+    {
+      "width": 1280,
+      "passed": true,
+      "search_opener_contrast": 16.96572538438515,
+      "checks": [
+        "same-page search",
+        "current guides",
+        "archive opt-in",
+        "no-results/clear",
+        "focus trap/Escape/opener",
+        "Ctrl+K/arrow/Enter navigation",
+        "task next article",
+        "heading anchor",
+        "correct hydrated share domain",
+        "mobile menu and browse disclosure where applicable"
+      ],
+      "layout": {
+        "viewport": 1280,
+        "document": 1280,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/3/feature.png",
+            "loaded": true
+          }
+        ]
+      },
+      "page_errors": []
+    }
+  ]
+}

@@ -2,9 +2,9 @@
 
 ## Current M14 development and qualified media
 
-The current qualified native runtime stage is M14.2. Read the [stage scope](../docs/milestones/m14-2.md), [exact native acceptance](../evidence/M14/2/acceptance-results.json) and [current distribution recipe](../docs/handbook/distributions.md) before building. Accepted outputs must not be rebuilt in place. Use a separate checkout and distinct custom revision for a personal edition; future stage work uses its own unaccepted output prefix and complete qualification.
+The current native-qualified stage is M14.3; its twenty GitHub assets are independently verified and complete actual website verification is being finalized. Read the [stage scope](../docs/milestones/m14-3.md), [exact native acceptance](../evidence/M14/3/acceptance-results.json) and [current distribution recipe](../docs/handbook/distributions.md) before building. Accepted outputs must not be rebuilt in place. Use a separate checkout and distinct custom revision for a personal edition; future stage work uses its own unaccepted output prefix and complete qualification.
 
-The M14 entry points are `tools/build/m14.py`, `tools/release/vmware_starter14.py` and the stage-specific tests under `tests/m14/`. The M14.2 final verifier is `tests/m14/verify2.py`; it requires every matching native report, canonical Git input bytes and exact artifacts. A successful build or an isolated host/parser test is insufficient. Keep large owned VM fixtures and build scratch outside OneDrive. The pinned tool acquisition instructions below remain applicable.
+The M14 entry points are `tools/build/m14.py`, `tools/release/vmware_starter14.py` and the stage-specific tests under `tests/m14/`. The M14.3 final verifier is `tests/m14/verify3.py`; it requires every matching native report, canonical Git input bytes and exact artifacts. A successful build or an isolated host/parser test is insufficient. Keep large owned VM fixtures and build scratch outside OneDrive. The pinned tool acquisition instructions below remain applicable.
 
 ## Historical M10 hardware edition
 

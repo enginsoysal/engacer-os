@@ -1,0 +1,8 @@
+{
+  "scope": "Clarification of the retained initial observer correction, not a new guest test",
+  "original_report_sha256": "3be5bc892185cc14ae8d5483a6557acd460adae22bce80e2d8f6c3eeeda326d0",
+  "prior_tally_counts_the_assertion_source_literal": true,
+  "actual_runtime_attach_notifications": 50,
+  "actual_runtime_detach_notifications": 50,
+  "explanation": "The prior correction summary counted marker strings in the entire traceback, including one occurrence in its assertion source. Counting only the captured runtime output gives 50 actual attach and 50 detach events. Native acceptance already checks the correct 50/50 lifecycle through lifetime_native2. The original summary remains preserved."
+}

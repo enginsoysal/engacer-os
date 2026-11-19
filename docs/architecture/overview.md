@@ -1,8 +1,8 @@
 # Engacer OS architecture
 
-The current native runtime stage is [M14.2](../releases/m142-v0.14.2.md). Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
+The current native runtime stage is [M14.3](../releases/m143-v0.14.3.md). Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
 
-Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.2 exact candidate separately qualifies native runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Complete public delivery is recorded separately from native acceptance.
+Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.3 exact candidate separately qualifies native file/settings and runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Complete public delivery is recorded separately from native acceptance.
 
 ## Layers
 
@@ -32,7 +32,7 @@ The Windows compatibility runtime runs in the protected program address space; k
 
 Keep kernel text RX, constants RO/NX and data RW/NX. User images preserve their checked PE protections; stack guards and invalid user access faults remain contained. Each Windows process owns private CR3 state, heaps, module mappings, writer and TLS. Threads share process resources and own their TEB, guarded stack and integer/FPU context.
 
-M14.2 bounds four live Windows processes and sixteen threads per process. Existing process admission limits include 10,000 owned physical pages, 128 MiB virtual reservations, 32 modules and a 32-MiB image limit. Metadata and exception stacks allocate lazily. Root metadata maps 41 pages; child slabs include private output and map 45. Shared object data pages allocate only while needed and return when unused. These are component/ownership bounds, not total OS RAM. [Runtime](runtime-m142.md), [children](children-m142.md), [resource measurements](../../evidence/M14/2/resources.json).
+M14.3 retains the bound of four live Windows processes and sixteen threads per process. Existing process admission limits include 10,000 owned physical pages, 128 MiB virtual reservations, 32 modules and a 32-MiB image limit. Metadata and exception stacks allocate lazily. Root metadata maps 28 pages; child slabs include private output and map 32. Shared object data pages allocate only while needed and return when unused. These are component/ownership bounds, not total OS RAM. [Runtime](runtime-m142.md), [children](children-m142.md), [resource measurements](../../evidence/M14/3/resources.json).
 
 File/image reservation, resident ownership, peak use and retained memory are measured separately. Broad file-backed paging, compression and swap must not be inferred from the selected demand-backed Windows allocation mechanisms. Configured guest RAM is not measured kernel consumption. M14.15 is the blocking whole-system CPU/RAM/storage optimization gate.
 
@@ -46,11 +46,11 @@ Kernel-owned generation-checked grants keep a recycled slot from becoming an unr
 
 The native root is `/System`, `/Applications`, `/Users`, `/Data`, `/Cache`, `/Logs`, `/Temporary`, `/Volumes`; there are no mandatory native drive letters or `/var`. Windows paths are translated through the implemented profile and explicit authorized roots, rather than treating a string alias as authorization. Personal documents remain separate from owned product files. [Filesystem contract](filesystem.md), [original Windows runtime baseline](windows-runtime-m8.md).
 
-Native persistent storage, installer ownership and selected removable-file operations are implemented. That does not establish complete Windows Unicode/case/sharing/deletion/locking/registry semantics: those are M14.3 work. Product removal preserves personal documents and modified files under the documented supported MSI profile; arbitrary MSI behavior remains later work.
+Native persistent storage, installer ownership and selected removable-file operations are implemented. M14.3 qualifies bounded Unicode paths/search, generation-checked shared file grants, existing-file edits, synchronous byte locks, persistent user registry values and copied environments. User file timestamps/attributes survive app removal and independent startup. These are selected profiles, not complete Windows filesystem, network namespace, NTFS/ACL or registry semantics. [Implementation and limits](files-m143.md). Product removal preserves personal documents and modified files under the documented supported MSI profile; arbitrary MSI behavior remains later work.
 
 ## Boot and recovery
 
-Original BIOS and UEFI loaders normalize firmware information and enter the native kernel. UEFI boot services end before kernel operation. The exact M14.2 VMware package uses x64 UEFI, Secure Boot disabled, a blank growable 20-GiB SATA disk and the matching ISO. It installs, restarts with the ISO retained and starts twice independently without the ISO. [Installation](../handbook/install-m142.md), [storage instructions](../handbook/vmware-storage.md).
+Original BIOS and UEFI loaders normalize firmware information and enter the native kernel. UEFI boot services end before kernel operation. The exact M14.3 VMware package uses x64 UEFI, Secure Boot disabled, a blank growable 20-GiB SATA disk and the matching ISO. It installs, restarts with the ISO retained and starts twice independently without the ISO. [Installation](../handbook/install-m143.md), [storage instructions](../handbook/vmware-storage.md).
 
 Historical BIOS/controller/trust tests keep their named scopes. Normal public media remain unsigned; an earlier owner-enrolled trust experiment does not establish factory Secure Boot support. Installed persistence and implemented same-build boot repair/update-slot/rollback controls are distinct from unqualified cross-release migration or a universal power-loss guarantee.
 
@@ -78,4 +78,4 @@ Readable graphics, explicit disk selection/consent, optional diagnostics and ind
 
 ## Current product delivery order
 
-Finish each M14 stage's native tests, English documentation, GitHub assets and actual complete website verification before the next stage. M14.3 extends files/settings; later stages add Windows GUI and broader runtime/installer services. M14.15 blocks the final x64 release on optimization. M15 covers Windows x86; M16 covers Win16/DOS. Linux/macOS and broader hardware remain extensions. Earlier release names, tags and accepted evidence remain immutable.
+Finish each M14 stage's native tests, English documentation, GitHub assets and actual complete website verification before the next stage. M14.3 qualifies the selected files/settings profile; later stages add Windows GUI and broader runtime/installer services. M14.15 blocks the final x64 release on optimization. M15 covers Windows x86; M16 covers Win16/DOS. Linux/macOS and broader hardware remain extensions. Earlier release names, tags and accepted evidence remain immutable.

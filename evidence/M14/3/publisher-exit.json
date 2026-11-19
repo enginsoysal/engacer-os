@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "tests": 50,
+  "source_commit": "a0ce3941901a2e92afc7f53f51622fa1a7fcfbdb",
+  "scope": "All six canonical website publisher Node test files, including current M14.3 portal/qualified-download checks"
+}
