@@ -100,38 +100,61 @@ static unsigned MS f_SysStringByteLen(const void*s){return s?*(const uint32_t*)(
 static int MS f_VariantClear(void*v){if(!v)return (int)0x80070057u;if(*(uint16_t*)v==8)f_SysFreeString(*(void**)((uint8_t*)v+8));memset(v,0,16);return 0;}
 static int MS f_VariantCopy(void*out,const void*in){if(!out||!in)return (int)0x80070057u;if(out==in)return 0;f_VariantClear(out);memcpy(out,in,16);if(*(const uint16_t*)in==8){void*s=*(void*const*)((const uint8_t*)in+8);void*copy=f_SysAllocStringByteLen(s,f_SysStringByteLen(s));if(s&&!copy){memset(out,0,16);return (int)0x8007000eu;}*(void**)((uint8_t*)out+8)=copy;}return 0;}
 
+static int64_t file_api143(HANDLE handle,unsigned operation,uint64_t a,uint64_t b){
+ int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,handle,operation,a,b,0);if(result<0)last8((unsigned)-result);return result;
+}
 static HANDLE MS f_CreateFileW(const WCHAR*name,unsigned access,unsigned share,void*security,unsigned creation,unsigned flags,HANDLE template){
- (void)share;(void)security;(void)template;char path[256];if(!nativepath8(name,path)){last8(3);return UINT64_MAX;}if(flags&0x40000000u){last8(50);return UINT64_MAX;}w8_file_info info;int exists=!stat8(path,&info);unsigned write=(access&0x40000000u)!=0;
- if(creation<1||creation>5||(creation==1&&exists)||((creation==3||creation==5)&&!exists)){last8(creation==1?80:2);return UINT64_MAX;}
- if(exists&&info.kind!=1){last8(5);return UINT64_MAX;}if(!write&&(creation!=3&&creation!=4)){last8(5);return UINT64_MAX;}
- if(write&&((creation==3)||(creation==4&&exists))){last8(50);return UINT64_MAX;}
- int f=open8(path,write?(creation==1?2:1):0);if(f<0){last8(write?5:2);return UINT64_MAX;}last8(exists&&creation==4?183:0);return (HANDLE)(256+f);
+ if(security||template){last8(50);return UINT64_MAX;}if(access&~0xc0010000u||share&~7u){last8(87);return UINT64_MAX;}
+ if(flags&~0x0c0000a0u){last8(50);return UINT64_MAX;}if(flags&0x08000000u){last8(50);return UINT64_MAX;}
+ w8_file_request143 request={.access=((access&0x80000000u)?1u:0u)|((access&0x40000000u)?2u:0u)|((access&0x10000u)?4u:0u),.share=share,.creation=creation,.flags=flags&0x04000000u};
+ if(!nativepath8(name,request.path))return UINT64_MAX;
+ w8_file_info info;int exists=!stat8(request.path,&info);
+ int64_t result=(int64_t)sys8(W8_SYS_FILE_OPEN143,(uint64_t)&request,0,0,0,0);if(result<0){last8((unsigned)-result);return UINT64_MAX;}
+ last8(exists&&(creation==2||creation==4)?183:0);return (HANDLE)result;
 }
 static int MS f_ReadFile(HANDLE h,void*out,unsigned size,unsigned*got,void*overlapped){
- if(got)*got=0;if(!got||overlapped){last8(87);return 0;}if(h==1)return 1;if(h<256||h>=288){last8(6);return 0;}int n=read8((int)(h-256),out,size);if(n<0){last8(30);return 0;}*got=(unsigned)n;return 1;
+ if(got)*got=0;if(!got||overlapped){last8(87);return 0;}if(h==1)return 1;
+ unsigned total=0;while(total<size){unsigned count=size-total;if(count>4096)count=4096;int64_t read=file_api143(h,1,(uint64_t)(uintptr_t)((uint8_t*)out+total),count);if(read<0){*got=total;return 0;}total+=(unsigned)read;if((unsigned)read<count)break;}
+ if(!size&&file_api143(h,1,(uint64_t)(uintptr_t)out,0)<0)return 0;*got=total;return 1;
 }
 static int MS f_WriteFile(HANDLE h,const void*in,unsigned size,unsigned*written,void*overlapped){
  if(written)*written=0;if(!written||overlapped){last8(87);return 0;}if(h==2||h==3){const uint8_t*p=in;unsigned remain=size;while(remain){unsigned n=remain>4096?4096:remain;if((int64_t)sys8(W8_SYS_OUTPUT,(uint64_t)p,n,0,0,0)<0){last8(29);return 0;}p+=n;remain-=n;}*written=size;return 1;}
- if(h<256||h>=288){last8(6);return 0;}int n=write8((int)(h-256),in,size);if(n<0){last8(29);return 0;}*written=(unsigned)n;return 1;
+ unsigned total=0;while(total<size){unsigned count=size-total;if(count>4096)count=4096;int64_t n=file_api143(h,2,(uint64_t)(uintptr_t)((const uint8_t*)in+total),count);if(n<0){*written=total;return 0;}total+=(unsigned)n;}
+ if(!size&&file_api143(h,2,(uint64_t)(uintptr_t)in,0)<0)return 0;*written=total;return 1;
 }
-static unsigned MS f_SetFilePointer(HANDLE h,int32_t low,int32_t*high,unsigned method){if(h<256||h>=288||method>2){last8(6);return UINT32_MAX;}int64_t offset=high?((int64_t)*high<<32)|(uint32_t)low:low;int64_t result=seek8((int)(h-256),offset,method);if(result<0){last8(87);return UINT32_MAX;}if(high)*high=(int32_t)((uint64_t)result>>32);last8(0);return (unsigned)result;}
-static int MS f_SetFilePointerEx(HANDLE h,int64_t distance,int64_t*position,unsigned method){if(h<256||h>=288)return 0;int64_t n=seek8((int)(h-256),distance,method);if(n<0){last8(87);return 0;}if(position)*position=n;return 1;}
-static unsigned MS f_GetFileSize(HANDLE h,unsigned*high){if(h<256||h>=288){last8(6);return UINT32_MAX;}int f=(int)(h-256);int64_t old=seek8(f,0,1),size=seek8(f,0,2);if(old<0||size<0||seek8(f,old,0)<0){last8(6);return UINT32_MAX;}if(high)*high=(unsigned)((uint64_t)size>>32);last8(0);return (unsigned)size;}
-static int MS f_GetFileSizeEx(HANDLE h,uint64_t*out){unsigned high=0,low=f_GetFileSize(h,&high);if(low==UINT32_MAX&&f_GetLastError())return 0;*out=((uint64_t)high<<32)|low;return 1;}
-static int MS f_SetEndOfFile(HANDLE h){if(h<256||h>=288||sys8(W8_SYS_TRUNCATE,h-256,0,0,0,0)){last8(5);return 0;}return 1;}
+static unsigned MS f_SetFilePointer(HANDLE h,int32_t low,int32_t*high,unsigned method){
+ int64_t offset=high?(int64_t)(((uint64_t)(uint32_t)*high<<32)|(uint32_t)low):(int64_t)low;
+ int64_t result=file_api143(h,3,(uint64_t)offset,method);if(result<0)return UINT32_MAX;if(high)*high=(int32_t)((uint64_t)result>>32);last8(0);return (unsigned)result;
+}
+static int MS f_SetFilePointerEx(HANDLE h,int64_t distance,int64_t*position,unsigned method){int64_t result=file_api143(h,3,(uint64_t)distance,method);if(result<0)return 0;if(position)*position=result;return 1;}
+static unsigned MS f_GetFileSize(HANDLE h,unsigned*high){int64_t result=file_api143(h,4,0,0);if(result<0)return UINT32_MAX;if(high)*high=(unsigned)((uint64_t)result>>32);last8(0);return (unsigned)result;}
+static int MS f_GetFileSizeEx(HANDLE h,uint64_t*out){if(!out){last8(87);return 0;}int64_t result=file_api143(h,4,0,0);if(result<0)return 0;*out=(uint64_t)result;return 1;}
+static int MS f_SetEndOfFile(HANDLE h){return file_api143(h,5,0,0)>=0;}
+static int MS f_FlushFileBuffers(HANDLE h){return file_api143(h,6,0,0)>=0;}
+typedef struct {uint64_t internal,high;uint32_t offset,offset_high;uint64_t event;} overlapped143;
+static int MS f_LockFileEx(HANDLE h,unsigned flags,unsigned reserved,unsigned low,unsigned high,overlapped143*overlapped){
+ if(!overlapped||reserved||(flags&~3u)){last8(87);return 0;}if(overlapped->event){last8(50);return 0;}
+ w8_file_lock_request143 request={.offset=((uint64_t)overlapped->offset_high<<32)|overlapped->offset,.length=((uint64_t)high<<32)|low,.flags=flags};return file_api143(h,12,(uint64_t)&request,0)>=0;
+}
+static int MS f_UnlockFileEx(HANDLE h,unsigned reserved,unsigned low,unsigned high,overlapped143*overlapped){
+ if(!overlapped||reserved){last8(87);return 0;}if(overlapped->event){last8(50);return 0;}
+ w8_file_lock_request143 request={.offset=((uint64_t)overlapped->offset_high<<32)|overlapped->offset,.length=((uint64_t)high<<32)|low};return file_api143(h,13,(uint64_t)&request,0)>=0;
+}
+static int MS f_LockFile(HANDLE h,unsigned offset,unsigned offset_high,unsigned low,unsigned high){overlapped143 request={.offset=offset,.offset_high=offset_high};return f_LockFileEx(h,3,0,low,high,&request);}
+static int MS f_UnlockFile(HANDLE h,unsigned offset,unsigned offset_high,unsigned low,unsigned high){overlapped143 request={.offset=offset,.offset_high=offset_high};return f_UnlockFileEx(h,0,low,high,&request);}
 static int MS f_GetFileInformationByHandle(HANDLE h,void*out){
- if(h<256||h>=288||!out){last8(6);return 0;}unsigned high=0,low=f_GetFileSize(h,&high);if(low==UINT32_MAX&&f_GetLastError())return 0;w8_file_info info;if(sys8(W8_SYS_METADATA,h-256,0,(uint64_t)&info,0,0)){last8(6);return 0;}
- memset(out,0,52);uint8_t*b=out;*(uint32_t*)b=info.attributes;memcpy(b+4,info.time,24);*(uint32_t*)(b+28)=0x454e474e;*(uint32_t*)(b+32)=high;*(uint32_t*)(b+36)=low;*(uint32_t*)(b+40)=1;*(uint32_t*)(b+48)=(uint32_t)h;return 1;
+ if(!out){last8(87);return 0;}w8_file_info info;if(file_api143(h,8,(uint64_t)&info,0)<0)return 0;
+ memset(out,0,52);uint8_t*b=out;*(uint32_t*)b=info.attributes;memcpy(b+4,info.time,24);*(uint32_t*)(b+28)=0x454e474e;*(uint32_t*)(b+32)=(uint32_t)(info.size>>32);*(uint32_t*)(b+36)=(uint32_t)info.size;*(uint32_t*)(b+40)=1;*(uint32_t*)(b+48)=(uint32_t)h;return 1;
 }
 static int MS f_SetFileTime(HANDLE h,const FILETIME*creation,const FILETIME*access,const FILETIME*write){
- if(h<256||h>=288){last8(6);return 0;}w8_file_info info;if(sys8(W8_SYS_METADATA,h-256,0,(uint64_t)&info,0,0)){last8(6);return 0;}if(creation)memcpy(info.time,creation,8);if(access)memcpy(info.time+1,access,8);if(write)memcpy(info.time+2,write,8);if(sys8(W8_SYS_METADATA,h-256,1,(uint64_t)&info,0,0)){last8(5);return 0;}return 1;
+ w8_file_info info;if(file_api143(h,8,(uint64_t)&info,0)<0)return 0;if(creation)memcpy(info.time,creation,8);if(access)memcpy(info.time+1,access,8);if(write)memcpy(info.time+2,write,8);return file_api143(h,9,(uint64_t)&info,0)>=0;
 }
 static unsigned MS f_GetFileAttributesW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path)||stat8(path,&info)){last8(2);return UINT32_MAX;}return info.attributes;}
 static int MS f_SetFileAttributesW(const WCHAR*name,unsigned attributes){char path[256];if(!nativepath8(name,path)){last8(3);return 0;}int h=open8(path,0);if(h<0){last8(2);return 0;}w8_file_info info;int result=sys8(W8_SYS_METADATA,(unsigned)h,0,(uint64_t)&info,0,0)?0:1;if(result){info.attributes=attributes?attributes:128;result=sys8(W8_SYS_METADATA,(unsigned)h,1,(uint64_t)&info,0,0)==0;}close8(h);if(!result)last8(50);return result;}
 static int MS f_CreateDirectoryW(const WCHAR*name,void*security){(void)security;char path[256];w8_file_info info;if(!nativepath8(name,path)){last8(3);return 0;}if(!stat8(path,&info)){last8(183);return 0;}if(mkdir8(path)){last8(5);return 0;}return 1;}
-static int MS f_DeleteFileW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path)||stat8(path,&info)){last8(2);return 0;}if(info.kind!=1){last8(5);return 0;}if(remove8(path)){last8(5);return 0;}return 1;}
+static int MS f_DeleteFileW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path))return 0;if(stat8(path,&info)){last8(2);return 0;}if(info.kind!=1){last8(5);return 0;}int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,0,10,(uint64_t)path,0,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
 static int MS f_RemoveDirectoryW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path)||stat8(path,&info)){last8(3);return 0;}if(info.kind!=2||remove8(path)){last8(145);return 0;}return 1;}
-static int MS f_MoveFileExW(const WCHAR*from,const WCHAR*to,unsigned flags){char a[256],b[256];if((flags&~1u)||!nativepath8(from,a)||!nativepath8(to,b)){last8(50);return 0;}if(sys8(W8_SYS_MOVE,(uint64_t)a,(uint64_t)b,flags&1,0,0)){last8(5);return 0;}return 1;}
+static int MS f_MoveFileExW(const WCHAR*from,const WCHAR*to,unsigned flags){char a[256],b[256];if(flags&~1u){last8(50);return 0;}if(!nativepath8(from,a)||!nativepath_mode143(to,b,4))return 0;int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,0,11,(uint64_t)a,(uint64_t)b,flags);if(result<0){last8((unsigned)-result);return 0;}return 1;}
 static int MS f_MoveFileW(const WCHAR*a,const WCHAR*b){return f_MoveFileExW(a,b,0);}
 static int MS f_MoveFileWithProgressW(const WCHAR*a,const WCHAR*b,uint64_t callback,void*data,unsigned flags){if(callback){last8(50);return 0;}(void)data;return f_MoveFileExW(a,b,flags);}
 static int MS f_CreateHardLinkW(const WCHAR*a,const WCHAR*b,void*c){(void)a;(void)b;(void)c;last8(50);return 0;}
@@ -294,7 +317,7 @@ static const api8 api8_table[]={
  {"_iob",iob8,2},{"__initenv",&initenv8,2},{"_fmode",&fmode8,2},{"_commode",&commode8,2},
  {"__CxxFrameHandler",guard_cxx8,2},{"_CxxThrowException",guard_cxx8,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",f___C_specific_handler,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
  API8(CreateProcessW,1),API8(CreateProcessA,1),API8(GetExitCodeProcess,1),API8(GetProcessId,1),API8(TerminateProcess,1),API8(GetStartupInfoW,1),API8(GetStartupInfoA,1),API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
- API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetFullPathNameW,1),API8(GetFullPathNameA,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
+ API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(FlushFileBuffers,1),API8(LockFileEx,1),API8(UnlockFileEx,1),API8(LockFile,1),API8(UnlockFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetFullPathNameW,1),API8(GetFullPathNameA,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
  API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateWaitableTimerW,1),API8(SetWaitableTimer,1),API8(CancelWaitableTimer,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(OpenSemaphoreW,1),API8(OpenWaitableTimerW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(GetThreadId,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
  API8(CharUpperW,4),API8(CharPrevExA,4),API8(LookupPrivilegeValueW,5),API8(OpenProcessToken,5),API8(AdjustTokenPrivileges,5),API8(GetFileSecurityW,5),API8(SetFileSecurityW,5),API8(SystemFunction036,5),API8(RegOpenKeyExW,5),API8(RegQueryValueExW,5),API8(RegCloseKey,5)
