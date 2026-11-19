@@ -1,8 +1,10 @@
-# Engine OS installation wizard design
+# Installation wizard design and historical prototypes
 
-Current native implementation: [M7.5 guided installation and installed restart](install-m75.md), with [reference review and novice step matrix](../architecture/installer-m75.md). Previous implementation: [M7.2 installation and immediate folder desktop](install-m72.md), with its [architecture and actual native evidence](../architecture/desktop-m72.md).
+For the current native installer, use the [M14.2 installation guide](install-m142.md) and [storage explanation](vmware-storage.md). The older prototypes below are design history, not the current bootable installer.
 
-The current HTML file is an explanatory browser design reference, not bootable installation media or runtime acceptance evidence. Open [the standalone preview](../../tools/design/install-wizard.html) locally. It has no external assets, network calls, disk APIs, package installation or restart capability. Its demo disk is explicitly fictional. Choices remain in page memory; reloading resets them. The app/style and progress screens explain the native design and do not pretend to execute those operations. Use the released ISO to test actual customization, writes and installed startup.
+Historical M7.5 native implementation: [M7.5 guided installation and installed restart](install-m75.md), with [reference review and novice step matrix](../architecture/installer-m75.md). Previous implementation: [M7.2 installation and immediate folder desktop](install-m72.md), with its [architecture and actual native evidence](../architecture/desktop-m72.md).
+
+The historical HTML file is an explanatory browser design reference, not bootable installation media or runtime acceptance evidence. Open [the standalone preview](../../tools/design/install-wizard.html) locally. It has no external assets, network calls, disk APIs, package installation or restart capability. Its demo disk is explicitly fictional. Choices remain in page memory; reloading resets them. The app/style and progress screens explain the native design and do not pretend to execute those operations. Use the released ISO to test actual customization, writes and installed startup.
 
 ## Native wizard delivery requirements
 

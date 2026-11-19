@@ -1,97 +1,81 @@
 # Engacer OS architecture
 
-M11.1–M11.4 add shared release-driven interaction, native Files transactions,
-customizable Start/taskbar and bounded windows/appearance to the independent
-kernel. [Current release](../releases/m115-v0.11.5.md), [M11 contract](desktop-m11.md),
-[Files](files-m11.md), [Start](start-m11.md), [windows](windows-m11.md).
-Each stage has separate exact evidence. M11.5 adds qualified
-[expanded setup and first installed startup](setup-m115.md); full new-artifact
-controller/application qualification remains M11.6. Older records below are baselines,
-not automatic qualification of newly built media.
+The current native runtime stage is [M14.2](../releases/m142-v0.14.2.md). Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
 
-M10 phases 1/2 add bounded hardware status, input layouts and guarded removable file transfers. [Design and limits](hardware-m10.md), [native user guide](../handbook/hardware-m10.md). The 27-gate M10-DEVICES-VM-v1 qualification binds these tasks to the published ISO and exact VMware ZIP.
-
-M9 now prioritizes automatic supported VMware graphics/input and window movement. One admitted RAM screen buffer, cached client movement, batched presentation and a separate cursor overlay supplement the earlier renderer. [Implementation decisions, memory accounting and limits](graphics-m9.md). No 3D or universal GPU claim is made.
-
-The M7.5 installer adds explicit disk lists, partial redraw and actual installed restart. [Installer design and source comparison](installer-m75.md), [current manual](../handbook/install-m75.md). The shared M7.3 native UI uses smooth measured text, shared logical/physical scaling and bounded direct framebuffer rendering. [Graphics decisions](graphics-m73.md), [five-question review](usability-review-m73.md), [current delivery status](../roadmap/status.md). M8 implements a first separately qualified original Win64 console/MSI runtime; the wider foreign layers below remain planned. [Windows runtime](windows-runtime-m8.md), [current installation guide](../handbook/install-m8.md).
-
-Baseline: M0 contracts, M1 boot and M2 protected native processes. [M3](../milestones/m3.md) qualifies native threads, waits, anonymous VM/COW/pressure and 1/2/4 active CPUs in a bounded VM profile. Planned interfaces are distinguished from implementation. See [status](../roadmap/status.md) and [evidence](../../evidence/M2/README.md).
+Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.2 exact candidate separately qualifies native runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Complete public delivery is recorded separately from native acceptance.
 
 ## Layers
 
 ```text
-Native apps     Windows PE/NE     Linux ELF     macOS Mach-O     DOS
-     |                |               |             |            |
-Native runtime   Windows profile  Linux profile  Darwin profile Legacy runtime
-     +----------------+---------------+-------------+------------+
-                              System services
-               files, network, audio, compositor, identities, packages
+Native desktop/apps        Selected original Windows x64 programs
+         |                      CPU instructions execute directly
+         |                      Own PE loader and Windows API runtime
+         +----------------------+-------------------------------+
+                       Engacer OS kernel and services
+             native storage, input, networking, window ownership
+             protected address spaces, threads, handles and faults
                                     |
-                         Versioned native kernel ABI
-                                    |
-             objects, virtual memory, threads, IPC, rights, exceptions
-                                    |
-                      Platform code and modular drivers
+                    Supported platform/controller drivers
                                     |
                                  Hardware
 ```
 
-Only native verification programs currently run, through the preserved M2 baseline and M3 thread runtime. Windows/Linux/macOS adapters are future loaders, libraries, servers and narrowly scoped kernel support. A same-architecture application may execute CPU instructions directly while still needing its expected OS interfaces. Win16/DOS and cross-architecture targets may need explicit emulation; this is never described as universal native execution.
+Linux ELF, Darwin/Mach-O, Windows x86 and Win16/DOS are extension targets, not implemented compatibility claims. A shared CPU architecture permits direct instructions; the expected ABI, APIs, object semantics and hardware protocols still need implementation. [Windows plan](../milestones/m14.md), [original architecture contracts](../roadmap/milestones.md).
 
 ## Kernel boundary
 
-Keep memory/address spaces, scheduling mechanisms, object references/rights, controlled IPC, exceptions and interrupt/DMA fundamentals in the kernel. Put complex policy, desktop, installation and compatibility frameworks in user services. The selected modular kernel avoids assuming every operation needs a server round trip; performance/isolation decisions require measurement.
+The modular native kernel owns address spaces, page permissions, scheduling, protected references, interrupt/DMA handling and checked transitions. The current desktop/installer and several native services remain kernel-resident. Describing a future user-service boundary must not imply that the entire desktop is already an isolated user process.
 
-M2 implements a conventional-memory bitmap allocator, private CR3 address spaces, one native context per process, generation-tagged handles, events/shared-memory objects, bounded messages, controlled copy-in/out and cooperative switching. It runs one bootstrap CPU with maskable interrupts disabled. M3 adds preemption, independent thread CPU/TLS/FX state, atomic blocking waits and active SMP. Processes are assigned fixed CPU affinity; native programs execute on every active CPU while kernel dispatch is serialized. Wait-any/all and guest-specific synchronization remain future adapter work.
+The Windows compatibility runtime runs in the protected program address space; kernel brokers own process/thread lifetimes, shared synchronization, protected path grants and fault capture. This keeps complex compatibility code separate from supervisor ownership while allowing bounded native transitions. Initial Windows scheduling is preemptive concurrency on one Windows worker CPU, not qualified Windows SMP. The older [M3 native SMP profile](../milestones/m3.md) is a separate baseline.
 
 ## Memory and isolation
 
-M1 uses a broad supervisor identity map for initial firmware handoff. Before user entry, M2 replaces it with kernel RX text, RO/NX constants, RW/NX data, a missing null page, a guarded kernel entry stack and private user mappings. CR0.WP and EFER.NXE are enabled. User code/constant pages are shared immutable allocations; data and stacks are private. Shared pages require an explicit handle/map operation and enforce read-only receiver rights in hardware.
+Keep kernel text RX, constants RO/NX and data RW/NX. User images preserve their checked PE protections; stack guards and invalid user access faults remain contained. Each Windows process owns private CR3 state, heaps, module mappings, writer and TLS. Threads share process resources and own their TEB, guarded stack and integer/FPU context.
 
-The early allocator manages only UEFI conventional pages below 1 GiB. Loader/firmware allocations are retained and separately accounted for. This is a development limit, not a final physical-RAM ceiling. M3 implements bounded anonymous reservation, backed commit/decommit, COW snapshots/write faults and budget pressure/OOM cleanup. File-backed demand paging, cache reclaim, compression and swap remain future work after reliable storage.
+M14.2 bounds four live Windows processes and sixteen threads per process. Existing process admission limits include 10,000 owned physical pages, 128 MiB virtual reservations, 32 modules and a 32-MiB image limit. Metadata and exception stacks allocate lazily. Root metadata maps 41 pages; child slabs include private output and map 45. Shared object data pages allocate only while needed and return when unused. These are component/ownership bounds, not total OS RAM. [Runtime](runtime-m142.md), [children](children-m142.md), [resource measurements](../../evidence/M14/2/resources.json).
+
+File/image reservation, resident ownership, peak use and retained memory are measured separately. Broad file-backed paging, compression and swap must not be inferred from the selected demand-backed Windows allocation mechanisms. Configured guest RAM is not measured kernel consumption. M14.15 is the blocking whole-system CPU/RAM/storage optimization gate.
 
 ## Execution environments
 
-The trusted loader assigns an ABI profile; user arguments cannot switch it. M2 reserves native64, Win16, Windows x86/x64, Linux and Darwin IDs, but dispatches only native64. Its temporary `int 0x80` gateway uses the documented native register layout. Future `SYSCALL`, 32-bit thunks and NT/Linux/Mach decoders remain separate contracts. M2 does not load arbitrary programs from disk or provide Windows APIs.
+The loader assigns the native or selected Windows execution profile. Windows PE relocation/import/DLL/TLS processing uses Engacer OS code, and the program's instructions execute in its protected address space. M14.2 supplies real CreateProcess/threads, independent TLS and selected hardware-fault/C structured exception behavior. Unimplemented Windows services must fail clearly. [Loader contract](loader-m141.md), [runtime](runtime-m142.md), [exception boundaries](exceptions-m142.md).
+
+Kernel-owned generation-checked grants keep a recycled slot from becoming an unrelated valid handle. Atomic mixed waits cover supported processes, threads, events, semaphores and timers. Finite deadlines share an interrupt lease; indefinite blocked tasks need no Windows polling timer. The desktop returns to halt when no runnable work remains. [Synchronization and limits](synchronization-m142.md).
 
 ## Files, namespaces and identity
 
-The approved native root is `/System`, `/Applications`, `/Users`, `/Data`, `/Cache`, `/Logs`, `/Temporary`, `/Volumes`. No mandatory native drive letters or `/var`. Future VFS namespaces expose the Windows, Linux and macOS paths required by each profile while sharing authorized user documents. [Detailed mapping](filesystem.md).
+The native root is `/System`, `/Applications`, `/Users`, `/Data`, `/Cache`, `/Logs`, `/Temporary`, `/Volumes`; there are no mandatory native drive letters or `/var`. Windows paths are translated through the implemented profile and explicit authorized roots, rather than treating a string alias as authorization. Personal documents remain separate from owned product files. [Filesystem contract](filesystem.md), [original Windows runtime baseline](windows-runtime-m8.md).
 
-Kernel authorization must use object identity and explicit rights, not string aliases. Native names are case-sensitive UTF-8; guest lookup, locking, metadata and deletion rules need separate tested adapters. Persistent VFS/filesystem services are M4 work; the firmware file protocol used by the bootloader is not a kernel driver.
+Native persistent storage, installer ownership and selected removable-file operations are implemented. That does not establish complete Windows Unicode/case/sharing/deletion/locking/registry semantics: those are M14.3 work. Product removal preserves personal documents and modified files under the documented supported MSI profile; arbitrary MSI behavior remains later work.
 
 ## Boot and recovery
 
-UEFI loads the original PE32+ loader. It validates firmware tables and a restricted ELF64 kernel, records allocations, loads a build-bound manifest, obtains a final memory map and exits boot services with bounded stale-key retry. Assembly adapts the MS-x64 caller to System V kernel entry, changes stack/page tables and establishes a GDT. Kernel diagnostics use direct serial/framebuffer access thereafter.
+Original BIOS and UEFI loaders normalize firmware information and enter the native kernel. UEFI boot services end before kernel operation. The exact M14.2 VMware package uses x64 UEFI, Secure Boot disabled, a blank growable 20-GiB SATA disk and the matching ISO. It installs, restarts with the ISO retained and starts twice independently without the ISO. [Installation](../handbook/install-m142.md), [storage instructions](../handbook/vmware-storage.md).
 
-USB GPT/FAT32 and optical El Torito are distinct tested media. M5 live/installed/recovery share the original kernel source with different embedded payloads. Native installation, persistent files and same-build boot repair are implemented; arbitrary update/rollback and atomic activation remain future work. Normal public media remain unsigned. M4.5 separately qualifies an owner-enrolled VM trust chain; this does not authenticate the public unsigned M5 release or establish factory trust.
+Historical BIOS/controller/trust tests keep their named scopes. Normal public media remain unsigned; an earlier owner-enrolled trust experiment does not establish factory Secure Boot support. Installed persistence and implemented same-build boot repair/update-slot/rollback controls are distinct from unqualified cross-release migration or a universal power-loss guarantee.
 
 ## Graphics and hardware
 
-Discover bus/protocol identity, bind a supported driver, initialize and publish capabilities. A device class alone cannot supply its register protocol. M2 retains GOP's framebuffer and draws through the CPU; there is no GPU acceleration. MMIO/DMA, residency and hardware faults require driver-specific handling. Initial platform: pinned QEMU q35/OVMF; physical GPU and ARM/Pi support are later milestones.
+Discover bus/protocol identity, bind an implemented driver, initialize it and expose actual capabilities. A device class or VRAM size alone cannot supply a GPU's command protocol. Current rendering uses bounded CPU/framebuffer presentation and implemented virtual display/input integration. Modern vendor GPU 3D and universal hardware compatibility are not qualified. [Graphics baseline](graphics-m9.md), [hardware contract](hardware-m10.md).
+
+The current exact VMware starter is separately tested with its shipped devices enabled. Earlier integration/controller matrices remain historical, not automatic proof for every new ISO. Physical hardware, ARM/Pi and broader vendor protocols require their own implementation and qualification.
 
 ## Evidence and change control
 
-M4 adds class-bound AHCI with one outstanding MSI/HLT request and 4 KiB DMA batches, bounded writable ext2/VFS and own xHCI boot keyboard/mouse input. Four AHCI pages and fixed filesystem/input limits bound resources; uncertain DMA ownership is quarantined. Dirty-volume write refusal and offline copy recovery are explicit rather than a journaling guarantee. See the [M4 contract and named profiles](../milestones/m4-contract.md).
-
-Cross-compile without a host CRT; retain symbols, build IDs, source/artifact hashes, negative tests and public sanitized logs. Record CPU/guest/host configuration and separate managed pages from retained boot memory and framebuffer reservations. The M3 preemption and SMP suite proves its specified native workloads, not universal starvation/race freedom or arbitrary-app security. Exact limits and resource measurements remain linked to fresh reports.
-
-Primary sources: [UEFI 2.11](https://uefi.org/specs/UEFI/2.11/), [Intel system programming](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.pdf), [AMD system programming](https://docs.amd.com/v/u/en-US/24593_3.44_APM_Vol2), [Clang](https://clang.llvm.org/docs/UsersManual.html). These define interfaces; our tests establish only explicitly reported behavior.
+Cross-compile without a host CRT. Preserve build IDs, exact Git input bytes, artifact hashes, failed observations and sanitized native logs. Native test fixtures are distinct from original unmodified applications and host-only parser tests. Real user tasks, independent boots, fault containment, cancellation and repeated ownership cleanup remain separate checks. [M14.2 native acceptance](../../evidence/M14/2/acceptance-results.json), [scope](../releases/m142-v0.14.2.md).
 
 ## M4.5 firmware increment
 
-The completed M45-VM-v1 build adds an original BIOS EDD/E820/VBE path beside UEFI. Both produce the same normalized boot contract and enter the same kernel. BIOS conventional E820 ranges are normalized to the existing allocator descriptor types; this does not require UEFI firmware on the BIOS path. M45 UEFI releases the temporary ELF file allocation after segment copying. See [boot design and tests](../milestones/m4.5-boot.md) and [storage/trust boundaries](../milestones/m4.5-storage.md). Earlier milestone reservation evidence remains historical.
+The historical BIOS EDD/E820/VBE and UEFI paths normalize their handoff to the same kernel contract. Their original reservation/trust observations remain bound to the older named media. [Boot design and evidence](../milestones/m4.5-boot.md), [storage/trust boundaries](../milestones/m4.5-storage.md).
 
 ## M4.5 USB topology and transport
 
-The shared original M45 USB stack is organized under `kernel/usb/`. Eight lazily allocated device contexts bound hub/HID/storage state. Class-9 hub routing, child-before-parent retirement and generation-tagged disk readers protect reconnect lifetime. Read-only UAS adds high-speed Ready/Sense and SuperSpeed stream handling with bounded command abort before DMA reclamation. See [protocol, memory and qualification boundaries](../milestones/m4.5-usb-topology.md).
-
-M4.5 completion is governed by the [user-approved VM contract](../milestones/m4.5-scope.json) and [fresh acceptance](../../evidence/M4.5/acceptance-results.json). Physical hardware, factory trust and production key operations remain separate unqualified tracks. M5 implements native installation and same-build boot recovery under its separate [VM contract](../milestones/m5.md); general updates and automatic rollback remain future work.
+Historical USB hub/HID/storage topology, generation-bound reconnect and bounded read-only UAS work remain documented under their original scope. They do not establish every current removable-device or controller combination. [Original USB contract](../milestones/m4.5-usb-topology.md), [current Files/USB use](../handbook/files-m137.md).
 
 ## Guided interaction and distribution identity
 
-M5.1 adds a bounded keyboard menu over the actual native installation path. End-user tasks must follow the [product principles](product-principles.md); terminal/verbose diagnostics remain optional. Validated profiles compile branding/colour and selected data content into live and installed images. See [M5.1](../milestones/m5.1.md) and [distribution recipes](../handbook/distributions.md). Future desktop/package-runtime configuration must represent real implemented components.
+Readable graphics, explicit disk selection/consent, optional diagnostics and independently removable apps are product requirements. Validated schema-3 recipes select supported identity, appearance, optional apps and data packages; they cannot disable protected ownership or add unimplemented drivers/APIs. Changed media require independent qualification. [Distribution recipe](../handbook/distributions.md), [product principles](product-principles.md).
 
 ## Current product delivery order
 
-The owner revision of 6 November 2026 sets M6 real product installation, M7 real desktop experience, then M8 original MS-DOS and Windows 1.x through Windows 11 application compatibility. M6 is complete within M6-VM-v1, with a native graphical installer, scalable volume and tested recovery; M7 is complete within M7-VM-v1 with a native installed desktop and checked HTTPS downloads; M8 now delivers one bounded original 7-Zip x64 MSI/console profile; the wider DOS/Windows program remains in progress. See [the runtime architecture](windows-runtime-m8.md). Previous milestone evidence remains bounded historical proof. The current product name is Engacer OS; earlier release identities remain historical. Convenience, optional diagnostics, distribution freedom and measured CPU/RAM use apply to every stage. See [the current contracts](../roadmap/milestones.md).
+Finish each M14 stage's native tests, English documentation, GitHub assets and actual complete website verification before the next stage. M14.3 extends files/settings; later stages add Windows GUI and broader runtime/installer services. M14.15 blocks the final x64 release on optimization. M15 covers Windows x86; M16 covers Win16/DOS. Linux/macOS and broader hardware remain extensions. Earlier release names, tags and accepted evidence remain immutable.

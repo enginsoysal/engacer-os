@@ -1,0 +1,13 @@
+{
+  "scope": "Release API visibility observation; native acceptance unchanged",
+  "initial_publish_passed": false,
+  "failure": "Created draft was not immediately visible to the authenticated follow-up lookup; uploads stopped before changing assets.",
+  "subsequent_read": {
+    "id": 451657311,
+    "tag": "m142-v0.14.2",
+    "draft": true,
+    "target_commit": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
+    "assets": 0
+  },
+  "recovery": "Resume only the matching existing draft after verifying source, notes and assets; do not create another release."
+}

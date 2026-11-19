@@ -1,6 +1,24 @@
-# VMware storage: why a blank disk does not appear
+# VMware disks and installation storage
 
-**Historical M4.5 guide.** For the current installer use the [M5 installation tutorial](install.md), [commands](m5-console.md) and [recovery](recovery.md).
+## Current M14.2 installer
+
+Use the [matching prepared VMware package and installation guide](install-m142.md). It contains a new blank growable 20-GiB SATA disk and the matching ISO. Extract the whole package, open EngacerOS.vmx and keep its hard disk connected. This is the exact VMware configuration qualified for M14.2; older controller-matrix results remain historical, not repeated qualification of these media.
+
+In **Choose a disk**, click the disk row: its highlight and selection circle show the chosen target. A blank usable disk needs no manual partition creation. Next leads to app/style choices and a separate review; installation writes only after the reviewed Install action. Existing data requires the explicit replacement/erasure route. The ordinary installer replaces the entire selected disk, not one chosen partition. Back up anything wanted before confirming erasure.
+
+**Disk tools** provides the implemented partition create/delete and quick-format operations for supported writable targets. Formatting destroys data; it is not a remedy for an unrecognized controller. Advanced tools require the documented larger logical workspace. Partition resizing, general filesystem conversion and dual-boot installation are unavailable. [Detailed retained setup behavior](setup-m1215.md).
+
+A disk must be discovered through its actual controller before partitions can be inspected. An empty disk and an undetected disk are different conditions. Installation needs readable, writable and flush capabilities, 512-byte logical sectors and capacity from 2 GiB to 2 TiB. Read-only or inspection-only discovery is not installation support. The driver must implement the controller's protocol; the words IDE, SATA, SCSI or NVMe alone do not establish compatibility with every device in that family.
+
+If no usable target appears, shut down the test VM and check that its virtual disk is connected. For the simplest reproducible test, use the unchanged matching starter instead of changing a personal VM. Keep physical/raw host disks and wanted VMDKs outside the test. Collect the displayed reason, release version and controller configuration if it still refuses. Never erase wanted data to work around discovery failure.
+
+After successful setup choose **Restart to Engacer OS**. The matching ISO may remain connected. For an independent installed-system test disconnect only CD/DVD; retain the hard disk and firmware settings. The public package uses x64 UEFI with Secure Boot disabled. [Current release scope](../releases/m142-v0.14.2.md), [historical integration matrix](../releases/m1312-v0.13.12.md).
+
+## Historical M4.5 console troubleshooting
+
+The remaining commands and read-only limitations describe the old M4.5 media. They are retained for that release and do not describe today's graphical installer.
+
+**Historical follow-up:** M5 subsequently added its own [installation tutorial](install.md), [commands](m5-console.md) and [recovery](recovery.md). Use the current guide above for M14.2.
 
 ## Disk discovery comes before partitions
 

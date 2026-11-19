@@ -24,4 +24,4 @@ An independently verified complete file has SHA-256 `6dc28633cbd77cb1d044f339185
 
 ## What follows
 
-M14.2 adds bounded native process/thread/TLS and selected C exception/unwind behavior; later stages add the original Windows GUI, controls, dialogs and reusable installation services. M14.25 is the mandatory whole-system CPU/RAM/storage optimization gate. [Ordered M14 plan](../milestones/m14.md), [loader design and limits](../architecture/loader-m142.md).
+M14.2 adds bounded native process/thread/TLS and selected C exception/unwind behavior; later stages add the original Windows GUI, controls, dialogs and reusable installation services. M14.25 is the mandatory whole-system CPU/RAM/storage optimization gate. [Ordered M14 plan](../milestones/m14.md), [loader design and limits](../architecture/loader-m141.md).

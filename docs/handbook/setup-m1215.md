@@ -1,6 +1,6 @@
 # Setup and first use — M12.15
 
-M12-STAGE15-VM-v1 native qualification passes. Use the matching M12.15 assets; [complete public delivery](../../evidence/M12/15/publication-results.json) passes. M12.16 follows in order.
+M12-STAGE15-VM-v1 native qualification passes. Use the matching M12.15 assets; [complete public delivery](../../evidence/M12/15/publication-results.json) passes. This is the retained eight-step behavior reference, with historical M12.15 media and tests. For current downloads and qualification use the [M14.2 installation guide](install-m142.md); these historical results do not qualify new media.
 
 ## Install in eight steps
 

@@ -1,6 +1,6 @@
 # Windows apps: what works now and what M14 adds
 
-**Current download: M13.13. M14.0 is investigation, not a new Windows-compatible ISO.** Existing native Windows support covers one pinned original 7-Zip x64 console/MSI profile. The original GUI File Manager, Notepad++ and SumatraPDF are M14 targets; this research does not claim they currently install or run.
+**Historical M14.0 research record:** its qualified download was M13.13; the research did not provide a new ISO. For current native behavior use the [M14.2 Windows guide](windows-m142.md). Existing native Windows support covers one pinned original 7-Zip x64 console/MSI profile. The original GUI File Manager, Notepad++ and SumatraPDF are M14 targets; this research does not claim they currently install or run.
 
 ## The intended normal experience
 

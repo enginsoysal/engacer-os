@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "stage": "M14.2",
+  "source_commit": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
+  "scope": "Actual isolated-browser search-to-distribution-guide readback, not custom-ISO qualification",
+  "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-distributions",
+  "checks": [
+    "Same-page documentation search finds Build your own distribution without enabling the archive",
+    "The rendered article leads with Current M14 desktop edition and the M14.2 qualified native base",
+    "The copyable recipe clones m142-v0.14.2 and places owned build scratch outside OneDrive",
+    "The existing M14 builder entry point and schema-3 app ownership limits remain explicit",
+    "Current installation/Windows/first-day links target M14.2",
+    "M11/M10 recipes remain explicitly historical; custom media require independent qualification"
+  ],
+  "known_platform_limits": [
+    "The native 404 recovery menu retains an explicit Search-page fallback; the main homepage/articles use same-page search."
+  ]
+}

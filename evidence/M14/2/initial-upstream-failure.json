@@ -1,0 +1,54 @@
+{
+  "passed": false,
+  "stage": "M14.2",
+  "current_native_stage": "M14.2",
+  "source_commit": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
+  "native_editor_save": "Saved automatically ✓",
+  "recovery_editor_save": "Saved ✓",
+  "production_search": false,
+  "task_sidebar": false,
+  "ordered_task_navigation": false,
+  "current_guide": false,
+  "matching_download": false,
+  "mobile_menu": false,
+  "desktop": {
+    "viewport": 1280,
+    "document": 1280,
+    "images": [
+      {
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/2/feature.png",
+        "loaded": true
+      }
+    ]
+  },
+  "reports": [
+    {
+      "width": 1280,
+      "passed": true,
+      "search_opener_contrast": 16.96572538438515,
+      "checks": [
+        "same-page search",
+        "current guides",
+        "archive opt-in",
+        "no-results/clear",
+        "focus trap/Escape/opener",
+        "Ctrl+K/arrow/Enter navigation",
+        "task next article",
+        "heading anchor",
+        "correct hydrated share domain",
+        "mobile menu and browse disclosure where applicable"
+      ],
+      "layout": {
+        "viewport": 1280,
+        "document": 1280,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/2/feature.png",
+            "loaded": true
+          }
+        ]
+      },
+      "page_errors": []
+    }
+  ]
+}

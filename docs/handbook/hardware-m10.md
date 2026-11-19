@@ -1,6 +1,6 @@
 # Devices and USB files in Engacer OS M10 (historical)
 
-For current media and single-click selection, use the [M11.6 USB tutorial](install-m116.md#use-a-usb-drive).
+This is the historical M10 hardware guide. For current media use the [M14.2 installation guide](install-m142.md); retained USB navigation is explained in the [Files guide](files-m137.md). The older [M11.6 USB tutorial](install-m116.md#use-a-usb-drive) remains specific to that release.
 
 M10 is qualified within M10-DEVICES-VM-v1. Use a fresh disposable VM and the
 [official release](../releases/m10-v0.10.0.md). Historical Engine OS releases

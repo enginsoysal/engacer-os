@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "source_commit": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
+  "scope": "First complete public closure attempt",
+  "failure": "Two copied M14.2 manual links incorrectly renamed the retained M14.1 loader contract and kept an old release minor version. Full closure refused the broken Git object targets.",
+  "correction": "Fix the actual Markdown targets, publish the current architecture/storage/history corrections, then repeat native Save and complete same-source site/link qualification. Native ISO and accepted tests remain unchanged."
+}

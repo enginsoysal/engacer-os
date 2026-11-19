@@ -1,6 +1,6 @@
 # Install Engacer OS M11.4 in VMware (historical)
 
-Historical stage guide. For current final media use [M11.6 installation](install-m116.md).
+Historical M11 stage guide. For current media use [M14.2 installation](install-m142.md). [M11.6 installation](install-m116.md) remains the final guide for that older series.
 
 M11.4 is the windows/appearance stage delivery, qualified within
 M11-STAGE4-VM-v1. Use its exact new starter and matching ISO. Full M11 regression
