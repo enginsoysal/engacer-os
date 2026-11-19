@@ -1,0 +1,13 @@
+{
+  "scope": "Progress navigation refresh only; not final M14.2 website qualification",
+  "source_commit": "ab4a83e33f706dfb1e4b4fb39d011607cc2d67d6",
+  "checked_at": "2026-11-19T15:49:41.738Z",
+  "home": "Saved automatically ✓",
+  "current_download": "M14.1",
+  "development_stage": "M14.2",
+  "distribution_heading_visible": true,
+  "article_sidebar_m142_link_visible": true,
+  "recovery": "Saved automatically ✓",
+  "same_page_distribution_search_passed": true,
+  "recovery_search": "Existing /search fallback preserved; same-page panel not rendered by the platform 404 view"
+}

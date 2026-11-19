@@ -64,5 +64,7 @@ void pe8_thread_attach(void);
 void pe8_thread_detach(void);
 NORETURN void pe8_exit(unsigned);
 void pe8_run(const char*,const char*);
+unsigned pe8_exception_dispatch(w8_exception_record142*,w8_context142*);
+int seh_c_specific142(w8_exception_record142*,uint64_t,w8_context142*,void*);
 void msi8_execute(void);
 #endif

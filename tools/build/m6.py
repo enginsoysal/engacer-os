@@ -166,6 +166,8 @@ def build(revision="standard",profile_path=None,desktop=False,disk_manager=False
     if m14:
         live.update(qualification_scope='M14-'+revision.upper()+'-VM-v1',release_version=profile['version'])
         live['limits'][0]='M14 loader stage candidate; exact native qualification required. General Windows GUI and modern browser execution remain unavailable.'
+        if profile.get('version')=='0.14.2':
+            live['limits'][2]='M14.2 development: up to four private Windows address spaces and sixteen threads each, concurrent on one assigned worker CPU; exact native qualification required'
     live['artifacts']={p.name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for p in [ROOT/'dist'/(stem+'-'+name+suffix) for suffix in ('.iso','-usb.img','-kernel.elf','-kernel.map','-user.elf')] if p.is_file()}
     if desktop:
         for suffix,source in [('.elf',installed/'KERNEL.ELF'),('.map',installed/'kernel.map')]:

@@ -1,6 +1,6 @@
 # M14.2 - Native x64 exception dispatch design
 
-Status: vectored hardware-fault continuation has scoped native development proof. Structured exception dispatch, x64 metadata unwinding and full M14.2 release qualification remain incomplete. Existing child-process proofs remain separate.
+Status: vectored hardware-fault continuation has scoped native development proof. A first compiler-generated C structured-handler/finally profile also has native development proof below. Broader unwind coverage and full M14.2 release qualification remain incomplete. Existing child-process proofs remain separate.
 
 ## Capture and continuation boundary
 
@@ -33,3 +33,11 @@ Candidate `d5bf58b38587bffa8e78e90a72e11593` implements process-local exception/
 [Native vectored continuation proof](../../evidence/M14/2/development/vectored-faults-native-v8.json) exercises 24 actual access violations and 24 illegal instructions per execution, handler order, access-direction/address/register fields, changed continuation RIP, continue callbacks and 128 registration-reuse cycles. Twenty repeated process closes retain zero managed pages. This is actual CPL3 execution, not a host parser check. [Compact installation and independent starts](../../evidence/M14/2/development/compact-startup-v8.json) and [the original 7-Zip lifecycle](../../evidence/M14/2/development/original-apps-native-v8.json) also pass on this candidate.
 
 No Windows structured language handler, C++ personality, RaiseException bridge, dynamic unwind table or x64 stack-unwind compatibility is inferred from these tests. The existing structured-unwind guard remains explicit until implemented. [Native invalid-context checks](../../evidence/M14/2/development/invalid-exception-context-native-v8.json) reject a privileged continuation RIP and unsupported MXCSR bits with status `0xc0000028`, preserve a responsive desktop and retain zero pages on the second run after four one-time transition pages. Full nested-handler, secondary-thread fault and original unhandled-fault regressions remain separate required checks.
+
+## Compiler-generated C structured dispatch development
+
+Candidate `6a21b5cac2e7d5fef97aa466e2a67c32` adds checked ordered PE runtime-function tables, version-1 unwind operations, bounded virtual frame walks, C scope filters and finally funclets. Handler calls use the Microsoft ABI. Search preserves the actual interrupted context; a selected C scope restores the target frame and runs termination handlers for frames it leaves. Unsupported metadata and dispositions remain explicit refusals. This does not implement C++ exception personalities or the RaiseException bridge.
+
+[Native C exception/finally proof](../../evidence/M14/2/development/c-seh-unwind-native-v9.json) runs twelve real fault-to-catch traversals with finally cleanup per execution, then twenty process closes with zero retained managed pages. [Child-process regression](../../evidence/M14/2/development/processes-native-v9.json) and [compact installation/startup](../../evidence/M14/2/development/compact-startup-v9.json) pass on the same compiled source. The first fixture omitted unwind tables for a helper that actually pushes a local value. Its [honest failed attempt and diagnosis](../../evidence/M14/2/development/unwind-fixture-metadata-failure-v9.json) are preserved; explicit compiler unwind-table generation fixes the fixture rather than weakening the runtime.
+
+This is a scoped development pass. Before release, resolve zero-code metadata access, distinguish E-handler search from U-handler cleanup eligibility, complete epilog/chained metadata cases, test real filter callbacks and nested/secondary-thread exceptions, and repeat the full frozen-media regression. Make exception-stack resident pages demand-backed as well as thread-lazy. Do not infer these pending cases from the constant-filter/finally fixture.

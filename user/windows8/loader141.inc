@@ -84,6 +84,8 @@ static uint64_t load141(const char*path,unsigned external){
  close8(file);print8("Mapped original image: ");print8(name);print8(" bytes=");number8(size);print8(" source-fnv32=");number8(fingerprint);print8("\n");
  uint64_t delta=address-u64(optional+24);uint32_t reloc=u32(optional+152),reloc_size=u32(optional+156);
  if(delta){if(!reloc||!reloc_size)fail8("The Windows image has no usable relocation directory.");rva141(m,reloc,reloc_size);uint64_t off=0;while(off<reloc_size){uint8_t*b=rva141(m,(uint64_t)reloc+off,8);uint32_t page=u32(b),bytes=u32(b+4);if(bytes<8||(bytes&1)||bytes>reloc_size-off)fail8("The Windows relocation block is invalid.");b=rva141(m,(uint64_t)reloc+off,bytes);for(unsigned j=8;j<bytes;j+=2){unsigned item=u16(b+j),type=item>>12;if(!type)continue;if(type!=10)fail8("The Windows relocation type is unsupported.");uint64_t*p=rva141(m,(uint64_t)page+(item&4095),8);*p+=delta;}off+=bytes;}}
+ m->unwind_rva=u32(optional+136);m->unwind_bytes=u32(optional+140);if(m->unwind_bytes%12||m->unwind_bytes/12>262144)fail8("The Windows exception directory exceeds the supported table layout.");
+ uint32_t unwind_end142=0;for(unsigned at=0;at<m->unwind_bytes;at+=12){uint8_t*function=rva141(m,(uint64_t)m->unwind_rva+at,12);uint32_t begin=u32(function),end=u32(function+4),data=u32(function+8);if(begin<unwind_end142||begin>=end||end>m->size||(data&3)||!range141(data,4,m->size))fail8("The Windows runtime-function table is not ordered or contains invalid ranges.");unwind_end142=end;}
  m->exports=u32(optional+112);m->export_size=u32(optional+116);if(m->exports)rva141(m,m->exports,m->export_size);else if(m->export_size)fail8("The Windows export directory has no address.");
  int old=parent141;parent141=(int)index;unsigned direct=imports141(m,u32(optional+120),u32(optional+124),0,!inspect141),delayed=imports141(m,u32(optional+216),u32(optional+220),1,0);parent141=old;
  if(!inspect141)tls_prepare142(m,index,u32(optional+184),u32(optional+188));
@@ -115,3 +117,5 @@ int pe8_release(uint64_t base){lock_enter142(&loader_lock142);int result=pe8_rel
 
 void*pe8_import(const char*dll,const char*name,unsigned ordinal){lock_enter142(&loader_lock142);void*result=pe8_import_impl142(dll,name,ordinal);lock_leave142(&loader_lock142);return result;}
 void*pe8_symbol(uint64_t base,const char*name,unsigned ordinal){lock_enter142(&loader_lock142);void*result=pe8_symbol_impl142(base,name,ordinal);lock_leave142(&loader_lock142);return result;}
+
+#include "unwind142.inc"
