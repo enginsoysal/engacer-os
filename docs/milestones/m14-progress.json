@@ -25,7 +25,9 @@
       "deliver": "Extend checked PE32+ mapping, relocations, imports/forwarders/delay imports, module lifetime and dependencies.",
       "how_and_why": "Replace the current fixed eight-module/eight-MiB assumptions with explicit tested per-process quotas and demand-backed mappings, not unbounded allocations.",
       "acceptance": "Original selected binaries load correctly with access violations, invalid images and missing required functions refused clearly; no GUI compatibility claim from loading alone.",
-      "status": "in_progress"
+      "status": "native_qualified_publication_pending",
+      "evidence": "evidence/M14/1",
+      "qualification": "M14-STAGE1-VM-v1"
     },
     {
       "id": "M14.2",

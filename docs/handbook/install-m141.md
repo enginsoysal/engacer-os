@@ -1,6 +1,6 @@
 # Install the M14.1 development candidate in VMware
 
-Status: candidate qualification is in progress. The published native download remains M13.13 until the M14.1 release and website gates close.
+Status: native qualification passes. The published native download remains M13.13 until the M14.1 release and website gates close.
 
 ## Before starting
 

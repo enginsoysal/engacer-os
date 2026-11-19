@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "stage": "M14.1",
+  "build_id": "23b939c5a022246412fcac648f5f4453",
+  "desktop_fixed": {
+    "bytes": 557516,
+    "sections": {
+      "bss": 557488,
+      "data": 28
+    },
+    "map_sha256": "38f6fda1aff2d8e7bb7ef86886f32d40899c486739d198086e717b0e302fb5ec"
+  },
+  "font_coverage_bytes": 251248,
+  "protected_worker_physical_page_quota": 10000,
+  "protected_worker_virtual_page_quota": 32768,
+  "module_quota": 32,
+  "image_limit_bytes": 33554432,
+  "one_time_transition_stack_bytes": 16384,
+  "probe_peak_owned_pages": 134,
+  "probe_retained_pages": 0,
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116005,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17698,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247075,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "limits": [
+    "Synthetic loader probes are not original GUI app performance",
+    "Observer wall times and quanta are not measured Windows CPU time",
+    "M14.15 remains the whole-system performance and optimization gate"
+  ]
+}

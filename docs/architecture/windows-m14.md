@@ -6,11 +6,13 @@ Extend the existing direct AMD64 PE execution in a private native CPL3 address s
 
 Separate loader, Win64 process/thread/exception model, file/registry/environment, USER/GDI/control/dialog and installation services. Stable internal interfaces must support later x86 and Win16 adapters without assuming identical pointer widths or semantics. App resources belong to processes/windows/generations; cancellation or faults cannot publish stale work into another owner. Compatibility services load lazily and are independently bounded. Standard apps remain optional.
 
-## Measured current gaps
+## Research baseline and remaining gaps
 
-The current loader admits at most eight modules and eight MiB per loaded file/image; actual Notepad++ SizeOfImage is 8,613,888 bytes and SumatraPDF is 20,840,448 bytes. M14.1 must implement checked demand-backed mapping and explicit per-process quotas instead of removing checks. Current selected import resolution does not supply real GUI message/controls, full Windows threads/static TLS/unwinding, general COM or a reusable MSI engine. Registry and security operations have scoped/refusal semantics. A matching function name is not correctness proof.
+The M14.0 baseline loader admitted at most eight modules and eight MiB per loaded file/image; actual Notepad++ SizeOfImage is 8,613,888 bytes and SumatraPDF is 20,840,448 bytes. M14.1 must implement checked demand-backed mapping and explicit per-process quotas instead of removing checks. Current selected import resolution does not supply real GUI message/controls, full Windows threads/static TLS/unwinding, general COM or a reusable MSI engine. Registry and security operations have scoped/refusal semantics. A matching function name is not correctness proof.
 
 Notepad++'s x64-labelled EXE bootstrap is x86. Its original x64 MSI has x64 template metadata and an independently inspected x64 WiX DLL stream, but also required command strings invoking xcopy.exe/cmd.exe. Those operations need genuine compatible behavior in M14.7; skipping the actions or substituting a hand-copied install is not acceptance. 7-Zip carries optional x86 extension/SFX files: preserve payload presence while distinguishing unsupported execution. Static inspection cannot prove the complete dynamic dependency closure.
+
+M14.1 now qualifies checked 32-MiB image/file mapping, 32 reusable module slots and bounded demand-backed image memory. Original Notepad++/Sumatra inspection does not execute their GUI or establish their complete runtime dependencies. See the [M14.1 loader contract](loader-m141.md) and [native evidence](../../evidence/M14/1/acceptance-results.json). Static TLS, normal process-detach callbacks and broader process/thread/exception semantics remain M14.2.
 
 ## Reproducible resource protocol
 

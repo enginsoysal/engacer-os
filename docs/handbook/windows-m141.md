@@ -1,6 +1,6 @@
 # Windows files and browser downloads in M14.1
 
-Status: candidate under qualification. Do not treat this guide as an accepted release announcement yet.
+Status: native qualification passes; release/website publication is pending. Read the matching release scope before testing.
 
 ## Use the included Windows app
 

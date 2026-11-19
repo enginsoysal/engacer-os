@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "stage": "M14.1",
+  "qualification": "M14-STAGE1-VM-v1",
+  "build_id": "23b939c5a022246412fcac648f5f4453",
+  "iso_sha256": "c812a14655798ba606767ae477370c26015745184e30f4271fb5817fa4a97b39",
+  "vmware_zip_sha256": "7a7c0e1c9a5e60d877af84423393036adae1c77dea10e5a0f652267ce780b749",
+  "compiled_source_inputs": 615,
+  "native_groups": [
+    "ordinary",
+    "compact",
+    "4k",
+    "inspection",
+    "apps",
+    "probes",
+    "browser-download",
+    "vmware-results"
+  ],
+  "host_groups": [
+    "http-host",
+    "download-stream"
+  ],
+  "original_payload_count": 106,
+  "limits": [
+    "Original selected Notepad++/Sumatra images are mapped and inspected only; no app code is executed in inspection",
+    "The included original 7-Zip console/MSI profile remains distinct from general Windows GUI or reusable MSI compatibility",
+    "Firefox is a verified optional installer download; Firefox installation/execution are unavailable",
+    "Static TLS, processes/threads/exceptions and normal process-detach semantics remain later runtime work",
+    "Named virtual profiles only; no universal physical hardware or GPU gaming qualification",
+    "No new long-duration stability soak or faster-than-Windows claim"
+  ],
+  "harness_sha256": {
+    "tests/m14/apps_native1.py": "7d3c1f16be12ec0536d60aa548495e33095137b7c19c8d216c69a0322241b44d",
+    "tests/m14/browser_download1.py": "c2cd7c9a61ef2018e05d0e8644ecd8c62bb2a093c6b995e931e025ae4aca2194",
+    "tests/m14/build_fixtures1.py": "45e6132dea71845d7a2657906e9befb9f91bbd5617ea4257529d70487f6d3c3e",
+    "tests/m14/close0.py": "87d37ea12c77b5a7c23081dfd969ba4950a77a6c89b98bf69a54e305353f081d",
+    "tests/m14/corpus0.py": "135a7513ac3c3ff020b18130816eab76e2bb974017f13a92b5750e2de460a765",
+    "tests/m14/download_stream1.py": "a5f8bbfa38b4c8c863b33c55b36910cc47b42eb6e53910dc81e87d0a76f9c0e4",
+    "tests/m14/fault1.c": "b7d387a7198ab16a6f468bf8f40641629b34777a8ee81a5e886d5b594ac8a523",
+    "tests/m14/fixture1.py": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+    "tests/m14/forward1.c": "637183bd14a4a73d297e9fbb0546337481577bc69f4467a0e94dc26293ae44fe",
+    "tests/m14/http1.py": "ef26c4e2532142be695fb3fba58b9cdc392586d2428bae56772a566d4d7182ba",
+    "tests/m14/inspect_native1.py": "948db7c202dacc365256a5abcf1a5611319edbc92e8a9a8ce32387d27c88ee7b",
+    "tests/m14/leaf1.c": "29c50da15076a5fe13b2b775a7927474ffbd0657cecb62c7eb928843e13b32d9",
+    "tests/m14/native1.py": "54efc02666362dab6a763c415fc2ba8175a823560fb7fd740792632beb6db366",
+    "tests/m14/probe1.c": "6f4a1eefa1725ccb5d3ee45ab61ff10bf293d96129b6d603616bbf7b0eb81574",
+    "tests/m14/probe_native1.py": "5f5e42a2cbd125702e8578093305bf67100f950b01e521a43edd43681a8097e4",
+    "tests/m14/public_site0.mjs": "ea11ac3b2b8cb3ad2c8dcec104fbd101adec5cb796a869b1b44e7b4d943b33e4",
+    "tests/m14/public_site1.mjs": "7ff70881c9a60ebc93ee4a20c5c21e03e28d72c56b1609761438439c1472802b",
+    "tests/m14/research0.py": "703e1235d5b2f0b42fce1b9e0a2105bb05d103bbc2f2bee792f4f52c838a0d1d",
+    "tests/m14/verify1.py": "2fc69b0334d0a50d6dd5c41a75d980b6607e67e266a6ad655a098a355c4b1c88",
+    "tests/m14/vmware1.py": "437ccc72ba37ed40ba0a718a19da700c7df9ee94001475d3bd3eb3b92789b2c6"
+  }
+}

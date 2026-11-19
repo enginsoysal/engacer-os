@@ -1,6 +1,6 @@
 # M14.1 loader design and qualification
 
-Status: implementation and native qualification in progress. No M14.1 release is accepted yet. M13.13 remains the published native download.
+Status: native M14-STAGE1-VM-v1 qualification passes. GitHub release and actual website publication close separately; M13.13 remains the published native download until those gates close.
 
 ## Mapping and resource ownership
 
@@ -30,6 +30,6 @@ The pinned choice is Firefox 160.0.1, 95,924,224 bytes, SHA-256 `6dc28633cbd77cb
 
 Sources: [Mozilla release metadata](https://product-details.mozilla.org/1.0/firefox_versions.json), [Mozilla SHA-256 list](https://archive.mozilla.org/pub/firefox/releases/160.0.1/SHA256SUMS), [full offline installer guidance](https://support.mozilla.org/en-US/kb/custom-installation-firefox-on-windows).
 
-## Gates still required
+## Qualification and remaining publication gates
 
-Original selected-image mapping, original 7-Zip lifecycle, dependency/forwarder/delay/lifetime fixtures, invalid-image and memory-access refusals, cancellation and repeated resource measurements must pass on frozen candidate bytes. The browser's actual streamed download, cancellation and independent stored hash require separate tests. Installation and independent startup must also pass on the exact VMware package. English user docs, GitHub release and the actual public website close the stage only after those gates pass. Host parser results and a working download button alone are insufficient.
+The exact candidate passes original-image inspection, original 7-Zip lifecycle, real DLL forwarding/delay/reference/reuse fixtures, actual protection faults, repeated retention checks, native Firefox download/cancellation and independent stored hashes. Ordinary/compact/physical-4K installation and independent starts pass; the exact VMware package is also qualified. See [acceptance](../../evidence/M14/1/acceptance-results.json), [resources](../../evidence/M14/1/resources.json) and the [stage record](../milestones/m14-1.md). GitHub release and actual complete website publication remain separate closing gates. Normal process-detach callbacks and static TLS remain M14.2; this stage does not provide general Windows GUI, reusable MSI or Firefox execution.

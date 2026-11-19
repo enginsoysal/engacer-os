@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "stage": "M14.1",
+  "build_id": "23b939c5a022246412fcac648f5f4453",
+  "scope": "Agent visual review of actual native framebuffer captures, separate from a human usability study",
+  "reviewed": [
+    {
+      "capture": "apps/browser-choices.png",
+      "sha256": "cb1b8e5a32f5167b4fa59990cee1bec2d1cec3af8d6ecc6a78385939ff7879f3",
+      "physical": [
+        1920,
+        1080
+      ],
+      "checks": [
+        "Readable installer-only limitation before the Firefox action",
+        "Browser choice and Back controls are visible and separated",
+        "No observed essential text overlap or clipped controls"
+      ]
+    },
+    {
+      "capture": "4k/desktop.png",
+      "sha256": "bf7d6f4d8ab4498b81e127ea1f7983812bbb90380556f7d5401699041bab7fd5",
+      "physical": [
+        3840,
+        2160
+      ],
+      "checks": [
+        "Actual 200-percent Files/desktop fonts are readable and use the locked physical raster masks",
+        "Navigation, folder rows, sidebar, title bar and taskbar remain separated",
+        "No observed essential text overlap or clipped controls"
+      ]
+    }
+  ],
+  "limits": [
+    "This is agent review, not a novice participant study",
+    "General original Windows GUI visual qualification remains later M14 work"
+  ]
+}
