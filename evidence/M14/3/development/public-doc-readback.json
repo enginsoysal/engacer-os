@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "scope": "Targeted live documentation readback; not complete M14.3 publication qualification",
+  "source_commit": "4a379e5755bcd25d837475fef0b6c706aa12b8cd",
+  "workflow": 44586372621,
+  "workflow_conclusion": "success",
+  "observed_utc": "2026-11-19T18:20:29.880Z",
+  "articles": [
+    {
+      "slug": "docs-readme",
+      "passed": true,
+      "source": "4a379e5755bcd25d837475fef0b6c706aa12b8cd"
+    },
+    {
+      "slug": "docs-handbook-index",
+      "passed": true,
+      "source": "4a379e5755bcd25d837475fef0b6c706aa12b8cd"
+    },
+    {
+      "slug": "docs-architecture-files-m143",
+      "passed": true,
+      "source": "4a379e5755bcd25d837475fef0b6c706aa12b8cd"
+    }
+  ],
+  "windows_guide": {
+    "slug": "docs-handbook-windows-m142",
+    "correct_gate": true,
+    "source_commit": "4a379e5755bcd25d837475fef0b6c706aa12b8cd"
+  },
+  "distribution": {
+    "slug": "docs-handbook-distributions",
+    "current_qualified_base": "M14.2",
+    "historical_m11_separate": true,
+    "pinned_source": "5a7f67d60c27b51495167c91b7b73e200383a5aa"
+  }
+}
