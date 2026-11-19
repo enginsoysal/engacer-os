@@ -1,5 +1,7 @@
 # Engacer OS
 
+**M14.2 is in development:** real Windows thread/process lifetime, TLS, waits and exceptions. The public download below remains M14.1 until M14.2 passes its complete native and publication gates. [Stage record](docs/milestones/m14-2.md).
+
 **Current native download: [Engacer OS M14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1).** The Win64 loader stage passes exact-source native and VMware qualification. [Install](docs/handbook/install-m141.md), [Windows files and browser downloads](docs/handbook/windows-m141.md), [release scope](docs/releases/m141-v0.14.1.md). Original Notepad++/Sumatra images can be mapped and inspected; their GUI is not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Complete actual website verification passes: 529 pages, 342 exact-source articles and 3,772 links; zero known broken targets and 13 explicitly unverified external references. [Publication receipt](evidence/M14/1/publication-results.json). M14.15 remains the mandatory whole-system optimization gate.
 
 **M13.0-M13.13 complete within the recorded and owner-revised scopes.** The owner accepted ninety minutes; actual observation reached 108.78 minutes. The original eight-hour/two-hour gates were stopped and did not pass. This is development media with named virtual scope, not universal stability or unlimited uptime.

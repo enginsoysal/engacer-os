@@ -13,6 +13,12 @@
 
 ## Product requirements
 
+- Owner clarification, 19 November 2026: Windows application code must execute natively through Engacer OS compatibility APIs with aggressive bounded resource use. Do not introduce a Windows guest VM, nested virtualization or bundled second OS as the compatibility implementation. VMware is the external test host only. Linux compatibility remains deferred.
+
+- Superseding continuation, 19 November 2026: proceed through M14.2-M14.15 and then M15 in order without stopping for a new authorization between stages. Complete tests, English documentation, GitHub and actual website updates after every milestone before starting the next. M15 covers 32-bit Windows applications; it does not waive any M14 acceptance or efficiency gate.
+
+- Owner continuation, 19 November 2026: complete M14.2, test it natively, update all English docs, GitHub and the actual website, and deliver matching VMware ISO/starter media. Preserve accepted M14.1. Never promote the development thread foundation as complete process/TLS/exception compatibility.
+
 - Owner continuation, 19 November 2026: complete and test M14.1 next, including a browser download choice. Firefox is the first target; Chrome, Brave and Edge are candidates. Clearly separate downloading, installation and actual runtime compatibility. Close English docs, GitHub and the actual website before M14.2.
 
 - Latest owner priority, 19 November 2026: record M14.0-M14.15 and complete M14.0 now. M14 is original Windows x64 installation/use/removal, M15 x86, M16 Win16/DOS. Whole-OS CPU/RAM/HDD-SSD efficiency is a core requirement throughout; M14.14 is a release candidate, M14.15 optimization blocks final release. Every stage closes its tests, English docs, GitHub and complete actual website before the next. M14.0 is static research and task/performance baseline design, not new native GUI compatibility or a new ISO. Preserve M13.13 and all prior accepted evidence. This supersedes the previously proposed next hardware priority.

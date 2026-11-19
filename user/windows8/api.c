@@ -10,8 +10,9 @@ static crt_file8 iob8[3];
 static uint64_t process_started8;
 typedef struct {uint64_t base,size;unsigned live;} virtual8;
 static virtual8 virtual_blocks8[128];static uint64_t next_virtual8=UINT64_C(0x128000000);
-static uint64_t tls_values8[64],tls_used8;
-static void last8(unsigned e){error8=e;*(volatile uint32_t*)(uintptr_t)(W8_TEB+0x68)=e;}
+static uint64_t tls_values8[16][64],tls_used8;
+static lock142 tls_lock142;
+static void last8(unsigned e){error8=e;*(volatile uint32_t*)(uintptr_t)(teb142()+0x68)=e;}
 static unsigned lower8(unsigned c){return c>='A'&&c<='Z'?c+32:c;}
 static void widecopy8(WCHAR*out,const WCHAR*in,unsigned cap){unsigned n=0;while(n+1<cap&&in&&in[n]){out[n]=in[n];++n;}if(cap)out[n]=0;}
 static void winpath8(const char*native,char*out,unsigned cap){
@@ -31,9 +32,9 @@ static int nativepath8(const WCHAR*wide,char*out){
  char clean[256];unsigned used=0,start=0;for(unsigned i=0;;++i){if(out[i]&&out[i]!='/')continue;unsigned count=i-start;if(count==1&&out[start]=='.'){}else if(count==2&&out[start]=='.'&&out[start+1]=='.'){if(!used)return 0;while(used&&clean[used-1]!='/')--used;if(used)--used;}else if(count){if(used+count+1>=256)return 0;clean[used++]='/';memcpy(clean+used,out+start,count);used+=count;}if(!out[i])break;start=i+1;}clean[used]=0;copy8(out,clean,256);return 1;
 }
 static void callbacks8(void){while(exit_count8){uint64_t callback=exit_callbacks8[--exit_count8];if(callback)((void(MS*)(void))(uintptr_t)callback)();}}
-static NORETURN void MS f_exit(unsigned code){callbacks8();exit8(code);}
-static NORETURN void MS f__exit(unsigned code){exit8(code);}
-static NORETURN void MS f_ExitProcess(unsigned code){exit8(code);}
+static NORETURN void MS f_exit(unsigned code){callbacks8();pe8_exit(code);}
+static NORETURN void MS f__exit(unsigned code){pe8_exit(code);}
+static NORETURN void MS f_ExitProcess(unsigned code){pe8_exit(code);}
 static void MS f__cexit(void){callbacks8();}
 static void MS f__c_exit(void){exit_count8=0;}
 static uint64_t MS f__onexit(uint64_t fn){if(exit_count8==64)return 0;exit_callbacks8[exit_count8++]=fn;return fn;}
@@ -63,10 +64,10 @@ static int MS f__isatty(int fd){return fd>=0&&fd<3;}
 static int64_t MS f__get_osfhandle(int fd){return fd>=0&&fd<3?fd+1:-1;}
 static WCHAR *MS f_GetCommandLineW(void){return command8;}
 static char *MS f_GetCommandLineA(void){return command_utf8;}
-static uint32_t MS f_GetLastError(void){return *(volatile uint32_t*)(uintptr_t)(W8_TEB+0x68);}
+static uint32_t MS f_GetLastError(void){return *(volatile uint32_t*)(uintptr_t)(teb142()+0x68);}
 static void MS f_SetLastError(uint32_t error){last8(error);}
 static uint32_t MS f_GetCurrentProcessId(void){return 8;}
-static uint32_t MS f_GetCurrentThreadId(void){return 1;}
+static uint32_t MS f_GetCurrentThreadId(void){return tid142();}
 static HANDLE MS f_GetCurrentProcess(void){return UINT64_MAX;}
 static HANDLE MS f_GetCurrentThread(void){return UINT64_MAX-1;}
 static HANDLE MS f_GetStdHandle(int32_t kind){return kind==-10?1:kind==-11?2:kind==-12?3:UINT64_MAX;}
@@ -88,10 +89,10 @@ static void *MS f_VirtualAlloc(void*requested,size_t size,unsigned flags,unsigne
  unsigned slot=0;while(slot<128&&virtual_blocks8[slot].live)++slot;if(slot==128||sys8(W8_SYS_MAP,base,bytes,protect==4?3:1,0,0)){last8(8);return 0;}virtual_blocks8[slot]=(virtual8){base,bytes,1};return (void*)(uintptr_t)base;
 }
 static int MS f_VirtualFree(void*p,size_t size,unsigned type){uint64_t base=(uint64_t)(uintptr_t)p;for(unsigned i=0;i<128;++i)if(virtual_blocks8[i].live&&virtual_blocks8[i].base==base){virtual8*v=virtual_blocks8+i;if(type!=0x8000||size){last8(87);return 0;}if(sys8(W8_SYS_UNMAP,v->base,v->size,0,0,0)){last8(487);return 0;}v->live=0;return 1;}last8(487);return 0;}
-static unsigned MS f_TlsAlloc(void){for(unsigned i=0;i<64;++i)if(!(tls_used8&(UINT64_C(1)<<i))){tls_used8|=UINT64_C(1)<<i;tls_values8[i]=0;return i;}last8(259);return UINT32_MAX;}
-static int MS f_TlsFree(unsigned i){if(i>=64||!(tls_used8&(UINT64_C(1)<<i))){last8(87);return 0;}tls_used8&=~(UINT64_C(1)<<i);tls_values8[i]=0;return 1;}
-static uint64_t MS f_TlsGetValue(unsigned i){if(i>=64||!(tls_used8&(UINT64_C(1)<<i))){last8(87);return 0;}last8(0);return tls_values8[i];}
-static int MS f_TlsSetValue(unsigned i,uint64_t value){if(i>=64||!(tls_used8&(UINT64_C(1)<<i))){last8(87);return 0;}tls_values8[i]=value;return 1;}
+static unsigned MS f_TlsAlloc(void){lock_enter142(&tls_lock142);for(unsigned i=0;i<64;++i)if(!(tls_used8&(UINT64_C(1)<<i))){tls_used8|=UINT64_C(1)<<i;for(unsigned t=0;t<16;++t)tls_values8[t][i]=0;lock_leave142(&tls_lock142);return i;}lock_leave142(&tls_lock142);last8(259);return UINT32_MAX;}
+static int MS f_TlsFree(unsigned i){lock_enter142(&tls_lock142);int valid=i<64&&(tls_used8&(UINT64_C(1)<<i));if(valid){tls_used8&=~(UINT64_C(1)<<i);for(unsigned t=0;t<16;++t)tls_values8[t][i]=0;}lock_leave142(&tls_lock142);if(!valid)last8(87);return valid;}
+static uint64_t MS f_TlsGetValue(unsigned i){lock_enter142(&tls_lock142);int valid=i<64&&(tls_used8&(UINT64_C(1)<<i));uint64_t value=valid?tls_values8[tid142()&255][i]:0;lock_leave142(&tls_lock142);last8(valid?0:87);return value;}
+static int MS f_TlsSetValue(unsigned i,uint64_t value){lock_enter142(&tls_lock142);int valid=i<64&&(tls_used8&(UINT64_C(1)<<i));if(valid)tls_values8[tid142()&255][i]=value;lock_leave142(&tls_lock142);if(!valid)last8(87);return valid;}
 static int MS f_IsProcessorFeaturePresent(unsigned feature){uint32_t a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));if(feature==6)return !!(d&(1u<<25));if(feature==10)return !!(d&(1u<<26));if(feature==13)return !!(d&(1u<<0));if(feature==17)return !!(c&(1u<<0));if(feature==23)return !!(c&(1u<<23));return 0;}
 static int MS f_SystemFunction036(void*out,unsigned bytes){uint32_t a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));if(!(c&(1u<<30)))return 0;uint8_t*p=out;while(bytes){uint64_t v=0;unsigned char ok=0;for(unsigned retry=0;retry<16&&!ok;++retry)__asm__ volatile("rdrand %0; setc %1":"=r"(v),"=qm"(ok));if(!ok)return 0;unsigned n=bytes>8?8:bytes;memcpy(p,&v,n);p+=n;bytes-=n;}return 1;}
 static void *MS f_SysAllocStringByteLen(const char*s,unsigned bytes){if(bytes>16*1024*1024)return 0;uint8_t*p=alloc8((size_t)bytes+6);if(!p)return 0;*(uint32_t*)p=bytes;if(s)memcpy(p+4,s,bytes);else memset(p+4,0,bytes);p[4+bytes]=p[5+bytes]=0;return p+4;}
@@ -163,25 +164,62 @@ typedef struct {uint64_t debug;int32_t lock,recursion;uint64_t owner,semaphore,s
 static void MS f_InitializeCriticalSection(critical8*c){memset(c,0,sizeof(*c));c->lock=-1;}
 static int MS f_InitializeCriticalSectionAndSpinCount(critical8*c,unsigned spin){f_InitializeCriticalSection(c);c->spin=spin;return 1;}
 static int MS f_InitializeCriticalSectionEx(critical8*c,unsigned spin,unsigned flags){if(flags&~0x1000000u){last8(87);return 0;}return f_InitializeCriticalSectionAndSpinCount(c,spin);}
-static void MS f_EnterCriticalSection(critical8*c){if(c->owner&&c->owner!=1)fail8("A Windows lock requires an unsupported second thread.");c->owner=1;++c->recursion;++c->lock;}
-static int MS f_TryEnterCriticalSection(critical8*c){if(c->owner&&c->owner!=1)return 0;f_EnterCriticalSection(c);return 1;}
-static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=1||c->recursion<=0)fail8("A Windows critical section was released without ownership.");--c->recursion;--c->lock;if(!c->recursion)c->owner=0;}
+static void MS f_EnterCriticalSection(critical8*c){uint64_t self=tid142();for(;;){uint64_t owner=__atomic_load_n(&c->owner,__ATOMIC_ACQUIRE);if(owner==self){++c->recursion;return;}if(!owner&&__atomic_compare_exchange_n(&c->owner,&owner,self,0,__ATOMIC_ACQUIRE,__ATOMIC_RELAXED)){c->recursion=1;c->lock=0;return;}if(owner)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&c->owner,owner,UINT32_MAX,0,0);}}
+static int MS f_TryEnterCriticalSection(critical8*c){uint64_t self=tid142(),owner=0;if(c->owner==self){++c->recursion;return 1;}if(!__atomic_compare_exchange_n(&c->owner,&owner,self,0,__ATOMIC_ACQUIRE,__ATOMIC_RELAXED))return 0;c->recursion=1;c->lock=0;return 1;}
+static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=tid142()||c->recursion<=0)fail8("A Windows critical section was released without ownership.");if(!--c->recursion){c->lock=-1;__atomic_store_n(&c->owner,0,__ATOMIC_RELEASE);sys8(W8_SYS_WAKE,(uint64_t)(uintptr_t)&c->owner,UINT32_MAX,0,0,0);}}
 static void MS f_DeleteCriticalSection(critical8*c){if(c->owner||c->recursion)fail8("A Windows process deleted an owned critical section.");memset(c,0,sizeof(*c));}
 typedef struct {unsigned live,kind,manual;int count,maximum;WCHAR name[96];} event8;
 static event8 events8[32];
+static lock142 event_lock142;
+static uint32_t event_sequence142;
+static void signal142(void){__atomic_add_fetch(&event_sequence142,1,__ATOMIC_RELEASE);sys8(W8_SYS_WAKE,(uint64_t)(uintptr_t)&event_sequence142,UINT32_MAX,0,0,0);}
 static HANDLE event_new8(unsigned kind,int count,int maximum,int manual,const WCHAR*name){unsigned id=0;while(id<32&&events8[id].live)++id;if(id==32){last8(8);return 0;}event8*e=events8+id;*e=(event8){1,kind,(unsigned)manual,count,maximum,{0}};widecopy8(e->name,name,96);return 0x3000+id;}
 static HANDLE MS f_CreateEventW(void*security,int manual,int initial,const WCHAR*name){(void)security;if(name&&wlen8(name)>95){last8(206);return 0;}for(unsigned i=0;name&&*name&&i<32;++i)if(events8[i].live&&!f_wcscmp(events8[i].name,name)){last8(183);return 0x3000+i;}last8(0);return event_new8(1,initial!=0,1,manual!=0,name);}
 static HANDLE MS f_CreateSemaphoreW(void*security,int initial,int maximum,const WCHAR*name){(void)security;if(initial<0||maximum<=0||initial>maximum){last8(87);return 0;}return event_new8(2,initial,maximum,0,name);}
-static int MS f_SetEvent(HANDLE h){if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=1){last8(6);return 0;}events8[h-0x3000].count=1;return 1;}
-static int MS f_ResetEvent(HANDLE h){if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=1){last8(6);return 0;}events8[h-0x3000].count=0;return 1;}
+static int MS f_SetEvent(HANDLE h){lock_enter142(&event_lock142);if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=1){lock_leave142(&event_lock142);last8(6);return 0;}events8[h-0x3000].count=1;signal142();lock_leave142(&event_lock142);return 1;}
+static int MS f_ResetEvent(HANDLE h){lock_enter142(&event_lock142);if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=1){lock_leave142(&event_lock142);last8(6);return 0;}events8[h-0x3000].count=0;lock_leave142(&event_lock142);return 1;}
 static int MS f_ReleaseSemaphore(HANDLE h,int count,int*previous){if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=2||count<=0){last8(6);return 0;}event8*e=events8+(h-0x3000);if(count>e->maximum-e->count){last8(298);return 0;}if(previous)*previous=e->count;e->count+=count;return 1;}
 static HANDLE MS f_OpenEventW(unsigned access,int inherit,const WCHAR*name){(void)access;(void)inherit;for(unsigned i=0;name&&i<32;++i)if(events8[i].live&&events8[i].kind==1&&!f_wcscmp(events8[i].name,name))return 0x3000+i;last8(2);return 0;}
-static unsigned MS f_WaitForSingleObject(HANDLE h,unsigned timeout){if(h<0x3000||h>=0x3020||!events8[h-0x3000].live){last8(6);return UINT32_MAX;}event8*e=events8+(h-0x3000);if(e->count){if(e->kind==2||!e->manual)--e->count;return 0;}if(!timeout)return 258;fail8("Blocking Windows waits and additional Windows threads are outside this runtime profile.");}
-static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,int all,unsigned timeout){if(!count||count>32||!handles){last8(87);return UINT32_MAX;}if(all){for(unsigned i=0;i<count;++i)if(handles[i]<0x3000||handles[i]>=0x3020||!events8[handles[i]-0x3000].live||!events8[handles[i]-0x3000].count){if(!timeout)return 258;fail8("A Windows wait requires unavailable concurrent-thread support.");}for(unsigned i=0;i<count;++i)(void)f_WaitForSingleObject(handles[i],0);return 0;}for(unsigned i=0;i<count;++i){unsigned status=f_WaitForSingleObject(handles[i],0);if(!status)return i;if(status==UINT32_MAX)return status;}if(!timeout)return 258;fail8("A Windows wait requires unavailable concurrent-thread support.");}
-static int MS f_CloseHandle(HANDLE h){if(h>=256&&h<288){if(close8((int)(h-256))){last8(29);return 0;}return 1;}if(h>=0x3000&&h<0x3020&&events8[h-0x3000].live){memset(events8+(h-0x3000),0,sizeof(event8));return 1;}last8(6);return 0;}
-static unsigned MS f_ResumeThread(HANDLE h){(void)h;last8(50);return UINT32_MAX;}
-static uint64_t MS f__beginthreadex(void*security,unsigned stack,uint64_t entry,void*arg,unsigned flags,unsigned*id){(void)security;(void)stack;(void)entry;(void)arg;(void)flags;if(id)*id=0;last8(50);return 0;}
-static void MS f_Sleep(unsigned timeout){if(timeout)fail8("Windows sleep/wait scheduling is not implemented in this single-thread profile.");sys8(W8_SYS_YIELD,0,0,0,0,0);}
+static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,int all,unsigned timeout){
+ if(!count||count>32||!handles){last8(87);return UINT32_MAX;}
+ HANDLE list[32];memcpy(list,handles,count*sizeof(HANDLE));
+ for(unsigned i=0;i<count;++i)for(unsigned j=0;j<i;++j)if(list[i]==list[j]){last8(87);return UINT32_MAX;}
+ uint64_t start=sys8(W8_SYS_TIME,0,0,0,0,0);
+ for(;;){lock_enter142(&event_lock142);unsigned ready=0,first=UINT32_MAX,invalid=0;
+  for(unsigned i=0;i<count;++i){HANDLE h=list[i];int signaled=0;
+   if((h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){int64_t state=(int64_t)sys8(W8_SYS_THREAD_STATUS,h,0,0,0,0);if(state<0)invalid=1;else signaled=state==0;}
+   else if(h>=0x3000&&h<0x3020&&events8[h-0x3000].live)signaled=events8[h-0x3000].count>0;
+   else invalid=1;
+   if(signaled){++ready;if(first==UINT32_MAX)first=i;}
+  }
+  if(invalid){lock_leave142(&event_lock142);last8(6);return UINT32_MAX;}
+  if((all&&ready==count)||(!all&&ready)){
+   for(unsigned i=0;i<count;++i)if(all||i==first){HANDLE h=list[i];if(h>=0x3000&&h<0x3020){event8*e=events8+(h-0x3000);if(e->kind==2||!e->manual)--e->count;}}
+   lock_leave142(&event_lock142);return all?0:first;
+  }
+  uint32_t sequence=__atomic_load_n(&event_sequence142,__ATOMIC_ACQUIRE);lock_leave142(&event_lock142);
+  uint64_t elapsed=sys8(W8_SYS_TIME,0,0,0,0,0)-start;
+  if(timeout!=UINT32_MAX&&elapsed>=timeout)return 258;
+  unsigned remaining=timeout==UINT32_MAX?UINT32_MAX:(unsigned)(timeout-elapsed);
+  if((int64_t)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&event_sequence142,sequence,remaining,0,0)<0){last8(87);return UINT32_MAX;}
+ }
+}
+static unsigned MS f_WaitForSingleObject(HANDLE h,unsigned timeout){return f_WaitForMultipleObjects(1,&h,0,timeout);}
+static int MS f_CloseHandle(HANDLE h){if((h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){if((int64_t)sys8(W8_SYS_THREAD_CLOSE,h,0,0,0,0)<0){last8(6);return 0;}return 1;}if(h>=256&&h<288){if(close8((int)(h-256))){last8(29);return 0;}return 1;}if(h>=0x3000&&h<0x3020&&events8[h-0x3000].live){memset(events8+(h-0x3000),0,sizeof(event8));return 1;}last8(6);return 0;}
+static unsigned MS f_ResumeThread(HANDLE h){int64_t result=(int64_t)sys8(W8_SYS_THREAD_RESUME,h,0,0,0,0);if(result<0)last8(6);return (unsigned)result;}
+static NORETURN void MS f_ExitThread(unsigned code){sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
+static void thread_entry142(uint64_t entry,void*arg){
+ unsigned row=tid142()&255;lock_enter142(&tls_lock142);memset(tls_values8[row],0,sizeof(tls_values8[row]));lock_leave142(&tls_lock142);
+ unsigned code=((unsigned(MS*)(void*))(uintptr_t)entry)(arg);f_ExitThread(code);
+}
+static HANDLE MS f_CreateThread(void*security,size_t stack,uint64_t entry,void*arg,unsigned flags,unsigned*id){
+ if(security||stack>0x100000||!entry||(flags&~4u)){last8(50);return 0;}
+ int64_t token=(int64_t)sys8(W8_SYS_THREAD_CREATE,(uint64_t)(uintptr_t)thread_entry142,entry,(uint64_t)(uintptr_t)arg,(flags&4)!=0,0);
+ if(token<0){last8(8);return 0;}if(id)*id=(unsigned)token;return (HANDLE)token;
+}
+static uint64_t MS f__beginthreadex(void*security,unsigned stack,uint64_t entry,void*arg,unsigned flags,unsigned*id){return f_CreateThread(security,stack,entry,arg,flags,id);}
+static int MS f_GetExitCodeThread(HANDLE h,unsigned*code){if(!code){last8(87);return 0;}int64_t state=(int64_t)sys8(W8_SYS_THREAD_STATUS,h,(uint64_t)(uintptr_t)code,0,0,0);if(state<0){last8(6);return 0;}if(state==259)*code=259;return 1;}
+static void MS f_Sleep(unsigned timeout){sys8(W8_SYS_SLEEP,timeout,0,0,0,0);}
 static int MS f_GetProcessTimes(HANDLE h,FILETIME*a,FILETIME*b,FILETIME*c,FILETIME*d){(void)h;(void)a;(void)b;(void)c;(void)d;last8(50);return 0;}
 static int MS f_GetConsoleMode(HANDLE h,unsigned*mode){if(h<1||h>3||!mode){last8(6);return 0;}*mode=console_mode8[h-1];return 1;}
 static int MS f_SetConsoleMode(HANDLE h,unsigned mode){if(h<1||h>3){last8(6);return 0;}console_mode8[h-1]=mode;return 1;}
@@ -272,7 +310,7 @@ static const api8 api8_table[]={
  {"__CxxFrameHandler",guard_cxx8,2},{"_CxxThrowException",guard_cxx8,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",guard_seh8,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
  API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
  API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
- API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
+ API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
  API8(CharUpperW,4),API8(CharPrevExA,4),API8(LookupPrivilegeValueW,5),API8(OpenProcessToken,5),API8(AdjustTokenPrivileges,5),API8(GetFileSecurityW,5),API8(SetFileSecurityW,5),API8(SystemFunction036,5),API8(RegOpenKeyExW,5),API8(RegQueryValueExW,5),API8(RegCloseKey,5)
 };

@@ -23,7 +23,7 @@ NORETURN void fail8(const char*s){copy8(job8->message,s,sizeof(job8->message));p
 typedef struct __attribute__((aligned(16))) block8 {size_t size;struct block8*next;unsigned free,reserved;} block8;
 _Static_assert(sizeof(block8)==32,"Windows heap payloads require 16-byte alignment.");
 static block8 *heap8;static uint64_t heap_end8=W8_HEAP;
-void *alloc8(size_t bytes){
+static void *allocate142(size_t bytes){
  if(!bytes)bytes=1;if(bytes>24*1024*1024)return 0;bytes=(bytes+15)&~(size_t)15;
  for(block8*b=heap8;b;b=b->next)if(b->free&&b->size>=bytes){
   if(b->size>bytes+sizeof(block8)+32){block8*n=(void*)((uint8_t*)(b+1)+bytes);*n=(block8){b->size-bytes-sizeof(*n),b->next,1,0};b->size=bytes;b->next=n;}b->free=0;return b+1;}
@@ -31,8 +31,23 @@ void *alloc8(size_t bytes){
  if(sys8(W8_SYS_MAP,heap_end8,total,3,0,0))return 0;block8*b=(void*)(uintptr_t)heap_end8;heap_end8+=total;*b=(block8){total-sizeof(*b),0,0,0};
  if(!heap8)heap8=b;else{block8*last=heap8;while(last->next)last=last->next;last->next=b;}return b+1;
 }
-void free8(void*p){if(!p)return;block8*b=(block8*)p-1;if((uintptr_t)b<W8_HEAP||(uintptr_t)b>=heap_end8||b->free)fail8("Invalid heap release in Windows process.");b->free=1;
+static void release142(void*p){if(!p)return;block8*b=(block8*)p-1;if((uintptr_t)b<W8_HEAP||(uintptr_t)b>=heap_end8||b->free)fail8("Invalid heap release in Windows process.");b->free=1;
  for(block8*x=heap8;x&&x->next;){if(x->free&&x->next->free&&(uint8_t*)(x+1)+x->size==(uint8_t*)x->next){x->size+=sizeof(*x)+x->next->size;x->next=x->next->next;}else x=x->next;}}
+uint64_t teb142(void){uint64_t p;__asm__ volatile("movq %%gs:0x30,%0":"=r"(p));return p;}
+unsigned tid142(void){return *(volatile uint32_t*)(uintptr_t)(teb142()+0x48);}
+void lock_enter142(lock142*lock){unsigned self=tid142();
+ for(;;){uint32_t owner=__atomic_load_n(&lock->owner,__ATOMIC_ACQUIRE);
+  if(owner==self){++lock->depth;return;}
+  if(!owner&&__atomic_compare_exchange_n(&lock->owner,&owner,self,0,__ATOMIC_ACQUIRE,__ATOMIC_RELAXED)){lock->depth=1;return;}
+  if(owner)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&lock->owner,owner,UINT32_MAX,0,0);
+ }
+}
+void lock_leave142(lock142*lock){if(lock->owner!=tid142()||!lock->depth)fail8("Windows runtime lock ownership was lost.");
+ if(!--lock->depth){__atomic_store_n(&lock->owner,0,__ATOMIC_RELEASE);sys8(W8_SYS_WAKE,(uint64_t)(uintptr_t)&lock->owner,UINT32_MAX,0,0,0);}
+}
+static lock142 heap_lock142;
+void *alloc8(size_t bytes){lock_enter142(&heap_lock142);void*p=allocate142(bytes);lock_leave142(&heap_lock142);return p;}
+void free8(void*p){lock_enter142(&heap_lock142);release142(p);lock_leave142(&heap_lock142);}
 void *realloc8(void*p,size_t n){if(!p)return alloc8(n);if(!n){free8(p);return 0;}block8*b=(block8*)p-1;if(b->size>=n)return p;void*q=alloc8(n);if(!q)return 0;memcpy(q,p,b->size);free8(p);return q;}
 void *calloc8(size_t n,size_t s){if(n&&s>SIZE_MAX/n)return 0;void*p=alloc8(n*s);if(p)memset(p,0,n*s);return p;}
 int utf16_to8(const WCHAR*s,char*out,unsigned cap){unsigned at=0;if(!cap)return -1;for(unsigned i=0;s&&s[i];++i){unsigned v=s[i];if(v>=0xd800&&v<=0xdbff){unsigned lo=s[++i];if(lo<0xdc00||lo>0xdfff)return -1;v=0x10000+((v-0xd800)<<10)+(lo-0xdc00);}else if(v>=0xdc00&&v<=0xdfff)return -1;

@@ -2,7 +2,7 @@
 #define MODULES141 32u
 #define IMAGE141_LIMIT (32u*1024*1024)
 #define ARENA141 UINT64_C(0x110000000)
-typedef struct {char path[256],name[96];uint8_t*base;uint32_t size,exports,export_size,entry,dependencies;unsigned state,dll,references,attached,sequence,subsystem;} module141;
+#include "module142.h"
 static module141 modules141[MODULES141];
 static unsigned loading141,forwarding141,sequence141,inspect141;
 static int parent141=-1;
@@ -91,15 +91,18 @@ static uint64_t load141(const char*path,unsigned external){
  if(inspect141){print8("Inspection only: direct imports=");number8(direct);print8(" delayed imports=");number8(delayed);print8(" static TLS=");number8(u32(optional+184)!=0);print8(". No app code was executed.\n");}
  else if(!loading141)attach141(index);return address;
 }
-uint64_t pe8_load(const char*path){return load141(path,1);}
+static unsigned terminating142;
+#include "lifetime142.inc"
+NORETURN void pe8_exit(unsigned code){sys8(W8_SYS_QUIESCE,code,0,0,0,0);pe8_shutdown();exit8(code);}
+uint64_t pe8_load(const char*path){return terminating142?0:load141(path,1);}
 uint64_t pe8_named(const char*name){
- if(!leaf141(name))return 0;uint64_t loaded=pe8_module(name);if(loaded)return load141(pe8_path(loaded),1);
+ if(terminating142||!leaf141(name))return 0;uint64_t loaded=pe8_module(name);if(loaded)return load141(pe8_path(loaded),1);
  char folder[256],path[256];if(!modules141[0].state)return 0;copy8(folder,modules141[0].path,256);char*end=folder+len8(folder);while(end>folder&&end[-1]!='/')--end;if(end<=folder)return 0;end[-1]=0;
  return candidate141(folder,name,path)?load141(path,1):0;
 }
-int pe8_release(uint64_t base){int index=slot141(base);if(index<=0||!modules141[index].references)return 0;--modules141[index].references;uint32_t reachable=1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&modules141[i].references)reachable|=UINT32_C(1)<<i;
+int pe8_release(uint64_t base){if(terminating142)return 0;int index=slot141(base);if(index<=0||!modules141[index].references)return 0;--modules141[index].references;uint32_t reachable=1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&modules141[i].references)reachable|=UINT32_C(1)<<i;
  for(unsigned pass=0;pass<MODULES141;++pass){uint32_t next=reachable;for(unsigned i=0;i<MODULES141;++i)if(reachable&(UINT32_C(1)<<i))next|=modules141[i].dependencies;if(next==reachable)break;reachable=next;}
  for(unsigned pass=0;pass<MODULES141;++pass){int chosen=-1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&!(reachable&(UINT32_C(1)<<i))&&(chosen<0||modules141[i].sequence>modules141[chosen].sequence))chosen=(int)i;if(chosen<0)break;module141*m=modules141+chosen;if(m->attached&&m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,0,0);if(sys8(W8_SYS_UNMAP,(uint64_t)(uintptr_t)m->base,m->size,0,0,0))fail8("The Windows module could not be released.");for(unsigned i=0;i<MODULES141;++i)modules141[i].dependencies&=~(UINT32_C(1)<<chosen);memset(m,0,sizeof(*m));}return 1;
 }
 void pe8_inspect(const char*path){inspect141=1;pe8_load(path);uint64_t values[4];if(sys8(W8_SYS_VMINFO,(uint64_t)values,0,0,0,0))fail8("The Windows memory observation could not be read.");print8("Memory pages: reserved=");number8(values[0]);print8(" owned=");number8(values[1]);print8(" demand-commits=");number8(values[2]);print8(" physical-quota=");number8(values[3]);print8("\nMapping inspection completed. Running this app is a separate compatibility test.\n");exit8(0);}
-void pe8_run(const char*path,const char*arguments){(void)arguments;uint64_t base=pe8_load(path);module141*m=modules141;if(m->dll||m->subsystem!=3)fail8("Windows graphical execution is not available in this loader milestone. The app was not started.");print8("Running the original Windows executable in a protected process.\n\n");((void(MS*)(void))(uintptr_t)(base+m->entry))();exit8(0);}
+void pe8_run(const char*path,const char*arguments){(void)arguments;uint64_t base=pe8_load(path);module141*m=modules141;if(m->dll||m->subsystem!=3)fail8("Windows graphical execution is not available in this loader milestone. The app was not started.");print8("Running the original Windows executable in a protected process.\n\n");((void(MS*)(void))(uintptr_t)(base+m->entry))();pe8_exit(0);}

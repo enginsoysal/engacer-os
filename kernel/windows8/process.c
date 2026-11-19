@@ -18,6 +18,26 @@ static uint64_t owned8[OWN8],cr3_8,pd8,entry8,write_pages8[WRITE8_PAGES];
 static unsigned count8,writer8=UINT32_MAX,write_count8,ready8,quantum8,cancel8;
 static uint64_t virtual_pages141,lazy_faults141;
 static file8 files8[32];static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t pic8;
+#define THREADS142 16u
+#define THREAD_STACK142(i) (UINT64_C(0x104000000)+(uint64_t)(i)*0x200000)
+#define THREAD_TEB142(i) (W8_TEB+(uint64_t)(i)*0x10000)
+enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED};
+typedef struct {
+ trap_frame frame;_Alignas(16) uint8_t fx[512];
+ uint64_t deadline,address,teb,low,top;
+ unsigned state,generation,code,closed;
+} thread142;
+static thread142 threads142[THREADS142];
+static unsigned current142,cursor142,generation142;
+static uint64_t thread_token142(unsigned i){return UINT64_C(0x40000000)|((uint64_t)threads142[i].generation<<8)|i;}
+static int thread_slot142(uint64_t token){unsigned i=(unsigned)(token&255);return i<THREADS142&&threads142[i].state&&!threads142[i].closed&&threads142[i].generation==((token&UINT64_C(0x3fffffff))>>8)&&(token&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)?(int)i:-1;}
+static void save_thread142(void){threads142[current142].frame=context8;memcpy(threads142[current142].fx,fx8,512);}
+static int choose_thread142(void){
+ uint64_t now=m3_clock_ticks()*10;
+ for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if((t->state==T142_SLEEP||t->state==T142_PARK)&&t->deadline!=UINT64_MAX&&now>=t->deadline){t->frame.rax=t->state==T142_PARK?258:0;t->state=T142_READY;}}
+ for(unsigned n=0;n<THREADS142;++n){unsigned i=(cursor142+n)%THREADS142;if(threads142[i].state==T142_READY){current142=i;cursor142=(i+1)%THREADS142;context8=threads142[i].frame;memcpy(fx8,threads142[i].fx,512);return 1;}}
+ return 0;
+}
 static uint64_t old_gs8;static w8_mailbox input8;static w8_info info8;
 static uint8_t io8[4096];
 volatile unsigned w8_active;
@@ -87,7 +107,14 @@ static void snapshot8(void){w8_mailbox value;if(user8(W8_MAILBOX,&value,sizeof(v
 static void metadata_path8(char*out){copy8(out,input8.product_root,256);unsigned n=length8(out);if(n+13<256)memcpy(out+n,"/metadata.bin",14);}
 static void finish8(unsigned status){snapshot8();info8.status=status;info8.state=status?3:2;if(metadata8_dirty&&input8.command==W8_RUN){char path[256];metadata_path8(path);if(v6_put(m6_volume(),path,sizeof(metadata8_db),memory_source8,&metadata8_db)){info8.status=1;info8.state=3;copy8(info8.message,"Windows file metadata could not be saved.",sizeof(info8.message));}}
  for(unsigned i=0;i<32;++i)if(files8[i].live)(void)close8(i,0);w8_active=0;w8_escape();}
-static void release8(void){write_clear8();while(count8)page_free(owned8[--count8]);cr3_8=pd8=entry8=0;virtual_pages141=lazy_faults141=0;memset(files8,0,sizeof(files8));}
+static void release8(void){write_clear8();while(count8)page_free(owned8[--count8]);cr3_8=pd8=entry8=0;virtual_pages141=lazy_faults141=0;memset(files8,0,sizeof(files8));memset(threads142,0,sizeof(threads142));}
+static void reap_threads142(void){
+ for(unsigned i=1;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED||!t->closed)continue;
+  for(unsigned range=0;range<2;++range){uint64_t low=range?t->teb:t->low,top=range?t->teb+8192:t->top;
+   for(uint64_t va=low;va<top;va+=4096){uint64_t*p=pte8(va,0);if(p&&(*p&(1|RESERVED141))){if(*p&1)free_owned8(*p&UINT64_C(0x000ffffffffff000));*p=0;--virtual_pages141;}}
+  }memset(t,0,sizeof(*t));
+ }
+}
 static unsigned rollback8(void){
  if(!created_root8)return 0;v6_volume*v=m6_volume();
  char plan[256],product[256];copy8(plan,input8.product_root,256);copy8(product,input8.product_root,256);
@@ -120,16 +147,20 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
  memset(&context8,0,sizeof(context8));context8.cs=0x1b;context8.ss=0x23;context8.rflags=0x202;context8.rip=header.entry;context8.rsp=W8_STACK_TOP-8;entry8=header.entry;
  memset(fx8,0,sizeof(fx8));*(uint16_t*)fx8=0x37f;*(uint32_t*)(fx8+24)=0x1f80;cancel8=0;metadata8_dirty=0;memset(&metadata8_db,0,sizeof(metadata8_db));metadata8_db.magic=UINT64_C(0x314154454d3857);
  if(root&&*root&&command==W8_RUN){char path[256];metadata_path8(path);const v6_entry*f=find8(path);if(f&&f->size==sizeof(metadata8_db)&&!v6_verify(m6_volume(),path)){unsigned got=0;(void)v6_read(m6_volume(),path,0,&metadata8_db,sizeof(metadata8_db),&got);}}
+ threads142[0].state=T142_READY;threads142[0].generation=++generation142;
+ threads142[0].teb=W8_TEB;threads142[0].low=W8_STACK_LOW;threads142[0].top=W8_STACK_TOP;
+ current142=cursor142=0;save_thread142();
+ {uint64_t id=thread_token142(0);if(user8(W8_TEB+0x48,&id,8,1))goto failure;}
  serial_text("M8_CPL3_CREATED command=");serial_hex(command);serial_text("\n");return 0;
  failure:release8();info8.state=3;info8.status=1;copy8(info8.message,"The protected Windows runtime could not be loaded.",sizeof(info8.message));++info8.revision;return V6_INVALID;
 }
 unsigned w8_pending(void){return info8.state==1&&cr3_8&&!cancel8;}
 const w8_info *w8_current(void){return &info8;}
 void w8_pump(void){
- if(!w8_pending())return;uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");__asm__ volatile("movq %%cr3,%0":"=r"(w8_kernel_cr3));
- uint32_t lo,hi;__asm__ volatile("rdmsr":"=a"(lo),"=d"(hi):"c"(0xc0000101u));old_gs8=((uint64_t)hi<<32)|lo;__asm__ volatile("wrmsr"::"a"((uint32_t)W8_TEB),"d"((uint32_t)(W8_TEB>>32)),"c"(0xc0000101u));
+ if(!w8_pending())return;reap_threads142();if(!choose_thread142())return;uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");__asm__ volatile("movq %%cr3,%0":"=r"(w8_kernel_cr3));
+ uint32_t lo,hi;__asm__ volatile("rdmsr":"=a"(lo),"=d"(hi):"c"(0xc0000101u));old_gs8=((uint64_t)hi<<32)|lo;__asm__ volatile("wrmsr"::"a"((uint32_t)threads142[current142].teb),"d"((uint32_t)(threads142[current142].teb>>32)),"c"(0xc0000101u));
  pic8=in8(0x21);out8(0x21,pic8&~1u);interrupts_set_kernel_stack(TRAP8+16384);quantum8=0;w8_active=1;
- __asm__ volatile("fxrstor64 %0"::"m"(fx8):"memory");w8_enter(&context8,cr3_8);__asm__ volatile("fxsave64 %0":"=m"(fx8)::"memory");
+ __asm__ volatile("fxrstor64 %0"::"m"(fx8):"memory");w8_enter(&context8,cr3_8);__asm__ volatile("fxsave64 %0":"=m"(fx8)::"memory");save_thread142();
  __asm__ volatile("wrmsr"::"a"((uint32_t)old_gs8),"d"((uint32_t)(old_gs8>>32)),"c"(0xc0000101u));out8(0x21,pic8);interrupts_set_kernel_stack(KERNEL_STACK_TOP);if(flags&512)__asm__ volatile("sti":::"memory");
  ++info8.quanta;if(count8>info8.peak_pages)info8.peak_pages=count8;
  if(info8.state!=1){serial_text(info8.status?"M8_JOB_FAILED code=":"M8_JOB_DONE code=");serial_hex(info8.status);serial_text("\n");release8();if(info8.status&&created_root8){unsigned cleanup=rollback8();copy8(info8.message,cleanup?"Installation stopped and cleanup was interrupted; use Recover / remove.":"Installation stopped. Its new files were removed. Restore resources, then choose Install again.",sizeof(info8.message));}}
@@ -186,6 +217,38 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_MOVE:{char destination[256];if(string8(a,path,256)||string8(b,destination,256)||!path8(path,1)||!path8(destination,1)||c>1)return -1;return v6_rename(m6_volume(),path,destination,(unsigned)c)?-1:0;}
  case W8_SYS_TRUNCATE:{if(a>=32||!files8[a].live||!files8[a].write||files8[a].position>WRITE8_PAGES*4096)return -1;file8*h=files8+a;unsigned need=(unsigned)((h->position+4095)/4096);while(write_count8<need){uint64_t page=page_alloc();if(!page)return -1;write_pages8[write_count8++]=page;peak8();}while(write_count8>need){page_free(write_pages8[--write_count8]);write_pages8[write_count8]=0;}h->size=h->position;return 0;}
  case W8_SYS_OUTPUT:{if(b>4096||user8(a,io8,(unsigned)b,0))return -1;output8((char*)io8,(unsigned)b);return (int64_t)b;}
+ case W8_SYS_THREAD_CREATE:{
+  /* Runtime trampoline is required to lie in an executable user mapping. */
+  uint64_t*entry=pte8(a,0);if(!entry||!(*entry&1)||(*entry&NX)||d>1)return -1;
+  unsigned slot=1;while(slot<THREADS142&&threads142[slot].state)++slot;if(slot==THREADS142)return -1;
+  thread142*t=threads142+slot;uint64_t low=THREAD_STACK142(slot),top=low+0x100000,teb=THREAD_TEB142(slot);
+  if(map8(top-16384,16384,3))return -1;
+  if(map8(teb,8192,3)){for(uint64_t v=top-16384;v<top;v+=4096){uint64_t*p=pte8(v,0);free_owned8(*p&UINT64_C(0x000ffffffffff000));*p=0;--virtual_pages141;}return -1;}
+  memset(t,0,sizeof(*t));t->generation=++generation142;t->state=d?T142_SUSPENDED:T142_READY;t->low=low;t->top=top;t->teb=teb;
+  uint64_t id=thread_token142(slot);
+  if(user8(teb+0x30,&teb,8,1)||user8(teb+8,&top,8,1)||user8(teb+16,&low,8,1)||user8(teb+0x48,&id,8,1))return -1;
+  t->frame.cs=0x1b;t->frame.ss=0x23;t->frame.rflags=0x202;t->frame.rip=a;t->frame.rsp=top-8;t->frame.rdi=b;t->frame.rsi=c;
+  *(uint16_t*)t->fx=0x37f;*(uint32_t*)(t->fx+24)=0x1f80;return (int64_t)id;
+ }
+ case W8_SYS_QUIESCE:for(unsigned i=0;i<THREADS142;++i)if(i!=current142&&threads142[i].state){threads142[i].state=T142_EXITED;threads142[i].code=(unsigned)a;}return 0;
+ case W8_SYS_THREAD_CLOSE:{int slot=thread_slot142(a);if(slot<0)return -1;threads142[slot].closed=1;return 0;}
+ case W8_SYS_THREAD_RESUME:{int slot=thread_slot142(a);if(slot<0||threads142[slot].state==T142_EXITED)return -1;unsigned suspended=threads142[slot].state==T142_SUSPENDED;if(suspended)threads142[slot].state=T142_READY;return suspended;}
+ case W8_SYS_THREAD_STATUS:{int slot=thread_slot142(a);if(slot<0)return -1;thread142*t=threads142+slot;if(b&&user8(b,&t->code,4,1))return -1;return t->state==T142_EXITED?0:259;}
+ case W8_SYS_THREAD_EXIT:{
+  threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;
+  for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}
+  unsigned live=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED)++live;
+  if(!live){threads142[current142].state=T142_READY;return 1;}context8=*f;w8_active=0;w8_escape();break;
+ }
+ case W8_SYS_SLEEP:case W8_SYS_PARK:{
+  unsigned park=f->rax==W8_SYS_PARK;
+  if(park){uint32_t value;if(user8(a,&value,4,0))return -1;if(value!=(uint32_t)b)return 0;}
+  uint64_t delay=park?c:a;if(delay>UINT32_MAX)return -1;
+  thread142*t=threads142+current142;t->state=delay?(park?T142_PARK:T142_SLEEP):T142_READY;
+  t->address=park?a:0;t->deadline=delay==UINT32_MAX?UINT64_MAX:m3_clock_ticks()*10+delay;
+  context8=*f;context8.rax=0;w8_active=0;w8_escape();break;
+ }
+ case W8_SYS_WAKE:{unsigned woke=0;for(unsigned i=0;i<THREADS142&&woke<b;++i)if(threads142[i].state==T142_PARK&&threads142[i].address==a){threads142[i].state=T142_READY;threads142[i].frame.rax=0;++woke;}return woke;}
  case W8_SYS_EXIT:finish8((unsigned)a);break;
  case W8_SYS_TIME:return a?((int64_t)now8()):(int64_t)(m3_clock_ticks()*10);
  case W8_SYS_YIELD:snapshot8();context8=*f;context8.rax=0;w8_active=0;w8_escape();break;
@@ -201,7 +264,7 @@ trap_frame *w8_trap(trap_frame*f){
  if(!w8_active)return f;
  if(f->vector==14){uint64_t address;__asm__ volatile("movq %%cr2,%0":"=r"(address));
   if(!(f->error&1)&&address>=W8_BASE&&address<W8_LIMIT&&!commit141(address,(f->error&2)!=0,(f->error&16)!=0))return f;
-  if(!(f->error&1)&&address>=W8_STACK_LOW&&address<W8_STACK_TOP&&address+65536>=f->rsp&&!map8(address&~UINT64_C(4095),4096,3))return f;
+  if(!(f->error&1)&&address>=threads142[current142].low&&address<threads142[current142].top&&address+65536>=f->rsp&&!map8(address&~UINT64_C(4095),4096,3))return f;
  }
  if(f->vector==128){f->rax=(uint64_t)dispatch8(f);return f;}
  if(f->vector==32){out8(0x20,0x20);if(++quantum8<1)return f;context8=*f;w8_active=0;w8_escape();}
