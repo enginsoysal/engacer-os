@@ -18,7 +18,12 @@ enum {W8_SYS_MAP=0x800,W8_SYS_UNMAP,W8_SYS_PROTECT,W8_SYS_OPEN,W8_SYS_READ,
  W8_SYS_DELETE,W8_SYS_MOVE,W8_SYS_OUTPUT,W8_SYS_EXIT,W8_SYS_TIME,W8_SYS_YIELD,
  W8_SYS_METADATA,W8_SYS_INFO,W8_SYS_TRUNCATE,W8_SYS_RESERVE,W8_SYS_VMINFO,
  W8_SYS_THREAD_CREATE,W8_SYS_THREAD_EXIT,W8_SYS_THREAD_RESUME,
- W8_SYS_THREAD_STATUS,W8_SYS_SLEEP,W8_SYS_PARK,W8_SYS_WAKE,W8_SYS_THREAD_CLOSE,W8_SYS_QUIESCE,W8_SYS_THREAD_LIST,W8_SYS_ACCESS,W8_SYS_THREAD_BEGIN_EXIT};
+ W8_SYS_THREAD_STATUS,W8_SYS_SLEEP,W8_SYS_PARK,W8_SYS_WAKE,W8_SYS_THREAD_CLOSE,W8_SYS_QUIESCE,W8_SYS_THREAD_LIST,W8_SYS_ACCESS,W8_SYS_THREAD_BEGIN_EXIT,W8_SYS_PROCESS_CREATE,W8_SYS_PROCESS_STATUS,
+ W8_SYS_PROCESS_CLOSE,W8_SYS_PROCESS_ID,W8_SYS_THREAD_ID,W8_SYS_PROCESS_TERMINATE};
+#define W8_PROCESS_TAG UINT64_C(0x80000000)
+#define W8_HANDLE_TAG_MASK UINT64_C(0xffffffffe0000000)
+typedef struct {char source[256],command[1200],directory[256];uint32_t flags;} w8_process_request;
+typedef struct {uint64_t process,thread;uint32_t process_id,thread_id;} w8_process_result;
 typedef struct {uint64_t teb;uint32_t id,state;} w8_thread_snapshot;
 typedef struct {uint64_t size,time[3];uint32_t attributes,crc,kind;char name[256];} w8_file_info;
 typedef struct {
@@ -28,7 +33,10 @@ typedef struct {
  uint32_t files,registry,shortcuts,features;
  uint64_t total_bytes;
  char message[192];
+ char startup_command[1200],startup_directory[256];
+ uint32_t process_id,startup_flags;
 } w8_mailbox;
+_Static_assert(sizeof(w8_mailbox)<=4096,"Windows startup mailbox must fit its checked page");
 #ifndef W8_USER
 #include <engine/process.h>
 typedef struct {unsigned state,command,status,percent,revision;uint64_t peak_pages,quanta;

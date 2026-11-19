@@ -1,6 +1,6 @@
 # M14.2 - Child-process ownership design
 
-Status: **child-process design; its lazy kernel metadata foundation passes scoped root-task native checks, but child-process compatibility is not delivered yet**. Native threads, synchronization and static TLS have separate scoped development evidence. M14.2 remains incomplete.
+Status: **implemented development profile with scoped native process evidence; not full M14.2 release qualification**. Four private process address spaces, retained lifetime objects and native CreateProcess pass the checks below. Remaining process edge cases, exception/unwind handling and final release gates remain open.
 
 ## Native execution and address spaces
 
@@ -10,7 +10,7 @@ Keep four simultaneous process address spaces and sixteen threads per process as
 
 ## Lazy kernel metadata
 
-Duplicating the current large static ownership tables four times would increase idle kernel reservations and pressure the boot image's bounded address layout. The first implemented step allocates a bounded kernel-only metadata slab for the current root task; the next step extends this to child address spaces. Reserve up to 192 KiB per process in four separate strides within the existing shared upper-half kernel page-table window, starting one MiB above KERNEL_STACK. Existing AP, emergency, native-app and Windows trap stacks remain below that window. Validate empty page-table slots and enforce the slab size at compile time; map only supervisor read/write, non-executable pages.
+Duplicating the current large static ownership tables four times would increase idle kernel reservations and pressure the boot image's bounded address layout. The implemented development profile allocates a bounded kernel-only metadata slab separately for each live root or child task. Reserve up to 192 KiB per process in four separate strides within the existing shared upper-half kernel page-table window, starting one MiB above KERNEL_STACK. Existing AP, emergency, native-app and Windows trap stacks remain below that window. Validate empty page-table slots and enforce the slab size at compile time; map only supervisor read/write, non-executable pages.
 
 Store the slab backing-page list outside the slab so teardown can unmap/free it without reading already freed memory. Finish status/object updates and file/rollback cleanup before releasing the slab. Return all slab pages at process close. Report their memory separately and include them in total process-related peak accounting. Keep the existing root UI information object stable so native desktop observers and user-facing progress retain their owner.
 
@@ -37,3 +37,11 @@ The initial console profile shares the root task's bounded output surface. Prese
 Run concurrent unmodified original console tasks together with isolation probes. Check distinct IDs, suspended start, parent/child waits, primary-thread versus process exit, nonzero exit codes, stale/closed handle rejection, parent exit with a surviving child, child faults contained from the parent/desktop, explicit group cancellation and repeated process-slot reuse. Verify actual files/output and zero unexplained retained managed pages after twenty closes. Repeat ordinary installation and independent startup on the final frozen media.
 
 Sources: [CreateProcessW](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw), [process termination and child lifetime](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess), [ExitThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitthread).
+
+## Scoped native development evidence
+
+Candidate `7c5d4dd1d70386b60dcbf652adb6744b` passes [native process tests](../../evidence/M14/2/development/processes-native-v7.json). A synthetic Windows parent checks independent IDs, memory and dynamic TLS, suspended creation, resume, process/thread waits, nonzero exit codes, explicit termination and stale-handle refusal. It then starts two unmodified original 7-Zip executables concurrently. Both produce ZIPs whose extracted contents are independently checked. Twenty repeated parent closes retain zero managed pages.
+
+A separate parent-exit probe proves the child runs after its parent has ended, saves the expected file and finishes normally. The first run allocates four one-time transition pages; the second retains zero. The root desktop task stays busy until its surviving descendants end, while the actual parent process object is already signaled. This is UI task-group ownership, not keeping the parent address space alive.
+
+The supported CreateProcess profile uses default security, no arbitrary inherited handles, a null explicit environment, bounded command line/current directory and default or suspended startup. Unsupported startup options refuse clearly. Process handles remain valid after address-space teardown and retain real exit codes. These results do not cover arbitrary original Windows applications, GUI processes, inherited pipes, custom environments or multi-root desktop integration. Child fault containment, primary-thread/process lifetime separation and whole-group cancellation still need dedicated native process probes. Full M14.2 exception/unwind and media/publication qualification remain pending.

@@ -66,7 +66,7 @@ static WCHAR *MS f_GetCommandLineW(void){return command8;}
 static char *MS f_GetCommandLineA(void){return command_utf8;}
 static uint32_t MS f_GetLastError(void){return *(volatile uint32_t*)(uintptr_t)(teb142()+0x68);}
 static void MS f_SetLastError(uint32_t error){last8(error);}
-static uint32_t MS f_GetCurrentProcessId(void){return 8;}
+static uint32_t MS f_GetCurrentProcessId(void){return *(volatile uint32_t*)(uintptr_t)(teb142()+0x40);}
 static uint32_t MS f_GetCurrentThreadId(void){return tid142();}
 static HANDLE MS f_GetCurrentProcess(void){return UINT64_MAX;}
 static HANDLE MS f_GetCurrentThread(void){return UINT64_MAX-1;}
@@ -182,7 +182,7 @@ static HANDLE MS f_CreateThread(void*security,size_t stack,uint64_t entry,void*a
  if(token<0){last8(8);return 0;}if(id)*id=(unsigned)token;return (HANDLE)token;
 }
 static NORETURN void MS f__endthreadex(unsigned code){f_ExitThread(code);}
-static unsigned MS f_GetThreadId(HANDLE h){if(h==UINT64_MAX-1)return tid142();if((int64_t)sys8(W8_SYS_THREAD_STATUS,h,0,0,0,0)<0){last8(6);return 0;}return (unsigned)h;}
+static unsigned MS f_GetThreadId(HANDLE h){int64_t id=(int64_t)sys8(W8_SYS_THREAD_ID,h,0,0,0,0);if(id<0){last8(6);return 0;}return (unsigned)id;}
 static uint64_t MS f__beginthreadex(void*security,unsigned stack,uint64_t entry,void*arg,unsigned flags,unsigned*id){return f_CreateThread(security,stack,entry,arg,flags,id);}
 static int MS f_GetExitCodeThread(HANDLE h,unsigned*code){if(!code){last8(87);return 0;}int64_t state=(int64_t)sys8(W8_SYS_THREAD_STATUS,h,(uint64_t)(uintptr_t)code,0,0,0);if(state<0){last8(6);return 0;}if(state==259)*code=259;return 1;}
 static void MS f_Sleep(unsigned timeout){sys8(W8_SYS_SLEEP,timeout,0,0,0,0);}
@@ -267,6 +267,7 @@ static HANDLE MS f_OpenFileMappingW(unsigned access,int inherit,const WCHAR*name
 static void *MS f_MapViewOfFile(HANDLE mapping,unsigned access,unsigned high,unsigned low,size_t bytes){(void)mapping;(void)access;(void)high;(void)low;(void)bytes;last8(6);return 0;}
 static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 
+#include "process142.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
@@ -274,7 +275,7 @@ static const api8 api8_table[]={
  API8(malloc,2),API8(free,2),API8(realloc,2),API8(memcpy,2),API8(memmove,2),API8(memset,2),API8(memcmp,2),API8(strlen,2),API8(strcmp,2),API8(wcscmp,2),API8(strchr,2),API8(strstr,2),API8(wcsstr,2),API8(fputc,2),API8(fputs,2),API8(fflush,2),API8(fgetc,2),API8(_isatty,2),API8(_get_osfhandle,2),API8(_beginthreadex,2),API8(_endthreadex,2),
  {"_iob",iob8,2},{"__initenv",&initenv8,2},{"_fmode",&fmode8,2},{"_commode",&commode8,2},
  {"__CxxFrameHandler",guard_cxx8,2},{"_CxxThrowException",guard_cxx8,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",guard_seh8,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
- API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
+ API8(CreateProcessW,1),API8(CreateProcessA,1),API8(GetExitCodeProcess,1),API8(GetProcessId,1),API8(TerminateProcess,1),API8(GetStartupInfoW,1),API8(GetStartupInfoA,1),API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
  API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
  API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateWaitableTimerW,1),API8(SetWaitableTimer,1),API8(CancelWaitableTimer,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(GetThreadId,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
@@ -285,8 +286,8 @@ void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provide
  if(provider&&name){for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;return 0;}return pe8_import(dll,name,ordinal);
 }
 void init_win8(void){
- char win[512];winpath8(job8->source,win,sizeof(win));copy8(command_utf8,"\"",sizeof(command_utf8));append8(command_utf8,win,sizeof(command_utf8));append8(command_utf8,"\" ",sizeof(command_utf8));append8(command_utf8,job8->arguments,sizeof(command_utf8));if(utf8_to16(command_utf8,command8,1200)<0)fail8("Windows command line exceeds its bound.");
- char cwd[256];copy8(cwd,job8->user_root,256);append8(cwd,"/Documents",256);winpath8(cwd,win,sizeof(win));if(utf8_to16(win,cwd8,256)<0)fail8("Windows working directory is too long.");
+ char win[512];if(job8->startup_command[0])copy8(command_utf8,job8->startup_command,sizeof(command_utf8));else{winpath8(job8->source,win,sizeof(win));copy8(command_utf8,"\"",sizeof(command_utf8));append8(command_utf8,win,sizeof(command_utf8));append8(command_utf8,"\" ",sizeof(command_utf8));append8(command_utf8,job8->arguments,sizeof(command_utf8));}if(utf8_to16(command_utf8,command8,1200)<0)fail8("Windows command line exceeds its bound.");
+ char cwd[256];if(job8->startup_directory[0])copy8(cwd,job8->startup_directory,256);else{copy8(cwd,job8->user_root,256);append8(cwd,"/Documents",256);}winpath8(cwd,win,sizeof(win));if(utf8_to16(win,cwd8,256)<0)fail8("Windows working directory is too long.");
  unsigned at=0,out=0;while(command_utf8[at]&&argc8<63){while(command_utf8[at]==' '||command_utf8[at]=='\t')++at;if(!command_utf8[at])break;argv8[argc8++]=argv_text8+out;unsigned quoted=0;while(command_utf8[at]){char c=command_utf8[at++];if(c=='\"'){quoted^=1;continue;}if(!quoted&&(c==' '||c=='\t'))break;if(out+1>=sizeof(argv_text8))fail8("Windows arguments exceed their bound.");argv_text8[out++]=c;}argv_text8[out++]=0;}argv8[argc8]=0;
  for(unsigned i=0;i<3;++i){iob8[i].file=i;iob8[i].flags=i?2:1;}process_started8=sys8(W8_SYS_TIME,0,0,0,0,0);(void)process_started8;(void)app_type8;(void)error8;(void)file_oem8;(void)ignore_console8;
 }

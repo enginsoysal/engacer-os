@@ -55,7 +55,8 @@ static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,
  uint64_t start=sys8(W8_SYS_TIME,0,0,0,0,0);
  for(;;){lock_enter142(&event_lock142);unsigned ready=0,first=UINT32_MAX,error=0;uint64_t now=sys8(W8_SYS_TIME,0,0,0,0,0),next=UINT64_MAX;object142*seen[32]={0};
   for(unsigned i=0;i<count;++i){HANDLE h=list[i];int signaled=0;
-   if(h==UINT64_MAX){signaled=0;}
+   if((h&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG){int64_t state=(int64_t)sys8(W8_SYS_PROCESS_STATUS,h,0,0,0,0);if(state<0)error=6;else signaled=state==0;}
+   else if(h==UINT64_MAX){signaled=0;}
    else if(h==UINT64_MAX-1||(h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){int64_t state=(int64_t)sys8(W8_SYS_THREAD_STATUS,h,0,0,0,0);if(state<0)error=6;else signaled=state==0;}
    else{object142*o=object_get142(h);seen[i]=o;if(!o){error=6;continue;}for(unsigned j=0;j<i;++j)if(seen[j]==o)error=87;
     if(o->kind==3&&o->active){if(now>=o->due){o->count=1;if(o->period){uint64_t steps=(now-o->due)/o->period+1;if(steps>(UINT64_MAX-o->due)/o->period)o->active=0;else o->due+=steps*o->period;}else o->active=0;}if(o->active&&o->due<next)next=o->due;}
@@ -72,6 +73,7 @@ static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,
 }
 static unsigned MS f_WaitForSingleObject(HANDLE h,unsigned timeout){return f_WaitForMultipleObjects(1,&h,0,timeout);}
 static int MS f_CloseHandle(HANDLE h){
+ if((h&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG){if((int64_t)sys8(W8_SYS_PROCESS_CLOSE,h,0,0,0,0)<0){last8(6);return 0;}return 1;}
  if((h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){if((int64_t)sys8(W8_SYS_THREAD_CLOSE,h,0,0,0,0)<0){last8(6);return 0;}return 1;}
  if(h>=256&&h<288){if(close8((int)(h-256))){last8(29);return 0;}return 1;}
  lock_enter142(&event_lock142);int slot=object_slot142(h);if(slot>=0){object142*o=objects142+object_handles142[slot].object;object_handles142[slot].live=0;if(!--o->refs)memset(o,0,sizeof(*o));signal142();}lock_leave142(&event_lock142);if(slot<0)last8(6);return slot>=0;

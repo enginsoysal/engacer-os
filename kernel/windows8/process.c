@@ -22,10 +22,13 @@ typedef struct {
  uint64_t deadline,address,teb,low,top;
  unsigned state,generation,code,closed,exiting;
 } thread142;
+typedef struct {unsigned live,generation,object,kind;} process_handle142;
+typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code,refs,slot;} process_object142;
 typedef struct {
  metadata_database142 database;
  uint64_t owned[OWN8],cr3,pd,entry,write_pages[WRITE8_PAGES],virtual_pages,lazy_faults;
- unsigned count,writer,write_count,cancel,metadata_dirty,created_root,current,cursor;
+ unsigned count,writer,write_count,cancel,metadata_dirty,created_root,current,cursor,object;
+ process_handle142 handles[32];
  file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
  w8_info child_info;
 } private_space142;
@@ -36,9 +39,13 @@ _Static_assert(sizeof(private_space142)<=META_PAGES142*4096,"Windows metadata ex
 static private_space142 *spaces142[SPACES142];
 static uint64_t metadata_backing142[SPACES142][META_PAGES142];
 static unsigned metadata_pages142[SPACES142],active_space142,generation142;
+static process_object142 process_objects142[32];
+static unsigned process_id142=8,process_handle_generation142,space_cursor142,root_terminal142,root_waiting142;
+static char root_end_message142[192];
 static unsigned ready8,quantum8;
 static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t pic8;
-static uint64_t old_gs8;static w8_info info8;static uint8_t io8[4096];
+static uint64_t old_gs8;static w8_info info8;static w8_info*const root_info142=&info8;static uint8_t io8[4096];
+#define info8 (*(active_space142?&spaces142[active_space142]->child_info:root_info142))
 extern void timer_claim142(unsigned,unsigned);
 static unsigned timer_needed142;
 volatile unsigned w8_active;
@@ -77,6 +84,7 @@ extern NORETURN void w8_escape(void);
 extern uint64_t kernel_entry_pt(void);
 extern const char windows8_licenses[];
 extern const uint8_t windows8_runtime_image[];extern const unsigned windows8_runtime_size;
+static void group_peak142(void);
 /* Shared supervisor-only upper-half pages; no idle allocation per process slot. */
 static void free_space142(unsigned slot){
  uint64_t base=META_BASE142(slot),*pt=(void*)(uintptr_t)kernel_entry_pt();spaces142[slot]=0;
@@ -86,14 +94,16 @@ static unsigned allocate_space142(unsigned slot){
  if(slot>=SPACES142||spaces142[slot])return 1;unsigned pages=(sizeof(private_space142)+4095)/4096;
  uint64_t base=META_BASE142(slot),*pt=(void*)(uintptr_t)kernel_entry_pt();
  for(unsigned i=0;i<pages;++i)if(pt[(((base>>12)+i)&511)])return 1;
- for(unsigned i=0;i<pages;++i){uint64_t physical=page_alloc();if(!physical){free_space142(slot);return 1;}metadata_backing142[slot][i]=physical;++metadata_pages142[slot];uint64_t va=base+(uint64_t)i*4096;pt[((va>>12)&511)]=physical|3|NX;__asm__ volatile("invlpg (%0)"::"r"(va):"memory");}
+ for(unsigned i=0;i<pages;++i){uint64_t physical=page_alloc();if(!physical){free_space142(slot);return 1;}metadata_backing142[slot][i]=physical;++metadata_pages142[slot];group_peak142();uint64_t va=base+(uint64_t)i*4096;pt[((va>>12)&511)]=physical|3|NX;__asm__ volatile("invlpg (%0)"::"r"(va):"memory");}
  spaces142[slot]=(void*)(uintptr_t)base;active_space142=slot;writer8=UINT32_MAX;return 0;
 }
+static unsigned terminated142(const char*s,unsigned cap){for(unsigned i=0;i<cap;++i)if(!s[i])return 1;return 0;}
 static unsigned length8(const char*s){unsigned n=0;while(s[n])++n;return n;}
 static int equal8(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
 static void copy8(char*out,const char*in,unsigned cap){unsigned n=0;while(n+1<cap&&in[n]){out[n]=in[n];++n;}out[n]=0;}
 static int prefix8(const char*p,const char*root){unsigned n=length8(root);return n&&(!memcmp(p,root,n))&&(p[n]=='/'||!p[n]);}
-static void peak8(void){if((uint64_t)count8+write_count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+write_count8+metadata_pages142[active_space142];}
+static void group_peak142(void){uint64_t total=0;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count+spaces142[i]->write_count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
+static void peak8(void){if((uint64_t)count8+write_count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+write_count8+metadata_pages142[active_space142];group_peak142();}
 static uint64_t allocate8(void){if(count8==OWN8)return 0;uint64_t p=page_alloc();if(p)owned8[count8++]=p;peak8();return p;}
 static uint64_t *pte8(uint64_t va,unsigned create){
  if(va<W8_BASE||va>=W8_LIMIT)return 0;uint64_t*pd=(void*)(uintptr_t)pd8;unsigned at=(unsigned)((va>>21)&511);uint64_t page=pd[at]&UINT64_C(0x000ffffffffff000);
@@ -135,7 +145,8 @@ static const uint8_t *boot_package8;static unsigned boot_package_size8;
 unsigned w8_boot_package(const void*p,unsigned bytes){static const uint8_t expected[]={0x6d,0xc8,0x22,0x56,0x9e,0x77,0x7d,0x9a,0x3e,0xcd,0x5f,0xfc,0xbc,0x22,0xb5,0x56,0x00,0xaf,0x87,0xe6,0xc5,0xd9,0x81,0x0a,0x64,0xe8,0x56,0x6c,0xf5,0xa4,0xaf,0x9f};uint8_t hash[32];if(bytes!=2003456)return 1;engine_sha256(p,bytes,hash);if(memcmp(hash,expected,32))return 1;boot_package8=p;boot_package_size8=bytes;serial_text("M8_BOOT_MSI_DIGEST_OK\n");return 0;}
 unsigned w8_distribute(void*opaque,const char*user){if(!boot_package8||!boot_package_size8)return V6_INVALID;char path[256];copy8(path,user,256);unsigned n=length8(path);if(n+27>=256)return V6_INVALID;memcpy(path+n,"/Downloads/7z2606-x64.msi",26);return v6_put(opaque,path,boot_package_size8,memory_source8,(void*)boot_package8);}
 unsigned w8_install_runtime(void*opaque){v6_volume*v=opaque;unsigned parent=v6_mkdir(v,"/Applications/Windows");if(parent&&parent!=V6_EXISTS)return parent;unsigned s=v6_mkdir(v,"/System/Windows");if(s&&s!=V6_EXISTS)return s;if(!windows8_runtime_size)return V6_INVALID;unsigned licenses=length8(windows8_licenses);if(v6_put(v,"/System/Licenses/Windows-runtime-LGPL.txt",licenses,memory_source8,(void*)windows8_licenses))return V6_IO;return v6_put(v,"/System/Windows/runtime8.elf",windows8_runtime_size,memory_source8,(void*)windows8_runtime_image);}
-static void output8(const char*s,unsigned n){unsigned old=length8(info8.output);if(n>W8_TEXT-1){s+=n-(W8_TEXT-1);n=W8_TEXT-1;}if(n>W8_TEXT-1-old){unsigned drop=n-(W8_TEXT-1-old);memmove(info8.output,info8.output+drop,old-drop);old-=drop;}memcpy(info8.output+old,s,n);info8.output[old+n]=0;++info8.revision;}
+static void output_record142(w8_info*record,const char*s,unsigned n){unsigned old=length8(record->output);if(n>W8_TEXT-1){s+=n-(W8_TEXT-1);n=W8_TEXT-1;}if(n>W8_TEXT-1-old){unsigned drop=n-(W8_TEXT-1-old);memmove(record->output,record->output+drop,old-drop);old-=drop;}memcpy(record->output+old,s,n);record->output[old+n]=0;++record->revision;}
+static void output8(const char*s,unsigned n){output_record142(&info8,s,n);if(active_space142)output_record142(root_info142,s,n);}
 static void write_clear8(void){while(write_count8)page_free(write_pages8[--write_count8]);memset(write_pages8,0,sizeof(write_pages8));writer8=UINT32_MAX;}
 static unsigned writer_source8(void*c,uint64_t off,void*out,unsigned bytes){(void)c;uint8_t*p=out;while(bytes){unsigned page=(unsigned)(off/4096),n=4096-(unsigned)(off&4095);if(n>bytes)n=bytes;if(page>=write_count8)return 1;memcpy(p,(void*)(uintptr_t)(write_pages8[page]+(off&4095)),n);off+=n;p+=n;bytes-=n;}return 0;}
 static unsigned close8(unsigned id,unsigned commit){
@@ -149,7 +160,8 @@ static void snapshot8(void){w8_mailbox value;if(user8(W8_MAILBOX,&value,sizeof(v
 static void metadata_path8(char*out){copy8(out,input8.product_root,256);unsigned n=length8(out);if(n+13<256)memcpy(out+n,"/metadata.bin",14);}
 static void finish8(unsigned status){snapshot8();info8.status=status;info8.state=status?3:2;if(metadata8_dirty&&input8.command==W8_RUN){char path[256];metadata_path8(path);if(v6_put(m6_volume(),path,sizeof(metadata8_db),memory_source8,&metadata8_db)){info8.status=1;info8.state=3;copy8(info8.message,"Windows file metadata could not be saved.",sizeof(info8.message));}}
  for(unsigned i=0;i<32;++i)if(files8[i].live)(void)close8(i,0);w8_active=0;w8_escape();}
-static void release8(void){timer_claim142(1,0);timer_needed142=0;if(!spaces142[active_space142])return;write_clear8();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
+static void release_grants142(void);
+static void release8(void){if(!spaces142[active_space142])return;release_grants142();write_clear8();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
 
 static void reap_threads142(void){
  for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED)continue;
@@ -169,12 +181,11 @@ static unsigned rollback8(void){
   char path[256];copy8(path,chosen,256);if(v6_remove(v,path))return 1;
  }return 1;
 }
-void w8_cancel(void){if(info8.state==1){cancel8=1;info8.state=3;info8.status=1;copy8(info8.message,"Operation cancelled. Uncommitted file writes were discarded.",sizeof(info8.message));unsigned cleanup=rollback8();release8();if(cleanup)copy8(info8.message,"Cancelled. Disk cleanup was interrupted; use Recover / remove.",sizeof(info8.message));++info8.revision;}}
 static unsigned prepare_transition8(void){if(ready8)return 0;uint64_t pages[4];unsigned count=0;for(;count<4;++count)if(!(pages[count]=page_alloc()))break;if(count<4){while(count)page_free(pages[--count]);return 1;}uint64_t*pt=(void*)(uintptr_t)kernel_entry_pt();for(unsigned i=0;i<4;++i)pt[((TRAP8>>12)&511)+i]=pages[i]|3|NX;ready8=1;return 0;}
-unsigned w8_start(unsigned command,const char*source,const char*root,const char*user,const char*arguments){
- if(generation142>=0x3fffffu||info8.state==1||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
- release8();memset(&info8,0,sizeof(info8));if(allocate_space142(0))goto failure;info8.peak_pages=metadata_pages142[0];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
- copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);
+static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request){
+ if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
+ active_space142=slot;if(allocate_space142(slot))goto failure;spaces142[slot]->object=object;memset(&info8,0,sizeof(info8));info8.peak_pages=metadata_pages142[slot];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
+ copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
  if(prepare_transition8())goto failure;cr3_8=allocate8();uint64_t pdpt=allocate8();pd8=allocate8();if(!cr3_8||!pdpt||!pd8)goto failure;
  ((uint64_t*)(uintptr_t)cr3_8)[0]=pdpt|7;((uint64_t*)(uintptr_t)cr3_8)[256]=kernel_stack_branch()|3;for(unsigned i=0;i<4;++i)((uint64_t*)(uintptr_t)pdpt)[i]=kernel_pd(i)|3;((uint64_t*)(uintptr_t)pdpt)[4]=pd8|7;
@@ -187,36 +198,36 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
  }
  if(!executable||map8(W8_MAILBOX,4096,3)||map8(W8_STACK_TOP-16384,16384,3)||map8(W8_TEB,8192,3))goto failure;
  if(user8(W8_MAILBOX,&input8,sizeof(input8),1))goto failure;
- uint64_t self=W8_TEB,stack=W8_STACK_TOP,limit=W8_STACK_LOW;if(user8(W8_TEB+0x30,&self,8,1)||user8(W8_TEB+8,&stack,8,1)||user8(W8_TEB+16,&limit,8,1))goto failure;
+ uint64_t self=W8_TEB,stack=W8_STACK_TOP,limit=W8_STACK_LOW,pid=input8.process_id;if(user8(W8_TEB+0x40,&pid,8,1)||user8(W8_TEB+0x30,&self,8,1)||user8(W8_TEB+8,&stack,8,1)||user8(W8_TEB+16,&limit,8,1))goto failure;
  memset(&context8,0,sizeof(context8));context8.cs=0x1b;context8.ss=0x23;context8.rflags=0x202;context8.rip=header.entry;context8.rsp=W8_STACK_TOP-8;entry8=header.entry;
  memset(fx8,0,sizeof(fx8));*(uint16_t*)fx8=0x37f;*(uint32_t*)(fx8+24)=0x1f80;cancel8=0;metadata8_dirty=0;memset(&metadata8_db,0,sizeof(metadata8_db));metadata8_db.magic=UINT64_C(0x314154454d3857);
  if(root&&*root&&command==W8_RUN){char path[256];metadata_path8(path);const v6_entry*f=find8(path);if(f&&f->size==sizeof(metadata8_db)&&!v6_verify(m6_volume(),path)){unsigned got=0;(void)v6_read(m6_volume(),path,0,&metadata8_db,sizeof(metadata8_db),&got);}}
- threads142[0].state=T142_READY;threads142[0].generation=++generation142;
+ threads142[0].state=request&&(request->flags&4)?T142_SUSPENDED:T142_READY;threads142[0].generation=++generation142;
  threads142[0].teb=W8_TEB;threads142[0].low=W8_STACK_LOW;threads142[0].top=W8_STACK_TOP;
  current142=cursor142=0;save_thread142();
  {uint64_t id=thread_token142(0);if(user8(W8_TEB+0x48,&id,8,1))goto failure;}
- serial_text("M8_CPL3_CREATED command=");serial_hex(command);serial_text("\n");return 0;
- failure:release8();info8.state=3;info8.status=1;copy8(info8.message,"The protected Windows runtime could not be loaded.",sizeof(info8.message));++info8.revision;return V6_INVALID;
+ process_objects142[object].live=1;process_objects142[object].slot=slot;process_objects142[object].primary_id=(unsigned)thread_token142(0);
+ serial_text(slot?"M142_CHILD_CREATED command=":"M8_CPL3_CREATED command=");serial_hex(command);serial_text(" pid=");serial_hex(input8.process_id);serial_text("\n");return 0;
+ failure:release8();if(!slot){root_info142->state=3;root_info142->status=1;copy8(root_info142->message,"The protected Windows runtime could not be loaded.",sizeof(root_info142->message));++root_info142->revision;}return V6_INVALID;
 }
-unsigned w8_pending(void){return info8.state==1&&spaces142[active_space142]&&cr3_8&&!cancel8;}
+#include "process142.inc"
+unsigned w8_pending(void){for(unsigned i=0;i<SPACES142;++i)if(spaces142[i])return 1;return 0;}
 unsigned w8_runnable(void){
- unsigned runnable=0,needed=0;if(w8_pending()){uint64_t now=m3_clock_ticks()*10;
-  for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state==T142_READY)runnable=1;
-   if((t->state==T142_SLEEP||t->state==T142_PARK)&&t->deadline!=UINT64_MAX){needed=1;if(now>=t->deadline)runnable=1;}
-  }
- }
+ unsigned runnable=0,needed=0;uint64_t now=m3_clock_ticks()*10;
+ for(unsigned p=0;p<SPACES142;++p)if(spaces142[p])for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_READY)runnable=1;if((t->state==T142_SLEEP||t->state==T142_PARK)&&t->deadline!=UINT64_MAX){needed=1;if(now>=t->deadline)runnable=1;}}
  timer_needed142=needed;timer_claim142(1,needed);return runnable;
 }
 unsigned w8_clock_event142(void){return timer_needed142;}
-const w8_info *w8_current(void){return &info8;}
+const w8_info *w8_current(void){return root_info142;}
 void w8_pump(void){
- if(!w8_pending())return;reap_threads142();if(!choose_thread142())return;uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");__asm__ volatile("movq %%cr3,%0":"=r"(w8_kernel_cr3));
+ if(!w8_pending()||!choose_space142())return;uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");__asm__ volatile("movq %%cr3,%0":"=r"(w8_kernel_cr3));
  uint32_t lo,hi;__asm__ volatile("rdmsr":"=a"(lo),"=d"(hi):"c"(0xc0000101u));old_gs8=((uint64_t)hi<<32)|lo;__asm__ volatile("wrmsr"::"a"((uint32_t)threads142[current142].teb),"d"((uint32_t)(threads142[current142].teb>>32)),"c"(0xc0000101u));
  pic8=in8(0x21);out8(0x21,pic8&~1u);interrupts_set_kernel_stack(TRAP8+16384);quantum8=0;w8_active=1;
  __asm__ volatile("fxrstor64 %0"::"m"(fx8):"memory");w8_enter(&context8,cr3_8);__asm__ volatile("fxsave64 %0":"=m"(fx8)::"memory");save_thread142();
  __asm__ volatile("wrmsr"::"a"((uint32_t)old_gs8),"d"((uint32_t)(old_gs8>>32)),"c"(0xc0000101u));out8(0x21,pic8);interrupts_set_kernel_stack(KERNEL_STACK_TOP);if(flags&512)__asm__ volatile("sti":::"memory");
- ++info8.quanta;if(count8>info8.peak_pages)info8.peak_pages=count8;
- if(info8.state!=1){serial_text(info8.status?"M8_JOB_FAILED code=":"M8_JOB_DONE code=");serial_hex(info8.status);serial_text("\n");if(info8.status&&created_root8){unsigned cleanup=rollback8();copy8(info8.message,cleanup?"Installation stopped and cleanup was interrupted; use Recover / remove.":"Installation stopped. Its new files were removed. Restore resources, then choose Install again.",sizeof(info8.message));}release8();}
+ if(active_space142)++info8.quanta;++root_info142->quanta;peak8();
+ if(info8.state!=1){unsigned code=info8.status,slot=active_space142;if(info8.status&&created_root8){unsigned cleanup=rollback8();copy8(info8.message,cleanup?"Installation stopped and cleanup was interrupted; use Recover / remove.":"Installation stopped. Its new files were removed. Restore resources, then choose Install again.",sizeof(info8.message));}end_space142(slot,code);}
+
 }
 
 #include <engine/network/clock.h>
@@ -278,24 +289,30 @@ static int64_t dispatch8(trap_frame*f){
   if(map8(top-16384,16384,3))return -1;
   if(map8(teb,8192,3)){for(uint64_t v=top-16384;v<top;v+=4096){uint64_t*p=pte8(v,0);free_owned8(*p&UINT64_C(0x000ffffffffff000));*p=0;--virtual_pages141;}return -1;}
   memset(t,0,sizeof(*t));t->generation=++generation142;t->state=d?T142_SUSPENDED:T142_READY;t->low=low;t->top=top;t->teb=teb;
-  uint64_t id=thread_token142(slot);
-  if(user8(teb+0x30,&teb,8,1)||user8(teb+8,&top,8,1)||user8(teb+16,&low,8,1)||user8(teb+0x48,&id,8,1))return -1;
+  uint64_t id=thread_token142(slot),pid=input8.process_id;
+  if(user8(teb+0x40,&pid,8,1)||user8(teb+0x30,&teb,8,1)||user8(teb+8,&top,8,1)||user8(teb+16,&low,8,1)||user8(teb+0x48,&id,8,1))return -1;
   t->frame.cs=0x1b;t->frame.ss=0x23;t->frame.rflags=0x202;t->frame.rip=a;t->frame.rsp=top-8;t->frame.rdi=b;t->frame.rsi=c;
   *(uint16_t*)t->fx=0x37f;*(uint32_t*)(t->fx+24)=0x1f80;return (int64_t)id;
  }
+ case W8_SYS_PROCESS_CREATE:return create_process142(a,b);
+ case W8_SYS_PROCESS_STATUS:return process_status142(a,b,(unsigned)c);
+ case W8_SYS_PROCESS_CLOSE:return close_process_handle142(a);
+ case W8_SYS_PROCESS_ID:{if(a==UINT64_MAX)return input8.process_id;int h=process_handle_slot142(a);return h<0||spaces142[active_space142]->handles[h].kind!=1?-1:(int64_t)process_objects142[spaces142[active_space142]->handles[h].object].pid;}
+ case W8_SYS_THREAD_ID:{if(a==UINT64_MAX-1)return (int64_t)thread_token142(current142);int h=process_handle_slot142(a);if(h>=0){process_handle142*cap=spaces142[active_space142]->handles+h;return cap->kind==2?(int64_t)process_objects142[cap->object].primary_id:-1;}int t=thread_slot142(a);return t<0?-1:(int64_t)thread_token142((unsigned)t);}
+ case W8_SYS_PROCESS_TERMINATE:return terminate_process142(a,(unsigned)b);
  case W8_SYS_THREAD_LIST:{w8_thread_snapshot result[THREADS142];memset(result,0,sizeof(result));unsigned count=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED){result[i]=(w8_thread_snapshot){threads142[i].teb,(uint32_t)thread_token142(i),threads142[i].state};++count;}return user8(a,result,sizeof(result),1)?-1:(int64_t)count;}
  case W8_SYS_ACCESS:{if(!b||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||!c||(c&~7u))return -1;for(uint64_t at=a&~UINT64_C(4095);at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141))||((c&2)&&!(*p&2))||((c&4)&&(*p&NX)))return -1;}return 0;}
  case W8_SYS_QUIESCE:for(unsigned i=0;i<THREADS142;++i)if(i!=current142&&threads142[i].state){threads142[i].state=T142_EXITED;threads142[i].code=(unsigned)a;}return 0;
  case W8_SYS_THREAD_CLOSE:{int slot=thread_slot142(a);if(slot<0)return -1;threads142[slot].closed=1;return 0;}
- case W8_SYS_THREAD_RESUME:{int slot=thread_slot142(a);if(slot<0||threads142[slot].state==T142_EXITED)return -1;unsigned suspended=threads142[slot].state==T142_SUSPENDED;if(suspended)threads142[slot].state=T142_READY;return suspended;}
- case W8_SYS_THREAD_STATUS:{int slot=a==UINT64_MAX-1?(int)current142:thread_slot142(a);if(slot<0)return -1;thread142*t=threads142+slot;if(b&&user8(b,&t->code,4,1))return -1;return t->state==T142_EXITED?0:259;}
+ case W8_SYS_THREAD_RESUME:{if((a&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG)return resume_process_thread142(a);int slot=thread_slot142(a);if(slot<0||threads142[slot].state==T142_EXITED)return -1;unsigned suspended=threads142[slot].state==T142_SUSPENDED;if(suspended)threads142[slot].state=T142_READY;return suspended;}
+ case W8_SYS_THREAD_STATUS:{if((a&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG)return process_status142(a,b,2);int slot=a==UINT64_MAX-1?(int)current142:thread_slot142(a);if(slot<0)return -1;thread142*t=threads142+slot;if(b&&user8(b,&t->code,4,1))return -1;return t->state==T142_EXITED?0:259;}
  case W8_SYS_THREAD_BEGIN_EXIT:{
   thread142*t=threads142+current142;if(t->exiting)return 0;unsigned live=0;
   for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED&&!threads142[i].exiting)++live;
   if(live==1)return 1;t->exiting=1;return 0;
  }
  case W8_SYS_THREAD_EXIT:{
-  threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;
+  threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;if(!current142){process_object142*o=process_objects142+spaces142[active_space142]->object;o->primary_done=1;o->primary_code=(unsigned)a;wake_process_waiters142();}
   for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}
   unsigned live=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED)++live;
   if(!live){threads142[current142].state=T142_READY;return 1;}context8=*f;w8_active=0;w8_escape();break;
@@ -329,5 +346,5 @@ trap_frame *w8_trap(trap_frame*f){
  if(f->vector==128){f->rax=(uint64_t)dispatch8(f);return f;}
  if(f->vector==32){out8(0x20,0x20);if(++quantum8<1)return f;context8=*f;w8_active=0;w8_escape();}
  serial_text("M8_PROCESS_FAULT vector=");serial_hex(f->vector);serial_text(" rip=");serial_hex(f->rip);serial_text(" address=");uint64_t addr;__asm__ volatile("movq %%cr2,%0":"=r"(addr));serial_hex(addr);serial_text("\n");
- copy8(info8.message,"The Windows process stopped after an unsupported operation or memory fault.",sizeof(info8.message));info8.state=3;info8.status=1;w8_active=0;w8_escape();
+ copy8(info8.message,"The Windows process stopped after an unsupported operation or memory fault.",sizeof(info8.message));info8.state=3;info8.status=f->vector==14?0xc0000005u:f->vector==6?0xc000001du:f->vector==0?0xc0000094u:0xc0000001u;w8_active=0;w8_escape();
 }
