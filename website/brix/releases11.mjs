@@ -39,3 +39,15 @@ export function stageRelease13(releases){
  }
  return null;
 }
+
+export function stageRelease14(releases){
+ for(let number=15;number>=1;number--){
+  const tag=`m14${number}-v0.14.${number}`,image=`EngacerOS-M14STAGE${number}`;
+  const release=releases.find(r=>r.tag_name===tag&&!r.draft&&!r.prerelease);
+  if(!release)continue;
+  const names=new Set(release.assets.map(a=>a.name));
+  if(!names.has(image+'.iso')||!names.has(image+'-VMware.zip')||!names.has(`m14stage${number}-build-manifest.json`))continue;
+  return {id:`M14${number}`,label:`M14.${number}`,tag,image,guide:`install-m14${number}`};
+ }
+ return null;
+}

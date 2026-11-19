@@ -4,6 +4,9 @@
 #include <engine/ui/icons12.h>
 #endif
 #include "font73.h"
+#ifdef ENGINE_M12
+_Static_assert(sizeof(font73_faces)/sizeof(font73_faces[0])>=21,"Semantic typography requires all 21 bounded physical font faces");
+#endif
 #ifdef ENGINE_M74
 #include <engine/audio74.h>
 #endif

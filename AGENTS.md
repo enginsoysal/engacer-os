@@ -13,6 +13,8 @@
 
 ## Product requirements
 
+- Owner continuation, 19 November 2026: complete and test M14.1 next, including a browser download choice. Firefox is the first target; Chrome, Brave and Edge are candidates. Clearly separate downloading, installation and actual runtime compatibility. Close English docs, GitHub and the actual website before M14.2.
+
 - Latest owner priority, 19 November 2026: record M14.0-M14.15 and complete M14.0 now. M14 is original Windows x64 installation/use/removal, M15 x86, M16 Win16/DOS. Whole-OS CPU/RAM/HDD-SSD efficiency is a core requirement throughout; M14.14 is a release candidate, M14.15 optimization blocks final release. Every stage closes its tests, English docs, GitHub and complete actual website before the next. M14.0 is static research and task/performance baseline design, not new native GUI compatibility or a new ISO. Preserve M13.13 and all prior accepted evidence. This supersedes the previously proposed next hardware priority.
 
 - Superseding explicit owner instruction during M13.13, 18 November 2026: ninety minutes of testing is sufficient; stop waiting for the eight-hour gate and finish M13.13. The normal-path candidate has over 6,500 actually observed seconds. Preserve the original interrupted report honestly; do not call it an eight-hour or two-hour idle pass. Complete functional saved/unsaved data, independent startup, exact media, English documentation, GitHub and actual website delivery. The owner's attribution to their laptop remains an owner report, not an independently established root cause. This overrides the earlier eight-hour release requirement below and authorizes scoped closure without restarting another ninety-minute run.

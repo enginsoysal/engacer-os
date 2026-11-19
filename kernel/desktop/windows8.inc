@@ -1,6 +1,6 @@
 /* Native frontend for the bounded original Windows-console compatibility profile. */
 #define PRODUCT_ROOT8 "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
-enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8};
+enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141};
 extern const char windows8_licenses[];
 static unsigned installed8(void){
  static uint64_t generation=UINT64_MAX;static unsigned valid;
@@ -44,6 +44,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   button(token,x,actions,160,installed?"Open 7-Zip":"Install 7-Zip",installed?INFO8:INSTALL8,1);
   button(token,x+174,actions,170,installed?"Remove app":"Review installer",installed?REMOVE8:PREVIEW8,0);
   button(token,x+358,actions,130,"Licenses",LICENSE8,0);
+  if(installed||!entry(PRODUCT_ROOT8))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
   if(entry(PRODUCT_ROOT8)&&!installed)button(token,x+502,actions,190,"Recover / remove",REMOVE8,0);
  }
  if(installed&&info->state!=1){
@@ -52,15 +53,15 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  }
  const char*message=app->notice[0]?app->notice:info->message[0]?info->message:
   info->state==1?"7-Zip is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?"Ready. Open the original Windows app or try creating and extracting a test archive.":"Choose Install 7-Zip to get started. Other Windows installers are not supported in this first release.";
- ui73_paragraph(x,y+294,width,info->command==W8_RUN?2:3,message,ink());
+ ui73_paragraph(x,y+294,width,info->command==W8_RUN||info->command==W8_INSPECT?2:3,message,ink());
  if(info->state==1&&info->command!=W8_RUN){
   unsigned filled=(unsigned)width*info->percent/100;ui73_round(x,y+374,width,8,4,desktop_dark16()?0x233c47:0xdce8ee);
   if(filled)ui73_round(x,y+374,(int)filled,8,4,preferences.accent);
   char progress[40];decimal(progress,info->percent);append(progress,"% complete",40);text(x,y+390,progress,1,ink());
  }
  if(w->bounds.height>600&&info->output[0]){
-  int top=y+(info->command==W8_RUN?382:442);unsigned rows=(unsigned)(w->bounds.y+w->bounds.height-80-top)/24;
-  text(x,top-28,"Output from the original Windows program",1,ink());
+  int top=y+(info->command==W8_RUN||info->command==W8_INSPECT?382:442);unsigned rows=(unsigned)(w->bounds.y+w->bounds.height-80-top)/24;
+  text(x,top-28,info->command==W8_INSPECT?"File check details - application not started":"Output from the original Windows program",1,ink());
   app->source_crc=page74(x,top,(unsigned)width,rows,info->output,app->offset);
   button(token,x,w->bounds.y+w->bounds.height-57,140,"Previous",OUTPUT_PREV8,0);button(token,x+154,w->bounds.y+w->bounds.height-57,140,"More output",OUTPUT_NEXT8,0);
  }
@@ -69,7 +70,7 @@ static void sample_name8(char*out,const char*base,unsigned number,const char*ext
  copy(out,base,256);if(number){char suffix[24];decimal(suffix,number+1);append(out,"-",256);append(out,suffix,256);}append(out,extension,256);
 }
 static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,unsigned command){
- (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||command>LICENSE8)return 0;
+ (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||command>INSPECT141)return 0;
  if(command==LICENSE8){app->calc_error=1;app->offset=0;invalidate(w->bounds);return 1;}
  if(command==BACK8){app->number=0;app->calc_error=0;app->offset=0;invalidate(w->bounds);return 1;}
  if(command==OUTPUT_PREV8){app->offset=0;invalidate(w->bounds);return 1;}
@@ -77,6 +78,7 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
  if(command==CANCEL8){w8_cancel();invalidate(w->bounds);return 1;}
  if(w8_pending()){notice(app,"A Windows task is already running. Wait or cancel it.");invalidate(w->bounds);return 1;}
  if(command==INSTALL8||command==REMOVE8){app->number=command==INSTALL8?1:2;invalidate(w->bounds);return 1;}
+ if(command==INSPECT141){picker_begin12(token,P12_WINDOWS_INSPECT);return 1;}
  unsigned job=0;const char*source=app->path,*arguments="";char sample_arguments[512];
  if(command==CONFIRM8){job=app->number==1?W8_INSTALL:app->number==2?W8_REMOVE:0;app->number=0;}
  if(command==PREVIEW8)job=W8_PREVIEW;

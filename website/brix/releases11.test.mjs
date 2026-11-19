@@ -1,6 +1,14 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {stageRelease11,stageRelease12,releaseLabel} from './releases11.mjs';
+import {stageRelease11,stageRelease12,stageRelease14,releaseLabel} from './releases11.mjs';
 const release=(n,extra={})=>({tag_name:`m11${n}-v0.11.${n}`,draft:false,prerelease:false,assets:[{name:`EngacerOS-M11STAGE${n}.iso`},{name:`EngacerOS-M11STAGE${n}-VMware.zip`},{name:`m11stage${n}-build-manifest.json`}],...extra});
+
+test('M14 requires public matching native media and never admits research or drafts',()=>{
+ const current={tag_name:'m141-v0.14.1',draft:false,prerelease:false,assets:[{name:'EngacerOS-M14STAGE1.iso'},{name:'EngacerOS-M14STAGE1-VMware.zip'},{name:'m14stage1-build-manifest.json'}]};
+ assert.equal(stageRelease14([current]).label,'M14.1');
+ assert.equal(stageRelease14([{...current,draft:true}]),null);
+ assert.equal(stageRelease14([{...current,assets:current.assets.slice(0,2)}]),null);
+ assert.equal(stageRelease14([{...current,tag_name:'m140-v0.14.0-research.2'}]),null);
+});
 
 test('active M12 design is labeled separately and cannot replace a native download',()=>{
  const design={tag_name:'m120-v0.12.0-design',prerelease:true,draft:false,assets:[{name:'EngacerOS-M120-Design-Review2.zip'}]};

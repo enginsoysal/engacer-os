@@ -1,7 +1,7 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.0",
+  "current_stage": "M14.1",
   "current_native_download": "M13.13",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
@@ -25,7 +25,7 @@
       "deliver": "Extend checked PE32+ mapping, relocations, imports/forwarders/delay imports, module lifetime and dependencies.",
       "how_and_why": "Replace the current fixed eight-module/eight-MiB assumptions with explicit tested per-process quotas and demand-backed mappings, not unbounded allocations.",
       "acceptance": "Original selected binaries load correctly with access violations, invalid images and missing required functions refused clearly; no GUI compatibility claim from loading alone.",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M14.2",

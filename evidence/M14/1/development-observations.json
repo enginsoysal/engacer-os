@@ -1,0 +1,60 @@
+{
+  "stage": "M14.1",
+  "accepted": false,
+  "development_observations": [
+    {
+      "kind": "4k_startup_failure",
+      "candidate_build_id": "3dbd401c73dde3811d374ecf54a36905",
+      "report": {
+        "passed": false,
+        "baseline": false,
+        "stage": "M14.1",
+        "build_id": "3dbd401c73dde3811d374ecf54a36905",
+        "iso_sha256": "f3b94961b0c3c44179a93aa2bdd378a18b6b3d282e78c7ed3940e15fb15019ca",
+        "physical": [
+          3840,
+          2160
+        ],
+        "configured_guest_mib": 1024,
+        "owned_fixture": "d51c2cbe86bf4b08a45aba924b9dfcdd",
+        "checks": [],
+        "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\native1.py\", line 33, in main\n    with ui.guest(work/'install',disk,resolution=resolution,ram=ram)as g:\n  File \"<project-root>\\tests\\m6\\vm.py\", line 55, in __enter__\n    self.wait(self.ready)\n  File \"<project-root>\\tests\\m6\\vm.py\", line 74, in wait\n    if any(p in log for p in ['KERNEL_PANIC','KERNEL_REJECT:','BIOS_REJECT:']):raise RuntimeError(log[-1500:])\nRuntimeError: 0000000003c0\nM73_GOP_MODE 0x0000000000000500x0x0000000000000400\nM73_GOP_MODE 0x0000000000000550x0x0000000000000300\nM73_GOP_MODE 0x0000000000000556x0x0000000000000300\nM73_GOP_MODE 0x0000000000000578x0x000000000000041a\nM73_GOP_MODE 0x00000000000005a0x0x0000000000000384\nM73_GOP_MODE 0x0000000000000640x0x0000000000000384\nM73_GOP_MODE 0x0000000000000640x0x00000000000004b0\nM73_GOP_MODE 0x0000000000000690x0x000000000000041a\nM73_GOP_MODE 0x0000000000000780x0x0000000000000438\nM73_GOP_MODE 0x0000000000000780x0x00000000000004b0\nM73_GOP_MODE 0x0000000000000780x0x00000000000005a0\nM73_GOP_MODE 0x00000000000007d0x0x00000000000007d0\nM73_GOP_MODE 0x0000000000000800x0x0000000000000600\nM73_GOP_MODE 0x0000000000000800x0x0000000000000800\nM73_GOP_MODE 0x0000000000000a00x0x00000000000005a0\nM73_GOP_MODE 0x0000000000000a00x0x0000000000000640\nM73_GOP_MODE 0x0000000000000a00x0x0000000000000800\nM73_GOP_MODE 0x0000000000000af0x0x0000000000000834\nM73_GOP_MODE 0x0000000000000c80x0x0000000000000960\nM73_GOP_MODE 0x0000000000000f00x0x0000000000000870\nM73_GOP_MODE 0x0000000000001000x0x0000000000000870\nELF_LOADED entry=0x0000000000200000\nEXIT_BOOT_SERVICES_OK\nENGINE_OS_KERNEL_ENTRY build=3dbd401c73dde3811d374ecf54a36905\nM8_BOOT_MSI_DIGEST_OK\nM73_DISPLAY physical=0x0000000000000f00x0x0000000000000870 scale_half=0x0000000000000004 logical=0x0000000000000780x0x0000000000000438\nKERNEL_PANIC exception=0x000000000000000e error=0x0000000000000000 rip=0x00000000002046fb cr2=0x00000001002e7709\nOWN_IDT_EXCEPTION_HANDLED\n\n"
+      },
+      "cause": "New m14 work-directory identity was missing from font73.py; only 12 faces were generated while M12 semantic rendering indexes 21.",
+      "correction": "Include m14 in semantic/secondary font generation; compile-time assert at least 21 font faces; regenerate and rerun exact-media native qualification."
+    },
+    {
+      "kind": "missing_exitprocess",
+      "candidate_build_id": "80dbcf64d0f845bc4f13438b1542cb02",
+      "result": "Synthetic PE correctly refused the previously unavailable kernel32.dll!ExitProcess. Added a real protected-task exit adapter; later native DLL/protection probes passed on the 3dbd candidate before the typography correction."
+    },
+    {
+      "kind": "optional_firefox_network",
+      "candidate_build_id": "80dbcf64d0f845bc4f13438b1542cb02",
+      "attempts": [
+        {
+          "result": "refused",
+          "reason": "Default emulated CPU lacked hardware entropy; no weakening of TLS/DNS entropy requirement."
+        },
+        {
+          "result": "failed",
+          "received_bytes": 6841344,
+          "tls_error": 1004,
+          "reason": "TCP transport failed; no complete installer claimed."
+        },
+        {
+          "result": "passed",
+          "received_bytes": 95924224,
+          "sha256": "6dc28633cbd77cb1d044f339185cd467dda39397e4bcca942bfb0ddb2360c681",
+          "reason": "Real native transfer from Mozilla with hardware entropy and independent stopped-disk readback; not browser execution."
+        }
+      ]
+    },
+    {
+      "kind": "delay_fixture_linkage",
+      "accepted": false,
+      "observation": "The stronger callback/order assertion found that the forwarding fixture also auto-exported delayed(), allowing the linker to bind it directly rather than produce the intended delay path.",
+      "correction": "Use a forwarding-only DLL object with no leaf exports; assert a real PE delay-import directory exists, then require 48 actual detach callbacks, 50 attachment callbacks and a fresh dynamic DLL map after DELAY_CALL_BEGIN in the native worker."
+    }
+  ]
+}

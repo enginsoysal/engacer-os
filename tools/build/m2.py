@@ -8,8 +8,9 @@ import struct
 from m1 import ROOT,pinned_tools,command,sha
 from media import package
 BUILD=ROOT/'build/m2'
-def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard",m7=False,m71=False,m72=False,m73=False,m74=False,m75=False,m8=False,m9=False,m92=False,m10=False,m11=False,m12=False,m13=False):
+def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard",m7=False,m71=False,m72=False,m73=False,m74=False,m75=False,m8=False,m9=False,m92=False,m10=False,m11=False,m12=False,m13=False,m14=False):
     global BUILD
+    m13=m13 or m14
     m12=m12 or m13
     m11=m11 or m12
     m10=m10 or m11
@@ -23,7 +24,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     m71=m71 or m72
     m7=m7 or m71
     m6=m6 or m7
-    flavor='m13-native' if m13 else 'm12' if m12 else 'm11' if m11 else 'm10' if m10 else 'm92' if m92 else 'm9' if m9 else 'm8' if m8 else 'm75' if m75 else 'm74' if m74 else 'm73' if m73 else 'm72' if m72 else 'm71' if m71 else 'm7' if m7 else 'm6'
+    flavor='m14-native' if m14 else 'm13-native' if m13 else 'm12' if m12 else 'm11' if m11 else 'm10' if m10 else 'm92' if m92 else 'm9' if m9 else 'm8' if m8 else 'm75' if m75 else 'm74' if m74 else 'm73' if m73 else 'm72' if m72 else 'm71' if m71 else 'm7' if m7 else 'm6'
     BUILD=ROOT/'build'/(flavor if m6 else milestone.lower())
     if m13:BUILD=BUILD.resolve()
     tools=pinned_tools();BUILD.mkdir(parents=True,exist_ok=True)
@@ -66,10 +67,11 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m10:sources.extend(sorted((ROOT/'tools/build').glob('m10*.py')))
     if m11:sources.extend(sorted((ROOT/'tools/build').glob('m11*.py')))
     if m12:sources.extend(sorted((ROOT/'tools/build').glob('m12*.py')))
+    if m14:sources.extend(sorted((ROOT/'tools/build').glob('m14*.py')))
     if m13:sources.extend(sorted((ROOT/'tools/build').glob('m13*.py')))
     if m12:sources.extend([ROOT/'tools/design/components12.py',ROOT/'tools/design/icons12.py'])
     hashes={p.relative_to(ROOT).as_posix():sha(p) for p in sorted(sources)}
-    identity={'milestone':'M13' if m13 else 'M12' if m12 else 'M11' if m11 else 'M10' if m10 else 'M92' if m92 else 'M9' if m9 else 'M8' if m8 else 'M75' if m75 else 'M74' if m74 else 'M73' if m73 else 'M72' if m72 else 'M71' if m71 else 'M7' if m7 else 'M6' if m6 else milestone,'source_sha256':hashes}
+    identity={'milestone':'M14' if m14 else 'M13' if m13 else 'M12' if m12 else 'M11' if m11 else 'M10' if m10 else 'M92' if m92 else 'M9' if m9 else 'M8' if m8 else 'M75' if m75 else 'M74' if m74 else 'M73' if m73 else 'M72' if m72 else 'M71' if m71 else 'M7' if m7 else 'M6' if m6 else milestone,'source_sha256':hashes}
     if m6:identity['revision']=m6_revision
     build_id=hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()[:32]
     (BUILD/'build.h').write_text(f'#define BUILD_ID "{build_id}"\n',encoding='utf-8')
@@ -90,6 +92,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m10:common.append('-DENGINE_M10')
     if m11:common.append('-DENGINE_M11')
     if m12:common.append('-DENGINE_M12')
+    if m14:common.append('-DENGINE_M14')
     if m13:common.append('-DENGINE_M13')
     if m75 and m5_live:common.append('-DENGINE_SETUP_MEDIA75')
     if m7:
@@ -202,7 +205,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if command([nm,'-u',BUILD/'KERNEL.ELF']).strip():raise RuntimeError('Undefined kernel symbols')
     map_path=BUILD/'kernel.map';map_path.write_text(map_path.read_text(encoding='utf-8').replace(str(BUILD),'/build/'+flavor).replace(BUILD.as_posix(),'/build/'+flavor).replace(str(ROOT),'.').replace(ROOT.as_posix(),'.'),encoding='utf-8')
     if m6 and any(sha(ROOT/p)!=value for p,value in hashes.items()):raise RuntimeError('Build inputs changed during compilation; discard mixed outputs and rebuild')
-    artifact_name=(('M13' if m13 else 'M12' if m12 else 'M11' if m11 else 'M10' if m10 else 'M92' if m92 else 'M9' if m9 else 'M8' if m8 else 'M75' if m75 else 'M74' if m74 else 'M73' if m73 else 'M72' if m72 else 'M71' if m71 else 'M7' if m7 else 'M6')+('' if m6_revision=='standard' else m6_revision.upper())) if m6 else milestone
+    artifact_name=(('M14' if m14 else 'M13' if m13 else 'M12' if m12 else 'M11' if m11 else 'M10' if m10 else 'M92' if m92 else 'M9' if m9 else 'M8' if m8 else 'M75' if m75 else 'M74' if m74 else 'M73' if m73 else 'M72' if m72 else 'M71' if m71 else 'M7' if m7 else 'M6')+('' if m6_revision=='standard' else m6_revision.upper())) if m6 else milestone
     if m73:
         from m5_layout import compact_elf
         shutil.copyfile(BUILD/'KERNEL.ELF',BUILD/'KERNEL-debug.ELF')

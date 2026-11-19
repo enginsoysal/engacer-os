@@ -16,7 +16,7 @@ def prepare(work):
     glyphs=[];data=bytearray();faces=[]
     for weight in (400,600):
         for size in SIZES:
-            if work.name in ('m12','m13') and weight==600:
+            if work.name in ('m12','m13','m14') and weight==600:
                 # M12 replaces legacy heading sizes; keep index slots, not unused masks.
                 faces.append(faces[0]);continue
             if (weight==400 and size>32) or (weight==600 and size==16):
@@ -33,7 +33,7 @@ def prepare(work):
                     while count<255 and at+count<len(raw) and raw[at+count]==raw[at]:count+=1
                     encoded.extend((count,raw[at]));at+=count
                 glyphs.append((len(data),len(encoded),w,h,x0,y0,round(font.getlength(char))));data.extend(encoded)
-    secondary=work.name in ('m11','m12','m13')
+    secondary=work.name in ('m11','m12','m13','m14')
     if secondary:
         # Original Inter, rasterized at actual 14/21/28 px for 100/150/200%.
         for size in (14,21,28):
@@ -49,7 +49,7 @@ def prepare(work):
                     while count<255 and at+count<len(raw) and raw[at+count]==raw[at]:count+=1
                     encoded.extend((count,raw[at]));at+=count
                 glyphs.append((len(data),len(encoded),w,h,x0,y0,round(font.getlength(char))));data.extend(encoded)
-    semantic=work.name in ('m12','m13')
+    semantic=work.name in ('m12','m13','m14')
     if semantic:
         # Section 21 and heading 28, independently rasterized at actual scales.
         for index,size in enumerate((21,32,42,28,42,56)):

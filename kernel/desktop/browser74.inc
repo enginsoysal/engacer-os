@@ -1,6 +1,6 @@
 /* Basic static HTTPS reader. HTML parsing stays in a bounded CPL3 worker. */
 enum { BROWSER_BACK74=15000,BROWSER_HOME74,BROWSER_ADDRESS74,BROWSER_GO74,BROWSER_STOP74,BROWSER_LINKS74,
-       BROWSER_PREV74,BROWSER_NEXT74,BROWSER_RETRY74,BROWSER_LINK74=15100 };
+       BROWSER_PREV74,BROWSER_NEXT74,BROWSER_RETRY74,BROWSER_CHOICES141,BROWSER_FIREFOX141,BROWSER_LINK74=15100 };
 static const char browser_home74[]="<h1>Welcome to your browser</h1><p>A small, readable space for static HTTPS pages.</p>"
     "<p>This first browser reads HTML and plain text. JavaScript, forms, CSS layout, images and downloads inside pages are not supported.</p>"
     "<p>Choose an address above, or open Links to visit one of these pages:</p>"
@@ -92,8 +92,17 @@ static void browser_init74(unsigned kind,application *app){
 }
 static void browser_draw74(desktop_window *w,application *app,uint64_t token){
     if(w->app!=BROWSER74)return;int x=w->bounds.x+24,y=w->bounds.y+55,width=w->bounds.width-48;
+    if(app->calc_error){
+        text(x,y,"Choose your next browser",2,ink());
+        ui73_paragraph(x,y+54,width,3,"Firefox is our first modern-browser target. You can save its original Windows x64 installer now. Installing and running it are not supported yet.",ink());
+        button(token,x,y+150,260,"Download Firefox installer",BROWSER_FIREFOX141,1);
+        ui73_paragraph(x,y+202,width,2,"Firefox 160.0.1 / Windows x64 / English / 91.5 MiB. Downloaded directly from Mozilla; saved in Downloads.",ink());
+        ui73_paragraph(x,y+280,width,3,"Chrome, Brave and Microsoft Edge are also candidates. None is qualified to run in this release. Downloading a file does not add compatibility.",ink());
+        button(token,x,y+386,170,"Back to browser",BROWSER_CHOICES141,0);
+        ui73_paragraph(x,y+438,width,3,app->notice[0]?app->notice:"Your current browser remains available. No installer will run automatically.",ink());return;
+    }
     button(token,x,y,100,"Back",BROWSER_BACK74,0);button(token,x+112,y,100,"Home",BROWSER_HOME74,0);button(token,x+224,y,100,"Stop",BROWSER_STOP74,0);
-    text(x+345,y+10,"Basic static-page browser",1,ink());
+    button(token,x+336,y,190,"Browser choices",BROWSER_CHOICES141,0);
     ui73_round(x,y+49,width-94,36,6,app->name_selected?preferences.accent:desktop_dark16()?0x10212a:0xffffff);
     char visible[256];unsigned start=0;copy(visible,app->pending,256);
     while(visible[start]&&ui73_measure(visible+start,1)>(unsigned)(width-120))++start;
@@ -116,6 +125,20 @@ static void browser_draw74(desktop_window *w,application *app,uint64_t token){
 }
 static unsigned browser_action74(desktop_window *w,application *app,uint64_t token,unsigned command){
     if(w->app!=BROWSER74||command<15000||command>=15200)return 0;
+    if(command==BROWSER_CHOICES141){app->calc_error^=1;app->day74=0;invalidate(w->bounds);return 1;}
+    if(command==BROWSER_FIREFOX141){
+        download7_info current=download7_current();
+        if(transfer_owner74||(current.state>=DOWNLOAD7_RESOLVING&&current.state<=DOWNLOAD7_RECEIVING)){notice(app,"Finish or cancel the current transfer first.");invalidate(w->bounds);return 1;}
+        if(net7_current().state!=NET7_CONNECTED){net7_retry();notice(app,"Connecting. Choose Download again once the network is ready.");invalidate(w->bounds);return 1;}
+        uint64_t opened=launch(DOWNLOADS,0);desktop_window*d=desktop_lookup(&model,opened);
+        if(!d){notice(app,"Close another window, then try the download again.");invalidate(w->bounds);return 1;}
+        application*target=&apps[d-model.windows];
+        copy(target->text,"https://archive.mozilla.org/pub/firefox/releases/160.0.1/win64/en-US/Firefox%20Setup%20160.0.1.msi",sizeof(target->text));target->length=length(target->text);
+        unique_path(target->path,"Downloads","Firefox-160.0.1-x64",".msi");
+        if(!target->path[0]||download7_start(m6_volume(),target->text,target->path)){notice(target,"Could not start the Firefox download. Check the connection and try again.");}
+        else{transfer_owner74=opened;notice(target,"Firefox installer download only. Installation and running Firefox are not available yet.");}
+        whole();return 1;
+    }
     if(command==BROWSER_ADDRESS74){app->day74=1;app->name_selected=1;app->name_cursor=length(app->pending);}
     if(command==BROWSER_GO74){char address[256];copy(address,app->pending,256);browser_go74(app,token,address,1);}
     if(command==BROWSER_HOME74){browser_stop74(app,token);browser_home_page74(app,1);}

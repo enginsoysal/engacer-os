@@ -195,7 +195,11 @@ unsigned v6_read_scratch(v6_volume *v,const char *p,uint64_t off,void *data,unsi
 #ifdef ENGINE_M7
 void v6_stream_abort(v6_volume*v){if(stream7.volume==v)zero(&stream7,sizeof(stream7));}
 unsigned v6_stream_begin(v6_volume*v,const char*p,uint64_t limit){
+#ifdef ENGINE_M14
+ if(stream7.volume||!limit||limit>128u*1024*1024)return V6_LIMIT;
+#else
  if(stream7.volume||!limit||limit>64u*1024*1024)return V6_LIMIT;
+#endif
  int n;unsigned s=prepare(v,p,&n);if(s)return s;if(v->entries[n].kind)return V6_EXISTS;
  uint64_t pages=count(limit),first=allocate(v,pages);if(!first)return V6_FULL;
  zero(&stream7,sizeof(stream7));stream7.volume=v;stream7.first=first;stream7.pages=pages;stream7.limit=limit;stream7.sum=~0u;

@@ -40,7 +40,7 @@ static void picker_begin12(uint64_t token,unsigned purpose){
  if(model.width<560||model.height<512){notice(a,"Choose a smaller display size in Settings to make room for the file dialog.");whole();return;}
  picker_load12();memset(&picker12,0,sizeof(picker12));picker12.purpose=purpose;picker12.selected=UINT32_MAX;
  char path[256];unsigned category=picker_category12();copy(path,picker_preferences.paths[category],256);
- if(!picker_string12(path)||!picker_folder12(path)||(purpose!=P12_TEXT_OPEN&&purpose!=P12_IMAGE_OPEN&&purpose!=P12_ZIP_OPEN&&!picker_writable12(path)))root_path(path,purpose==P12_ZIP_FOLDER||purpose==P12_ZIP_OPEN?"Downloads":purpose==P12_IMAGE_OPEN?"Pictures":"Documents");
+ if(!picker_string12(path)||!picker_folder12(path)||(purpose!=P12_TEXT_OPEN&&purpose!=P12_IMAGE_OPEN&&purpose!=P12_ZIP_OPEN&&purpose!=P12_WINDOWS_INSPECT&&!picker_writable12(path)))root_path(path,purpose==P12_ZIP_FOLDER||purpose==P12_ZIP_OPEN||purpose==P12_WINDOWS_INSPECT?"Downloads":purpose==P12_IMAGE_OPEN?"Pictures":"Documents");
  if(purpose==P12_TEXT_SAVE){copy(picker12.name,a->path[0]?file_basename11(a->path):"Note.txt",256);picker12.name_cursor=length(picker12.name);picker12.name_anchor=0;}
  file_dialog_open11(P12_DIALOG,token,0);file_dialog_state11.focus=purpose==P12_TEXT_SAVE?2:1;picker_visit12(path,1);
  serial_text("M128_PICKER_OPEN purpose=");serial_hex(purpose);serial_text("\n");
@@ -49,6 +49,7 @@ static unsigned picker_match12(const v6_entry*e){
  if(e->kind==2)return 1;if(e->kind!=1||picker12.purpose==P12_ZIP_FOLDER)return 0;
  if(picker12.filter)return 1;const char*extension=ui12_file_extension(file_basename11(e->path));
  if(picker12.purpose==P12_IMAGE_OPEN)return !ui12_file_natural(extension,"bmp");
+ if(picker12.purpose==P12_WINDOWS_INSPECT)return !ui12_file_natural(extension,"exe")||!ui12_file_natural(extension,"dll");
  if(picker12.purpose==P12_ZIP_OPEN)return !ui12_file_natural(extension,"zip");
  return !ui12_file_natural(extension,"txt")||!ui12_file_natural(extension,"md")||!ui12_file_natural(extension,"log")||!ui12_file_natural(extension,"ini")||!ui12_file_natural(extension,"cfg")||!ui12_file_natural(extension,"json")||!ui12_file_natural(extension,"csv");
 }
@@ -123,6 +124,10 @@ static void picker_accept12(unsigned decision){
  if(picker12.purpose==P12_TEXT_SAVE){picker_save12(w,a,0);return;}
  if(!e||e->kind!=1){picker_error12("Select a file in the list, then choose Open.");return;}
  char path[256];copy(path,e->path,256);
+ if(picker12.purpose==P12_WINDOWS_INSPECT){char user[256];root_path(user,"");unsigned n=length(user);if(n&&user[n-1]=='/')user[n-1]=0;
+  if(w8_start(W8_INSPECT,path,PRODUCT_ROOT8,user,"")){picker_error12("The file check could not start. Finish other Windows tasks and try again.");return;}
+  a->offset=0;picker_close12(a,"Checking the file layout only. This does not install or start the app.",0);invalidate(w->bounds);return;
+ }
  if(picker12.purpose==P12_TEXT_OPEN){picker_editor_open12(w,a,path,0);return;}
  char previous[256];copy(previous,a->path,256);copy(a->path,path,256);
  unsigned status=picker12.purpose==P12_IMAGE_OPEN?image_load74(a):zip_load74(a);
@@ -238,7 +243,7 @@ static unsigned picker_draw12(void){
  int controls_y=y+height-164;picker_button12(x+24,controls_y,64,"Prev",P12_PREVIOUS,picker12.offset>0,0,14);picker_button12(x+96,controls_y,64,"Next",P12_NEXT,picker12.offset+picker12.rows<picker12.count,0,15);
  picker_button12(x+168,controls_y,108,"New folder",P12_NEW_FOLDER,picker_writable12(picker12.path)&&!picker_busy12(),0,13);
  if(picker12.purpose==P12_TEXT_SAVE){text(x+24,y+height-116,"Name",UI12_SECONDARY,ink());desktop_rect field={x+84,y+height-122,width-108,36};file_text_field11(field,picker12.name,picker12.name_cursor,picker12.name_anchor,d->focus==2,0);file_control11(d->owner,field,P12_NAME);}
- if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker12.filter?"All files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker12.purpose==P12_TEXT_SAVE?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
+ if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker12.filter?"All files":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker12.purpose==P12_TEXT_SAVE?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
  ui73_fit(x+24,y+height-76,width-48,picker12.error[0]?picker12.error:picker12.purpose==P12_TEXT_SAVE?"Text type adds .txt when no extension is supplied. The original is kept.":"Click selects. Double-click or Enter opens. Escape cancels.",UI12_SECONDARY,ink());
  picker_button12(x+24,y+height-46,120,"Cancel",P12_CANCEL,1,0,5);picker_button12(x+width-190,y+height-46,166,picker12.purpose==P12_TEXT_SAVE?"Save":picker12.purpose==P12_ZIP_FOLDER?"Choose folder":"Open",P12_ACCEPT,1,1,4);
  return 1;

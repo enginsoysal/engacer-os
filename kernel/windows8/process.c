@@ -5,6 +5,8 @@
 #include <engine/sha256.h>
 extern void *memmove(void*,const void*,size_t);
 #define NX (UINT64_C(1)<<63)
+#define RESERVED141 UINT64_C(0x200)
+#define VIRTUAL141_PAGES 32768u
 #define OWN8 10000u
 #define WRITE8_PAGES 2048u
 #define TRAP8 (KERNEL_STACK+0x80000)
@@ -14,6 +16,7 @@ static struct {uint64_t magic;metadata8 records[128];} metadata8_db;
 static unsigned metadata8_dirty,created_root8;
 static uint64_t owned8[OWN8],cr3_8,pd8,entry8,write_pages8[WRITE8_PAGES];
 static unsigned count8,writer8=UINT32_MAX,write_count8,ready8,quantum8,cancel8;
+static uint64_t virtual_pages141,lazy_faults141;
 static file8 files8[32];static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t pic8;
 static uint64_t old_gs8;static w8_mailbox input8;static w8_info info8;
 static uint8_t io8[4096];
@@ -34,15 +37,24 @@ static uint64_t *pte8(uint64_t va,unsigned create){
  if(va<W8_BASE||va>=W8_LIMIT)return 0;uint64_t*pd=(void*)(uintptr_t)pd8;unsigned at=(unsigned)((va>>21)&511);uint64_t page=pd[at]&UINT64_C(0x000ffffffffff000);
  if(!page&&create){page=allocate8();if(!page)return 0;pd[at]=page|7;}return page?(uint64_t*)(uintptr_t)page+((va>>12)&511):0;
 }
-static unsigned map8(uint64_t va,uint64_t bytes,unsigned permissions){
+static void free_owned8(uint64_t page);
+static unsigned reserve141(uint64_t va,uint64_t bytes,unsigned permissions,unsigned lazy){
  if(!bytes||(va&4095)||(bytes&4095)||va<W8_BASE||va>=W8_LIMIT||bytes>W8_LIMIT-va||bytes>32*1024*1024||(permissions!=1&&permissions!=3&&permissions!=5))return 1;
+ if(bytes/4096>VIRTUAL141_PAGES-virtual_pages141)return 1;
  for(uint64_t at=va;at<va+bytes;at+=4096){uint64_t*p=pte8(at,1);if(!p||*p)return 1;}
- for(uint64_t at=va;at<va+bytes;at+=4096){uint64_t*p=pte8(at,0),physical=allocate8();if(!physical)return 1;*p=physical|5|((permissions&2)?2:0)|((permissions&4)?0:NX);}
+ uint64_t end=va;for(;end<va+bytes;end+=4096){uint64_t*p=pte8(end,0),physical=lazy?0:allocate8();if(!lazy&&!physical)break;*p=physical|(lazy?RESERVED141|4:5)|((permissions&2)?2:0)|((permissions&4)?0:NX);}
+ if(end<va+bytes){for(uint64_t at=va;at<end;at+=4096){uint64_t*p=pte8(at,0);if(*p&1)free_owned8(*p&UINT64_C(0x000ffffffffff000));*p=0;}return 1;}
+ virtual_pages141+=bytes/4096;
  return 0;
+}
+static unsigned map8(uint64_t va,uint64_t bytes,unsigned permissions){return reserve141(va,bytes,permissions,0);}
+static unsigned commit141(uint64_t va,unsigned write,unsigned execute){
+ uint64_t*p=pte8(va,0);if(!p||(*p&1)||!(*p&RESERVED141)||(write&&!(*p&2))||(execute&&(*p&NX)))return 1;
+ uint64_t physical=allocate8();if(!physical)return 1;*p=physical|(*p&(NX|6))|1;++lazy_faults141;__asm__ volatile("invlpg (%0)"::"r"(va):"memory");return 0;
 }
 static unsigned user8(uint64_t va,void*buffer,unsigned bytes,unsigned to_user){
  if(va<W8_BASE||va>=W8_LIMIT||bytes>W8_LIMIT-va)return 1;uint8_t*b=buffer;
- while(bytes){uint64_t*p=pte8(va,0);if(!p||!(*p&1)||(to_user&&!(*p&2)))return 1;unsigned n=4096-(unsigned)(va&4095);if(n>bytes)n=bytes;void*physical=(void*)(uintptr_t)((*p&UINT64_C(0x000ffffffffff000))+(va&4095));
+ while(bytes){uint64_t*p=pte8(va,0);if(p&&!(*p&1)&&(*p&RESERVED141)&&commit141(va,to_user,0))return 1;if(!p||!(*p&1)||(to_user&&!(*p&2)))return 1;unsigned n=4096-(unsigned)(va&4095);if(n>bytes)n=bytes;void*physical=(void*)(uintptr_t)((*p&UINT64_C(0x000ffffffffff000))+(va&4095));
   if(to_user)memcpy(physical,b,n);else memcpy(b,physical,n);b+=n;va+=n;bytes-=n;}return 0;
 }
 static unsigned string8(uint64_t va,char*out,unsigned cap){for(unsigned i=0;i<cap;++i){if(user8(va+i,out+i,1,0))return 1;if(!out[i])return 0;}return 1;}
@@ -75,7 +87,7 @@ static void snapshot8(void){w8_mailbox value;if(user8(W8_MAILBOX,&value,sizeof(v
 static void metadata_path8(char*out){copy8(out,input8.product_root,256);unsigned n=length8(out);if(n+13<256)memcpy(out+n,"/metadata.bin",14);}
 static void finish8(unsigned status){snapshot8();info8.status=status;info8.state=status?3:2;if(metadata8_dirty&&input8.command==W8_RUN){char path[256];metadata_path8(path);if(v6_put(m6_volume(),path,sizeof(metadata8_db),memory_source8,&metadata8_db)){info8.status=1;info8.state=3;copy8(info8.message,"Windows file metadata could not be saved.",sizeof(info8.message));}}
  for(unsigned i=0;i<32;++i)if(files8[i].live)(void)close8(i,0);w8_active=0;w8_escape();}
-static void release8(void){write_clear8();while(count8)page_free(owned8[--count8]);cr3_8=pd8=entry8=0;memset(files8,0,sizeof(files8));}
+static void release8(void){write_clear8();while(count8)page_free(owned8[--count8]);cr3_8=pd8=entry8=0;virtual_pages141=lazy_faults141=0;memset(files8,0,sizeof(files8));}
 static unsigned rollback8(void){
  if(!created_root8)return 0;v6_volume*v=m6_volume();
  char plan[256],product[256];copy8(plan,input8.product_root,256);copy8(product,input8.product_root,256);
@@ -89,7 +101,7 @@ static unsigned rollback8(void){
 void w8_cancel(void){if(info8.state==1){cancel8=1;info8.state=3;info8.status=1;copy8(info8.message,"Operation cancelled. Uncommitted file writes were discarded.",sizeof(info8.message));release8();if(rollback8())copy8(info8.message,"Cancelled. Disk cleanup was interrupted; use Recover / remove.",sizeof(info8.message));++info8.revision;}}
 static unsigned prepare_transition8(void){if(ready8)return 0;uint64_t pages[4];unsigned count=0;for(;count<4;++count)if(!(pages[count]=page_alloc()))break;if(count<4){while(count)page_free(pages[--count]);return 1;}uint64_t*pt=(void*)(uintptr_t)kernel_entry_pt();for(unsigned i=0;i<4;++i)pt[((TRAP8>>12)&511)+i]=pages[i]|3|NX;ready8=1;return 0;}
 unsigned w8_start(unsigned command,const char*source,const char*root,const char*user,const char*arguments){
- if(info8.state==1||command<1||command>4||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
+ if(info8.state==1||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
  release8();created_root8=0;memset(&info8,0,sizeof(info8));memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
  copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
@@ -139,11 +151,13 @@ static int64_t dispatch8(trap_frame*f){
  uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10;char path[256];
  switch(f->rax){
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
+ case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
+ case W8_SYS_VMINFO:{uint64_t values[4]={virtual_pages141,count8,lazy_faults141,OWN8};return user8(a,values,sizeof(values),1)?-1:0;}
  case W8_SYS_UNMAP:case W8_SYS_PROTECT:{
   if(!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -1;
   if(f->rax==W8_SYS_PROTECT&&c!=1&&c!=3&&c!=5)return -1;
-  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&1))return -1;}
-  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0),physical=*p&UINT64_C(0x000ffffffffff000);if(f->rax==W8_SYS_UNMAP){*p=0;free_owned8(physical);}else *p=physical|5|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}return 0;
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -1;}
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0),physical=*p&UINT64_C(0x000ffffffffff000);if(f->rax==W8_SYS_UNMAP){unsigned present=*p&1;*p=0;if(present)free_owned8(physical);--virtual_pages141;}else *p=physical|((*p&1)?5:RESERVED141|4)|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}return 0;
  }
  case W8_SYS_OPEN:{
   if(string8(a,path,256)||b>2||!path8(path,b!=0))return -1;const v6_entry*e=find8(path);if(e&&e->kind!=1)return -1;
@@ -186,6 +200,7 @@ static int64_t dispatch8(trap_frame*f){
 trap_frame *w8_trap(trap_frame*f){
  if(!w8_active)return f;
  if(f->vector==14){uint64_t address;__asm__ volatile("movq %%cr2,%0":"=r"(address));
+  if(!(f->error&1)&&address>=W8_BASE&&address<W8_LIMIT&&!commit141(address,(f->error&2)!=0,(f->error&16)!=0))return f;
   if(!(f->error&1)&&address>=W8_STACK_LOW&&address<W8_STACK_TOP&&address+65536>=f->rsp&&!map8(address&~UINT64_C(4095),4096,3))return f;
  }
  if(f->vector==128){f->rax=(uint64_t)dispatch8(f);return f;}
