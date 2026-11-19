@@ -168,44 +168,7 @@ static void MS f_EnterCriticalSection(critical8*c){uint64_t self=tid142();for(;;
 static int MS f_TryEnterCriticalSection(critical8*c){uint64_t self=tid142(),owner=0;if(c->owner==self){++c->recursion;return 1;}if(!__atomic_compare_exchange_n(&c->owner,&owner,self,0,__ATOMIC_ACQUIRE,__ATOMIC_RELAXED))return 0;c->recursion=1;c->lock=0;return 1;}
 static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=tid142()||c->recursion<=0)fail8("A Windows critical section was released without ownership.");if(!--c->recursion){c->lock=-1;__atomic_store_n(&c->owner,0,__ATOMIC_RELEASE);sys8(W8_SYS_WAKE,(uint64_t)(uintptr_t)&c->owner,UINT32_MAX,0,0,0);}}
 static void MS f_DeleteCriticalSection(critical8*c){if(c->owner||c->recursion)fail8("A Windows process deleted an owned critical section.");memset(c,0,sizeof(*c));}
-typedef struct {unsigned live,kind,manual;int count,maximum;WCHAR name[96];} event8;
-static event8 events8[32];
-static lock142 event_lock142;
-static uint32_t event_sequence142;
-static void signal142(void){__atomic_add_fetch(&event_sequence142,1,__ATOMIC_RELEASE);sys8(W8_SYS_WAKE,(uint64_t)(uintptr_t)&event_sequence142,UINT32_MAX,0,0,0);}
-static HANDLE event_new8(unsigned kind,int count,int maximum,int manual,const WCHAR*name){unsigned id=0;while(id<32&&events8[id].live)++id;if(id==32){last8(8);return 0;}event8*e=events8+id;*e=(event8){1,kind,(unsigned)manual,count,maximum,{0}};widecopy8(e->name,name,96);return 0x3000+id;}
-static HANDLE MS f_CreateEventW(void*security,int manual,int initial,const WCHAR*name){(void)security;if(name&&wlen8(name)>95){last8(206);return 0;}for(unsigned i=0;name&&*name&&i<32;++i)if(events8[i].live&&!f_wcscmp(events8[i].name,name)){last8(183);return 0x3000+i;}last8(0);return event_new8(1,initial!=0,1,manual!=0,name);}
-static HANDLE MS f_CreateSemaphoreW(void*security,int initial,int maximum,const WCHAR*name){(void)security;if(initial<0||maximum<=0||initial>maximum){last8(87);return 0;}return event_new8(2,initial,maximum,0,name);}
-static int MS f_SetEvent(HANDLE h){lock_enter142(&event_lock142);if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=1){lock_leave142(&event_lock142);last8(6);return 0;}events8[h-0x3000].count=1;signal142();lock_leave142(&event_lock142);return 1;}
-static int MS f_ResetEvent(HANDLE h){lock_enter142(&event_lock142);if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=1){lock_leave142(&event_lock142);last8(6);return 0;}events8[h-0x3000].count=0;lock_leave142(&event_lock142);return 1;}
-static int MS f_ReleaseSemaphore(HANDLE h,int count,int*previous){if(h<0x3000||h>=0x3020||!events8[h-0x3000].live||events8[h-0x3000].kind!=2||count<=0){last8(6);return 0;}event8*e=events8+(h-0x3000);if(count>e->maximum-e->count){last8(298);return 0;}if(previous)*previous=e->count;e->count+=count;return 1;}
-static HANDLE MS f_OpenEventW(unsigned access,int inherit,const WCHAR*name){(void)access;(void)inherit;for(unsigned i=0;name&&i<32;++i)if(events8[i].live&&events8[i].kind==1&&!f_wcscmp(events8[i].name,name))return 0x3000+i;last8(2);return 0;}
-static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,int all,unsigned timeout){
- if(!count||count>32||!handles){last8(87);return UINT32_MAX;}
- HANDLE list[32];memcpy(list,handles,count*sizeof(HANDLE));
- for(unsigned i=0;i<count;++i)for(unsigned j=0;j<i;++j)if(list[i]==list[j]){last8(87);return UINT32_MAX;}
- uint64_t start=sys8(W8_SYS_TIME,0,0,0,0,0);
- for(;;){lock_enter142(&event_lock142);unsigned ready=0,first=UINT32_MAX,invalid=0;
-  for(unsigned i=0;i<count;++i){HANDLE h=list[i];int signaled=0;
-   if((h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){int64_t state=(int64_t)sys8(W8_SYS_THREAD_STATUS,h,0,0,0,0);if(state<0)invalid=1;else signaled=state==0;}
-   else if(h>=0x3000&&h<0x3020&&events8[h-0x3000].live)signaled=events8[h-0x3000].count>0;
-   else invalid=1;
-   if(signaled){++ready;if(first==UINT32_MAX)first=i;}
-  }
-  if(invalid){lock_leave142(&event_lock142);last8(6);return UINT32_MAX;}
-  if((all&&ready==count)||(!all&&ready)){
-   for(unsigned i=0;i<count;++i)if(all||i==first){HANDLE h=list[i];if(h>=0x3000&&h<0x3020){event8*e=events8+(h-0x3000);if(e->kind==2||!e->manual)--e->count;}}
-   lock_leave142(&event_lock142);return all?0:first;
-  }
-  uint32_t sequence=__atomic_load_n(&event_sequence142,__ATOMIC_ACQUIRE);lock_leave142(&event_lock142);
-  uint64_t elapsed=sys8(W8_SYS_TIME,0,0,0,0,0)-start;
-  if(timeout!=UINT32_MAX&&elapsed>=timeout)return 258;
-  unsigned remaining=timeout==UINT32_MAX?UINT32_MAX:(unsigned)(timeout-elapsed);
-  if((int64_t)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&event_sequence142,sequence,remaining,0,0)<0){last8(87);return UINT32_MAX;}
- }
-}
-static unsigned MS f_WaitForSingleObject(HANDLE h,unsigned timeout){return f_WaitForMultipleObjects(1,&h,0,timeout);}
-static int MS f_CloseHandle(HANDLE h){if((h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){if((int64_t)sys8(W8_SYS_THREAD_CLOSE,h,0,0,0,0)<0){last8(6);return 0;}return 1;}if(h>=256&&h<288){if(close8((int)(h-256))){last8(29);return 0;}return 1;}if(h>=0x3000&&h<0x3020&&events8[h-0x3000].live){memset(events8+(h-0x3000),0,sizeof(event8));return 1;}last8(6);return 0;}
+#include "sync142.inc"
 static unsigned MS f_ResumeThread(HANDLE h){int64_t result=(int64_t)sys8(W8_SYS_THREAD_RESUME,h,0,0,0,0);if(result<0)last8(6);return (unsigned)result;}
 static NORETURN void MS f_ExitThread(unsigned code){sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
 static void thread_entry142(uint64_t entry,void*arg){
@@ -310,7 +273,7 @@ static const api8 api8_table[]={
  {"__CxxFrameHandler",guard_cxx8,2},{"_CxxThrowException",guard_cxx8,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",guard_seh8,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
  API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
  API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
- API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
+ API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateWaitableTimerW,1),API8(SetWaitableTimer,1),API8(CancelWaitableTimer,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
  API8(CharUpperW,4),API8(CharPrevExA,4),API8(LookupPrivilegeValueW,5),API8(OpenProcessToken,5),API8(AdjustTokenPrivileges,5),API8(GetFileSecurityW,5),API8(SetFileSecurityW,5),API8(SystemFunction036,5),API8(RegOpenKeyExW,5),API8(RegQueryValueExW,5),API8(RegCloseKey,5)
 };

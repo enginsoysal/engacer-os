@@ -1,0 +1,28 @@
+{
+  "stage": "M14.2 in progress",
+  "milestone_complete": false,
+  "source_commit": "674ebe28da1c1726745624b6251b0ae1c14a8db9",
+  "workflow_run": 44529683775,
+  "workflow_conclusion": "success",
+  "article_readback": [
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-2",
+      "status": 200,
+      "required_text": {
+        "In progress": true,
+        "M14.2": true,
+        "674ebe28da1c1726745624b6251b0ae1c14a8db9": true
+      }
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-runtime-m142",
+      "status": 200,
+      "required_text": {
+        "implementation in progress": true,
+        "Ownership and scheduling": true,
+        "674ebe28da1c1726745624b6251b0ae1c14a8db9": true
+      }
+    }
+  ],
+  "homepage_download_remains": "M14.1"
+}

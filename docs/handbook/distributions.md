@@ -1,6 +1,39 @@
 # Build your own Engacer OS distribution
 
-## M11 desktop edition
+## Current M14 desktop edition
+
+The qualified base is **M14.1**. M14.2 is under development; a development build is not a qualified distribution. The older M11/M10 sections below are historical, not the recommended starting point.
+
+Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
+
+```powershell
+git clone --branch m141-v0.14.1 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
+cd my-engacer-edition
+New-Item -ItemType Directory -Force build
+$editionBuildRoot = Join-Path $env:LOCALAPPDATA 'EngacerOS\Build\my-edition\m14'
+New-Item -ItemType Directory -Force $editionBuildRoot
+New-Item -ItemType Junction -Path build/m14-native -Target $editionBuildRoot
+Copy-Item distros/engacer-desktop-m14.json distros/my-edition.json
+```
+
+The external directory intentionally ends in `m14`: the current builder selects semantic font and embedded application variants using that internal build-directory name. Keep large scratch output outside OneDrive. A future builder should make this explicit rather than depend on a directory name.
+
+Edit `distros/my-edition.json`. Give it your own `id`, `name`, `version`, welcome text and appearance. Schema 3 supports the accent, wallpaper color, light/dark default, tagline, optional native application IDs and bounded data packages. Keep `desktop.calculator` consistent with whether `calculator` appears in `desktop.applications`. Remove optional apps from that list to omit them; keep required Files, Settings and shared services intact. The retained `m12-desktop-guide` package name is an internal identifier, not a different OS version.
+
+Validate the copied profile and then build the M14 feature set using its existing builder entry point:
+
+```powershell
+python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from distro import load; p=load(Path('distros/my-edition.json'), desktop=True, standard_apps=True, windows=True); print(p['id'], p['version'])"
+python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from m6 import build; build('custom', Path('distros/my-edition.json'), m14=True)"
+```
+
+Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 1` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
+
+Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.1 installation](install-m141.md), [supported Windows behavior](windows-m141.md), [desktop use](first-day-m141.md).
+
+Saved per-user preferences can override distribution defaults. Changing a profile does not add unsupported Windows APIs, hardware drivers, arbitrary font plugins or executable package hooks. Destructive storage consent and protected core ownership remain enforced. Distribute source, licenses and third-party notices with your edition.
+
+## Historical M11 desktop edition
 
 Start from `distros/engacer-desktop.json`, select your own profile ID in a separate
 checkout and build a distinct recipe:
@@ -39,7 +72,7 @@ not grant unsupported hardware capabilities. [M10 install guide](install-m10.md)
 
 The remaining sections document older Engine OS releases. Their original names,
 commands and profile files deliberately match those releases. For a new current
-Engacer OS desktop distribution, use the M11 profile above.
+Engacer OS desktop distribution, use the M14 instructions above.
 
 ## Historical M9.2 hardware edition
 
@@ -51,7 +84,7 @@ The schema-3 optional application list, accent, account defaults, welcome text a
 
 ## M7.4 standard application profiles
 
-Build the current app suite with `python tools/build/m74.py`. The standard
+For the historical M7.4 app suite, use `python tools/build/m74.py`. The standard
 schema-3 profile is `distros/engineos-apps.json`. Its `desktop.applications`
 list selects implemented optional package IDs; Files, Settings and shared
 services remain required. Keep the legacy `calculator` default consistent with

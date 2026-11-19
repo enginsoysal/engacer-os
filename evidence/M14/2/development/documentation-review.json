@@ -1,0 +1,562 @@
+{
+  "stage": "M14.2 in progress",
+  "scope": "Curated reader paths; candidate list requires contextual review, not all matches are defects",
+  "confirmed_stale_current_guide": "docs/handbook/distributions.md leads with M11",
+  "review_candidates": [
+    {
+      "source": "docs/handbook/index.md",
+      "reader_title": "Read the user handbook",
+      "candidates": [
+        {
+          "line": 3,
+          "text": "**Current native download: [Engacer OS M14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1).** The Win64 loader stage passes exact-source native and VMware qualification. [Install](install-m141.md), [Windows files and"
+        },
+        {
+          "line": 12,
+          "text": "Earlier desktop guides remain useful for retained features. Their original test records qualify their historical media, not untested new bytes. Use the current installation/release guide for the new download."
+        },
+        {
+          "line": 55,
+          "text": "- [Current release, checksums and qualified limits](../releases/m1217-v0.12.17.md)"
+        },
+        {
+          "line": 60,
+          "text": "- [Product principles](../architecture/product-principles.md) and [current status](../roadmap/status.md)"
+        },
+        {
+          "line": 74,
+          "text": "M11.6 adds [the full matching regression](../../evidence/M11/6/acceptance-results.json), final media and current manuals. Publication also requires fresh release/site/download verification. Later hardware and Windows expansion are separate "
+        },
+        {
+          "line": 78,
+          "text": "## Current product delivery order"
+        },
+        {
+          "line": 80,
+          "text": "M6 real installation is complete within its named VM scope. M7 real desktop/networking is complete within M7-VM-v1; M8 qualifies one original Windows console/MSI profile; the wider MS-DOS and Windows 1.x through Windows 11 tracks remain in "
+        }
+      ]
+    },
+    {
+      "source": "docs/roadmap/status.md",
+      "reader_title": "What works today and what is still limited",
+      "candidates": [
+        {
+          "line": 1,
+          "text": "# Current status"
+        },
+        {
+          "line": 5,
+          "text": "**Current native download: [Engacer OS M14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1).** The Win64 loader stage passes exact-source native and VMware qualification. [Install](../handbook/install-m141.md), [Windo"
+        },
+        {
+          "line": 94,
+          "text": "passes: twenty downloads, 311 pages and 2,097 discovered links, with current-source"
+        },
+        {
+          "line": 111,
+          "text": "current-source guides and desktop/mobile homepage verification. Full final M12 regression remains M12.18."
+        },
+        {
+          "line": 122,
+          "text": "with current source/guide/download and desktop/mobile checks. M12 continues in"
+        },
+        {
+          "line": 143,
+          "text": "Current guides and official download articles update automatically from GitHub;"
+        },
+        {
+          "line": 148,
+          "text": "## Current development priority"
+        },
+        {
+          "line": 160,
+          "text": "M12.0 provides no new native ISO. M12.6 has the current scoped download;"
+        },
+        {
+          "line": 256,
+          "text": "| M2 protected native processes | Complete within native-only, single-active-CPU scope | [Current M2 evidence](../../evidence/M2/README.md), [fresh acceptance](../../evidence/M2/acceptance-results.json) |"
+        },
+        {
+          "line": 265,
+          "text": "| M7.3 native visual quality and HiDPI | Complete within M73-VM-v1 | [Current evidence](../../evidence/M7.3/acceptance-results.json), [VMware ZIP and ISO](../releases/m73-v0.7.3.md); measured typography, actual 4K, safe scaling and structur"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/website-m130.md",
+      "reader_title": "Find your way around this documentation portal",
+      "candidates": [
+        {
+          "line": 3,
+          "text": "The [documentation portal](https://engaceros.brixcanvas.com/blog/documentation) starts with what you want to do. Its current installation instructions follow the qualified download and matching release guide. M13.0 remains the original desi"
+        },
+        {
+          "line": 5,
+          "text": "1. **Start here:** understand current capabilities and read the desktop introduction."
+        },
+        {
+          "line": 9,
+          "text": "5. **Project & development:** the current M13 plan, original concepts, architecture and contributing."
+        },
+        {
+          "line": 12,
+          "text": "The [history and full reference](https://engaceros.brixcanvas.com/blog/documentation-archive) retains previous milestones and earlier technical/user documents. An old installation article does not become current because its publication date"
+        },
+        {
+          "line": 16,
+          "text": "Choose **Search documentation**, or press **Ctrl+K** (**Command+K** on supported host keyboards). The panel searches the current published guide index without leaving your page. Type ordinary task words, use Arrow keys and Enter to open a r"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/setup-m1215.md",
+      "reader_title": "Understand setup, disk review and the first-start guide",
+      "candidates": [
+        {
+          "line": 11,
+          "text": "   100%, 150% and 200% are available when the current screen can hold the UI."
+        },
+        {
+          "line": 69,
+          "text": "current quickstart and the actual USB/file-operation limits."
+        }
+      ]
+    },
+    {
+      "source": "docs/releases/m141-v0.14.1.md",
+      "reader_title": "Check tested configurations and known limits",
+      "candidates": [
+        {
+          "line": 19,
+          "text": "Static TLS, process/thread/exception expansion, normal process-detach callbacks, original Windows GUI controls and reusable MSI behavior remain later M14 stages. x86 is M15 and Win16/DOS is M16. No new long-duration stability or faster-than"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/first-day-m141.md",
+      "reader_title": "Start your first day with the finished desktop",
+      "candidates": [
+        {
+          "line": 9,
+          "text": "The retained desktop, Files and personalization controls are explained in the [desktop guide](desktop-m135.md), [Files guide](files-m137.md), [Start and taskbar guide](start-m136.md) and [Settings guide](settings-m1311.md). Their original q"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/motion-m139.md",
+      "reader_title": "Move, resize and recognize pointer feedback",
+      "candidates": [
+        {
+          "line": 15,
+          "text": "The cursor outlines are generated at the current supported scale. They do not stretch a small bitmap or allocate a framebuffer. Completed motion tasks retain no extra managed pages in the named tests. Configured VM RAM, framebuffer storage "
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/files-m137.md",
+      "reader_title": "Navigate folders, filter names and use USB drives",
+      "candidates": [
+        {
+          "line": 1,
+          "text": "# Files - navigation and current-folder filtering"
+        },
+        {
+          "line": 13,
+          "text": "Click Filter names or press Ctrl+F. Type part of a displayed name. Letter case does not matter; the filter checks only the current native system folder, not its descendants or file contents. The field accepts up to 63 ordinary ASCII charact"
+        },
+        {
+          "line": 27,
+          "text": "USB filename filtering is currently unavailable: the disabled field says System folders only. Ctrl+F explains this limit. The current filter does not imply recursive USB search, NTFS/exFAT writing or new hardware support. Follow the existin"
+        },
+        {
+          "line": 33,
+          "text": "| Ctrl+F | Focus current-folder name filter |"
+        },
+        {
+          "line": 50,
+          "text": "![Current-folder filename filter and matching native rows](../../evidence/M13/7/files-ordinary/filtered-names.png)"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/transfers-m137.md",
+      "reader_title": "Copy files and handle transfer conflicts",
+      "candidates": [
+        {
+          "line": 41,
+          "text": "Renaming, moving or recycling an item clears the current file clipboard under"
+        },
+        {
+          "line": 79,
+          "text": "## Current-folder filters and small windows"
+        },
+        {
+          "line": 81,
+          "text": "Use the visible Address button when a narrow window has no breadcrumb space. Places contains the same folders as the wider sidebar. A successful create, copy or move clears the destination owner filter so the resulting name is visible; anot"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/dialogs-m1310.md",
+      "reader_title": "Open, save and choose a folder",
+      "candidates": [
+        {
+          "line": 15,
+          "text": "An existing destination gets a separate Replace file review. Back lets you change the choice; Cancel keeps the current document and its path. Replacement requires its explicit button. The default Enter action does not silently overwrite the"
+        },
+        {
+          "line": 19,
+          "text": "Opening a different document while the current one is dirty asks whether to Save and open, Discard and open, go Back or Cancel. Back/Cancel preserve the exact unsaved text. Save and open must successfully save before the selected source is "
+        },
+        {
+          "line": 21,
+          "text": "If another window changes the reviewed destination, the old replacement review is refused. Review the current file again. A write error keeps the document and recovery controls; it does not report installation or save success."
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/feedback-m1214.md",
+      "reader_title": "Understand messages and recover from errors",
+      "candidates": [
+        {
+          "line": 6,
+          "text": "- A grey file action is unavailable for the current selection, folder or active operation. Read the explanation at the bottom of the menu. Use Home for your own files; close an app using an item before moving, renaming or recycling it."
+        },
+        {
+          "line": 8,
+          "text": "- If Settings asks you to finish a dialog, choose Show current dialog. Complete or cancel that review, then return to Settings. This button does not approve the review for you."
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/apps-m1310.md",
+      "reader_title": "Use the standard apps and remove optional packages",
+      "candidates": [
+        {
+          "line": 7,
+          "text": "| Application | Current purpose |"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/stability-m1313.md",
+      "reader_title": "Keep saved work and understand stability limits",
+      "candidates": [
+        {
+          "line": 23,
+          "text": "The [M13.13 milestone](../milestones/m13-13.md) records the acceptance contract and current state. The [current installation guide](install-m1313.md) describes the matching M13.13 media; use it after that exact release is published."
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/personalization-m1311.md",
+      "reader_title": "Personalize your desktop and configure the screensaver",
+      "candidates": [
+        {
+          "line": 9,
+          "text": "Use **Display** for a supported size. A size that leaves too little room is refused before changing the workspace. Use **Accessibility** for High contrast and Reduced motion. These choices save independently from the appearance preview. Hig"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/settings-m1311.md",
+      "reader_title": "Find, preview, apply and reset Settings",
+      "candidates": [
+        {
+          "line": 17,
+          "text": "A size that leaves too little room is refused with a useful message. File dialogs and operations must finish or be cancelled before saving appearance or changing display size. Show current dialog takes you back to the actual owning window."
+        },
+        {
+          "line": 23,
+          "text": "See [installation](install-m1311.md), [common dialogs](dialogs-m1310.md) and the [M13 plan](../milestones/m13.md) for current scope. The optional Off-by-default screensaver is available from Appearance \u2192 Screensaver. See the [personalizatio"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/accessibility-m1216.md",
+      "reader_title": "Use keyboard navigation and accessibility options",
+      "candidates": [
+        {
+          "line": 22,
+          "text": "- F6 changes between the current window, taskbar, desktop and a visible system"
+        },
+        {
+          "line": 27,
+          "text": "- F1 opens Focus Help with the current control's name and role."
+        },
+        {
+          "line": 43,
+          "text": "Cancel preview restores the previous size. Unsupported choices keep the current"
+        }
+      ]
+    },
+    {
+      "source": "docs/handbook/distributions.md",
+      "reader_title": "Build your own distribution",
+      "candidates": [
+        {
+          "line": 15,
+          "text": "native apps and bounded data packages. `m11-desktop-guide` supplies the current"
+        },
+        {
+          "line": 22,
+          "text": "[Start categories and pins](start-m11.md), [current install guide](install-m114.md)."
+        },
+        {
+          "line": 41,
+          "text": "commands and profile files deliberately match those releases. For a new current"
+        },
+        {
+          "line": 42,
+          "text": "Engacer OS desktop distribution, use the M11 profile above."
+        },
+        {
+          "line": 50,
+          "text": "[Current installation/controller guide](install-m92.md), [storage decisions](../architecture/storage-m92.md). The older build commands below describe their named historical profiles."
+        },
+        {
+          "line": 54,
+          "text": "Build the current app suite with `python tools/build/m74.py`. The standard"
+        },
+        {
+          "line": 79,
+          "text": "Build the new visual release with `python tools/build/m73.py`. Its separate"
+        },
+        {
+          "line": 91,
+          "text": "and new native qualification. [Graphics decisions](../architecture/graphics-m73.md)."
+        },
+        {
+          "line": 98,
+          "text": "Build with `python tools/build/m72.py`. The current default is `distros/engineos-workspace.json`: Engine OS, light windows, mint accent, a teal wallpaper and no installed Calculator by default. The same validated schema-2 profile fields rem"
+        },
+        {
+          "line": 102,
+          "text": "Build the current disk-manager media with `python tools/build/m71.py`. Standard uses `distros/engineos-disk.json`; the separately installable Night example uses `python tools/build/m71.py --revision night --profile distros/engineos-disk-nig"
+        },
+        {
+          "line": 122,
+          "text": "The main build command is `python tools/build/m6.py`. Current schema-1 recipes remain data-only: no executable packages, arbitrary shell hooks, desktop themes or ignored runtime options. M6 bounds template target paths to leave room for the"
+        },
+        {
+          "line": 126,
+          "text": "The Forge example below belongs to the immutable M5.1 demonstration. At the M6 release, the default identity was Engine OS; its Minimal profile remains historical. Use the M10 Engacer OS profile above for new work."
+        },
+        {
+          "line": 172,
+          "text": "MIT source permits forks and component changes. The native desktop is implemented; arbitrary compositor/shell replacement, language packs, new executable packages and runtime plugin customization need their own contracts before becoming pro"
+        }
+      ]
+    },
+    {
+      "source": "docs/milestones/m14.md",
+      "reader_title": "Follow M14.0\u2013M14.15 in order",
+      "candidates": [
+        {
+          "line": 3,
+          "text": "**Current status: M14.1 native qualification, GitHub release and actual complete website delivery are complete.** [Stage record](m14-1.md), [publication receipt](../../evidence/M14/1/publication-results.json), [matching release](../releases"
+        },
+        {
+          "line": 9,
+          "text": "M14 targets original unmodified x86-64 Windows program code running through Engacer OS's own compatibility environment and kernel. Original GUI apps must really install, start, perform registered work, retain data after restart and remove c"
+        },
+        {
+          "line": 13,
+          "text": "The initial exact targets are 7-Zip 26.06 GUI via original x64 MSI, Notepad++ 8.9.9.1 via original x64 MSI, and SumatraPDF 3.6.1 via original x64 EXE installer. Portable originals help isolate runtime from installer defects but do not repla"
+        },
+        {
+          "line": 29,
+          "text": "**How and why:** Replace the current fixed eight-module/eight-MiB assumptions with explicit tested per-process quotas and demand-backed mappings, not unbounded allocations."
+        },
+        {
+          "line": 79,
+          "text": "**How and why:** Replace the current one-digest console adapter with reusable behavior. Notepad++ MSI requires a real x64 WiX custom-action DLL and cmd/xcopy semantics; never skip it to claim successful installation."
+        },
+        {
+          "line": 133,
+          "text": "**Deliver:** Freeze candidate source/media, verify installation/startup and full current app/desktop regressions, docs, downloads and website."
+        }
+      ]
+    },
+    {
+      "source": "docs/milestones/m14-1.md",
+      "reader_title": "Read the current loader stage and its tests",
+      "candidates": [
+        {
+          "line": 19,
+          "text": "The new build identity also receives the existing complete semantic font set. A real 4K startup test exposed the missing work-directory admission before release. The build rule is corrected and a compile-time table-size assertion prevents r"
+        }
+      ]
+    },
+    {
+      "source": "docs/milestones/m14-0.md",
+      "reader_title": "Review original x64 app and installer findings",
+      "candidates": [
+        {
+          "line": 3,
+          "text": "Status: complete within M14-RESEARCH0-v1 research scope. Exact corrected research downloads, actual native homepage/recovery Saves and complete public website checks pass. Authorized 19 November 2026. No native app/runtime change and no new"
+        },
+        {
+          "line": 7,
+          "text": "Read-only inspection records six original containers and 23 PE payload/embedded binaries, exact versions, SHA-256, file/image sizes, AMD64/x86 identity, static/delayed imports, TLS/exception/CLR directory presence and the current API regist"
+        },
+        {
+          "line": 12,
+          "text": "- Notepad++ SizeOfImage is 8,613,888 bytes; SumatraPDF 3.6.1 is 20,840,448 bytes. Both exceed the current eight-MiB loaded-image bound. M14.1 must provide checked, quota-bound larger mappings, not simply claim loader compatibility."
+        },
+        {
+          "line": 24,
+          "text": "M14.0 completes investigation and acceptance design, not runtime compatibility. M14.1 starts only after this stage's GitHub release, actual BrixCanvas Save, exact-source article/search/mobile/download checks and full public crawl close. Har"
+        }
+      ]
+    },
+    {
+      "source": "docs/architecture/windows-m14.md",
+      "reader_title": "Understand Windows compatibility and efficiency budgets",
+      "candidates": [
+        {
+          "line": 11,
+          "text": "The M14.0 baseline loader admitted at most eight modules and eight MiB per loaded file/image; actual Notepad++ SizeOfImage is 8,613,888 bytes and SumatraPDF is 20,840,448 bytes. M14.1 must implement checked demand-backed mapping and explici"
+        },
+        {
+          "line": 35,
+          "text": "M14.0 makes no native runtime changes. The exact current M13.13 media and 613 compiled inputs remain the source baseline. Existing [resource evidence](../../evidence/M13/13/resources.json) records fixed desktop 557,516 bytes, installer 48,4"
+        }
+      ]
+    },
+    {
+      "source": "docs/architecture/desktop-m13.md",
+      "reader_title": "See the new installation and desktop designs",
+      "candidates": [
+        {
+          "line": 75,
+          "text": "## M13.7 current-folder filtering"
+        },
+        {
+          "line": 85,
+          "text": "M13.8 display admission checks physical dimensions against an 800x660 logical desktop before mutating scale, so the new 600-high Settings frame fits above the reserved taskbar. Startup sanitizes a formerly valid saved undersized workspace t"
+        },
+        {
+          "line": 89,
+          "text": "The owner reported a long-uptime freeze on released M13.7 on 18 November 2026. Duration and cause are not established. Keep a new owned M13.7 baseline separate from immutable accepted evidence. M13.9 must distinguish a live idle CPU from st"
+        },
+        {
+          "line": 95,
+          "text": "Implementation in progress; no native qualification is claimed. The M13.7 baseline retains serial input processing while its image stops updating. The existing SVGA quarantine discards FIFO ownership in software without clearing the device "
+        },
+        {
+          "line": 99,
+          "text": "Frequent freezes are now reported on M13.8 as well as M13.7. Historic task-level qualification does not establish stability; current M13.8 media are testing-only. The owner explicitly requires finishing M13.9-M13.12 before stability work be"
+        },
+        {
+          "line": 101,
+          "text": "## Current M13.9 motion and pointer implementation"
+        },
+        {
+          "line": 105,
+          "text": "Original geometric text and axial/diagonal resize cursors follow native semantic hit targets. Their centered hotspots retain the actual input coordinates and signed clipping keeps framebuffer writes within the current physical output. Arrow"
+        },
+        {
+          "line": 109,
+          "text": "The owner explicitly requires finishing M13.9-M13.12 before any further stability investigation. Earlier failure/recovery diagnostics remain preserved; they do not qualify the current candidate or a stable release. Natural-freeze reproducti"
+        },
+        {
+          "line": 121,
+          "text": "High contrast outlines Start and the current Files place using existing primitives. The current candidate's measured fixed desktop increase is 112 bytes and physical-input module BSS increase is 76 bytes including alignment; code and buffer"
+        },
+        {
+          "line": 123,
+          "text": "At M13.11 the offline guide remained a general desktop overview. M13.12 refreshes its actual current button names and screensaver instructions; all fourteen final controller profiles independently read the installed distribution bytes."
+        }
+      ]
+    },
+    {
+      "source": "docs/architecture/website-m13.md",
+      "reader_title": "Understand the portal and search redesign",
+      "candidates": [
+        {
+          "line": 7,
+          "text": "The central Git-tracked `website/brix/portal.json` owns section order, curated current guide paths, reader-facing labels and archive policy. Use six entries: Start here, Install, Use Engacer OS, Customize, Project & development, Downloads. "
+        },
+        {
+          "line": 11,
+          "text": "Current guides retain honest release/scope labels. A curated link to an M12 guide does not claim it describes an unbuilt M13 desktop. As native stages qualify, update the index and release-specific manuals together. Downloads always select "
+        },
+        {
+          "line": 21,
+          "text": "- A header search control and Ctrl+K open a labelled modal search panel without changing the current URL or scroll position."
+        },
+        {
+          "line": 22,
+          "text": "- Results are grouped by Guides, Troubleshooting, Downloads and Development. Current curated guides rank before archived history. Include archived documentation is an explicit opt-in."
+        },
+        {
+          "line": 37,
+          "text": "The exact Linux image passed full source regression, build/types, vulnerability/secret scanning and DEV \u2192 STAGING \u2192 production guarded rollout. Public preflight independently passed real Chromium at 1280 and 390 CSS pixels: current/history "
+        },
+        {
+          "line": 41,
+          "text": "1. Inventory every generated source article and classify current, technical reference or historical; fail on duplicate/unknown curated references."
+        },
+        {
+          "line": 44,
+          "text": "4. Verify fresh homepage, current install/use/customize/project routes, all article retention, natural archive order, exact source links, current ISO/VMware hashes, mobile layout and existing fallback search."
+        },
+        {
+          "line": 51,
+          "text": "Publication retains each unchanged document's actual last-edit Git commit/date. The publisher compares its Git blob with the current publication tree before using that identity. Relative images and source anchors follow their own current fi"
+        }
+      ]
+    },
+    {
+      "source": "docs/architecture/overview.md",
+      "reader_title": "Explore the OS architecture",
+      "candidates": [
+        {
+          "line": 5,
+          "text": "kernel. [Current release](../releases/m115-v0.11.5.md), [M11 contract](desktop-m11.md),"
+        },
+        {
+          "line": 8,
+          "text": "[expanded setup and first installed startup](setup-m115.md); full new-artifact"
+        },
+        {
+          "line": 16,
+          "text": "The M7.5 installer adds explicit disk lists, partial redraw and actual installed restart. [Installer design and source comparison](installer-m75.md), [current manual](../handbook/install-m75.md). The shared M7.3 native UI uses smooth measur"
+        },
+        {
+          "line": 95,
+          "text": "## Current product delivery order"
+        },
+        {
+          "line": 97,
+          "text": "The owner revision of 6 November 2026 sets M6 real product installation, M7 real desktop experience, then M8 original MS-DOS and Windows 1.x through Windows 11 application compatibility. M6 is complete within M6-VM-v1, with a native graphic"
+        }
+      ]
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "reader_title": "Contribute to Engacer OS",
+      "candidates": [
+        {
+          "line": 5,
+          "text": "M10 develops hardware phases 1 and 2; the [current status](docs/roadmap/status.md)"
+        },
+        {
+          "line": 13,
+          "text": "All current documents, code comments, UI strings and release notes are English. Keep code under its source subsystem, docs under architecture/roadmap/milestones/releases, and tests/evidence grouped by milestone. Do not add root-level planni"
+        },
+        {
+          "line": 17,
+          "text": "## Current UI quality gate"
+        },
+        {
+          "line": 19,
+          "text": "Use the five questions in [product principles](docs/architecture/product-principles.md) and inspect actual native setup/desktop captures at minimum and HiDPI sizes. Do not use browser mockups or enlarged screenshots as 4K proof. The Inter s"
+        }
+      ]
+    }
+  ],
+  "resolved": false
+}

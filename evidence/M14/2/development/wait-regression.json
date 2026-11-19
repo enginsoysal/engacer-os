@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "stage": "M14.2 development",
+  "build_id": "12dbc322752217356c3e22580ab59986",
+  "synthetic": true,
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\thread_native2.py\", line 52, in main\n    text=task(g,p,12005);assert 'M142_THREADS_TLS_WAIT_SLEEP_LOCK_PASS' in text,text\n  File \"<project-root>\\tests\\m14\\thread_native2.py\", line 31, in task\n    assert struct.unpack_from('<I',raw)[0]==2,(raw[:40].hex(),raw[304:496].split(b'\\0')[0].decode(errors='replace'),text,g.log()[at:])\nAssertionError: ('03000000030000000500000000000000090000000000000088000000000000004100000000000000', '', 'Mapped original image: 7z.exe bytes=20480 source-fnv32=4232164414\\nRunning the original Windows executable in a protected process.\\n\\n', 'M8_CPL3_CREATED command=0x0000000000000003\\nM8_PROGRESS percent=0x0000000000000000 \\nM8_JOB_FAILED code=0x0000000000000005\\n')\n"
+}

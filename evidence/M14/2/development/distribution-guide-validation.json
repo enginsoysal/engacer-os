@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "scope": "Documented profile validation only, not a custom ISO boot or full M14.2 qualification",
+  "checks": [
+    {
+      "name": "custom identity",
+      "passed": true
+    },
+    {
+      "name": "optional calculator omission",
+      "passed": true
+    },
+    {
+      "name": "inconsistent calculator selection refused",
+      "passed": true
+    }
+  ],
+  "custom_build_dispatch": "m6.build('custom', profile, m14=True)",
+  "large_scratch_directory_basename": "m14"
+}

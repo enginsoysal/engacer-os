@@ -2,8 +2,7 @@
 
 Engacer OS is an independent own-kernel project with a native graphical installer,
 installed folder desktop and a bounded original 7-Zip Windows console/MSI profile.
-M10 develops hardware phases 1 and 2; the [current status](docs/roadmap/status.md)
-identifies the accepted release and remaining limits. Read the
+M14.1 is the current qualified loader release; M14.2 process/thread/TLS/exception work is in development. The [current status](docs/roadmap/status.md) identifies the accepted release and remaining limits. Read the
 [architecture](docs/architecture/overview.md), [decisions](docs/architecture/decisions.md)
 and [agent instructions](AGENTS.md) first. Historical Engine OS artifacts remain
 verifiable under their original identities.
@@ -20,17 +19,15 @@ Use the five questions in [product principles](docs/architecture/product-princip
 
 ## Verification and resources
 
+For the current **unaccepted M14.2 development stage**, the initial checks are:
+
 ```powershell
-python tools/build/m10.py
-python tools/release/vmware_starter10.py
-# Follow the complete tests/m10/README.md sequence on frozen artifacts.
-python tests/m10/verify.py
+python tools/build/m14.py --stage 2
+python tests/m14/native1.py --stage 2 --profile compact
+python tests/m14/thread_native2.py
+python tests/m14/lifetime_native2.py
 ```
 
-Use the [pinned host tools](tools/README.md). M10 qualification requires the pinned compiler, QEMU/OVMF, VMware Workstation, Pillow and the test-only FAT dependencies in tests/m10/requirements.txt. Tests run on disposable images without host disk/directory exposure. M0 can be run separately through `python tests/m0/verify.py`; M1's historical path is `python tests/m1/verify.py`.
+These checks are part of development, not the complete M14.2 release gate. Read the [stage record](docs/milestones/m14-2.md) and [runtime contract](docs/architecture/runtime-m142.md) before adding tests or claiming compatibility. Build tools refuse accepted stages; reproduce an accepted tag only in a separate checkout. Do not overwrite prior media or evidence. [Custom distribution instructions](docs/handbook/distributions.md).
 
-CPU/RAM efficiency is a primary acceptance criterion. Bound allocations, queues and logging; share immutable code; measure peak/retained/boot categories separately and verify idle halting. Never equate configured guest memory with kernel consumption. Do not trade away correctness/isolation for a small reported number.
-
-Include rationale, alternatives, verification and limits in changes. Test original app binaries only through lawful access; do not submit proprietary installers/SDKs or credentials. Record third-party revisions, provenance, licenses and host dependencies before ports. Original contributions use [MIT](LICENSE); third-party notices remain applicable.
-
-The project owner requests GitHub publication of every completed coherent update. Run appropriate checks, review, commit and push; never force-push others' work or claim synchronization after failure. Report actual failures and version/task-specific app support rather than invented global guarantees.
+Use the [pinned host tools](tools/README.md). Native qualification needs the pinned compiler, QEMU/OVMF, VMware Workstation and the named Python dependencies. Tests use disposable images without host disk/directory exposure. Keep large scratch storage outside OneDrive. Source, host-test and native execution evidence must be distinguished. Windows code executes directly through the compatibility runtime; an embedded Windows VM is not an implementation route.

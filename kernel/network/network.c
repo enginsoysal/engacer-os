@@ -8,7 +8,10 @@ static arp_entry arp[4];
 static net7_configuration configuration;
 static net7_lease offer;
 static uint8_t mac[6],transmit[1536];
-static unsigned clock_active,old_timer_mask,dhcp_state,retries;
+static unsigned clock_active,dhcp_state,retries;
+#ifndef ENGINE_M14
+static unsigned old_timer_mask;
+#endif
 static unsigned work;
 static uint32_t transaction;
 static uint64_t deadline,lease_expires,arp_deadline;
@@ -22,12 +25,17 @@ static char dns_host[254];
 static void state(unsigned value,const char *message) {
     configuration.state=value;configuration.message=message;++configuration.revision;
 }
+#ifdef ENGINE_M14
+extern void timer_claim142(unsigned,unsigned);
+static void timer(unsigned active){clock_active=active;timer_claim142(2,active); }
+#else
 static void timer(unsigned active) {
     uint64_t flags;__asm__ volatile("pushfq;popq %0;cli":"=r"(flags)::"memory");
     if(active&&!clock_active){old_timer_mask=in8(0x21)&1;clock_active=1;out8(0x21,in8(0x21)&~1u);}
     else if(!active&&clock_active){clock_active=0;out8(0x21,(uint8_t)((in8(0x21)&~1u)|old_timer_mask));}
     if(flags&512)__asm__ volatile("sti":::"memory");
 }
+#endif
 unsigned net7_clock_event(void) {
     if(!clock_active)return 0;__atomic_store_n(&work,1,__ATOMIC_RELEASE);return 1;
 }

@@ -1576,7 +1576,7 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
         unsigned file_work11=files_pending11();
 #endif
 #ifdef ENGINE_M8
-        unsigned windows_work=w8_pending();
+        unsigned windows_work=w8_runnable();
 #else
         unsigned windows_work=0;
 #endif

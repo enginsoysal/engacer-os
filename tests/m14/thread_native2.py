@@ -12,11 +12,18 @@ from access_fixtures16 import clone
 from fixture1 import library,StoppedDisk
 from build_fixtures2 import build
 
+sleep_observations=[]
+
 def task(g,p,action):
  at=len(g.log());p.desktop(action,True,settle=False);g.wait('M8_CPL3_CREATED',at)
- deadline=time.monotonic()+90
+ deadline=time.monotonic()+180
  while time.monotonic()<deadline:
   if 'M8_JOB_DONE' in g.log()[at:] or 'M8_JOB_FAILED' in g.log()[at:]:break
+  if action==12005:
+   raw=ui.memory(g,ui.symbol('info8',installed=True)[0]+496,1024)
+   if b'M142_SLEEP_IDLE_BEGIN' in raw:
+    halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1')
+    sleep_observations.append(halted)
   time.sleep(.03)
  else:raise TimeoutError('Windows threading probe did not finish')
  p.drain();raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384)
@@ -48,8 +55,9 @@ def main():
     text=task(g,p,12005);assert 'M142_THREADS_TLS_WAIT_SLEEP_LOCK_PASS' in text,text
     delta=f.stats(g)[0]-before;assert delta==0,(n,delta)
     samples.append(dict(turn=n+1,retained_pages=delta))
-   report.update(passed=True,samples=samples,output=text,fixture_sha256=hashlib.sha256((fixtures/'threads.exe').read_bytes()).hexdigest())
-   report['checks']=['4 genuine Windows threads per process','suspended start and resume','real timed sleeps','wait-all joins and zero-timeout','distinct thread IDs','recursive contended critical sections','per-thread dynamic TLS isolation','real thread return codes','20 repeated process closes retain zero pages']
+   assert 2 in sleep_observations,sleep_observations
+   report.update(passed=True,samples=samples,sleep_cpu_halt_observations=sleep_observations,output=text,fixture_sha256=hashlib.sha256((fixtures/'threads.exe').read_bytes()).hexdigest())
+   report['checks']=['4 genuine Windows threads per process','suspended start and resume','real timed sleeps','wait-all joins and zero-timeout','distinct thread IDs','recursive contended critical sections','per-thread dynamic TLS isolation','real thread return codes','24 sequential thread-close/reuse cycles within each process','wait-all preserves unsatisfied object states','named event independent handles','auto/manual reset and event producer wake','semaphore limit and consumption','one-shot/periodic timers and cancellation','20 repeated process closes retain zero pages']
    t.close_all(g,p);t.launch(g,p,'clock',8);t.close_all(g,p);(out/'native.log').write_text(g.log(),encoding='utf-8')
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
  finally:

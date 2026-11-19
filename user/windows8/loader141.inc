@@ -94,15 +94,20 @@ static uint64_t load141(const char*path,unsigned external){
 static unsigned terminating142;
 #include "lifetime142.inc"
 NORETURN void pe8_exit(unsigned code){sys8(W8_SYS_QUIESCE,code,0,0,0,0);pe8_shutdown();exit8(code);}
-uint64_t pe8_load(const char*path){return terminating142?0:load141(path,1);}
-uint64_t pe8_named(const char*name){
+static uint64_t pe8_load_impl142(const char*path){return terminating142?0:load141(path,1);}
+static uint64_t pe8_named_impl142(const char*name){
  if(terminating142||!leaf141(name))return 0;uint64_t loaded=pe8_module(name);if(loaded)return load141(pe8_path(loaded),1);
  char folder[256],path[256];if(!modules141[0].state)return 0;copy8(folder,modules141[0].path,256);char*end=folder+len8(folder);while(end>folder&&end[-1]!='/')--end;if(end<=folder)return 0;end[-1]=0;
  return candidate141(folder,name,path)?load141(path,1):0;
 }
-int pe8_release(uint64_t base){if(terminating142)return 0;int index=slot141(base);if(index<=0||!modules141[index].references)return 0;--modules141[index].references;uint32_t reachable=1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&modules141[i].references)reachable|=UINT32_C(1)<<i;
+static int pe8_release_impl142(uint64_t base){if(terminating142)return 0;int index=slot141(base);if(index<=0||!modules141[index].references)return 0;--modules141[index].references;uint32_t reachable=1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&modules141[i].references)reachable|=UINT32_C(1)<<i;
  for(unsigned pass=0;pass<MODULES141;++pass){uint32_t next=reachable;for(unsigned i=0;i<MODULES141;++i)if(reachable&(UINT32_C(1)<<i))next|=modules141[i].dependencies;if(next==reachable)break;reachable=next;}
  for(unsigned pass=0;pass<MODULES141;++pass){int chosen=-1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&!(reachable&(UINT32_C(1)<<i))&&(chosen<0||modules141[i].sequence>modules141[chosen].sequence))chosen=(int)i;if(chosen<0)break;module141*m=modules141+chosen;if(m->attached&&m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,0,0);if(sys8(W8_SYS_UNMAP,(uint64_t)(uintptr_t)m->base,m->size,0,0,0))fail8("The Windows module could not be released.");for(unsigned i=0;i<MODULES141;++i)modules141[i].dependencies&=~(UINT32_C(1)<<chosen);memset(m,0,sizeof(*m));}return 1;
 }
 void pe8_inspect(const char*path){inspect141=1;pe8_load(path);uint64_t values[4];if(sys8(W8_SYS_VMINFO,(uint64_t)values,0,0,0,0))fail8("The Windows memory observation could not be read.");print8("Memory pages: reserved=");number8(values[0]);print8(" owned=");number8(values[1]);print8(" demand-commits=");number8(values[2]);print8(" physical-quota=");number8(values[3]);print8("\nMapping inspection completed. Running this app is a separate compatibility test.\n");exit8(0);}
 void pe8_run(const char*path,const char*arguments){(void)arguments;uint64_t base=pe8_load(path);module141*m=modules141;if(m->dll||m->subsystem!=3)fail8("Windows graphical execution is not available in this loader milestone. The app was not started.");print8("Running the original Windows executable in a protected process.\n\n");((void(MS*)(void))(uintptr_t)(base+m->entry))();pe8_exit(0);}
+
+static lock142 loader_lock142;
+uint64_t pe8_load(const char*path){lock_enter142(&loader_lock142);uint64_t result=pe8_load_impl142(path);lock_leave142(&loader_lock142);return result;}
+uint64_t pe8_named(const char*name){lock_enter142(&loader_lock142);uint64_t result=pe8_named_impl142(name);lock_leave142(&loader_lock142);return result;}
+int pe8_release(uint64_t base){lock_enter142(&loader_lock142);int result=pe8_release_impl142(base);lock_leave142(&loader_lock142);return result;}

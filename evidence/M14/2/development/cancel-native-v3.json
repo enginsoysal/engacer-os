@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "build_id": "4fb82f97a6828ef4bdf86942cb8c1b83",
+  "synthetic": true,
+  "scope": "Native cancellation of one Windows process with three secondary threads; not child-process qualification",
+  "samples": [
+    {
+      "turn": 1,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 4
+    },
+    {
+      "turn": 2,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 3,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 4,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 5,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 6,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 7,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 8,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 9,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 10,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 11,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 12,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 13,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 14,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 15,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 16,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 17,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 18,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 19,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 20,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 21,
+      "all_cpus_halted_while_blocked": 2,
+      "retained_pages": 0
+    }
+  ],
+  "fixture_sha256": "33dd557136fbd66e1eb56fc5a96bd11b3b1d7abeb065bf0d7ea1f440857e32df"
+}

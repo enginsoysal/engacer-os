@@ -57,6 +57,9 @@ uint64_t *exception_dispatch(uint64_t *frame) {
     if(frame[15]==32){
         unsigned network_tick=net7_clock_event();
         if(app7_active&&(frame[18]&3)==3)return (uint64_t *)app7_trap((trap_frame *)frame);
+        #ifdef ENGINE_M14
+        extern unsigned w8_clock_event142(void);network_tick|=w8_clock_event142();
+#endif
         if(network_tick){out8(0x20,0x20);return frame;}
     }
     if(net7_nic_irq(frame))return frame;

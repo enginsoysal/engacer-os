@@ -36,6 +36,7 @@ typedef struct {unsigned state,command,status,percent,revision;uint64_t peak_pag
 extern volatile unsigned w8_active;
 unsigned w8_start(unsigned,const char*,const char*,const char*,const char*);
 unsigned w8_pending(void);
+unsigned w8_runnable(void);
 void w8_pump(void);
 void w8_cancel(void);
 const w8_info *w8_current(void);

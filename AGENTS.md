@@ -13,6 +13,8 @@
 
 ## Product requirements
 
+- Owner documentation correction, 19 November 2026: the distribution-building guide still leads with M11. At M14.2 closure audit and update the entire actual website to current supported behavior, including distribution recipes, examples, downloads, historical labels, search/navigation and source links. Do not treat a homepage headline update as documentation maintenance.
+
 - Owner clarification, 19 November 2026: Windows application code must execute natively through Engacer OS compatibility APIs with aggressive bounded resource use. Do not introduce a Windows guest VM, nested virtualization or bundled second OS as the compatibility implementation. VMware is the external test host only. Linux compatibility remains deferred.
 
 - Superseding continuation, 19 November 2026: proceed through M14.2-M14.15 and then M15 in order without stopping for a new authorization between stages. Complete tests, English documentation, GitHub and actual website updates after every milestone before starting the next. M15 covers 32-bit Windows applications; it does not waive any M14 acceptance or efficiency gate.
