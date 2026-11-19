@@ -33,5 +33,14 @@
     "Full fresh post-Save site crawl at stage closure",
     "Every current reader route and example reviewed against final M14.2 supported behavior",
     "Search, archive, mobile and official downloads checked against exact final release"
-  ]
+  ],
+  "additional_reader_route_updates": [
+    "Handbook desktop, Files, transfers, dialogs, Start, Settings and optional-app routes point to their newer retained M13 guides",
+    "First-day route points to the qualified M14.1 guide",
+    "Project navigation exposes M14.2 development separately from qualified M14.1"
+  ],
+  "portal_regression": {
+    "passed": true,
+    "tests": 14
+  }
 }

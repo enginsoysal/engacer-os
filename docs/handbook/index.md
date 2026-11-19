@@ -16,22 +16,23 @@ M14.1 qualifies its Win64 loader and original supported 7-Zip console/MSI tasks.
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](final-m1313.md)
+- [First day, desktop and folders](first-day-m141.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
-- [Select, open and manage files](files-m11.md)
-- [Navigate folders and USB drives](files-m125.md)
+- [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)
-- [Copy, move and cancel transfers](transfers-m127.md)
-- [Open, Save as and extraction-folder dialogs](dialogs-m128.md)
-- [Start search, categories and pinned items](start-m129.md)
-- [Window controls and arrangement](windows-m124.md)
+- [Copy, move and cancel transfers](transfers-m137.md)
+- [Open, Save as and extraction-folder dialogs](dialogs-m1310.md)
+- [Start search, categories and pinned items](start-m136.md)
+- [Window controls and arrangement](desktop-m135.md)
 - [Quick settings, safe removal and Calendar](tray-m1212.md)
-- [Preview, apply and reset Settings](settings-m1213.md)
+- [Preview, apply and reset Settings](settings-m1311.md)
 - [Keyboard and accessibility](accessibility-m1216.md)
-- [Standard apps and optional packages](apps-m74.md)
+- [Standard apps and optional packages](apps-m1310.md)
 - [Disk management and formatting safeguards](disk-manager-m71.md)
 
 ## Customize and troubleshoot
+
+- [Personalization and screensaver](personalization-m1311.md)
 
 - [Create your own distribution](distributions.md)
 - [Understand messages and preserved work](feedback-m1214.md)

@@ -127,11 +127,15 @@
       "items": [
         [
           "docs/milestones/m14.md",
-          "Follow M14.0\u2013M14.15 in order"
+          "Follow M14.0–M14.15 in order"
+        ],
+        [
+          "docs/milestones/m14-2.md",
+          "Follow M14.2 native process, thread and exception development"
         ],
         [
           "docs/milestones/m14-1.md",
-          "Read the current loader stage and its tests"
+          "Read the qualified M14.1 loader stage and its tests"
         ],
         [
           "docs/milestones/m14-0.md",
