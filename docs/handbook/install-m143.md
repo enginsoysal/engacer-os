@@ -1,6 +1,6 @@
 # Install the M14.3 development candidate in VMware
 
-Status: native qualification passes within **M14-STAGE3-VM-v1** on the exact matching candidate. GitHub media and complete actual website delivery are being finalized. Read the matching release scope; this is not general Windows GUI compatibility.
+Status: native qualification and complete public delivery pass within **M14-STAGE3-VM-v1**. [Publication receipt](../../evidence/M14/3/publication-results.json). Read the matching release scope; this is not general Windows GUI compatibility.
 
 ## Before starting
 

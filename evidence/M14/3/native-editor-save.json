@@ -1,10 +1,10 @@
 {
-  "source_commit": "a0ce3941901a2e92afc7f53f51622fa1a7fcfbdb",
-  "home": "Saved automatically ✓",
-  "recovery": "Saved automatically ✓",
+  "source_commit": "8b69a6dca6747dbfa4a221352a0b230ccb26f0d0",
+  "home": "Saved ✓",
+  "recovery": "Saved ✓",
   "home_roots": 4,
   "recovery_roots": 2,
   "owned_native_editor": true,
-  "checked_at": "2026-11-19T22:38:38.644Z",
-  "scope": "Actual standard BrixCanvas editor saves; dedicated recovery header and one preserved fallback body independently read back after correcting the initial recovery replacement"
+  "checked_at": "2026-11-19T22:49:42.865Z",
+  "scope": "Fresh standard native BrixCanvas editor after successful source synchronization; homepage retained M14.3 and recovery retained its dedicated Menu plus one fallback body; both explicit Saves completed"
 }

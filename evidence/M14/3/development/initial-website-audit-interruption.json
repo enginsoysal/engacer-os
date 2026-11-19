@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "status": "interrupted_before_qualification",
+  "source_commit": "a0ce3941901a2e92afc7f53f51622fa1a7fcfbdb",
+  "stopped_at": "2026-11-19T22:43:59.522290+00:00",
+  "scope": "Initial full crawl, not a completed website qualification",
+  "reason": "The separate public browser check found missing recovery navigation; current build/storage/architecture guides also required updates. Stop the now-obsolete owned crawl and qualify a fresh whole-site crawl after corrected native saves and documentation source 8b69a6dc.",
+  "pages_checked": null
+}

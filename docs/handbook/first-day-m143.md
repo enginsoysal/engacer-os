@@ -1,6 +1,6 @@
 # Your first day with M14.3
 
-Status: native qualification passes within **M14-STAGE3-VM-v1** on the exact matching candidate. GitHub media and complete actual website delivery are being finalized. Read the matching release scope; this is not general Windows GUI compatibility.
+Status: native qualification and complete public delivery pass within **M14-STAGE3-VM-v1**. [Publication receipt](../../evidence/M14/3/publication-results.json). Read the matching release scope; this is not general Windows GUI compatibility.
 
 Start with the [matching VMware installation guide](install-m143.md) and [release limits](../releases/m143-v0.14.3.md). M14.3 retains the existing native desktop and adds checked Unicode paths/search, shared-file grants and persistent user settings over the native Windows process/thread runtime while retaining the optional Firefox installer download. This is development media for the named test profiles.
 

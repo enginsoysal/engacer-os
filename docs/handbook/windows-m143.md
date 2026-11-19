@@ -1,12 +1,12 @@
 # Windows files and browser downloads in M14.3
 
-Status: native qualification passes within **M14-STAGE3-VM-v1** on the exact matching candidate. GitHub media and complete actual website delivery are being finalized. Read the matching release scope; this is not general Windows GUI compatibility.
+Status: native qualification and complete public delivery pass within **M14-STAGE3-VM-v1**. [Publication receipt](../../evidence/M14/3/publication-results.json). Read the matching release scope; this is not general Windows GUI compatibility.
 
 ## Use the included Windows app
 
 Open Start, search for **Windows Apps**, and open it. Choose **Install 7-Zip**, review the confirmation, and install. **Open 7-Zip** runs the original Windows x64 console executable. The archive buttons create and extract a separate sample document in Documents. **Remove app** removes its unchanged application files and registration while preserving personal documents and modified files.
 
-This remains one supported original MSI profile. Other MSI installers, the 7-Zip Windows file-manager interface, Notepad++ and SumatraPDF are not qualified for installation and use in this loader stage.
+This remains one supported original MSI profile. Other MSI installers, the 7-Zip Windows file-manager interface, Notepad++ and SumatraPDF are not qualified for installation and use in this stage.
 
 ## Check an EXE or DLL
 

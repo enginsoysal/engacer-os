@@ -1,6 +1,6 @@
 # BrixCanvas documentation website
 
-Current native delivery is M14.3: selected Unicode files/paths/search, sharing/locks, persistent user settings and copied environments over the retained native runtime. All 29 native groups and five supporting host groups pass. Matching GitHub and complete actual website delivery are being finalized. [Native acceptance](../evidence/M14/3/acceptance-results.json), [stage gates](../docs/milestones/m14-3.md). Firefox remains download-only and general Windows GUI execution remains unavailable. M14.15 is the mandatory whole-system optimization gate.
+Current native delivery is M14.3: selected Unicode files/paths/search, sharing/locks, persistent user settings and copied environments over the retained native runtime. All 29 native groups and five supporting host groups pass. Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. Homepage/recovery native Saves and public desktop/mobile/search/manual/download checks pass. [Publication receipt](../evidence/M14/3/publication-results.json). [Native acceptance](../evidence/M14/3/acceptance-results.json), [stage gates](../docs/milestones/m14-3.md). Firefox remains download-only and general Windows GUI execution remains unavailable. M14.15 is the mandatory whole-system optimization gate.
 
 ## Historical M14.2 public delivery
 

@@ -2,7 +2,7 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.3** within M14-STAGE3-VM-v1. Its [exact-source native acceptance](../../evidence/M14/3/acceptance-results.json) passes; use the matching official release and media. Complete public delivery is checked separately in the current status. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.3** within M14-STAGE3-VM-v1. Its [exact-source native acceptance](../../evidence/M14/3/acceptance-results.json) passes; use the matching official release and media. [Complete public delivery](../../evidence/M14/3/publication-results.json) also passes. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 

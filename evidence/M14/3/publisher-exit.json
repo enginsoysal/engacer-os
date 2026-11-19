@@ -2,6 +2,6 @@
   "passed": true,
   "exit_code": 0,
   "tests": 50,
-  "source_commit": "a0ce3941901a2e92afc7f53f51622fa1a7fcfbdb",
-  "scope": "All six canonical website publisher Node test files, including current M14.3 portal/qualified-download checks"
+  "source_commit": "8b69a6dca6747dbfa4a221352a0b230ccb26f0d0",
+  "scope": "All six canonical publisher Node suites on the refreshed current guide/architecture source"
 }

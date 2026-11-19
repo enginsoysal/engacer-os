@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders, ke
 
 ## Download and get started
 
-**Native-qualified release: [M14.3 / 0.14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Matching GitHub media and complete actual website delivery are being finalized. Use the matching ISO or prepared VMware package and checksums.
+**Current qualified release: [M14.3 / 0.14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](evidence/M14/3/publication-results.json). Use the matching ISO or prepared VMware package and checksums.
 
 - [Install and restart in VMware](docs/handbook/install-m143.md)
 - [Your first day](docs/handbook/first-day-m143.md)

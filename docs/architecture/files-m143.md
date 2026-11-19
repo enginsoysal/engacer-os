@@ -1,6 +1,6 @@
 # M14.3 - Windows files and settings ownership
 
-Status: **exact-source native qualification passes** within M14-STAGE3-VM-v1. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resources](../../evidence/M14/3/resources.json), [remaining publication gates](../milestones/m14-3.md). The build-bound development entries below preserve what was open on those earlier candidates; they do not override final native acceptance. Complete GitHub and actual website delivery is being finalized.
+Status: **exact-source native qualification passes** within M14-STAGE3-VM-v1. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resources](../../evidence/M14/3/resources.json), [completed stage gates](../milestones/m14-3.md). The build-bound development entries below preserve what was open on those earlier candidates; they do not override final native acceptance. [Complete GitHub and actual website delivery](../../evidence/M14/3/publication-results.json) passes within the recorded scope.
 
 ## Path boundary
 

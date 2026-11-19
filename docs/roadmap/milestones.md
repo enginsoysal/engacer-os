@@ -2,7 +2,7 @@
 
 ## Current owner priority - 19 November 2026
 
-Finish [M14.0-M14.15](../milestones/m14.md) in order for original Windows x64 applications, with complete native tests, English docs, GitHub and actual website delivery after every stage. Continue through M15 for Windows x86; M16 covers Win16/DOS. Native instructions run through Engacer OS APIs/kernel, without an embedded Windows guest. Whole-system CPU/RAM/storage efficiency is core, and M14.15 blocks final release on optimization. Current scoped native media are [M14.3](../releases/m143-v0.14.3.md), with complete public delivery being finalized; general Windows GUI/browser compatibility remains unavailable.
+Finish [M14.0-M14.15](../milestones/m14.md) in order for original Windows x64 applications, with complete native tests, English docs, GitHub and actual website delivery after every stage. Continue through M15 for Windows x86; M16 covers Win16/DOS. Native instructions run through Engacer OS APIs/kernel, without an embedded Windows guest. Whole-system CPU/RAM/storage efficiency is core, and M14.15 blocks final release on optimization. Current scoped native media are [M14.3](../releases/m143-v0.14.3.md), with [complete public delivery](../../evidence/M14/3/publication-results.json); general Windows GUI/browser compatibility remains unavailable.
 
 ## Completed owner priority - 17 November 2026
 

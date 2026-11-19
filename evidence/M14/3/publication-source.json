@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "source_commit": "a0ce3941901a2e92afc7f53f51622fa1a7fcfbdb",
+  "source_commit": "8b69a6dca6747dbfa4a221352a0b230ccb26f0d0",
   "document_bytes_verified": 342,
   "pinned_image_bytes_verified": 58,
   "scope": "Every generated Markdown article and pinned relative image has the same Git blob at its actual edit revision and the current publication revision"

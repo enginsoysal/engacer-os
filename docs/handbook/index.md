@@ -2,7 +2,7 @@
 
 ## Start here
 
-**Current native-qualified release: [Engacer OS M14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Its exact-source native qualification passes within M14-STAGE3-VM-v1; matching GitHub media and complete actual website delivery are being finalized. Follow the guide matching the release you download.
+**Current qualified release: [Engacer OS M14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Native qualification and complete public delivery pass within M14-STAGE3-VM-v1. Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/3/publication-results.json). Follow the guide matching the release you download.
 
 - [Download, verify and install in VMware](install-m143.md)
 - [Windows files, persistent settings and browser downloads](windows-m143.md)
