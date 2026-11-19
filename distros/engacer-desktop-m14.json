@@ -2,7 +2,7 @@
   "schema": 3,
   "id": "engacer",
   "name": "Engacer OS",
-  "version": "0.14.2",
+  "version": "0.14.3",
   "welcome": "Make yourself at home. Your apps, your files, your choice.",
   "accent": "#087e78",
   "packages": [

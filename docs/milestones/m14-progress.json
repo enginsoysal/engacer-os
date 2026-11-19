@@ -1,7 +1,7 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.2",
+  "current_stage": "M14.3",
   "current_native_download": "M14.2",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
@@ -49,7 +49,7 @@
       "deliver": "Expand Unicode/case/path/share/delete/locking semantics, temporary files, environment and registry behavior.",
       "how_and_why": "Translate Windows expectations to native storage with explicit access grants; keep user data separate from product ownership.",
       "acceptance": "Selected app preferences/files survive independent starts; conflicting access and missing/denied paths return correct errors without corrupting data.",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M14.4",

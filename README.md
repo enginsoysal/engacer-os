@@ -29,6 +29,10 @@ Windows program instructions execute through Engacer OS's own compatibility APIs
 
 M14.25 is the mandatory whole-system CPU/RAM/storage optimization gate. Resource bounds, idle halt, peak usage and retained memory are measured separately; configured guest RAM is not total OS consumption. M15 covers Windows x86 and M16 covers Win16/DOS. Each stage closes tests, English guides, GitHub delivery and actual website verification before the next.
 
+## Current development: M14.3
+
+Windows path/file sharing, durable application settings and process environments are being implemented. [Stage plan](docs/milestones/m14-3.md), [ownership decisions](docs/architecture/files-m143.md). M14.2 remains the qualified native download; no M14.3 release is claimed.
+
 ## Use, customize and contribute
 
 | Task | Guide |

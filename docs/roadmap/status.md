@@ -1,5 +1,7 @@
 # Current status
 
+M14.3 file/path, persistent-settings and environment work is in progress. [Stage plan](../milestones/m14-3.md). M14.2 remains the qualified download.
+
 **M14.2 native qualification passes within M14-STAGE2-VM-v1.** Private parent/child lifetimes, threads/TLS, shared synchronization, atomic mixed waits and the documented AMD64 hardware-fault/C exception profile pass exact-source native tests. The exact enabled-device VMware ZIP installs, restarts with its ISO retained and starts twice without the ISO. Compact 128-MiB, ordinary and actual 4K profiles pass. [Native acceptance](../../evidence/M14/2/acceptance-results.json), [resource accounting](../../evidence/M14/2/resources.json).
 
 **Current native delivery: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/2/publication-results.json). [Install](../handbook/install-m142.md), [Windows tasks and browser downloads](../handbook/windows-m142.md), [release scope](../releases/m142-v0.14.2.md). Notepad++/Sumatra remain inspection-only. Firefox remains download-only; arbitrary Windows GUI/installers are unsupported. M14.15 remains the mandatory whole-system optimization gate. Earlier qualified M14.1 media and its complete publication receipt remain immutable.
