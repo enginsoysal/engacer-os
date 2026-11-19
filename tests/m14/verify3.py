@@ -1,5 +1,5 @@
 """Close only matching M14.3 source, native tasks and exact VMware media."""
-import hashlib,json,shutil,sys
+import hashlib,json,shutil,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tests/m12'))
@@ -104,14 +104,20 @@ def main():
     for name,r in file_host.items():
         for path,digest in r.get('source_sha256',{}).items():assert sha(ROOT/path)==digest,(name,path)
     observers={}
+    known_adapters={sha(ROOT/'tests/m14/runtime_regressions3.py'),hashlib.sha256(subprocess.check_output(['git','show','cf2807b8:tests/m14/runtime_regressions3.py'],cwd=ROOT)).hexdigest()}
     for case in ('threads','tls','last-thread','processes','named-sync','named-sync-cancel','cancel','msi-cancel','exceptions','exception-nested','exception-invalid','unwind','unwind-chain','unwind-invalid','inspection','probes'):
         r=read(work/'regression-observers'/(case+'.json'));assert r['passed'] and r['build_id']==meta['build_id'] and r['case']==case
-        for path,record in r['observer_sources'].items():assert sha(ROOT/path)==record['canonical_sha256'],path
+        assert r['adapter_sha256'] in known_adapters,(case,'unknown observer adapter')
+        for path,record in r['observer_sources'].items():
+            raw=(ROOT/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==record['canonical_sha256'],path
+            executed=raw.decode('utf-8')
+            for before,after in r['replacements']:executed=executed.replace(before,after)
+            assert hashlib.sha256(executed.encode('utf-8')).hexdigest()==record['executed_source_sha256'],(case,path,'executed observer differs')
         observers[case]=r
     write(out/'runtime-observer-sources.json',observers)
     for name in (*profiles,*journeys,*runtime,*host,*files,*file_host):copy_report(work/name,out/name)
-    shutil.copyfile(work/'apps/browser-choices.png',out/'feature.png')
-    resources=dict(passed=True,stage='M14.3',build_id=meta['build_id'],desktop_fixed=fixed,font_coverage_bytes=font['coverage_bytes'],protected_worker_physical_page_quota=10000,protected_worker_virtual_page_quota=32768,module_quota=32,image_limit_bytes=32*1024**2,one_time_transition_stack_bytes=16384,probe_peak_owned_pages=max(r['peak_owned_pages'] for r in samples),probe_retained_pages=0,profiles={name:r['resources'] for name,r in profiles.items()},limits=['Synthetic loader probes are not original GUI app performance','Observer wall times and quanta are not measured Windows CPU time','M14.35 remains the whole-system performance and optimization gate'])
+    shutil.copyfile(work/'apps/original-console.png',out/'feature.png')
+    resources=dict(passed=True,stage='M14.3',build_id=meta['build_id'],desktop_fixed=fixed,font_coverage_bytes=font['coverage_bytes'],protected_worker_physical_page_quota=10000,protected_worker_virtual_page_quota=32768,module_quota=32,image_limit_bytes=32*1024**2,one_time_transition_stack_bytes=16384,probe_peak_owned_pages=max(r['peak_owned_pages'] for r in samples),probe_retained_pages=0,profiles={name:r['resources'] for name,r in profiles.items()},limits=['Synthetic loader probes are not original GUI app performance','Observer wall times and quanta are not measured Windows CPU time','M14.15 remains the whole-system performance and optimization gate'])
     resources['runtime']={
         'live_process_limit':4,'threads_per_process_limit':16,
         'root_metadata_pages_observed':28,'child_metadata_pages_observed':32,

@@ -2,7 +2,7 @@
 
 Status: **M14.3 development candidate; full release qualification is still open.** M14.2 remains the qualified public download. Do not substitute development media for the matching accepted release.
 
-Start with the [matching VMware installation guide](install-m143.md) and [release limits](../releases/m143-v0.14.2.md). M14.3 retains the existing native desktop and adds checked Unicode paths/search, shared-file grants and persistent user settings over the native Windows process/thread runtime while retaining the optional Firefox installer download. This is development media for the named test profiles.
+Start with the [matching VMware installation guide](install-m143.md) and [release limits](../releases/m143-v0.14.3.md). M14.3 retains the existing native desktop and adds checked Unicode paths/search, shared-file grants and persistent user settings over the native Windows process/thread runtime while retaining the optional Firefox installer download. This is development media for the named test profiles.
 
 ## Find your way around
 

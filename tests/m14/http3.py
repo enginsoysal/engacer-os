@@ -70,7 +70,7 @@ def main():
         raw=bytearray(base)
         for __ in range(rng.randrange(1,5)):raw[rng.randrange(len(raw))]=rng.randrange(256)
         parse(bytes(raw),rng.randrange(1,40))
-    report={'passed':True,'stage':'M14.1','source_sha256':{str(p.relative_to(ROOT)).replace('\\','/'):__import__('hashlib').sha256(p.read_bytes()).hexdigest() for p in [ROOT/'kernel/network/http.c',ROOT/'include/engine/network/http.h']},'mutation_cases':5000,'scope':'actual HTTP parser C with host sinks; no native HTTPS task qualification',
+    report={'passed':True,'stage':'M14.3','source_sha256':{str(p.relative_to(ROOT)).replace('\\','/'):__import__('hashlib').sha256(p.read_bytes()).hexdigest() for p in [ROOT/'kernel/network/http.c',ROOT/'include/engine/network/http.h']},'mutation_cases':5000,'scope':'actual HTTP parser C with host sinks; no native HTTPS task qualification',
             'checks':['fragmented fixed/chunked/close-delimited bodies','interim response','HTTPS redirect metadata','ambiguous framing/oversized/encoded/truncated refusal','bounded header/trailer/body sizes']}
     (work/'results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     print('HTTP parser PASS: fragmented fixtures and 5000 mutations')

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "stage": "M14.3",
+  "build_id": "ee751b3d701e676254defe24d88acf67",
+  "scope": "Agent visual review of exact-candidate actual guest captures; not a human usability study or original Windows GUI qualification",
+  "checks": [
+    "Compact 1280x800 setup review keeps labels, explicit disk/erasure information and Back/Install controls readable",
+    "Ordinary native Files navigation and taskbar remain readable without overlapping essential text",
+    "Actual 3840x2160 Files uses tested scaled semantic fonts and controls",
+    "Original supported 7-Zip console output appears in the native Windows Apps frontend with explicit unavailable GUI notice",
+    "Exact VMware setup completion offers Restart to Engacer OS after verification"
+  ],
+  "captures": {
+    "evidence/M14/3/visual/compact-review.png": "2649be58d8e3689ed0f0aab695d353f92ff5a2f3ee05a745c1f8d931686bc759",
+    "evidence/M14/3/visual/ordinary-desktop.png": "c2ff88b7dd635801885969ab70585e59210fd794e1dffbb58027fab5fdbf387b",
+    "evidence/M14/3/visual/4k-desktop.png": "58ccb641e138170576802b2795e5ba7e37a0bc4f5a45f0d51628385696d52c31",
+    "evidence/M14/3/visual/original-console.png": "770bc5b140e99178260b31f87d5c52b39d4fee54005520d3fc99b9823925cd6c",
+    "evidence/M14/3/visual/vmware-finish.png": "3928e857f352f0726bea06906589b1f459b1d9d02519a812a3fc38a2db58968f"
+  }
+}
