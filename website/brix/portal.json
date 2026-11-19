@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M14.2",
+  "currentRelease": "M14.3",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m142.md",
+          "docs/handbook/install-m143.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m142-v0.14.2.md",
+          "docs/releases/m143-v0.14.3.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/first-day-m142.md",
+          "docs/handbook/first-day-m143.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -92,7 +92,7 @@
           "Keep saved work and understand stability limits"
         ],
         [
-          "docs/handbook/windows-m142.md",
+          "docs/handbook/windows-m143.md",
           "Use Windows file checks and browser downloads"
         ]
       ]
@@ -127,11 +127,15 @@
       "items": [
         [
           "docs/milestones/m14.md",
-          "Follow M14.0\u2013M14.15 in order"
+          "Follow M14.0-M14.15 in order"
         ],
         [
-          "docs/milestones/m14-2.md",
-          "Read the M14.2 native process, thread and exception stage"
+          "docs/milestones/m14-3.md",
+          "Read the native files and persistent-settings stage"
+        ],
+        [
+          "docs/architecture/files-m143.md",
+          "Understand Windows file/settings ownership and limits"
         ],
         [
           "docs/milestones/m14-1.md",
@@ -164,5 +168,7 @@
       ]
     }
   ],
-  "developmentProgram": "M14.3"
+  "developmentProgram": "M14.3",
+  "currentSummary": "M14.3 adds checked Unicode paths/search, shared files and byte-range locks, persistent user settings and copied process environments. It retains private Windows processes, preemptive threads, TLS and selected C exception handling. Windows instructions run through our own kernel and APIs, without an embedded Windows guest. The original 7-Zip console profile remains supported. Browser choices can download the original Firefox installer; Firefox and general Windows GUI installation/execution are not supported yet. Follow M14.0-M14.15, including mandatory whole-system optimization in M14.15.",
+  "currentImageAlt": "Actual Engacer OS M14.3: the original supported 7-Zip console output in the native Windows Apps frontend. The original Windows file-manager GUI is not supported yet."
 }

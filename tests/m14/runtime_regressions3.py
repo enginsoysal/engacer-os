@@ -14,7 +14,7 @@ CASES={'threads':'thread_native2','tls':'tls_native2','last-thread':'last_thread
        'cancel':'cancel_native2','msi-cancel':'msi_cancel2','exceptions':'exception_native2',
        'exception-nested':'exception_nested_native2','exception-invalid':'exception_invalid_native2',
        'unwind':'unwind_native2','unwind-chain':'unwind_chain_native2','unwind-invalid':'unwind_invalid_native2',
-       'inspection':'inspect_native2','probes':'probe_native1'}
+       'inspection':'inspect_native2','probes':'lifetime_native2'}
 REPLACEMENTS=[('EngacerOS-M14STAGE2','EngacerOS-M14STAGE3'),('EngacerOS-M14STAGE1','EngacerOS-M14STAGE3'),
               ('stage2','stage3'),('stage1','stage3'),('m142-','m143-regress-'),
               ('build/m14-native/fixtures','build/m14-native/stage3/regression-fixtures'),

@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "stage": "M14.3",
+  "build_id": "ee751b3d701e676254defe24d88acf67",
+  "desktop_fixed": {
+    "bytes": 557516,
+    "sections": {
+      "bss": 557488,
+      "data": 28
+    },
+    "map_sha256": "be1e8898ad0485f57a1a908305be8f94bc8b7c117520afa123f1dd81aba354ca"
+  },
+  "font_coverage_bytes": 251248,
+  "protected_worker_physical_page_quota": 10000,
+  "protected_worker_virtual_page_quota": 32768,
+  "module_quota": 32,
+  "image_limit_bytes": 33554432,
+  "one_time_transition_stack_bytes": 16384,
+  "probe_peak_owned_pages": 176,
+  "probe_retained_pages": 0,
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116022,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17715,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247092,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "limits": [
+    "Synthetic loader probes are not original GUI app performance",
+    "Observer wall times and quanta are not measured Windows CPU time",
+    "M14.15 remains the whole-system performance and optimization gate"
+  ],
+  "runtime": {
+    "live_process_limit": 4,
+    "threads_per_process_limit": 16,
+    "root_metadata_pages_observed": 28,
+    "child_metadata_pages_observed": 32,
+    "shared_object_limit": 128,
+    "created_object_limit_per_process": 32,
+    "synchronization_grants_per_process": 64,
+    "handles_per_wait": 32,
+    "shared_registry_pages_unused": 0,
+    "shared_registry_pages_observed_blocked": 1,
+    "four_process_cancel_peak_group_owned_pages": 609,
+    "four_process_cancel_retained_pages_after_initialization": 0,
+    "four_process_blocked_halted_cpus_observed": 2,
+    "scope": "Component and protected ownership accounting; not total OS RAM, original GUI performance or a Windows speed comparison"
+  },
+  "files_settings": {
+    "selected_unicode_table_bytes": 3344,
+    "shared_file_objects": 128,
+    "file_grants_per_process": 32,
+    "dirty_data_global_limit_bytes": 8388608,
+    "file_logical_limit_bytes": 67108864,
+    "registry_keys_per_user": 64,
+    "registry_values_per_user": 128,
+    "registry_value_data_limit_bytes": 2048,
+    "environment_max_utf16_units": 8192,
+    "find_handles_per_process": 16,
+    "zero_retention_cycles": 20,
+    "scope": "Bounded component accounting; not a total OS RAM or original GUI speed benchmark"
+  }
+}

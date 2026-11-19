@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "build_id": "ee751b3d701e676254defe24d88acf67",
+  "clone": {
+    "source_sha256": "97dea391dd4c7f479de1df53084414e7d8dd2bb4af2017e3186b28a5825971af",
+    "clone_sha256": "97dea391dd4c7f479de1df53084414e7d8dd2bb4af2017e3186b28a5825971af",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    {
+      "name": "Real in-progress HTTPS cancellation leaves no published partial installer",
+      "bytes_before_cancel": 80986,
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi"
+    },
+    {
+      "name": "Actual native HTTPS transfer from Mozilla and independent stopped-disk hash",
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi",
+      "bytes": 95924224,
+      "sha256": "6dc28633cbd77cb1d044f339185cd467dda39397e4bcca942bfb0ddb2360c681",
+      "installer_executed": false
+    }
+  ],
+  "download_observations": [
+    {
+      "state": 1,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 2,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 8499442,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 16838898,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 25213598,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 33733278,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 42072734,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 50408094,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 58833566,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 67258733,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 75569517,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 84017517,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 92629357,
+      "tls_error": 0
+    },
+    {
+      "state": 4,
+      "bytes": 95924224,
+      "tls_error": 0
+    }
+  ]
+}

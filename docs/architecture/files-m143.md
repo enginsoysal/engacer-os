@@ -1,6 +1,6 @@
 # M14.3 - Windows files and settings ownership
 
-Status: **development implementation**. Complete M14.3 native/public qualification remains open. [Stage acceptance](../milestones/m14-3.md). Existing M14.2 media remain the current qualified download.
+Status: **exact-source native qualification passes** within M14-STAGE3-VM-v1. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resources](../../evidence/M14/3/resources.json), [remaining publication gates](../milestones/m14-3.md). The build-bound development entries below preserve what was open on those earlier candidates; they do not override final native acceptance. Complete GitHub and actual website delivery is being finalized.
 
 ## Path boundary
 
@@ -109,3 +109,7 @@ The [exact enabled-device VMware package](../../evidence/M14/3/development/vmwar
 ## Sources and verification boundary
 
 Microsoft documents the required interfaces: [CreateFileW](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew), [file names and namespaces](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file), [LockFileEx](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfileex), [RegSetValueExW](https://learn.microsoft.com/en-us/windows/win32/api/winreg/nf-winreg-regsetvalueexw), [RegQueryValueExW](https://learn.microsoft.com/en-us/windows/win32/api/winreg/nf-winreg-regqueryvalueexw), [process environments](https://learn.microsoft.com/en-us/windows/win32/procthread/environment-variables). These describe Windows behavior; only matching Engacer native tests can qualify our implementation.
+
+## Exact-source native acceptance
+
+The frozen candidate `ee751b3d701e676254defe24d88acf67` passes [M14-STAGE3-VM-v1 acceptance](../../evidence/M14/3/acceptance-results.json): 29 native groups and five supporting host groups with all 642 compiled inputs bound to Git. The verifier checks the exact archived VMware bytes, independent starts, original supported payloads/tasks, copied observer sources and all selected lifetime/file/registry/environment behavior. All prior development observations above retain their historical scope. [Final component resources](../../evidence/M14/3/resources.json). The complete actual website/GitHub-publication gate remains separate. The [loader observer correction](../../evidence/M14/3/development/loader-observer-correction.json) records selection of the existing M14.2 normal-detach scenario rather than weakening its assertions.

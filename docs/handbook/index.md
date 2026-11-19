@@ -2,21 +2,21 @@
 
 ## Start here
 
-**Current qualified download: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Native qualification and public delivery pass within M14-STAGE2-VM-v1. Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/2/publication-results.json). Follow the guide matching the release you download.
+**Current native-qualified release: [Engacer OS M14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Its exact-source native qualification passes within M14-STAGE3-VM-v1; matching GitHub media and complete actual website delivery are being finalized. Follow the guide matching the release you download.
 
-- [Download, verify and install in VMware](install-m142.md)
-- [Windows files, supported apps and browser downloads](windows-m142.md)
+- [Download, verify and install in VMware](install-m143.md)
+- [Windows files, persistent settings and browser downloads](windows-m143.md)
 - [What works today and current limitations](../roadmap/status.md)
-- [Release scope and checksums](../releases/m142-v0.14.2.md)
+- [Release scope and checksums](../releases/m143-v0.14.3.md)
 - [Build and customize your own distribution](distributions.md)
 
-M14.2 qualifies bounded native processes, threads, TLS, shared synchronization and selected C exception handling alongside its original supported 7-Zip console/MSI tasks. Original Notepad++ and Sumatra images can be mapped and inspected; their graphical applications are not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Windows compatibility is being implemented natively; no embedded Windows guest is the application runtime.
+M14.3 adds selected Unicode file/path/search, sharing/locking, persistent user registry and environment behavior over the native process/thread runtime. It retains the original supported 7-Zip console/MSI tasks. Notepad++/Sumatra remain inspection-only; Firefox remains download-only. There is no embedded Windows guest. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resource bounds](../../evidence/M14/3/resources.json). M14.15 remains the mandatory whole-system optimization gate.
 
 ## Use the desktop
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](first-day-m142.md)
+- [First day, desktop and folders](first-day-m143.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
 - [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)

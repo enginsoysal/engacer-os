@@ -1,6 +1,10 @@
 # BrixCanvas documentation website
 
-Current native delivery is M14.2: qualified bounded Windows processes, threads, TLS, shared synchronization and the selected C exception/unwind profile. Firefox remains download-only and general Windows GUI execution is unavailable. Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. Native homepage/recovery Save and desktop/mobile search/navigation/manual/download checks pass. [M14.2 receipt](../evidence/M14/2/publication-results.json). Earlier M14.1 loader and M14.0 research records remain historical; M14.15 is the mandatory whole-system optimization gate.
+Current native delivery is M14.3: selected Unicode files/paths/search, sharing/locks, persistent user settings and copied environments over the retained native runtime. All 29 native groups and five supporting host groups pass. Matching GitHub and complete actual website delivery are being finalized. [Native acceptance](../evidence/M14/3/acceptance-results.json), [stage gates](../docs/milestones/m14-3.md). Firefox remains download-only and general Windows GUI execution remains unavailable. M14.15 is the mandatory whole-system optimization gate.
+
+## Historical M14.2 public delivery
+
+Historical native delivery is M14.2: qualified bounded Windows processes, threads, TLS, shared synchronization and the selected C exception/unwind profile. Firefox remains download-only and general Windows GUI execution is unavailable. Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. Native homepage/recovery Save and desktop/mobile search/navigation/manual/download checks pass. [M14.2 receipt](../evidence/M14/2/publication-results.json). Earlier M14.1 loader and M14.0 research records remain historical; M14.15 is the mandatory whole-system optimization gate.
 
 ## Historical portal records
 

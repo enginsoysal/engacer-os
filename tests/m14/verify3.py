@@ -55,6 +55,7 @@ def main():
         for case in runtime[name]['cases']:
             assert case['desktop_responsive'] and [r['retained_pages'] for r in case['samples']]==[4,0],(name,case)
     assert len(journeys['apps']['original_payload_sha256'])==106
+    assert journeys['probes']['normal_process_detach']==dict(attach_notifications=50,detach_notifications=50,remaining_dlls_detached_at_exit=2)
     samples=journeys['probes']['samples']
     assert len(samples)==20 and all(r['retained_pages']==0 and r['peak_owned_pages']<1024 for r in samples)
     protections=[r for r in journeys['probes']['checks'] if isinstance(r,dict)]
@@ -104,7 +105,7 @@ def main():
     for name,r in file_host.items():
         for path,digest in r.get('source_sha256',{}).items():assert sha(ROOT/path)==digest,(name,path)
     observers={}
-    known_adapters={sha(ROOT/'tests/m14/runtime_regressions3.py'),hashlib.sha256(subprocess.check_output(['git','show','cf2807b8:tests/m14/runtime_regressions3.py'],cwd=ROOT)).hexdigest()}
+    known_adapters={sha(ROOT/'tests/m14/runtime_regressions3.py'),*[hashlib.sha256(subprocess.check_output(['git','show',ref+':tests/m14/runtime_regressions3.py'],cwd=ROOT)).hexdigest() for ref in ('cf2807b8','4b30a8ec')]}
     for case in ('threads','tls','last-thread','processes','named-sync','named-sync-cancel','cancel','msi-cancel','exceptions','exception-nested','exception-invalid','unwind','unwind-chain','unwind-invalid','inspection','probes'):
         r=read(work/'regression-observers'/(case+'.json'));assert r['passed'] and r['build_id']==meta['build_id'] and r['case']==case
         assert r['adapter_sha256'] in known_adapters,(case,'unknown observer adapter')

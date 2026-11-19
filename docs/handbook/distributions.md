@@ -2,12 +2,12 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.2** within M14-STAGE2-VM-v1. Its [complete public delivery](../../evidence/M14/2/publication-results.json) passes; use the matching official release and media. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.3** within M14-STAGE3-VM-v1. Its [exact-source native acceptance](../../evidence/M14/3/acceptance-results.json) passes; use the matching official release and media. Complete public delivery is checked separately in the current status. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 
 ```powershell
-git clone --branch m142-v0.14.2 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
+git clone --branch m143-v0.14.3 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
 cd my-engacer-edition
 New-Item -ItemType Directory -Force build
 $editionBuildRoot = Join-Path $env:LOCALAPPDATA 'EngacerOS\Build\my-edition\m14'
@@ -27,9 +27,9 @@ python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Pa
 python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from m6 import build; build('custom', Path('distros/my-edition.json'), m14=True)"
 ```
 
-Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 2` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
+Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 3` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
 
-Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.2 installation](install-m142.md), [supported Windows behavior](windows-m142.md), [desktop use](first-day-m142.md).
+Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.3 installation](install-m143.md), [supported Windows behavior](windows-m143.md), [desktop use](first-day-m143.md).
 
 Saved per-user preferences can override distribution defaults. Changing a profile does not add unsupported Windows APIs, hardware drivers, arbitrary font plugins or executable package hooks. Destructive storage consent and protected core ownership remain enforced. Distribute source, licenses and third-party notices with your edition.
 

@@ -1,6 +1,6 @@
 # Windows files and browser downloads in M14.3
 
-Status: **M14.3 development candidate; full release qualification is still open.** M14.2 remains the qualified public download. Do not substitute development media for the matching accepted release.
+Status: native qualification passes within **M14-STAGE3-VM-v1** on the exact matching candidate. GitHub media and complete actual website delivery are being finalized. Read the matching release scope; this is not general Windows GUI compatibility.
 
 ## Use the included Windows app
 

@@ -1,0 +1,8 @@
+{
+  "scope": "Development observer selection correction, not a guest implementation failure",
+  "reason": "The M14.3 adapter selected the historical M14.1 probe, which expects 48 unload notifications and predates normal process detach. Matching M14.2 lifetime_native2 already expects all 50 notifications, including the two DLLs detached at normal process exit. Select that canonical existing M14.2 lifetime scenario without changing its assertions or fixture code.",
+  "original_report_sha256": "3be5bc892185cc14ae8d5483a6557acd460adae22bce80e2d8f6c3eeeda326d0",
+  "observed_attach_markers": 51,
+  "observed_detach_markers": 51,
+  "retained_local_report": "build/m14-native/stage3/probes/initial-m141-observer/results.json"
+}
