@@ -4,6 +4,7 @@
 #define ARENA141 UINT64_C(0x110000000)
 #include "module142.h"
 static module141 modules141[MODULES141];
+static lock142 loader_lock142;
 static unsigned loading141,forwarding141,sequence141,inspect141;
 static int parent141=-1;
 static uint16_t u16(const void*p){uint16_t v;memcpy(&v,p,2);return v;}
@@ -32,8 +33,8 @@ static uint64_t dependency141(int owner,const char*name){
  }
  int child=slot141(found);if(child>=0)modules141[owner].dependencies|=UINT32_C(1)<<(unsigned)child;return found;
 }
-void*pe8_import(const char*dll,const char*name,unsigned ordinal){uint64_t module=dependency141(parent141,dll);return module?pe8_symbol(module,name,ordinal):0;}
-void*pe8_symbol(uint64_t base,const char*name,unsigned ordinal){
+static void*pe8_import_impl142(const char*dll,const char*name,unsigned ordinal){uint64_t module=dependency141(parent141,dll);return module?pe8_symbol(module,name,ordinal):0;}
+static void*pe8_symbol_impl142(uint64_t base,const char*name,unsigned ordinal){
  int index=slot141(base);if(index<0)return 0;module141*m=modules141+index;if(!m->exports||m->export_size<40)return 0;
  uint8_t*e=rva141(m,m->exports,m->export_size);uint32_t first=u32(e+16),functions=u32(e+20),names=u32(e+24),selected=UINT32_MAX;
  if(functions>65536||names>65536)fail8("The Windows export table exceeds its bound.");
@@ -61,7 +62,8 @@ static unsigned imports141(module141*m,uint32_t address,uint32_t bytes,unsigned 
  }if(!terminated)fail8("The Windows import directory is not terminated.");return count;
 }
 static uint64_t address141(uint32_t size){uint64_t at=ARENA141;for(unsigned pass=0;pass<=MODULES141;++pass){unsigned overlap=0;for(unsigned i=0;i<MODULES141;++i){module141*m=modules141+i;if(!m->state)continue;uint64_t start=(uint64_t)(uintptr_t)m->base,end=start+((m->size+65535u)&~UINT64_C(65535))+65536;if(at<end&&start<at+size+65536){at=(end+65535)&~UINT64_C(65535);overlap=1;break;}}if(!overlap){if(at>=W8_HEAP||size+UINT64_C(65536)>W8_HEAP-at)break;return at;}}fail8("The Windows image address-space quota was reached.");}
-static void attach141(unsigned index){module141*m=modules141+index;if(!m->state||m->attached)return;m->attached=1;for(unsigned i=0;i<MODULES141;++i)if(m->dependencies&(UINT32_C(1)<<i))attach141(i);if(m->dll&&m->entry){if(!((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,1,0))fail8("The Windows DLL rejected process attachment.");}m->sequence=++sequence141;}
+#include "tls142.inc"
+static void attach141(unsigned index){module141*m=modules141+index;if(!m->state||m->attached)return;m->attached=1;for(unsigned i=0;i<MODULES141;++i)if(m->dependencies&(UINT32_C(1)<<i))attach141(i);tls_notify_impl142(m,1);if(m->dll&&m->entry){if(!((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,1,0))fail8("The Windows DLL rejected process attachment.");}m->sequence=++sequence141;}
 static uint64_t load141(const char*path,unsigned external){
  const char*name=basename141(path);if(!leaf141(name)||len8(path)>=256)fail8("The Windows module path exceeds its bound.");
  for(unsigned i=0;i<MODULES141;++i)if(modules141[i].state&&!case8(modules141[i].name,name)){if(case8(modules141[i].path,path))fail8("A DLL with this name is already loaded from another folder.");if(external){if(modules141[i].references==UINT32_MAX)fail8("The Windows module reference quota was reached.");++modules141[i].references;}return (uint64_t)(uintptr_t)modules141[i].base;}
@@ -84,7 +86,7 @@ static uint64_t load141(const char*path,unsigned external){
  if(delta){if(!reloc||!reloc_size)fail8("The Windows image has no usable relocation directory.");rva141(m,reloc,reloc_size);uint64_t off=0;while(off<reloc_size){uint8_t*b=rva141(m,(uint64_t)reloc+off,8);uint32_t page=u32(b),bytes=u32(b+4);if(bytes<8||(bytes&1)||bytes>reloc_size-off)fail8("The Windows relocation block is invalid.");b=rva141(m,(uint64_t)reloc+off,bytes);for(unsigned j=8;j<bytes;j+=2){unsigned item=u16(b+j),type=item>>12;if(!type)continue;if(type!=10)fail8("The Windows relocation type is unsupported.");uint64_t*p=rva141(m,(uint64_t)page+(item&4095),8);*p+=delta;}off+=bytes;}}
  m->exports=u32(optional+112);m->export_size=u32(optional+116);if(m->exports)rva141(m,m->exports,m->export_size);else if(m->export_size)fail8("The Windows export directory has no address.");
  int old=parent141;parent141=(int)index;unsigned direct=imports141(m,u32(optional+120),u32(optional+124),0,!inspect141),delayed=imports141(m,u32(optional+216),u32(optional+220),1,0);parent141=old;
- if(u32(optional+184)&&!inspect141)fail8("Static Windows TLS requires the next runtime milestone; this application was not started.");
+ if(!inspect141)tls_prepare142(m,index,u32(optional+184),u32(optional+188));
  if(sys8(W8_SYS_PROTECT,address,size,1,0,0))fail8("The Windows image could not receive final read-only protection.");
  unsigned executable_entry=entry==0;for(unsigned i=0;i<number;++i){uint8_t*s=sections[i];uint32_t raw=u32(s+16),span=u32(s+8)>raw?u32(s+8):raw,rva=u32(s+12),flags=u32(s+36);if(!span)continue;unsigned permissions=(flags&0x20000000u)?5:(flags&0x80000000u)?3:1;if(entry>=rva&&(uint64_t)entry<rva+span&&(permissions&4))executable_entry=1;if(sys8(W8_SYS_PROTECT,address+rva,(span+4095u)&~4095u,permissions,0,0))fail8("The Windows section permissions could not be applied.");}
  if(!executable_entry)fail8("The Windows entry point is not in an executable section.");m->state=2;--loading141;
@@ -102,12 +104,14 @@ static uint64_t pe8_named_impl142(const char*name){
 }
 static int pe8_release_impl142(uint64_t base){if(terminating142)return 0;int index=slot141(base);if(index<=0||!modules141[index].references)return 0;--modules141[index].references;uint32_t reachable=1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&modules141[i].references)reachable|=UINT32_C(1)<<i;
  for(unsigned pass=0;pass<MODULES141;++pass){uint32_t next=reachable;for(unsigned i=0;i<MODULES141;++i)if(reachable&(UINT32_C(1)<<i))next|=modules141[i].dependencies;if(next==reachable)break;reachable=next;}
- for(unsigned pass=0;pass<MODULES141;++pass){int chosen=-1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&!(reachable&(UINT32_C(1)<<i))&&(chosen<0||modules141[i].sequence>modules141[chosen].sequence))chosen=(int)i;if(chosen<0)break;module141*m=modules141+chosen;if(m->attached&&m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,0,0);if(sys8(W8_SYS_UNMAP,(uint64_t)(uintptr_t)m->base,m->size,0,0,0))fail8("The Windows module could not be released.");for(unsigned i=0;i<MODULES141;++i)modules141[i].dependencies&=~(UINT32_C(1)<<chosen);memset(m,0,sizeof(*m));}return 1;
+ for(unsigned pass=0;pass<MODULES141;++pass){int chosen=-1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&!(reachable&(UINT32_C(1)<<i))&&(chosen<0||modules141[i].sequence>modules141[chosen].sequence))chosen=(int)i;if(chosen<0)break;module141*m=modules141+chosen;if(m->attached)tls_notify_impl142(m,0);if(m->attached&&m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,0,0);tls_release_module142((unsigned)chosen);if(sys8(W8_SYS_UNMAP,(uint64_t)(uintptr_t)m->base,m->size,0,0,0))fail8("The Windows module could not be released.");for(unsigned i=0;i<MODULES141;++i)modules141[i].dependencies&=~(UINT32_C(1)<<chosen);memset(m,0,sizeof(*m));}return 1;
 }
 void pe8_inspect(const char*path){inspect141=1;pe8_load(path);uint64_t values[4];if(sys8(W8_SYS_VMINFO,(uint64_t)values,0,0,0,0))fail8("The Windows memory observation could not be read.");print8("Memory pages: reserved=");number8(values[0]);print8(" owned=");number8(values[1]);print8(" demand-commits=");number8(values[2]);print8(" physical-quota=");number8(values[3]);print8("\nMapping inspection completed. Running this app is a separate compatibility test.\n");exit8(0);}
 void pe8_run(const char*path,const char*arguments){(void)arguments;uint64_t base=pe8_load(path);module141*m=modules141;if(m->dll||m->subsystem!=3)fail8("Windows graphical execution is not available in this loader milestone. The app was not started.");print8("Running the original Windows executable in a protected process.\n\n");((void(MS*)(void))(uintptr_t)(base+m->entry))();pe8_exit(0);}
 
-static lock142 loader_lock142;
 uint64_t pe8_load(const char*path){lock_enter142(&loader_lock142);uint64_t result=pe8_load_impl142(path);lock_leave142(&loader_lock142);return result;}
 uint64_t pe8_named(const char*name){lock_enter142(&loader_lock142);uint64_t result=pe8_named_impl142(name);lock_leave142(&loader_lock142);return result;}
 int pe8_release(uint64_t base){lock_enter142(&loader_lock142);int result=pe8_release_impl142(base);lock_leave142(&loader_lock142);return result;}
+
+void*pe8_import(const char*dll,const char*name,unsigned ordinal){lock_enter142(&loader_lock142);void*result=pe8_import_impl142(dll,name,ordinal);lock_leave142(&loader_lock142);return result;}
+void*pe8_symbol(uint64_t base,const char*name,unsigned ordinal){lock_enter142(&loader_lock142);void*result=pe8_symbol_impl142(base,name,ordinal);lock_leave142(&loader_lock142);return result;}

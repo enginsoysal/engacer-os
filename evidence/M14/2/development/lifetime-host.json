@@ -13,8 +13,8 @@
     "mappings retained throughout notifications"
   ],
   "source_sha256": {
-    "user/windows8/lifetime142.inc": "17f06bf648f0b6ab5b712915ca7239f9e9d375cfb79c4be0081aa525bc361c7b",
-    "user/windows8/module142.h": "753a7339c84d73c17b3b78a34079d40e760953b1afc9d579de7cb23e3018af46",
-    "tests/m14/lifetime2.c": "e2050750d0ebb0d9c8bdadcb51c7198f5511a96df44d861e06398c369b904578"
+    "user/windows8/lifetime142.inc": "1ae9f813f74bf6635eab0c0684116c1ffb767648c2d09bdf6b20d145e0607fef",
+    "user/windows8/module142.h": "578a845d17596e1f2dcc4d02a08905633306f8a7e6f7b87b3da346d756bed78a",
+    "tests/m14/lifetime2.c": "619f0f48f18bb1046432ccb73e0807e887e58eb4d438a513f254cbb770a01305"
   }
 }

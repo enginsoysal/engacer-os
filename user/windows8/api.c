@@ -170,9 +170,10 @@ static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=tid142()||c->rec
 static void MS f_DeleteCriticalSection(critical8*c){if(c->owner||c->recursion)fail8("A Windows process deleted an owned critical section.");memset(c,0,sizeof(*c));}
 #include "sync142.inc"
 static unsigned MS f_ResumeThread(HANDLE h){int64_t result=(int64_t)sys8(W8_SYS_THREAD_RESUME,h,0,0,0,0);if(result<0)last8(6);return (unsigned)result;}
-static NORETURN void MS f_ExitThread(unsigned code){sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
+static NORETURN void MS f_ExitThread(unsigned code){pe8_thread_detach();sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
 static void thread_entry142(uint64_t entry,void*arg){
  unsigned row=tid142()&255;lock_enter142(&tls_lock142);memset(tls_values8[row],0,sizeof(tls_values8[row]));lock_leave142(&tls_lock142);
+ pe8_thread_attach();
  unsigned code=((unsigned(MS*)(void*))(uintptr_t)entry)(arg);f_ExitThread(code);
 }
 static HANDLE MS f_CreateThread(void*security,size_t stack,uint64_t entry,void*arg,unsigned flags,unsigned*id){

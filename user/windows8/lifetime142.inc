@@ -7,6 +7,7 @@ void pe8_shutdown(void){
   int chosen=-1;
   for(unsigned i=0;i<MODULES141;++i)if(modules141[i].state&&modules141[i].attached&&(chosen<0||modules141[i].sequence>modules141[chosen].sequence))chosen=(int)i;
   if(chosen<0)break;module141*m=modules141+chosen;m->attached=0;
+  if(tls_notify142)tls_notify142(m,0);
   if(m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,0,(void*)(uintptr_t)1);
  }
 }

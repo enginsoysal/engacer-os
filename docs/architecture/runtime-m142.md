@@ -22,9 +22,9 @@ Normal ExitProcess quiesces other threads, invokes attached DLL process-detach n
 
 Unhandled faults and forced cancellation bypass application cleanup and release kernel ownership directly. A callback fault must remain contained. A deadlock in application detach code remains cancellable; a fake successful cleanup would conceal an application failure.
 
-## Static TLS and exceptions: required, not yet delivered
+## Static TLS and exception qualification gates
 
-Validate relocated PE TLS templates, zero-fill, index pointers, callback arrays and executable callback targets. Create each live thread's independent template before calling its original code. Serialize load/unload with thread start/exit and cover thread/process attach/detach, dynamically loaded modules and slot reuse. Preserve bounded module and aggregate memory quotas.
+The current development static TLS implementation validates relocated PE templates, zero-fill, index pointers, callback arrays and executable callback targets. It bounds each module to 64 KiB of template plus zero-fill, one MiB in aggregate per thread, sixteen thread vectors, 32 module indexes and at most 63 callbacks followed by a terminator. Alignment above 4096 bytes is refused. These are explicit development-profile limits, not complete Windows coverage. The initial native EXE/imported-DLL/dynamic-DLL task corpus passes; full M14.2 lifetime and exception qualification remains pending. Each live thread must receive its independent template before original code runs. Serialize load/unload with thread start/exit and cover thread/process attach/detach, dynamically loaded modules and slot reuse. Preserve bounded module and aggregate memory quotas.
 
 Implement x64 exception/context records, checked runtime-function/unwind metadata and the required unwind operations and handler dispositions. A fault dispatcher must validate continuation addresses, stack bounds and handler nesting; malformed metadata or unsupported operations end the protected process clearly. Host parser success is not native exception handling. Test handled access violations, stack unwinds, invalid handlers, callback faults and repeated cancellation in the guest.
 

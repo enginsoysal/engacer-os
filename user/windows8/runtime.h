@@ -60,6 +60,8 @@ const char *pe8_path(uint64_t);
 uint64_t pe8_main(void);
 int pe8_release(uint64_t);
 void pe8_shutdown(void);
+void pe8_thread_attach(void);
+void pe8_thread_detach(void);
 NORETURN void pe8_exit(unsigned);
 void pe8_run(const char*,const char*);
 void msi8_execute(void);

@@ -4,6 +4,7 @@
 #define MODULES141 32
 static module141 modules141[MODULES141];
 static unsigned terminating142;
+static void (*tls_notify142)(module141*,unsigned);
 #include "lifetime142.inc"
 static unsigned observed[32],calls,bad;
 static int MS notify(void*base,unsigned reason,void*reserved){

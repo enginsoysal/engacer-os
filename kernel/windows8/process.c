@@ -241,6 +241,8 @@ static int64_t dispatch8(trap_frame*f){
   t->frame.cs=0x1b;t->frame.ss=0x23;t->frame.rflags=0x202;t->frame.rip=a;t->frame.rsp=top-8;t->frame.rdi=b;t->frame.rsi=c;
   *(uint16_t*)t->fx=0x37f;*(uint32_t*)(t->fx+24)=0x1f80;return (int64_t)id;
  }
+ case W8_SYS_THREAD_LIST:{w8_thread_snapshot result[THREADS142];memset(result,0,sizeof(result));unsigned count=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED){result[i]=(w8_thread_snapshot){threads142[i].teb,(uint32_t)thread_token142(i),threads142[i].state};++count;}return user8(a,result,sizeof(result),1)?-1:(int64_t)count;}
+ case W8_SYS_ACCESS:{if(!b||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||!c||(c&~7u))return -1;for(uint64_t at=a&~UINT64_C(4095);at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141))||((c&2)&&!(*p&2))||((c&4)&&(*p&NX)))return -1;}return 0;}
  case W8_SYS_QUIESCE:for(unsigned i=0;i<THREADS142;++i)if(i!=current142&&threads142[i].state){threads142[i].state=T142_EXITED;threads142[i].code=(unsigned)a;}return 0;
  case W8_SYS_THREAD_CLOSE:{int slot=thread_slot142(a);if(slot<0)return -1;threads142[slot].closed=1;return 0;}
  case W8_SYS_THREAD_RESUME:{int slot=thread_slot142(a);if(slot<0||threads142[slot].state==T142_EXITED)return -1;unsigned suspended=threads142[slot].state==T142_SUSPENDED;if(suspended)threads142[slot].state=T142_READY;return suspended;}

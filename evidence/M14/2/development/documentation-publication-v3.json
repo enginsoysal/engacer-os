@@ -1,0 +1,39 @@
+{
+  "stage": "M14.2 in progress",
+  "milestone_complete": false,
+  "source_commit": "6c796dd0c19af29009c92b2e100c1d808ecd85ca",
+  "workflow_run": 44535066099,
+  "workflow_conclusion": "success",
+  "article_readback": [
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-handbook-distributions",
+      "status": 200,
+      "required_text": {
+        "Current M14 desktop edition": true,
+        "Historical M11 desktop edition": true,
+        "m14=True": true,
+        "6c796dd0c19af29009c92b2e100c1d808ecd85ca": true
+      }
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-contributing",
+      "status": 200,
+      "required_text": {
+        "M14.2 development stage": true,
+        "thread_native2.py": true,
+        "6c796dd0c19af29009c92b2e100c1d808ecd85ca": true
+      }
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-2",
+      "status": 200,
+      "required_text": {
+        "In progress": true,
+        "timer": true,
+        "6c796dd0c19af29009c92b2e100c1d808ecd85ca": true
+      }
+    }
+  ],
+  "homepage_download_remains": "M14.1",
+  "whole_website_audit_still_required_at_M142_closure": true
+}
