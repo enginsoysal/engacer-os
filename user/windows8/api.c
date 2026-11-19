@@ -188,19 +188,35 @@ static int MS f_SetCurrentDirectoryW(const WCHAR*name){
 static int MS f_GetDiskFreeSpaceExW(const WCHAR*root,uint64_t*available,uint64_t*total,uint64_t*free){if(root&&((root[0]!='C'&&root[0]!='c')||root[1]!=':')){last8(3);return 0;}uint64_t space=sys8(W8_SYS_INFO,3,0,0,0,0);if(available)*available=space;if(free)*free=space;if(total)*total=sys8(W8_SYS_INFO,4,0,0,0,0);return 1;}
 static int MS f_GetDiskFreeSpaceW(const WCHAR*root,unsigned*sectors,unsigned*bytes,unsigned*free,unsigned*total){uint64_t a=0,b=0;if(!f_GetDiskFreeSpaceExW(root,&a,&b,0))return 0;if(sectors)*sectors=8;if(bytes)*bytes=512;if(free)*free=(unsigned)(a/4096);if(total)*total=(unsigned)(b/4096);return 1;}
 static unsigned MS f_GetLogicalDriveStringsW(unsigned cap,WCHAR*out){if(cap<5)return 5;out[0]='C';out[1]=':';out[2]='\\';out[3]=out[4]=0;return 4;}
-typedef struct {unsigned live,index,single,stream;char folder[256],pattern[256];w8_file_info item;} find8;
-static find8 finds8[16];
-static int wildcard8(const char*pattern,const char*name){const char*star=0,*retry=0;while(*name){if(*pattern=='?'||lower8((uint8_t)*pattern)==lower8((uint8_t)*name)){++pattern;++name;}else if(*pattern=='*'){star=pattern++;retry=name;}else if(star){pattern=star+1;name=++retry;}else return 0;}while(*pattern=='*')++pattern;return !*pattern;}
+typedef struct {unsigned live,index,single,stream,generation;char folder[256],pattern[256];w8_file_info item;} find8;
+static find8 finds8[16];static lock142 find_lock143;static unsigned find_generation143;
+static HANDLE find_token143(unsigned slot){return UINT64_C(0xe0000000)|((uint64_t)finds8[slot].generation<<4)|slot;}
+static int find_slot143(HANDLE handle){unsigned slot=(unsigned)(handle&15);return (handle&UINT64_C(0xfffffffff0000000))==UINT64_C(0xe0000000)&&finds8[slot].live&&finds8[slot].generation==((handle&0x0fffffffu)>>4)?(int)slot:-1;}
 static void find_data8(const w8_file_info*info,void*out){memset(out,0,592);uint8_t*b=out;*(uint32_t*)b=info->attributes;memcpy(b+4,info->time,24);*(uint32_t*)(b+28)=(uint32_t)(info->size>>32);*(uint32_t*)(b+32)=(uint32_t)info->size;utf8_to16(info->name,(WCHAR*)(b+44),260);}
-static int next_find8(find8*f,void*out){if(f->single){if(f->index)return 0;f->index=1;find_data8(&f->item,out);return 1;}for(;;){int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)f->folder,(uint64_t)&f->item,f->index,0,0);if(next<=0)return 0;f->index=(unsigned)next;if(wildcard8(f->pattern,f->item.name)){find_data8(&f->item,out);return 1;}}}
-static HANDLE MS f_FindFirstFileW(const WCHAR*name,void*out){char path[256];if(!out){last8(87);return UINT64_MAX;}if(!nativepath_mode143(name,path,1))return UINT64_MAX;unsigned id=0;while(id<16&&finds8[id].live)++id;if(id==16){last8(4);return UINT64_MAX;}find8*f=finds8+id;memset(f,0,sizeof(*f));unsigned wild=0;for(unsigned i=0;path[i];++i)if(path[i]=='*'||path[i]=='?')wild=1;
- if(!wild){if(stat8(path,&f->item)){last8(2);return UINT64_MAX;}f->single=1;}else{char*last=0;for(unsigned i=0;path[i];++i)if(path[i]=='/')last=path+i;if(!last){last8(3);return UINT64_MAX;}copy8(f->pattern,last+1,256);*last=0;copy8(f->folder,path,256);}
- if(!next_find8(f,out)){last8(2);return UINT64_MAX;}f->live=1;return 0x2000+id;
+static int next_find8(find8*search,void*out){
+ if(search->single){if(search->index)return 0;search->index=1;find_data8(&search->item,out);return 1;}
+ for(;;){int64_t next=(int64_t)sys8(W8_SYS_FILE_OP143,0,18,(uint64_t)search->folder,(uint64_t)&search->item,search->index);if(next<0){last8((unsigned)-next);return -1;}if(!next)return 0;search->index=(unsigned)next;
+  int64_t matched=(int64_t)sys8(W8_SYS_TEXT143,2,(uint64_t)search->pattern,(uint64_t)search->item.name,0,0);if(matched<0){last8((unsigned)-matched);return -1;}if(matched){find_data8(&search->item,out);return 1;}}
 }
-static int MS f_FindNextFileW(HANDLE h,void*out){if(h<0x2000||h>=0x2010||!finds8[h-0x2000].live){last8(6);return 0;}if(!next_find8(finds8+(h-0x2000),out)){last8(18);return 0;}return 1;}
-static int MS f_FindClose(HANDLE h){if(h<0x2000||h>=0x2010||!finds8[h-0x2000].live){last8(6);return 0;}memset(finds8+(h-0x2000),0,sizeof(find8));return 1;}
-static HANDLE MS f_FindFirstStreamW(const WCHAR*name,unsigned level,void*out,unsigned flags){char path[256];w8_file_info info;if(level||flags||!nativepath8(name,path)||stat8(path,&info)||info.kind!=1){last8(38);return UINT64_MAX;}unsigned id=0;while(id<16&&finds8[id].live)++id;if(id==16){last8(4);return UINT64_MAX;}memset(out,0,600);*(uint64_t*)out=info.size;utf8_to16("::$DATA",(WCHAR*)((uint8_t*)out+8),296);memset(finds8+id,0,sizeof(find8));finds8[id].live=finds8[id].stream=1;return 0x2000+id;}
-static int MS f_FindNextStreamW(HANDLE h,void*out){(void)out;if(h<0x2000||h>=0x2010||!finds8[h-0x2000].live){last8(6);return 0;}last8(38);return 0;}
+static HANDLE MS f_FindFirstFileW(const WCHAR*name,void*out){
+ char path[256];if(!out){last8(87);return UINT64_MAX;}if(!nativepath_mode143(name,path,1))return UINT64_MAX;lock_enter142(&find_lock143);
+ unsigned slot=0;while(slot<16&&finds8[slot].live)++slot;if(slot==16||find_generation143==0xffffffu){lock_leave142(&find_lock143);last8(4);return UINT64_MAX;}
+ find8*search=finds8+slot;memset(search,0,sizeof(*search));unsigned wild=0;for(unsigned i=0;path[i];++i)if(path[i]=='*'||path[i]=='?')wild=1;
+ if(!wild){int64_t status=(int64_t)sys8(W8_SYS_FILE_OP143,0,15,(uint64_t)path,(uint64_t)&search->item,0);if(status<0){lock_leave142(&find_lock143);last8((unsigned)-status);return UINT64_MAX;}search->single=1;}
+ else{char*last=0;for(unsigned i=0;path[i];++i)if(path[i]=='/')last=path+i;if(!last){lock_leave142(&find_lock143);last8(3);return UINT64_MAX;}copy8(search->pattern,last+1,256);*last=0;copy8(search->folder,path,256);}
+ int found=next_find8(search,out);if(found<=0){memset(search,0,sizeof(*search));lock_leave142(&find_lock143);if(!found)last8(2);return UINT64_MAX;}
+ search->live=1;search->generation=++find_generation143;HANDLE result=find_token143(slot);lock_leave142(&find_lock143);return result;
+}
+static int MS f_FindNextFileW(HANDLE handle,void*out){
+ if(!out){last8(87);return 0;}lock_enter142(&find_lock143);int slot=find_slot143(handle);if(slot<0||finds8[slot].stream){lock_leave142(&find_lock143);last8(6);return 0;}int found=next_find8(finds8+slot,out);lock_leave142(&find_lock143);if(!found)last8(18);return found>0;
+}
+static int MS f_FindClose(HANDLE handle){lock_enter142(&find_lock143);int slot=find_slot143(handle);if(slot<0){lock_leave142(&find_lock143);last8(6);return 0;}memset(finds8+slot,0,sizeof(find8));lock_leave142(&find_lock143);return 1;}
+static HANDLE MS f_FindFirstStreamW(const WCHAR*name,unsigned level,void*out,unsigned flags){
+ if(!out){last8(87);return UINT64_MAX;}if(level||flags){last8(50);return UINT64_MAX;}w8_file_info info;if(!file_path_api143(15,name,&info,0))return UINT64_MAX;if(info.kind!=1){last8(50);return UINT64_MAX;}
+ lock_enter142(&find_lock143);unsigned slot=0;while(slot<16&&finds8[slot].live)++slot;if(slot==16||find_generation143==0xffffffu){lock_leave142(&find_lock143);last8(4);return UINT64_MAX;}
+ memset(out,0,600);*(uint64_t*)out=info.size;utf8_to16("::$DATA",(WCHAR*)((uint8_t*)out+8),296);memset(finds8+slot,0,sizeof(find8));finds8[slot].live=finds8[slot].stream=1;finds8[slot].generation=++find_generation143;HANDLE result=find_token143(slot);lock_leave142(&find_lock143);return result;
+}
+static int MS f_FindNextStreamW(HANDLE handle,void*out){if(!out){last8(87);return 0;}lock_enter142(&find_lock143);int slot=find_slot143(handle);unsigned valid=slot>=0&&finds8[slot].stream;lock_leave142(&find_lock143);last8(valid?38:6);return 0;}
 static int MS f_DeviceIoControl(HANDLE h,unsigned code,void*in,unsigned in_bytes,void*out,unsigned out_bytes,unsigned*returned,void*overlap){(void)code;(void)in;(void)in_bytes;(void)out;(void)out_bytes;(void)overlap;if(returned)*returned=0;last8(h>=256&&h<288?1:6);return 0;}
 
 typedef struct {uint64_t debug;int32_t lock,recursion;uint64_t owner,semaphore,spin;} critical8;

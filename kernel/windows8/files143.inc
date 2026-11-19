@@ -52,7 +52,13 @@ static unsigned file_source143(void*context,uint64_t offset,void*out,unsigned by
  }return 0;
 }
 static unsigned file_flush_metadata143(file_object143*object){if(!object->metadata_dirty)return 0;unsigned error=metadata_save143(&object->metadata);if(!error)object->metadata_dirty=0;return error;}
-static void file_modified143(file_object143*object){if(!prefix8(object->path,input8.user_root))return;object->metadata.times[2]=now8();object->metadata.attributes=(object->metadata.attributes&~128u)|32;object->metadata_dirty=1;}
+static unsigned file_set_metadata143(file_object143*object,const w8_file_info*information){
+ if(information->attributes&~0xa7u)return 50;file_metadata143 previous=object->metadata;unsigned dirty=object->metadata_dirty;
+ if(!memcmp(previous.times,information->time,sizeof(previous.times))&&previous.attributes==information->attributes)return 0;
+ memcpy(object->metadata.times,information->time,sizeof(object->metadata.times));object->metadata.attributes=information->attributes?information->attributes:128;object->metadata_dirty=1;
+ unsigned error=file_flush_metadata143(object);if(error){object->metadata=previous;object->metadata_dirty=dirty;}return error;
+}
+static void file_modified143(file_object143*object){if(!prefix8(object->path,input8.user_root))return;uint64_t time=now8();unsigned attributes=(object->metadata.attributes&~128u)|32;if(time!=object->metadata.times[2]||attributes!=object->metadata.attributes){object->metadata.times[2]=time;object->metadata.attributes=attributes;object->metadata_dirty=1;}}
 static unsigned file_flush143(file_object143*object){
  if(!object->dirty)return file_flush_metadata143(object);const v6_entry*entry=find8(object->path);
  if((entry&&!object->existed)||(!entry&&object->existed)||(entry&&(entry->kind!=1||entry->crc!=object->crc)))return 1117;
@@ -200,6 +206,6 @@ static unsigned file_move143(const char*source,const char*destination,unsigned r
 static unsigned file_attributes143(const char*path,unsigned attributes){
  if(!path8(path,1))return 5;if(attributes&~0xb7u)return 50;const v6_entry*entry=find8(path);if(!entry)return 2;
  unsigned object=file_object_slot143(path);file_metadata143 record;unsigned error=0;if(object<FILE_OBJECTS143)record=file_objects143[object]->metadata;else error=metadata_load143(path,entry->kind,&record);if(error)return error;
- unsigned selected=attributes&0xa7u;if(!selected)selected=128;if((selected&~128u)||entry->kind==2)selected&=~128u;record.attributes=selected|(entry->kind==2?16u:0u);error=metadata_save143(&record);
+ unsigned selected=attributes&0xa7u;if(!selected)selected=128;if((selected&~128u)||entry->kind==2)selected&=~128u;selected|=entry->kind==2?16u:0u;if(selected==record.attributes)return 0;record.attributes=selected;error=metadata_save143(&record);
  if(!error&&object<FILE_OBJECTS143){file_objects143[object]->metadata=record;file_objects143[object]->metadata_dirty=0;}return error;
 }

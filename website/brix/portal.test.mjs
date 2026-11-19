@@ -86,3 +86,10 @@ test('M14.0 research progress preserves the exact current native download',()=>{
  for(const term of ['CURRENT DOWNLOAD · M13.13','Now: original Windows x64 apps.','M14.0-M14.15','mandatory final optimization','research, not new GUI compatibility','docs-milestones-m14'])assert(home.includes(term),term);
  assert(!home.includes('Download M14'));
 });
+
+test('development progress never replaces a qualified native download',()=>{
+ const serialized=JSON.stringify(portalDesign({stage:14,searchReady:true,developmentProgram:'M14.3'}));
+ assert.ok(serialized.includes('In development: M14.3'));
+ assert.ok(serialized.includes('The qualified download remains M14.2'));
+ assert.ok(!serialized.includes('Download M14.3'));
+});

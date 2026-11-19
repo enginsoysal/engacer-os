@@ -1,4 +1,5 @@
 #include "path-core143.inc"
+#include "find-core143.inc"
 static unsigned path_user_string143(uint64_t source,char*out,unsigned cap){
  unsigned at=0;
  for(unsigned i=0;i<1024;++i){uint16_t units[2];unsigned count=1;
@@ -26,4 +27,9 @@ static int64_t text_compare143(uint64_t first,uint64_t second){
  unsigned at=0,bt=0,an=length8(a),bn=length8(b);
  while(at<an&&bt<bn){uint32_t x,y;if(!decode_utf8_143(a,an,&at,&x)||!decode_utf8_143(b,bn,&bt,&y))return -1113;x=fold143(x);y=fold143(y);if(x!=y)return x<y?1:2;}
  return at==an&&bt==bn?0:at==an?1:2;
+}
+static int64_t text_find143(uint64_t pattern_address,uint64_t name_address){
+ char pattern[256],name[256];char*outputs[]={pattern,name};uint64_t inputs[]={pattern_address,name_address};unsigned lengths[2]={0};
+ for(unsigned item=0;item<2;++item){unsigned at=0;for(;at<256;++at){if(user8(inputs[item]+at,outputs[item]+at,1,0))return -998;if(!outputs[item][at])break;}if(at==256)return -206;lengths[item]=at;}
+ unsigned matched=0,error=find_match_core143(pattern,lengths[0],name,lengths[1],&matched);return error?-(int64_t)error:matched;
 }

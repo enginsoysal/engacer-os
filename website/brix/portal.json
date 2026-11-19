@@ -127,7 +127,7 @@
       "items": [
         [
           "docs/milestones/m14.md",
-          "Follow M14.0–M14.15 in order"
+          "Follow M14.0\u2013M14.15 in order"
         ],
         [
           "docs/milestones/m14-2.md",
@@ -164,5 +164,5 @@
       ]
     }
   ],
-  "developmentProgram": "M14.2"
+  "developmentProgram": "M14.3"
 }

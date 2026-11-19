@@ -243,7 +243,7 @@ static int64_t dispatch8(trap_frame*f){
  switch(f->rax){
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);
- case W8_SYS_TEXT143:return a!=1||d||e?-87:text_compare143(b,c);
+ case W8_SYS_TEXT143:if(d||e)return -87;if(a==1)return text_compare143(b,c);if(a==2)return text_find143(b,c);return -87;
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
  case W8_SYS_SYNC_CREATE:return create_sync142(a,b,c);
@@ -261,7 +261,8 @@ static int64_t dispatch8(trap_frame*f){
   for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0),physical=*p&UINT64_C(0x000ffffffffff000);if(f->rax==W8_SYS_UNMAP){unsigned present=*p&1;*p=0;if(present)free_owned8(physical);--virtual_pages141;}else *p=physical|((*p&1)?5:RESERVED141|4)|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}return 0;
  }
  case W8_SYS_FILE_OPEN143:{w8_file_request143 request;if(b||c||d||e||user8(a,&request,sizeof(request),0)||!terminated142(request.path,256))return -87;int64_t slot=file_open143(request.path,request.access,request.share,request.creation,request.flags,0);return slot<0?slot:(int64_t)file_token143((unsigned)slot);}
- case W8_SYS_FILE_OP143:{if(!a&&b>=10&&b<=17&&b!=12&&b!=13){char target[256];if(string8(c,path,256))return -998;
+ case W8_SYS_FILE_OP143:{if(!a&&b>=10&&b<=18&&b!=12&&b!=13){char target[256];if(string8(c,path,256))return -998;
+  if(b==18){if(!path8(path,0))return -5;const v6_entry*directory=find8(path);if(!directory)return -3;if(directory->kind!=2)return -267;if(e>=V6_ENTRIES)return 0;unsigned prefix=length8(path);for(unsigned i=(unsigned)e;i<V6_ENTRIES;++i){const v6_entry*entry=m6_volume()->entries+i;if(!entry->kind||memcmp(entry->path,path,prefix)||entry->path[prefix]!='/')continue;const char*name=entry->path+prefix+1;unsigned nested=0;while(*name)if(*name++=='/')nested=1;if(nested)continue;w8_file_info information;unsigned error=information8(entry,&information);if(error)return -(int64_t)error;if(user8(d,&information,sizeof(information),1))return -998;return i+1;}return 0;}
   if(b==10)return -(int64_t)file_delete143(path);if(b==14)return -(int64_t)file_attributes143(path,(unsigned)d);
   if(b==15){if(!path8(path,0))return -5;const v6_entry*entry=find8(path);if(!entry)return -2;w8_file_info information;unsigned error=information8(entry,&information);if(error)return -(int64_t)error;return user8(d,&information,sizeof(information),1)?-998:0;}
   if(b==16||b==17){if(!path8(path,1))return -5;const v6_entry*entry=find8(path);if(b==17){if(!entry)return -3;if(entry->kind!=2)return -267;for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*child=m6_volume()->entries+i;if(child->kind&&!equal8(child->path,path)&&prefix8(child->path,path))return -145;}return -(int64_t)file_delete143(path);}
@@ -273,7 +274,7 @@ static int64_t dispatch8(trap_frame*f){
    case 6:return !(grant->access&2)?-5:-(int64_t)file_flush143(object);
    case 7:return -(int64_t)close8((unsigned)slot,1);
    case 8:case 9:{w8_file_info info;memset(&info,0,sizeof(info));
-    if(b==9){if(!(grant->access&18)||!path8(grant->path,1))return -5;if(user8(c,&info,sizeof(info),0))return -998;memcpy(object->metadata.times,info.time,sizeof(object->metadata.times));object->metadata_dirty=1;return -(int64_t)file_flush_metadata143(object);}
+    if(b==9){if(!(grant->access&18)||!path8(grant->path,1))return -5;if(user8(c,&info,sizeof(info),0))return -998;return -(int64_t)file_set_metadata143(object,&info);}
     info.size=object->size;info.kind=1;info.attributes=object->metadata.attributes;memcpy(info.time,object->metadata.times,sizeof(info.time));const v6_entry*entry=find8(object->path);info.identity=entry?(uint64_t)(entry-m6_volume()->entries)+1:0;return user8(c,&info,sizeof(info),1)?-998:0;}
    case 12:case 13:return d||e?-87:file_lock_call143(f,(unsigned)slot,a,c,b==13);
    default:return -50;
@@ -343,7 +344,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_YIELD:snapshot8();context8=*f;context8.rax=0;w8_active=0;w8_escape();break;
  case W8_SYS_METADATA:{
   if(a>=32||!files8[a].live||b>1)return -1;file_object143*object=file_objects143[files8[a].object];w8_file_info data;memset(&data,0,sizeof(data));
-  if(b){if(!path8(files8[a].path,1)||user8(c,&data,sizeof(data),0))return -1;memcpy(object->metadata.times,data.time,sizeof(object->metadata.times));object->metadata_dirty=1;return file_flush_metadata143(object)?-1:0;}
+  if(b){if(!path8(files8[a].path,1)||user8(c,&data,sizeof(data),0))return -1;return file_set_metadata143(object,&data)?-1:0;}
   memcpy(data.time,object->metadata.times,sizeof(data.time));data.attributes=object->metadata.attributes;return user8(c,&data,sizeof(data),1)?-1:0;
  }
  case W8_SYS_INFO:if(a==0)return 1;else if(a==1)return (int64_t)(pages_stats().total_pages*4096);else if(a==2)return (int64_t)((pages_stats().total_pages-pages_stats().current_pages)*4096);else if(a==3)return (int64_t)(v6_capacity(m6_volume())-v6_used(m6_volume()));else if(a==4)return (int64_t)v6_capacity(m6_volume());return -1;

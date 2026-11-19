@@ -1,5 +1,5 @@
 """File-owned metadata across private processes, rename, uninstall and restart."""
-import hashlib,json,os,struct,sys,time,traceback
+import hashlib,json,os,re,struct,sys,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 os.environ['ENGACER12_IMAGE']='EngacerOS-M14STAGE3'
@@ -32,10 +32,11 @@ def main():
  try:
   boot=ui.guest(work/'probe',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
   with boot as g:
-   p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);warm=task(g,p,12005);assert 'M143_NATIVE_FILE_METADATA_PASS' in warm,warm;report['warm_output']=warm
+   p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);warm=task(g,p,12005);assert 'M143_NATIVE_FILE_METADATA_PASS' in warm,warm;report['warm_output']=warm;identities=re.findall(r'M143_FILE_ID_([0-9a-f]{16})',warm);assert len(identities)==3 and len(set(identities))==1 and int(identities[0],16)>0,identities;report['initial_file_identity']=identities[0];report['live_file_identity']=identities[0]
    before=f.stats(g)[0];samples=[]
    for turn in range(20):
     started=time.monotonic();output=task(g,p,12005);assert 'M143_NATIVE_FILE_METADATA_PASS' in output,output;retained=f.stats(g)[0]-before;assert not retained,(turn,retained)
+    live_identities=re.findall(r'M143_FILE_ID_([0-9a-f]{16})',output);assert len(live_identities)==3 and len(set(live_identities))==1,live_identities;report['live_file_identity']=live_identities[0]
     peak,quanta=struct.unpack_from('<QQ',ui.memory(g,ui.symbol('info8',installed=True)[0],40),24);samples.append(dict(turn=turn+1,retained_pages=retained,peak_group_owned_pages=peak,worker_quanta=quanta,observer_wall_seconds=time.monotonic()-started))
    report['samples']=samples;(out/'serial.log').write_text(g.log(),encoding='utf-8')
   saved=ui.s.s.document(disk,'/Users/Owner/Documents/m143-metadata-renamed.bin',4096);assert saved==b'metadata survives\n';report['document_sha256']=hashlib.sha256(saved).hexdigest()
@@ -51,7 +52,7 @@ def main():
   finally:mounted.close()
   boot=ui.guest(work/'independent',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
   with boot as g:
-   p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);output=task(g,p,12005);assert 'M143_METADATA_RESTART_AND_REMOVE_PASS' in output,output;report['independent_start_output']=output
+   p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);output=task(g,p,12005);assert 'M143_METADATA_RESTART_AND_REMOVE_PASS' in output,output;report['independent_start_output']=output;restart_identities=re.findall(r'M143_FILE_ID_([0-9a-f]{16})',output);assert restart_identities==[report['live_file_identity']],restart_identities;report['same_identity_after_restart_and_removal']=True
   assert ui.s.s.document(disk,'/Users/Owner/Documents/m143-metadata-renamed.bin',4096)==saved;report['passed']=True
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
  finally:
