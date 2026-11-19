@@ -3,7 +3,7 @@ import hashlib,json,posixpath,re,subprocess,sys,time,zipfile
 from pathlib import Path
 from urllib.parse import quote,urlsplit
 from urllib.request import Request,urlopen
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'evidence/M14/0';TAG='m140-v0.14.0-research'
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'evidence/M14/0';TAG='m140-v0.14.0-research.2'
 def run(*args):return subprocess.check_output(list(args),cwd=ROOT)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def write(p,r):p.write_bytes((json.dumps(r,indent=2)+'\n').encode())
@@ -14,10 +14,13 @@ def main():
  ref=run('git','rev-parse','HEAD').decode().strip()
  for path,digest in accepted['harness_sha256'].items():assert sha(ROOT/path)==digest
  work=ROOT/'build/m14/stage0';work.mkdir(parents=True,exist_ok=True)
- archive=ROOT/'dist/EngacerOS-M14.0-Research.zip';checksum=ROOT/'dist/M14.0-Research-SHA256SUMS.txt'
+ archive=ROOT/'dist/EngacerOS-M14.0-Research-2.zip';checksum=ROOT/'dist/M14.0-Research-2-SHA256SUMS.txt'
  run('git','archive','--format=zip','--prefix=EngacerOS-M14.0-Research/','--output='+str(archive),ref,'LICENSE','docs/milestones/m14.md','docs/milestones/m14-0.md','docs/milestones/m14-progress.json','docs/architecture/windows-m14.md','docs/roadmap/m14-targets.json','docs/handbook/windows-m140.md','docs/releases/m140-v0.14.0-research.md','tools/m14','tests/m14','evidence/M14/0')
  with zipfile.ZipFile(archive) as z:
   assert z.testzip() is None and not any(Path(n).suffix.lower() in ['.exe','.dll','.msi','.iso'] for n in z.namelist())
+  prefix='EngacerOS-M14.0-Research/'
+  for path,digest in accepted['harness_sha256'].items():assert hashlib.sha256(z.read(prefix+path)).hexdigest()==digest,('Archived observer bytes changed',path)
+  assert hashlib.sha256(z.read(prefix+'evidence/M14/0/task-corpus.json')).hexdigest()==accepted['task_corpus_sha256'],'Archived corpus receipt bytes changed'
  checksum.write_bytes((sha(archive)+'  '+archive.name+'\n').encode())
  note_path='docs/releases/m140-v0.14.0-research.md';body=run('git','show',ref+':'+note_path).decode('utf-8')
  def link(m):

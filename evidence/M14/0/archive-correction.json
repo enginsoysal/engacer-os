@@ -1,0 +1,7 @@
+{
+  "initial_tag": "m140-v0.14.0-research",
+  "corrected_tag": "m140-v0.14.0-research.2",
+  "failure": "Git text normalization changed a hashed corpus receipt in the first archive",
+  "correction": "Preserve exact M14 observer/evidence bytes, verify hashes inside the archived payload, publish a new immutable corrected research release; do not overwrite the first release",
+  "native_media_changed": false
+}

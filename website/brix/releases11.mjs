@@ -1,6 +1,6 @@
 // A stage becomes a download only when its required public assets exist.
 export function releaseLabel(release,stable,stageTag){
- if(release.tag_name==='m140-v0.14.0-research')return 'Research only — no new ISO';
+ if(/^m140-v0[.]14[.]0-research(?:[.]2)?$/.test(release.tag_name))return 'Research only — no new ISO';
  if(release.tag_name==='m120-v0.12.0-design')return 'Design only — no ISO';
  if(release.prerelease)return /^m12/.test(release.tag_name)?'Development preview':'Historical preview';
  return stable?'Earlier release':release.tag_name===stageTag?'Latest stage delivery':'Latest stable';

@@ -295,3 +295,8 @@ kernel/core/graphics9.inc -text whitespace=cr-at-eol
 
 # Preserve exact M13.11 screensaver bytes in native source qualification.
 kernel/desktop/saver21.inc -text whitespace=cr-at-eol
+
+# M14 research receipts and executed observers retain exact measured bytes.
+evidence/M14/** -text -whitespace
+tools/m14/** -text whitespace=cr-at-eol
+tests/m14/** -text whitespace=cr-at-eol
