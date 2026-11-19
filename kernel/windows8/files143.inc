@@ -139,7 +139,7 @@ static int64_t file_seek143(unsigned slot,int64_t offset,unsigned method){
 static unsigned file_try_lock143(unsigned slot,uint64_t offset,uint64_t length,unsigned exclusive){
  file8*grant=files8+slot;if(!(grant->access&3))return 5;file_object143*object=file_objects143[grant->object];unsigned empty=16;
  for(unsigned i=0;i<16;++i){file_lock143*lock=object->locks+i;if(!lock->live){if(empty==16)empty=i;continue;}
-  if(file_overlap143(offset,length,lock->offset,lock->length)&&(exclusive||lock->exclusive))return 33;}
+  if(file_overlap143(offset,length,lock->offset,lock->length)&&(exclusive||(lock->exclusive&&lock->owner!=grant->generation)))return 33;}
  if(empty==16)return 8;object->locks[empty]=(file_lock143){offset,length,grant->generation,exclusive,1,0};return 0;
 }
 static void file_refresh_waits143(void){
@@ -154,9 +154,9 @@ static void file_refresh_waits143(void){
 static int64_t file_lock_call143(trap_frame*frame,unsigned slot,uint64_t handle,uint64_t address,unsigned unlock){
  w8_file_lock_request143 request;if(user8(address,&request,sizeof(request),0))return -998;
  if(request.reserved||(request.flags&~3u)||!request.length||request.length>UINT64_MAX-request.offset)return -87;
- if(unlock){file_object143*object=file_objects143[files8[slot].object];for(unsigned i=0;i<16;++i){file_lock143*lock=object->locks+i;
-   if(lock->live&&lock->owner==files8[slot].generation&&lock->offset==request.offset&&lock->length==request.length){memset(lock,0,sizeof(*lock));file_refresh_waits143();return 0;}}
-  return -158;
+ if(unlock){file_object143*object=file_objects143[files8[slot].object];unsigned selected=16;for(unsigned i=0;i<16;++i){file_lock143*lock=object->locks+i;
+   if(lock->live&&lock->owner==files8[slot].generation&&lock->offset==request.offset&&lock->length==request.length){selected=i;if(lock->exclusive)break;}}
+  if(selected==16)return -158;memset(object->locks+selected,0,sizeof(file_lock143));file_refresh_waits143();return 0;
  }
  unsigned error=file_try_lock143(slot,request.offset,request.length,(request.flags&2)!=0);if(error!=33||(request.flags&1))return -(int64_t)error;
  thread142*thread=threads142+current142;thread->wait_handles[0]=handle;thread->wait_handles[1]=request.offset;thread->wait_handles[2]=request.length;thread->wait_all=(request.flags&2)!=0;thread->state=T143_FILELOCK;thread->deadline=UINT64_MAX;

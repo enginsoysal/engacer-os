@@ -57,6 +57,9 @@ void entry(void){
  require(!ReadFile(duplicate,data,1,&got,0)&&GetLastError()==33,56);seek(h,0);read(h,data,3);
  require(!LockFileEx(duplicate,3,0,3,0,&range)&&GetLastError()==33,57);
  require(!UnlockFileEx(duplicate,0,3,0,&range)&&GetLastError()==158&&UnlockFileEx(h,0,3,0,&range),58);
+ require(LockFileEx(h,3,0,3,0,&range)&&LockFileEx(h,1,0,3,0,&range),66);
+ require(UnlockFileEx(h,0,3,0,&range),67);seek(duplicate,0);read(duplicate,data,3);seek(h,0);
+ require(!WriteFile(h,"Q",1,&got,0)&&GetLastError()==33&&!got&&UnlockFileEx(h,0,3,0,&range),68);
  require(LockFileEx(h,1,0,3,0,&range),59);seek(duplicate,0);read(duplicate,data,3);seek(h,0);
  require(!WriteFile(h,"Q",1,&got,0)&&GetLastError()==33&&!got,60);require(UnlockFileEx(h,0,3,0,&range)&&CloseHandle(duplicate),61);
  require(LockFileEx(h,3,0,1,0,&range),62);lock_ready=CreateEventW(0,1,0,0);U worker=CreateThread(0,0,lock_worker,0,0,0);require(lock_ready&&worker&&!WaitForSingleObject(lock_ready,10000),63);

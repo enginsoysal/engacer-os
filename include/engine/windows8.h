@@ -20,7 +20,7 @@ enum {W8_SYS_MAP=0x800,W8_SYS_UNMAP,W8_SYS_PROTECT,W8_SYS_OPEN,W8_SYS_READ,
  W8_SYS_METADATA,W8_SYS_INFO,W8_SYS_TRUNCATE,W8_SYS_RESERVE,W8_SYS_VMINFO,
  W8_SYS_THREAD_CREATE,W8_SYS_THREAD_EXIT,W8_SYS_THREAD_RESUME,
  W8_SYS_THREAD_STATUS,W8_SYS_SLEEP,W8_SYS_PARK,W8_SYS_WAKE,W8_SYS_THREAD_CLOSE,W8_SYS_QUIESCE,W8_SYS_THREAD_LIST,W8_SYS_ACCESS,W8_SYS_THREAD_BEGIN_EXIT,W8_SYS_PROCESS_CREATE,W8_SYS_PROCESS_STATUS,
- W8_SYS_PROCESS_CLOSE,W8_SYS_PROCESS_ID,W8_SYS_THREAD_ID,W8_SYS_PROCESS_TERMINATE,W8_SYS_EXCEPTION_REGISTER,W8_SYS_EXCEPTION_RETURN,W8_SYS_PROCESS_EPOCH,W8_SYS_SYNC_CREATE,W8_SYS_SYNC_OPERATION,W8_SYS_SYNC_CLOSE,W8_SYS_WAIT_OBJECTS,W8_SYS_PATH143,W8_SYS_FILE_OPEN143,W8_SYS_FILE_OP143};
+ W8_SYS_PROCESS_CLOSE,W8_SYS_PROCESS_ID,W8_SYS_THREAD_ID,W8_SYS_PROCESS_TERMINATE,W8_SYS_EXCEPTION_REGISTER,W8_SYS_EXCEPTION_RETURN,W8_SYS_PROCESS_EPOCH,W8_SYS_SYNC_CREATE,W8_SYS_SYNC_OPERATION,W8_SYS_SYNC_CLOSE,W8_SYS_WAIT_OBJECTS,W8_SYS_PATH143,W8_SYS_FILE_OPEN143,W8_SYS_FILE_OP143,W8_SYS_REGISTRY143};
 #define W8_PROCESS_TAG UINT64_C(0x80000000)
 #define W8_HANDLE_TAG_MASK UINT64_C(0xffffffffe0000000)
 typedef struct {char source[256],command[1200],directory[256];uint32_t flags;} w8_process_request;
@@ -33,6 +33,9 @@ typedef struct {char native[256];uint16_t windows[512];} w8_path_result143;
 typedef struct {char path[256];uint32_t access,share,creation,flags;} w8_file_request143;
 typedef struct {uint64_t offset,length;uint32_t flags,reserved;} w8_file_lock_request143;
 #define W8_FILE_TAG143 UINT64_C(0x10000000)
+#define W8_REGISTRY_TAG143 UINT64_C(0xa0000000)
+typedef struct {uint64_t root,name,data,result;uint32_t access,flags,bytes,type,index,name_capacity;uint64_t name_output;} w8_registry_request143;
+typedef struct {uint64_t handle,time;uint32_t type,bytes,name_units,disposition;} w8_registry_result143;
 typedef struct {uint64_t teb;uint32_t id,state;} w8_thread_snapshot;
 typedef struct {uint64_t size,time[3];uint32_t attributes,crc,kind;char name[256];} w8_file_info;
 typedef struct {
