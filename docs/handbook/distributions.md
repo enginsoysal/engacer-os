@@ -2,7 +2,7 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.2** within M14-STAGE2-VM-v1. Its publication is being verified; use the matching official release and media. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.2** within M14-STAGE2-VM-v1. Its [complete public delivery](../../evidence/M14/2/publication-results.json) passes; use the matching official release and media. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 

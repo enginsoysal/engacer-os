@@ -22,3 +22,8 @@ test('old guide titles use the new brand and clearly identify their historical r
  assert.equal(articleBranding('README.md','Engacer OS').historical,false);
  assert.equal(articleBranding('docs/roadmap/history/2026-11-06-previous-future-milestones.md','Superseded future roadmap').historical,true);
 });
+
+test('current storage instructions keep their current title while the old console remains historical',()=>{
+ assert.deepEqual(articleBranding('docs/handbook/vmware-storage.md','VMware disks and installation storage'),{title:'VMware disks and installation storage',historical:false});
+ assert.equal(articleBranding('docs/handbook/console.md','Historical M4.5 console').historical,true);
+});

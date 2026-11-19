@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders, ke
 
 ## Download and get started
 
-**Current qualified release: [M14.2 / 0.14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Use its matching ISO or prepared VMware package and checksums.
+**Current qualified release: [M14.2 / 0.14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Use its matching ISO or prepared VMware package and checksums.
 
 - [Install and restart in VMware](docs/handbook/install-m142.md)
 - [Your first day](docs/handbook/first-day-m142.md)
@@ -16,7 +16,7 @@ M14.2 qualifies its bounded native runtime and original supported 7-Zip console/
 
 ## Native runtime qualification: M14.2
 
-M14.2 passes exact-source native and VMware qualification for private parent/child processes, preemptive threads, static/dynamic TLS, events/semaphores/timers, cross-process named sharing and the documented AMD64 hardware-fault/C exception profile. Original concurrent 7-Zip children and repeated resource-release checks pass. Complete website publication is being verified before the next stage.
+M14.2 passes exact-source native and VMware qualification for private parent/child processes, preemptive threads, static/dynamic TLS, events/semaphores/timers, cross-process named sharing and the documented AMD64 hardware-fault/C exception profile. Original concurrent 7-Zip children and repeated resource-release checks pass. Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](evidence/M14/2/publication-results.json).
 
 Windows program instructions execute through Engacer OS's own compatibility APIs and kernel. An embedded Windows guest or second operating system is not the implementation. VMware and QEMU are external test hosts.
 

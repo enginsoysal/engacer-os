@@ -1,0 +1,9 @@
+{
+  "scope": "Additional exact-current-fixture check; original accepted native snapshots/media remain unchanged",
+  "reason": "Adding the named-object quota branch changed the complete synthetic fixture binary after the earlier cancellation run. Although the cancellation route was unchanged, repeat it against the current compiled fixture instead of treating the earlier fixture hash as reproducible from the new test source.",
+  "passed": true,
+  "runtime_build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "fixture_sha256": "466f8e7084e33c106e2c4bca0dbf981d519034ef93c983933708dbda2f6d04bc",
+  "fixture_source_sha256": "fa33c041adf8b4279410213bbb9fd85bc2a5e42b86228c7c51d00767613c754b",
+  "result": "21 group cancellations pass, 633 group-owned peak pages, first four transition pages then zero retained pages, both CPUs halted while blocked and zero shared registry pages after cancellation."
+}

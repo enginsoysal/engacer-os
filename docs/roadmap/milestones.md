@@ -1,8 +1,12 @@
 # Milestones and acceptance contract
 
-## Current owner priority - 17 November 2026
+## Current owner priority - 19 November 2026
 
-[M13.0–M13.12](../milestones/m13.md) are the final dedicated installation, desktop appearance and everyday-usability sequence before hardware recognition. M13.0 includes the task-first BrixCanvas portal and search design. Each stage requires tests, English docs, GitHub and verified actual website publication before the next. M12.18 remains the native download until a later native stage qualifies.
+Finish [M14.0-M14.15](../milestones/m14.md) in order for original Windows x64 applications, with complete native tests, English docs, GitHub and actual website delivery after every stage. Continue through M15 for Windows x86; M16 covers Win16/DOS. Native instructions run through Engacer OS APIs/kernel, without an embedded Windows guest. Whole-system CPU/RAM/storage efficiency is core, and M14.15 blocks final release on optimization. Current scoped native media are [M14.2](../releases/m142-v0.14.2.md); general Windows GUI/browser compatibility remains unavailable.
+
+## Completed owner priority - 17 November 2026
+
+[M13.0–M13.12](../milestones/m13.md) are the final dedicated installation, desktop appearance and everyday-usability sequence before hardware recognition. M13.0 includes the task-first BrixCanvas portal and search design. Each stage requires tests, English docs, GitHub and verified actual website publication before the next. M12.18 was the native download at the beginning of that historical sequence. M13.0-M13.13 subsequently closed within their recorded and owner-revised scopes.
 
 ## Completed owner priority - 16 November 2026
 
@@ -12,8 +16,8 @@ and original design concepts, then shared controls, icons, desktop, windows,
 Files/navigation/presentation/commands/dialogs, Start, taskbar, multitasking,
 tray, Settings, feedback, setup, accessibility, measured motion/performance and
 final qualification. Tests, English guides, GitHub and complete public website
-verification close every stage before the next. M12.0 was design only; M12.18 is now the tested
-final native download. [Contract](../architecture/desktop-m12.md).
+verification close every stage before the next. M12.0 was design only; M12.18 was the tested
+final native download for that historical series. [Contract](../architecture/desktop-m12.md).
 
 ## Completed owner priority - 11 November 2026
 

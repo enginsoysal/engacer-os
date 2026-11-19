@@ -1,6 +1,6 @@
 # Windows files and browser downloads in M14.2
 
-Status: native qualification passes within M14-STAGE2-VM-v1. Actual website publication is being verified; read the matching release scope before testing.
+Status: native qualification passes within M14-STAGE2-VM-v1. Actual website publication also passes; read the matching release scope before testing.
 
 ## Use the included Windows app
 

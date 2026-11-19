@@ -2,7 +2,7 @@
 
 ## Start here
 
-**Current qualified download: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Native qualification passes within M14-STAGE2-VM-v1; actual publication is being verified. Follow the guide matching the release you download.
+**Current qualified download: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Native qualification and public delivery pass within M14-STAGE2-VM-v1. Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/2/publication-results.json). Follow the guide matching the release you download.
 
 - [Download, verify and install in VMware](install-m142.md)
 - [Windows files, supported apps and browser downloads](windows-m142.md)

@@ -25,6 +25,10 @@ def main():
     meta=json.loads((ROOT/'dist/m14stage2-build-manifest.json').read_text(encoding='utf-8'))
     verify_inputs_at_commit(ref,meta['source_sha256'])
     verify_inputs_at_commit(closed['release_source_commit'],meta['source_sha256'])
+    progress=json.loads(git('show',ref+':docs/milestones/m14-progress.json'))
+    assert progress['current_native_download']=='M14.2'
+    stage=next(row for row in progress['stages'] if row['id']=='M14.2')
+    assert stage['status']=='complete' and stage['publication_evidence']=='evidence/M14/2/publication-results.json'
     payload=json.loads((ROOT/'build/brix/m142-final-content.json').read_text(encoding='utf-8'))
     posts={next(m['value'] for m in post['meta'] if m['key']=='engine_source_path'):post for post in payload['page']['blog']['posts']}
     changed=git('diff','--name-only',closed['source_commit'],ref).decode().splitlines()
@@ -50,6 +54,12 @@ def main():
         assert source in page.links,(path,'Current exact-source link missing')
         assert page.lang.startswith('en')
         if path=='website/README.md':assert 'Current native delivery is M14.2' in page.text and 'Historical portal records' in page.text
+        if path=='docs/handbook/vmware-storage.md':
+            assert page.title==['VMware disks and installation storage'] or 'VMware disks and installation storage' in ''.join(page.title)
+            assert '(historical)' not in ''.join(page.title).lower()
+            assert 'Current M14.2 installer' in page.text and 'Historical M4.5 console troubleshooting' in page.text
+        if path in ('CONTRIBUTING.md','tools/README.md','distros/README.md'):
+            assert 'M14.2' in page.text or 'Current M14 desktop recipes' in page.text
         if path=='docs/architecture/loader-m141.md':assert '2,048 pages' in page.text
         if path in ('README.md','docs/roadmap/status.md','docs/handbook/index.md'):assert 'Complete actual website verification passes' in page.text
         return dict(path=path,url=url,status=200,source=source,source_sha256=hashlib.sha256(git('show',ref+':'+path)).hexdigest(),observed_html_sha256=hashlib.sha256(raw).hexdigest())

@@ -1,6 +1,6 @@
 # M14.2 - Native x64 exception dispatch design
 
-Status: vectored hardware-fault continuation has scoped native development proof. A first compiler-generated C structured-handler/finally profile also has native development proof below. Broader unwind coverage and full M14.2 release qualification remain incomplete. Existing child-process proofs remain separate.
+Status: **M14-STAGE2-VM-v1 native qualification and complete public delivery pass**. Vectored hardware faults, compiler-generated C filters/finally, nested/threaded faults, checked continuation and the documented unwind forms pass [final native acceptance](../../evidence/M14/2/acceptance-results.json). General C++ personalities, unsupported metadata/epilogs and dynamic function registration remain unavailable. Earlier records below are development history.
 
 ## Capture and continuation boundary
 
@@ -49,3 +49,5 @@ Candidate `d0e249c637fcaca90a407bee9cadf7fb` changes the dedicated exception sta
 [Real C filters/finally on five thread stacks](../../evidence/M14/2/development/c-filters-threads-native-v11.json) pass sixty actual fault-to-catch traversals per execution. [Four-level nested faults](../../evidence/M14/2/development/nested-faults-native-v11.json) pass 480 actual handled faults per execution across five independent Windows threads. Both repeat twenty closes with zero retained managed pages. [Valid chained/zero-code metadata](../../evidence/M14/2/development/chained-unwind-native-v11.json) also passes the threaded C corpus and twenty zero-retention closes.
 
 [Malformed metadata](../../evidence/M14/2/development/malformed-unwind-native-v11.json) refuses cyclic chains, unsupported operands, oversized C scopes and invalid directory sizes without losing the desktop. [Invalid-context/depth probes](../../evidence/M14/2/development/invalid-exception-context-native-v11.json) reject privileged RIP, invalid MXCSR and a fifth nested fault; each second run retains zero pages after the first four transition pages. These remain scoped development proofs. General C++ personalities, dynamic function tables, the RaiseException bridge and unqualified epilog forms are not inferred from this corpus.
+
+[Complete public delivery](../../evidence/M14/2/publication-results.json). Earlier development records and failed observations remain unchanged.

@@ -1,6 +1,6 @@
 # Your first day with M14.2
 
-Status: native qualification passes within M14-STAGE2-VM-v1. Actual website publication is being verified.
+Status: native qualification passes within M14-STAGE2-VM-v1. Actual website publication also passes.
 
 Start with the [matching VMware installation guide](install-m142.md) and [release limits](../releases/m142-v0.14.2.md). M14.2 retains the existing native desktop and adds native Windows processes, threads, TLS and selected C exception handling while retaining the optional Firefox installer download. This is development media for the named test profiles.
 

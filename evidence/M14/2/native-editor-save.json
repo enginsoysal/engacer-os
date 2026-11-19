@@ -1,20 +1,11 @@
 {
-  "source_commit": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-  "home": "Saved automatically \u2713",
-  "recovery": "Saved \u2713",
-  "checked_at": "2026-11-19T17:10:57.889Z",
+  "source_commit": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+  "home": "Saved automatically ✓",
+  "recovery": "Saved ✓",
+  "checked_at": "2026-11-19T17:22:33.291Z",
   "owned_native_editor": true,
   "home_roots": 4,
   "recovery_roots": 2,
   "research_only": false,
-  "new_iso": true,
-  "payload_sha256": {
-    "1.json": "03abf6dccd0dd765342669537a6bf7cb726e9671e5ec715914b885e4f1ae84e6",
-    "2.json": "817472bb3910a15027ad239c234ba5de2bce9e3f89a95c5df08510d78a4755da",
-    "3.json": "06711681361281b8443c85e343e4c11241f8f9815b8375c46d1cc707d13f8db3",
-    "4.json": "1e3f5b0949b11ee67d912ae4c6a73d32b956958f44b2f64d8589eace09ff9420",
-    "recovery-menu.json": "eb51dc05e8f274cd9ed8e53d9e5b00a3a68b8e2d596c61d54e3d6368a65ca957",
-    "recovery-preserved.json": "36ddd9498b7f7f87d779b0a92a4bb60b61516859b3cbc2bcac7f87e016a97a70"
-  },
-  "initial_concurrent_edit_observation": "The first save was refused after the automatic article publisher changed the server revision. A fresh native editor view was opened after the publisher completed; current homepage and recovery roots were saved without overwriting that newer article publication."
+  "new_iso": true
 }

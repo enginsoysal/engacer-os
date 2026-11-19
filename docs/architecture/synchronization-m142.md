@@ -1,6 +1,6 @@
 # M14.2 - Shared Windows synchronization
 
-Status: implemented development profile with native checks; complete M14.2 release qualification remains pending. [Execution contract](runtime-m142.md), [child-process ownership](children-m142.md).
+Status: **M14-STAGE2-VM-v1 native qualification and complete public delivery pass**. The [final native acceptance](../../evidence/M14/2/acceptance-results.json) binds shared ownership, waits, quotas and cancellation; earlier scoped records below remain development history. [Execution contract](runtime-m142.md), [child-process ownership](children-m142.md).
 
 ## Ownership and names
 
@@ -33,10 +33,12 @@ The earlier per-process user-mode object tables could not provide parent/child n
 
 ## Native development evidence
 
-The subsequent frozen development candidate `6e242c9d2f8b626e96a952a39d50fe49` additionally exercises the 32-created-object and 64-grant per-process limits, stale grant reuse, and aliases retaining objects after creator handles close. Twenty task closes return the shared registry to zero resident pages. A child can retain the shared object after its creator exits. [Updated native task](../../evidence/M14/2/development/named-sync-native-v13.json). The four-process cancellation task observes one live registry page while blocked and zero after all 21 cancellations; the first cancellation retains four one-time transition pages and the remaining twenty retain zero. [Cancellation measurement](../../evidence/M14/2/development/named-cancel-native-v13.json). These remain development results until the entire release and publication gate closes.
+The subsequent frozen development candidate `6e242c9d2f8b626e96a952a39d50fe49` additionally exercises the 32-created-object and 64-grant per-process limits, stale grant reuse, and aliases retaining objects after creator handles close. Twenty task closes return the shared registry to zero resident pages. A child can retain the shared object after its creator exits. [Updated native task](../../evidence/M14/2/development/named-sync-native-v13.json). The four-process cancellation task observes one live registry page while blocked and zero after all 21 cancellations; the first cancellation retains four one-time transition pages and the remaining twenty retain zero. [Cancellation measurement](../../evidence/M14/2/development/named-cancel-native-v13.json). These are earlier scoped development results; the final release and publication gate now pass.
 
 Candidate `08c59243fbe774363546a5271575797c` passes [parent/child sharing](../../evidence/M14/2/development/named-sync-native-v12.json): Local/default aliases, separate Global names, existing-object state, independent grants, modify/wait access refusal, cross-kind refusal, shared semaphore/timer behavior, atomic mixed wait-all and real child exit codes. Twenty closes retain zero managed pages. A separate child retains and uses an object after its creator exits; its second run retains zero pages after four first-run transition pages.
 
 [Named-event group cancellation](../../evidence/M14/2/development/named-cancel-native-v12.json) cancels four private processes blocked on one shared event 21 times. All observed blocked snapshots have both configured CPUs halted; after the first four transition pages, subsequent retention is zero. The [thread/synchronization regression](../../evidence/M14/2/development/threads-native-v12.json), [static TLS regression](../../evidence/M14/2/development/static-tls-native-v12.json), [original 7-Zip lifecycle and 106 hashes](../../evidence/M14/2/development/original-apps-native-v12.json) and [compact installation/startup](../../evidence/M14/2/development/compact-startup-v12.json) pass on the same compiled source. These checks are scoped development proof, not full M14.2 or universal Windows compatibility.
 
 Sources: [Windows kernel-object namespaces](https://learn.microsoft.com/en-us/windows/win32/termserv/kernel-object-namespaces), [CreateEventW ownership and lifetime](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createeventw).
+
+[Complete public delivery](../../evidence/M14/2/publication-results.json). Earlier development records and failed observations remain unchanged.

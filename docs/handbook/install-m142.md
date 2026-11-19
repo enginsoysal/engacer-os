@@ -1,6 +1,6 @@
 # Install the M14.2 development candidate in VMware
 
-Status: native qualification passes within M14-STAGE2-VM-v1. Use the matching release and media; actual website publication is being verified.
+Status: native qualification passes within M14-STAGE2-VM-v1. Use the matching release and media; actual website publication also passes.
 
 ## Before starting
 

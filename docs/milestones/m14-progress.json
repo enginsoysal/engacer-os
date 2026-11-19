@@ -1,8 +1,8 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.1",
-  "current_native_download": "M14.1",
+  "current_stage": "M14.2",
+  "current_native_download": "M14.2",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
   "optimization_core_requirement": true,
@@ -37,7 +37,11 @@
       "deliver": "Provide real Windows thread/TLS/wait/timer/exception behavior and child-process lifetime over isolated native processes.",
       "how_and_why": "The existing one-thread console profile cannot safely substitute fake synchronization or success stubs for real behavior.",
       "acceptance": "Concurrent original tasks and child processes behave correctly; faults/cancellation remain contained; repeated close releases owned resources.",
-      "status": "planned"
+      "status": "complete",
+      "evidence": "evidence/M14/2",
+      "qualification": "M14-STAGE2-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2",
+      "publication_evidence": "evidence/M14/2/publication-results.json"
     },
     {
       "id": "M14.3",

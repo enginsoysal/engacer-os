@@ -1,6 +1,6 @@
 # M14.2 - Windows execution lifetime
 
-Status: **implementation in progress, not release qualification**. M14.1 remains the public download. This contract describes required behavior and explicitly separates the initial implementation from remaining work.
+Status: **M14-STAGE2-VM-v1 native qualification and complete public delivery pass**. The [final native acceptance](../../evidence/M14/2/acceptance-results.json) binds the current profile and media. The development decisions below remain historical explanations; general Windows compatibility is not qualified.
 
 ## Ownership and scheduling
 
@@ -24,7 +24,7 @@ Unhandled faults and forced cancellation bypass application cleanup and release 
 
 ## Static TLS and exception qualification gates
 
-The current development static TLS implementation validates relocated PE templates, zero-fill, index pointers, callback arrays and executable callback targets. It bounds each module to 64 KiB of template plus zero-fill, one MiB in aggregate per thread, sixteen thread vectors, 32 module indexes and at most 63 callbacks followed by a terminator. Alignment above 4096 bytes is refused. These are explicit development-profile limits, not complete Windows coverage. The initial native EXE/imported-DLL/dynamic-DLL task corpus passes; full M14.2 lifetime and exception qualification remains pending. Each live thread must receive its independent template before original code runs. Serialize load/unload with thread start/exit and cover thread/process attach/detach, dynamically loaded modules and slot reuse. Preserve bounded module and aggregate memory quotas.
+The current development static TLS implementation validates relocated PE templates, zero-fill, index pointers, callback arrays and executable callback targets. It bounds each module to 64 KiB of template plus zero-fill, one MiB in aggregate per thread, sixteen thread vectors, 32 module indexes and at most 63 callbacks followed by a terminator. Alignment above 4096 bytes is refused. These are explicit development-profile limits, not complete Windows coverage. The initial native EXE/imported-DLL/dynamic-DLL task corpus passes; final M14.2 lifetime/exception qualification is recorded in the acceptance linked above. Each live thread must receive its independent template before original code runs. Serialize load/unload with thread start/exit and cover thread/process attach/detach, dynamically loaded modules and slot reuse. Preserve bounded module and aggregate memory quotas.
 
 Implement x64 exception/context records, checked runtime-function/unwind metadata and the required unwind operations and handler dispositions. A fault dispatcher must validate continuation addresses, stack bounds and handler nesting; malformed metadata or unsupported operations end the protected process clearly. Host parser success is not native exception handling. Test handled access violations, stack unwinds, invalid handlers, callback faults and repeated cancellation in the guest.
 
@@ -38,10 +38,12 @@ Sources: [ExitProcess](https://learn.microsoft.com/en-us/windows/win32/api/proce
 
 ## Last thread and child-process follow-up
 
-The scoped native follow-up implements an atomic begin-exit decision before thread TLS cleanup. The final surviving thread must route through process termination while its own TLS is still available; freeing that TLS first would make process-detach callbacks unsafe. Loader notifications are serialized before quiescing other threads. A separate native last-thread fixture passes twenty repeated closes with zero retained managed pages; complete M14.2 qualification is still pending. [Child-process isolation and lazy metadata](children-m142.md) now have scoped native development evidence, including original concurrent 7-Zip children and natural parent-exit survival. Dedicated remaining edge cases and x64 exception/unwind qualification are still open.
+The scoped native follow-up implements an atomic begin-exit decision before thread TLS cleanup. The final surviving thread must route through process termination while its own TLS is still available; freeing that TLS first would make process-detach callbacks unsafe. Loader notifications are serialized before quiescing other threads. A separate native last-thread fixture passes twenty repeated closes with zero retained managed pages; that was a scoped development fixture; complete M14.2 qualification now passes in the final acceptance linked above. [Child-process isolation and lazy metadata](children-m142.md) now have scoped native development evidence, including original concurrent 7-Zip children and natural parent-exit survival. The final edge cases and selected x64 exception/unwind profile also pass in the final acceptance.
 
 ## Wait-admission and cross-process synchronization follow-up
 
 The earlier development wait loop observed a process lifetime epoch before checking wait conditions. Kernel park admission compares that epoch along with the expected user word, so a thread/process exit between the check and parking cannot lose its wake. [Native process evidence](../../evidence/M14/2/development/processes-native-v11.json) includes a deterministic stale-epoch check at the owned kernel boundary as supporting evidence, alongside actual Windows process waits and original concurrent 7-Zip children. The raw boundary probe is not an original Windows API or a general application-compatibility claim.
 
-The current [shared-object broker](synchronization-m142.md) replaces the process-owned user tables with real cross-process named event/semaphore/timer ownership and atomic mixed-object waits. Native child sharing, access masks, creator-exit lifetime and four-process cancellation now pass scoped development checks. Full frozen-media and actual website qualification remain pending.
+The current [shared-object broker](synchronization-m142.md) replaces the process-owned user tables with real cross-process named event/semaphore/timer ownership and atomic mixed-object waits. Native child sharing, access masks, creator-exit lifetime and four-process cancellation now pass scoped development checks. Final frozen-media and complete public qualification now pass; these earlier snapshots remain historical.
+
+[Complete public delivery](../../evidence/M14/2/publication-results.json). Earlier development records and failed observations remain unchanged.

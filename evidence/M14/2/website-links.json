@@ -1,7 +1,7 @@
 {
-  "passed": false,
-  "checked_at": "2026-11-19T17:18:23.422999+00:00",
-  "source_commit": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
+  "passed": true,
+  "checked_at": "2026-11-19T17:31:07.898516+00:00",
+  "source_commit": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
   "repository_targets": [
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/003b062cef0998fc037d0f9147342c5dac3ef028/docs/handbook/settings-m1213.md",
@@ -200,18 +200,6 @@
       "passed": true,
       "ref": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
       "path": "docs/architecture/qualification-m116.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a/docs/handbook/install-m114.md",
-      "passed": true,
-      "ref": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
-      "path": "docs/handbook/install-m114.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a/docs/handbook/install-m115.md",
-      "passed": true,
-      "ref": "0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a",
-      "path": "docs/handbook/install-m115.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/0a50cfaab656ac74e158621cf7b1d2d46d1f1f9a/docs/handbook/install-m116.md",
@@ -746,12 +734,6 @@
       "passed": true,
       "ref": "2e7b2dd3090c96a4086054cbcaf621e8334ffbdb",
       "path": "docs/architecture/installer-m75.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/2e7b2dd3090c96a4086054cbcaf621e8334ffbdb/docs/handbook/installer-design.md",
-      "passed": true,
-      "ref": "2e7b2dd3090c96a4086054cbcaf621e8334ffbdb",
-      "path": "docs/handbook/installer-design.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/2e7b2dd3090c96a4086054cbcaf621e8334ffbdb/docs/milestones/m7.5.md",
@@ -1472,12 +1454,6 @@
       "passed": true,
       "ref": "525721e828aa0403634870f6670aa965a51069b4",
       "path": "docs/architecture/setup-m1215.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/525721e828aa0403634870f6670aa965a51069b4/docs/handbook/setup-m1215.md",
-      "passed": true,
-      "ref": "525721e828aa0403634870f6670aa965a51069b4",
-      "path": "docs/handbook/setup-m1215.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/527827b60e459a437d2bbe5ea321d64b808e053e/docs/architecture/desktop-m11.md",
@@ -2302,22 +2278,10 @@
       "path": "README.md"
     },
     {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/architecture/loader-m142.md",
-      "passed": false,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-      "path": "docs/architecture/loader-m142.md"
-    },
-    {
       "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/handbook/distributions.md",
       "passed": true,
       "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
       "path": "docs/handbook/distributions.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/handbook/first-day-m142.md",
-      "passed": true,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-      "path": "docs/handbook/first-day-m142.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/handbook/index.md",
@@ -2332,22 +2296,10 @@
       "path": "docs/handbook/install-m142.md"
     },
     {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/handbook/windows-m142.md",
-      "passed": true,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-      "path": "docs/handbook/windows-m142.md"
-    },
-    {
       "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/milestones/m14-2.md",
       "passed": true,
       "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
       "path": "docs/milestones/m14-2.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/releases/m142-v0.14.1.md",
-      "passed": false,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-      "path": "docs/releases/m142-v0.14.1.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/releases/m142-v0.14.2.md",
@@ -2908,12 +2860,6 @@
       "path": "evidence/M13/7/visual-review.json"
     },
     {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/9134e32df06185a89f60a58b360ae866937cbd3b/docs/handbook/windows-m140.md",
-      "passed": true,
-      "ref": "9134e32df06185a89f60a58b360ae866937cbd3b",
-      "path": "docs/handbook/windows-m140.md"
-    },
-    {
       "url": "https://github.com/enginsoysal/engacer-os/blob/91f64a7c87f59743b91872c30a781941b5dbfb31/docs/handbook/recovery-m6.md",
       "passed": true,
       "ref": "91f64a7c87f59743b91872c30a781941b5dbfb31",
@@ -3100,18 +3046,6 @@
       "path": "tests/m10/README.md"
     },
     {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/9e4072a5503e7711a00b99f40da395f4c0111a15/docs/handbook/console.md",
-      "passed": true,
-      "ref": "9e4072a5503e7711a00b99f40da395f4c0111a15",
-      "path": "docs/handbook/console.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/9e4072a5503e7711a00b99f40da395f4c0111a15/docs/handbook/vmware-storage.md",
-      "passed": true,
-      "ref": "9e4072a5503e7711a00b99f40da395f4c0111a15",
-      "path": "docs/handbook/vmware-storage.md"
-    },
-    {
       "url": "https://github.com/enginsoysal/engacer-os/blob/9e4072a5503e7711a00b99f40da395f4c0111a15/docs/milestones/m5.md",
       "passed": true,
       "ref": "9e4072a5503e7711a00b99f40da395f4c0111a15",
@@ -3296,6 +3230,72 @@
       "passed": true,
       "ref": "a7b62449e98a908f3e7ac13b894ab6bddc2392e8",
       "path": "evidence/M7.1/history/vmware-style-navigation/README.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/architecture/overview.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/architecture/overview.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/console.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/console.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/first-day-m142.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/first-day-m142.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/hardware-m10.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/hardware-m10.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/install-m114.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/install-m114.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/install-m115.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/install-m115.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/installer-design.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/installer-design.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/setup-m1215.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/setup-m1215.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/vmware-storage.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/vmware-storage.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/windows-m140.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/windows-m140.md"
+    },
+    {
+      "url": "https://github.com/enginsoysal/engacer-os/blob/a80a5df9ca835d61b2de10f0a122c869d08f6434/docs/handbook/windows-m142.md",
+      "passed": true,
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
+      "path": "docs/handbook/windows-m142.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/a8e035b04e5fb6fad4784d9c821f4d1569cce994/docs/handbook/install-m1212.md",
@@ -3698,12 +3698,6 @@
       "passed": true,
       "ref": "b6308ff12c2f55d79ad8c6f0ed2c2fa77975ce22",
       "path": "evidence/M13/10/publication-results.json"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/bbffe09201cb40cc456b4234d13ff7002323dbc0/docs/handbook/hardware-m10.md",
-      "passed": true,
-      "ref": "bbffe09201cb40cc456b4234d13ff7002323dbc0",
-      "path": "docs/handbook/hardware-m10.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/bd6e6618f8025d318d60f7ea80f9c0b2ca905af6/docs/architecture/decisions.md",
@@ -4184,12 +4178,6 @@
       "passed": true,
       "ref": "d1b418c8f35602847f0da577110758167d6f2df8",
       "path": "LICENSE"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/d4cd6f8fcbea9f65e4dd575e71eb4709ac104eca/docs/architecture/overview.md",
-      "passed": true,
-      "ref": "d4cd6f8fcbea9f65e4dd575e71eb4709ac104eca",
-      "path": "docs/architecture/overview.md"
     },
     {
       "url": "https://github.com/enginsoysal/engacer-os/blob/d4cd6f8fcbea9f65e4dd575e71eb4709ac104eca/docs/handbook/files-m11.md",
@@ -4678,9 +4666,9 @@
       "path": "docs/roadmap/status.md"
     },
     {
-      "url": "https://github.com/enginsoysal/engacer-os/tree/6a449080c78fb4ff90050ec9bd0e97d521e63543",
+      "url": "https://github.com/enginsoysal/engacer-os/tree/a80a5df9ca835d61b2de10f0a122c869d08f6434",
       "passed": true,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
+      "ref": "a80a5df9ca835d61b2de10f0a122c869d08f6434",
       "path": ""
     },
     {
@@ -11280,21 +11268,9 @@
       "passed": true
     },
     {
-      "url": "https://clang.llvm.org/docs/UsersManual.html",
-      "status": 200,
-      "final_url": "https://clang.llvm.org/docs/UsersManual.html",
-      "passed": true
-    },
-    {
       "url": "https://curl.se/docs/caextract.html",
       "status": 200,
       "final_url": "https://curl.se/docs/caextract.html",
-      "passed": true
-    },
-    {
-      "url": "https://docs.amd.com/v/u/en-US/24593_3.44_APM_Vol2",
-      "status": 200,
-      "final_url": "https://docs.amd.com/v/u/en-US/24593_3.44_APM_Vol2",
       "passed": true
     },
     {
@@ -11672,13 +11648,6 @@
       "classification": "blocked_or_temporarily_unverified"
     },
     {
-      "url": "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.pdf",
-      "status": 403,
-      "passed": false,
-      "error": "HTTP Error 403: Forbidden",
-      "classification": "blocked_or_temporarily_unverified"
-    },
-    {
       "url": "https://www.intel.com/content/dam/www/public/us/en/documents/product-specifications/high-definition-audio-specification.pdf",
       "status": 403,
       "passed": false,
@@ -11865,7 +11834,6 @@
     "https://wa.me/?text=Engacer%20OS%20M9.2%20installation%20and%20hardware%20guide%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m92",
     "https://wa.me/?text=Engacer%20OS%20architecture%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-architecture-overview",
     "https://wa.me/?text=Engacer%20OS%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-readme",
-    "https://wa.me/?text=Engacer%20OS%20installation%20wizard%20design%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-installer-design",
     "https://wa.me/?text=Engacer%20OS%20user%20handbook%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-index",
     "https://wa.me/?text=Files%20-%20navigation%20and%20current-folder%20filtering%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-files-m137",
     "https://wa.me/?text=Files%20navigation%20in%20M12.5%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-files-m125",
@@ -11936,6 +11904,7 @@
     "https://wa.me/?text=Install%20and%20try%20Engacer%20OS%20M13.1%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m131",
     "https://wa.me/?text=Install%20the%20M14.1%20development%20candidate%20in%20VMware%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m141",
     "https://wa.me/?text=Install%20the%20M14.2%20development%20candidate%20in%20VMware%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m142",
+    "https://wa.me/?text=Installation%20wizard%20design%20and%20historical%20prototypes%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-installer-design",
     "https://wa.me/?text=Isolated%20M13%20build%20workspace%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-architecture-build-m13",
     "https://wa.me/?text=Kernel%20contracts%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-architecture-kernel-contracts",
     "https://wa.me/?text=Keyboard%20and%20accessibility%20%E2%80%94%20M12.16%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-accessibility-m1216",
@@ -12121,9 +12090,9 @@
     "https://wa.me/?text=Use%20the%20M12.1%20desktop%20controls%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-components-m121",
     "https://wa.me/?text=Use%20the%20M12.3%20desktop%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-desktop-m123",
     "https://wa.me/?text=Use%20the%20grouped%20taskbar%20%E2%80%94%20M12.10%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-taskbar-m1210",
+    "https://wa.me/?text=VMware%20disks%20and%20installation%20storage%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-vmware-storage",
     "https://wa.me/?text=VMware%20keyboard%20adapter%20correction%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-evidence-m7-1-history-vmware-style-navigation-readme",
     "https://wa.me/?text=VMware%20startup%20correction%3A%20Engacer%20OS%20M9.1%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m91",
-    "https://wa.me/?text=VMware%20storage%3A%20why%20a%20blank%20disk%20does%20not%20appear%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-vmware-storage",
     "https://wa.me/?text=Window%20controls%20in%20M12.4%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-windows-m124",
     "https://wa.me/?text=Windows%20Apps%20%E2%80%94%20original%207-Zip%20console%20profile%20(historical)%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-windows-apps-m8",
     "https://wa.me/?text=Windows%20and%20appearance%20in%20M11%20https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-windows-m11",
@@ -12920,7 +12889,6 @@
     "https://x.com/intent/post?text=Engacer%20OS%20M7.3%20recovery%20and%20updates%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-recovery-m73",
     "https://x.com/intent/post?text=Engacer%20OS%20M9.2%20installation%20and%20hardware%20guide%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m92",
     "https://x.com/intent/post?text=Engacer%20OS%20architecture&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-architecture-overview",
-    "https://x.com/intent/post?text=Engacer%20OS%20installation%20wizard%20design%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-installer-design",
     "https://x.com/intent/post?text=Engacer%20OS%20user%20handbook&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-index",
     "https://x.com/intent/post?text=Engacer%20OS&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-readme",
     "https://x.com/intent/post?text=Files%20-%20navigation%20and%20current-folder%20filtering&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-files-m137",
@@ -12992,6 +12960,7 @@
     "https://x.com/intent/post?text=Install%20and%20try%20Engacer%20OS%20M13.1&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m131",
     "https://x.com/intent/post?text=Install%20the%20M14.1%20development%20candidate%20in%20VMware&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m141",
     "https://x.com/intent/post?text=Install%20the%20M14.2%20development%20candidate%20in%20VMware&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m142",
+    "https://x.com/intent/post?text=Installation%20wizard%20design%20and%20historical%20prototypes&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-installer-design",
     "https://x.com/intent/post?text=Isolated%20M13%20build%20workspace&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-architecture-build-m13",
     "https://x.com/intent/post?text=Kernel%20contracts&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-architecture-kernel-contracts",
     "https://x.com/intent/post?text=Keyboard%20and%20accessibility%20%E2%80%94%20M12.16&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-accessibility-m1216",
@@ -13177,9 +13146,9 @@
     "https://x.com/intent/post?text=Use%20the%20M12.1%20desktop%20controls&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-components-m121",
     "https://x.com/intent/post?text=Use%20the%20M12.3%20desktop&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-desktop-m123",
     "https://x.com/intent/post?text=Use%20the%20grouped%20taskbar%20%E2%80%94%20M12.10&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-taskbar-m1210",
+    "https://x.com/intent/post?text=VMware%20disks%20and%20installation%20storage%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-vmware-storage",
     "https://x.com/intent/post?text=VMware%20keyboard%20adapter%20correction%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-evidence-m7-1-history-vmware-style-navigation-readme",
     "https://x.com/intent/post?text=VMware%20startup%20correction%3A%20Engacer%20OS%20M9.1%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-install-m91",
-    "https://x.com/intent/post?text=VMware%20storage%3A%20why%20a%20blank%20disk%20does%20not%20appear%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-vmware-storage",
     "https://x.com/intent/post?text=Window%20controls%20in%20M12.4&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-windows-m124",
     "https://x.com/intent/post?text=Windows%20Apps%20%E2%80%94%20original%207-Zip%20console%20profile%20(historical)&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-windows-apps-m8",
     "https://x.com/intent/post?text=Windows%20and%20appearance%20in%20M11&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-windows-m11",
@@ -13195,20 +13164,7 @@
     "https://x.com/intent/post?text=Your%20first%20day%20with%20M14.2&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-handbook-first-day-m142",
     "https://x.com/intent/post?text=miniz%20freestanding%20boundary&url=https%3A%2F%2Fbrixcanvas.com%2Fblog%2Fdocs-third-party-miniz-port-readme"
   ],
-  "broken": [
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/architecture/loader-m142.md",
-      "passed": false,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-      "path": "docs/architecture/loader-m142.md"
-    },
-    {
-      "url": "https://github.com/enginsoysal/engacer-os/blob/6a449080c78fb4ff90050ec9bd0e97d521e63543/docs/releases/m142-v0.14.1.md",
-      "passed": false,
-      "ref": "6a449080c78fb4ff90050ec9bd0e97d521e63543",
-      "path": "docs/releases/m142-v0.14.1.md"
-    }
-  ],
+  "broken": [],
   "unverified": [
     {
       "url": "https://uefi.org/specs/ACPI/6.6/05_ACPI_Software_Programming_Model.html",
@@ -13261,13 +13217,6 @@
     },
     {
       "url": "https://www.intel.com/content/dam/doc/manual/pci-pci-x-family-gbe-controllers-software-dev-manual.pdf",
-      "status": 403,
-      "passed": false,
-      "error": "HTTP Error 403: Forbidden",
-      "classification": "blocked_or_temporarily_unverified"
-    },
-    {
-      "url": "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.pdf",
       "status": 403,
       "passed": false,
       "error": "HTTP Error 403: Forbidden",

@@ -1,6 +1,6 @@
 # BrixCanvas documentation website
 
-Current native delivery is M14.1: qualified loader foundations and an optional Firefox installer download, without Firefox or general Windows GUI execution. Native homepage/recovery Save, desktop/mobile search/navigation/manual/download checks and complete public verification pass: 529 pages, 342 exact-source articles, 3,772 links, zero known broken targets and 13 explicitly unverified external references. [M14.1 receipt](../evidence/M14/1/publication-results.json). The M14.0 research release remains historical; M14.2 is under development and M14.15 is the mandatory whole-system optimization gate.
+Current native delivery is M14.2: qualified bounded Windows processes, threads, TLS, shared synchronization and the selected C exception/unwind profile. Firefox remains download-only and general Windows GUI execution is unavailable. Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. Native homepage/recovery Save and desktop/mobile search/navigation/manual/download checks pass. [M14.2 receipt](../evidence/M14/2/publication-results.json). Earlier M14.1 loader and M14.0 research records remain historical; M14.15 is the mandatory whole-system optimization gate.
 
 ## Historical portal records
 

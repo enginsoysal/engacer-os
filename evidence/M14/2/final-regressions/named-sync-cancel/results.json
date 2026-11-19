@@ -1,0 +1,303 @@
+{
+  "passed": true,
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "synthetic": true,
+  "scope": "Native UI cancellation of four private processes blocked on the same shared named event",
+  "samples": [
+    {
+      "turn": 1,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 4,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 2,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 3,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 4,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 5,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 6,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 7,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 8,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 9,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 10,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 11,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 12,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 13,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 14,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 15,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 16,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 17,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 18,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 19,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 20,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    },
+    {
+      "turn": 21,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 633,
+      "shared_registry_pages_after_cancel": 0,
+      "shared_registry_pages_while_blocked": 1,
+      "metadata_pages_while_blocked": [
+        41,
+        45,
+        45,
+        45
+      ]
+    }
+  ],
+  "fixture_sha256": "466f8e7084e33c106e2c4bca0dbf981d519034ef93c983933708dbda2f6d04bc"
+}
