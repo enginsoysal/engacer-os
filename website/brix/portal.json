@@ -90,6 +90,10 @@
         [
           "docs/handbook/stability-m1313.md",
           "Keep saved work and understand stability limits"
+        ],
+        [
+          "docs/handbook/windows-m140.md",
+          "Understand current Windows apps and M14 targets"
         ]
       ]
     },
@@ -122,8 +126,16 @@
       "description": "Follow the current plan or explore technical reference.",
       "items": [
         [
-          "docs/milestones/m13.md",
-          "Follow M13.0\u2013M13.13 in order"
+          "docs/milestones/m14.md",
+          "Follow M14.0\u2013M14.15 in order"
+        ],
+        [
+          "docs/milestones/m14-0.md",
+          "Review original x64 app and installer findings"
+        ],
+        [
+          "docs/architecture/windows-m14.md",
+          "Understand Windows compatibility and efficiency budgets"
         ],
         [
           "docs/architecture/desktop-m13.md",
@@ -143,5 +155,6 @@
         ]
       ]
     }
-  ]
+  ],
+  "developmentProgram": "M14.0"
 }

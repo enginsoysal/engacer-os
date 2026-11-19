@@ -66,10 +66,16 @@ test('qualified revised-scope copy preserves historical cause and duration/devic
  const result={passed:true,stage:'M13.13',qualification:'M13-STAGE13-VM-v1',duration_scope:'owner_revised_90_minutes',functional_completion_separate_from_duration:true,eight_hour_gate_passed:false,actual_observed_seconds:6526};
  const ownerIssues=[{id:'long-uptime-freeze',status:'qualified_current_candidate'}];
  const home=JSON.stringify(portalDesign({stage:13,ownerIssues,stabilityQualification:result??null}));
- for(const term of ['NAMED VM STABILITY CHECKS COMPLETE','Next: hardware recognition.','Historical natural-freeze causes remain unestablished','unlimited uptime are not qualified'])assert(home.includes(term),term);
+ for(const term of ['NAMED VM STABILITY CHECKS COMPLETE','Historical natural-freeze causes remain unestablished','unlimited uptime are not qualified'])assert(home.includes(term),term);
  assert(!home.includes('STABILITY PENDING · TESTING ONLY'));
  assert(!home.includes('Download M13.13 (testing only)'));
  const warning=stabilityWarning13({owner_additions:ownerIssues,stability_qualification:result});
  for(const term of ['Named VMware checks complete','M13.7/M13.8','does not establish their cause','stability-m1313'])assert(warning.includes(term),term);
  assert(!JSON.stringify(portalDesign({stage:12,ownerIssues,stabilityQualification:result})).includes('NAMED VM STABILITY CHECKS COMPLETE'));
+});
+
+test('M14.0 research progress preserves the exact current native download',()=>{
+ const home=JSON.stringify(portalDesign({stage:13,searchReady:true}));
+ for(const term of ['CURRENT DOWNLOAD · M13.13','Now: original Windows x64 apps.','M14.0-M14.15','mandatory final optimization','research, not new GUI compatibility','docs-milestones-m14'])assert(home.includes(term),term);
+ assert(!home.includes('Download M14'));
 });

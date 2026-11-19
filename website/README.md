@@ -1,5 +1,7 @@
 # BrixCanvas documentation website
 
+Current development is M14.0 research; current native media remain M13.13. The curated project section leads with the M14.0-M14.15 Windows x64/efficiency plan. Research prereleases must never replace the tested native download. Actual homepage Save and full public verification remain separate from automated article sync.
+
 **Known freezes â€” testing only:** frequent freezes are reported on M13.8, following M13.7. Historical scoped task passes do not qualify stability. M13.9-M13.12 finish the product in order; all stability investigation and the blocking eight-real-hour gate occur in M13.13.
 
 ## Current portal â€” 18 November 2026

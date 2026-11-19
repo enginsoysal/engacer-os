@@ -1,0 +1,587 @@
+{
+  "passed": true,
+  "stage": "M14.0",
+  "qualification": "M14-RESEARCH0-v1",
+  "research_only": true,
+  "new_iso": false,
+  "current_native_download": "M13.13",
+  "native_build_id": "49a6fe1047488276f64b7d12433c0113",
+  "native_iso_sha256": "41c0fe24841a01d4e8920dd184609fcd9aad0d74ce30eb5cc3bdcd65c27ddef2",
+  "native_inputs_unchanged": 613,
+  "original_containers": 6,
+  "original_pe_payloads": 23,
+  "independent_pe_checks": [
+    {
+      "file": "npp.8.9.9.1.Installer.x64.exe",
+      "sha256": "ce3267f5c4e7e42f847e00f4b20234da6150647203033cdde34a69593efc3152",
+      "machine": "0x14c",
+      "image_bytes": 454656,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "ole32.dll",
+        "shell32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "SumatraPDF-3.6.1-64-install.exe",
+      "sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+      "machine": "0x8664",
+      "image_bytes": 11137024,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "comdlg32.dll",
+        "crypt32.dll",
+        "dwmapi.dll",
+        "gdi32.dll",
+        "gdiplus.dll",
+        "kernel32.dll",
+        "libmupdf.dll",
+        "msimg32.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "uiautomationcore.dll",
+        "urlmon.dll",
+        "user32.dll",
+        "uxtheme.dll",
+        "wininet.dll",
+        "winspool.drv"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7z.dll",
+      "sha256": "500db9eb17f3c21b729ba41dd02ecfe1823da05028c7e4ba129084cc74cc364e",
+      "machine": "0x8664",
+      "image_bytes": 1966080,
+      "import_dlls": [
+        "advapi32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "oleaut32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7z.exe",
+      "sha256": "dc0493429fe28136fcb177a0e77c9875cbb3b0bff5f2f8eeba4df302e98cef76",
+      "machine": "0x8664",
+      "image_bytes": 598016,
+      "import_dlls": [
+        "advapi32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "oleaut32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7z.sfx",
+      "sha256": "73af2700392aa92bc9342ae63844dfeed157d8d68bd356326a9bddb5e9e312d7",
+      "machine": "0x14c",
+      "image_bytes": 249856,
+      "import_dlls": [
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7zCon.sfx",
+      "sha256": "0aee2fc9478ca520068fc758d6b21854fd9993034a045364a8991e068080706c",
+      "machine": "0x14c",
+      "image_bytes": 229376,
+      "import_dlls": [
+        "kernel32.dll",
+        "msvcrt.dll",
+        "oleaut32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7zFM.exe",
+      "sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+      "machine": "0x8664",
+      "image_bytes": 1019904,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "comdlg32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "mpr.dll",
+        "msvcrt.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7zG.exe",
+      "sha256": "5eb5d21003927be4d53401b9b6bbe8a787caabb38eaafaf0d429a136d7031621",
+      "machine": "0x8664",
+      "image_bytes": 753664,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "comdlg32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7zip.dll",
+      "sha256": "f3dd6e1385adece5e32f0e7d085092ef721dcce9625bb0b75804dcbde541e4de",
+      "machine": "0x8664",
+      "image_bytes": 118784,
+      "import_dlls": [
+        "advapi32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ole32.dll",
+        "shell32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "_7zip32.dll",
+      "sha256": "ed9db7e7d529d4b6159a5053dc510af49bf33e6eb73ab6281dbb10422eb86cff",
+      "machine": "0x14c",
+      "image_bytes": 86016,
+      "import_dlls": [
+        "advapi32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ole32.dll",
+        "shell32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "notepad++.exe",
+      "sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+      "machine": "0x8664",
+      "image_bytes": 8613888,
+      "import_dlls": [
+        "advapi32.dll",
+        "bcrypt.dll",
+        "comctl32.dll",
+        "comdlg32.dll",
+        "crypt32.dll",
+        "dbghelp.dll",
+        "dwmapi.dll",
+        "gdi32.dll",
+        "imm32.dll",
+        "kernel32.dll",
+        "msimg32.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "sensapi.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "user32.dll",
+        "uxtheme.dll",
+        "version.dll",
+        "wininet.dll",
+        "wintrust.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "nppPluginList.dll",
+      "sha256": "ac5c288d027888ec034045857f976c8e4ceae860163633b36645492e9bc6f797",
+      "machine": "0x8664",
+      "image_bytes": 266240,
+      "import_dlls": [
+        "kernel32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "mimeTools.dll",
+      "sha256": "130fef8319c627f14e2fedaadc1adeadfe0a9a3435540f593fdaf4d4ecd13393",
+      "machine": "0x8664",
+      "image_bytes": 167936,
+      "import_dlls": [
+        "kernel32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "NppConverter.dll",
+      "sha256": "4ac632a0a7a2bbb8a7f87129527bd730363aa1c6ec96647dbe82ba6021fc99a8",
+      "machine": "0x8664",
+      "image_bytes": 217088,
+      "import_dlls": [
+        "kernel32.dll",
+        "shlwapi.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "NppExport.dll",
+      "sha256": "8fa926c1903bff4b407c93d991f49249aa3ba420982e0903b46a43a0b725ff90",
+      "machine": "0x8664",
+      "image_bytes": 176128,
+      "import_dlls": [
+        "comdlg32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "shlwapi.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "GUP.exe",
+      "sha256": "6c5a2612dafcda7b8f501e53d41d297f57d41f62f8cb476e8498b287950da53e",
+      "machine": "0x8664",
+      "image_bytes": 1392640,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "crypt32.dll",
+        "gdi32.dll",
+        "iphlpapi.dll",
+        "kernel32.dll",
+        "ncrypt.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "secur32.dll",
+        "sensapi.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "user32.dll",
+        "wintrust.dll",
+        "wldap32.dll",
+        "ws2_32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "fil7V1jYQCE1HWz1K2G3TeaWWDoCZ0",
+      "sha256": "8fa926c1903bff4b407c93d991f49249aa3ba420982e0903b46a43a0b725ff90",
+      "machine": "0x8664",
+      "image_bytes": 176128,
+      "import_dlls": [
+        "comdlg32.dll",
+        "gdi32.dll",
+        "kernel32.dll",
+        "shlwapi.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "fil8DGvsmcC5rFCo9cWvSt_uVEzT7U",
+      "sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+      "machine": "0x8664",
+      "image_bytes": 8613888,
+      "import_dlls": [
+        "advapi32.dll",
+        "bcrypt.dll",
+        "comctl32.dll",
+        "comdlg32.dll",
+        "crypt32.dll",
+        "dbghelp.dll",
+        "dwmapi.dll",
+        "gdi32.dll",
+        "imm32.dll",
+        "kernel32.dll",
+        "msimg32.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "sensapi.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "user32.dll",
+        "uxtheme.dll",
+        "version.dll",
+        "wininet.dll",
+        "wintrust.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "filAz7IPbb7pcucbYombn6x4wf8oNk",
+      "sha256": "61c4c7af31decc267ff90232bc542eade635d6a7471a1e0f767376c00479a0d4",
+      "machine": "0x8664",
+      "image_bytes": 401408,
+      "import_dlls": [
+        "advapi32.dll",
+        "kernel32.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "filCAUMA0E0WX.RD7GgysV1zmFDpEI",
+      "sha256": "ac5c288d027888ec034045857f976c8e4ceae860163633b36645492e9bc6f797",
+      "machine": "0x8664",
+      "image_bytes": 266240,
+      "import_dlls": [
+        "kernel32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "filPCDER_V0AGqBltNTHrzKkHM6GM4",
+      "sha256": "130fef8319c627f14e2fedaadc1adeadfe0a9a3435540f593fdaf4d4ecd13393",
+      "machine": "0x8664",
+      "image_bytes": 167936,
+      "import_dlls": [
+        "kernel32.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "filuvG1IV.v9zUCeUPlCT465mgfO.U",
+      "sha256": "6c5a2612dafcda7b8f501e53d41d297f57d41f62f8cb476e8498b287950da53e",
+      "machine": "0x8664",
+      "image_bytes": 1392640,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "crypt32.dll",
+        "gdi32.dll",
+        "iphlpapi.dll",
+        "kernel32.dll",
+        "ncrypt.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "secur32.dll",
+        "sensapi.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "user32.dll",
+        "wintrust.dll",
+        "wldap32.dll",
+        "ws2_32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "filvHU84Ruh84pHyKvxH0kFow4lcNE",
+      "sha256": "4ac632a0a7a2bbb8a7f87129527bd730363aa1c6ec96647dbe82ba6021fc99a8",
+      "machine": "0x8664",
+      "image_bytes": 217088,
+      "import_dlls": [
+        "kernel32.dll",
+        "shlwapi.dll",
+        "user32.dll"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "SumatraPDF-3.6.1-64.exe",
+      "sha256": "719f689b34f47be8ca105ce8484948474dafde0e106bab599e4a89326070c3d0",
+      "machine": "0x8664",
+      "image_bytes": 20840448,
+      "import_dlls": [
+        "advapi32.dll",
+        "comctl32.dll",
+        "comdlg32.dll",
+        "crypt32.dll",
+        "dwmapi.dll",
+        "gdi32.dll",
+        "gdiplus.dll",
+        "kernel32.dll",
+        "msimg32.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "uiautomationcore.dll",
+        "urlmon.dll",
+        "user32.dll",
+        "uxtheme.dll",
+        "wininet.dll",
+        "winspool.drv"
+      ],
+      "independent_tool_match": true
+    },
+    {
+      "file": "Wix4UtilCA_X64.bin",
+      "sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+      "machine": "0x8664",
+      "image_bytes": 438272,
+      "import_dlls": [
+        "activeds.dll",
+        "advapi32.dll",
+        "kernel32.dll",
+        "msi.dll",
+        "netapi32.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "shell32.dll",
+        "shlwapi.dll",
+        "user32.dll",
+        "version.dll"
+      ],
+      "independent_tool_match": true
+    }
+  ],
+  "llvm_readobj_sha256": "05e85a78c97aa64c567addc7ff291ec8756b1e1143a358543b1d4897f4727eac",
+  "msi_read_only_checks": true,
+  "msi_custom_actions_not_executed": true,
+  "performance_protocol": "docs/architecture/windows-m14.md",
+  "gui_performance_measured": false,
+  "historical_native_resources": {
+    "passed": true,
+    "fixed_desktop": {
+      "bytes": 557516,
+      "sections": {
+        "bss": 557488,
+        "data": 28
+      },
+      "map_sha256": "a3478f519939b734d6d07bb5cda262b4522aca28b49eaf3aa8ed0555766ecd30"
+    },
+    "fixed_installer": {
+      "bytes": 48412,
+      "sections": {
+        "bss": 48244,
+        "data": 168
+      }
+    },
+    "font_coverage_bytes": 251248,
+    "workday_baseline": {
+      "current_bytes": 3387392,
+      "peak_bytes": 3387392,
+      "allocation_failures": 5,
+      "paints": 565,
+      "pixels": 397120568,
+      "visible_framebuffer_bytes": 3145728,
+      "framebuffer_range_bytes": 3145728,
+      "label": "baseline",
+      "observed_at": "2026-11-18T22:43:38.693595+00:00"
+    },
+    "peak_budget_bytes": 11776000,
+    "measured_peak_bytes": 3440640,
+    "retained_managed_bytes": 0,
+    "new_allocation_failures": 0,
+    "supplementary": {
+      "ordinary": {
+        "managed_stats": [
+          2072,
+          2072,
+          116006,
+          5
+        ],
+        "framebuffer_bytes": 8294400,
+        "retained_task_delta_pages": 0
+      },
+      "active-idle-constrained": {
+        "before": [
+          815,
+          815,
+          17699,
+          5
+        ],
+        "after": [
+          815,
+          827,
+          17699,
+          5
+        ],
+        "retained_task_delta_pages": 0,
+        "all_cpus_halted_when_idle": true
+      },
+      "active-idle-4k": {
+        "before": [
+          8147,
+          8147,
+          247076,
+          5
+        ],
+        "after": [
+          8147,
+          8159,
+          247076,
+          5
+        ],
+        "retained_task_delta_pages": 0,
+        "all_cpus_halted_when_idle": true
+      },
+      "screensaver-native": {
+        "before": [
+          2072,
+          2072,
+          116006,
+          5
+        ],
+        "after": [
+          2072,
+          2084,
+          116006,
+          5
+        ],
+        "retained_pages": 0
+      },
+      "screensaver-persistence": {
+        "retained_pages": 0
+      },
+      "settings-write-failure": {
+        "before": [
+          1047,
+          1047,
+          18978,
+          5
+        ],
+        "after": [
+          1047,
+          1059,
+          18978,
+          5
+        ],
+        "retained_pages": 0
+      }
+    }
+  },
+  "harness_sha256": {
+    "tests/m14/research0.py": "703e1235d5b2f0b42fce1b9e0a2105bb05d103bbc2f2bee792f4f52c838a0d1d",
+    "tools/m14/inventory.py": "998aa1b6a59d0d89c8c07b59f00af953554bb5747ce1c7e5d6a521b4552d717a",
+    "tools/m14/msi_inventory.ps1": "37defdedbf09e0705cab6fa413dfede0d9e69efbc054a4c5e9a73e11f8bf2a09",
+    "tests/m14/corpus0.py": "135a7513ac3c3ff020b18130816eab76e2bb974017f13a92b5750e2de460a765"
+  },
+  "limits": [
+    "Static metadata and independent tool checks are not original GUI execution or complete dynamic dependency closure",
+    "Original GUI install/start/use/remove tasks and absolute measured performance budgets remain future native stages",
+    "Current original Notepad++ EXE bootstrap is x86; original x64 MSI requires actual custom-action/command behavior",
+    "No new native ISO, universal Windows compatibility or faster-than-Windows claim"
+  ],
+  "task_corpus": "task-corpus.json",
+  "task_corpus_sha256": "280c44081beb0fd5dbe26a1c06c3820cb04c7aac8fdf95f76ccfe157dfa049d1"
+}

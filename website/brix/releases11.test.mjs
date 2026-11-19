@@ -56,3 +56,9 @@ test('final M13.13 media supersede M13.12 only when published and complete',()=>
  assert.equal(stageRelease13([previous,current]).label,'M13.13');
  for(const incomplete of [{...current,draft:true},{...current,prerelease:true},{...current,assets:current.assets.slice(0,2)}])assert.equal(stageRelease13([incomplete,previous]).label,'M13.12');
 });
+
+test('M14.0 research never displaces the current native ISO',()=>{
+ const research={tag_name:'m140-v0.14.0-research',draft:false,prerelease:true,assets:[{name:'EngacerOS-M14.0-Research.zip'}]};
+ assert.equal(releaseLabel(research,false,null),'Research only — no new ISO');
+ assert.equal(stageRelease13([research]),null);
+});

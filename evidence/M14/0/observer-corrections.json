@@ -1,0 +1,13 @@
+{
+  "scope": "Research observers only; no native OS failure or compatibility result",
+  "corrections": [
+    {
+      "initial": "PowerShell COM FieldCount access yielded empty row arrays",
+      "correction": "Use explicit COM property invocation and reject empty fields before acceptance; read actual metadata and binary streams again"
+    },
+    {
+      "initial": "Independent LLVM import-name cross-check filtered only DLL suffixes and omitted WINSPOOL.DRV",
+      "correction": "Include original DLL and DRV import module names; repeat all twenty-five independent checks"
+    }
+  ]
+}
