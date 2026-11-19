@@ -20,7 +20,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True,choices=range(1,16));args=parser.parse_args()
     assert not (ROOT/f'evidence/M14/{args.stage}/publication-results.json').exists(),'Published media are immutable'
     image=f'EngacerOS-M14STAGE{args.stage}'
-    meta=json.loads((ROOT/f'dist/m14stage{args.stage}-build-manifest.json').read_text())
+    meta=json.loads((ROOT/f'dist/m14stage{args.stage}-build-manifest.json').read_text(encoding='utf-8'))
     assert meta['qualification_scope']==f'M14-STAGE{args.stage}-VM-v1'
     iso=ROOT/'dist'/(image+'.iso');assert hashlib.sha256(iso.read_bytes()).hexdigest()==meta['artifacts'][iso.name]['sha256']
     folder=ROOT/f'build/m14-native/starter/stage{args.stage}'/uuid.uuid4().hex;folder.mkdir(parents=True)
@@ -31,6 +31,8 @@ def main():
     for source,dest in [('LICENSE','LICENSE'),('third_party/inter/OFL.txt','Inter-OFL.txt'),('third_party/7zip/7z2606-src.tar.xz','7z2606-src.tar.xz'),('third_party/libmspack/COPYING.LIB','libmspack-LGPL-2.1.txt')]:shutil.copyfile(ROOT/source,folder/dest)
     with zipfile.ZipFile(ROOT/'dist/EngacerOS-M11FINAL-VMware.zip') as old:
         notices=old.read('EngacerOS/THIRD-PARTY-NOTICES.txt').decode().replace('Engacer OS M11 third-party notices','Engacer OS M14 third-party notices',1)
+    if args.stage>=3:
+        notices+='\n\nUnicode simple case-fold data: Unicode-3.0\n\n'+(ROOT/'third_party/unicode/LICENSE.txt').read_text(encoding='utf-8')
     (folder/'THIRD-PARTY-NOTICES.txt').write_bytes(notices.encode())
     text=(f'ENGACER OS M14.{args.stage}\n\nExtract the complete ZIP into an ordinary local folder. Open EngacerOS.vmx.\nChoose I Copied It if asked. Start and follow the graphical installer.\nSelect the disk row, review erasure and install, then choose Restart to Engacer OS.\nThe matching ISO may remain connected. Keep the installed disk attached.\n\nA new blank growable 20-GiB SATA disk is included; it is not preinstalled.\n128 MiB RAM, two CPUs, UEFI, Secure Boot off. All shipped devices remain enabled.\nThe matching release guide states the exact tested stage scope and limitations.\nhttps://engaceros.brixcanvas.com/blog/documentation\nhttps://github.com/enginsoysal/engacer-os\n')
     (folder/'START-HERE.txt').write_bytes(text.encode())

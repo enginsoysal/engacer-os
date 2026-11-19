@@ -33,6 +33,7 @@ def embed(work,live):
         text+='const uint8_t miniz74_license[]={'+','.join(map(str,license))+'};\nconst unsigned miniz74_license_size='+str(len(license))+';\n'
     if work.name in ['m8','m9','m92','m10','m11','m12','m13','m14']:
         notices=('7-Zip license and distribution notices\n\n'+(ROOT/'third_party/7zip/LICENSE.txt').read_text(encoding='utf-8')+'\n\nlibmspack LZX decoder: GNU LGPL 2.1\n\n'+(ROOT/'third_party/libmspack/COPYING.LIB').read_text(encoding='utf-8')).replace('\r\n','\n')
+        if work.name=='m14':notices+='\n\nUnicode simple case-fold data: Unicode-3.0\n\n'+(ROOT/'third_party/unicode/LICENSE.txt').read_text(encoding='utf-8')
         text+='const char windows8_licenses[]={'+','.join(map(str,notices.encode()+b'\0'))+'};\n'
         data=(work/'WINDOWS8.ELF').read_bytes() if live else b''
         text+='const uint8_t windows8_runtime_image[]={'+','.join(map(str,data or b'\0'))+'};\nconst unsigned windows8_runtime_size='+str(len(data))+';\n'

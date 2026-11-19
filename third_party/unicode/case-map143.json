@@ -1,0 +1,11 @@
+{
+  "version": "17.0.0",
+  "mapping": "Simple case folding, C/S records only; no normalization",
+  "source_sha256": "ff8d8fefbf123574205085d6714c36149eb946d717a0c585c27f0f4ef58c4183",
+  "pairs": 1512,
+  "runs": 209,
+  "record_bytes": 16,
+  "read_only_component_bytes": 3344,
+  "generated_sha256": "d3c4ff60ac7ea152682746efc92deb4d00216547dd580abec9ca534c03271171",
+  "windows_nls_equivalence_claimed": false
+}

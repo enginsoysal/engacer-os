@@ -10,6 +10,8 @@ Support the selected C-drive absolute, current-directory-relative and root-relat
 
 Use a shared, pinned case-mapping definition for file and registry identity; do not make security depend on the host compiler locale or a running user's locale. This provides a reproducible selected profile, not a claim of identical NLS tables across every Windows version. Literal Unicode identity and case matching are distinct from Unicode normalization.
 
+The selected data is Unicode 17.0.0 simple case folding, C/S records only. A generated arithmetic-range table stores 1,512 mappings in 3,344 read-only component bytes. Full expansion and locale-specific Turkic folds are excluded. The [source, generator and license](../../third_party/unicode/README.md) are pinned. Host checks compare every code point to the independent official data, round-trip every valid scalar through the compiled codecs, and reject malformed/truncated input and undersized output. These are supporting checks, not native Windows file qualification. [Host evidence](../../evidence/M14/3/development/unicode-host.json).
+
 ## File objects and grants
 
 The kernel owns live file identity, pending data/deletion, access/share rules and byte locks. Process grants own independent positions and generation-checked handles. Validate an open against every existing grant in both directions before admitting it. All processes using the same file must observe the same pending object; a separate user-mode table per process would miss conflicts and lose changes.

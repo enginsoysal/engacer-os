@@ -1,0 +1,23 @@
+{
+  "version": "17.0.0",
+  "license": "Unicode-3.0",
+  "purpose": "Reproducible Unicode simple case-fold profile for case-insensitive identity; not an assertion of identical Windows-version NLS tables",
+  "fetched_at": "2026-11-19T17:45:48.781141+00:00",
+  "sources": {
+    "license": {
+      "url": "https://www.unicode.org/license.txt",
+      "bytes": 1995,
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+    },
+    "case_folding": {
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/CaseFolding.txt",
+      "bytes": 87539,
+      "sha256": "ff8d8fefbf123574205085d6714c36149eb946d717a0c585c27f0f4ef58c4183"
+    }
+  },
+  "supporting_research_source": {
+    "url": "https://www.unicode.org/Public/17.0.0/ucd/UnicodeData.txt",
+    "bytes": 2198209,
+    "sha256": "2e1efc1dcb59c575eedf5ccae60f95229f706ee6d031835247d843c11d96470c"
+  }
+}
