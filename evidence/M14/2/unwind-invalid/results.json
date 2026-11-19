@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "scope": "Native malformed cyclic/opcode/scope/directory metadata refuses safely with responsive desktop",
+  "cases": [
+    {
+      "name": "cycle",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225511,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225511,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "opcode",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225511,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225511,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "scope",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225511,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225511,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "directory",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 1,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 1,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    }
+  ]
+}

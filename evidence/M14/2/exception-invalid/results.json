@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "scope": "Native checked return rejects privileged RIP/invalid MXCSR and bounds handler nesting",
+  "cases": [
+    {
+      "name": "invalid-mxcsr",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225512,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225512,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "invalid-rip",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225512,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225512,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "overflow",
+      "samples": [
+        {
+          "turn": 1,
+          "status": 3221225477,
+          "retained_pages": 4
+        },
+        {
+          "turn": 2,
+          "status": 3221225477,
+          "retained_pages": 0
+        }
+      ],
+      "desktop_responsive": true
+    }
+  ]
+}

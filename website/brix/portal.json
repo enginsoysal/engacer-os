@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M14.1",
+  "currentRelease": "M14.2",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m141.md",
+          "docs/handbook/install-m142.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m141-v0.14.1.md",
+          "docs/releases/m142-v0.14.2.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/first-day-m141.md",
+          "docs/handbook/first-day-m142.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -92,7 +92,7 @@
           "Keep saved work and understand stability limits"
         ],
         [
-          "docs/handbook/windows-m141.md",
+          "docs/handbook/windows-m142.md",
           "Use Windows file checks and browser downloads"
         ]
       ]
@@ -131,7 +131,7 @@
         ],
         [
           "docs/milestones/m14-2.md",
-          "Follow M14.2 native process, thread and exception development"
+          "Read the M14.2 native process, thread and exception stage"
         ],
         [
           "docs/milestones/m14-1.md",
@@ -164,5 +164,5 @@
       ]
     }
   ],
-  "developmentProgram": "M14.1"
+  "developmentProgram": "M14.2"
 }

@@ -4,19 +4,19 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders, ke
 
 ## Download and get started
 
-**Current qualified release: [M14.1 / 0.14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1).** Use its matching ISO or prepared VMware package and checksums.
+**Current qualified release: [M14.2 / 0.14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Use its matching ISO or prepared VMware package and checksums.
 
-- [Install and restart in VMware](docs/handbook/install-m141.md)
-- [Your first day](docs/handbook/first-day-m141.md)
-- [Windows files and browser downloads](docs/handbook/windows-m141.md)
-- [Exact tested scope and limitations](docs/releases/m141-v0.14.1.md)
+- [Install and restart in VMware](docs/handbook/install-m142.md)
+- [Your first day](docs/handbook/first-day-m142.md)
+- [Windows files and browser downloads](docs/handbook/windows-m142.md)
+- [Exact tested scope and limitations](docs/releases/m142-v0.14.2.md)
 - [Online documentation and downloads](https://engaceros.brixcanvas.com)
 
-M14.1 qualifies its bounded Win64 loader and original supported 7-Zip console/MSI profile. Original Notepad++ and Sumatra images can be mapped and inspected; their GUI is not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Named virtual-machine checks do not establish universal physical-hardware, GPU 3D or general Windows compatibility.
+M14.2 qualifies its bounded native runtime and original supported 7-Zip console/MSI profile. Original Notepad++ and Sumatra images can be mapped and inspected; their GUI is not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Named virtual-machine checks do not establish universal physical-hardware, GPU 3D or general Windows compatibility.
 
-## Current development: M14.2
+## Native runtime qualification: M14.2
 
-M14.2 is **in progress**, with native development checks for private parent/child processes, preemptive threads, static/dynamic TLS, events/semaphores/timers, cross-process named sharing and the supported AMD64 exception profile. These checks include original concurrent 7-Zip children and repeated resource-release measurements. M14.1 remains the public download until complete M14.2 frozen-media and publication qualification passes.
+M14.2 passes exact-source native and VMware qualification for private parent/child processes, preemptive threads, static/dynamic TLS, events/semaphores/timers, cross-process named sharing and the documented AMD64 hardware-fault/C exception profile. Original concurrent 7-Zip children and repeated resource-release checks pass. Complete website publication is being verified before the next stage.
 
 Windows program instructions execute through Engacer OS's own compatibility APIs and kernel. An embedded Windows guest or second operating system is not the implementation. VMware and QEMU are external test hosts.
 
@@ -25,9 +25,9 @@ Windows program instructions execute through Engacer OS's own compatibility APIs
 - [Child-process ownership](docs/architecture/children-m142.md)
 - [Shared synchronization and limits](docs/architecture/synchronization-m142.md)
 - [Exception dispatch and unwind scope](docs/architecture/exceptions-m142.md)
-- [Ordered M14.0-M14.15 plan](docs/milestones/m14.md)
+- [Ordered M14.0-M14.25 plan](docs/milestones/m14.md)
 
-M14.15 is the mandatory whole-system CPU/RAM/storage optimization gate. Resource bounds, idle halt, peak usage and retained memory are measured separately; configured guest RAM is not total OS consumption. M15 covers Windows x86 and M16 covers Win16/DOS. Each stage closes tests, English guides, GitHub delivery and actual website verification before the next.
+M14.25 is the mandatory whole-system CPU/RAM/storage optimization gate. Resource bounds, idle halt, peak usage and retained memory are measured separately; configured guest RAM is not total OS consumption. M15 covers Windows x86 and M16 covers Win16/DOS. Each stage closes tests, English guides, GitHub delivery and actual website verification before the next.
 
 ## Use, customize and contribute
 

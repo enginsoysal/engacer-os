@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "stage": "M14.2",
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "scope": "Agent visual review of actual candidate guest captures; not a human usability study",
+  "checks": [
+    "1280x800 Files navigation, labels and taskbar remain readable without overlapping text",
+    "Actual 3840x2160 Files uses the tested scaled semantic fonts and controls",
+    "Exact VMware setup completion visibly offers Restart to Engacer OS after verification",
+    "Browser choices clearly distinguishes installer download from unavailable execution"
+  ],
+  "captures": {
+    "evidence/M14/2/feature.png": "82491a34c52adb2550c875356a63ee644dedb4bf1980504eb27c24cab2db0630",
+    "evidence/M14/2/compact/desktop.png": "ef5cf92be68db64a614147d318b8cd21fe07b4ffb6662f7026403b5423f11b59",
+    "evidence/M14/2/4k/desktop.png": "f0f951b5ae3262a0953df984bd1effd4ae7df669551330aefb1844d8739e656f",
+    "evidence/M14/2/vmware-results/finish.png": "3928e857f352f0726bea06906589b1f459b1d9d02519a812a3fc38a2db58968f"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "clone": {
+    "source_sha256": "e0b0f5c76da8cc54d526c719e4053092a430cd2d5abb971a2d7a56551bce47c5",
+    "clone_sha256": "e0b0f5c76da8cc54d526c719e4053092a430cd2d5abb971a2d7a56551bce47c5",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    {
+      "name": "Real in-progress HTTPS cancellation leaves no published partial installer",
+      "bytes_before_cancel": 65536,
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi"
+    },
+    {
+      "name": "Actual native HTTPS transfer from Mozilla and independent stopped-disk hash",
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi",
+      "bytes": 95924224,
+      "sha256": "6dc28633cbd77cb1d044f339185cd467dda39397e4bcca942bfb0ddb2360c681",
+      "installer_executed": false
+    }
+  ],
+  "download_observations": [
+    {
+      "state": 2,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 52098,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 8696627,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 16937779,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 25329488,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 33767248,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 42077174,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 50469878,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 58850294,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 67301894,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 75657734,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 83935232,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 92454357,
+      "tls_error": 0
+    },
+    {
+      "state": 4,
+      "bytes": 95924224,
+      "tls_error": 0
+    }
+  ]
+}

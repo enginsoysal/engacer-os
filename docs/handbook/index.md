@@ -2,21 +2,21 @@
 
 ## Start here
 
-**Current qualified download: [Engacer OS M14.1](https://github.com/enginsoysal/engacer-os/releases/tag/m141-v0.14.1).** M14.2 is under development and is not a qualified public ISO. Follow the guide matching the release you download.
+**Current qualified download: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Native qualification passes within M14-STAGE2-VM-v1; actual publication is being verified. Follow the guide matching the release you download.
 
-- [Download, verify and install in VMware](install-m141.md)
-- [Windows files, supported apps and browser downloads](windows-m141.md)
+- [Download, verify and install in VMware](install-m142.md)
+- [Windows files, supported apps and browser downloads](windows-m142.md)
 - [What works today and current limitations](../roadmap/status.md)
-- [Release scope and checksums](../releases/m141-v0.14.1.md)
+- [Release scope and checksums](../releases/m142-v0.14.2.md)
 - [Build and customize your own distribution](distributions.md)
 
-M14.1 qualifies its Win64 loader and original supported 7-Zip console/MSI tasks. Original Notepad++ and Sumatra images can be mapped and inspected; their graphical applications are not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Windows compatibility is being implemented natively; no embedded Windows guest is the application runtime.
+M14.2 qualifies bounded native processes, threads, TLS, shared synchronization and selected C exception handling alongside its original supported 7-Zip console/MSI tasks. Original Notepad++ and Sumatra images can be mapped and inspected; their graphical applications are not qualified. Firefox can be downloaded and hash-checked, but cannot yet install or run. Windows compatibility is being implemented natively; no embedded Windows guest is the application runtime.
 
 ## Use the desktop
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](first-day-m141.md)
+- [First day, desktop and folders](first-day-m142.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
 - [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)
@@ -57,4 +57,4 @@ Historical guides remain available for the exact versions they describe. Their l
 
 M13.13 used the owner's revised ninety-minute stability gate, with 108.78 minutes observed. The original eight-hour/two-hour gates did not pass. M13.7/M13.8 historical freeze causes are not independently established. Named VM checks are not universal hardware or unlimited-uptime qualification. Accepted evidence remains immutable.
 
-[Online documentation and downloads](https://engaceros.brixcanvas.com) are published from canonical GitHub Markdown and official release assets. Whole-system CPU/RAM/storage efficiency remains a core requirement; M14.15 is the mandatory optimization gate.
+[Online documentation and downloads](https://engaceros.brixcanvas.com) are published from canonical GitHub Markdown and official release assets. Whole-system CPU/RAM/storage efficiency remains a core requirement; M14.25 is the mandatory optimization gate.

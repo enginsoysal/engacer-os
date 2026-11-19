@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "scope": "Actual pinned original MSI cancellation and owned-product rollback",
+  "cancel": {
+    "committed_entries_seen": 5,
+    "namespace_restored": true,
+    "one_time_transition_pages": 4
+  },
+  "reinstall_and_original_execution": true,
+  "subsequent_retained_pages": 0
+}

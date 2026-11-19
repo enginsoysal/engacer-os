@@ -4,9 +4,9 @@ import assert from 'node:assert/strict';
 import {portal,portalGroups,milestoneKey} from './portal.mjs';
 const p=(path,title=path)=>({slug:path,title,meta:[{key:'engine_source_path',value:path}]});
 
-test('M14 loader home separates a browser download from execution and retains the ordered plan',()=>{
+test('M14 runtime home separates a browser download from execution and retains the ordered plan',()=>{
  const home=JSON.stringify(portalDesign({stage:14,searchReady:true}));
- for(const term of ['Now: Windows x64 foundations.','WINDOWS X64 LOADER STAGE','original Firefox installer','not supported yet','M14.0-M14.15','mandatory whole-system optimization'])assert(home.includes(term),term);
+ for(const term of ['Now: Windows x64 foundations.','WINDOWS X64 NATIVE RUNTIME STAGE','original Firefox installer','not supported yet','M14.0-M14.15','mandatory whole-system optimization','private Windows processes','without an embedded Windows guest'])assert(home.includes(term),term);
  assert(!home.includes('Next: hardware recognition.'));
  assert(milestoneKey(p('docs/releases/m141-v0.14.1.md'))<milestoneKey(p('docs/releases/m1410-v0.14.10.md')));
 });

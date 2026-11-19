@@ -1,0 +1,196 @@
+{
+  "passed": true,
+  "build_id": "6e242c9d2f8b626e96a952a39d50fe49",
+  "synthetic": true,
+  "clone": {
+    "source_sha256": "b59494887d97e6e49cadf1564f0bb33165bc57bdd661b78c61be62ec56b8de38",
+    "clone_sha256": "b59494887d97e6e49cadf1564f0bb33165bc57bdd661b78c61be62ec56b8de38",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    "20 actual Windows PE executions touch a 24-MiB sparse image, resolve a forwarded import and repeatedly load/reference/free/reuse an application DLL 48 times per execution",
+    "Each measured execution remains below 4 MiB of owned physical pages, with zero managed-page retention after one-time kernel initialization",
+    {
+      "name": "non-executable data",
+      "actual_cpl3_fault_contained": true,
+      "repeated_retention_pages": [
+        4,
+        0
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "read-only data",
+      "actual_cpl3_fault_contained": true,
+      "repeated_retention_pages": [
+        4,
+        0
+      ],
+      "desktop_responsive": true
+    },
+    {
+      "name": "unmapped image guard",
+      "actual_cpl3_fault_contained": true,
+      "repeated_retention_pages": [
+        4,
+        0
+      ],
+      "desktop_responsive": true
+    }
+  ],
+  "dependency_output_sample": "Mapped original image: 7z.exe bytes=25190400 source-fnv32=2341440351\nMapped original image: forward.dll bytes=20480 source-fnv32=4214051192\nMapped original image: leaf.dll bytes=20480 source-fnv32=2505141380\nM141_DLL_ATTACH\nRunning the original Windows executable in a protected process.\n\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_DLL_DETACH\nM141_DELAY_CALL_BEGIN\nMapped original image: dynamic.dll bytes=20480 source-fnv32=3829242565\nM141_DLL_ATTACH\nM141_SPARSE_FORWARD_REFERENCE_REUSE_PASS\nM141_DLL_DETACH\nM141_DLL_DETACH\n",
+  "normal_process_detach": {
+    "attach_notifications": 50,
+    "detach_notifications": 50,
+    "remaining_dlls_detached_at_exit": 2
+  },
+  "fixture_sha256": {
+    "probe.exe": "ef554485a09fe17924e2582e4d9f0e0ee163b9b1d47d1a3dc939c0098ad4a5c8",
+    "leaf.dll": "36b56d079c0de04ab1acf9e2a4aa4cf4e970e5033efa35fa85b3e25f3180aa23",
+    "forward.dll": "ba4e85ec6b832701c96825dedc7a37f818f9cdbf00b1bb676555b88f45676fbb",
+    "dynamic.dll": "32ecfbf094b679fb0f36f448e0275f09510ff8f547777f314bf3be34496af4b2"
+  },
+  "samples": [
+    {
+      "turn": 1,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 3,
+      "observer_wall_seconds": 0.4220000000059372
+    },
+    {
+      "turn": 2,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 3,
+      "observer_wall_seconds": 0.40600000000267755
+    },
+    {
+      "turn": 3,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 5,
+      "observer_wall_seconds": 0.40699999999196734
+    },
+    {
+      "turn": 4,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 4,
+      "observer_wall_seconds": 0.3899999999994179
+    },
+    {
+      "turn": 5,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 5,
+      "observer_wall_seconds": 0.4220000000059372
+    },
+    {
+      "turn": 6,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 5,
+      "observer_wall_seconds": 0.46899999999732245
+    },
+    {
+      "turn": 7,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 5,
+      "observer_wall_seconds": 0.5
+    },
+    {
+      "turn": 8,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 7,
+      "observer_wall_seconds": 0.5470000000059372
+    },
+    {
+      "turn": 9,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 7,
+      "observer_wall_seconds": 0.5469999999913853
+    },
+    {
+      "turn": 10,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 4,
+      "observer_wall_seconds": 0.5620000000053551
+    },
+    {
+      "turn": 11,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 3,
+      "observer_wall_seconds": 0.5160000000032596
+    },
+    {
+      "turn": 12,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 6,
+      "observer_wall_seconds": 0.5619999999908032
+    },
+    {
+      "turn": 13,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 5,
+      "observer_wall_seconds": 0.5630000000091968
+    },
+    {
+      "turn": 14,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 5,
+      "observer_wall_seconds": 0.5310000000026776
+    },
+    {
+      "turn": 15,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 6,
+      "observer_wall_seconds": 0.5629999999946449
+    },
+    {
+      "turn": 16,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 7,
+      "observer_wall_seconds": 0.5460000000020955
+    },
+    {
+      "turn": 17,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 7,
+      "observer_wall_seconds": 0.5789999999979045
+    },
+    {
+      "turn": 18,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 9,
+      "observer_wall_seconds": 0.625
+    },
+    {
+      "turn": 19,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 10,
+      "observer_wall_seconds": 0.625
+    },
+    {
+      "turn": 20,
+      "peak_owned_pages": 183,
+      "retained_pages": 0,
+      "quanta": 4,
+      "observer_wall_seconds": 0.5149999999994179
+    }
+  ]
+}
