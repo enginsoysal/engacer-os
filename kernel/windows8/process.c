@@ -145,6 +145,7 @@ static unsigned path8(const char*p,unsigned write){
  return input8.command==W8_RUN&&prefix8(p,input8.user_root)&&!equal8(p,input8.user_root);
 }
 static const v6_entry *find8(const char*p){v6_volume*v=m6_volume();if(!v)return 0;for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&equal8(v->entries[i].path,p))return v->entries+i;return 0;}
+#include "path143.inc"
 static unsigned exact8(const char*p,uint64_t off,void*out,unsigned n){unsigned got=0;return v6_read(m6_volume(),p,off,out,n,&got)||got!=n;}
 static unsigned memory_source8(void*c,uint64_t off,void*out,unsigned n){memcpy(out,(uint8_t*)c+off,n);return 0;}
 static const uint8_t *boot_package8;static unsigned boot_package_size8;
@@ -253,6 +254,7 @@ static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i
 static int64_t dispatch8(trap_frame*f){
  uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10,e=f->r8;char path[256];
  switch(f->rax){
+ case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
  case W8_SYS_SYNC_CREATE:return create_sync142(a,b,c);

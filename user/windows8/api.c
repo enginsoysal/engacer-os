@@ -1,6 +1,7 @@
 #include "runtime.h"
 static uint32_t error8;
-static WCHAR command8[1200],cwd8[256];
+static WCHAR command8[1200],cwd8[512];
+static lock142 cwd_lock143;
 static char command_utf8[1200],argv_text8[1200],*argv8[64],*env8[]={0};
 static unsigned argc8,console_mode8[3]={7,3,3};
 static unsigned app_type8,exit_count8;static uint64_t exit_callbacks8[64],matherr8;
@@ -20,17 +21,12 @@ static void winpath8(const char*native,char*out,unsigned cap){
  else if(!memcmp(native,job8->user_root,len8(job8->user_root))){copy8(out,"C:\\Users\\",cap);const char*name=job8->user_root;for(unsigned i=0;job8->user_root[i];++i)if(job8->user_root[i]=='/')name=job8->user_root+i+1;append8(out,name,cap);append8(out,native+len8(job8->user_root),cap);}
  else copy8(out,native,cap);for(unsigned i=0;out[i];++i)if(out[i]=='/')out[i]='\\';
 }
-static int nativepath8(const WCHAR*wide,char*out){
- char path[1024];if(utf16_to8(wide,path,sizeof(path))<0)return 0;for(unsigned i=0;path[i];++i)if(path[i]=='\\')path[i]='/';
- if(!memcmp(path,"//?/",4))memmove(path,path+4,len8(path+4)+1);
- if(path[0]!='/'&&!(path[0]&&path[1]==':')){char current[768];if(utf16_to8(cwd8,current,sizeof(current))<0)return 0;for(unsigned i=0;current[i];++i)if(current[i]=='\\')current[i]='/';append8(current,"/",sizeof(current));append8(current,path,sizeof(current));copy8(path,current,sizeof(path));}
- char root[256];copy8(root,job8->windows_root,256);for(unsigned i=0;root[i];++i)if(root[i]=='\\')root[i]='/';unsigned n=len8(root),same=1;for(unsigned i=0;i<n;++i)if(lower8((uint8_t)path[i])!=lower8((uint8_t)root[i]))same=0;
- if(same&&(path[n]=='/'||!path[n])){copy8(out,job8->product_root,256);append8(out,path+n,256);}
- else if(!memcmp(path,"C:/Users/",9)||!memcmp(path,"c:/Users/",9)){const char*tail=path+9;while(*tail&&*tail!='/')++tail;char expected[256];winpath8(job8->user_root,expected,256);for(unsigned i=0;expected[i];++i)if(expected[i]=='\\')expected[i]='/';unsigned e=len8(expected);for(unsigned i=0;i<e;++i)if(lower8((uint8_t)path[i])!=lower8((uint8_t)expected[i]))return 0;if(path[e]&&path[e]!='/')return 0;copy8(out,job8->user_root,256);append8(out,tail,256);}
- else return 0;
- /* Canonicalize dot components before crossing the native grant boundary. */
- char clean[256];unsigned used=0,start=0;for(unsigned i=0;;++i){if(out[i]&&out[i]!='/')continue;unsigned count=i-start;if(count==1&&out[start]=='.'){}else if(count==2&&out[start]=='.'&&out[start+1]=='.'){if(!used)return 0;while(used&&clean[used-1]!='/')--used;if(used)--used;}else if(count){if(used+count+1>=256)return 0;clean[used++]='/';memcpy(clean+used,out+start,count);used+=count;}if(!out[i])break;start=i+1;}clean[used]=0;copy8(out,clean,256);return 1;
+static int nativepath_mode143(const WCHAR*wide,char*out,unsigned flags){
+ w8_path_result143 result;WCHAR directory[512];lock_enter142(&cwd_lock143);widecopy8(directory,cwd8,512);lock_leave142(&cwd_lock143);
+ int64_t status=(int64_t)sys8(W8_SYS_PATH143,(uint64_t)(uintptr_t)wide,(uint64_t)(uintptr_t)directory,(uint64_t)(uintptr_t)&result,flags,0);
+ if(status<0){last8((unsigned)-status);return 0;}memcpy(out,result.native,256);return 1;
 }
+static int nativepath8(const WCHAR*wide,char*out){return nativepath_mode143(wide,out,0);}
 static void callbacks8(void){while(exit_count8){uint64_t callback=exit_callbacks8[--exit_count8];if(callback)((void(MS*)(void))(uintptr_t)callback)();}}
 static NORETURN void MS f_exit(unsigned code){callbacks8();pe8_exit(code);}
 static NORETURN void MS f__exit(unsigned code){pe8_exit(code);}
@@ -139,8 +135,27 @@ static int MS f_MoveFileExW(const WCHAR*from,const WCHAR*to,unsigned flags){char
 static int MS f_MoveFileW(const WCHAR*a,const WCHAR*b){return f_MoveFileExW(a,b,0);}
 static int MS f_MoveFileWithProgressW(const WCHAR*a,const WCHAR*b,uint64_t callback,void*data,unsigned flags){if(callback){last8(50);return 0;}(void)data;return f_MoveFileExW(a,b,flags);}
 static int MS f_CreateHardLinkW(const WCHAR*a,const WCHAR*b,void*c){(void)a;(void)b;(void)c;last8(50);return 0;}
-static unsigned MS f_GetCurrentDirectoryW(unsigned cap,WCHAR*out){unsigned n=wlen8(cwd8);if(cap<=n)return n+1;widecopy8(out,cwd8,cap);return n;}
-static int MS f_SetCurrentDirectoryW(const WCHAR*name){char path[256];w8_file_info info;if(!nativepath8(name,path)||stat8(path,&info)||info.kind!=2){last8(3);return 0;}char win[256];winpath8(path,win,256);utf8_to16(win,cwd8,256);return 1;}
+static unsigned MS f_GetFullPathNameW(const WCHAR*name,unsigned cap,WCHAR*out,WCHAR**part){
+ if(part)*part=0;if(!name||(cap&&!out)){last8(87);return 0;}w8_path_result143 result;WCHAR directory[512];
+ lock_enter142(&cwd_lock143);widecopy8(directory,cwd8,512);lock_leave142(&cwd_lock143);
+ int64_t status=(int64_t)sys8(W8_SYS_PATH143,(uint64_t)(uintptr_t)name,(uint64_t)(uintptr_t)directory,(uint64_t)(uintptr_t)&result,3,0);
+ if(status<0){last8((unsigned)-status);return 0;}unsigned n=wlen8(result.windows);if(cap<=n)return n+1;widecopy8(out,result.windows,cap);
+ if(part&&n&&out[n-1]!='\\'){unsigned at=n;while(at&&out[at-1]!='\\')--at;*part=out+at;}return n;
+}
+static unsigned MS f_GetFullPathNameA(const char*name,unsigned cap,char*out,char**part){
+ if(part)*part=0;if(!name||(cap&&!out)){last8(87);return 0;}WCHAR input[1024],full[512];
+ if(utf8_to16(name,input,1024)<0){last8(len8(name)>=1024?206:1113);return 0;}unsigned count=f_GetFullPathNameW(input,512,full,0);if(!count)return 0;
+ char text[2048];if(utf16_to8(full,text,sizeof(text))<0){last8(1113);return 0;}unsigned bytes=len8(text);if(cap<=bytes)return bytes+1;memcpy(out,text,bytes+1);
+ if(part&&bytes&&out[bytes-1]!='\\'){unsigned at=bytes;while(at&&out[at-1]!='\\')--at;*part=out+at;}return bytes;
+}
+static unsigned MS f_GetCurrentDirectoryW(unsigned cap,WCHAR*out){
+ lock_enter142(&cwd_lock143);unsigned n=wlen8(cwd8);if(cap<=n){lock_leave142(&cwd_lock143);return n+1;}widecopy8(out,cwd8,cap);lock_leave142(&cwd_lock143);return n;
+}
+static int MS f_SetCurrentDirectoryW(const WCHAR*name){
+ char path[256];w8_file_info info;if(!nativepath8(name,path))return 0;if(stat8(path,&info)||info.kind!=2){last8(3);return 0;}
+ char win[512];WCHAR directory[512];winpath8(path,win,sizeof(win));if(utf8_to16(win,directory,512)<0){last8(206);return 0;}
+ lock_enter142(&cwd_lock143);widecopy8(cwd8,directory,512);lock_leave142(&cwd_lock143);return 1;
+}
 static unsigned MS f_GetTempPathW(unsigned cap,WCHAR*out){char native[256],win[256];copy8(native,job8->user_root,256);append8(native,"/AppData/Temp",256);(void)mkdir8(native);winpath8(native,win,256);append8(win,"\\",256);WCHAR buffer[256];if(utf8_to16(win,buffer,256)<0){last8(206);return 0;}unsigned n=wlen8(buffer);if(cap<=n)return n+1;widecopy8(out,buffer,cap);return n;}
 static int MS f_GetDiskFreeSpaceExW(const WCHAR*root,uint64_t*available,uint64_t*total,uint64_t*free){if(root&&((root[0]!='C'&&root[0]!='c')||root[1]!=':')){last8(3);return 0;}uint64_t space=sys8(W8_SYS_INFO,3,0,0,0,0);if(available)*available=space;if(free)*free=space;if(total)*total=sys8(W8_SYS_INFO,4,0,0,0,0);return 1;}
 static int MS f_GetDiskFreeSpaceW(const WCHAR*root,unsigned*sectors,unsigned*bytes,unsigned*free,unsigned*total){uint64_t a=0,b=0;if(!f_GetDiskFreeSpaceExW(root,&a,&b,0))return 0;if(sectors)*sectors=8;if(bytes)*bytes=512;if(free)*free=(unsigned)(a/4096);if(total)*total=(unsigned)(b/4096);return 1;}
@@ -150,7 +165,7 @@ static find8 finds8[16];
 static int wildcard8(const char*pattern,const char*name){const char*star=0,*retry=0;while(*name){if(*pattern=='?'||lower8((uint8_t)*pattern)==lower8((uint8_t)*name)){++pattern;++name;}else if(*pattern=='*'){star=pattern++;retry=name;}else if(star){pattern=star+1;name=++retry;}else return 0;}while(*pattern=='*')++pattern;return !*pattern;}
 static void find_data8(const w8_file_info*info,void*out){memset(out,0,592);uint8_t*b=out;*(uint32_t*)b=info->attributes;memcpy(b+4,info->time,24);*(uint32_t*)(b+28)=(uint32_t)(info->size>>32);*(uint32_t*)(b+32)=(uint32_t)info->size;utf8_to16(info->name,(WCHAR*)(b+44),260);}
 static int next_find8(find8*f,void*out){if(f->single){if(f->index)return 0;f->index=1;find_data8(&f->item,out);return 1;}for(;;){int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)f->folder,(uint64_t)&f->item,f->index,0,0);if(next<=0)return 0;f->index=(unsigned)next;if(wildcard8(f->pattern,f->item.name)){find_data8(&f->item,out);return 1;}}}
-static HANDLE MS f_FindFirstFileW(const WCHAR*name,void*out){char path[256];if(!out||!nativepath8(name,path)){last8(3);return UINT64_MAX;}unsigned id=0;while(id<16&&finds8[id].live)++id;if(id==16){last8(4);return UINT64_MAX;}find8*f=finds8+id;memset(f,0,sizeof(*f));unsigned wild=0;for(unsigned i=0;path[i];++i)if(path[i]=='*'||path[i]=='?')wild=1;
+static HANDLE MS f_FindFirstFileW(const WCHAR*name,void*out){char path[256];if(!out){last8(87);return UINT64_MAX;}if(!nativepath_mode143(name,path,1))return UINT64_MAX;unsigned id=0;while(id<16&&finds8[id].live)++id;if(id==16){last8(4);return UINT64_MAX;}find8*f=finds8+id;memset(f,0,sizeof(*f));unsigned wild=0;for(unsigned i=0;path[i];++i)if(path[i]=='*'||path[i]=='?')wild=1;
  if(!wild){if(stat8(path,&f->item)){last8(2);return UINT64_MAX;}f->single=1;}else{char*last=0;for(unsigned i=0;path[i];++i)if(path[i]=='/')last=path+i;if(!last){last8(3);return UINT64_MAX;}copy8(f->pattern,last+1,256);*last=0;copy8(f->folder,path,256);}
  if(!next_find8(f,out)){last8(2);return UINT64_MAX;}f->live=1;return 0x2000+id;
 }
@@ -279,7 +294,7 @@ static const api8 api8_table[]={
  {"_iob",iob8,2},{"__initenv",&initenv8,2},{"_fmode",&fmode8,2},{"_commode",&commode8,2},
  {"__CxxFrameHandler",guard_cxx8,2},{"_CxxThrowException",guard_cxx8,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",f___C_specific_handler,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
  API8(CreateProcessW,1),API8(CreateProcessA,1),API8(GetExitCodeProcess,1),API8(GetProcessId,1),API8(TerminateProcess,1),API8(GetStartupInfoW,1),API8(GetStartupInfoA,1),API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
- API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
+ API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetFullPathNameW,1),API8(GetFullPathNameA,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
  API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateWaitableTimerW,1),API8(SetWaitableTimer,1),API8(CancelWaitableTimer,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(OpenSemaphoreW,1),API8(OpenWaitableTimerW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(GetThreadId,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
  API8(CharUpperW,4),API8(CharPrevExA,4),API8(LookupPrivilegeValueW,5),API8(OpenProcessToken,5),API8(AdjustTokenPrivileges,5),API8(GetFileSecurityW,5),API8(SetFileSecurityW,5),API8(SystemFunction036,5),API8(RegOpenKeyExW,5),API8(RegQueryValueExW,5),API8(RegCloseKey,5)
@@ -291,7 +306,7 @@ void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provide
 void init_win8(void){
  if(sys8(W8_SYS_EXCEPTION_REGISTER,(uint64_t)(uintptr_t)exception_entry142,0,0,0,0))fail8("Native exception dispatcher registration failed.");
  char win[512];if(job8->startup_command[0])copy8(command_utf8,job8->startup_command,sizeof(command_utf8));else{winpath8(job8->source,win,sizeof(win));copy8(command_utf8,"\"",sizeof(command_utf8));append8(command_utf8,win,sizeof(command_utf8));append8(command_utf8,"\" ",sizeof(command_utf8));append8(command_utf8,job8->arguments,sizeof(command_utf8));}if(utf8_to16(command_utf8,command8,1200)<0)fail8("Windows command line exceeds its bound.");
- char cwd[256];if(job8->startup_directory[0])copy8(cwd,job8->startup_directory,256);else{copy8(cwd,job8->user_root,256);append8(cwd,"/Documents",256);}winpath8(cwd,win,sizeof(win));if(utf8_to16(win,cwd8,256)<0)fail8("Windows working directory is too long.");
+ char cwd[256];if(job8->startup_directory[0])copy8(cwd,job8->startup_directory,256);else{copy8(cwd,job8->user_root,256);append8(cwd,"/Documents",256);}winpath8(cwd,win,sizeof(win));if(utf8_to16(win,cwd8,512)<0)fail8("Windows working directory is too long.");
  unsigned at=0,out=0;while(command_utf8[at]&&argc8<63){while(command_utf8[at]==' '||command_utf8[at]=='\t')++at;if(!command_utf8[at])break;argv8[argc8++]=argv_text8+out;unsigned quoted=0;while(command_utf8[at]){char c=command_utf8[at++];if(c=='\"'){quoted^=1;continue;}if(!quoted&&(c==' '||c=='\t'))break;if(out+1>=sizeof(argv_text8))fail8("Windows arguments exceed their bound.");argv_text8[out++]=c;}argv_text8[out++]=0;}argv8[argc8]=0;
  for(unsigned i=0;i<3;++i){iob8[i].file=i;iob8[i].flags=i?2:1;}process_started8=sys8(W8_SYS_TIME,0,0,0,0,0);(void)process_started8;(void)app_type8;(void)error8;(void)file_oem8;(void)ignore_console8;
 }

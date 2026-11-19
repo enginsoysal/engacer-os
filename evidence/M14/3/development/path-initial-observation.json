@@ -1,0 +1,6 @@
+{
+  "scope": "Initial host path-policy check, not native qualification",
+  "passed": false,
+  "failure": "A valid extended C-drive path was refused with status 123 because the empty-component check also saw the ordinary separator after a parsed component.",
+  "correction": "Consume that single extended-path separator after the completed component; retain refusal of doubled empty components, dot traversal and non-C device/UNC forms."
+}

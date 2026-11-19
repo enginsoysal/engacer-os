@@ -57,4 +57,4 @@ Historical guides remain available for the exact versions they describe. Their l
 
 M13.13 used the owner's revised ninety-minute stability gate, with 108.78 minutes observed. The original eight-hour/two-hour gates did not pass. M13.7/M13.8 historical freeze causes are not independently established. Named VM checks are not universal hardware or unlimited-uptime qualification. Accepted evidence remains immutable.
 
-[Online documentation and downloads](https://engaceros.brixcanvas.com) are published from canonical GitHub Markdown and official release assets. Whole-system CPU/RAM/storage efficiency remains a core requirement; M14.25 is the mandatory optimization gate.
+[Online documentation and downloads](https://engaceros.brixcanvas.com) are published from canonical GitHub Markdown and official release assets. Whole-system CPU/RAM/storage efficiency remains a core requirement; M14.15 is the mandatory optimization gate.

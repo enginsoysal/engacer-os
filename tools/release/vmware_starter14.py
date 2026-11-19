@@ -16,6 +16,22 @@ from m8 import privacy_input
 spec=importlib.util.spec_from_file_location('starter11',ROOT/'tools/release/vmware_starter11.py')
 base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
 
+def current_notices14():
+    """Current source notices do not depend on retaining an old release ZIP."""
+    text=('Engacer OS M14 third-party notices\n\n'
+          'Original Engacer OS contributions: MIT; see LICENSE below.\n'
+          'Source: https://github.com/enginsoysal/engacer-os\n'
+          'Third-party components retain their own licenses and pinned provenance.\n'
+          'Unicode simple-fold data uses Unicode-3.0, not a Windows NLS equivalence claim.\n\n')
+    paths=['LICENSE','third_party/bearssl/LICENSE.txt','third_party/bearssl/provenance.json',
+           'third_party/mozilla-ca/LICENSE.txt','third_party/mozilla-ca/README.md',
+           'third_party/mozilla-ca/provenance.json','third_party/inter/OFL.txt',
+           'third_party/miniz/LICENSE','third_party/7zip/LICENSE.txt',
+           'third_party/libmspack/COPYING.LIB','third_party/unicode/LICENSE.txt',
+           'third_party/unicode/provenance.json']
+    for path in paths:text+='\n===== '+path+' =====\n\n'+(ROOT/path).read_text(encoding='utf-8')+'\n'
+    return text
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True,choices=range(1,16));args=parser.parse_args()
     assert not (ROOT/f'evidence/M14/{args.stage}/publication-results.json').exists(),'Published media are immutable'
@@ -29,10 +45,10 @@ def main():
     (folder/'EngacerOS.vmx').write_bytes(base.configuration(image).encode())
     shutil.copyfile(iso,folder/iso.name)
     for source,dest in [('LICENSE','LICENSE'),('third_party/inter/OFL.txt','Inter-OFL.txt'),('third_party/7zip/7z2606-src.tar.xz','7z2606-src.tar.xz'),('third_party/libmspack/COPYING.LIB','libmspack-LGPL-2.1.txt')]:shutil.copyfile(ROOT/source,folder/dest)
-    with zipfile.ZipFile(ROOT/'dist/EngacerOS-M11FINAL-VMware.zip') as old:
-        notices=old.read('EngacerOS/THIRD-PARTY-NOTICES.txt').decode().replace('Engacer OS M11 third-party notices','Engacer OS M14 third-party notices',1)
-    if args.stage>=3:
-        notices+='\n\nUnicode simple case-fold data: Unicode-3.0\n\n'+(ROOT/'third_party/unicode/LICENSE.txt').read_text(encoding='utf-8')
+    if args.stage>=3:notices=current_notices14()
+    else:
+        with zipfile.ZipFile(ROOT/'dist/EngacerOS-M11FINAL-VMware.zip') as old:
+            notices=old.read('EngacerOS/THIRD-PARTY-NOTICES.txt').decode('utf-8').replace('Engacer OS M11 third-party notices','Engacer OS M14 third-party notices',1)
     (folder/'THIRD-PARTY-NOTICES.txt').write_bytes(notices.encode())
     text=(f'ENGACER OS M14.{args.stage}\n\nExtract the complete ZIP into an ordinary local folder. Open EngacerOS.vmx.\nChoose I Copied It if asked. Start and follow the graphical installer.\nSelect the disk row, review erasure and install, then choose Restart to Engacer OS.\nThe matching ISO may remain connected. Keep the installed disk attached.\n\nA new blank growable 20-GiB SATA disk is included; it is not preinstalled.\n128 MiB RAM, two CPUs, UEFI, Secure Boot off. All shipped devices remain enabled.\nThe matching release guide states the exact tested stage scope and limitations.\nhttps://engaceros.brixcanvas.com/blog/documentation\nhttps://github.com/enginsoysal/engacer-os\n')
     (folder/'START-HERE.txt').write_bytes(text.encode())

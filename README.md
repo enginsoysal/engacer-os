@@ -25,9 +25,9 @@ Windows program instructions execute through Engacer OS's own compatibility APIs
 - [Child-process ownership](docs/architecture/children-m142.md)
 - [Shared synchronization and limits](docs/architecture/synchronization-m142.md)
 - [Exception dispatch and unwind scope](docs/architecture/exceptions-m142.md)
-- [Ordered M14.0-M14.25 plan](docs/milestones/m14.md)
+- [Ordered M14.0-M14.15 plan](docs/milestones/m14.md)
 
-M14.25 is the mandatory whole-system CPU/RAM/storage optimization gate. Resource bounds, idle halt, peak usage and retained memory are measured separately; configured guest RAM is not total OS consumption. M15 covers Windows x86 and M16 covers Win16/DOS. Each stage closes tests, English guides, GitHub delivery and actual website verification before the next.
+M14.15 is the mandatory whole-system CPU/RAM/storage optimization gate. Resource bounds, idle halt, peak usage and retained memory are measured separately; configured guest RAM is not total OS consumption. M15 covers Windows x86 and M16 covers Win16/DOS. Each stage closes tests, English guides, GitHub delivery and actual website verification before the next.
 
 ## Current development: M14.3
 

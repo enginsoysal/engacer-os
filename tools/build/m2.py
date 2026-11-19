@@ -67,7 +67,15 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m10:sources.extend(sorted((ROOT/'tools/build').glob('m10*.py')))
     if m11:sources.extend(sorted((ROOT/'tools/build').glob('m11*.py')))
     if m12:sources.extend(sorted((ROOT/'tools/build').glob('m12*.py')))
-    if m14:sources.extend(sorted((ROOT/'tools/build').glob('m14*.py')))
+    if m14:
+        sources.extend(sorted((ROOT/'tools/build').glob('m14*.py')))
+        sources.append(ROOT/'tools/build/unicode143.py')
+        sources.extend(ROOT/'third_party/unicode'/name for name in ('LICENSE.txt','provenance.json','case-map143.json'))
+        unicode=json.loads((ROOT/'third_party/unicode/provenance.json').read_text(encoding='utf-8'))
+        mapping=json.loads((ROOT/'third_party/unicode/case-map143.json').read_text(encoding='utf-8'))
+        if sha(ROOT/'third_party/unicode/LICENSE.txt')!=unicode['sources']['license']['sha256']:raise ValueError('Pinned Unicode license changed')
+        if sha(ROOT/'kernel/windows8/unicode-table143.inc')!=mapping['generated_sha256']:raise ValueError('Generated Unicode case data changed')
+        if mapping['source_sha256']!=unicode['sources']['case_folding']['sha256'] or mapping['read_only_component_bytes']>4096:raise ValueError('Unicode case provenance or component budget changed')
     if m13:sources.extend(sorted((ROOT/'tools/build').glob('m13*.py')))
     if m12:sources.extend([ROOT/'tools/design/components12.py',ROOT/'tools/design/icons12.py'])
     hashes={p.relative_to(ROOT).as_posix():sha(p) for p in sorted(sources)}

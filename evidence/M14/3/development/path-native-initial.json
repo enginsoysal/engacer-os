@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "stage": "M14.3 development",
+  "scope": "Synthetic native path syscall and resource regression only",
+  "build_id": "a9544396469dda7a62b514c651db6869",
+  "clone": {
+    "source_sha256": "23ece211d750a5ec6fc115b6d4339adb1f4058419eca42d4729a9a03da6a023e",
+    "clone_sha256": "23ece211d750a5ec6fc115b6d4339adb1f4058419eca42d4729a9a03da6a023e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "owned_fixture": "d9131d2e7d334c88ae09da653d2fe15d",
+  "fixture_sha256": "d92600b4cd4c5a388a4c04738599d801cad1d25665f68db0475cfbebf26a62f4",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\path143_native.py\", line 35, in main\n    warm=task(g,p,12005);assert 'M143_NATIVE_PATH_BOUNDARY_PASS' in warm,warm\n  File \"<project-root>\\tests\\m14\\apps_native3.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: The Windows image has no usable relocation directory. OUTPUT Mapped original image: 7z.exe bytes=12288 source-fnv32=2871713279\n\nEngacer OS: The Windows image has no usable relocation directory.\n\n"
+}
