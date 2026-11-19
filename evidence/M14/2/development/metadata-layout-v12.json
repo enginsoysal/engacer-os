@@ -1,0 +1,22 @@
+{
+  "scope": "Compiler-derived component storage, not total OS RAM or native lifecycle proof",
+  "production_source_sha256": "80507454b270fe200d2306a9ecc666ce571447dcfc02d65878dbf381493e3842",
+  "private_record_bytes": 181920,
+  "shared_sync_record_bytes": 512,
+  "metadata_pages_per_active_process": 45,
+  "metadata_capacity_bytes_per_process": 196608,
+  "process_slots": 4,
+  "shared_sync_slots": 128,
+  "shared_sync_records_per_page": 8,
+  "shared_sync_pages_when_unused": 0,
+  "shared_sync_maximum_pages": 16,
+  "fixed_sync_component_administration_bytes": 264,
+  "limits": {
+    "created_objects_per_process": 32,
+    "handles_per_process": 64,
+    "handles_per_wait": 32,
+    "name_utf16_units": 95
+  },
+  "synchronization_source_sha256": "f95a73d67cee324254a377233240cb32d8a78a609b26ecea8e5cb428ef5e7731",
+  "fixed_sync_component_storage_excludes_linker_padding": true
+}

@@ -14,7 +14,7 @@ static uint64_t new_process_handle142(unsigned object,unsigned kind){
 }
 static int64_t close_process_handle142(uint64_t handle){int slot=process_handle_slot142(handle);if(slot<0)return -1;process_handle142*h=spaces142[active_space142]->handles+slot;unsigned object=h->object;h->live=0;--process_objects142[object].refs;drop_process_object142(object);return 0;}
 static void release_grants142(void){for(unsigned i=0;i<32;++i){process_handle142*h=spaces142[active_space142]->handles+i;if(h->live){unsigned object=h->object;h->live=0;if(object<32&&process_objects142[object].used&&process_objects142[object].refs){--process_objects142[object].refs;drop_process_object142(object);}}}}
-static void wake_process_waiters142(void){for(unsigned p=0;p<SPACES142;++p)if(spaces142[p]){++spaces142[p]->wait_epoch;for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_PARK){t->state=T142_READY;t->frame.rax=0;}}}}
+static void wake_process_waiters142(void){for(unsigned p=0;p<SPACES142;++p)if(spaces142[p]){++spaces142[p]->wait_epoch;for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_PARK){t->state=T142_READY;t->frame.rax=0;}}}refresh_sync_waits142();}
 static int64_t process_status142(uint64_t handle,uint64_t output,unsigned required){
  process_object142*o;unsigned kind;if(handle==UINT64_MAX){if(required==2)return -1;o=process_objects142+spaces142[active_space142]->object;kind=1;}
  else{int slot=process_handle_slot142(handle);if(slot<0)return -1;process_handle142*h=spaces142[active_space142]->handles+slot;kind=h->kind;if(required&&kind!=required)return -1;o=process_objects142+h->object;}

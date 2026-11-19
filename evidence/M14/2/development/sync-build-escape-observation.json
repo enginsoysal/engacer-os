@@ -1,0 +1,6 @@
+{
+  "scope": "Development compile observation, not a runtime test",
+  "passed": false,
+  "failure": "The first new named-object broker build used an incorrectly escaped namespace separator character. The compiler refused it under -Werror.",
+  "correction": "Use an explicit UTF-16 backslash separator constant and rebuild; do not weaken compiler checks."
+}

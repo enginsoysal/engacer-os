@@ -16,20 +16,21 @@ typedef struct {uint64_t magic;metadata8 records[128];} metadata_database142;
 #define THREADS142 16u
 #define THREAD_STACK142(i) (UINT64_C(0x104000000)+(uint64_t)(i)*0x200000)
 #define THREAD_TEB142(i) (W8_TEB+(uint64_t)(i)*0x10000)
-enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED};
+enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED,T142_OBJECT};
 typedef struct {
  trap_frame frame;_Alignas(16) uint8_t fx[512];
  uint64_t deadline,address,teb,low,top;
  unsigned state,generation,code,closed,exiting,exception_depth;
- uint64_t exception_stack,exception_packets[4];
+ uint64_t exception_stack,exception_packets[4],wait_handles[32];unsigned wait_count,wait_all;
 } thread142;
 typedef struct {unsigned live,generation,object,kind;} process_handle142;
+typedef struct {unsigned live,generation,object,access;} sync_cap142;
 typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code,refs,slot;} process_object142;
 typedef struct {
  metadata_database142 database;
  uint64_t owned[OWN8],cr3,pd,entry,write_pages[WRITE8_PAGES],virtual_pages,lazy_faults;
  unsigned count,writer,write_count,cancel,metadata_dirty,created_root,current,cursor,object;
- process_handle142 handles[32];
+ process_handle142 handles[32];sync_cap142 sync_handles[64];
  uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
  w8_info child_info;
 } private_space142;
@@ -48,7 +49,10 @@ static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t p
 static uint64_t old_gs8;static w8_info info8;static w8_info*const root_info142=&info8;static uint8_t io8[4096];
 #define info8 (*(active_space142?&spaces142[active_space142]->child_info:root_info142))
 extern void timer_claim142(unsigned,unsigned);
-static unsigned timer_needed142;
+static unsigned timer_needed142,sync_resident142;
+static void refresh_sync_waits142(void);
+static unsigned sync_deadline_needed142(void);
+static void release_sync_grants142(void);
 volatile unsigned w8_active;
 uint64_t w8_saved_rsp,w8_kernel_cr3;
 #define metadata8_db (spaces142[active_space142]->database)
@@ -103,7 +107,7 @@ static unsigned length8(const char*s){unsigned n=0;while(s[n])++n;return n;}
 static int equal8(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
 static void copy8(char*out,const char*in,unsigned cap){unsigned n=0;while(n+1<cap&&in[n]){out[n]=in[n];++n;}out[n]=0;}
 static int prefix8(const char*p,const char*root){unsigned n=length8(root);return n&&(!memcmp(p,root,n))&&(p[n]=='/'||!p[n]);}
-static void group_peak142(void){uint64_t total=0;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count+spaces142[i]->write_count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
+static void group_peak142(void){uint64_t total=sync_resident142;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count+spaces142[i]->write_count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
 static void peak8(void){if((uint64_t)count8+write_count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+write_count8+metadata_pages142[active_space142];group_peak142();}
 static uint64_t allocate8(void){if(count8==OWN8)return 0;uint64_t p=page_alloc();if(p)owned8[count8++]=p;peak8();return p;}
 static uint64_t *pte8(uint64_t va,unsigned create){
@@ -162,7 +166,7 @@ static void metadata_path8(char*out){copy8(out,input8.product_root,256);unsigned
 static void finish8(unsigned status){snapshot8();info8.status=status;info8.state=status?3:2;if(metadata8_dirty&&input8.command==W8_RUN){char path[256];metadata_path8(path);if(v6_put(m6_volume(),path,sizeof(metadata8_db),memory_source8,&metadata8_db)){info8.status=1;info8.state=3;copy8(info8.message,"Windows file metadata could not be saved.",sizeof(info8.message));}}
  for(unsigned i=0;i<32;++i)if(files8[i].live)(void)close8(i,0);w8_active=0;w8_escape();}
 static void release_grants142(void);
-static void release8(void){if(!spaces142[active_space142])return;release_grants142();write_clear8();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
+static void release8(void){if(!spaces142[active_space142])return;release_sync_grants142();release_grants142();write_clear8();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
 
 static void reap_threads142(void){
  for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED)continue;
@@ -212,9 +216,10 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  failure:release8();if(!slot){root_info142->state=3;root_info142->status=1;copy8(root_info142->message,"The protected Windows runtime could not be loaded.",sizeof(root_info142->message));++root_info142->revision;}return V6_INVALID;
 }
 #include "process142.inc"
+#include "sync142.inc"
 unsigned w8_pending(void){for(unsigned i=0;i<SPACES142;++i)if(spaces142[i])return 1;return 0;}
 unsigned w8_runnable(void){
- unsigned runnable=0,needed=0;uint64_t now=m3_clock_ticks()*10;
+ refresh_sync_waits142();unsigned runnable=0,needed=sync_deadline_needed142();uint64_t now=m3_clock_ticks()*10;
  for(unsigned p=0;p<SPACES142;++p)if(spaces142[p])for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_READY)runnable=1;if((t->state==T142_SLEEP||t->state==T142_PARK)&&t->deadline!=UINT64_MAX){needed=1;if(now>=t->deadline)runnable=1;}}
  timer_needed142=needed;timer_claim142(1,needed);return runnable;
 }
@@ -249,6 +254,10 @@ static int64_t dispatch8(trap_frame*f){
  switch(f->rax){
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
+ case W8_SYS_SYNC_CREATE:return create_sync142(a,b,c);
+ case W8_SYS_SYNC_OPERATION:return operate_sync142(a,b,c,d);
+ case W8_SYS_SYNC_CLOSE:return close_sync142(a);
+ case W8_SYS_WAIT_OBJECTS:return wait_objects142(f,a);
  case W8_SYS_PROCESS_EPOCH:return (int64_t)spaces142[active_space142]->wait_epoch;
  case W8_SYS_EXCEPTION_REGISTER:if(!access_exception142(a,4))return -1;spaces142[active_space142]->exception_entry=a;return 0;
  case W8_SYS_EXCEPTION_RETURN:return return_exception142(f,a);
@@ -319,7 +328,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_THREAD_EXIT:{
   threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;if(!current142){process_object142*o=process_objects142+spaces142[active_space142]->object;o->primary_done=1;o->primary_code=(unsigned)a;wake_process_waiters142();}
   ++spaces142[active_space142]->wait_epoch;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}
-  unsigned live=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED)++live;
+  refresh_sync_waits142();unsigned live=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED)++live;
   if(!live){threads142[current142].state=T142_READY;return 1;}context8=*f;w8_active=0;w8_escape();break;
  }
  case W8_SYS_SLEEP:case W8_SYS_PARK:{

@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "build_id": "08c59243fbe774363546a5271575797c",
+  "synthetic": true,
+  "scope": "Native UI cancellation of four private processes blocked on the same shared named event",
+  "samples": [
+    {
+      "turn": 1,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 4
+    },
+    {
+      "turn": 2,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 3,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 4,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 5,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 6,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 7,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 8,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 9,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 10,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 11,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 12,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 13,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 14,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 15,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 16,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 17,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 18,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 19,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 20,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 21,
+      "halted_cpus_observed_while_blocked": 2,
+      "retained_pages": 0
+    }
+  ],
+  "fixture_sha256": "fd807a94c26e6121818b857fdbf1be7d95d25cca5389bca625c64c9cae84be19"
+}
