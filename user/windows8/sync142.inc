@@ -53,7 +53,7 @@ static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,
  if(!count||count>32||!handles){last8(87);return UINT32_MAX;}HANDLE list[32];memcpy(list,handles,count*sizeof(HANDLE));
  for(unsigned i=0;i<count;++i)for(unsigned j=0;j<i;++j)if(list[i]==list[j]){last8(87);return UINT32_MAX;}
  uint64_t start=sys8(W8_SYS_TIME,0,0,0,0,0);
- for(;;){lock_enter142(&event_lock142);unsigned ready=0,first=UINT32_MAX,error=0;uint64_t now=sys8(W8_SYS_TIME,0,0,0,0,0),next=UINT64_MAX;object142*seen[32]={0};
+ for(;;){uint64_t process_epoch=sys8(W8_SYS_PROCESS_EPOCH,0,0,0,0,0);lock_enter142(&event_lock142);unsigned ready=0,first=UINT32_MAX,error=0;uint64_t now=sys8(W8_SYS_TIME,0,0,0,0,0),next=UINT64_MAX;object142*seen[32]={0};
   for(unsigned i=0;i<count;++i){HANDLE h=list[i];int signaled=0;
    if((h&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG){int64_t state=(int64_t)sys8(W8_SYS_PROCESS_STATUS,h,0,0,0,0);if(state<0)error=6;else signaled=state==0;}
    else if(h==UINT64_MAX){signaled=0;}
@@ -68,7 +68,7 @@ static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,
   uint32_t sequence=__atomic_load_n(&event_sequence142,__ATOMIC_ACQUIRE);lock_leave142(&event_lock142);
   uint64_t elapsed=now-start;if(timeout!=UINT32_MAX&&elapsed>=timeout)return 258;
   uint64_t delay=timeout==UINT32_MAX?UINT32_MAX:timeout-elapsed;if(next!=UINT64_MAX&&next>now&&next-now<delay)delay=next-now;
-  if((int64_t)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&event_sequence142,sequence,delay,0,0)<0){last8(87);return UINT32_MAX;}
+  if((int64_t)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&event_sequence142,sequence,delay,process_epoch,1)<0){last8(87);return UINT32_MAX;}
  }
 }
 static unsigned MS f_WaitForSingleObject(HANDLE h,unsigned timeout){return f_WaitForMultipleObjects(1,&h,0,timeout);}

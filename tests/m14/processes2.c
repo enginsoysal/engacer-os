@@ -1,4 +1,6 @@
 /* Synthetic process ownership probe, plus concurrent original 7-Zip children. */
+#define W8_USER
+#include <engine/windows8.h>
 typedef unsigned long long U;typedef unsigned short W;
 typedef struct {unsigned size,pad;U reserved,desktop,title;unsigned x,y,width,height,columns,rows,fill,flags;W show,reserved_bytes;unsigned pad2;U reserved_data,input,output,error;} SI;
 typedef struct {U process,thread;unsigned pid,tid;} PI;
@@ -20,6 +22,7 @@ __declspec(dllimport) int TerminateProcess(U,unsigned);
 __declspec(dllimport) int CloseHandle(U);
 __declspec(dllimport) int DeleteFileW(const W*);
 __declspec(dllimport) unsigned GetLastError(void);
+__declspec(dllimport) unsigned GetTickCount(void);
 __declspec(dllimport) void ExitProcess(unsigned);
 __declspec(dllimport) void Sleep(unsigned);
 __declspec(dllimport) U GetStdHandle(unsigned);
@@ -29,6 +32,7 @@ __declspec(dllimport) W* GetCommandLineW(void);
 __declspec(dllimport) unsigned TlsAlloc(void);
 __declspec(dllimport) int TlsSetValue(unsigned,U);
 __declspec(dllimport) U TlsGetValue(unsigned);
+static U kernel_call142(U n,U a,U b,U c,U d,U e){register U r8 __asm__("r8")=e;register U r10 __asm__("r10")=d;__asm__ volatile("int $0x80":"+a"(n):"D"(a),"S"(b),"d"(c),"r"(r10),"r"(r8):"memory","rcx","r11");return n;}
 static volatile unsigned private_value=17;
 static void print(const char*s,unsigned n){unsigned wrote;WriteFile(GetStdHandle((unsigned)-11),s,n,&wrote,0);}
 static int same(const W*a,const W*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
@@ -60,6 +64,8 @@ void entry(void){
  if(WaitForSingleObject(faulted.process,10000)!=0||!GetExitCodeProcess(faulted.process,&ca)||ca!=0xc0000005u||private_value!=42||TlsGetValue(0)!=42)ExitProcess(98);close_pi(faulted);
  PI worker_child=spawn(L"C:\\Program Files\\7-Zip\\child.exe",L"child.exe worker",0);
  if(WaitForSingleObject(worker_child.thread,10000)!=0||!GetExitCodeThread(worker_child.thread,&ta)||ta!=5||WaitForSingleObject(worker_child.process,0)!=258||!GetExitCodeProcess(worker_child.process,&ca)||ca!=259||WaitForSingleObject(worker_child.process,10000)!=0||!GetExitCodeProcess(worker_child.process,&ca)||ca!=23)ExitProcess(99);close_pi(worker_child);
+ U observed_epoch=kernel_call142(W8_SYS_PROCESS_EPOCH,0,0,0,0,0);PI raced=spawn(L"C:\\Program Files\\7-Zip\\child.exe",L"child.exe alpha",0);if(WaitForSingleObject(raced.process,10000))ExitProcess(100);close_pi(raced);volatile unsigned unchanged_word=0;unsigned before_tick=GetTickCount();if(kernel_call142(W8_SYS_PARK,(U)&unchanged_word,0,2000,observed_epoch,1)||(unsigned)(GetTickCount()-before_tick)>=500)ExitProcess(101);
+ static const char epoch_ok[]="M142_LIFETIME_PARK_EPOCH_PASS\n";print(epoch_ok,sizeof(epoch_ok)-1);
  DeleteFileW(L"child-a.zip");DeleteFileW(L"child-b.zip");
  PI archive_a=spawn(L"C:\\Program Files\\7-Zip\\original7z.exe",L"original7z.exe a -tzip -mx=1 -mmt=off -y child-a.zip child-input.txt",0);
  PI archive_b=spawn(L"C:\\Program Files\\7-Zip\\original7z.exe",L"original7z.exe a -tzip -mx=1 -mmt=off -y child-b.zip child-input.txt",0);

@@ -15,7 +15,7 @@ def main():
     assert proof['passed'] and proof.get('stage') == f'M14.{args.stage-1}', 'Close the preceding public delivery first'
     assert not (ROOT / f'evidence/M14/{args.stage}/publication-results.json').exists(), 'Accepted media are immutable'
     profile = ROOT / 'distros/engacer-desktop-m14.json'
-    assert json.loads(profile.read_text())['version'] == f'0.14.{args.stage}'
+    assert json.loads(profile.read_text(encoding='utf-8'))['version'] == f'0.14.{args.stage}'
     build('stage'+str(args.stage), profile, m14=True)
 
 if __name__ == '__main__':

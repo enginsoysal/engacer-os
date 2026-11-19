@@ -26,5 +26,5 @@ static NORETURN void exception_entry142(w8_exception_packet142*packet){
  if(!handled)handled=pe8_exception_dispatch(&packet->record,&packet->context);
  if(!handled){lock_enter142(&exception_lock142);uint64_t filter=unhandled_filter142;lock_leave142(&exception_lock142);if(filter&&((int(MS*)(w8_exception_pointers142*))(uintptr_t)filter)(&packet->pointers)==-1)handled=1;}
  if(handled&&!(packet->record.flags&1)){count=snapshot_exception_handlers142(2,handlers);for(unsigned i=0;i<count;++i)((int(MS*)(w8_exception_pointers142*))(uintptr_t)handlers[i].callback)(&packet->pointers);sys8(W8_SYS_EXCEPTION_RETURN,(uint64_t)(uintptr_t)packet,0,0,0,0);exit8(0xc0000028u);}
- print8("The Windows process ended after an unhandled native exception. Structured unwinding remains unavailable in this development profile.\n");exit8(packet->record.code);
+ print8("The Windows process ended after an unhandled native exception.\n");exit8(packet->record.code);
 }

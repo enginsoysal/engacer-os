@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[2]
 def main():
  out=ROOT/'build/m14-native/stage2/unwind';out.mkdir(parents=True,exist_ok=True)
  meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));baseline=json.loads((ROOT/'build/m14-native/stage2/compact/results.json').read_text(encoding='utf-8'));assert baseline['passed'] and baseline['build_id']==meta['build_id']
- source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage2-compact'/baseline['owned_fixture']/'owned.img';work,disk,_=clone(ui,source,'m142-unwind');report=dict(passed=False,build_id=meta['build_id'],scope='Native compiler-generated C try/except and try/finally through AMD64 stack unwinding; not C++ exception qualification')
+ source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage2-compact'/baseline['owned_fixture']/'owned.img';work,disk,_=clone(ui,source,'m142-unwind');report=dict(passed=False,build_id=meta['build_id'],scope='Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification')
  product='/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}'
  try:
   boot=ui.guest(work/'prepare',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
@@ -23,7 +23,7 @@ def main():
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);text=task(g,p,12005);assert 'M142_C_SEH_FINALLY_UNWIND_PASS' in text,text;before=f.stats(g)[0];samples=[]
    for n in range(20):
     text=task(g,p,12005);assert 'M142_C_SEH_FINALLY_UNWIND_PASS' in text,text;delta=f.stats(g)[0]-before;assert delta==0,(n,delta);samples.append(dict(turn=n+1,retained_pages=delta))
-   report.update(passed=True,samples=samples,output=text,fixture_sha256=hashlib.sha256(binary).hexdigest(),handled_faults_per_execution=12);t.close_all(g,p);t.launch(g,p,'clock',8);t.close_all(g,p);(out/'native.log').write_bytes(g.log().encode('utf-8'))
+   report.update(passed=True,samples=samples,output=text,fixture_sha256=hashlib.sha256(binary).hexdigest(),handled_faults_per_execution=60);t.close_all(g,p);t.launch(g,p,'clock',8);t.close_all(g,p);(out/'native.log').write_bytes(g.log().encode('utf-8'))
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
  finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode('utf-8'));print(json.dumps(report,indent=2),flush=True)
 if __name__=='__main__':main()

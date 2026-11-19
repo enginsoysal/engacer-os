@@ -1,7 +1,7 @@
 /* Checked version-1 AMD64 virtual unwinding and C scope dispatch. */
 typedef struct {uint64_t control_pc,image_base,function,establisher,target_ip,context,handler,handler_data,history;uint32_t scope_index,pad;} dispatcher_context142;
 _Static_assert(sizeof(dispatcher_context142)==80,"Windows dispatcher context ABI");
-typedef struct {module141*module;uint8_t*function;uint64_t pc,establisher,handler,data;} unwind_frame142;
+typedef struct {module141*module;uint8_t*function;uint64_t pc,establisher,handler,data;unsigned handler_flags;} unwind_frame142;
 typedef struct seh_state142 {struct seh_state142*previous;w8_context142*original;uint64_t target,frame,function;w8_context142 selected;unsigned chosen;} seh_state142;
 static seh_state142*seh_states142[16];
 static NORETURN void unwind_fail142(const char*message){print8(message);print8("\n");exit8(0xc0000027u);}
@@ -9,7 +9,7 @@ static void checked_unwind_read142(uint64_t address,void*out,unsigned bytes){if(
 static uint64_t stack_word142(uint64_t address){uint64_t value;checked_unwind_read142(address,&value,8);return value;}
 static unsigned nonvolatile142(unsigned reg){return reg==3||reg==5||reg==6||reg==7||reg>=12;}
 static uint64_t*context_register142(w8_context142*c,unsigned reg){if(reg>15)unwind_fail142("The unwind register index is invalid.");return &c->rax+reg;}
-static uint8_t*unwind_data142(module141*m,uint64_t rva,unsigned bytes){if(!range141(rva,bytes,m->size)||sys8(W8_SYS_ACCESS,(uint64_t)m->base+rva,bytes,1,0,0))unwind_fail142("Windows unwind data is outside readable image pages.");return m->base+rva;}
+static uint8_t*unwind_data142(module141*m,uint64_t rva,unsigned bytes){if(!range141(rva,bytes,m->size)||(bytes&&sys8(W8_SYS_ACCESS,(uint64_t)m->base+rva,bytes,1,0,0)))unwind_fail142("Windows unwind data is outside readable image pages.");return m->base+rva;}
 static module141*unwind_image142(uint64_t pc){for(unsigned i=0;i<MODULES141;++i){module141*m=modules141+i;uint64_t base=(uint64_t)m->base;if(m->state==2&&pc>=base&&pc-base<m->size)return m;}return 0;}
 static uint8_t*unwind_function142(module141*m,uint64_t pc){unsigned low=0,high=m->unwind_bytes/12;uint32_t offset=(uint32_t)(pc-(uint64_t)m->base);while(low<high){unsigned at=low+(high-low)/2;uint8_t*f=unwind_data142(m,(uint64_t)m->unwind_rva+at*12,12);if(offset<u32(f))high=at;else if(offset>=u32(f+4))low=at+1;else return f;}return 0;}
 static unsigned epilog_unwind142(module141*m,uint64_t pc,w8_context142*c){
@@ -45,7 +45,7 @@ static void virtual_unwind142(w8_context142*c,uint64_t pc,unwind_frame142*out){
    }i+=slots;
   }
   unsigned padded=((count+1)&~1u)*2;if(flags&4){function=codes+padded;data=u32(function+8);continue;}
-  if((flags&3)&&control>=info[1]){uint32_t handler=u32(codes+padded);if(!range141(handler,1,m->size)||sys8(W8_SYS_ACCESS,(uint64_t)m->base+handler,1,5,0,0))unwind_fail142("The Windows language handler is not executable.");out->handler=(uint64_t)m->base+handler;out->data=(uint64_t)(codes+padded+4);}
+  if((flags&3)&&control>=info[1]){uint32_t handler=u32(codes+padded);if(!range141(handler,1,m->size)||sys8(W8_SYS_ACCESS,(uint64_t)m->base+handler,1,5,0,0))unwind_fail142("The Windows language handler is not executable.");out->handler_flags=flags&3;out->handler=(uint64_t)m->base+handler;out->data=(uint64_t)(codes+padded+4);}
   c->rip=stack_word142(c->rsp);c->rsp+=8;return;
  }unwind_fail142("The Windows chained unwind metadata is cyclic or too deep.");
 }
@@ -60,10 +60,10 @@ int seh_c_specific142(w8_exception_record142*record,uint64_t frame,w8_context142
 }
 unsigned pe8_exception_dispatch(w8_exception_record142*record,w8_context142*context){
  unsigned thread=tid142()&255u;if(thread>=16)return 0;seh_state142 state={.previous=seh_states142[thread],.original=context};seh_states142[thread]=&state;w8_context142 walk=*context;unsigned caller=0;
- for(unsigned depth=0;depth<256;++depth){if(!walk.rip)break;uint64_t pc=walk.rip-(caller?1:0);if(!unwind_image142(pc))break;w8_context142 before=walk;unwind_frame142 frame;virtual_unwind142(&walk,pc,&frame);if(frame.handler){dispatcher_context142 d=dispatcher142(&frame,&before,0);int result=((int(MS*)(w8_exception_record142*,uint64_t,w8_context142*,dispatcher_context142*))(uintptr_t)frame.handler)(record,frame.establisher,context,&d);if(!result){seh_states142[thread]=state.previous;return 1;}if(result!=1)unwind_fail142("The exception language-handler disposition is unsupported.");if(state.chosen)break;}if(walk.rsp<=before.rsp||walk.rsp-before.rsp>8*1024*1024)unwind_fail142("The Windows virtual unwind did not advance its stack.");caller=1;}
+ for(unsigned depth=0;depth<256;++depth){if(!walk.rip)break;uint64_t pc=walk.rip-(caller?1:0);if(!unwind_image142(pc))break;w8_context142 before=walk;unwind_frame142 frame;virtual_unwind142(&walk,pc,&frame);if(frame.handler&&(frame.handler_flags&1)){dispatcher_context142 d=dispatcher142(&frame,&before,0);int result=((int(MS*)(w8_exception_record142*,uint64_t,w8_context142*,dispatcher_context142*))(uintptr_t)frame.handler)(record,frame.establisher,context,&d);if(!result){seh_states142[thread]=state.previous;return 1;}if(result!=1)unwind_fail142("The exception language-handler disposition is unsupported.");if(state.chosen)break;}if(walk.rsp<=before.rsp||walk.rsp-before.rsp>8*1024*1024)unwind_fail142("The Windows virtual unwind did not advance its stack.");caller=1;}
  if(!state.chosen){seh_states142[thread]=state.previous;return 0;}walk=*context;caller=0;unsigned old_flags=record->flags;
  for(unsigned depth=0;depth<256;++depth){uint64_t pc=walk.rip-(caller?1:0);w8_context142 before=walk;unwind_frame142 frame;virtual_unwind142(&walk,pc,&frame);unsigned target=frame.establisher==state.frame&&(uint64_t)frame.function==state.function;record->flags=old_flags|2|(target?32u:0u);
-  if(frame.handler){dispatcher_context142 d=dispatcher142(&frame,&before,state.target);int result=((int(MS*)(w8_exception_record142*,uint64_t,w8_context142*,dispatcher_context142*))(uintptr_t)frame.handler)(record,frame.establisher,context,&d);if(result!=1)unwind_fail142("The unwind language-handler disposition is unsupported.");}
+  if(frame.handler&&(frame.handler_flags&2)){dispatcher_context142 d=dispatcher142(&frame,&before,state.target);int result=((int(MS*)(w8_exception_record142*,uint64_t,w8_context142*,dispatcher_context142*))(uintptr_t)frame.handler)(record,frame.establisher,context,&d);if(result!=1)unwind_fail142("The unwind language-handler disposition is unsupported.");}
   if(target){*context=state.selected;context->rsp=state.frame;context->rip=state.target;context->rax=record->code;record->flags=old_flags;seh_states142[thread]=state.previous;return 1;}caller=1;
  }unwind_fail142("The selected Windows unwind target was not reached.");
 }

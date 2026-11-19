@@ -30,7 +30,7 @@ typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,write_pages[WRITE8_PAGES],virtual_pages,lazy_faults;
  unsigned count,writer,write_count,cancel,metadata_dirty,created_root,current,cursor,object;
  process_handle142 handles[32];
- uint64_t exception_entry;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
+ uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
  w8_info child_info;
 } private_space142;
 #define SPACES142 4u
@@ -245,10 +245,11 @@ static void information8(const v6_entry*e,w8_file_info*out){
 static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i]==page){owned8[i]=owned8[--count8];page_free(page);return;}}
 #include "exception142.inc"
 static int64_t dispatch8(trap_frame*f){
- uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10;char path[256];
+ uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10,e=f->r8;char path[256];
  switch(f->rax){
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
+ case W8_SYS_PROCESS_EPOCH:return (int64_t)spaces142[active_space142]->wait_epoch;
  case W8_SYS_EXCEPTION_REGISTER:if(!access_exception142(a,4))return -1;spaces142[active_space142]->exception_entry=a;return 0;
  case W8_SYS_EXCEPTION_RETURN:return return_exception142(f,a);
  case W8_SYS_VMINFO:{uint64_t values[4]={virtual_pages141,count8,lazy_faults141,OWN8};return user8(a,values,sizeof(values),1)?-1:0;}
@@ -317,13 +318,13 @@ static int64_t dispatch8(trap_frame*f){
  }
  case W8_SYS_THREAD_EXIT:{
   threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;if(!current142){process_object142*o=process_objects142+spaces142[active_space142]->object;o->primary_done=1;o->primary_code=(unsigned)a;wake_process_waiters142();}
-  for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}
+  ++spaces142[active_space142]->wait_epoch;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}
   unsigned live=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED)++live;
   if(!live){threads142[current142].state=T142_READY;return 1;}context8=*f;w8_active=0;w8_escape();break;
  }
  case W8_SYS_SLEEP:case W8_SYS_PARK:{
   unsigned park=f->rax==W8_SYS_PARK;
-  if(park){uint32_t value;if(user8(a,&value,4,0))return -1;if(value!=(uint32_t)b)return 0;}
+  if(park){if(e>1)return -1;if(e&&d!=spaces142[active_space142]->wait_epoch)return 0;uint32_t value;if(user8(a,&value,4,0))return -1;if(value!=(uint32_t)b)return 0;}
   uint64_t delay=park?c:a;if(delay>UINT32_MAX)return -1;
   thread142*t=threads142+current142;t->state=delay?(park?T142_PARK:T142_SLEEP):T142_READY;
   t->address=park?a:0;t->deadline=delay==UINT32_MAX?UINT64_MAX:m3_clock_ticks()*10+delay;

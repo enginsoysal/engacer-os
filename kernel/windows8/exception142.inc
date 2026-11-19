@@ -4,7 +4,7 @@ static unsigned access_exception142(uint64_t address,unsigned permissions){uint6
 static unsigned enter_exception142(trap_frame*f,uint64_t address){
  thread142*t=threads142+current142;uint64_t entry=spaces142[active_space142]->exception_entry;if(!entry||t->exception_depth==4||!access_exception142(entry,4))return 0;
  uint64_t low=EXCEPTION_LOW142(current142),top=low+32768;
- if(!t->exception_stack){if(map8(low,32768,3))return 0;t->exception_stack=low;}
+ if(!t->exception_stack){if(reserve141(low,32768,3,1))return 0;t->exception_stack=low;}
  uint64_t ceiling=t->exception_depth?f->rsp:top;if(ceiling>top||ceiling<low+8192)return 0;
  uint64_t packet=(ceiling-sizeof(w8_exception_packet142)-256)&~UINT64_C(15);if(packet<low+4096)return 0;
  w8_exception_packet142 value={0};w8_context142*c=&value.context;
