@@ -1,6 +1,7 @@
 """Reuse canonical runtime scenarios with isolated M14.3 observation/output paths.
 
-Only source/output identity strings change. Assertions and Windows fixture code
+Source/output identity strings and the explicitly smaller M14.3 metadata-page
+layout expectation change. Functional assertions and Windows fixture code
 remain the canonical scenarios; this is not a requalification of old media.
 """
 import argparse,hashlib,importlib.abc,importlib.util,json,os,sys,types
@@ -17,7 +18,8 @@ CASES={'threads':'thread_native2','tls':'tls_native2','last-thread':'last_thread
 REPLACEMENTS=[('EngacerOS-M14STAGE2','EngacerOS-M14STAGE3'),('EngacerOS-M14STAGE1','EngacerOS-M14STAGE3'),
               ('stage2','stage3'),('stage1','stage3'),('m142-','m143-regress-'),
               ('build/m14-native/fixtures','build/m14-native/stage3/regression-fixtures'),
-              ('M14.2 development','M14.3 runtime regression'),('M14.25','M14.15')]
+              ('M14.2 development','M14.3 runtime regression'),('M14.25','M14.15'),
+              ('assert metadata==[41,45,45,45],metadata','assert metadata==[28,32,32,32],metadata')]
 observed={}
 
 def source_for(name):

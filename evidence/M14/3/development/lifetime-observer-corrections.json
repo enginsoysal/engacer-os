@@ -1,0 +1,20 @@
+{
+  "scope": "Development observer corrections; not guest implementation failures or a new acceptance",
+  "observations": [
+    {
+      "reason": "Own fixture incorrectly imported registry calls from kernel32 instead of advapi32; loader refused the unsupported import. Fixed fixture import library, without changing or weakening the runtime.",
+      "original_report_sha256": "691b454a6cf6615799bd3da70044f69c71e608d992765439ae1ad1d9d0b5f062",
+      "retained_local_report": "build/m14-native/stage3/state-lifetime/initial-fixture-refusal/results.json"
+    },
+    {
+      "reason": "Observer sampled terminal state before M8_JOB_DONE completed process cleanup. Fixed observer to wait for the existing explicit job completion marker, preserving all zero-resident assertions.",
+      "original_report_sha256": "18fb9f8588caa9596766eea853d725b526c77a51c1855ad8f8fadc01dcdbad87",
+      "retained_local_report": "build/m14-native/stage3/state-lifetime/initial-terminal-observer/results.json"
+    },
+    {
+      "reason": "Historical M14.2 assertion required 41/45 pages; exact-source M14.3 observed the intentionally reduced 28/32-page private layout. Adapter changes only this explicit bound; functional assertions and canonical fixtures remain unchanged.",
+      "original_report_sha256": "0a8a567cfd83b309fc22bd0b97991c6fc69e677ab6300985b7af2d710dec4e7d",
+      "retained_local_report": "build/m14-native/stage3/named-sync-cancel/initial-m142-layout-expectation/results.json"
+    }
+  ]
+}

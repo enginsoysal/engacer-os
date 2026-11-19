@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "stage": "M14.3 development regression",
+  "case": "tls",
+  "build_id": "ee751b3d701e676254defe24d88acf67",
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE2",
+      "EngacerOS-M14STAGE3"
+    ],
+    [
+      "EngacerOS-M14STAGE1",
+      "EngacerOS-M14STAGE3"
+    ],
+    [
+      "stage2",
+      "stage3"
+    ],
+    [
+      "stage1",
+      "stage3"
+    ],
+    [
+      "m142-",
+      "m143-regress-"
+    ],
+    [
+      "build/m14-native/fixtures",
+      "build/m14-native/stage3/regression-fixtures"
+    ],
+    [
+      "M14.2 development",
+      "M14.3 runtime regression"
+    ],
+    [
+      "M14.25",
+      "M14.15"
+    ]
+  ],
+  "observer_sources": {
+    "tests/m14/tls_native2.py": {
+      "canonical_sha256": "9f88edc31684f9c39630ca4637e759e81195bd5b82da38e3ae0a8f7389892d66",
+      "executed_source_sha256": "e08ae986be8098f4b78d2861cf7e2c65bf10e706807d9df682bdc29d6321fbc2"
+    },
+    "tests/m14/fixture1.py": {
+      "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+      "executed_source_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+    },
+    "tests/m14/tls_fixtures2.py": {
+      "canonical_sha256": "c80107e5935204fb9f4890e41b7889a2d17a13d25c0a32c86fe5655293b23186",
+      "executed_source_sha256": "c813c00cd8f0cb35caa1e5826f46b62b5e8992187947965ffc4292f6775df5f8"
+    }
+  },
+  "adapter_sha256": "5b5c66dbdef6589c953109a5e62ffa27d9eb69816a5066846bee40d8c7cb9ee0"
+}

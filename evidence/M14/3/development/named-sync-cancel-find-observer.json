@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "stage": "M14.3 development regression",
+  "case": "named-sync-cancel",
+  "build_id": "ee751b3d701e676254defe24d88acf67",
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE2",
+      "EngacerOS-M14STAGE3"
+    ],
+    [
+      "EngacerOS-M14STAGE1",
+      "EngacerOS-M14STAGE3"
+    ],
+    [
+      "stage2",
+      "stage3"
+    ],
+    [
+      "stage1",
+      "stage3"
+    ],
+    [
+      "m142-",
+      "m143-regress-"
+    ],
+    [
+      "build/m14-native/fixtures",
+      "build/m14-native/stage3/regression-fixtures"
+    ],
+    [
+      "M14.2 development",
+      "M14.3 runtime regression"
+    ],
+    [
+      "M14.25",
+      "M14.15"
+    ],
+    [
+      "assert metadata==[41,45,45,45],metadata",
+      "assert metadata==[28,32,32,32],metadata"
+    ]
+  ],
+  "observer_sources": {
+    "tests/m14/named_sync_cancel_native2.py": {
+      "canonical_sha256": "959f75949bfe45b513e9e2f49f1426bb2d7bfbac9636d86e1e1ce8f63f590ab6",
+      "executed_source_sha256": "1d15d045700636c6945e9a54f351cabc171ab18882e600c1cafca3612bbc2796"
+    },
+    "tests/m14/thread_native2.py": {
+      "canonical_sha256": "910983de9d3c22cb737dd36256e7429ebad5a42c20015fa75b304f5af845f355",
+      "executed_source_sha256": "25c1955224594cbd664a83f1c92732eb145f06f0b4a0aec0d400dd9ee19d4e0e"
+    },
+    "tests/m14/fixture1.py": {
+      "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+      "executed_source_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+    },
+    "tests/m14/build_fixtures2.py": {
+      "canonical_sha256": "167583c5ca172acad237b0a4c171e7de1d6e3d3c44fd9c142125a8aff472edea",
+      "executed_source_sha256": "172e6337f17719ee8a54c8a7b8e6a8f1dc6d7607b2c73afa1fde30b8d395c2e5"
+    },
+    "tests/m14/named_sync_fixtures2.py": {
+      "canonical_sha256": "feac7d3a331ea2716be9f2ec572a41f32278bf14d7d62ad29ab791dc940630a7",
+      "executed_source_sha256": "5c0f54064fed0c8bd7a87627163b9bbc8aa12c18aff3bb4a65e47ff6eb4f78e2"
+    }
+  },
+  "adapter_sha256": "56c69c4a3948e2c73e66e53deccfb5432a88ce0f1b3d8e6a712da6e2682c55af"
+}
