@@ -14,10 +14,12 @@ static void control_release144(ui_window_runtime144*w){control_state144*c=w->con
 static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(text);if(n>2047){last8(206);return 0;}WCHAR*copy=alloc8(((size_t)n+1)*2);if(!copy){last8(8);return 0;}if(text)memcpy(copy,text,(size_t)n*2);copy[n]=0;free8(*out);*out=copy;return 1;}
 #include "toolbar144.inc"
 #include "listview144.inc"
+#include "control-paint144.inc"
 static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  ui_window_runtime144*w=ui_window_lookup144(handle);if(!w){last8(1400);return 0;}control_state144*c=w->control;
  if(message==0x81){if(c)return 0;unsigned kind=control_kind144(w->class_->name);if(!kind)return 0;c=calloc8(1,sizeof(*c));if(!c)return 0;c->kind=kind;c->unicode=1;c->redraw=1;c->selected=-1;w->control=c;return 1;}
  if(!c)return f_DefWindowProcW(handle,message,wp,lp);
+ if(message==0xf){control_paint144(handle,c);return 0;}
  if(message==0x82){control_release144(w);return 0;}
  if(message==0x30){c->font=wp;return 0;}if(message==0x31)return(int64_t)c->font;
  if(message==0xb){c->redraw=wp!=0;return 0;}

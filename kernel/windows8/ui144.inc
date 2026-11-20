@@ -1,6 +1,9 @@
 /* Private GUI capabilities. User callbacks never execute in this broker. */
 #include <engine/winqueue144.h>
-typedef struct {wui_view144 view;unsigned space,thread,generation;} ui_window144;
+typedef struct ui_draw_page144 {struct ui_draw_page144*next;wui_draw144 items[7];} ui_draw_page144;
+_Static_assert(sizeof(ui_draw_page144)<=4096,"Draw page quota");
+static unsigned ui_draw_pages144;
+typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;} ui_window144;
 _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
@@ -31,6 +34,7 @@ static void ui_destroy144(uint64_t handle){
  /* Parent teardown is bounded by the global window quota. Owners are distinct. */
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&(ui_windows144[i]->view.description.parent==handle||ui_windows144[i]->view.description.owner==handle))ui_destroy144(ui_windows144[i]->view.handle);
  for(unsigned i=0;i<THREADS142;++i)if(ui_queues144[w->space][i])wui_purge144(ui_queues144[w->space][i],handle);
+ ui_draw_page144*draw=w->draws;while(draw){ui_draw_page144*next=draw->next;ui_free144(draw);--ui_draw_pages144;draw=next;}
  unsigned slot=(unsigned)(handle&255);ui_windows144[slot]=0;ui_free144(w);++ui_revision144;
 }
 static void ui_thread_release144(unsigned space,unsigned thread){
@@ -46,8 +50,10 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
  return 0;
 }
 #include "clipboard144.inc"
+#include "drawing144.inc"
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
+ if(op==WUI_DRAW144||op==WUI_MEASURE144)return ui_draw_call144(op,handle,pointer,argument);
  if(op==WUI_CLIPFORMAT144)return handle||argument?-87:clip_register144(pointer);
  if(op==WUI_CLIPNAME144)return clip_name144(handle,pointer,argument);
  if(op==WUI_METRICS144){

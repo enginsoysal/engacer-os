@@ -725,7 +725,7 @@ static void draw_window(unsigned slot) {
     text(r.x+r.width-77,r.y+12,"_",2,ink());text(r.x+r.width-42,r.y+12,"x",2,ink());
 #endif
 #ifdef ENGINE_M8
-    if(app->foreign144)return;
+    if(app->foreign144){foreign_draw144(w,app->foreign144);return;}
 #endif
     if(app->stopped){text(r.x+22,r.y+80,"Application stopped",2,ink());text(r.x+22,r.y+120,app->notice,1,ink());return;}
     #ifdef ENGINE_M72
@@ -889,6 +889,9 @@ unsigned r=(base>>16)&255,g=(base>>8)&255,b=base&255;
         int right=window.x+window.width<dirty.x+dirty.width?window.x+window.width:dirty.x+dirty.width;
         int bottom=window.y+window.height<dirty.y+dirty.height?window.y+window.height:dirty.y+dirty.height;
         gui7_clip((unsigned)x,(unsigned)y,right>x?(unsigned)(right-x):0,bottom>y?(unsigned)(bottom-y):0);
+#ifdef ENGINE_M8
+        foreign_clip144=(desktop_rect){x,y,right>x?right-x:0,bottom>y?bottom-y:0};
+#endif
         draw_window(model.order[i]);
     }
     gui7_clip((unsigned)dirty.x,(unsigned)dirty.y,(unsigned)dirty.width,(unsigned)dirty.height);
