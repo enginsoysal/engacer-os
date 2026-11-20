@@ -65,7 +65,7 @@
       "qualification": "M14-STAGE4-VM-v1",
       "evidence": "evidence/M14/4",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4",
-      "publication_status": "Native and public media qualified; complete actual website closure pending"
+      "publication_status": "Blocked: public BrixCanvas renderer omits saved documentationPortal search and article navigation; native/media and full page readback pass"
     },
     {
       "id": "M14.5",

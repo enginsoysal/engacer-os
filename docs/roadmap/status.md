@@ -6,6 +6,8 @@ M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own n
 
 [Install](../handbook/install-m144.md), [first day](../handbook/first-day-m144.md), [Windows behavior](../handbook/windows-m144.md), [release scope](../releases/m144-v0.14.4.md).
 
+**Public-delivery blocker:** BrixCanvas retains the native Menu `documentationPortal` configuration after server reload but does not render same-page search or article heading/task navigation. Native OS qualification, twenty independent asset downloads, all 569 public pages and 4,176 discovered links have separate evidence; the full browser gate is not passed. [Reproduction](../../evidence/M14/4/development/public-search/brixcanvas-report.txt). M14.4 is not fully closed and M14.5 has not started.
+
 ## Historical M14.3 delivery
 
 **M14.3 exact-source native qualification passes within M14-STAGE3-VM-v1.** All 29 native groups and five supporting host groups pass on build `ee751b3d701e676254defe24d88acf67`, with 642 matching compiled inputs. The selected Unicode paths/search, shared files/locks, persistent user registry, inherited environments/temporary files and file-owned metadata pass alongside the full prior runtime lifetime/exception regressions. The exact enabled-device VMware ZIP installs, restarts with ISO retained and starts twice without it. Compact/ordinary/actual 4K profiles pass. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resources](../../evidence/M14/3/resources.json).
