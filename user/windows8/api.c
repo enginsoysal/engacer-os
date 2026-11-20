@@ -3,6 +3,9 @@ static uint32_t error8;
 static WCHAR command8[1200],cwd8[512];
 static lock142 cwd_lock143;
 static char command_utf8[1200],argv_text8[1200],*argv8[64],**env8;
+static char *command_pointer144=command_utf8;
+static void *guard_lookup144(unsigned,const char*,unsigned);
+static unsigned guard_address144(void*);
 static unsigned argc8,console_mode8[3]={7,3,3};
 static unsigned app_type8,exit_count8;static uint64_t exit_callbacks8[64],matherr8;
 static uint32_t fmode8,commode8;static char **initenv8;
@@ -279,18 +282,18 @@ static int MS f_FileTimeToLocalFileTime(const uint64_t*in,uint64_t*out){if(!in||
 static int MS f_LocalFileTimeToFileTime(const uint64_t*in,uint64_t*out){return f_FileTimeToLocalFileTime(in,out);}
 static int MS f_CompareFileTime(const uint64_t*a,const uint64_t*b){return *a<*b?-1:*a>*b?1:0;}
 
-static unsigned provider8(const char*name){if(!case8(name,"kernel32.dll")||!case8(name,"kernelbase.dll"))return 1;if(!case8(name,"msvcrt.dll"))return 2;if(!case8(name,"oleaut32.dll"))return 3;if(!case8(name,"user32.dll"))return 4;if(!case8(name,"advapi32.dll"))return 5;return 0;}
+static unsigned provider8(const char*name){if(!case8(name,"kernel32.dll")||!case8(name,"kernelbase.dll"))return 1;if(!case8(name,"msvcrt.dll"))return 2;if(!case8(name,"oleaut32.dll"))return 3;if(!case8(name,"user32.dll"))return 4;if(!case8(name,"advapi32.dll"))return 5;if(!case8(name,"comctl32.dll"))return 6;if(!case8(name,"comdlg32.dll"))return 7;if(!case8(name,"gdi32.dll"))return 8;if(!case8(name,"ole32.dll"))return 9;if(!case8(name,"shell32.dll"))return 10;if(!case8(name,"mpr.dll"))return 11;return 0;}
 static HANDLE MS f_GetModuleHandleA(const char*name){if(!name)return pe8_main();uint64_t real=pe8_module(name);if(real)return real;unsigned id=provider8(name);if(id)return 0x70000000+id*0x10000;last8(126);return 0;}
 static HANDLE MS f_GetModuleHandleW(const WCHAR*name){if(!name)return pe8_main();char text[256];if(utf16_to8(name,text,256)<0){last8(206);return 0;}return f_GetModuleHandleA(text);}
 static void *MS f_GetProcAddress(HANDLE module,const char*name){
- if(module>=0x70010000&&module<=0x70050000&&!(module&65535)){static const char*names[]={"","kernel32.dll","msvcrt.dll","oleaut32.dll","user32.dll","advapi32.dll"};void*p=resolve8(names[(module-0x70000000)/65536],(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(!p)last8(127);return p;}
- void*p=pe8_symbol(module,(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(!p)last8(127);return p;
+ if(module>=0x70010000&&module<=0x700b0000&&!(module&65535)){static const char*names[]={"","kernel32.dll","msvcrt.dll","oleaut32.dll","user32.dll","advapi32.dll","comctl32.dll","comdlg32.dll","gdi32.dll","ole32.dll","shell32.dll","mpr.dll"};void*p=resolve8(names[(module-0x70000000)/65536],(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p))p=0;if(!p)last8(127);return p;}
+ void*p=pe8_symbol(module,(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p))p=0;if(!p)last8(127);return p;
 }
 static HANDLE MS f_LoadLibraryExW(const WCHAR*name,HANDLE file,unsigned flags){if(file||(flags&~8u)){last8(50);return 0;}char text[256];if(utf16_to8(name,text,256)<0){last8(206);return 0;}unsigned id=provider8(text);if(id)return 0x70000000+id*0x10000;char path[256];unsigned separator=0;for(unsigned i=0;text[i];++i)if(text[i]=='/'||text[i]=='\\')separator=1;
  if(!separator){HANDLE found=pe8_named(text);if(!found)last8(126);return found;}else if(!nativepath8(name,path)){last8(126);return 0;}w8_file_info info;if(stat8(path,&info)){last8(126);return 0;}return pe8_load(path);}
 static HANDLE MS f_LoadLibraryW(const WCHAR*name){return f_LoadLibraryExW(name,0,0);}
 static HANDLE MS f_LoadLibraryA(const char*name){WCHAR wide[256];if(utf8_to16(name,wide,256)<0)return 0;return f_LoadLibraryW(wide);}
-static int MS f_FreeLibrary(HANDLE module){for(unsigned id=1;id<=5;++id)if(module==0x70000000+id*0x10000)return 1;if(pe8_release(module))return 1;last8(6);return 0;}
+static int MS f_FreeLibrary(HANDLE module){for(unsigned id=1;id<=11;++id)if(module==0x70000000+id*0x10000)return 1;if(pe8_release(module))return 1;last8(6);return 0;}
 static unsigned MS f_GetModuleFileNameW(HANDLE module,WCHAR*out,unsigned cap){if(!cap||!out){last8(87);return 0;}const char*path=pe8_path(module?module:pe8_main());if(!path){last8(126);return 0;}char win[512];winpath8(path,win,512);WCHAR wide[512];int n=utf8_to16(win,wide,512);if(n<0){last8(206);return 0;}if((unsigned)n>=cap){widecopy8(out,wide,cap);last8(122);return cap;}widecopy8(out,wide,cap);return (unsigned)n;}
 static unsigned MS f_GetModuleFileNameA(HANDLE module,char*out,unsigned cap){WCHAR wide[512];unsigned n=f_GetModuleFileNameW(module,wide,512);if(!n)return 0;char value[1024];if(utf16_to8(wide,value,1024)<0)return 0;unsigned bytes=len8(value);if(cap<=bytes){copy8(out,value,cap);last8(122);return cap;}copy8(out,value,cap);return bytes;}
 static int MS f_IsDebuggerPresent(void){return 0;}
@@ -331,15 +334,21 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 
 #include "process142.inc"
 #include "exception142.inc"
+#include "heap-api144.inc"
+#include "resource-api144.inc"
+#include "images144.inc"
 #include "ui144.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),
+ API8(LoadIconW,4),API8(LoadBitmapW,4),API8(LoadImageW,4),API8(DestroyIcon,4),API8(DeleteObject,8),API8(ImageList_Create,6),API8(ImageList_Destroy,6),API8(ImageList_GetImageCount,6),API8(ImageList_ReplaceIcon,6),API8(ImageList_AddMasked,6),
+ API8(FindResourceW,1),API8(FindResourceExW,1),API8(LoadResource,1),API8(LockResource,1),API8(SizeofResource,1),API8(FreeResource,1),API8(LoadStringW,4),
  API8(RegisterClassW,4),API8(GetClassInfoW,4),API8(CallWindowProcW,4),API8(SendMessageW,4),API8(CreateWindowExW,4),API8(DestroyWindow,4),API8(PostMessageW,4),API8(PostQuitMessage,4),API8(PeekMessageW,4),API8(GetMessageW,4),API8(DispatchMessageW,4),API8(TranslateMessage,4),API8(DefWindowProcW,4),API8(SetWindowTextW,4),API8(GetWindowTextW,4),API8(GetWindowTextLengthW,4),API8(GetWindowLongPtrW,4),API8(SetWindowLongPtrW,4),API8(ShowWindow,4),API8(GetParent,4),API8(IsWindow,4),
  API8(AddVectoredExceptionHandler,1),API8(AddVectoredContinueHandler,1),API8(RemoveVectoredExceptionHandler,1),API8(RemoveVectoredContinueHandler,1),API8(SetUnhandledExceptionFilter,1),
  API8(exit,2),API8(_exit,2),API8(_cexit,2),API8(_c_exit,2),API8(_onexit,2),API8(__dllonexit,2),API8(_initterm,2),API8(__set_app_type,2),API8(__setusermatherr,2),API8(__getmainargs,2),API8(__p___initenv,2),
  API8(malloc,2),API8(free,2),API8(realloc,2),API8(memcpy,2),API8(memmove,2),API8(memset,2),API8(memcmp,2),API8(strlen,2),API8(strcmp,2),API8(wcscmp,2),API8(strchr,2),API8(strstr,2),API8(wcsstr,2),API8(fputc,2),API8(fputs,2),API8(fflush,2),API8(fgetc,2),API8(_isatty,2),API8(_get_osfhandle,2),API8(_beginthreadex,2),API8(_endthreadex,2),
- {"_iob",iob8,2},{"__initenv",&initenv8,2},{"_fmode",&fmode8,2},{"_commode",&commode8,2},
+ {"_acmdln",&command_pointer144,2},{"_iob",iob8,2},{"__initenv",&initenv8,2},{"_fmode",&fmode8,2},{"_commode",&commode8,2},
  {"__CxxFrameHandler",guard_cxx8,2},{"_CxxThrowException",guard_cxx8,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",f___C_specific_handler,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
  API8(GetEnvironmentVariableW,1),API8(GetEnvironmentVariableA,1),API8(SetEnvironmentVariableW,1),API8(SetEnvironmentVariableA,1),API8(GetEnvironmentStringsW,1),API8(GetEnvironmentStringsA,1),API8(FreeEnvironmentStringsW,1),API8(FreeEnvironmentStringsA,1),API8(ExpandEnvironmentStringsW,1),API8(ExpandEnvironmentStringsA,1),API8(CreateProcessW,1),API8(CreateProcessA,1),API8(GetExitCodeProcess,1),API8(GetProcessId,1),API8(TerminateProcess,1),API8(GetStartupInfoW,1),API8(GetStartupInfoA,1),API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
  API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(FlushFileBuffers,1),API8(LockFileEx,1),API8(UnlockFileEx,1),API8(LockFile,1),API8(UnlockFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetFullPathNameW,1),API8(GetFullPathNameA,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetTempPathA,1),API8(GetTempFileNameW,1),API8(GetTempFileNameA,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
@@ -348,8 +357,9 @@ static const api8 api8_table[]={
  API8(CharUpperW,4),API8(CharPrevExA,4),API8(LookupPrivilegeValueW,5),API8(OpenProcessToken,5),API8(AdjustTokenPrivileges,5),API8(GetFileSecurityW,5),API8(SetFileSecurityW,5),API8(SystemFunction036,5),API8(RegOpenKeyExW,5),API8(RegQueryValueExW,5),API8(RegCloseKey,5),API8(RegCreateKeyExW,5),API8(RegSetValueExW,5),API8(RegDeleteValueW,5),API8(RegDeleteKeyW,5),API8(RegEnumValueW,5),API8(RegEnumKeyExW,5),API8(RegFlushKey,5)
 };
 #undef API8
+#include "guarded-ui144.inc"
 void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provider=provider8(dll);if(provider==2&&name&&equal8(name,"__initenv")&&!initenv8){initenv8=environment_crt143();if(!initenv8)return 0;}if(provider==3){switch(ordinal){case 2:return f_SysAllocString;case 4:return f_SysAllocStringLen;case 6:return f_SysFreeString;case 7:return f_SysStringLen;case 9:return f_VariantClear;case 10:return f_VariantCopy;case 149:return f_SysStringByteLen;case 150:return f_SysAllocStringByteLen;}if(name){if(equal8(name,"SysAllocString"))return f_SysAllocString;if(equal8(name,"SysAllocStringLen"))return f_SysAllocStringLen;if(equal8(name,"SysFreeString"))return f_SysFreeString;if(equal8(name,"SysStringLen"))return f_SysStringLen;if(equal8(name,"SysStringByteLen"))return f_SysStringByteLen;if(equal8(name,"SysAllocStringByteLen"))return f_SysAllocStringByteLen;if(equal8(name,"VariantClear"))return f_VariantClear;if(equal8(name,"VariantCopy"))return f_VariantCopy;}return 0;}
- if(provider&&name){for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;return 0;}return pe8_import(dll,name,ordinal);
+ if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;return guard_lookup144(provider,name,ordinal);}return pe8_import(dll,name,ordinal);
 }
 void init_win8(void){
  if(sys8(W8_SYS_EXCEPTION_REGISTER,(uint64_t)(uintptr_t)exception_entry142,0,0,0,0))fail8("Native exception dispatcher registration failed.");

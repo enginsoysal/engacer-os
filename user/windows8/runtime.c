@@ -47,6 +47,7 @@ void lock_leave142(lock142*lock){if(lock->owner!=tid142()||!lock->depth)fail8("W
 }
 static lock142 heap_lock142;
 void *alloc8(size_t bytes){lock_enter142(&heap_lock142);void*p=allocate142(bytes);lock_leave142(&heap_lock142);return p;}
+size_t allocation_size8(const void*p){size_t result=SIZE_MAX;lock_enter142(&heap_lock142);for(block8*b=heap8;b;b=b->next)if((const void*)(b+1)==p&&!b->free){result=b->size;break;}lock_leave142(&heap_lock142);return result;}
 void free8(void*p){lock_enter142(&heap_lock142);release142(p);lock_leave142(&heap_lock142);}
 void *realloc8(void*p,size_t n){if(!p)return alloc8(n);if(!n){free8(p);return 0;}block8*b=(block8*)p-1;if(b->size>=n)return p;void*q=alloc8(n);if(!q)return 0;memcpy(q,p,b->size);free8(p);return q;}
 void *calloc8(size_t n,size_t s){if(n&&s>SIZE_MAX/n)return 0;void*p=alloc8(n*s);if(p)memset(p,0,n*s);return p;}

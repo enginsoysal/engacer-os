@@ -138,6 +138,10 @@
           "Understand native Windows window and message ownership"
         ],
         [
+          "docs/architecture/resources-m144.md",
+          "Understand original Windows resources and image ownership"
+        ],
+        [
           "docs/milestones/m14-3.md",
           "Read the native files and persistent-settings stage"
         ],

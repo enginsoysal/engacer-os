@@ -1,0 +1,25 @@
+{
+  "original_gui_qualified": false,
+  "stage": "M14.4 diagnostic",
+  "build_id": "9f8725491bdaef4822fa8c0581b604e8",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "clone": {
+    "source_sha256": "b21d32374ae5a8b3b2fe778596afae7900d1790054bcb532ae46cca3f255b244",
+    "clone_sha256": "b21d32374ae5a8b3b2fe778596afae7900d1790054bcb532ae46cca3f255b244",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "state": 3,
+  "status": 1,
+  "message": "Not implemented: comctl32.dll!#17",
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\n\nEngacer OS: Not implemented: comctl32.dll!#17\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "retained_pages": 4
+}
