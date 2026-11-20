@@ -123,6 +123,9 @@ for(unsigned i=2;i<8;++i)if(data[i]>3){unsigned old=0;for(unsigned j=2;j<8;++j)o
 if(data[i]==57){input10_toggle_caps();continue;}
 #endif
 char c=key(data[i],data[0]&0x22);
+#ifdef ENGINE_M14
+unsigned character146=(uint8_t)c>=32&&(uint8_t)c<=126?(uint8_t)c:0;
+#endif
 #ifdef ENGINE_M7
 #ifdef ENGINE_M10
 if(data[0]&0x11){if(c>='a'&&c<='z')c=(char)(c-'a'+1);else if(c>='A'&&c<='Z')c=(char)(c-'A'+1);}
@@ -149,7 +152,13 @@ if(data[i]==67&&(data[0]&0x22))c=(char)140;
 if(data[i]==101)c=(char)140;
 #endif
 #endif
-if(c){input_feed((uint8_t)c);++key_events;}}}memcpy(d->last,data,8);
+if(c){
+#ifdef ENGINE_M14
+input_feed_key146((uint8_t)c,character146);
+#else
+input_feed((uint8_t)c);
+#endif
+++key_events;}}}memcpy(d->last,data,8);
 #ifdef ENGINE_M13
 usb_keyboard_activity21(changed21);
 #endif

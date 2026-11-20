@@ -14,7 +14,27 @@ static unsigned gui_modifier11,gui_used11;
 #endif
 static const char plain[58]={0,0,'1','2','3','4','5','6','7','8','9','0','-','=',8,9,'q','w','e','r','t','y','u','i','o','p','[',']',10,0,'a','s','d','f','g','h','j','k','l',';',39,'`',0,92,'z','x','c','v','b','n','m',',','.','/',0,'*',0,' '};
 static const char upper[58]={0,0,'!','@','#','$','%','^','&','*','(',')','_','+',8,9,'Q','W','E','R','T','Y','U','I','O','P','{','}',10,0,'A','S','D','F','G','H','J','K','L',':',34,'~',0,'|','Z','X','C','V','B','N','M','<','>','?',0,'*',0,' '};
+#ifdef ENGINE_M14
+#include <engine/keyevent146.h>
+static uint16_t key_events146[256],popped_key146,dispatched_key146;
+static unsigned key_dispatch146;
+/* Input producers run on the BSP; preserve publication against IRQ preemption. */
+static void enqueue_key146(uint8_t c,unsigned character){
+ uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");
+ unsigned h=__atomic_load_n(&head,__ATOMIC_RELAXED),next=(h+1)&255;
+ if(next==__atomic_load_n(&tail,__ATOMIC_ACQUIRE))__atomic_fetch_add(&dropped,1,__ATOMIC_RELAXED);
+ else{queue[h]=c;key_events146[h]=keyevent_pack146(input14_snapshot(),character);__atomic_store_n(&head,next,__ATOMIC_RELEASE);}
+ __asm__ volatile("pushq %0; popfq"::"r"(flags):"memory","cc");
+}
+static void enqueue(uint8_t c){enqueue_key146(c,0);}
+void input_feed_key146(uint8_t c,unsigned character){enqueue_key146(c,character);}
+void input146_begin_key(void){dispatched_key146=popped_key146;key_dispatch146=1;}
+void input146_end_key(void){key_dispatch146=0;}
+unsigned input146_key_snapshot(void){return key_dispatch146?keyevent_snapshot146(dispatched_key146):input14_snapshot();}
+unsigned input146_key_character(void){return key_dispatch146?keyevent_character146(dispatched_key146):0;}
+#else
 static void enqueue(uint8_t c){unsigned h=__atomic_load_n(&head,__ATOMIC_RELAXED),next=(h+1)&255;if(next==__atomic_load_n(&tail,__ATOMIC_ACQUIRE)){__atomic_fetch_add(&dropped,1,__ATOMIC_RELAXED);return;}queue[h]=c;__atomic_store_n(&head,next,__ATOMIC_RELEASE);}
+#endif
 void input_feed(uint8_t c){enqueue(c);}
 static int writable(void){uint64_t end=m3_clock_ticks()+20;unsigned n=0;while(in8(0x64)&2)if(m3_clock_ticks()>=end||++n==1000000)return 0;return 1;}
 #ifdef ENGINE_M6
@@ -187,15 +207,28 @@ control_modifier?137:27
          if(hid[code])c=(uint8_t)input10_hid(hid[code],shift!=0);
         }
 #endif
+#ifdef ENGINE_M14
+        unsigned character146=c>=32&&c<=126?c:0;
+#endif
         if(control_modifier&&c>='a'&&c<='z')c=(uint8_t)(c-'a'+1);
         if(control_modifier&&c>='A'&&c<='Z')c=(uint8_t)(c-'A'+1);
 #endif
-        if(c)enqueue(c);}
+        if(c){
+#ifdef ENGINE_M14
+            enqueue_key146(c,character146);
+#else
+            enqueue(c);
+#endif
+        }}
     }
     #ifdef ENGINE_M6
     if(vector==44)out8(0xa0,0x20);
 #endif
     out8(0x20,0x20);return 1;
 }
-int input_pop(void){unsigned t=__atomic_load_n(&tail,__ATOMIC_RELAXED);if(t==__atomic_load_n(&head,__ATOMIC_ACQUIRE))return usb_mouse_pending()?256:-1;uint8_t c=queue[t];__atomic_store_n(&tail,(t+1)&255,__ATOMIC_RELEASE);return c;}
+int input_pop(void){unsigned t=__atomic_load_n(&tail,__ATOMIC_RELAXED);if(t==__atomic_load_n(&head,__ATOMIC_ACQUIRE))return usb_mouse_pending()?256:-1;uint8_t c=queue[t];
+#ifdef ENGINE_M14
+ popped_key146=key_events146[t];
+#endif
+ __atomic_store_n(&tail,(t+1)&255,__ATOMIC_RELEASE);return c;}
 uint64_t input_dropped(void){return __atomic_load_n(&dropped,__ATOMIC_RELAXED);}

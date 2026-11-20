@@ -69,7 +69,11 @@ static unsigned foreign_key144(int key){
  if(launcher||model.focused>=DESKTOP_WINDOWS||!model.windows[model.focused].live||key==137||key==135)return 0;
  uint64_t handle=apps[model.focused].foreign144;if(!handle)return 0;wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return 1;
  if(key==144){w8_ui_input144(handle,0x10,0,0);return 1;}
- if((key>=32&&key<=126)||key==8||key==9||key==10){unsigned ch=key==10?13:(unsigned)key,vk=keymap_character145(ch);unsigned scan=keymap145(vk,4,input10_layout());uint64_t lp=1|((uint64_t)(scan&255)<<16)|(scan&0xff00?UINT64_C(1)<<24:0);w8_ui_input144(handle,0x100,vk,lp);w8_ui_input144(handle,0x102,ch,lp);w8_ui_input144(handle,0x101,vk,lp|UINT64_C(0xc0000000));return 1;}
+ unsigned character146=0;
+#ifdef ENGINE_M14
+ character146=input146_key_character();w8_ui_modifiers145(handle,input146_key_snapshot());
+#endif
+ if((key>=32&&key<=126)||key==8||key==9||key==10||(character146&&key>=1&&key<=26)){unsigned ch=key==10&&!character146?13:(unsigned)key,vk=keymap_character145(character146?character146:ch);unsigned scan=keymap145(vk,4,input10_layout());uint64_t lp=1|((uint64_t)(scan&255)<<16)|(scan&0xff00?UINT64_C(1)<<24:0);w8_ui_input144(handle,0x100,vk,lp);w8_ui_input144(handle,0x102,ch,lp);w8_ui_input144(handle,0x101,vk,lp|UINT64_C(0xc0000000));return 1;}
  unsigned vk=key==128?0x25:key==129?0x27:key==133?0x26:key==134?0x28:key==130?0x24:key==131?0x23:key==132?0x2e:key==27?0x1b:0;
  if(vk){unsigned scan=keymap145(vk,4,input10_layout());uint64_t lp=1|((uint64_t)(scan&255)<<16)|(scan&0xff00?UINT64_C(1)<<24:0);w8_ui_input144(handle,0x100,vk,lp);w8_ui_input144(handle,0x101,vk,lp|UINT64_C(0xc0000000));}return 1;
 }

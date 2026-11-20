@@ -4,7 +4,7 @@ static unsigned ui_input_snapshot145(unsigned message){
 #ifdef ENGINE_M14
  unsigned mouse=(message>=0x200&&message<=0x20e)||(message>=0xa0&&message<=0xad);
  if(mouse)return WUI_KEY_SNAPSHOT145|input14_pointer_snapshot();
- if(message>=0x100&&message<=0x109)return WUI_KEY_SNAPSHOT145|input14_snapshot();
+ if(message>=0x100&&message<=0x109)return WUI_KEY_SNAPSHOT145|input146_key_snapshot();
 #else
  (void)message;
 #endif

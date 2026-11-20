@@ -1,0 +1,43 @@
+{
+  "passed": false,
+  "build_id": "f809cac5ba9c53125aa021de2e88643d",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "fixture_sha256": "cc627e52a5b65405c6e4db0eb3fb165fb3f90303938c8512de041c0fb768c350",
+  "clone": {
+    "source_sha256": "4cd3aa15f3e3a37e42a2ff9d4db848ec89e68e771cc68ca38c87a397a1c1d8e6",
+    "clone_sha256": "4cd3aa15f3e3a37e42a2ff9d4db848ec89e68e771cc68ca38c87a397a1c1d8e6",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "profile": "compact",
+  "scope": "Actual original 7-Zip Unicode filename copy, source exit and native-editor paste/save with independent byte verification; not complete original archive/document tasks",
+  "documents_labels": [
+    "Name",
+    "Size",
+    "Modified",
+    "Created",
+    "Comment",
+    "Folders",
+    "Files",
+    "EngineOS-Windows-Extracted",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "EngineOS-Windows.txt",
+    "78",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "EngineOS-Windows.zip",
+    "252",
+    "2026-11-20 17:35",
+    "2026-11-20 17:35",
+    "m146-\u00e9.txt",
+    "44",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "Welcome.txt",
+    "7 656",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\original_clipboard146_run.py\", line 33, in main\n    wait_for(g,copied);assert ui.integer(g,'clipboard_kind11',True)==1;report['original_copied_utf8_hex']=expected.hex();c.shot(g,'original-unicode-copy')\n  File \"<project-root>\\tests\\m14\\original_window_trace4.py\", line 28, in wait_for\n    value=predicate()\n  File \"<project-root>\\tests\\m14\\original_clipboard146_run.py\", line 31, in copied\n    report['copy_state']=dict(bytes=size,kind=ui.integer(g,'clipboard_kind11',True),open=ui.integer(g,'clip_open146',True),revision=struct.unpack('<Q',ui.memory(g,ui.symbol('clipboard_revision146',installed=True)[0],8))[0],focus=list(struct.unpack('<4Q',ui.memory(g,ui.symbol('ui_focus144',installed=True)[0],32))))\n  File \"<project-root>\\tests\\m74\\ui.py\", line 27, in integer\n    def integer(g,name,installed=False):return struct.unpack('<I',memory(g,symbol(name,4,installed)[0],4))[0]\n  File \"<project-root>\\tests\\m13\\observer8.py\", line 18, in symbol\n    return base(name, size, installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('clip_open146', [])\n"
+}

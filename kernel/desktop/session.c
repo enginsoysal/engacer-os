@@ -1672,7 +1672,14 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
             files_pump11();files_poll11();
 #endif
             render();continue;}
-        if(key==256)pointer();else{keyboard(key);
+        if(key==256)pointer();else{
+#ifdef ENGINE_M14
+            input146_begin_key();
+#endif
+            keyboard(key);
+#ifdef ENGINE_M14
+            input146_end_key();
+#endif
 #ifdef ENGINE_M74
             /* Coalesce queued text edits, preserving the first non-text event.
                Focus/navigation controls still render between ordinary actions. */
@@ -1681,7 +1688,15 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
                !apps[focus].closing&&(model.windows[focus].app==EDITOR||model.windows[focus].app==CALENDAR74)){
                 for(unsigned batch=1;batch<16;++batch){
                     __asm__ volatile("cli");int next=input_pop();__asm__ volatile("sti");
-                    if((next>=32&&next<=126)||next==8)keyboard(next);
+                    if((next>=32&&next<=126)||next==8){
+#ifdef ENGINE_M14
+                        input146_begin_key();
+#endif
+                        keyboard(next);
+#ifdef ENGINE_M14
+                        input146_end_key();
+#endif
+                    }
                     else{carried_key74=next;break;}
                 }
             }

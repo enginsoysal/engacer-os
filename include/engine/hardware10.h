@@ -30,6 +30,11 @@ void input10_toggle_caps(void);
 #ifdef ENGINE_M14
 unsigned input14_snapshot(void);
 unsigned input14_pointer_snapshot(void);
+void input_feed_key146(uint8_t,unsigned);
+void input146_begin_key(void);
+void input146_end_key(void);
+unsigned input146_key_snapshot(void);
+unsigned input146_key_character(void);
 #endif
 void input10_set_layout(unsigned);
 unsigned input10_hid(unsigned,unsigned);
