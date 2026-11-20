@@ -1,7 +1,7 @@
 #ifndef ENGINE_WINPICKER146_H
 #define ENGINE_WINPICKER146_H
 #include <stdint.h>
-#define WPICK_FILTERS146 8u
+#define WPICK_FILTERS146 12u
 enum {WPICK_OPEN146=1,WPICK_SAVE146,WPICK_RESULT146,WPICK_WAIT146,WPICK_CANCEL146};
 typedef struct {
  uint32_t size,pad0;uint64_t owner,instance,filter,custom_filter;uint32_t custom_capacity,filter_index;

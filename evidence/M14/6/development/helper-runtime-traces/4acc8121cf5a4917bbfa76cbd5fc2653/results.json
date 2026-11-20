@@ -1,0 +1,1151 @@
+{
+  "mixed_runtime": true,
+  "runtime_sha256": "0c46fae5ae6f19403cd6d6aff0c46b3d6b3d0660ef5ea10c0c0651545072493b",
+  "passed": false,
+  "original_helper_sha256": "5eb5d21003927be4d53401b9b6bbe8a787caabb38eaafaf0d429a136d7031621",
+  "build_id": "085d910fca4891c902f87ada7fff91f2",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "fixture_sha256": "cc627e52a5b65405c6e4db0eb3fb165fb3f90303938c8512de041c0fb768c350",
+  "clone": {
+    "source_sha256": "5e44f059e29f2f24a49cc5082b617c95e82a3486faec1416b193cb1d1d35cc25",
+    "clone_sha256": "5e44f059e29f2f24a49cc5082b617c95e82a3486faec1416b193cb1d1d35cc25",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "profile": "compact",
+  "scope": "Original 7-Zip Add-action diagnostic only; no complete archive/common-dialog task qualification",
+  "documents_labels": [
+    "Name",
+    "Size",
+    "Modified",
+    "Created",
+    "Comment",
+    "Folders",
+    "Files",
+    "EngineOS-Windows-Extracted",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "EngineOS-Windows.txt",
+    "78",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "EngineOS-Windows.zip",
+    "252",
+    "2026-11-20 19:32",
+    "2026-11-20 19:32",
+    "m146-invalid-control.txt",
+    "10",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "m146-invalid-nul.txt",
+    "10",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "m146-invalid-overlong.txt",
+    "2",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "m146-invalid-range.txt",
+    "4",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "m146-invalid-surrogate.txt",
+    "3",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "m146-invalid-tail.txt",
+    "4 097",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "m146-\u00e9.txt",
+    "44",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00",
+    "Welcome.txt",
+    "7 656",
+    "1980-01-01 00:00",
+    "1980-01-01 00:00"
+  ],
+  "worker_state": [
+    1,
+    3,
+    0
+  ],
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zG.exe bytes=753664 source-fnv32=377068830\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7z.dll bytes=1966080 source-fnv32=3718685405\n",
+  "views": [
+    {
+      "handle": 6288150979716055296,
+      "parent": 0,
+      "owner": 0,
+      "bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "style": 282001408,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 24,
+      "title": "C:\\Users\\Owner\\Documents\\",
+      "class_name": "7-Zip::FM"
+    },
+    {
+      "handle": 6288150979716055553,
+      "parent": 6288150979716055296,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        758,
+        52
+      ],
+      "style": 1342180096,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ToolbarWindow32"
+    },
+    {
+      "handle": 6288150979716055810,
+      "parent": 6288150979716055296,
+      "owner": 0,
+      "bounds": [
+        0,
+        52,
+        758,
+        383
+      ],
+      "style": 1342177280,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "7-Zip::Panel"
+    },
+    {
+      "handle": 6288150979716056067,
+      "parent": 6288150979716055810,
+      "owner": 0,
+      "bounds": [
+        0,
+        50,
+        758,
+        309
+      ],
+      "style": 1442906689,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "SysListView32"
+    },
+    {
+      "handle": 6288150979716056324,
+      "parent": 6288150979716055810,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        758,
+        50
+      ],
+      "style": 1451230793,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ReBarWindow32"
+    },
+    {
+      "handle": 6288150979716056581,
+      "parent": 6288150979716056324,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        30,
+        24
+      ],
+      "style": 1342179652,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ToolbarWindow32"
+    },
+    {
+      "handle": 6288150979716056838,
+      "parent": 6288150979716056324,
+      "owner": 0,
+      "bounds": [
+        0,
+        24,
+        756,
+        24
+      ],
+      "style": 1350565954,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBoxEx32"
+    },
+    {
+      "handle": 6288150979716057095,
+      "parent": 6288150979716056838,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        756,
+        24
+      ],
+      "style": 1342177282,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716057352,
+      "parent": 6288150979716057095,
+      "owner": 0,
+      "bounds": [
+        2,
+        2,
+        734,
+        20
+      ],
+      "style": 1342177408,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "C:\\Users\\Owner\\Documents\\",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716057609,
+      "parent": 6288150979716055810,
+      "owner": 0,
+      "bounds": [
+        0,
+        359,
+        758,
+        24
+      ],
+      "style": 1342177280,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Status",
+      "class_name": "msctls_statusbar32"
+    },
+    {
+      "handle": 6288150979716057866,
+      "parent": 0,
+      "owner": 0,
+      "bounds": [
+        119,
+        13,
+        1042,
+        713
+      ],
+      "style": 2429028544,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Add to Archive",
+      "class_name": "#32770"
+    },
+    {
+      "handle": 6288150979716058123,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        120,
+        16,
+        900,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "C:\\Users\\Owner\\Documents\\",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716058380,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        24,
+        100,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "&Archive:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716058637,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        120,
+        36,
+        820,
+        24
+      ],
+      "style": 1344340034,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716058894,
+      "parent": 6288150979716058637,
+      "owner": 0,
+      "bounds": [
+        2,
+        2,
+        798,
+        20
+      ],
+      "style": 1342177408,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "m146-\u00e9.7z",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716059151,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        970,
+        32,
+        50,
+        32
+      ],
+      "style": 1342373888,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "...",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716059408,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        82,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Archive &format:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716059665,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        78,
+        220,
+        24
+      ],
+      "style": 1344340227,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716059922,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        124,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Compression &level:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716060179,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        120,
+        220,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716060436,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        166,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Compression &method:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716060693,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        162,
+        220,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716060950,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        208,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "&Dictionary size:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716061207,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        204,
+        220,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716061464,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        250,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "&Word size:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716061721,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        246,
+        220,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716061978,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        292,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "&Solid Block size:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716062235,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        288,
+        220,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716062492,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        334,
+        260,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Number of CPU &threads:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716062749,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        280,
+        330,
+        120,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716063006,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        400,
+        334,
+        100,
+        32
+      ],
+      "style": 1342308482,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "/ 1",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716063263,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        368,
+        350,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Memory usage for Compressing:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716063520,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        370,
+        376,
+        130,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716063777,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        388,
+        350,
+        16
+      ],
+      "style": 1342308480,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "371 MB / 52 MB / 32 MB",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716064034,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        416,
+        350,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Memory usage for Decompressing:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716064291,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        370,
+        416,
+        130,
+        16
+      ],
+      "style": 1342308482,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "34 MB",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716064548,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        450,
+        480,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Split to &volumes, bytes:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716064805,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        474,
+        480,
+        24
+      ],
+      "style": 1344340034,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716065062,
+      "parent": 6288150979716064805,
+      "owner": 0,
+      "bounds": [
+        2,
+        2,
+        458,
+        20
+      ],
+      "style": 1342177408,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716065319,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        512,
+        480,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Parameters:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716065576,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        536,
+        480,
+        28
+      ],
+      "style": 1350631552,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716065833,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        20,
+        584,
+        160,
+        32
+      ],
+      "style": 1342242816,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Options",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716066090,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        200,
+        588,
+        300,
+        32
+      ],
+      "style": 1342308480,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716066347,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        560,
+        82,
+        200,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "&Update mode:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716066604,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        770,
+        78,
+        250,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716066861,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        560,
+        122,
+        200,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Path mode:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716067118,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        770,
+        118,
+        250,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716067375,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        560,
+        160,
+        460,
+        128
+      ],
+      "style": 1342177287,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Options",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716067632,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        188,
+        420,
+        20
+      ],
+      "style": 1342242819,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Create SF&X archive",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716067889,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        220,
+        420,
+        20
+      ],
+      "style": 1342242819,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Compress shared files",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716068146,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        252,
+        420,
+        20
+      ],
+      "style": 1342242819,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Delete files after compression",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716068403,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        560,
+        304,
+        460,
+        256
+      ],
+      "style": 1342177287,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Encryption",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716068660,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        332,
+        420,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Enter &password:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716068917,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        356,
+        420,
+        28
+      ],
+      "style": 1350631584,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716069174,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        396,
+        420,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Reenter password:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716069431,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        420,
+        420,
+        28
+      ],
+      "style": 1350631584,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716069688,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        462,
+        420,
+        20
+      ],
+      "style": 1342242819,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Show Password",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716069945,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        494,
+        250,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "&Encryption method:",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716070202,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        830,
+        490,
+        170,
+        24
+      ],
+      "style": 1344339971,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716070459,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        580,
+        526,
+        420,
+        20
+      ],
+      "style": 1342242819,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Encrypt file &names",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716070716,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        500,
+        624,
+        160,
+        32
+      ],
+      "style": 1342373889,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "OK",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716070973,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        680,
+        624,
+        160,
+        32
+      ],
+      "style": 1342242816,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Cancel",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716071230,
+      "parent": 6288150979716057866,
+      "owner": 0,
+      "bounds": [
+        860,
+        624,
+        160,
+        32
+      ],
+      "style": 1342242816,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Help",
+      "class_name": "Button"
+    }
+  ],
+  "maximum_observed_windows": 63,
+  "original_dialog_visible": true,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\original_add146_run.py\", line 55, in main\n    c.shot(g,'original-add-result');report['scope']='Read-only native diagnostic of the actual original 7-Zip Add action; no archive/common-dialog compatibility qualification';report['diagnostic_completed']=True;report['passed']=False\n  File \"<project-root>\\tests\\m14\\original_picker146_probe.py\", line 40, in dialog_task\n    wait_for(g, picker_active)\n  File \"<project-root>\\tests\\m14\\original_window_trace4.py\", line 28, in wait_for\n    value=predicate()\n  File \"<project-root>\\tests\\m14\\original_picker146_probe.py\", line 36, in picker_active\n    raise AssertionError(text)\nAssertionError: Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zG.exe bytes=753664 source-fnv32=377068830\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7z.dll bytes=1966080 source-fnv32=3718685405\nCommon file dialog refused: error=2 size=136 flags=524300 capacity=2114\n\nEngacer OS: Not implemented: user32.dll!MessageBoxW\n\n"
+}
