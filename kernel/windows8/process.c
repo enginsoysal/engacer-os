@@ -246,6 +246,16 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);
  case W8_SYS_TEXT143:if(d||e)return -87;if(a==1)return text_compare143(b,c);if(a==2)return text_find143(b,c);return -87;
+ case W8_SYS_PAGE145:{
+  /* Probe the complete range and old-protection output before changing any PTE. */
+  if(e||!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -87;
+  if(c!=1&&c!=3&&c!=5)return -50;
+  unsigned old=0;
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -487;if(at==a)old=(*p&NX)?((*p&2)?4:2):32;}
+  if(user8(d,&old,sizeof(old),1))return -998;
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);*p=(*p&~(NX|UINT64_C(2)))|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}
+  return 0;
+ }
  case W8_SYS_MAP:return map8(a,b,(unsigned)c);
  case W8_SYS_RESERVE:return reserve141(a,b,(unsigned)c,1);
  case W8_SYS_SYNC_CREATE:return create_sync142(a,b,c);

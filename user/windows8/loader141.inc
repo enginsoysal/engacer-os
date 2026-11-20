@@ -120,3 +120,10 @@ void*pe8_import(const char*dll,const char*name,unsigned ordinal){lock_enter142(&
 void*pe8_symbol(uint64_t base,const char*name,unsigned ordinal){lock_enter142(&loader_lock142);void*result=pe8_symbol_impl142(base,name,ordinal);lock_leave142(&loader_lock142);return result;}
 
 #include "unwind142.inc"
+
+/* The loader lock keeps the matching image alive across the atomic kernel change. */
+int64_t pe8_protect145(uint64_t address,uint64_t bytes,unsigned permissions,uint64_t old){
+ lock_enter142(&loader_lock142);int64_t result=-487;
+ for(unsigned n=0;n<MODULES141;++n){module141*m=modules141+n;uint64_t base=(uint64_t)(uintptr_t)m->base;if(m->state>=2&&address>=base&&address-base<m->size&&bytes<=m->size-(address-base)){result=(int64_t)sys8(W8_SYS_PAGE145,address,bytes,permissions,old,0);break;}}
+ lock_leave142(&loader_lock142);return result;
+}

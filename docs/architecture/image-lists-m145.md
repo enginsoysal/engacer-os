@@ -1,6 +1,6 @@
 # M14.5 image-list operations and import refusal development
 
-This follow-up is awaiting native qualification. It does not qualify original
+Frozen development build `ea2a705c4fe43c5079ef2d8913a42c0d` passes the owned image-list pixel and lifetime checks, original folder browsing and explicit import-refusal containment. Full stage qualification remains open. It does not qualify original
 Notepad++ or SumatraPDF entry, installation, interfaces or complete tasks.
 
 ## Real image objects
@@ -23,8 +23,7 @@ rolls back copied pixels and never advertises a successful new entry.
 
 The owned pixel fixture now uses a contrasting bitmap strip: removing the first
 black/magenta image must expose the second green/white image. Independent physical
-pixels also check copied-icon lifetime and background color. These native checks
-are pending; host compilation is not evidence that they passed.
+pixels also check copied-icon lifetime and background color. All 19 independent physical-pixel assertions and 21 compact lifetimes pass with zero retained pages. Host compilation remains separate from native evidence.
 
 ## Explicitly unavailable operations
 
@@ -44,15 +43,17 @@ refusal body, enabling precise startup diagnostics without one function body
 and message string per export. Optional GetProcAddress discovery hides these
 addresses and returns null. Unregistered imports still fail at binding.
 
-The generated 639-key table occupies 5,112 immutable bytes. Its collision-checked
+The current generated 638-key table occupies 5,104 immutable bytes. Its collision-checked
 64-bit keys cover only the frozen main-image function imports; updaters, plugins
 and helper packages are separate profiles. The host generation/lookup check
-passes 1,714 assertions. These numbers are not a compatibility percentage.
+passes 1,710 assertions. These numbers are not a compatibility percentage.
 The refusal reports its real return address and main-image base; a read-only
 observer may resolve a direct IAT call or simple import thunk from the pinned
 original bytes. It never guesses a symbol for other call shapes.
 
-An owned negative native fixture must verify null optional discovery, explicit
-static-call failure, actual call-site identification, resource cleanup and a
-subsequent successful original console run. Original entry diagnostics remain
+The owned negative native fixture verifies null optional discovery, explicit
+static-call failure, actual call-site identification, zero retained pages and a
+subsequent successful original console run. Its initial missing-relocation fixture failure and the initial resource-generator path failure are preserved as test defects, separately from successful corrected observations. Original entry diagnostics remain
 separate and unqualified until their real interfaces/tasks pass.
+
+Both pinned original targets now reach a real `VirtualProtect` call and stop there. The next implementation changes actual page permissions; it is awaiting qualification. [Memory protection contract](memory-m145.md).

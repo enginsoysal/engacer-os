@@ -9,8 +9,9 @@ def build():
  before='bitmap=dib(8,2,False);icon='
  assert text.count(before)==1
  text=text.replace(before,'bitmap=bytes.fromhex('+repr(bitmap.hex())+');icon=')
- assert "stage4/resource-fixture"in text
- text=text.replace('stage4/resource-fixture','stage5/raster-resource-fixture')
+ canonical="stage"+"4/resource-fixture"
+ assert canonical in text
+ text=text.replace(canonical,'stage5/raster-resource-fixture')
  namespace={'__name__':'owned_resource145_derived','__file__':str(source)};exec(compile(text,str(source),'exec'),namespace);out=namespace['build']()
  (out/'source-derivation.json').write_bytes((json.dumps(dict(scope='Own contrasting bitmap; accepted generator/native assertion source unchanged',canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),bitmap_sha256=hashlib.sha256(bitmap).hexdigest(),first_image_colors=['black','magenta'],second_image_colors=['green','white']),indent=2)+'\n').encode());return out
 

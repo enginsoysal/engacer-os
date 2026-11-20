@@ -29,8 +29,8 @@
     "winspool.drv": 26,
     "wintrust.dll": 27
   },
-  "refusal_keys": 639,
-  "table_bytes": 5112,
+  "refusal_keys": 638,
+  "table_bytes": 5104,
   "imports": [
     {
       "app": "notepadpp",
@@ -989,13 +989,6 @@
       "dll": "kernel32.dll",
       "symbol": "LCMapStringEx",
       "key": "6d85565f61e578fd",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "VirtualProtect",
-      "key": "6a5deff77848bc0e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2858,13 +2851,6 @@
       "dll": "kernel32.dll",
       "symbol": "MulDiv",
       "key": "648e9bc0980f7b2d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "VirtualProtect",
-      "key": "6a5deff77848bc0e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

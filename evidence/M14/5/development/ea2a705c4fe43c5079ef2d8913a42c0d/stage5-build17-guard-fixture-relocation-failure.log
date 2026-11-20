@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+  "scope": "Owned unavailable-import containment only; no original application compatibility proof",
+  "clone": {
+    "source_sha256": "ffffce51fcc778cd676e3bb31cd1971257bb123a8c61eaad391b361969c4dd57",
+    "clone_sha256": "ffffce51fcc778cd676e3bb31cd1971257bb123a8c61eaad391b361969c4dd57",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "fixture_sha256": "64f7c347304b240614c6fd081bd335016dad50a3e5f533f616a7222363742263",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\guard145_run.py\", line 18, in main\n    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0];at=len(g.log());p.desktop(12100,True);g.wait('M8_CPL3_CREATED',at);g.wait('M8_JOB_FAILED',at);p.drain();text=output(g);state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));assert state==3 and status and'M145_GUARD_DISCOVERY_PASS'in text and'Unavailable Win32 API caller='in text,(state,status,text)\nAssertionError: (3, 1, 'Mapped original image: 7zFM.exe bytes=12288 source-fnv32=1248529303\\n\\nEngacer OS: The Windows image has no usable relocation directory.\\n')\n"
+}
+Traceback (most recent call last):
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay5.py", line 96, in <module>
+    main()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay5.py", line 80, in main
+    module.main()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\guard145_run.py", line 18, in main
+    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0];at=len(g.log());p.desktop(12100,True);g.wait('M8_CPL3_CREATED',at);g.wait('M8_JOB_FAILED',at);p.drain();text=output(g);state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));assert state==3 and status and'M145_GUARD_DISCOVERY_PASS'in text and'Unavailable Win32 API caller='in text,(state,status,text)
+AssertionError: (3, 1, 'Mapped original image: 7zFM.exe bytes=12288 source-fnv32=1248529303\n\nEngacer OS: The Windows image has no usable relocation directory.\n')

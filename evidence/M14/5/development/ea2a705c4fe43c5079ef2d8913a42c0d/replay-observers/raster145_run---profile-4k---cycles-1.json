@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "build_id": "3a22fd1651988a37e0bfac026af9dc34",
+  "target": "raster145_run",
+  "arguments": [
+    "--profile",
+    "4k",
+    "--cycles",
+    "1"
+  ],
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE5"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE5-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage5"
+    ],
+    [
+      "evidence/M14/4",
+      "evidence/M14/5"
+    ],
+    [
+      "stage4",
+      "stage5"
+    ],
+    [
+      "M14.4",
+      "M14.5"
+    ],
+    [
+      "0.14.4",
+      "0.14.5"
+    ],
+    [
+      "m144-",
+      "m145-"
+    ]
+  ],
+  "observer_sources": {
+    "tests/m14/raster145_run.py": {
+      "canonical_sha256": "ba05fe2a7eb7cde1042745d089250ad9eed94cdaf092e971023894b0fb7dd679",
+      "executed_sha256": "ba05fe2a7eb7cde1042745d089250ad9eed94cdaf092e971023894b0fb7dd679"
+    },
+    "tests/m14/window144_native.py": {
+      "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+      "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+    },
+    "tests/m14/fixture1.py": {
+      "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+      "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+    },
+    "tests/m14/window144_build.py": {
+      "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+      "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+    },
+    "tests/m14/apps_native4.py": {
+      "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+      "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+    },
+    "tests/m14/original_window_trace4.py": {
+      "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+      "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+    },
+    "tests/m14/raster145_build.py": {
+      "canonical_sha256": "315d9bb744c0ae0ea52c1c1d7aad84e3ee68c2ae21ac97b19519271293973376",
+      "executed_sha256": "315d9bb744c0ae0ea52c1c1d7aad84e3ee68c2ae21ac97b19519271293973376"
+    },
+    "tests/m14/resource144_build.py": {
+      "canonical_sha256": "44107aca239e268112fe4c384d78e4dfe954c945fcd7eac9fefe72c9df467f39",
+      "executed_sha256": "06cd3f4d1437ee2d61725ca587afc1943bca5d31b20734421942f62396369ae2"
+    }
+  },
+  "adapter_sha256": "600b69fbb527a4cbe751a1a9a7dc50d7e66d960950bc7fbc9199a2b7183491d4"
+}

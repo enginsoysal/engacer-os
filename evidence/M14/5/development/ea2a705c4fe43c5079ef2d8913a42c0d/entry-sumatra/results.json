@@ -1,0 +1,32 @@
+{
+  "stage": "M14.5 development diagnostic",
+  "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+  "app": "sumatra",
+  "original_sha256": "719f689b34f47be8ca105ce8484948474dafde0e106bab599e4a89326070c3d0",
+  "original_bytes": 20292984,
+  "clone": {
+    "source_sha256": "ffffce51fcc778cd676e3bb31cd1971257bb123a8c61eaad391b361969c4dd57",
+    "clone_sha256": "ffffce51fcc778cd676e3bb31cd1971257bb123a8c61eaad391b361969c4dd57",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "qualified": false,
+  "scope": "Original entry through the current supported launch slot; not installation or complete package/task qualification",
+  "state": 3,
+  "command": 3,
+  "exit_status": 1,
+  "detail": "Required Windows API is unavailable; see the call-site diagnostic.",
+  "output": "Mapped original image: 7zFM.exe bytes=20840448 source-fnv32=1537365012\nRunning the original Windows executable in a protected process.\n\nUnavailable Win32 API caller=0x000000011066fd36 main=0x0000000110000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n",
+  "windows": [],
+  "protected_worker_started": true,
+  "original_app_entry_qualified": false,
+  "unavailable_call_site": {
+    "caller": "000000011066fd36",
+    "main": "0000000110000000",
+    "resolved": true,
+    "return_rva": 6749494,
+    "iat_rva": 6906912,
+    "dll": "kernel32.dll",
+    "symbol": "VirtualProtect"
+  }
+}

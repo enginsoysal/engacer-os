@@ -1,0 +1,69 @@
+{
+  "passed": false,
+  "stage": "M14.5",
+  "build_id": "3c753fd5746798fad10e073632723ced",
+  "target": "about145_trace",
+  "arguments": [],
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE5"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE5-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage5"
+    ],
+    [
+      "evidence/M14/4",
+      "evidence/M14/5"
+    ],
+    [
+      "stage4",
+      "stage5"
+    ],
+    [
+      "M14.4",
+      "M14.5"
+    ],
+    [
+      "0.14.4",
+      "0.14.5"
+    ],
+    [
+      "m144-",
+      "m145-"
+    ]
+  ],
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m14\\about145_trace.py\", line 35, in main\n    p.move(px,py);p.down(True);p.down(False);p.drain();modal=wait_for(g,lambda:next((v for v in views(g)if v['class_name']=='#32770'and v['visible']),None));assert not next(v for v in views(g)if v['handle']==root['handle'])['enabled'];c.shot(g,'original-about-dialog');report['modal_title']=modal['title'];report['original_dialog_controls']=views(g)\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m14\\about145_trace.py\", line 17, in wait_for\n    raise TimeoutError((output(g),views(g)))\nTimeoutError: ('Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\\nRunning the original Windows executable in a protected process.\\n\\n', [{'handle': 6288150979716055296, 'parent': 0, 'owner': 0, 'bounds': [80, 70, 760, 500], 'style': 282001408, 'visible': 1, 'enabled': 1, 'title': '7-Zip', 'class_name': '7-Zip::FM'}, {'handle': 6288150979716055553, 'parent': 6288150979716055296, 'owner': 0, 'bounds': [0, 0, 758, 52], 'style': 1342180096, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'ToolbarWindow32'}, {'handle': 6288150979716055810, 'parent': 6288150979716055296, 'owner': 0, 'bounds': [0, 52, 758, 407], 'style': 1342177280, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': '7-Zip::Panel'}, {'handle': 6288150979716056067, 'parent': 6288150979716055810, 'owner': 0, 'bounds': [0, 50, 758, 333], 'style': 1442906689, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'SysListView32'}, {'handle': 6288150979716056324, 'parent': 6288150979716055810, 'owner': 0, 'bounds': [0, 0, 758, 50], 'style': 1451230793, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'ReBarWindow32'}, {'handle': 6288150979716056581, 'parent': 6288150979716056324, 'owner': 0, 'bounds': [0, 0, 30, 24], 'style': 1342179652, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'ToolbarWindow32'}, {'handle': 6288150979716056838, 'parent': 6288150979716056324, 'owner': 0, 'bounds': [0, 24, 756, 24], 'style': 1350565954, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'ComboBoxEx32'}, {'handle': 6288150979716057095, 'parent': 6288150979716056838, 'owner': 0, 'bounds': [0, 0, 756, 24], 'style': 1342177282, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'ComboBox'}, {'handle': 6288150979716057352, 'parent': 6288150979716057095, 'owner': 0, 'bounds': [2, 2, 734, 20], 'style': 1342177408, 'visible': 1, 'enabled': 1, 'title': '', 'class_name': 'Edit'}, {'handle': 6288150979716057609, 'parent': 6288150979716055810, 'owner': 0, 'bounds': [0, 383, 758, 24], 'style': 1342177280, 'visible': 1, 'enabled': 1, 'title': 'Status', 'class_name': 'msctls_statusbar32'}])\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m14\\replay5.py\", line 66, in main\n    module.main()\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m14\\about145_trace.py\", line 38, in main\n    except Exception:report['error']=ui.q.clean(traceback.format_exc());report['output']=output(g)if'g'in locals()else'';raise\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m14\\window144_native.py\", line 16, in output\n    def output(g):return ui.memory(g,ui.symbol('info8',installed=True)[0]+496,16384).split(b'\\0')[0].decode(errors='replace')\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"C:\\Users\\EnginSoysal\\OneDrive - ProSysTech\\Documents\\ChatGPT\\Codename-Engine-OS\\tests\\m6\\vm.py\", line 63, in qmp\n    self.stream.write((json.dumps(r)+'\\n').encode());self.stream.flush()\nValueError: write to closed file\n",
+  "observer_sources": {
+    "tests/m14/about145_trace.py": {
+      "canonical_sha256": "9f27a1e832c3e38deca17d9091d72d7c4e9d9b90c99a68318f6a0b768c0f71e5",
+      "executed_sha256": "9f27a1e832c3e38deca17d9091d72d7c4e9d9b90c99a68318f6a0b768c0f71e5"
+    },
+    "tests/m14/window144_native.py": {
+      "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+      "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+    },
+    "tests/m14/fixture1.py": {
+      "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+      "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+    },
+    "tests/m14/window144_build.py": {
+      "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+      "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+    },
+    "tests/m14/apps_native4.py": {
+      "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+      "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+    },
+    "tests/m14/original_window_trace4.py": {
+      "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+      "executed_sha256": "4c981fb25e73e5567b539494aeba4118916590f2acc9a0a2b67507cc120d7a63"
+    }
+  },
+  "adapter_sha256": "7e402a6c29dde63e39368f070bbf23978e6d173b8152b745a22e5b54d76be950"
+}

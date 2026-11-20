@@ -61,6 +61,7 @@ unsigned pe8_resource_data(uint64_t,uint64_t,const void**,unsigned*);
 uint64_t pe8_module(const char*);
 const char *pe8_path(uint64_t);
 uint64_t pe8_main(void);
+int64_t pe8_protect145(uint64_t,uint64_t,unsigned,uint64_t);
 int pe8_release(uint64_t);
 void pe8_shutdown(void);
 void pe8_thread_attach(void);

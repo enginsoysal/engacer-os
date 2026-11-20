@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "build_id": "c66c3940b0623be100a4350c5978de53",
+  "target": "queue144_host",
+  "arguments": [],
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE5"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE5-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage5"
+    ],
+    [
+      "evidence/M14/4",
+      "evidence/M14/5"
+    ],
+    [
+      "stage4",
+      "stage5"
+    ],
+    [
+      "M14.4",
+      "M14.5"
+    ],
+    [
+      "0.14.4",
+      "0.14.5"
+    ],
+    [
+      "m144-",
+      "m145-"
+    ]
+  ],
+  "observer_sources": {
+    "tests/m14/queue144_host.py": {
+      "canonical_sha256": "28c6f636eaf6eb59579954bbea72c2a566706c12788a2854587b269de0276909",
+      "executed_sha256": "980118e06253f7ffc29f94fe785a454b1effcef2660577b823a7f8e269171d70"
+    }
+  },
+  "adapter_sha256": "6d9a576deca867b4edffe2beb4a9850483c16eab297eb51b34d5103daeae1118"
+}

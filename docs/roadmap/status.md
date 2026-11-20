@@ -1,6 +1,6 @@
 # Current status
 
-**Current development: M14.5 drawing, text and common controls.** M14.4 is the current qualified native download. Missing BrixCanvas search/navigation is report-only under the explicit owner instruction and does not halt OS milestones.
+**Current development: M14.5 drawing, text and common controls.** Original 7-Zip folder/detail/menu tasks and bounded image-list operations pass scoped development tests. Both remaining original targets reach a missing VirtualProtect call; the real page-protection follow-up is pending native qualification. M14.4 is the current qualified native download. Missing BrixCanvas search/navigation is report-only under the explicit owner instruction and does not halt OS milestones.
 
 **Current native release: [M14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** All 47 native and eight supporting host groups pass on frozen build `eafa19ad1e60ef524888e94dbb5af01e`, binding 672 compiled inputs. Exact VMware installation and two disk-only starts pass. Twenty public assets are published; independent downloads and complete content verification pass under the recorded owner public scope. [Acceptance](../../evidence/M14/4/acceptance-results.json), [resources](../../evidence/M14/4/resources.json), [stage gates](../milestones/m14-4.md).
 
@@ -51,7 +51,7 @@ tasks retain zero managed pages. The 64-MiB boot-attached USB profile remains
 an explicit unqualified loader refusal. Named VM scope is separate from universal
 hardware, GPU 3D or general Windows compatibility. Agent review is not a human study.
 
-Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](../../evidence/M12/18/publication-results.json). **M12.0–M12.18 is complete.** Earlier receipts remain immutable.
+Complete public delivery passes: twenty downloads, 406 pages and 2,853 HTTP links, native homepage Save and desktop/mobile/manual/download/search/archive verification. [Public receipt](../../evidence/M12/18/publication-results.json). **M12.0â€“M12.18 is complete.** Earlier receipts remain immutable.
 
 **Previous M12.6 / 0.12.6 passes M12-STAGE6-VM-v1.**
 [Install](../handbook/install-m126.md), [Files views](../handbook/files-m126.md),
@@ -172,7 +172,7 @@ The following records describe earlier M12 work, not the current development sta
 [public delivery](../../evidence/M12/0/publication-results.json) include original
 concepts, contrast, preserved baseline, exact design archives and fresh website
 readback. Later native M12 stages provide separately qualified media. The owner authorized
-[nineteen ordered stages, M12.0–M12.18](../milestones/m12.md). Each stage closes
+[nineteen ordered stages, M12.0â€“M12.18](../milestones/m12.md). Each stage closes
 its tests, English guides, GitHub delivery and fresh public website verification
 before the next begins. [Design contract](../architecture/desktop-m12.md),
 [source-backed inventory](../architecture/m12-inventory.md) and
@@ -197,13 +197,13 @@ drag threshold and the saved click interval include installed and detached start
 [23 guest tasks, 288 storage fault cases and exact-source acceptance](../../evidence/M11/2/acceptance-results.json)
 cover real file/subtree copy, move, rename, recycle/restore, guarded replacement,
 Undo, shortcuts, associations, drag/drop, Properties and persistent views/sorting.
-[Files guide](../handbook/files-m11.md) · [decisions](../architecture/files-m11.md).
+[Files guide](../handbook/files-m11.md) Â· [decisions](../architecture/files-m11.md).
 The extra desktop fixed state is 410,444 bytes, below its 512-KiB budget.
 **M11.3 Start and taskbar are complete within their native stage scope:**
 [22 native tasks and production checks](../../evidence/M11/3/acceptance-results.json)
 cover local search, editable categories/pins, taskbar order/alignment, real
 window restoration, optional removal, input parity, quota, saved preferences
-and actual virtual restart/S5. [Guide](../handbook/start-m11.md) ·
+and actual virtual restart/S5. [Guide](../handbook/start-m11.md) Â·
 [decisions and explicit power limits](../architecture/start-m11.md).
 Fixed desktop BSS/data adds 12,256 bytes.
 **M11.4 native windows and appearance are complete within their stage scope:**
@@ -214,7 +214,7 @@ actual ordinary/150%/4K buffers and independent saved startup. The exact enabled
 device VMware SATA/UEFI starter installs, restarts with the ISO and boots without
 it twice. Cached/full viewport pixels match in twelve comparisons. Added fixed
 desktop state is 768 bytes; retained managed pages and idle paints stay unchanged.
-[Guide](../handbook/windows-m11.md) · [decisions](../architecture/windows-m11.md).
+[Guide](../handbook/windows-m11.md) Â· [decisions](../architecture/windows-m11.md).
 Each remaining stage now includes a visible release and full public site/manual/
 download update before proceeding. **M11.5 expanded setup is now complete within
 its native stage scope:** [26 task groups](../../evidence/M11/5/acceptance-results.json)
@@ -237,7 +237,7 @@ remain separate work; physical devices, ARM and GPU 3D are not qualified here.
 
 ## Inherited hardware baseline and qualification limits
 
-Common bounded device/capability reporting, Settings → Devices, saved US layouts,
+Common bounded device/capability reporting, Settings â†’ Devices, saved US layouts,
 working qualified keyboard/mouse/wheel/hubs/reconnect, guarded FAT32 USB file copies
 and safe removal. New-artifact VMware controller installation/persistence/two
 independent boots and the original 7-Zip MSI/console lifecycle pass. Native
@@ -259,7 +259,7 @@ See the release's exact limits; configured guest RAM is not memory consumption.
 6. Original Windows Steam/game tasks with GPU, audio, input and persistent saves.
 7. Laptops/docks/power, Bluetooth, other peripherals and separately qualified ARM.
 
-The wider MS-DOS and Windows 1.x–11 program remains open; only the named original
+The wider MS-DOS and Windows 1.xâ€“11 program remains open; only the named original
 7-Zip x64 console/MSI profile is qualified. Linux/macOS remain later execution
 environments. Recognition is not usable hardware, and a launch is not a complete
 application task. [Full hardware contract](../milestones/m10.md),

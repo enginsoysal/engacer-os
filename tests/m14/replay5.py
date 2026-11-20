@@ -48,6 +48,10 @@ class ReplayLoader(importlib.abc.MetaPathFinder, importlib.abc.Loader):
             before="node['bounds'][1]+40;scale="
             assert before in text
             text=text.replace(before,"node['bounds'][1]+40+node.get('menu_height',0);scale=")
+        if module.__name__ == 'vmware4':
+            before='assert stage==4'
+            assert text.count(before)==1
+            text=text.replace(before,'assert stage==5')
         if module.__name__ == 'controls144_run':
             assert 'from controls144_build import build' in text
             text=text.replace('from controls144_build import build','from controls145_build import build')
