@@ -1,5 +1,7 @@
 # M14.4 resource and image prerequisites
 
+Current qualification: exact-source M14.4 passes its bounded original-window/message and supporting resource/drawing profiles, with 47 native and eight supporting host groups. [Acceptance](../../evidence/M14/4/acceptance-results.json), [resources](../../evidence/M14/4/resources.json). Earlier diagnostic observations below are preserved as history. Full common-control/application task coverage remains M14.5 and later work.
+
 Development implementation, not accepted original GUI compatibility. These prerequisites are required by the pinned original 7-Zip startup; broader drawing/control qualification still belongs to M14.5.
 
 ## Checked module resources

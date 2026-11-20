@@ -1,6 +1,6 @@
 # M14.4 Windows window and message ownership
 
-Status: implementation in progress, not native GUI qualification. M14.3 remains the current tested download.
+Status: exact-source M14.4 native qualification passes for the bounded original-window/message profile. All 47 native and eight supporting host groups pass on build `eafa19ad1e60ef524888e94dbb5af01e`. Matching public media and independent downloads pass; complete actual website closure is being verified. [Acceptance](../../evidence/M14/4/acceptance-results.json), [resource observations](../../evidence/M14/4/resources.json). Complete original GUI application tasks remain later blocking gates.
 
 ## Execution boundary
 
