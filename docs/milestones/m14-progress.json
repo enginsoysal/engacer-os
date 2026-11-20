@@ -1,7 +1,7 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.6",
+  "current_stage": "M14.7",
   "current_native_download": "M14.6",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
@@ -87,11 +87,12 @@
       "deliver": "Connect original app file dialogs, clipboard and actual document access with Files.",
       "how_and_why": "Preserve requesting-window ownership and file semantics; original app data must be checked independently.",
       "acceptance": "Open/edit/save/reopen, Unicode names, cancel and cross-app text clipboard tasks pass without lost or misdirected data.",
-      "status": "native-complete",
+      "status": "complete",
       "evidence": "evidence/M14/6",
-      "publication_status": "Twenty matching public assets independently verified; current public content/link evidence and final closure are recorded separately in evidence/M14/6",
+      "publication_status": "Complete within the owner-approved content/layout scope: 594 pages, 385 exact-source articles, 4383 links, zero known broken targets and twelve unverified external references",
       "qualification": "M14-STAGE6-VM-v1",
-      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6"
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6",
+      "publication_evidence": "evidence/M14/6/publication-results.json"
     },
     {
       "id": "M14.7",
@@ -99,7 +100,8 @@
       "deliver": "Implement the selected packages' actual MSI standard actions, conditions/properties/component lifecycle, rollback and required custom actions.",
       "how_and_why": "Replace the current one-digest console adapter with reusable behavior. Notepad++ MSI requires a real x64 WiX custom-action DLL and cmd/xcopy semantics; never skip it to claim successful installation.",
       "acceptance": "Selected original MSI packages install/remove/reinstall correctly, including conditions, cancellation and fault recovery; missing mandatory actions refuse clearly.",
-      "status": "planned"
+      "status": "development",
+      "evidence": "evidence/M14/7"
     },
     {
       "id": "M14.8",

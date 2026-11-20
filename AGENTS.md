@@ -1,4 +1,4 @@
-# Engacer OS — project instructions
+# Engacer OS â€” project instructions
 
 - Superseding owner reporting instruction: accumulate all BrixCanvas observations in docs/maintenance/brixcanvas-feedback-m14.txt and deliver one combined handoff after M14.15. Do not ask the owner to forward individual platform findings during the milestone sequence. Distinguish reproduced issues, transient failures, resolved observations and test-observer errors. Continue native milestones and website content updates.
 
@@ -41,7 +41,7 @@
 
 - Owner clarification, 18 November 2026: use the existing BrixCanvas editor and publication features for the website. Report missing platform capabilities to the owner instead of starting another BrixCanvas production-source investigation or platform change as part of the OS milestone work. Continue publishing Engacer OS code, documentation and releases to its canonical GitHub repository after each milestone.
 
-- Owner priority, 17 November 2026: complete M13.1–M13.12 strictly in order after accepted M13.0 under docs/milestones/m13.md. Include website information architecture and same-page search design. This is the last dedicated appearance/usability sequence before hardware recognition. Close tests, English docs, GitHub and actual native Brix homepage/content/mobile/search/download checks after every stage before the next. M13.0 is design-only; M12.18 remains the native download. Preserve all accepted M12 media/evidence. Do not claim prototype search or concepts are production/native implementation.
+- Owner priority, 17 November 2026: complete M13.1â€“M13.12 strictly in order after accepted M13.0 under docs/milestones/m13.md. Include website information architecture and same-page search design. This is the last dedicated appearance/usability sequence before hardware recognition. Close tests, English docs, GitHub and actual native Brix homepage/content/mobile/search/download checks after every stage before the next. M13.0 is design-only; M12.18 remains the native download. Preserve all accepted M12 media/evidence. Do not claim prototype search or concepts are production/native implementation.
 
 - Owner priority, 16 November 2026: execute M12.0 through M12.18 strictly in
   order under docs/milestones/m12.md and docs/architecture/desktop-m12.md.
@@ -80,7 +80,7 @@
 
 - Owner priority, 10 November 2026: M10 implements phases 1 and 2 of the approved
   hardware program before further Windows profiles. Deliver a common bounded
-  inventory/capability model and Settings → Devices, useful desktop input/display,
+  inventory/capability model and Settings â†’ Devices, useful desktop input/display,
   writable removable USB storage with graphical transfer/safe removal/reconnect,
   and new exact-artifact VMware media/tests. Maintain honest virtual versus
   physical qualification and preserve accepted releases. The owner subsequently
@@ -105,7 +105,7 @@
 - Preserve distribution freedom through validated, versioned profiles and working custom ISO examples. Only advertise configuration choices that affect implemented behavior. Core destructive-operation guards cannot be bypassed by a theme/profile.
 - Follow docs/architecture/product-principles.md; automate complete user tasks and distinguish those checks from an actual human usability study.
 
-## GitHub publication — explicit user instruction
+## GitHub publication â€” explicit user instruction
 
 The owner requested an open-source project and that every update goes to GitHub.
 
@@ -197,3 +197,6 @@ M14.0 research and M14.1 M14-STAGE1-VM-v1 native/public delivery are accepted wi
 M14.2 and M14.3 native/public deliveries are accepted within M14-STAGE2-VM-v1 and M14-STAGE3-VM-v1. Preserve their media, tags and accepted evidence. M14.3 binds 642 compiled inputs, 29 native groups, five host groups and twenty independently verified public assets; actual website qualification covers 555 pages, 359 exact-source articles and 4,063 links (zero known broken, twelve explicitly unverified external references). Subsequent work uses STAGE4 or later. The original GUI targets and M14.15 whole-system optimization remain mandatory; M14.3 does not establish general Windows GUI support. Continue in order without asking for another stage authorization.
 
 M14.5 native and public delivery are accepted within M14-STAGE5-VM-v1 and the recorded owner exception for advanced BrixCanvas documentation controls. Preserve its 695-input media, native/public evidence and release tag. Sixty native and thirteen host groups pass; original 7-Zip menu/About/folder/detail preview tasks are qualified, not complete GUI archive operations or Notepad++/Sumatra interfaces. Those original targets remain mandatory. Use STAGE6 or later for new implementation.
+
+
+M14.6 M14-STAGE6-VM-v1 and complete scoped public delivery are accepted. Preserve STAGE6 media, exact source stamps and evidence/M14/6. The earlier f280 development candidate remains explicitly blocked by its preserved editor-body visual failure. M14.7 uses a new stage7 output prefix. Missing advanced BrixCanvas search/sidebar/ordered task navigation remains reported under the owner exception; native correctness, original target tasks and M14.15 optimization remain mandatory.
