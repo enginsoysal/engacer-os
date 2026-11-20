@@ -1,0 +1,186 @@
+{
+  "passed": true,
+  "stage": "M14.4 development",
+  "scope": "Owned native packed allocator overhead check; not an app/CPU benchmark or original GUI qualification",
+  "build_id": "a1b42f7ef9043db3ce0fb4358db0bb56",
+  "clone": {
+    "source_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "clone_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixtures": {
+    "heap.exe": "17faa6a4af11bc8ec71e826ff87c6f159e2a21d8d36ec239dc8b2718f21b64bd"
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 4,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16,
+      "additional_managed_bytes": 57344,
+      "reported_block_bytes": 16
+    }
+  ],
+  "output": "Mapped original image: 7z.exe bytes=24576 source-fnv32=2799959759\nRunning the original Windows executable in a protected process.\n\nHEAP144_DELTA_BYTES=57344\nHEAP144_ALLOC_SIZE=16\nM144_HEAP_OVERHEAD_PASS\n"
+}

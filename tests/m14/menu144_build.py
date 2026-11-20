@@ -16,9 +16,11 @@ def build():
  extended=struct.pack('<HHI',1,4,0)+item(0,0,0,0x81,'&File')+struct.pack('<I',0)+item(0,0,41,0,'Open')+item(0,8,42,0x80,'Close')
  standard=struct.pack('<HHHH',0,0,0x80,81)+string('Standard')
  payloads=[extended,standard,extended[:-3]]
- lines=['.section .rsrc,"dr"','.p2align 2','root144:','.long 0,0','.short 0,0,0,1','.long 4,names144-root144+0x80000000','names144:','.long 0,0','.short 0,0,0,3']
+ lines=['.section .rsrc,"dr"','.p2align 2','root144:','.long 0,0','.short 0,0,0,2','.long 4,names144-root144+0x80000000','.long 9,accel_names144-root144+0x80000000','names144:','.long 0,0','.short 0,0,0,3']
  for i in range(3):lines+=['.long '+str(i+1)+',lang144_'+str(i)+'-root144+0x80000000']
  for i,data in enumerate(payloads):lines+=['lang144_'+str(i)+':','.long 0,0','.short 0,0,0,1','.long 0x409,entry144_'+str(i)+'-root144','entry144_'+str(i)+':','.rva data144_'+str(i),'.long '+str(len(data))+',0,0']
+ accel=struct.pack('<8H',1,0x75,77,0,0x80,ord('g'),99,0)
+ lines+=['accel_names144:','.long 0,0','.short 0,0,0,1','.long 1,accel_lang144-root144+0x80000000','accel_lang144:','.long 0,0','.short 0,0,0,1','.long 0x409,accel_entry144-root144','accel_entry144:','.rva accel_data144','.long '+str(len(accel))+',0,0','accel_data144:','.byte '+','.join(map(str,accel))]
  for i,data in enumerate(payloads):lines+=['.p2align 2','data144_'+str(i)+':','.byte '+','.join(map(str,data))]
  lines+=['.data','.p2align 3','.globl menu_anchor144','menu_anchor144:','.quad menu_anchor144']
  asm=out/'menu-resources.s';asm.write_bytes(('\n'.join(lines)+'\n').encode());command([tools['clang'],'--target=x86_64-pc-windows-msvc','-c',asm,'-o',out/'menu-resources.obj']);command([tools['lld-link'],'/dll','/noentry','/nodefaultlib','/timestamp:0','/dynamicbase','/fixed:no','/export:menu_anchor144,data','/out:'+str(out/'menus144.dll'),out/'menu-resources.obj'])

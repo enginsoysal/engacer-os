@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "stage": "M14.4 development",
+  "scope": "Owned native menu tree and state fixture; not original GUI qualification",
+  "build_id": "a1b42f7ef9043db3ce0fb4358db0bb56",
+  "clone": {
+    "source_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "clone_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixtures": {
+    "menu.exe": "c4cedca492da0bc7f8589dcbcd4e105dfe0ffe419f57efe6e5ed4cea87f871b9"
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 4,
+      "menu_state": true
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "menu_state": true
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "menu_state": true
+    }
+  ],
+  "output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=3559544352\nRunning the original Windows executable in a protected process.\n\nMapped original image: menus144.dll bytes=20480 source-fnv32=1611660970\nM144_MENU_STATE_PASS\n"
+}

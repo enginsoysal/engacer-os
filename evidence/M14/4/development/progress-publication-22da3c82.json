@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scope": "Development homepage/article readback only; NOT full website crawl or stage acceptance",
+  "source_ref": "22da3c825007267b11aa2c886127be6296e621a3",
+  "checked_at_utc": "2026-11-20T08:04:02.645822+00:00",
+  "native_editor": "Fresh isolated BrixCanvas Home editor; four current generated native Brix sections; Saved automatically checkmark observed",
+  "native_search": {
+    "query": "resource",
+    "same_page": true,
+    "matched_current_article": "/blog/docs-architecture-resources-m144"
+  },
+  "pages": [
+    {
+      "url": "https://engaceros.brixcanvas.com/",
+      "expected_content_present": true
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-4",
+      "expected_content_present": true
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-resources-m144",
+      "expected_content_present": true
+    }
+  ]
+}

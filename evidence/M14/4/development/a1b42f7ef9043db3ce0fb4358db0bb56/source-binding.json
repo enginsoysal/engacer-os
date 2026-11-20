@@ -1,0 +1,7 @@
+{
+  "build_id": "a1b42f7ef9043db3ce0fb4358db0bb56",
+  "source_ref": "22da3c825007267b11aa2c886127be6296e621a3",
+  "compiled_inputs": 671,
+  "mismatches": [],
+  "scope": "Development regression; original GUI still fails on these base candidate bytes"
+}

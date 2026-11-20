@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "stage": "M14.4 development",
+  "scope": "Owned native common-control registration, child geometry, edit/status state, display metrics and cursor fixture; not original GUI qualification",
+  "build_id": "a1b42f7ef9043db3ce0fb4358db0bb56",
+  "clone": {
+    "source_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "clone_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixtures": {
+    "controls.exe": "488c6dde80c66473daecdddc27d34d7f49b32b252880a7a648004f8ec11ffb86"
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 4,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "control_api_geometry": true
+    }
+  ],
+  "output": "Mapped original image: 7z.exe bytes=24576 source-fnv32=751970184\nRunning the original Windows executable in a protected process.\n\nM144_CONTROLS_GEOMETRY_PASS\n"
+}
