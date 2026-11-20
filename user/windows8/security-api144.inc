@@ -8,5 +8,3 @@ static int MS f_GetUserNameW(WCHAR*out,unsigned*capacity){if(!capacity){last8(87
 /* No shell namespace service exists yet. Optional icon queries must receive a
  * typed failure, never a fabricated PIDL or success pointer. */
 static int32_t MS f_SHGetSpecialFolderLocation(HANDLE owner,int folder,void**out){(void)owner;(void)folder;if(!out)return(int32_t)0x80070057u;*out=0;return(int32_t)0x80004001u;}
-
-

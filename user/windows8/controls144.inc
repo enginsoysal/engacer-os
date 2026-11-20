@@ -17,6 +17,7 @@ static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(te
 #include "listview144.inc"
 #include "combo144.inc"
 #include "rebar144.inc"
+#include "edit-input144.inc"
 #include "control-paint144.inc"
 static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  ui_window_runtime144*w=ui_window_lookup144(handle);if(!w){last8(1400);return 0;}control_state144*c=w->control;
@@ -24,6 +25,7 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  if(!c)return f_DefWindowProcW(handle,message,wp,lp);
  if((c->kind==C144_COMBO||c->kind==C144_COMBOEX)&&message!=0x82){unsigned handled;int64_t result=combo_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_REBAR&&(message==5||message>=0x400)){unsigned handled;int64_t result=rebar_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
+ if(c->kind==C144_EDIT){unsigned handled;int64_t result=edit_input144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(message==0xf){control_paint144(handle,c);return 0;}
  if(message==0x82){control_release144(w);return 0;}
  if(message==0x30){c->font=wp;return 0;}if(message==0x31)return(int64_t)c->font;

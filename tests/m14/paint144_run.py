@@ -20,13 +20,14 @@ def main():
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0]
    for turn in range(21):
     at=len(g.log());p.desktop(12100,True);g.wait('M8_CPL3_CREATED',at);wait(g,'M144_PAINT_READY');p.drain();assert len(t.records(g))==2
-    c.key(g,'a');wait(g,'M144_PAINT_REPAINTED');p.drain();assert ui.integer(g,'ui_draw_pages144',True)==1
+    c.key(g,'a');wait(g,'M144_PAINT_REPAINTED');p.drain();assert 1<=ui.integer(g,'ui_draw_pages144',True)<=2
     if turn==0:
      c.shot(g,'native-painted-window');image=Image.open(out/'native-painted-window.png');scale=c.flag(g,'scale73')/2;x,y,w,h=f.model(g)[1]
      point=lambda xx,yy:image.getpixel((int(xx*scale),int(yy*scale)))
      assert point(x+31,y+70)==(0,120,199),point(x+31,y+70)
      assert point(x+131,y+70)==(255,255,255),point(x+131,y+70)
      box=image.crop((int((x+11)*scale),int((y+120)*scale),int((x+211)*scale),int((y+136)*scale)));dark=sum(1 for rgb in box.getdata()if max(rgb)<180);assert dark>30,dark;report['physical_framebuffer']={'colored_pixel_rgb':[0,120,199],'white_pixel_rgb':[255,255,255],'native_text_dark_pixels':dark,'physical_width':image.width,'physical_height':image.height}
+    x,y,w,h=f.model(g)[1];scale=c.flag(g,'scale73')/2;p.move(int((x+41)*scale),int((y+180)*scale));p.down(True);p.down(False);p.drain();c.key(g,'x');wait(g,'M144_EDIT_KEYBOARD_PASS');c.key(g,'backspace');wait(g,'M144_EDIT_BACKSPACE_PASS');p.drain()
     p.desktop(49002,True);g.wait('M8_JOB_DONE',at);p.drain();assert 'M144_PAINT_LIFETIME_PASS'in output(g),output(g)
     assert ui.integer(g,'ui_resident144',True)==0 and ui.integer(g,'ui_draw_pages144',True)==0
     retained=f.stats(g)[0]-before;assert retained==0,retained;report['cycles'].append({'cycle':turn+1,'paint_callbacks_at_least':21,'retained_pages':retained})

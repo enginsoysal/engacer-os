@@ -1,0 +1,25 @@
+{
+  "original_gui_qualified": false,
+  "stage": "M14.4 diagnostic",
+  "build_id": "a1b42f7ef9043db3ce0fb4358db0bb56",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "clone": {
+    "source_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "clone_sha256": "3bf6526f70b5d362d636f82aa4e4e2bd222b1feebe4eb12bffaff6e75a47981c",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "state": 3,
+  "status": 1,
+  "message": "A required Windows common-control message is not implemented.",
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\nUnsupported control message: SysListView32 message=4154\n\nEngacer OS: A required Windows common-control message is not implemented.\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "retained_pages": 5
+}

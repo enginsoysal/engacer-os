@@ -36,7 +36,7 @@ static unsigned foreign_key144(int key){
  if(launcher||model.focused>=DESKTOP_WINDOWS||!model.windows[model.focused].live||key==137||key==135)return 0;
  uint64_t handle=apps[model.focused].foreign144;if(!handle)return 0;wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return 1;
  if(key==144){w8_ui_input144(handle,0x10,0,0);return 1;}
- if((key>=32&&key<=126)||key==8||key==9||key==10){w8_ui_input144(handle,0x102,key==10?13:(unsigned)key,1);return 1;}
+ if((key>=32&&key<=126)||key==8||key==9||key==10){unsigned ch=key==10?13:(unsigned)key,vk=ch;if(vk>='a'&&vk<='z')vk-=32;else if(ch==';'||ch==':')vk=0xba;else if(ch=='='||ch=='+')vk=0xbb;else if(ch==','||ch=='<')vk=0xbc;else if(ch=='-'||ch=='_')vk=0xbd;else if(ch=='.'||ch=='>')vk=0xbe;else if(ch=='/'||ch=='?')vk=0xbf;else if(ch=='`'||ch=='~')vk=0xc0;else if(ch=='['||ch=='{')vk=0xdb;else if(ch==']'||ch=='}')vk=0xdd;else if(ch==92||ch=='|')vk=0xdc;else if(ch==39||ch==34)vk=0xde;w8_ui_input144(handle,0x100,vk,1);w8_ui_input144(handle,0x102,ch,1);w8_ui_input144(handle,0x101,vk,UINT64_C(0xc0000001));return 1;}
  unsigned vk=key==128?0x25:key==129?0x27:key==133?0x26:key==134?0x28:key==27?0x1b:0;
  if(vk){w8_ui_input144(handle,0x100,vk,1);w8_ui_input144(handle,0x101,vk,UINT64_C(0xc0000001));}return 1;
 }
