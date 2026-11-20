@@ -330,7 +330,7 @@ static int MS legacy_RegCloseKey(HANDLE h){if(h<0x4000||h>=0x4010||!registry_han
 GUARD8(guard_cxx8,"C++ exception termination")
 /* Keep throw calls distinct from language handlers reached by a hardware fault. */
 static NORETURN void MS guard_throw146(void*object,const void*info){
- print8("Unsupported C++ throw: caller=");number8((uint64_t)(uintptr_t)__builtin_return_address(0));print8(" object=");number8((uint64_t)(uintptr_t)object);print8(" throw-info=");number8((uint64_t)(uintptr_t)info);print8(" main=");number8(pe8_main());print8("\n");fail8("C++ throw propagation is not implemented in this Windows profile.");
+ print8("Unsupported C++ throw: caller=");number8((uint64_t)(uintptr_t)__builtin_return_address(0));print8(" object=");number8((uint64_t)(uintptr_t)object);if(object&&!sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)object,4,1,0,0)){uint32_t word;memcpy(&word,object,4);print8(" object-word=");number8(word);}print8(" throw-info=");number8((uint64_t)(uintptr_t)info);print8(" main=");number8(pe8_main());print8("\n");fail8("C++ throw propagation is not implemented in this Windows profile.");
 }
 static NORETURN void MS guard_frame146(w8_exception_record142*record,uint64_t frame,w8_context142*context,void*dispatcher){
  (void)frame;(void)dispatcher;print8("Unsupported C++ language handler:");
