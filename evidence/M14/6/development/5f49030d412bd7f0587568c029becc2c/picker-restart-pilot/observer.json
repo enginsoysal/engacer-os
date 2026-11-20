@@ -1,0 +1,7 @@
+{
+  "canonical_path": "tests/m14/picker146_run.py",
+  "canonical_sha256": "d0c1c00d9494e8f4ed687d8bdf2bcc5a59f157562c086dc27fe93aa314f76719",
+  "executed_sha256": "1e4c66a19d18ba12093c0c43f8c7ec724864b194aef3be906e1fec967619ac90",
+  "adapter_sha256": "3d04446863bf58fe837c29b48966662dd74048995d2e0ee46531aa022b7d929e",
+  "scope": "All retained common-dialog assertions plus actual disk-only startup and native reopening of the Windows-saved Unicode path/content"
+}
