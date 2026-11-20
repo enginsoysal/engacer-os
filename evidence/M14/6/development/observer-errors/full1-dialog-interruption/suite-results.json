@@ -1,0 +1,464 @@
+{
+  "passed": false,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "workers": 3,
+  "tasks": {
+    "compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 81.46899999998277,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "6",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 84.84399999998277,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "6",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "starter": {
+      "exit_code": 0,
+      "observer_wall_seconds": 4.9060000000172295,
+      "command": [
+        "tools/release/vmware_starter14.py",
+        "--stage",
+        "6"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 111.40700000000652,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "6",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "apps-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 94.39100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "apps_native4",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "apps-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 94.43700000000536,
+      "command": [
+        "tests/m14/replay6.py",
+        "apps_native4",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "chords146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 38.109000000025844,
+      "command": [
+        "tests/m14/replay6.py",
+        "chords146_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "apps-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 151.65599999998813,
+      "command": [
+        "tests/m14/replay6.py",
+        "apps_native4",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "clipboard146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 51.030999999988126,
+      "command": [
+        "tests/m14/replay6.py",
+        "clipboard146_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "font146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 44.76600000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "font146_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "dialogs145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 102.42199999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "dialog145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "owners": {
+      "exit_code": 0,
+      "observer_wall_seconds": 194.35899999999674,
+      "command": [
+        "tests/m14/replay6.py",
+        "owner144_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "font146-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 72.64100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "font146_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "font146-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 34.328000000008615,
+      "command": [
+        "tests/m14/replay6.py",
+        "font146_run",
+        "--profile",
+        "ordinary",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "global146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 44.98499999998603,
+      "command": [
+        "tests/m14/replay6.py",
+        "global146_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "guard145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 33.796999999991385,
+      "command": [
+        "tests/m14/replay6.py",
+        "guard145_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "mapping146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 47.35899999999674,
+      "command": [
+        "tests/m14/replay6.py",
+        "mapping146_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "keys145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 114.04699999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "keys145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "list145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 138.25,
+      "command": [
+        "tests/m14/replay6.py",
+        "list145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "menus145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 124.71900000001187,
+      "command": [
+        "tests/m14/replay6.py",
+        "menu145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-clipboard146-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 81.56299999999464,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_clipboard146_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-clipboard146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 133.06200000000536,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_clipboard146_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-list145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 36.26500000001397,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_list145_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-clipboard146-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 90.17199999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_clipboard146_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-list145-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 56.703000000008615,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_list145_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-list145-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 41.671999999991385,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_list145_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-menu-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 53.64000000001397,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_menu145_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-menu-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 33.828000000008615,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_menu145_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-picker146-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 56.937999999994645,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_picker146_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-picker146-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 60.07799999997951,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_picker146_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "original-picker146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 94.85899999999674,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_picker146_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "protect145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 42.405999999988126,
+      "command": [
+        "tests/m14/replay6.py",
+        "protect145_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "raster-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 48.171999999991385,
+      "command": [
+        "tests/m14/replay6.py",
+        "raster145_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "picker-lifetime146": {
+      "exit_code": 1,
+      "observer_wall_seconds": 135.18700000000536,
+      "command": [
+        "tests/m14/replay6.py",
+        "picker_lifetime146_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "picker146": {
+      "exit_code": 1,
+      "observer_wall_seconds": 192.25,
+      "command": [
+        "tests/m14/replay6.py",
+        "picker146_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    },
+    "raster-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 168.53100000001723,
+      "command": [
+        "tests/m14/replay6.py",
+        "raster145_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603"
+    }
+  },
+  "pending": [
+    "com",
+    "controls",
+    "deep",
+    "dialog145-host",
+    "dib-host",
+    "document146-host",
+    "faults",
+    "files-browser-download",
+    "files-environment",
+    "files-files",
+    "files-find",
+    "files-metadata",
+    "files-paths",
+    "files-registry",
+    "files-state-lifetime",
+    "font146-host",
+    "formats",
+    "global146-host",
+    "heap",
+    "keymap145-host",
+    "keys145-host",
+    "mapping146-host",
+    "menus",
+    "original-4k",
+    "original-compact",
+    "original-ordinary",
+    "original-resources",
+    "pack146-host",
+    "paint",
+    "queue-host",
+    "resource-host",
+    "resources",
+    "runtime-cancel",
+    "runtime-download-stream",
+    "runtime-exception-invalid",
+    "runtime-exception-nested",
+    "runtime-exceptions",
+    "runtime-find-host",
+    "runtime-http-host",
+    "runtime-inspection",
+    "runtime-last-thread",
+    "runtime-msi-cancel",
+    "runtime-named-sync",
+    "runtime-named-sync-cancel",
+    "runtime-path-host",
+    "runtime-probes",
+    "runtime-processes",
+    "runtime-threads",
+    "runtime-tls",
+    "runtime-unicode-host",
+    "runtime-unwind",
+    "runtime-unwind-chain",
+    "runtime-unwind-invalid",
+    "source145-host",
+    "targets145-host",
+    "timers",
+    "vmware",
+    "windows"
+  ],
+  "running": [],
+  "observer_wall_seconds": 1070.4070000000065,
+  "scope": "Task orchestration only; direct native/host/source/media and public acceptance remain separate gates"
+}

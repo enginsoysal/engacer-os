@@ -72,11 +72,23 @@ def main():
                         raise TimeoutError((marker, output(g)))
                     last_generation = generation
                     p.drain()
-                    halted = g.qmp('human-monitor-command', {'command-line': 'info registers -a'}).count('HLT=1')
-                    assert halted == 2, (name, halted)
+                    idle_observations = []
+                    idle_deadline = time.monotonic() + 2
+                    while time.monotonic() < idle_deadline:
+                        active = int.from_bytes(ui.memory(g, ui.symbol('picker_request', installed=True)[0], 8), 'little')
+                        assert active == pointer and active, ('Request ended before idle observation', name)
+                        observed_generation = int.from_bytes(ui.memory(g, active, 8), 'little')
+                        assert observed_generation == generation and c.flag(g, 'file_dialog_state11') == 10 and c.flag(g, 'picker12') == purpose
+                        halted = g.qmp('human-monitor-command', {'command-line': 'info registers -a'}).count('HLT=1')
+                        idle_observations.append(halted)
+                        if len(idle_observations) >= 3 and idle_observations[-3:] == [2, 2, 2]:
+                            break
+                        time.sleep(.05)
+                    else:
+                        raise AssertionError(('No stable blocked idle interval', name, idle_observations))
                     if cycle == 0:
                         c.shot(g, 'pending-' + name)
-                    phases.append(dict(phase=name, generation=generation, actual_native_picker_displayed=True, blocked_halted_cpus=halted))
+                    phases.append(dict(phase=name, generation=generation, actual_native_picker_displayed=True, blocked_halted_cpus=halted, idle_observations=idle_observations))
                 deadline = time.monotonic() + 20
                 while time.monotonic() < deadline:
                     state, command, status = struct.unpack('<3I', ui.memory(g, ui.symbol('info8', installed=True)[0], 12))

@@ -86,7 +86,7 @@ def main():
   assert cycle['expected_process_exit']==42 and cycle['picker_and_window_pages_released']
   assert [v['phase']for v in cycle['phases']]==['owner','thread','process']
   for phase in cycle['phases']:
-   assert phase['actual_native_picker_displayed']and phase['blocked_halted_cpus']==2
+   assert phase['actual_native_picker_displayed']and phase['blocked_halted_cpus']==2 and phase['idle_observations'][-3:]==[2,2,2]
    generations.append(phase['generation'])
  assert generations==sorted(set(generations))
  assert new['picker-native']['saved_bytes_independently_verified']and new['picker-native']['source_unchanged']
@@ -116,7 +116,17 @@ def main():
    assert hashlib.sha256(historical).hexdigest()==digest
    verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='3f64eeeae7037664481140b61d4c52e790fa39e2',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
   else:assert current==digest,('Suite observer input changed',path)
- assert all(r['source_tree_sha256']==tree['source_tree_sha256']for r in suite['tasks'].values())
+ assert all(r.get('validated_source_tree_sha256',r['source_tree_sha256'])==tree['source_tree_sha256']for r in suite['tasks'].values())
+ reused_trees={}
+ for task_name,record in suite['tasks'].items():
+  if record['source_tree_sha256']==tree['source_tree_sha256']:continue
+  assert task_name!='picker-lifetime146' and record['resumed_verified_same_candidate']
+  prior=read(work/'development/full1'/('observer-tree-'+record['source_tree_sha256']+'.json'))
+  assert hashlib.sha256(json.dumps(prior['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
+  differences={path:{'before':prior['files'].get(path),'after':tree['files'].get(path)}for path in prior['files'].keys()|tree['files'].keys()if prior['files'].get(path)!=tree['files'].get(path)}
+  assert differences==record['verified_unconsumed_tree_changes']
+  assert differences.keys()<={'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs','tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py'}
+  reused_trees[record['source_tree_sha256']]=prior
  names.extend(additional);host_names.extend(additional_hosts)
  final.mkdir(exist_ok=True)
  for path in scratch.iterdir():
@@ -128,5 +138,5 @@ def main():
  write(final/'base-acceptance-derivation.json',dict(canonical_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,fixed_state_assertion={'previous':557692,'current':557684,'explanation':'Cursor removal plus new picker generation; see fixed-state-change.json'},output_isolation=str(scratch.relative_to(ROOT))))
  result['native_groups'].extend(names);result['host_groups'].extend(host_names)
  result['limits'].extend(['Original Notepad++ and Sumatra startup reaches FlsAlloc but their interfaces, installation and tasks remain unqualified; required runtime work continues in M14.10 and complete corpus acceptance in M14.12','Read-only/read-write/execute-read image/allocation protections only; general Windows virtual-memory semantics remain incomplete','Original 7-Zip details clip at requested column widths; universal controls, theme, drag services and arbitrary Windows application compatibility are not qualified'])
- write(final/'common-dialog-observer-tree.json',tree);write(final/'verifier-maintenance.json',verifier_maintenance);write(final/'acceptance-results.json',result);print('PASS additive M14.6 acceptance',build)
+ write(final/'common-dialog-observer-tree.json',tree);write(final/'retained-task-original-trees.json',reused_trees);write(final/'verifier-maintenance.json',verifier_maintenance);write(final/'acceptance-results.json',result);print('PASS additive M14.6 acceptance',build)
 if __name__=='__main__':main()

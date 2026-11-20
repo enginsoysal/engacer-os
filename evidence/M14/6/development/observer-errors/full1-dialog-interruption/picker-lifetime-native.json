@@ -1,0 +1,183 @@
+{
+  "passed": false,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "scope": "Owned actual displayed modal requests, timer-dispatched owner/thread/process teardown and idle/lifetime observations",
+  "fixture_sha256": "bc5c710c9aec5185a36e126490d8fa08beaa680dea3a94ad82efdb6ec8145b9b",
+  "cycles": [
+    {
+      "cycle": 1,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 1,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 2,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 3,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 4,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 5,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 6,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 7,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 8,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 9,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 10,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 11,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 12,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 13,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 14,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 15,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 16,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 17,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 18,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\picker_lifetime146_run.py\", line 76, in main\n    assert halted == 2, (name, halted)\nAssertionError: ('thread', 1)\n"
+}

@@ -1,0 +1,6 @@
+{
+  "scope": "Preserved incomplete campaign, not successful stage qualification",
+  "lifetime": "Six complete zero-retention cycles, then one thread-phase snapshot with one active CPU; corrected observer requires three consecutive two-CPU halt observations within the same live request generation and a two-second deadline",
+  "picker": "Ten complete zero-retention Open/Save cycles, then QMP socket read timeout; cause not established and unchanged semantic task requires rerun",
+  "native_source_changed": false
+}

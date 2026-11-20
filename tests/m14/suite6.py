@@ -7,6 +7,36 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def validate_resume(prior, name, record, command, current_tree, current_digest, out, build):
+    """Reuse only proven unmodified tasks; preserve their actual original tree hash."""
+    if record.get('validated_source_tree_sha256',record.get('source_tree_sha256')) == current_digest:
+        return True
+    assert prior and record.get('validated_source_tree_sha256',record.get('source_tree_sha256')) == prior['source_tree_sha256']
+    old = prior['files']
+    differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
+    allowed = {'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs',
+               'tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py'}
+    assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
+    if name == 'picker-lifetime146':
+        return False
+    if command[0] == 'tests/m14/replay6.py':
+        import re
+        target, arguments = command[1], command[2:]
+        suffix = '-'.join(re.sub('[^a-zA-Z0-9_-]','',a) for a in arguments)
+        path = out.parent.parent / 'replay-observers' / (target + ('-' + suffix if suffix else '') + '.json')
+        observed = json.loads(path.read_text())
+        assert observed['passed'] and observed['build_id'] == build
+        assert not (differences & observed['observer_sources'].keys()), ('A consumed observer changed', name)
+        for path, row in observed['observer_sources'].items():
+            assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == row['canonical_sha256'], (name,path)
+    else:
+        assert command[0] in ('tests/m14/native1.py','tools/release/vmware_starter14.py')
+    record['validated_source_tree_sha256'] = current_digest
+    record['verified_unconsumed_tree_changes'] = {path: {'before':old.get(path),'after':current_tree.get(path)} for path in sorted(differences)}
+    record['reuse_scope'] = 'Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task'
+    return True
+
+
 def main():
     listing = '--list' in sys.argv
     if listing:
@@ -51,11 +81,23 @@ def main():
     assert source.count(before) == 1
     source = source.replace(before, before + '''
  (out/'observer-tree.json').write_bytes((json.dumps({'files':tree,'source_tree_sha256':source_tree,'suite_derivation':suite_derivation146},indent=2)+'\\n').encode())''')
+    prior_tree = None
+    if '--resume' in sys.argv:
+        revision = sys.argv[sys.argv.index('--revision') + 1] if '--revision' in sys.argv else 'full1'
+        tree_path = ROOT / 'build/m14-native/stage6/development' / revision / 'observer-tree.json'
+        prior_tree = json.loads(tree_path.read_text())
+        assert hashlib.sha256(json.dumps(prior_tree['files'], sort_keys=True).encode()).hexdigest() == prior_tree['source_tree_sha256']
+        backup = tree_path.with_name('observer-tree-' + prior_tree['source_tree_sha256'] + '.json')
+        if not backup.exists():
+            backup.write_bytes(tree_path.read_bytes())
+    needle = "   if r.get('source_tree_sha256')!=source_tree:continue"
+    assert source.count(needle) == 1
+    source = source.replace(needle, "   if not validate_resume146(name,r,tasks[name]['command'][1:],tree,source_tree,out,build):continue")
     derivation = dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),
                       executed_sha256=hashlib.sha256(source.encode()).hexdigest(),
                       adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                       replacements=replacements, retained_tasks=74, total_tasks=94)
-    namespace = dict(__name__='m146_suite_derivation', __file__=str(canonical), suite_derivation146=derivation, suite_list146=listing)
+    namespace = dict(__name__='m146_suite_derivation', __file__=str(canonical), suite_derivation146=derivation, suite_list146=listing, validate_resume146=lambda *args: validate_resume(prior_tree,*args))
     exec(compile(source, str(canonical), 'exec'), namespace)
     namespace['main']()
 

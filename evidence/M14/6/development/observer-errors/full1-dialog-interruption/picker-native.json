@@ -1,0 +1,115 @@
+{
+  "passed": false,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "scope": "Owned native common-dialog ABI, Unicode selected files, native cancel/replacement consent, caller writes and independent bytes; not original-app dialog qualification",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "fixture_sha256": "b7b08a3365d3345e8ddb254a22756f01c961d42b361e5d116810b77329dba0b6",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\picker146_run.py\", line 41, in main\n    c.key(g,'ctrl','a');c.key(g,'ctrl','c');c.key(g,'end');c.key(g,'backspace');assert b'm146-save-'+bytes([0])in ui.memory(g,*ui.symbol('picker12',installed=True));c.key(g,'ctrl','a');c.key(g,'ctrl','v');p.desktop(54011,True);ready('M146_PICKER_REPLACE_CANCEL_READY',8);p.desktop(54011,True);assert picker()[1]==1\n  File \"<project-root>\\tests\\m14\\picker146_run.py\", line 27, in ready\n    wait_for(g,observed,30);p.drain()\n  File \"<project-root>\\tests\\m14\\original_window_trace4.py\", line 26, in wait_for\n    raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384);state=struct.unpack_from('<I',raw)[0]\n  File \"<project-root>\\tests\\m74\\ui.py\", line 22, in memory\n    text=g.qmp('human-monitor-command',{'command-line':f'xp /{(size+7)//8}gx 0x{address:x}'})\n  File \"<project-root>\\tests\\m6\\vm.py\", line 65, in qmp\n    v=json.loads(self.stream.readline())\n  File \"<host-user>\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socket.py\", line 705, in readinto\n    return self._sock.recv_into(b)\nTimeoutError: timed out\n"
+}
