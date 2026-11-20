@@ -62,7 +62,7 @@
       "how_and_why": "Run original application code and its actual message loop rather than recreate the target app as a native lookalike.",
       "acceptance": "Original app windows visibly respond to input, focus, move/resize/minimize/close; ownership and modality do not operate the wrong app.",
       "status": "in_progress",
-      "qualification": "Owned native GUI callbacks and message queues are under development. Original 7-Zip GUI remains blocked by missing COMCTL32 dependencies; not accepted."
+      "qualification": "Native window/resource/control prerequisites are under development; original 7-Zip startup now stops at OleInitialize. No original GUI acceptance."
     },
     {
       "id": "M14.5",

@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "stage": "M14.4 development",
+  "scope": "Owned native allocator overhead baseline; not an app/CPU benchmark or original GUI qualification",
+  "build_id": "6b01169c1df67f14713435a277bc6409",
+  "clone": {
+    "source_sha256": "c58e73a9702cc0f001c06af5b86ffb55d305c0725cbcdede5151798c8c501696",
+    "clone_sha256": "c58e73a9702cc0f001c06af5b86ffb55d305c0725cbcdede5151798c8c501696",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixtures": {
+    "heap.exe": "17faa6a4af11bc8ec71e826ff87c6f159e2a21d8d36ec239dc8b2718f21b64bd"
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 4,
+      "allocation_count": 1000,
+      "bytes_per_allocation": 16
+    }
+  ],
+  "output": "Mapped original image: 7z.exe bytes=24576 source-fnv32=2799959759\nRunning the original Windows executable in a protected process.\n\nHEAP144_DELTA_BYTES=4108288\nHEAP144_ALLOC_SIZE=4064\nM144_HEAP_OVERHEAD_PASS\n"
+}

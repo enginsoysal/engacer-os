@@ -5,6 +5,10 @@ _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
 static unsigned ui_generation144,ui_revision144;
+static unsigned ui_cursors144[SPACES142]={32512,32512,32512,32512};
+#ifdef ENGINE_M73
+#include <engine/ui/graphics73.h>
+#endif
 static void *ui_page144(void){uint64_t page=page_alloc();if(!page)return 0;memset((void*)(uintptr_t)page,0,4096);++ui_resident144;group_peak142();return(void*)(uintptr_t)page;}
 static void ui_free144(void*p){if(p){page_free((uint64_t)(uintptr_t)p);--ui_resident144;}}
 static ui_window144 *ui_lookup144(uint64_t handle){unsigned i=(unsigned)(handle&255);if(i>=WUI_WINDOWS144)return 0;ui_window144*w=ui_windows144[i];return w&&w->view.handle==handle?w:0;}
@@ -33,7 +37,7 @@ static void ui_thread_release144(unsigned space,unsigned thread){
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&ui_windows144[i]->space==space&&ui_windows144[i]->thread==thread)ui_destroy144(ui_windows144[i]->view.handle);
  ui_free144(ui_queues144[space][thread]);ui_queues144[space][thread]=0;
 }
-static void ui_release144(void){for(unsigned i=0;i<THREADS142;++i)ui_thread_release144(active_space142,i);}
+static void ui_release144(void){ui_cursors144[active_space142]=32512;for(unsigned i=0;i<THREADS142;++i)ui_thread_release144(active_space142,i);}
 static unsigned ui_description144(wui_description144*d,uint64_t self){
  if(d->visible>1||d->enabled>1||d->bounds.width<0||d->bounds.height<0||d->bounds.width>16384||d->bounds.height>16384||d->bounds.x< -32768||d->bounds.x>32767||d->bounds.y< -32768||d->bounds.y>32767||d->title[127]||d->class_name[63])return 87;
  if(d->parent&&d->owner)return 87;
@@ -43,6 +47,15 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 }
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
+ if(op==WUI_METRICS144){
+#ifdef ENGINE_M73
+  if(handle||argument)return -87;unsigned width=ui73_width(),height=ui73_height(),x=0,y=0,buttons=0;usb_mouse_state(&x,&y,&buttons);wui_metrics144 metrics={width,height,height>60?height-60:0,ui73_scale(),(ui73_measure("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",1)/26+1)/2,16,x,y};return user8(pointer,&metrics,sizeof(metrics),1)?-998:0;
+#else
+  return -50;
+#endif
+ }
+ if(op==WUI_CURSOR144){if(pointer||argument||handle>65535)return -87;unsigned id=(unsigned)handle;if(id&&id!=32512&&id!=32513&&id!=32642&&id!=32643&&id!=32644&&id!=32645)return -50;unsigned old=ui_cursors144[active_space142];ui_cursors144[active_space142]=id;return old;}
+
  if(op==WUI_CREATE144||op==WUI_UPDATE144){
   if(argument)return -87;wui_description144 d;if(user8(pointer,&d,sizeof(d),0))return -998;
   unsigned error=ui_description144(&d,op==WUI_UPDATE144?handle:0);if(error)return -(int64_t)error;
@@ -79,4 +92,5 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
 unsigned w8_ui_revision144(void){return ui_revision144;}
 unsigned w8_ui_at144(unsigned index,wui_view144*out){if(index>=WUI_WINDOWS144||!out||!ui_windows144[index])return 0;*out=ui_windows144[index]->view;return 1;}
 unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10)};return ui_enqueue144(w->space,w->thread,&m,1);}
-unsigned w8_ui_place144(uint64_t handle,wui_rect144 bounds,unsigned visible){ui_window144*w=ui_lookup144(handle);if(!w||visible>1||bounds.width<0||bounds.height<0||bounds.width>16384||bounds.height>16384)return 0;w->view.description.bounds=bounds;w->view.description.visible=visible;w->view.revision=++ui_revision144;return 1;}
+unsigned w8_ui_cursor144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w?ui_cursors144[w->space]:32512;}
+unsigned w8_ui_place144(uint64_t handle,wui_rect144 bounds,unsigned flags){ui_window144*w=ui_lookup144(handle);if(!w||(flags&~7u)||bounds.width<0||bounds.height<0||bounds.width>16384||bounds.height>16384)return 0;w->view.description.bounds=bounds;w->view.description.visible=flags&1;w->view.description.style&=~0x31000000u;w->view.description.style|=(flags&1?0x10000000u:0)|(flags&2?0x20000000u:0)|(flags&4?0x01000000u:0);w->view.revision=++ui_revision144;return 1;}

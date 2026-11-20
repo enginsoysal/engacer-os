@@ -33,7 +33,7 @@ static void say(const char*s){unsigned n=0,w=0;while(s[n])++n;WriteFile(GetStdHa
 static void check(unsigned ok,const char*text){if(!ok){say("M144_RESOURCE_FAIL ");say(text);say("\n");ExitProcess(1);}}
 void entry(void){
  check(anchor144[0]=='N',"fixture relocation");H heap=GetProcessHeap();unsigned char*memory=HeapAlloc(heap,8,128);check(memory!=0,"HeapAlloc");for(unsigned i=0;i<128;++i)check(memory[i]==0,"zero-initialized heap");check(HeapSize(heap,0,memory)>=128,"heap size");check(!HeapFree(heap,0,memory+1)&&GetLastError()==87,"interior pointer refusal");check(HeapFree(heap,0,memory),"HeapFree");check(HeapSize(heap,0,memory)==(SIZE)-1,"freed heap refusal");
- H common=LoadLibraryW(L"comctl32.dll");check(common!=0,"known provider");check(GetProcAddress(common,"ImageList_Create")!=0,"implemented dynamic API");check(GetProcAddress(common,"InitCommonControlsEx")==0&&GetLastError()==127,"unsupported discovery remains null");check(FreeLibrary(common),"provider release");
+ H common=LoadLibraryW(L"comctl32.dll");check(common!=0,"known provider");check(GetProcAddress(common,"ImageList_Create")!=0,"implemented dynamic API");check(GetProcAddress(common,"PropertySheetW")==0&&GetLastError()==127,"unsupported discovery remains null");check(FreeLibrary(common),"provider release");
  H stale=0;
  for(unsigned turn=0;turn<25;++turn){H module=LoadLibraryW(L"resources144.dll");check(module!=0,"resource-only DLL load");
   if(stale)check(SizeofResource(module,stale)==0&&GetLastError()==1814,"stale resource generation");

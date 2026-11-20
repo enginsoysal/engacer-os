@@ -1249,6 +1249,9 @@ static void cursor_context20(i11_target hit11,unsigned x,unsigned y){
       desktop_window*edit19=desktop_lookup(&model,hit11.window);
       if(edit19&&edit19->app==EDITOR&&!apps[edit19-model.windows].closing&&!apps[edit19-model.windows].stopped&&(int)y>=edit19->bounds.y+98&&(int)y<edit19->bounds.y+edit19->bounds.height-34&&(int)x>=edit19->bounds.x+18&&(int)x<edit19->bounds.x+edit19->bounds.width-18)cursor19=1;
     }
+#ifdef ENGINE_M8
+    if(!edges19){unsigned kind144=foreign_cursor_kind144(hit11.window,x,y);if(kind144!=UINT32_MAX)cursor19=kind144;}
+#endif
     graphics9_cursor_kind(cursor19);
 }
 #endif

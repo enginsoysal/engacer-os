@@ -122,7 +122,7 @@ void graphics9_end_batch(void){if(batch9&&!--batch9)graphics9_flush();}
    and both diagonals. Only a four-byte kind is retained; no cursor bitmap. */
 static unsigned cursor_kind19;
 void graphics9_cursor_kind(unsigned kind){
- if(kind>5)kind=0;
+ if(kind>6)kind=0;
  if(cursor_kind19!=kind){graphics9_hide_cursor();cursor_kind19=kind;}
 }
 static unsigned cursor_inside19(int x,int y,unsigned kind){
@@ -134,6 +134,7 @@ static unsigned cursor_inside19(int x,int y,unsigned kind){
  return(x>=28&&x<=164&&y>=28&&y<=164&&d<=8)||(x>=28&&x<=72&&y>=28&&y<=72&&x+y<=100)||(x>=120&&x<=164&&y>=120&&y<=164&&x+y>=284);
 }
 static void cursor_draw19(unsigned px,unsigned py,unsigned scale){
+ if(cursor_kind19==6){graphics9_hide_cursor();return;}
  graphics9_hide_cursor();graphics9_flush();
  int ox=(int)px-(int)(12*scale/2),oy=(int)py-(int)(12*scale/2);
  int left=ox<0?0:ox,top=oy<0?0:oy,right=ox+(int)(24*scale/2),bottom=oy+(int)(24*scale/2);

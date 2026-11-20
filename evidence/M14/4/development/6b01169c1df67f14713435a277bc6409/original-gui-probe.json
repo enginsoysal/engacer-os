@@ -1,0 +1,25 @@
+{
+  "original_gui_qualified": false,
+  "stage": "M14.4 diagnostic",
+  "build_id": "6b01169c1df67f14713435a277bc6409",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "clone": {
+    "source_sha256": "c58e73a9702cc0f001c06af5b86ffb55d305c0725cbcdede5151798c8c501696",
+    "clone_sha256": "c58e73a9702cc0f001c06af5b86ffb55d305c0725cbcdede5151798c8c501696",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "state": 3,
+  "status": 1,
+  "message": "Not implemented: ole32.dll!OleInitialize",
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\n\nEngacer OS: Not implemented: ole32.dll!OleInitialize\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "retained_pages": 4
+}
