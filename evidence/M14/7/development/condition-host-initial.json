@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": 12170,
+  "scope": "Supporting hosted production parser, exact original selected conditions and malformed-input bounds; not native MSI/custom-action or original installation qualification",
+  "limits": [
+    "4096 condition bytes, 2048 lexer steps, 32 unary/parenthesis levels, 72-byte symbol names",
+    "Case-insensitive and ordered text comparisons currently require ASCII; unsupported non-ASCII comparisons return condition error"
+  ],
+  "sources": {
+    "user/windows8/msi-condition147.h": "2b7f67b911c464f72355a494ddd85042c6eddc95802d51e04e2cf223c171d515",
+    "tests/m14/condition147_host.c": "6527bef000e9e4d919e29f56ecbce3a7d31b5bd90dd7c34ff6357876718c8d66",
+    "tests/m14/condition147_host.py": "39f2f531c9f554fec8fdcdadb423a26261574ff090429837ec9bc0a0234a99ea"
+  }
+}
