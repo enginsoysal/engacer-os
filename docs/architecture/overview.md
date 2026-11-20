@@ -1,8 +1,8 @@
 # Engacer OS architecture
 
-The current native runtime stage is [M14.3](../releases/m143-v0.14.3.md). Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
+The current native runtime stage is [M14.4](../releases/m144-v0.14.4.md). Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
 
-Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.3 exact candidate separately qualifies native file/settings and runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Complete public delivery is recorded separately from native acceptance.
+Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.4 exact candidate separately qualifies the original 7-Zip initial-window/input/lifetime profile, retained file/settings/runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Full original GUI application tasks remain unqualified. Complete public delivery is recorded separately from native acceptance.
 
 ## Layers
 
@@ -50,7 +50,7 @@ Native persistent storage, installer ownership and selected removable-file opera
 
 ## Boot and recovery
 
-Original BIOS and UEFI loaders normalize firmware information and enter the native kernel. UEFI boot services end before kernel operation. The exact M14.3 VMware package uses x64 UEFI, Secure Boot disabled, a blank growable 20-GiB SATA disk and the matching ISO. It installs, restarts with the ISO retained and starts twice independently without the ISO. [Installation](../handbook/install-m143.md), [storage instructions](../handbook/vmware-storage.md).
+Original BIOS and UEFI loaders normalize firmware information and enter the native kernel. UEFI boot services end before kernel operation. The exact M14.3 VMware package uses x64 UEFI, Secure Boot disabled, a blank growable 20-GiB SATA disk and the matching ISO. It installs, restarts with the ISO retained and starts twice independently without the ISO. [Installation](../handbook/install-m144.md), [storage instructions](../handbook/vmware-storage.md).
 
 Historical BIOS/controller/trust tests keep their named scopes. Normal public media remain unsigned; an earlier owner-enrolled trust experiment does not establish factory Secure Boot support. Installed persistence and implemented same-build boot repair/update-slot/rollback controls are distinct from unqualified cross-release migration or a universal power-loss guarantee.
 

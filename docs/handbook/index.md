@@ -2,12 +2,12 @@
 
 ## Start here
 
-**Current qualified release: [Engacer OS M14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Native qualification and complete public delivery pass within M14-STAGE3-VM-v1. Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/3/publication-results.json). Follow the guide matching the release you download.
+**Current qualified release: [Engacer OS M14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Native qualification and complete public delivery pass within M14-STAGE3-VM-v1. Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/3/publication-results.json). Follow the guide matching the release you download.
 
-- [Download, verify and install in VMware](install-m143.md)
-- [Windows files, persistent settings and browser downloads](windows-m143.md)
+- [Download, verify and install in VMware](install-m144.md)
+- [Windows files, persistent settings and browser downloads](windows-m144.md)
 - [What works today and current limitations](../roadmap/status.md)
-- [Release scope and checksums](../releases/m143-v0.14.3.md)
+- [Release scope and checksums](../releases/m144-v0.14.4.md)
 - [Build and customize your own distribution](distributions.md)
 
 M14.3 adds selected Unicode file/path/search, sharing/locking, persistent user registry and environment behavior over the native process/thread runtime. It retains the original supported 7-Zip console/MSI tasks. Notepad++/Sumatra remain inspection-only; Firefox remains download-only. There is no embedded Windows guest. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resource bounds](../../evidence/M14/3/resources.json). M14.15 remains the mandatory whole-system optimization gate.
@@ -16,7 +16,7 @@ M14.3 adds selected Unicode file/path/search, sharing/locking, persistent user r
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](first-day-m143.md)
+- [First day, desktop and folders](first-day-m144.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
 - [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)

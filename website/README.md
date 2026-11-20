@@ -1,5 +1,9 @@
 # BrixCanvas documentation website
 
+Current native release is M14.4. M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system CPU/RAM/storage optimization gate. All 47 native and eight supporting host groups pass. Twenty matching GitHub assets are public; fresh complete website verification is pending. [Acceptance](../evidence/M14/4/acceptance-results.json), [stage gates](../docs/milestones/m14-4.md).
+
+## Historical M14.3 public delivery
+
 Current native delivery is M14.3: selected Unicode files/paths/search, sharing/locks, persistent user settings and copied environments over the retained native runtime. All 29 native groups and five supporting host groups pass. Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. Homepage/recovery native Saves and public desktop/mobile/search/manual/download checks pass. [Publication receipt](../evidence/M14/3/publication-results.json). [Native acceptance](../evidence/M14/3/acceptance-results.json), [stage gates](../docs/milestones/m14-3.md). Firefox remains download-only and general Windows GUI execution remains unavailable. M14.15 is the mandatory whole-system optimization gate.
 
 ## Historical M14.2 public delivery
@@ -99,7 +103,7 @@ The previous Save failure is resolved. The editor sends the native blog data
 with its canvas, exceeding the framework's default 1 MiB action-body cap. The
 owner-approved bounded BrixCanvas correction retains the live application and
 raises only that cap to 4 MiB. A fresh native Save sent 1,278,039 characters
-with all 145 posts, received HTTP 200 and displayed **Saved âœ“**. No article was
+with all 145 posts, received HTTP 200 and displayed **Saved ✓**. No article was
 removed and no credential or separate hosting workaround was used. See
 [follow-up evidence](../evidence/documentation/homepage-m92-followup.json).
 

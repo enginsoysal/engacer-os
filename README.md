@@ -4,23 +4,23 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders, ke
 
 ## Download and get started
 
-**Current qualified release: [M14.3 / 0.14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m143-v0.14.3).** Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](evidence/M14/3/publication-results.json). Use the matching ISO or prepared VMware package and checksums.
+**Current native release: [M14.4 / 0.14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Twenty matching assets are published. Independent downloads and complete actual website verification are being finalized.
 
-- [Install and restart in VMware](docs/handbook/install-m143.md)
-- [Your first day](docs/handbook/first-day-m143.md)
-- [Windows files, persistent settings and browser downloads](docs/handbook/windows-m143.md)
-- [Exact tested scope and limitations](docs/releases/m143-v0.14.3.md)
+- [Install and restart in VMware](docs/handbook/install-m144.md)
+- [Your first day](docs/handbook/first-day-m144.md)
+- [Original Windows window preview and supported tasks](docs/handbook/windows-m144.md)
+- [Exact tested scope and limitations](docs/releases/m144-v0.14.4.md)
 - [Online documentation and downloads](https://engaceros.brixcanvas.com)
 
-M14.3 qualifies the selected native file/settings profile and the original supported 7-Zip console/MSI lifecycle. Notepad++ and Sumatra remain inspection-only. Firefox can be downloaded and hash-checked, but cannot yet install or run. Named VM checks do not establish universal hardware, GPU 3D or general Windows compatibility.
+M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system CPU/RAM/storage optimization gate.
 
-## Native runtime qualification: M14.3
+## Native runtime qualification: M14.4
 
-All 29 native groups and five supporting host groups pass on one frozen 642-input candidate. Tests cover Unicode paths/search, shared files/locks, persistent user registry/restart, process-local and inherited environments, temporary files, file-owned metadata, private processes/threads/TLS, synchronization and the selected C exception profile. The exact enabled-device VMware archive installs, restarts with its ISO retained and starts twice from disk only. Compact, ordinary and actual 4K profiles pass. [Native acceptance](evidence/M14/3/acceptance-results.json), [resource accounting](evidence/M14/3/resources.json).
+All 47 native groups and eight supporting host groups pass on the frozen 672-input candidate. Original compact, ordinary and actual 4K/200% window profiles pass alongside process/thread/TLS/exception, files/settings, installation and cancellation regressions. The exact enabled-device VMware package installs, starts the original window, moves/closes it and boots twice without its ISO. [Acceptance](evidence/M14/4/acceptance-results.json), [resource accounting](evidence/M14/4/resources.json).
 
 Windows program instructions execute through Engacer OS's own compatibility APIs and kernel. An embedded Windows guest or second OS is not the implementation. VMware and QEMU are external test hosts.
 
-- [M14.3 stage and publication gates](docs/milestones/m14-3.md)
+- [M14.4 stage and publication gates](docs/milestones/m14-4.md)
 - [File/settings ownership and bounds](docs/architecture/files-m143.md)
 - [Retained execution and lifetime contract](docs/architecture/runtime-m142.md)
 - [Child ownership](docs/architecture/children-m142.md), [synchronization](docs/architecture/synchronization-m142.md), [exception scope](docs/architecture/exceptions-m142.md)

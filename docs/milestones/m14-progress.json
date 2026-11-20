@@ -1,8 +1,8 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.3",
-  "current_native_download": "M14.3",
+  "current_stage": "M14.4",
+  "current_native_download": "M14.4",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
   "optimization_core_requirement": true,
@@ -62,7 +62,10 @@
       "how_and_why": "Run original application code and its actual message loop rather than recreate the target app as a native lookalike.",
       "acceptance": "Original app windows visibly respond to input, focus, move/resize/minimize/close; ownership and modality do not operate the wrong app.",
       "status": "in_progress",
-      "qualification": "The corrected exact-source candidate passes 21 stronger owner/modal lifetimes and original compact/ordinary/4K window profiles plus real VMware execution. Remaining native/host regressions and complete public delivery still block stage closure."
+      "qualification": "M14-STAGE4-VM-v1",
+      "evidence": "evidence/M14/4",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4",
+      "publication_status": "Native and public media qualified; complete actual website closure pending"
     },
     {
       "id": "M14.5",

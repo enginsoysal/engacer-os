@@ -1,6 +1,6 @@
 # M4.5 console commands
 
-**Historical M4.5 console guide.** For the current graphical installer use the [M14.3 installation guide](install-m143.md). M5 later introduced its own historical [tutorial](install.md), [commands](m5-console.md) and [recovery](recovery.md); they describe those older media.
+**Historical M4.5 console guide.** For the current graphical installer use the [M14.3 installation guide](install-m144.md). M5 later introduced its own historical [tutorial](install.md), [commands](m5-console.md) and [recovery](recovery.md); they describe those older media.
 
 Commands are case-sensitive. Type `help` for the available syntax. `disk` and `storage` are not commands; use `disks`. There is no partition-create, format or install command in this release.
 

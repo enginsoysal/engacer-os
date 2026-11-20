@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M14.3",
+  "currentRelease": "M14.4",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m143.md",
+          "docs/handbook/install-m144.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m143-v0.14.3.md",
+          "docs/releases/m144-v0.14.4.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/first-day-m143.md",
+          "docs/handbook/first-day-m144.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -92,7 +92,7 @@
           "Keep saved work and understand stability limits"
         ],
         [
-          "docs/handbook/windows-m143.md",
+          "docs/handbook/windows-m144.md",
           "Use Windows file checks and browser downloads"
         ]
       ]
@@ -181,6 +181,6 @@
     }
   ],
   "developmentProgram": "M14.4",
-  "currentSummary": "M14.3 adds checked Unicode paths/search, shared files and byte-range locks, persistent user settings and copied process environments. It retains private Windows processes, preemptive threads, TLS and selected C exception handling. Windows instructions run through our own kernel and APIs, without an embedded Windows guest. The original 7-Zip console profile remains supported. Browser choices can download the original Firefox installer; Firefox and general Windows GUI installation/execution are not supported yet. Follow M14.0-M14.15, including mandatory whole-system optimization in M14.15.",
-  "currentImageAlt": "Actual Engacer OS M14.3: the original supported 7-Zip console output in the native Windows Apps frontend. The original Windows file-manager GUI is not supported yet."
+  "currentSummary": "M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.",
+  "currentImageAlt": "Actual Engacer OS M14.4: the original unmodified 7-Zip x64 file-manager window in the native desktop. Initial window/input/lifetime preview; full GUI application tasks remain unqualified."
 }
