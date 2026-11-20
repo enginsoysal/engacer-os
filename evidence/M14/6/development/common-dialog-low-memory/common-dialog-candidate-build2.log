@@ -1,0 +1,18 @@
+<project-root>\tools\build\trust7.py:17: CryptographyDeprecationWarning: Parsed a serial number which wasn't positive (i.e., it was negative or zero), which is disallowed by RFC 5280. Loading this certificate will cause an exception in a future release of cryptography.
+  certificates=x509.load_pem_x509_certificates(source.read_bytes())
+Traceback (most recent call last):
+{
+  "build_id": "a9b2b4c93e82d04186b6d9c51601c4ea",
+  "iso": "dist/EngacerOS-M14STAGE6.iso"
+}
+{
+  "build_id": "a9b2b4c93e82d04186b6d9c51601c4ea",
+  "iso": "dist/EngacerOS-M14STAGE6.iso"
+}
+  File "<project-root>\tools\build\m14.py", line 22, in <module>
+    main()
+  File "<project-root>\tools\build\m14.py", line 19, in main
+    build('stage'+str(args.stage), profile, m14=True)
+  File "<project-root>\tools\build\m6.py", line 94, in build
+    if high>0x800000:raise RuntimeError('M12 live image exceeds the qualified low-memory envelope; redesign placement before publishing')
+RuntimeError: M12 live image exceeds the qualified low-memory envelope; redesign placement before publishing

@@ -1,0 +1,18 @@
+{
+  "scope": "Unqualified first common-dialog build refused by retained live-image low-memory guard; no native execution claimed",
+  "failed_source_commit": "14626612",
+  "live_high_bytes": 8403336,
+  "live_high_limit": 8388608,
+  "over_limit_bytes": 14728,
+  "encoder_probe": {
+    "pages": 389,
+    "old_encoded_bytes": 1184658,
+    "new_encoded_bytes": 1151058,
+    "saved_bytes": 33600,
+    "scope": "Installed kernel plus EFI payload pages; not final complete live-image size"
+  },
+  "inputs": {
+    "build\\m14-native\\installed\\KERNEL.ELF": "ca7a8e78a5b802fe2836421471d9128b82392f71499eb6646fdbc6697983c212",
+    "build\\m14-native\\BOOTX64.EFI": "e4f88aa86cbb6ff0fbc75ed91175be95565ba34bbf5bacca7ce853190f8f652c"
+  }
+}
