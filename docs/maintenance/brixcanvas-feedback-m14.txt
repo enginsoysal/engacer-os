@@ -1,0 +1,71 @@
+ENGACER OS — CONSOLIDATED BRIXCANVAS FEEDBACK (M14)
+
+Status: working report. Deliver one combined handoff after M14.15.
+Language: English. Website: https://engaceros.brixcanvas.com
+Owner instruction: collect findings instead of requesting individual reports;
+keep OS milestones and current website content moving. Platform limitations
+are nonblocking. Do not change the shared BrixCanvas application/deployment.
+
+This report distinguishes reproduced issues, transient observations and
+unconfirmed diagnostics. It does not imply that every item is a current bug.
+No credentials, private account data or shared-platform source are included.
+
+1. Saved documentation portal configuration is absent from public rendering
+
+Status: reproduced during M14.4 publication; reported and nonblocking.
+Affected behavior: same-page Search documentation button, Ctrl+K entry point,
+and article task/heading navigation (including On this page).
+
+The native Menu Brix contains documentationPortal.version = 1 and the current
+ordered sections/entries. Native Save completed. After a fresh editor reload,
+its native Copy export still contains the configuration. The public homepage
+correctly shows M14.4 and current content, but an independent Chromium session
+finds zero Search documentation buttons after eight seconds. No page JavaScript
+error was observed. The matching installation article has its correct pinned
+GitHub source link but no On this page control.
+
+Reproduction:
+- Open the owned website's standard native editor and the Home Menu Brix.
+- Use Copy and check the documentationPortal configuration.
+- Reload the editor from the server and Copy again: it remains present.
+- Visit the public homepage and try the search control/Ctrl+K.
+- Visit /blog/docs-handbook-install-m144 and check article heading navigation.
+
+Expected: the existing documentation configuration drives the accessible
+same-page search and article navigation in public rendering. Please check
+whether rendering requires an additional setting or whether the saved
+configuration is being omitted. The root cause is not established.
+
+Evidence in enginsoysal/engacer-os:
+- evidence/M14/4/development/public-search/missing-search.json
+- evidence/M14/4/development/public-search/reloaded-native-menu.json
+- evidence/M14/4/development/public-search/browser-failure.json
+- evidence/M14/4/native-editor-save.json
+- evidence/M14/4/website-readback.json
+Observed content source: 6664566577fc69f972cf84041d663869945036ec.
+The complete page/content audit passed 569 pages; that does not establish
+working search/navigation. The failed feature test remains preserved.
+
+2. A content-sync PATCH returned HTTP 401 during an otherwise valid publication
+
+Status: transient observation; subsequent synchronizations succeeded.
+The 44721801554 GitHub Actions run stopped while PATCHing
+/posts/downloads-archive-4. It reported HTTP 401. Later runs 44722025768,
+44722246519 and 44722484384 succeeded with current content and unchanged
+publication credentials. No shared-platform change was made to recover.
+
+Please inspect server-side authentication/request logs if this recurs. One
+observed rejection does not establish a recurring authentication defect, its
+cause, or a need to change credentials. Preserve the fail-closed publication
+behavior: a denied PATCH must not be reported as successful.
+
+Run: https://github.com/enginsoysal/engacer-os/actions/runs/44721801554
+
+HANDOFF RULES
+
+Append further reproduced BrixCanvas findings to this document with their
+milestone, exact trigger, observed/expected behavior, evidence and current
+status. Record a successful recheck as resolved; retain the original evidence.
+Do not classify a test-selector error or an OS/runtime defect as a BrixCanvas
+bug. Do not send individual reports or ask the owner to forward them before
+M14.15 is complete. Native OS correctness and media integrity remain mandatory.

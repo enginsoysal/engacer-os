@@ -1,5 +1,7 @@
 # Engacer OS — project instructions
 
+- Superseding owner reporting instruction: accumulate all BrixCanvas observations in docs/maintenance/brixcanvas-feedback-m14.txt and deliver one combined handoff after M14.15. Do not ask the owner to forward individual platform findings during the milestone sequence. Distinguish reproduced issues, transient failures, resolved observations and test-observer errors. Continue native milestones and website content updates.
+
 - Superseding owner instruction: missing BrixCanvas search configuration/rendering is report-only and must not block milestone continuation. Keep the website content and GitHub current after every stage. Continue M14 through M14.15 in order without a new stage approval; preserve actual failures and limitations instead of claiming the missing platform controls passed. All native correctness, source/media integrity and optimization gates remain mandatory.
 
 ## Scope and architecture
