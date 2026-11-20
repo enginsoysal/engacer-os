@@ -1,6 +1,6 @@
 # Installation wizard design and historical prototypes
 
-For the current native installer, use the [M14.3 installation guide](install-m144.md) and [storage explanation](vmware-storage.md). The older prototypes below are design history, not the current bootable installer.
+For the current native installer, use the [M14.4 installation guide](install-m144.md) and [storage explanation](vmware-storage.md). The older prototypes below are design history, not the current bootable installer.
 
 Historical M7.5 native implementation: [M7.5 guided installation and installed restart](install-m75.md), with [reference review and novice step matrix](../architecture/installer-m75.md). Previous implementation: [M7.2 installation and immediate folder desktop](install-m72.md), with its [architecture and actual native evidence](../architecture/desktop-m72.md).
 

@@ -1,8 +1,8 @@
 # VMware disks and installation storage
 
-## Current M14.3 installer
+## Current M14.4 installer
 
-Use the [matching prepared VMware package and installation guide](install-m144.md). It contains a new blank growable 20-GiB SATA disk and the matching ISO. Extract the whole package, open EngacerOS.vmx and keep its hard disk connected. This is the exact VMware configuration qualified for M14.3; older controller-matrix results remain historical, not repeated qualification of these media.
+Use the [matching prepared VMware package and installation guide](install-m144.md). It contains a new blank growable 20-GiB SATA disk and the matching ISO. Extract the whole package, open EngacerOS.vmx and keep its hard disk connected. This is the exact VMware configuration qualified for M14.4; older controller-matrix results remain historical, not repeated qualification of these media.
 
 In **Choose a disk**, click the disk row: its highlight and selection circle show the chosen target. A blank usable disk needs no manual partition creation. Next leads to app/style choices and a separate review; installation writes only after the reviewed Install action. Existing data requires the explicit replacement/erasure route. The ordinary installer replaces the entire selected disk, not one chosen partition. Back up anything wanted before confirming erasure.
 
@@ -18,7 +18,7 @@ After successful setup choose **Restart to Engacer OS**. The matching ISO may re
 
 The remaining commands and read-only limitations describe the old M4.5 media. They are retained for that release and do not describe today's graphical installer.
 
-**Historical follow-up:** M5 subsequently added its own [installation tutorial](install.md), [commands](m5-console.md) and [recovery](recovery.md). Use the current guide above for M14.3.
+**Historical follow-up:** M5 subsequently added its own [installation tutorial](install.md), [commands](m5-console.md) and [recovery](recovery.md). Use the current guide above for M14.4.
 
 ## Disk discovery comes before partitions
 

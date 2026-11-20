@@ -2,7 +2,7 @@
 
 ## Start here
 
-**Current qualified release: [Engacer OS M14.3](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Native qualification and complete public delivery pass within M14-STAGE3-VM-v1. Complete actual website verification passes: 555 pages, 359 exact-source articles and 4,063 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/3/publication-results.json). Follow the guide matching the release you download.
+**Current native release: [Engacer OS M14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Native qualification passes within M14-STAGE4-VM-v1, and all twenty public assets have been independently downloaded and verified. Complete actual website closure is being finalized. Follow the guide matching your download.
 
 - [Download, verify and install in VMware](install-m144.md)
 - [Windows files, persistent settings and browser downloads](windows-m144.md)
@@ -10,7 +10,7 @@
 - [Release scope and checksums](../releases/m144-v0.14.4.md)
 - [Build and customize your own distribution](distributions.md)
 
-M14.3 adds selected Unicode file/path/search, sharing/locking, persistent user registry and environment behavior over the native process/thread runtime. It retains the original supported 7-Zip console/MSI tasks. Notepad++/Sumatra remain inspection-only; Firefox remains download-only. There is no embedded Windows guest. [Native acceptance](../../evidence/M14/3/acceptance-results.json), [resource bounds](../../evidence/M14/3/resources.json). M14.15 remains the mandatory whole-system optimization gate.
+M14.4 adds the original 7-Zip initial-window/input/lifetime preview over the retained supported console/MSI, file/settings and process/thread profiles. Full GUI application tasks remain unqualified. Notepad++/Sumatra remain inspection-only; Firefox remains download-only. There is no embedded Windows guest. [Native acceptance](../../evidence/M14/4/acceptance-results.json), [resource bounds](../../evidence/M14/4/resources.json). M14.15 remains the mandatory whole-system optimization gate.
 
 ## Use the desktop
 
