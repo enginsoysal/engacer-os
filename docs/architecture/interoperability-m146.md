@@ -1,6 +1,16 @@
 # M14.6 document and clipboard contract
 
-Development design, not native qualification. Original AMD64 instructions continue in private native processes; no embedded Windows environment is introduced.
+Current implementation and qualification record. The complete M14.6 campaign is running on candidate `f280a707e5e2e61c869f2abbb536c5a8`; this stage is not accepted yet. Original AMD64 instructions continue in private native processes; no embedded Windows environment is introduced.
+
+## Current implemented profile
+
+The development implementation provides eager Unicode clipboard transfer between isolated Windows processes and native text applications; owner-bound classic Open/Save dialogs; and actual RAM-backed shared sections used by the original 7-Zip helper. Open/Save supports one file, twelve filters, a 1920-byte aggregate label/pattern pool, 63-byte labels and 255-byte wildcard patterns, within one lazy request page. Unsupported hooks/templates/multiselection/ANSI or ownerless requests refuse explicitly. Selecting Save does not create a file.
+
+Compact and actual 4K installation, original MSI, original Browse/cancel/Unicode result and exact native glyph pixels pass on the current candidate. The first real pending-request teardown test passes owner destruction, thread exit and process exit, with unchanged abandoned result buffers, both guest CPUs halted while blocked and zero retained pages. The full repeated/native/host/VMware campaign remains pending.
+
+Desktop fixed session state is 557684 bytes, eight more than M14.5 for the foreign-picker generation. Sparse window pointers add 768 kernel bytes independently; window/request/section metadata remains lazy. Immutable font coverage is 227452 bytes versus 251248 before; additional glyph descriptors occupy 9888 bytes. These are component figures, not whole-OS RAM, CPU speed or final M14.15 performance qualification.
+
+Original 7-Zip Browse/cancel/Unicode-selected-path tasks use unchanged original code. Explicit native group cancellation is tested separately from still-unsupported normal C++ exception cancellation. Complete GUI archive operations and the mandatory Notepad++/Sumatra tasks remain later blocking gates. Historical candidate descriptions below retain what was known at the time; they do not supersede this current profile.
 
 ## Memory and clipboard ownership
 
