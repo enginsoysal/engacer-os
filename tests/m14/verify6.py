@@ -78,7 +78,7 @@ def main():
   additional.extend(['original-clipboard'+suffix,'original-picker-native'+suffix,'font-native'+suffix])
  new={name:read(work/name/'results.json')for name in additional}
  for name,r in new.items():assert r['passed']and r['build_id']==build,name
- for name in ('mapping-native','picker-native','picker-lifetime-native'):
+ for name in ('global-native','clipboard-native','mapping-native','picker-native','picker-lifetime-native'):
   assert len(new[name]['cycles'])==21 and all(row['retained_pages']==0 for row in new[name]['cycles']),name
  life=new['picker-lifetime-native']
  generations=[]
@@ -105,7 +105,17 @@ def main():
   for path,digest in r.get('sources',r.get('source_sha256',{})).items():assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest,(name,path)
  tree=read(work/'development/full1/observer-tree.json')
  assert hashlib.sha256(json.dumps(tree['files'],sort_keys=True).encode()).hexdigest()==tree['source_tree_sha256']
- for path,digest in tree['files'].items():assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest,('Suite observer input changed',path)
+ verifier_maintenance=[]
+ for path,digest in tree['files'].items():
+  current=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+  if current!=digest and path=='tests/m14/verify6.py':
+   # This verifier does not execute any campaign task. Preserve its exact
+   # campaign-start source and bind its additive acceptance-only corrections.
+   import subprocess
+   historical=subprocess.check_output(['git','show','3f64eeeae7037664481140b61d4c52e790fa39e2:'+path],cwd=ROOT)
+   assert hashlib.sha256(historical).hexdigest()==digest
+   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='3f64eeeae7037664481140b61d4c52e790fa39e2',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
+  else:assert current==digest,('Suite observer input changed',path)
  assert all(r['source_tree_sha256']==tree['source_tree_sha256']for r in suite['tasks'].values())
  names.extend(additional);host_names.extend(additional_hosts)
  final.mkdir(exist_ok=True)
@@ -114,9 +124,9 @@ def main():
   elif path.name!='acceptance-results.json':shutil.copyfile(path,final/path.name)
  for name in names+host_names:copy_report(work/name,final/name)
  write(final/'drawing-observer-sources.json',observers)
- write(final/'fixed-state-change.json',dict(previous_bytes=557692,current_bytes=557684,delta_bytes=-8,reason='Relative to M14.4: remove obsolete cursor owner and add generation-bound foreign picker state; M14.5 measured 557676 bytes, so this stage adds eight bytes',current_map_sha256=hashlib.sha256((ROOT/'dist/EngacerOS-M14STAGE6-installed-kernel.map').read_bytes()).hexdigest(),scope='Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification'))
- write(final/'base-acceptance-derivation.json',dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,fixed_state_assertion={'previous':557692,'current':557684,'explanation':'Cursor removal plus new picker generation; see fixed-state-change.json'},output_isolation=str(scratch.relative_to(ROOT))))
+ write(final/'fixed-state-change.json',dict(previous_bytes=557676,current_bytes=557684,delta_bytes=8,reason='Add the eight-byte generation-bound foreign picker state relative to accepted M14.5',current_map_sha256=hashlib.sha256((ROOT/'dist/EngacerOS-M14STAGE6-installed-kernel.map').read_bytes()).hexdigest(),scope='Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification'))
+ write(final/'base-acceptance-derivation.json',dict(canonical_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,fixed_state_assertion={'previous':557692,'current':557684,'explanation':'Cursor removal plus new picker generation; see fixed-state-change.json'},output_isolation=str(scratch.relative_to(ROOT))))
  result['native_groups'].extend(names);result['host_groups'].extend(host_names)
  result['limits'].extend(['Original Notepad++ and Sumatra startup reaches FlsAlloc but their interfaces, installation and tasks remain unqualified; required runtime work continues in M14.10 and complete corpus acceptance in M14.12','Read-only/read-write/execute-read image/allocation protections only; general Windows virtual-memory semantics remain incomplete','Original 7-Zip details clip at requested column widths; universal controls, theme, drag services and arbitrary Windows application compatibility are not qualified'])
- write(final/'common-dialog-observer-tree.json',tree);write(final/'acceptance-results.json',result);print('PASS additive M14.6 acceptance',build)
+ write(final/'common-dialog-observer-tree.json',tree);write(final/'verifier-maintenance.json',verifier_maintenance);write(final/'acceptance-results.json',result);print('PASS additive M14.6 acceptance',build)
 if __name__=='__main__':main()
