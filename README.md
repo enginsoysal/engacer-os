@@ -5,7 +5,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 ## Download and get started
 
-**Current native candidate: [M14.6 / 0.14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; complete website verification is pending; advanced BrixCanvas search/task navigation remains reported and unqualified. Reported BrixCanvas search/navigation remains nonblocking; missing platform features are not called passed.
+**Current native candidate: [M14.6 / 0.14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; public content/link verification is recorded separately in evidence/M14/6; advanced BrixCanvas search/task navigation remains reported and unqualified. Reported BrixCanvas search/navigation remains nonblocking; missing platform features are not called passed.
 
 - [Install and restart in VMware](docs/handbook/install-m146.md)
 - [Your first day](docs/handbook/first-day-m146.md)

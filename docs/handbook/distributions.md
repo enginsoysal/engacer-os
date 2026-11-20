@@ -3,7 +3,7 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.6** within M14-STAGE6-VM-v1. Its [exact-source native acceptance](../../evidence/M14/6/acceptance-results.json) passes; use the matching official release and media. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; complete website verification is pending; advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.6** within M14-STAGE6-VM-v1. Its [exact-source native acceptance](../../evidence/M14/6/acceptance-results.json) passes; use the matching official release and media. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; public content/link verification is recorded separately in evidence/M14/6; advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 

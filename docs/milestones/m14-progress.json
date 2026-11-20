@@ -87,9 +87,9 @@
       "deliver": "Connect original app file dialogs, clipboard and actual document access with Files.",
       "how_and_why": "Preserve requesting-window ownership and file semantics; original app data must be checked independently.",
       "acceptance": "Open/edit/save/reopen, Unicode names, cancel and cross-app text clipboard tasks pass without lost or misdirected data.",
-      "status": "native-complete-public-pending",
+      "status": "native-complete",
       "evidence": "evidence/M14/6",
-      "publication_status": "Native qualification and twenty public asset downloads pass; complete website closure pending",
+      "publication_status": "Twenty matching public assets independently verified; current public content/link evidence and final closure are recorded separately in evidence/M14/6",
       "qualification": "M14-STAGE6-VM-v1",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6"
     },

@@ -1,6 +1,6 @@
 # Install the M14.6 candidate in VMware
 
-Native/source/media qualification passes for build 5f49030d412bd7f0587568c029becc2c. The matching public release and all twenty independent asset downloads pass. Complete website verification is pending; M14.5 remains the last fully closed public delivery.
+Native/source/media qualification passes for build 5f49030d412bd7f0587568c029becc2c. The matching public release and all twenty independent asset downloads pass. Public content/link verification is recorded separately in evidence/M14/6; reported advanced platform controls remain unqualified.
 
 
 ## Before starting
