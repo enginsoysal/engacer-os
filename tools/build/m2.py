@@ -79,6 +79,9 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m13:sources.extend(sorted((ROOT/'tools/build').glob('m13*.py')))
     if m12:sources.extend([ROOT/'tools/design/components12.py',ROOT/'tools/design/icons12.py'])
     hashes={p.relative_to(ROOT).as_posix():sha(p) for p in sorted(sources)}
+    if m14:
+        from m14_integrity import verify_committed_inputs,verify_working_inputs
+        source_commit=verify_committed_inputs(ROOT,hashes)
     identity={'milestone':'M14' if m14 else 'M13' if m13 else 'M12' if m12 else 'M11' if m11 else 'M10' if m10 else 'M92' if m92 else 'M9' if m9 else 'M8' if m8 else 'M75' if m75 else 'M74' if m74 else 'M73' if m73 else 'M72' if m72 else 'M71' if m71 else 'M7' if m7 else 'M6' if m6 else milestone,'source_sha256':hashes}
     if m6:identity['revision']=m6_revision
     build_id=hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()[:32]
@@ -238,6 +241,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
             from m8 import privacy_input
             payload=privacy_input(payload)
         if re.search(rb'[Cc]:[\\/]+Users[\\/]+',payload):raise RuntimeError('Host user path in '+name)
+    if m14:verify_working_inputs(ROOT,hashes)
     manifest={'milestone':milestone,'build_id':build_id,'source_sha256':hashes,'artifacts':artifacts,'mode':'normal',
               'limits':(['native VM scope: 1/2/4 active xAPIC CPUs, fixed process affinity, serialized kernel',
                          'ACPI MADT, xAPIC, 64-bit HPET and startup page 0x8000 required',
@@ -245,6 +249,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
                          '8 thread slots, 2 address spaces, 16 anonymous VM pages per space'] if milestone in ('M3','M4','M45','M5') else
                         ['one active CPU; GPR-only cooperative probes','no Windows apps, installer, threads or SMP'])+
                        ['early allocator manages conventional memory below 1 GiB']}
+    if m14:manifest['source_commit']=source_commit
     (dist/f'{artifact_name.lower()}-build-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     (dist/f'{artifact_name}-SHA256SUMS.txt').write_text(''.join(f'{v["sha256"]}  {k}\n' for k,v in artifacts.items()),encoding='utf-8')
     print(json.dumps({'build_id':build_id,'iso':f'dist/{stem}-{artifact_name}.iso'},indent=2));return manifest

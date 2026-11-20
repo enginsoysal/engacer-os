@@ -1,4 +1,4 @@
-"""Real mouse/keyboard list selection, veto, activation and reentrant replacement."""
+"""Native consumed keyboard/mouse state, peek semantics and pointer-query regression."""
 import argparse,hashlib,json,os,struct,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]

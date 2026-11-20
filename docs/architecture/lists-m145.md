@@ -104,3 +104,22 @@ This follow-up awaits a fresh frozen build and original navigation test.
 The input contract follows Microsoft's [GetKeyboardState](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardstate)
 and [GetKeyState](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeystate)
 definitions. Physical-folder behavior follows [SHGetSpecialFolderPathW](https://learn.microsoft.com/windows/win32/api/shlobj_core/nf-shlobj_core-shgetspecialfolderpathw).
+
+The physical-folder diagnostic on `70a1bcfa693f900dc600d0b788b63262` passes
+its owned create/no-create/delete checks and advances original activation to
+FindFirstChangeNotificationW. That candidate is **not qualified**: two local
+source files had CRLF bytes whereas their committed blobs had LF bytes. The
+byte mismatch and exact base64 snapshots are retained, alongside diagnostic
+results. A build-integrity guard now compares every captured input with its
+committed blob before compilation and rechecks working bytes before publishing
+the manifest. Independent host checks reproduce Git-clean CRLF drift, missing
+committed inputs and changes after capture; all are refused.
+
+Directory change notifications remain unsupported. The follow-up explicitly
+returns INVALID_HANDLE_VALUE with ERROR_NOT_SUPPORTED for a valid directory,
+matching the documented [failure contract](https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirstchangenotificationw),
+rather than claiming a functioning watch or terminating the requesting process.
+There is no watch handle, fabricated signal or new polling worker. Missing or
+unauthorized paths retain the checked file-provider error. Original application
+recovery and further navigation still require native verification. Live
+notification support remains an open file-interoperability dependency.

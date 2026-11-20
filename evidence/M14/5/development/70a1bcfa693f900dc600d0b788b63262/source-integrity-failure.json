@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "build_id": "70a1bcfa693f900dc600d0b788b63262",
+  "expected_commit": "524901f564c933eac42967c4346fad920c9f0aee",
+  "different_inputs": [
+    "user/windows8/api.c",
+    "user/windows8/shell-folders145.inc"
+  ],
+  "reason": "Working source CRLF bytes differ from committed LF bytes; not qualified frozen media. Fresh LF build required.",
+  "exact_byte_snapshots": {
+    "user/windows8/api.c": {
+      "base64": "uncommitted-byte-snapshots/user/windows8/api.c.base64.txt",
+      "sha256": "35679156b842a56cc45e1da64ae8c28061e2f582abf730e7a1a7435b22d62ac0"
+    },
+    "user/windows8/shell-folders145.inc": {
+      "base64": "uncommitted-byte-snapshots/user/windows8/shell-folders145.inc.base64.txt",
+      "sha256": "5c7d4123dc2f1810f8f3392bd55da0533b3562c1410d6cda9348155032896adb"
+    }
+  }
+}
