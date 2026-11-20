@@ -1,0 +1,9 @@
+{
+  "build_id": "fe2f258e0dcbed8b9ee886c978b3fe38",
+  "native_common_dialog_fixture": "PASS single full lifetime, with invalid inputs/cancel/Unicode open-read/save/replace and zero retained pages",
+  "live_high": "0x7f3988",
+  "firmware_boundary": "0x800000",
+  "spare_bytes": 50808,
+  "visual_observation": "Inspected actual native save screenshot: UTF-8 bytes persist correctly, but the current ASCII glyph atlas renders the accented character as question marks. Correct display remains open; full Unicode font coverage is not qualified.",
+  "original_add": "Actual original unmodified 7-Zip Add action fails at kernel32.dll!CreateFileMappingW; no original common-dialog or archive pass claimed."
+}

@@ -23,7 +23,7 @@ def main():
     def observed():
      text=output(g)
      if 'M146_PICKER_FAIL'in text:raise AssertionError(text)
-     return marker in text and ui.integer(g,'file_dialog_state11',True)==10 and picker()[0]==purpose
+     return marker in text and c.flag(g,'file_dialog_state11')==10 and picker()[0]==purpose
     wait_for(g,observed,30);p.drain()
    def choose():
     index=f.entries(g)[source_path]['index'];hidden=f.entries(g)['/Users/Owner/Documents/m146-hidden.bin']['index'];assert not any(row[5]==55000+hidden for row in f.controls(g))
@@ -41,7 +41,7 @@ def main():
     c.key(g,'ctrl','a');c.key(g,'ctrl','c');c.key(g,'end');c.key(g,'backspace');assert b'm146-save-'+bytes([0])in ui.memory(g,*ui.symbol('picker12',installed=True));c.key(g,'ctrl','a');c.key(g,'ctrl','v');p.desktop(54011,True);ready('M146_PICKER_REPLACE_CANCEL_READY',8);p.desktop(54011,True);assert picker()[1]==1
     if not cycle:c.shot(g,'native-replace-consent')
     p.desktop(54026,True);assert picker()[1]==0;p.desktop(54010,True);ready('M146_PICKER_REPLACE_READY',8);p.desktop(54011,True);assert picker()[1]==1;p.desktop(54025,True);g.wait('M8_JOB_DONE',at);p.drain();assert 'M146_COMMON_DIALOG_BYTES_CANCEL_REPLACE_PASS'in output(g),output(g)
-    assert len(t.records(g))==1 and t.records(g)[0]['token']==front['token'];assert not ui.integer(g,'file_dialog_state11',True) and ui.integer(g,'ui_resident144',True)==0;assert ui.memory(g,ui.symbol('picker_request',installed=True)[0],8)==bytes(8)
+    assert len(t.records(g))==1 and t.records(g)[0]['token']==front['token'];assert not c.flag(g,'file_dialog_state11') and ui.integer(g,'ui_resident144',True)==0;assert ui.memory(g,ui.symbol('picker_request',installed=True)[0],8)==bytes(8)
     retained=f.stats(g)[0]-before;assert retained==0,retained;report['cycles'].append(dict(cycle=cycle+1,retained_pages=retained,cancel_preserves_buffer=True,nt4_and_current_structures=True,short_buffer_required_units=True,filters_exclude_binary=True,unicode_open_read_save_replace=True,dialog_does_not_create_destination=True))
    value=task(g,p,12005);assert 'Mapped original image: 7z.exe'in value and '7-Zip'in value;report['subsequent_original_console_success']=True
   assert ui.s.s.document(disk,source_path,8192)==payload.encode();assert ui.s.s.document(disk,target_path,8192)==final.encode();report.update(passed=True,source_unchanged=True,saved_bytes_independently_verified=True)

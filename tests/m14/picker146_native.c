@@ -15,6 +15,9 @@ __declspec(dllimport) int ReadFile(H,void*,unsigned,unsigned*,void*);
 __declspec(dllimport) int WriteFile(H,const void*,unsigned,unsigned*,void*);
 __declspec(dllimport) int CloseHandle(H);
 __declspec(dllimport) int DeleteFileW(const W*);
+__declspec(dllimport) void* VirtualAlloc(void*,H,unsigned,unsigned);
+__declspec(dllimport) int VirtualProtect(void*,H,unsigned,unsigned*);
+__declspec(dllimport) int VirtualFree(void*,H,unsigned);
 __declspec(dllimport) unsigned GetFileAttributesW(const W*);
 __declspec(dllimport) H GetStdHandle(unsigned);
 __declspec(dllimport) void ExitProcess(unsigned);
@@ -34,6 +37,11 @@ static PROC volatile anchor=procedure;
 void entry(void){
  CLASS cls={0};cls.proc=anchor;cls.name=L"Picker146";check(RegisterClassW(&cls)!=0,"class");owner=CreateWindowExW(0,cls.name,L"Common dialog interoperability",0x10cf0000,180,100,560,360,0,0,0,0);check(owner!=0,"owner window");wpick_ofn146 ofn;
  if(GetFileAttributesW(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt")!=(unsigned)-1)check(DeleteFileW(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt"),"remove previous owned fixture output");
+ check(!GetOpenFileNameW(0)&&CommDlgExtendedError()==0xffff,"invalid structure pointer");
+ init(&ofn);ofn.file=1;check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()==0xffff,"invalid output pointer");
+ init(&ofn);ofn.flags|=0x200;check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()!=0,"multiselection refused");
+ init(&ofn);{static const W invalid[]={0xd800,0};ofn.title=(H)invalid;check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()!=0,"invalid UTF-16 title refused");}
+ init(&ofn);{unsigned old;wpick_ofn146*readonly=VirtualAlloc(0,4096,0x3000,4);check(readonly!=0,"readonly request allocation");for(unsigned i=0;i<sizeof(ofn);++i)((volatile unsigned char*)readonly)[i]=((const unsigned char*)&ofn)[i];check(VirtualProtect(readonly,4096,2,&old),"protect request");check(!GetOpenFileNameW(readonly)&&CommDlgExtendedError()==0xffff,"readonly structure refused without app fault");check(VirtualFree(readonly,0,0x8000),"readonly request release");}
  init(&ofn);ofn.size=1;check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()==1,"invalid structure size");init(&ofn);ofn.flags|=0x20;check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()!=0,"hooks explicitly refused");
  init(&ofn);copy(file,L"KEEP");say("M146_PICKER_CANCEL_READY\n");check(!GetOpenFileNameW(&ofn)&&!CommDlgExtendedError()&&same(file,L"KEEP",10),"cancel preserves buffer");
  init(&ofn);ofn.size=136;say("M146_PICKER_OPEN_READY\n");check(GetOpenFileNameW(&ofn),"open selection");verify_path(&ofn,L"m146-open-\u00e9.txt");read_exact(file,"original dialog source \xc3\xa9\n");
