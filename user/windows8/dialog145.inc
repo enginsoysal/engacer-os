@@ -71,7 +71,7 @@ static int64_t dialog_run145(HANDLE instance,const void*bytes,unsigned length,HA
   if(!child){error=f_GetLastError();goto failed;}d->children[d->child_count++]=child;
   if(item->title.ordinal){ui_window_runtime144*w=ui_window_lookup144(child);control_state144*c=w?w->control:0;
    if(!c||c->kind!=C144_STATIC||(item->style&31)!=3){error=50;goto failed;}
-   HANDLE image=f_LoadImageW(instance,(const WCHAR*)(uintptr_t)item->title.ordinal,1,0,0,0x8000);if(!image){error=f_GetLastError();goto failed;}c->image=image;
+   HANDLE image=f_LoadImageW(instance,(const WCHAR*)(uintptr_t)item->title.ordinal,1,0,0,(item->style&0x800)?0x8000:0x8040);if(!image||!static_icon145(w,c,image)){error=f_GetLastError();goto failed;}
   }
   if(parsed.style&64)f_SendMessageW(child,0x30,UINT64_C(0x464f000000000011),0);
  }

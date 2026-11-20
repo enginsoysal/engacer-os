@@ -25,6 +25,7 @@ __declspec(dllimport) H LoadImageW(H,const W*,unsigned,int,int,unsigned);
 __declspec(dllimport) int DestroyIcon(H);
 __declspec(dllimport) I SendMessageW(H,unsigned,H,I);
 __declspec(dllimport) H GetDC(H);
+__declspec(dllimport) int GetClientRect(H,RECT*);
 __declspec(dllimport) int ReleaseDC(H,H);
 __declspec(dllimport) int GetTextExtentPoint32W(H,const W*,int,int*);
 __declspec(dllimport) int GetMessageW(MSG*,H,unsigned,unsigned);
@@ -56,6 +57,13 @@ void entry(void){
  CLASS cls={0};cls.proc=anchor;cls.name=L"Raster145";check(RegisterClassW(&cls)!=0,"class");
  root=CreateWindowExW(0,cls.name,L"Native image and measured toolbar",0x10cf0000,180,100,560,320,0,0,0,0);check(root!=0,"root");
  child=CreateWindowExW(0,cls.name,L"",0x50000000,100,20,2,8,root,90,0,0);check(child!=0,"clipped child");
+ unsigned static_styles[4]={0x50000803,0x50000003,0x50000a03,0x50000843};int static_x[4]={200,220,270,320};
+ for(unsigned n=0;n<4;++n){int width=n==3?8:40,height=n==3?4:40;H image_control=CreateWindowExW(0,L"Static",(const W*)1,static_styles[n],static_x[n],20,width,height,root,100+n,resource,0);RECT bounds;
+  check(image_control&&GetClientRect(image_control,&bounds),"real static resource icon creation");
+  check(bounds.right==(n==0?4:n==1?32:width)&&bounds.bottom==(n==0?2:n==1?32:height),"static native/default/center/stretch dimensions");
+  H current=(H)SendMessageW(image_control,0x171,0,0);check(current!=0&&(H)SendMessageW(image_control,0x173,1,0)==current,"static image getter identity");
+  if(n==0){check((H)SendMessageW(image_control,0x170,icon,0)==current,"static image replacement returns previous handle");check((H)SendMessageW(image_control,0x171,0,0)==icon,"static image replacement identity");}
+ }
  H bar=CreateWindowExW(0,L"ToolbarWindow32",L"",0x50001000,10,80,500,64,root,77,0,0);check(bar!=0,"toolbar");SendMessageW(bar,0x41e,32,0);SendMessageW(bar,0x430,0,(I)images);
  BUTTON buttons[4]={{0}};const W*labels[4]={L"WWW",L"iii",L"",L"Longer measured title"};
  for(unsigned n=0;n<4;++n){buttons[n].bitmap=0;buttons[n].command=201+(int)n;buttons[n].state=n==1?0:4;buttons[n].style=n==2?1:16;buttons[n].string=(I)labels[n];}

@@ -43,7 +43,8 @@ static HANDLE MS f_CreateWindowExW(unsigned exstyle,const WCHAR*class_name,const
  w->class_=c;w->proc=c->definition.proc;w->thread=tid142();w->extra_size=(unsigned)c->definition.win_extra;w->menu=menu;w->id=(int64_t)menu;
  wui_description144*d=&w->description;d->parent=(style&0x40000000)?parent:0;d->owner=(style&0x40000000)?0:parent;d->style=style;d->exstyle=exstyle;d->enabled=!(style&0x08000000);d->bounds=(wui_rect144){x==(int)0x80000000?80:x,y==(int)0x80000000?70:y,width==(int)0x80000000?760:width,height==(int)0x80000000?500:height};
  w->normal_bounds=d->bounds;
- if(!ui_wide144(d->title,128,name)||!ui_wide144(d->class_name,64,c->name)){if(loaded_menu)f_DestroyMenu(menu);free8(w);lock_leave142(&ui_lock144);return 0;}
+ const WCHAR*caption=name;if((uintptr_t)name&&((uintptr_t)name<=65535)){if(!f_wcscmp(c->name,u"Static")&&(style&31)==3)caption=0;else{if(loaded_menu)f_DestroyMenu(menu);free8(w);lock_leave142(&ui_lock144);last8(87);return 0;}}
+ if(!ui_wide144(d->title,128,caption)||!ui_wide144(d->class_name,64,c->name)){if(loaded_menu)f_DestroyMenu(menu);free8(w);lock_leave142(&ui_lock144);return 0;}
  int64_t result=ui_call144(WUI_CREATE144,0,d,0);if(result<0){if(loaded_menu)f_DestroyMenu(menu);free8(w);lock_leave142(&ui_lock144);last8((unsigned)-result);return 0;}
  HANDLE handle=(HANDLE)result;w->handle=handle;w->next=ui_runtime_windows144;ui_runtime_windows144=w;++c->windows;lock_leave142(&ui_lock144);
  struct {void*parameter;HANDLE instance,menu,parent;int cy,cx,y,x;unsigned style,pad;const WCHAR*name,*class_name;unsigned exstyle,pad2;} creation={parameter,instance,menu,parent,height,width,y,x,style,0,name,class_name,exstyle,0};

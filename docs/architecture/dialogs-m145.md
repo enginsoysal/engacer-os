@@ -36,6 +36,20 @@ fixed-size dialogs do not accept interactive resize or snap actions. The
 native desktop keeps its existing controls. Static dialog labels inherit the
 dialog background; the original parent can supply its system brush through
 WM_CTLCOLORSTATIC. Control painting revalidates ownership after that callback.
+The compositor reads the checked existing style word rather than duplicating
+window state or copying an entire window view for every caption action.
+
+Static icon controls load a resource from their actual instance. Default icon
+loading uses the native 32-pixel icon metric; SS_REALSIZEIMAGE selects resource
+dimensions instead. Without centering/stretch styles, the control adjusts to
+the loaded image. SS_CENTERIMAGE keeps the control rectangle and centers/clips
+the image; SS_REALSIZECONTROL scales to its rectangle. SS_RIGHTJUST retains
+the prior right/bottom corner when image dimensions change. STM_SETICON and
+icon STM_SETIMAGE preserve caller ownership and return the previous handle.
+Bitmap/metafile static controls remain unsupported by this icon path.
+These follow the [documented static styles](https://learn.microsoft.com/en-us/windows/win32/controls/static-control-styles);
+the new cases require independent native geometry and pixel checks before
+qualification. Resource ordinals are never dereferenced as caption pointers.
 
 References: [DialogBoxParam](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-dialogboxparamw),
 [EndDialog](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enddialog),

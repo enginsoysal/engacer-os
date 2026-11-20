@@ -2,7 +2,7 @@
 import argparse,hashlib,json,os,struct,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
-from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output
+from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output,drag
 from original_window_trace4 import views
 from dialog145_build import build
 
@@ -33,6 +33,16 @@ def main():
     at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);until(g,lambda:'M145_DIALOG_READY'in output(g));p.drain();root=next(v for v in views(g)if v['class_name']=='NativeModal145');assert root['enabled']and len(t.records(g))==2
     c.key(g,'a');modal=until(g,lambda:next((v for v in views(g)if v['class_name']=='#32770'and v['visible']),None));p.drain();assert not next(v for v in views(g)if v['handle']==root['handle'])['enabled']
     scale=c.flag(g,'scale73')/2
+    if cycle==0:
+     # A fixed modal has neither interactive resizing nor minimize/maximize boxes.
+     mx,my,mw,mh=modal['bounds'];original_bounds=list(modal['bounds'])
+     drag(g,p,mx+mw-4,my+mh-4,mx+mw+20,my+mh+14)
+     assert next(v for v in views(g)if v['handle']==modal['handle'])['bounds']==original_bounds
+     for offset in (114,70):
+      p.move(int((mx+mw-offset)*scale),int((my+20)*scale));p.down(True);p.down(False);p.drain()
+      current=next(v for v in views(g)if v['handle']==modal['handle'])
+      assert current['visible']and not(current['style']&0x21000000)and current['bounds']==original_bounds
+     report['fixed_dialog_resize_refused']=True;report['absent_caption_actions_refused']=True
     # The disabled owner's exposed close button cannot close it or steal focus.
     x,y,w,h=root['bounds'];p.move(int((x+w-24)*scale),int((y+20)*scale));p.down(True);p.down(False);p.drain();assert any(v['handle']==modal['handle']and v['visible']for v in views(g))
     c.key(g,'x');until(g,lambda:any(v['parent']==modal['handle']and v['class_name']=='Edit'and v['title'].startswith('xEditable')for v in views(g)))
