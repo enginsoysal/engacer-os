@@ -1,0 +1,12 @@
+{
+  "source_commit": "7dcdf1b92924cec1c135a369ff0e3e78007b9873",
+  "captures": {
+    "1280-current-guide.png": "8b127ab99c11d08705b0369dabeedf1a0b4b9d62ab1af9ff9f8324a5d203ad29",
+    "1280-downloads.png": "d42d65ad1247d366e154919fce8a512a8559064ae86fb8236bcd94909b5cde05",
+    "1280-home.png": "cf4ce836eb438bd37ea3e67d1c69de2eb5e8f2350bb34f43825b9b71b2dfbff5",
+    "390-current-guide.png": "8b681bb57181a40b93080cedefb916ff90c2805796755de7b9efc39e0a75e047",
+    "390-downloads.png": "b7e2b1e1181ea1312da88e75289ce28a9bb191af7a59f870538e0e37c7d8899e",
+    "390-home.png": "12551428e8f6a720ed096da1af4edf8a76b32cfaee036dc706490bcbdd798ea3"
+  },
+  "scope": "Final actual public browser screenshots at 1280 and 390 pixels; scoped content/layout checks remain distinct from missing advanced platform controls."
+}
