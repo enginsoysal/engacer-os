@@ -13,6 +13,7 @@ unsigned ui73_width(void);
 unsigned ui73_height(void);
 uint64_t ui73_framebuffer_bytes(void);
 unsigned ui73_measure(const char *,unsigned);
+void ui145_argb_tile(int,int,unsigned,unsigned,const uint32_t *);
 void ui73_round(unsigned,unsigned,unsigned,unsigned,unsigned,uint32_t);
 void ui73_shadow(unsigned,unsigned,unsigned,unsigned);
 void ui73_fit(unsigned,unsigned,unsigned,const char *,unsigned,uint32_t);

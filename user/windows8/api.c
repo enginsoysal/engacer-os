@@ -341,6 +341,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "ui144.inc"
 #include "window-api144.inc"
 #include "painting144.inc"
+#include "image-draw145.inc"
 #include "menus144.inc"
 #include "accelerators144.inc"
 #include "controls144.inc"
@@ -350,6 +351,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(ImageList_Draw,6),API8(DrawIconEx,4),API8(DrawIcon,4),
  API8(RegisterClipboardFormatW,4),API8(GetClipboardFormatNameW,4),
  API8(LsaOpenPolicy,5),API8(LsaClose,5),API8(LsaAddAccountRights,5),API8(LookupAccountNameW,5),API8(GetUserNameW,5),
  API8(CoInitializeEx,9),API8(CoInitialize,9),API8(CoUninitialize,9),API8(OleInitialize,9),API8(OleUninitialize,9),API8(RegisterDragDrop,9),API8(RevokeDragDrop,9),

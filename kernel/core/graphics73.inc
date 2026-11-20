@@ -78,6 +78,19 @@ static void blend73(unsigned x,unsigned y,uint32_t rgb,unsigned a,unsigned clipp
 #ifdef ENGINE_M12
 #include "icons12.inc"
 #endif
+/* Small copied icon tiles reuse the compositor's clipped straight-alpha blend. */
+void ui145_argb_tile(int x,int y,unsigned width,unsigned height,const uint32_t*pixels){
+ if(!pixels||!width||width>16||!height||height>8)return;
+ for(unsigned row=0;row<height;++row)for(unsigned col=0;col<width;++col){
+  uint32_t value=pixels[row*width+col];unsigned alpha=value>>24;if(!alpha)continue;
+  int left=(int)phys73((unsigned)(x+(int)col)),right=(int)phys73((unsigned)(x+(int)col+1));
+  int top=(int)phys73((unsigned)(y+(int)row)),bottom=(int)phys73((unsigned)(y+(int)row+1));
+  if(left<0)left=0;if(top<0)top=0;
+  if(right>(int)screen->framebuffer_width)right=(int)screen->framebuffer_width;
+  if(bottom>(int)screen->framebuffer_height)bottom=(int)screen->framebuffer_height;
+  for(int yy=top;yy<bottom;++yy)for(int xx=left;xx<right;++xx)blend73((unsigned)xx,(unsigned)yy,value&0xffffffu,alpha,1);
+ }
+}
 static inline void fill_row73(unsigned x,unsigned y,unsigned width,uint32_t value){
  uint32_t*p=(uint32_t*)pixel73(x,y);size_t count=width;
  __asm__ volatile("cld; rep stosl":"+D"(p),"+c"(count):"a"(value):"memory","cc");

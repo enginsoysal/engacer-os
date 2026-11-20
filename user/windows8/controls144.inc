@@ -26,6 +26,16 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  if((c->kind==C144_COMBO||c->kind==C144_COMBOEX)&&message!=0x82){unsigned handled;int64_t result=combo_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_REBAR&&(message==5||message>=0x400)){unsigned handled;int64_t result=rebar_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_EDIT){unsigned handled;int64_t result=edit_input144(w,c,message,wp,lp,&handled);if(handled)return result;}
+ if(c->kind==C144_TOOLBAR&&c->model&&(message==0x201||message==0x202||message==0x215)){
+  toolbar144*t=c->model;
+  if(message==0x215){t->pressed=-1;f_InvalidateRect(handle,0,0);return 0;}
+  int hit=toolbar_hit145(w,c,(int16_t)(lp&65535),(int16_t)((uint64_t)lp>>16));
+  if(message==0x201){if(hit>=0&&(t->buttons[hit].state&4)&&!(t->buttons[hit].style&1)){t->pressed=hit;f_SetFocus(handle);f_SetCapture(handle);f_InvalidateRect(handle,0,0);}return 0;}
+  int pressed=t->pressed;t->pressed=-1;HANDLE parent=w->description.parent;
+  int command=pressed>=0&&pressed==hit&&(t->buttons[hit].state&4)&&!(t->buttons[hit].style&1)?t->buttons[hit].command:0;
+  if(f_GetCapture()==handle)f_ReleaseCapture();f_InvalidateRect(handle,0,0);
+  if(command&&f_IsWindow(parent))f_SendMessageW(parent,0x111,(unsigned)command&65535,(int64_t)handle);return 0;
+ }
  if(message==0xf){control_paint144(handle,c);return 0;}
  if(message==0x82){control_release144(w);return 0;}
  if(message==0x30){c->font=wp;return 0;}if(message==0x31)return(int64_t)c->font;

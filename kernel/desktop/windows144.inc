@@ -16,6 +16,7 @@ static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip){
     gui7_clip((unsigned)bounded.x,(unsigned)bounded.y,(unsigned)bounded.width,(unsigned)bounded.height);
     if(draw.kind==1)rectangle((desktop_rect){node->x+draw.bounds.x,node->y+draw.bounds.y,draw.bounds.width,draw.bounds.height},draw.color);
     else if(draw.kind==2)text(node->x+draw.bounds.x,node->y+draw.bounds.y,draw.text,1,draw.color);
+    else if(draw.kind==4)ui145_argb_tile(node->x+draw.bounds.x,node->y+draw.bounds.y,(unsigned)draw.bounds.width,(unsigned)draw.bounds.height,draw.pixels);
    }
   }
   unsigned descended=0;
