@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "clone": {
+    "source_sha256": "b834074c2cf8f16924185e2377f95f2a2e5b39e86e940d3ebafc4568ccdffcce",
+    "clone_sha256": "b834074c2cf8f16924185e2377f95f2a2e5b39e86e940d3ebafc4568ccdffcce",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "scope": "Owned actual displayed modal requests, timer-dispatched owner/thread/process teardown and idle/lifetime observations",
+  "fixture_sha256": "bc5c710c9aec5185a36e126490d8fa08beaa680dea3a94ad82efdb6ec8145b9b",
+  "cycles": [
+    {
+      "cycle": 1,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 1,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "thread",
+          "generation": 2,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        },
+        {
+          "phase": "process",
+          "generation": 3,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    }
+  ],
+  "subsequent_original_console_success": true
+}
