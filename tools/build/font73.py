@@ -9,6 +9,18 @@ import json
 from PIL import Image,ImageDraw,ImageFont,features
 ROOT=Path(__file__).resolve().parents[2]
 SIZES=(16,24,32,36,48,64)
+def header(folder,faces,glyphs,data,extras=None):
+    text='typedef struct {unsigned offset;unsigned short bytes;unsigned char width,height; signed char x,y;unsigned char advance;} font73_glyph;\n'
+    text+='typedef struct {unsigned first,size,ascent,height;} font73_face;\n'
+    text+='static const font73_face font73_faces[]={'+','.join('{'+','.join(map(str,v))+'}' for v in faces)+'};\n'
+    text+='static const font73_glyph font73_glyphs[]={'+','.join('{'+','.join(map(str,v))+'}' for v in glyphs)+'};\n'
+    if extras is not None:
+        from font146 import extra_header
+        text+=extra_header(extras)
+    text+='static const unsigned char font73_data[]={'+','.join(map(str,data))+'};\n'
+    text+='static const char font73_license[]={'+','.join(map(str,(folder/'OFL.txt').read_bytes()+b'\0'))+'};\n'
+    return text
+
 def prepare(work):
     folder=ROOT/'third_party/inter';provenance=json.loads((folder/'provenance.json').read_text(encoding='utf-8'))
     for name,digest in provenance['files'].items():
@@ -68,21 +80,26 @@ def prepare(work):
                     encoded.extend((count,raw[at]));at+=count
                 glyphs.append((len(data),len(encoded),w,h,x0,y0,round(font.getlength(char))));data.extend(encoded)
     if len(data)>1024*1024:raise ValueError('Coverage atlas exceeds its static bound')
-    text='typedef struct {unsigned offset;unsigned short bytes;unsigned char width,height; signed char x,y;unsigned char advance;} font73_glyph;\n'
-    text+='typedef struct {unsigned first,size,ascent,height;} font73_face;\n'
-    text+='static const font73_face font73_faces[]={'+','.join('{'+','.join(map(str,v))+'}' for v in faces)+'};\n'
-    text+='static const font73_glyph font73_glyphs[]={'+','.join('{'+','.join(map(str,v))+'}' for v in glyphs)+'};\n'
-    text+='static const unsigned char font73_data[]={'+','.join(map(str,data))+'};\n'
-    text+='static const char font73_license[]={'+','.join(map(str,(folder/'OFL.txt').read_bytes()+b'\0'))+'};\n'
+    text=header(folder,faces,glyphs,data)
     import PIL
     actual={'pillow':PIL.__version__,'freetype':features.version('freetype2'),'header_sha256':hashlib.sha256(text.encode()).hexdigest()}
     lock_path=folder/('raster-lock12.json' if semantic else 'raster-lock11.json' if secondary else 'raster-lock.json')
     if not lock_path.exists():raise ValueError('Review the new raster lock before compiling: '+json.dumps(actual))
     lock=json.loads(lock_path.read_text())
     if actual!=lock:raise ValueError('Rasterizer/output differs from reviewed lock: '+str(actual))
+    packet_report=None
+    if work.name=='m14':
+        from font146 import repack
+        glyphs,data,extras,packet_report=repack(folder,faces,glyphs,data)
+        text=header(folder,faces,glyphs,data,extras)
+        packet_actual={'pillow':PIL.__version__,'freetype':features.version('freetype2'),'header_sha256':hashlib.sha256(text.encode()).hexdigest()}
+        packet_lock=folder/'raster-lock146.json'
+        if not packet_lock.exists():raise ValueError('Review the lossless packet/Unicode raster lock: '+json.dumps(packet_actual))
+        if json.loads(packet_lock.read_text())!=packet_actual:raise ValueError('Packet/Unicode raster differs from reviewed lock: '+str(packet_actual))
     (work/'font73.h').write_bytes(text.encode())
     import PIL
-    report={'font':'Inter','license':'OFL-1.1','source_sha256':provenance['files']['Inter.ttf'],'sizes':SIZES,'secondary_sizes':(14,21,28) if secondary else [],'weights':[400,600],'glyphs':len(glyphs),'coverage_bytes':len(data),'pillow':PIL.__version__,'freetype':features.version('freetype2'),'header_sha256':hashlib.sha256(text.encode()).hexdigest()}
+    report={'font':'Inter','license':'OFL-1.1','source_sha256':provenance['files']['Inter.ttf'],'sizes':SIZES,'secondary_sizes':(14,21,28) if secondary else [],'weights':[400,600],'glyphs':len(glyphs)+(len(extras) if packet_report else 0),'coverage_bytes':len(data),'pillow':PIL.__version__,'freetype':features.version('freetype2'),'header_sha256':hashlib.sha256(text.encode()).hexdigest()}
+    if packet_report:report['packet_unicode']=packet_report
     if semantic:report['semantic_sizes']={'section':[21,32,42],'heading':[28,42,56]}
     (work/'font73-manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode())
     return report

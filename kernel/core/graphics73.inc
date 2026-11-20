@@ -4,6 +4,9 @@
 #include <engine/ui/icons12.h>
 #endif
 #include "font73.h"
+#ifdef FONT146_PACKET
+#include <engine/ui/font146.h>
+#endif
 #ifdef ENGINE_M12
 _Static_assert(sizeof(font73_faces)/sizeof(font73_faces[0])>=21,"Semantic typography requires all 21 bounded physical font faces");
 #endif
@@ -196,10 +199,18 @@ static const font73_face *face73(unsigned role){
  unsigned index=actual==16?0:actual==24?1:actual==32?2:actual==36?3:actual==48?4:5;
  return &font73_faces[index+(role>=3?6:0)];
 }
+#ifdef FONT146_PACKET
+unsigned ui73_measure(const char*s,unsigned role){const font73_face*f=face73(role);unsigned width=0,at=0;while(at<1024&&s[at]){uint32_t code=font146_next(s,&at,1024);if(!code)break;unsigned base;const font73_glyph*g=font146_lookup(f,code,&base);width+=g->advance;}return(width*2+scale73-1)/scale73;}
+#else
 unsigned ui73_measure(const char*s,unsigned role){const font73_face*f=face73(role);unsigned width=0;for(unsigned n=0;s[n]&&n<1024;++n){unsigned c=(uint8_t)s[n];if(c<32||c>126)c='?';width+=font73_glyphs[f->first+c-32].advance;}return (width*2+scale73-1)/scale73;}
+#endif
 static void text73(unsigned x,unsigned y,const char*s,unsigned role,uint32_t rgb){
  const font73_face*f=face73(role);unsigned pen=phys73(x),baseline=phys73(y)+f->ascent;
+#ifdef FONT146_PACKET
+ for(unsigned n=0;n<1024&&s[n];){uint32_t code=font146_next(s,&n,1024);unsigned base;const font73_glyph*g=font146_lookup(f,code,&base);
+#else
  for(unsigned n=0;s[n]&&n<1024;++n){unsigned c=(uint8_t)s[n];if(c<32||c>126)c='?';const font73_glyph*g=&font73_glyphs[f->first+c-32];unsigned pixel_index=0;
+#endif
 #ifdef ENGINE_M9
  int left=(int)pen+g->x,top=(int)baseline+g->y,right=left+g->width,bottom=top+g->height;
  if(clip7_active){if(left<(int)phys73(clip7_left))left=(int)phys73(clip7_left);if(top<(int)phys73(clip7_top))top=(int)phys73(clip7_top);if(right>(int)phys73(clip7_right))right=(int)phys73(clip7_right);if(bottom>(int)phys73(clip7_bottom))bottom=(int)phys73(clip7_bottom);}
@@ -207,10 +218,34 @@ static void text73(unsigned x,unsigned y,const char*s,unsigned role,uint32_t rgb
  if(right<=left||bottom<=top){pen+=g->advance;continue;}
  graphics9_dirty((unsigned)left,(unsigned)top,(unsigned)(right-left),(unsigned)(bottom-top));
 #endif
+#ifdef FONT146_PACKET
+ if(base==65535){font146_reader reader=font146_begin(g);font146_span span;unsigned pixel_index=0,pixels=(unsigned)g->width*g->height;
+  while(!reader.bad&&font146_read(&reader.source,&span)==1){if(span.count>pixels-pixel_index)break;
+   if(span.literal||span.value)for(unsigned i=0;i<span.count;++i){unsigned alpha=span.literal?span.literal[i]:span.value,index=pixel_index+i;if(alpha&&g->width){int dx=(int)pen+g->x+(int)(index%g->width),dy=(int)baseline+g->y+(int)(index/g->width);if(dx>=0&&dy>=0)blend73((unsigned)dx,(unsigned)dy,rgb,alpha,1);}}
+   pixel_index+=span.count;
+  }
+ }else{font146_sampler sampler=font146_sample_begin(g,base);for(unsigned row=0;row<g->height;++row)for(unsigned col=0;col<g->width;++col){unsigned alpha=font146_sample(&sampler,col,row);if(alpha){int dx=(int)pen+g->x+(int)col,dy=(int)baseline+g->y+(int)row;if(dx>=0&&dy>=0)blend73((unsigned)dx,(unsigned)dy,rgb,alpha,1);}}}
+#else
  for(unsigned at=0;at<g->bytes;at+=2){unsigned count=font73_data[g->offset+at],alpha=font73_data[g->offset+at+1];
  for(unsigned i=0;i<count;++i,++pixel_index)if(alpha&&g->width){int dx=(int)pen+g->x+(int)(pixel_index%g->width),dy=(int)baseline+g->y+(int)(pixel_index/g->width);if(dx>=0&&dy>=0)blend73((unsigned)dx,(unsigned)dy,rgb,alpha,1);}}
+#endif
  pen+=g->advance;}
 }
+#ifdef FONT146_PACKET
+static unsigned font_previous146(const char*text,unsigned at){if(at){--at;while(at&&((uint8_t)text[at]&0xc0)==0x80)--at;}return at;}
+void ui73_fit(unsigned x,unsigned y,unsigned width,const char*s,unsigned role,uint32_t rgb){
+ char out[256];unsigned n=0;while(s[n]&&n<252){unsigned next=n;font146_next(s,&next,1024);if(next<=n||next>252)break;for(unsigned i=n;i<next;++i)out[i]=s[i];out[next]=0;if(ui73_measure(out,role)>width)break;n=next;}
+ if(s[n]){while(n){out[n]=0;if(ui73_measure(out,role)+ui73_measure("...",role)<=width)break;n=font_previous146(out,n);}out[n++]='.';out[n++]='.';out[n++]='.';}out[n]=0;text73(x,y,out,role,rgb);
+}
+unsigned ui73_paragraph(unsigned x,unsigned y,unsigned width,unsigned max_lines,const char*s,uint32_t rgb){
+ unsigned at=0,line=0;while(s[at]&&line<max_lines){char out[256];unsigned n=0,last_space=0,start=at;
+  while(s[at]&&s[at]!='\n'&&n<252){unsigned step=0;font146_next(s+at,&step,4);if(!step||n+step>252)break;unsigned previous_at=at,previous_n=n;for(unsigned i=0;i<step;++i)out[n++]=s[at++];out[n]=0;if(step==1&&out[n-1]==' ')last_space=n;
+   if(ui73_measure(out,1)>width){if(last_space){at=start+last_space;n=last_space-1;}else{at=previous_at;n=previous_n;}break;}}
+  if(!n&&s[at]&&s[at]!='\n'){unsigned step=0;font146_next(s+at,&step,4);at+=step?step:1;continue;}out[n]=0;text73(x,y+line*24,out,1,rgb);++line;
+  if(s[at]=='\n')++at;while(s[at]==' ')++at;}
+ if(s[at]){serial_text("M73_TEXT_OVERFLOW\n");return 1;}return 0;
+}
+#else
 void ui73_fit(unsigned x,unsigned y,unsigned width,const char*s,unsigned role,uint32_t rgb){
  char out[256];unsigned n=0;while(s[n]&&n<252){out[n]=s[n];out[n+1]=0;if(ui73_measure(out,role)>width)break;++n;}
  if(s[n]){while(n){out[n]=0;if(ui73_measure(out,role)+ui73_measure("...",role)<=width)break;--n;}out[n++]='.';out[n++]='.';out[n++]='.';}out[n]=0;text73(x,y,out,role,rgb);
@@ -222,6 +257,7 @@ unsigned ui73_paragraph(unsigned x,unsigned y,unsigned width,unsigned max_lines,
  if(s[at]=='\n')++at;while(s[at]==' ')++at;}
  if(s[at]){serial_text("M73_TEXT_OVERFLOW\n");return 1;}return 0;
 }
+#endif
 void ui73_folder(unsigned x,unsigned y,unsigned size,uint32_t tint){
  ui73_round(x,y,size/2,11,4,0xc3974e);ui73_round(x,y+6,size,size*3/4,5,tint);ui73_round(x+2,y+8,size-4,3,1,0xffe7b2);
 }

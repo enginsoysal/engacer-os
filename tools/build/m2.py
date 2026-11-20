@@ -47,6 +47,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
         from font73 import prepare as prepare_font
         prepare_font(BUILD)
         sources.append(ROOT/'tools/build/font73.py')
+        if m14:sources.append(ROOT/'tools/build/font146.py')
         sources.extend(p for p in (ROOT/'third_party/inter').iterdir() if p.is_file())
     if m74:
         provenance=json.loads((ROOT/'third_party/miniz/provenance.json').read_text(encoding='utf-8'))
