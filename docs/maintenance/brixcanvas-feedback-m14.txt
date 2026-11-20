@@ -46,6 +46,20 @@ Observed content source: 6664566577fc69f972cf84041d663869945036ec.
 The complete page/content audit passed 569 pages; that does not establish
 working search/navigation. The failed feature test remains preserved.
 
+Follow-up during M14.5 development, 20 November 2026: a fresh public homepage
+load shows the correct M14.4 download, M14.5 development notice and explicit
+reported-platform-limitation text. The updated resource-dialog article also
+renders the current source content. Content synchronization is working; that
+does not resolve the omitted portal controls.
+
+On /blog/docs-architecture-dialogs-m145, the generic article footer currently
+offers Previous article: Contributing and Next article: M14.5 drawing and
+control implementation. These are present links, not broken links, but they
+do not provide the intended task/section navigation. Please check whether the
+saved documentationPortal order can drive article navigation instead of the
+generic article sequence. This is part of item 1, not a separately established
+root cause or a request to remove ordinary blog navigation globally.
+
 2. A content-sync PATCH returned HTTP 401 during an otherwise valid publication
 
 Status: transient observation; subsequent synchronizations succeeded.
