@@ -11,3 +11,5 @@ static uint64_t ui_input_target144(uint64_t root,unsigned message,uint64_t*param
 }
 
 uint64_t w8_ui_capture_root144(void){ui_window144*w=ui_lookup144(ui_capture_owner144);for(unsigned depth=0;w&&depth<WUI_WINDOWS144;++depth){if(!w->view.description.visible||!w->view.description.enabled)return 0;if(!w->view.description.parent)return w->view.handle;w=ui_lookup144(w->view.description.parent);}return 0;}
+
+static void ui_disable_input144(ui_window144*window){uint64_t root=window->view.handle;unsigned space=window->space;ui_window144*focus=ui_lookup144(ui_focus144[space]);if(focus&&ui_descends144(focus->view.handle,root)){wui_message144 message={.window=focus->view.handle,.message=8,.time=(uint32_t)(m3_clock_ticks()*10)};ui_focus144[space]=0;ui_enqueue144(space,focus->thread,&message,1);}ui_window144*capture=ui_lookup144(ui_capture144[space]);if(capture&&ui_descends144(capture->view.handle,root)){wui_message144 message={.window=capture->view.handle,.message=0x215,.time=(uint32_t)(m3_clock_ticks()*10)};ui_capture144[space]=0;if(ui_capture_owner144==capture->view.handle)ui_capture_owner144=0;ui_enqueue144(space,capture->thread,&message,1);}}

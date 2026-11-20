@@ -17,7 +17,7 @@ static i11_target target11(int x,int y){
  if(launcher&&!context11&&y<(int)model.height-60&&(x<start_bounds11.x||x>=start_bounds11.x+start_bounds11.width||y<start_bounds11.y||y>=start_bounds11.y+start_bounds11.height))return(i11_target){0,0,I11_BACKGROUND};
  if(switch_open11){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect r=c->rect;if(c->action>=W11_SWITCH&&c->action<W11_SWITCH+DESKTOP_WINDOWS&&x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,0,I11_BACKGROUND};}
  if(guide_open11&&!launcher&&!context11){desktop_rect r=guide_bounds11;if(x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height){for(unsigned i=control_count;i;--i){control*c=&controls[i-1];desktop_rect b=c->rect;if(c->action>=46000&&c->action<=46003&&x>=b.x&&x<b.x+b.width&&y>=b.y&&y<b.y+b.height)return(i11_target){0,c->action,I11_BUTTON};}return(i11_target){0,46004,I11_BUTTON};}}
- uint64_t token=desktop_hit(&model,x,y);desktop_window*edge_window=desktop_lookup(&model,token);
+ uint64_t token=desktop_hit(&model,x,y);desktop_window*edge_window=desktop_lookup(&model,token);if(window_disabled144(edge_window))return(i11_target){token,70,I11_BACKGROUND};
 #ifdef ENGINE_M12
  if(edge_window&&!context11&&!launcher&&!file_block_owner11(token)){unsigned part=ui12_caption_hit(edge_window->bounds.width,x-edge_window->bounds.x,y-edge_window->bounds.y);if(part)return(i11_target){token,W12_MIN+part-1,I11_BUTTON};}
 #endif

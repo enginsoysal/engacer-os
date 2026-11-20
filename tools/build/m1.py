@@ -23,7 +23,10 @@ def pinned_tools():
         tools[tool]=path
     return tools
 def command(argv):
-    process=subprocess.run([str(a) for a in argv],cwd=ROOT,capture_output=True,text=True,timeout=60)
+    # The desktop translation unit includes the native compositor and window bridge.
+    # Keep the compiler bounded without mistaking its optimization time for a hang.
+    timeout=180 if any(str(a).replace(chr(92),'/').endswith('kernel/desktop/session.c') for a in argv) else 60
+    process=subprocess.run([str(a) for a in argv],cwd=ROOT,capture_output=True,text=True,timeout=timeout)
     if process.returncode:raise RuntimeError(process.stderr.replace(str(ROOT),'<project-root>'))
     return process.stdout
 def main():

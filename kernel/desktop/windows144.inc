@@ -2,13 +2,36 @@
 static uint64_t foreign_focus144;
 static desktop_rect foreign_clip144;
 static desktop_rect foreign_intersect144(desktop_rect a,desktop_rect b){int left=a.x>b.x?a.x:b.x,top=a.y>b.y?a.y:b.y,right=a.x+a.width<b.x+b.width?a.x+a.width:b.x+b.width,bottom=a.y+a.height<b.y+b.height?a.y+a.height:b.y+b.height;return(desktop_rect){left,top,right>left?right-left:0,bottom>top?bottom-top:0};}
-static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip,unsigned depth){if(depth>=WUI_WINDOWS144||clip.width<=0||clip.height<=0)return;wui_draw144 draw;for(unsigned n=0;w8_ui_draw_at144(handle,n,&draw);++n){desktop_rect bounded=foreign_intersect144(clip,(desktop_rect){x+draw.clip.x,y+draw.clip.y,draw.clip.width,draw.clip.height});if(!bounded.width||!bounded.height)continue;gui7_clip((unsigned)bounded.x,(unsigned)bounded.y,(unsigned)bounded.width,(unsigned)bounded.height);if(draw.kind==1)rectangle((desktop_rect){x+draw.bounds.x,y+draw.bounds.y,draw.bounds.width,draw.bounds.height},draw.color);else if(draw.kind==2)text(x+draw.bounds.x,y+draw.bounds.y,draw.text,1,draw.color);}
- for(unsigned n=0;n<WUI_WINDOWS144;++n){wui_view144 child;if(!w8_ui_at144(n,&child)||child.description.parent!=handle||!child.description.visible)continue;wui_rect144 b=child.description.bounds;int border=child.description.style&0x00800000?1:0;desktop_rect child_clip=foreign_intersect144(clip,(desktop_rect){x+b.x+border,y+b.y+border,b.width-border*2,b.height-border*2});foreign_draw_node144(child.handle,x+b.x+border,y+b.y+border,child_clip,depth+1);}
+/* One bounded traversal stack: legal HWND nesting must not recurse on the kernel stack. */
+static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip){
+ typedef struct {uint64_t handle;int x,y;desktop_rect clip;unsigned next,painted;} frame144;
+ frame144 frames[WUI_WINDOWS144];unsigned count=1;frames[0]=(frame144){handle,x,y,clip,0,0};
+ wui_draw144 draw;wui_view144 child;
+ while(count){frame144*node=frames+count-1;
+  if(node->clip.width<=0||node->clip.height<=0){--count;continue;}
+  if(!node->painted){node->painted=1;
+   for(unsigned n=0;w8_ui_draw_at144(node->handle,n,&draw);++n){
+    desktop_rect bounded=foreign_intersect144(node->clip,(desktop_rect){node->x+draw.clip.x,node->y+draw.clip.y,draw.clip.width,draw.clip.height});
+    if(!bounded.width||!bounded.height)continue;
+    gui7_clip((unsigned)bounded.x,(unsigned)bounded.y,(unsigned)bounded.width,(unsigned)bounded.height);
+    if(draw.kind==1)rectangle((desktop_rect){node->x+draw.bounds.x,node->y+draw.bounds.y,draw.bounds.width,draw.bounds.height},draw.color);
+    else if(draw.kind==2)text(node->x+draw.bounds.x,node->y+draw.bounds.y,draw.text,1,draw.color);
+   }
+  }
+  unsigned descended=0;
+  while(node->next<WUI_WINDOWS144){unsigned slot=node->next++;
+   if(!w8_ui_at144(slot,&child)||child.description.parent!=node->handle||!child.description.visible)continue;
+   wui_rect144 b=child.description.bounds;int border=child.description.style&0x00800000?1:0;
+   desktop_rect bounded=foreign_intersect144(node->clip,(desktop_rect){node->x+b.x+border,node->y+b.y+border,b.width-border*2,b.height-border*2});
+   if(count<WUI_WINDOWS144){frames[count++]=(frame144){child.handle,node->x+b.x+border,node->y+b.y+border,bounded,0,0};descended=1;break;}
+  }
+  if(!descended)--count;
+ }
 }
-static void foreign_draw144(const desktop_window*w,uint64_t handle){desktop_rect clip=foreign_intersect144(foreign_clip144,(desktop_rect){w->bounds.x+1,w->bounds.y+40,w->bounds.width-2,w->bounds.height-41});foreign_draw_node144(handle,w->bounds.x+1,w->bounds.y+40,clip,0);}
+static void foreign_draw144(const desktop_window*w,uint64_t handle){desktop_rect clip=foreign_intersect144(foreign_clip144,(desktop_rect){w->bounds.x+1,w->bounds.y+40,w->bounds.width-2,w->bounds.height-41});foreign_draw_node144(handle,w->bounds.x+1,w->bounds.y+40,clip);}
 
 static unsigned foreign_cursor_kind144(uint64_t token,unsigned x,unsigned y){desktop_window*w=desktop_lookup(&model,token);if(!w||!apps[w-model.windows].foreign144||(int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)return UINT32_MAX;unsigned id=w8_ui_cursor144(apps[w-model.windows].foreign144);return id==0?6:id==32513?1:id==32644?2:id==32645?3:id==32642?4:id==32643?5:0;}
-static void foreign_sync144(void){
+static __attribute__((noinline)) void foreign_sync144(void){
  static unsigned last_revision;unsigned revision=w8_ui_revision144();if(revision!=last_revision){for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144)invalidate(model.windows[i].bounds);last_revision=revision;}
  /* Release stale native slots before admitting a new original top-level window. */
  for(unsigned i=0;i<DESKTOP_WINDOWS;++i){desktop_window*w=model.windows+i;application*a=apps+i;if(!w->live||!a->foreign144)continue;wui_view144 v;unsigned slot=(unsigned)(a->foreign144&255);
@@ -18,14 +41,18 @@ static void foreign_sync144(void){
   for(unsigned j=0;j<DESKTOP_WINDOWS;++j)if(model.windows[j].live&&apps[j].foreign144==v.handle){native=j;break;}
   if(native==DESKTOP_WINDOWS){if(!v.description.visible)continue;wui_rect144 r=v.description.bounds;uint64_t token=desktop_open(&model,WINDOWS8,(desktop_rect){r.x,r.y,r.width,r.height});if(!token)continue;native=(unsigned)(uint32_t)token-1;memset(apps+native,0,sizeof(application));apps[native].foreign144=v.handle;task_damage();}
   desktop_window*w=model.windows+native;application*a=apps+native;uint64_t token=desktop_token(&model,native);wui_rect144 r=v.description.bounds;
-  if(a->foreign_revision144!=v.revision){desktop_rect old=w->bounds;desktop_place(&model,token,(desktop_rect){r.x,r.y,r.width,r.height});desktop_minimize(&model,token,!v.description.visible||(v.description.style&0x20000000)!=0);copy(a->path,v.caption,sizeof(a->path));a->foreign_revision144=v.revision;invalidate(old);invalidate(w->bounds);task_damage();}
+  if(a->foreign_revision144!=v.revision){window_state11*state=window_state_for11(token);wui_rect144 normal;if(state&&w8_ui_normal144(v.handle,&normal)){state->normal=(desktop_rect){normal.x,normal.y,normal.width,normal.height};state->mode=((v.description.style&0x01000000u)||((v.description.style&0x20000000u)&&w8_ui_restore_max144(v.handle)))?1u:0u;}desktop_rect old=w->bounds;desktop_place(&model,token,(desktop_rect){r.x,r.y,r.width,r.height});desktop_minimize(&model,token,!v.description.visible||(v.description.style&0x20000000)!=0);copy(a->path,v.caption,sizeof(a->path));a->foreign_revision144=v.revision;invalidate(old);invalidate(w->bounds);task_damage();}
   else if(w->bounds.x!=r.x||w->bounds.y!=r.y||w->bounds.width!=r.width||w->bounds.height!=r.height||w->minimized!=((v.description.style&0x20000000)!=0)){
-   desktop_rect b=w->bounds;w8_ui_place144(v.handle,(wui_rect144){b.x,b.y,b.width,b.height},1u|(w->minimized?2u:0u));
+   desktop_rect b=w->bounds;w8_ui_place144(v.handle,(wui_rect144){b.x,b.y,b.width,b.height},1u|(w->minimized?2u:0u)|(window_state_for11(token)->mode==1?4u:0u));
    if(b.x!=r.x||b.y!=r.y)w8_ui_input144(v.handle,3,0,((uint32_t)b.x&65535)|((uint64_t)((uint32_t)b.y&65535)<<16));
-   if(b.width!=r.width||b.height!=r.height||w->minimized!=((v.description.style&0x20000000)!=0))w8_ui_input144(v.handle,5,w->minimized?1:0,(uint32_t)(b.width-2)|((uint64_t)(uint32_t)(b.height-41)<<16));
+   if(b.width!=r.width||b.height!=r.height||w->minimized!=((v.description.style&0x20000000)!=0))w8_ui_input144(v.handle,5,w->minimized?1:0,(w->minimized?0u:(uint32_t)(b.width-2))|((uint64_t)(w->minimized?0u:(uint32_t)(b.height-41))<<16));
    if(w8_ui_at144(i,&v))a->foreign_revision144=v.revision;
   }
  }
+
+
+ for(unsigned pass=0;pass<DESKTOP_WINDOWS;++pass){unsigned changed=0;for(unsigned child=0;child<DESKTOP_WINDOWS;++child){if(!model.windows[child].live||!apps[child].foreign144)continue;wui_view144 view;if(!w8_ui_at144((unsigned)(apps[child].foreign144&255),&view)||!view.description.owner)continue;unsigned owner=DESKTOP_WINDOWS;for(unsigned n=0;n<DESKTOP_WINDOWS;++n)if(model.windows[n].live&&apps[n].foreign144==view.description.owner){owner=n;break;}if(owner==DESKTOP_WINDOWS)continue;unsigned cp=model.count,op=model.count;for(unsigned n=0;n<model.count;++n){if(model.order[n]==child)cp=n;if(model.order[n]==owner)op=n;}if(cp<op){for(unsigned n=cp;n<op;++n)model.order[n]=model.order[n+1];model.order[op]=(uint8_t)child;invalidate(model.windows[child].bounds);invalidate(model.windows[owner].bounds);++model.changes;changed=1;}}if(!changed)break;}
+ if(model.focused<DESKTOP_WINDOWS&&window_disabled144(model.windows+model.focused)){uint64_t owner=apps[model.focused].foreign144;for(unsigned n=model.count;n;--n){unsigned slot=model.order[n-1];if(!apps[slot].foreign144||model.windows[slot].minimized||window_disabled144(model.windows+slot))continue;wui_view144 view;if(w8_ui_at144((unsigned)(apps[slot].foreign144&255),&view)&&view.description.owner==owner){desktop_focus(&model,desktop_token(&model,slot));desktop_focus11=0;task_damage();break;}}}
  uint64_t focus=0;if(model.focused<DESKTOP_WINDOWS&&model.windows[model.focused].live&&!model.windows[model.focused].minimized&&!launcher)focus=apps[model.focused].foreign144;
  if(focus!=foreign_focus144){if(foreign_focus144)w8_ui_input144(foreign_focus144,8,focus,0);if(focus)w8_ui_input144(focus,7,foreign_focus144,0);foreign_focus144=focus;}
 #ifdef ENGINE_M13

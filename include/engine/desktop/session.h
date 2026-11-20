@@ -5,4 +5,5 @@
 NORETURN void desktop_start(const os_boot_info_v0 *, const m6_preferences *);
 void gui7_clip(unsigned, unsigned, unsigned, unsigned);
 void gui7_clip_reset(void);
+unsigned desktop_native_windows144(void);
 #endif

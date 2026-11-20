@@ -1,0 +1,17 @@
+{
+  "passed": false,
+  "stage": "M14.4 development",
+  "scope": "Owned native common-control registration, child geometry, edit/status state, display metrics and cursor fixture; not original GUI qualification",
+  "build_id": "af750de50bd84d5ad45401164569fdb6",
+  "clone": {
+    "source_sha256": "4c0b456886fd213c36e7d8ebaab83e019530e226bfc6cf776c1e7282df87ad56",
+    "clone_sha256": "4c0b456886fd213c36e7d8ebaab83e019530e226bfc6cf776c1e7282df87ad56",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixtures": {
+    "controls.exe": "3951d829111f27a9681cd5d04d283e5184c51dec9ccd63d09705a020d43575e7"
+  },
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\controls144_run.py\", line 25, in main\n    value=task(g,p,12005);assert 'M144_CONTROLS_GEOMETRY_PASS'in value,value\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError:  OUTPUT Mapped original image: 7z.exe bytes=32768 source-fnv32=1432769974\nRunning the original Windows executable in a protected process.\n\nM144_CONTROLS_FAIL explicit minimized restore intent\n\n"
+}

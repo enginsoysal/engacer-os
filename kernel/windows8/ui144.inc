@@ -1,9 +1,10 @@
 /* Private GUI capabilities. User callbacks never execute in this broker. */
 #include <engine/winqueue144.h>
+extern unsigned desktop_native_windows144(void);
 typedef struct ui_draw_page144 {struct ui_draw_page144*next;wui_draw144 items[7];} ui_draw_page144;
 _Static_assert(sizeof(ui_draw_page144)<=4096,"Draw page quota");
 static unsigned ui_draw_pages144;
-typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;} ui_window144;
+typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;wui_rect144 normal_bounds;unsigned restore_max;} ui_window144;
 _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
@@ -57,6 +58,7 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 #include "focus144.inc"
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
+ if(op==WUI_NORMAL144){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(argument==2)return pointer?-87:(int64_t)w->restore_max;if(argument==3){if(pointer>1||w->thread!=current142)return -87;w->restore_max=(unsigned)pointer;return 0;}if(argument>1)return -87;if(!argument)return user8(pointer,&w->normal_bounds,sizeof(w->normal_bounds),1)?-998:0;if(w->thread!=current142)return -5;wui_description144 d=w->view.description;if(user8(pointer,&d.bounds,sizeof(d.bounds),0))return -998;unsigned error=ui_description144(&d,handle);if(error)return -(int64_t)error;w->normal_bounds=d.bounds;return 0;}
  if(op==WUI_FOCUS144||op==WUI_CAPTURE144)return pointer?-87:ui_focus_call144(op,handle,argument);
  if(op==WUI_TIMER144)return argument?-87:ui_timer_set144(handle,pointer);
  if(op==WUI_DRAW144||op==WUI_MEASURE144)return ui_draw_call144(op,handle,pointer,argument);
@@ -74,6 +76,8 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_CREATE144||op==WUI_UPDATE144){
   if(argument)return -87;wui_description144 d;if(user8(pointer,&d,sizeof(d),0))return -998;
   unsigned error=ui_description144(&d,op==WUI_UPDATE144?handle:0);if(error)return -(int64_t)error;
+  if(!d.parent&&d.visible){ui_window144*previous=op==WUI_UPDATE144?ui_owned144(handle):0;if((!previous||!previous->view.description.visible)&&desktop_native_windows144()+w8_ui_visible_roots144()>=WUI_NATIVE_ROOTS144)return -1816;}
+
   ui_window144*w=0;
   if(op==WUI_CREATE144){if(handle)return -87;if(ui_generation144==UINT32_MAX)return -1816;unsigned slot=0;while(slot<WUI_WINDOWS144&&ui_windows144[slot])++slot;if(slot==WUI_WINDOWS144)return -1816;
    if(!ui_queue144(active_space142,current142,1))return -8;w=ui_page144();if(!w)return -8;
@@ -81,7 +85,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
   }else{w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;}
   unsigned units=0,position=0,bytes=0;while(units<128&&d.title[units])++units;char caption[384];
   while(position<units){uint32_t cp;if(!decode_utf16_143(d.title,units,&position,&cp)||!encode_utf8_143(cp,caption,sizeof(caption)-1,&bytes)){if(op==WUI_CREATE144)ui_destroy144(w->view.handle);return -1113;}}caption[bytes]=0;copy8(w->view.caption,caption,sizeof(w->view.caption));
-  w->view.description=d;w->view.revision=++ui_revision144;return (int64_t)w->view.handle;
+  if((d.style&0x20000000u)&&(w->view.description.style&0x01000000u))w->restore_max=1;else if(!(d.style&0x20000000u))w->restore_max=0;if(op==WUI_CREATE144||!(d.style&0x21000000u))w->normal_bounds=d.bounds;else if(!(w->view.description.style&0x21000000u))w->normal_bounds=w->view.description.bounds;w->view.description=d;if(!d.enabled)ui_disable_input144(w);w->view.revision=++ui_revision144;return (int64_t)w->view.handle;
  }
  if(op==WUI_DESTROY144){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;if(pointer||argument)return -87;ui_destroy144(handle);return 0;}
  if(op==WUI_QUERY144){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(argument)return -87;return user8(pointer,&w->view,sizeof(w->view),1)?-998:0;}
@@ -107,6 +111,12 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
 }
 unsigned w8_ui_revision144(void){return ui_revision144;}
 unsigned w8_ui_at144(unsigned index,wui_view144*out){if(index>=WUI_WINDOWS144||!out||!ui_windows144[index])return 0;*out=ui_windows144[index]->view;return 1;}
-unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={message==0x100||message==0x101?1u:0u,0}};return ui_enqueue144(w->space,w->thread,&m,1);}
+unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;if((message==0x10||message==7||(message>=0x100&&message<=0x209))&&!ui_enabled_chain144(w))return 0;handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={message==0x100||message==0x101?1u:0u,0}};return ui_enqueue144(w->space,w->thread,&m,1);}
 unsigned w8_ui_cursor144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w?ui_cursors144[w->space]:32512;}
-unsigned w8_ui_place144(uint64_t handle,wui_rect144 bounds,unsigned flags){ui_window144*w=ui_lookup144(handle);if(!w||(flags&~7u)||bounds.width<0||bounds.height<0||bounds.width>16384||bounds.height>16384)return 0;w->view.description.bounds=bounds;w->view.description.visible=flags&1;w->view.description.style&=~0x31000000u;w->view.description.style|=(flags&1?0x10000000u:0)|(flags&2?0x20000000u:0)|(flags&4?0x01000000u:0);w->view.revision=++ui_revision144;return 1;}
+unsigned w8_ui_place144(uint64_t handle,wui_rect144 bounds,unsigned flags){ui_window144*w=ui_lookup144(handle);if(!w||(flags&~7u)||bounds.width<0||bounds.height<0||bounds.width>16384||bounds.height>16384)return 0;if(!(flags&6u))w->normal_bounds=bounds;else if(!(w->view.description.style&0x21000000u))w->normal_bounds=w->view.description.bounds;w->view.description.bounds=bounds;w->view.description.visible=flags&1;unsigned old_style=w->view.description.style;w->view.description.style&=~0x31000000u;w->restore_max=(flags&2)&&((flags&4)||(old_style&0x01000000u));w->view.description.style|=(flags&1?0x10000000u:0)|(flags&2?0x20000000u:0)|((flags&4)&&!(flags&2)?0x01000000u:0);w->view.revision=++ui_revision144;return 1;}
+
+unsigned w8_ui_normal144(uint64_t handle,wui_rect144*out){ui_window144*w=ui_lookup144(handle);if(!w||!out)return 0;*out=w->normal_bounds;return 1;}
+
+unsigned w8_ui_restore_max144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w?w->restore_max:0;}
+
+unsigned w8_ui_visible_roots144(void){unsigned count=0;for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&!ui_windows144[i]->view.description.parent&&ui_windows144[i]->view.description.visible)++count;return count;}

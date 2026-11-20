@@ -2,10 +2,11 @@
 #define ENGINE_WINUI144_H
 #include <stdint.h>
 #define WUI_WINDOWS144 32u
+#define WUI_NATIVE_ROOTS144 8u
 #define WUI_QUEUE144 64u
 #define WUI_APP_QUEUE144 56u
 #define WUI_HANDLE144 UINT64_C(0x5744000000000000)
-enum {WUI_CREATE144=1,WUI_DESTROY144,WUI_UPDATE144,WUI_POST144,WUI_PEEK144,WUI_WAIT144,WUI_THREAD_POST144,WUI_QUERY144,WUI_QUIT144,WUI_METRICS144,WUI_CURSOR144,WUI_CLIPFORMAT144,WUI_CLIPNAME144,WUI_DRAW144,WUI_MEASURE144,WUI_TIMER144,WUI_FOCUS144,WUI_CAPTURE144};
+enum {WUI_CREATE144=1,WUI_DESTROY144,WUI_UPDATE144,WUI_POST144,WUI_PEEK144,WUI_WAIT144,WUI_THREAD_POST144,WUI_QUERY144,WUI_QUIT144,WUI_METRICS144,WUI_CURSOR144,WUI_CLIPFORMAT144,WUI_CLIPNAME144,WUI_DRAW144,WUI_MEASURE144,WUI_TIMER144,WUI_FOCUS144,WUI_CAPTURE144,WUI_NORMAL144};
 typedef struct {int32_t x,y,width,height;} wui_rect144;
 typedef struct {wui_rect144 bounds,clip;uint32_t kind,color;char text[512];} wui_draw144;
 typedef struct {uint32_t width,height,work_height,scale,base_x,base_y,pointer_x,pointer_y;} wui_metrics144;
@@ -23,5 +24,8 @@ unsigned w8_ui_place144(uint64_t,wui_rect144,unsigned);
 unsigned w8_ui_revision144(void);
 unsigned w8_ui_cursor144(uint64_t);
 uint64_t w8_ui_capture_root144(void);
+unsigned w8_ui_normal144(uint64_t,wui_rect144*);
+unsigned w8_ui_restore_max144(uint64_t);
+unsigned w8_ui_visible_roots144(void);
 #endif
 #endif

@@ -327,6 +327,10 @@ static unsigned key74(desktop_window *,application *,uint64_t,int);
 static void tick74(void);
 static void draw_calculator74(desktop_window *,application *,uint64_t);
 #endif
+#ifdef ENGINE_M8
+_Static_assert(DESKTOP_WINDOWS==WUI_NATIVE_ROOTS144,"Shared native window admission quota");
+unsigned desktop_native_windows144(void){unsigned count=0;for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&!apps[i].foreign144)++count;return count;}
+#endif
 static uint64_t launch(unsigned kind,const char *path) {
 #ifdef ENGINE_M74
     if(!app7_available(kind)){copy(shell_notice,"This app is not installed. Open Settings to manage applications.",sizeof(shell_notice));whole();return 0;}
@@ -334,6 +338,9 @@ static uint64_t launch(unsigned kind,const char *path) {
         if(model.windows[i].live&&model.windows[i].app==kind){uint64_t existing=desktop_token(&model,i);desktop_minimize(&model,existing,0);desktop_focus(&model,existing);whole();return existing;}}
 #else
     if(kind==CALCULATOR&&!preferences.calculator)return 0;
+#endif
+#ifdef ENGINE_M8
+    if(desktop_native_windows144()+w8_ui_visible_roots144()>=DESKTOP_WINDOWS){copy(shell_notice,"Eight windows are open. Close one before opening another.",sizeof(shell_notice));whole();return 0;}
 #endif
     unsigned offset=model.count*26;
     uint64_t token=desktop_open(&model,kind,(desktop_rect){170+(int)offset,90+(int)offset,700,470});

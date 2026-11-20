@@ -23,7 +23,7 @@ static void window_frame12(desktop_window*w){
 #endif
 }
 static void window_caption12(desktop_window*w){
- desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];ui12_palette p=desktop_palette16();unsigned active=window_active12(w),enabled=!file_block_owner11(token);
+ desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];ui12_palette p=desktop_palette16();unsigned active=window_active12(w),enabled=!file_block_owner11(token)&&!window_disabled144(w);
  char title[320];copy(title,titles[w->app],sizeof(title));
 #ifdef ENGINE_M8
  if(a->foreign144)copy(title,a->path,sizeof(title));
@@ -44,7 +44,7 @@ static void window_caption12(desktop_window*w){
 }
 static unsigned window_action12(uint64_t token,unsigned command){
  if(command<W12_MIN||command>W12_MENU)return 0;
- desktop_window*w=desktop_lookup(&model,token);if(!w||file_block_owner11(token))return 1;
+ desktop_window*w=desktop_lookup(&model,token);if(!w||window_disabled144(w)||file_block_owner11(token))return 1;
  if(command==W12_CLOSE){close_window(token,0);task_damage();}
  else if(command==W12_MIN){desktop_minimize(&model,token,1);task_damage();}
  else if(command==W12_TOGGLE){window_state11*s=window_state_for11(token);if(s)window_mode11(token,s->mode?0:1);}
