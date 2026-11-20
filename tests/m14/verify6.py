@@ -115,9 +115,9 @@ def main():
    # This verifier does not execute any campaign task. Preserve its exact
    # campaign-start source and bind its additive acceptance-only corrections.
    import subprocess
-   historical=subprocess.check_output(['git','show','64ff0ee30af880a0121d1c9a69251cc47fae7eb8:'+path],cwd=ROOT)
+   historical=subprocess.check_output(['git','show','f6148e99e8e4fee6e5245b7e9c3caadc0e3ee05b:'+path],cwd=ROOT)
    assert hashlib.sha256(historical).hexdigest()==digest
-   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='64ff0ee30af880a0121d1c9a69251cc47fae7eb8',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
+   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='f6148e99e8e4fee6e5245b7e9c3caadc0e3ee05b',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
   else:assert current==digest,('Suite observer input changed',path)
  assert all(r.get('validated_source_tree_sha256',r['source_tree_sha256'])==tree['source_tree_sha256']for r in suite['tasks'].values())
  reused_trees={}
@@ -129,7 +129,7 @@ def main():
   differences={path:{'before':prior['files'].get(path),'after':tree['files'].get(path)}for path in prior['files'].keys()|tree['files'].keys()if prior['files'].get(path)!=tree['files'].get(path)}
   assert differences==record['verified_unconsumed_tree_changes']
   if task_name=='picker-lifetime146':assert 'tests/m14/picker_lifetime146_run.py'not in differences
-  assert differences.keys()<={'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs','tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py','tests/m14/window146_run.py','tests/m14/picker_restart146_run.py'}
+  assert differences.keys()<={'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs','tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py','tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
   reused_trees[record['source_tree_sha256']]=prior
  for module,folder,canonical in [('window146_run','window-native','window144_native.py'),('picker_restart146_run','picker-restart-native','picker146_run.py')]:
   import importlib
@@ -150,6 +150,8 @@ def main():
     if typ!=1:continue
     memory+=memsz;pages.update(range(physical//4096,(physical+memsz+4095)//4096))
    assert record['load_memory_bytes']==memory and record['rounded_physical_load_pages']==len(pages)
+ for kind,deltas in comparison['delta'].items():
+  for key,value in deltas.items():assert value==comparison['records'][f'M14.{6}'][kind][key]-comparison['records'][f'M14.{5}'][kind][key],('Incorrect derived resource delta',kind,key)
  names.extend(additional);host_names.extend(additional_hosts)
  final.mkdir(exist_ok=True)
  for path in scratch.iterdir():

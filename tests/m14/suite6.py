@@ -20,7 +20,7 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
     differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
     allowed = {'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs',
                'tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py',
-               'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py'}
+               'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
     assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
     if name == 'picker-lifetime146' and 'tests/m14/picker_lifetime146_run.py' in differences:
         return False
@@ -31,7 +31,8 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
         path = out.parent.parent / 'replay-observers' / (target + ('-' + suffix if suffix else '') + '.json')
         observed = json.loads(path.read_text())
         assert observed['passed'] and observed['build_id'] == build
-        assert not (differences & observed['observer_sources'].keys()), ('A consumed observer changed', name)
+        if differences & observed['observer_sources'].keys():
+            return False  # A changed consumed observer must execute again.
         for path, row in observed['observer_sources'].items():
             assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == row['canonical_sha256'], (name,path)
     else:

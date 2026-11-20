@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "scope": "Derived static resource deltas rejected; all 96 functional runner tasks exited successfully",
+  "cause": "The generic stage replay changes literal M14.5 keys to M14.6 in a cross-version comparison, subtracting the current record from itself.",
+  "correction": "Construct version keys dynamically and independently assert every derived delta against exact ELF records; invalidate and rerun only the consumed changed host observer.",
+  "native_source_media_changed": false
+}

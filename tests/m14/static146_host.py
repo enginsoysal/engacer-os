@@ -37,7 +37,8 @@ def main():
             result[kind]=dict(elf_sha256=digest,elf_file_bytes=len(raw),load_memory_bytes=sum(row['memory_bytes']for row in segments),rounded_physical_load_pages=len(pages),writable_static_sections_bytes=sections['.data']+sections['.bss'],sections=sections,segments=segments)
         records[f'M14.{stage}']=result
     result=dict(passed=True,build_id=builds[6],baseline_build_id=builds[5],manifest_sha256=manifests,records=records,scope='Exact ELF load headers and writable linker sections; overlapping scopes, not total OS RAM, dynamic tasks, framebuffer cost or CPU/storage performance',sources={'tests/m14/static146_host.py':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
-    result['delta']={kind:{key:records['M14.6'][kind][key]-records['M14.5'][kind][key]for key in('elf_file_bytes','load_memory_bytes','rounded_physical_load_pages','writable_static_sections_bytes')}for kind in('installed','live')}
+    current=records[f'M14.{6}'];baseline=records[f'M14.{5}']
+    result['delta']={kind:{key:current[kind][key]-baseline[kind][key]for key in('elf_file_bytes','load_memory_bytes','rounded_physical_load_pages','writable_static_sections_bytes')}for kind in('installed','live')}
     work=ROOT/'build/m14-native/stage6';out=work/'static-host';out.mkdir(parents=True,exist_ok=True)
     for path in(out/'results.json',work/'static-resource-comparison.json'):path.write_bytes((json.dumps(result,indent=2)+'\n').encode())
     print(json.dumps(result['delta'],indent=2))

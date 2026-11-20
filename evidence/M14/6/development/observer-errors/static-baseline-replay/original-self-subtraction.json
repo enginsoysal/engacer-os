@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "baseline_build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "manifest_sha256": {
+    "M14.5": "cbc9dd510c84fb9007f9fac8b35a3d2f895e315bce6d20b1647c40f0694c6d8a",
+    "M14.6": "6aac5319fa89cd62d1507650a875798bb7d81f8c4956903614b240fa32bff1a4"
+  },
+  "records": {
+    "M14.5": {
+      "installed": {
+        "elf_sha256": "021af4857fb9427be9fbc32614ba1b5e76cec22507ce62c4d783875ed50de055",
+        "elf_file_bytes": 1548692,
+        "load_memory_bytes": 3440934,
+        "rounded_physical_load_pages": 842,
+        "writable_static_sections_bytes": 1902412,
+        "sections": {
+          ".text": 984467,
+          ".rodata": 554043,
+          ".data": 404,
+          ".bss": 1902008
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 984467,
+            "memory_bytes": 984467
+          },
+          {
+            "physical_start": 3084288,
+            "file_bytes": 554043,
+            "memory_bytes": 554043
+          },
+          {
+            "physical_start": 3641344,
+            "file_bytes": 404,
+            "memory_bytes": 1902424
+          }
+        ]
+      },
+      "live": {
+        "elf_sha256": "a9d213399bfe03dc693db0870298040fe016f438d875e1d0bd570aa2fd9033c8",
+        "elf_file_bytes": 4342164,
+        "load_memory_bytes": 6233622,
+        "rounded_physical_load_pages": 1524,
+        "writable_static_sections_bytes": 1902412,
+        "sections": {
+          ".text": 984467,
+          ".rodata": 3346731,
+          ".data": 404,
+          ".bss": 1902008
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 984467,
+            "memory_bytes": 984467
+          },
+          {
+            "physical_start": 3084288,
+            "file_bytes": 3346731,
+            "memory_bytes": 3346731
+          },
+          {
+            "physical_start": 6434816,
+            "file_bytes": 404,
+            "memory_bytes": 1902424
+          }
+        ]
+      }
+    },
+    "M14.6": {
+      "installed": {
+        "elf_sha256": "961ae6a4b88e02bdb5a8f42dd461bcccd0db8c8ecbc9ed90686e828305df6d8a",
+        "elf_file_bytes": 1565076,
+        "load_memory_bytes": 3458746,
+        "rounded_physical_load_pages": 846,
+        "writable_static_sections_bytes": 1903904,
+        "sections": {
+          ".text": 1013795,
+          ".rodata": 541035,
+          ".data": 404,
+          ".bss": 1903500
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1013795,
+            "memory_bytes": 1013795
+          },
+          {
+            "physical_start": 3112960,
+            "file_bytes": 541035,
+            "memory_bytes": 541035
+          },
+          {
+            "physical_start": 3657728,
+            "file_bytes": 404,
+            "memory_bytes": 1903916
+          }
+        ]
+      },
+      "live": {
+        "elf_sha256": "f69dba0456c53ac2dc1b2bd05103dd389ea816bfc0eefe36a6f1edf1763b0d97",
+        "elf_file_bytes": 4379028,
+        "load_memory_bytes": 6275786,
+        "rounded_physical_load_pages": 1533,
+        "writable_static_sections_bytes": 1903904,
+        "sections": {
+          ".text": 1013795,
+          ".rodata": 3358075,
+          ".data": 404,
+          ".bss": 1903500
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1013795,
+            "memory_bytes": 1013795
+          },
+          {
+            "physical_start": 3112960,
+            "file_bytes": 3358075,
+            "memory_bytes": 3358075
+          },
+          {
+            "physical_start": 6471680,
+            "file_bytes": 404,
+            "memory_bytes": 1903916
+          }
+        ]
+      }
+    }
+  },
+  "scope": "Exact ELF load headers and writable linker sections; overlapping scopes, not total OS RAM, dynamic tasks, framebuffer cost or CPU/storage performance",
+  "sources": {
+    "tests/m14/static146_host.py": "f0432c10d0dc642847e77b56284dc3eccd76308063521c0f7073acb0662bebbe"
+  },
+  "delta": {
+    "installed": {
+      "elf_file_bytes": 0,
+      "load_memory_bytes": 0,
+      "rounded_physical_load_pages": 0,
+      "writable_static_sections_bytes": 0
+    },
+    "live": {
+      "elf_file_bytes": 0,
+      "load_memory_bytes": 0,
+      "rounded_physical_load_pages": 0,
+      "writable_static_sections_bytes": 0
+    }
+  }
+}
