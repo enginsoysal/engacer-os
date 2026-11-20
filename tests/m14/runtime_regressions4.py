@@ -9,15 +9,13 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 DIRECTORY=ROOT/'tests/m14'
+ADAPTER_SHA256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 CASES={'threads':'thread_native2','tls':'tls_native2','last-thread':'last_thread_native2',
        'processes':'process_native2','named-sync':'named_sync_native2','named-sync-cancel':'named_sync_cancel_native2',
        'cancel':'cancel_native2','msi-cancel':'msi_cancel2','exceptions':'exception_native2',
        'exception-nested':'exception_nested_native2','exception-invalid':'exception_invalid_native2',
        'unwind':'unwind_native2','unwind-chain':'unwind_chain_native2','unwind-invalid':'unwind_invalid_native2',
        'inspection':'inspect_native2','probes':'lifetime_native2',
-       'paths':'path143_native','files':'files143_native','registry':'registry143_native',
-       'environment':'environment143_native','metadata':'metadata143_native','find':'find143_native',
-       'state-lifetime':'state_lifetime143_native','browser-download':'browser_download3',
        'unicode-host':'unicode143_host','path-host':'path143_host','find-host':'find143_host',
        'http-host':'http3','download-stream':'download_stream3'}
 REPLACEMENTS=[('evidence/M14/3','evidence/M14/4'),('M14.3','M14.4'),('0.14.3','0.14.4'),('EngacerOS-M14STAGE3','EngacerOS-M14STAGE4'),('stage3','stage4'),('m143-regress-','m144-regress-'),('m143-','m144-'),
@@ -44,6 +42,9 @@ class NativeSourceLoader(importlib.abc.MetaPathFinder,importlib.abc.Loader):
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('case',choices=CASES);args=parser.parse_args()
+ # Isolate every canonical builder output when native cases run concurrently.
+ for folder in ('fixtures','exception-fixtures','lifetime-fixtures','process-fixtures','named-sync-fixtures','tls-fixtures','unwind-fixtures','regression-fixtures'):
+  REPLACEMENTS.append(('build/m14-native/stage4/'+folder,'build/m14-native/stage4/private-fixtures/'+args.case+'/'+folder))
  assert not (ROOT/'evidence/M14/4/publication-results.json').exists(),'Accepted stage is immutable'
  meta=json.loads((ROOT/'dist/m14stage4-build-manifest.json').read_text(encoding='utf-8'))
  assert meta['release_version']=='0.14.4' and meta['qualification_scope']=='M14-STAGE4-VM-v1'
@@ -54,6 +55,6 @@ def main():
   path,text=source_for(CASES[args.case]);module=types.ModuleType('__main__');module.__file__=str(path);module.__package__=None
   exec(compile(text,str(path),'exec'),module.__dict__);report['passed']=True
  finally:
-  report['observer_sources']=observed;report['adapter_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+  report['observer_sources']=observed;report['adapter_sha256']=ADAPTER_SHA256
   (out/(args.case+'.json')).write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 if __name__=='__main__':main()

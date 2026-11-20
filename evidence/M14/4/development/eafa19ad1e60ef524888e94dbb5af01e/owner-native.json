@@ -1,0 +1,225 @@
+{
+  "passed": true,
+  "scope": "Owned native owner/modal/input-capture/admission fixture; not original application qualification",
+  "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+  "fixture_sha256": "675ad959571aaf42f235d632239bb38a87c327b63b474a506310ae59e43bd9db",
+  "clone": {
+    "source_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+    "clone_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "explicit_visible_root_quota": true,
+      "disabled_owner_close_blocked": true,
+      "capture_outside_client": true,
+      "owned_z_order_and_teardown": true,
+      "disabled_click_preserves_desktop_state": true,
+      "modal_keyboard_route": true
+    }
+  ],
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=774417051\nRunning the original Windows executable in a protected process.\n\nM144_MODAL_READY\nM144_MODAL_KEYBOARD_PASS\nM144_MODAL_CLOSED\nM144_OWNER_RESPONSIVE\nM144_CAPTURE_READY\nM144_CAPTURE_OUTSIDE\nM144_CAPTURE_OUTSIDE\nM144_CAPTURE_OUTSIDE\nM144_CAPTURE_RELEASED\nM144_OWNED_VISIBLE\nM144_OWNER_LIFETIME_PASS\n"
+}

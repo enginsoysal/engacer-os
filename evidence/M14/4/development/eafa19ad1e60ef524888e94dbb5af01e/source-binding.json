@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "accepted_stage": false,
+  "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+  "source_commit": "be8ad7aaa984a68b40a66a741145588c1d979484",
+  "compiled_inputs": 672,
+  "fixed_desktop": {
+    "bytes": 557692,
+    "sections": {
+      "bss": 557664,
+      "data": 28
+    },
+    "map_sha256": "baec6cf2c6e21294016c11bf0ea472cfb62bdd899a26ab628a0fa6222d1054b2"
+  },
+  "scope": "Corrected exact-source candidate, not stage acceptance"
+}

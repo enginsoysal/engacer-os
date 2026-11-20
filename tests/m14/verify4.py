@@ -151,7 +151,7 @@ def main():
     file_adapter_sha=sha(ROOT/'tests/m14/files_regressions4.py')
     from files_regressions4 import CASES as FILE_CASES
     from runtime_regressions4 import CASES
-    for case in CASES:
+    for case in {**CASES,**FILE_CASES}:
         r=read(work/('file-regression-observers' if case in FILE_CASES else 'regression-observers')/(case+'.json'));assert r['passed'] and r['build_id']==meta['build_id'] and r['case']==case
         assert r['adapter_sha256'] in ({file_adapter_sha} if case in FILE_CASES else known_adapters),(case,'unknown observer adapter')
         for path,record in r['observer_sources'].items():

@@ -27,7 +27,9 @@ def main():
     owner=native_at(g,[80,80,400,260]);modal=native_at(g,[650,140,400,260]);descriptions=views(g);owned_view=next(v for v in descriptions if v['title']=='Disabled owner');assert not owned_view['enabled'];assert next(v for v in descriptions if v['title']=='Owned modal')['owner']==owned_view['handle']
     desktop_focus_before=ui.integer(g,'desktop_focus11',True);assert not desktop_focus_before
     p.logical(454,100,True);p.drain();assert ui.integer(g,'desktop_focus11',True)==desktop_focus_before and ui.integer(g,'desktop_selection11',True)==selected_before,'disabled owner click changed desktop focus or selection'
-    c.key(g,'m');wait(g,'M144_MODAL_KEYBOARD_PASS');f.right(g,p,454,100);p.drain();assert not ui.integer(g,'context11',True),'disabled owner opened a native context menu'
+    c.key(g,'m');wait(g,'M144_MODAL_KEYBOARD_PASS');f.move(g,p,454,100)
+    for down in (True,False):g.qmp('input-send-event',{'events':[{'type':'btn','data':{'down':down,'button':'right'}}]});p.drain()
+    assert not c.flag(g,'context11'),'disabled owner opened a native context menu'
     assert len(t.records(g))==3 and f.model(g)[0]==modal['slot'],(t.records(g),f.model(g));assert not any(r[4]==owner['token']and 49000<=r[5]<=49003 for r in f.controls(g))
     if turn==0:c.shot(g,'disabled-owner-and-modal')
     p.logical(1024,160,True);wait(g,'M144_MODAL_CLOSED');p.drain();assert len(t.records(g))==2;t.focus(g,p,owner);c.key(g,'p');wait(g,'M144_OWNER_RESPONSIVE')

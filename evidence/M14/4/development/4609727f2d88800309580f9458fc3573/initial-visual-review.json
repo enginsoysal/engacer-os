@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "stage": "M14.4",
+  "build_id": "4609727f2d88800309580f9458fc3573",
+  "scope": "Reviewed native window/message foundation and OS frame integration only; not complete original-app appearance or task qualification",
+  "reviewed_captures": [
+    {
+      "capture": "evidence/M14/4/original-native-ordinary/original-file-manager.png",
+      "sha256": "a4fd1391f3791c4f3af1898c9fa7228d93249a4780cbbdcd96407398739d8a27",
+      "physical_dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "capture": "evidence/M14/4/original-native-4k/original-file-manager.png",
+      "sha256": "bea6b42f1e5ed6f01c2c0bba11daaaee7a2a573bb4ca62f9fec822c580b2e14f",
+      "physical_dimensions": [
+        3840,
+        2160
+      ]
+    },
+    {
+      "capture": "evidence/M14/4/vmware-results/original-file-manager.png",
+      "sha256": "89a1af3958d5763d98f0019451a5495877dd76f3d9408fdafad63d1ea40d5447",
+      "physical_dimensions": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "evidence/M14/4/vmware-results/original-file-manager-moved.png",
+      "sha256": "fc476d46f8c95e5562d028c09843cd63cedd39067f8c488afd97e902525af5eb",
+      "physical_dimensions": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "evidence/M14/4/deep-native/maximum-depth-painted-window.png",
+      "sha256": "741db398ab14494f686622f907f5d754b2bec27a4de0e6e1761a92afb2f49acc",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "capture": "evidence/M14/4/owner-native/disabled-owner-and-modal.png",
+      "sha256": "393f1e75fc9e2b115ba1b83577c313c322d3169296fe5b022afffb37c6eeb54d",
+      "physical_dimensions": [
+        1280,
+        800
+      ]
+    }
+  ],
+  "observed": [
+    "Actual original root title, root-list and status text are legible at 100% and actual 4K/200%",
+    "Native caption buttons remain visible and the original window visibly moves through guest input in VMware",
+    "Original windows coexist with the existing native desktop and grouped taskbar",
+    "Maximum-depth surface pixels and disabled-owner/modal ordering have matching native behavior tests"
+  ],
+  "remaining_limits": [
+    "Original toolbar iconography, button spacing and full menu/control rendering remain M14.5 work; Move/Delete labels are visibly cramped in this initial rendering",
+    "Original file-manager archive and navigation tasks are not qualified by these captures",
+    "The native frontend retains its full console-support notice; the new guide distinguishes the experimental window preview",
+    "These are named virtual profiles, not universal GPU/display qualification"
+  ],
+  "accepted_stage": false,
+  "blocking_followup": "A subsequent stronger native test reproduced disabled-owner desktop-focus mutation; the old candidate is not releasable."
+}

@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 DIRECTORY=ROOT/'tests/m14'
+ADAPTER_SHA256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 CASES={'paths':'path143_native','files':'files143_native','registry':'registry143_native',
        'environment':'environment143_native','metadata':'metadata143_native','find':'find143_native',
        'state-lifetime':'state_lifetime143_native','browser-download':'browser_download3'}
@@ -36,6 +37,9 @@ class NativeSourceLoader(importlib.abc.MetaPathFinder,importlib.abc.Loader):
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('case',choices=CASES);args=parser.parse_args()
+ # Isolate every canonical builder output when native cases run concurrently.
+ for folder in ('fixtures','exception-fixtures','lifetime-fixtures','process-fixtures','named-sync-fixtures','tls-fixtures','unwind-fixtures','regression-fixtures'):
+  REPLACEMENTS.append(('build/m14-native/stage4/'+folder,'build/m14-native/stage4/private-fixtures/'+args.case+'/'+folder))
  assert not (ROOT/'evidence/M14/4/publication-results.json').exists(),'Accepted stage is immutable'
  meta=json.loads((ROOT/'dist/m14stage4-build-manifest.json').read_text(encoding='utf-8'))
  assert meta['release_version']=='0.14.4' and meta['qualification_scope']=='M14-STAGE4-VM-v1'
@@ -46,6 +50,6 @@ def main():
   path,text=source_for(CASES[args.case]);module=types.ModuleType('__main__');module.__file__=str(path);module.__package__=None
   exec(compile(text,str(path),'exec'),module.__dict__);report['passed']=True
  finally:
-  report['observer_sources']=observed;report['adapter_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+  report['observer_sources']=observed;report['adapter_sha256']=ADAPTER_SHA256
   (out/(args.case+'.json')).write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 if __name__=='__main__':main()

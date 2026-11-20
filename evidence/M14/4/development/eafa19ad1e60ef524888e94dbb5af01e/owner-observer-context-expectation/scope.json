@@ -1,0 +1,4 @@
+{
+  "accepted_stage": false,
+  "scope": "The corrected OS preserved desktop state and delivered the modal key. The observer then incorrectly used a helper that asserts a context menu opens, while this test requires refusal. Replace that helper with raw right-button events and keep the refusal assertion."
+}

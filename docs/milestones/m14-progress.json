@@ -62,7 +62,7 @@
       "how_and_why": "Run original application code and its actual message loop rather than recreate the target app as a native lookalike.",
       "acceptance": "Original app windows visibly respond to input, focus, move/resize/minimize/close; ownership and modality do not operate the wrong app.",
       "status": "in_progress",
-      "qualification": "Original unmodified 7-Zip window profile passes development tests, but a stronger disabled-owner focus regression blocks release. Corrected input dispatch requires a new exact-source candidate and full native/media/public delivery qualification."
+      "qualification": "The corrected exact-source candidate passes 21 stronger owner/modal lifetimes and original compact/ordinary/4K window profiles plus real VMware execution. Remaining native/host regressions and complete public delivery still block stage closure."
     },
     {
       "id": "M14.5",

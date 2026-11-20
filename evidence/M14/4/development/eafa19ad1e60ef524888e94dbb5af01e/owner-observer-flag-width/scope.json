@@ -1,0 +1,4 @@
+{
+  "accepted_stage": false,
+  "scope": "Observer lookup requested four bytes for a one-byte optimized context-menu flag. Use the existing size-aware flag reader; the no-context-menu assertion remains unchanged."
+}

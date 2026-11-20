@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "scope": "Owned native owner/modal/input-capture/admission fixture; not original application qualification",
+  "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+  "fixture_sha256": "675ad959571aaf42f235d632239bb38a87c327b63b474a506310ae59e43bd9db",
+  "clone": {
+    "source_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+    "clone_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\owner144_run.py\", line 30, in main\n    c.key(g,'m');wait(g,'M144_MODAL_KEYBOARD_PASS');f.right(g,p,454,100);p.drain();assert not ui.integer(g,'context11',True),'disabled owner opened a native context menu'\n  File \"<project-root>\\tests\\m12\\files_observe.py\", line 102, in right\n    assert c.flag(g,'context11')\nAssertionError\n"
+}
