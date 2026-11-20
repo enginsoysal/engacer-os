@@ -1,0 +1,18 @@
+{
+  "source_commit": "0aa9748bfc0267970bfe9481f211a168a3d7629d",
+  "checked_at": "2026-11-20T16:57:13.231Z",
+  "home": "Saved \u2713",
+  "recovery": "Saved automatically \u2713",
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "owned_native_editor": true,
+  "method": "Fresh authenticated native BrixCanvas editor; virtual clipboard Paste Brix, native removal controls, explicit Save and observed saved status",
+  "public_home_version": "M14.5",
+  "notes": [
+    "The stale previous editor tab was left untouched after opening a fresh tab.",
+    "The initial replacement assumed manual Save; native autosave was observed, old roots were restored through Undo, and the final replacement appended new roots before removing old roots. Final public content and all articles are independently checked.",
+    "A subsequent automatic GitHub sync advanced generated portal source stamps. A fresh native editor tab loaded that latest revision; both Home and 404 were saved and observed as Saved. Earlier readback source mismatches remain retained in development/public-source-refresh.",
+    "Final closing text sync succeeded in workflow 44777917507. Fresh native editor appended replacement roots before removing old roots, then independently saved Home (four roots) and 404 (two roots). Premature M14.6 development copy was removed; native media remain unchanged.",
+    "Observed final recovery status was Saved automatically; the browser gate accepts the Saved prefix for both manual and automatic native saves."
+  ]
+}
