@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "scope": "Development progress and current-source navigation readback only; no M14.4 acceptance or full website crawl",
+  "source_commit": "9fc026c5558de6da63e029cc7713bf8b02afda07",
+  "workflow": {
+    "conclusion": "success",
+    "headSha": "9fc026c5558de6da63e029cc7713bf8b02afda07",
+    "status": "completed"
+  },
+  "qualified_download": "M14.3",
+  "development": "M14.4",
+  "native_editor_saved": true,
+  "current_search_exposes_window_ownership": true,
+  "articles": [
+    {
+      "path": "docs/milestones/m14-4.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-4",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/9fc026c5558de6da63e029cc7713bf8b02afda07/docs/milestones/m14-4.md",
+      "html_sha256": "cdea0962afc8583f0864d98d660cde46a3935578a0c235a32c733a8045bf2db1"
+    },
+    {
+      "path": "docs/architecture/messages-m144.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-messages-m144",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/9fc026c5558de6da63e029cc7713bf8b02afda07/docs/architecture/messages-m144.md",
+      "html_sha256": "4d719092a45a493f974b04c6e8416bde70587709465de7070fdd7871b0c4e495"
+    },
+    {
+      "path": "docs/roadmap/status.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/688780e4b138d4d44189fad77b8f6af141d7d3f0/docs/roadmap/status.md",
+      "html_sha256": "2a450906014dd7ba275ba095f2140c1d120d422c3bf5c524dd98aa84aaf7b78b"
+    },
+    {
+      "path": "docs/milestones/m14.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/688780e4b138d4d44189fad77b8f6af141d7d3f0/docs/milestones/m14.md",
+      "html_sha256": "affce3baa0b9abc130fe0abf3fa8710aa4483608cf45a640f24bd1aa7dbea7e7"
+    }
+  ],
+  "compiled_inputs_verified": 647,
+  "save_dom_sha256": "a410ecaf19557ffc2e25bfb789c08b8eda47f1546ff6895587c30b2e2fa7ec59",
+  "search_dom_sha256": "70c1aad1e173b73c78cc3aa6b419ce9be46b9ee6ae27bd54de875e414e25d658"
+}
