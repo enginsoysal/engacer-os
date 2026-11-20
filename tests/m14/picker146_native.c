@@ -70,6 +70,6 @@ void entry(void){
  init(&ofn);ofn.file_capacity=2;file[1]=0x4321;say("M146_PICKER_SHORT_READY\n");check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()==0x3003&&file[0]>2&&file[1]==0x4321,"short buffer reports required UTF-16 units only");
  init(&ofn);copy(file,L"m146-save-\u00e9");say("M146_PICKER_SAVE_READY\n");check(GetSaveFileNameW(&ofn),"save destination");verify_path(&ofn,L"m146-save-\u00e9.txt",1);check(GetFileAttributesW(file)==(unsigned)-1,"dialog does not create a file");write_exact(file,"first dialog save \xc3\xa9\n",1);
  init(&ofn);copy(file,L"m146-save-\u00e9.txt");say("M146_PICKER_REPLACE_CANCEL_READY\n");check(!GetSaveFileNameW(&ofn)&&!CommDlgExtendedError(),"replacement cancel");read_exact(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt","first dialog save \xc3\xa9\n");
- init(&ofn);copy(file,L"m146-save-\u00e9.txt");say("M146_PICKER_REPLACE_READY\n");check(GetSaveFileNameW(&ofn),"replacement consent");verify_path(&ofn,L"m146-save-\u00e9.txt",1);write_exact(file,"final dialog save \xc3\xa9\n",2);read_exact(file,"final dialog save \xc3\xa9\n");
+ init(&ofn);copy(file,L"m146-save-\u00e9.txt");say("M146_PICKER_REPLACE_READY\n");check(GetSaveFileNameW(&ofn),"replacement consent");verify_path(&ofn,L"m146-save-\u00e9.txt",1);write_exact(file,"final dialog save \xc3\xa9\r\n",2);read_exact(file,"final dialog save \xc3\xa9\r\n");
  check(DestroyWindow(owner),"owner destroy");say("M146_COMMON_DIALOG_BYTES_CANCEL_REPLACE_PASS\n");ExitProcess(0);
 }

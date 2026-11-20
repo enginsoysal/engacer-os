@@ -466,6 +466,20 @@ static void draw_editor(desktop_window *w,application *app,uint64_t token) {
     int tx=x+10,ty=y+78;
 #ifdef ENGINE_M73
     unsigned available=(unsigned)(right-x-20),rows=(unsigned)(w->bounds.height-180)/24;
+#ifdef ENGINE_M14
+    unsigned cursor_line=0,advance=0;
+    for(unsigned i=0;i<app->cursor;){unsigned at=i;char glyph[5];i=text_glyph146(app->text,i,app->length,glyph);char c=app->text[at];
+        if(c=='\r'&&i<app->length&&app->text[i]=='\n')continue;
+        if(c=='\r'||c=='\n'){++cursor_line;advance=0;}else{unsigned a=ui73_measure(glyph,1);if(advance+a>available){++cursor_line;advance=0;}advance+=a;}}
+    unsigned first_line=cursor_line>=rows?cursor_line-rows+1:0,line=0;advance=0;
+    for(unsigned i=0;;){char c=i<app->length?app->text[i]:0,glyph[5];unsigned next=text_glyph146(app->text,i,app->length,glyph),a=c&&c!='\r'&&c!='\n'?ui73_measure(glyph,1):0;
+        if(a&&advance+a>available){++line;advance=0;}
+        if(i==app->cursor&&line>=first_line&&line<first_line+rows)rectangle((desktop_rect){tx+(int)advance,ty+(int)(line-first_line)*24,2,20},editor_caret12());
+        if(!c)break;i=next;if(c=='\r'&&i<app->length&&app->text[i]=='\n')continue;
+        if(c=='\r'||c=='\n'){++line;advance=0;continue;}
+        if(line>=first_line&&line<first_line+rows)text(tx+(int)advance,ty+(int)(line-first_line)*24,glyph,1,ink());advance+=a;
+    }
+#else
     unsigned cursor_line=0,advance=0;
     for(unsigned i=0;i<app->cursor;++i){char glyph[2]={app->text[i]=='\t'?' ':app->text[i],0};unsigned a=ui73_measure(glyph,1);if(app->text[i]=='\n'){++cursor_line;advance=0;}else{if(advance+a>available){++cursor_line;advance=0;}advance+=a;}}
     unsigned first_line=cursor_line>=rows?cursor_line-rows+1:0,line=0;advance=0;
@@ -475,6 +489,7 @@ static void draw_editor(desktop_window *w,application *app,uint64_t token) {
         if(!c)break;if(c=='\n'){++line;advance=0;continue;}
         if(line>=first_line&&line<first_line+rows)text(tx+(int)advance,ty+(int)(line-first_line)*24,glyph,1,ink());advance+=a;
     }
+#endif
 #else
     unsigned columns=(unsigned)(right-x-20)/12;if(columns<1)columns=1;
     unsigned rows=(unsigned)(w->bounds.height>180?w->bounds.height-180:20)/18;

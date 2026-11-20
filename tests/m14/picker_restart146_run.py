@@ -4,6 +4,27 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 
+def editor_pixels(g,p,content,out):
+    from PIL import Image,ImageDraw,ImageFont
+    from window144_native import ui,c,f
+    c.key(g,'end')
+    c.shot(g,'unicode-save-after-independent-start')
+    image=Image.open(out/'unicode-save-after-independent-start.png').convert('RGB')
+    assert image.size==(1280,800)and c.flag(g,'scale73')==2
+    x,y,_,_=f.model(g)[1]
+    actual=image.crop((x+24,y+126,x+24+260,y+126+24))
+    font=ImageFont.truetype(str(ROOT/'third_party/inter/Inter.ttf'),16)
+    font.set_variation_by_axes([16,400])
+    alpha=Image.new('L',(260,24));draw=ImageDraw.Draw(alpha);pen=0
+    label=content.removesuffix('\r\n')
+    for char in label:
+        draw.text((pen,font.getmetrics()[0]),char,font=font,fill=255,anchor='ls')
+        pen+=round(font.getlength(char))
+    expected=Image.merge('RGB',tuple(alpha.point(lambda a,ch=channel:(ch*a+255*(255-a)+127)//255)for channel in (25,40,56)))
+    actual.save(out/'actual-editor-first-line.png');expected.save(out/'expected-editor-first-line.png')
+    assert actual.tobytes()==expected.tobytes(),'Native editor scalar/CRLF pixels differ from fresh Inter reference'
+    return dict(passed=True,text=label,exact_rgb_sha256=hashlib.sha256(actual.tobytes()).hexdigest(),checked_pixels=260*24,physical_font_size=16,crlf_does_not_paint_extra_glyph=True)
+
 def derive(source):
     source=source.replace("stage6/picker-native'", "stage6/picker-restart-native'")
     source=source.replace("'m146-picker-native'", "'m146-picker-restart-native'")
@@ -22,7 +43,7 @@ def derive(source):
    p.desktop(55000+index,True);c.key(g,'ret')
    wait_for(g,lambda:bytes(t.app_view(g).text)==final.encode())
    assert not t.app_view(g).dirty
-   c.shot(g,'unicode-save-after-independent-start')
+   report['editor_body_pixels']=editor_pixels146(g,p,final,out)
    p.desktop(49002,True)
    report['independent_start_reopened_unicode_path_and_bytes']=True
 """
@@ -31,7 +52,7 @@ def derive(source):
 def main():
     canonical=ROOT/'tests/m14/picker146_run.py'
     raw=canonical.read_bytes();source=derive(raw.decode())
-    namespace={'__file__':str(canonical),'__name__':'picker_restart146_derived'}
+    namespace={'__file__':str(canonical),'__name__':'picker_restart146_derived','editor_pixels146':editor_pixels}
     exec(compile(source,str(canonical),'exec'),namespace)
     namespace['main']()
     out=ROOT/'build/m14-native/stage6/picker-restart-native'

@@ -51,7 +51,7 @@ def main():
     source = raw.decode('utf-8')
     replacements = [('M14.5', 'M14.6'), ('STAGE5', 'STAGE6'), ('stage5', 'stage6'),
                     ('replay5.py', 'replay6.py'), ("'--stage','5'", "'--stage','6'"),
-                    ("default='revision17'", "default='full1'")]
+                    ("default='revision17'", "default='full2'")]
     for before, after in replacements:
         assert before in source, before
         source = source.replace(before, after)
@@ -75,9 +75,9 @@ def main():
   add(name,'tests/m14/'+script,arguments,('apps-compact',),4)
  for name,script in (
   ('global146-host','global146_host.py'),('mapping146-host','mapping146_host.py'),
-  ('document146-host','document146_host.py'),('pack146-host','pack146_host.py'),('font146-host','font146_host.py')):
+  ('document146-host','document146_host.py'),('pack146-host','pack146_host.py'),('font146-host','font146_host.py'),('static146-host','static146_host.py')):
   add(name,'tests/m14/'+script,priority=30)
- assert len(tasks)==95,len(tasks)'''
+ assert len(tasks)==96,len(tasks)'''
     source = source.replace(before, addition)
     before = " assert all(t['dependencies']<=tasks.keys()for t in tasks.values())"
     assert source.count(before) == 1
@@ -90,7 +90,7 @@ def main():
  (out/'observer-tree.json').write_bytes((json.dumps({'files':tree,'source_tree_sha256':source_tree,'suite_derivation':suite_derivation146},indent=2)+'\\n').encode())''')
     prior_tree = None
     if '--resume' in sys.argv:
-        revision = sys.argv[sys.argv.index('--revision') + 1] if '--revision' in sys.argv else 'full1'
+        revision = sys.argv[sys.argv.index('--revision') + 1] if '--revision' in sys.argv else 'full2'
         tree_path = ROOT / 'build/m14-native/stage6/development' / revision / 'observer-tree.json'
         prior_tree = json.loads(tree_path.read_text())
         assert hashlib.sha256(json.dumps(prior_tree['files'], sort_keys=True).encode()).hexdigest() == prior_tree['source_tree_sha256']
@@ -103,7 +103,7 @@ def main():
     derivation = dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),
                       executed_sha256=hashlib.sha256(source.encode()).hexdigest(),
                       adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                      replacements=replacements, retained_tasks=74, total_tasks=95)
+                      replacements=replacements, retained_tasks=74, total_tasks=96)
     namespace = dict(__name__='m146_suite_derivation', __file__=str(canonical), suite_derivation146=derivation, suite_list146=listing, validate_resume146=lambda *args: validate_resume(prior_tree,*args))
     exec(compile(source, str(canonical), 'exec'), namespace)
     namespace['main']()

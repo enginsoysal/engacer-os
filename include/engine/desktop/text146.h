@@ -16,4 +16,9 @@ static inline unsigned text_byte146(text_decoder146*s,unsigned byte){
 static inline unsigned text_valid146(const char*text,unsigned bytes){text_decoder146 s={0};for(unsigned i=0;i<bytes;++i)if(!text_byte146(&s,(uint8_t)text[i]))return 0;return !s.remaining;}
 static inline unsigned text_previous146(const char*text,unsigned at){if(at){--at;while(at&&((uint8_t)text[at]&0xc0)==0x80)--at;}return at;}
 static inline unsigned text_next146(const char*text,unsigned at,unsigned bytes){if(at<bytes){++at;while(at<bytes&&((uint8_t)text[at]&0xc0)==0x80)++at;}return at;}
+/* Documents are validated separately; this bounded span also tolerates bad input. */
+static inline unsigned text_glyph146(const char*text,unsigned at,unsigned bytes,char out[5]){
+ if(at>=bytes){out[0]=0;return at;}unsigned next=text_next146(text,at,bytes),count=next-at;
+ if(count>4){out[0]='?';out[1]=0;return next;}for(unsigned i=0;i<count;++i)out[i]=text[at+i];out[count]=0;if(out[0]=='\t')out[0]=' ';return next;
+}
 #endif

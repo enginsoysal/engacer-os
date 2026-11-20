@@ -9,7 +9,7 @@ from original_window_trace4 import wait_for
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--cycles',type=int,default=1);args=parser.parse_args();assert 1<=args.cycles<=21
  out=ROOT/'build/m14-native/stage6/picker-native';out.mkdir(parents=True,exist_ok=True);c.OUT=out;fixture=build();meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage6/apps/results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
- source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m146-window-apps'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m146-picker-native');mounted=StoppedDisk(disk,library());source_path='/Users/Owner/Documents/m146-open-'+chr(233)+'.txt';target_path='/Users/Owner/Documents/m146-save-'+chr(233)+'.txt';payload='original dialog source '+chr(233)+'\n';final='final dialog save '+chr(233)+'\n'
+ source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m146-window-apps'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m146-picker-native');mounted=StoppedDisk(disk,library());source_path='/Users/Owner/Documents/m146-open-'+chr(233)+'.txt';target_path='/Users/Owner/Documents/m146-save-'+chr(233)+'.txt';payload='original dialog source '+chr(233)+'\n';final='final dialog save '+chr(233)+'\r\n'
  try:
   mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes());mounted.put(source_path,payload.encode());mounted.put('/Users/Owner/Documents/m146-hidden.bin',b'filter exclusion')
  finally:mounted.close()

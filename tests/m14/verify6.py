@@ -42,7 +42,7 @@ def main():
  # Canonical/executed receipts are independently required; orchestration hashes alone cannot qualify observers.
  observers=[]
  import re
- suite=read(work/'development/full1/suite-results.json');assert suite['passed']and suite['build_id']==build and len(suite['tasks'])==95
+ suite=read(work/'development/full2/suite-results.json');assert suite['passed']and suite['build_id']==build and len(suite['tasks'])==96
  required=[]
  for task in suite['tasks'].values():
   assert task['exit_code']==0
@@ -50,7 +50,7 @@ def main():
   if command[0]!='tests/m14/replay6.py':continue
   target,arguments=command[1],command[2:];suffix='-'.join(re.sub('[^a-zA-Z0-9_-]','',a)for a in arguments)
   required.append(work/'replay-observers'/(target+('-'+suffix if suffix else'')+'.json'))
- assert len(required)==91
+ assert len(required)==92
  for p in required:
   r=read(p);assert r['passed']and r['build_id']==build
   assert r['adapter_sha256']==hashlib.sha256((ROOT/'tests/m14/replay6.py').read_bytes()).hexdigest()
@@ -89,6 +89,7 @@ def main():
    assert phase['actual_native_picker_displayed']and phase['blocked_halted_cpus']==2 and phase['idle_observations'][-3:]==[2,2,2]
    generations.append(phase['generation'])
  assert generations==sorted(set(generations))
+ assert new['picker-restart-native']['editor_body_pixels']['passed']and new['picker-restart-native']['editor_body_pixels']['crlf_does_not_paint_extra_glyph']
  assert new['picker-restart-native']['independent_start_reopened_unicode_path_and_bytes']and new['picker-restart-native']['saved_bytes_independently_verified']
  assert all(row['idle_observations'][-3:]==[2,2,2]for row in read(work/'window-native/results.json')['cycles'])
  assert new['picker-native']['saved_bytes_independently_verified']and new['picker-native']['source_unchanged']
@@ -100,12 +101,12 @@ def main():
   assert r['reported_work_area']=={'compact':[1280,740],'ordinary':[1920,1020],'4k':[1920,1020]}[profile]
   r=new['original-clipboard'+suffix];assert r['retained_original_process_pages']==0 and r['native_saved_bytes_verified']and r['source_file_unchanged']and r['scalar_cursor_backspace_delete_preserve_utf8']
   r=new['original-picker-native'+suffix];assert r['retained_process_pages']==0 and r['source_bytes_independently_unchanged']and r['original_common_dialog_task_completed']
- additional_hosts=['global-host','mapping-host','document-host','pack-host','font-host']
+ additional_hosts=['global-host','mapping-host','document-host','pack-host','font-host','static-host']
  new_hosts={name:read(work/name/'results.json')for name in additional_hosts}
  for name,r in new_hosts.items():
   assert r['passed'],name
   for path,digest in r.get('sources',r.get('source_sha256',{})).items():assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest,(name,path)
- tree=read(work/'development/full1/observer-tree.json')
+ tree=read(work/'development/full2/observer-tree.json')
  assert hashlib.sha256(json.dumps(tree['files'],sort_keys=True).encode()).hexdigest()==tree['source_tree_sha256']
  verifier_maintenance=[]
  for path,digest in tree['files'].items():
@@ -123,7 +124,7 @@ def main():
  for task_name,record in suite['tasks'].items():
   if record['source_tree_sha256']==tree['source_tree_sha256']:continue
   assert record['resumed_verified_same_candidate']
-  prior=read(work/'development/full1'/('observer-tree-'+record['source_tree_sha256']+'.json'))
+  prior=read(work/'development/full2'/('observer-tree-'+record['source_tree_sha256']+'.json'))
   assert hashlib.sha256(json.dumps(prior['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
   differences={path:{'before':prior['files'].get(path),'after':tree['files'].get(path)}for path in prior['files'].keys()|tree['files'].keys()if prior['files'].get(path)!=tree['files'].get(path)}
   assert differences==record['verified_unconsumed_tree_changes']
@@ -157,7 +158,7 @@ def main():
  for name in names+host_names:copy_report(work/name,final/name)
  write(final/'static-resource-comparison.json',comparison)
  resources=read(final/'resources.json')
- resources['interoperability']={'global_objects_per_process':128,'session_text_clipboard_bytes_including_nul':8192,'transient_clipboard_staging_pages':2,'lazy_picker_request_pages':1,'filter_count_limit':12,'filter_text_pool_bytes':1920,'sparse_window_slots':128,'dialog_controls_per_template':127,'nesting_levels':32,'shared_section_objects':16,'shared_section_max_bytes':1048576,'section_grants_per_process':64,'section_views_per_process':16,'pending_request_lifetimes':63,'retained_owned_pages':0,'desktop_fixed_delta_from_m145_bytes':8,'kernel_writable_static_delta_bytes':1492,'installed_static_load_delta_pages':4,'live_static_load_delta_pages':10,'font_extra_descriptor_bytes':9888,'scope':'Overlapping component/image figures, not additive total RAM or M14.15 CPU/storage optimization qualification'}
+ resources['interoperability']={'global_objects_per_process':128,'session_text_clipboard_bytes_including_nul':8192,'transient_clipboard_staging_pages':2,'lazy_picker_request_pages':1,'filter_count_limit':12,'filter_text_pool_bytes':1920,'sparse_window_slots':128,'dialog_controls_per_template':127,'nesting_levels':32,'shared_section_objects':16,'shared_section_max_bytes':1048576,'section_grants_per_process':64,'section_views_per_process':16,'pending_request_lifetimes':63,'retained_owned_pages':0,'desktop_fixed_delta_from_m145_bytes':8,'kernel_writable_static_delta_bytes':comparison['delta']['installed']['writable_static_sections_bytes'],'installed_static_load_delta_pages':comparison['delta']['installed']['rounded_physical_load_pages'],'live_static_load_delta_pages':comparison['delta']['live']['rounded_physical_load_pages'],'font_extra_descriptor_bytes':9888,'scope':'Overlapping component/image figures, not additive total RAM or M14.15 CPU/storage optimization qualification'}
  write(final/'resources.json',resources)
  write(final/'drawing-observer-sources.json',observers)
  write(final/'fixed-state-change.json',dict(previous_bytes=557676,current_bytes=557684,delta_bytes=8,reason='Add the eight-byte generation-bound foreign picker state relative to accepted M14.5',current_map_sha256=hashlib.sha256((ROOT/'dist/EngacerOS-M14STAGE6-installed-kernel.map').read_bytes()).hexdigest(),scope='Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification'))

@@ -27,6 +27,7 @@ def layout_checks(out, tools):
     old_layout = rest.split('\n#endif\n', 1)[0]
     prefix = '''#include "font73.h"
 #include <engine/ui/font146.h>
+#include <engine/desktop/text146.h>
 static unsigned scale73=2,rows_count,overflow;
 static char rows[8][256];
 void*memset(void*out,int value,size_t count){volatile unsigned char*p=out;for(size_t n=0;n<count;++n)p[n]=(unsigned char)value;return out;}
@@ -34,6 +35,7 @@ static void text73(unsigned x,unsigned y,const char*s,unsigned role,uint32_t col
 static void serial_text(const char*s){(void)s;overflow=1;}
 '''
     suffix = '''
+__declspec(dllexport) unsigned run_editor_glyph146(const char*text,unsigned bytes,unsigned at,char*out){return text_glyph146(text,at,bytes,out);}
 __declspec(dllexport) unsigned run_layout146(unsigned mode,unsigned scale,unsigned width,unsigned role,const char*text,char*out,unsigned capacity,unsigned*count,unsigned*failed){
  scale73=scale;rows_count=overflow=0;memset(rows,0,sizeof(rows));
  if(mode)ui73_paragraph(0,0,width,8,text,0);else ui73_fit(0,0,width,text,role,0);
@@ -54,6 +56,8 @@ __declspec(dllexport) unsigned run_layout146(unsigned mode,unsigned scale,unsign
                  '/export:run_layout146', out / (name + '.obj'), '/out:' + str(out / (name + '.dll'))])
         lib = c.CDLL(str(out / (name + '.dll')))
         lib.run_layout146.argtypes = [c.c_uint] * 4 + [c.c_char_p, c.c_void_p, c.c_uint, c.POINTER(c.c_uint), c.POINTER(c.c_uint)]
+        lib.run_editor_glyph146.argtypes=[c.c_char_p,c.c_uint,c.c_uint,c.c_void_p]
+        lib.run_editor_glyph146.restype=c.c_uint
         libraries.append(lib)
         identities[name] = hashlib.sha256(text.encode()).hexdigest()
 
@@ -81,7 +85,24 @@ __declspec(dllexport) unsigned run_layout146(unsigned mode,unsigned scale,unsign
                             row.decode('utf-8', errors='strict')
                             assert len(row) <= 255
                         unicode_count += 1
-    return dict(retained_ascii_layout_cases=ascii_count, unicode_layout_cases=unicode_count,
+    editor_steps=0
+    for text in ('ASCII text','Aé€😀\tZ\r\nnext','é'*128,'ĞğİıŞş €','a'*251+'é'):
+        raw=text.encode();at=0
+        for char in text:
+            storage=(c.c_ubyte*7)();storage[0]=storage[-1]=173
+            next_at=libraries[1].run_editor_glyph146(raw,len(raw),at,c.byref(storage,1))
+            assert next_at==at+len(char.encode()) and bytes(storage[1:6]).split(b'\0')[0]==(' 'if char=='\t'else char).encode()
+            assert storage[0]==storage[-1]==173
+            at=next_at;editor_steps+=1
+    randomizer=random.Random(146)
+    for _ in range(10000):
+        raw=randomizer.randbytes(randomizer.randrange(1,65));at=randomizer.randrange(len(raw)+1)
+        storage=(c.c_ubyte*7)();storage[0]=storage[-1]=173
+        next_at=libraries[1].run_editor_glyph146(raw,len(raw),at,c.byref(storage,1))
+        assert (at<next_at<=len(raw))if at<len(raw)else next_at==at
+        assert storage[0]==storage[-1]==173 and 0 in storage[1:6]
+    return dict(editor_scalar_steps=editor_steps,editor_malformed_bounds_checks=10000,
+                retained_ascii_layout_cases=ascii_count, unicode_layout_cases=unicode_count,
                 extracted_production_sha256=identities)
 
 
@@ -173,7 +194,7 @@ def main():
                   layout=layout,
                   sources={path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in
                            ['tools/build/font73.py', 'tools/build/font146.py', 'include/engine/ui/font146.h',
-                            'kernel/core/graphics73.inc', 'tests/m14/font146_host.c', 'tests/m14/font146_host.py']})
+                            'kernel/core/graphics73.inc', 'kernel/desktop/session.c', 'include/engine/desktop/text146.h', 'tests/m14/font146_host.c', 'tests/m14/font146_host.py']})
     (out / 'results.json').write_bytes((json.dumps(report, indent=2) + '\n').encode())
     print(json.dumps(report, indent=2))
 
