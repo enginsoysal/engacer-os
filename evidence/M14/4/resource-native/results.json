@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "stage": "M14.4 development",
+  "scope": "Owned native PE resource/bitmap/icon/image-list/process-heap and DLL lifetime fixture, not original GUI qualification",
+  "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+  "clone": {
+    "source_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+    "clone_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixtures": {
+    "resource.exe": "7fbb98e767706f6f16ee0e6f970b144eb625681688bc9a81bb7d83a2e0733d37",
+    "resources144.dll": "98ed4973ad325ead742a8e5c2d0d4e6efc955bbd84715db02aeb49b27c72de59"
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 4,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "resource_dll_load_unload_cycles": 25
+    }
+  ],
+  "output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=2287708837\nRunning the original Windows executable in a protected process.\n\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nMapped original image: resources144.dll bytes=20480 source-fnv32=1774818569\nM144_RESOURCE_IMAGE_HEAP_PASS\n"
+}

@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "stage": "M14.4",
+  "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+  "scope": "Exact-candidate visual review of the bounded original-window/message foundation, not complete GUI application task or appearance qualification.",
+  "reviewed_captures": [
+    {
+      "capture": "evidence/M14/4/original-native-ordinary/original-file-manager.png",
+      "sha256": "c66f30a09afeab26ce162839ce9929fa0b7a73a653e69751224b6dbe482bfdf3",
+      "physical_dimensions": [
+        1920,
+        1080
+      ],
+      "reviewed_source_capture": "build/m14-native/stage4/original-native-ordinary/original-file-manager.png"
+    },
+    {
+      "capture": "evidence/M14/4/original-native-4k/original-file-manager.png",
+      "sha256": "d6b8434072e0347e689c5b96205a57fb8d1f91c4e7e54ed4613b60d8c4d1a07e",
+      "physical_dimensions": [
+        3840,
+        2160
+      ],
+      "reviewed_source_capture": "build/m14-native/stage4/original-native-4k/original-file-manager.png"
+    },
+    {
+      "capture": "evidence/M14/4/vmware-results/original-file-manager.png",
+      "sha256": "05712f15e897f77c24a48d154e4492fa0b04e4409abc69097073443e8553c7e3",
+      "physical_dimensions": [
+        1024,
+        768
+      ],
+      "reviewed_source_capture": "build/m14-native/stage4/vmware-results/original-file-manager.png"
+    },
+    {
+      "capture": "evidence/M14/4/vmware-results/original-file-manager-moved.png",
+      "sha256": "e391dc7d3395f6a15943eb91b281058a7a76bb529af56c8b3a084845c05ba1d1",
+      "physical_dimensions": [
+        1024,
+        768
+      ],
+      "reviewed_source_capture": "build/m14-native/stage4/vmware-results/original-file-manager-moved.png"
+    },
+    {
+      "capture": "evidence/M14/4/deep-native/maximum-depth-painted-window.png",
+      "sha256": "7585d9023620ff2e0a71eec5f86bcd9b44368cc19cb4604210c852b0aaae0973",
+      "physical_dimensions": [
+        1280,
+        800
+      ],
+      "reviewed_source_capture": "build/m14-native/stage4/deep-native/maximum-depth-painted-window.png"
+    },
+    {
+      "capture": "evidence/M14/4/owner-native/disabled-owner-and-modal.png",
+      "sha256": "2e0e005a9f21b13fd55cc2641558a95c257a0be1de568b068cd8ea75226e3537",
+      "physical_dimensions": [
+        1280,
+        800
+      ],
+      "reviewed_source_capture": "build/m14-native/stage4/owner-native/disabled-owner-and-modal.png"
+    }
+  ],
+  "observed": [
+    "Actual original root title, root-list and status text are legible at 100% and actual 4K/200%",
+    "Native caption buttons remain visible and the original window visibly moves through guest input in VMware",
+    "Original windows coexist with the existing native desktop and grouped taskbar",
+    "Maximum-depth surface pixels and disabled-owner/modal ordering have matching native behavior tests",
+    "Corrected disabled-owner capture retains the selected native desktop item while the enabled modal remains active; matching guest keyboard and blocked pointer behavior passed independently."
+  ],
+  "remaining_limits": [
+    "Original toolbar iconography, button spacing and full menu/control rendering remain M14.5 work; Move/Delete labels are visibly cramped in this initial rendering",
+    "Original file-manager archive and navigation tasks are not qualified by these captures",
+    "The native frontend retains its full console-support notice; the new guide distinguishes the experimental window preview",
+    "These are named virtual profiles, not universal GPU/display qualification"
+  ],
+  "accepted_stage": false
+}

@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "stage": "M14.4",
+  "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+  "desktop_fixed": {
+    "bytes": 557692,
+    "sections": {
+      "bss": 557664,
+      "data": 28
+    },
+    "map_sha256": "baec6cf2c6e21294016c11bf0ea472cfb62bdd899a26ab628a0fa6222d1054b2"
+  },
+  "font_coverage_bytes": 251248,
+  "protected_worker_physical_page_quota": 10000,
+  "protected_worker_virtual_page_quota": 32768,
+  "module_quota": 32,
+  "image_limit_bytes": 33554432,
+  "one_time_transition_stack_bytes": 16384,
+  "probe_peak_owned_pages": 201,
+  "probe_retained_pages": 0,
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116017,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17710,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247087,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "limits": [
+    "Synthetic loader probes are not original GUI app performance",
+    "Observer wall times and quanta are not measured Windows CPU time",
+    "M14.15 remains the whole-system performance and optimization gate"
+  ],
+  "runtime": {
+    "live_process_limit": 4,
+    "threads_per_process_limit": 16,
+    "root_metadata_pages_observed": 28,
+    "child_metadata_pages_observed": 32,
+    "shared_object_limit": 128,
+    "created_object_limit_per_process": 32,
+    "synchronization_grants_per_process": 64,
+    "handles_per_wait": 32,
+    "shared_registry_pages_unused": 0,
+    "shared_registry_pages_observed_blocked": 1,
+    "four_process_cancel_peak_group_owned_pages": 708,
+    "four_process_cancel_retained_pages_after_initialization": 0,
+    "four_process_blocked_halted_cpus_observed": 2,
+    "scope": "Component and protected ownership accounting; not total OS RAM, original GUI performance or a Windows speed comparison"
+  },
+  "original_window": {
+    "passed": true,
+    "build_id": "eafa19ad1e60ef524888e94dbb5af01e",
+    "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+    "clone": {
+      "source_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+      "clone_sha256": "218cf16b1c166484d398d42558607ec8dec567ed1ea5cf756ba49bf0a9a74965",
+      "logical_bytes": 2147483648,
+      "allocated_bytes": 20971520
+    },
+    "cycles": [
+      {
+        "cycle": 1,
+        "live_windows": 10,
+        "gui_owned_pages": 23,
+        "drawing_pages_included": 11,
+        "shared_registered_format_cache_pages": 1,
+        "managed_pages_while_original_open": 1518,
+        "idle_halted_cpu_observations": [
+          2,
+          2,
+          1,
+          2,
+          2,
+          2
+        ],
+        "dispatch_quanta_during_observed_idle": 0,
+        "peak_group_owned_pages": 469,
+        "total_dispatch_quanta": 60,
+        "retained_pages": 1
+      },
+      {
+        "cycle": 2,
+        "live_windows": 10,
+        "gui_owned_pages": 23,
+        "drawing_pages_included": 11,
+        "shared_registered_format_cache_pages": 1,
+        "managed_pages_while_original_open": 1518,
+        "idle_halted_cpu_observations": [
+          2,
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "dispatch_quanta_during_observed_idle": 1,
+        "peak_group_owned_pages": 469,
+        "total_dispatch_quanta": 90,
+        "retained_pages": 0
+      },
+      {
+        "cycle": 3,
+        "live_windows": 10,
+        "gui_owned_pages": 23,
+        "drawing_pages_included": 11,
+        "shared_registered_format_cache_pages": 1,
+        "managed_pages_while_original_open": 1518,
+        "idle_halted_cpu_observations": [
+          2,
+          1,
+          2,
+          2,
+          2,
+          2
+        ],
+        "dispatch_quanta_during_observed_idle": 1,
+        "peak_group_owned_pages": 469,
+        "total_dispatch_quanta": 85,
+        "retained_pages": 0
+      }
+    ],
+    "limits": [
+      "Original window ownership measurements, not complete original-app work or whole-OS optimization",
+      "Dispatch quanta are not measured CPU time",
+      "Configured guest RAM is not measured OS consumption",
+      "M14.15 remains the whole-system CPU/RAM/storage optimization gate"
+    ],
+    "managed_pages_before_original": 1051,
+    "separate_framebuffer_bytes": 4096000,
+    "declared_persistent_pages": {
+      "worker_transition_stack_after_console_warmup": 4,
+      "session_registered_format_cache_after_first_gui": 1
+    }
+  },
+  "files_settings": {
+    "selected_unicode_table_bytes": 3344,
+    "shared_file_objects": 128,
+    "file_grants_per_process": 32,
+    "dirty_data_global_limit_bytes": 8388608,
+    "file_logical_limit_bytes": 67108864,
+    "registry_keys_per_user": 64,
+    "registry_values_per_user": 128,
+    "registry_value_data_limit_bytes": 2048,
+    "environment_max_utf16_units": 8192,
+    "find_handles_per_process": 16,
+    "zero_retention_cycles": 20,
+    "scope": "Bounded component accounting; not a total OS RAM or original GUI speed benchmark"
+  }
+}
