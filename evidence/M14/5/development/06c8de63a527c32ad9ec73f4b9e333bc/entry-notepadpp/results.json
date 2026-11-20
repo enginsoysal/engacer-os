@@ -1,0 +1,30 @@
+{
+  "stage": "M14.5 development diagnostic",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "app": "notepadpp",
+  "original_sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+  "original_bytes": 8594928,
+  "clone": {
+    "source_sha256": "45b9a6251da5d83c4846021c4c48d7cd8e209956ab9f83e77e48e839cf591f8d",
+    "clone_sha256": "45b9a6251da5d83c4846021c4c48d7cd8e209956ab9f83e77e48e839cf591f8d",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "qualified": false,
+  "scope": "Original entry through the current supported launch slot; not installation or complete package/task qualification",
+  "state": 3,
+  "command": 3,
+  "exit_status": 1,
+  "detail": "Required Windows API is unavailable; see the call-site diagnostic.",
+  "output": "Mapped original image: 7zFM.exe bytes=8613888 source-fnv32=3571198973\nRunning the original Windows executable in a protected process.\n\nUnavailable Win32 API caller=0x0000000110424e3b main=0x0000000110000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n",
+  "windows": [],
+  "protected_worker_started": true,
+  "original_app_entry_qualified": false,
+  "unavailable_call_site": {
+    "caller": "0000000110424e3b",
+    "main": "0000000110000000",
+    "resolved": false,
+    "return_rva": 4345403,
+    "reason": "No direct IAT call or simple import thunk; no symbol guessed"
+  }
+}

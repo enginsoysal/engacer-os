@@ -50,7 +50,9 @@ def main():
   add(name,'tests/m14/'+script,arguments,('apps-compact',),4)
  for name,script in (('keys145-host','keys145_host.py'),('keymap145-host','keymap145_host.py'),('targets145-host','targets145_host.py'),('source145-host','source145_host.py'),('dialog145-host','dialog145_host.py')):
   add(name,'tests/m14/'+script,priority=30)
- assert len(tasks)==72,len(tasks)
+ for profile in ('ordinary','4k'):
+  add('original-list145-'+profile,'tests/m14/original_list145_run.py',('--profile',profile),('apps-'+profile,),4)
+ assert len(tasks)==74,len(tasks)
  assert all(t['dependencies']<=tasks.keys()for t in tasks.values())
  # Cache only an actual successful task on these identical frozen artifact bytes.
  tree={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()for directory in ('tests','tools/build','tools/release')for p in (ROOT/directory).rglob('*')if p.is_file()and p.suffix in ('.py','.c','.h','.inc','.mjs')}

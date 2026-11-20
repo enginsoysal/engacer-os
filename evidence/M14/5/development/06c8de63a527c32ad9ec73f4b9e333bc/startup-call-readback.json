@@ -1,0 +1,32 @@
+{
+  "scope": "Read-only subsequent decode of preserved native outputs; earlier unresolved reports remain untouched; no interface qualification",
+  "decoder_sha256": "fa1910a19b04bc6e8c63a6a4adb39713a23e44a350ec0adff3afa967a26248ec",
+  "traces": [
+    {
+      "app": "notepadpp",
+      "original_sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+      "decode": {
+        "caller": "0000000110424e3b",
+        "main": "0000000110000000",
+        "resolved": true,
+        "return_rva": 4345403,
+        "iat_rva": 4565472,
+        "dll": "kernel32.dll",
+        "symbol": "FlsAlloc"
+      }
+    },
+    {
+      "app": "sumatra",
+      "original_sha256": "719f689b34f47be8ca105ce8484948474dafde0e106bab599e4a89326070c3d0",
+      "decode": {
+        "caller": "000000011066e8a7",
+        "main": "0000000110000000",
+        "resolved": true,
+        "return_rva": 6744231,
+        "iat_rva": 6907152,
+        "dll": "kernel32.dll",
+        "symbol": "FlsAlloc"
+      }
+    }
+  ]
+}

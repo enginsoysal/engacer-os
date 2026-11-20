@@ -160,4 +160,4 @@ infinite repaint loop. Column alignment follows the application format while
 remaining clipped. Owned tests cover missing versus explicitly empty text,
 caching, equal-sized callback replacement and actual copied drawing commands;
 the original task now also requires its independently known file size. These
-source changes await a fresh frozen native build.
+source changes pass on frozen development fa4828b3ea8d8b0a33191f687a3dea7f and ea2a705c4fe43c5079ef2d8913a42c0d, including actual visible file size, preserved file bytes and zero-retention owned lifetimes. Original detail dates honor requested column clipping; full header interaction and ellipsis remain unqualified. The current full integration candidate is still under test.

@@ -56,4 +56,4 @@ static-call failure, actual call-site identification, zero retained pages and a
 subsequent successful original console run. Its initial missing-relocation fixture failure and the initial resource-generator path failure are preserved as test defects, separately from successful corrected observations. Original entry diagnostics remain
 separate and unqualified until their real interfaces/tasks pass.
 
-Both pinned original targets now reach a real `VirtualProtect` call and stop there. The next implementation changes actual page permissions; it is awaiting qualification. [Memory protection contract](memory-m145.md).
+Both pinned original targets reached a real `VirtualProtect` call. The subsequent actual page-permission implementation passes native protection checks and advances both originals to `FlsAlloc`; neither interface is qualified. [Memory protection contract](memory-m145.md).

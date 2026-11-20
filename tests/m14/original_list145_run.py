@@ -1,19 +1,20 @@
 """Unmodified original 7-Zip selects and browses real granted document folders."""
-import ctypes,hashlib,json,os,struct,time,traceback
+import argparse,ctypes,hashlib,json,os,struct,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output
 from original_window_trace4 import views,wait_for
 from original_menu145_run import commands
 def main():
- out=ROOT/'build/m14-native/stage5/original-list';out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage5/apps/results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
- source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m145-window-apps'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m145-original-list');mounted=StoppedDisk(disk,library());folder='/Users/Owner/Documents/M145-navigation';payload=b'Original application enumeration must preserve these bytes.\n'
+ parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','ordinary','4k'],default='compact');profile=parser.parse_args().profile
+ out=ROOT/'build/m14-native/stage5'/('original-list'+(''if profile=='compact'else'-'+profile));out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage5'/('apps'+(''if profile=='compact'else'-'+profile))/'results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
+ source=Path(os.environ['LOCALAPPDATA'])/('EngineOS/Tests/M6/m145-window-apps'+(''if profile=='compact'else'-'+profile))/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m145-original-list');mounted=StoppedDisk(disk,library());folder='/Users/Owner/Documents/M145-navigation';payload=b'Original application enumeration must preserve these bytes.\n'
  try:assert mounted.lib.v6_mkdir(ctypes.byref(mounted.volume),folder.encode())==0;mounted.put(folder+'/notes.txt',payload)
  finally:mounted.close()
  original=ui.s.s.document(disk,'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',8*1024**2);digest=hashlib.sha256(original).hexdigest();assert digest=='a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931'
- report=dict(passed=False,build_id=meta['build_id'],original_sha256=digest,fixture_sha256=hashlib.sha256(payload).hexdigest(),clone=cloned,scope='Original granted Documents folder selection/browse/back task; not complete archive tasks or M14.5 acceptance')
+ report=dict(passed=False,build_id=meta['build_id'],original_sha256=digest,fixture_sha256=hashlib.sha256(payload).hexdigest(),clone=cloned,profile=profile,scope='Original granted Documents folder selection/browse/back task; not complete archive tasks or M14.5 acceptance')
  try:
-  boot=ui.guest(work/'browse',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
+  boot=ui.guest(work/'browse',disk,media='installed',ready='M7_DESKTOP_READY',ram=1024 if profile=='4k'else 512 if profile=='ordinary'else 128,resolution=(3840,2160)if profile=='4k'else(1920,1080)if profile=='ordinary'else(1280,800));ui.s.normal_boot(boot)
   with boot as g:
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0];at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);wait_for(g,lambda:any(v['class_name']=='7-Zip::FM'and v['visible']for v in views(g)));p.drain();scale=c.flag(g,'scale73')/2
    def list_():return next(v for v in views(g)if v['class_name']=='SysListView32'and v['visible'])

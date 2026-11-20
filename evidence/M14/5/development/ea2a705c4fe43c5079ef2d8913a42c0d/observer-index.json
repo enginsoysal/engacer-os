@@ -1,0 +1,186 @@
+{
+  "scope": "Inherited observer directory entries retain their own build IDs. Only matching IDs count for this development candidate. Older entries are not requalified by being copied.",
+  "current_build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+  "receipts": [
+    {
+      "path": "replay-observers/about145_trace.json",
+      "build_id": "3c753fd5746798fad10e073632723ced",
+      "passed": false,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/apps_native4---profile-4k.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/apps_native4---profile-compact.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/controls144_run.json",
+      "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/dialog145_run---cycles-1.json",
+      "build_id": "1bd0556701e0e5a819c9cb456b21f5f3",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/dialog145_run---cycles-21.json",
+      "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/dialog145_run.json",
+      "build_id": "3c753fd5746798fad10e073632723ced",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/entry145_trace---app-notepadpp.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/entry145_trace---app-sumatra.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/guard145_run.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/keys145_run---cycles-21.json",
+      "build_id": "c66c3940b0623be100a4350c5978de53",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/keys145_run.json",
+      "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/list145_run---cycles-1.json",
+      "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+      "passed": false,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/list145_run.json",
+      "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/menu145_run---cycles-1.json",
+      "build_id": "3a73ced8fcdde6b5fe9b44e9eaea1e2e",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/menu145_run---cycles-21.json",
+      "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/original144_run---cycles-1.json",
+      "build_id": "25b1e3c5b45ffb1999f0f49b84bb8ef0",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/original144_run---profile-4k---cycles-1.json",
+      "build_id": "1bd0556701e0e5a819c9cb456b21f5f3",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/original144_run---profile-compact---cycles-1.json",
+      "build_id": "1bd0556701e0e5a819c9cb456b21f5f3",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/original_list145_run.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/original_menu145_run---profile-4k.json",
+      "build_id": "3a22fd1651988a37e0bfac026af9dc34",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/original_menu145_run---profile-compact.json",
+      "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/original_menu145_run.json",
+      "build_id": "3a73ced8fcdde6b5fe9b44e9eaea1e2e",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/queue144_host.json",
+      "build_id": "c66c3940b0623be100a4350c5978de53",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/raster145_run---cycles-1.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/raster145_run---cycles-21.json",
+      "build_id": "ea2a705c4fe43c5079ef2d8913a42c0d",
+      "passed": true,
+      "counts_for_this_candidate": true
+    },
+    {
+      "path": "replay-observers/raster145_run---profile-4k---cycles-1.json",
+      "build_id": "3a22fd1651988a37e0bfac026af9dc34",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/raster145_run---profile-compact---cycles-1.json",
+      "build_id": "3a22fd1651988a37e0bfac026af9dc34",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/raster145_run---profile-compact---cycles-21.json",
+      "build_id": "1bd0556701e0e5a819c9cb456b21f5f3",
+      "passed": true,
+      "counts_for_this_candidate": false
+    },
+    {
+      "path": "replay-observers/raster145_run.json",
+      "build_id": "3c753fd5746798fad10e073632723ced",
+      "passed": true,
+      "counts_for_this_candidate": false
+    }
+  ]
+}

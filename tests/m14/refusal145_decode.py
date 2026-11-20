@@ -12,6 +12,7 @@ def decode(path,text):
  if image[rva-6:rva-4]==b'\xff\x15':slot=rva+struct.unpack_from('<i',image,rva-4)[0]
  elif image[rva-5]==0xe8:
   thunk=rva+struct.unpack_from('<i',image,rva-4)[0]
+  if 0<=thunk<len(image)-7 and image[thunk:thunk+1]==b'\x48':thunk+=1
   if 0<=thunk<len(image)-6 and image[thunk:thunk+2]==b'\xff\x25':slot=thunk+6+struct.unpack_from('<i',image,thunk+2)[0]
  if slot is None:return{**result,'reason':'No direct IAT call or simple import thunk; no symbol guessed'}
  pe=struct.unpack_from('<I',image,60)[0];directory,size=struct.unpack_from('<II',image,pe+24+120)

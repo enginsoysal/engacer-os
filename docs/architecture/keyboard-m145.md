@@ -61,4 +61,4 @@ consumed-input/shifted-character/cursor fixture with zero retained pages. Both
 visible edit and arrow captures were independently inspected. The unmodified
 original 7-Zip also completes Backspace navigation and retains only its known
 one-page shared registered-format cache. Complete M14.5 qualification remains
-open because original list detail columns still require correction.
+open. The subsequent checked subitem callback/cache implementation passes owned tests and original visible file-size/navigation checks; full integration and public release are still required.
