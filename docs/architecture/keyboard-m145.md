@@ -11,13 +11,16 @@ host's already installed explicit 04090409 layout. No host layout was activated,
 installed or changed, and no Windows source or executable content is included.
 The recorded reference and table digest are preserved in development evidence.
 The own mapping core independently matches 2,304 reference calls; additional
-native-Dvorak and boundary assertions bring the host check to 2,326. These are
+native-Dvorak and boundary assertions bring the mapping check to 2,326. A further 95 printable-character comparisons
+against VkKeyScanExW bring the complete host check to 2,421. These are
 host checks, not proof that original app keyboard tasks work.
 
 The active native layout is queried through the existing checked UI operation.
 Native Dvorak remaps follow input10_hid's logical key positions. Ordinary native
 key messages now carry matching scan and extended-key fields instead of zero
 scan codes. Home, End and Delete join the existing navigation-key bridge.
+Shifted digits retain their actual digit virtual key: exclamation mark uses
+Shift+1, rather than VK_PRIOR merely because its character value is 33.
 The unmodified original 7-Zip Backspace task must still pass natively.
 
 The factual US tables occupy 2,176 read-only bytes; Dvorak transformation is

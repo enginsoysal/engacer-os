@@ -28,7 +28,7 @@ def main():
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0]
    for cycle in range(args.cycles):
     at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);wait(g,'M145_KEYS_READY');p.drain();root=next(v for v in views(g)if v['class_name']=='Keys145');scale=c.flag(g,'scale73')/2
-    c.key(g,'a');wait(g,'M145_KEYS_QUEUE_PASS')
+    c.key(g,'a');wait(g,'M145_KEYS_QUEUE_PASS');c.key(g,'shift','1');wait(g,'M145_KEYS_SHIFTED_PASS')
     p.move(int((root['bounds'][0]+80)*scale),int((root['bounds'][1]+100)*scale));p.drain()
     g.qmp('send-key',{'keys':[{'type':'qcode','data':'ctrl'}],'hold-time':600});time.sleep(.06);p.down(True);p.down(False)
     wait(g,'M145_KEYS_SNAPSHOT_PASS');wait(g,'M145_KEYS_RELEASE_PASS')

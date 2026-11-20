@@ -2,6 +2,13 @@
 #define ENGINE_KEYMAP145_H
 #include <stdint.h>
 #include <engine/keymap-us145.inc>
+/* Translated printable characters still require their actual virtual key. */
+static inline unsigned keymap_character145(unsigned ch){
+ if(ch>='a'&&ch<='z')return ch-32;
+ if((ch>='A'&&ch<='Z')||(ch>='0'&&ch<='9')||ch==8||ch==9||ch==13||ch==27||ch==32)return ch;
+ static const char shifted[]="!@#$%^&*()",digits[]="1234567890";for(unsigned n=0;n<10;++n)if(ch==(unsigned char)shifted[n])return(unsigned char)digits[n];
+ switch(ch){case ';':case ':':return 0xba;case '=':case '+':return 0xbb;case ',':case '<':return 0xbc;case '-':case '_':return 0xbd;case '.':case '>':return 0xbe;case '/':case '?':return 0xbf;case '`':case '~':return 0xc0;case '[':case '{':return 0xdb;case '\\':case '|':return 0xdc;case ']':case '}':return 0xdd;case 39:case 34:return 0xde;default:return 0;}
+}
 /* Native Dvorak remaps logical keys exactly as input10_hid does. */
 static inline unsigned keymap_logical145(unsigned vk,unsigned layout){
  if(!layout)return vk;

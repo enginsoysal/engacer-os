@@ -1,0 +1,7 @@
+{
+  "build_id": "a7bbd25bed7392221636ef873724f902",
+  "commit": "4abada55b27b22f024f02dcaef7d2e12bcc63a3c",
+  "inputs": 689,
+  "native_qualified": false,
+  "reason": "Compile-only key/cursor foundation; printable-key review found shifted digit virtual-key mapping needed correction before native qualification."
+}

@@ -14,7 +14,12 @@ def main():
  own=c.CDLL(str(out/'keymap.dll'));own.translate145.argtypes=[c.c_uint]*3;own.translate145.restype=c.c_uint
  reference=c.WinDLL('user32');reference.GetKeyboardLayoutList.argtypes=[c.c_int,c.POINTER(c.c_void_p)];layouts=(c.c_void_p*32)();count=reference.GetKeyboardLayoutList(32,layouts);assert 0x04090409 in list(layouts)[:count], 'Existing explicit US reference required; do not change host layouts'
  reference.MapVirtualKeyExW.argtypes=[c.c_uint,c.c_uint,c.c_void_p];reference.MapVirtualKeyExW.restype=c.c_uint
+ own.character145.argtypes=[c.c_uint];own.character145.restype=c.c_uint
+ reference.VkKeyScanExW.argtypes=[c.c_wchar,c.c_void_p];reference.VkKeyScanExW.restype=c.c_short
  assertions=0;differences=[]
+ for ch in range(32,127):
+  assert own.character145(ch)==reference.VkKeyScanExW(chr(ch),c.c_void_p(0x04090409))&255,chr(ch)
+  assertions+=1
  for kind in range(5):
   codes=range(256) if kind in(0,2,4)else [p|k for p in(0,0xe000,0xe100)for k in range(256)]
   for code in codes:
