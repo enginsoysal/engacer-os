@@ -5,6 +5,8 @@ typedef struct {uint8_t *data;unsigned size;} msi8_blob;
 typedef struct {char name[64];unsigned type;} msi8_column;
 typedef struct {char name[64];unsigned columns,rows;msi8_column column[32];msi8_blob data;} msi8_table;
 void msi8_database(const void*,unsigned);
+/* Close caller-owned table blobs first; this invalidates borrowed strings. */
+void msi8_database_close(void);
 msi8_blob msi8_stream(const char*,unsigned);
 msi8_table msi8_table_open(const char*);
 const char *msi8_string(unsigned);

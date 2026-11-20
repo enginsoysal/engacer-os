@@ -9,12 +9,12 @@ typedef struct {char *block,*value;unsigned bytes;} msip_item147;
 typedef struct {msip_item147 *items;unsigned count,capacity,bytes;msip_alloc147 alloc;msip_free147 release;void *context;} msip_session147;
 enum {MSIP_OK147=0,MSIP_MEMORY147=8,MSIP_PARAMETER147=87,MSIP_QUOTA147=1816};
 #define MSIP_BUDGET147 131072u
-static int msip_name147(const char *name,unsigned *length){
+static inline int msip_name147(const char *name,unsigned *length){
  if(!name)return 0;unsigned n=0;for(;name[n]&&n<=72;++n){unsigned c=(unsigned char)name[n];if(!((c>='A'&&c<='Z')||(c>='a'&&c<='z')||c=='_'||(n&&((c>='0'&&c<='9')||c=='.'))))return 0;}*length=n;return n&&n<=72;
 }
-static int msip_same147(const char *a,const char *b){unsigned i=0;while(a[i]&&a[i]==b[i])++i;return a[i]==b[i];}
-static const char *msip_get147(const msip_session147 *s,const char *name){if(!s||!name)return "";for(unsigned i=0;i<s->count;++i)if(msip_same147(s->items[i].block,name))return s->items[i].value;return "";}
-static unsigned msip_set147(msip_session147 *s,const char *name,const char *value){
+static inline int msip_same147(const char *a,const char *b){unsigned i=0;while(a[i]&&a[i]==b[i])++i;return a[i]==b[i];}
+static inline const char *msip_get147(const msip_session147 *s,const char *name){if(!s||!name)return "";for(unsigned i=0;i<s->count;++i)if(msip_same147(s->items[i].block,name))return s->items[i].value;return "";}
+static inline unsigned msip_set147(msip_session147 *s,const char *name,const char *value){
  unsigned names=0,values=0;if(!s||!s->alloc||!s->release||!msip_name147(name,&names))return MSIP_PARAMETER147;
  if(value){while(values<=4096&&value[values])++values;if(values>4096)return MSIP_QUOTA147;}
  unsigned at=0;while(at<s->count&&!msip_same147(s->items[at].block,name))++at;
@@ -32,14 +32,14 @@ static unsigned msip_set147(msip_session147 *s,const char *name,const char *valu
  if(at<s->count){s->bytes-=s->items[at].bytes;s->release(s->context,s->items[at].block);}else ++s->count;
  s->items[at]=(msip_item147){block,block+names+1,bytes};s->bytes+=bytes;return MSIP_OK147;
 }
-static void msip_destroy147(msip_session147 *s){if(!s)return;if(s->release){for(unsigned i=0;i<s->count;++i)s->release(s->context,s->items[i].block);if(s->items)s->release(s->context,s->items);}s->items=0;s->count=s->capacity=s->bytes=0;}
+static inline void msip_destroy147(msip_session147 *s){if(!s)return;if(s->release){for(unsigned i=0;i<s->count;++i)s->release(s->context,s->items[i].block);if(s->items)s->release(s->context,s->items);}s->items=0;s->count=s->capacity=s->bytes=0;}
 /* Selected scalar Formatted fields. Unknown properties resolve to blank.
  * Non-property references use the caller's costed file/component/env resolver.
  * Nested keys and optional {...} groups deliberately refuse until implemented;
  * [~] needs a binary registry formatter and must never truncate a command.
  */
 typedef const char *(*msip_resolve147)(void *,unsigned,const char *);
-static unsigned msip_format_inner147(const msip_session147 *s,const char *text,char *out,unsigned capacity,msip_resolve147 resolve,void *context){
+static inline unsigned msip_format_inner147(const msip_session147 *s,const char *text,char *out,unsigned capacity,msip_resolve147 resolve,void *context){
  if(!s||!text||!out||!capacity)return MSIP_PARAMETER147;unsigned length=0;while(length<=4096&&text[length])++length;if(length>4096)return MSIP_QUOTA147;
  unsigned used=0;out[0]=0;
  for(unsigned at=0;at<length;){
@@ -61,5 +61,5 @@ static unsigned msip_format_inner147(const msip_session147 *s,const char *text,c
  }
  out[used]=0;return MSIP_OK147;
 }
-static unsigned msip_format147(const msip_session147 *s,const char *text,char *out,unsigned capacity,msip_resolve147 resolve,void *context){unsigned result=msip_format_inner147(s,text,out,capacity,resolve,context);if(result&&out&&capacity)out[0]=0;return result;}
+static inline unsigned msip_format147(const msip_session147 *s,const char *text,char *out,unsigned capacity,msip_resolve147 resolve,void *context){unsigned result=msip_format_inner147(s,text,out,capacity,resolve,context);if(result&&out&&capacity)out[0]=0;return result;}
 #endif

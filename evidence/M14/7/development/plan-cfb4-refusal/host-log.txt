@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\plan147_host.py", line 83, in <module>
+    if __name__=='__main__':main()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\plan147_host.py", line 79, in main
+    if run.returncode:raise RuntimeError('Owned MSI plan test failed '+str(run.returncode)+' '+(report.read_text()if report.exists()else run.stderr.decode(errors='replace')))
+RuntimeError: Owned MSI plan test failed 87 {
+  "passed": false,
+  "package": "npp.8.9.9.1.Installer.x64.msi",
+  "scope": "Owned metadata refusal before any target mutation",
+  "expected_refusal": "MSI compound-file geometry is unsupported.",
+  "mutation": "normal"
+}
+
