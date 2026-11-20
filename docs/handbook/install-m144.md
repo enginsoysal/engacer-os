@@ -1,6 +1,6 @@
 # Install the M14.4 development candidate in VMware
 
-Native qualification passes within **M14-STAGE4-VM-v1**. The matching public release and complete website delivery are being finalized. Read the bounded original-window preview scope below.
+Native qualification passes within **M14-STAGE4-VM-v1**. The matching release and website content are published. The owner made the reported missing BrixCanvas search/navigation nonblocking; their full browser test is not claimed as passed. Read the bounded original-window preview scope below.
 
 
 ## Before starting

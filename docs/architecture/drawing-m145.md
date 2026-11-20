@@ -23,6 +23,13 @@ GPU acceleration or a general image canvas. Existing process-private image
 storage remains separately bounded at 16 MiB. Calls do not create a timer or
 polling renderer.
 
+The first physical-pixel fixture exposed an older LoadImage default-size bug:
+zero dimensions without LR_DEFAULTSIZE incorrectly requested 32 by 32. The
+corrected loader takes the first resource image's actual dimensions; only
+LR_DEFAULTSIZE requests the default metrics. LoadIcon retains its documented
+default-size behavior. The failed candidate remains separate development
+evidence. [LoadImage sizing contract](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadimagew).
+
 ## Toolbar measurement and input
 
 Copied toolbar labels are measured using the native font metrics at insertion.

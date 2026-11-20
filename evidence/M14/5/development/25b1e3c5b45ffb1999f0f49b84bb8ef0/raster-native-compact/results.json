@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "stage": "M14.5",
+  "scope": "Owned pixel/control fixture, not original application task qualification",
+  "build_id": "25b1e3c5b45ffb1999f0f49b84bb8ef0",
+  "fixture_sha256": "5e4ef428c2af2d4425e983c785fcf5bfc79c98e6ff6425982050d59a33c84a6b",
+  "resource_sha256": "98ed4973ad325ead742a8e5c2d0d4e6efc955bbd84715db02aeb49b27c72de59",
+  "clone": {
+    "source_sha256": "c92ffcfbfee875d24f8ba586854dbecfcf47f41a9c44596d09f5be8418ff9e04",
+    "clone_sha256": "c92ffcfbfee875d24f8ba586854dbecfcf47f41a9c44596d09f5be8418ff9e04",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "profile": "compact",
+  "cycles": [],
+  "physical_dimensions": [
+    1280,
+    800
+  ],
+  "pixel_checks": {
+    "transparent": [
+      0,
+      120,
+      199
+    ]
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\raster145_run.py\", line 36, in main\n    for name,(x,y,rgb)in expected.items():actual=pixel(x,y);assert actual==rgb,(name,actual,rgb);report['pixel_checks'][name]=actual\nAssertionError: ('magenta', [0, 120, 199], [255, 0, 255])\n"
+}

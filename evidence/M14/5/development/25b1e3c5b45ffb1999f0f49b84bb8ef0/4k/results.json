@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "baseline": false,
+  "stage": "M14.5",
+  "build_id": "25b1e3c5b45ffb1999f0f49b84bb8ef0",
+  "iso_sha256": "474d0dec8c2bd05c22a137cfcd4d6333775c3405d37bbf24ffd4926908f22541",
+  "physical": [
+    3840,
+    2160
+  ],
+  "configured_guest_mib": 1024,
+  "owned_fixture": "75fd3f4a21a445b6b6761d041e55dd78",
+  "checks": [
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery"
+  ],
+  "scale_units": 4,
+  "resources": {
+    "managed_stats": [
+      8147,
+      8147,
+      247086,
+      5
+    ],
+    "framebuffer_bytes": 33177600,
+    "retained_task_delta_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 29,
+      "after": 29,
+      "halted": 2
+    },
+    {
+      "before": 29,
+      "after": 29,
+      "halted": 2
+    },
+    {
+      "before": 29,
+      "after": 29,
+      "halted": 2
+    }
+  ]
+}
