@@ -9,6 +9,8 @@ static inline unsigned wui_matches144(const wui_message144*m,const wui_filter144
  return (!f->window||(f->window==UINT64_MAX?!m->window:m->window==f->window))&&((!f->first&&!f->last)||(m->message>=f->first&&m->message<=f->last));
 }
 static inline int wui_push144(wui_queue144*q,const wui_message144*m,unsigned native){
+ /* Replace only a whole pending cursor/motion pair, never across a key/button. */
+ if(native&&q->count>=2&&m->message==0x20){wui_message144*cursor=q->items+q->count-2,*motion=cursor+1;if(cursor->message==0x20&&motion->message==0x200&&cursor->window==m->window&&motion->window==m->window){*cursor=*m;--q->count;return 1;}}
  /* Only an adjacent motion can be replaced without moving it past a key. */
  if(native&&q->count&&m->message==0x200){wui_message144*last=q->items+q->count-1;if(last->message==m->message&&last->window==m->window){*last=*m;return 1;}}
  if(q->count>=(native?WUI_QUEUE144:WUI_APP_QUEUE144))return 0;

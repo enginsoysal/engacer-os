@@ -32,8 +32,19 @@ def main():
     p.move(int((root['bounds'][0]+80)*scale),int((root['bounds'][1]+100)*scale));p.drain()
     g.qmp('send-key',{'keys':[{'type':'qcode','data':'ctrl'}],'hold-time':600});time.sleep(.06);p.down(True);p.down(False)
     wait(g,'M145_KEYS_SNAPSHOT_PASS');wait(g,'M145_KEYS_RELEASE_PASS')
+    def cursor(expected):
+     deadline=time.monotonic()+10
+     while time.monotonic()<deadline:
+      kind=c.flag(g,'cursor_kind19');visible=c.flag(g,'cursor9_visible')
+      if kind==expected and visible:return
+      time.sleep(.03)
+     raise AssertionError(('cursor did not update without extra motion',expected,kind,visible))
+    p.move(int((root['bounds'][0]+1+320)*scale),int((root['bounds'][1]+40+60)*scale));p.drain();cursor(1)
+    if cycle==0:c.shot(g,'native-edit-cursor')
+    p.move(int((root['bounds'][0]+80)*scale),int((root['bounds'][1]+100)*scale));p.drain();cursor(0)
+    if cycle==0:c.shot(g,'native-client-arrow')
     p.desktop(49002,True);g.wait('M8_JOB_DONE',at);p.drain();state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));assert state==2 and not status and'M145_KEYS_LIFETIME_PASS'in output(g),(state,command,status,output(g));retained=f.stats(g)[0]-before;assert retained==0;assert len(t.records(g))==1 and t.records(g)[0]['token']==front['token']
-    report['cycles'].append(dict(cycle=cycle+1,consumed_state=True,no_remove_preserves_state=True,posted_input_cannot_fabricate=True,physical_release_preserves_unconsumed_snapshot=True,cursor_queries_do_not_consume_edges=True,retained_pages=retained))
+    report['cycles'].append(dict(cycle=cycle+1,consumed_state=True,no_remove_preserves_state=True,posted_input_cannot_fabricate=True,physical_release_preserves_unconsumed_snapshot=True,cursor_queries_do_not_consume_edges=True,client_cursor_changes_without_extra_motion=True,retained_pages=retained))
    report['passed']=True
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
  finally:(out/'results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report,indent=2),flush=True)

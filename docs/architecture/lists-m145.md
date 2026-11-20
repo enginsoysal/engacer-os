@@ -123,3 +123,13 @@ There is no watch handle, fabricated signal or new polling worker. Missing or
 unauthorized paths retain the checked file-provider error. Original application
 recovery and further navigation still require native verification. Live
 notification support remains an open file-interoperability dependency.
+
+Frozen candidate `c66c3940b0623be100a4350c5978de53` passes the new build
+integrity checks for all 687 inputs. Compact and actual 4K installation, two
+disk-only starts per profile and original MSI/106-hash regressions pass. The
+owned folder/list fixture passes with zero retained pages. The native consumed-
+input fixture passes 21 lifetimes, each retaining zero pages. Original 7-Zip
+opens Documents and the actual nested folder, renders notes.txt, then stops at
+the missing MapVirtualKeyW API on Backspace. That failure remains preserved;
+the original browse/back task has not passed. Follow-up [keyboard translation
+and cursor work](keyboard-m145.md) is pending new native qualification.

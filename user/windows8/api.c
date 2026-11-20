@@ -358,7 +358,7 @@ typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
  API8(FindFirstChangeNotificationW,1),
- API8(GetKeyState,4),API8(GetKeyboardState,4),
+ API8(GetKeyState,4),API8(GetKeyboardState,4),API8(MapVirtualKeyW,4),
  API8(DialogBoxParamW,4),API8(EndDialog,4),API8(IsDialogMessageW,4),API8(DefDlgProcW,4),API8(GetDlgCtrlID,4),API8(GetDlgItemTextW,4),API8(CheckDlgButton,4),API8(IsDlgButtonChecked,4),
  API8(ImageList_Draw,6),API8(DrawIconEx,4),API8(DrawIcon,4),
  API8(RegisterClipboardFormatW,4),API8(GetClipboardFormatNameW,4),

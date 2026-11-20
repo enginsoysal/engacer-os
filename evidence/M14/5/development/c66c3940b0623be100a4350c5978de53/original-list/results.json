@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "build_id": "c66c3940b0623be100a4350c5978de53",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "fixture_sha256": "829a31ddef3cfb4b6e76cf905c0b825d92fcee9ffcbb16775a7a868a75a98bfd",
+  "clone": {
+    "source_sha256": "66ae7c7552a612f435c1392eb19211bc3c3ec7009baa2b703349ef13e7cb7d1b",
+    "clone_sha256": "66ae7c7552a612f435c1392eb19211bc3c3ec7009baa2b703349ef13e7cb7d1b",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "scope": "Original granted Documents folder selection/browse/back task; not complete archive tasks or M14.5 acceptance",
+  "single_click_keeps_root": true,
+  "documents_labels": [
+    "Name",
+    "Size",
+    "Modified",
+    "Created",
+    "Comment",
+    "Folders",
+    "Files",
+    "EngineOS-Windows-Extracted",
+    "M145-navigation",
+    "EngineOS-Windows.txt",
+    "EngineOS-Windows.zip",
+    "Welcome.txt"
+  ],
+  "nested_labels": [
+    "Name",
+    "Size",
+    "Modified",
+    "Created",
+    "Comment",
+    "Folders",
+    "Files",
+    "notes.txt"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\original_list145_run.py\", line 28, in main\n    time.sleep(.6);point('M145-navigation');p.down(True);p.down(False);p.down(True);p.down(False);p.drain();wait_for(g,lambda:'notes.txt'in labels());report['nested_labels']=labels();c.shot(g,'original-real-folder');c.key(g,'backspace');wait_for(g,lambda:'M145-navigation'in labels());report['back_to_parent']=True\n  File \"<project-root>\\tests\\m14\\original_window_trace4.py\", line 27, in wait_for\n    if state==3:raise AssertionError((raw[304:496].split(b'\\0')[0],output(g)))\nAssertionError: (b'Not implemented: user32.dll!MapVirtualKeyW', 'Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\\nRunning the original Windows executable in a protected process.\\n\\n\\nEngacer OS: Not implemented: user32.dll!MapVirtualKeyW\\n')\n"
+}

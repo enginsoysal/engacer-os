@@ -121,9 +121,9 @@ void graphics9_end_batch(void){if(batch9&&!--batch9)graphics9_flush();}
 /* Original scalable cursor outlines: arrow, text, horizontal/vertical resize
    and both diagonals. Only a four-byte kind is retained; no cursor bitmap. */
 static unsigned cursor_kind19;
-void graphics9_cursor_kind(unsigned kind){
+unsigned graphics9_cursor_kind(unsigned kind){
  if(kind>6)kind=0;
- if(cursor_kind19!=kind){graphics9_hide_cursor();cursor_kind19=kind;}
+ if(cursor_kind19!=kind){graphics9_hide_cursor();cursor_kind19=kind;return 1;}return 0;
 }
 static unsigned cursor_inside19(int x,int y,unsigned kind){
  if(kind==1)return(x>=84&&x<=100&&y>=24&&y<=168)||(((y>=24&&y<=40)||(y>=152&&y<=168))&&x>=52&&x<=132);

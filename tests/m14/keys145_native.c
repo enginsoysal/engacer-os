@@ -2,10 +2,12 @@
 typedef unsigned long long H;typedef long long I;typedef unsigned short W;typedef I(*PROC)(H,unsigned,H,I);
 typedef struct {unsigned style;PROC proc;int cls_extra,win_extra;H instance,icon,cursor,background;const W*menu,*name;} CLASS;
 typedef struct {H window;unsigned message,pad;H wp;I lp;unsigned time;int x,y;unsigned private_;} MSG;
+__declspec(dllimport) H LoadCursorW(H,const W*);
 __declspec(dllimport) H RegisterClassW(const CLASS*);
 __declspec(dllimport) H CreateWindowExW(unsigned,const W*,const W*,unsigned,int,int,int,int,H,H,H,void*);
 __declspec(dllimport) I DefWindowProcW(H,unsigned,H,I);
 __declspec(dllimport) short GetKeyState(int);
+__declspec(dllimport) unsigned MapVirtualKeyW(unsigned,unsigned);
 __declspec(dllimport) int GetKeyboardState(unsigned char*);
 __declspec(dllimport) int PeekMessageW(MSG*,H,unsigned,unsigned,unsigned);
 __declspec(dllimport) int PostMessageW(H,unsigned,H,I);
@@ -22,7 +24,7 @@ static void say(const char*s){unsigned n=0,w;while(s[n])++n;WriteFile(GetStdHand
 static void check(int ok,const char*s){if(!ok){say("M145_KEYS_FAIL ");say(s);say("\n");ExitProcess(1);}}
 static I procedure(H h,unsigned m,H wp,I lp){
  if(m==0x100&&wp=='A'){
-  if(!key_checked){check(GetKeyState('A')&0x8000,"consumed real key down");Sleep(150);MSG next;check(PeekMessageW(&next,h,0x101,0x101,0)&&next.wp=='A'&&(GetKeyState('A')&0x8000),"no-remove peek preserves down state");check(PeekMessageW(&next,h,0x101,0x101,1)&&!(GetKeyState('A')&0x8000),"removing real key up changes state");key_checked=1;check(PostMessageW(h,0x100,'A',1),"post ordinary key message");}
+  if(!key_checked){check(GetKeyState('A')&0x8000,"consumed real key down");check(((H)lp>>16&255)==MapVirtualKeyW('A',0),"native key message carries the matching scan code");Sleep(150);MSG next;check(PeekMessageW(&next,h,0x101,0x101,0)&&next.wp=='A'&&(GetKeyState('A')&0x8000),"no-remove peek preserves down state");check(PeekMessageW(&next,h,0x101,0x101,1)&&!(GetKeyState('A')&0x8000),"removing real key up changes state");key_checked=1;check(PostMessageW(h,0x100,'A',1),"post ordinary key message");}
   else{check(!(GetKeyState('A')&0x8000),"posted message cannot fabricate native key state");posted_checked=1;say("M145_KEYS_QUEUE_PASS\n");}return 0;
  }
  if(m==0x200){int point[2];for(unsigned n=0;n<20;++n)check(GetCursorPos(point)&&point[0]>=0&&point[1]>=0,"pure cursor query under input");return 0;}
@@ -32,4 +34,4 @@ static I procedure(H h,unsigned m,H wp,I lp){
  return DefWindowProcW(h,m,wp,lp);
 }
 static PROC volatile anchor=procedure;
-void entry(void){CLASS cls={0};cls.proc=anchor;cls.name=L"Keys145";cls.background=6;check(RegisterClassW(&cls)!=0,"class");root=CreateWindowExW(0,cls.name,L"Native consumed input state",0x10cf0000,180,100,560,360,0,0,0,0);check(root!=0,"root");say("M145_KEYS_READY\n");MSG msg;while(GetMessageW(&msg,0,0,0)>0)DispatchMessageW(&msg);say("M145_KEYS_LIFETIME_PASS\n");ExitProcess(0);}
+void entry(void){check(MapVirtualKeyW(8,0)==14&&MapVirtualKeyW(0xa3,4)==0xe01d&&MapVirtualKeyW(0xe01d,3)==0xa3,"real scan and virtual-key mappings");CLASS cls={0};cls.proc=anchor;cls.cursor=LoadCursorW(0,(const W*)32512);cls.name=L"Keys145";cls.background=6;check(RegisterClassW(&cls)!=0,"class");root=CreateWindowExW(0,cls.name,L"Native consumed input state",0x10cf0000,180,100,560,360,0,0,0,0);check(root!=0,"root");check(CreateWindowExW(0,L"Edit",L"Cursor target",0x50800000,280,40,200,60,root,11,0,0)!=0,"native edit cursor target");say("M145_KEYS_READY\n");MSG msg;while(GetMessageW(&msg,0,0,0)>0)DispatchMessageW(&msg);say("M145_KEYS_LIFETIME_PASS\n");ExitProcess(0);}

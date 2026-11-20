@@ -66,7 +66,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_MENUBAR145){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;if(pointer||w->view.description.parent||(argument&&argument!=24))return -87;w->view.menu_height=(unsigned)argument;if(!argument)w->menu_count=0;w->view.revision=++ui_revision144;return 0;}
  if(op==WUI_KEYSTATE145){
 #ifdef ENGINE_M14
-  if(argument>1||(!argument&&(pointer||handle>255))||(argument&&(handle||!pointer)))return -87;wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;if(!argument)return q->keys[handle];return user8(pointer,q->keys,256,1)?-998:0;
+  if(argument==2)return handle||pointer?-87:(int64_t)input10_layout();if(argument>1||(!argument&&(pointer||handle>255))||(argument&&(handle||!pointer)))return -87;wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;if(!argument)return q->keys[handle];return user8(pointer,q->keys,256,1)?-998:0;
 #else
   return -50;
 #endif
@@ -120,7 +120,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
 }
 unsigned w8_ui_revision144(void){return ui_revision144;}
 unsigned w8_ui_at144(unsigned index,wui_view144*out){if(index>=WUI_WINDOWS144||!out||!ui_windows144[index])return 0;*out=ui_windows144[index]->view;return 1;}
-unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;if((message==0x10||message==7||(message>=0x100&&message<=0x209))&&!ui_enabled_chain144(w))return 0;handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={message==0x100||message==0x101||message==0x104||message==0x105?1u:0u,ui_input_snapshot145(message)}};return ui_enqueue144(w->space,w->thread,&m,1);}
+unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;if((message==0x10||message==7||(message>=0x100&&message<=0x209))&&!ui_enabled_chain144(w))return 0;if(message==0x20&&!wp){handle=ui_input_target144(handle,0x200,&lp);wp=handle;lp=0x02000001;}else handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={message==0x100||message==0x101||message==0x104||message==0x105?1u:0u,ui_input_snapshot145(message)}};return ui_enqueue144(w->space,w->thread,&m,1);}
 unsigned w8_ui_modifiers145(uint64_t root,unsigned snapshot){
 #ifdef ENGINE_M14
  ui_window144*w=ui_lookup144(root);if(!w||!ui_enabled_chain144(w))return 0;wui_queue144*q=ui_queue144(w->space,w->thread,1);if(!q)return 0;unsigned raw=(snapshot>>8)&255;

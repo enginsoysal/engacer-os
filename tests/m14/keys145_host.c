@@ -5,3 +5,11 @@ __declspec(dllexport) unsigned queue_size145(void){return sizeof(wui_queue144);}
 __declspec(dllexport) unsigned state145(unsigned raw,unsigned flags,unsigned message,unsigned key,unsigned posted){
  uint8_t keys[256]={0};wui_message144 m={0};m.message=message;m.wparam=key;m.reserved[1]=posted?0:WUI_KEY_SNAPSHOT145|(raw<<8)|flags;wui_key_commit145(keys,&m);unsigned result=0;static const uint8_t codes[8]={0xa2,0xa0,0xa4,0x5b,0xa3,0xa1,0xa5,0x5c};for(unsigned n=0;n<8;++n)if(keys[codes[n]]&0x80)result|=1u<<n;result|=(unsigned)(keys[0x10]>>7)<<8;result|=(unsigned)(keys[0x11]>>7)<<9;result|=(unsigned)(keys[0x12]>>7)<<10;result|=(unsigned)(keys[1]>>7)<<11;result|=(unsigned)(keys[2]>>7)<<12;result|=(unsigned)(keys[4]>>7)<<13;result|=(keys[0x14]&1)<<14;result|=(unsigned)(keys['A']>>7)<<15;return result;
 }
+
+__declspec(dllexport) unsigned pairs145(void){wui_queue144 q;volatile unsigned char*bytes=(volatile unsigned char*)&q;for(unsigned n=0;n<sizeof(q);++n)bytes[n]=0;wui_message144 cursor={.window=1,.message=0x20,.time=1},motion={.window=1,.message=0x200,.time=1},key={.window=1,.message=0x100};unsigned result=0;
+ if(wui_push144(&q,&cursor,1)&&wui_push144(&q,&motion,1)&&q.count==2)result|=1;
+ cursor.time=2;motion.time=2;if(wui_push144(&q,&cursor,1)&&q.count==1&&wui_push144(&q,&motion,1)&&q.count==2&&q.items[0].time==2&&q.items[1].time==2)result|=2;
+ if(wui_push144(&q,&key,1)&&wui_push144(&q,&cursor,1)&&wui_push144(&q,&motion,1)&&q.count==5&&q.items[2].message==0x100)result|=4;
+ if(wui_push144(&q,&cursor,0)&&q.count==6)result|=8;
+ return result;
+}

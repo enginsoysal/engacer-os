@@ -1,3 +1,4 @@
+#include <engine/keymap145.h>
 /* Native compositor bridge: records only, never application code pointers. */
 static uint64_t foreign_focus144;
 static desktop_rect foreign_clip144;
@@ -61,16 +62,16 @@ static __attribute__((noinline)) void foreign_sync144(void){
  if(focus)w8_ui_modifiers145(focus,input14_snapshot());
 #endif
 #ifdef ENGINE_M13
- if(!dragging&&!launcher){uint64_t token=desktop_hit(&model,(int)pointer_x,(int)pointer_y);unsigned kind=foreign_cursor_kind144(token,pointer_x,pointer_y);if(kind!=UINT32_MAX)graphics9_cursor_kind(kind);}
+ if(!dragging&&!launcher){uint64_t token=desktop_hit(&model,(int)pointer_x,(int)pointer_y);unsigned kind=foreign_cursor_kind144(token,pointer_x,pointer_y);if(kind!=UINT32_MAX&&graphics9_cursor_kind(kind))usb_mouse_draw();}
 #endif
 }
 static unsigned foreign_key144(int key){
  if(launcher||model.focused>=DESKTOP_WINDOWS||!model.windows[model.focused].live||key==137||key==135)return 0;
  uint64_t handle=apps[model.focused].foreign144;if(!handle)return 0;wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return 1;
  if(key==144){w8_ui_input144(handle,0x10,0,0);return 1;}
- if((key>=32&&key<=126)||key==8||key==9||key==10){unsigned ch=key==10?13:(unsigned)key,vk=ch;if(vk>='a'&&vk<='z')vk-=32;else if(ch==';'||ch==':')vk=0xba;else if(ch=='='||ch=='+')vk=0xbb;else if(ch==','||ch=='<')vk=0xbc;else if(ch=='-'||ch=='_')vk=0xbd;else if(ch=='.'||ch=='>')vk=0xbe;else if(ch=='/'||ch=='?')vk=0xbf;else if(ch=='`'||ch=='~')vk=0xc0;else if(ch=='['||ch=='{')vk=0xdb;else if(ch==']'||ch=='}')vk=0xdd;else if(ch==92||ch=='|')vk=0xdc;else if(ch==39||ch==34)vk=0xde;w8_ui_input144(handle,0x100,vk,1);w8_ui_input144(handle,0x102,ch,1);w8_ui_input144(handle,0x101,vk,UINT64_C(0xc0000001));return 1;}
- unsigned vk=key==128?0x25:key==129?0x27:key==133?0x26:key==134?0x28:key==27?0x1b:0;
- if(vk){w8_ui_input144(handle,0x100,vk,1);w8_ui_input144(handle,0x101,vk,UINT64_C(0xc0000001));}return 1;
+ if((key>=32&&key<=126)||key==8||key==9||key==10){unsigned ch=key==10?13:(unsigned)key,vk=ch;if(vk>='a'&&vk<='z')vk-=32;else if(ch==';'||ch==':')vk=0xba;else if(ch=='='||ch=='+')vk=0xbb;else if(ch==','||ch=='<')vk=0xbc;else if(ch=='-'||ch=='_')vk=0xbd;else if(ch=='.'||ch=='>')vk=0xbe;else if(ch=='/'||ch=='?')vk=0xbf;else if(ch=='`'||ch=='~')vk=0xc0;else if(ch=='['||ch=='{')vk=0xdb;else if(ch==']'||ch=='}')vk=0xdd;else if(ch==92||ch=='|')vk=0xdc;else if(ch==39||ch==34)vk=0xde;unsigned scan=keymap145(vk,4,input10_layout());uint64_t lp=1|((uint64_t)(scan&255)<<16)|(scan&0xff00?UINT64_C(1)<<24:0);w8_ui_input144(handle,0x100,vk,lp);w8_ui_input144(handle,0x102,ch,lp);w8_ui_input144(handle,0x101,vk,lp|UINT64_C(0xc0000000));return 1;}
+ unsigned vk=key==128?0x25:key==129?0x27:key==133?0x26:key==134?0x28:key==130?0x24:key==131?0x23:key==132?0x2e:key==27?0x1b:0;
+ if(vk){unsigned scan=keymap145(vk,4,input10_layout());uint64_t lp=1|((uint64_t)(scan&255)<<16)|(scan&0xff00?UINT64_C(1)<<24:0);w8_ui_input144(handle,0x100,vk,lp);w8_ui_input144(handle,0x101,vk,lp|UINT64_C(0xc0000000));}return 1;
 }
 static void foreign_pointer144(unsigned x,unsigned y,unsigned buttons,unsigned previous){
  uint64_t captured=w8_ui_capture_root144();uint64_t token=desktop_hit(&model,(int)x,(int)y);if(captured)for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144==captured){token=desktop_token(&model,i);break;}desktop_window*w=desktop_lookup(&model,token);if(!w||dragging||launcher)return;uint64_t handle=apps[w-model.windows].foreign144;if(!handle||(!captured&&((int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)))return;
@@ -84,7 +85,7 @@ static void foreign_pointer144(unsigned x,unsigned y,unsigned buttons,unsigned p
  modifiers=input11_pointer_modifiers();
 #endif
  uint64_t lp=((x-(unsigned)(w->bounds.x+1))&65535)|((uint64_t)((y-(unsigned)(w->bounds.y+40+menu))&65535)<<16);unsigned flags=(buttons&1?1:0)|(buttons&2?2:0)|(buttons&4?16:0)|(modifiers&1?8:0)|(modifiers&2?4:0);
- static uint64_t cursor_owner144;if(cursor_owner144!=handle){cursor_owner144=handle;w8_ui_input144(handle,0x20,handle,0x02000001);}
+ w8_ui_input144(handle,0x20,0,lp);
  w8_ui_input144(handle,0x200,flags,lp);
  if((buttons^previous)&1)w8_ui_input144(handle,buttons&1?0x201:0x202,flags,lp);
  if((buttons^previous)&2)w8_ui_input144(handle,buttons&2?0x204:0x205,flags,lp);
