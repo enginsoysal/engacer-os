@@ -1,6 +1,6 @@
 # Your first day with M14.6
 
-Native/source/media qualification passes for build 5f49030d412bd7f0587568c029becc2c. Public release/download and complete website verification are pending; M14.5 remains the last completed public delivery.
+Native/source/media qualification passes for build 5f49030d412bd7f0587568c029becc2c. The matching public release and all twenty independent asset downloads pass. Complete website verification is pending; M14.5 remains the last fully closed public delivery.
 
 Start with the [matching VMware installation guide](install-m146.md) and [release limits](../releases/m146-v0.14.6.md). M14.6 retains the native desktop, file/settings and process/thread profiles and adds cross-app Unicode text transfer, bounded shared Open/Save dialogs, scalar text rendering and exact saved/reopened document bytes. The optional Firefox installer remains download-only. This is development media for the named test profiles.
 

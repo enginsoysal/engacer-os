@@ -1,0 +1,193 @@
+{
+  "passed": true,
+  "stage": "M14.6",
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "checked_at": "2026-11-20T22:43:28.349311+00:00",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6",
+  "latest": "m146-v0.14.6",
+  "artifacts": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/7z2606-src.tar.xz",
+      "public_head": 200,
+      "downloaded_bytes": 1567328,
+      "downloaded_sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4"
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/COPYING.LIB",
+      "public_head": 200,
+      "downloaded_bytes": 26430,
+      "downloaded_sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-archives.elf",
+      "public_head": 200,
+      "downloaded_bytes": 17068,
+      "downloaded_sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-browser.elf",
+      "public_head": 200,
+      "downloaded_bytes": 12639,
+      "downloaded_sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-calculator.elf",
+      "public_head": 200,
+      "downloaded_bytes": 12976,
+      "downloaded_sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-calendar.elf",
+      "sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-calendar.elf",
+      "public_head": 200,
+      "downloaded_bytes": 8232,
+      "downloaded_sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-editor.elf",
+      "sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-editor.elf",
+      "public_head": 200,
+      "downloaded_bytes": 8232,
+      "downloaded_sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-help.elf",
+      "sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-help.elf",
+      "public_head": 200,
+      "downloaded_bytes": 8232,
+      "downloaded_sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-installed-kernel.elf",
+      "sha256": "961ae6a4b88e02bdb5a8f42dd461bcccd0db8c8ecbc9ed90686e828305df6d8a",
+      "size": 1565076,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-installed-kernel.elf",
+      "public_head": 200,
+      "downloaded_bytes": 1565076,
+      "downloaded_sha256": "961ae6a4b88e02bdb5a8f42dd461bcccd0db8c8ecbc9ed90686e828305df6d8a"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-installed-kernel.map",
+      "sha256": "fb9645e1fcc77996d6e522219d71125f377372f97fd42068d3605e76a6c34d25",
+      "size": 429323,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-installed-kernel.map",
+      "public_head": 200,
+      "downloaded_bytes": 429323,
+      "downloaded_sha256": "fb9645e1fcc77996d6e522219d71125f377372f97fd42068d3605e76a6c34d25"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-kernel.elf",
+      "sha256": "f69dba0456c53ac2dc1b2bd05103dd389ea816bfc0eefe36a6f1edf1763b0d97",
+      "size": 4379028,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-kernel.elf",
+      "public_head": 200,
+      "downloaded_bytes": 4379028,
+      "downloaded_sha256": "f69dba0456c53ac2dc1b2bd05103dd389ea816bfc0eefe36a6f1edf1763b0d97"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-kernel.map",
+      "sha256": "3524b099ef4887f9be33fbf3020e4a9a6af1f1dc7e4e88c59e05a4c849ff7691",
+      "size": 429615,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-kernel.map",
+      "public_head": 200,
+      "downloaded_bytes": 429615,
+      "downloaded_sha256": "3524b099ef4887f9be33fbf3020e4a9a6af1f1dc7e4e88c59e05a4c849ff7691"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-THIRD-PARTY-NOTICES.txt",
+      "sha256": "b932a6cb9bb842d8a6e544a52486d2631bb54c3c2b2857851a1b2dd15b2ea952",
+      "size": 62379,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-THIRD-PARTY-NOTICES.txt",
+      "public_head": 200,
+      "downloaded_bytes": 62379,
+      "downloaded_sha256": "b932a6cb9bb842d8a6e544a52486d2631bb54c3c2b2857851a1b2dd15b2ea952"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-usb.img",
+      "sha256": "172d6b7412185959a633ec3ed71f30c22d0a579e0a466e0860c88d3bdc3272d4",
+      "size": 84934656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-usb.img",
+      "public_head": 200,
+      "downloaded_bytes": 84934656,
+      "downloaded_sha256": "172d6b7412185959a633ec3ed71f30c22d0a579e0a466e0860c88d3bdc3272d4"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-user.elf",
+      "public_head": 200,
+      "downloaded_bytes": 68064,
+      "downloaded_sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6-VMware.zip",
+      "sha256": "8adb1290a6533caaf4e49cc08858559cd6e5e8448ed53558e4de884218c2d4f4",
+      "size": 11519060,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6-VMware.zip",
+      "public_head": 200,
+      "downloaded_bytes": 11519060,
+      "downloaded_sha256": "8adb1290a6533caaf4e49cc08858559cd6e5e8448ed53558e4de884218c2d4f4"
+    },
+    {
+      "name": "EngacerOS-M14STAGE6.iso",
+      "sha256": "e1a2502fbbf5eb0e9d69743c71c576f2886b9d2fb098d109da86e80fb4a250d5",
+      "size": 75520000,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/EngacerOS-M14STAGE6.iso",
+      "public_head": 200,
+      "downloaded_bytes": 75520000,
+      "downloaded_sha256": "e1a2502fbbf5eb0e9d69743c71c576f2886b9d2fb098d109da86e80fb4a250d5"
+    },
+    {
+      "name": "m14stage6-build-manifest.json",
+      "sha256": "6aac5319fa89cd62d1507650a875798bb7d81f8c4956903614b240fa32bff1a4",
+      "size": 94261,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/m14stage6-build-manifest.json",
+      "public_head": 200,
+      "downloaded_bytes": 94261,
+      "downloaded_sha256": "6aac5319fa89cd62d1507650a875798bb7d81f8c4956903614b240fa32bff1a4"
+    },
+    {
+      "name": "M14STAGE6-SHA256SUMS.txt",
+      "sha256": "edda82c5d210e9bd0e19d843f2aa819924a6f95a9c6c8b69402725d81d3da48d",
+      "size": 1839,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/M14STAGE6-SHA256SUMS.txt",
+      "public_head": 200,
+      "downloaded_bytes": 1839,
+      "downloaded_sha256": "edda82c5d210e9bd0e19d843f2aa819924a6f95a9c6c8b69402725d81d3da48d"
+    },
+    {
+      "name": "m14stage6-starter-manifest.json",
+      "sha256": "1c1d6255f8f00418d1b61973afb52b092a4503197ee42ad270c97644e379e315",
+      "size": 653,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m146-v0.14.6/m14stage6-starter-manifest.json",
+      "public_head": 200,
+      "downloaded_bytes": 653,
+      "downloaded_sha256": "1c1d6255f8f00418d1b61973afb52b092a4503197ee42ad270c97644e379e315"
+    }
+  ],
+  "downloaded_zip_sha256": "8adb1290a6533caaf4e49cc08858559cd6e5e8448ed53558e4de884218c2d4f4",
+  "downloaded_zip_crc": true,
+  "downloaded_iso_sha256": "e1a2502fbbf5eb0e9d69743c71c576f2886b9d2fb098d109da86e80fb4a250d5"
+}

@@ -1,6 +1,6 @@
 # Original Windows menus, folders and browser downloads in M14.6
 
-Native/source/media qualification passes for build 5f49030d412bd7f0587568c029becc2c. Public release/download and complete website verification are pending; M14.5 remains the last completed public delivery.
+Native/source/media qualification passes for build 5f49030d412bd7f0587568c029becc2c. The matching public release and all twenty independent asset downloads pass. Complete website verification is pending; M14.5 remains the last fully closed public delivery.
 
 
 ## Use the included Windows app

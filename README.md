@@ -45,4 +45,3 @@ Earlier media, source tags and accepted evidence remain immutable. Follow the gu
 - [Ordered online project archive](https://engaceros.brixcanvas.com/blog/documentation-archive)
 
 [MIT license](LICENSE). Third-party components retain their own licenses and provenance records. Source, documentation and release assets belong to [enginsoysal/engacer-os](https://github.com/enginsoysal/engacer-os).
-
