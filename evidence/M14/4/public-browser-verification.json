@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "scope": "Available desktop/mobile homepage, exact download, matching guide/source, layout and HTTP404 checks only. Owner explicitly makes missing platform search/navigation nonblocking.",
+  "full_public_site_qualified": false,
+  "stage": "M14.4",
+  "source_commit": "6664566577fc69f972cf84041d663869945036ec",
+  "native_editor_save": "Saved \u2713",
+  "production_search": false,
+  "task_sidebar": false,
+  "ordered_task_navigation": false,
+  "current_guide": true,
+  "matching_download": true,
+  "mobile_menu": false,
+  "desktop": {
+    "viewport": 1280,
+    "document": 1280,
+    "images": [
+      {
+        "loaded": true
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": 390,
+    "document": 390,
+    "images": [
+      {
+        "loaded": true
+      }
+    ]
+  },
+  "owner_scope": "owner-publication-scope.json",
+  "observer_sha256": "e46166a7b02cb54d55f07b53f8b949cace8330e67bacf9e6e7ffacc5506b4713"
+}

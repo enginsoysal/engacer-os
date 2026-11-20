@@ -1,12 +1,14 @@
 # Current status
 
-**Current native release: [M14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** All 47 native and eight supporting host groups pass on frozen build `eafa19ad1e60ef524888e94dbb5af01e`, binding 672 compiled inputs. Exact VMware installation and two disk-only starts pass. Twenty public assets are published; independent downloads and complete actual website verification are being finalized. [Acceptance](../../evidence/M14/4/acceptance-results.json), [resources](../../evidence/M14/4/resources.json), [stage gates](../milestones/m14-4.md).
+**Current development: M14.5 drawing, text and common controls.** M14.4 is the current qualified native download. Missing BrixCanvas search/navigation is report-only under the explicit owner instruction and does not halt OS milestones.
+
+**Current native release: [M14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** All 47 native and eight supporting host groups pass on frozen build `eafa19ad1e60ef524888e94dbb5af01e`, binding 672 compiled inputs. Exact VMware installation and two disk-only starts pass. Twenty public assets are published; independent downloads and complete content verification pass under the recorded owner public scope. [Acceptance](../../evidence/M14/4/acceptance-results.json), [resources](../../evidence/M14/4/resources.json), [stage gates](../milestones/m14-4.md).
 
 M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system CPU/RAM/storage optimization gate.
 
 [Install](../handbook/install-m144.md), [first day](../handbook/first-day-m144.md), [Windows behavior](../handbook/windows-m144.md), [release scope](../releases/m144-v0.14.4.md).
 
-**Public-delivery blocker:** BrixCanvas retains the native Menu `documentationPortal` configuration after server reload but does not render same-page search or article heading/task navigation. Native OS qualification, twenty independent asset downloads, all 569 public pages and 4,176 discovered links have separate evidence; the full browser gate is not passed. [Reproduction](../../evidence/M14/4/development/public-search/brixcanvas-report.txt). M14.4 is not fully closed and M14.5 has not started.
+**Owner-revised public scope:** M14.4 is complete within M14-STAGE4-VM-v1. The owner explicitly made the reported BrixCanvas search configuration/rendering and related documentation navigation nonblocking. Their full browser test remains failed and is not relabelled. Native qualification, twenty independently verified downloads, source checks, 569-page readback and link audit pass. [Closure](../../evidence/M14/4/publication-results.json), [recorded owner scope](../../evidence/M14/4/owner-publication-scope.json). Ordered work continues with M14.5.
 
 ## Historical M14.3 delivery
 

@@ -4,7 +4,7 @@ An independent, MIT-licensed operating system with its own BIOS/UEFI loaders, ke
 
 ## Download and get started
 
-**Current native release: [M14.4 / 0.14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Twenty matching assets are published. Independent downloads and full 569-page readback pass. Complete browser qualification is blocked because BrixCanvas omits the saved same-page search and article navigation. [Reproduction](evidence/M14/4/development/public-search/brixcanvas-report.txt). M14.4 is not fully closed.
+**Current native release: [M14.4 / 0.14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Twenty matching assets are published. Independent downloads and full 569-page readback pass. The owner made missing BrixCanvas same-page search and article navigation report-only and nonblocking. [Reproduction](evidence/M14/4/development/public-search/brixcanvas-report.txt). M14.4 is closed under that recorded scope; M14.5 is in progress.
 
 - [Install and restart in VMware](docs/handbook/install-m144.md)
 - [Your first day](docs/handbook/first-day-m144.md)

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.4",
+  "current_stage": "M14.5",
   "current_native_download": "M14.4",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
@@ -61,11 +61,12 @@
       "deliver": "Implement the required USER32 window/message/focus/input model and connect it to the native compositor.",
       "how_and_why": "Run original application code and its actual message loop rather than recreate the target app as a native lookalike.",
       "acceptance": "Original app windows visibly respond to input, focus, move/resize/minimize/close; ownership and modality do not operate the wrong app.",
-      "status": "in_progress",
+      "status": "complete",
       "qualification": "M14-STAGE4-VM-v1",
       "evidence": "evidence/M14/4",
       "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4",
-      "publication_status": "Blocked: public BrixCanvas renderer omits saved documentationPortal search and article navigation; native/media and full page readback pass"
+      "publication_status": "Complete under explicit owner scope: missing BrixCanvas documentation search/navigation is reported and nonblocking; native/media/download/content checks pass",
+      "publication_evidence": "evidence/M14/4/publication-results.json"
     },
     {
       "id": "M14.5",
@@ -73,7 +74,7 @@
       "deliver": "Implement required GDI/text/resources/menu/control/dialog behavior for the pinned applications.",
       "how_and_why": "Share native drawing/fonts where semantics match, with bounded surfaces and dirty-region repaint; provider/name presence is not semantic compatibility.",
       "acceptance": "Readable working original app interfaces at ordinary and named HiDPI profiles, with pixel and behavior evidence; no vendor GPU/DirectX claim.",
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "id": "M14.6",

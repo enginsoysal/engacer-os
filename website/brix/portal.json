@@ -180,7 +180,7 @@
       ]
     }
   ],
-  "developmentProgram": "M14.4",
+  "developmentProgram": "M14.5",
   "currentSummary": "M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.",
   "currentImageAlt": "Actual Engacer OS M14.4: the original unmodified 7-Zip x64 file-manager window in the native desktop. Initial window/input/lifetime preview; full GUI application tasks remain unqualified."
 }
