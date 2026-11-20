@@ -20,7 +20,7 @@ CASES={'threads':'thread_native2','tls':'tls_native2','last-thread':'last_thread
        'state-lifetime':'state_lifetime143_native','browser-download':'browser_download3',
        'unicode-host':'unicode143_host','path-host':'path143_host','find-host':'find143_host',
        'http-host':'http3','download-stream':'download_stream3'}
-REPLACEMENTS=[('evidence/M14/3','evidence/M14/4'),('M14.3','M14.4'),('0.14.3','0.14.4'),('EngacerOS-M14STAGE3','EngacerOS-M14STAGE4'),('stage3','stage4'),('m143-','m144-regress-'),
+REPLACEMENTS=[('evidence/M14/3','evidence/M14/4'),('M14.3','M14.4'),('0.14.3','0.14.4'),('EngacerOS-M14STAGE3','EngacerOS-M14STAGE4'),('stage3','stage4'),('m143-regress-','m144-regress-'),('m143-','m144-'),
               ('EngacerOS-M14STAGE2','EngacerOS-M14STAGE4'),('EngacerOS-M14STAGE1','EngacerOS-M14STAGE4'),
               ('stage2','stage4'),('stage1','stage4'),('m142-','m144-regress-'),
               ('build/m14-native/fixtures','build/m14-native/stage4/regression-fixtures'),

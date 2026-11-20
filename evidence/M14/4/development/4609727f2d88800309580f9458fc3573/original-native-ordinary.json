@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "original_gui_qualified": false,
+  "scope": "M14.4 original file-manager window/input/lifetime profile only; NOT complete app tasks or general Windows compatibility",
+  "build_id": "4609727f2d88800309580f9458fc3573",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "profile": "ordinary",
+  "clone": {
+    "source_sha256": "56fc7821c40859ca95aee54d6978badfc5ce8a4b61633d496075035b24868e88",
+    "clone_sha256": "56fc7821c40859ca95aee54d6978badfc5ce8a4b61633d496075035b24868e88",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1920,
+        1020
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 1,
+      "exit_status": 0
+    }
+  ],
+  "physical_dimensions": [
+    1920,
+    1080
+  ],
+  "scale_units": 2,
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\n",
+  "original_window_profile_passed": true
+}

@@ -62,7 +62,7 @@
       "how_and_why": "Run original application code and its actual message loop rather than recreate the target app as a native lookalike.",
       "acceptance": "Original app windows visibly respond to input, focus, move/resize/minimize/close; ownership and modality do not operate the wrong app.",
       "status": "in_progress",
-      "qualification": "Native window/resource/control prerequisites are under development; original 7-Zip startup now stops at OleInitialize. No original GUI acceptance."
+      "qualification": "Original unmodified 7-Zip window/input/lifetime profile passes development tests; final exact-source native, media and public delivery qualification is in progress. Complete original-app tasks remain later M14 gates."
     },
     {
       "id": "M14.5",

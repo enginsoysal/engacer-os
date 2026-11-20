@@ -1,0 +1,17 @@
+{
+  "accepted_stage": false,
+  "build_id": "4609727f2d88800309580f9458fc3573",
+  "source_commit": "be3ea55b47a7d9e5d54b9b2ec0ad1a97471f3b6c",
+  "passing_development_groups": [
+    "compact",
+    "ordinary",
+    "4k",
+    "apps",
+    "apps-ordinary",
+    "original-native-ordinary",
+    "controls-native",
+    "deep-native",
+    "paint-native"
+  ],
+  "scope": "Exact-source candidate development observations only. Remaining original lifetime/4K/runtime/media and complete public-delivery gates are pending."
+}

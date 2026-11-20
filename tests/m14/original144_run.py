@@ -9,12 +9,14 @@ capture14.bind(ui)
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','ordinary','4k'],default='compact');parser.add_argument('--cycles',type=int,default=21);args=parser.parse_args();assert 1<=args.cycles<=21
- out=ROOT/'build/m14-native/stage4'/('original-native-'+args.profile);out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text());base=json.loads((ROOT/'build/m14-native/stage4/apps/results.json').read_text());assert base['passed']and base['build_id']==meta['build_id']
- source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m144-window-apps'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m144-original-'+args.profile);original=ui.s.s.document(disk,'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',8*1024**2);digest=hashlib.sha256(original).hexdigest();assert digest=='a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931'
+ out=ROOT/'build/m14-native/stage4'/('original-native-'+args.profile);out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text());base=json.loads((ROOT/('build/m14-native/stage4/'+('apps' if args.profile=='compact' else 'apps-'+args.profile)+'/results.json')).read_text());assert base['passed']and base['build_id']==meta['build_id']
+ source=Path(os.environ['LOCALAPPDATA'])/('EngineOS/Tests/M6/m144-window-apps'+('' if args.profile=='compact' else '-'+args.profile))/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m144-original-'+args.profile);original=ui.s.s.document(disk,'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',8*1024**2);digest=hashlib.sha256(original).hexdigest();assert digest=='a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931'
  report=dict(passed=False,original_gui_qualified=False,scope='M14.4 original file-manager window/input/lifetime profile only; NOT complete app tasks or general Windows compatibility',build_id=meta['build_id'],original_sha256=digest,profile=args.profile,clone=cloned,cycles=[])
  try:
   resolution,ram={'compact':((1280,800),128),'ordinary':((1920,1080),512),'4k':((3840,2160),1024)}[args.profile];boot=ui.guest(work/'original',disk,media='installed',ready='M7_DESKTOP_READY',resolution=resolution,ram=ram);ui.s.normal_boot(boot)
   with boot as g:
+   assert ui.integer(g,'scale73',True)==(4 if args.profile=='4k' else 2)
+   report['physical_dimensions']=list(resolution);report['scale_units']=ui.integer(g,'scale73',True)
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0]
    for cycle in range(args.cycles):
     at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);wait_for(g,lambda:len(t.records(g))==2);p.drain();root=next(v for v in views(g)if not v['parent']and v['class_name']=='7-Zip::FM');handle=root['handle'];row=lambda:next(v for v in views(g)if v['handle']==handle)

@@ -1,5 +1,5 @@
 """Regression on the M14.4 window candidate; not complete stage qualification."""
-import hashlib,json,os,struct,sys,time,traceback
+import argparse,hashlib,json,os,struct,sys,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 os.environ['ENGACER12_IMAGE']='EngacerOS-M14STAGE4'
@@ -28,15 +28,16 @@ def task(g,p,action):
     return raw[496:].split(b'\0')[0].decode(errors='replace')
 
 def main():
-    out=ROOT/'build/m14-native/stage4/apps';out.mkdir(parents=True,exist_ok=True);c.OUT=out
+    parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','ordinary','4k'],default='compact');profile=parser.parse_args().profile
+    out=ROOT/'build/m14-native/stage4'/('apps' if profile=='compact' else 'apps-'+profile);out.mkdir(parents=True,exist_ok=True);c.OUT=out
     meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'))
-    baseline=json.loads((ROOT/'build/m14-native/stage4/compact/results.json').read_text(encoding='utf-8'))
+    baseline=json.loads((ROOT/('build/m14-native/stage4/'+profile+'/results.json')).read_text(encoding='utf-8'))
     assert baseline['passed'] and baseline['build_id']==meta['build_id']
-    original=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage4-compact'/baseline['owned_fixture']/'owned.img'
-    work,disk,cloned=clone(ui,original,'m144-window-apps')
-    report=dict(passed=False,stage='M14.4 console regression development',build_id=meta['build_id'],clone=cloned,owned_fixture=work.name,checks=[])
+    original=Path(os.environ['LOCALAPPDATA'])/('EngineOS/Tests/M6/m141-stage4-'+profile)/baseline['owned_fixture']/'owned.img'
+    work,disk,cloned=clone(ui,original,'m144-window-apps'+('' if profile=='compact' else '-'+profile))
+    report=dict(passed=False,stage='M14.4 console regression development',build_id=meta['build_id'],clone=cloned,owned_fixture=work.name,profile=profile,checks=[])
     try:
-        boot=ui.guest(work/'apps',disk,media='installed',ready='M7_DESKTOP_READY',resolution=(1920,1080),ram=512)
+        boot=ui.guest(work/'apps',disk,media='installed',ready='M7_DESKTOP_READY',resolution=(3840,2160) if profile=='4k' else (1920,1080),ram=1024 if profile=='4k' else 512)
         ui.s.normal_boot(boot)
         with boot as g:
             p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p)
