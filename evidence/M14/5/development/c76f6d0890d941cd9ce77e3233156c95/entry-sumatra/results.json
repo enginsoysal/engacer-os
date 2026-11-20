@@ -1,0 +1,22 @@
+{
+  "stage": "M14.5 development diagnostic",
+  "build_id": "c76f6d0890d941cd9ce77e3233156c95",
+  "app": "sumatra",
+  "original_sha256": "719f689b34f47be8ca105ce8484948474dafde0e106bab599e4a89326070c3d0",
+  "original_bytes": 20292984,
+  "clone": {
+    "source_sha256": "258841c8c8bf900dd482c83fe3222587d859b8fbf3f1a78556ea255aa9084998",
+    "clone_sha256": "258841c8c8bf900dd482c83fe3222587d859b8fbf3f1a78556ea255aa9084998",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "qualified": false,
+  "scope": "Original entry through the current supported launch slot; not installation or complete package/task qualification",
+  "state": 3,
+  "command": 3,
+  "exit_status": 1,
+  "detail": "A required Windows function is not available yet.",
+  "output": "Mapped original image: 7zFM.exe bytes=20840448 source-fnv32=1537365012\nUnsupported import: COMCTL32.dll!ImageList_DragEnter\n\nEngacer OS: A required Windows function is not available yet.\n",
+  "windows": [],
+  "protected_entry_observed": true
+}

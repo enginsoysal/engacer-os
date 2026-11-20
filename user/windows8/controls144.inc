@@ -18,6 +18,7 @@ static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(te
 #include "combo144.inc"
 #include "rebar144.inc"
 #include "edit-input144.inc"
+#include "button-input145.inc"
 #include "control-paint144.inc"
 static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  ui_window_runtime144*w=ui_window_lookup144(handle);if(!w){last8(1400);return 0;}control_state144*c=w->control;
@@ -27,6 +28,7 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  if((c->kind==C144_COMBO||c->kind==C144_COMBOEX)&&message!=0x82){unsigned handled;int64_t result=combo_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_REBAR&&(message==5||message>=0x400)){unsigned handled;int64_t result=rebar_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_EDIT){unsigned handled;int64_t result=edit_input144(w,c,message,wp,lp,&handled);if(handled)return result;}
+ if(c->kind==C144_BUTTON){unsigned handled;int64_t result=button_input145(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_TOOLBAR&&c->model&&(message==0x201||message==0x202||message==0x215)){
   toolbar144*t=c->model;
   if(message==0x215){t->pressed=-1;f_InvalidateRect(handle,0,0);return 0;}

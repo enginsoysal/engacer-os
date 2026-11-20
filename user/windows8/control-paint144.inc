@@ -21,6 +21,12 @@ static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;
    f_SetTextColor(dc,b->state&4?0:0x808080);control_label_clip145(dc,tx,ty,t->labels[n],cell);
   }
  }else if(c->kind==C144_STATUS){int x=6;for(unsigned n=0;n<c->parts&&n<16&&x<client.right;++n){control_label144(dc,x,4,c->texts[n]);if(c->edges[n]<0)break;x=c->edges[n]+6;}
+ }else if(c->kind==C144_BUTTON){
+  unsigned type=w->description.style&15;f_FillRect(dc,&client,type==1?14:17);
+  win_rect144 inside={type==1?2:1,type==1?2:1,client.right-(type==1?2:1),client.bottom-(type==1?2:1)};f_FillRect(dc,&inside,c->selected>=0?17:16);
+  int size[2]={0,16};unsigned length=wlen8(w->description.title);if(length>159)length=159;f_GetTextExtentPoint32W(dc,w->description.title,(int)length,size);f_SetTextColor(dc,w->description.enabled?0:0x808080);
+  control_label_clip145(dc,(client.right-size[0])/2,(client.bottom-size[1])/2,w->description.title,client);
+ }else if(c->kind==C144_STATIC&&c->image){f_DrawIconEx(dc,0,0,c->image,client.right,client.bottom,0,0,3);
  }else if(c->kind==C144_EDIT)control_label144(dc,4,4,c->texts[0]);
  else control_label144(dc,4,4,w->description.title);
  f_EndPaint(h,&paint);

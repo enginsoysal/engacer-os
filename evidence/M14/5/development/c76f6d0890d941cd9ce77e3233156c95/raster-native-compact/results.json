@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "scope": "Owned pixel/control fixture, not original application task qualification",
+  "build_id": "c76f6d0890d941cd9ce77e3233156c95",
+  "fixture_sha256": "c13b73d29cd078fcf783dbc29e40b9b0296b3c1b847ce8135ec43ece79f7e3dc",
+  "resource_sha256": "98ed4973ad325ead742a8e5c2d0d4e6efc955bbd84715db02aeb49b27c72de59",
+  "clone": {
+    "source_sha256": "258841c8c8bf900dd482c83fe3222587d859b8fbf3f1a78556ea255aa9084998",
+    "clone_sha256": "258841c8c8bf900dd482c83fe3222587d859b8fbf3f1a78556ea255aa9084998",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "profile": "compact",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    }
+  ],
+  "physical_dimensions": [
+    1280,
+    800
+  ],
+  "pixel_checks": {
+    "transparent": [
+      0,
+      120,
+      199
+    ],
+    "magenta": [
+      255,
+      0,
+      255
+    ],
+    "black": [
+      0,
+      0,
+      0
+    ],
+    "scaled_transparent": [
+      0,
+      120,
+      199
+    ],
+    "scaled_magenta": [
+      255,
+      0,
+      255
+    ],
+    "copied_list": [
+      255,
+      0,
+      255
+    ],
+    "negative_child_clip": [
+      0,
+      0,
+      0
+    ],
+    "child_right_edge": [
+      255,
+      0,
+      255
+    ],
+    "outside_child": [
+      0,
+      120,
+      199
+    ]
+  }
+}

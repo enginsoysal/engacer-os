@@ -17,5 +17,6 @@ static int MS f_RegisterDragDrop(HANDLE handle,void*object){if(!object)return(in
 static int MS f_RevokeDragDrop(HANDLE handle){lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);if(!w||w->thread!=tid142()){lock_leave142(&ui_lock144);return(int)0x80040102u;}if(!w->drop_target||w->drop_pending){lock_leave142(&ui_lock144);return(int)0x80040100u;}lock_leave142(&ui_lock144);drop_release144(w);return 0;}
 static void cleanup_thread144(void){unsigned thread=tid142(),slot=thread&255;if(slot>=16)fail8("Invalid native GUI thread slot during cleanup.");if(thread_cleanup144[slot]==thread)fail8("Recursive native GUI thread termination.");thread_cleanup144[slot]=thread;
  for(;;){HANDLE handle=0;lock_enter142(&ui_lock144);for(ui_window_runtime144*w=ui_runtime_windows144;w;w=w->next)if(w->thread==thread&&!w->destroying){handle=w->handle;break;}lock_leave142(&ui_lock144);if(!handle)break;if(!f_DestroyWindow(handle))fail8("Native thread window cleanup failed.");}
+ dialog_cleanup_thread145(thread);
  lock_enter142(&apartment_lock144);apartment144**link=&apartments144;while(*link){apartment144*p=*link;if(p->thread==thread){*link=p->next;free8(p);break;}link=&p->next;}lock_leave142(&apartment_lock144);thread_cleanup144[slot]=0;
 }
