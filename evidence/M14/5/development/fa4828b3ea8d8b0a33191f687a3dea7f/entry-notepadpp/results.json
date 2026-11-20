@@ -1,0 +1,23 @@
+{
+  "stage": "M14.5 development diagnostic",
+  "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+  "app": "notepadpp",
+  "original_sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+  "original_bytes": 8594928,
+  "clone": {
+    "source_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "clone_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "qualified": false,
+  "scope": "Original entry through the current supported launch slot; not installation or complete package/task qualification",
+  "state": 3,
+  "command": 3,
+  "exit_status": 1,
+  "detail": "A required Windows function is not available yet.",
+  "output": "Mapped original image: 7zFM.exe bytes=8613888 source-fnv32=3571198973\nUnsupported import: COMCTL32.dll!ImageList_EndDrag\n\nEngacer OS: A required Windows function is not available yet.\n",
+  "windows": [],
+  "protected_worker_started": true,
+  "original_app_entry_qualified": false
+}

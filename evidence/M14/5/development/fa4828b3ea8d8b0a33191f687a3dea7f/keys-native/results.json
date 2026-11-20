@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+  "scope": "Owned native consumed-input state fixture; not general keyboard compatibility",
+  "clone": {
+    "source_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "clone_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "fixture_sha256": "4bb1208e1548de552387938aa270a8528b0791b4d3ede047ce8580158159b883",
+  "cycles": [
+    {
+      "cycle": 1,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    }
+  ]
+}

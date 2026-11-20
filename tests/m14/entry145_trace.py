@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 from window144_native import ui,c,f,t,clone,library,StoppedDisk,output
 from original_window_trace4 import views
+from refusal145_decode import decode
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--app',choices=['notepadpp','sumatra'],required=True);args=parser.parse_args()
@@ -35,7 +36,7 @@ def main():
     time.sleep(.1)
    p.drain();raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384)
    report.update(state=state,command=command,exit_status=status,detail=raw[304:496].split(b'\0')[0].decode(errors='replace'),output=output(g),windows=views(g),protected_worker_started='M8_CPL3_CREATED'in g.log()[at:],original_app_entry_qualified=False)
-   c.shot(g,'original-entry');(out/'serial.log').write_bytes(g.log().encode())
+   report['unavailable_call_site']=decode(original,output(g));c.shot(g,'original-entry');(out/'serial.log').write_bytes(g.log().encode())
  except Exception:report['observer_error']=ui.q.clean(traceback.format_exc());raise
  finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report,indent=2),flush=True)
 

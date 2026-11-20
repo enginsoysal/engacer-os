@@ -1,0 +1,236 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "scope": "Owned pixel/control fixture, not original application task qualification",
+  "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+  "fixture_sha256": "0b0099569c00c67a10a87a1e9815fdb97e6b0b87f0515e868af22f6910beeec7",
+  "resource_sha256": "98ed4973ad325ead742a8e5c2d0d4e6efc955bbd84715db02aeb49b27c72de59",
+  "clone": {
+    "source_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "clone_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "profile": "compact",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    }
+  ],
+  "physical_dimensions": [
+    1280,
+    800
+  ],
+  "pixel_checks": {
+    "transparent": [
+      0,
+      120,
+      199
+    ],
+    "magenta": [
+      255,
+      0,
+      255
+    ],
+    "black": [
+      0,
+      0,
+      0
+    ],
+    "scaled_transparent": [
+      0,
+      120,
+      199
+    ],
+    "scaled_magenta": [
+      255,
+      0,
+      255
+    ],
+    "copied_list": [
+      255,
+      0,
+      255
+    ],
+    "negative_child_clip": [
+      0,
+      0,
+      0
+    ],
+    "child_right_edge": [
+      255,
+      0,
+      255
+    ],
+    "outside_child": [
+      0,
+      120,
+      199
+    ],
+    "static_transparent": [
+      255,
+      255,
+      255
+    ],
+    "static_native_magenta": [
+      255,
+      0,
+      255
+    ],
+    "static_center_magenta": [
+      255,
+      0,
+      255
+    ],
+    "static_stretch_magenta": [
+      255,
+      0,
+      255
+    ]
+  },
+  "short_label_matches_gdi_reference": true
+}

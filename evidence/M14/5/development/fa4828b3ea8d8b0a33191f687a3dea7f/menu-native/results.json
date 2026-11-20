@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "build_id": "fa4828b3ea8d8b0a33191f687a3dea7f",
+  "scope": "Owned native menu fixture, not original application qualification",
+  "clone": {
+    "source_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "clone_sha256": "5147f9d6642b23e4a39e75ea906fc931b5a6f03ff619aaf3b2444591e2e1488d",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "8fd4bbe7ada5329da90c215f3364a0720ec3f5112a7e393264b81307562b42ed",
+  "cycles": [
+    {
+      "cycle": 1,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 7,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 8,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 9,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 10,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 11,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 12,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 13,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 14,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 15,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 16,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 17,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 18,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 19,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 20,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 21,
+      "menu_client_geometry": true,
+      "disabled_command_refused": true,
+      "pointer_command": true,
+      "nested_keyboard_command": true,
+      "escape_cancel": true,
+      "callback_balance": true,
+      "retained_pages": 0
+    }
+  ]
+}

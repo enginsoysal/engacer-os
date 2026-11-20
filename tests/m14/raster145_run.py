@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2]
 from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output,wait
 from original_window_trace4 import wait_for
 from raster145_build import build
-from resource144_build import build as resource_build
+from resources145_build import build as resource_build
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','4k'],default='compact');parser.add_argument('--cycles',type=int,default=21);args=parser.parse_args();assert 1<=args.cycles<=21
@@ -31,7 +31,7 @@ def main():
     if cycle==0:
      c.shot(g,'native-raster-and-toolbar');image=Image.open(out/'native-raster-and-toolbar.png').convert('RGB')
      def pixel(x,y):return list(image.getpixel((int((root_x+1+x)*scale),int((root_y+40+y)*scale))))
-     expected={'transparent':(20,20,[0,120,199]),'magenta':(21,20,[255,0,255]),'black':(22,20,[0,0,0]),'scaled_transparent':(40,20,[0,120,199]),'scaled_magenta':(42,20,[255,0,255]),'copied_list':(73,20,[255,0,255]),'negative_child_clip':(100,20,[0,0,0]),'child_right_edge':(101,20,[255,0,255]),'outside_child':(102,20,[0,120,199])}
+     expected={'transparent':(20,20,[0,120,199]),'magenta':(21,20,[255,0,255]),'black':(22,20,[0,0,0]),'scaled_transparent':(40,20,[0,120,199]),'scaled_magenta':(42,20,[255,0,255]),'copied_list':(73,20,[255,0,255]),'negative_child_clip':(100,20,[0,0,0]),'child_right_edge':(101,20,[255,0,255]),'outside_child':(102,20,[0,120,199]),'extracted_transparent':(128,20,[0,120,199]),'extracted_magenta':(129,20,[255,0,255]),'list_background':(144,20,[0,255,0]),'list_background_foreground':(145,20,[255,0,255]),'shifted_bitmap_green':(160,20,[0,255,0]),'shifted_bitmap_white':(161,20,[255,255,255])}
      expected.update(static_transparent=(200,20,[255,255,255]),static_native_magenta=(201,20,[255,0,255]),static_center_magenta=(289,39,[255,0,255]),static_stretch_magenta=(322,20,[255,0,255]))
      report['physical_dimensions']=list(image.size);report['pixel_checks']={}
      for name,(x,y,rgb)in expected.items():actual=pixel(x,y);assert actual==rgb,(name,actual,rgb);report['pixel_checks'][name]=actual

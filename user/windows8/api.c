@@ -7,6 +7,7 @@ static char command_utf8[1200],argv_text8[1200],*argv8[64],**env8;
 static char *command_pointer144=command_utf8;
 static void *guard_lookup144(unsigned,const char*,unsigned);
 static unsigned guard_address144(void*);
+static unsigned guard_address145(void*);
 static unsigned argc8,console_mode8[3]={7,3,3};
 static unsigned app_type8,exit_count8;static uint64_t exit_callbacks8[64],matherr8;
 static uint32_t fmode8,commode8;static char **initenv8;
@@ -283,18 +284,21 @@ static int MS f_FileTimeToLocalFileTime(const uint64_t*in,uint64_t*out){if(!in||
 static int MS f_LocalFileTimeToFileTime(const uint64_t*in,uint64_t*out){return f_FileTimeToLocalFileTime(in,out);}
 static int MS f_CompareFileTime(const uint64_t*a,const uint64_t*b){return *a<*b?-1:*a>*b?1:0;}
 
-static unsigned provider8(const char*name){if(!case8(name,"kernel32.dll")||!case8(name,"kernelbase.dll"))return 1;if(!case8(name,"msvcrt.dll"))return 2;if(!case8(name,"oleaut32.dll"))return 3;if(!case8(name,"user32.dll"))return 4;if(!case8(name,"advapi32.dll"))return 5;if(!case8(name,"comctl32.dll"))return 6;if(!case8(name,"comdlg32.dll"))return 7;if(!case8(name,"gdi32.dll"))return 8;if(!case8(name,"ole32.dll"))return 9;if(!case8(name,"shell32.dll"))return 10;if(!case8(name,"mpr.dll"))return 11;return 0;}
+#include "providers145.inc"
+static unsigned provider8(const char*name){if(!case8(name,"kernelbase.dll"))return 1;for(unsigned id=1;id<PROVIDERS145;++id)if(!case8(name,provider_names145[id]))return id;return 0;}
+
 static HANDLE MS f_GetModuleHandleA(const char*name){if(!name)return pe8_main();uint64_t real=pe8_module(name);if(real)return real;unsigned id=provider8(name);if(id)return 0x70000000+id*0x10000;last8(126);return 0;}
 static HANDLE MS f_GetModuleHandleW(const WCHAR*name){if(!name)return pe8_main();char text[256];if(utf16_to8(name,text,256)<0){last8(206);return 0;}return f_GetModuleHandleA(text);}
 static void *MS f_GetProcAddress(HANDLE module,const char*name){
- if(module>=0x70010000&&module<=0x700b0000&&!(module&65535)){static const char*names[]={"","kernel32.dll","msvcrt.dll","oleaut32.dll","user32.dll","advapi32.dll","comctl32.dll","comdlg32.dll","gdi32.dll","ole32.dll","shell32.dll","mpr.dll"};void*p=resolve8(names[(module-0x70000000)/65536],(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p))p=0;if(!p)last8(127);return p;}
- void*p=pe8_symbol(module,(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p))p=0;if(!p)last8(127);return p;
+ if(module>=0x70010000&&module<UINT64_C(0x70000000)+PROVIDERS145*65536u&&!(module&65535)){void*p=resolve8(provider_names145[(module-0x70000000)/65536],(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p)||guard_address145(p))p=0;if(!p)last8(127);return p;}
+
+ void*p=pe8_symbol(module,(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p)||guard_address145(p))p=0;if(!p)last8(127);return p;
 }
 static HANDLE MS f_LoadLibraryExW(const WCHAR*name,HANDLE file,unsigned flags){if(file||(flags&~8u)){last8(50);return 0;}char text[256];if(utf16_to8(name,text,256)<0){last8(206);return 0;}unsigned id=provider8(text);if(id)return 0x70000000+id*0x10000;char path[256];unsigned separator=0;for(unsigned i=0;text[i];++i)if(text[i]=='/'||text[i]=='\\')separator=1;
  if(!separator){HANDLE found=pe8_named(text);if(!found)last8(126);return found;}else if(!nativepath8(name,path)){last8(126);return 0;}w8_file_info info;if(stat8(path,&info)){last8(126);return 0;}return pe8_load(path);}
 static HANDLE MS f_LoadLibraryW(const WCHAR*name){return f_LoadLibraryExW(name,0,0);}
 static HANDLE MS f_LoadLibraryA(const char*name){WCHAR wide[256];if(utf8_to16(name,wide,256)<0)return 0;return f_LoadLibraryW(wide);}
-static int MS f_FreeLibrary(HANDLE module){for(unsigned id=1;id<=11;++id)if(module==0x70000000+id*0x10000)return 1;if(pe8_release(module))return 1;last8(6);return 0;}
+static int MS f_FreeLibrary(HANDLE module){for(unsigned id=1;id<PROVIDERS145;++id)if(module==0x70000000+id*0x10000)return 1;if(pe8_release(module))return 1;last8(6);return 0;}
 static unsigned MS f_GetModuleFileNameW(HANDLE module,WCHAR*out,unsigned cap){if(!cap||!out){last8(87);return 0;}const char*path=pe8_path(module?module:pe8_main());if(!path){last8(126);return 0;}char win[512];winpath8(path,win,512);WCHAR wide[512];int n=utf8_to16(win,wide,512);if(n<0){last8(206);return 0;}if((unsigned)n>=cap){widecopy8(out,wide,cap);last8(122);return cap;}widecopy8(out,wide,cap);return (unsigned)n;}
 static unsigned MS f_GetModuleFileNameA(HANDLE module,char*out,unsigned cap){WCHAR wide[512];unsigned n=f_GetModuleFileNameW(module,wide,512);if(!n)return 0;char value[1024];if(utf16_to8(wide,value,1024)<0)return 0;unsigned bytes=len8(value);if(cap<=bytes){copy8(out,value,cap);last8(122);return cap;}copy8(out,value,cap);return bytes;}
 static int MS f_IsDebuggerPresent(void){return 0;}
@@ -343,6 +347,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "keys145.inc"
 #include "painting144.inc"
 #include "image-draw145.inc"
+#include "image-list145.inc"
 #include "menus144.inc"
 #include "menubar145.inc"
 #include "menu-popup145.inc"
@@ -357,6 +362,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(ImageList_GetIconSize,6),API8(ImageList_SetIconSize,6),API8(ImageList_Remove,6),API8(ImageList_GetIcon,6),API8(ImageList_Add,6),API8(ImageList_SetBkColor,6),API8(ImageList_GetBkColor,6),API8(ImageList_BeginDrag,6),API8(ImageList_DragEnter,6),API8(ImageList_DragMove,6),API8(ImageList_DragShowNolock,6),API8(ImageList_EndDrag,6),API8(ImageList_GetImageInfo,6),
  API8(FindFirstChangeNotificationW,1),
  API8(GetKeyState,4),API8(GetKeyboardState,4),API8(MapVirtualKeyW,4),
  API8(DialogBoxParamW,4),API8(EndDialog,4),API8(IsDialogMessageW,4),API8(DefDlgProcW,4),API8(GetDlgCtrlID,4),API8(GetDlgItemTextW,4),API8(CheckDlgButton,4),API8(IsDlgButtonChecked,4),
@@ -386,9 +392,10 @@ static const api8 api8_table[]={
 };
 #undef API8
 #include "guarded-ui144.inc"
-void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provider=provider8(dll);if(provider==2&&name&&equal8(name,"__initenv")&&!initenv8){initenv8=environment_crt143();if(!initenv8)return 0;}if(provider==3){switch(ordinal){case 2:return f_SysAllocString;case 4:return f_SysAllocStringLen;case 6:return f_SysFreeString;case 7:return f_SysStringLen;case 9:return f_VariantClear;case 10:return f_VariantCopy;case 149:return f_SysStringByteLen;case 150:return f_SysAllocStringByteLen;}if(name){if(equal8(name,"SysAllocString"))return f_SysAllocString;if(equal8(name,"SysAllocStringLen"))return f_SysAllocStringLen;if(equal8(name,"SysFreeString"))return f_SysFreeString;if(equal8(name,"SysStringLen"))return f_SysStringLen;if(equal8(name,"SysStringByteLen"))return f_SysStringByteLen;if(equal8(name,"SysAllocStringByteLen"))return f_SysAllocStringByteLen;if(equal8(name,"VariantClear"))return f_VariantClear;if(equal8(name,"VariantCopy"))return f_VariantCopy;}return 0;}
+#include "target-guards145.inc"
+void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provider=provider8(dll);if(provider==2&&name&&equal8(name,"__initenv")&&!initenv8){initenv8=environment_crt143();if(!initenv8)return 0;}if(provider==3){switch(ordinal){case 2:return f_SysAllocString;case 4:return f_SysAllocStringLen;case 6:return f_SysFreeString;case 7:return f_SysStringLen;case 9:return f_VariantClear;case 10:return f_VariantCopy;case 149:return f_SysStringByteLen;case 150:return f_SysAllocStringByteLen;}if(name){if(equal8(name,"SysAllocString"))return f_SysAllocString;if(equal8(name,"SysAllocStringLen"))return f_SysAllocStringLen;if(equal8(name,"SysFreeString"))return f_SysFreeString;if(equal8(name,"SysStringLen"))return f_SysStringLen;if(equal8(name,"SysStringByteLen"))return f_SysStringByteLen;if(equal8(name,"SysAllocStringByteLen"))return f_SysAllocStringByteLen;if(equal8(name,"VariantClear"))return f_VariantClear;if(equal8(name,"VariantCopy"))return f_VariantCopy;}return guard_lookup145(provider,name,ordinal);}
  if(provider==6&&!name&&ordinal==17)return f_InitCommonControls;
- if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;return guard_lookup144(provider,name,ordinal);}return pe8_import(dll,name,ordinal);
+ if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;void*guard=guard_lookup144(provider,name,ordinal);return guard?guard:guard_lookup145(provider,name,ordinal);}return pe8_import(dll,name,ordinal);
 }
 void init_win8(void){
  if(sys8(W8_SYS_EXCEPTION_REGISTER,(uint64_t)(uintptr_t)exception_entry142,0,0,0,0))fail8("Native exception dispatcher registration failed.");

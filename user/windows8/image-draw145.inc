@@ -17,6 +17,7 @@ static int MS f_ImageList_Draw(HANDLE list,int index,HANDLE dc,int x,int y,unsig
  native_dc144*d=dc_lookup144(dc);if(!d)return 0;if(flags&~1u){last8(50);return 0;}
  lock_enter142(&image_lock144);image_object144*p=image_find144(list,3);
  if(!p||index<0||(unsigned)index>=p->count){lock_leave142(&image_lock144);last8(87);return 0;}
+ if(!(flags&1)&&p->background!=UINT32_MAX){wui_draw144 background={.kind=1,.bounds={x,y,(int)p->width,(int)p->height},.color=((p->background&255)<<16)|(p->background&0xff00)|((p->background>>16)&255)};if(!draw_call144(d,&background)){lock_leave142(&image_lock144);return 0;}}
  int result=image_pixels145(d,x,y,p->width,p->height,p->items[index],p->width,p->height);
  lock_leave142(&image_lock144);return result;
 }

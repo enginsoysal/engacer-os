@@ -10,7 +10,7 @@ def build():
  tools=pinned_tools();source=ROOT/'tests/m14/raster145_native.c'
  exports=set(re.findall(r'__declspec\(dllimport\).*?\b(\w+)\([^;]*;',source.read_text(encoding='utf-8')))
  kernel={'GetStdHandle','WriteFile','GetLastError','ExitProcess','LoadLibraryW','FreeLibrary'}
- common={n for n in exports if n.startswith('ImageList_')};gdi={'GetTextExtentPoint32W','TextOutW'}
+ common={n for n in exports if n.startswith('ImageList_')};gdi={'GetTextExtentPoint32W','TextOutW','DeleteObject'}
  providers={'kernel32':kernel,'comctl32':common,'gdi32':gdi,'user32':exports-kernel-common-gdi}
  for provider,names in providers.items():
   definition=out/(provider+'.def');definition.write_bytes(('LIBRARY '+provider+'.dll\nEXPORTS\n'+'\n'.join(sorted(names))+'\n').encode())
