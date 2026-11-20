@@ -1,19 +1,14 @@
 # Build your own Engacer OS distribution
 
-## M14.6 delivery in progress
-
-M14.6 native/source/media qualification passes: 76 native groups, 19 supporting host groups and 96 campaign tasks, with 711 exact compiled inputs. Public release/download and complete website verification are pending. M14.5 remains the last completed public delivery.
-
-[Native acceptance](../../evidence/M14/6/acceptance-results.json). Original full application tasks and M14.15 optimization remain mandatory.
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.5** within M14-STAGE5-VM-v1. Its [exact-source native acceptance](../../evidence/M14/5/acceptance-results.json) passes; use the matching official release and media. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.6** within M14-STAGE6-VM-v1. Its [exact-source native acceptance](../../evidence/M14/6/acceptance-results.json) passes; use the matching official release and media. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. Public download and complete website verification are pending; advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 
 ```powershell
-git clone --branch m145-v0.14.5 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
+git clone --branch m146-v0.14.6 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
 cd my-engacer-edition
 New-Item -ItemType Directory -Force build
 $editionBuildRoot = Join-Path $env:LOCALAPPDATA 'EngacerOS\Build\my-edition\m14'
@@ -40,9 +35,9 @@ python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Pa
 python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from m6 import build; build('custom', Path('distros/my-edition.json'), m14=True)"
 ```
 
-Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 5` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
+Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 6` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
 
-Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.5 installation](install-m145.md), [supported Windows behavior](windows-m145.md), [desktop use](first-day-m145.md).
+Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.6 installation](install-m146.md), [supported Windows behavior](windows-m146.md), [desktop use](first-day-m146.md).
 
 Saved per-user preferences can override distribution defaults. Changing a profile does not add unsupported Windows APIs, hardware drivers, arbitrary font plugins or executable package hooks. Destructive storage consent and protected core ownership remain enforced. Distribute source, licenses and third-party notices with your edition.
 

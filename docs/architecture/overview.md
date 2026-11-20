@@ -1,14 +1,9 @@
 # Engacer OS architecture
 
-The current native-qualified stage is [M14.5](../releases/m145-v0.14.5.md), with complete native/public delivery under its recorded owner scope. Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
+The current native-qualified stage is [M14.6](../releases/m146-v0.14.6.md), with native/source/media qualification complete and public download/website verification pending. Engacer OS has its own loaders, kernel, installed desktop, Files, Settings, installer and bounded Windows x64 compatibility implementation. It is not a Linux distribution and does not embed a Windows VM. The original supported 7-Zip console/MSI tasks run through its own APIs. General Windows GUI, arbitrary installers, modern browser execution, Windows x86 and Win16/DOS remain later work. [Status](../roadmap/status.md), [current handbook](../handbook/index.md).
 
-Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.5 exact candidate qualifies original 7-Zip window/input/menu/About/folder-navigation preview tasks, retained file/settings/runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Full original GUI application tasks remain unqualified. Complete public delivery is recorded separately from native acceptance.
+Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.6 exact candidate qualifies original 7-Zip window/input/menu/About/folder-navigation preview tasks, retained file/settings/runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Full original GUI application tasks remain unqualified. Complete public delivery is recorded separately from native acceptance.
 
-## M14.6 delivery in progress
-
-M14.6 native/source/media qualification passes: 76 native groups, 19 supporting host groups and 96 campaign tasks, with 711 exact compiled inputs. Public release/download and complete website verification are pending. M14.5 remains the last completed public delivery.
-
-[Native acceptance](../../evidence/M14/6/acceptance-results.json). Original full application tasks and M14.15 optimization remain mandatory.
 
 ## Layers
 
@@ -86,4 +81,5 @@ Readable graphics, explicit disk selection/consent, optional diagnostics and ind
 
 Finish each M14 stage's native tests, English documentation, GitHub assets and actual complete website verification before the next stage. M14.3 qualifies the selected files/settings profile; later stages add Windows GUI and broader runtime/installer services. M14.15 blocks the final x64 release on optimization. M15 covers Windows x86; M16 covers Win16/DOS. Linux/macOS and broader hardware remain extensions. Earlier release names, tags and accepted evidence remain immutable.
 
-M14.5 native qualification adds original menus/dialogs/folder details and bounded drawing/input/memory profiles: [stage scope](../milestones/m14-5.md), [drawing](drawing-m145.md), [memory](memory-m145.md). Public delivery passes within the recorded owner scope; complete original-app scenarios and M14.15 optimization remain mandatory.
+M14.6 native qualification adds original menus/dialogs/folder details and bounded drawing/input/memory profiles: [stage scope](../milestones/m14-5.md), [drawing](drawing-m146.md), [memory](memory-m146.md). Public delivery passes within the recorded owner scope; complete original-app scenarios and M14.15 optimization remain mandatory.
+

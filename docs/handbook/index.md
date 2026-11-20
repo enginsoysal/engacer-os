@@ -1,28 +1,23 @@
 # Engacer OS user handbook
 
-## M14.6 delivery in progress
-
-M14.6 native/source/media qualification passes: 76 native groups, 19 supporting host groups and 96 campaign tasks, with 711 exact compiled inputs. Public release/download and complete website verification are pending. M14.5 remains the last completed public delivery.
-
-[Native acceptance](../../evidence/M14/6/acceptance-results.json). Original full application tasks and M14.15 optimization remain mandatory.
 
 ## Start here
 
-**Current native candidate: [M14.5](https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5).** Native qualification passes within M14-STAGE5-VM-v1. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. Follow the guide matching your download.
+**Current native candidate: [M14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native qualification passes within M14-STAGE6-VM-v1. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. Public download and complete website verification are pending; advanced BrixCanvas search/task navigation remains reported and unqualified. Follow the guide matching your download.
 
-- [Download, verify and install in VMware](install-m145.md)
-- [Original Windows menus, folders and browser downloads](windows-m145.md)
+- [Download, verify and install in VMware](install-m146.md)
+- [Original Windows menus, folders and browser downloads](windows-m146.md)
 - [Current supported behavior and limits](../roadmap/status.md)
-- [Release scope and checksums](../releases/m145-v0.14.5.md)
+- [Release scope and checksums](../releases/m146-v0.14.6.md)
 - [Build your distribution](distributions.md)
 
-M14.5 adds original 7-Zip menu/About, toolbar images, list details and folder-navigation preview tasks. Complete GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. [Native acceptance](../../evidence/M14/5/acceptance-results.json). M14.15 remains the mandatory whole-system optimization gate.
+M14.6 adds owner-bound original 7-Zip Browse/Unicode-path and cross-app clipboard previews, actual shared RAM sections, and exact native UTF-8/CRLF editor reopening. Full GUI archive operations, normal C++ cancellation, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All original target tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
 
 ## Use the desktop
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](first-day-m145.md)
+- [First day, desktop and folders](first-day-m146.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
 - [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)

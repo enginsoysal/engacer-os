@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M14.5",
+  "currentRelease": "M14.6",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m145.md",
+          "docs/handbook/install-m146.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m145-v0.14.5.md",
+          "docs/releases/m146-v0.14.6.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/first-day-m145.md",
+          "docs/handbook/first-day-m146.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -92,7 +92,7 @@
           "Keep saved work and understand stability limits"
         ],
         [
-          "docs/handbook/windows-m145.md",
+          "docs/handbook/windows-m146.md",
           "Use Windows file checks and browser downloads"
         ]
       ]
@@ -185,7 +185,7 @@
     }
   ],
   "developmentProgram": "M14.6",
-  "currentSummary": "M14.5 adds original 7-Zip x64 menu/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Original console/MSI tasks remain separately supported. Complete GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. There is no embedded Windows guest. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.",
-  "currentImageAlt": "Actual Engacer OS M14.5: an original unmodified 7-Zip x64 interface through the native compatibility environment; named preview tasks, not universal Windows application support.",
+  "currentSummary": "M14.6 adds owner-bound original 7-Zip Browse/Unicode-path and cross-app clipboard previews, actual shared RAM sections, and exact native UTF-8/CRLF editor reopening. Full GUI archive operations, normal C++ cancellation, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All original target tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. Public download and complete website verification are pending; advanced BrixCanvas search/task navigation remains reported and unqualified.",
+  "currentImageAlt": "Actual Engacer OS M14.6: unchanged original 7-Zip Browse opens the native owner-bound Unicode Save dialog; preview tasks only.",
   "reportedPlatformLimit": "BrixCanvas currently omits the saved same-page search and article navigation. Browse the task guides and archive; this reported platform limitation does not block OS milestones."
 }
