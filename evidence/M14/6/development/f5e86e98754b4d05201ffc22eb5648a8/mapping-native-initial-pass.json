@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "build_id": "f5e86e98754b4d05201ffc22eb5648a8",
+  "scope": "Owned shared mappings across actual private processes, read-only fault containment, source exit, alias/protection/handle/view/object limits; not original-app qualification",
+  "clone": {
+    "source_sha256": "4086b67c71965a697b03c35a243198c53b230d5a9265b6d79c04549c6dbfec64",
+    "clone_sha256": "4086b67c71965a697b03c35a243198c53b230d5a9265b6d79c04549c6dbfec64",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "6dd14404e631f268ade2529496ff1930396bfda791e07f2ae22b7abb9de1a659",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "actual_private_child_processes": 3,
+      "readonly_child_fault_contained": true
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=24576 source-fnv32=3444207561\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3444207561\nRunning the original Windows executable in a protected process.\n\nM146_MAPPING_PRIVATE_WRITER_PASS\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3444207561\nRunning the original Windows executable in a protected process.\n\nM146_MAPPING_READONLY_FAULT_EXPECTED\nThe Windows process ended after an unhandled native exception.\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3444207561\nRunning the original Windows executable in a protected process.\n\nM146_SHARED_MAPPING_PRIVATE_PROCESSES_LIFETIMES_LIMITS_PASS\n"
+}

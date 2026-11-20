@@ -23,6 +23,7 @@ __declspec(dllimport) H GetStdHandle(unsigned);
 __declspec(dllimport) int WriteFile(H,const void*,unsigned,unsigned*,void*);
 __declspec(dllimport) void ExitProcess(unsigned);
 static const W main_name[]=L"Engacer.Mapping146",exit_name[]=L"Engacer.SourceExit146",ready_name[]=L"Engacer.MapReady146",ack_name[]=L"Engacer.MapAck146";
+static const W*volatile relocation_anchor146=main_name;
 static void say(const char*s){unsigned n=0,w=0;while(s[n])++n;WriteFile(GetStdHandle((unsigned)-11),s,n,&w,0);}
 static void check(int yes,const char*s){if(!yes){say("M146_MAPPING_FAIL ");say(s);say("\n");ExitProcess(1);}}
 static int contains(const W*s,const W*marker){for(unsigned i=0;s[i];++i){unsigned n=0;while(marker[n]&&s[i+n]==marker[n])++n;if(!marker[n])return 1;}return 0;}
@@ -30,7 +31,7 @@ static void spawn(const W*mode,PROCESS*out){W path[512],command[600];unsigned n=
 static void finish(PROCESS*p,unsigned expected){check(WaitForSingleObject(p->process,30000)==0,"private child completes");unsigned code=99;check(GetExitCodeProcess(p->process,&code)&&code==expected,"private child status");check(CloseHandle(p->thread)&&CloseHandle(p->process),"child handles released");}
 static void child(const W*mode,unsigned expected){PROCESS p;spawn(mode,&p);finish(&p,expected);}
 void entry(void){
- const W*command=GetCommandLineW();
+ check(relocation_anchor146==main_name,"relocated image pointer");const W*command=GetCommandLineW();
  if(contains(command,L"--writer")){H h=OpenFileMappingW(2,0,main_name);check(h!=0,"child opens named section");volatile unsigned char*p=MapViewOfFile(h,2,0,0,0);check(p&&p[0]==0xa5&&p[65536]==0xb5&&p[131072]==0xc5,"child sees exact parent data across pages");H parent=*(const volatile H*)(p+16);check(!CloseHandle(parent)&&GetLastError()==6,"foreign handle is not a child grant");check(CloseHandle(h),"child closes handle before view");p[0]=0x33;p[4096]=0x44;p[65536]=0x55;p[131072]=0x66;say("M146_MAPPING_PRIVATE_WRITER_PASS\n");ExitProcess(0);}
  if(contains(command,L"--readonly-fault")){H h=OpenFileMappingW(4,0,main_name);check(h!=0,"fault child opens section");volatile unsigned char*p=MapViewOfFile(h,4,0,0,4096);check(p&&p[0]==0x33&&CloseHandle(h),"fault child read-only view survives close");say("M146_MAPPING_READONLY_FAULT_EXPECTED\n");p[0]=0x99;check(0,"read-only write unexpectedly succeeded");}
  if(contains(command,L"--source-exit")){H ready=OpenEventW(0x1f0003,0,ready_name),ack=OpenEventW(0x1f0003,0,ack_name);check(ready&&ack,"source lifetime events");H h=CreateFileMappingW((H)-1,0,4,0,4096,exit_name);check(h!=0,"source creates section");volatile unsigned char*p=MapViewOfFile(h,2,0,0,0);check(p!=0,"source view");p[0]=0xe7;check(SetEvent(ready)&&WaitForSingleObject(ack,30000)==0,"reader obtains lifetime reference");ExitProcess(0);}
