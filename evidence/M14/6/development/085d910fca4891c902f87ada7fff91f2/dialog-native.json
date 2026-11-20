@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "stage": "M14.6",
+  "build_id": "085d910fca4891c902f87ada7fff91f2",
+  "scope": "Owned modal callback/template/input/rollback fixture, not original app task acceptance",
+  "clone": {
+    "source_sha256": "5e44f059e29f2f24a49cc5082b617c95e82a3486faec1416b193cb1d1d35cc25",
+    "clone_sha256": "5e44f059e29f2f24a49cc5082b617c95e82a3486faec1416b193cb1d1d35cc25",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "69c87d383dc1cd23a5bdc41ed265feb9778cbb0b2552aefbf6c5fa2a20bcbb9e",
+  "cycles": [
+    {
+      "cycle": 1,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    }
+  ],
+  "fixed_dialog_resize_refused": true,
+  "absent_caption_actions_refused": true
+}

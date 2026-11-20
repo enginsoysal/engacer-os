@@ -50,7 +50,7 @@ def main():
    p.move(int(x*scale),int(y*scale));p.down(True);p.down(False);p.drain();deadline=time.monotonic()+20
    while time.monotonic()<deadline:
     state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));report['worker_state']=[state,command,status];report['output']=output(g);report['views']=views(g);report['maximum_observed_windows']=max(report.get('maximum_observed_windows',0),len(report['views']))
-    if state==3 or 'Not implemented:'in report['output']or any('Add to Archive'in v['title']for v in report['views']):break
+    if state==3 or 'Not implemented:'in report['output']or any('Add to Archive'in v['title']and v['visible']for v in report['views']):break
     time.sleep(.1)
    c.shot(g,'original-add-result');report['scope']='Read-only native diagnostic of the actual original 7-Zip Add action; no archive/common-dialog compatibility qualification';report['diagnostic_completed']=True;report['passed']=False
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise

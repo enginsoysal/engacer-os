@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def main():
+    picker = '--picker' in sys.argv
+    if picker:
+        sys.argv.remove('--picker')
     sys.path.insert(0, str(ROOT / 'tools/build'))
     from m1 import pinned_tools
     from m8 import runtime
@@ -43,17 +46,29 @@ def main():
     source = source.replace(before, "mounted=StoppedDisk(disk,library());mounted.put('/System/Windows/runtime8.elf',trace_runtime.read_bytes());folder=")
     source = source.replace('report=dict(passed=False,', 'report=dict(mixed_runtime=True,runtime_sha256=trace_digest,passed=False,')
     source = source.replace('m146-original-add-probe', 'm146-original-add-mixed-trace')
+    callback = None
+    if picker:
+        from original_picker146_probe import dialog_task
+        callback = dialog_task
+        before = "c.shot(g,'original-add-selected')"
+        assert source.count(before) == 1
+        source = source.replace(before, "c.key(g,'ctrl','c');" + before)
+        before = "c.shot(g,'original-add-result');report['scope']="
+        assert source.count(before) == 1
+        source = source.replace(before, 'trace_picker146(g,p,report);' + before)
     source = source.replace('Read-only native diagnostic of the actual original 7-Zip Add action; no archive/common-dialog compatibility qualification',
                             'Mixed frozen-kernel/new-runtime original helper diagnostic only; no ISO or original-app qualification')
-    receipt = dict(kernel_build_id=meta['build_id'], mixed_candidate=True,
+    receipt = dict(kernel_build_id=meta['build_id'], mixed_candidate=True, original_picker=picker,
                    scope='Diagnostic only; never stage or release qualification',
                    runtime_sha256=digest, runtime_source_sha256=inputs,
                    canonical_observer_sha256=hashlib.sha256(original.read_bytes()).hexdigest(),
                    adapted_observer_sha256=hashlib.sha256(source.encode()).hexdigest(),
                    adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+    if picker:
+        receipt['picker_observer_sha256'] = hashlib.sha256((ROOT / 'tests/m14/original_picker146_probe.py').read_bytes()).hexdigest()
     (out / 'identity.json').write_bytes((json.dumps(receipt, indent=2) + '\n').encode())
     namespace = dict(__file__=str(original), __name__='original_add_mixed146',
-                     trace_out=out, trace_runtime=rt, trace_digest=digest)
+                     trace_out=out, trace_runtime=rt, trace_digest=digest, trace_picker146=callback)
     exec(compile(source, str(original), 'exec'), namespace)
     namespace['main']()
     for path, wanted in inputs.items():
