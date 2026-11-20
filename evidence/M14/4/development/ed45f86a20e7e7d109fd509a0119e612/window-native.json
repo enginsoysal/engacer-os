@@ -1,0 +1,500 @@
+{
+  "passed": true,
+  "stage": "M14.4 development",
+  "scope": "Owned synthetic AMD64 GUI fixture; not original 7-Zip GUI qualification",
+  "build_id": "ed45f86a20e7e7d109fd509a0119e612",
+  "fixture_sha256": "5ed8e209bcdfbf89e9a18f9040a394bb1a937b027b292917dafdbd75a2b8a97e",
+  "clone": {
+    "source_sha256": "b4f9019a917bd35ca70b33cf78921790550f712009b9524c83c60363493a4d86",
+    "clone_sha256": "b4f9019a917bd35ca70b33cf78921790550f712009b9524c83c60363493a4d86",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "existing_transition_warmup_pages": 4,
+  "cycles": [
+    {
+      "cycle": 1,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 7,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 8,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 9,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 10,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 11,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 12,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 13,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 14,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 15,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 16,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 17,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 18,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 19,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 20,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    },
+    {
+      "cycle": 21,
+      "initial_bounds": [
+        180,
+        120,
+        700,
+        430
+      ],
+      "halted_cpus_while_message_waiting": 2,
+      "moved_bounds": [
+        220,
+        150,
+        700,
+        430
+      ],
+      "resized_bounds": [
+        220,
+        150,
+        960,
+        650
+      ],
+      "retained_pages": 0
+    }
+  ],
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=3970319161\nRunning the original Windows executable in a protected process.\n\nM144_NATIVE_WINDOW_WAITING\nM144_CHARACTER_RECEIVED\nM144_MOVE_RECEIVED\nM144_SIZE_RECEIVED\nM144_WINDOW_LIFETIME_PASS\n"
+}

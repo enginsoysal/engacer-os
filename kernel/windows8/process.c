@@ -14,7 +14,7 @@ typedef struct {char path[256];uint64_t position,size;unsigned live,write,object
 #define THREADS142 16u
 #define THREAD_STACK142(i) (UINT64_C(0x104000000)+(uint64_t)(i)*0x200000)
 #define THREAD_TEB142(i) (W8_TEB+(uint64_t)(i)*0x10000)
-enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED,T142_OBJECT,T143_FILELOCK};
+enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED,T142_OBJECT,T143_FILELOCK,T144_GUI};
 typedef struct {
  trap_frame frame;_Alignas(16) uint8_t fx[512];
  uint64_t deadline,address,teb,low,top;
@@ -48,7 +48,7 @@ static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t p
 static uint64_t old_gs8;static w8_info info8;static w8_info*const root_info142=&info8;static uint8_t io8[4096];
 #define info8 (*(active_space142?&spaces142[active_space142]->child_info:root_info142))
 extern void timer_claim142(unsigned,unsigned);
-static unsigned timer_needed142,sync_resident142,file_resident143,registry_resident143;
+static unsigned timer_needed142,sync_resident142,file_resident143,registry_resident143,ui_resident144;
 static void refresh_sync_waits142(void);
 static unsigned sync_deadline_needed142(void);
 static void release_sync_grants142(void);
@@ -101,7 +101,7 @@ static unsigned length8(const char*s){unsigned n=0;while(s[n])++n;return n;}
 static int equal8(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
 static void copy8(char*out,const char*in,unsigned cap){unsigned n=0;while(n+1<cap&&in[n]){out[n]=in[n];++n;}out[n]=0;}
 static int prefix8(const char*p,const char*root){unsigned n=length8(root);return n&&(!memcmp(p,root,n))&&(p[n]=='/'||!p[n]);}
-static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
+static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143+ui_resident144;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
 static void peak8(void){if((uint64_t)count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+metadata_pages142[active_space142];group_peak142();}
 static uint64_t allocate8(void){if(count8==OWN8)return 0;uint64_t p=page_alloc();if(p)owned8[count8++]=p;peak8();return p;}
 static uint64_t *pte8(uint64_t va,unsigned create){
@@ -157,10 +157,11 @@ static void finish8(unsigned status){snapshot8();info8.status=status;info8.state
  for(unsigned i=0;i<32;++i)if(files8[i].live){unsigned error=close8(i,status?0:1);if(error){(void)close8(i,0);info8.status=error;info8.state=3;copy8(info8.message,"An open file could not be saved.",sizeof(info8.message));}}w8_active=0;w8_escape();}
 static void release_grants142(void);
 static void registry_release143(void);
-static void release8(void){if(!spaces142[active_space142])return;release_sync_grants142();release_grants142();file_release143();registry_release143();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
+#include "ui144.inc"
+static void release8(void){if(!spaces142[active_space142])return;ui_release144();release_sync_grants142();release_grants142();file_release143();registry_release143();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
 
 static void reap_threads142(void){
- for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED)continue;
+ for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED)continue;ui_thread_release144(active_space142,i);
   if(t->teb){for(unsigned range=0;range<3;++range){uint64_t low=range==2?t->exception_stack:range?t->teb:t->low,top=range==2?(low?low+32768:0):range?t->teb+8192:t->top;
    for(uint64_t va=low;va<top;va+=4096){uint64_t*p=pte8(va,0);if(p&&(*p&(1|RESERVED141))){if(*p&1)free_owned8(*p&UINT64_C(0x000ffffffffff000));*p=0;--virtual_pages141;}}
   }t->teb=t->low=t->top=t->exception_stack=0;t->exception_depth=0;}
@@ -241,6 +242,7 @@ static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i
 static int64_t dispatch8(trap_frame*f){
  uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10,e=f->r8;char path[256];
  switch(f->rax){
+ case W8_SYS_UI144:return ui_syscall144(a,b,c,d,e,f);
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);
  case W8_SYS_TEXT143:if(d||e)return -87;if(a==1)return text_compare143(b,c);if(a==2)return text_find143(b,c);return -87;
@@ -325,7 +327,7 @@ static int64_t dispatch8(trap_frame*f){
   if(live==1)return 1;t->exiting=1;return 0;
  }
  case W8_SYS_THREAD_EXIT:{
-  threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;if(!current142){process_object142*o=process_objects142+spaces142[active_space142]->object;o->primary_done=1;o->primary_code=(unsigned)a;wake_process_waiters142();}
+  ui_thread_release144(active_space142,current142);threads142[current142].state=T142_EXITED;threads142[current142].code=(unsigned)a;if(!current142){process_object142*o=process_objects142+spaces142[active_space142]->object;o->primary_done=1;o->primary_code=(unsigned)a;wake_process_waiters142();}
   ++spaces142[active_space142]->wait_epoch;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state==T142_PARK){threads142[i].state=T142_READY;threads142[i].frame.rax=0;}
   refresh_sync_waits142();unsigned live=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED)++live;
   if(!live){threads142[current142].state=T142_READY;return 1;}context8=*f;w8_active=0;w8_escape();break;

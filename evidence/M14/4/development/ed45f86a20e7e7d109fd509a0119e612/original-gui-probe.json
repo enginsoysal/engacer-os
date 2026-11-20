@@ -1,0 +1,25 @@
+{
+  "original_gui_qualified": false,
+  "stage": "M14.4 diagnostic",
+  "build_id": "ed45f86a20e7e7d109fd509a0119e612",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "clone": {
+    "source_sha256": "b4f9019a917bd35ca70b33cf78921790550f712009b9524c83c60363493a4d86",
+    "clone_sha256": "b4f9019a917bd35ca70b33cf78921790550f712009b9524c83c60363493a4d86",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "state": 3,
+  "status": 1,
+  "message": "A required Windows function is not available yet.",
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nUnsupported import: COMCTL32.dll!ImageList_ReplaceIcon\n\nEngacer OS: A required Windows function is not available yet.\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "retained_pages": 4
+}

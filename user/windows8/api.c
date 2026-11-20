@@ -331,9 +331,11 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 
 #include "process142.inc"
 #include "exception142.inc"
+#include "ui144.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(RegisterClassW,4),API8(GetClassInfoW,4),API8(CallWindowProcW,4),API8(SendMessageW,4),API8(CreateWindowExW,4),API8(DestroyWindow,4),API8(PostMessageW,4),API8(PostQuitMessage,4),API8(PeekMessageW,4),API8(GetMessageW,4),API8(DispatchMessageW,4),API8(TranslateMessage,4),API8(DefWindowProcW,4),API8(SetWindowTextW,4),API8(GetWindowTextW,4),API8(GetWindowTextLengthW,4),API8(GetWindowLongPtrW,4),API8(SetWindowLongPtrW,4),API8(ShowWindow,4),API8(GetParent,4),API8(IsWindow,4),
  API8(AddVectoredExceptionHandler,1),API8(AddVectoredContinueHandler,1),API8(RemoveVectoredExceptionHandler,1),API8(RemoveVectoredContinueHandler,1),API8(SetUnhandledExceptionFilter,1),
  API8(exit,2),API8(_exit,2),API8(_cexit,2),API8(_c_exit,2),API8(_onexit,2),API8(__dllonexit,2),API8(_initterm,2),API8(__set_app_type,2),API8(__setusermatherr,2),API8(__getmainargs,2),API8(__p___initenv,2),
  API8(malloc,2),API8(free,2),API8(realloc,2),API8(memcpy,2),API8(memmove,2),API8(memset,2),API8(memcmp,2),API8(strlen,2),API8(strcmp,2),API8(wcscmp,2),API8(strchr,2),API8(strstr,2),API8(wcsstr,2),API8(fputc,2),API8(fputs,2),API8(fflush,2),API8(fgetc,2),API8(_isatty,2),API8(_get_osfhandle,2),API8(_beginthreadex,2),API8(_endthreadex,2),

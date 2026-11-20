@@ -168,7 +168,7 @@
       ]
     }
   ],
-  "developmentProgram": "M14.3",
+  "developmentProgram": "M14.4",
   "currentSummary": "M14.3 adds checked Unicode paths/search, shared files and byte-range locks, persistent user settings and copied process environments. It retains private Windows processes, preemptive threads, TLS and selected C exception handling. Windows instructions run through our own kernel and APIs, without an embedded Windows guest. The original 7-Zip console profile remains supported. Browser choices can download the original Firefox installer; Firefox and general Windows GUI installation/execution are not supported yet. Follow M14.0-M14.15, including mandatory whole-system optimization in M14.15.",
   "currentImageAlt": "Actual Engacer OS M14.3: the original supported 7-Zip console output in the native Windows Apps frontend. The original Windows file-manager GUI is not supported yet."
 }

@@ -21,6 +21,7 @@
 #include <engine/m3.h>
 #ifdef ENGINE_M8
 #include <engine/windows8.h>
+#include <engine/winui144.h>
 #endif
 #include "build.h"
 #include "distro.h"
@@ -69,6 +70,9 @@ typedef struct {
     unsigned year74,month74,day74;
     uint64_t offset74,total74;
     unsigned count74;
+#endif
+#ifdef ENGINE_M8
+    uint64_t foreign144;unsigned foreign_revision144;
 #endif
 } application;
 #ifdef ENGINE_M10
@@ -695,6 +699,9 @@ void desktop74_removed(unsigned kind){if(kind==CLOCK74)memset(&time74,0,sizeof(t
 #endif
 }
 #endif
+#ifdef ENGINE_M8
+#include "windows144.inc"
+#endif
 static void draw_window(unsigned slot) {
     desktop_window *w=&model.windows[slot];if(w->minimized)return;
     application *app=&apps[slot];desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,slot);
@@ -716,6 +723,9 @@ static void draw_window(unsigned slot) {
 #else
     text(r.x+14,r.y+12,titles[w->app],2,ink());
     text(r.x+r.width-77,r.y+12,"_",2,ink());text(r.x+r.width-42,r.y+12,"x",2,ink());
+#endif
+#ifdef ENGINE_M8
+    if(app->foreign144)return;
 #endif
     if(app->stopped){text(r.x+22,r.y+80,"Application stopped",2,ink());text(r.x+22,r.y+120,app->notice,1,ink());return;}
     #ifdef ENGINE_M72
@@ -969,6 +979,9 @@ static void close_window(uint64_t token,int discard) {
     #ifdef ENGINE_M12
     if(w->app==SETTINGS&&!settings_close13(token))return;
     #endif
+#ifdef ENGINE_M8
+    if(app->foreign144){w8_ui_input144(app->foreign144,0x10,0,0);return;}
+#endif
     if((w->app==EDITOR
 #ifdef ENGINE_M74
         ||w->app==CALENDAR74
@@ -1274,6 +1287,9 @@ static void pointer(void) {
     if(file_drag11){if(buttons&1)files_drag_motion11(x,y,dispatch_modifiers11);else files_drop11(hit11,dispatch_modifiers11);}
     if(marquee11){if(buttons&1)marquee_update11((int)x,(int)y);else{marquee11=0;whole();}}
     if((buttons&1)&&!(previous_buttons&1)&&hit11.window&&hit11.action!=70){desktop_focus11=0;desktop_focus(&model,hit11.window);task_damage();}
+#ifdef ENGINE_M8
+    foreign_pointer144(x,y,buttons,previous_buttons);
+#endif
     if(event11&(I11_SELECT|I11_ACTIVATE|I11_CONTEXT))dispatch11(hit11,event11,x,y);
 #else
     unsigned pressed=(buttons&1)&&!(previous_buttons&1),released=!(buttons&1)&&(previous_buttons&1);
@@ -1370,6 +1386,9 @@ if(r.height<minimum)r.height=minimum;}else{r.x+=dx;r.y+=dy;}
 }
 
 static void keyboard(int key) {
+#ifdef ENGINE_M8
+    if(foreign_key144(key))return;
+#endif
 #ifdef ENGINE_M12
     if(access_key16(key))return;
     if(picker_shortcut12(key))return;
@@ -1576,7 +1595,7 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
         unsigned file_work11=files_pending11();
 #endif
 #ifdef ENGINE_M8
-        unsigned windows_work=w8_runnable();
+        foreign_sync144();unsigned windows_work=w8_runnable();
 #else
         unsigned windows_work=0;
 #endif
@@ -1615,7 +1634,7 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
 #ifdef ENGINE_M8
         if(windows_work){
             static unsigned seen_revision8;static uint64_t next_paint8;
-            w8_pump();unsigned revision=w8_current()->revision,running=w8_pending();uint64_t now=m3_clock_ticks();
+            w8_pump();foreign_sync144();unsigned revision=w8_current()->revision,running=w8_pending();uint64_t now=m3_clock_ticks();
             if((revision!=seen_revision8||!running)&&(!running||now>=next_paint8)){
                 seen_revision8=revision;next_paint8=now+10;
                 for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==WINDOWS8){

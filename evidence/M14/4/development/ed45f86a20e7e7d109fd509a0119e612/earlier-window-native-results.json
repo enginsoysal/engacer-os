@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "stage": "M14.4 development",
+  "scope": "Owned synthetic AMD64 GUI fixture; not original 7-Zip GUI qualification",
+  "build_id": "ed45f86a20e7e7d109fd509a0119e612",
+  "fixture_sha256": "b60e3876f1d6fb62302a544be622c4fc054d8a42be0b9d2142894bc3cacc473a",
+  "clone": {
+    "source_sha256": "b4f9019a917bd35ca70b33cf78921790550f712009b9524c83c60363493a4d86",
+    "clone_sha256": "b4f9019a917bd35ca70b33cf78921790550f712009b9524c83c60363493a4d86",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\window144_native.py\", line 40, in main\n    at=len(g.log());p.desktop(12100,True);g.wait('M8_CPL3_CREATED',at);wait(g,'M144_NATIVE_WINDOW_WAITING');p.drain();assert len(t.records(g))==2,t.records(g)\n  File \"<project-root>\\tests\\m14\\window144_native.py\", line 22, in wait\n    if not ui.integer(g,'w8_active',True) and struct.unpack_from('<I',ui.memory(g,ui.symbol('info8',installed=True)[0],4))[0]==3:raise AssertionError(ui.memory(g,ui.symbol('info8',installed=True)[0]+304,192).split(b'\\0')[0])\nAssertionError: b'The Windows image has no usable relocation directory.'\n"
+}

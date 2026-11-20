@@ -25,6 +25,9 @@ static void window_frame12(desktop_window*w){
 static void window_caption12(desktop_window*w){
  desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);application*a=&apps[w-model.windows];ui12_palette p=desktop_palette16();unsigned active=window_active12(w),enabled=!file_block_owner11(token);
  char title[320];copy(title,titles[w->app],sizeof(title));
+#ifdef ENGINE_M8
+ if(a->foreign144)copy(title,a->path,sizeof(title));
+#endif
  if((w->app==FILES||w->app==EDITOR)&&a->path[0]){const char*name=a->path;for(unsigned i=0;a->path[i];++i)if(a->path[i]=='/'&&a->path[i+1])name=a->path+i+1;copy(title,a->dirty?"* ":"",sizeof(title));append(title,equal(a->path,"/")?"System drive":name,sizeof(title));append(title," - ",sizeof(title));append(title,titles[w->app],sizeof(title));}
  if(w->app==FILES&&a->usb_mode10)files_title12(a,title,sizeof(title));
  ui73_fit(r.x+44,r.y+11,r.width>188?r.width-188:0,title,UI12_BODY,active?p.ink:p.muted);

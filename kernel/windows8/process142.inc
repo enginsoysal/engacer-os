@@ -49,7 +49,7 @@ static unsigned child_image142(const char*source){
  const v6_entry*e=find8(source);if(!e||e->kind!=1)return 2;if(e->size<256||e->size>32*1024*1024)return 193;
  uint8_t dos[64],pe[24],optional[72];if(exact8(source,0,dos,64)||memcmp(dos,"MZ",2))return 193;uint32_t at;memcpy(&at,dos+60,4);
  if(at>e->size-96||exact8(source,at,pe,24)||memcmp(pe,"PE\0\0",4))return 193;uint16_t machine,flags,magic,subsystem,bytes;memcpy(&machine,pe+4,2);memcpy(&bytes,pe+20,2);memcpy(&flags,pe+22,2);
- if(machine!=0x8664||(flags&0x2000)||bytes<72||exact8(source,(uint64_t)at+24,optional,72))return 193;memcpy(&magic,optional,2);memcpy(&subsystem,optional+68,2);if(magic!=0x20b)return 193;return subsystem==3?0:50;
+ if(machine!=0x8664||(flags&0x2000)||bytes<72||exact8(source,(uint64_t)at+24,optional,72))return 193;memcpy(&magic,optional,2);memcpy(&subsystem,optional+68,2);if(magic!=0x20b)return 193;return subsystem==3||subsystem==2?0:50;
 }
 static unsigned environment_validate143(const w8_process_request*request){
  unsigned bytes=request->environment_bytes;if(request->reserved)return 87;if(!bytes)return request->environment?87:0;

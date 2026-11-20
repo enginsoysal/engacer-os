@@ -1,6 +1,6 @@
 /* Native frontend for the bounded original Windows-console compatibility profile. */
 #define PRODUCT_ROOT8 "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
-enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141};
+enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,GUI144=12100};
 extern const char windows8_licenses[];
 static unsigned installed8(void){
  static uint64_t generation=UINT64_MAX;static unsigned valid;
@@ -49,6 +49,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  }
  if(installed&&info->state!=1){
   button(token,x,y+194,195,"Create test archive",ZIP8,0);button(token,x+209,y+194,195,"Extract test archive",EXTRACT8,0);
+  button(token,x+418,y+194,210,"Open file manager",GUI144,0);
   ui73_fit(x,y+246,width,"The test uses a separate sample document in your Documents folder.",1,ink());
  }
  const char*message=app->notice[0]?app->notice:info->message[0]?info->message:
@@ -70,7 +71,7 @@ static void sample_name8(char*out,const char*base,unsigned number,const char*ext
  copy(out,base,256);if(number){char suffix[24];decimal(suffix,number+1);append(out,"-",256);append(out,suffix,256);}append(out,extension,256);
 }
 static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,unsigned command){
- (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||command>INSPECT141)return 0;
+ (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>INSPECT141&&command!=GUI144))return 0;
  if(command==LICENSE8){app->calc_error=1;app->offset=0;invalidate(w->bounds);return 1;}
  if(command==BACK8){app->number=0;app->calc_error=0;app->offset=0;invalidate(w->bounds);return 1;}
  if(command==OUTPUT_PREV8){app->offset=0;invalidate(w->bounds);return 1;}
@@ -82,6 +83,7 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
  unsigned job=0;const char*source=app->path,*arguments="";char sample_arguments[512];
  if(command==CONFIRM8){job=app->number==1?W8_INSTALL:app->number==2?W8_REMOVE:0;app->number=0;}
  if(command==PREVIEW8)job=W8_PREVIEW;
+ if(command==GUI144){job=W8_RUN;source=PRODUCT_ROOT8 "/7zFM.exe";arguments="";}
  if(command==INFO8||command==ZIP8||command==EXTRACT8){job=W8_RUN;source=PRODUCT_ROOT8 "/7z.exe";arguments=command==INFO8?"i":command==ZIP8?"a -tzip -mx=1 -mmt=off -y EngineOS-Windows.zip EngineOS-Windows.txt":"x -mmt=off -y -oEngineOS-Windows-Extracted EngineOS-Windows.zip";}
  if(command==ZIP8||command==EXTRACT8){
   char path[256],name[256],archive[256];unsigned chosen=100,latest=100;
