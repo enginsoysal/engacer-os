@@ -39,6 +39,7 @@ class ReplayLoader(importlib.abc.MetaPathFinder, importlib.abc.Loader):
             before='title=wide(56,312),class_name=wide(312,440)'
             assert before in text
             text=text.replace(before,"menu_height=struct.unpack_from('<I',raw,452)[0],"+before)
+        if module.__name__ in ('original_window_trace4','original_menu145_run'):
             before="pointers=struct.unpack('<32Q',ui.memory(g,ui.symbol('ui_windows144',installed=True)[0],256))"
             assert text.count(before)==1
             text=text.replace(before,"slots=ui.symbol('ui_windows144',installed=True);assert slots[1]==128*8;pointers=struct.unpack('<128Q',ui.memory(g,slots[0],slots[1]))")

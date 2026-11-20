@@ -802,5 +802,87 @@
   "sources": {
     "user/windows8/dialog-core145.h": "42d277d7462a08f89c4a1765006c287fe61fbc0bff5fe571360ae050b92e076d",
     "tests/m14/dialog145_host.c": "2091075bac77317bd09032f0b64d27f47ebf88bac8ea2f02f86a823faf24e6bb"
-  }
+  },
+  "original_helper_sha256": "5eb5d21003927be4d53401b9b6bbe8a787caabb38eaafaf0d429a136d7031621",
+  "original_helper_templates": [
+    {
+      "resource": 94,
+      "language": 1033,
+      "controls": 2,
+      "sha256": "f01a07c0c18047d7baf9458bd08db7f40d12d11ea826fe2956c31bffd0706735"
+    },
+    {
+      "resource": 95,
+      "language": 1033,
+      "controls": 8,
+      "sha256": "64867d0de68ebc01c2282b12156a851406b6b96989105dbdd4318bf5515bc6ef"
+    },
+    {
+      "resource": 97,
+      "language": 1033,
+      "controls": 26,
+      "sha256": "8ebcf16f13c74cc258e8c7005f4fe7281476962fc3255df301012a9ecea751dc"
+    },
+    {
+      "resource": 98,
+      "language": 1033,
+      "controls": 4,
+      "sha256": "b9aebbba683f4a7a5fdb08851eb92dc2b3b327f7831ddc3d279766603c25c962"
+    },
+    {
+      "resource": 99,
+      "language": 1033,
+      "controls": 3,
+      "sha256": "9d29f691a70372e8b07576c582b6d0dcf454427e2ecb420148b84918d2c996ad"
+    },
+    {
+      "resource": 3400,
+      "language": 1033,
+      "controls": 17,
+      "sha256": "3417ae26c310af241b4987a1486b714e8d0db5f4d5df3e74fb14b082cbdccf34"
+    },
+    {
+      "resource": 3500,
+      "language": 1033,
+      "controls": 15,
+      "sha256": "7b51a91ddd68df018fb22a44875d31c7efb427152f0b12d5c9de8d2ff533dabd"
+    },
+    {
+      "resource": 3800,
+      "language": 1033,
+      "controls": 5,
+      "sha256": "002978525dbd56c9651b7946ad7a4c23f649c3ee2d72b0e871fd2204b302656a"
+    },
+    {
+      "resource": 4000,
+      "language": 1033,
+      "controls": 50,
+      "sha256": "c88e95b7b0eedd3aca1a7b6d7f4ee114e0042b91666f55fc41a445ddd4c5725c"
+    },
+    {
+      "resource": 7600,
+      "language": 1033,
+      "controls": 58,
+      "sha256": "18f3f359cb598ad38f79de6130bf56306e7c4814c7972e75034dcaf25783de19"
+    },
+    {
+      "resource": 7699,
+      "language": 1033,
+      "controls": 5,
+      "sha256": "026273e88c25cecf7803cb8f78e5b0f8182b903ef3abb11b570c9cc9c468235f"
+    },
+    {
+      "resource": 7800,
+      "language": 1033,
+      "controls": 11,
+      "sha256": "49acaabfabff3728120492f1a466e6fff0f48bb2eed19fa7d396b2c28a6a7d81"
+    },
+    {
+      "resource": 14001,
+      "language": 1033,
+      "controls": 22,
+      "sha256": "6e10838ab861feff918e5de741d8d66d15333e7659ee761c0a7243bd0dda7b11"
+    }
+  ],
+  "helper_observer_sha256": "ca6f83ef30d4be20a23b860c78d073e592d77ce914103093f4dfba2b8ba091b0"
 }
