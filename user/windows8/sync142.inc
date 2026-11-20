@@ -23,6 +23,7 @@ static unsigned MS f_WaitForMultipleObjects(unsigned count,const HANDLE*handles,
 }
 static unsigned MS f_WaitForSingleObject(HANDLE handle,unsigned timeout){return f_WaitForMultipleObjects(1,&handle,0,timeout);}
 static int MS f_CloseHandle(HANDLE handle){
+ if((handle&W8_HANDLE_TAG_MASK)==WMAP_TAG146){int64_t result=(int64_t)sys8(W8_SYS_MAPPING146,WMAP_CLOSE146,handle,0,0,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
  if((handle&UINT64_C(0xfffffffff0000000))==W8_FILE_TAG143){int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,handle,7,0,0,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
  if((handle&W8_HANDLE_TAG_MASK)==UINT64_C(0x20000000)){int64_t result=(int64_t)sys8(W8_SYS_SYNC_CLOSE,handle,0,0,0,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
  if((handle&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG){if((int64_t)sys8(W8_SYS_PROCESS_CLOSE,handle,0,0,0,0)<0){last8(6);return 0;}return 1;}

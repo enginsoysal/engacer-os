@@ -17,6 +17,10 @@ static unsigned sync_name142(uint16_t*name){unsigned count=0;while(count<96&&nam
 static int64_t create_sync142(uint64_t request,uint64_t output,uint64_t open_only){
  w8_sync_request142 r;w8_sync_result142 result={0};if(user8(request,&r,sizeof(r),0)||user8(output,&result,sizeof(result),1)||open_only>1)return -87;unsigned error=sync_name142(r.name);if(error)return -(int64_t)error;if(r.kind<1||r.kind>3||r.manual>1||(r.access&~0x1f0003u))return -87;
  if(open_only&&!r.name[0])return -87;if(!open_only&&((r.kind==2&&(r.manual||r.count<0||r.maximum<=0||r.count>r.maximum))||(r.kind!=2&&(r.count<0||r.count>1||r.maximum!=1))))return -87;
+
+#ifdef ENGINE_M14
+ if(mapping_name_taken146(r.name))return -6;
+#endif
  unsigned object=SYNC_OBJECTS142,created=0,own=0;for(unsigned i=0;i<SYNC_OBJECTS142;++i)if(sync_used142[i]){sync_object142*o=sync_object_at142(i);if(o->creator==input8.process_id)++own;if(r.name[0]&&equal8(o->owner,input8.user_root)&&!memcmp(o->name,r.name,192)){if(o->kind!=r.kind)return -6;object=i;result.existed=1;break;}}
  if(object==SYNC_OBJECTS142){if(open_only)return -2;if(own>=32)return -8;for(unsigned i=0;i<SYNC_OBJECTS142;++i)if(!sync_used142[i]){object=i;break;}if(object==SYNC_OBJECTS142||ensure_sync_page142(object))return -8;sync_object142*o=sync_object_at142(object);memset(o,0,sizeof(*o));o->kind=r.kind;o->manual=r.manual;o->count=r.count;o->maximum=r.maximum;o->creator=input8.process_id;copy8(o->owner,input8.user_root,256);memcpy(o->name,r.name,192);sync_used142[object]=1;created=1;}
  result.handle=sync_reference142(object,open_only?r.access:0x1f0003);if(!result.handle){if(created){memset(sync_object_at142(object),0,sizeof(sync_object142));sync_used142[object]=0;free_sync_page142(object);}return -8;}return user8(output,&result,sizeof(result),1)?-87:0;

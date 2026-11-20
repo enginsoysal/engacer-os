@@ -1,0 +1,52 @@
+/* Owned real private-process section views; not an original-app substitute. */
+typedef unsigned long long H;typedef unsigned short W;
+typedef struct {unsigned size,pad;H reserved,desktop,title;unsigned x,y,width,height,columns,rows,fill,flags;unsigned short show,bytes;unsigned pad2;H reserved2,input,output,error;} START;
+typedef struct {H process,thread;unsigned pid,tid;} PROCESS;
+__declspec(dllimport) H CreateFileMappingW(H,void*,unsigned,unsigned,unsigned,const W*);
+__declspec(dllimport) H OpenFileMappingW(unsigned,int,const W*);
+__declspec(dllimport) void*MapViewOfFile(H,unsigned,unsigned,unsigned,H);
+__declspec(dllimport) int UnmapViewOfFile(const void*);
+__declspec(dllimport) int VirtualProtect(void*,H,unsigned,unsigned*);
+__declspec(dllimport) int VirtualFree(void*,H,unsigned);
+__declspec(dllimport) H CreateEventW(void*,int,int,const W*);
+__declspec(dllimport) H OpenEventW(unsigned,int,const W*);
+__declspec(dllimport) int SetEvent(H);
+__declspec(dllimport) unsigned GetLastError(void);
+__declspec(dllimport) void SetLastError(unsigned);
+__declspec(dllimport) W*GetCommandLineW(void);
+__declspec(dllimport) unsigned GetModuleFileNameW(H,W*,unsigned);
+__declspec(dllimport) int CreateProcessW(const W*,W*,void*,void*,int,unsigned,void*,const W*,START*,PROCESS*);
+__declspec(dllimport) unsigned WaitForSingleObject(H,unsigned);
+__declspec(dllimport) int GetExitCodeProcess(H,unsigned*);
+__declspec(dllimport) int CloseHandle(H);
+__declspec(dllimport) H GetStdHandle(unsigned);
+__declspec(dllimport) int WriteFile(H,const void*,unsigned,unsigned*,void*);
+__declspec(dllimport) void ExitProcess(unsigned);
+static const W main_name[]=L"Engacer.Mapping146",exit_name[]=L"Engacer.SourceExit146",ready_name[]=L"Engacer.MapReady146",ack_name[]=L"Engacer.MapAck146";
+static void say(const char*s){unsigned n=0,w=0;while(s[n])++n;WriteFile(GetStdHandle((unsigned)-11),s,n,&w,0);}
+static void check(int yes,const char*s){if(!yes){say("M146_MAPPING_FAIL ");say(s);say("\n");ExitProcess(1);}}
+static int contains(const W*s,const W*marker){for(unsigned i=0;s[i];++i){unsigned n=0;while(marker[n]&&s[i+n]==marker[n])++n;if(!marker[n])return 1;}return 0;}
+static void spawn(const W*mode,PROCESS*out){W path[512],command[600];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,"own image path");unsigned at=0;command[at++]='"';for(unsigned i=0;i<n;++i)command[at++]=path[i];command[at++]='"';command[at++]=' ';for(unsigned i=0;mode[i];++i)command[at++]=mode[i];command[at]=0;START start={0};start.size=104;check(CreateProcessW(path,command,0,0,0,0,0,0,&start,out),"private child starts");}
+static void finish(PROCESS*p,unsigned expected){check(WaitForSingleObject(p->process,30000)==0,"private child completes");unsigned code=99;check(GetExitCodeProcess(p->process,&code)&&code==expected,"private child status");check(CloseHandle(p->thread)&&CloseHandle(p->process),"child handles released");}
+static void child(const W*mode,unsigned expected){PROCESS p;spawn(mode,&p);finish(&p,expected);}
+void entry(void){
+ const W*command=GetCommandLineW();
+ if(contains(command,L"--writer")){H h=OpenFileMappingW(2,0,main_name);check(h!=0,"child opens named section");volatile unsigned char*p=MapViewOfFile(h,2,0,0,0);check(p&&p[0]==0xa5&&p[65536]==0xb5&&p[131072]==0xc5,"child sees exact parent data across pages");H parent=*(const volatile H*)(p+16);check(!CloseHandle(parent)&&GetLastError()==6,"foreign handle is not a child grant");check(CloseHandle(h),"child closes handle before view");p[0]=0x33;p[4096]=0x44;p[65536]=0x55;p[131072]=0x66;say("M146_MAPPING_PRIVATE_WRITER_PASS\n");ExitProcess(0);}
+ if(contains(command,L"--readonly-fault")){H h=OpenFileMappingW(4,0,main_name);check(h!=0,"fault child opens section");volatile unsigned char*p=MapViewOfFile(h,4,0,0,4096);check(p&&p[0]==0x33&&CloseHandle(h),"fault child read-only view survives close");say("M146_MAPPING_READONLY_FAULT_EXPECTED\n");p[0]=0x99;check(0,"read-only write unexpectedly succeeded");}
+ if(contains(command,L"--source-exit")){H ready=OpenEventW(0x1f0003,0,ready_name),ack=OpenEventW(0x1f0003,0,ack_name);check(ready&&ack,"source lifetime events");H h=CreateFileMappingW((H)-1,0,4,0,4096,exit_name);check(h!=0,"source creates section");volatile unsigned char*p=MapViewOfFile(h,2,0,0,0);check(p!=0,"source view");p[0]=0xe7;check(SetEvent(ready)&&WaitForSingleObject(ack,30000)==0,"reader obtains lifetime reference");ExitProcess(0);}
+ check(!OpenFileMappingW(4,0,L"Engacer.Missing146")&&GetLastError()==2,"missing name");
+ check(!CreateFileMappingW((H)-1,0,4,0,0,0)&&GetLastError()==87,"zero-size new mapping");check(!CreateFileMappingW((H)-1,0,4,0,1048577,0)&&GetLastError()==1816,"object byte quota");check(!CreateFileMappingW(0,0,4,0,4096,0)&&GetLastError()==50,"file-backed mode refuses");check(!CreateFileMappingW((H)-1,(void*)1,4,0,4096,0)&&GetLastError()==50,"security descriptor mode refuses");check(!CreateFileMappingW((H)-1,0,0x4000004,0,4096,0)&&GetLastError()==50,"reserve mode refuses");check(!UnmapViewOfFile(0)&&GetLastError()==487,"invalid view");
+ H h=CreateFileMappingW((H)-1,0,0x8000004,0,131073,main_name);check(h&&!GetLastError(),"committed named section");H existing=CreateFileMappingW((H)-1,0,2,0,0,main_name);check(existing&&GetLastError()==183,"existing name retains original size/protection");check(CloseHandle(existing),"existing handle closes");
+ volatile unsigned char*write=MapViewOfFile(h,0xf001f,0,0,0);check(write!=0,"shared read-write view");for(unsigned i=0;i<131073;i+=4096)check(!write[i],"whole section zero initialized");volatile const unsigned char*read=MapViewOfFile(h,4,0,65536,0);check(read!=0&&!read[65536],"aligned partial read view");
+ write[0]=0xa5;write[65536]=0xb5;write[131072]=0xc5;*(volatile H*)(write+16)=h;check(read[0]==0xb5&&read[65536]==0xc5,"same section aliases");
+ check(!MapViewOfFile(h,4,0,1,1)&&GetLastError()==1132,"offset alignment");check(!MapViewOfFile(h,1,0,0,4096)&&GetLastError()==50,"copy-on-write refuses");check(!MapViewOfFile(h,4,0,0,131074)&&GetLastError()==87,"logical object bounds");
+ child(L"--writer",0);check(write[0]==0x33&&write[4096]==0x44&&read[0]==0x55&&read[65536]==0x66,"private child changes are actually shared");unsigned old=0x12345678;check(!VirtualProtect((void*)read,4096,4,&old)&&GetLastError()==5&&old==0x12345678,"read-only view cannot escalate");check(VirtualProtect((void*)write,4096,2,&old)&&old==4,"shared protection becomes read-only");check(VirtualProtect((void*)write,4096,4,&old)&&old==2,"shared protection restores");check(!VirtualProtect((void*)write,4096,32,&old)&&GetLastError()==5,"shared RAM is not executable");check(!VirtualFree((void*)write,0,0x8000)&&GetLastError()==487,"VirtualFree cannot release a mapped section");check(!UnmapViewOfFile((const void*)(write+1))&&GetLastError()==487,"only exact view base unmaps");
+ child(L"--readonly-fault",0xc0000005u);check(write[0]==0x33,"child fault contains write");check(CloseHandle(h)&&write[0]==0x33,"handle close preserves live views");check(UnmapViewOfFile((const void*)read)&&UnmapViewOfFile((const void*)write),"both views release");check(!OpenFileMappingW(4,0,main_name)&&GetLastError()==2,"last view releases named object");check(!CloseHandle(h)&&GetLastError()==6,"stale handle refuses");
+ H event=CreateEventW(0,1,0,L"Engacer.Collision146");check(event!=0,"collision event");check(!CreateFileMappingW((H)-1,0,4,0,4096,L"Engacer.Collision146")&&GetLastError()==6,"event namespace collision");check(CloseHandle(event),"collision event closes");h=CreateFileMappingW((H)-1,0,2,0,4096,L"Engacer.Collision146");check(h!=0,"read-only section");check(!CreateEventW(0,1,0,L"Engacer.Collision146")&&GetLastError()==6,"section namespace collision");check(!OpenFileMappingW(2,0,L"Engacer.Collision146")&&GetLastError()==5,"read-only section denies write grants");read=MapViewOfFile(h,4,0,0,0);check(read&&!read[0],"read-only section view");check(!MapViewOfFile(h,2,0,0,0)&&GetLastError()==5,"section protection enforced");check(CloseHandle(h)&&UnmapViewOfFile((const void*)read),"readonly lifetime closes");
+ H ready=CreateEventW(0,1,0,ready_name),ack=CreateEventW(0,1,0,ack_name);check(ready&&ack,"lifetime events");PROCESS source;spawn(L"--source-exit",&source);check(WaitForSingleObject(ready,30000)==0,"source ready");h=OpenFileMappingW(4,0,exit_name);check(h!=0,"reader obtains source grant");read=MapViewOfFile(h,4,0,0,0);check(read&&read[0]==0xe7&&SetEvent(ack),"source transfer bytes");finish(&source,0);check(read[0]==0xe7&&CloseHandle(h)&&read[0]==0xe7,"source exit preserves reader view");check(UnmapViewOfFile((const void*)read)&&CloseHandle(ready)&&CloseHandle(ack),"source lifetime cleanup");check(!OpenFileMappingW(4,0,exit_name)&&GetLastError()==2,"source object reclaimed");
+ H handles[64];handles[0]=CreateFileMappingW((H)-1,0,4,0,4096,L"Engacer.Quota146");check(handles[0]!=0,"quota object");for(unsigned i=1;i<64;++i){handles[i]=OpenFileMappingW(4,0,L"Engacer.Quota146");check(handles[i]!=0,"grant within quota");}check(!OpenFileMappingW(4,0,L"Engacer.Quota146")&&GetLastError()==8,"handle quota refuses");H stale=handles[0];check(CloseHandle(stale),"free one grant");handles[0]=OpenFileMappingW(4,0,L"Engacer.Quota146");check(handles[0]&&handles[0]!=stale&&!CloseHandle(stale)&&GetLastError()==6,"stale generation");for(unsigned i=0;i<64;++i)check(CloseHandle(handles[i]),"grant cleanup");
+ for(unsigned i=0;i<16;++i){handles[i]=CreateFileMappingW((H)-1,0,4,0,1,0);check(handles[i]!=0,"object within quota");}check(!CreateFileMappingW((H)-1,0,4,0,1,0)&&GetLastError()==1816,"object quota refuses");for(unsigned i=0;i<16;++i)check(CloseHandle(handles[i]),"object cleanup");
+ h=CreateFileMappingW((H)-1,0,4,0,4096,0);check(h!=0,"view quota object");void*views[16];for(unsigned i=0;i<16;++i){views[i]=MapViewOfFile(h,4,0,0,0);check(views[i]!=0,"view within quota");}check(!MapViewOfFile(h,4,0,0,0)&&GetLastError()==1816,"view quota refuses");check(CloseHandle(h),"close with many views");for(unsigned i=0;i<16;++i)check(!*(const volatile unsigned char*)views[i]&&UnmapViewOfFile(views[i]),"view cleanup");
+ static const W local[]={'L','o','c','a','l',0x5c,'E','n','g','a','c','e','r','.','L','o','c','a','l','1','4','6',0};h=CreateFileMappingW((H)-1,0,4,0,4096,local);check(h!=0,"local name");existing=OpenFileMappingW(4,0,L"Engacer.Local146");check(existing&&CloseHandle(existing)&&CloseHandle(h),"local prefix resolves session name");
+ say("M146_SHARED_MAPPING_PRIVATE_PROCESSES_LIFETIMES_LIMITS_PASS\n");ExitProcess(0);
+}

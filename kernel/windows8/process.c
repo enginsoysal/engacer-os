@@ -48,10 +48,14 @@ static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t p
 static uint64_t old_gs8;static w8_info info8;static w8_info*const root_info142=&info8;static uint8_t io8[4096];
 #define info8 (*(active_space142?&spaces142[active_space142]->child_info:root_info142))
 extern void timer_claim142(unsigned,unsigned);
-static unsigned timer_needed142,sync_resident142,file_resident143,registry_resident143,ui_resident144,clipboard_resident144;
+static unsigned timer_needed142,sync_resident142,file_resident143,registry_resident143,ui_resident144,clipboard_resident144,mapping_resident146;
 static void refresh_sync_waits142(void);
 static unsigned sync_deadline_needed142(void);
 static void release_sync_grants142(void);
+#ifdef ENGINE_M14
+static void mapping_release146(void);
+static unsigned mapping_name_taken146(const uint16_t*);
+#endif
 volatile unsigned w8_active;
 uint64_t w8_saved_rsp,w8_kernel_cr3;
 #define created_root8 (spaces142[active_space142]->created_root)
@@ -101,7 +105,7 @@ static unsigned length8(const char*s){unsigned n=0;while(s[n])++n;return n;}
 static int equal8(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
 static void copy8(char*out,const char*in,unsigned cap){unsigned n=0;while(n+1<cap&&in[n]){out[n]=in[n];++n;}out[n]=0;}
 static int prefix8(const char*p,const char*root){unsigned n=length8(root);return n&&(!memcmp(p,root,n))&&(p[n]=='/'||!p[n]);}
-static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143+ui_resident144+clipboard_resident144;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
+static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143+ui_resident144+clipboard_resident144+mapping_resident146;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
 static void peak8(void){if((uint64_t)count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+metadata_pages142[active_space142];group_peak142();}
 static uint64_t allocate8(void){if(count8==OWN8)return 0;uint64_t p=page_alloc();if(p)owned8[count8++]=p;peak8();return p;}
 static uint64_t *pte8(uint64_t va,unsigned create){
@@ -158,7 +162,11 @@ static void finish8(unsigned status){snapshot8();info8.status=status;info8.state
 static void release_grants142(void);
 static void registry_release143(void);
 #include "ui144.inc"
-static void release8(void){if(!spaces142[active_space142])return;ui_release144();release_sync_grants142();release_grants142();file_release143();registry_release143();while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
+static void release8(void){if(!spaces142[active_space142])return;ui_release144();release_sync_grants142();release_grants142();file_release143();registry_release143();
+#ifdef ENGINE_M14
+ mapping_release146();
+#endif
+ while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
 
 static void reap_threads142(void){
  for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_EXITED)continue;ui_thread_release144(active_space142,i);
@@ -209,6 +217,9 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
 }
 #include "process142.inc"
 #include "sync142.inc"
+#ifdef ENGINE_M14
+#include "mapping146.inc"
+#endif
 unsigned w8_pending(void){for(unsigned i=0;i<SPACES142;++i)if(spaces142[i])return 1;return 0;}
 unsigned w8_runnable(void){
  refresh_sync_waits142();unsigned runnable=0,needed=sync_deadline_needed142();uint64_t now=m3_clock_ticks()*10;
@@ -243,6 +254,9 @@ static int64_t dispatch8(trap_frame*f){
  uint64_t a=f->rdi,b=f->rsi,c=f->rdx,d=f->r10,e=f->r8;char path[256];
  switch(f->rax){
  case W8_SYS_UI144:return ui_syscall144(a,b,c,d,e,f);
+#ifdef ENGINE_M14
+ case W8_SYS_MAPPING146:return e?-87:mapping_call146(a,b,c,d);
+#endif
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);
  case W8_SYS_TEXT143:if(d||e)return -87;if(a==1)return text_compare143(b,c);if(a==2)return text_find143(b,c);return -87;
@@ -251,7 +265,11 @@ static int64_t dispatch8(trap_frame*f){
   if(e||!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -87;
   if(c!=1&&c!=3&&c!=5)return -50;
   unsigned old=0;
-  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -487;if(at==a)old=(*p&NX)?((*p&2)?4:2):32;}
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -487;
+#ifdef ENGINE_M14
+ if((*p&MAP_SHARED146)&&!mapping_protect146(at,(unsigned)c))return -5;
+#endif
+ if(at==a)old=(*p&NX)?((*p&2)?4:2):32;}
   if(user8(d,&old,sizeof(old),1))return -998;
   for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);*p=(*p&~(NX|UINT64_C(2)))|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}
   return 0;
@@ -269,8 +287,16 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_UNMAP:case W8_SYS_PROTECT:{
   if(!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -1;
   if(f->rax==W8_SYS_PROTECT&&c!=1&&c!=3&&c!=5)return -1;
-  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -1;}
-  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0),physical=*p&UINT64_C(0x000ffffffffff000);if(f->rax==W8_SYS_UNMAP){unsigned present=*p&1;*p=0;if(present)free_owned8(physical);--virtual_pages141;}else *p=physical|((*p&1)?5:RESERVED141|4)|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}return 0;
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -1;
+#ifdef ENGINE_M14
+ if((*p&MAP_SHARED146)&&(f->rax==W8_SYS_UNMAP||!mapping_protect146(at,(unsigned)c)))return -1;
+#endif
+ }
+  for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0),physical=*p&UINT64_C(0x000ffffffffff000);if(f->rax==W8_SYS_UNMAP){unsigned present=*p&1;*p=0;if(present)free_owned8(physical);--virtual_pages141;}else *p=physical|
+#ifdef ENGINE_M14
+ (*p&MAP_SHARED146)|
+#endif
+ ((*p&1)?5:RESERVED141|4)|((c&2)?2:0)|((c&4)?0:NX);__asm__ volatile("invlpg (%0)"::"r"(at):"memory");}return 0;
  }
  case W8_SYS_FILE_OPEN143:{w8_file_request143 request;if(b||c||d||e||user8(a,&request,sizeof(request),0)||!terminated142(request.path,256))return -87;int64_t slot=file_open143(request.path,request.access,request.share,request.creation,request.flags,0);return slot<0?slot:(int64_t)file_token143((unsigned)slot);}
  case W8_SYS_FILE_OP143:{if(!a&&b>=10&&b<=18&&b!=12&&b!=13){char target[256];if(string8(c,path,256))return -998;
