@@ -1,0 +1,11 @@
+{
+  "fixture_sha256": "82b6fd804d09432fda3f797c2b926fb56a9b96a235e464dbaa40c1e67fba7126",
+  "sources": {
+    "tests/m14/session147_native.c": "488a9bb48333f864e229920a6f9d512f4edcbd67e596d3011b7f5c0ce0700655",
+    "user/windows8/msi-condition147.h": "2b7f67b911c464f72355a494ddd85042c6eddc95802d51e04e2cf223c171d515",
+    "user/windows8/msi-properties147.h": "93ade00e09218f70b7e37b5203d5c94181f989efada4edeb235901f379c6ebde",
+    "tests/m14/session147_build.py": "c344fcb9ed6c2e2eecf57c1b3627c5bd2894f992ccf548a0febd1aba2c742743"
+  },
+  "scope": "Exact owned PE compilation inputs; execution must be separately qualified in a native guest",
+  "independent_recompilation_matches_executed_fixture": true
+}

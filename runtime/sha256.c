@@ -22,3 +22,22 @@ void engine_sha256(const void *input,size_t length,uint8_t output[32]){
     while(length>=64){compress(state,data);data+=64;length-=64;}uint8_t tail[128];memset(tail,0,sizeof(tail));memcpy(tail,data,length);tail[length]=128;unsigned total=length<56?64:128;uint64_t bits=(uint64_t)original*8;for(unsigned i=0;i<8;++i)tail[total-1-i]=(uint8_t)(bits>>(i*8));compress(state,tail);if(total==128)compress(state,tail+64);
     for(unsigned i=0;i<8;++i)for(unsigned j=0;j<4;++j)output[i*4+j]=(uint8_t)(state[i]>>(24-j*8));
 }
+void engine_sha256_init(engine_sha256_context *context){
+    static const uint32_t initial[8]={0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19};
+    memset(context,0,sizeof(*context));memcpy(context->state,initial,sizeof(initial));
+}
+int engine_sha256_update(engine_sha256_context *context,const void *input,size_t length){
+    if(!context||context->used>63||(!input&&length)||context->bytes>UINT64_MAX/8||length>UINT64_MAX/8-context->bytes)return 0;
+    if(!length)return 1;const uint8_t *data=input;context->bytes+=length;
+    if(context->used){unsigned n=64-context->used;if(n>length)n=(unsigned)length;if(n)memcpy(context->block+context->used,data,n);context->used+=n;data+=n;length-=n;if(context->used==64){compress(context->state,context->block);context->used=0;}}
+    while(length>=64){compress(context->state,data);data+=64;length-=64;}
+    if(length){memcpy(context->block,data,length);context->used=(unsigned)length;}return 1;
+}
+int engine_sha256_final(engine_sha256_context *context,uint8_t output[32]){
+    if(!context||!output||context->used>63||context->bytes>UINT64_MAX/8)return 0;
+    unsigned used=context->used;context->block[used++]=128;
+    if(used>56){memset(context->block+used,0,64-used);compress(context->state,context->block);used=0;}
+    memset(context->block+used,0,56-used);uint64_t bits=context->bytes*8;for(unsigned i=0;i<8;++i)context->block[63-i]=(uint8_t)(bits>>(i*8));compress(context->state,context->block);
+    for(unsigned i=0;i<8;++i)for(unsigned j=0;j<4;++j)output[i*4+j]=(uint8_t)(context->state[i]>>(24-j*8));
+    memset(context,0,sizeof(*context));context->used=UINT32_MAX;return 1;
+}

@@ -1,0 +1,19 @@
+﻿{
+    "inputs":  [
+                   {
+                       "cabinet":  "7z2606-x64.cab",
+                       "package_sha256":  "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+                       "cabinet_bytes":  1923741,
+                       "cabinet_sha256":  "934ddd17e0f4e55e36cf922e2699b47c1e248006d6aa01b95b61229a519e7386",
+                       "package":  "7z2606-x64.msi"
+                   },
+                   {
+                       "cabinet":  "npp.8.9.9.1.Installer.x64.cab",
+                       "package_sha256":  "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+                       "cabinet_bytes":  7262163,
+                       "cabinet_sha256":  "74dfa4f09424a7a2e13754c565545b1145095c89bd7751d3e5d4817b76131457",
+                       "package":  "npp.8.9.9.1.Installer.x64.msi"
+                   }
+               ],
+    "scope":  "Read-only original MSI CAB streams; no installer/application execution"
+}

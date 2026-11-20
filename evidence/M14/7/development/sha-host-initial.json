@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": 261,
+  "scope": "Production one-shot and incremental SHA-256 vs independent hashlib across padding/block boundaries and chunk partitions; not native installer qualification",
+  "sources": {
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "include/engine/sha256.h": "f0782b06f745be9a3d0bf8d160c1f13a0b5dd1b28719a1e889e9fe47e9f826eb",
+    "tests/m14/sha147_host.c": "0fbabd96a8285f267598271d0bea57adca674d3643a9e228cf0d501253d143b5",
+    "tests/m14/sha147_host.py": "06a3e0da861d053b22e66f8ec164a88a235824a3cfad10b43a5ce70dc948faf6"
+  }
+}
