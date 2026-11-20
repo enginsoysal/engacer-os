@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import shutil
 import socket
+import struct
 import subprocess
 import traceback
 import time
@@ -33,6 +34,28 @@ def observer_port8():
             return port,dict(outbound_start=first,outbound_count=count,listener_outside_outbound_range=True,loopback_only=True)
         except OSError:continue
     raise RuntimeError('No free owned loopback observation port outside the outbound range')
+
+def original_window_tasks(g,out):
+    # Real guest RFB only. No host application execution or desktop input.
+    display=g.connect_display();display.key(0xffe9,True);display.press(0xffc1);display.key(0xffe9,False);time.sleep(.3)
+    v.key(g,0xffeb)
+    for char in 'windows apps':v.key(g,ord(char))
+    at=len(g.read());v.enter(g);g.wait('M7_WINDOW_OPEN app=0x0000000000000013',offset=at)
+    width=display.width;left=(width-min(width-80,940))//2;x=left+24;y=35+62
+    at=len(g.read());m.guest_click10(g,x+80,y+226+20);m.guest_click10(g,x+166+95,y+340+20)
+    g.wait('M8_CPL3_CREATED',offset=at);g.wait('M8_JOB_DONE code=0x0000000000000000',offset=at,timeout=240);assert 'M8_JOB_FAILED' not in g.read()[at:]
+    v.shot(g,out,'original-msi-installed')
+    at=len(g.read());m.guest_click10(g,x+418+105,y+194+20);g.wait('M8_CPL3_CREATED command=0x0000000000000003',offset=at);time.sleep(1)
+    assert 'M8_JOB_FAILED' not in g.read()[at:];v.shot(g,out,'original-file-manager')
+    # Original first-run placement is the documented 80,70,760,500 rectangle.
+    # Move the real caption through the virtual mouse, then close that moved frame.
+    for buttons,px,py in ((0,260,90),(1,260,90),(1,300,120),(0,300,120)):
+        display.socket.sendall(struct.pack('!BBHH',5,buttons,px,py));g.read();time.sleep(.15)
+    v.shot(g,out,'original-file-manager-moved')
+    m.guest_click10(g,854,120);g.wait('M8_JOB_DONE code=0x0000000000000000',offset=at,timeout=90);assert 'M8_JOB_FAILED' not in g.read()[at:]
+    v.shot(g,out,'original-file-manager-closed')
+    return {'passed':True,'scope':'Original supported MSI installation and original file-manager window launch/move/normal close in exact enabled-device VMware starter; not complete GUI app tasks','expected_original_sha256':'a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931','original_identity_basis':'Pinned bundled MSI verification; full installed payload SHA-256 independently checked in native QEMU profiles','input':'Authenticated loopback RFB of this new owned headless guest'}
+
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);parser.add_argument('--inspect-input',action='store_true');args=parser.parse_args();stage=args.stage
@@ -119,6 +142,7 @@ def main():
                 time.sleep(.15)
             report['visible_preview_wake_observations']=observations
             report['checks'].append('Actual RFB mouse opens Screensaver settings, shows native preview and returns without operating the underlying Preview control')
+            report['original_window']=original_window_tasks(g,out)
             (out/'install.log').write_bytes(g.read().encode())
         report['checks'].append('Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP')
         report['checks'].append('Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input')

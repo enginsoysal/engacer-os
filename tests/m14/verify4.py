@@ -21,6 +21,10 @@ def main():
     journeys={name:read(work/name/'results.json') for name in ('inspection','apps','probes','browser-download','vmware-results')}
     for name,r in {**profiles,**journeys}.items():
         assert r['passed'] and r['build_id']==meta['build_id'],name
+    app_profiles={name:read(work/('apps-'+name)/'results.json') for name in ('ordinary','4k')}
+    for name,r in app_profiles.items():
+        assert r['passed'] and r['build_id']==meta['build_id'] and len(r['original_payload_sha256'])==106,name
+        copy_report(work/('apps-'+name),out/('apps-'+name))
     runtime_names=('threads','tls','last-thread','processes','named-sync','named-sync-cancel','cancel','msi-cancel','exceptions','exception-nested','exception-invalid','unwind','unwind-chain','unwind-invalid')
     runtime={name:read(work/name/'results.json') for name in runtime_names}
     for name,r in runtime.items():
@@ -72,8 +76,14 @@ def main():
         capture=read(work/name/'desktop-capture.json')
         assert (capture['width'],capture['height'])==dimensions[:2]
     vm=journeys['vmware-results'];assert vm['existing_vm_inventory_unchanged'] and starter['passed']
+    assert vm['original_window']['passed'] and vm['original_window']['expected_original_sha256']=='a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931'
     assert vm['starter_sha256']==starter['sha256']==sha(ROOT/'dist'/starter['archive'])
     for name,r in meta['artifacts'].items():assert sha(ROOT/'dist'/name)==r['sha256'],name
+    original_resources=read(work/'original-resources/results.json')
+    assert original_resources['passed'] and original_resources['build_id']==meta['build_id']
+    assert len(original_resources['cycles'])==3 and [r['retained_pages'] for r in original_resources['cycles']]==[1,0,0]
+    assert all(2 in r['idle_halted_cpu_observations'] for r in original_resources['cycles'])
+    copy_report(work/'original-resources',out/'original-resources')
     gui_names=('window-native','resource-native','controls-native','menu-native','com-native','clipformat-native','paint-native','timer-native','owner-native','deep-native','gui-fault-native','heap-after')
     gui={name:read(work/name/'results.json') for name in gui_names}
     for name,r in gui.items():
@@ -101,7 +111,7 @@ def main():
     font=read(ROOT/'build/m14-native/font73-manifest.json')
     assert font['coverage_bytes']==251248 and font['header_sha256']==read(ROOT/'third_party/inter/raster-lock12.json')['header_sha256']
     fixed=desktop_state(ROOT/'dist/EngacerOS-M14STAGE4-installed-kernel.map')
-    assert fixed['bytes']==557516
+    assert fixed['bytes']==557692
     host={name:read(work/name/'results.json') for name in ('http-host','download-stream')}
     assert all(r['passed'] for r in host.values()) and host['http-host']['mutation_cases']==5000
     assert host['download-stream']['source_sha256']==sha(ROOT/'kernel/storage/volume6.c')
@@ -138,10 +148,12 @@ def main():
     assert len(gui_host['dib-host']['original_images'])==19 and gui_host['dib-host']['hostile_mutations']==10000
     observers={}
     known_adapters={sha(ROOT/'tests/m14/runtime_regressions4.py')}
+    file_adapter_sha=sha(ROOT/'tests/m14/files_regressions4.py')
+    from files_regressions4 import CASES as FILE_CASES
     from runtime_regressions4 import CASES
     for case in CASES:
-        r=read(work/'regression-observers'/(case+'.json'));assert r['passed'] and r['build_id']==meta['build_id'] and r['case']==case
-        assert r['adapter_sha256'] in known_adapters,(case,'unknown observer adapter')
+        r=read(work/('file-regression-observers' if case in FILE_CASES else 'regression-observers')/(case+'.json'));assert r['passed'] and r['build_id']==meta['build_id'] and r['case']==case
+        assert r['adapter_sha256'] in ({file_adapter_sha} if case in FILE_CASES else known_adapters),(case,'unknown observer adapter')
         for path,record in r['observer_sources'].items():
             raw=(ROOT/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==record['canonical_sha256'],path
             executed=raw.decode('utf-8')
@@ -163,9 +175,10 @@ def main():
         'four_process_blocked_halted_cpus_observed':2,
         'scope':'Component and protected ownership accounting; not total OS RAM, original GUI performance or a Windows speed comparison'
     }
+    resources['original_window']=original_resources
     resources['files_settings']={'selected_unicode_table_bytes':3344,'shared_file_objects':128,'file_grants_per_process':32,'dirty_data_global_limit_bytes':8388608,'file_logical_limit_bytes':67108864,'registry_keys_per_user':64,'registry_values_per_user':128,'registry_value_data_limit_bytes':2048,'environment_max_utf16_units':8192,'find_handles_per_process':16,'zero_retention_cycles':20,'scope':'Bounded component accounting; not a total OS RAM or original GUI speed benchmark'}
     write(out/'resources.json',resources)
-    result=dict(passed=True,stage='M14.4',qualification='M14-STAGE4-VM-v1',build_id=meta['build_id'],iso_sha256=meta['artifacts']['EngacerOS-M14STAGE4.iso']['sha256'],vmware_zip_sha256=starter['sha256'],compiled_source_inputs=len(meta['source_sha256']),native_groups=list(profiles)+list(journeys)+list(runtime)+list(files)+list(gui)+['original-native-'+n for n in originals],host_groups=list(host)+list(file_host)+list(gui_host),original_payload_count=106,limits=['Selected bounded Unicode/path/sharing/registry/environment profile; not general NTFS/network namespaces or complete Windows filesystem/ACL semantics','Original selected Notepad++/Sumatra images are mapped and inspected only; no app code is executed in inspection','Original 7-Zip file-manager window/input/lifetime profile plus the existing console/MSI profile; complete GUI app tasks and reusable MSI remain later gates','Firefox is a verified optional installer download; Firefox installation/execution are unavailable','Native concurrency and selected C exception/unwind profile only; C++ personalities, dynamic function tables and arbitrary application compatibility remain unavailable','Named virtual profiles only; no universal physical hardware or GPU gaming qualification','No new long-duration stability soak or faster-than-Windows claim'],harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m14').iterdir() if p.suffix in ('.py','.c','.mjs')})
+    result=dict(passed=True,stage='M14.4',qualification='M14-STAGE4-VM-v1',build_id=meta['build_id'],iso_sha256=meta['artifacts']['EngacerOS-M14STAGE4.iso']['sha256'],vmware_zip_sha256=starter['sha256'],compiled_source_inputs=len(meta['source_sha256']),native_groups=list(profiles)+list(journeys)+list(runtime)+list(files)+list(gui)+['original-native-'+n for n in originals]+['apps-'+n for n in app_profiles]+['original-resources'],host_groups=list(host)+list(file_host)+list(gui_host),original_payload_count=106,limits=['Selected bounded Unicode/path/sharing/registry/environment profile; not general NTFS/network namespaces or complete Windows filesystem/ACL semantics','Original selected Notepad++/Sumatra images are mapped and inspected only; no app code is executed in inspection','Original 7-Zip file-manager window/input/lifetime profile plus the existing console/MSI profile; complete GUI app tasks and reusable MSI remain later gates','Firefox is a verified optional installer download; Firefox installation/execution are unavailable','Native concurrency and selected C exception/unwind profile only; C++ personalities, dynamic function tables and arbitrary application compatibility remain unavailable','Named virtual profiles only; no universal physical hardware or GPU gaming qualification','No new long-duration stability soak or faster-than-Windows claim'],harness_sha256={p.relative_to(ROOT).as_posix():sha(p) for p in (ROOT/'tests/m14').iterdir() if p.suffix in ('.py','.c','.mjs')})
     write(out/'acceptance-results.json',result)
     print('PASS M14.4 exact-source/native/media acceptance:',meta['build_id'])
 

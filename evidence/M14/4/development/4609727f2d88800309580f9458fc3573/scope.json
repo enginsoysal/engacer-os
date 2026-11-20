@@ -3,15 +3,29 @@
   "build_id": "4609727f2d88800309580f9458fc3573",
   "source_commit": "be3ea55b47a7d9e5d54b9b2ec0ad1a97471f3b6c",
   "passing_development_groups": [
-    "compact",
-    "ordinary",
     "4k",
-    "apps",
+    "apps-4k",
     "apps-ordinary",
-    "original-native-ordinary",
+    "apps",
+    "clipformat-native",
+    "com-native",
+    "compact",
     "controls-native",
     "deep-native",
-    "paint-native"
+    "gui-fault-native",
+    "heap-after",
+    "menu-native",
+    "ordinary",
+    "original-native-4k",
+    "original-native-compact",
+    "original-native-ordinary",
+    "original-resources",
+    "owner-native",
+    "paint-native",
+    "resource-native",
+    "timer-native",
+    "vmware-results",
+    "window-native"
   ],
-  "scope": "Exact-source candidate development observations only. Remaining original lifetime/4K/runtime/media and complete public-delivery gates are pending."
+  "scope": "Exact-source candidate development observations. Window/display/media groups pass; earlier runtime/file regressions and complete public-delivery gates remain pending."
 }
