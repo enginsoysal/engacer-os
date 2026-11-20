@@ -9,4 +9,4 @@ static int MS f_GetUserNameW(WCHAR*out,unsigned*capacity){if(!capacity){last8(87
  * typed failure, never a fabricated PIDL or success pointer. */
 static int32_t MS f_SHGetSpecialFolderLocation(HANDLE owner,int folder,void**out){(void)owner;(void)folder;if(!out)return(int32_t)0x80070057u;*out=0;return(int32_t)0x80004001u;}
 
-static uint64_t MS f_SHGetFileInfoW(const WCHAR*path,unsigned attributes,void*out,unsigned size,unsigned flags){(void)path;(void)attributes;(void)flags;if(!out||size<696){last8(87);return 0;}memset(out,0,696);*(int*)((uint8_t*)out+8)=-1;last8(50);return 0;}
+

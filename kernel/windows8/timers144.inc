@@ -1,0 +1,17 @@
+/* GUI timers share the scheduler's existing deadline ownership; no polling thread. */
+typedef struct {uint64_t window,id,callback,due;unsigned period,thread;} ui_timer_record144;
+typedef struct {ui_timer_record144 items[64];} ui_timer_page144;
+_Static_assert(sizeof(ui_timer_page144)<=4096,"GUI timer page quota");
+static ui_timer_page144*ui_timer_pages144[SPACES142];static uint64_t ui_timer_serial144;
+static void ui_timer_trim144(unsigned space){ui_timer_page144*page=ui_timer_pages144[space];if(!page)return;for(unsigned i=0;i<64;++i)if(page->items[i].period)return;ui_free144(page);ui_timer_pages144[space]=0;}
+static void ui_timer_release144(unsigned space,unsigned thread,uint64_t window){ui_timer_page144*page=ui_timer_pages144[space];if(!page)return;for(unsigned i=0;i<64;++i){ui_timer_record144*t=page->items+i;if(t->period&&t->thread==thread&&(!window||t->window==window))memset(t,0,sizeof(*t));}ui_timer_trim144(space);}
+static int64_t ui_timer_set144(uint64_t handle,uint64_t pointer){wui_timer144 request;if(user8(pointer,&request,sizeof(request),0))return -998;if(request.reserved)return -87;if(handle){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -50;}
+ ui_timer_page144*page=ui_timer_pages144[active_space142];ui_timer_record144*found=0,*free_slot=0;if(page)for(unsigned i=0;i<64;++i){ui_timer_record144*t=page->items+i;if(t->period&&t->window==handle&&t->thread==current142&&t->id==request.id)found=t;if(!t->period&&!free_slot)free_slot=t;}
+ if(!request.period){if(!found)return 0;memset(found,0,sizeof(*found));ui_timer_trim144(active_space142);return 1;}
+ if(!page){page=ui_page144();if(!page)return -8;ui_timer_pages144[active_space142]=page;free_slot=page->items;}if(!found&&!free_slot)return -1816;
+ uint64_t id=found?found->id:request.id;if(!id||(!handle&&!found)){if(ui_timer_serial144==UINT64_MAX)return -1816;id=++ui_timer_serial144;}
+ unsigned period=request.period<10?10:request.period>0x7fffffffu?0x7fffffffu:request.period;ui_timer_record144*t=found?found:free_slot;*t=(ui_timer_record144){handle,id,request.callback,m3_clock_ticks()*10+period,period,current142};return(int64_t)id;
+}
+static unsigned ui_timer_matches144(const ui_timer_record144*t,const wui_filter144*f){if(!t->period||t->thread!=current142)return 0;if((f->first||f->last)&&(0x113<f->first||0x113>f->last))return 0;if(!f->window)return 1;if(f->window==UINT64_MAX)return !t->window;uint64_t window=t->window;for(unsigned depth=0;window&&depth<WUI_WINDOWS144;++depth){if(window==f->window)return 1;ui_window144*w=ui_lookup144(window);window=w?w->view.description.parent:0;}return 0;}
+static uint64_t ui_timer_deadline144(const wui_filter144*f){uint64_t due=UINT64_MAX;ui_timer_page144*page=ui_timer_pages144[active_space142];if(page)for(unsigned i=0;i<64;++i)if(ui_timer_matches144(page->items+i,f)&&page->items[i].due<due)due=page->items[i].due;return due;}
+static int64_t ui_timer_peek144(const wui_filter144*f,uint64_t pointer,unsigned waiting){ui_timer_page144*page=ui_timer_pages144[active_space142];if(!page)return 0;uint64_t now=m3_clock_ticks()*10;for(unsigned i=0;i<64;++i){ui_timer_record144*t=page->items+i;if(!ui_timer_matches144(t,f)||t->due>now)continue;if(waiting)return 1;wui_message144 message={.window=t->window,.message=0x113,.wparam=t->id,.lparam=t->callback,.time=(uint32_t)now};if(user8(pointer,&message,sizeof(message),1))return -998;if(f->remove)t->due=now+t->period;return 1;}return 0;}

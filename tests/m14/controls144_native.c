@@ -6,6 +6,11 @@ typedef I64(*PROC)(H,unsigned,H,I64);
 typedef struct {unsigned style;PROC proc;int cls_extra,win_extra;H instance,icon,cursor,background;const W*menu,*name;} CLASS;
 typedef struct {int left,top,right,bottom;} RECT;
 __declspec(dllimport) int InitCommonControlsEx(const unsigned*);
+__declspec(dllimport) H SHGetFileInfoW(const W*,unsigned,void*,unsigned,unsigned);
+__declspec(dllimport) int ImageList_GetImageCount(H);
+__declspec(dllimport) int DestroyIcon(H);
+__declspec(dllimport) H CreateToolbarEx(H,unsigned,unsigned,int,H,unsigned,const void*,int,int,int,int,int,unsigned);
+__declspec(dllimport) H CreateStatusWindowW(unsigned,const W*,H,unsigned);
 __declspec(dllimport) unsigned RegisterClassW(const CLASS*);
 __declspec(dllimport) H CreateWindowExW(unsigned,const W*,const W*,unsigned,int,int,int,int,H,H,H,void*);
 __declspec(dllimport) I64 DefWindowProcW(H,unsigned,H,I64);
@@ -16,6 +21,12 @@ __declspec(dllimport) int ClientToScreen(H,int*);
 __declspec(dllimport) int ScreenToClient(H,int*);
 __declspec(dllimport) int MoveWindow(H,int,int,int,int,int);
 __declspec(dllimport) H GetDlgItem(H,int);
+__declspec(dllimport) H GetParent(H);
+__declspec(dllimport) H GetFocus(void);
+__declspec(dllimport) H SetFocus(H);
+__declspec(dllimport) H GetCapture(void);
+__declspec(dllimport) H SetCapture(H);
+__declspec(dllimport) int ReleaseCapture(void);
 __declspec(dllimport) int EnableWindow(H,int);
 __declspec(dllimport) int IsWindowEnabled(H);
 __declspec(dllimport) int ShowWindow(H,int);
@@ -45,8 +56,17 @@ void entry(void){
 
  H toolbar=CreateWindowExW(0,L"ToolbarWindow32",L"",0x40000000,0,0,200,30,root,10,0,0);check(toolbar!=0,"toolbar create");struct{int bitmap,command;unsigned char state,style,reserved[6];H data;I64 string;}button={0};button.command=91;button.state=4;W label[]=L"Copied";button.string=(I64)label;SendMessageW(toolbar,0x41e,32,0);check(SendMessageW(toolbar,0x444,1,(I64)&button)==1,"toolbar insert");label[0]='X';check(SendMessageW(toolbar,0x418,0,0)==1,"toolbar count");check(SendMessageW(toolbar,0x417,0,(I64)&button)&&((W*)button.string)[0]=='C',"toolbar copied label");check(SendMessageW(toolbar,0x401,91,0)&&SendMessageW(toolbar,0x412,91,0)==0,"toolbar disable");int size[2];check(SendMessageW(toolbar,0x453,0,(I64)size)&&size[0]>=48&&size[1]>=24,"toolbar measured content");
  H list=CreateWindowExW(0,L"SysListView32",L"",0x40000000,0,0,300,200,root,11,0,0);check(list!=0,"list create");struct{unsigned mask;int item,subitem;unsigned state,state_mask,pad;W*text;int capacity,image;I64 parameter;int indent,group;unsigned columns,pad2;unsigned*column_ids;int*formats;int group_index,pad3;}row={0};row.mask=15;row.text=L"Actual row";row.image=3;row.parameter=0x123456789abcLL;row.state=3;row.state_mask=3;check(SendMessageW(list,0x104d,0,(I64)&row)==0,"list insert");check(SendMessageW(list,0x1004,0,0)==1&&SendMessageW(list,0x1032,0,0)==1,"list count selected");row.text=text;row.capacity=64;check(SendMessageW(list,0x104b,0,(I64)&row)&&text[0]=='A'&&text[9]=='w'&&!text[10]&&row.parameter==0x123456789abcLL&&row.image==3,"list actual row data");row.mask=1;row.item=0;row.subitem=1;row.text=L"Second cell";check(SendMessageW(list,0x104c,0,(I64)&row),"subitem mutation");row.text=text;check(SendMessageW(list,0x104b,0,(I64)&row)&&text[0]=='S',"subitem retained");check(SendMessageW(list,0x1009,0,0)&&SendMessageW(list,0x1004,0,0)==0,"list teardown");
+
+ H combo=CreateWindowExW(0,L"ComboBoxEx32",L"",0x40000002,10,120,250,620,root,12,0,0);check(combo!=0,"composite combo create");H combo_child=(H)SendMessageW(combo,0x406,0,0),combo_edit=(H)SendMessageW(combo,0x407,0,0);check(combo_child&&combo_edit&&GetParent(combo_child)==combo&&GetParent(combo_edit)==combo_child,"real combo/edit child chain");check(GetWindowRect(combo,&rect)&&rect.bottom-rect.top==24,"closed combo height");check(SetWindowTextW(combo,L"Actual path")&&GetWindowTextW(combo_edit,text,64)==11&&text[0]=='A',"combo forwards editable text");struct{unsigned mask,pad;I64 index;W*text;int capacity,image,selected_image,overlay,indent,pad2;I64 data;}combo_item={0};combo_item.mask=33;combo_item.index=-1;combo_item.text=L"Chosen path";combo_item.data=0x1234abcd;check(SendMessageW(combo,0x40b,0,(I64)&combo_item)==0,"combo item insert");check(SendMessageW(combo,0x146,0,0)==1&&SendMessageW(combo,0x14e,0,0)==0&&GetWindowTextW(combo_edit,text,64)==11&&text[0]=='C'&&SendMessageW(combo,0x150,0,0)==0x1234abcd,"combo real selection and item data");
+ H rebar=CreateWindowExW(0,L"ReBarWindow32",L"",0x40000000,0,0,400,0,root,13,0,0);check(rebar!=0,"rebar create");struct{unsigned size,mask,style,foreground,background,pad;W*text;unsigned capacity;int image;H child;unsigned min_width,min_height,width,pad2;H bitmap;unsigned id,height,max_height,integral,ideal,pad3;I64 data;unsigned header;int chevron[4];unsigned chevron_state;}band={0};band.size=sizeof(band);band.mask=0x71;band.child=toolbar;band.min_width=80;band.min_height=28;band.width=100;band.height=28;check(SendMessageW(rebar,0x40a,(H)-1,(I64)&band)==1&&GetParent(toolbar)==rebar,"rebar real child parenting");check(SendMessageW(rebar,0x40c,0,0)==1&&SendMessageW(rebar,0x41b,0,0)>=28,"rebar retained layout");check(SendMessageW(rebar,0x402,0,0)&&SendMessageW(rebar,0x40c,0,0)==0&&GetParent(toolbar)==rebar,"remove band preserves child");
+ check(!GetFocus()&&!SetFocus(combo_edit)&&GetFocus()==combo_edit,"real per-thread focus");check(SetFocus(edit)==combo_edit&&GetFocus()==edit,"focus transfer");check(!GetCapture()&&!SetCapture(edit)&&GetCapture()==edit&&ReleaseCapture()&&!GetCapture(),"capture lifetime");check(SetFocus(0)==edit&&!GetFocus(),"focus clear");
  int overflow_point[2]={0x7fffffff,0};check(!ClientToScreen(child,overflow_point)&&overflow_point[0]==0x7fffffff&&overflow_point[1]==0&&GetLastError()==87,"coordinate overflow transactional refusal");
+
+ struct{H icon;int index;unsigned attributes;W name[260],type[80];}shell_info={0};H shell_images=SHGetFileInfoW(L"__DIR__",16,&shell_info,sizeof(shell_info),0x4411);check(shell_images&&shell_info.index==1&&ImageList_GetImageCount(shell_images)==2&&shell_info.type[0]=='F',"own actual generic system image list");check(SHGetFileInfoW(L"file.txt",0,&shell_info,sizeof(shell_info),0x111)&&shell_info.icon&&shell_info.index==0&&DestroyIcon(shell_info.icon),"owned generic file icon");check(!SHGetFileInfoW(L"__DIR__",16,&shell_info,sizeof(shell_info),0x4018)&&GetLastError()==50,"unsupported PIDL query typed refusal");
+ button.bitmap=8;button.command=92;button.state=4;button.string=0;H stock_toolbar=CreateToolbarEx(root,0x40000000,14,11,(H)-1,4,&button,1,0,0,0,0,32);check(stock_toolbar!=0,"stock view toolbar creation");H stock_images=(H)SendMessageW(stock_toolbar,0x431,0,0);check(stock_images&&ImageList_GetImageCount(stock_images)==11&&SendMessageW(stock_toolbar,0x418,0,0)==1,"actual stock toolbar images and button");check(DestroyWindow(stock_toolbar)&&ImageList_GetImageCount(stock_images)==0,"stock toolbar owned image teardown");H made_status=CreateStatusWindowW(0x40000000,L"Status wrapper",root,15);check(made_status&&GetParent(made_status)==root,"actual status wrapper window");
  RECT work;check(SystemParametersInfoW(0x30,0,&work,0)&&work.left==0&&work.top==0&&work.right>=1024&&work.bottom>600,"actual native work area");struct{unsigned size;RECT screen,work;unsigned flags;}monitor={0};monitor.size=40;check(GetMonitorInfoA(MonitorFromWindow(root,2),&monitor)&&monitor.flags==1&&monitor.work.right==work.right&&monitor.work.bottom==work.bottom,"actual monitor");unsigned units=GetDialogBaseUnits();check((units&65535)>0&&(units>>16)==16,"native base font metrics");
  H arrow=LoadCursorW(0,(const W*)32512),resize=LoadCursorW(0,(const W*)32644);check(arrow&&resize,"native cursor handles");SetCursor(arrow);check(SetCursor(resize)==arrow,"native cursor state");check(SetCursor(arrow)==resize,"native cursor restored");
  ShowWindow(root,1);check(ShowWindow(root,2),"minimize previous visibility");check(GetClientRect(root,&rect)&&!rect.right&&!rect.bottom,"minimized client size");ShowWindow(root,1);check(GetClientRect(root,&rect)&&rect.right==698&&rect.bottom==389,"restored client size");ShowWindow(root,0);ShowWindow(root,1);check(DestroyWindow(root),"recursive control destruction");say("M144_CONTROLS_GEOMETRY_PASS\n");ExitProcess(0);
 }
+
+void*memset(void*out,int value,unsigned long long count){unsigned char*p=out;for(unsigned long long i=0;i<count;++i)p[i]=(unsigned char)value;return out;}

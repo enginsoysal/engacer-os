@@ -345,6 +345,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "controls144.inc"
 #include "com144.inc"
 #include "security-api144.inc"
+#include "shell-icons144.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
@@ -367,7 +368,7 @@ static const api8 api8_table[]={
  API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateWaitableTimerW,1),API8(SetWaitableTimer,1),API8(CancelWaitableTimer,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(OpenSemaphoreW,1),API8(OpenWaitableTimerW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(GetThreadId,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
  API8(CreateMenu,4),API8(CreatePopupMenu,4),API8(IsMenu,4),API8(InsertMenuItemW,4),API8(SetMenuItemInfoW,4),API8(GetMenuItemInfoW,4),API8(GetMenuItemCount,4),API8(GetSubMenu,4),API8(GetMenuItemID,4),API8(DestroyMenu,4),API8(RemoveMenu,4),API8(AppendMenuW,4),API8(EnableMenuItem,4),API8(CheckMenuItem,4),API8(GetMenu,4),API8(SetMenu,4),API8(DrawMenuBar,4),API8(LoadMenuW,4),
- API8(SHGetSpecialFolderLocation,10),API8(SHGetFileInfoW,10),
+ API8(GetFocus,4),API8(SetFocus,4),API8(GetCapture,4),API8(SetCapture,4),API8(ReleaseCapture,4),API8(SetTimer,4),API8(KillTimer,4),API8(CreateStatusWindowW,6),API8(SetParent,4),API8(CreateToolbarEx,6),API8(SHGetSpecialFolderLocation,10),API8(SHGetFileInfoW,10),
  API8(GetDC,4),API8(ReleaseDC,4),API8(InvalidateRect,4),API8(ValidateRect,4),API8(GetUpdateRect,4),API8(UpdateWindow,4),API8(BeginPaint,4),API8(EndPaint,4),API8(GetSysColor,4),API8(GetSysColorBrush,4),API8(FillRect,4),API8(SetTextColor,8),API8(SetBkColor,8),API8(SetBkMode,8),API8(GetTextExtentPoint32W,8),API8(TextOutW,8),
  API8(CharUpperW,4),API8(CharPrevExA,4),API8(LookupPrivilegeValueW,5),API8(OpenProcessToken,5),API8(AdjustTokenPrivileges,5),API8(GetFileSecurityW,5),API8(SetFileSecurityW,5),API8(SystemFunction036,5),API8(RegOpenKeyExW,5),API8(RegQueryValueExW,5),API8(RegCloseKey,5),API8(RegCreateKeyExW,5),API8(RegSetValueExW,5),API8(RegDeleteValueW,5),API8(RegDeleteKeyW,5),API8(RegEnumValueW,5),API8(RegEnumKeyExW,5),API8(RegFlushKey,5)
 };

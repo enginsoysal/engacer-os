@@ -8,6 +8,8 @@ _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
 static unsigned ui_generation144,ui_revision144;
+static uint64_t ui_focus144[SPACES142],ui_capture144[SPACES142],ui_capture_owner144;
+static void ui_timer_release144(unsigned,unsigned,uint64_t);
 static unsigned ui_cursors144[SPACES142]={32512,32512,32512,32512};
 #ifdef ENGINE_M73
 #include <engine/ui/graphics73.h>
@@ -35,11 +37,11 @@ static void ui_destroy144(uint64_t handle){
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&(ui_windows144[i]->view.description.parent==handle||ui_windows144[i]->view.description.owner==handle))ui_destroy144(ui_windows144[i]->view.handle);
  for(unsigned i=0;i<THREADS142;++i)if(ui_queues144[w->space][i])wui_purge144(ui_queues144[w->space][i],handle);
  ui_draw_page144*draw=w->draws;while(draw){ui_draw_page144*next=draw->next;ui_free144(draw);--ui_draw_pages144;draw=next;}
- unsigned slot=(unsigned)(handle&255);ui_windows144[slot]=0;ui_free144(w);++ui_revision144;
+ if(ui_focus144[w->space]==handle)ui_focus144[w->space]=0;if(ui_capture144[w->space]==handle)ui_capture144[w->space]=0;if(ui_capture_owner144==handle)ui_capture_owner144=0;ui_timer_release144(w->space,w->thread,handle);unsigned slot=(unsigned)(handle&255);ui_windows144[slot]=0;ui_free144(w);++ui_revision144;
 }
 static void ui_thread_release144(unsigned space,unsigned thread){
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&ui_windows144[i]->space==space&&ui_windows144[i]->thread==thread)ui_destroy144(ui_windows144[i]->view.handle);
- ui_free144(ui_queues144[space][thread]);ui_queues144[space][thread]=0;
+ ui_timer_release144(space,thread,0);ui_free144(ui_queues144[space][thread]);ui_queues144[space][thread]=0;
 }
 static void ui_release144(void){ui_cursors144[active_space142]=32512;for(unsigned i=0;i<THREADS142;++i)ui_thread_release144(active_space142,i);}
 static unsigned ui_description144(wui_description144*d,uint64_t self){
@@ -51,8 +53,12 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 }
 #include "clipboard144.inc"
 #include "drawing144.inc"
+#include "timers144.inc"
+#include "focus144.inc"
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
+ if(op==WUI_FOCUS144||op==WUI_CAPTURE144)return pointer?-87:ui_focus_call144(op,handle,argument);
+ if(op==WUI_TIMER144)return argument?-87:ui_timer_set144(handle,pointer);
  if(op==WUI_DRAW144||op==WUI_MEASURE144)return ui_draw_call144(op,handle,pointer,argument);
  if(op==WUI_CLIPFORMAT144)return handle||argument?-87:clip_register144(pointer);
  if(op==WUI_CLIPNAME144)return clip_name144(handle,pointer,argument);
@@ -93,13 +99,14 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
   wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;int index=ui_find144(q,&filter);
   if(index>=0){if(op==WUI_WAIT144)return 0;if(user8(pointer,q->items+index,sizeof(wui_message144),1))return -998;if(filter.remove)wui_remove144(q,(unsigned)index);return 1;}
   if(q->quit){if(op==WUI_WAIT144)return 0;wui_message144 quit={.message=0x12,.wparam=q->quit_code};if(user8(pointer,&quit,sizeof(quit),1))return -998;if(filter.remove)q->quit=0;return 1;}
+  int64_t timer=ui_timer_peek144(&filter,pointer,op==WUI_WAIT144);if(timer)return timer;
   if(op==WUI_PEEK144)return 0;if(pointer)return -87;
-  q->waiting=filter;threads142[current142].state=T144_GUI;context8=*f;context8.rax=0;w8_active=0;w8_escape();
+  q->waiting=filter;threads142[current142].deadline=ui_timer_deadline144(&filter);threads142[current142].state=T144_GUI;context8=*f;context8.rax=0;w8_active=0;w8_escape();
  }
  return -87;
 }
 unsigned w8_ui_revision144(void){return ui_revision144;}
 unsigned w8_ui_at144(unsigned index,wui_view144*out){if(index>=WUI_WINDOWS144||!out||!ui_windows144[index])return 0;*out=ui_windows144[index]->view;return 1;}
-unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10)};return ui_enqueue144(w->space,w->thread,&m,1);}
+unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10)};return ui_enqueue144(w->space,w->thread,&m,1);}
 unsigned w8_ui_cursor144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w?ui_cursors144[w->space]:32512;}
 unsigned w8_ui_place144(uint64_t handle,wui_rect144 bounds,unsigned flags){ui_window144*w=ui_lookup144(handle);if(!w||(flags&~7u)||bounds.width<0||bounds.height<0||bounds.width>16384||bounds.height>16384)return 0;w->view.description.bounds=bounds;w->view.description.visible=flags&1;w->view.description.style&=~0x31000000u;w->view.description.style|=(flags&1?0x10000000u:0)|(flags&2?0x20000000u:0)|(flags&4?0x01000000u:0);w->view.revision=++ui_revision144;return 1;}

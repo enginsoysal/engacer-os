@@ -2,11 +2,11 @@
 typedef struct {int bitmap,command;uint8_t state,style,reserved[6];uint64_t data;int64_t string;} toolbar_button144;
 _Static_assert(sizeof(toolbar_button144)==32,"Win64 TBBUTTON layout");
 typedef struct {unsigned declared,width,height,bitmap_width,bitmap_height;toolbar_button144 buttons[64];WCHAR*labels[64];} toolbar144;
-static void toolbar_release144(control_state144*c){toolbar144*t=c->model;if(t)for(unsigned i=0;i<64;++i)free8(t->labels[i]);}
+static void toolbar_release144(control_state144*c){toolbar144*t=c->model;if(t)for(unsigned i=0;i<64;++i)free8(t->labels[i]);if(c->checked&&c->image)f_ImageList_Destroy(c->image);}
 static int64_t toolbar_message144(ui_window_runtime144*w,control_state144*c,unsigned message,uint64_t wp,int64_t lp,unsigned*handled){
  *handled=1;toolbar144*t=c->model;if(!t){t=calloc8(1,sizeof(*t));if(!t)return 0;t->width=t->height=24;t->bitmap_width=t->bitmap_height=16;c->model=t;}
  if(message==0x41e){if(wp!=sizeof(toolbar_button144)){last8(87);return 0;}t->declared=(unsigned)wp;return 0;}
- if(message==0x430){if(wp){last8(50);return 0;}if(lp){lock_enter142(&image_lock144);image_object144*image=image_find144((HANDLE)lp,3);if(!image){lock_leave142(&image_lock144);return 0;}t->bitmap_width=image->width;t->bitmap_height=image->height;t->width=image->width+8;t->height=image->height+8;lock_leave142(&image_lock144);}HANDLE old=c->image;c->image=(HANDLE)lp;return(int64_t)old;}
+ if(message==0x430){if(wp){last8(50);return 0;}if(lp){lock_enter142(&image_lock144);image_object144*image=image_find144((HANDLE)lp,3);if(!image){lock_leave142(&image_lock144);return 0;}t->bitmap_width=image->width;t->bitmap_height=image->height;t->width=image->width+8;t->height=image->height+8;lock_leave142(&image_lock144);}HANDLE old=c->image;c->checked=0;c->image=(HANDLE)lp;return(int64_t)old;}
  if(message==0x431)return(int64_t)c->image;
  if(message==0x444){if(t->declared!=32||wp>64-c->count||(!lp&&wp)){last8(87);return 0;}const toolbar_button144*input=(const void*)(uintptr_t)lp;unsigned start=c->count;
   for(unsigned n=0;n<wp;++n){unsigned index=start+n;t->buttons[index]=input[n];if(input[n].string>65535){if(!control_text144(&t->labels[index],(const WCHAR*)(uintptr_t)input[n].string)){for(unsigned j=start;j<=index;++j){free8(t->labels[j]);t->labels[j]=0;}return 0;}}else if(input[n].string&&input[n].string!=-1){for(unsigned j=start;j<index;++j){free8(t->labels[j]);t->labels[j]=0;}last8(50);return 0;}t->buttons[index].string=t->labels[index]?(int64_t)(uintptr_t)t->labels[index]:input[n].string;}

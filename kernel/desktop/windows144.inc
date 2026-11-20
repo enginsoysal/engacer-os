@@ -41,7 +41,7 @@ static unsigned foreign_key144(int key){
  if(vk){w8_ui_input144(handle,0x100,vk,1);w8_ui_input144(handle,0x101,vk,UINT64_C(0xc0000001));}return 1;
 }
 static void foreign_pointer144(unsigned x,unsigned y,unsigned buttons,unsigned previous){
- uint64_t token=desktop_hit(&model,(int)x,(int)y);desktop_window*w=desktop_lookup(&model,token);if(!w||dragging||launcher)return;uint64_t handle=apps[w-model.windows].foreign144;if(!handle||(int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)return;
+ uint64_t captured=w8_ui_capture_root144();uint64_t token=desktop_hit(&model,(int)x,(int)y);if(captured)for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144==captured){token=desktop_token(&model,i);break;}desktop_window*w=desktop_lookup(&model,token);if(!w||dragging||launcher)return;uint64_t handle=apps[w-model.windows].foreign144;if(!handle||(!captured&&((int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)))return;
  wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return;
  uint64_t lp=((x-(unsigned)(w->bounds.x+1))&65535)|((uint64_t)((y-(unsigned)(w->bounds.y+40))&65535)<<16);unsigned flags=(buttons&1?1:0)|(buttons&2?2:0);
  static uint64_t cursor_owner144;if(cursor_owner144!=handle){cursor_owner144=handle;w8_ui_input144(handle,0x20,handle,0x02000001);}

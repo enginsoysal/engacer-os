@@ -28,3 +28,6 @@ static int64_t paint_default144(HANDLE h){native_paint144 paint;HANDLE dc=f_Begi
 
 static void paint_changed144(HANDLE h,unsigned message){if(message==5||message==0xc||message==0x30||message==0x18||message==0x444||message==0x401||message==0x104d||message==0x104c||message==0x1008||message==0x1009||message==0x102b||message==0x1061||message==0x41f||message==0x404||message==0x40b)f_InvalidateRect(h,0,1);}
 static void paint_release144(HANDLE h){native_dc144**link=&dcs144;while(*link){native_dc144*d=*link;if(d->window==h){*link=d->next;free8(d);--dc_count144;}else link=&d->next;}}
+
+static uint64_t MS f_SetTimer(HANDLE window,uint64_t id,unsigned interval,void*callback){if(id>INT64_MAX){last8(87);return 0;}wui_timer144 timer={id,(uint64_t)(uintptr_t)callback,interval?interval:10,0};int64_t result=ui_call144(WUI_TIMER144,window,&timer,0);if(result<0){last8((unsigned)-result);return 0;}return(uint64_t)result;}
+static int MS f_KillTimer(HANDLE window,uint64_t id){wui_timer144 timer={.id=id};int64_t result=ui_call144(WUI_TIMER144,window,&timer,0);if(result<0){last8((unsigned)-result);return 0;}return(int)result;}

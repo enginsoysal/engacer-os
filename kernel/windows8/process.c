@@ -74,7 +74,7 @@ static int thread_slot142(uint64_t token){unsigned i=(unsigned)(token&255);retur
 static void save_thread142(void){threads142[current142].frame=context8;memcpy(threads142[current142].fx,fx8,512);}
 static int choose_thread142(void){
  uint64_t now=m3_clock_ticks()*10;
- for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if((t->state==T142_SLEEP||t->state==T142_PARK)&&t->deadline!=UINT64_MAX&&now>=t->deadline){t->frame.rax=t->state==T142_PARK?258:0;t->state=T142_READY;}}
+ for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if((t->state==T142_SLEEP||t->state==T142_PARK||t->state==T144_GUI)&&t->deadline!=UINT64_MAX&&now>=t->deadline){t->frame.rax=t->state==T142_PARK?258:0;t->state=T142_READY;}}
  for(unsigned n=0;n<THREADS142;++n){unsigned i=(cursor142+n)%THREADS142;if(threads142[i].state==T142_READY){current142=i;cursor142=(i+1)%THREADS142;context8=threads142[i].frame;memcpy(fx8,threads142[i].fx,512);return 1;}}
  return 0;
 }
@@ -212,7 +212,7 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
 unsigned w8_pending(void){for(unsigned i=0;i<SPACES142;++i)if(spaces142[i])return 1;return 0;}
 unsigned w8_runnable(void){
  refresh_sync_waits142();unsigned runnable=0,needed=sync_deadline_needed142();uint64_t now=m3_clock_ticks()*10;
- for(unsigned p=0;p<SPACES142;++p)if(spaces142[p])for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_READY)runnable=1;if((t->state==T142_SLEEP||t->state==T142_PARK)&&t->deadline!=UINT64_MAX){needed=1;if(now>=t->deadline)runnable=1;}}
+ for(unsigned p=0;p<SPACES142;++p)if(spaces142[p])for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_READY)runnable=1;if((t->state==T142_SLEEP||t->state==T142_PARK||t->state==T144_GUI)&&t->deadline!=UINT64_MAX){needed=1;if(now>=t->deadline)runnable=1;}}
  timer_needed142=needed;timer_claim142(1,needed);return runnable;
 }
 unsigned w8_clock_event142(void){return timer_needed142;}
