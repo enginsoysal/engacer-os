@@ -1,0 +1,36 @@
+{
+  "canonical_sha256": "8d29d4ae3a1aa4155069ebb98a9ef33586aaa26a7161559b9aaebf5d3133e081",
+  "executed_sha256": "6ab72349b8439522e9e231618d8df9a8531f038242a7710142fd8a12117bae79",
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE6"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE6-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage6"
+    ],
+    [
+      "stage4",
+      "stage6"
+    ],
+    [
+      "M14.4",
+      "M14.6"
+    ],
+    [
+      "0.14.4",
+      "0.14.6"
+    ]
+  ],
+  "fixed_state_assertion": {
+    "previous": 557692,
+    "current": 557684,
+    "explanation": "Cursor removal plus new picker generation; see fixed-state-change.json"
+  },
+  "output_isolation": "build\\m14-native\\stage6\\verification-base"
+}

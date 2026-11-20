@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "scope": "Visual delivery gate; all 95 automated tasks passed on these frozen bytes",
+  "issue": "Native editor body iterates UTF-8 bytes and paints two replacement glyphs for U+00E9, despite exact saved/reopened bytes and correct filename/GDI glyphs",
+  "qualification": "qualification95/acceptance-results.json",
+  "capture": "editor-body-utf8-byte-rendering.png",
+  "release_published": false
+}

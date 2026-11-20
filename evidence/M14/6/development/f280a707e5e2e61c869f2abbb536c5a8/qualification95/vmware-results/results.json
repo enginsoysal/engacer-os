@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "stage": "M14.6",
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "iso_sha256": "e0d70e646c1755eec84af4da84ed2a785e81264f36b886298c0478737e68395d",
+  "starter_sha256": "ed4555b4191dc636c1462ef493e623c451135d9ca19e127ba823a44f03e33680",
+  "checks": [
+    "Actual RFB mouse opens Screensaver settings, shows native preview and returns without operating the underlying Preview control",
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "visible_preview_wake_observations": [
+    {
+      "phase": "preview",
+      "black_fraction": 0.9929211934407552
+    },
+    {
+      "phase": "wake",
+      "body_restored": true,
+      "unchanged_settings_fraction": 0.9874692874692874
+    }
+  ],
+  "original_window": {
+    "passed": true,
+    "scope": "Original supported MSI installation and original file-manager window launch/move/normal close in exact enabled-device VMware starter; not complete GUI app tasks",
+    "expected_original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+    "original_identity_basis": "Pinned bundled MSI verification; full installed payload SHA-256 independently checked in native QEMU profiles",
+    "input": "Authenticated loopback RFB of this new owned headless guest"
+  },
+  "inventory_cleanup_observations": [
+    {
+      "count": 1,
+      "owned_test_still_listed": false,
+      "matches_before": true
+    }
+  ],
+  "before_inventory_sha256": [
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "after_inventory_sha256": [
+    "b695baf194e633663b7c537667011407c0fc17177b9fb8394ae0fc49db8c7dca"
+  ],
+  "existing_vm_inventory_unchanged": true
+}

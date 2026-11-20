@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "clone": {
+    "source_sha256": "02e1a5864ad88269c351ca3a316e1d997ea17b9c553f493247de32ffc06ed510",
+    "clone_sha256": "02e1a5864ad88269c351ca3a316e1d997ea17b9c553f493247de32ffc06ed510",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    {
+      "name": "Real in-progress HTTPS cancellation leaves no published partial installer",
+      "bytes_before_cancel": 178627,
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi"
+    },
+    {
+      "name": "Actual native HTTPS transfer from Mozilla and independent stopped-disk hash",
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi",
+      "bytes": 95924224,
+      "sha256": "6dc28633cbd77cb1d044f339185cd467dda39397e4bcca942bfb0ddb2360c681",
+      "installer_executed": false
+    }
+  ],
+  "download_observations": [
+    {
+      "state": 3,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 8446720,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 16812800,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 25355712,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 33604619,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 41950219,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 50577257,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 58810217,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 67189834,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 75594826,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 84017152,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 92290091,
+      "tls_error": 0
+    },
+    {
+      "state": 4,
+      "bytes": 95924224,
+      "tls_error": 0
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": 14,
+  "maximum_read_bytes": 4096,
+  "new_kernel_payload_buffers": 0,
+  "old_view_preserved_on_errors": true,
+  "scope": "Supporting hosted production staging with actual multibyte UTF-8 crossing a 4096-byte read boundary; original fourteen failure/ownership checks retained; not native execution qualification",
+  "fixture_sha256": "e400508d99d5ff664c0b87d737d692ea0a48624013b0bf418d8cf75c0f5ebb4b",
+  "source_sha256": {
+    "kernel/desktop/document12.inc": "a6d5560d545424b831a633206b142cd2d8081a868fd2a41049591d64855aa2f8",
+    "include/engine/desktop/text146.h": "11dc3ab652cffa004030803cc7a8896f0b08a89e714f310aebb8e0a4cdd2e6e3",
+    "tests/m12/document_host.c": "3912827a4bf94587c22660ba35517bf6bc322270d88d3d6cb409eeb9b2b47c25",
+    "tests/m14/document146_host.py": "5ee901182985897a9e528146f027fd7d6f183cdd619d5e235e28421e3e79111e"
+  }
+}

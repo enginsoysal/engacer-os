@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "scope": "Owned native common-dialog ABI, Unicode selected files, native cancel/replacement consent, caller writes and independent bytes; not original-app dialog qualification",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "b7b08a3365d3345e8ddb254a22756f01c961d42b361e5d116810b77329dba0b6",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "independent_start_reopened_unicode_path_and_bytes": true,
+  "source_unchanged": true,
+  "saved_bytes_independently_verified": true
+}

@@ -67,7 +67,7 @@ def main():
     for before,after in [('capacity=400','capacity=1600'),('values[1]<=31','values[1]<=127'),('control_quota=31','control_quota=127')]:executed=executed.replace(before,after)
    if module=='original144_run':executed=executed.replace("node['bounds'][1]+40;scale=","node['bounds'][1]+40+node.get('menu_height',0);scale=")
    if module=='controls144_run':executed=executed.replace('from controls144_build import build','from controls145_build import build')
-   if module=='vmware4':executed=executed.replace('assert stage==4','assert stage==5')
+   if module=='vmware4':executed=executed.replace('assert stage==4','assert stage==6')
    assert hashlib.sha256(executed.encode()).hexdigest()==row['executed_sha256'],(path,'Executed replay observer differs')
   observers.append(r)
  assert observers
@@ -114,9 +114,9 @@ def main():
    # This verifier does not execute any campaign task. Preserve its exact
    # campaign-start source and bind its additive acceptance-only corrections.
    import subprocess
-   historical=subprocess.check_output(['git','show','5c2c23ab4cb3a359c22864e86b98067ba01fc1d5:'+path],cwd=ROOT)
+   historical=subprocess.check_output(['git','show','64ff0ee30af880a0121d1c9a69251cc47fae7eb8:'+path],cwd=ROOT)
    assert hashlib.sha256(historical).hexdigest()==digest
-   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='5c2c23ab4cb3a359c22864e86b98067ba01fc1d5',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
+   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='64ff0ee30af880a0121d1c9a69251cc47fae7eb8',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
   else:assert current==digest,('Suite observer input changed',path)
  assert all(r.get('validated_source_tree_sha256',r['source_tree_sha256'])==tree['source_tree_sha256']for r in suite['tasks'].values())
  reused_trees={}

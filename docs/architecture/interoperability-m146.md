@@ -1,6 +1,6 @@
 # M14.6 document and clipboard contract
 
-Current implementation and qualification record. The complete M14.6 campaign is running on candidate `f280a707e5e2e61c869f2abbb536c5a8`; this stage is not accepted yet. Original AMD64 instructions continue in private native processes; no embedded Windows environment is introduced.
+Current implementation and qualification record. Candidate `f280a707e5e2e61c869f2abbb536c5a8` passes all 95 automated tasks and exact-source/media verification, but the visual delivery gate finds a native-editor body loop that still renders UTF-8 bytes separately. This blocks release; filenames and GDI pixels remain correct and document bytes are exact. The next candidate must add scalar body rendering and a separate body-pixel reference. M14.5 remains the qualified download. Original AMD64 instructions continue in private native processes; no embedded Windows environment is introduced.
 
 ## Current implemented profile
 

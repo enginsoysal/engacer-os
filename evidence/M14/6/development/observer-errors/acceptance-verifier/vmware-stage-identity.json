@@ -1,0 +1,6 @@
+{
+  "scope": "Acceptance verifier error; all 95 campaign tasks remain passed",
+  "failure": "The reused verifier expected assert stage==5 while the recorded actual M14.6 VMware observer executes assert stage==6.",
+  "correction": "Reconstruct the same stage6 source as the actual replay adapter; native source, fixtures, observers and media unchanged.",
+  "campaign_verifier_commit": "64ff0ee30af880a0121d1c9a69251cc47fae7eb8"
+}

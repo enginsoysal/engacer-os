@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "scope": "Own native CPL3 drawing, physical framebuffer pixels and repeated teardown; not original GUI qualification",
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "fixture_sha256": "0c600624f3cbc58e15c864dafe3ecb2c2f2bfba8947916880b5c040f2ba2e5d5",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 7,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 8,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 9,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 10,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 11,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 12,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 13,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 14,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 15,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 16,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 17,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 18,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 19,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 20,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 21,
+      "paint_callbacks_at_least": 21,
+      "retained_pages": 0
+    }
+  ],
+  "physical_framebuffer": {
+    "colored_pixel_rgb": [
+      0,
+      120,
+      199
+    ],
+    "white_pixel_rgb": [
+      255,
+      255,
+      255
+    ],
+    "native_text_dark_pixels": 573,
+    "physical_width": 1280,
+    "physical_height": 800
+  },
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=3886316271\nRunning the original Windows executable in a protected process.\n\nM144_PAINT_READY\nM144_PAINT_REPAINTED\nM144_EDIT_KEYBOARD_PASS\nM144_EDIT_BACKSPACE_PASS\nM144_PAINT_LIFETIME_PASS\n"
+}

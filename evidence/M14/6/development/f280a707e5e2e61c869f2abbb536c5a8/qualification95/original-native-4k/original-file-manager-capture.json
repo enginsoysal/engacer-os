@@ -1,0 +1,8 @@
+{
+  "source": "actual native framebuffer physical bytes; no VGA cache or image resizing",
+  "width": 3840,
+  "height": 2160,
+  "stride": 15360,
+  "raw_sha256": "42d8d43133dd142d336dbfa0bba7ca7f92165b0ecb0aef25a2dfc988b8bb2faf",
+  "raw_storage": "New file compressed at creation by NTFS; existing fixtures untouched"
+}

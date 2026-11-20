@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "scope": "Owned ordinary physical Ctrl+C/H/I/J and Ctrl+Backspace/Tab/Enter virtual-key identity and consumed Control state; not universal keyboard qualification",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "33d3090834a12e514b8d1e2ed4611bd47a2342921e41a700cb92c21110e49862",
+  "keys": [
+    "c",
+    "h",
+    "i",
+    "j",
+    "backspace",
+    "tab",
+    "ret"
+  ],
+  "retained_pages": 0,
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=3365964240\nRunning the original Windows executable in a protected process.\n\nM146_CHORD_READY\nM146_CHORD_C\nM146_CHORD_H\nM146_CHORD_I\nM146_CHORD_J\nM146_CHORD_BACKSPACE\nM146_CHORD_TAB\nM146_CHORD_ENTER\nM146_CHORD_IDENTITY_PASS\n"
+}

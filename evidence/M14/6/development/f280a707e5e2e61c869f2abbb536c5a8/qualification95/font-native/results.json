@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "profile": "compact",
+  "scope": "Owned native GDI-to-compositor Unicode pixels and lifetime; not original-app font API qualification",
+  "fixture_sha256": "51fa233ec3915b92967777bea151fd6ba83074bacfe436c7df4f3e8ebfb03952",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    }
+  ],
+  "physical_dimensions": [
+    1280,
+    800
+  ],
+  "scale_half_units": 2,
+  "pixel_rows": [
+    {
+      "text": "A\u00e9\u20ac\u011e\u0131\u015e\u00c6?",
+      "actual_painted": "A\u00e9\u20ac\u011e\u0131\u015e\u00c6?",
+      "exact_rgb_sha256": "f15c405c3452a5cd51010ac3e04a174c8f0b9fa66ba0d808c39c6b51068142a7",
+      "physical_font_size": 16,
+      "checked_pixels": 8000
+    },
+    {
+      "text": "\ud83d\ude00 A",
+      "actual_painted": "? A",
+      "exact_rgb_sha256": "fd15cd890a13ff158c35b5d767fbff23c9084587c5e66bbda5fa548833576687",
+      "physical_font_size": 16,
+      "checked_pixels": 8000
+    }
+  ],
+  "reported_logical_extent": [
+    82,
+    16
+  ],
+  "reported_work_area": [
+    1280,
+    740
+  ],
+  "subsequent_original_console_success": true
+}

@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "scope": "Exact shipped ELF program headers and linker sections only; not total OS consumption, dynamic task RAM, CPU time, framebuffer allocation or M14.15 qualification",
+  "records": {
+    "M14.5": {
+      "installed": {
+        "elf_sha256": "021af4857fb9427be9fbc32614ba1b5e76cec22507ce62c4d783875ed50de055",
+        "elf_file_bytes": 1548692,
+        "load_memory_bytes": 3440934,
+        "rounded_physical_load_pages": 842,
+        "writable_static_sections_bytes": 1902412,
+        "sections": {
+          ".text": 984467,
+          ".rodata": 554043,
+          ".data": 404,
+          ".bss": 1902008
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 984467,
+            "memory_bytes": 984467
+          },
+          {
+            "physical_start": 3084288,
+            "file_bytes": 554043,
+            "memory_bytes": 554043
+          },
+          {
+            "physical_start": 3641344,
+            "file_bytes": 404,
+            "memory_bytes": 1902424
+          }
+        ]
+      },
+      "live": {
+        "elf_sha256": "a9d213399bfe03dc693db0870298040fe016f438d875e1d0bd570aa2fd9033c8",
+        "elf_file_bytes": 4342164,
+        "load_memory_bytes": 6233622,
+        "rounded_physical_load_pages": 1524,
+        "writable_static_sections_bytes": 1902412,
+        "sections": {
+          ".text": 984467,
+          ".rodata": 3346731,
+          ".data": 404,
+          ".bss": 1902008
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 984467,
+            "memory_bytes": 984467
+          },
+          {
+            "physical_start": 3084288,
+            "file_bytes": 3346731,
+            "memory_bytes": 3346731
+          },
+          {
+            "physical_start": 6434816,
+            "file_bytes": 404,
+            "memory_bytes": 1902424
+          }
+        ]
+      }
+    },
+    "M14.6": {
+      "installed": {
+        "elf_sha256": "a3ee733533b97123b6e53de2254d12eae7e95140dcdb49be2ecbd817738d5be3",
+        "elf_file_bytes": 1565076,
+        "load_memory_bytes": 3457946,
+        "rounded_physical_load_pages": 846,
+        "writable_static_sections_bytes": 1903904,
+        "sections": {
+          ".text": 1012995,
+          ".rodata": 541035,
+          ".data": 404,
+          ".bss": 1903500
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1012995,
+            "memory_bytes": 1012995
+          },
+          {
+            "physical_start": 3112960,
+            "file_bytes": 541035,
+            "memory_bytes": 541035
+          },
+          {
+            "physical_start": 3657728,
+            "file_bytes": 404,
+            "memory_bytes": 1903916
+          }
+        ]
+      },
+      "live": {
+        "elf_sha256": "5711e3268752586e0d1c3c3c9eaf889502a889e11de58e44670015121734f03e",
+        "elf_file_bytes": 4383124,
+        "load_memory_bytes": 6277194,
+        "rounded_physical_load_pages": 1534,
+        "writable_static_sections_bytes": 1903904,
+        "sections": {
+          ".text": 1012995,
+          ".rodata": 3360283,
+          ".data": 404,
+          ".bss": 1903500
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1012995,
+            "memory_bytes": 1012995
+          },
+          {
+            "physical_start": 3112960,
+            "file_bytes": 3360283,
+            "memory_bytes": 3360283
+          },
+          {
+            "physical_start": 6475776,
+            "file_bytes": 404,
+            "memory_bytes": 1903916
+          }
+        ]
+      }
+    }
+  },
+  "delta": {
+    "installed": {
+      "elf_file_bytes": 16384,
+      "load_memory_bytes": 17012,
+      "rounded_physical_load_pages": 4,
+      "writable_static_sections_bytes": 1492
+    },
+    "live": {
+      "elf_file_bytes": 40960,
+      "load_memory_bytes": 43572,
+      "rounded_physical_load_pages": 10,
+      "writable_static_sections_bytes": 1492
+    }
+  },
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "baseline_build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "manifest_sha256": {
+    "M14.5": "cbc9dd510c84fb9007f9fac8b35a3d2f895e315bce6d20b1647c40f0694c6d8a",
+    "M14.6": "b35ed4bb76ea8b5fa85aed812a68239b9ae5f8df2534b6f3a01dac31aa7899f6"
+  },
+  "method": "Validate exact ELF SHA256 against each shipped build manifest, decode ELF64 PT_LOAD headers, count union of physically addressed 4096-byte load pages, and read exact output .data/.bss linker section sizes. Page sets include segment padding; overlapping scopes must not be summed."
+}

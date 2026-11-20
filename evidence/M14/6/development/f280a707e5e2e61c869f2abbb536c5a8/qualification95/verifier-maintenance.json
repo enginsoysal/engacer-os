@@ -1,0 +1,9 @@
+[
+  {
+    "path": "tests/m14/verify6.py",
+    "campaign_start_sha256": "7e13c25c58c5b760e0086a158e8019a123fa684422581df3708e0b51e146486b",
+    "current_sha256": "b00d81173e894f3d102b7744d686266269372697d7394d12dbe21742da859a67",
+    "canonical_commit": "64ff0ee30af880a0121d1c9a69251cc47fae7eb8",
+    "scope": "Acceptance-only verifier correction; no executed native/host observer or fixture changes"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "scope": "Supporting host core with deterministic metadata/payload allocation failure; not real native allocator, thread or Windows application qualification",
+  "checks": 15,
+  "sources": {
+    "user/windows8/global-memory146.inc": "a0e2814be6c84b9291a70d85d329f40b8990bc960d33ca52385bd968298e4c07",
+    "tests/m14/global146_host.c": "3425b161488afff2b08d57fd929cfe349395987c5f254444c7d564cc88c5286c",
+    "tests/m14/global146_host.py": "45c77e78962cef1ebf7f37d61b7e2043ef92b2ae4df4590720f975e9f505466f"
+  }
+}

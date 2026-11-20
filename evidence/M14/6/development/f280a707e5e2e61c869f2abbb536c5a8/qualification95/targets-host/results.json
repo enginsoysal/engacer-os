@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "scope": "Host refusal-key and generation checks only; no refusal-body invocation or API compatibility proof",
+  "assertions": 1700,
+  "keys": 634,
+  "immutable_key_bytes": 5072,
+  "sources": {
+    "user/windows8/target-guards145.inc": "0b7607ce45bd3b461b3cb7f03b472f4c18921dfec468d48fa0fe9a5a547e4d86",
+    "user/windows8/target-refusals145.inc": "6ad5d78d8fcd0d768a5920153a42ada8aebef8f95117848d9a635546f26eaffa",
+    "user/windows8/providers145.inc": "e6b956467f76f89d012626e77adc42312e4770e80b911e3b19f5ed109790dd9d",
+    "tools/build/m14_targets145.py": "19f2f005e0cb627beeea644cdadd613a8c794b3333dd9e6856523d14b850bde5",
+    "tests/m14/targets145_host.c": "3032a5aa74cbd323f61c755cecb0017f45cab2d42d00747bd54b8d773d9d8399"
+  }
+}
