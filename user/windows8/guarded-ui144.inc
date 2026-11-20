@@ -143,8 +143,11 @@ static NORETURN void MS ui_guard144_138(void){fail8("Not implemented: mpr.dll!WN
 static NORETURN void MS ui_guard144_139(void){fail8("Not implemented: mpr.dll!WNetGetResourceParentW");}
 static NORETURN void MS ui_guard144_140(void){fail8("Not implemented: mpr.dll!WNetGetResourceInformationW");}
 static NORETURN void MS ui_guard144_141(void){fail8("Not implemented: mpr.dll!WNetCloseEnum");}
+/* Known helper import: diagnostic only, hidden from optional API discovery. */
+static NORETURN void MS ui_guard146_font(void){fail8("Not implemented: gdi32.dll!CreateFontIndirectW");}
 typedef struct {unsigned provider,ordinal;const char*name;void*address;} guard_export144;
 static const guard_export144 guards144[]={
+{8,0,"CreateFontIndirectW",ui_guard146_font},
 {6,0,"InitCommonControlsEx",ui_guard144_0},
 {6,0,"CreateToolbarEx",ui_guard144_1},
 {6,0,"CreateStatusWindowW",ui_guard144_2},

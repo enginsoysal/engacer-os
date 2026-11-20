@@ -29,8 +29,8 @@
     "winspool.drv": 26,
     "wintrust.dll": 27
   },
-  "refusal_keys": 636,
-  "table_bytes": 5088,
+  "refusal_keys": 634,
+  "table_bytes": 5072,
   "imports": [
     {
       "app": "notepadpp",
@@ -1904,13 +1904,6 @@
     {
       "app": "notepadpp",
       "dll": "user32.dll",
-      "symbol": "SetDlgItemTextA",
-      "key": "c5f343ff336b75a1",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
       "symbol": "wsprintfW",
       "key": "dde04ca6cfd5b5c7",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -2375,13 +2368,6 @@
       "dll": "gdi32.dll",
       "symbol": "RestoreDC",
       "key": "78cb8af022b4b6de",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "gdi32.dll",
-      "symbol": "CreateFontIndirectW",
-      "key": "38a5295997353d45",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4573,13 +4559,6 @@
       "dll": "gdi32.dll",
       "symbol": "CreateSolidBrush",
       "key": "c5fe328fd0c573e2",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdi32.dll",
-      "symbol": "CreateFontIndirectW",
-      "key": "38a5295997353d45",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

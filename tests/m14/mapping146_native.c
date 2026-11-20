@@ -2,6 +2,7 @@
 typedef unsigned long long H;typedef unsigned short W;
 typedef struct {unsigned size,pad;H reserved,desktop,title;unsigned x,y,width,height,columns,rows,fill,flags;unsigned short show,bytes;unsigned pad2;H reserved2,input,output,error;} START;
 typedef struct {H process,thread;unsigned pid,tid;} PROCESS;
+__declspec(dllimport) W*lstrcatW(W*,const W*);
 __declspec(dllimport) H CreateFileMappingW(H,void*,unsigned,unsigned,unsigned,const W*);
 __declspec(dllimport) H OpenFileMappingW(unsigned,int,const W*);
 __declspec(dllimport) void*MapViewOfFile(H,unsigned,unsigned,unsigned,H);
@@ -31,7 +32,7 @@ static void spawn(const W*mode,PROCESS*out){W path[512],command[600];unsigned n=
 static void finish(PROCESS*p,unsigned expected){check(WaitForSingleObject(p->process,30000)==0,"private child completes");unsigned code=99;check(GetExitCodeProcess(p->process,&code)&&code==expected,"private child status");check(CloseHandle(p->thread)&&CloseHandle(p->process),"child handles released");}
 static void child(const W*mode,unsigned expected){PROCESS p;spawn(mode,&p);finish(&p,expected);}
 void entry(void){
- check(relocation_anchor146==main_name,"relocated image pointer");const W*command=GetCommandLineW();
+ check(relocation_anchor146==main_name,"relocated image pointer");W concatenated[24]={'A',0};check(lstrcatW(concatenated,L"\u00e9\U0001f600")==concatenated&&concatenated[0]=='A'&&concatenated[1]==0xe9&&concatenated[2]==0xd83d&&concatenated[3]==0xde00&&!concatenated[4],"real Unicode concatenation and return pointer");check(lstrcatW(concatenated,L"")==concatenated&&!concatenated[4],"empty append");check(!lstrcatW(0,L"X")&&!lstrcatW(concatenated,0)&&concatenated[1]==0xe9,"invalid concatenation preserves valid text");const W*command=GetCommandLineW();
  if(contains(command,L"--writer")){H h=OpenFileMappingW(2,0,main_name);check(h!=0,"child opens named section");volatile unsigned char*p=MapViewOfFile(h,2,0,0,0);check(p&&p[0]==0xa5&&p[65536]==0xb5&&p[131072]==0xc5,"child sees exact parent data across pages");H parent=*(const volatile H*)(p+16);check(!CloseHandle(parent)&&GetLastError()==6,"foreign handle is not a child grant");check(CloseHandle(h),"child closes handle before view");p[0]=0x33;p[4096]=0x44;p[65536]=0x55;p[131072]=0x66;say("M146_MAPPING_PRIVATE_WRITER_PASS\n");ExitProcess(0);}
  if(contains(command,L"--readonly-fault")){H h=OpenFileMappingW(4,0,main_name);check(h!=0,"fault child opens section");volatile unsigned char*p=MapViewOfFile(h,4,0,0,4096);check(p&&p[0]==0x33&&CloseHandle(h),"fault child read-only view survives close");say("M146_MAPPING_READONLY_FAULT_EXPECTED\n");p[0]=0x99;check(0,"read-only write unexpectedly succeeded");}
  if(contains(command,L"--source-exit")){H ready=OpenEventW(0x1f0003,0,ready_name),ack=OpenEventW(0x1f0003,0,ack_name);check(ready&&ack,"source lifetime events");H h=CreateFileMappingW((H)-1,0,4,0,4096,exit_name);check(h!=0,"source creates section");volatile unsigned char*p=MapViewOfFile(h,2,0,0,0);check(p!=0,"source view");p[0]=0xe7;check(SetEvent(ready)&&WaitForSingleObject(ack,30000)==0,"reader obtains lifetime reference");ExitProcess(0);}

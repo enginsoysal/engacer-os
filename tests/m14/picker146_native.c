@@ -10,6 +10,9 @@ __declspec(dllimport) I DefWindowProcW(H,unsigned,H,I);
 __declspec(dllimport) int GetOpenFileNameW(void*);
 __declspec(dllimport) int GetSaveFileNameW(void*);
 __declspec(dllimport) unsigned CommDlgExtendedError(void);
+__declspec(dllimport) int SetDlgItemTextA(H,int,const char*);
+__declspec(dllimport) unsigned GetDlgItemTextW(H,int,W*,int);
+__declspec(dllimport) unsigned GetLastError(void);
 __declspec(dllimport) H CreateFileW(const W*,unsigned,unsigned,void*,unsigned,unsigned,H);
 __declspec(dllimport) int ReadFile(H,void*,unsigned,unsigned*,void*);
 __declspec(dllimport) int WriteFile(H,const void*,unsigned,unsigned*,void*);
@@ -36,6 +39,7 @@ static I procedure(H h,unsigned m,H w,I l){return DefWindowProcW(h,m,w,l);}
 static PROC volatile anchor=procedure;
 void entry(void){
  CLASS cls={0};cls.proc=anchor;cls.name=L"Picker146";check(RegisterClassW(&cls)!=0,"class");owner=CreateWindowExW(0,cls.name,L"Common dialog interoperability",0x10cf0000,180,100,560,360,0,0,0,0);check(owner!=0,"owner window");wpick_ofn146 ofn;
+ H edit=CreateWindowExW(0,L"Edit",L"",0x50810000,16,16,300,32,owner,101,0,0);check(edit!=0,"owned ANSI text control");W label[32];check(SetDlgItemTextA(owner,101,"Text \xc3\xa9")&&GetDlgItemTextW(owner,101,label,32)==6&&label[5]==0xe9,"real ANSI UTF-8 control text");check(!SetDlgItemTextA(owner,101,"\xc0\xaf")&&GetLastError()==1113&&GetDlgItemTextW(owner,101,label,32)==6&&label[5]==0xe9,"invalid ANSI text preserves existing label");check(SetDlgItemTextA(owner,101,0)&&!GetDlgItemTextW(owner,101,label,32)&&!label[0],"null ANSI label clears control");
  if(GetFileAttributesW(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt")!=(unsigned)-1)check(DeleteFileW(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt"),"remove previous owned fixture output");
  check(!GetOpenFileNameW(0)&&CommDlgExtendedError()==0xffff,"invalid structure pointer");
  init(&ofn);ofn.file=1;check(!GetOpenFileNameW(&ofn)&&CommDlgExtendedError()==0xffff,"invalid output pointer");

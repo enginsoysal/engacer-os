@@ -34,6 +34,8 @@ static int nativepath_mode143(const WCHAR*wide,char*out,unsigned flags){
  if(status<0){last8((unsigned)-status);return 0;}memcpy(out,result.native,256);return 1;
 }
 static int nativepath8(const WCHAR*wide,char*out){return nativepath_mode143(wide,out,0);}
+/* Legacy contract: valid caller-owned destination capacity is required. */
+static WCHAR*MS f_lstrcatW(WCHAR*destination,const WCHAR*source){if(!destination||!source){last8(87);return 0;}unsigned at=wlen8(destination),i=0;do{destination[at++]=source[i];}while(source[i++]);return destination;}
 static int MS f_MultiByteToWideChar(unsigned,unsigned,const char*,int,WCHAR*,int);
 static int MS f_WideCharToMultiByte(unsigned,unsigned,const WCHAR*,int,char*,int,const char*,int*);
 #include "environment143.inc"
@@ -371,9 +373,9 @@ static const api8 api8_table[]={
  API8(RegisterClipboardFormatW,4),API8(GetClipboardFormatNameW,4),
  API8(LsaOpenPolicy,5),API8(LsaClose,5),API8(LsaAddAccountRights,5),API8(LookupAccountNameW,5),API8(GetUserNameW,5),
  API8(CoInitializeEx,9),API8(CoInitialize,9),API8(CoUninitialize,9),API8(OleInitialize,9),API8(OleUninitialize,9),API8(RegisterDragDrop,9),API8(RevokeDragDrop,9),
- API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
+ API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(SetDlgItemTextA,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
- API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),
+ API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(lstrcatW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),
  API8(LoadIconW,4),API8(LoadBitmapW,4),API8(LoadImageW,4),API8(DestroyIcon,4),API8(DeleteObject,8),API8(ImageList_Create,6),API8(ImageList_Destroy,6),API8(ImageList_GetImageCount,6),API8(ImageList_ReplaceIcon,6),API8(ImageList_AddMasked,6),
  API8(FindResourceW,1),API8(FindResourceExW,1),API8(LoadResource,1),API8(LockResource,1),API8(SizeofResource,1),API8(FreeResource,1),API8(LoadStringW,4),
  API8(RegisterClassW,4),API8(GetClassInfoW,4),API8(CallWindowProcW,4),API8(SendMessageW,4),API8(CreateWindowExW,4),API8(DestroyWindow,4),API8(PostMessageW,4),API8(PostQuitMessage,4),API8(PeekMessageW,4),API8(GetMessageW,4),API8(DispatchMessageW,4),API8(TranslateMessage,4),API8(DefWindowProcW,4),API8(SetWindowTextW,4),API8(GetWindowTextW,4),API8(GetWindowTextLengthW,4),API8(GetWindowLongPtrW,4),API8(SetWindowLongPtrW,4),API8(ShowWindow,4),API8(GetParent,4),API8(IsWindow,4),

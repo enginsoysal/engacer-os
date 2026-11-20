@@ -21,7 +21,8 @@ def main():
   for name,data in invalid.items():mounted.put(folder+'/'+name,data)
  finally:mounted.close()
  original=ui.s.s.document(disk,'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',8*1024**2);digest=hashlib.sha256(original).hexdigest();assert digest=='a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931'
- report=dict(passed=False,build_id=meta['build_id'],original_sha256=digest,fixture_sha256=hashlib.sha256(payload).hexdigest(),clone=cloned,profile=profile,scope='Original 7-Zip Add-action diagnostic only; no complete archive/common-dialog task qualification')
+ helper=ui.s.s.document(disk,'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zG.exe',8*1024**2);helper_digest=hashlib.sha256(helper).hexdigest();assert helper_digest=='5eb5d21003927be4d53401b9b6bbe8a787caabb38eaafaf0d429a136d7031621'
+ report=dict(passed=False,original_helper_sha256=helper_digest,build_id=meta['build_id'],original_sha256=digest,fixture_sha256=hashlib.sha256(payload).hexdigest(),clone=cloned,profile=profile,scope='Original 7-Zip Add-action diagnostic only; no complete archive/common-dialog task qualification')
  try:
   boot=ui.guest(work/'browse',disk,media='installed',ready='M7_DESKTOP_READY',ram=1024 if profile=='4k'else 512 if profile=='ordinary'else 128,resolution=(3840,2160)if profile=='4k'else(1920,1080)if profile=='ordinary'else(1280,800));ui.s.normal_boot(boot)
   with boot as g:
@@ -48,7 +49,7 @@ def main():
     node=table[node['parent']];border=1 if node['style']&0x800000 else 0;x+=node['bounds'][0]+border;y+=node['bounds'][1]+(border if node['parent']else 40+node['menu_height'])
    p.move(int(x*scale),int(y*scale));p.down(True);p.down(False);p.drain();deadline=time.monotonic()+20
    while time.monotonic()<deadline:
-    state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));report['worker_state']=[state,command,status];report['output']=output(g);report['views']=views(g)
+    state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));report['worker_state']=[state,command,status];report['output']=output(g);report['views']=views(g);report['maximum_observed_windows']=max(report.get('maximum_observed_windows',0),len(report['views']))
     if state==3 or 'Not implemented:'in report['output']or any('Add to Archive'in v['title']for v in report['views']):break
     time.sleep(.1)
    c.shot(g,'original-add-result');report['scope']='Read-only native diagnostic of the actual original 7-Zip Add action; no archive/common-dialog compatibility qualification';report['diagnostic_completed']=True;report['passed']=False

@@ -94,3 +94,6 @@ static int MS f_GetDlgCtrlID(HANDLE h){ui_window_runtime144*w=ui_window_lookup14
 static unsigned MS f_GetDlgItemTextW(HANDLE h,int id,WCHAR*out,int capacity){HANDLE child=f_GetDlgItem(h,id);return child?(unsigned)f_GetWindowTextW(child,out,capacity):0;}
 static int MS f_CheckDlgButton(HANDLE h,int id,unsigned state){if(state>2){last8(87);return 0;}HANDLE child=f_GetDlgItem(h,id);if(!child)return 0;f_SendMessageW(child,0xf1,state,0);return 1;}
 static unsigned MS f_IsDlgButtonChecked(HANDLE h,int id){HANDLE child=f_GetDlgItem(h,id);return child?(unsigned)f_SendMessageW(child,0xf0,0,0):0;}
+
+/* This profile declares a UTF-8 ANSI code page; failed conversion preserves text. */
+static int MS f_SetDlgItemTextA(HANDLE window,int id,const char*text){if(!text)return f_SetDlgItemTextW(window,id,u"");int units=f_MultiByteToWideChar(65001,0,text,-1,0,0);if(units<=0)return 0;if(units>2048){last8(206);return 0;}WCHAR*wide=alloc8((unsigned)units*2);if(!wide){last8(8);return 0;}if(f_MultiByteToWideChar(65001,0,text,-1,wide,units)!=units){free8(wide);return 0;}int result=f_SetDlgItemTextW(window,id,wide);free8(wide);return result;}
