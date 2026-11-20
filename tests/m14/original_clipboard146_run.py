@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[2]
 from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output
 from original_window_trace4 import views,wait_for
 from original_menu145_run import commands
+import dialogs_native as dialogs
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','ordinary','4k'],default='compact');profile=parser.parse_args().profile
  out=ROOT/'build/m14-native/stage6'/('original-clipboard'+(''if profile=='compact'else'-'+profile));out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage6'/('apps'+(''if profile=='compact'else'-'+profile))/'results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
@@ -36,6 +37,13 @@ def main():
    report['retained_original_process_pages']=f.stats(g)[0]-before-report['declared_shared_format_pages'];assert report['retained_original_process_pages']==0
    t.focus(g,p,editor);p.desktop(23,True);wait_for(g,lambda:bytes(t.app_view(g).text)==expected);assert t.app_view(g).length==len(expected);c.shot(g,'native-editor-received-original-copy')
    p.desktop(20,True);wait_for(g,lambda:t.app_view(g).dirty==0);report['saved_native_path']=saved_path;assert saved_path.startswith('/Users/Owner/Documents/') and saved_path!=folder+'/'+leaf
+   p.desktop(49002,True);editor=t.launch(g,p,'text editor',2);p.desktop(54000,True);p.desktop(54016,True);dialogs.choose(g,p,saved_path.rsplit('/',1)[1]);c.key(g,'ret');wait_for(g,lambda:bytes(t.app_view(g).text)==expected);assert not t.app_view(g).dirty;report['native_reopened_unicode_bytes']=True;c.shot(g,'native-editor-reopened-original-copy')
+   c.key(g,'home')
+   for _ in range(6):c.key(g,'right')
+   assert t.app_view(g).cursor==7;c.key(g,'left');assert t.app_view(g).cursor==5;c.key(g,'right');assert t.app_view(g).cursor==7;c.key(g,'backspace');assert bytes(t.app_view(g).text)==b'm146-.txt'
+   c.key(g,'ctrl','a');c.key(g,'ctrl','v');assert bytes(t.app_view(g).text)==expected;c.key(g,'home')
+   for _ in range(5):c.key(g,'right')
+   assert t.app_view(g).cursor==5;c.key(g,'delete');assert bytes(t.app_view(g).text)==b'm146-.txt';c.key(g,'ctrl','a');c.key(g,'ctrl','v');assert bytes(t.app_view(g).text)==expected;p.desktop(20,True);assert not t.app_view(g).dirty;report['scalar_cursor_backspace_delete_preserve_utf8']=True
    p.desktop(49002,True);t.focus(g,p,front);value=task(g,p,12005);assert 'Mapped original image: 7z.exe' in value and '7-Zip' in value;report['subsequent_original_console_success']=True
   assert ui.s.s.document(disk,saved_path,8192)==expected;assert ui.s.s.document(disk,folder+'/'+leaf,4096)==payload;report['native_saved_bytes_verified']=True;report['source_file_unchanged']=True;report['passed']=True
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise

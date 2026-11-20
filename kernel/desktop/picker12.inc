@@ -78,7 +78,7 @@ static void picker_snapshot12(const v6_entry*e){picker12.target_first=e->first;p
 static unsigned picker_unchanged12(const v6_entry*e){return e&&e->kind==1&&e->first==picker12.target_first&&e->size==picker12.target_size&&e->crc==picker12.target_crc;}
 static void picker_editor_open12(desktop_window*w,application*a,const char*path,unsigned decision){
  unsigned slot=(unsigned)(w-model.windows),status=app7_document12(slot,path,&a->view,0);
- if(status){picker12.phase=0;picker_error12(status==V6_LIMIT?"Text Editor accepts at most 8191 bytes. Your current document is kept.":status==V6_INVALID?"This is not a supported ASCII text file. Your current document is kept.":"The selected file could not be verified. Your current document is kept.");return;}
+ if(status){picker12.phase=0;picker_error12(status==V6_LIMIT?"Text Editor accepts at most 8191 bytes. Your current document is kept.":status==V6_INVALID?"This is not a supported UTF-8 text file. Your current document is kept.":"The selected file could not be verified. Your current document is kept.");return;}
  if(a->dirty&&!decision){copy(picker12.pending,path,256);picker_snapshot12(entry(path));picker12.phase=P12_DIRTY_REVIEW;file_dialog_state11.focus=5;whole();return;}
  if(decision==1){save_document(a);if(a->dirty||a->stopped){picker_error12("Your current document could not be saved. Keep it open and try again.");return;}
   status=app7_document12(slot,path,&a->view,0);if(status){picker_error12("Your document was saved, but the new file could not be opened. It is still kept.");return;}}

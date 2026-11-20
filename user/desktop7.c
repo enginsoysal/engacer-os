@@ -1,11 +1,12 @@
 #define APP7_USER
 #include <engine/desktop/app.h>
+#include <engine/desktop/text146.h>
 #ifdef ENGINE_M74
 #include "calculator74.inc"
 #endif
 
 static void insert(app7_view *v,const char *bytes,unsigned count) {
-    if(count>APP7_TEXT-1-v->length)return;
+    if(count>APP7_TEXT-1-v->length||!text_valid146(bytes,count))return;
     for(unsigned i=v->length+1;i>v->cursor;--i)v->text[i+count-1]=v->text[i-1];
     for(unsigned i=0;i<count;++i)v->text[v->cursor+i]=bytes[i];
     v->cursor+=count;v->length+=count;v->dirty=1;
@@ -57,7 +58,7 @@ __attribute__((noreturn)) void app7_main(void) {
            ||APP7_KIND==9||APP7_KIND==18
 #endif
         ){
-            if(m->command==APP7_LOAD){
+            if(m->command==APP7_LOAD&&text_valid146(m->input,m->bytes)){
                 for(unsigned i=0;i<m->bytes;++i)v->text[i]=m->input[i];
                 v->text[m->bytes]=0;v->length=v->cursor=m->bytes;v->dirty=0;
             }
@@ -66,16 +67,18 @@ __attribute__((noreturn)) void app7_main(void) {
             if(m->command==APP7_SAVED)v->dirty=0;
             if(m->command==APP7_KEY){
                 unsigned key=m->key;
-                if(key==128&&v->cursor)--v->cursor;
-                else if(key==129&&v->cursor<v->length)++v->cursor;
+                if(key==128&&v->cursor)v->cursor=text_previous146(v->text,v->cursor);
+                else if(key==129&&v->cursor<v->length)v->cursor=text_next146(v->text,v->cursor,v->length);
                 else if(key==130)v->cursor=0;
                 else if(key==131)v->cursor=v->length;
                 else if(key==8&&v->cursor){
-                    for(unsigned i=v->cursor;i<=v->length;++i)v->text[i-1]=v->text[i];
-                    --v->cursor;--v->length;v->dirty=1;
+                    unsigned previous=text_previous146(v->text,v->cursor),removed=v->cursor-previous;
+                    for(unsigned i=v->cursor;i<=v->length;++i)v->text[i-removed]=v->text[i];
+                    v->cursor=previous;v->length-=removed;v->dirty=1;
                 }else if(key==132&&v->cursor<v->length){
-                    for(unsigned i=v->cursor;i<v->length;++i)v->text[i]=v->text[i+1];
-                    --v->length;v->dirty=1;
+                    unsigned next=text_next146(v->text,v->cursor,v->length),removed=next-v->cursor;
+                    for(unsigned i=next;i<=v->length;++i)v->text[i-removed]=v->text[i];
+                    v->length-=removed;v->dirty=1;
                 }else if((key>=32&&key<=126)||key==10){char value=(char)key;insert(v,&value,1);}
             }
         }
