@@ -184,7 +184,7 @@
       ]
     }
   ],
-  "developmentProgram": "M14.6",
+  "developmentProgram": "M14.5",
   "currentSummary": "M14.5 adds original 7-Zip x64 menu/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Original console/MSI tasks remain separately supported. Complete GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. There is no embedded Windows guest. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.",
   "currentImageAlt": "Actual Engacer OS M14.5: an original unmodified 7-Zip x64 interface through the native compatibility environment; named preview tasks, not universal Windows application support.",
   "reportedPlatformLimit": "BrixCanvas currently omits the saved same-page search and article navigation. Browse the task guides and archive; this reported platform limitation does not block OS milestones."

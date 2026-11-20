@@ -1,6 +1,6 @@
 # M14.5 native menu development
 
-The named menu profile passes 21 owned lifetimes and the original 7-Zip Help/About/OK task on compact and actual 4K media. Native M14.5 qualification passes; public delivery is being finalized. Complete original-app tasks remain later gates.
+The named menu profile passes 21 owned lifetimes and the original 7-Zip Help/About/OK task on compact and actual 4K media. Native M14.5 qualification passes; public delivery passes within the recorded owner scope. Complete original-app tasks remain later gates.
 
 The runtime paints the application's actual process-owned menu tree. It does
 not substitute an application-specific toolbar or send a fabricated command

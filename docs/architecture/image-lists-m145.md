@@ -1,6 +1,6 @@
 # M14.5 image-list operations and import refusal development
 
-Frozen development build `ea2a705c4fe43c5079ef2d8913a42c0d` passes the owned image-list pixel and lifetime checks, original folder browsing and explicit import-refusal containment. The final frozen 06c8de63a527c32ad9ec73f4b9e333bc passes complete native qualification; public delivery is being finalized. It does not qualify original
+Frozen development build `ea2a705c4fe43c5079ef2d8913a42c0d` passes the owned image-list pixel and lifetime checks, original folder browsing and explicit import-refusal containment. The final frozen 06c8de63a527c32ad9ec73f4b9e333bc passes complete native qualification; public delivery passes within the recorded owner scope. It does not qualify original
 Notepad++ or SumatraPDF entry, installation, interfaces or complete tasks.
 
 ## Real image objects

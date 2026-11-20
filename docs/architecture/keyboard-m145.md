@@ -1,6 +1,6 @@
 # M14.5 keyboard translation and cursor development
 
-The consumed-input, shifted-character and stationary cursor profile passes 21 native lifetimes without retained pages on frozen 06c8de63a527c32ad9ec73f4b9e333bc. Native M14.5 qualification passes; complete public delivery is being finalized. The explicit input/layout limits below remain.
+The consumed-input, shifted-character and stationary cursor profile passes 21 native lifetimes without retained pages on frozen 06c8de63a527c32ad9ec73f4b9e333bc. Native M14.5 qualification passes; complete public delivery passes within the recorded owner scope. The explicit input/layout limits below remain.
 
 ## Translation and input scope
 

@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "qualification": "M14-STAGE5-VM-v1",
+  "source_commit": "dd33aefccb2de4a4031723823faadb75ae1f5951",
+  "release_source_commit": "53c7eaffb8f730eb947270a2d41001a2229feb74",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "website": "https://engaceros.brixcanvas.com",
+  "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5",
+  "workflow_ids": [
+    44774875863
+  ],
+  "current_native_download": "m145-v0.14.5",
+  "design_only": false,
+  "new_iso": true,
+  "pages_checked": 588,
+  "exact_source_articles_verified": 379,
+  "unique_links": 4307,
+  "known_broken": 0,
+  "unverified_external_references": 12,
+  "links": "website-links.json",
+  "publication_source": "publication-source.json",
+  "native_editor_save": "native-editor-save.json",
+  "full_audit": "website-audit.json",
+  "fresh_readback": "website-readback.json",
+  "browser_readback": "public-browser-verification.json",
+  "downloads": "downloads.json",
+  "owner_scope": "owner-publication-scope.json",
+  "full_public_site_qualified": false,
+  "reported_nonblocking_platform_limits": [
+    "production_search",
+    "task_sidebar",
+    "ordered_task_navigation"
+  ],
+  "closure_observer": "tests/m14/close5_scoped.py",
+  "closure_observer_sha256": "293a8719193cb7207dd48c3a8f493c5659d8809ff8e4370183a378f7372a9deb"
+}

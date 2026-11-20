@@ -1,6 +1,6 @@
 # M14.5 list-view input development
 
-The named input/text profile passes 21 owned lifetimes and original Documents/subfolder/Backspace/detail tasks on compact, ordinary and actual 4K profiles. Native M14.5 qualification passes; complete public delivery is being finalized. General list/header behavior remains limited as described below.
+The named input/text profile passes 21 owned lifetimes and original Documents/subfolder/Backspace/detail tasks on compact, ordinary and actual 4K profiles. Native M14.5 qualification passes; complete public delivery passes within the recorded owner scope. General list/header behavior remains limited as described below.
 
 Plain pointer input selects/focuses the actual application-owned row. A
 single click does not activate it. Double-click and Enter send the documented

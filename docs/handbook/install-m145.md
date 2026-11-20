@@ -1,6 +1,6 @@
 # Install the M14.5 development candidate in VMware
 
-Native qualification passes within **M14-STAGE5-VM-v1**. Matching GitHub and complete actual website verification are being finalized. The owner made the reported missing BrixCanvas search/navigation nonblocking; their full browser test is not claimed as passed. Read the bounded original-window preview scope below.
+Native qualification passes within **M14-STAGE5-VM-v1**. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. The owner made the reported missing BrixCanvas search/navigation nonblocking; their full browser test is not claimed as passed. Read the bounded original-window preview scope below.
 
 
 ## Before starting

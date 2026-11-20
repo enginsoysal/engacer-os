@@ -103,3 +103,9 @@ removing old roots. Final home/recovery root counts are four/two. A cancelled
 reload in the stale tab is not evidence of a server or OS fault.
 
 Continue accumulating this report; deliver one combined handoff after M14.15.
+
+M14.5 publication observer follow-up (20 November 2026)
+- Resolved observer/source race: the successful dd33aef GitHub sync advanced generated portal/index source links beyond the earlier 53c7eaf payload. Eight provenance mismatches were retained, not treated as broken article content. Current payload and native Save were refreshed against dd33aef; immutable release/native source stamps remain separate.
+- Native editor revision protection correctly refused Save from an older tab after automatic sync. A fresh authenticated editor loaded the latest revision and both Home and 404 showed Saved. This is expected concurrent-edit protection, not a server defect.
+- Public 1280-pixel and 390-pixel checks independently verify current guides, source references, matching downloads, images, recovery and the basic mobile menu. Missing advanced search/task sidebar/ordered task navigation remains the previously reported platform issue; the ordinary mobile menu is working.
+- Observer correction: the M14.5 closure observer now parses the actual Unicode TAP information marker using an explicit Unicode escape and requires all fifty publisher tests. It separately verifies historical full-browser and new scoped-browser hashes rather than comparing two different observers as if they were the same file. Native acceptance and media are unchanged.

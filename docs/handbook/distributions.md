@@ -2,7 +2,7 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.5** within M14-STAGE5-VM-v1. Its [exact-source native acceptance](../../evidence/M14/5/acceptance-results.json) passes; use the matching official release and media. Matching GitHub assets and complete actual website delivery are being finalized. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.5** within M14-STAGE5-VM-v1. Its [exact-source native acceptance](../../evidence/M14/5/acceptance-results.json) passes; use the matching official release and media. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 

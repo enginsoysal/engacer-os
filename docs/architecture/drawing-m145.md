@@ -1,6 +1,6 @@
 # M14.5 drawing and control implementation
 
-Native qualification passes on frozen 06c8de63a527c32ad9ec73f4b9e333bc for the named original 7-Zip menu/dialog/folder preview and owned drawing/control profiles. Public delivery is being finalized. This is not general Windows GUI qualification.
+Native qualification passes on frozen 06c8de63a527c32ad9ec73f4b9e333bc for the named original 7-Zip menu/dialog/folder preview and owned drawing/control profiles. Public delivery passes within the recorded owner scope. This is not general Windows GUI qualification.
 
 ## Copied image tiles
 

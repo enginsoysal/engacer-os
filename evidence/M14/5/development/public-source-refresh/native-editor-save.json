@@ -1,0 +1,15 @@
+{
+  "source_commit": "53c7eaffb8f730eb947270a2d41001a2229feb74",
+  "checked_at": "2026-11-20T16:27:33.270Z",
+  "home": "Saved automatically ✓",
+  "recovery": "Saved automatically ✓",
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "owned_native_editor": true,
+  "method": "Fresh authenticated native BrixCanvas editor; virtual clipboard Paste Brix, native removal controls, explicit Save and observed saved status",
+  "public_home_version": "M14.5",
+  "notes": [
+    "The stale previous editor tab was left untouched after opening a fresh tab.",
+    "The initial replacement assumed manual Save; native autosave was observed, old roots were restored through Undo, and the final replacement appended new roots before removing old roots. Final public content and all articles are independently checked."
+  ]
+}

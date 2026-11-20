@@ -1,6 +1,6 @@
 # M14.5 resource dialogs
 
-The owned standard/extended resource profile passes 21 native lifetimes. The original 7-Zip About/OK/modal-owner task passes on compact and actual 4K profiles. Native M14.5 qualification passes; public delivery is being finalized. Arbitrary original resources and applications remain unqualified.
+The owned standard/extended resource profile passes 21 native lifetimes. The original 7-Zip About/OK/modal-owner task passes on compact and actual 4K profiles. Native M14.5 qualification passes; public delivery passes within the recorded owner scope. Arbitrary original resources and applications remain unqualified.
 
 Standard and extended Windows dialog resources are parsed with explicit byte
 bounds, UTF-16 termination limits, DWORD alignment, ordinal names, font records,

@@ -1,6 +1,6 @@
 # Your first day with M14.5
 
-Native qualification passes within **M14-STAGE5-VM-v1**. Matching GitHub and complete actual website verification are being finalized. The owner made the reported missing BrixCanvas search/navigation nonblocking; their full browser test is not claimed as passed. Read the bounded original-window preview scope below.
+Native qualification passes within **M14-STAGE5-VM-v1**. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. The owner made the reported missing BrixCanvas search/navigation nonblocking; their full browser test is not claimed as passed. Read the bounded original-window preview scope below.
 
 Start with the [matching VMware installation guide](install-m145.md) and [release limits](../releases/m145-v0.14.5.md). M14.5 retains the native desktop, file/settings and process/thread profiles and adds original 7-Zip menus, dialogs, toolbar images, list details and folder-navigation preview tasks. The optional Firefox installer remains download-only. This is development media for the named test profiles.
 

@@ -1,6 +1,6 @@
 # Current status
 
-**M14.5 native/source/media qualification passes.** Its GitHub release, independent asset downloads and complete actual website verification are being finalized; M14.6 has not started. Missing BrixCanvas search/navigation remains report-only and nonblocking.
+**M14.5 native/source/media qualification passes.** Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. M14.6 is next. Missing BrixCanvas search/navigation remains report-only and nonblocking.
 
 M14.5 adds original 7-Zip x64 menus/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Existing console/MSI tasks remain supported. Full GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
 

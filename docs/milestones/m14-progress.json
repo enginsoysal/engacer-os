@@ -2,7 +2,7 @@
   "version": 1,
   "program": "M14",
   "current_stage": "M14.5",
-  "current_native_download": "M14.4",
+  "current_native_download": "M14.5",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
   "optimization_core_requirement": true,
@@ -74,10 +74,12 @@
       "deliver": "Implement required GDI/text/resources/menu/control/dialog behavior for the pinned applications.",
       "how_and_why": "Share native drawing/fonts where semantics match, with bounded surfaces and dirty-region repaint; provider/name presence is not semantic compatibility.",
       "acceptance": "Readable working original app interfaces at ordinary and named HiDPI profiles, with pixel and behavior evidence; no vendor GPU/DirectX claim.",
-      "status": "in_progress",
+      "status": "complete",
       "qualification": "M14-STAGE5-VM-v1",
       "evidence": "evidence/M14/5",
-      "publication_status": "Native/source/media qualification passes: 60 native and 13 host groups; public assets, actual native homepage Save and complete website verification are being finalized"
+      "publication_status": "Complete within explicit owner scope; advanced platform search/navigation remains reported, nonblocking and unqualified",
+      "publication_evidence": "evidence/M14/5/publication-results.json",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5"
     },
     {
       "id": "M14.6",

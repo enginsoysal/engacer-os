@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "source_commit": "dd33aefccb2de4a4031723823faadb75ae1f5951",
+  "method": "The complete builder finished after crawling began. Crawled paths, article metadata and source identity match its exact current payload; current full payload is used for provenance/readback. The earlier index refresh differed only in generated displayed short commit captions.",
+  "refreshed_payload_sha256": "565e6a10ab2408b0f4c1a677efac881f38de89a7f98c1ca40a19e4bba25212d3",
+  "canonical_payload_sha256": "31fe542394256fe40ab1b07e039eebf0f7a3a1c28fb7bb3b0e1d02f38af981c4"
+}

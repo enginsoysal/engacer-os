@@ -2,7 +2,7 @@
 
 ## Start here
 
-**Current native candidate: [M14.5](https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5).** Native qualification passes within M14-STAGE5-VM-v1. Matching public assets and complete website readback are being finalized. Follow the guide matching your download.
+**Current native candidate: [M14.5](https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5).** Native qualification passes within M14-STAGE5-VM-v1. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. Follow the guide matching your download.
 
 - [Download, verify and install in VMware](install-m145.md)
 - [Original Windows menus, folders and browser downloads](windows-m145.md)
