@@ -1,0 +1,17 @@
+{
+  "owner_instruction": "Vergeet die zoek configuratie... Belangrijkste zijn de mijlpalen en dat de website altijd up to date is... Jij moet alleen melden maar absoluut never nooit stoppen totdat ik dat zeg of totdat je klaar bent",
+  "decision": "Missing BrixCanvas same-page search configuration/rendering and related documentation navigation are reported nonblocking platform limitations. Continue milestones in order; retain all native/media/content/download checks.",
+  "nonblocking": [
+    "production_search",
+    "task_sidebar",
+    "ordered_task_navigation"
+  ],
+  "does_not_waive": [
+    "native_app_behavior",
+    "source_binding",
+    "media_integrity",
+    "current_docs",
+    "website_content_updates",
+    "working_downloads"
+  ]
+}

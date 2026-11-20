@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "tests": 50,
+  "scope": "Actual current publisher unit tests; three Python audit/readback groups also pass"
+}

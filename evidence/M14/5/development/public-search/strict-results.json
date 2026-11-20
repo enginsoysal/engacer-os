@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "stage": "M14.5",
+  "observer_sha256": "e46166a7b02cb54d55f07b53f8b949cace8330e67bacf9e6e7ffacc5506b4713",
+  "current_native_stage": "M14.5",
+  "source_commit": "53c7eaffb8f730eb947270a2d41001a2229feb74",
+  "native_editor_save": "Saved automatically ✓",
+  "recovery_editor_save": "Saved automatically ✓",
+  "production_search": false,
+  "task_sidebar": false,
+  "ordered_task_navigation": false,
+  "current_guide": false,
+  "matching_download": false,
+  "mobile_menu": false,
+  "reports": []
+}

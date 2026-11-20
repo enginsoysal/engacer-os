@@ -83,3 +83,23 @@ status. Record a successful recheck as resolved; retain the original evidence.
 Do not classify a test-selector error or an OS/runtime defect as a BrixCanvas
 bug. Do not send individual reports or ask the owner to forward them before
 M14.15 is complete. Native OS correctness and media integrity remain mandatory.
+
+M14.5 corroboration — 20 November 2026
+
+The saved native homepage and 404 page use the current Menu Brix configuration.
+Actual desktop (1280 px) and mobile (390 px) readback still find zero Search
+documentation openers, zero Documentation sections sidebars and zero expected
+curated next-article links. The strict browser failure is preserved under
+evidence/M14/5/development/public-search. Current articles, exact-source links,
+downloads, images and basic mobile menu open/close pass a separate scoped test.
+Do not describe the basic mobile menu as broken merely because the earlier
+advanced observer did not qualify it.
+
+Resolved workflow observations, not confirmed platform defects: an old editor
+tab held a stale revision after article synchronization; a fresh authenticated
+tab loaded current data and saved successfully. Native autosave was observed;
+Undo restored the prior composition, then replacement appended new roots before
+removing old roots. Final home/recovery root counts are four/two. A cancelled
+reload in the stale tab is not evidence of a server or OS fault.
+
+Continue accumulating this report; deliver one combined handoff after M14.15.

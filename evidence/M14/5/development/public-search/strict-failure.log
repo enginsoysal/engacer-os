@@ -1,0 +1,107 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toBeVisible() failed
+
+Locator: getByRole('button', { name: 'Search documentation', exact: true })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 5000ms
+  - waiting for getByRole('button', { name: 'Search documentation', exact: true })
+
+    at captureRawStack (C:\Users\EnginSoysal\OneDrive - ProSysTech\_scripting\brixcanvas\node_modules\playwright-core\lib\coreBundle.js:9681:17)
+    at callMatcherAsStep (C:\Users\EnginSoysal\OneDrive - ProSysTech\_scripting\brixcanvas\node_modules\playwright\lib\matchers\expect.js:13310:57)
+    at Object.toBeVisible (C:\Users\EnginSoysal\OneDrive - ProSysTech\_scripting\brixcanvas\node_modules\playwright\lib\matchers\expect.js:13300:23)
+    at <project-root>\tests\m14\public_site3.mjs:21:153 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByRole('button', { name: 'Search documentation', exact: true })\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 5000ms\n' +
+      "  - waiting for getByRole('button', { name: 'Search documentation', exact: true })\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 5000ms',
+      "  - waiting for getByRole('button', { name: 'Search documentation', exact: true })"
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- navigation "Menu":\n' +
+      '  - link "E_ ENGACER OS":\n' +
+      '    - /url: /\n' +
+      '  - link "Start here":\n' +
+      '    - /url: /blog/guide-start\n' +
+      '  - link "Install":\n' +
+      '    - /url: /blog/guide-install\n' +
+      '  - link "Use":\n' +
+      '    - /url: /blog/guide-use\n' +
+      '  - link "Customize":\n' +
+      '    - /url: /blog/guide-customize\n' +
+      '  - link "Downloads":\n' +
+      '    - /url: /blog/downloads\n' +
+      '- paragraph: CURRENT DOWNLOAD · M14.5\n' +
+      '- paragraph: WINDOWS X64 NATIVE RUNTIME STAGE\n' +
+      '- paragraph: YOUR SPACE. YOUR SYSTEM.\n' +
+      '- heading "Start with what you want to do." [level=1]\n' +
+      '- paragraph: Install Engacer OS, find your way around the desktop, or make it yours. Current guides come first. Project history has its own place.\n' +
+      '- link "Download M14.5":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/downloads\n' +
+      '- link "Install Engacer OS →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/guide-install\n' +
+      '- link "Read the guide →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/documentation\n' +
+      '- paragraph: "In development: M14.6"\n' +
+      '- paragraph: M14.6 is being tested. The qualified download remains M14.5. See the current milestone for implemented behavior, evidence and the remaining release gates.\n' +
+      '- paragraph: 01 / START HERE\n' +
+      '- heading "A clear beginning" [level=3]\n' +
+      '- paragraph: Understand the current release, what works and the first steps to take.\n' +
+      '- link "Get started →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/guide-start\n' +
+      '- paragraph: 02 / EVERYDAY USE\n' +
+      '- heading "Feel at home" [level=3]\n' +
+      '- paragraph: Find apps, switch windows, navigate folders and work with USB drives.\n' +
+      '- link "Use your desktop →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/guide-use\n' +
+      '- paragraph: 03 / YOUR CHOICES\n' +
+      '- heading "Make it yours" [level=3]\n' +
+      '- paragraph: Change supported preferences or build your own distribution.\n' +
+      '- link "Explore customization →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/guide-customize\n' +
+      `- 'heading "Now: Windows x64 foundations." [level=2]'\n` +
+      '- paragraph: M14.5 adds original 7-Zip x64 menu/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Original console/MSI tasks remain separately supported. Complete GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. There is no embedded Windows guest. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.\n' +
+      '- link "Follow M14.0–M14.15 →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/docs-milestones-m14\n' +
+      `- 'img "Actual Engacer OS M14.5: an original unmodified 7-Zip x64 interface through the native compatibility environment; named preview tasks, not universal Windows application support."'\n` +
+      '- link "Explore all M13 concepts →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/docs-architecture-desktop-m13\n' +
+      '- paragraph: Reported website limitation\n' +
+      '- paragraph: BrixCanvas currently omits the saved same-page search and article navigation. Browse the task guides and archive; this reported platform limitation does not block OS milestones.\n' +
+      '- heading "Prefer to explore the project?" [level=2]\n' +
+      '- paragraph: Current technical reference and the next plan are separate from earlier milestone and release records.\n' +
+      '- link "Project & development →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/guide-project\n' +
+      '- link "History & full reference →":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/documentation-archive\n' +
+      '- paragraph: What is qualified today?\n' +
+      '- paragraph: M14.5 is qualified for its named virtual-machine profiles. Physical hardware, GPU 3D and general Windows compatibility remain separate work. Read the matching release limits before testing.\n' +
+      '- paragraph: Engacer OS / MIT licensed · Current guides first, history separately archived.\n' +
+      '- link "github":\n' +
+      '  - /url: https://github.com/enginsoysal/engacer-os\n' +
+      '- link "website":\n' +
+      '  - /url: https://engaceros.brixcanvas.com/blog/documentation\n' +
+      '- alert'
+  }
+}
+
+Node.js v24.14.1

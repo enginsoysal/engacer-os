@@ -1,0 +1,193 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "checked_at": "2026-11-20T16:21:52.275668+00:00",
+  "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5",
+  "latest": "m145-v0.14.5",
+  "artifacts": [
+    {
+      "name": "7z2606-src.tar.xz",
+      "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4",
+      "size": 1567328,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/7z2606-src.tar.xz",
+      "public_head": 200,
+      "downloaded_bytes": 1567328,
+      "downloaded_sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4"
+    },
+    {
+      "name": "COPYING.LIB",
+      "sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7",
+      "size": 26430,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/COPYING.LIB",
+      "public_head": 200,
+      "downloaded_bytes": 26430,
+      "downloaded_sha256": "a190dc9c8043755d90f8b0a75fa66b9e42d4af4c980bf5ddc633f0124db3cee7"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-archives.elf",
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-archives.elf",
+      "public_head": 200,
+      "downloaded_bytes": 17068,
+      "downloaded_sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-browser.elf",
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-browser.elf",
+      "public_head": 200,
+      "downloaded_bytes": 12639,
+      "downloaded_sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-calculator.elf",
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-calculator.elf",
+      "public_head": 200,
+      "downloaded_bytes": 12976,
+      "downloaded_sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-calendar.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-calendar.elf",
+      "public_head": 200,
+      "downloaded_bytes": 8232,
+      "downloaded_sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-editor.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-editor.elf",
+      "public_head": 200,
+      "downloaded_bytes": 8232,
+      "downloaded_sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-help.elf",
+      "sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151",
+      "size": 8232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-help.elf",
+      "public_head": 200,
+      "downloaded_bytes": 8232,
+      "downloaded_sha256": "bb015366040ca6ba15e81ee97411ab1107b02047b97deb5672743cdb903ba151"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-installed-kernel.elf",
+      "sha256": "021af4857fb9427be9fbc32614ba1b5e76cec22507ce62c4d783875ed50de055",
+      "size": 1548692,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-installed-kernel.elf",
+      "public_head": 200,
+      "downloaded_bytes": 1548692,
+      "downloaded_sha256": "021af4857fb9427be9fbc32614ba1b5e76cec22507ce62c4d783875ed50de055"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-installed-kernel.map",
+      "sha256": "df7da2e74ff04c6449e7a20cceb069124a4524340952871007d26b8953aec46f",
+      "size": 423303,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-installed-kernel.map",
+      "public_head": 200,
+      "downloaded_bytes": 423303,
+      "downloaded_sha256": "df7da2e74ff04c6449e7a20cceb069124a4524340952871007d26b8953aec46f"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-kernel.elf",
+      "sha256": "a9d213399bfe03dc693db0870298040fe016f438d875e1d0bd570aa2fd9033c8",
+      "size": 4342164,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-kernel.elf",
+      "public_head": 200,
+      "downloaded_bytes": 4342164,
+      "downloaded_sha256": "a9d213399bfe03dc693db0870298040fe016f438d875e1d0bd570aa2fd9033c8"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-kernel.map",
+      "sha256": "dc0ea7f86cb80ac142447594f0b354d5a561dc94d00504594924fc57c201654f",
+      "size": 423595,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-kernel.map",
+      "public_head": 200,
+      "downloaded_bytes": 423595,
+      "downloaded_sha256": "dc0ea7f86cb80ac142447594f0b354d5a561dc94d00504594924fc57c201654f"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-THIRD-PARTY-NOTICES.txt",
+      "sha256": "b932a6cb9bb842d8a6e544a52486d2631bb54c3c2b2857851a1b2dd15b2ea952",
+      "size": 62379,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-THIRD-PARTY-NOTICES.txt",
+      "public_head": 200,
+      "downloaded_bytes": 62379,
+      "downloaded_sha256": "b932a6cb9bb842d8a6e544a52486d2631bb54c3c2b2857851a1b2dd15b2ea952"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-usb.img",
+      "sha256": "947b9e8c5f0f0e43ddf9c98be556bf5764c82e35607cce72bf5ab2c831eb032a",
+      "size": 84934656,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-usb.img",
+      "public_head": 200,
+      "downloaded_bytes": 84934656,
+      "downloaded_sha256": "947b9e8c5f0f0e43ddf9c98be556bf5764c82e35607cce72bf5ab2c831eb032a"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-user.elf",
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-user.elf",
+      "public_head": 200,
+      "downloaded_bytes": 68064,
+      "downloaded_sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5-VMware.zip",
+      "sha256": "da4def91a6e4cb427de5c04e53355af9fe4caf394a80087e66609a226ab93cc7",
+      "size": 11290837,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5-VMware.zip",
+      "public_head": 200,
+      "downloaded_bytes": 11290837,
+      "downloaded_sha256": "da4def91a6e4cb427de5c04e53355af9fe4caf394a80087e66609a226ab93cc7"
+    },
+    {
+      "name": "EngacerOS-M14STAGE5.iso",
+      "sha256": "fdae44b21bc47189cc7dc9406a7183e899d14a23c032b2c3099d703ae00619ac",
+      "size": 75487232,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/EngacerOS-M14STAGE5.iso",
+      "public_head": 200,
+      "downloaded_bytes": 75487232,
+      "downloaded_sha256": "fdae44b21bc47189cc7dc9406a7183e899d14a23c032b2c3099d703ae00619ac"
+    },
+    {
+      "name": "m14stage5-build-manifest.json",
+      "sha256": "cbc9dd510c84fb9007f9fac8b35a3d2f895e315bce6d20b1647c40f0694c6d8a",
+      "size": 90833,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/m14stage5-build-manifest.json",
+      "public_head": 200,
+      "downloaded_bytes": 90833,
+      "downloaded_sha256": "cbc9dd510c84fb9007f9fac8b35a3d2f895e315bce6d20b1647c40f0694c6d8a"
+    },
+    {
+      "name": "M14STAGE5-SHA256SUMS.txt",
+      "sha256": "d1fab1817252d5ed02abbece643b5af65790d7e776498d94832bd928d8fa0f7e",
+      "size": 1839,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/M14STAGE5-SHA256SUMS.txt",
+      "public_head": 200,
+      "downloaded_bytes": 1839,
+      "downloaded_sha256": "d1fab1817252d5ed02abbece643b5af65790d7e776498d94832bd928d8fa0f7e"
+    },
+    {
+      "name": "m14stage5-starter-manifest.json",
+      "sha256": "0109ccd673df95e6b24a11ccb6a959bcb39120916cd734c0cde889eccaaf1d59",
+      "size": 653,
+      "url": "https://github.com/enginsoysal/engacer-os/releases/download/m145-v0.14.5/m14stage5-starter-manifest.json",
+      "public_head": 200,
+      "downloaded_bytes": 653,
+      "downloaded_sha256": "0109ccd673df95e6b24a11ccb6a959bcb39120916cd734c0cde889eccaaf1d59"
+    }
+  ],
+  "downloaded_zip_sha256": "da4def91a6e4cb427de5c04e53355af9fe4caf394a80087e66609a226ab93cc7",
+  "downloaded_zip_crc": true,
+  "downloaded_iso_sha256": "fdae44b21bc47189cc7dc9406a7183e899d14a23c032b2c3099d703ae00619ac"
+}

@@ -77,7 +77,8 @@ def main():
     assert not browser['production_search'] and not browser['task_sidebar'] and not browser['ordered_task_navigation']
     assert browser['current_guide'] and browser['matching_download']
     # The native menu renders, but the advanced documentation menu cannot be qualified.
-    assert not browser['mobile_menu']
+    assert isinstance(browser['mobile_menu'],bool)
+    if browser['mobile_menu']:assert next(r for r in browser['reports']if r['width']==390)['mobile_menu_verified']
     assert all(image['loaded'] for image in browser['desktop']['images'])
     for layout in (browser['desktop'], browser['mobile']):
         assert layout['document'] <= layout['viewport']
@@ -92,12 +93,12 @@ def main():
         else:
             assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
     tap = (out / 'publisher-tests.txt').read_text(encoding='utf-8-sig')
-    count = re.search(r'(?:#|Ã¢â€žÂ¹) tests (\d+)\b', tap)
-    assert count and int(count[1]) >= 22 and re.search(r'(?:#|Ã¢â€žÂ¹) fail 0\b', tap)
+    count = re.search(r'(?:#|ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹) tests (\d+)\b', tap)
+    assert count and int(count[1]) >= 22 and re.search(r'(?:#|ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹) fail 0\b', tap)
     target = out / 'publication-results.json'
     assert not target.exists(), 'Accepted publication proof is immutable'
     result = dict(passed=True, stage=f'M14.{stage}', qualification=accepted['qualification'], source_commit=site['source_commit'], release_source_commit=tag['object']['sha'], build_id=accepted['build_id'], website='https://engaceros.brixcanvas.com', github_release=release['html_url'], workflow_ids=[w['databaseId'] for w in successful], current_native_download=downloads['latest'], design_only=False, new_iso=True, pages_checked=site['pages_checked'], exact_source_articles_verified=site['exact_source_articles_verified'], unique_links=site['unique_links'], known_broken=0, unverified_external_references=len(links['unverified']), links='website-links.json', publication_source='publication-source.json', native_editor_save='native-editor-save.json', full_audit='website-audit.json', fresh_readback='website-readback.json', browser_readback='public-browser-verification.json', downloads='downloads.json')
-    result.update(owner_scope='owner-publication-scope.json', full_public_site_qualified=False, reported_nonblocking_platform_limits=owner['nonblocking'], closure_observer='tests/m14/close5_scoped.py')
+    result.update(owner_scope='owner-publication-scope.json', full_public_site_qualified=False, reported_nonblocking_platform_limits=owner['nonblocking'], closure_observer='tests/m14/close5_scoped.py',closure_observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     target.write_bytes((json.dumps(result, indent=2) + '\n').encode())
     print(f'PASS: M14.{stage} matching native source/media, GitHub downloads and current public website.')
 
