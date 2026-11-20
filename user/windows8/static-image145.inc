@@ -12,7 +12,7 @@ static int64_t static_message145(ui_window_runtime144*w,control_state144*c,unsig
  *handled=1;
  if(message==1&&(w->description.style&31)==3){
   const struct {void*parameter;HANDLE instance,menu,parent;int cy,cx,y,x;unsigned style,pad;const WCHAR*name,*class_name;unsigned exstyle,pad2;}*creation=(const void*)(uintptr_t)lp;
-  if(!creation||!creation->name)return 0;
+  if(!creation||!creation->name||((uintptr_t)creation->name>65535&&!creation->name[0]))return 0;
   HANDLE icon=f_LoadImageW(creation->instance,creation->name,1,0,0,(w->description.style&0x800)?0x8000:0x8040);
   return icon&&static_icon145(w,c,icon)?0:-1;
  }

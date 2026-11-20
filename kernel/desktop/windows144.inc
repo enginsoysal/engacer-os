@@ -23,6 +23,7 @@ static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip){
   while(node->phase<2){unsigned found=0;wui_view144 candidate;for(unsigned slot=0;slot<WUI_WINDOWS144;++slot){if(!w8_ui_at144(slot,&candidate)||candidate.description.parent!=node->handle||!candidate.description.visible||((candidate.description.exstyle&8)!=0)!=node->phase||candidate.handle<=node->last_child)continue;if(!found||candidate.handle<child.handle){child=candidate;found=1;}}
    if(!found){++node->phase;node->last_child=0;continue;}node->last_child=child.handle;
    wui_rect144 b=child.description.bounds;int border=child.description.style&0x00800000?1:0;
+   if(border){desktop_rect outer=foreign_intersect144(node->clip,(desktop_rect){node->x+b.x,node->y+b.y,b.width,b.height});if(outer.width&&outer.height){gui7_clip((unsigned)outer.x,(unsigned)outer.y,(unsigned)outer.width,(unsigned)outer.height);rectangle((desktop_rect){node->x+b.x,node->y+b.y,b.width,b.height},0xa0a0a0);}}
    desktop_rect bounded=foreign_intersect144(node->clip,(desktop_rect){node->x+b.x+border,node->y+b.y+border,b.width-border*2,b.height-border*2});
    if(count<WUI_WINDOWS144){frames[count++]=(frame144){.handle=child.handle,.x=node->x+b.x+border,.y=node->y+b.y+border,.clip=bounded};descended=1;break;}
   }

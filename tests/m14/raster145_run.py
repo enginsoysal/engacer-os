@@ -35,6 +35,8 @@ def main():
      expected.update(static_transparent=(200,20,[255,255,255]),static_native_magenta=(201,20,[255,0,255]),static_center_magenta=(289,39,[255,0,255]),static_stretch_magenta=(322,20,[255,0,255]))
      report['physical_dimensions']=list(image.size);report['pixel_checks']={}
      for name,(x,y,rgb)in expected.items():actual=pixel(x,y);assert actual==rgb,(name,actual,rgb);report['pixel_checks'][name]=actual
+     def crop(x,y,w,h):return image.crop((int((root_x+1+x)*scale),int((root_y+40+y)*scale),int((root_x+1+x+w)*scale),int((root_y+40+y+h)*scale)))
+     reference=crop(20,180,100,16);label=crop(200,180,100,16);assert reference.tobytes()==label.tobytes(),'Short Static label is offset or clipped compared with independent TextOutW';assert len(set(reference.getdata()))>2;report['short_label_matches_gdi_reference']=True
     def click_marker(marker):
      match=re.search(marker+r' (\d+) (\d+)',text);assert match,text
      x,y=map(int,match.groups());p.move(int((root_x+1+x)*scale),int((root_y+40+y)*scale));p.down(True);p.down(False);p.drain()

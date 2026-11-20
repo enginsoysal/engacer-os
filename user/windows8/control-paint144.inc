@@ -34,6 +34,8 @@ static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;
   if(style&0x200){x=(client.right-(int)width)/2;y=(client.bottom-(int)height)/2;}
   else if(style&0x40){width=(unsigned)client.right;height=(unsigned)client.bottom;}
   if(width&&height)f_DrawIconEx(dc,x,y,c->image,(int)width,(int)height,0,0,3);}
+ }else if(c->kind==C144_STATIC){unsigned type=w->description.style&31;int size[2]={0,16};unsigned n=wlen8(w->description.title);if(n>159)n=159;f_GetTextExtentPoint32W(dc,w->description.title,(int)n,size);
+  int x=type==1?(client.right-size[0])/2:type==2?client.right-size[0]:0,y=w->description.style&0x200?(client.bottom-size[1])/2:0;control_label_clip145(dc,x,y,w->description.title,client);
  }else if(c->kind==C144_EDIT)control_label144(dc,4,4,c->texts[0]);
  else control_label144(dc,4,4,w->description.title);
  f_EndPaint(h,&paint);

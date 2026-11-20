@@ -4,7 +4,7 @@ typedef struct image_object144 {struct image_object144*next;uint64_t handle,reso
 static image_object144*images144;static unsigned image_count144,image_sequence144;static size_t image_bytes144;static lock142 image_lock144;
 #define IMAGE_BYTES144 (16u*1024*1024)
 static image_object144 *image_find144(HANDLE handle,unsigned kind){for(image_object144*p=images144;p;p=p->next)if(p->handle==handle&&(!kind||p->kind==kind))return p;last8(6);return 0;}
-static unsigned image_size145(HANDLE handle,unsigned kind,unsigned*width,unsigned*height){lock_enter142(&image_lock144);image_object144*p=image_find144(handle,kind);if(p){*width=p->width;*height=p->height;}lock_leave142(&image_lock144);return p!=0;}
+static unsigned image_size145(HANDLE handle,unsigned kind,unsigned*width,unsigned*height){lock_enter142(&image_lock144);image_object144*p=image_find144(handle,kind);unsigned found=p!=0;if(p){*width=p->width;*height=p->height;}lock_leave142(&image_lock144);return found;}
 static void*image_memory144(size_t bytes){if(bytes>IMAGE_BYTES144-image_bytes144){last8(8);return 0;}void*p=calloc8(1,bytes);if(!p){last8(8);return 0;}image_bytes144+=bytes;return p;}
 static void image_free144(void*p,size_t bytes){if(p){free8(p);image_bytes144-=bytes;}}
 static image_object144 *image_new144(unsigned kind,unsigned width,unsigned height){if(image_count144==256||image_sequence144==0xfffffff){last8(1816);return 0;}image_object144*p=image_memory144(sizeof(*p));if(!p)return 0;p->handle=UINT64_C(0x60000000)|++image_sequence144;p->kind=kind;p->width=width;p->height=height;p->next=images144;images144=p;++image_count144;return p;}

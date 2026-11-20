@@ -14,6 +14,7 @@ __declspec(dllimport) I DefWindowProcW(H,unsigned,H,I);
 __declspec(dllimport) H BeginPaint(H,PAINT*);
 __declspec(dllimport) int EndPaint(H,const PAINT*);
 __declspec(dllimport) int FillRect(H,const RECT*,H);
+__declspec(dllimport) int TextOutW(H,int,int,const W*,int);
 __declspec(dllimport) int DrawIconEx(H,int,int,H,int,int,unsigned,H,unsigned);
 __declspec(dllimport) int ImageList_Draw(H,int,H,int,int,unsigned);
 __declspec(dllimport) H ImageList_Create(int,int,unsigned,int,int);
@@ -43,7 +44,7 @@ static void number(unsigned value){char b[16];unsigned n=0;do{b[n++]=(char)('0'+
 static I procedure(H h,unsigned m,H wp,I lp){
  if(m==15){PAINT p;H dc=BeginPaint(h,&p);check(dc!=0,"paint DC");check(FillRect(dc,&p.rect,14),"blue surface");
   if(h==child)check(DrawIconEx(dc,-2,0,icon,4,2,0,0,3),"signed child clip");
-  else{check(DrawIconEx(dc,20,20,icon,0,0,0,0,3),"original icon pixels");check(DrawIconEx(dc,40,20,icon,8,4,0,0,3),"scaled icon pixels");check(ImageList_Draw(images,0,dc,72,20,1),"copied list pixels");check(!ImageList_Draw(images,0,dc,1,1,0x8000)&&GetLastError()==50,"unsupported flag refusal");check(!DrawIconEx(dc,1,1,icon,-1,4,0,0,3)&&GetLastError()==87,"invalid size refusal");++painted;}
+  else{check(DrawIconEx(dc,20,20,icon,0,0,0,0,3),"original icon pixels");check(DrawIconEx(dc,40,20,icon,8,4,0,0,3),"scaled icon pixels");check(ImageList_Draw(images,0,dc,72,20,1),"copied list pixels");check(!ImageList_Draw(images,0,dc,1,1,0x8000)&&GetLastError()==50,"unsupported flag refusal");check(!DrawIconEx(dc,1,1,icon,-1,4,0,0,3)&&GetLastError()==87,"invalid size refusal");RECT reference={20,180,120,196};check(FillRect(dc,&reference,6)&&TextOutW(dc,20,180,L"gjpqy",5),"independent short-label reference");++painted;}
   check(EndPaint(h,&p),"DC release");return 0;}
  if(m==0x111){check((wp&65535)==201,"disabled or separator invoked a command");++commands;say("M145_TOOLBAR_COMMAND_PASS\n");return 0;}
  if(m==2&&h==root){check(painted&&commands,"real painting and ordinary-input command");PostQuitMessage(0);return 0;}
@@ -64,6 +65,8 @@ void entry(void){
   H current=(H)SendMessageW(image_control,0x171,0,0);check(current!=0&&(H)SendMessageW(image_control,0x173,1,0)==current,"static image getter identity");
   if(n==0){check((H)SendMessageW(image_control,0x170,icon,0)==current,"static image replacement returns previous handle");check((H)SendMessageW(image_control,0x171,0,0)==icon,"static image replacement identity");}
  }
+ H empty_icon=CreateWindowExW(0,L"Static",L"",0x50000803,380,20,40,40,root,110,resource,0);RECT empty_bounds;check(empty_icon&&!SendMessageW(empty_icon,0x171,0,0)&&GetClientRect(empty_icon,&empty_bounds)&&empty_bounds.right==40&&empty_bounds.bottom==40,"empty icon control does not load a resource");SendMessageW(empty_icon,0x172,1,(I)icon);check((H)SendMessageW(empty_icon,0x171,0,0)==icon&&GetClientRect(empty_icon,&empty_bounds)&&empty_bounds.right==4&&empty_bounds.bottom==2,"deferred icon assignment resizes");
+ check(CreateWindowExW(0,L"Static",L"gjpqy",0x50000000,200,180,100,16,root,111,0,0)!=0,"short native label");
  H bar=CreateWindowExW(0,L"ToolbarWindow32",L"",0x50001000,10,80,500,64,root,77,0,0);check(bar!=0,"toolbar");SendMessageW(bar,0x41e,32,0);SendMessageW(bar,0x430,0,(I)images);
  BUTTON buttons[4]={{0}};const W*labels[4]={L"WWW",L"iii",L"",L"Longer measured title"};
  for(unsigned n=0;n<4;++n){buttons[n].bitmap=0;buttons[n].command=201+(int)n;buttons[n].state=n==1?0:4;buttons[n].style=n==2?1:16;buttons[n].string=(I)labels[n];}

@@ -1,5 +1,5 @@
 """Reach the original unmodified 7-Zip About dialog through its real menus."""
-import hashlib,json,os,struct,traceback
+import argparse,hashlib,json,os,struct,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 from window144_native import ui,c,f,t,clone,task,output
@@ -21,12 +21,13 @@ def commands(g,handle,menu=False):
   return out
  raise AssertionError('Missing owned native window')
 def main():
- out=ROOT/'build/m14-native/stage5/original-menu';out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage5/apps/results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
- source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m145-window-apps'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m145-original-menu')
+ parser=argparse.ArgumentParser();parser.add_argument('--profile',choices=['compact','4k'],default='compact');args=parser.parse_args()
+ out=ROOT/'build/m14-native/stage5'/('original-menu-'+args.profile);out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage5'/('apps'if args.profile=='compact'else'apps-4k')/'results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
+ source=Path(os.environ['LOCALAPPDATA'])/('EngineOS/Tests/M6/m145-window-apps'+(''if args.profile=='compact'else'-4k'))/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m145-original-menu-'+args.profile)
  original=ui.s.s.document(disk,'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',8*1024**2);digest=hashlib.sha256(original).hexdigest();assert digest=='a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931'
- report=dict(passed=False,build_id=meta['build_id'],original_sha256=digest,clone=cloned,scope='Original menu/About/callback/close development task; not full GUI archive/navigation or M14.5 acceptance')
+ report=dict(passed=False,profile=args.profile,build_id=meta['build_id'],original_sha256=digest,clone=cloned,scope='Original menu/About/callback/close development task; not full GUI archive/navigation or M14.5 acceptance')
  try:
-  boot=ui.guest(work/'original-menu',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
+  boot=ui.guest(work/'original-menu',disk,media='installed',ready='M7_DESKTOP_READY',resolution=(1280,800)if args.profile=='compact'else(3840,2160),ram=128 if args.profile=='compact'else 1024);ui.s.normal_boot(boot)
   with boot as g:
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0];at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);root=wait_for(g,lambda:next((v for v in views(g)if v['class_name']=='7-Zip::FM'and v['visible']),None));p.drain();scale=c.flag(g,'scale73')/2
    def click(x,y):p.move(int(x*scale),int(y*scale));p.down(True);p.down(False);p.drain()

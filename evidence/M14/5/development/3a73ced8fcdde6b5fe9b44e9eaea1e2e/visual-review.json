@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "build_id": "3a73ced8fcdde6b5fe9b44e9eaea1e2e",
+  "surface": "Original 7-Zip About resource dialog",
+  "issue": "Short static text rectangles clip the lower part of labels because stock text starts four pixels below the control top",
+  "evidence": "original-menu/original-about-dialog.png",
+  "functional_menu_and_dialog_task_passed": true,
+  "stage_acceptance": false
+}
