@@ -45,8 +45,11 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
  while(relation){if(relation==self||++depth>WUI_WINDOWS144)return 87;ui_window144*w=ui_owned144(relation);if(!w)return 1400;if(w->thread!=current142)return 50;relation=w->view.description.parent?w->view.description.parent:w->view.description.owner;}
  return 0;
 }
+#include "clipboard144.inc"
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
+ if(op==WUI_CLIPFORMAT144)return handle||argument?-87:clip_register144(pointer);
+ if(op==WUI_CLIPNAME144)return clip_name144(handle,pointer,argument);
  if(op==WUI_METRICS144){
 #ifdef ENGINE_M73
   if(handle||argument)return -87;unsigned width=ui73_width(),height=ui73_height(),x=0,y=0,buttons=0;usb_mouse_state(&x,&y,&buttons);wui_metrics144 metrics={width,height,height>60?height-60:0,ui73_scale(),(ui73_measure("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",1)/26+1)/2,16,x,y};return user8(pointer,&metrics,sizeof(metrics),1)?-998:0;

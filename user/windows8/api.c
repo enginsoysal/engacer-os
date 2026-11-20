@@ -1,5 +1,6 @@
 #include "runtime.h"
 static uint32_t error8;
+static void cleanup_thread144(void);
 static WCHAR command8[1200],cwd8[512];
 static lock142 cwd_lock143;
 static char command_utf8[1200],argv_text8[1200],*argv8[64],**env8;
@@ -232,7 +233,7 @@ static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=tid142()||c->rec
 static void MS f_DeleteCriticalSection(critical8*c){if(c->owner||c->recursion)fail8("A Windows process deleted an owned critical section.");memset(c,0,sizeof(*c));}
 #include "sync142.inc"
 static unsigned MS f_ResumeThread(HANDLE h){int64_t result=(int64_t)sys8(W8_SYS_THREAD_RESUME,h,0,0,0,0);if(result<0)last8(6);return (unsigned)result;}
-static NORETURN void MS f_ExitThread(unsigned code){if(sys8(W8_SYS_THREAD_BEGIN_EXIT,0,0,0,0,0)==1)pe8_exit(code);pe8_thread_detach();sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
+static NORETURN void MS f_ExitThread(unsigned code){if(sys8(W8_SYS_THREAD_BEGIN_EXIT,0,0,0,0,0)==1)pe8_exit(code);cleanup_thread144();pe8_thread_detach();sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
 static void thread_entry142(uint64_t entry,void*arg){
  unsigned row=tid142()&255;lock_enter142(&tls_lock142);memset(tls_values8[row],0,sizeof(tls_values8[row]));lock_leave142(&tls_lock142);
  pe8_thread_attach();
@@ -340,9 +341,14 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "ui144.inc"
 #include "window-api144.inc"
 #include "controls144.inc"
+#include "com144.inc"
+#include "security-api144.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(RegisterClipboardFormatW,4),API8(GetClipboardFormatNameW,4),
+ API8(LsaOpenPolicy,5),API8(LsaClose,5),API8(LsaAddAccountRights,5),API8(LookupAccountNameW,5),API8(GetUserNameW,5),
+ API8(CoInitializeEx,9),API8(CoInitialize,9),API8(CoUninitialize,9),API8(OleInitialize,9),API8(OleUninitialize,9),API8(RegisterDragDrop,9),API8(RevokeDragDrop,9),
  API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
  API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),

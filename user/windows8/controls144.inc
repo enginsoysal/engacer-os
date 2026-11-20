@@ -39,9 +39,10 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  return f_DefWindowProcW(handle,message,wp,lp);
 }
 static unsigned ui_builtin144(const WCHAR*name){
- if((uintptr_t)name<=65535)return 0;for(unsigned i=0;i<sizeof(control_classes144)/sizeof(control_classes144[0]);++i){const control_class144*d=control_classes144+i;if(f_wcscmp(d->name,name))continue;
-  if(ui_class_lookup144(d->name))return 1;ui_class_definition144 definition={0};definition.style=8;definition.proc=control_proc144;definition.name=d->name;definition.cursor=UINT64_C(0x43000000)|(d->kind==C144_EDIT?32513:32512);return f_RegisterClassW(&definition)!=0;
- }return 0;
+ if((uintptr_t)name<=65535)return 0;lock_enter142(&ui_lock144);for(unsigned i=0;i<sizeof(control_classes144)/sizeof(control_classes144[0]);++i){const control_class144*d=control_classes144+i;if(f_wcscmp(d->name,name))continue;
+  if(ui_class_lookup144(d->name)){lock_leave142(&ui_lock144);return 1;}ui_class_definition144 definition={0};definition.style=8;definition.proc=control_proc144;definition.name=d->name;definition.cursor=UINT64_C(0x43000000)|(d->kind==C144_EDIT?32513:32512);unsigned registered=f_RegisterClassW(&definition)!=0;lock_leave142(&ui_lock144);return registered;
+ }lock_leave142(&ui_lock144);return 0;
 }
+
 static int MS f_InitCommonControlsEx(const unsigned*value){if(!value||value[0]!=8||(value[1]&~0x6ffu)){last8(value&&value[0]==8?50:87);return 0;}for(unsigned i=0;i<sizeof(control_classes144)/sizeof(control_classes144[0]);++i){const control_class144*d=control_classes144+i;if(d->group&&(d->group&value[1])&&!ui_builtin144(d->name))return 0;}return 1;}
 static void MS f_InitCommonControls(void){const unsigned initial[2]={8,0xff};if(!f_InitCommonControlsEx(initial))fail8("Windows common-control registration failed.");}

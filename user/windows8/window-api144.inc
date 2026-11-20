@@ -25,3 +25,6 @@ static int MS f_GetMonitorInfoA(HANDLE monitor,void*out){if(monitor!=UINT64_C(0x
 static int MS f_GetCursorPos(void*out){if(!out){last8(87);return 0;}wui_metrics144 m;if(!window_metrics144(&m))return 0;((int*)out)[0]=(int)m.pointer_x;((int*)out)[1]=(int)m.pointer_y;return 1;}
 static HANDLE MS f_LoadCursorW(HANDLE module,const WCHAR*name){if(module||(uintptr_t)name>65535){last8(50);return 0;}unsigned id=(unsigned)(uintptr_t)name;if(id!=32512&&id!=32513&&id!=32642&&id!=32643&&id!=32644&&id!=32645){last8(50);return 0;}return UINT64_C(0x43000000)|id;}
 static HANDLE MS f_SetCursor(HANDLE cursor){if(cursor&&(cursor&UINT64_C(0xffff0000))!=UINT64_C(0x43000000)){last8(6);return 0;}int64_t old=ui_call144(WUI_CURSOR144,cursor&65535,0,0);if(old<0){last8((unsigned)-old);return 0;}return old?UINT64_C(0x43000000)|(unsigned)old:0;}
+
+static unsigned MS f_RegisterClipboardFormatW(const WCHAR*name){int64_t result=ui_call144(WUI_CLIPFORMAT144,0,(void*)name,0);if(result<0){last8((unsigned)-result);return 0;}return(unsigned)result;}
+static int MS f_GetClipboardFormatNameW(unsigned format,WCHAR*out,int capacity){if(capacity<=0){last8(87);return 0;}int64_t result=ui_call144(WUI_CLIPNAME144,format,out,(unsigned)capacity);if(result<0){last8((unsigned)-result);return 0;}return(int)result;}

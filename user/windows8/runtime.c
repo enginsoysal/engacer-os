@@ -29,7 +29,8 @@ static void *allocate142(size_t bytes){
   if(b->size>bytes+sizeof(block8)+32){block8*n=(void*)((uint8_t*)(b+1)+bytes);*n=(block8){b->size-bytes-sizeof(*n),b->next,1,0};b->size=bytes;b->next=n;}b->free=0;return b+1;}
  size_t total=(bytes+sizeof(block8)+4095)&~(size_t)4095;if(heap_end8+total>W8_HEAP+32*1024*1024)return 0;
  if(sys8(W8_SYS_MAP,heap_end8,total,3,0,0))return 0;block8*b=(void*)(uintptr_t)heap_end8;heap_end8+=total;*b=(block8){total-sizeof(*b),0,0,0};
- if(!heap8)heap8=b;else{block8*last=heap8;while(last->next)last=last->next;last->next=b;}return b+1;
+ if(!heap8)heap8=b;else{block8*last=heap8;while(last->next)last=last->next;last->next=b;}
+ if(b->size>bytes+sizeof(block8)+32){block8*tail=(void*)((uint8_t*)(b+1)+bytes);*tail=(block8){b->size-bytes-sizeof(*tail),0,1,0};b->size=bytes;b->next=tail;}return b+1;
 }
 static void release142(void*p){if(!p)return;block8*b=(block8*)p-1;if((uintptr_t)b<W8_HEAP||(uintptr_t)b>=heap_end8||b->free)fail8("Invalid heap release in Windows process.");b->free=1;
  for(block8*x=heap8;x&&x->next;){if(x->free&&x->next->free&&(uint8_t*)(x+1)+x->size==(uint8_t*)x->next){x->size+=sizeof(*x)+x->next->size;x->next=x->next->next;}else x=x->next;}}
