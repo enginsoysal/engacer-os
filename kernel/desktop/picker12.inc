@@ -3,7 +3,7 @@ static unsigned picker_live12(void){return file_dialog_state11.mode==P12_DIALOG;
 static unsigned picker_owner12(uint64_t token){return picker_live12()&&file_dialog_state11.owner==token&&desktop_lookup(&model,token);}
 static unsigned picker_control12(uint64_t token,unsigned command){return picker_owner12(token)&&file_dialog_owner_focused11()&&((command>=P12_CANCEL&&command<=P12_DISCARD_OPEN)||(command>=P12_ROW&&command<P12_ROW+V6_ENTRIES));}
 static unsigned picker_folder12(const char*path){const v6_entry*e=entry(path);return equal(path,"/")||(e&&e->kind==2);}
-static unsigned picker_busy12(void){download7_info d=download7_current();return files_busy12()||(d.state>=DOWNLOAD7_RESOLVING&&d.state<=DOWNLOAD7_RECEIVING)||w8_pending();}
+static unsigned picker_busy12(void){download7_info d=download7_current();return files_busy12()||(d.state>=DOWNLOAD7_RESOLVING&&d.state<=DOWNLOAD7_RECEIVING)||(w8_pending()&&!picker_foreign12());}
 static unsigned picker_writable12(const char*path){return picker_folder12(path)&&writable72(path)&&!file_in_bin11(path)&&!m6_volume()->readonly;}
 static unsigned picker_string12(const char*s){for(unsigned i=0;i<256;++i)if(!s[i])return i&&s[0]=='/';return 0;}
 static void picker_pref_path12(char*out){root_path(out,"AppData/file-dialogs12.bin");}
@@ -14,7 +14,7 @@ static void picker_load12(void){
  for(unsigned i=0;i<3;++i)if(record.paths[i][0]&&!picker_string12(record.paths[i]))return;
  picker_preferences=record;
 }
-static unsigned picker_category12(void){return picker12.purpose==P12_TEXT_SAVE?1:picker12.purpose==P12_ZIP_FOLDER?2:0;}
+static unsigned picker_category12(void){return picker_saving12()?1:picker12.purpose==P12_ZIP_FOLDER?2:0;}
 static unsigned picker_remember12(void){
  unsigned category=picker_category12();copy(picker_preferences.paths[category],picker12.path,256);
  picker_preferences.magic=UINT64_C(0x31524b4350494c46);picker_preferences.version=1;picker_preferences.reserved=picker_preferences.padding=0;
@@ -23,6 +23,9 @@ static unsigned picker_remember12(void){
 }
 static void picker_error12(const char*message){copy(picker12.error,message,sizeof(picker12.error));whole();}
 static void picker_visit12(const char*path,unsigned push){
+#ifdef ENGINE_M14
+ if(picker_foreign12()&&!w8_picker_allowed146(picker_foreign_generation146,path,0)){picker_error12("This app cannot access that location. Choose one of its granted folders.");return;}
+#endif
  if(!picker_folder12(path)){picker_error12("That folder is no longer available. Choose another location.");return;}
  if(push&&(!picker12.history_count||!equal(path,picker12.path))){
   unsigned n=picker12.history_count?picker12.history_position+1:0;
@@ -46,6 +49,9 @@ static void picker_begin12(uint64_t token,unsigned purpose){
  serial_text("M128_PICKER_OPEN purpose=");serial_hex(purpose);serial_text("\n");
 }
 static unsigned picker_match12(const v6_entry*e){
+#ifdef ENGINE_M14
+ if(picker_foreign12()){if(!w8_picker_allowed146(picker_foreign_generation146,e->path,0))return 0;return e->kind==2||(e->kind==1&&w8_picker_matches146(picker_foreign_generation146,file_basename11(e->path),picker12.filter));}
+#endif
  if(e->kind==2)return 1;if(e->kind!=1||picker12.purpose==P12_ZIP_FOLDER)return 0;
  if(picker12.filter)return 1;const char*extension=ui12_file_extension(file_basename11(e->path));
  if(picker12.purpose==P12_IMAGE_OPEN)return !ui12_file_natural(extension,"bmp");
@@ -68,6 +74,7 @@ static const v6_entry*picker_selected12(void){
  return e->kind&&file_direct_child11(e->path,picker12.path)&&picker_match12(e)?e:0;
 }
 static void picker_close12(application*a,const char*message,unsigned remember){
+ if(picker_foreign12())picker_foreign_cancel146();
  unsigned failed=remember?picker_remember12():0;file_dialog_state11.mode=0;picker12.phase=0;control_active=0;
  if(a)notice(a,failed?"Your choice completed; its location could not be remembered on disk.":message);i11_cancel(&interaction11);whole();
 }
@@ -110,6 +117,7 @@ static void picker_accept12(unsigned decision){
   char target[256];if(file_join11(target,picker12.path,file_dialog_state11.input)){picker_error12("This folder path is too long.");return;}
   unsigned status=v6_mkdir(m6_volume(),target);if(status){picker_error12(file_error_text11(status));return;}picker12.phase=0;file_dialog_state11.focus=1;picker_visit12(target,1);return;
  }
+ if(picker_foreign_accept146(decision))return;
  if(picker12.phase==P12_REPLACE_REVIEW){picker_save12(w,a,1);return;}
  if(picker12.phase==P12_DIRTY_REVIEW){
   if(!picker_unchanged12(entry(picker12.pending))){picker12.phase=0;picker_error12("The selected file changed. Choose it again; your unsaved text is kept.");return;}
@@ -121,7 +129,7 @@ static void picker_accept12(unsigned decision){
   unsigned status=zip_extract_at74(a,folder);if(status){picker_error12("Extraction stopped. The ZIP is kept; inspect any partial output in Files.");return;}copy(picker12.path,folder,256);picker_close12(a,"Extracted into a new folder at your chosen location.",1);serial_text("M128_FOLDER_CHOSEN\n");return;
  }
  if(e&&e->kind==2){char path[256];copy(path,e->path,256);picker_visit12(path,1);return;}
- if(picker12.purpose==P12_TEXT_SAVE){picker_save12(w,a,0);return;}
+ if(picker_saving12()){picker_save12(w,a,0);return;}
  if(!e||e->kind!=1){picker_error12("Select a file in the list, then choose Open.");return;}
  char path[256];copy(path,e->path,256);
  if(picker12.purpose==P12_WINDOWS_INSPECT){char user[256];root_path(user,"");unsigned n=length(user);if(n&&user[n-1]=='/')user[n-1]=0;
@@ -144,7 +152,7 @@ static unsigned picker_action12(uint64_t token,unsigned command){
  if(!picker_owner12(token)||command<P12_CANCEL||command>P12_DISCARD_OPEN)return 0;
  picker12.error[0]=0;
  if(command==P12_CANCEL){picker_close12(0,"",0);serial_text("M128_PICKER_CANCELLED\n");return 1;}
- if(command==P12_REVIEW_BACK){picker12.phase=0;file_dialog_state11.focus=picker12.purpose==P12_TEXT_SAVE?2:1;whole();return 1;}
+ if(command==P12_REVIEW_BACK){picker12.phase=0;file_dialog_state11.focus=picker_saving12()?2:1;whole();return 1;}
  if(command==P12_REPLACE||command==P12_SAVE_OPEN||command==P12_DISCARD_OPEN||command==P12_ACCEPT){picker_accept12(command==P12_SAVE_OPEN?1:command==P12_DISCARD_OPEN?2:0);return 1;}
  if(picker12.phase){if(command==P12_NAME&&picker12.phase==P12_FOLDER_REVIEW){file_dialog_state11.focus=2;file_dialog_state11.cursor=length(file_dialog_state11.input);file_dialog_state11.anchor=0;whole();}return 1;}
  if(command==P12_ADDRESS){file_dialog_state11.focus=0;picker12.address_cursor=length(picker12.address);picker12.address_anchor=0;}
@@ -152,7 +160,11 @@ static unsigned picker_action12(uint64_t token,unsigned command){
  else if(command==P12_BACK||command==P12_FORWARD){unsigned p=picker12.history_position;if(command==P12_BACK&&p)--p;else if(command==P12_FORWARD&&p+1<picker12.history_count)++p;char path[256];copy(path,picker12.history[p],256);if(picker_folder12(path)){picker12.history_position=p;picker_visit12(path,0);}else picker_error12("That previous folder is no longer available. Your current folder is kept.");}
  else if(command==P12_UP){char path[256];file_parent11(path,picker12.path);picker_visit12(path,1);}
  else if(command>=P12_HOME&&command<=P12_PICTURES){char path[256];if(command==P12_HOME)home72(path);else root_path(path,command==P12_DOCUMENTS?"Documents":command==P12_DOWNLOADS?"Downloads":"Pictures");picker_visit12(path,1);}
- else if(command==P12_FILTER){picker12.filter^=1;picker12.generation=0;picker12.offset=0;picker12.selected=UINT32_MAX;}
+ else if(command==P12_FILTER){
+#ifdef ENGINE_M14
+ if(picker_foreign12()){const wpick_view146*v=w8_picker_native146();picker12.filter=v&&v->filter_count?(picker12.filter+1)%v->filter_count:0;}else
+#endif
+ picker12.filter^=1;picker12.generation=0;picker12.offset=0;picker12.selected=UINT32_MAX;}
  else if(command==P12_PREVIOUS)picker12.offset=picker12.offset>=picker12.rows?picker12.offset-picker12.rows:0;
  else if(command==P12_NEXT){picker_list12();if(picker12.offset+picker12.rows<picker12.count)picker12.offset+=picker12.rows;}
  else if(command==P12_NEW_FOLDER){if(!picker_writable12(picker12.path)||picker_busy12()){picker_error12("This location does not accept a new folder right now.");return 1;}picker12.phase=P12_FOLDER_REVIEW;copy(file_dialog_state11.input,"New folder",256);file_dialog_state11.cursor=10;file_dialog_state11.anchor=0;file_dialog_state11.focus=2;}
@@ -164,11 +176,11 @@ static unsigned picker_dispatch12(i11_target target,unsigned event){
  if(target.action<P12_ROW||target.action>=P12_ROW+V6_ENTRIES)return 0;
  if(picker12.phase)return 1;unsigned index=target.action-P12_ROW;const v6_entry*e=&m6_volume()->entries[index];
  if(!e->kind||!file_direct_child11(e->path,picker12.path)||!picker_match12(e))return 1;
- if(event&I11_SELECT){picker_select12(index);file_dialog_state11.focus=1;picker12.error[0]=0;if(e->kind==1&&picker12.purpose==P12_TEXT_SAVE){copy(picker12.name,file_basename11(e->path),256);picker12.name_cursor=picker12.name_anchor=length(picker12.name);}whole();}
+ if(event&I11_SELECT){picker_select12(index);file_dialog_state11.focus=1;picker12.error[0]=0;if(e->kind==1&&picker_saving12()){copy(picker12.name,file_basename11(e->path),256);picker12.name_cursor=picker12.name_anchor=length(picker12.name);}whole();}
  if(event&I11_ACTIVATE){if(e->kind==2){char path[256];copy(path,e->path,256);picker_visit12(path,1);}else picker_accept12(0);}return 1;
 }
 static unsigned picker_focus_enabled12(unsigned i){
- if(i==2)return picker12.purpose==P12_TEXT_SAVE;if(i==3)return picker12.purpose!=P12_ZIP_FOLDER;
+ if(i==2)return picker_saving12();if(i==3)return picker12.purpose!=P12_ZIP_FOLDER;
  if(i==6)return picker12.history_position>0;if(i==7)return picker12.history_position+1<picker12.history_count;
  if(i==8)return !equal(picker12.path,"/");if(i==13)return picker_writable12(picker12.path)&&!picker_busy12();if(i==14)return picker12.offset>0;if(i==15)return picker12.offset+picker12.rows<picker12.count;return 1;
 }
@@ -216,10 +228,10 @@ static void picker_nav20(int x,int y,unsigned command,unsigned icon,const char*n
 static unsigned picker_draw12(void){
  if(!picker_live12())return 0;if(!desktop_lookup(&model,file_dialog_state11.owner)){file_dialog_state11.mode=0;return 1;}if(!file_dialog_owner_focused11())return 1;
  file_dialog11*d=&file_dialog_state11;int width=model.width>900?860:(int)model.width-40,height=model.height>712?620:(int)model.height-92,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;
- desktop_shadow16(x,y,width,height);if(access_flags16&1){ui73_round(x,y,width,height,12,ink());ui73_round(x+2,y+2,width-4,height-4,10,paper());}else ui73_round(x,y,width,height,12,paper());ui73_fit(x+24,y+20,width-48,picker12.phase==P12_REPLACE_REVIEW?"Replace this file?":picker12.phase==P12_DIRTY_REVIEW?"Keep your current changes?":picker12.phase==P12_FOLDER_REVIEW?"Create a folder":picker12.purpose==P12_TEXT_SAVE?"Save as":picker12.purpose==P12_ZIP_FOLDER?"Choose an extraction folder":"Open a file",UI12_SECTION,ink());
+ desktop_shadow16(x,y,width,height);if(access_flags16&1){ui73_round(x,y,width,height,12,ink());ui73_round(x+2,y+2,width-4,height-4,10,paper());}else ui73_round(x,y,width,height,12,paper());ui73_fit(x+24,y+20,width-48,picker_foreign_title146(picker12.phase==P12_REPLACE_REVIEW?"Replace this file?":picker12.phase==P12_DIRTY_REVIEW?"Keep your current changes?":picker12.phase==P12_FOLDER_REVIEW?"Create a folder":picker_saving12()?"Save as":picker12.purpose==P12_ZIP_FOLDER?"Choose an extraction folder":"Open a file"),UI12_SECTION,ink());
  if(picker12.phase){
   if(picker12.phase==P12_FOLDER_REVIEW){ui73_fit(x+24,y+62,width-48,picker12.path,1,ink());text(x+24,y+106,"Folder name",1,ink());desktop_rect r={x+24,y+138,width-48,40};file_text_field11(r,d->input,d->cursor,d->anchor,d->focus==2,0);file_control11(d->owner,r,P12_NAME);}
-  else{ui73_paragraph(x+24,y+64,width-48,2,picker12.phase==P12_REPLACE_REVIEW?"Replacing removes this destination's previous contents. Your original document stays open until the new save succeeds.":"Your current document has unsaved changes. Save it, discard those changes explicitly, or return to your choice.",ink());text(x+24,y+120,picker12.phase==P12_REPLACE_REVIEW?"Destination file":"Selected file",1,ink());ui73_paragraph(x+24,y+148,width-48,3,file_basename11(picker12.pending),ink());desktop_rect r={x+24,y+224,width-48,36};file_text_field11(r,picker12.pending,length(picker12.pending),length(picker12.pending),0,0);}
+  else{ui73_paragraph(x+24,y+64,width-48,2,picker12.phase==P12_REPLACE_REVIEW?(picker_foreign12()?"Your app may replace this file after you confirm. Cancel keeps this destination.":"Replacing removes this destination's previous contents. Your original document stays open until the new save succeeds."):"Your current document has unsaved changes. Save it, discard those changes explicitly, or return to your choice.",ink());text(x+24,y+120,picker12.phase==P12_REPLACE_REVIEW?"Destination file":"Selected file",1,ink());ui73_paragraph(x+24,y+148,width-48,3,file_basename11(picker12.pending),ink());desktop_rect r={x+24,y+224,width-48,36};file_text_field11(r,picker12.pending,length(picker12.pending),length(picker12.pending),0,0);}
   ui73_paragraph(x+24,y+height-152,width-48,2,picker12.error[0]?picker12.error:"Back returns without changing the file. Cancel keeps your work.",ink());
   int bw=(width-56)/2;if(picker12.phase==P12_DIRTY_REVIEW){picker_button12(x+24,y+height-100,bw,"Save and open",P12_SAVE_OPEN,1,1,4);picker_button12(x+32+bw,y+height-100,bw,"Discard and open",P12_DISCARD_OPEN,1,0,6);}
   else picker_button12(x+24,y+height-100,bw,picker12.phase==P12_FOLDER_REVIEW?"Create and open":"Replace file",picker12.phase==P12_FOLDER_REVIEW?P12_ACCEPT:P12_REPLACE,1,1,4);
@@ -242,9 +254,9 @@ static unsigned picker_draw12(void){
  if(!picker12.count)ui73_fit(x+32,top+12,width-64,"No matching items. Choose another folder or file type.",1,ink());
  int controls_y=y+height-164;picker_button12(x+24,controls_y,64,"Prev",P12_PREVIOUS,picker12.offset>0,0,14);picker_button12(x+96,controls_y,64,"Next",P12_NEXT,picker12.offset+picker12.rows<picker12.count,0,15);
  picker_button12(x+168,controls_y,108,"New folder",P12_NEW_FOLDER,picker_writable12(picker12.path)&&!picker_busy12(),0,13);
- if(picker12.purpose==P12_TEXT_SAVE){text(x+24,y+height-116,"Name",UI12_SECONDARY,ink());desktop_rect field={x+84,y+height-122,width-108,36};file_text_field11(field,picker12.name,picker12.name_cursor,picker12.name_anchor,d->focus==2,0);file_control11(d->owner,field,P12_NAME);}
- if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker12.filter?"All files":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker12.purpose==P12_TEXT_SAVE?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
- ui73_fit(x+24,y+height-76,width-48,picker12.error[0]?picker12.error:picker12.purpose==P12_TEXT_SAVE?"Text type adds .txt when no extension is supplied. The original is kept.":"Click selects. Double-click or Enter opens. Escape cancels.",UI12_SECONDARY,ink());
- picker_button12(x+24,y+height-46,120,"Cancel",P12_CANCEL,1,0,5);picker_button12(x+width-190,y+height-46,166,picker12.purpose==P12_TEXT_SAVE?"Save":picker12.purpose==P12_ZIP_FOLDER?"Choose folder":"Open",P12_ACCEPT,1,1,4);
+ if(picker_saving12()){text(x+24,y+height-116,"Name",UI12_SECONDARY,ink());desktop_rect field={x+84,y+height-122,width-108,36};file_text_field11(field,picker12.name,picker12.name_cursor,picker12.name_anchor,d->focus==2,0);file_control11(d->owner,field,P12_NAME);}
+ if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker_foreign12()?picker_foreign_filter146("All files"):picker12.filter?"All files":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker_saving12()?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
+ ui73_fit(x+24,y+height-76,width-48,picker12.error[0]?picker12.error:picker_foreign12()?(picker_saving12()?"Choose a destination. Your app writes the file after this dialog closes.":"Choose a file. Your app opens it after this dialog closes."):picker_saving12()?"Text type adds .txt when no extension is supplied. The original is kept.":"Click selects. Double-click or Enter opens. Escape cancels.",UI12_SECONDARY,ink());
+ picker_button12(x+24,y+height-46,120,"Cancel",P12_CANCEL,1,0,5);picker_button12(x+width-190,y+height-46,166,picker_saving12()?"Save":picker12.purpose==P12_ZIP_FOLDER?"Choose folder":"Open",P12_ACCEPT,1,1,4);
  return 1;
 }

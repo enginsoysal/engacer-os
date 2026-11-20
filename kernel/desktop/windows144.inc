@@ -78,6 +78,10 @@ static unsigned foreign_key144(int key){
  if(vk){unsigned scan=keymap145(vk,4,input10_layout());uint64_t lp=1|((uint64_t)(scan&255)<<16)|(scan&0xff00?UINT64_C(1)<<24:0);w8_ui_input144(handle,0x100,vk,lp);w8_ui_input144(handle,0x101,vk,lp|UINT64_C(0xc0000000));}return 1;
 }
 static void foreign_pointer144(unsigned x,unsigned y,unsigned buttons,unsigned previous){
+#ifdef ENGINE_M14
+ if(picker_live12()&&picker_foreign12())return;
+#endif
+
  uint64_t captured=w8_ui_capture_root144();uint64_t token=desktop_hit(&model,(int)x,(int)y);if(captured)for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144==captured){token=desktop_token(&model,i);break;}desktop_window*w=desktop_lookup(&model,token);if(!w||dragging||launcher)return;uint64_t handle=apps[w-model.windows].foreign144;if(!handle||(!captured&&((int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)))return;
  wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return;
 #ifdef ENGINE_M14

@@ -666,6 +666,7 @@ static void draw_terminal(desktop_window *w,application *app,uint64_t token){
 #include "files12-ui.inc"
 #include "files12-presentation.inc"
 #include "picker12.inc"
+#include "picker146.inc"
 #endif
 #include "start11-model.inc"
 #ifdef ENGINE_M12
@@ -1405,6 +1406,10 @@ if(r.height<minimum)r.height=minimum;}else{r.x+=dx;r.y+=dy;}
 
 static void keyboard(int key) {
 #ifdef ENGINE_M8
+
+#ifdef ENGINE_M14
+    if(picker_foreign12()&&picker_key12(key))return;
+#endif
     if(foreign_key144(key))return;
 #endif
 #ifdef ENGINE_M12
@@ -1613,7 +1618,11 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
         unsigned file_work11=files_pending11();
 #endif
 #ifdef ENGINE_M8
-        foreign_sync144();unsigned windows_work=w8_runnable();
+        foreign_sync144();
+#ifdef ENGINE_M14
+        picker_foreign_sync146();
+#endif
+unsigned windows_work=w8_runnable();
 #else
         unsigned windows_work=0;
 #endif
@@ -1652,7 +1661,11 @@ NORETURN void desktop_start(const os_boot_info_v0 *boot,const m6_preferences *pr
 #ifdef ENGINE_M8
         if(windows_work){
             static unsigned seen_revision8;static uint64_t next_paint8;
-            w8_pump();foreign_sync144();unsigned revision=w8_current()->revision,running=w8_pending();uint64_t now=m3_clock_ticks();
+            w8_pump();foreign_sync144();
+#ifdef ENGINE_M14
+        picker_foreign_sync146();
+#endif
+unsigned revision=w8_current()->revision,running=w8_pending();uint64_t now=m3_clock_ticks();
             if((revision!=seen_revision8||!running)&&(!running||now>=next_paint8)){
                 seen_revision8=revision;next_paint8=now+10;
                 for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&model.windows[i].app==WINDOWS8){
