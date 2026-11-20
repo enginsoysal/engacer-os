@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "scope": "Development progress publication only; not M14.4 acceptance or a full website crawl",
+  "source_commit": "688780e4b138d4d44189fad77b8f6af141d7d3f0",
+  "workflow": {
+    "conclusion": "success",
+    "headSha": "688780e4b138d4d44189fad77b8f6af141d7d3f0",
+    "status": "completed"
+  },
+  "articles": [
+    {
+      "path": "docs/milestones/m14-4.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-4",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/688780e4b138d4d44189fad77b8f6af141d7d3f0/docs/milestones/m14-4.md",
+      "html_sha256": "c0e1422803735137dded6f2c198991a2dc530c1e109ec167cd9d180c59c1e3e3"
+    },
+    {
+      "path": "docs/architecture/messages-m144.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-messages-m144",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/688780e4b138d4d44189fad77b8f6af141d7d3f0/docs/architecture/messages-m144.md",
+      "html_sha256": "ccd6bcb4d43d128ab3f19d87cebebb1051198f602ddbb71cc793330a3fd94acb"
+    },
+    {
+      "path": "docs/roadmap/status.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-roadmap-status",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/688780e4b138d4d44189fad77b8f6af141d7d3f0/docs/roadmap/status.md",
+      "html_sha256": "9754e9e4da913fad496f3dc49c74d34c3ef5bf214d7ca023f8b575dc044e2ae9"
+    },
+    {
+      "path": "docs/milestones/m14.md",
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14",
+      "source": "https://github.com/enginsoysal/engacer-os/blob/688780e4b138d4d44189fad77b8f6af141d7d3f0/docs/milestones/m14.md",
+      "html_sha256": "7db52cdb24650bd8e875a383e59337a7db87361fec149b3fa0333818716f824c"
+    }
+  ],
+  "public_home_development": "M14.4",
+  "qualified_download": "M14.3",
+  "native_editor_saved": true,
+  "source_inputs_verified": 647
+}
