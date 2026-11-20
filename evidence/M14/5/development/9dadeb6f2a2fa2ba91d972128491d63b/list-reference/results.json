@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "scope": "Hidden host control reference only; not native Engacer OS qualification",
+  "visible_host_windows": false,
+  "original_apps_executed": false,
+  "observations": [
+    {
+      "callback_main": true,
+      "subitem": 0,
+      "text": "Callback name",
+      "length": 13,
+      "callbacks": [
+        0
+      ]
+    },
+    {
+      "callback_main": true,
+      "subitem": 1,
+      "text": "Callback size",
+      "length": 13,
+      "callbacks": [
+        1
+      ]
+    },
+    {
+      "callback_main": false,
+      "subitem": 0,
+      "text": "Stored name",
+      "length": 11,
+      "callbacks": []
+    },
+    {
+      "callback_main": false,
+      "subitem": 1,
+      "text": "Callback size",
+      "length": 13,
+      "callbacks": [
+        1
+      ]
+    },
+    {
+      "callback_main": null,
+      "subitem": 0,
+      "text": "",
+      "length": 0,
+      "callbacks": []
+    },
+    {
+      "callback_main": null,
+      "subitem": 1,
+      "text": "Callback size",
+      "length": 13,
+      "callbacks": [
+        1
+      ]
+    }
+  ],
+  "explicit_empty_suppresses_callback": true,
+  "observer_sha256": "d667bca55fc762d08d0c46b1aff0d157ea82be97125b05436d459beacc2776d7"
+}

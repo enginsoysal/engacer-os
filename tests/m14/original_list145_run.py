@@ -25,7 +25,7 @@ def main():
     p.move(int(x*scale),int(y*scale))
    point('Documents');p.down(True);p.down(False);p.drain();assert 'Documents'in labels();report['single_click_keeps_root']=True;c.shot(g,'original-single-selection')
    time.sleep(.6);point('Documents');p.down(True);p.down(False);p.down(True);p.down(False);p.drain();wait_for(g,lambda:'M145-navigation'in labels());report['documents_labels']=labels();c.shot(g,'original-documents')
-   time.sleep(.6);point('M145-navigation');p.down(True);p.down(False);p.down(True);p.down(False);p.drain();wait_for(g,lambda:'notes.txt'in labels());report['nested_labels']=labels();c.shot(g,'original-real-folder');c.key(g,'backspace');wait_for(g,lambda:'M145-navigation'in labels());report['back_to_parent']=True
+   time.sleep(.6);point('M145-navigation');p.down(True);p.down(False);p.down(True);p.down(False);p.drain();wait_for(g,lambda:'notes.txt'in labels());report['nested_labels']=labels();assert str(len(payload))in labels(),('Actual file size missing',len(payload),labels());report['actual_size_visible']=True;c.shot(g,'original-real-folder');c.key(g,'backspace');wait_for(g,lambda:'M145-navigation'in labels());report['back_to_parent']=True
    p.desktop(49002,True);g.wait('M8_JOB_DONE',at);p.drain();state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12));assert state==2 and not status,(state,command,status,output(g));report['retained_pages']=f.stats(g)[0]-before;assert report['retained_pages']==1;assert len(t.records(g))==1 and t.records(g)[0]['token']==front['token']
   assert ui.s.s.document(disk,folder+'/notes.txt',4096)==payload;report['native_fixture_bytes_unchanged']=True;report['passed']=True
  except Exception:report['error']=ui.q.clean(traceback.format_exc());raise

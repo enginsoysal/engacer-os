@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "build_id": "9dadeb6f2a2fa2ba91d972128491d63b",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "fixture_sha256": "829a31ddef3cfb4b6e76cf905c0b825d92fcee9ffcbb16775a7a868a75a98bfd",
+  "clone": {
+    "source_sha256": "5916a4ad64dd4c720c130fc2a6d00a9b0ac9907ffcee77f463d16b0e767cb794",
+    "clone_sha256": "5916a4ad64dd4c720c130fc2a6d00a9b0ac9907ffcee77f463d16b0e767cb794",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 8388608
+  },
+  "scope": "Original granted Documents folder selection/browse/back task; not complete archive tasks or M14.5 acceptance",
+  "single_click_keeps_root": true,
+  "documents_labels": [
+    "Name",
+    "Size",
+    "Modified",
+    "Created",
+    "Comment",
+    "Folders",
+    "Files",
+    "EngineOS-Windows-Extracted",
+    "M145-navigation",
+    "EngineOS-Windows.txt",
+    "EngineOS-Windows.zip",
+    "Welcome.txt"
+  ],
+  "nested_labels": [
+    "Name",
+    "Size",
+    "Modified",
+    "Created",
+    "Comment",
+    "Folders",
+    "Files",
+    "notes.txt"
+  ],
+  "back_to_parent": true,
+  "retained_pages": 1,
+  "native_fixture_bytes_unchanged": true
+}

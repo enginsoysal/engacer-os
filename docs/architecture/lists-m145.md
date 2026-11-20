@@ -133,3 +133,31 @@ opens Documents and the actual nested folder, renders notes.txt, then stops at
 the missing MapVirtualKeyW API on Backspace. That failure remains preserved;
 the original browse/back task has not passed. Follow-up [keyboard translation
 and cursor work](keyboard-m145.md) is pending new native qualification.
+
+Candidate `9dadeb6f2a2fa2ba91d972128491d63b` binds all 689 inputs to
+`dd86c7822ae471a7512000878613089a8bac897e`. Compact installation/two
+disk-only starts, original MSI regression, owned list input and the enhanced
+keyboard/cursor fixture pass. The unmodified original 7-Zip completes Documents,
+nested-folder and Backspace navigation, preserving independently checked file
+bytes. Its one retained page is the previously qualified shared registered-
+format cache; the owned keyboard/list fixtures retain zero pages. Native edit
+and arrow cursor captures were also visually inspected.
+
+That functional navigation pass does not close visual acceptance. Independent
+review finds blank original detail columns. A separate hidden Windows control
+reference confirms that unassigned subitems request LVN_GETDISPINFOW even when
+the main item has stored text; an explicitly empty subitem suppresses that
+callback. No original app runs on the host and the reference windows are never
+shown. The former native painter incorrectly treated those missing subitems as
+empty strings. The failing visual review and observer are preserved.
+
+The follow-up shares one checked text resolver between painting, GETITEMW and
+GETITEMTEXTW, adds SETITEMTEXTW, and honors DI_SETITEM text caching. A callback
+that changes the model cancels the stale operation even when the row count is
+unchanged. Callback depth is bounded to eight. Only callback-driven model
+mutation requests another paint; allocation/quota failure must not create an
+infinite repaint loop. Column alignment follows the application format while
+remaining clipped. Owned tests cover missing versus explicitly empty text,
+caching, equal-sized callback replacement and actual copied drawing commands;
+the original task now also requires its independently known file size. These
+source changes await a fresh frozen native build.

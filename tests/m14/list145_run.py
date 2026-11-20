@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[2]
 from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output
 from original_window_trace4 import views
 from list145_build import build
+from original_menu145_run import commands
 def wait(g,marker):
  deadline=time.monotonic()+30
  while time.monotonic()<deadline:
@@ -27,7 +28,7 @@ def main():
   with boot as g:
    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19);task(g,p,12005);before=f.stats(g)[0]
    for cycle in range(args.cycles):
-    at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);wait(g,'M145_LIST_READY');p.drain();root=next(v for v in views(g)if v['class_name']=='List145');child=next(v for v in views(g)if v['class_name']=='SysListView32');scale=c.flag(g,'scale73')/2
+    at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);wait(g,'M145_LIST_READY');p.drain();root=next(v for v in views(g)if v['class_name']=='List145');child=next(v for v in views(g)if v['class_name']=='SysListView32');assert any(row['text']=='Callback size'for row in commands(g,child['handle']));scale=c.flag(g,'scale73')/2
     def point(row):
      x,y,_,_=child['bounds'];p.move(int((root['bounds'][0]+1+x+1+40)*scale),int((root['bounds'][1]+40+y+1+28+row*24+12)*scale))
     def click(row):point(row);p.down(True);p.down(False);p.drain()

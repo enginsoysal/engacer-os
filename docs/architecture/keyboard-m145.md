@@ -55,3 +55,10 @@ The graphics cursor setter reports a real shape change. The foreign compositor
 redraws the cursor immediately on that change, including while the pointer is
 stationary; unchanged shapes do not cause repeated redraw. Native visible-cursor
 and screenshot checks are still required before describing this fix as qualified.
+
+Development `9dadeb6f2a2fa2ba91d972128491d63b` passes the enhanced native
+consumed-input/shifted-character/cursor fixture with zero retained pages. Both
+visible edit and arrow captures were independently inspected. The unmodified
+original 7-Zip also completes Backspace navigation and retains only its known
+one-page shared registered-format cache. Complete M14.5 qualification remains
+open because original list detail columns still require correction.

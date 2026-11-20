@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "original_navigation_passes": true,
+  "native_edit_and_arrow_cursor_visually_checked": true,
+  "reason": "Original nested file row renders its name but Size and other callback-supplied subitems are blank. Independent hidden Windows reference calls the parent for missing subitems."
+}

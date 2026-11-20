@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "build_id": "9dadeb6f2a2fa2ba91d972128491d63b",
+  "scope": "Owned native list fixture; not complete original app navigation qualification",
+  "clone": {
+    "source_sha256": "5916a4ad64dd4c720c130fc2a6d00a9b0ac9907ffcee77f463d16b0e767cb794",
+    "clone_sha256": "5916a4ad64dd4c720c130fc2a6d00a9b0ac9907ffcee77f463d16b0e767cb794",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 4194304
+  },
+  "fixture_sha256": "292702eaa5b773f651e801c8d439750555d70b9ffa831aa2da29ea4c6a1bf4d0",
+  "cycles": [
+    {
+      "cycle": 1,
+      "single_click_only_selects": true,
+      "double_click_activates": true,
+      "enter_activates": true,
+      "veto_preserves_old_selection": true,
+      "equal_sized_callback_replacement_safe": true,
+      "retained_pages": 0
+    }
+  ]
+}

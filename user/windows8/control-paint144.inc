@@ -6,6 +6,7 @@ static void control_label_clip145(HANDLE dc,int x,int y,const WCHAR*label,win_re
  if(cell.right<d->clip.right)d->clip.right=cell.right;if(cell.bottom<d->clip.bottom)d->clip.bottom=cell.bottom;
  if(d->clip.left<d->clip.right&&d->clip.top<d->clip.bottom)control_label144(dc,x,y,label);d->clip=old;
 }
+static void control_cell_label145(HANDLE dc,int minimum,int y,const WCHAR*label,win_rect144 cell,unsigned format){int x=minimum,size[2];unsigned align=format&3,n=wlen8(label);if((align==1||align==2)&&n&&f_GetTextExtentPoint32W(dc,label,(int)n,size)){x=align==1?cell.right-8-size[0]:cell.left+(cell.right-cell.left-size[0])/2;if(x<minimum)x=minimum;}control_label_clip145(dc,x,y,label,cell);}
 static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;HANDLE dc=f_BeginPaint(h,&paint);if(!dc)return;native_dc144*d=dc_lookup144(dc);
  ui_window_runtime144*w=ui_window_lookup144(h);if(!w||!d){f_EndPaint(h,&paint);return;}win_rect144 client=d->clip;HANDLE brush=6;f_SetBkMode(dc,1);
  ui_window_runtime144*parent=ui_window_lookup144(w->description.parent);if(c->kind==C144_STATIC&&parent&&!f_wcscmp(parent->class_->name,u"#32770"))brush=16;
@@ -13,14 +14,12 @@ static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;
  if(parent&&color_message){HANDLE requested=(HANDLE)f_SendMessageW(parent->handle,color_message,dc,(int64_t)h);w=ui_window_lookup144(h);d=dc_lookup144(dc);if(!w||!d||!w->control){f_EndPaint(h,&paint);return;}c=w->control;if(requested>=1&&requested<=31)brush=requested;}
  f_FillRect(dc,&client,brush);
  if(c->kind==C144_LISTVIEW&&c->model){list_model144*m=c->model;int x=0;
-  for(unsigned order=0;order<m->columns&&x<client.right;++order){unsigned col=0;while(col<m->columns&&m->column[col].order!=(int)order)++col;if(col==m->columns)continue;int width=m->column[col].width>0?m->column[col].width:160;control_label_clip145(dc,x+8,4,m->labels[col],(win_rect144){x,0,x+width,28});x+=width;}
+  for(unsigned order=0;order<m->columns&&x<client.right;++order){unsigned col=0;while(col<m->columns&&m->column[col].order!=(int)order)++col;if(col==m->columns)continue;int width=m->column[col].width>0?m->column[col].width:160;control_cell_label145(dc,x+8,4,m->labels[col],(win_rect144){x,0,x+width,28},(unsigned)m->column[col].format);x+=width;}
   int y=m->columns?28:4;for(unsigned row=(unsigned)m->top;row<c->count&&y+16<=client.bottom;row++,y+=24){list_row144*r=m->rows+row;unsigned selected=(r->state&2)!=0;if(selected){win_rect144 highlight={0,y-2,client.right,y+20};f_FillRect(dc,&highlight,14);}f_SetTextColor(dc,selected?0xffffff:m->text_color);x=0;
    unsigned columns=m->columns?m->columns:1;for(unsigned order=0;order<columns&&x<client.right;++order){unsigned col=0;if(m->columns){while(col<m->columns&&m->column[col].order!=(int)order)++col;if(col==m->columns)continue;}int width=m->columns&&m->column[col].width>0?m->column[col].width:160;win_rect144 cell={x,y-2,x+width,y+22};if(col>=16){x+=width;continue;}
-    WCHAR*label=r->text[col];WCHAR buffer[160];if((uintptr_t)label==UINT64_MAX){struct {HANDLE window,id;unsigned code,pad;list_item144 item;} notification={0};notification.window=h;notification.id=(HANDLE)w->id;notification.code=(unsigned)-177;notification.item=(list_item144){.mask=1,.item=(int)row,.subitem=(int)col,.text=buffer,.capacity=160,.parameter=r->parameter};buffer[0]=0;uint64_t revision=m->revision;
-     f_SendMessageW(w->description.parent,0x4e,(HANDLE)w->id,(int64_t)(uintptr_t)&notification);if(!list_live145(h,c,m)||m->revision!=revision){f_EndPaint(h,&paint);if(f_IsWindow(h))f_InvalidateRect(h,0,1);return;}w=ui_window_lookup144(h);r=m->rows+row;label=notification.item.text;
-    }
+    WCHAR buffer[160];unsigned length,status=list_read_text145(h,c,m,row,col,buffer,160,&length);if(status!=1){f_EndPaint(h,&paint);if(status==2&&f_IsWindow(h))f_InvalidateRect(h,0,1);return;}w=ui_window_lookup144(h);r=m->rows+row;const WCHAR*label=buffer;
     int label_x=x+8;if(!col&&m->images[1]&&r->image>=0){unsigned iw,ih;if(image_size145(m->images[1],3,&iw,&ih)&&iw<=256&&ih<=24){native_dc144*current=dc_lookup144(dc);win_rect144 old=current->clip;if(cell.right<current->clip.right)current->clip.right=cell.right;f_ImageList_Draw(m->images[1],r->image,dc,x+8,y+(16-(int)ih)/2,1);current->clip=old;label_x+=(int)iw+6;}}
-    control_label_clip145(dc,label_x,y,label,cell);x+=width;
+    control_cell_label145(dc,label_x,y,label,cell,m->columns?(unsigned)m->column[col].format:0);x+=width;
    }
   }
  }else if(c->kind==C144_TOOLBAR&&c->model){toolbar144*t=c->model;f_FillRect(dc,&client,16);
