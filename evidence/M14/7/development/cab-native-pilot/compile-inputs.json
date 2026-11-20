@@ -1,0 +1,15 @@
+{
+  "fixture_sha256": "231c6c2676a6e577503f0977296ae4339fff577793a0ecd650fd7d04009f8365",
+  "sources": {
+    "tests/m14/cab147_native.c": "9e9365d144a088c49a464c70eb6517dfc4dd4b0107cdd087626948f291cdcc88",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "user/windows8/cab147.h": "4abefd395274d4fb281912f0074943052907c427f2722758986f3eeb4d380bf5",
+    "include/engine/sha256.h": "f0782b06f745be9a3d0bf8d160c1f13a0b5dd1b28719a1e889e9fe47e9f826eb",
+    "tests/m14/cab147_build.py": "72735ba747a899bfb615337145258bd5bf6e1b64c01994b86ce7dc9c01131bec"
+  },
+  "independent_expected_header_sha256": "0d090a6d9f7e537bc9e1a37d37969ca4990cfc91f653ab23e58f28da5ddd24fd",
+  "supporting_host_report_sha256": "5471c412ae715a00c643e6332ce32a6ec9df1f9c5a5feaa48eb43ed83ead2521",
+  "scope": "Owned native probe; original archives are data only, original file hashes come from independent data-only decoding"
+}

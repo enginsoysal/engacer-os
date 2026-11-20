@@ -1,0 +1,34 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "001ca9c3a9a367e8a5398ab08ab9995c4fb3009e02d8420e58acdeae9500e575",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from cab147_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage7/cab-native"
+    ],
+    [
+      "m146-global-native",
+      "m147-cab-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M147_ORIGINAL_CAB_STREAM_ALL_323_SHA256_PASS"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "original_files_hashed=323"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Owned production streaming LZX and SHA-256 of all 323 original files on accepted M14.6 media; not reusable MSI installation, custom-action or new OS qualification"
+    ],
+    [
+      "try:mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())",
+      "try:\n  mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())\n  inputs=json.loads((ROOT/'build/m14-native/stage7/cab-inputs/inputs.json').read_text(encoding='utf-8-sig'))\n  for index,row in enumerate(inputs['inputs']):mounted.put('/Users/Owner/Documents/m147-cab-'+str(index)+'.bin',(ROOT/'build/m14-native/stage7/cab-inputs'/row['cabinet']).read_bytes())"
+    ]
+  ]
+}
