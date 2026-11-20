@@ -20,7 +20,14 @@ The external directory intentionally ends in `m14`: the current builder selects 
 
 Edit `distros/my-edition.json`. Give it your own `id`, `name`, `version`, welcome text and appearance. Schema 3 supports the accent, wallpaper color, light/dark default, tagline, optional native application IDs and bounded data packages. Keep `desktop.calculator` consistent with whether `calculator` appears in `desktop.applications`. Remove optional apps from that list to omit them; keep required Files, Settings and shared services intact. The retained `m12-desktop-guide` package name is an internal identifier, not a different OS version.
 
-Validate the copied profile and then build the M14 feature set using its existing builder entry point:
+Commit your edited recipe and any changed build/package inputs in your separate checkout before building. The M14 integrity guard requires every compiled input to match a committed Git blob; an untracked or uncommitted recipe is refused. This local commit does not publish your edition:
+
+```powershell
+git add distros/my-edition.json
+git commit -m "Configure my Engacer OS edition"
+```
+
+If you changed package source files as well, include those specific files in the commit. Then validate the copied profile and build the M14 feature set using its existing builder entry point:
 
 ```powershell
 python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from distro import load; p=load(Path('distros/my-edition.json'), desktop=True, standard_apps=True, windows=True); print(p['id'], p['version'])"
