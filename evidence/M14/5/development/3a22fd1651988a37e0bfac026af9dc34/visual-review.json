@@ -1,0 +1,13 @@
+{
+  "build_id": "3a22fd1651988a37e0bfac026af9dc34",
+  "static_label_clipping_corrected": true,
+  "reviewed_profiles": [
+    "compact",
+    "3840x2160/200%"
+  ],
+  "independent_short_label_reference_passed": true,
+  "full_app_interface_qualified": false,
+  "remaining_observations": [
+    "Pointer may retain a prior resize cursor until it moves; this has not been corrected or qualified"
+  ]
+}

@@ -1,0 +1,11 @@
+<project-root>\tools\build\trust7.py:17: CryptographyDeprecationWarning: Parsed a serial number which wasn't positive (i.e., it was negative or zero), which is disallowed by RFC 5280. Loading this certificate will cause an exception in a future release of cryptography.
+  certificates=x509.load_pem_x509_certificates(source.read_bytes())
+{
+  "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+  "iso": "dist/EngacerOS-M14STAGE5.iso"
+}
+{
+  "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+  "iso": "dist/EngacerOS-M14STAGE5.iso"
+}
+{"milestone": "M14 candidate", "build_id": "f862faef99b2fccd6ccceb182f9d6a23", "iso": "dist/EngacerOS-M14STAGE5.iso"}

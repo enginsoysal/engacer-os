@@ -1,8 +1,9 @@
 """Replay canonical scenarios on isolated M14.5 media without editing accepted tests.
 
-Only stage identities and owned output/VM suite names change. Each executed
-observer's original and transformed byte hashes are recorded. Native fixtures
-and functional assertions remain unchanged.
+Stage identities, owned output/VM names and the documented menu-coordinate
+oracle change. The controls fixture uses a separately recorded SDK message-ID
+correction while retaining every assertion. Original/transformed observer and
+fixture hashes are recorded; accepted earlier-stage bytes remain unchanged.
 """
 import hashlib, importlib.abc, importlib.util, json, os, re, sys, traceback
 from pathlib import Path
@@ -47,6 +48,9 @@ class ReplayLoader(importlib.abc.MetaPathFinder, importlib.abc.Loader):
             before="node['bounds'][1]+40;scale="
             assert before in text
             text=text.replace(before,"node['bounds'][1]+40+node.get('menu_height',0);scale=")
+        if module.__name__ == 'controls144_run':
+            assert 'from controls144_build import build' in text
+            text=text.replace('from controls144_build import build','from controls145_build import build')
         observed[source.relative_to(ROOT).as_posix()] = {
             'canonical_sha256': hashlib.sha256(raw).hexdigest(),
             'executed_sha256': hashlib.sha256(text.encode('utf-8')).hexdigest(),

@@ -1,0 +1,32 @@
+/* Owned selection/activation/veto/reentrant-model fixture. */
+typedef unsigned long long H;typedef long long I;typedef unsigned short W;typedef I(*PROC)(H,unsigned,H,I);
+typedef struct {unsigned style;PROC proc;int cls_extra,win_extra;H instance,icon,cursor,background;const W*menu,*name;} CLASS;
+typedef struct {H window;unsigned message,pad;H wp;I lp;unsigned time;int x,y;unsigned private_;} MSG;
+typedef struct {unsigned mask;int item,subitem;unsigned state,state_mask,pad;W*text;int capacity,image;I parameter;int indent,group;unsigned columns,pad2;unsigned*column_ids;int*formats;int group_index,pad3;} ITEM;
+typedef struct {unsigned mask;int format,width,pad;W*text;int capacity,subitem,image,order,min_width,default_width,ideal_width,pad2;} COLUMN;
+typedef struct {H window,id;unsigned code,pad;int item,subitem;unsigned next,old,changed;int x,y,pad2;I parameter;unsigned keys,pad3;} NOTICE;
+__declspec(dllimport) H RegisterClassW(const CLASS*);
+__declspec(dllimport) H CreateWindowExW(unsigned,const W*,const W*,unsigned,int,int,int,int,H,H,H,void*);
+__declspec(dllimport) I DefWindowProcW(H,unsigned,H,I);
+__declspec(dllimport) I SendMessageW(H,unsigned,H,I);
+__declspec(dllimport) int GetMessageW(MSG*,H,unsigned,unsigned);
+__declspec(dllimport) I DispatchMessageW(const MSG*);
+__declspec(dllimport) void PostQuitMessage(int);
+__declspec(dllimport) H GetStdHandle(unsigned);
+__declspec(dllimport) int WriteFile(H,const void*,unsigned,unsigned*,void*);
+__declspec(dllimport) void ExitProcess(unsigned);
+static H root,list;static unsigned activated,changed,armed,mutated,safe;
+static void say(const char*s){unsigned n=0,w;while(s[n])++n;WriteFile(GetStdHandle((unsigned)-11),s,n,&w,0);}
+static void check(int ok,const char*s){if(!ok){say("M145_LIST_FAIL ");say(s);say("\n");ExitProcess(1);}}
+static void fill(unsigned base){const W*labels[3]={L"First folder",L"Selection veto",L"Last folder"};for(unsigned n=0;n<3;++n){ITEM item={0};item.mask=5;item.item=(int)n;item.text=(W*)labels[n];item.parameter=base+n;check(SendMessageW(list,0x104d,0,(I)&item)==(I)n,"insert original row");}}
+static I procedure(H h,unsigned m,H wp,I lp){(void)wp;
+ if(m==0x4e){NOTICE*n=(void*)lp;if(n->code==(unsigned)-155){unsigned key=*(W*)((unsigned char*)n+24);if(key=='R'){armed=1;say("M145_LIST_ARMED\n");}if(key=='V'){check(mutated&&SendMessageW(list,0x1032,0,0)==0,"no stale selection after callback replaced equal-sized model");safe=1;say("M145_LIST_REENTRANT_SAFE\n");}return 0;}
+  if(n->code==(unsigned)-100){check(n->changed==8&&n->item>=0&&n->item<3,"changing ABI");if(armed){armed=0;mutated=1;SendMessageW(list,0x1009,0,0);fill(200);say("M145_LIST_MUTATED\n");return 0;}if(n->item==1&&(n->next&3)){say("M145_LIST_VETO\n");return 1;}return 0;}
+  if(n->code==(unsigned)-101){++changed;return 0;}
+  if(n->code==(unsigned)-2){if(!activated&&n->item==0){check(SendMessageW(list,0x1032,0,0)==1&&SendMessageW(list,0x102c,0,3)==3,"single click selects and focuses");say("M145_LIST_SELECT_ONLY\n");}if(n->item==1){check(SendMessageW(list,0x1032,0,0)==1&&SendMessageW(list,0x102c,0,3)==3,"veto preserves previous selection and still reports click");say("M145_LIST_VETO_PRESERVED\n");}return 0;}
+  if(n->code==(unsigned)-114){check(!mutated&&n->parameter==100+n->item&&(n->item==0||n->item==2),"activation carries current row identity");++activated;say(activated==1?"M145_LIST_DOUBLE_ACTIVATE\n":"M145_LIST_ENTER_ACTIVATE\n");return 0;}
+ }
+ if(m==2){check(activated==2&&changed&&mutated&&safe,"real activation and reentrant lifetime checks");PostQuitMessage(0);return 0;}return DefWindowProcW(h,m,wp,lp);
+}
+static PROC volatile anchor=procedure;
+void entry(void){_Static_assert(sizeof(ITEM)==88,"LVITEMW");_Static_assert(sizeof(COLUMN)==56,"LVCOLUMNW");CLASS cls={0};cls.proc=anchor;cls.name=L"List145";check(RegisterClassW(&cls)!=0,"class");root=CreateWindowExW(0,cls.name,L"Native Windows list input",0x10cf0000,180,100,560,360,0,0,0,0);check(root!=0,"root");list=CreateWindowExW(0,L"SysListView32",L"",0x50800005,10,12,500,260,root,11,0,0);check(list!=0,"list");COLUMN column={0};column.mask=6;column.width=460;column.text=L"Name";check(SendMessageW(list,0x1061,0,(I)&column)==0,"column");fill(100);say("M145_LIST_READY\n");MSG msg;while(GetMessageW(&msg,0,0,0)>0)DispatchMessageW(&msg);say("M145_LIST_LIFETIME_PASS\n");ExitProcess(0);}

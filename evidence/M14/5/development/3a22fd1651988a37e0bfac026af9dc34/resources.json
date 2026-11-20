@@ -1,0 +1,12 @@
+{
+  "build_id": "3a22fd1651988a37e0bfac026af9dc34",
+  "desktop_fixed": {
+    "bytes": 557692,
+    "sections": {
+      "bss": 557664,
+      "data": 28
+    },
+    "map_sha256": "ea31fa0545322488492a3b77b74c62d4f4d14a5cf95605c0cb053191f60baa35"
+  },
+  "scope": "Fixed desktop data only; not whole-system optimization"
+}

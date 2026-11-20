@@ -15,6 +15,7 @@ static void control_release144(ui_window_runtime144*w){control_state144*c=w->con
 static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(text);if(n>2047){last8(206);return 0;}WCHAR*copy=alloc8(((size_t)n+1)*2);if(!copy){last8(8);return 0;}if(text)memcpy(copy,text,(size_t)n*2);copy[n]=0;free8(*out);*out=copy;return 1;}
 #include "toolbar144.inc"
 #include "listview144.inc"
+#include "list-input145.inc"
 #include "combo144.inc"
 #include "rebar144.inc"
 #include "edit-input144.inc"
@@ -31,6 +32,7 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  if(c->kind==C144_REBAR&&(message==5||message>=0x400)){unsigned handled;int64_t result=rebar_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_EDIT){unsigned handled;int64_t result=edit_input144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_BUTTON){unsigned handled;int64_t result=button_input145(w,c,message,wp,lp,&handled);if(handled)return result;}
+ if(c->kind==C144_LISTVIEW){unsigned handled;int64_t result=list_input145(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_TOOLBAR&&c->model&&(message==0x201||message==0x202||message==0x215)){
   toolbar144*t=c->model;
   if(message==0x215){t->pressed=-1;f_InvalidateRect(handle,0,0);return 0;}
