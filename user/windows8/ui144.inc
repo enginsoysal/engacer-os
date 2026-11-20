@@ -12,6 +12,8 @@ static unsigned ui_builtin144(const WCHAR*);
 static void control_release144(ui_window_runtime144*);
 static void drop_release144(ui_window_runtime144*);
 static HANDLE MS f_SetCursor(HANDLE);
+static HANDLE MS f_LoadMenuW(HANDLE,const WCHAR*);
+static int MS f_DestroyMenu(HANDLE);
 static int64_t ui_call144(unsigned op,HANDLE handle,void*pointer,uint64_t arg){return(int64_t)sys8(W8_SYS_UI144,op,handle,(uint64_t)(uintptr_t)pointer,arg,0);}
 static unsigned ui_wide144(WCHAR*out,unsigned cap,const WCHAR*in){unsigned n=0;while(in&&in[n]){if(n+1>=cap){last8(206);return 0;}out[n]=in[n];++n;}out[n]=0;return 1;}
 static ui_class144 *ui_class_lookup144(const WCHAR*name){for(ui_class144*c=ui_classes144;c;c=c->next){if((uintptr_t)name<=65535){if(c->atom==(uintptr_t)name)return c;}else if(!f_wcscmp(c->name,name)||(int64_t)sys8(W8_SYS_TEXT143,1,(uint64_t)(uintptr_t)c->name,(uint64_t)(uintptr_t)name,0,0)==0)return c;}return 0;}
@@ -34,10 +36,11 @@ static int64_t MS f_SendMessageW(HANDLE handle,unsigned message,uint64_t wp,int6
 static HANDLE MS f_CreateWindowExW(unsigned exstyle,const WCHAR*class_name,const WCHAR*name,unsigned style,int x,int y,int width,int height,HANDLE parent,HANDLE menu,HANDLE instance,void*parameter){
  lock_enter142(&ui_lock144);ui_class144*c=ui_class_lookup144(class_name);if(!c&&ui_builtin144(class_name))c=ui_class_lookup144(class_name);if(!c){lock_leave142(&ui_lock144);last8(1407);return 0;}
  ui_window_runtime144*w=calloc8(1,sizeof(*w)+(unsigned)c->definition.win_extra);if(!w){lock_leave142(&ui_lock144);last8(8);return 0;}
+ unsigned loaded_menu=0;if(!(style&0x40000000)&&!menu&&c->definition.menu){const WCHAR*resource=c->definition.menu;lock_leave142(&ui_lock144);menu=f_LoadMenuW(instance,resource);lock_enter142(&ui_lock144);if(!menu){free8(w);lock_leave142(&ui_lock144);return 0;}loaded_menu=1;}
  w->class_=c;w->proc=c->definition.proc;w->thread=tid142();w->extra_size=(unsigned)c->definition.win_extra;w->menu=menu;w->id=(int64_t)menu;
  wui_description144*d=&w->description;d->parent=(style&0x40000000)?parent:0;d->owner=(style&0x40000000)?0:parent;d->style=style;d->exstyle=exstyle;d->enabled=!(style&0x08000000);d->bounds=(wui_rect144){x==(int)0x80000000?80:x,y==(int)0x80000000?70:y,width==(int)0x80000000?760:width,height==(int)0x80000000?500:height};
- if(!ui_wide144(d->title,128,name)||!ui_wide144(d->class_name,64,c->name)){free8(w);lock_leave142(&ui_lock144);return 0;}
- int64_t result=ui_call144(WUI_CREATE144,0,d,0);if(result<0){free8(w);lock_leave142(&ui_lock144);last8((unsigned)-result);return 0;}
+ if(!ui_wide144(d->title,128,name)||!ui_wide144(d->class_name,64,c->name)){if(loaded_menu)f_DestroyMenu(menu);free8(w);lock_leave142(&ui_lock144);return 0;}
+ int64_t result=ui_call144(WUI_CREATE144,0,d,0);if(result<0){if(loaded_menu)f_DestroyMenu(menu);free8(w);lock_leave142(&ui_lock144);last8((unsigned)-result);return 0;}
  HANDLE handle=(HANDLE)result;w->handle=handle;w->next=ui_runtime_windows144;ui_runtime_windows144=w;++c->windows;lock_leave142(&ui_lock144);
  struct {void*parameter;HANDLE instance,menu,parent;int cy,cx,y,x;unsigned style,pad;const WCHAR*name,*class_name;unsigned exstyle,pad2;} creation={parameter,instance,menu,parent,height,width,y,x,style,0,name,class_name,exstyle,0};
  int64_t accepted=f_SendMessageW(handle,0x81,0,(int64_t)(uintptr_t)&creation);
@@ -50,7 +53,7 @@ static int MS f_DestroyWindow(HANDLE handle){
  lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);if(!w||w->thread!=tid142()){lock_leave142(&ui_lock144);last8(w?5:1400);return 0;}if(w->destroying){lock_leave142(&ui_lock144);return 1;}w->destroying=1;lock_leave142(&ui_lock144);
  if(w->created)f_SendMessageW(handle,2,0,0);
  for(;;){HANDLE child=0;lock_enter142(&ui_lock144);for(ui_window_runtime144*n=ui_runtime_windows144;n;n=n->next)if(!n->destroying&&(n->description.parent==handle||n->description.owner==handle)){child=n->handle;break;}lock_leave142(&ui_lock144);if(!child)break;f_DestroyWindow(child);}
- drop_release144(w);f_SendMessageW(handle,0x82,0,0);lock_enter142(&ui_lock144);w=ui_window_lookup144(handle);if(w){ui_window_runtime144**link=&ui_runtime_windows144;while(*link&&*link!=w)link=&(*link)->next;if(*link)*link=w->next;--w->class_->windows;control_release144(w);ui_call144(WUI_DESTROY144,handle,0,0);free8(w);}lock_leave142(&ui_lock144);return 1;
+ drop_release144(w);f_SendMessageW(handle,0x82,0,0);lock_enter142(&ui_lock144);w=ui_window_lookup144(handle);if(w){ui_window_runtime144**link=&ui_runtime_windows144;while(*link&&*link!=w)link=&(*link)->next;if(*link)*link=w->next;--w->class_->windows;control_release144(w);if(!(w->description.style&0x40000000)&&w->menu)f_DestroyMenu(w->menu);ui_call144(WUI_DESTROY144,handle,0,0);free8(w);}lock_leave142(&ui_lock144);return 1;
 }
 static int MS f_PostMessageW(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){wui_message144 m={.message=message,.wparam=wp,.lparam=(uint64_t)lp};int64_t result=ui_call144(handle?WUI_POST144:WUI_THREAD_POST144,handle?handle:tid142(),&m,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
 static void MS f_PostQuitMessage(int code){int64_t result=ui_call144(WUI_QUIT144,0,0,(uint32_t)code);if(result<0)last8((unsigned)-result);}
@@ -62,7 +65,7 @@ static int MS f_PeekMessageW(ui_msg144*out,HANDLE window,unsigned first,unsigned
 static int MS f_GetMessageW(ui_msg144*out,HANDLE window,unsigned first,unsigned last){for(;;){int result=ui_peek144(out,window,first,last,1);if(result<0)return -1;if(result)return out->message!=0x12;wui_filter144 filter={window,first,last,1,0};int64_t status=ui_call144(WUI_WAIT144,0,0,(uint64_t)(uintptr_t)&filter);if(status<0){last8((unsigned)-status);return -1;}}}
 static int64_t MS f_DispatchMessageW(const ui_msg144*m){return m?f_SendMessageW(m->window,m->message,m->wp,m->lp):0;}
 static int MS f_TranslateMessage(const ui_msg144*m){if(!m)return 0;if(m->message==0x100&&m->wp>=32&&m->wp<=126)return f_PostMessageW(m->window,0x102,m->wp,m->lp);return 0;}
-static int MS ui_settext144(HANDLE handle,const WCHAR*text){lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);unsigned ok=w&&w->thread==tid142()&&ui_refresh144(w)&&ui_wide144(w->description.title,128,text)&&ui_sync144(w);lock_leave142(&ui_lock144);if(!w)last8(1400);return(int)ok;}
+static int MS ui_settext144(HANDLE handle,const WCHAR*text){WCHAR copy[128];if(!ui_wide144(copy,128,text))return 0;lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);unsigned ok=0;if(w&&w->thread==tid142()&&ui_refresh144(w)){wui_description144 previous=w->description;memcpy(w->description.title,copy,(wlen8(copy)+1)*2);ok=ui_sync144(w);if(!ok)w->description=previous;}lock_leave142(&ui_lock144);if(!w)last8(1400);return(int)ok;}
 static int MS ui_gettext144(HANDLE handle,WCHAR*out,int capacity){if(!out||capacity<=0){last8(87);return 0;}lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);unsigned n=0;if(w){while(w->description.title[n]&&n+1<(unsigned)capacity){out[n]=w->description.title[n];++n;}out[n]=0;}lock_leave142(&ui_lock144);if(!w)last8(1400);return(int)n;}
 static int MS ui_textlength144(HANDLE handle){lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);unsigned n=w?wlen8(w->description.title):0;lock_leave142(&ui_lock144);if(!w)last8(1400);return(int)n;}
 static int64_t MS f_DefWindowProcW(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){switch(message){case 0x81:return 1;case 0x20:{ui_window_runtime144*w=ui_window_lookup144(handle);if(w&&w->class_->definition.cursor){f_SetCursor(w->class_->definition.cursor);return 1;}return 0;}case 0x10:return f_DestroyWindow(handle)?0:0;case 0xc:return ui_settext144(handle,(const WCHAR*)(uintptr_t)lp);case 0xd:return ui_gettext144(handle,(WCHAR*)(uintptr_t)lp,(int)wp);case 0xe:return ui_textlength144(handle);case 0x84:return 1;default:return 0;}}

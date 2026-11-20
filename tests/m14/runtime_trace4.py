@@ -16,7 +16,7 @@ import capture14
 capture14.bind(ui)
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--fixture',choices=['original','heap','controls','resources','com'],default='original');parser.add_argument('--runtime');args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--fixture',choices=['original','heap','controls','resources','com','menu'],default='original');parser.add_argument('--runtime');args=parser.parse_args()
  out=ROOT/'build/m14-native/stage4/runtime-traces'/uuid.uuid4().hex;out.mkdir(parents=True);c.OUT=out
  meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage4/apps/results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
  # Reject a kernel/IPC edit under frozen maps. User-runtime-only tracing is separate.
@@ -33,7 +33,8 @@ def main():
  try:
   mounted.put('/System/Windows/runtime8.elf',rt.read_bytes())
   if args.fixture!='original':
-   module=__import__({'heap':'heap144_build','controls':'controls144_build','resources':'resource144_build','com':'com144_build'}[args.fixture]);fixture=module.build();filename={'heap':'heap.exe','controls':'controls.exe','resources':'resource.exe','com':'com.exe'}[args.fixture];mounted.put(product+'/7z.exe',(fixture/filename).read_bytes());report['fixture_sha256']=hashlib.sha256((fixture/filename).read_bytes()).hexdigest()
+   module=__import__({'heap':'heap144_build','controls':'controls144_build','resources':'resource144_build','com':'com144_build','menu':'menu144_build'}[args.fixture]);fixture=module.build();filename={'heap':'heap.exe','controls':'controls.exe','resources':'resource.exe','com':'com.exe','menu':'menu.exe'}[args.fixture];mounted.put(product+'/7z.exe',(fixture/filename).read_bytes());report['fixture_sha256']=hashlib.sha256((fixture/filename).read_bytes()).hexdigest()
+   if args.fixture=='menu':mounted.put(product+'/menus144.dll',(fixture/'menus144.dll').read_bytes())
    if args.fixture=='resources':mounted.put(product+'/resources144.dll',(fixture/'resources144.dll').read_bytes())
  finally:mounted.close()
  try:
@@ -50,7 +51,7 @@ def main():
      time.sleep(.05)
     raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384);state,command,status=struct.unpack_from('<3I',raw);report.update(state=state,status=status,message=raw[304:496].split(b'\0')[0].decode(errors='replace'),output=raw[496:].split(b'\0')[0].decode(errors='replace'),native_windows=t.records(g));c.shot(g,'original-startup-observation')
    else:
-    value=task(g,p,12005);marker={'heap':'M144_HEAP_OVERHEAD_PASS','controls':'M144_CONTROLS_GEOMETRY_PASS','resources':'M144_RESOURCE_IMAGE_HEAP_PASS','com':'M144_COM_LIFETIME_PASS'}[args.fixture];assert marker in value,value;report.update(output=value,retained_pages=f.stats(g)[0]-before,passed=True)
+    value=task(g,p,12005);marker={'heap':'M144_HEAP_OVERHEAD_PASS','controls':'M144_CONTROLS_GEOMETRY_PASS','resources':'M144_RESOURCE_IMAGE_HEAP_PASS','com':'M144_COM_LIFETIME_PASS','menu':'M144_MENU_STATE_PASS'}[args.fixture];assert marker in value,value;report.update(output=value,retained_pages=f.stats(g)[0]-before,passed=True)
    (out/'serial.log').write_bytes(g.log().encode())
  except Exception:report['observer_error']=ui.q.clean(traceback.format_exc());raise
  finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:v for k,v in report.items()if k not in ('runtime_sources','clone')},indent=2),flush=True)

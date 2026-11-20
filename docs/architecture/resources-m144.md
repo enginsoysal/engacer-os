@@ -27,3 +27,19 @@ The native owned PE fixture passes 21 process lifetimes with 25 real resource-DL
 The unmodified 7zFM.exe now executes its own code and reaches the common-control initialization call (ordinal 17). This is progress beyond the prior unresolved import, not a working original file-manager interface. M14.4 remains unaccepted.
 
 References: [FindResourceW](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-findresourcew), [resource lifetime](https://learn.microsoft.com/en-us/windows/win32/menurc/finding-and-loading-resources), [icon groups](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-lookupiconidfromdirectoryex).
+
+## Menu resource development
+
+The Windows runtime now parses standard and extended menu templates from the actual checked module resource bytes. The pinned original 7-Zip file manager uses MENUEX, including aligned items, nested popups and counted resource bounds. Parsing is limited to sixteen nested popup levels, 2,048 items and 256 process-owned menus. Truncated resource templates fail and release the partially built tree.
+
+Menu objects copy labels and remain valid after the source DLL is unloaded. Opaque monotonic handles prevent stale-handle revival. Item insertion, retrieval, mutation, check/enable state and submenu association operate on the actual process-owned tree; cyclic associations are refused. Removing an item preserves its detached submenu, while destroying a menu destroys its associated subtree. Class menu resources load before the original WM_CREATE callback. Resource loading releases the class lock before taking loader/resource locks.
+
+An owned native fixture checks both resource template versions, nested IDs, malformed input, copied resource lifetime, label truncation, recursive command lookup, item state, submenu detachment and stale handles. These observations use an explicitly identified new user runtime with a previously frozen owned kernel; they are diagnostic evidence, not stage/ISO acceptance. [Menu observations](../../evidence/M14/4/development/mixed-menu-controls/menu-resource-fixture.json).
+
+Menu painting and interaction remain separate compositor work: DrawMenuBar explicitly reports unsupported behavior in this development implementation. No invisible menu is advertised as working graphical menu interaction.
+
+## List and toolbar state development
+
+The list model stores original application rows, images, callback markers, per-cell labels, selection states and up to 32 columns. It never substitutes native Files data for the original application's data. Rows allocate lazily with a 2,048-row initial implementation ceiling; unsupported owner-data callbacks and layout/drawing operations remain explicit limitations. Toolbar buttons copy temporary original labels, preserve command/state/data values and reference actual image lists. The initial toolbar ceiling is 64 buttons. Recursive control teardown frees copied labels and row storage.
+
+The owned control fixture checks copied toolbar labels, disabled-button state, measured toolbar content, list row/subitem data, selection, teardown and transactional coordinate-overflow refusal. [Diagnostic observations](../../evidence/M14/4/development/mixed-menu-controls/list-toolbar-fixture.json). The original 7-Zip startup proceeds through menu and toolbar construction into its list window, then stops at InvalidateRect. It is still not a qualified graphical application.

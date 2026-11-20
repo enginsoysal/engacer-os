@@ -8,8 +8,12 @@ static const control_class144 control_classes144[]={
 };
 typedef struct {unsigned kind,unicode,redraw,checked,style,count,parts;int selected;unsigned selection_start,selection_end;HANDLE font,image,child,edit;int edges[16];WCHAR*texts[16];void*model;} control_state144;
 static unsigned control_kind144(const WCHAR*name){for(unsigned i=0;i<sizeof(control_classes144)/sizeof(control_classes144[0]);++i)if(!f_wcscmp(name,control_classes144[i].name))return control_classes144[i].kind;return 0;}
-static void control_release144(ui_window_runtime144*w){control_state144*c=w->control;if(!c)return;for(unsigned i=0;i<16;++i)free8(c->texts[i]);free8(c->model);free8(c);w->control=0;}
+static void toolbar_release144(control_state144*);
+static void list_release144(control_state144*);
+static void control_release144(ui_window_runtime144*w){control_state144*c=w->control;if(!c)return;for(unsigned i=0;i<16;++i)free8(c->texts[i]);if(c->kind==C144_TOOLBAR)toolbar_release144(c);if(c->kind==C144_LISTVIEW)list_release144(c);free8(c->model);free8(c);w->control=0;}
 static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(text);if(n>2047){last8(206);return 0;}WCHAR*copy=alloc8(((size_t)n+1)*2);if(!copy){last8(8);return 0;}if(text)memcpy(copy,text,(size_t)n*2);copy[n]=0;free8(*out);*out=copy;return 1;}
+#include "toolbar144.inc"
+#include "listview144.inc"
 static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  ui_window_runtime144*w=ui_window_lookup144(handle);if(!w){last8(1400);return 0;}control_state144*c=w->control;
  if(message==0x81){if(c)return 0;unsigned kind=control_kind144(w->class_->name);if(!kind)return 0;c=calloc8(1,sizeof(*c));if(!c)return 0;c->kind=kind;c->unicode=1;c->redraw=1;c->selected=-1;w->control=c;return 1;}
@@ -35,6 +39,8 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
   if(message==0x406){unsigned count=(unsigned)wp;if(count>c->parts)count=c->parts;if(lp)memcpy((void*)(uintptr_t)lp,c->edges,count*4);return c->parts;}
   if(message==0x409){c->style=wp!=0;return 0;}
  }
+ if(c->kind==C144_LISTVIEW&&message>=0x400){unsigned handled;int64_t result=list_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
+ if(c->kind==C144_TOOLBAR&&message>=0x400){unsigned handled;int64_t result=toolbar_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(message>=0x400){print8("Unsupported control message: ");char name[128];if(utf16_to8(w->class_->name,name,sizeof(name))<0)copy8(name,"control",sizeof(name));print8(name);print8(" message=");number8(message);print8("\n");fail8("A required Windows common-control message is not implemented.");}
  return f_DefWindowProcW(handle,message,wp,lp);
 }
