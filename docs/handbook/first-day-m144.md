@@ -14,7 +14,7 @@ The retained desktop, Files and personalization controls are explained in the [d
 
 Open **Windows Apps** from Start. Install the included original 7-Zip profile, run its supported console actions and try the sample archive/extraction tasks. **Open file manager** starts its original Windows GUI window: try moving, resizing, minimizing/restoring and closing it. This is an initial window preview; full toolbar/menu, archive and folder tasks remain later gates. **Check a Windows file** inspects an original AMD64 EXE/DLL without starting it. This helps explain loader compatibility; it does not mean every Windows installer or GUI works.
 
-Open **Browser Ã¢â€ â€™ Browser choices** for the original Firefox x64 installer download. Downloads shows progress and offers Cancel. A successful download is saved in Downloads; it does not run automatically. Firefox installation and execution remain unavailable. Follow the [Windows and browser tutorial](windows-m144.md) for the exact distinction.
+Open **Browser > Browser choices** for the original Firefox x64 installer download. Downloads shows progress and offers Cancel. A successful download is saved in Downloads; it does not run automatically. Firefox installation and execution remain unavailable. Follow the [Windows and browser tutorial](windows-m144.md) for the exact distinction.
 
 ## Keep your work
 
