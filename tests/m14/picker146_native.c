@@ -50,7 +50,7 @@ static void window_limits(const W*name){
  check(DestroyWindow(root)&&!IsWindow(replacement)&&!IsWindow(children[126]),"root destroys every quota child");
  root=CreateWindowExW(0,name,L"Bounded nesting",0,1,1,100,100,0,0,0,0);check(root!=0,"nesting root");H parent=root;
  for(unsigned i=0;i<31;++i){parent=CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,parent,i+1,0,0);check(parent!=0,"32 nesting levels");}
- check(!CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,parent,200,0,0)&&GetLastError()==87,"33rd nesting level refuses");check(DestroyWindow(root)&&!IsWindow(parent),"nested tree cleanup");say("M146_SPARSE_WINDOWS_QUOTA_DEPTH_PASS\n");
+ check(!CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,parent,200,0,0)&&GetLastError()==1816,"33rd nesting level refuses quota");check(DestroyWindow(root)&&!IsWindow(parent),"nested tree cleanup");say("M146_SPARSE_WINDOWS_QUOTA_DEPTH_PASS\n");
 }
 void entry(void){
  CLASS cls={0};cls.proc=anchor;cls.name=L"Picker146";check(RegisterClassW(&cls)!=0,"class");window_limits(cls.name);owner=CreateWindowExW(0,cls.name,L"Common dialog interoperability",0x10cf0000,180,100,560,360,0,0,0,0);check(owner!=0,"owner window");wpick_ofn146 ofn;

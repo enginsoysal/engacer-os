@@ -62,7 +62,7 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
  if(d->visible>1||d->enabled>1||d->bounds.width<0||d->bounds.height<0||d->bounds.width>16384||d->bounds.height>16384||d->bounds.x< -32768||d->bounds.x>32767||d->bounds.y< -32768||d->bounds.y>32767||d->title[127]||d->class_name[63])return 87;
  if(d->parent&&d->owner)return 87;
  uint64_t relation=d->parent?d->parent:d->owner;unsigned depth=0;
- while(relation){if(relation==self||++depth>=WUI_DEPTH146)return 87;ui_window144*w=ui_owned144(relation);if(!w)return 1400;if(w->thread!=current142)return 50;relation=w->view.description.parent?w->view.description.parent:w->view.description.owner;}
+ while(relation){if(relation==self)return 87;if(++depth>=WUI_DEPTH146)return 1816;ui_window144*w=ui_owned144(relation);if(!w)return 1400;if(w->thread!=current142)return 50;relation=w->view.description.parent?w->view.description.parent:w->view.description.owner;}
  return 0;
 }
 #include "clipboard144.inc"
