@@ -49,6 +49,7 @@ def main():
     if turn==0:c.shot(g,'original-procedure-changed-title')
     x,y,w,h=geometry(g);drag(g,p,x+180,y+20,x+220,y+50);wait(g,'M144_MOVE_RECEIVED');sample['moved_bounds']=list(geometry(g))
     x,y,w,h=geometry(g);drag(g,p,x+w-4,y+h-4,x+w+20,y+h+20);wait(g,'M144_SIZE_RECEIVED');sample['resized_bounds']=list(geometry(g))
+    geometry_before_title=geometry(g);c.key(g,'b');p.drain();assert geometry(g)==geometry_before_title,'Text update moved or resized the native window'
     if turn==0:c.shot(g,'native-window-resized')
     p.desktop(49002,True);g.wait('M8_JOB_DONE',at);p.drain();assert 'M144_WINDOW_LIFETIME_PASS' in output(g),output(g)
     assert len(t.records(g))==1 and t.records(g)[0]['token']==front['token'];assert ui.integer(g,'ui_resident144',True)==0

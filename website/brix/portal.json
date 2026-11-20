@@ -130,6 +130,14 @@
           "Follow M14.0-M14.15 in order"
         ],
         [
+          "docs/milestones/m14-4.md",
+          "Follow M14.4 window/message development and remaining gates"
+        ],
+        [
+          "docs/architecture/messages-m144.md",
+          "Understand native Windows window and message ownership"
+        ],
+        [
           "docs/milestones/m14-3.md",
           "Read the native files and persistent-settings stage"
         ],

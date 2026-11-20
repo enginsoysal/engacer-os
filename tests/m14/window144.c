@@ -52,11 +52,18 @@ void entry(void){
  mode=0;
  for(unsigned i=0;i<20;++i){H h=window(0);check(h!=0,"temporary create");check(SetWindowLongPtrW(h,0,0x123abc)==0,"extra storage initial");check(GetWindowLongPtrW(h,0)==0x123abc,"extra storage read");check(SendMessageW(h,0x8002,10,20)==31,"reentrant SendMessageW");check(DestroyWindow(h),"temporary destroy");check(!IsWindow(h),"stale IsWindow");check(!SendMessageW(h,0x8001,1,2)&&GetLastError()==1400,"stale SendMessageW");}
  root=window(0);check(root!=0,"root create");MSG m;
+ H child=CreateWindowExW(0,L"EngacerOwnedWindow144",L"Child",0x40000000u,10,10,100,100,root,7,0,(void*)0x12345678);check(child!=0,"child create");
+ check(PostMessageW(child,0x8800,87,88),"child post");check(PeekMessageW(&m,root,0x8800,0x8800,1)&&m.window==child&&m.wp==87,"parent-filter child retrieval");check(DestroyWindow(child),"child destroy");
+ for(unsigned i=0;i<56;++i)check(PostMessageW(root,0x8001,i,0),"bounded queue fill");
+ check(!PostMessageW(root,0x8001,56,0)&&GetLastError()==1816,"bounded queue refusal");PostQuitMessage(29);
+ check(PeekMessageW(&m,0,0x9000,0x9001,0)&&m.message==0x12&&m.wp==29,"quit bypasses filter without removal");
+ check(GetMessageW(&m,0,0x9000,0x9001)==0&&m.wp==29,"quit survives full queue");
+ for(unsigned i=0;i<56;++i)check(PeekMessageW(&m,root,0,0,1)&&m.wp==i,"overflow preserves prior order");
  check(PostMessageW(root,0x8001,11,22),"post first");check(PostMessageW(root,0x8002,33,44),"post second");
  check(PeekMessageW(&m,root,0x8002,0x8002,0)&&m.wp==33,"filtered nonremoving peek");
  check(PeekMessageW(&m,root,0x8002,0x8002,1)&&m.wp==33,"filtered remove");
  check(PeekMessageW(&m,root,0,0,1)&&m.message==0x8001&&m.wp==11,"unmatched message preserved");
  ShowWindow(root,1);say("M144_NATIVE_WINDOW_WAITING\n");int status;
  while((status=GetMessageW(&m,0,0,0))>0){TranslateMessage(&m);DispatchMessageW(&m);}
- check(status==0&&m.wp==23,"WM_QUIT status");check(!IsWindow(root),"root destroyed");check(characters>0&&moves>0&&sizes>0,"real native input and geometry");check(nccreate==23&&create==22&&destroy==22&&ncdestroy==23,"exact lifecycle callbacks");say("M144_WINDOW_LIFETIME_PASS\n");ExitProcess(0);
+ check(status==0&&m.wp==23,"WM_QUIT status");check(!IsWindow(root),"root destroyed");check(characters>0&&moves>0&&sizes>0,"real native input and geometry");check(nccreate==24&&create==23&&destroy==23&&ncdestroy==24,"exact lifecycle callbacks");say("M144_WINDOW_LIFETIME_PASS\n");ExitProcess(0);
 }

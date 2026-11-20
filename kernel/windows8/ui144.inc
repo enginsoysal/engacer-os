@@ -9,12 +9,18 @@ static void *ui_page144(void){uint64_t page=page_alloc();if(!page)return 0;memse
 static void ui_free144(void*p){if(p){page_free((uint64_t)(uintptr_t)p);--ui_resident144;}}
 static ui_window144 *ui_lookup144(uint64_t handle){unsigned i=(unsigned)(handle&255);if(i>=WUI_WINDOWS144)return 0;ui_window144*w=ui_windows144[i];return w&&w->view.handle==handle?w:0;}
 static ui_window144 *ui_owned144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w&&w->space==active_space142&&w->view.process==input8.process_id?w:0;}
+static int ui_find144(const wui_queue144*q,const wui_filter144*f){
+ for(unsigned i=0;i<q->count;++i){const wui_message144*m=q->items+i;if(wui_matches144(m,f))return (int)i;
+  if(!f->window||f->window==UINT64_MAX||!m->window)continue;wui_filter144 range=*f;range.window=0;if(!wui_matches144(m,&range))continue;
+  uint64_t child=m->window;for(unsigned depth=0;child&&depth<WUI_WINDOWS144;++depth){ui_window144*w=ui_lookup144(child);if(!w)break;child=w->view.description.parent;if(child==f->window)return (int)i;}
+ }return -1;
+}
 static wui_queue144 *ui_queue144(unsigned space,unsigned thread,unsigned create){if(!ui_queues144[space][thread]&&create)ui_queues144[space][thread]=ui_page144();return ui_queues144[space][thread];}
 static unsigned ui_enqueue144(unsigned space,unsigned thread,const wui_message144*m,unsigned native){
  if(space>=SPACES142||!spaces142[space]||thread>=THREADS142)return 0;
  thread142*t=spaces142[space]->threads+thread;if(!t->state||t->state==T142_EXITED||t->exiting)return 0;
  wui_queue144*q=ui_queue144(space,thread,1);if(!q||!wui_push144(q,m,native))return 0;
- if(t->state==T144_GUI&&(q->quit||wui_find144(q,&q->waiting)>=0)){t->state=T142_READY;t->frame.rax=0;}return 1;
+ if(t->state==T144_GUI&&(q->quit||ui_find144(q,&q->waiting)>=0)){t->state=T142_READY;t->frame.rax=0;}return 1;
 }
 static void ui_destroy144(uint64_t handle){
  ui_window144*w=ui_lookup144(handle);if(!w)return;
@@ -62,7 +68,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_PEEK144||op==WUI_WAIT144){
   if(handle||!argument)return -87;wui_filter144 filter;if(user8(argument,&filter,sizeof(filter),0)||filter.reserved||filter.remove>1)return -87;
   if(filter.window&&filter.window!=UINT64_MAX&&!ui_owned144(filter.window))return -1400;
-  wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;int index=wui_find144(q,&filter);
+  wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;int index=ui_find144(q,&filter);
   if(index>=0){if(op==WUI_WAIT144)return 0;if(user8(pointer,q->items+index,sizeof(wui_message144),1))return -998;if(filter.remove)wui_remove144(q,(unsigned)index);return 1;}
   if(q->quit){if(op==WUI_WAIT144)return 0;wui_message144 quit={.message=0x12,.wparam=q->quit_code};if(user8(pointer,&quit,sizeof(quit),1))return -998;if(filter.remove)q->quit=0;return 1;}
   if(op==WUI_PEEK144)return 0;if(pointer)return -87;
