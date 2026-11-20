@@ -162,9 +162,11 @@ static unsigned picker_action12(uint64_t token,unsigned command){
  else if(command>=P12_HOME&&command<=P12_PICTURES){char path[256];if(command==P12_HOME)home72(path);else root_path(path,command==P12_DOCUMENTS?"Documents":command==P12_DOWNLOADS?"Downloads":"Pictures");picker_visit12(path,1);}
  else if(command==P12_FILTER){
 #ifdef ENGINE_M14
- if(picker_foreign12()){const wpick_view146*v=w8_picker_native146();picker12.filter=v&&v->filter_count?(picker12.filter+1)%v->filter_count:0;}else
+ if(picker_foreign12()){const wpick_view146*v=w8_picker_native146();picker12.filter=v&&v->filter_count?(picker12.filter+1)%v->filter_count:0;}else{picker12.filter^=1;}
+#else
+ picker12.filter^=1;
 #endif
- picker12.filter^=1;picker12.generation=0;picker12.offset=0;picker12.selected=UINT32_MAX;}
+ picker12.generation=0;picker12.offset=0;picker12.selected=UINT32_MAX;}
  else if(command==P12_PREVIOUS)picker12.offset=picker12.offset>=picker12.rows?picker12.offset-picker12.rows:0;
  else if(command==P12_NEXT){picker_list12();if(picker12.offset+picker12.rows<picker12.count)picker12.offset+=picker12.rows;}
  else if(command==P12_NEW_FOLDER){if(!picker_writable12(picker12.path)||picker_busy12()){picker_error12("This location does not accept a new folder right now.");return 1;}picker12.phase=P12_FOLDER_REVIEW;copy(file_dialog_state11.input,"New folder",256);file_dialog_state11.cursor=10;file_dialog_state11.anchor=0;file_dialog_state11.focus=2;}
