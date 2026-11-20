@@ -1,0 +1,13 @@
+{
+  "build_id": "1bd0556701e0e5a819c9cb456b21f5f3",
+  "desktop_fixed": {
+    "bytes": 557692,
+    "sections": {
+      "bss": 557664,
+      "data": 28
+    },
+    "map_sha256": "2d0f6aeb2ac5736c50681fbd41016c02f0f87d9d0614b8e7d1ef3c3acd73450c"
+  },
+  "font_coverage_bytes": 251248,
+  "scope": "Fixed desktop data/font and selected native lifetime measurements only; not total OS/app RAM or final M14.15 optimization"
+}

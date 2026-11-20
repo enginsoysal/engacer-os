@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "stage": "M14.5",
+  "build_id": "1bd0556701e0e5a819c9cb456b21f5f3",
+  "target": "apps_native4",
+  "arguments": [
+    "--profile",
+    "compact"
+  ],
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE5"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE5-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage5"
+    ],
+    [
+      "evidence/M14/4",
+      "evidence/M14/5"
+    ],
+    [
+      "stage4",
+      "stage5"
+    ],
+    [
+      "M14.4",
+      "M14.5"
+    ],
+    [
+      "0.14.4",
+      "0.14.5"
+    ],
+    [
+      "m144-",
+      "m145-"
+    ]
+  ],
+  "observer_sources": {
+    "tests/m14/apps_native4.py": {
+      "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+      "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+    }
+  },
+  "adapter_sha256": "7e402a6c29dde63e39368f070bbf23978e6d173b8152b745a22e5b54d76be950"
+}
