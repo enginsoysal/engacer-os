@@ -14,7 +14,7 @@ static const char*picker_foreign_title146(const char*fallback){
 }
 static const char*picker_foreign_filter146(const char*fallback){
 #ifdef ENGINE_M14
- const wpick_view146*v=picker_foreign12()?w8_picker_native146():0;if(v&&v->generation==picker_foreign_generation146&&picker12.filter<v->filter_count)return v->filters[picker12.filter].label;
+ const wpick_view146*v=picker_foreign12()?w8_picker_native146():0;if(v&&v->generation==picker_foreign_generation146&&picker12.filter<v->filter_count)return wpick_label146(v,picker12.filter);
 #endif
  return fallback;
 }

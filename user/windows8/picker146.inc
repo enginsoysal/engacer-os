@@ -5,8 +5,7 @@ static int common_dialog146(void*ofn,unsigned save){
  unsigned thread=tid142()&255;if(thread>=16)return 0;common_errors146[thread]=0;
  WCHAR directory[512];lock_enter142(&cwd_lock143);widecopy8(directory,cwd8,512);lock_leave142(&cwd_lock143);
  int64_t generation=ui_call144(WUI_PICKER146,save?WPICK_SAVE146:WPICK_OPEN146,ofn,(uint64_t)(uintptr_t)directory);
- if(generation<0){common_errors146[thread]=(unsigned)-generation;print8("Common file dialog refused: error=");number8((unsigned)-generation);
-  if(ofn&&!sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)ofn,136,1,0,0)){wpick_ofn146 snapshot={0};memcpy(&snapshot,ofn,136);print8(" size=");number8(snapshot.size);print8(" flags=");number8(snapshot.flags);print8(" capacity=");number8(snapshot.file_capacity);}print8("\n");return 0;}
+ if(generation<0){common_errors146[thread]=(unsigned)-generation;return 0;}
  for(;;){
   int64_t status=ui_call144(WUI_PICKER146,WPICK_RESULT146,0,(uint64_t)generation);
   if(status!=2){if(status<0)common_errors146[thread]=(unsigned)-status;return status==1;}

@@ -24,11 +24,17 @@ static unsigned picker_probe146(uint64_t address,unsigned bytes){
 }
 static unsigned picker_granted146(const wpick_view146*v,const char*path,unsigned write){return prefix8(path,v->user_root)||(!write&&prefix8(path,v->product_root));}
 static unsigned picker_filter_valid146(const char*pattern){unsigned any=0;for(unsigned i=0;pattern[i];++i){unsigned c=(uint8_t)pattern[i];if(c==';'){if(!any)return 0;any=0;continue;}if(!(c=='*'||c=='?'||c=='.'||c=='-'||c=='_'||(c>='0'&&c<='9')||(c>='a'&&c<='z')||(c>='A'&&c<='Z')))return 0;any=1;}return any;}
+static unsigned picker_filter_string146(picker_request146*r,uint64_t address,unsigned*used,unsigned limit,unsigned*units,uint16_t*offset){
+ if(*used>=WPICK_FILTER_TEXT146)return 1816;unsigned capacity=WPICK_FILTER_TEXT146-*used;if(capacity>limit)capacity=limit;
+ char*text=r->view.filter_text+*used;unsigned error=picker_string146(address,text,capacity,units);if(error)return error;*offset=(uint16_t)*used;*used+=length8(text)+1;return 0;
+}
 static unsigned picker_read_filters146(picker_request146*r){
- uint64_t address=r->ofn.filter;if(!address){r->view.filter_index=0;return 0;}
- for(unsigned i=0;i<WPICK_FILTERS146;++i){unsigned units=0;unsigned error=picker_string146(address,r->view.filters[i].label,64,&units);if(error)return error;
-  if(!r->view.filters[i].label[0]){r->view.filter_count=i;return 0;}address+=(uint64_t)units*2;
-  error=picker_string146(address,r->view.filters[i].pattern,96,&units);if(error)return error;if(!picker_filter_valid146(r->view.filters[i].pattern))return 50;address+=(uint64_t)units*2;r->view.filter_count=i+1;
+ uint64_t address=r->ofn.filter;if(!address){r->view.filter_index=0;return 0;}unsigned used=0;
+ for(unsigned i=0;i<WPICK_FILTERS146;++i){unsigned units=0;wpick_filter146*f=r->view.filters+i;uint16_t first;if(user8(address,&first,2,0))return 998;if(!first){r->view.filter_count=i;return 0;}
+  unsigned error=picker_filter_string146(r,address,&used,64,&units,&f->label);if(error)return error;
+  if(!r->view.filter_text[f->label]){r->view.filter_count=i;return 0;}address+=(uint64_t)units*2;
+  error=picker_filter_string146(r,address,&used,WPICK_PATTERN146,&units,&f->pattern);if(error)return error;
+  if(!picker_filter_valid146(r->view.filter_text+f->pattern))return 50;address+=(uint64_t)units*2;r->view.filter_count=i+1;
  }
  uint16_t end;if(user8(address,&end,2,0))return 998;return end?1816:0;
 }
@@ -47,8 +53,8 @@ unsigned w8_picker_allowed146(uint64_t generation,const char*path,unsigned write
 unsigned w8_picker_matches146(uint64_t generation,const char*name,unsigned filter){
  if(!picker_request||picker_request->view.generation!=generation||picker_request->state==3)return 0;
  const wpick_view146*v=&picker_request->view;if(!v->filter_count)return 1;if(filter>=v->filter_count)return 0;
- const char*pattern=v->filters[filter].pattern;unsigned at=0;
- while(pattern[at]){char part[96];unsigned used=0;while(pattern[at]&&pattern[at]!=';')part[used++]=pattern[at++];part[used]=0;if(pattern[at])++at;
+ const char*pattern=wpick_pattern146(v,filter);unsigned at=0;
+ while(pattern[at]){char part[WPICK_PATTERN146];unsigned used=0;while(pattern[at]&&pattern[at]!=';')part[used++]=pattern[at++];part[used]=0;if(pattern[at])++at;
   unsigned matched=0;if(equal8(part,"*.*")||equal8(part,"*"))return 1;if(!find_match_core143(part,used,name,length8(name),&matched)&&matched)return 1;
  }return 0;
 }
