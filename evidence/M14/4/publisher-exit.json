@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "tests": 50,
+  "source_commit": "6664566577fc69f972cf84041d663869945036ec",
+  "scope": "All six canonical publisher Node suites passed on the current source; TAP output retained"
+}

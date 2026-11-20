@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "stage": "M14.4",
+  "checked_at": "2026-11-20T10:57:40.531325+00:00",
+  "source_commit": "6664566577fc69f972cf84041d663869945036ec",
+  "website": "https://engaceros.brixcanvas.com",
+  "native_saved_menu_contains_documentation_portal": true,
+  "observed_public_search_buttons": 0,
+  "observed_public_javascript_errors": [],
+  "scope": "Native Copy confirms the saved Menu configuration; independent headless browser sees no Search documentation button after eight seconds. No shared BrixCanvas source or deployment changed.",
+  "blocks": "Complete public-site qualification; native OS/media acceptance is unaffected",
+  "native_portal_confirmed_after_editor_reload": true,
+  "article_on_this_page_navigation_present": false,
+  "matching_article_source_verified": true
+}

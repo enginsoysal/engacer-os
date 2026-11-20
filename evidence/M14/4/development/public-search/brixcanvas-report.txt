@@ -1,0 +1,17 @@
+# BrixCanvas public documentation controls are absent
+
+Website: https://engaceros.brixcanvas.com
+
+After the successful Engacer OS source synchronization at `6664566577fc69f972cf84041d663869945036ec` and native Home/recovery Saves, the public homepage shows M14.4 and current content. Its same-page search button and Ctrl+K entry point are absent. The matching installation article has no On this page navigation.
+
+Reproduction:
+
+1. Open the standard owned site editor. Open the Home Menu Brix and use Copy.
+2. Its exported props include `documentationPortal.version = 1` and the current ordered sections/entries.
+3. Reload the editor from the server and Copy again: the property is retained.
+4. Open the public homepage in an independent Chromium session. The button named Search documentation has count zero after eight seconds. No page JavaScript errors were observed.
+5. Open https://engaceros.brixcanvas.com/blog/docs-handbook-install-m144. Its source link correctly points to the current handbook edit, but the On this page control is absent.
+
+Expected: restore the existing documentationPortal public renderer, same-page accessible search and article task/heading navigation. Do not replace it with a separate-page-only search.
+
+No shared BrixCanvas source or deployment was changed during these checks. OS native qualification and independently downloaded media pass; complete website/browser qualification remains blocked and is not reported as successful.

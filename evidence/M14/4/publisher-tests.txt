@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: old public routes move to the canonical origin without losing the destination
+ok 1 - old public routes move to the canonical origin without losing the destination
+  ---
+  duration_ms: 2.3019
+  type: 'test'
+  ...
+# Subtest: repository links retain immutable commits, filenames, tags and anchors
+ok 2 - repository links retain immutable commits, filenames, tags and anchors
+  ---
+  duration_ms: 0.9867
+  type: 'test'
+  ...
+# Subtest: old guide titles use the new brand and clearly identify their historical release
+ok 3 - old guide titles use the new brand and clearly identify their historical release
+  ---
+  duration_ms: 2.488
+  type: 'test'
+  ...
+# Subtest: current storage instructions keep their current title while the old console remains historical
+ok 4 - current storage instructions keep their current title while the old console remains historical
+  ---
+  duration_ms: 2.066
+  type: 'test'
+  ...
+# Subtest: homepage separates M12 concepts from the native M11.6 download
+ok 5 - homepage separates M12 concepts from the native M11.6 download
+  ---
+  duration_ms: 4.33
+  type: 'test'
+  ...
+# Subtest: a qualified native M12 stage uses its own real capture, guide and scope
+ok 6 - a qualified native M12 stage uses its own real capture, guide and scope
+  ---
+  duration_ms: 1.0757
+  type: 'test'
+  ...
+# Subtest: open observed issues remain visible on the native homepage until resolved
+ok 7 - open observed issues remain visible on the native homepage until resolved
+  ---
+  duration_ms: 1.2384
+  type: 'test'
+  ...
+# Subtest: M12 design follows tested installation without replacing its release
+ok 8 - M12 design follows tested installation without replacing its release
+  ---
+  duration_ms: 4.6018
+  type: 'test'
+  ...
+# Subtest: M12 native guides replace older installation without hiding established tasks
+ok 9 - M12 native guides replace older installation without hiding established tasks
+  ---
+  duration_ms: 1.8017
+  type: 'test'
+  ...
+# Subtest: current install and M11 user tasks precede architecture and history
+ok 10 - current install and M11 user tasks precede architecture and history
+  ---
+  duration_ms: 0.6333
+  type: 'test'
+  ...
+# Subtest: numeric names sort naturally and every uncategorized article stays discoverable once
+ok 11 - numeric names sort naturally and every uncategorized article stays discoverable once
+  ---
+  duration_ms: 1.2744
+  type: 'test'
+  ...
+# Subtest: a new stage replaces the previous install/release in Start here; history stays last
+ok 12 - a new stage replaces the previous install/release in Start here; history stays last
+  ---
+  duration_ms: 0.8186
+  type: 'test'
+  ...
+# Subtest: M11.5 is first and the older M11.4 install guide stays in the archive
+ok 13 - M11.5 is first and the older M11.4 install guide stays in the archive
+  ---
+  duration_ms: 0.6807
+  type: 'test'
+  ...
+# Subtest: M14 runtime home separates a browser download from execution and retains the ordered plan
+ok 14 - M14 runtime home separates a browser download from execution and retains the ordered plan
+  ---
+  duration_ms: 140.5887
+  type: 'test'
+  ...
+# Subtest: current task order is explicit and independent of publication date
+ok 15 - current task order is explicit and independent of publication date
+  ---
+  duration_ms: 2.7869
+  type: 'test'
+  ...
+# Subtest: historical installs do not displace current instructions and all stay reachable
+ok 16 - historical installs do not displace current instructions and all stay reachable
+  ---
+  duration_ms: 0.9253
+  type: 'test'
+  ...
+# Subtest: milestone identities sort numerically rather than compact filenames
+ok 17 - milestone identities sort numerically rather than compact filenames
+  ---
+  duration_ms: 0.5041
+  type: 'test'
+  ...
+# Subtest: missing curated source fails full publication instead of silently dropping it
+ok 18 - missing curated source fails full publication instead of silently dropping it
+  ---
+  duration_ms: 1.1172
+  type: 'test'
+  ...
+# Subtest: full history sorts M0 through M13 with decimal and legacy compact stages
+ok 19 - full history sorts M0 through M13 with decimal and legacy compact stages
+  ---
+  duration_ms: 0.6223
+  type: 'test'
+  ...
+# Subtest: M13 home distinguishes design progress, current media and pending production search
+ok 20 - M13 home distinguishes design progress, current media and pending production search
+  ---
+  duration_ms: 4.4168
+  type: 'test'
+  ...
+# Subtest: native M13 homepage uses matching stage and validated shared header navigation
+ok 21 - native M13 homepage uses matching stage and validated shared header navigation
+  ---
+  duration_ms: 115.5534
+  type: 'test'
+  ...
+# Subtest: published search metadata includes bounded current-guide headings and task aliases
+ok 22 - published search metadata includes bounded current-guide headings and task aliases
+  ---
+  duration_ms: 39.9012
+  type: 'test'
+  ...
+# Subtest: current download retains an unresolved owner stability report without claiming a fix
+ok 23 - current download retains an unresolved owner stability report without claiming a fix
+  ---
+  duration_ms: 45.4669
+  type: 'test'
+  ...
+# Subtest: known M13 freezes have visible testing-only status and a blocking stability gate
+ok 24 - known M13 freezes have visible testing-only status and a blocking stability gate
+  ---
+  duration_ms: 49.0161
+  type: 'test'
+  ...
+# Subtest: revised-scope publication rejects a short observation, diagnostic result or missing functional completion
+ok 25 - revised-scope publication rejects a short observation, diagnostic result or missing functional completion
+  ---
+  duration_ms: 1.7885
+  type: 'test'
+  ...
+# Subtest: qualified revised-scope copy preserves historical cause and duration/device limitations
+ok 26 - qualified revised-scope copy preserves historical cause and duration/device limitations
+  ---
+  duration_ms: 3.4598
+  type: 'test'
+  ...
+# Subtest: M14.0 research progress preserves the exact current native download
+ok 27 - M14.0 research progress preserves the exact current native download
+  ---
+  duration_ms: 47.1383
+  type: 'test'
+  ...
+# Subtest: development progress never replaces a qualified native download
+ok 28 - development progress never replaces a qualified native download
+  ---
+  duration_ms: 39.998
+  type: 'test'
+  ...
+# Subtest: unchanged docs retain their real revision; changed or falsely attributed bytes cannot pass
+ok 29 - unchanged docs retain their real revision; changed or falsely attributed bytes cannot pass
+  ---
+  duration_ms: 1459.1545
+  type: 'test'
+  ...
+# Subtest: M14 requires public matching native media and never admits research or drafts
+ok 30 - M14 requires public matching native media and never admits research or drafts
+  ---
+  duration_ms: 5.7804
+  type: 'test'
+  ...
+# Subtest: active M12 design is labeled separately and cannot replace a native download
+ok 31 - active M12 design is labeled separately and cannot replace a native download
+  ---
+  duration_ms: 0.9449
+  type: 'test'
+  ...
+# Subtest: stage downloads require all matching public assets and prefer the newest stage
+ok 32 - stage downloads require all matching public assets and prefer the newest stage
+  ---
+  duration_ms: 0.535
+  type: 'test'
+  ...
+# Subtest: M12 downloads require native assets, numeric stage order and public qualification
+ok 33 - M12 downloads require native assets, numeric stage order and public qualification
+  ---
+  duration_ms: 0.8541
+  type: 'test'
+  ...
+# Subtest: current assets remain separate and every historical release is reachable exactly once
+ok 34 - current assets remain separate and every historical release is reachable exactly once
+  ---
+  duration_ms: 2.3495
+  type: 'test'
+  ...
+# Subtest: publication rejects overlarge generated download or archive pages before API writes
+ok 35 - publication rejects overlarge generated download or archive pages before API writes
+  ---
+  duration_ms: 3.6881
+  type: 'test'
+  ...
+# Subtest: release reruns keep immutable content source when publisher tooling advances
+ok 36 - release reruns keep immutable content source when publisher tooling advances
+  ---
+  duration_ms: 7.8522
+  type: 'test'
+  ...
+# Subtest: M13 selector requires published matching native media
+ok 37 - M13 selector requires published matching native media
+  ---
+  duration_ms: 0.7666
+  type: 'test'
+  ...
+# Subtest: final M13.13 media supersede M13.12 only when published and complete
+ok 38 - final M13.13 media supersede M13.12 only when published and complete
+  ---
+  duration_ms: 0.7121
+  type: 'test'
+  ...
+# Subtest: M14.0 research never displaces the current native ISO
+ok 39 - M14.0 research never displaces the current native ISO
+  ---
+  duration_ms: 0.5
+  type: 'test'
+  ...
+# Subtest: publication retries only repeatable operations and obeys bounded server delay
+ok 40 - publication retries only repeatable operations and obeys bounded server delay
+  ---
+  duration_ms: 2.9755
+  type: 'test'
+  ...
+# Subtest: reject a key for any other site before writing
+ok 41 - reject a key for any other site before writing
+  ---
+  duration_ms: 3.2043
+  type: 'test'
+  ...
+# Subtest: accept only the renamed canonical site identity
+ok 42 - accept only the renamed canonical site identity
+  ---
+  duration_ms: 0.8235
+  type: 'test'
+  ...
+# Subtest: never overwrite a matching slug owned by the author rather than the publisher
+ok 43 - never overwrite a matching slug owned by the author rather than the publisher
+  ---
+  duration_ms: 1.0394
+  type: 'test'
+  ...
+# Subtest: preserve unrelated author articles
+ok 44 - preserve unrelated author articles
+  ---
+  duration_ms: 2.4249
+  type: 'test'
+  ...
+# Subtest: archive removed generated sources as drafts rather than delete them
+ok 45 - archive removed generated sources as drafts rather than delete them
+  ---
+  duration_ms: 0.6314
+  type: 'test'
+  ...
+# Subtest: recover only the exact, empty publisher-created draft
+ok 46 - recover only the exact, empty publisher-created draft
+  ---
+  duration_ms: 1.138
+  type: 'test'
+  ...
+# Subtest: a mixed plan with a later collision is rejected before any operations are returned
+ok 47 - a mixed plan with a later collision is rejected before any operations are returned
+  ---
+  duration_ms: 0.5822
+  type: 'test'
+  ...
+# Subtest: removed generated download archive pages become drafts while author pages remain untouched
+ok 48 - removed generated download archive pages become drafts while author pages remain untouched
+  ---
+  duration_ms: 0.6598
+  type: 'test'
+  ...
+# Subtest: generated archive excerpts explicitly replace the publisher-created draft marker
+ok 49 - generated archive excerpts explicitly replace the publisher-created draft marker
+  ---
+  duration_ms: 1.2817
+  type: 'test'
+  ...
+# Subtest: publication readback identifies a changed field without dumping whole article bodies
+ok 50 - publication readback identifies a changed field without dumping whole article bodies
+  ---
+  duration_ms: 0.6728
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1826.6205
