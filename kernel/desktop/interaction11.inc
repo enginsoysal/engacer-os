@@ -71,6 +71,8 @@ static void dispatch11(i11_target target,unsigned event,unsigned x,unsigned y){
  if(target.action>=46000&&target.action<=46004){if(event&I11_ACTIVATE)guide_action11(target.action);return;}
  if(context11&&!(target.action>=32000&&target.action<=32031)){if(event&I11_CONTEXT)return;context11=0;whole();return;}
  if(target.action!=70&&target.action!=0&&!(target.action>=S11_PINNED&&target.action<S11_END)&&file_block_owner11(target.window)&&!file_modal_control11(target.window,target.action))return;
+ /* Disabled foreign owners consume pointer actions without changing desktop state. */
+ if(target.action==70&&target.window&&window_disabled144(desktop_lookup(&model,target.window)))return;
  if(target.window&&target.action!=70)desktop_focus11=0;else if(target.kind==I11_ITEM||target.kind==I11_BACKGROUND)desktop_focus11=1;
 #ifdef ENGINE_M12
  if(picker_dispatch12(target,event))return;

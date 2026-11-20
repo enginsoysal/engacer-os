@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "scope": "Owned native owner/modal/input-capture/admission fixture; not original application qualification",
+  "build_id": "4609727f2d88800309580f9458fc3573",
+  "fixture_sha256": "675ad959571aaf42f235d632239bb38a87c327b63b474a506310ae59e43bd9db",
+  "clone": {
+    "source_sha256": "54933be138cc4c9ac1601da5d0025dbafc6d5bf788eda1afc2ce961a9694e26e",
+    "clone_sha256": "54933be138cc4c9ac1601da5d0025dbafc6d5bf788eda1afc2ce961a9694e26e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\owner144_run.py\", line 29, in main\n    p.logical(454,100,True);p.drain();assert ui.integer(g,'desktop_focus11',True)==desktop_focus_before and ui.integer(g,'desktop_selection11',True)==selected_before,'disabled owner click changed desktop focus or selection'\nAssertionError: disabled owner click changed desktop focus or selection\n"
+}

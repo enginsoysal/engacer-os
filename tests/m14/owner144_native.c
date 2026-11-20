@@ -33,6 +33,7 @@ static I procedure(H h,unsigned m,H wp,I lp){
  if(m==0x201&&h==owner){SetFocus(owner);SetCapture(owner);check(GetCapture()==owner,"native capture set");say("M144_CAPTURE_READY\n");return 0;}
  if(m==0x200&&h==owner&&GetCapture()==owner){int x=(short)(lp&65535),y=(short)((lp>>16)&65535);if(x<0||y<0||x>=398||y>=219){captured_outside=1;say("M144_CAPTURE_OUTSIDE\n");}return 0;}
  if(m==0x202&&h==owner){check(ReleaseCapture()&&!GetCapture(),"capture release");say("M144_CAPTURE_RELEASED\n");return 0;}
+ if(m==0x102&&wp=='m'){check(h==modal,"keyboard remains with enabled modal");say("M144_MODAL_KEYBOARD_PASS\n");return 0;}
  if(m==0x102&&h==owner&&wp=='p'){check(!modal&&IsWindowEnabled(owner),"owner resumed after modal close");say("M144_OWNER_RESPONSIVE\n");return 0;}
  if(m==0x102&&h==owner&&wp=='c'){owned=create(L"Owned palette",650,440,owner);check(owned&&GetParent(owned)==owner,"actual owner capability");say("M144_OWNED_VISIBLE\n");return 0;}
  if(m==2&&h==owner){check(!forbidden_close&&captured_outside,"native modal/capture checks");PostQuitMessage(0);return 0;}

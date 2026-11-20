@@ -1,0 +1,4 @@
+{
+  "accepted_stage": false,
+  "scope": "A new native regression reproduces desktop focus/selection mutation when clicking the disabled owner. This is a real input-routing defect and blocks stage acceptance despite the earlier narrower ownership test pass."
+}

@@ -102,7 +102,7 @@ def main():
         assert len(gui[name]['cycles'])==21 and all(v['retained_pages']==0 for v in gui[name]['cycles']),name
     assert gui['deep-native']['physical_framebuffer']['depth']==32
     assert gui['deep-native']['physical_framebuffer']['deepest_child_rgb']==[0,120,199]
-    assert all(v['explicit_visible_root_quota'] and v['disabled_owner_close_blocked'] and v['capture_outside_client'] and v['owned_z_order_and_teardown'] for v in gui['owner-native']['cycles'])
+    assert all(v['disabled_click_preserves_desktop_state'] and v['modal_keyboard_route'] and v['explicit_visible_root_quota'] and v['disabled_owner_close_blocked'] and v['capture_outside_client'] and v['owned_z_order_and_teardown'] for v in gui['owner-native']['cycles'])
     assert all(v['subsequent_original_console_success'] for v in gui['gui-fault-native']['cycles'])
     for name in gui_names:copy_report(work/name,out/name)
     for name in originals:copy_report(work/('original-native-'+name),out/('original-native-'+name))
