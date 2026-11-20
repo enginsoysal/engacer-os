@@ -1,0 +1,11 @@
+{
+  "source_commit": "89f7c211cae6d726d5dcd8d6958c4ff73421eb88",
+  "checked_at": "2026-11-20T22:49:23.769Z",
+  "home": "Saved automatically ✓",
+  "recovery": "Saved ✓",
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "owned_native_editor": true,
+  "method": "Owned native BrixCanvas editor, virtual clipboard Paste Brix, native root deletion controls and explicit Save; four Home roots and two existing recovery roots independently observed.",
+  "public_home_version": "M14.6"
+}
