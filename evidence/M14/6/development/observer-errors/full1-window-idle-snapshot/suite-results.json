@@ -1,0 +1,1696 @@
+{
+  "passed": false,
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "workers": 2,
+  "tasks": {
+    "compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 81.46899999998277,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "6",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 84.84399999998277,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "6",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "starter": {
+      "exit_code": 0,
+      "observer_wall_seconds": 4.9060000000172295,
+      "command": [
+        "tools/release/vmware_starter14.py",
+        "--stage",
+        "6"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 111.40700000000652,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "6",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "apps-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 94.39100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "apps_native4",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "apps-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 94.43700000000536,
+      "command": [
+        "tests/m14/replay6.py",
+        "apps_native4",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "chords146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 38.109000000025844,
+      "command": [
+        "tests/m14/replay6.py",
+        "chords146_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "apps-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 151.65599999998813,
+      "command": [
+        "tests/m14/replay6.py",
+        "apps_native4",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "clipboard146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 51.030999999988126,
+      "command": [
+        "tests/m14/replay6.py",
+        "clipboard146_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "font146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 44.76600000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "font146_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "dialogs145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 102.42199999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "dialog145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "owners": {
+      "exit_code": 0,
+      "observer_wall_seconds": 194.35899999999674,
+      "command": [
+        "tests/m14/replay6.py",
+        "owner144_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "font146-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 72.64100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "font146_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "font146-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 34.328000000008615,
+      "command": [
+        "tests/m14/replay6.py",
+        "font146_run",
+        "--profile",
+        "ordinary",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "global146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 44.98499999998603,
+      "command": [
+        "tests/m14/replay6.py",
+        "global146_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "guard145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 33.796999999991385,
+      "command": [
+        "tests/m14/replay6.py",
+        "guard145_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "mapping146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 47.35899999999674,
+      "command": [
+        "tests/m14/replay6.py",
+        "mapping146_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "keys145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 114.04699999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "keys145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "list145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 138.25,
+      "command": [
+        "tests/m14/replay6.py",
+        "list145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "menus145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 124.71900000001187,
+      "command": [
+        "tests/m14/replay6.py",
+        "menu145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-clipboard146-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 81.56299999999464,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_clipboard146_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-clipboard146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 133.06200000000536,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_clipboard146_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-list145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 36.26500000001397,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_list145_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-clipboard146-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 90.17199999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_clipboard146_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-list145-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 56.703000000008615,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_list145_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-list145-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 41.671999999991385,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_list145_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-menu-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 53.64000000001397,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_menu145_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-menu-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 33.828000000008615,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_menu145_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-picker146-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 56.937999999994645,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_picker146_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-picker146-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 60.07799999997951,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_picker146_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "original-picker146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 94.85899999999674,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_picker146_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "protect145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 42.405999999988126,
+      "command": [
+        "tests/m14/replay6.py",
+        "protect145_run"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "raster-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 48.171999999991385,
+      "command": [
+        "tests/m14/replay6.py",
+        "raster145_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "raster-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 168.53100000001723,
+      "command": [
+        "tests/m14/replay6.py",
+        "raster145_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "e7b8c012a95194bef5b66b941f03c34aaf4a67dfa5be7a5bd8a1215f1323d603",
+      "validated_source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf",
+      "verified_unconsumed_tree_changes": {
+        "tests/m14/close6_scoped.py": {
+          "before": null,
+          "after": "8f0208cc33d8a5f4ecabd49d1ede322e023644f0476d77a816977585c2370e07"
+        },
+        "tests/m14/picker_lifetime146_run.py": {
+          "before": "08d06ccd6b25cc8044be2c08c551cfb5801df71d6b3f2ac2c6d273e08234c4ad",
+          "after": "1c3eb148dfc3ecb8888b988a4636ba90088596a1b2ce7e5732dc9e569ad37c1b"
+        },
+        "tests/m14/public_site6_scoped.mjs": {
+          "before": null,
+          "after": "14129e52f7baf51e416a31b53babadd8c20edcd0e39461a7bf86a92fc1182875"
+        },
+        "tests/m14/suite6.py": {
+          "before": "3d3371b393731083fb83e7aa72f6dd4d216ed94a298fa517e49dd938b3dcde79",
+          "after": "c77499a499a2588da780a1a7feb9f06360f327ec59e01167cc257e400f422a71"
+        },
+        "tests/m14/verify6.py": {
+          "before": "32be844c441d7ebaacc29191259778c809c3258e8952989b4f032bc66de67f64",
+          "after": "fe86704d56e1056429fdd4cc22fa4a4fbef121f392a6b4e3b9f58751c1c194ed"
+        }
+      },
+      "reuse_scope": "Identical frozen OS artifacts and consumed observers; changed pending-dialog observer reruns, public/orchestration/verifier changes do not execute in this retained task",
+      "resumed_verified_same_candidate": true
+    },
+    "picker146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 210.53200000000652,
+      "command": [
+        "tests/m14/replay6.py",
+        "picker146_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "picker-lifetime146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 356.4530000000086,
+      "command": [
+        "tests/m14/replay6.py",
+        "picker_lifetime146_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-state-lifetime": {
+      "exit_code": 0,
+      "observer_wall_seconds": 206.90599999998813,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "state-lifetime"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "original-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 74.17199999999139,
+      "command": [
+        "tests/m14/replay6.py",
+        "original144_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "original-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 46.219000000011874,
+      "command": [
+        "tests/m14/replay6.py",
+        "original144_run",
+        "--profile",
+        "ordinary",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "vmware": {
+      "exit_code": 0,
+      "observer_wall_seconds": 79.5,
+      "command": [
+        "tests/m14/replay6.py",
+        "vmware4",
+        "--stage",
+        "6"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-cancel": {
+      "exit_code": 0,
+      "observer_wall_seconds": 73.90700000000652,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "cancel"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "original-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 286.2969999999914,
+      "command": [
+        "tests/m14/replay6.py",
+        "original144_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-exception-invalid": {
+      "exit_code": 0,
+      "observer_wall_seconds": 124.21899999998277,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "exception-invalid"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-exception-nested": {
+      "exit_code": 0,
+      "observer_wall_seconds": 104.21900000001187,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "exception-nested"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-exceptions": {
+      "exit_code": 0,
+      "observer_wall_seconds": 91.82799999997951,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "exceptions"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-inspection": {
+      "exit_code": 0,
+      "observer_wall_seconds": 77.64100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "inspection"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-last-thread": {
+      "exit_code": 0,
+      "observer_wall_seconds": 83.89100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "last-thread"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-msi-cancel": {
+      "exit_code": 0,
+      "observer_wall_seconds": 45.812000000005355,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "msi-cancel"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-named-sync-cancel": {
+      "exit_code": 0,
+      "observer_wall_seconds": 105.31299999999464,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "named-sync-cancel"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-named-sync": {
+      "exit_code": 0,
+      "observer_wall_seconds": 115.875,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "named-sync"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-probes": {
+      "exit_code": 0,
+      "observer_wall_seconds": 144.21799999999348,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "probes"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-processes": {
+      "exit_code": 0,
+      "observer_wall_seconds": 188.81299999999464,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "processes"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-tls": {
+      "exit_code": 0,
+      "observer_wall_seconds": 64.90700000000652,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "tls"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-unwind": {
+      "exit_code": 0,
+      "observer_wall_seconds": 61.375,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "unwind"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-unwind-chain": {
+      "exit_code": 0,
+      "observer_wall_seconds": 61.844000000011874,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "unwind-chain"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-threads": {
+      "exit_code": 0,
+      "observer_wall_seconds": 301.7820000000065,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "threads"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "runtime-unwind-invalid": {
+      "exit_code": 0,
+      "observer_wall_seconds": 120.57800000000861,
+      "command": [
+        "tests/m14/replay6.py",
+        "runtime_regressions4",
+        "unwind-invalid"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-browser-download": {
+      "exit_code": 0,
+      "observer_wall_seconds": 62.171000000002095,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "browser-download"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-environment": {
+      "exit_code": 0,
+      "observer_wall_seconds": 75.59400000001187,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "environment"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-files": {
+      "exit_code": 0,
+      "observer_wall_seconds": 93.89100000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "files"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-find": {
+      "exit_code": 0,
+      "observer_wall_seconds": 49.687999999994645,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "find"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-paths": {
+      "exit_code": 0,
+      "observer_wall_seconds": 40.25,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "paths"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-metadata": {
+      "exit_code": 0,
+      "observer_wall_seconds": 133.40599999998813,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "metadata"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "files-registry": {
+      "exit_code": 0,
+      "observer_wall_seconds": 96.26599999997416,
+      "command": [
+        "tests/m14/replay6.py",
+        "files_regressions4",
+        "registry"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "com": {
+      "exit_code": 0,
+      "observer_wall_seconds": 45.219000000011874,
+      "command": [
+        "tests/m14/replay6.py",
+        "com144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "controls": {
+      "exit_code": 0,
+      "observer_wall_seconds": 45.29700000002049,
+      "command": [
+        "tests/m14/replay6.py",
+        "controls144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "deep": {
+      "exit_code": 0,
+      "observer_wall_seconds": 63.90700000000652,
+      "command": [
+        "tests/m14/replay6.py",
+        "deep144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "formats": {
+      "exit_code": 0,
+      "observer_wall_seconds": 43.75,
+      "command": [
+        "tests/m14/replay6.py",
+        "clipformat144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "faults": {
+      "exit_code": 0,
+      "observer_wall_seconds": 126.82800000000861,
+      "command": [
+        "tests/m14/replay6.py",
+        "fault144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "heap": {
+      "exit_code": 0,
+      "observer_wall_seconds": 71.26599999997416,
+      "command": [
+        "tests/m14/replay6.py",
+        "heap144_after"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "menus": {
+      "exit_code": 0,
+      "observer_wall_seconds": 60.5,
+      "command": [
+        "tests/m14/replay6.py",
+        "menu144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "original-resources": {
+      "exit_code": 0,
+      "observer_wall_seconds": 48.76600000000326,
+      "command": [
+        "tests/m14/replay6.py",
+        "original_resources144"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "resources": {
+      "exit_code": 0,
+      "observer_wall_seconds": 72.56200000000536,
+      "command": [
+        "tests/m14/replay6.py",
+        "resource144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "paint": {
+      "exit_code": 0,
+      "observer_wall_seconds": 131.46899999998277,
+      "command": [
+        "tests/m14/replay6.py",
+        "paint144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "timers": {
+      "exit_code": 0,
+      "observer_wall_seconds": 91.01599999997416,
+      "command": [
+        "tests/m14/replay6.py",
+        "timer144_run"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "dialog145-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 6.282000000006519,
+      "command": [
+        "tests/m14/replay6.py",
+        "dialog146_host"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "dib-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 3.062000000005355,
+      "command": [
+        "tests/m14/replay6.py",
+        "dib144_host"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "windows": {
+      "exit_code": 1,
+      "observer_wall_seconds": 49.79700000002049,
+      "command": [
+        "tests/m14/replay6.py",
+        "window144_native"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    },
+    "document146-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 3.89000000001397,
+      "command": [
+        "tests/m14/replay6.py",
+        "document146_host"
+      ],
+      "source_tree_sha256": "8b46d3ae3ee92b11148111445d1b40fb6368c2ab1b6f140fa04b5a69a73d83bf"
+    }
+  },
+  "pending": [
+    "font146-host",
+    "global146-host",
+    "keymap145-host",
+    "keys145-host",
+    "mapping146-host",
+    "pack146-host",
+    "queue-host",
+    "resource-host",
+    "runtime-download-stream",
+    "runtime-find-host",
+    "runtime-http-host",
+    "runtime-path-host",
+    "runtime-unicode-host",
+    "source145-host",
+    "targets145-host"
+  ],
+  "running": [],
+  "observer_wall_seconds": 2222.5620000000054,
+  "scope": "Task orchestration only; direct native/host/source/media and public acceptance remain separate gates"
+}

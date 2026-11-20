@@ -12,12 +12,17 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
     if record.get('validated_source_tree_sha256',record.get('source_tree_sha256')) == current_digest:
         return True
     assert prior and record.get('validated_source_tree_sha256',record.get('source_tree_sha256')) == prior['source_tree_sha256']
-    old = prior['files']
+    original = prior
+    if record['source_tree_sha256'] != prior['source_tree_sha256']:
+        original = json.loads((out / ('observer-tree-' + record['source_tree_sha256'] + '.json')).read_text())
+        assert hashlib.sha256(json.dumps(original['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
+    old = original['files']
     differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
     allowed = {'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs',
-               'tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py'}
+               'tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py',
+               'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py'}
     assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
-    if name == 'picker-lifetime146':
+    if name == 'picker-lifetime146' and 'tests/m14/picker_lifetime146_run.py' in differences:
         return False
     if command[0] == 'tests/m14/replay6.py':
         import re
@@ -55,6 +60,8 @@ def main():
     addition = ''' assert len(tasks)==74,len(tasks)
  # Retain the original dialog parser corpus, adding actual helper templates.
  tasks['dialog145-host']['command']=[sys.executable,'tests/m14/replay6.py','dialog146_host']
+ tasks['windows']['command']=[sys.executable,'tests/m14/replay6.py','window146_run']
+ add('picker-restart146','tests/m14/picker_restart146_run.py',('--cycles','1'),('apps-compact',),4)
  for profile in ('compact','ordinary','4k'):
   dependency=('apps-'+profile,)
   add('original-clipboard146-'+profile,'tests/m14/original_clipboard146_run.py',('--profile',profile),dependency,4)
@@ -70,7 +77,7 @@ def main():
   ('global146-host','global146_host.py'),('mapping146-host','mapping146_host.py'),
   ('document146-host','document146_host.py'),('pack146-host','pack146_host.py'),('font146-host','font146_host.py')):
   add(name,'tests/m14/'+script,priority=30)
- assert len(tasks)==94,len(tasks)'''
+ assert len(tasks)==95,len(tasks)'''
     source = source.replace(before, addition)
     before = " assert all(t['dependencies']<=tasks.keys()for t in tasks.values())"
     assert source.count(before) == 1
@@ -96,7 +103,7 @@ def main():
     derivation = dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),
                       executed_sha256=hashlib.sha256(source.encode()).hexdigest(),
                       adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                      replacements=replacements, retained_tasks=74, total_tasks=94)
+                      replacements=replacements, retained_tasks=74, total_tasks=95)
     namespace = dict(__name__='m146_suite_derivation', __file__=str(canonical), suite_derivation146=derivation, suite_list146=listing, validate_resume146=lambda *args: validate_resume(prior_tree,*args))
     exec(compile(source, str(canonical), 'exec'), namespace)
     namespace['main']()

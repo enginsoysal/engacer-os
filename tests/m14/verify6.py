@@ -42,7 +42,7 @@ def main():
  # Canonical/executed receipts are independently required; orchestration hashes alone cannot qualify observers.
  observers=[]
  import re
- suite=read(work/'development/full1/suite-results.json');assert suite['passed']and suite['build_id']==build and len(suite['tasks'])==94
+ suite=read(work/'development/full1/suite-results.json');assert suite['passed']and suite['build_id']==build and len(suite['tasks'])==95
  required=[]
  for task in suite['tasks'].values():
   assert task['exit_code']==0
@@ -50,7 +50,7 @@ def main():
   if command[0]!='tests/m14/replay6.py':continue
   target,arguments=command[1],command[2:];suffix='-'.join(re.sub('[^a-zA-Z0-9_-]','',a)for a in arguments)
   required.append(work/'replay-observers'/(target+('-'+suffix if suffix else'')+'.json'))
- assert len(required)==90
+ assert len(required)==91
  for p in required:
   r=read(p);assert r['passed']and r['build_id']==build
   assert r['adapter_sha256']==hashlib.sha256((ROOT/'tests/m14/replay6.py').read_bytes()).hexdigest()
@@ -72,7 +72,7 @@ def main():
   observers.append(r)
  assert observers
  # Additional common-dialog, clipboard, mapping and exact Unicode raster gates.
- additional=['global-native','clipboard-native','chords-native','mapping-native','picker-native','picker-lifetime-native']
+ additional=['global-native','clipboard-native','chords-native','mapping-native','picker-native','picker-lifetime-native','picker-restart-native']
  for profile in ('compact','ordinary','4k'):
   suffix=''if profile=='compact'else'-'+profile
   additional.extend(['original-clipboard'+suffix,'original-picker-native'+suffix,'font-native'+suffix])
@@ -89,6 +89,8 @@ def main():
    assert phase['actual_native_picker_displayed']and phase['blocked_halted_cpus']==2 and phase['idle_observations'][-3:]==[2,2,2]
    generations.append(phase['generation'])
  assert generations==sorted(set(generations))
+ assert new['picker-restart-native']['independent_start_reopened_unicode_path_and_bytes']and new['picker-restart-native']['saved_bytes_independently_verified']
+ assert all(row['idle_observations'][-3:]==[2,2,2]for row in read(work/'window-native/results.json')['cycles'])
  assert new['picker-native']['saved_bytes_independently_verified']and new['picker-native']['source_unchanged']
  for profile in ('compact','ordinary','4k'):
   suffix=''if profile=='compact'else'-'+profile
@@ -112,27 +114,51 @@ def main():
    # This verifier does not execute any campaign task. Preserve its exact
    # campaign-start source and bind its additive acceptance-only corrections.
    import subprocess
-   historical=subprocess.check_output(['git','show','3f64eeeae7037664481140b61d4c52e790fa39e2:'+path],cwd=ROOT)
+   historical=subprocess.check_output(['git','show','5c2c23ab4cb3a359c22864e86b98067ba01fc1d5:'+path],cwd=ROOT)
    assert hashlib.sha256(historical).hexdigest()==digest
-   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='3f64eeeae7037664481140b61d4c52e790fa39e2',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
+   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit='5c2c23ab4cb3a359c22864e86b98067ba01fc1d5',scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
   else:assert current==digest,('Suite observer input changed',path)
  assert all(r.get('validated_source_tree_sha256',r['source_tree_sha256'])==tree['source_tree_sha256']for r in suite['tasks'].values())
  reused_trees={}
  for task_name,record in suite['tasks'].items():
   if record['source_tree_sha256']==tree['source_tree_sha256']:continue
-  assert task_name!='picker-lifetime146' and record['resumed_verified_same_candidate']
+  assert record['resumed_verified_same_candidate']
   prior=read(work/'development/full1'/('observer-tree-'+record['source_tree_sha256']+'.json'))
   assert hashlib.sha256(json.dumps(prior['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
   differences={path:{'before':prior['files'].get(path),'after':tree['files'].get(path)}for path in prior['files'].keys()|tree['files'].keys()if prior['files'].get(path)!=tree['files'].get(path)}
   assert differences==record['verified_unconsumed_tree_changes']
-  assert differences.keys()<={'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs','tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py'}
+  if task_name=='picker-lifetime146':assert 'tests/m14/picker_lifetime146_run.py'not in differences
+  assert differences.keys()<={'tests/m14/verify6.py','tests/m14/suite6.py','tests/m14/public_site6_scoped.mjs','tests/m14/close6_scoped.py','tests/m14/picker_lifetime146_run.py','tests/m14/window146_run.py','tests/m14/picker_restart146_run.py'}
   reused_trees[record['source_tree_sha256']]=prior
+ for module,folder,canonical in [('window146_run','window-native','window144_native.py'),('picker_restart146_run','picker-restart-native','picker146_run.py')]:
+  import importlib
+  adapter=importlib.import_module(module);receipt=read(work/folder/'observer.json');path=ROOT/'tests/m14'/canonical
+  assert receipt['canonical_sha256']==hashlib.sha256(path.read_bytes()).hexdigest()
+  assert receipt['executed_sha256']==hashlib.sha256(adapter.derive(path.read_bytes().decode()).encode()).hexdigest()
+  assert receipt['adapter_sha256']==hashlib.sha256((ROOT/'tests/m14'/(module+'.py')).read_bytes()).hexdigest()
+ comparison=read(work/'static-resource-comparison.json');assert comparison['passed']and comparison['build_id']==build
+ import struct
+ for stage in (5,6):
+  manifest=read(ROOT/f'dist/m14stage{stage}-build-manifest.json')
+  for kind,part in [('installed','-installed'),('live','')]:
+   name=f'EngacerOS-M14STAGE{stage}'+part+'-kernel.elf';image=ROOT/'dist'/name;raw_image=image.read_bytes();record=comparison['records'][f'M14.{stage}'][kind]
+   assert hashlib.sha256(raw_image).hexdigest()==manifest['artifacts'][name]['sha256']==record['elf_sha256']
+   offset=struct.unpack_from('<Q',raw_image,32)[0];width,count=struct.unpack_from('<HH',raw_image,54);pages=set();memory=0
+   for index in range(count):
+    typ,flags,start,virtual,physical,filesz,memsz,align=struct.unpack_from('<IIQQQQQQ',raw_image,offset+index*width)
+    if typ!=1:continue
+    memory+=memsz;pages.update(range(physical//4096,(physical+memsz+4095)//4096))
+   assert record['load_memory_bytes']==memory and record['rounded_physical_load_pages']==len(pages)
  names.extend(additional);host_names.extend(additional_hosts)
  final.mkdir(exist_ok=True)
  for path in scratch.iterdir():
   if path.is_dir():shutil.copytree(path,final/path.name,dirs_exist_ok=True)
   elif path.name!='acceptance-results.json':shutil.copyfile(path,final/path.name)
  for name in names+host_names:copy_report(work/name,final/name)
+ write(final/'static-resource-comparison.json',comparison)
+ resources=read(final/'resources.json')
+ resources['interoperability']={'global_objects_per_process':128,'session_text_clipboard_bytes_including_nul':8192,'transient_clipboard_staging_pages':2,'lazy_picker_request_pages':1,'filter_count_limit':12,'filter_text_pool_bytes':1920,'sparse_window_slots':128,'dialog_controls_per_template':127,'nesting_levels':32,'shared_section_objects':16,'shared_section_max_bytes':1048576,'section_grants_per_process':64,'section_views_per_process':16,'pending_request_lifetimes':63,'retained_owned_pages':0,'desktop_fixed_delta_from_m145_bytes':8,'kernel_writable_static_delta_bytes':1492,'installed_static_load_delta_pages':4,'live_static_load_delta_pages':10,'font_extra_descriptor_bytes':9888,'scope':'Overlapping component/image figures, not additive total RAM or M14.15 CPU/storage optimization qualification'}
+ write(final/'resources.json',resources)
  write(final/'drawing-observer-sources.json',observers)
  write(final/'fixed-state-change.json',dict(previous_bytes=557676,current_bytes=557684,delta_bytes=8,reason='Add the eight-byte generation-bound foreign picker state relative to accepted M14.5',current_map_sha256=hashlib.sha256((ROOT/'dist/EngacerOS-M14STAGE6-installed-kernel.map').read_bytes()).hexdigest(),scope='Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification'))
  write(final/'base-acceptance-derivation.json',dict(canonical_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,fixed_state_assertion={'previous':557692,'current':557684,'explanation':'Cursor removal plus new picker generation; see fixed-state-change.json'},output_isolation=str(scratch.relative_to(ROOT))))
