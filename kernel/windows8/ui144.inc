@@ -97,7 +97,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_CLIPNAME144)return clip_name144(handle,pointer,argument);
  if(op==WUI_METRICS144){
 #ifdef ENGINE_M73
-  if(handle||argument)return -87;unsigned width=ui73_width(),height=ui73_height(),x=0,y=0,buttons=0;usb_mouse_peek145(&x,&y,&buttons);wui_metrics144 metrics={width,height,height>60?height-60:0,ui73_scale(),(ui73_measure("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",1)/26+1)/2,16,x,y};return user8(pointer,&metrics,sizeof(metrics),1)?-998:0;
+  if(handle||argument)return -87;unsigned scale=ui73_scale();if(scale<2||scale>4)return -87;unsigned width=ui73_width()*2/scale,height=ui73_height()*2/scale,x=0,y=0,buttons=0;usb_mouse_peek145(&x,&y,&buttons);wui_metrics144 metrics={width,height,height>60?height-60:0,scale,(ui73_measure("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",1)/26+1)/2,16,x,y};return user8(pointer,&metrics,sizeof(metrics),1)?-998:0;
 #else
   return -50;
 #endif

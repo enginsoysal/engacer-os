@@ -1,4 +1,4 @@
-/* Window coordinates are native logical units in the initial 96-DPI profile. */
+/* Compatibility coordinates are 96-DPI logical units; the compositor applies the native display scale. */
 typedef struct {int left,top,right,bottom;} win_rect144;
 static unsigned window_metrics144(wui_metrics144*out){int64_t status=ui_call144(WUI_METRICS144,0,out,0);if(status<0){last8((unsigned)-status);return 0;}return 1;}
 static unsigned window_view144(HANDLE handle,wui_view144*out){int64_t status=ui_call144(WUI_QUERY144,handle,out,0);if(status<0){last8((unsigned)-status);return 0;}return 1;}
