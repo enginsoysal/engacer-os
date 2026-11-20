@@ -29,8 +29,8 @@
     "winspool.drv": 26,
     "wintrust.dll": 27
   },
-  "refusal_keys": 638,
-  "table_bytes": 5104,
+  "refusal_keys": 636,
+  "table_bytes": 5088,
   "imports": [
     {
       "app": "notepadpp",
@@ -1493,20 +1493,6 @@
       "dll": "user32.dll",
       "symbol": "ChangeClipboardChain",
       "key": "c825362ef36fe00c",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "GetClipboardData",
-      "key": "3a9fc005ed592d01",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "IsClipboardFormatAvailable",
-      "key": "7de70ec37ae6298b",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

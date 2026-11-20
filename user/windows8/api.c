@@ -356,9 +356,11 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "shell-icons144.inc"
 #include "shell-folders145.inc"
 #include "change-notify145.inc"
+#include "clipboard146.inc"
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(OpenClipboard,4),API8(CloseClipboard,4),API8(EmptyClipboard,4),API8(SetClipboardData,4),API8(GetClipboardData,4),API8(IsClipboardFormatAvailable,4),API8(CountClipboardFormats,4),API8(EnumClipboardFormats,4),API8(GetClipboardOwner,4),API8(GetOpenClipboardWindow,4),API8(GetClipboardSequenceNumber,4),
  API8(GlobalAlloc,1),API8(GlobalFree,1),API8(GlobalLock,1),API8(GlobalUnlock,1),API8(GlobalSize,1),API8(GlobalFlags,1),API8(GlobalHandle,1),
  API8(ImageList_GetIconSize,6),API8(ImageList_SetIconSize,6),API8(ImageList_Remove,6),API8(ImageList_GetIcon,6),API8(ImageList_Add,6),API8(ImageList_SetBkColor,6),API8(ImageList_GetBkColor,6),API8(ImageList_BeginDrag,6),API8(ImageList_DragEnter,6),API8(ImageList_DragMove,6),API8(ImageList_DragShowNolock,6),API8(ImageList_EndDrag,6),API8(ImageList_GetImageInfo,6),
  API8(FindFirstChangeNotificationW,1),

@@ -12,6 +12,10 @@ static wui_queue144 *ui_queues144[SPACES142][THREADS142];
 static unsigned ui_generation144,ui_revision144;
 static uint64_t ui_focus144[SPACES142],ui_capture144[SPACES142],ui_capture_owner144;
 static void ui_timer_release144(unsigned,unsigned,uint64_t);
+#ifdef ENGINE_M14
+static void clip_owner_destroy146(uint64_t);
+static void clip_thread_release146(unsigned,unsigned);
+#endif
 static unsigned ui_cursors144[SPACES142]={32512,32512,32512,32512};
 #ifdef ENGINE_M73
 #include <engine/ui/graphics73.h>
@@ -35,6 +39,9 @@ static unsigned ui_enqueue144(unsigned space,unsigned thread,const wui_message14
 }
 static void ui_destroy144(uint64_t handle){
  ui_window144*w=ui_lookup144(handle);if(!w)return;
+#ifdef ENGINE_M14
+ clip_owner_destroy146(handle);
+#endif
  /* Parent teardown is bounded by the global window quota. Owners are distinct. */
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&(ui_windows144[i]->view.description.parent==handle||ui_windows144[i]->view.description.owner==handle))ui_destroy144(ui_windows144[i]->view.handle);
  for(unsigned i=0;i<THREADS142;++i)if(ui_queues144[w->space][i])wui_purge144(ui_queues144[w->space][i],handle);
@@ -42,6 +49,9 @@ static void ui_destroy144(uint64_t handle){
  if(ui_focus144[w->space]==handle)ui_focus144[w->space]=0;if(ui_capture144[w->space]==handle)ui_capture144[w->space]=0;if(ui_capture_owner144==handle)ui_capture_owner144=0;ui_timer_release144(w->space,w->thread,handle);unsigned slot=(unsigned)(handle&255);ui_windows144[slot]=0;ui_free144(w);++ui_revision144;
 }
 static void ui_thread_release144(unsigned space,unsigned thread){
+#ifdef ENGINE_M14
+ clip_thread_release146(space,thread);
+#endif
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&ui_windows144[i]->space==space&&ui_windows144[i]->thread==thread)ui_destroy144(ui_windows144[i]->view.handle);
  ui_timer_release144(space,thread,0);ui_free144(ui_queues144[space][thread]);ui_queues144[space][thread]=0;
 }
@@ -54,11 +64,17 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
  return 0;
 }
 #include "clipboard144.inc"
+#ifdef ENGINE_M14
+#include "clipboard146.inc"
+#endif
 #include "drawing144.inc"
 #include "timers144.inc"
 #include "focus144.inc"
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
+#ifdef ENGINE_M14
+ if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
+#endif
  if(op==WUI_NORMAL144){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(argument==2)return pointer?-87:(int64_t)w->restore_max;if(argument==3){if(pointer>1||w->thread!=current142)return -87;w->restore_max=(unsigned)pointer;return 0;}if(argument>1)return -87;if(!argument)return user8(pointer,&w->normal_bounds,sizeof(w->normal_bounds),1)?-998:0;if(w->thread!=current142)return -5;wui_description144 d=w->view.description;if(user8(pointer,&d.bounds,sizeof(d.bounds),0))return -998;unsigned error=ui_description144(&d,handle);if(error)return -(int64_t)error;w->normal_bounds=d.bounds;return 0;}
  if(op==WUI_FOCUS144||op==WUI_CAPTURE144)return pointer?-87:ui_focus_call144(op,handle,argument);
  if(op==WUI_TIMER144)return argument?-87:ui_timer_set144(handle,pointer);

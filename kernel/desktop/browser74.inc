@@ -155,10 +155,20 @@ static unsigned browser_action74(desktop_window *w,application *app,uint64_t tok
 static unsigned browser_key74(desktop_window *w,application *app,uint64_t token,int key){
     if(w->app!=BROWSER74)return 0;
     if(key==12){app->day74=1;app->name_selected=1;app->name_cursor=length(app->pending);invalidate(w->bounds);return 1;}
-    if(key==3){const char *source=app->day74?app->pending:app->text;clipboard_length=length(source);if(clipboard_length>=sizeof(clipboard))clipboard_length=sizeof(clipboard)-1;memcpy(clipboard,source,clipboard_length);clipboard[clipboard_length]=0;notice(app,"Copied to the clipboard.");invalidate(w->bounds);return 1;}
+    if(key==3){const char *source=app->day74?app->pending:app->text;
+#ifdef ENGINE_M11
+     if(!native_clipboard_text146(source,length(source)))notice(app,"Clipboard is busy or the text is too long. Try again.");else notice(app,"Copied to the clipboard.");
+#else
+     clipboard_length=length(source);if(clipboard_length>=sizeof(clipboard))clipboard_length=sizeof(clipboard)-1;memcpy(clipboard,source,clipboard_length);clipboard[clipboard_length]=0;notice(app,"Copied to the clipboard.");
+#endif
+     invalidate(w->bounds);return 1;}
     if(!app->day74){if(key==133&&app->offset)--app->offset;else if(key==134&&app->source_crc<app->length)++app->offset;else return 0;invalidate(w->bounds);return 1;}
     if(key==10){browser_action74(w,app,token,BROWSER_GO74);return 1;}
-    if(key==22){if(clipboard_length>255)notice(app,"This address is longer than the 255-character limit.");else{copy(app->pending,clipboard,256);app->name_cursor=length(app->pending);app->name_selected=0;}}
+    if(key==22){
+#ifdef ENGINE_M11
+     if(!native_clipboard_readable146()){notice(app,"Clipboard is busy. Try again.");return 1;}if(clipboard_kind11==2){notice(app,"The clipboard contains files. Paste them in Files.");return 1;}
+#endif
+     if(clipboard_length>255)notice(app,"This address is longer than the 255-character limit.");else{copy(app->pending,clipboard,256);app->name_cursor=length(app->pending);app->name_selected=0;}}
     else if(key==128){if(app->name_cursor)--app->name_cursor;app->name_selected=0;}
     else if(key==129){if(app->name_cursor<length(app->pending))++app->name_cursor;app->name_selected=0;}
     else if(key==130){app->name_cursor=0;app->name_selected=0;}

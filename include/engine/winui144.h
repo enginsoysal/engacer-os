@@ -6,7 +6,10 @@
 #define WUI_QUEUE144 64u
 #define WUI_APP_QUEUE144 56u
 #define WUI_HANDLE144 UINT64_C(0x5744000000000000)
-enum {WUI_CREATE144=1,WUI_DESTROY144,WUI_UPDATE144,WUI_POST144,WUI_PEEK144,WUI_WAIT144,WUI_THREAD_POST144,WUI_QUERY144,WUI_QUIT144,WUI_METRICS144,WUI_CURSOR144,WUI_CLIPFORMAT144,WUI_CLIPNAME144,WUI_DRAW144,WUI_MEASURE144,WUI_TIMER144,WUI_FOCUS144,WUI_CAPTURE144,WUI_NORMAL144,WUI_MENUBAR145,WUI_MENUDRAW145,WUI_KEYSTATE145};
+enum {WUI_CREATE144=1,WUI_DESTROY144,WUI_UPDATE144,WUI_POST144,WUI_PEEK144,WUI_WAIT144,WUI_THREAD_POST144,WUI_QUERY144,WUI_QUIT144,WUI_METRICS144,WUI_CURSOR144,WUI_CLIPFORMAT144,WUI_CLIPNAME144,WUI_DRAW144,WUI_MEASURE144,WUI_TIMER144,WUI_FOCUS144,WUI_CAPTURE144,WUI_NORMAL144,WUI_MENUBAR145,WUI_MENUDRAW145,WUI_KEYSTATE145,WUI_CLIPBOARD146};
+enum {WCLIP_OPEN146=1,WCLIP_CLOSE146,WCLIP_EMPTY146,WCLIP_STATE146,WCLIP_READ146,WCLIP_WRITE146,WCLIP_OPEN_WINDOW146};
+typedef struct {uint64_t revision,owner;uint32_t bytes,reserved;} wclip_state146;
+typedef struct {uint64_t revision,buffer;uint32_t bytes,reserved;} wclip_transfer146;
 #define WUI_KEY_SNAPSHOT145 0x80000000u
 typedef struct {int32_t x,y,width,height;} wui_rect144;
 /* Kind 4 carries at most 128 straight-alpha ARGB pixels, never a user pointer. */
@@ -34,5 +37,10 @@ unsigned w8_ui_style145(uint64_t,uint32_t *);
 unsigned w8_ui_menuheight145(uint64_t);
 unsigned w8_ui_menudraw_at145(uint64_t,unsigned,wui_draw144*);
 unsigned w8_ui_modifiers145(uint64_t,unsigned);
+#ifdef ENGINE_M14
+unsigned w8_clipboard_native_allowed146(void);
+unsigned w8_clipboard_native_readable146(void);
+void w8_clipboard_native_changed146(void);
+#endif
 #endif
 #endif

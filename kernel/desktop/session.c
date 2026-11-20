@@ -197,6 +197,9 @@ static void invalidate(desktop_rect r) { desktop_damage(&model,r); }
 static void whole(void) { invalidate((desktop_rect){0,0,(int32_t)model.width,(int32_t)model.height}); }
 static void task_damage(void) { invalidate((desktop_rect){0,(int32_t)model.height-60,(int32_t)model.width,60}); }
 static void notice(application *app,const char *text) { copy(app->notice,text,sizeof(app->notice)); }
+#ifdef ENGINE_M11
+#include "clipboard146.inc"
+#endif
 static void text(int x,int y,const char *value,unsigned scale,uint32_t color) {
 #ifdef ENGINE_M92
     gui6_text((unsigned)x,(unsigned)y,value,scale,color);
@@ -1082,13 +1085,15 @@ static void action(uint64_t token,unsigned command) {
     if(command==FILENAME_FOCUS&&app->closing==3){app->name_selected=0;app->name_cursor=length(app->pending);}
     if((command==COPY||command==CUT)&&w->app==EDITOR){
 #ifdef ENGINE_M11
-        clipboard_kind11=1;file_clip11.count=0;
+        if(!native_clipboard_text146(app->text,app->length)){notice(app,"Clipboard is busy or the text is too long. Try again.");invalidate(w->bounds);return;}
+#else
+        memcpy(clipboard,app->text,app->length+1);clipboard_length=app->length;
 #endif
-        memcpy(clipboard,app->text,app->length+1);clipboard_length=app->length;notice(app,"Document copied to the clipboard.");
+        notice(app,"Document copied to the clipboard.");
         if(command==CUT)send_app(app,APP7_CLEAR,0,0,0);}
     if(command==PASTE&&w->app==EDITOR){
 #ifdef ENGINE_M11
-        if(clipboard_kind11==2)notice(app,"The clipboard contains files. Paste them in Files.");else
+        if(!native_clipboard_readable146())notice(app,"Clipboard is busy. Try again.");else if(clipboard_kind11==2)notice(app,"The clipboard contains files. Paste them in Files.");else
 #endif
         insert(app,clipboard,clipboard_length);
     }
