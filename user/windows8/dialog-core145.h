@@ -2,7 +2,7 @@
 #define ENGACER_DIALOG_CORE145_H
 #include <stddef.h>
 #include <stdint.h>
-#define DIALOG_CONTROLS145 31u
+#define DIALOG_CONTROLS145 127u
 typedef struct {const uint16_t*text;unsigned ordinal;} dialog_name145;
 typedef struct {uint32_t style,exstyle,id,help;int x,y,width,height;dialog_name145 class_name,title;const uint8_t*extra;unsigned extra_bytes;} dialog_item145;
 typedef struct {uint32_t style,exstyle,help;unsigned extended,count,font_size,font_weight,font_italic,font_charset;int x,y,width,height;dialog_name145 menu,class_name,title,font;dialog_item145 items[DIALOG_CONTROLS145];size_t consumed;} dialog_template145;

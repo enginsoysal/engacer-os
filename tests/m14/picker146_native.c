@@ -6,6 +6,7 @@ typedef struct {unsigned style;PROC proc;int cls_extra,win_extra;H instance,icon
 __declspec(dllimport) H RegisterClassW(const CLASS*);
 __declspec(dllimport) H CreateWindowExW(unsigned,const W*,const W*,unsigned,int,int,int,int,H,H,H,void*);
 __declspec(dllimport) int DestroyWindow(H);
+__declspec(dllimport) int IsWindow(H);
 __declspec(dllimport) I DefWindowProcW(H,unsigned,H,I);
 __declspec(dllimport) int GetOpenFileNameW(void*);
 __declspec(dllimport) int GetSaveFileNameW(void*);
@@ -37,8 +38,18 @@ static void read_exact(const W*path,const char*expected){H h=CreateFileW(path,0x
 static void write_exact(const W*path,const char*text,unsigned creation){H h=CreateFileW(path,0x40000000,3,0,creation,0,0);check(h!=(H)-1,"app creates selected destination");unsigned n=0,wanted=0;while(text[wanted])++wanted;check(WriteFile(h,text,wanted,&n,0)&&n==wanted&&CloseHandle(h),"actual app write");}
 static I procedure(H h,unsigned m,H w,I l){return DefWindowProcW(h,m,w,l);}
 static PROC volatile anchor=procedure;
+static void window_limits(const W*name){
+ H root=CreateWindowExW(0,name,L"Sparse window quota",0,1,1,100,100,0,0,0,0);check(root!=0,"quota root");H children[127];
+ for(unsigned i=0;i<127;++i){children[i]=CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,root,i+1,0,0);check(children[i]!=0,"128 actual window slots");}
+ check(!CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,root,200,0,0)&&GetLastError()==1816,"129th window refuses quota");
+ H stale=children[63];check(DestroyWindow(stale)&&!IsWindow(stale),"released child is invalid");H replacement=CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,root,300,0,0);check(replacement&&replacement!=stale&&!IsWindow(stale),"recycled slot has fresh generation");
+ check(DestroyWindow(root)&&!IsWindow(replacement)&&!IsWindow(children[126]),"root destroys every quota child");
+ root=CreateWindowExW(0,name,L"Bounded nesting",0,1,1,100,100,0,0,0,0);check(root!=0,"nesting root");H parent=root;
+ for(unsigned i=0;i<31;++i){parent=CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,parent,i+1,0,0);check(parent!=0,"32 nesting levels");}
+ check(!CreateWindowExW(0,name,L"",0x40000000,0,0,1,1,parent,200,0,0)&&GetLastError()==87,"33rd nesting level refuses");check(DestroyWindow(root)&&!IsWindow(parent),"nested tree cleanup");say("M146_SPARSE_WINDOWS_QUOTA_DEPTH_PASS\n");
+}
 void entry(void){
- CLASS cls={0};cls.proc=anchor;cls.name=L"Picker146";check(RegisterClassW(&cls)!=0,"class");owner=CreateWindowExW(0,cls.name,L"Common dialog interoperability",0x10cf0000,180,100,560,360,0,0,0,0);check(owner!=0,"owner window");wpick_ofn146 ofn;
+ CLASS cls={0};cls.proc=anchor;cls.name=L"Picker146";check(RegisterClassW(&cls)!=0,"class");window_limits(cls.name);owner=CreateWindowExW(0,cls.name,L"Common dialog interoperability",0x10cf0000,180,100,560,360,0,0,0,0);check(owner!=0,"owner window");wpick_ofn146 ofn;
  H edit=CreateWindowExW(0,L"Edit",L"",0x50810000,16,16,300,32,owner,101,0,0);check(edit!=0,"owned ANSI text control");W label[32];check(SetDlgItemTextA(owner,101,"Text \xc3\xa9")&&GetDlgItemTextW(owner,101,label,32)==6&&label[5]==0xe9,"real ANSI UTF-8 control text");check(!SetDlgItemTextA(owner,101,"\xc0\xaf")&&GetLastError()==1113&&GetDlgItemTextW(owner,101,label,32)==6&&label[5]==0xe9,"invalid ANSI text preserves existing label");check(SetDlgItemTextA(owner,101,0)&&!GetDlgItemTextW(owner,101,label,32)&&!label[0],"null ANSI label clears control");
  if(GetFileAttributesW(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt")!=(unsigned)-1)check(DeleteFileW(L"C:/Users/Owner/Documents/m146-save-\u00e9.txt"),"remove previous owned fixture output");
  check(!GetOpenFileNameW(0)&&CommDlgExtendedError()==0xffff,"invalid structure pointer");

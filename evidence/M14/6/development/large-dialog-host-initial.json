@@ -1,0 +1,806 @@
+{
+  "passed": true,
+  "scope": "Host binary parsing only; not original native dialog execution",
+  "standard_and_extended": true,
+  "truncations": 230,
+  "hostile_mutations": 10000,
+  "original_templates": [
+    {
+      "app": "7zip",
+      "resource": 93,
+      "language": 1033,
+      "sha256": "91199c79b04dc63564cb6eb4a87f9ef67c3f7d9ca357c9d4a56555bcb661f6a0",
+      "status": 0,
+      "controls": 8
+    },
+    {
+      "app": "7zip",
+      "resource": 94,
+      "language": 1033,
+      "sha256": "f01a07c0c18047d7baf9458bd08db7f40d12d11ea826fe2956c31bffd0706735",
+      "status": 0,
+      "controls": 2
+    },
+    {
+      "app": "7zip",
+      "resource": 95,
+      "language": 1033,
+      "sha256": "64867d0de68ebc01c2282b12156a851406b6b96989105dbdd4318bf5515bc6ef",
+      "status": 0,
+      "controls": 8
+    },
+    {
+      "app": "7zip",
+      "resource": 96,
+      "language": 1033,
+      "sha256": "e8460b3feb861a281f792970a8d26b056d96afd731a94051afe0c3b6e0550928",
+      "status": 0,
+      "controls": 6
+    },
+    {
+      "app": "7zip",
+      "resource": 97,
+      "language": 1033,
+      "sha256": "8ebcf16f13c74cc258e8c7005f4fe7281476962fc3255df301012a9ecea751dc",
+      "status": 0,
+      "controls": 26
+    },
+    {
+      "app": "7zip",
+      "resource": 98,
+      "language": 1033,
+      "sha256": "b9aebbba683f4a7a5fdb08851eb92dc2b3b327f7831ddc3d279766603c25c962",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "7zip",
+      "resource": 99,
+      "language": 1033,
+      "sha256": "9d29f691a70372e8b07576c582b6d0dcf454427e2ecb420148b84918d2c996ad",
+      "status": 0,
+      "controls": 3
+    },
+    {
+      "app": "7zip",
+      "resource": 2101,
+      "language": 1033,
+      "sha256": "5036d99fab7986112b644ae7efa68300de1cd62ad9af820469160368f072353b",
+      "status": 0,
+      "controls": 3
+    },
+    {
+      "app": "7zip",
+      "resource": 2103,
+      "language": 1033,
+      "sha256": "2df07b27f5a6dd1536de1d63997768c89781309ee92f82240925ac1c6b29863e",
+      "status": 0,
+      "controls": 9
+    },
+    {
+      "app": "7zip",
+      "resource": 2200,
+      "language": 1033,
+      "sha256": "e0bf0b6d2bb197b4f299b07efd97c8ec074b0b2c18260548537d369fab06d780",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "7zip",
+      "resource": 2300,
+      "language": 1033,
+      "sha256": "2df8066e76f487e4706b310867289efda4043465dcae85d2fb5a47a3ecf6f76d",
+      "status": 0,
+      "controls": 9
+    },
+    {
+      "app": "7zip",
+      "resource": 2400,
+      "language": 1033,
+      "sha256": "0f95a0343cf910efa70c75128786c417828b63761a27655859e2acddbb393080",
+      "status": 0,
+      "controls": 7
+    },
+    {
+      "app": "7zip",
+      "resource": 2500,
+      "language": 1033,
+      "sha256": "83068b1e880ec4606dd6cf42015890939feb991bbdea05b991c7f7e94c42140b",
+      "status": 0,
+      "controls": 13
+    },
+    {
+      "app": "7zip",
+      "resource": 2900,
+      "language": 1033,
+      "sha256": "c06cb746bb7b2f795addaca2dd1f74d104d77352a0d95470fcf0699bb9e3b51a",
+      "status": 0,
+      "controls": 7
+    },
+    {
+      "app": "7zip",
+      "resource": 3500,
+      "language": 1033,
+      "sha256": "7b51a91ddd68df018fb22a44875d31c7efb427152f0b12d5c9de8d2ff533dabd",
+      "status": 0,
+      "controls": 15
+    },
+    {
+      "app": "7zip",
+      "resource": 3800,
+      "language": 1033,
+      "sha256": "002978525dbd56c9651b7946ad7a4c23f649c3ee2d72b0e871fd2204b302656a",
+      "status": 0,
+      "controls": 5
+    },
+    {
+      "app": "7zip",
+      "resource": 6602,
+      "language": 1033,
+      "sha256": "9f72ab9b38ad976bfec8101b692430ad24dd7cc42ab57c09e5bedf541f971d71",
+      "status": 0,
+      "controls": 2
+    },
+    {
+      "app": "7zip",
+      "resource": 7300,
+      "language": 1033,
+      "sha256": "513805bc4f696b59c48868e9012c390d0589138d1e912f1647e03a4eaf4b7f7b",
+      "status": 0,
+      "controls": 7
+    },
+    {
+      "app": "7zip",
+      "resource": 7700,
+      "language": 1033,
+      "sha256": "342ca7fbfba7d795fe3a2ccff9f0872a489a42fcc2979f900ccbb755e9c0441a",
+      "status": 0,
+      "controls": 15
+    },
+    {
+      "app": "7zip",
+      "resource": 7800,
+      "language": 1033,
+      "sha256": "49acaabfabff3728120492f1a466e6fff0f48bb2eed19fa7d396b2c28a6a7d81",
+      "status": 0,
+      "controls": 11
+    },
+    {
+      "app": "notepadpp",
+      "resource": 139,
+      "language": 1033,
+      "sha256": "f8c5d86d3d73876bfb51ec992b17f4f19b8c34765fd0d7e6139e57d67964bd1c",
+      "status": 0,
+      "controls": 3
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1600,
+      "language": 1033,
+      "sha256": "9d25f6dbc9b8c4396a21ed8a18ef24acb42acae14fe14e3e063b16b1bbe989eb",
+      "status": 0,
+      "controls": 56
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1670,
+      "language": 1033,
+      "sha256": "03fdbe16d9bba16f19ab555b8e6aa3053b4d4f2f6dd55471bb1d603edc47355e",
+      "status": 0,
+      "controls": 1
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1680,
+      "language": 1033,
+      "sha256": "7315a446050988a90bd355f44b7ccacaae7feed214e09205dd0b25c162cc3935",
+      "status": 0,
+      "controls": 10
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1700,
+      "language": 1033,
+      "sha256": "8f2c4017a97b65db16f4cc2dd097a6b9661ce7b147a84eabbf66778a5a191635",
+      "status": 0,
+      "controls": 9
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1710,
+      "language": 1033,
+      "sha256": "9b996c5187c83b9ee202b16cf962fb497735bc0339210ff0982fdbe186fba5b6",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1750,
+      "language": 1033,
+      "sha256": "b12fd482a7ca478b731df7c1516d2c80550ec6ee62464d5deb34c8ac5b214ead",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1755,
+      "language": 1033,
+      "sha256": "d5c7c74b5ffb77be3f6d4cc6f49322ff7b242e227f079f76fafb33fdcc56d43f",
+      "status": 0,
+      "controls": 2
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1760,
+      "language": 1033,
+      "sha256": "3a4ae1ae5294beebfec7261d53feaba5225de8876335ebed39a703c2922cce12",
+      "status": 0,
+      "controls": 6
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1765,
+      "language": 1033,
+      "sha256": "243ae9919de00f9645515268e5f3592473e755d1c27a43242b803e905801c4ad",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1770,
+      "language": 1033,
+      "sha256": "7a423e9f0f44b710ece13c53b0a160465989cacc91f42796cf6ebcd077e5aadc",
+      "status": 0,
+      "controls": 6
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1900,
+      "language": 1033,
+      "sha256": "3893e1dcfe1de3da6af0c8870c9531372dffe0bc5442ea54dcbd077a8d6958e8",
+      "status": 0,
+      "controls": 7
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1920,
+      "language": 1033,
+      "sha256": "4bc45bad0ec099e9de8f3a2959cc3a78bd076916423104b8179ef1ca63b5cf6d",
+      "status": 0,
+      "controls": 5
+    },
+    {
+      "app": "notepadpp",
+      "resource": 1930,
+      "language": 1033,
+      "sha256": "9935064de8ecaed219f7723c585257a61febc8c6975112d1ae1d97fce1df2ce8",
+      "status": 0,
+      "controls": 5
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2000,
+      "language": 1033,
+      "sha256": "3d2b416e143f710fc14913ca395d89605d2f1d4a2b82d7bef71535a059b04b86",
+      "status": 0,
+      "controls": 10
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2020,
+      "language": 1033,
+      "sha256": "61078290f887a433d71589d07c38e09c98bf5d5f87aedfce930b8dbafa65c4fb",
+      "status": 0,
+      "controls": 21
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2100,
+      "language": 1033,
+      "sha256": "ad98d5200bc92992022ba4921f443eafb4ccc22409acd48ea41e6768c9ad1d43",
+      "status": 0,
+      "controls": 2
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2200,
+      "language": 1033,
+      "sha256": "abf034341acffd8150b6fcc54b413608799ee88639ff4895d9900c7e42375794",
+      "status": 0,
+      "controls": 43
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2410,
+      "language": 1033,
+      "sha256": "58f125fe4e9fbc908b7da073d6f37cfa37a6e55a6e69865a925d4bc6ee6e07da",
+      "status": 0,
+      "controls": 1
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2450,
+      "language": 1033,
+      "sha256": "797cd44e6da1dea2d9862d0713f4895173b8acb25cc2a4922f1fd0cdc520b3ee",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2600,
+      "language": 1033,
+      "sha256": "d6d319ee4719ef97ce0096044ca272b087693721fe283244cb2b3d8ee8b78434",
+      "status": 0,
+      "controls": 9
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2700,
+      "language": 1033,
+      "sha256": "9d1a95e28e027663879108ee92c3a746927e27ca28d0c984a7b52c019783102d",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2800,
+      "language": 1033,
+      "sha256": "cf884cf69273b81fd6b8a2506dfd63c108befe134d3e00eb259c2eb57f7b14d5",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 2900,
+      "language": 1033,
+      "sha256": "3e70527be96637dd08ee138942810535dc185ec1f082c2c1468440787e39a39a",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3000,
+      "language": 1033,
+      "sha256": "f10e759184d590cbba89d3e253966a594e99612d007c355ecae979041e9aa4b8",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3100,
+      "language": 1033,
+      "sha256": "a91d96ce7f12ee1f8024e6b5ea907bc941f29a384a244479de249d81885e51c3",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3200,
+      "language": 1033,
+      "sha256": "0b352fc6358d9c4815c8c2a41208b018078d11e01476e21c214b6a197763c048",
+      "status": 0,
+      "controls": 3
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3300,
+      "language": 1033,
+      "sha256": "99c3bce4f22cf36bb8ed76a566ff5a67bfb57b96325d1b0b01945c14d850a056",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3320,
+      "language": 1033,
+      "sha256": "9e6cb3b7afa939ab1b8e5f73d45ce2fd4341243a50035644557a30137c212d4c",
+      "status": 0,
+      "controls": 1
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3321,
+      "language": 1033,
+      "sha256": "4cad09838619d7a439e646b96860ab89f65c2672a0621b67a0f60c498ab41589",
+      "status": 0,
+      "controls": 1
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3400,
+      "language": 1033,
+      "sha256": "da62a3b7e9812d5c638ad7a3572bae9fbe1d520a96c325bfd16dbeecc67994c2",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3500,
+      "language": 1033,
+      "sha256": "bff89c802a4f731a7ae8e57376e329db1c6da1fc4f8376ae786f6ea2227b04f7",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 3600,
+      "language": 1033,
+      "sha256": "3af4ffe644b6d923815d663a63e5bc4c30ffc85c4ce47a19ff2a76614f9c79a6",
+      "status": 0,
+      "controls": 0
+    },
+    {
+      "app": "notepadpp",
+      "resource": 4000,
+      "language": 1033,
+      "sha256": "11b2790856cd755eb6d7eda690bdaa81e03fe17fa387bd284220bfa3226d8c3f",
+      "status": 0,
+      "controls": 9
+    },
+    {
+      "app": "notepadpp",
+      "resource": 5000,
+      "language": 1033,
+      "sha256": "903c1a44a79b7acb7716868753751704035db3e415b60c99f352793893a7ee0e",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 5001,
+      "language": 1033,
+      "sha256": "f10d5baef6405b48baf8b3b3e2ad2e9e90eeb9b17e8e2f622c385de9abcc3b65",
+      "status": 0,
+      "controls": 16
+    },
+    {
+      "app": "notepadpp",
+      "resource": 5500,
+      "language": 1033,
+      "sha256": "9acfec85bc72e8a33e80febe2fb9e6b0fb62a7978fd840529a80a60f55488e86",
+      "status": 0,
+      "controls": 13
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6000,
+      "language": 1033,
+      "sha256": "4ae9d194982daba6288ee5817d8acc9d15ccc8ceb00156a61b2c3554c36595ae",
+      "status": 0,
+      "controls": 2
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6010,
+      "language": 1033,
+      "sha256": "1da5d8d5308c29bf00fadfaa0698d1a12411bccd4136081571eff8f8def8d8e8",
+      "status": 0,
+      "controls": 22
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6040,
+      "language": 1033,
+      "sha256": "06957224b25aa916f53e231f93de41cbe852e64af0c0336129b53c80a52d4277",
+      "status": 0,
+      "controls": 19
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6100,
+      "language": 1033,
+      "sha256": "e340bd5c268b666ad373639eda81bc858728b2322e5c290616d189c01323fb6b",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6150,
+      "language": 1033,
+      "sha256": "724fe8adf5382ef2bc8ec2914c0bddb9a657e3e90b98f727ce5bf170909baa80",
+      "status": 0,
+      "controls": 22
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6200,
+      "language": 1033,
+      "sha256": "55d707e052dc6a1f6a3fbead29b783d1db5789fd3d29056c4b3b3182993afc31",
+      "status": 0,
+      "controls": 27
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6250,
+      "language": 1033,
+      "sha256": "06cefe4fbcb33faaa53da2b74d5022fe3cba5f441140f0d9e82f85e5570bf13d",
+      "status": 0,
+      "controls": 14
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6260,
+      "language": 1033,
+      "sha256": "50cc3138a264db711bb2c04df382fc7a727e4e44d91ed6d4e7c425cf2bde4454",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6270,
+      "language": 1033,
+      "sha256": "3946b05c23896b0c7bf53aa9a3d39751263afa4cdb3a63bd9ae60dae254a062f",
+      "status": 0,
+      "controls": 8
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6290,
+      "language": 1033,
+      "sha256": "e2edfb9730d367395543ef9ae4788d9ebd7889177d3427cb4f1866447defafb6",
+      "status": 0,
+      "controls": 32
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6300,
+      "language": 1033,
+      "sha256": "d8a696b9f20a3761dc44a4e4f8fc3879be9110ce3ec8901023e5b9a10657568f",
+      "status": 0,
+      "controls": 25
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6400,
+      "language": 1033,
+      "sha256": "15ab04296c05211bf815ce7a32372f973a470cf4a199a78a1b94a71cfaa82dba",
+      "status": 0,
+      "controls": 18
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6450,
+      "language": 1033,
+      "sha256": "eef7929f26d17e8da83551b265cd252fa144ce8dfffdd93b8a27d1ea3f78fcd6",
+      "status": 0,
+      "controls": 7
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6460,
+      "language": 1033,
+      "sha256": "7ca2a1b863d35280d2eb7507c6076dbed5cd377ae62674f74aeda1584892f92c",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6500,
+      "language": 1033,
+      "sha256": "3d4c89c6311bc3e10c561fdb9eebfcb214f03a38f178d5b6f8af68b7e6b4240f",
+      "status": 0,
+      "controls": 9
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6520,
+      "language": 1033,
+      "sha256": "2cfc0158f4dcf75177e6f7882e4ea4eea0aed4960d225cd06ac62853bc5761fb",
+      "status": 0,
+      "controls": 18
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6550,
+      "language": 1033,
+      "sha256": "f34769d643785b8a3d950afeaf59651e87b5693e88cb82229f524cc6514f29b4",
+      "status": 0,
+      "controls": 14
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6600,
+      "language": 1033,
+      "sha256": "30b22b8029ef782995a67da9dc9540784696ed121148e3f65cf5ef737442627b",
+      "status": 0,
+      "controls": 44
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6800,
+      "language": 1033,
+      "sha256": "ba10bb65dc91057b49acab6102bf1a524a987bc38c3f07f32e33f0e9f88d4938",
+      "status": 0,
+      "controls": 18
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6850,
+      "language": 1033,
+      "sha256": "ce91a49e5899c052f93075457102bb9f3c09884713a86b3434159d3916e1ddec",
+      "status": 0,
+      "controls": 35
+    },
+    {
+      "app": "notepadpp",
+      "resource": 6900,
+      "language": 1033,
+      "sha256": "3536989aa0e56985eea036acc67b351a883f3c3207f9f35e8f7eb9b83d680397",
+      "status": 0,
+      "controls": 14
+    },
+    {
+      "app": "notepadpp",
+      "resource": 7000,
+      "language": 1033,
+      "sha256": "615bda6594a2033a11718fc9172d326780594ff7ee802f880ced506cc9d8f3bf",
+      "status": 0,
+      "controls": 6
+    },
+    {
+      "app": "notepadpp",
+      "resource": 7100,
+      "language": 1033,
+      "sha256": "ed5b0d8aafadb4270ceb050816c8f970d110ff50075f8cbb714ae1a46af2d5a1",
+      "status": 0,
+      "controls": 25
+    },
+    {
+      "app": "notepadpp",
+      "resource": 7140,
+      "language": 1033,
+      "sha256": "080920fbe5d88bd2471f3a41e639a55752f57de8036ff2c24ec5d11996a6a41d",
+      "status": 0,
+      "controls": 12
+    },
+    {
+      "app": "notepadpp",
+      "resource": 7160,
+      "language": 1033,
+      "sha256": "a1d72e54e98fbb7ee61086a370b3555d7eb480c9f2e627711a7030757b63348c",
+      "status": 0,
+      "controls": 14
+    },
+    {
+      "app": "notepadpp",
+      "resource": 8000,
+      "language": 1033,
+      "sha256": "88c4e36f0c339eeb86cc3cf17db39f7e6956bbe50b9f8e1baf5bff7072e14825",
+      "status": 0,
+      "controls": 8
+    },
+    {
+      "app": "notepadpp",
+      "resource": 20000,
+      "language": 1033,
+      "sha256": "2dc360420a86b744d182f459974c8cd396d9917ee75b4a5f082e43386f335ddf",
+      "status": 0,
+      "controls": 14
+    },
+    {
+      "app": "notepadpp",
+      "resource": 21000,
+      "language": 1033,
+      "sha256": "f2789063473c118504185a6c8ff122fb78e6d900187fc7d430383dd8354231b6",
+      "status": 0,
+      "controls": 29
+    },
+    {
+      "app": "notepadpp",
+      "resource": 22000,
+      "language": 1033,
+      "sha256": "323282d597204477d340c01412bf32b6cde23922e26dcf845bdee4129e6e467e",
+      "status": 0,
+      "controls": 32
+    },
+    {
+      "app": "notepadpp",
+      "resource": 23000,
+      "language": 1033,
+      "sha256": "8dd07f8d7948ba2ee1c7ca65f9119033c9745dcf304549c77bfa8a3e06a7b60c",
+      "status": 0,
+      "controls": 39
+    },
+    {
+      "app": "notepadpp",
+      "resource": 24000,
+      "language": 1033,
+      "sha256": "6eafd03d726f57e110075b043d10940e2a53d822b0a7309bcede41555f8d665d",
+      "status": 0,
+      "controls": 70
+    },
+    {
+      "app": "notepadpp",
+      "resource": 25000,
+      "language": 1033,
+      "sha256": "b53216196da7d5573995a496a6bd31e69f8867aa799648aac22f189444520c07",
+      "status": 0,
+      "controls": 36
+    },
+    {
+      "app": "notepadpp",
+      "resource": 26000,
+      "language": 1033,
+      "sha256": "897d69b850fdc9014622eb83b517019f69b12a1ac7b8c86ec5dbdb9b0025fcfa",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "sumatra",
+      "resource": 129,
+      "language": 1033,
+      "sha256": "0fdfbca94b6afd008d955c1a04c73c0f2e04b55ee348890f8f5246f5391c2e53",
+      "status": 0,
+      "controls": 5
+    },
+    {
+      "app": "sumatra",
+      "resource": 130,
+      "language": 1033,
+      "sha256": "6b6ccd9065eec7596b4923531dfade3c9a0a89b8fe78dffdc6e6606d6399b967",
+      "status": 0,
+      "controls": 6
+    },
+    {
+      "app": "sumatra",
+      "resource": 131,
+      "language": 1033,
+      "sha256": "1d4b9f6aae9582c255f21d91bf689d8c37612a0c26c229aaae627c1777497386",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "sumatra",
+      "resource": 134,
+      "language": 1033,
+      "sha256": "fbe14dfb3d5474e04dfba9d1fb0b6c375b6c91eb432ea86f54b0463743442f16",
+      "status": 0,
+      "controls": 3
+    },
+    {
+      "app": "sumatra",
+      "resource": 136,
+      "language": 1033,
+      "sha256": "7b59ae602d63c2090bca7ef4c6255a266686d5bdcc3b958ec6039744d03e8dd2",
+      "status": 0,
+      "controls": 16
+    },
+    {
+      "app": "sumatra",
+      "resource": 137,
+      "language": 1033,
+      "sha256": "c47ac73283739e2426a38bed8254125b89c5c4154c91c63737c0a9019700583b",
+      "status": 0,
+      "controls": 6
+    },
+    {
+      "app": "sumatra",
+      "resource": 138,
+      "language": 1033,
+      "sha256": "086b39a7f06931a839c2139eb900bfb99cf4a5fedf04baf23a64d449a7143ce5",
+      "status": 0,
+      "controls": 4
+    },
+    {
+      "app": "sumatra",
+      "resource": 139,
+      "language": 1033,
+      "sha256": "41c84cfef9c0d7522b4bd9d34fe60e104767630c71d2940fb6d5d85133c70a5a",
+      "status": 0,
+      "controls": 8
+    },
+    {
+      "app": "sumatra",
+      "resource": 140,
+      "language": 1033,
+      "sha256": "a3c80e02f3eb1bf625e2cac9f3ba2b3bba22162cff733329242127554af88519",
+      "status": 0,
+      "controls": 4
+    }
+  ],
+  "control_quota": 127,
+  "sources": {
+    "user/windows8/dialog-core145.h": "42d277d7462a08f89c4a1765006c287fe61fbc0bff5fe571360ae050b92e076d",
+    "tests/m14/dialog145_host.c": "2091075bac77317bd09032f0b64d27f47ebf88bac8ea2f02f86a823faf24e6bb"
+  }
+}

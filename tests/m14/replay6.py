@@ -39,6 +39,17 @@ class ReplayLoader(importlib.abc.MetaPathFinder, importlib.abc.Loader):
             before='title=wide(56,312),class_name=wide(312,440)'
             assert before in text
             text=text.replace(before,"menu_height=struct.unpack_from('<I',raw,452)[0],"+before)
+            before="pointers=struct.unpack('<32Q',ui.memory(g,ui.symbol('ui_windows144',installed=True)[0],256))"
+            assert text.count(before)==1
+            text=text.replace(before,"slots=ui.symbol('ui_windows144',installed=True);assert slots[1]==128*8;pointers=struct.unpack('<128Q',ui.memory(g,slots[0],slots[1]))")
+        if module.__name__ == 'dialog145_build':
+            before='104:template(count=32),105:template(count=31)'
+            assert text.count(before)==1
+            text=text.replace(before,'104:template(count=128),105:template(count=127)')
+        if module.__name__ == 'dialog145_host':
+            for before,after in [('capacity=400','capacity=1600'),('values[1]<=31','values[1]<=127'),('control_quota=31','control_quota=127')]:
+                assert text.count(before)==1
+                text=text.replace(before,after)
         if module.__name__ == 'original144_run':
             before="node['bounds'][1]+40;scale="
             assert before in text

@@ -1,7 +1,8 @@
 #ifndef ENGINE_WINUI144_H
 #define ENGINE_WINUI144_H
 #include <stdint.h>
-#define WUI_WINDOWS144 32u
+#define WUI_WINDOWS144 128u
+#define WUI_DEPTH146 32u
 #define WUI_NATIVE_ROOTS144 8u
 #define WUI_QUEUE144 64u
 #define WUI_APP_QUEUE144 56u

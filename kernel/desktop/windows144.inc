@@ -15,7 +15,7 @@ static void foreign_commands145(uint64_t handle,int x,int y,desktop_rect clip,un
 /* One bounded traversal stack: legal HWND nesting must not recurse on the kernel stack. */
 static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip){
  typedef struct {uint64_t handle,last_child;int x,y;desktop_rect clip;unsigned phase,painted;} frame144;
- frame144 frames[WUI_WINDOWS144];unsigned count=1;frames[0]=(frame144){.handle=handle,.x=x,.y=y,.clip=clip};
+ frame144 frames[WUI_DEPTH146];unsigned count=1;frames[0]=(frame144){.handle=handle,.x=x,.y=y,.clip=clip};
  wui_view144 child;
  while(count){frame144*node=frames+count-1;
   if(node->clip.width<=0||node->clip.height<=0){--count;continue;}
@@ -26,7 +26,7 @@ static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip){
    wui_rect144 b=child.description.bounds;int border=child.description.style&0x00800000?1:0;
    if(border){desktop_rect outer=foreign_intersect144(node->clip,(desktop_rect){node->x+b.x,node->y+b.y,b.width,b.height});if(outer.width&&outer.height){gui7_clip((unsigned)outer.x,(unsigned)outer.y,(unsigned)outer.width,(unsigned)outer.height);rectangle((desktop_rect){node->x+b.x,node->y+b.y,b.width,b.height},0xa0a0a0);}}
    desktop_rect bounded=foreign_intersect144(node->clip,(desktop_rect){node->x+b.x+border,node->y+b.y+border,b.width-border*2,b.height-border*2});
-   if(count<WUI_WINDOWS144){frames[count++]=(frame144){.handle=child.handle,.x=node->x+b.x+border,.y=node->y+b.y+border,.clip=bounded};descended=1;break;}
+   if(count<WUI_DEPTH146){frames[count++]=(frame144){.handle=child.handle,.x=node->x+b.x+border,.y=node->y+b.y+border,.clip=bounded};descended=1;break;}
   }
   if(!descended)--count;
  }
