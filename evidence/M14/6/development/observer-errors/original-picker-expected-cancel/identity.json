@@ -1,0 +1,4 @@
+{
+  "scope": "Observer error: generic failure wait rejects the intentionally expected native cancellation before examining its predicate; not an OS failure",
+  "observer_sha256": "63ebc156f8aa58e0f1af8d8a420508e31b6fa64a8107e808a203eb8f06f513d0"
+}
