@@ -5,7 +5,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 ## Download and get started
 
-**Current native candidate: [M14.6 / 0.14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native/source/media qualification passes. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. Public download and complete website verification are pending; advanced BrixCanvas search/task navigation remains reported and unqualified. Reported BrixCanvas search/navigation remains nonblocking; missing platform features are not called passed.
+**Current native candidate: [M14.6 / 0.14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; complete website verification is pending; advanced BrixCanvas search/task navigation remains reported and unqualified. Reported BrixCanvas search/navigation remains nonblocking; missing platform features are not called passed.
 
 - [Install and restart in VMware](docs/handbook/install-m146.md)
 - [Your first day](docs/handbook/first-day-m146.md)
@@ -17,7 +17,7 @@ M14.6 adds owner-bound original 7-Zip Browse/Unicode-path and cross-app clipboar
 
 ## Native qualification
 
-All 76 native and 19 supporting host groups pass on build `5f49030d412bd7f0587568c029becc2c` with 711 exact compiled inputs. Compact, ordinary and actual 4K/200% installation/startup and original MSI/106-payload regressions pass. The exact VMware package installs, starts the original app, moves/closes it and boots twice without ISO. [Acceptance](evidence/M14/6/acceptance-results.json), [resources](evidence/M14/6/resources.json), [stage gates](docs/milestones/m14-5.md).
+All 76 native and 19 supporting host groups pass on build `5f49030d412bd7f0587568c029becc2c` with 711 exact compiled inputs. Compact, ordinary and actual 4K/200% installation/startup and original MSI/106-payload regressions pass. The exact VMware package installs, starts the original app, moves/closes it and boots twice without ISO. [Acceptance](evidence/M14/6/acceptance-results.json), [resources](evidence/M14/6/resources.json), [stage gates](docs/milestones/m14-6.md).
 
 Windows program instructions run through the own compatibility APIs and kernel. VMware/QEMU are external test hosts; an embedded Windows guest is not the implementation. Optional app removal preserves the desktop and personal files. M14.15 remains the mandatory whole-system optimization gate.
 

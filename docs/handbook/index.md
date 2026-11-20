@@ -3,7 +3,7 @@
 
 ## Start here
 
-**Current native candidate: [M14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native qualification passes within M14-STAGE6-VM-v1. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. Public download and complete website verification are pending; advanced BrixCanvas search/task navigation remains reported and unqualified. Follow the guide matching your download.
+**Current native candidate: [M14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native qualification passes within M14-STAGE6-VM-v1. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; complete website verification is pending; advanced BrixCanvas search/task navigation remains reported and unqualified. Follow the guide matching your download.
 
 - [Download, verify and install in VMware](install-m146.md)
 - [Original Windows menus, folders and browser downloads](windows-m146.md)

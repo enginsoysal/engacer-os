@@ -2,7 +2,7 @@
   "version": 1,
   "program": "M14",
   "current_stage": "M14.6",
-  "current_native_download": "M14.5",
+  "current_native_download": "M14.6",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
   "optimization_core_requirement": true,
@@ -89,8 +89,9 @@
       "acceptance": "Open/edit/save/reopen, Unicode names, cancel and cross-app text clipboard tasks pass without lost or misdirected data.",
       "status": "native-complete-public-pending",
       "evidence": "evidence/M14/6",
-      "publication_status": "Development only; M14.5 remains the qualified native download",
-      "qualification": "M14-STAGE6-VM-v1"
+      "publication_status": "Native qualification and twenty public asset downloads pass; complete website closure pending",
+      "qualification": "M14-STAGE6-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6"
     },
     {
       "id": "M14.7",
