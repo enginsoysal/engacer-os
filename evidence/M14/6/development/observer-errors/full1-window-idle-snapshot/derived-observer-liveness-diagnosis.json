@@ -1,0 +1,5 @@
+{
+  "scope": "Observer error, not an OS failure or a passed window task",
+  "cause": "The added guard used w8_active (currently executing CPL3) as process liveness, but the scheduler deliberately clears it while blocked. Use info8.state==1 and the unchanged native window slot/token instead.",
+  "native_source_changed": false
+}

@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "stage": "M14.6 development",
+  "scope": "Owned synthetic AMD64 GUI fixture; not original 7-Zip GUI qualification",
+  "build_id": "f280a707e5e2e61c869f2abbb536c5a8",
+  "fixture_sha256": "04b3e727ff62de4d1ac7bdc575c1e5371156a411a80534b4f1b9da721ee0fda4",
+  "clone": {
+    "source_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "clone_sha256": "f0e8e4ce8b03acbd10210645aa8a0a4336122eed44962f6c3c28faef5fc995eb",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "existing_transition_warmup_pages": 4,
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\window144_native.py\", line 50, in main\n    x,y,w,h=geometry(g);drag(g,p,x+180,y+20,x+220,y+50);wait(g,'M144_MOVE_RECEIVED');sample['moved_bounds']=list(geometry(g))\nAssertionError\n"
+}

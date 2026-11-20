@@ -14,7 +14,8 @@ def derive(source):
     after="""    idle=[];deadline=time.monotonic()+2
     slot=f.model(g)[0];token=next(row['token']for row in t.records(g)if row['slot']==slot)
     while time.monotonic()<deadline:
-     assert ui.integer(g,'w8_active',True)and f.model(g)[0]==slot
+     state=struct.unpack('<I',ui.memory(g,ui.symbol('info8',installed=True)[0],4))[0]
+     assert state==1 and f.model(g)[0]==slot,('Live task/window changed',state,slot)
      assert any(row['token']==token and row['slot']==slot for row in t.records(g))
      halted=g.qmp('human-monitor-command',{'command-line':'info registers -a'}).count('HLT=1');idle.append(halted)
      if len(idle)>=3 and idle[-3:]==[2,2,2]:break
