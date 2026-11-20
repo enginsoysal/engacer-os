@@ -1,5 +1,6 @@
 #include "runtime.h"
 static uint32_t error8;
+static unsigned global_contains146(const void*);
 static void cleanup_thread144(void);
 static WCHAR command8[1200],cwd8[512];
 static lock142 cwd_lock143;
@@ -270,7 +271,7 @@ static int MS f_WideCharToMultiByte(unsigned cp,unsigned flags,const WCHAR*src,i
 static WCHAR *MS f_CharUpperW(WCHAR*p){if((uintptr_t)p<=65535){unsigned v=(unsigned)(uintptr_t)p;if(v>='a'&&v<='z')v-=32;return (WCHAR*)(uintptr_t)v;}for(unsigned i=0;p&&p[i];++i)if(p[i]>='a'&&p[i]<='z')p[i]-=32;return p;}
 static const char *MS f_CharPrevExA(unsigned cp,const char*start,const char*current,unsigned flags){(void)flags;if(current<=start)return start;const char*p=current-1;if(cp==65001||cp==0||cp==1)while(p>start&&((uint8_t)*p&0xc0)==0x80)--p;return p;}
 static int MS f_FormatMessageW(unsigned flags,const void*source,unsigned code,unsigned language,void*out,unsigned capacity,void*args){(void)source;(void)language;(void)args;if(!(flags&0x1000u)){last8(50);return 0;}const char*message=code==2?"The file could not be found.":code==3?"The path could not be found.":code==5?"Access is denied.":code==50?"This operation is not supported by this runtime.":code==80||code==183?"The file already exists.":code==8?"Not enough memory.":"The requested operation failed.";WCHAR wide[128];int n=utf8_to16(message,wide,128);if(n<0)return 0;if(flags&0x100u){WCHAR*p=alloc8(((unsigned)n+1)*2);if(!p){last8(8);return 0;}memcpy(p,wide,((unsigned)n+1)*2);*(WCHAR**)out=p;}else{if(capacity<=(unsigned)n){last8(122);return 0;}memcpy(out,wide,((unsigned)n+1)*2);}return n;}
-static void *MS f_LocalFree(void*p){free8(p);return 0;}
+static void *MS f_LocalFree(void*p){if(!p)return 0;if(global_contains146(p)||allocation_size8(p)==SIZE_MAX){last8(6);return p;}free8(p);return 0;}
 static int leap8(unsigned year){return !(year%4)&&(year%100||!(year%400));}
 static int MS f_FileTimeToSystemTime(const uint64_t*time,uint16_t*out){if(!time||!out)return 0;uint64_t seconds=*time/10000000,days=seconds/86400;unsigned year=1601;uint64_t remaining=days;while(year<=9999&&remaining>=(uint64_t)(365+leap8(year))){remaining-=365+(unsigned)leap8(year);++year;}if(year>9999){last8(87);return 0;}static const unsigned months[]={31,28,31,30,31,30,31,31,30,31,30,31};unsigned month=0;while(month<11){unsigned n=months[month]+(month==1&&leap8(year));if(remaining<n)break;remaining-=n;++month;}out[0]=(uint16_t)year;out[1]=(uint16_t)(month+1);out[2]=(uint16_t)((days+1)%7);out[3]=(uint16_t)(remaining+1);out[4]=(uint16_t)((seconds/3600)%24);out[5]=(uint16_t)((seconds/60)%60);out[6]=(uint16_t)(seconds%60);out[7]=(uint16_t)((*time%10000000)/10000);return 1;}
 static int MS f_FileTimeToDosDateTime(const uint64_t*time,uint16_t*date,uint16_t*clock){uint16_t s[8];if(!date||!clock||!f_FileTimeToSystemTime(time,s)||s[0]<1980||s[0]>2107)return 0;*date=(uint16_t)(((s[0]-1980)<<9)|(s[1]<<5)|s[3]);*clock=(uint16_t)((s[4]<<11)|(s[5]<<5)|(s[6]/2));return 1;}
@@ -335,6 +336,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "process142.inc"
 #include "exception142.inc"
 #include "heap-api144.inc"
+#include "global-memory146.inc"
 #include "resource-api144.inc"
 #include "images144.inc"
 #include "ui144.inc"
@@ -357,6 +359,7 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
+ API8(GlobalAlloc,1),API8(GlobalFree,1),API8(GlobalLock,1),API8(GlobalUnlock,1),API8(GlobalSize,1),API8(GlobalFlags,1),API8(GlobalHandle,1),
  API8(ImageList_GetIconSize,6),API8(ImageList_SetIconSize,6),API8(ImageList_Remove,6),API8(ImageList_GetIcon,6),API8(ImageList_Add,6),API8(ImageList_SetBkColor,6),API8(ImageList_GetBkColor,6),API8(ImageList_BeginDrag,6),API8(ImageList_DragEnter,6),API8(ImageList_DragMove,6),API8(ImageList_DragShowNolock,6),API8(ImageList_EndDrag,6),API8(ImageList_GetImageInfo,6),
  API8(FindFirstChangeNotificationW,1),
  API8(GetKeyState,4),API8(GetKeyboardState,4),API8(MapVirtualKeyW,4),

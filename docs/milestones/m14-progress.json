@@ -1,7 +1,7 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.5",
+  "current_stage": "M14.6",
   "current_native_download": "M14.5",
   "final_release_stage": "M14.15",
   "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
@@ -87,7 +87,9 @@
       "deliver": "Connect original app file dialogs, clipboard and actual document access with Files.",
       "how_and_why": "Preserve requesting-window ownership and file semantics; original app data must be checked independently.",
       "acceptance": "Open/edit/save/reopen, Unicode names, cancel and cross-app text clipboard tasks pass without lost or misdirected data.",
-      "status": "planned"
+      "status": "in_progress",
+      "evidence": "evidence/M14/6",
+      "publication_status": "Development only; M14.5 remains the qualified native download"
     },
     {
       "id": "M14.7",
