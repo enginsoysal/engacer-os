@@ -1,6 +1,6 @@
 # M14.5 resource dialogs
 
-Development implementation, not yet original-application dialog qualification.
+The owned standard/extended resource profile passes 21 native lifetimes. The original 7-Zip About/OK/modal-owner task passes on compact and actual 4K profiles. Native M14.5 qualification passes; public delivery is being finalized. Arbitrary original resources and applications remain unqualified.
 
 Standard and extended Windows dialog resources are parsed with explicit byte
 bounds, UTF-16 termination limits, DWORD alignment, ordinal names, font records,
@@ -55,3 +55,7 @@ References: [DialogBoxParam](https://learn.microsoft.com/windows/win32/api/winus
 [EndDialog](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enddialog),
 [standard control data](https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-dlgitemtemplate),
 [extended control data](https://learn.microsoft.com/windows/win32/dlgbox/dlgitemtemplateex).
+
+## Final named native profile
+
+The 74-task frozen campaign passes: 60 native groups, 13 host groups, 695 exact compiled inputs and the exact enabled-device VMware starter. [Acceptance](../../evidence/M14/5/acceptance-results.json), [release limits](../releases/m145-v0.14.5.md). Earlier candidate waits/failures above are historical development observations, not the final result. Notepad++/Sumatra interfaces, complete original-app tasks and final M14.15 optimization remain unqualified.

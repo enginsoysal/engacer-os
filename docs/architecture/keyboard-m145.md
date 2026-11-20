@@ -1,7 +1,6 @@
 # M14.5 keyboard translation and cursor development
 
-This is development behavior, pending qualification on the next frozen native
-candidate. M14.4 remains the qualified public download.
+The consumed-input, shifted-character and stationary cursor profile passes 21 native lifetimes without retained pages on frozen 06c8de63a527c32ad9ec73f4b9e333bc. Native M14.5 qualification passes; complete public delivery is being finalized. The explicit input/layout limits below remain.
 
 ## Translation and input scope
 
@@ -62,3 +61,7 @@ visible edit and arrow captures were independently inspected. The unmodified
 original 7-Zip also completes Backspace navigation and retains only its known
 one-page shared registered-format cache. Complete M14.5 qualification remains
 open. The subsequent checked subitem callback/cache implementation passes owned tests and original visible file-size/navigation checks; full integration and public release are still required.
+
+## Final named native profile
+
+The 74-task frozen campaign passes: 60 native groups, 13 host groups, 695 exact compiled inputs and the exact enabled-device VMware starter. [Acceptance](../../evidence/M14/5/acceptance-results.json), [release limits](../releases/m145-v0.14.5.md). Earlier candidate waits/failures above are historical development observations, not the final result. Notepad++/Sumatra interfaces, complete original-app tasks and final M14.15 optimization remain unqualified.

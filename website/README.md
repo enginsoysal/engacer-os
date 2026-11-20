@@ -1,6 +1,10 @@
 # BrixCanvas documentation website
 
-Current native release is M14.4. M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system CPU/RAM/storage optimization gate. All 47 native and eight supporting host groups pass. Twenty matching GitHub assets are public; complete content/readback/link verification passes. The owner made the reported missing BrixCanvas same-page search and article navigation nonblocking. Full browser feature qualification remains unavailable, with the failed observation preserved. [Acceptance](../evidence/M14/4/acceptance-results.json), [stage gates](../docs/milestones/m14-4.md).
+M14.5 native/source/media qualification passes: 60 native groups, 13 host groups and exact VMware media. GitHub/download and complete actual website delivery are being finalized before M14.6. M14.5 adds original 7-Zip x64 menus/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Existing console/MSI tasks remain supported. Full GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15. Reported BrixCanvas search/navigation remains explicitly nonblocking and is not called passed. [Acceptance](../evidence/M14/5/acceptance-results.json), [stage gates](../docs/milestones/m14-5.md).
+
+## Historical M14.4 delivery
+
+M14.4 complete native/public delivery is retained under its recorded owner scope. [Receipt](../evidence/M14/4/publication-results.json).
 
 ## Historical M14.3 public delivery
 
@@ -14,15 +18,15 @@ Historical native delivery is M14.2: qualified bounded Windows processes, thread
 
 The later owner-revised M13.13 scope accepted ninety minutes; the original eight-hour/two-hour gates were interrupted and did not pass. Earlier requirements and receipts below remain historical. [M13.13 record](../docs/handbook/stability-m1313.md).
 
-**Historical freeze requirement — testing only:** frequent freezes are reported on M13.8, following M13.7. Historical scoped task passes do not qualify stability. M13.9-M13.12 finish the product in order; all stability investigation and the blocking eight-real-hour gate occur in M13.13.
+**Historical freeze requirement â€” testing only:** frequent freezes are reported on M13.8, following M13.7. Historical scoped task passes do not qualify stability. M13.9-M13.12 finish the product in order; all stability investigation and the blocking eight-real-hour gate occur in M13.13.
 
-## Historical portal — 18 November 2026
+## Historical portal â€” 18 November 2026
 
 M13.12 final integration and twenty independently verified GitHub assets pass: 162 native and 47 VMware checks, fourteen controller profiles, 106 original MSI payloads and 95 app frames. The current installation and first-day guides lead their tasks. Actual native homepage/recovery Saves, desktop/mobile/search/source/download checks and complete fresh public verification pass: 508 pages, 327 exact-source articles, 3,606 links, zero known broken targets and 13 explicitly unverified external HEAD references. [M13.12 receipt](../evidence/M13/12/publication-results.json). M13.13 follows. Stability remains exclusively M13.13.
 
 Historical delivery: M13.9 native and public delivery is complete within its scoped motion/cursor qualification: twenty matching assets, actual homepage/recovery Saves, desktop/mobile search/task navigation, 488 pages, 313 exact-source articles and 3,441 links. Zero known broken targets; 13 external HEAD references remain unverified. [Historical M13.9 receipt](../evidence/M13/9/publication-results.json). The following M13.8 publication receipt remains historical: its twenty matching assets and independent ISO/VMware downloads pass. Native homepage/recovery Saves and fresh public desktop/mobile/search/source/link verification pass: 477 pages, 306 exact-source articles and 3,364 links. The audit retains 13 unverified external HEAD references, with zero known broken targets. [Receipt](../evidence/M13/8/publication-results.json). Current install and Settings guides lead their reader tasks; retained Files/Start/desktop guides keep their versioned scope. Per-document provenance and pinned image/source blobs remain authoritative.
 
-## Historical M13.0 portal baseline — 17 November 2026
+## Historical M13.0 portal baseline â€” 17 November 2026
 
 M13.0 is design-only OS work; M12.18 remains the qualified native download.
 The task-first portal is driven by `website/brix/portal.json`, validated by
@@ -43,11 +47,11 @@ and verify current guides, archives, download hashes, source, mobile and search.
 
 Earlier sections below describe historical publication approaches and evidence.
 
-The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.18 is the frozen final M12 native stage; all M12.0–M12.18 stages are complete within their declared scopes. Its immutable release includes the matching ISO and VMware package. The final public receipt records 406 checked pages, 2,853 HTTP links and twenty release assets. Earlier milestone sections below are historical records. The internal site ID/slug and scoped publisher key remain unchanged; historical release identities stay intact. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
+The Engacer OS website belongs inside BrixCanvas at **https://engaceros.brixcanvas.com**. M12.18 is the frozen final M12 native stage; all M12.0â€“M12.18 stages are complete within their declared scopes. Its immutable release includes the matching ISO and VMware package. The final public receipt records 406 checked pages, 2,853 HTTP links and twenty release assets. Earlier milestone sections below are historical records. The internal site ID/slug and scoped publisher key remain unchanged; historical release identities stay intact. OS sources remain in this independent repository; website content uses ordinary editable BrixCanvas Brix and articles.
 
 ## Historical M12 publication
 
-Follow [M12.0–M12.18](../docs/milestones/m12.md) strictly in order. The homepage
+Follow [M12.0â€“M12.18](../docs/milestones/m12.md) strictly in order. The homepage
 distinguishes original design concepts from actual native captures and tested
 downloads. M12.0 has no new ISO. Its linked concept gallery and design prerelease
 cannot qualify runtime behavior. The reader index places the tested installation
@@ -76,7 +80,7 @@ publication record and reload the native editor after the final successful sync.
 
 ## Native website
 
-### Historical M10 publication — 10 November 2026
+### Historical M10 publication â€” 10 November 2026
 
 The Engacer OS M10 homepage uses the four editable native sections from
 `website/brix/design.mjs`, the canonical engaceros.brixcanvas.com route and the
@@ -103,7 +107,7 @@ The previous Save failure is resolved. The editor sends the native blog data
 with its canvas, exceeding the framework's default 1 MiB action-body cap. The
 owner-approved bounded BrixCanvas correction retains the live application and
 raises only that cap to 4 MiB. A fresh native Save sent 1,278,039 characters
-with all 145 posts, received HTTP 200 and displayed **Saved ✓**. No article was
+with all 145 posts, received HTTP 200 and displayed **Saved âœ“**. No article was
 removed and no credential or separate hosting workaround was used. See
 [follow-up evidence](../evidence/documentation/homepage-m92-followup.json).
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M14.4",
+  "currentRelease": "M14.5",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m144.md",
+          "docs/handbook/install-m145.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m144-v0.14.4.md",
+          "docs/releases/m145-v0.14.5.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -52,7 +52,7 @@
       "description": "Find apps, manage windows and work with your files.",
       "items": [
         [
-          "docs/handbook/first-day-m144.md",
+          "docs/handbook/first-day-m145.md",
           "Start your first day with the finished desktop"
         ],
         [
@@ -92,7 +92,7 @@
           "Keep saved work and understand stability limits"
         ],
         [
-          "docs/handbook/windows-m144.md",
+          "docs/handbook/windows-m145.md",
           "Use Windows file checks and browser downloads"
         ]
       ]
@@ -130,8 +130,12 @@
           "Follow M14.0-M14.15 in order"
         ],
         [
-          "docs/milestones/m14-4.md",
-          "Follow M14.4 window/message development and remaining gates"
+          "docs/architecture/drawing-m145.md",
+          "Understand drawing, controls and their tested limits"
+        ],
+        [
+          "docs/milestones/m14-5.md",
+          "Follow M14.5 drawing, controls and remaining runtime gates"
         ],
         [
           "docs/architecture/messages-m144.md",
@@ -180,8 +184,8 @@
       ]
     }
   ],
-  "developmentProgram": "M14.5",
-  "currentSummary": "M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.",
-  "currentImageAlt": "Actual Engacer OS M14.4: the original unmodified 7-Zip x64 file-manager window in the native desktop. Initial window/input/lifetime preview; full GUI application tasks remain unqualified.",
+  "developmentProgram": "M14.6",
+  "currentSummary": "M14.5 adds original 7-Zip x64 menu/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Original console/MSI tasks remain separately supported. Complete GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; M14.15 remains the mandatory whole-system optimization gate for CPU/RAM/storage. There is no embedded Windows guest. The retained private Windows processes run without an embedded Windows guest. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet.",
+  "currentImageAlt": "Actual Engacer OS M14.5: an original unmodified 7-Zip x64 interface through the native compatibility environment; named preview tasks, not universal Windows application support.",
   "reportedPlatformLimit": "BrixCanvas currently omits the saved same-page search and article navigation. Browse the task guides and archive; this reported platform limitation does not block OS milestones."
 }

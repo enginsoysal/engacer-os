@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "stage": "M14.2",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "clone": {
+    "source_sha256": "4c6aa647b10060b11f14631ca660e27b93ee724587b1655fbe4b6c3fab14ba78",
+    "clone_sha256": "4c6aa647b10060b11f14631ca660e27b93ee724587b1655fbe4b6c3fab14ba78",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "checks": [
+    {
+      "file": "Notepad.exe",
+      "original_sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+      "source_fnv32": 3571198973,
+      "output": "Mapped original image: Notepad.exe bytes=8613888 source-fnv32=3571198973\nInspection only: direct imports=633 delayed imports=0 static TLS=1. No app code was executed.\nMemory pages: reserved=2244 owned=2252 demand-commits=2099 physical-quota=10000\nMapping inspection completed. Running this app is a separate compatibility test.\n",
+      "retained_pages": 0
+    },
+    {
+      "file": "Sumatra.exe",
+      "original_sha256": "719f689b34f47be8ca105ce8484948474dafde0e106bab599e4a89326070c3d0",
+      "source_fnv32": 1537365012,
+      "output": "Mapped original image: Sumatra.exe bytes=20840448 source-fnv32=1537365012\nInspection only: direct imports=595 delayed imports=139 static TLS=1. No app code was executed.\nMemory pages: reserved=5229 owned=5114 demand-commits=4956 physical-quota=10000\nMapping inspection completed. Running this app is a separate compatibility test.\n",
+      "retained_pages": 0
+    },
+    {
+      "file": "Invalid.exe",
+      "refused": true,
+      "message": "Choose a Windows x64 file. Windows x86 and ARM64 require separate support.",
+      "retained_pages": 0
+    }
+  ],
+  "first_worker_initialization_pages": 4
+}

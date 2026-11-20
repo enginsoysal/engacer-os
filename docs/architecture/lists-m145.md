@@ -1,7 +1,6 @@
 # M14.5 list-view input development
 
-This implementation is under native qualification. Original application
-navigation and complete M14.5 acceptance remain open.
+The named input/text profile passes 21 owned lifetimes and original Documents/subfolder/Backspace/detail tasks on compact, ordinary and actual 4K profiles. Native M14.5 qualification passes; complete public delivery is being finalized. General list/header behavior remains limited as described below.
 
 Plain pointer input selects/focuses the actual application-owned row. A
 single click does not activate it. Double-click and Enter send the documented
@@ -161,3 +160,7 @@ remaining clipped. Owned tests cover missing versus explicitly empty text,
 caching, equal-sized callback replacement and actual copied drawing commands;
 the original task now also requires its independently known file size. These
 source changes pass on frozen development fa4828b3ea8d8b0a33191f687a3dea7f and ea2a705c4fe43c5079ef2d8913a42c0d, including actual visible file size, preserved file bytes and zero-retention owned lifetimes. Original detail dates honor requested column clipping; full header interaction and ellipsis remain unqualified. The current full integration candidate is still under test.
+
+## Final named native profile
+
+The 74-task frozen campaign passes: 60 native groups, 13 host groups, 695 exact compiled inputs and the exact enabled-device VMware starter. [Acceptance](../../evidence/M14/5/acceptance-results.json), [release limits](../releases/m145-v0.14.5.md). Earlier candidate waits/failures above are historical development observations, not the final result. Notepad++/Sumatra interfaces, complete original-app tasks and final M14.15 optimization remain unqualified.

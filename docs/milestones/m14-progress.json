@@ -74,7 +74,10 @@
       "deliver": "Implement required GDI/text/resources/menu/control/dialog behavior for the pinned applications.",
       "how_and_why": "Share native drawing/fonts where semantics match, with bounded surfaces and dirty-region repaint; provider/name presence is not semantic compatibility.",
       "acceptance": "Readable working original app interfaces at ordinary and named HiDPI profiles, with pixel and behavior evidence; no vendor GPU/DirectX claim.",
-      "status": "in_progress"
+      "status": "in_progress",
+      "qualification": "M14-STAGE5-VM-v1",
+      "evidence": "evidence/M14/5",
+      "publication_status": "Native/source/media qualification passes: 60 native and 13 host groups; public assets, actual native homepage Save and complete website verification are being finalized"
     },
     {
       "id": "M14.6",

@@ -1,0 +1,161 @@
+{
+  "passed": true,
+  "stage": "M14.5 development",
+  "scope": "Synthetic native persistent user registry, rights, sizes, enumeration and private parent/child grants",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "clone": {
+    "source_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "clone_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "owned_fixture": "ae9ac2be52ce41d78195d699011efc65",
+  "fixture_sha256": {
+    "probe.exe": "3b56a36e4ea2045f31f425c3f451eb069d42775db80b3274f5d7d2d0d5964505",
+    "read.exe": "5c62d9ed90cdf0e7c5a3ef350d90ccde0efdf90341a1fb4f6c33410c87d860a1"
+  },
+  "warm_output": "Mapped original image: 7z.exe bytes=24576 source-fnv32=767394032\nRunning the original Windows executable in a protected process.\n\nMapped original image: child.exe bytes=24576 source-fnv32=767394032\nRunning the original Windows executable in a protected process.\n\nM143_NATIVE_REGISTRY_PASS\n",
+  "samples": [
+    {
+      "turn": 1,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 28,
+      "observer_wall_seconds": 2.51500000001397
+    },
+    {
+      "turn": 2,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 24,
+      "observer_wall_seconds": 2.265999999974156
+    },
+    {
+      "turn": 3,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 19,
+      "observer_wall_seconds": 1.7810000000172295
+    },
+    {
+      "turn": 4,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 20,
+      "observer_wall_seconds": 1.625
+    },
+    {
+      "turn": 5,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 19,
+      "observer_wall_seconds": 1.562999999994645
+    },
+    {
+      "turn": 6,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 20,
+      "observer_wall_seconds": 1.7960000000020955
+    },
+    {
+      "turn": 7,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 23,
+      "observer_wall_seconds": 2.0160000000032596
+    },
+    {
+      "turn": 8,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 25,
+      "observer_wall_seconds": 2.1559999999881256
+    },
+    {
+      "turn": 9,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 21,
+      "observer_wall_seconds": 1.8280000000086147
+    },
+    {
+      "turn": 10,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 22,
+      "observer_wall_seconds": 1.437999999994645
+    },
+    {
+      "turn": 11,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 21,
+      "observer_wall_seconds": 2.2190000000118744
+    },
+    {
+      "turn": 12,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 22,
+      "observer_wall_seconds": 1.514999999984866
+    },
+    {
+      "turn": 13,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 22,
+      "observer_wall_seconds": 1.5940000000118744
+    },
+    {
+      "turn": 14,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 19,
+      "observer_wall_seconds": 1.375
+    },
+    {
+      "turn": 15,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 21,
+      "observer_wall_seconds": 1.6089999999967404
+    },
+    {
+      "turn": 16,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 18,
+      "observer_wall_seconds": 1.7039999999979045
+    },
+    {
+      "turn": 17,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 17,
+      "observer_wall_seconds": 1.7179999999934807
+    },
+    {
+      "turn": 18,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 18,
+      "observer_wall_seconds": 1.687999999994645
+    },
+    {
+      "turn": 19,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 20,
+      "observer_wall_seconds": 1.7340000000258442
+    },
+    {
+      "turn": 20,
+      "retained_pages": 0,
+      "peak_group_owned_pages": 376,
+      "worker_quanta": 21,
+      "observer_wall_seconds": 1.702999999979511
+    }
+  ],
+  "independent_start_output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=875249058\nRunning the original Windows executable in a protected process.\n\nM143_REGISTRY_RESTART_PASS\n"
+}

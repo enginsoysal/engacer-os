@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "tasks": 74,
+  "required_exact_replay_receipts": 70,
+  "note": "The initial scheduling-cache tree predates isolated new-menu output paths and the host-key test main wrapper. Affected tasks started after those observer corrections. Final acceptance independently checks every required canonical/executed replay source and actual report; the initial cache fingerprint is not execution proof.",
+  "not_qualified": [
+    "Whole M14 completion",
+    "Original Notepad++/Sumatra interfaces",
+    "Final M14.15 performance"
+  ]
+}

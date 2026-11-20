@@ -1,0 +1,130 @@
+{
+  "passed": true,
+  "scope": "Own maximum-depth native HWND rendering, initial visibility, quota refusal and teardown; not original app qualification",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "fixture_sha256": "f56309503c57a4886306e3f51959086226a7f864ffd3448325c855fab03ccc4f",
+  "clone": {
+    "source_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "clone_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 7,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 8,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 9,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 10,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 11,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 12,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 13,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 14,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 15,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 16,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 17,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 18,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 19,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 20,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 21,
+      "legal_nesting_depth": 32,
+      "retained_pages": 0
+    }
+  ],
+  "physical_framebuffer": {
+    "deepest_child_rgb": [
+      0,
+      120,
+      199
+    ],
+    "depth": 32,
+    "physical_width": 1280,
+    "physical_height": 800
+  },
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=704611134\nRunning the original Windows executable in a protected process.\n\nM144_DEEP_READY\nM144_DEEP_PAINTED\nM144_DEEP_LIFETIME_PASS\n"
+}

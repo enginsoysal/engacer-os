@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "scope": "Owned unavailable-import containment only; no original application compatibility proof",
+  "clone": {
+    "source_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "clone_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "fixture_sha256": "37bc92acaaaff02f58c9624e1b130751a178d94b4dd1feaa86242219d74def73",
+  "optional_discovery_returns_null": true,
+  "static_call_refused": true,
+  "retained_pages": 0,
+  "subsequent_original_console_success": true,
+  "call_site": {
+    "caller": "000000011000107d",
+    "main": "0000000110000000",
+    "resolved": true,
+    "return_rva": 4221,
+    "iat_rva": 8480,
+    "dll": "shlwapi.dll",
+    "symbol": "PathIsRelativeW"
+  },
+  "refusal_output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=735160675\nRunning the original Windows executable in a protected process.\n\nM145_GUARD_DISCOVERY_PASS\nUnavailable Win32 API caller=0x000000011000107d main=0x0000000110000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n"
+}

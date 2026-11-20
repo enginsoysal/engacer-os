@@ -1,0 +1,335 @@
+{
+  "passed": true,
+  "profile": "compact",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "clone": {
+    "source_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "clone_sha256": "944b32f772660f0c888cd05035f571a76f41c1560c4fc625dca7e32961069257",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "scope": "Original menu/About/callback/close development task; not full GUI archive/navigation or M14.5 acceptance",
+  "original_bar_labels": [
+    "File",
+    "Edit",
+    "View",
+    "Favorites",
+    "Tools",
+    "Help"
+  ],
+  "original_popup_labels": [
+    "Contents...",
+    "About 7-Zip..."
+  ],
+  "original_dialog_title": "About 7-Zip",
+  "original_dialog_controls": [
+    {
+      "handle": 6288150979716055296,
+      "parent": 0,
+      "owner": 0,
+      "bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "style": 416219136,
+      "visible": 1,
+      "enabled": 0,
+      "menu_height": 24,
+      "title": "7-Zip",
+      "class_name": "7-Zip::FM"
+    },
+    {
+      "handle": 6288150979716055553,
+      "parent": 6288150979716055296,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        758,
+        52
+      ],
+      "style": 1342180096,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ToolbarWindow32"
+    },
+    {
+      "handle": 6288150979716055810,
+      "parent": 6288150979716055296,
+      "owner": 0,
+      "bounds": [
+        0,
+        52,
+        758,
+        383
+      ],
+      "style": 1342177280,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "7-Zip::Panel"
+    },
+    {
+      "handle": 6288150979716056067,
+      "parent": 6288150979716055810,
+      "owner": 0,
+      "bounds": [
+        0,
+        50,
+        758,
+        309
+      ],
+      "style": 1442906689,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "SysListView32"
+    },
+    {
+      "handle": 6288150979716056324,
+      "parent": 6288150979716055810,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        758,
+        50
+      ],
+      "style": 1451230793,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ReBarWindow32"
+    },
+    {
+      "handle": 6288150979716056581,
+      "parent": 6288150979716056324,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        30,
+        24
+      ],
+      "style": 1342179652,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ToolbarWindow32"
+    },
+    {
+      "handle": 6288150979716056838,
+      "parent": 6288150979716056324,
+      "owner": 0,
+      "bounds": [
+        0,
+        24,
+        756,
+        24
+      ],
+      "style": 1350565954,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBoxEx32"
+    },
+    {
+      "handle": 6288150979716057095,
+      "parent": 6288150979716056838,
+      "owner": 0,
+      "bounds": [
+        0,
+        0,
+        756,
+        24
+      ],
+      "style": 1342177282,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "ComboBox"
+    },
+    {
+      "handle": 6288150979716057352,
+      "parent": 6288150979716057095,
+      "owner": 0,
+      "bounds": [
+        2,
+        2,
+        734,
+        20
+      ],
+      "style": 1342177408,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Edit"
+    },
+    {
+      "handle": 6288150979716057609,
+      "parent": 6288150979716055810,
+      "owner": 0,
+      "bounds": [
+        0,
+        359,
+        758,
+        24
+      ],
+      "style": 1342177280,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Status",
+      "class_name": "msctls_statusbar32"
+    },
+    {
+      "handle": 6288150979716058122,
+      "parent": 0,
+      "owner": 6288150979716055296,
+      "bounds": [
+        259,
+        139,
+        402,
+        361
+      ],
+      "style": 2429028544,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "About 7-Zip",
+      "class_name": "#32770"
+    },
+    {
+      "handle": 6288150979716058379,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        220,
+        272,
+        160,
+        32
+      ],
+      "style": 1342242817,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "OK",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716058636,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        40,
+        272,
+        160,
+        32
+      ],
+      "style": 1342242816,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "www.7-zip.org",
+      "class_name": "Button"
+    },
+    {
+      "handle": 6288150979716058893,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        20,
+        16,
+        110,
+        63
+      ],
+      "style": 1342179331,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716059150,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        20,
+        108,
+        360,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "7-Zip 26.06 (x64)",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716059407,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        20,
+        134,
+        360,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "2026-11-06",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716059664,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        20,
+        160,
+        360,
+        16
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "Copyright (c) 1999-2026 Igor Pavlov",
+      "class_name": "Static"
+    },
+    {
+      "handle": 6288150979716059921,
+      "parent": 6288150979716058122,
+      "owner": 0,
+      "bounds": [
+        20,
+        186,
+        360,
+        84
+      ],
+      "style": 1342308352,
+      "visible": 1,
+      "enabled": 1,
+      "menu_height": 0,
+      "title": "7-Zip is free software",
+      "class_name": "Static"
+    }
+  ],
+  "retained_pages": 1
+}

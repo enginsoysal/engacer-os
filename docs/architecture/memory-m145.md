@@ -1,6 +1,6 @@
 # M14.5 native memory-protection follow-up
 
-Frozen development `06c8de63a527c32ad9ec73f4b9e333bc`, built from `da8a1c143da73f3716d838548bb51549ebfa7f46`, passes 21 native protection lifetimes, eight real access faults per lifetime, zero retained pages and a subsequent original console execution. Both original Notepad++ and SumatraPDF pass their previous VirtualProtect startup calls and now stop at FlsAlloc. Neither app has a qualified interface yet; full M14.5 integration and release remain open.
+Frozen development `06c8de63a527c32ad9ec73f4b9e333bc`, built from `da8a1c143da73f3716d838548bb51549ebfa7f46`, passes 21 native protection lifetimes, eight real access faults per lifetime, zero retained pages and a subsequent original console execution. Both original Notepad++ and SumatraPDF pass their previous VirtualProtect startup calls and now stop at FlsAlloc. Neither app has a qualified interface yet; the complete native M14.5 regression now passes, with public delivery being finalized.
 
 ## How and why
 

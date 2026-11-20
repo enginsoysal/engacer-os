@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "scope": "Agent visual review of the original 7-Zip menu/About and granted-folder/detail preview plus independent own physical-pixel references; not a human study or universal Windows compatibility",
+  "captures": [
+    "original-menu-compact/original-about-dialog.png",
+    "original-menu-4k/original-about-dialog.png",
+    "original-list-ordinary/original-real-folder.png",
+    "original-list-4k/original-real-folder.png"
+  ],
+  "observations": [
+    "Original About labels, logo, modal frame and OK remain readable on compact and physical 4K/200%.",
+    "Original real folder name and known size 60 are visible, with independently checked original file bytes.",
+    "Date text clips at the application-requested column widths; arbitrary header interaction and ellipsis are not qualified.",
+    "The legacy native console notice remains conservative; only the named GUI preview tasks are qualified. Full GUI archive/installer/application tasks remain later gates."
+  ],
+  "limits": [
+    "Notepad++/Sumatra interfaces remain unavailable at required FlsAlloc startup dependency.",
+    "No visual or task qualification of arbitrary Windows applications."
+  ]
+}

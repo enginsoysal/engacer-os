@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "stage": "M14.5 runtime regression",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "synthetic": true,
+  "checks": [
+    "Compiler-generated EXE and DLL TLS template/index instructions",
+    "Independent initialized and zero-filled data in 4 Windows threads",
+    "Nonvolatile XMM6 and independent MXCSR across thread sleeps/preemption",
+    "Process/thread attach and detach callbacks",
+    "8 dynamic TLS DLL load/use/unload/reuse cycles with suspended threads",
+    "Distinct FreeLibrary versus process-termination callback arguments",
+    "20 repeated process closes retain zero managed pages"
+  ],
+  "dll_sha256": {
+    "tlsaddon.dll": "0ff2b8ce6bd1d3cc8c33b6f2078dcad3f34e0eb263b1a3b9ce3b2103f4e5d5c6",
+    "tlsdynamic.dll": "28cf257ccadb161318e3ae0855aa1e43a52daf0ae8a567a78b183701d1a20622"
+  },
+  "samples": [
+    {
+      "turn": 1,
+      "retained_pages": 0
+    },
+    {
+      "turn": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 3,
+      "retained_pages": 0
+    },
+    {
+      "turn": 4,
+      "retained_pages": 0
+    },
+    {
+      "turn": 5,
+      "retained_pages": 0
+    },
+    {
+      "turn": 6,
+      "retained_pages": 0
+    },
+    {
+      "turn": 7,
+      "retained_pages": 0
+    },
+    {
+      "turn": 8,
+      "retained_pages": 0
+    },
+    {
+      "turn": 9,
+      "retained_pages": 0
+    },
+    {
+      "turn": 10,
+      "retained_pages": 0
+    },
+    {
+      "turn": 11,
+      "retained_pages": 0
+    },
+    {
+      "turn": 12,
+      "retained_pages": 0
+    },
+    {
+      "turn": 13,
+      "retained_pages": 0
+    },
+    {
+      "turn": 14,
+      "retained_pages": 0
+    },
+    {
+      "turn": 15,
+      "retained_pages": 0
+    },
+    {
+      "turn": 16,
+      "retained_pages": 0
+    },
+    {
+      "turn": 17,
+      "retained_pages": 0
+    },
+    {
+      "turn": 18,
+      "retained_pages": 0
+    },
+    {
+      "turn": 19,
+      "retained_pages": 0
+    },
+    {
+      "turn": 20,
+      "retained_pages": 0
+    }
+  ],
+  "sleep_cpu_halt_observations": [],
+  "output": "Mapped original image: 7z.exe bytes=24576 source-fnv32=502394480\nMapped original image: tlsaddon.dll bytes=24576 source-fnv32=2176736206\nRunning the original Windows executable in a protected process.\n\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nMapped original image: tlsdynamic.dll bytes=24576 source-fnv32=4075747965\nM142_TLS_DLL_FREE\nM142_STATIC_TLS_TEMPLATE_THREADS_DLL_PASS\nM142_TLS_PROCESS_DETACH_PASS\nM142_TLS_DLL_PROCESS_END\n",
+  "fixture_sha256": "7b0faaa9acaf236080e7abda49590aa5c9e3557eb4295d8df229efa2c4294fea"
+}

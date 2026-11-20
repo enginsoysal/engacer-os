@@ -1,0 +1,36 @@
+{
+  "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+  "executed_sha256": "2a4d847049e36d80ab67fba0aa305498dded2246824a7a904d67b6f396020fe2",
+  "replacements": [
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE5"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE5-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage5"
+    ],
+    [
+      "stage4",
+      "stage5"
+    ],
+    [
+      "M14.4",
+      "M14.5"
+    ],
+    [
+      "0.14.4",
+      "0.14.5"
+    ]
+  ],
+  "fixed_state_assertion": {
+    "previous": 557692,
+    "current": 557676,
+    "explanation": "Removed cursor owner and alignment; see fixed-state-change.json"
+  },
+  "output_isolation": "build\\m14-native\\stage5\\verification-base"
+}

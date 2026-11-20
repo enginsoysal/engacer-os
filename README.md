@@ -1,32 +1,24 @@
 # Engacer OS
 
-An independent, MIT-licensed operating system with its own BIOS/UEFI loaders, kernel and native desktop. Readable graphics, convenient installation, customization and bounded CPU/RAM/storage use are product requirements. Windows applications are the first foreign application ecosystem; Linux, macOS and ARM remain later extensions.
+An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear installation, customization and bounded CPU/RAM/storage use are core requirements. Windows applications are the first foreign ecosystem; Linux, macOS and ARM remain later extensions.
 
 ## Download and get started
 
-**Current native release: [M14.4 / 0.14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Twenty matching assets are published. Independent downloads and full 569-page readback pass. The owner made missing BrixCanvas same-page search and article navigation report-only and nonblocking. [Reproduction](evidence/M14/4/development/public-search/brixcanvas-report.txt). M14.4 is closed under that recorded scope; M14.5 is in progress.
+**Current native candidate: [M14.5 / 0.14.5](https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5).** Native/source/media qualification passes. Matching GitHub assets and complete actual website verification are being finalized before M14.6. Reported BrixCanvas search/navigation remains nonblocking; missing platform features are not called passed.
 
-- [Install and restart in VMware](docs/handbook/install-m144.md)
-- [Your first day](docs/handbook/first-day-m144.md)
-- [Original Windows window preview and supported tasks](docs/handbook/windows-m144.md)
-- [Exact tested scope and limitations](docs/releases/m144-v0.14.4.md)
-- [Online documentation and downloads](https://engaceros.brixcanvas.com)
+- [Install and restart in VMware](docs/handbook/install-m145.md)
+- [Your first day](docs/handbook/first-day-m145.md)
+- [Original Windows menus, folders and browser choices](docs/handbook/windows-m145.md)
+- [Exact release scope and limits](docs/releases/m145-v0.14.5.md)
+- [Documentation and downloads](https://engaceros.brixcanvas.com)
 
-M14.4 adds an original 7-Zip x64 window/input/lifetime preview through the own native USER32/compositor, retaining the supported console/MSI profile. Window movement, resizing, minimize/maximize/restore, modal ownership and cleanup pass. Full GUI archive/navigation tasks, Notepad++/Sumatra execution and Firefox execution are not qualified. M14.15 remains the mandatory whole-system CPU/RAM/storage optimization gate.
+M14.5 adds original 7-Zip x64 menus/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Existing console/MSI tasks remain supported. Full GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
 
-## Native runtime qualification: M14.4
+## Native qualification
 
-All 47 native groups and eight supporting host groups pass on the frozen 672-input candidate. Original compact, ordinary and actual 4K/200% window profiles pass alongside process/thread/TLS/exception, files/settings, installation and cancellation regressions. The exact enabled-device VMware package installs, starts the original window, moves/closes it and boots twice without its ISO. [Acceptance](evidence/M14/4/acceptance-results.json), [resource accounting](evidence/M14/4/resources.json).
+All 60 native and 13 supporting host groups pass on build `06c8de63a527c32ad9ec73f4b9e333bc` with 695 exact compiled inputs. Compact, ordinary and actual 4K/200% installation/startup and original MSI/106-payload regressions pass. The exact VMware package installs, starts the original app, moves/closes it and boots twice without ISO. [Acceptance](evidence/M14/5/acceptance-results.json), [resources](evidence/M14/5/resources.json), [stage gates](docs/milestones/m14-5.md).
 
-Windows program instructions execute through Engacer OS's own compatibility APIs and kernel. An embedded Windows guest or second OS is not the implementation. VMware and QEMU are external test hosts.
-
-- [M14.4 stage and publication gates](docs/milestones/m14-4.md)
-- [File/settings ownership and bounds](docs/architecture/files-m143.md)
-- [Retained execution and lifetime contract](docs/architecture/runtime-m142.md)
-- [Child ownership](docs/architecture/children-m142.md), [synchronization](docs/architecture/synchronization-m142.md), [exception scope](docs/architecture/exceptions-m142.md)
-- [Ordered M14.0-M14.15 plan](docs/milestones/m14.md)
-
-Twenty repeated closes retain zero managed pages after initialization. Normal exit, UI cancellation and unhandled faults release file/registry state while preserving acknowledged settings. Root/child metadata is 13 pages smaller per process than M14.2 in that component; this is not total OS RAM or original GUI performance. **M14.15 remains the mandatory whole-system CPU/RAM/storage optimization gate.** M15 covers Windows x86 and M16 covers Win16/DOS. Every stage closes tests, English docs, GitHub and the actual complete website before the next.
+Windows program instructions run through the own compatibility APIs and kernel. VMware/QEMU are external test hosts; an embedded Windows guest is not the implementation. Optional app removal preserves the desktop and personal files. M14.15 remains the mandatory whole-system optimization gate.
 
 ## Use, customize and contribute
 

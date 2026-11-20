@@ -1,7 +1,6 @@
 # M14.5 native menu development
 
-This is a development contract, not complete original-application or stage
-qualification. M14.4 remains the qualified download.
+The named menu profile passes 21 owned lifetimes and the original 7-Zip Help/About/OK task on compact and actual 4K media. Native M14.5 qualification passes; public delivery is being finalized. Complete original-app tasks remain later gates.
 
 The runtime paints the application's actual process-owned menu tree. It does
 not substitute an application-specific toolbar or send a fabricated command
@@ -49,3 +48,7 @@ original test reaches Help/About with ordinary pointer input, observes the
 original resource/dialog callback, closes through its actual OK control and
 checks original process cleanup. Failures stay preserved under the candidate
 build ID; none of these checks alone closes M14.5.
+
+## Final named native profile
+
+The 74-task frozen campaign passes: 60 native groups, 13 host groups, 695 exact compiled inputs and the exact enabled-device VMware starter. [Acceptance](../../evidence/M14/5/acceptance-results.json), [release limits](../releases/m145-v0.14.5.md). Earlier candidate waits/failures above are historical development observations, not the final result. Notepad++/Sumatra interfaces, complete original-app tasks and final M14.15 optimization remain unqualified.

@@ -1,0 +1,4065 @@
+[
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "apps_native4",
+    "arguments": [
+      "--profile",
+      "ordinary"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "apps_native4",
+    "arguments": [
+      "--profile",
+      "compact"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "apps_native4",
+    "arguments": [
+      "--profile",
+      "4k"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "dialog145_run",
+    "arguments": [
+      "--cycles",
+      "21"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/dialog145_run.py": {
+        "canonical_sha256": "0d156130ceebf5c35e1bcb7a48a86b5de080ad9e8ee2359d04532a89fa86b340",
+        "executed_sha256": "0d156130ceebf5c35e1bcb7a48a86b5de080ad9e8ee2359d04532a89fa86b340"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/dialog145_build.py": {
+        "canonical_sha256": "ab9e760144c2247b62aee3a2665870cba38d88cd527af67ae7b47ed140b578d9",
+        "executed_sha256": "ab9e760144c2247b62aee3a2665870cba38d88cd527af67ae7b47ed140b578d9"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "guard145_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/guard145_run.py": {
+        "canonical_sha256": "1adb669c2f327322cc5e2c8b95881ec3340b978c1b9d4e6fb745d3eea503567c",
+        "executed_sha256": "1adb669c2f327322cc5e2c8b95881ec3340b978c1b9d4e6fb745d3eea503567c"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/guard145_build.py": {
+        "canonical_sha256": "7bd19a1368e571d2697b74b904b1eb98c2a4df318e553d3fa8411ef97c3e1d9a",
+        "executed_sha256": "7bd19a1368e571d2697b74b904b1eb98c2a4df318e553d3fa8411ef97c3e1d9a"
+      },
+      "tests/m14/refusal145_decode.py": {
+        "canonical_sha256": "fa1910a19b04bc6e8c63a6a4adb39713a23e44a350ec0adff3afa967a26248ec",
+        "executed_sha256": "fa1910a19b04bc6e8c63a6a4adb39713a23e44a350ec0adff3afa967a26248ec"
+      },
+      "tests/m14/resource144_host.py": {
+        "canonical_sha256": "1862999fd957f57a27cc0c74b54db5e893f310609a1ca5fcfbf8d7eb6a52aca4",
+        "executed_sha256": "1e6bfb15a6207917c4f1e46c25eae94fe36434f71676eb3fd22d5659245e3750"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "owner144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/owner144_run.py": {
+        "canonical_sha256": "0fd19ba2f93251c1c7d9aae82a2c2724e435040250aa9d95c7877d30fd42e353",
+        "executed_sha256": "ecfd33c2fffd34fa06fc55447ef302bd5d89320a46201145346944c2cdc0ba33"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/owner144_build.py": {
+        "canonical_sha256": "0030356df5030436c4e4f3fae3b36e5a612b540907d58aec17cf1ecf3028d162",
+        "executed_sha256": "70dfaffb85d9ec25540cd4d37e3d81e9bbf1f9dcfc2dcfcc8494592a8d3aa126"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "keys145_run",
+    "arguments": [
+      "--cycles",
+      "21"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/keys145_run.py": {
+        "canonical_sha256": "c233d14df223148be79a846b11be26df4370ba5256899e2b3679adca1da58598",
+        "executed_sha256": "c233d14df223148be79a846b11be26df4370ba5256899e2b3679adca1da58598"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/keys145_build.py": {
+        "canonical_sha256": "82d1e25176245669155955dc9c0f9c1ee8e0ad82deeb4f6c23ef242e21dc4d91",
+        "executed_sha256": "82d1e25176245669155955dc9c0f9c1ee8e0ad82deeb4f6c23ef242e21dc4d91"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "list145_run",
+    "arguments": [
+      "--cycles",
+      "21"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/list145_run.py": {
+        "canonical_sha256": "a870b72a48d86361bbd0cb8d4ff02880ed3a9479fe5a4f038fe421297f27f318",
+        "executed_sha256": "a870b72a48d86361bbd0cb8d4ff02880ed3a9479fe5a4f038fe421297f27f318"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/list145_build.py": {
+        "canonical_sha256": "14f8aaf8b8867003d0102ce62553b97d71a6fa2b11332d0a056467c8c3783da8",
+        "executed_sha256": "14f8aaf8b8867003d0102ce62553b97d71a6fa2b11332d0a056467c8c3783da8"
+      },
+      "tests/m14/original_menu145_run.py": {
+        "canonical_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47",
+        "executed_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original_list145_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original_list145_run.py": {
+        "canonical_sha256": "c1c1599e4cf60f96cc3870cf1d1025b89d3d538729f350763bfa7e616f6d94f4",
+        "executed_sha256": "c1c1599e4cf60f96cc3870cf1d1025b89d3d538729f350763bfa7e616f6d94f4"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/original_menu145_run.py": {
+        "canonical_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47",
+        "executed_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original_list145_run",
+    "arguments": [
+      "--profile",
+      "ordinary"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original_list145_run.py": {
+        "canonical_sha256": "c1c1599e4cf60f96cc3870cf1d1025b89d3d538729f350763bfa7e616f6d94f4",
+        "executed_sha256": "c1c1599e4cf60f96cc3870cf1d1025b89d3d538729f350763bfa7e616f6d94f4"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/original_menu145_run.py": {
+        "canonical_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47",
+        "executed_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original_list145_run",
+    "arguments": [
+      "--profile",
+      "4k"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original_list145_run.py": {
+        "canonical_sha256": "c1c1599e4cf60f96cc3870cf1d1025b89d3d538729f350763bfa7e616f6d94f4",
+        "executed_sha256": "c1c1599e4cf60f96cc3870cf1d1025b89d3d538729f350763bfa7e616f6d94f4"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/original_menu145_run.py": {
+        "canonical_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47",
+        "executed_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "menu145_run",
+    "arguments": [
+      "--cycles",
+      "21"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/menu145_run.py": {
+        "canonical_sha256": "0a2d1603aab1f6989cab4b327e0a2be9655657305fc0fb7c3b5086cb5d0c7a26",
+        "executed_sha256": "0a2d1603aab1f6989cab4b327e0a2be9655657305fc0fb7c3b5086cb5d0c7a26"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/menu145_build.py": {
+        "canonical_sha256": "847dc3fbc7da2e77b52b2b1c574704c90a435cb831bbc5af5836891fbf03d4b8",
+        "executed_sha256": "847dc3fbc7da2e77b52b2b1c574704c90a435cb831bbc5af5836891fbf03d4b8"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original_menu145_run",
+    "arguments": [
+      "--profile",
+      "compact"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original_menu145_run.py": {
+        "canonical_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47",
+        "executed_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original_menu145_run",
+    "arguments": [
+      "--profile",
+      "4k"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original_menu145_run.py": {
+        "canonical_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47",
+        "executed_sha256": "d46c70613d2b87233d8c100e93308afa32cc3c50de903b4ab08f2f647c23aa47"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "protect145_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/protect145_run.py": {
+        "canonical_sha256": "47ee39122794118c44076f6ad171b69a74e751102ef47fee4fde88ed7e3caf0d",
+        "executed_sha256": "47ee39122794118c44076f6ad171b69a74e751102ef47fee4fde88ed7e3caf0d"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/protect145_build.py": {
+        "canonical_sha256": "6c5fe06c9d60b5500e7624953f8a7a5a2482b6365d1512be22a007e20eef8f59",
+        "executed_sha256": "6c5fe06c9d60b5500e7624953f8a7a5a2482b6365d1512be22a007e20eef8f59"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "raster145_run",
+    "arguments": [
+      "--profile",
+      "4k",
+      "--cycles",
+      "1"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/raster145_run.py": {
+        "canonical_sha256": "a75aaf118db419762510b06cf59c9c9527f8686f740611bc3f16803bdf631f78",
+        "executed_sha256": "a75aaf118db419762510b06cf59c9c9527f8686f740611bc3f16803bdf631f78"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/raster145_build.py": {
+        "canonical_sha256": "514724d3767de598e11d0f7ec10e7e194a9b9a0a41cc2f5ba468db1e611e7606",
+        "executed_sha256": "514724d3767de598e11d0f7ec10e7e194a9b9a0a41cc2f5ba468db1e611e7606"
+      },
+      "tests/m14/resources145_build.py": {
+        "canonical_sha256": "f305ed00bda85b8610032b1ad66d1172f5476186199873dea045143d530215de",
+        "executed_sha256": "f305ed00bda85b8610032b1ad66d1172f5476186199873dea045143d530215de"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "raster145_run",
+    "arguments": [
+      "--profile",
+      "compact",
+      "--cycles",
+      "21"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/raster145_run.py": {
+        "canonical_sha256": "a75aaf118db419762510b06cf59c9c9527f8686f740611bc3f16803bdf631f78",
+        "executed_sha256": "a75aaf118db419762510b06cf59c9c9527f8686f740611bc3f16803bdf631f78"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      },
+      "tests/m14/raster145_build.py": {
+        "canonical_sha256": "514724d3767de598e11d0f7ec10e7e194a9b9a0a41cc2f5ba468db1e611e7606",
+        "executed_sha256": "514724d3767de598e11d0f7ec10e7e194a9b9a0a41cc2f5ba468db1e611e7606"
+      },
+      "tests/m14/resources145_build.py": {
+        "canonical_sha256": "f305ed00bda85b8610032b1ad66d1172f5476186199873dea045143d530215de",
+        "executed_sha256": "f305ed00bda85b8610032b1ad66d1172f5476186199873dea045143d530215de"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original144_run",
+    "arguments": [
+      "--profile",
+      "4k",
+      "--cycles",
+      "1"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original144_run.py": {
+        "canonical_sha256": "94db9975211aaabbe9f1c61b8332fc9a627a7f49594c38377cde567abdf78b55",
+        "executed_sha256": "61dd561758bb49d5ea4537e5cab83d380915bf46f049d487108c8bdd9d840f48"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original144_run",
+    "arguments": [
+      "--profile",
+      "ordinary",
+      "--cycles",
+      "1"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original144_run.py": {
+        "canonical_sha256": "94db9975211aaabbe9f1c61b8332fc9a627a7f49594c38377cde567abdf78b55",
+        "executed_sha256": "61dd561758bb49d5ea4537e5cab83d380915bf46f049d487108c8bdd9d840f48"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "vmware4",
+    "arguments": [
+      "--stage",
+      "5"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/vmware4.py": {
+        "canonical_sha256": "28f6029e315bd5a2bf6e41b06b0ed591ae4c2085caeef2df650dabb09ebcf68b",
+        "executed_sha256": "352c101ed9606a1a94c812bbe7b54471b3eee1b8c4225853e4a621e4e188cf29"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "state-lifetime"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "cancel"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original144_run",
+    "arguments": [
+      "--profile",
+      "compact",
+      "--cycles",
+      "21"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original144_run.py": {
+        "canonical_sha256": "94db9975211aaabbe9f1c61b8332fc9a627a7f49594c38377cde567abdf78b55",
+        "executed_sha256": "61dd561758bb49d5ea4537e5cab83d380915bf46f049d487108c8bdd9d840f48"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "exception-invalid"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "exception-nested"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "exceptions"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "inspection"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "msi-cancel"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "last-thread"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "named-sync"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "named-sync-cancel"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "probes"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "tls"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "processes"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "unwind"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "unwind-chain"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "browser-download"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "threads"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "unwind-invalid"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "environment"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "find"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "files"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "paths"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "com144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/com144_run.py": {
+        "canonical_sha256": "86e64cd43778a0b8b39893a78ae763cccf214fe0162ea030be859a7a14814fa4",
+        "executed_sha256": "3e2442c347b27334efc73ed4efa220c8c1dd288e799f04f1b8088a5d37482d38"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/com144_build.py": {
+        "canonical_sha256": "8dd54a3f4e1957a0f46ef6b2ddb41ef32a40b4272f89225d09ce2eef94446bac",
+        "executed_sha256": "12c7811ea7db65e59b9710aff7be7e97ad5cee6326d2f67e533bada4bd3bd7b4"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "registry"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "files_regressions4",
+    "arguments": [
+      "metadata"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/files_regressions4.py": {
+        "canonical_sha256": "4769400905248e2cd241101c7a0e54b2e105022a74cee676f20463b55606f530",
+        "executed_sha256": "61820011fb18197e35fe83950ea05e45e41ecbff4fd46cecb0f3efb52159a6f6"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "controls144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/controls144_run.py": {
+        "canonical_sha256": "35487e5e5547f5ca5aae9ec90b20dc0d7e83a6dd92b2a9f19052ca918416182a",
+        "executed_sha256": "0dd681aa739a12c8c8f2981660b2f1f117bd99894e9071be72a25af17c4e19f9"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/controls145_build.py": {
+        "canonical_sha256": "ba4110238faf1a142acb3d29778fffbb109874ac0ebef8b3241e339b7e2b46dc",
+        "executed_sha256": "c63d54d33a3ff4085ee9d048163c0eff0e5ba25e3fe690159ae1db5138d5e7ae"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "deep144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/deep144_run.py": {
+        "canonical_sha256": "ccb41739b31202939108f1f73e0f35e7db2d5d624285751e7dde1d1e69193dab",
+        "executed_sha256": "aa7c3e2438ad8b72bce293895b4abe7605c822e0cefef23d3d889c1f9b60d812"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/deep144_build.py": {
+        "canonical_sha256": "db49eaec13b50fb243f6c38db6e3f3d5e78e782aeec37e616c1d3e5b1ee1a41c",
+        "executed_sha256": "e445f22029ba3dda6acf690c0003ee0b70959f7926b9a85683707a7f1aec9ae3"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "clipformat144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/clipformat144_run.py": {
+        "canonical_sha256": "f51896240ad02e5510a173b18cab2933adabcfea19a96c908b85e17f63499a12",
+        "executed_sha256": "7b52532de2c5016852f662ed3a980d4374f4e0b6a5ab66ac159df40958b294ca"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/clipformat144_build.py": {
+        "canonical_sha256": "656c272505b4ddb17c88c0b46673591193bd4b2b6cd0aa761b7a566e236c9e91",
+        "executed_sha256": "1d5828e9953e1b9bc7bc2a30ba2fea831bf61cde8e74775e5b2fef1599ff0250"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "fault144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/fault144_run.py": {
+        "canonical_sha256": "7463a5259eef35c2877d6b3e9aca766fde1670b54b598c449100d6fa7be8c3eb",
+        "executed_sha256": "28cbeacaca8641c8a0b278a86b63c3051e698a6e020063c59d29079bb6f6129e"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fault144_build.py": {
+        "canonical_sha256": "50b1e10db35eb30e51ff8121f0fbcd5b57af6ad3533b7383a007f5a0099f77c5",
+        "executed_sha256": "37c79a385b2e3e518681c44ac302b8ad8ce607ba4bac2ac46754617975cdf9da"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "heap144_after",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/heap144_after.py": {
+        "canonical_sha256": "1ee04e54066c476124ebc56a347acc0138a749c7cfa59f81cd4248f60021fdd0",
+        "executed_sha256": "648583e3b50080abf6b24701e65cc98d7758838994e4677a473e8c56c1340f69"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/heap144_build.py": {
+        "canonical_sha256": "40635860dd9f6d444f17d406b85768b199642579d92ad03bd4c8f6b412896abb",
+        "executed_sha256": "c32b53ee7fa0865912e4d384bd5e43878bb22270225217830174d5671634a39f"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "menu144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/menu144_run.py": {
+        "canonical_sha256": "9d6c4550e548bb3ce78a9a2f07f798e0c993dd006f2737b5c295a5df75a6afad",
+        "executed_sha256": "983bed5b5b5e47868a1250446b1abaf2fa642ecc682cda0e899c5c38ec8009c5"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/menu144_build.py": {
+        "canonical_sha256": "49b00cb72241b2140b87219175be144edae3744a3c8cebed5fe1e080bbec2f98",
+        "executed_sha256": "6f33983ed5d631b8424258570ee099c0cfc8652fc89c2e7d4b2555115f8b914a"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "original_resources144",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/original_resources144.py": {
+        "canonical_sha256": "585fc97ae1991e84fc22f1e0b7f42e51ae4b6b57e8a054f4c8312e06f7621226",
+        "executed_sha256": "ba9d9a1d708097bda5cbca9ce0eba02ac4e496ed3510af156af2f872334cf635"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/original_window_trace4.py": {
+        "canonical_sha256": "4cc42484700c5e041506dd3e08f40256428da879d07cf876e4096fa38c689aa0",
+        "executed_sha256": "53125abdf5b6c9593c42b00df602de8499392518e071c0aeeae41cd99f26f599"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "resource144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/resource144_run.py": {
+        "canonical_sha256": "4f4afefdc540c1f046639aa8d41b486b3d09ca49a5320c6c0f9ad8a040c31efb",
+        "executed_sha256": "6052cb0a37feaeafb37add67a2b01de2cb81416f81774defb94fb657d577d2c0"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/resource144_build.py": {
+        "canonical_sha256": "44107aca239e268112fe4c384d78e4dfe954c945fcd7eac9fefe72c9df467f39",
+        "executed_sha256": "06cd3f4d1437ee2d61725ca587afc1943bca5d31b20734421942f62396369ae2"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "paint144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/paint144_run.py": {
+        "canonical_sha256": "90265c479964313fe5b1782a668ad808ab8c80136db2103f917dc9f325e8d090",
+        "executed_sha256": "382157e2996b2b0b6d656913687994beb979c6d1ae65d8f4804ebc2184a8bf72"
+      },
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/paint144_build.py": {
+        "canonical_sha256": "8989cc8e96dbaa5a8a603c235b9a175a76075f7c03e08466390f87816628ecb3",
+        "executed_sha256": "91272ab5496dd672a016340390509c3e5cc7b144054970f33ca6eec30621486b"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "dialog145_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/dialog145_host.py": {
+        "canonical_sha256": "c4ef988da7717652b80810f9d28584df38fd4b75f7a05fa26e378778f1d00619",
+        "executed_sha256": "c4ef988da7717652b80810f9d28584df38fd4b75f7a05fa26e378778f1d00619"
+      },
+      "tests/m14/resource144_host.py": {
+        "canonical_sha256": "1862999fd957f57a27cc0c74b54db5e893f310609a1ca5fcfbf8d7eb6a52aca4",
+        "executed_sha256": "1e6bfb15a6207917c4f1e46c25eae94fe36434f71676eb3fd22d5659245e3750"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "dib144_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/dib144_host.py": {
+        "canonical_sha256": "29da82027bc79ba1764cac74bafeb35be36f4457285fc7542c19eb436366f22d",
+        "executed_sha256": "676da1a0a5caa037909d99c9c098700d8470a9c9a23744188b204d4cce179cb1"
+      },
+      "tests/m14/resource144_host.py": {
+        "canonical_sha256": "1862999fd957f57a27cc0c74b54db5e893f310609a1ca5fcfbf8d7eb6a52aca4",
+        "executed_sha256": "1e6bfb15a6207917c4f1e46c25eae94fe36434f71676eb3fd22d5659245e3750"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "keymap145_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/keymap145_host.py": {
+        "canonical_sha256": "4b2fc22e172893e72a47db172a0ddac1600cf451390aa58160b4928bb9010920",
+        "executed_sha256": "4b2fc22e172893e72a47db172a0ddac1600cf451390aa58160b4928bb9010920"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "keys145_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/keys145_host.py": {
+        "canonical_sha256": "512261961e14a510208c4080f09f9e5c3734797b553c7cfe13a996bd63ce0821",
+        "executed_sha256": "512261961e14a510208c4080f09f9e5c3734797b553c7cfe13a996bd63ce0821"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "queue144_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/queue144_host.py": {
+        "canonical_sha256": "28c6f636eaf6eb59579954bbea72c2a566706c12788a2854587b269de0276909",
+        "executed_sha256": "980118e06253f7ffc29f94fe785a454b1effcef2660577b823a7f8e269171d70"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "timer144_run",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/timer144_run.py": {
+        "canonical_sha256": "54a46bf2b2eb863b49c3cba04c815e10009271d12690339fbf75b4c9dc7e4b16",
+        "executed_sha256": "e23c4e455821d3a8e5fb8e2b8ce104f5e8b1928acf33264e17e202f249d8362e"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/timer144_build.py": {
+        "canonical_sha256": "d160cae58cd83252ff368077623e5051d9534cfd721ec9612b8fbbfaa4211507",
+        "executed_sha256": "a8fd785408ec20c958c8362a2fe3cd12d211d9db2a6198d72cc8282b0e758225"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "resource144_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/resource144_host.py": {
+        "canonical_sha256": "1862999fd957f57a27cc0c74b54db5e893f310609a1ca5fcfbf8d7eb6a52aca4",
+        "executed_sha256": "1e6bfb15a6207917c4f1e46c25eae94fe36434f71676eb3fd22d5659245e3750"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "find-host"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "http-host"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "path-host"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "unicode-host"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "source145_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/source145_host.py": {
+        "canonical_sha256": "f6c4c450bf041ee81369e38149f55aa90cdc051d930ddcda40224eab5d5d913f",
+        "executed_sha256": "f6c4c450bf041ee81369e38149f55aa90cdc051d930ddcda40224eab5d5d913f"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "targets145_host",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/targets145_host.py": {
+        "canonical_sha256": "5402953e9229c499ee14dead37112ef0280ffd9ebf856b9a461ca99864ef6dc9",
+        "executed_sha256": "5402953e9229c499ee14dead37112ef0280ffd9ebf856b9a461ca99864ef6dc9"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "runtime_regressions4",
+    "arguments": [
+      "download-stream"
+    ],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/runtime_regressions4.py": {
+        "canonical_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c",
+        "executed_sha256": "af32d4c1e5a009e77280310e38fa67275a0310988e3375e6509aeae46c707986"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  },
+  {
+    "passed": true,
+    "stage": "M14.5",
+    "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+    "target": "window144_native",
+    "arguments": [],
+    "replacements": [
+      [
+        "EngacerOS-M14STAGE4",
+        "EngacerOS-M14STAGE5"
+      ],
+      [
+        "M14-STAGE4-VM-v1",
+        "M14-STAGE5-VM-v1"
+      ],
+      [
+        "m14stage4",
+        "m14stage5"
+      ],
+      [
+        "evidence/M14/4",
+        "evidence/M14/5"
+      ],
+      [
+        "stage4",
+        "stage5"
+      ],
+      [
+        "M14.4",
+        "M14.5"
+      ],
+      [
+        "0.14.4",
+        "0.14.5"
+      ],
+      [
+        "m144-",
+        "m145-"
+      ]
+    ],
+    "observer_sources": {
+      "tests/m14/window144_native.py": {
+        "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+        "executed_sha256": "0d04be9b49ead942f734f6035def8c180b15938357f3fcb0d7ce264b82f16a5f"
+      },
+      "tests/m14/fixture1.py": {
+        "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+        "executed_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+      },
+      "tests/m14/window144_build.py": {
+        "canonical_sha256": "ba97462b4e31d41a101c4f3aef416fb4a2353e11c244daf6ae1e8424e1f20efe",
+        "executed_sha256": "617a87eb03ad80412335d5b8061f38fe17fd2a281b0c523acef73536becc1b5f"
+      },
+      "tests/m14/apps_native4.py": {
+        "canonical_sha256": "73152a45a0dadccb6097caa8984af49b773f7cef947d3330a2662f9c065e873b",
+        "executed_sha256": "a795b7423496b1b7b31dc34423c0d3da322109ac021b44911c2ef1b9ad9d8bdf"
+      }
+    },
+    "adapter_sha256": "1ea25c479fa69bd80943e24ccb7ea896318ad5d540287ee86dc534b4f48a2097"
+  }
+]

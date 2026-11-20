@@ -1,0 +1,8 @@
+{
+  "previous_bytes": 557692,
+  "current_bytes": 557676,
+  "delta_bytes": -16,
+  "reason": "Obsolete eight-byte foreign_pointer144.cursor_owner144 was removed; subsequent BSS alignment accounts for the other eight bytes",
+  "current_map_sha256": "df7da2e74ff04c6449e7a20cceb069124a4524340952871007d26b8953aec46f",
+  "scope": "Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification"
+}

@@ -1,0 +1,760 @@
+{
+  "passed": true,
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "workers": 3,
+  "tasks": {
+    "compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 82.625,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "5",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 89.32800000000861,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "5",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "starter": {
+      "exit_code": 0,
+      "observer_wall_seconds": 7.219000000011874,
+      "command": [
+        "tools/release/vmware_starter14.py",
+        "--stage",
+        "5"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 127.14100000000326,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "5",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "apps-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 104.56200000000536,
+      "command": [
+        "tests/m14/replay5.py",
+        "apps_native4",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "apps-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 105.09400000001187,
+      "command": [
+        "tests/m14/replay5.py",
+        "apps_native4",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "apps-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 155.28100000001723,
+      "command": [
+        "tests/m14/replay5.py",
+        "apps_native4",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "dialogs145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 109.125,
+      "command": [
+        "tests/m14/replay5.py",
+        "dialog145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "guard145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 28.437000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "guard145_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "owners": {
+      "exit_code": 0,
+      "observer_wall_seconds": 191.06200000000536,
+      "command": [
+        "tests/m14/replay5.py",
+        "owner144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "keys145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 111.85900000002584,
+      "command": [
+        "tests/m14/replay5.py",
+        "keys145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "list145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 137.36000000001513,
+      "command": [
+        "tests/m14/replay5.py",
+        "list145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-list145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 35.34399999998277,
+      "command": [
+        "tests/m14/replay5.py",
+        "original_list145_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-list145-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 38.187000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "original_list145_run",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-list145-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 58.35899999999674,
+      "command": [
+        "tests/m14/replay5.py",
+        "original_list145_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "menus145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 136.2970000000205,
+      "command": [
+        "tests/m14/replay5.py",
+        "menu145_run",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-menu-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 31.578000000008615,
+      "command": [
+        "tests/m14/replay5.py",
+        "original_menu145_run",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-menu-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 55.937999999994645,
+      "command": [
+        "tests/m14/replay5.py",
+        "original_menu145_run",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "protect145": {
+      "exit_code": 0,
+      "observer_wall_seconds": 59.23499999998603,
+      "command": [
+        "tests/m14/replay5.py",
+        "protect145_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "raster-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 87.18700000000536,
+      "command": [
+        "tests/m14/replay5.py",
+        "raster145_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "raster-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 173.32800000000861,
+      "command": [
+        "tests/m14/replay5.py",
+        "raster145_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 153.45300000000861,
+      "command": [
+        "tests/m14/replay5.py",
+        "original144_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 75.35999999998603,
+      "command": [
+        "tests/m14/replay5.py",
+        "original144_run",
+        "--profile",
+        "ordinary",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "vmware": {
+      "exit_code": 0,
+      "observer_wall_seconds": 130.06200000000536,
+      "command": [
+        "tests/m14/replay5.py",
+        "vmware4",
+        "--stage",
+        "5"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-state-lifetime": {
+      "exit_code": 0,
+      "observer_wall_seconds": 427.5309999999881,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "state-lifetime"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-cancel": {
+      "exit_code": 0,
+      "observer_wall_seconds": 112.84400000001187,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "cancel"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 447.125,
+      "command": [
+        "tests/m14/replay5.py",
+        "original144_run",
+        "--profile",
+        "compact",
+        "--cycles",
+        "21"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-exception-invalid": {
+      "exit_code": 0,
+      "observer_wall_seconds": 171.84400000001187,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "exception-invalid"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-exception-nested": {
+      "exit_code": 0,
+      "observer_wall_seconds": 162.25,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "exception-nested"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-exceptions": {
+      "exit_code": 0,
+      "observer_wall_seconds": 109.92199999999139,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "exceptions"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-inspection": {
+      "exit_code": 0,
+      "observer_wall_seconds": 100.10999999998603,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "inspection"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-msi-cancel": {
+      "exit_code": 0,
+      "observer_wall_seconds": 54.14000000001397,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "msi-cancel"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-last-thread": {
+      "exit_code": 0,
+      "observer_wall_seconds": 89.98399999999674,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "last-thread"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-named-sync": {
+      "exit_code": 0,
+      "observer_wall_seconds": 117.78099999998813,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "named-sync"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-named-sync-cancel": {
+      "exit_code": 0,
+      "observer_wall_seconds": 96.81200000000536,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "named-sync-cancel"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-probes": {
+      "exit_code": 0,
+      "observer_wall_seconds": 145.29699999999139,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "probes"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-tls": {
+      "exit_code": 0,
+      "observer_wall_seconds": 73.96799999999348,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "tls"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-processes": {
+      "exit_code": 0,
+      "observer_wall_seconds": 186.81299999999464,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "processes"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-unwind": {
+      "exit_code": 0,
+      "observer_wall_seconds": 68.34400000001187,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "unwind"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-unwind-chain": {
+      "exit_code": 0,
+      "observer_wall_seconds": 67.57800000000861,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "unwind-chain"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-browser-download": {
+      "exit_code": 0,
+      "observer_wall_seconds": 62.46899999998277,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "browser-download"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-threads": {
+      "exit_code": 0,
+      "observer_wall_seconds": 306.51600000000326,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "threads"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-unwind-invalid": {
+      "exit_code": 0,
+      "observer_wall_seconds": 126.85899999999674,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "unwind-invalid"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-environment": {
+      "exit_code": 0,
+      "observer_wall_seconds": 72.0,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "environment"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-find": {
+      "exit_code": 0,
+      "observer_wall_seconds": 52.296999999991385,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "find"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-files": {
+      "exit_code": 0,
+      "observer_wall_seconds": 93.875,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "files"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-paths": {
+      "exit_code": 0,
+      "observer_wall_seconds": 39.28200000000652,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "paths"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "com": {
+      "exit_code": 0,
+      "observer_wall_seconds": 41.265999999974156,
+      "command": [
+        "tests/m14/replay5.py",
+        "com144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-registry": {
+      "exit_code": 0,
+      "observer_wall_seconds": 88.09399999998277,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "registry"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "files-metadata": {
+      "exit_code": 0,
+      "observer_wall_seconds": 130.34400000001187,
+      "command": [
+        "tests/m14/replay5.py",
+        "files_regressions4",
+        "metadata"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "controls": {
+      "exit_code": 0,
+      "observer_wall_seconds": 45.312000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "controls144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "deep": {
+      "exit_code": 0,
+      "observer_wall_seconds": 57.375,
+      "command": [
+        "tests/m14/replay5.py",
+        "deep144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "formats": {
+      "exit_code": 0,
+      "observer_wall_seconds": 35.953000000008615,
+      "command": [
+        "tests/m14/replay5.py",
+        "clipformat144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "faults": {
+      "exit_code": 0,
+      "observer_wall_seconds": 89.82800000000861,
+      "command": [
+        "tests/m14/replay5.py",
+        "fault144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "heap": {
+      "exit_code": 0,
+      "observer_wall_seconds": 37.03100000001723,
+      "command": [
+        "tests/m14/replay5.py",
+        "heap144_after"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "menus": {
+      "exit_code": 0,
+      "observer_wall_seconds": 39.64100000000326,
+      "command": [
+        "tests/m14/replay5.py",
+        "menu144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "original-resources": {
+      "exit_code": 0,
+      "observer_wall_seconds": 37.812000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "original_resources144"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "resources": {
+      "exit_code": 0,
+      "observer_wall_seconds": 40.21899999998277,
+      "command": [
+        "tests/m14/replay5.py",
+        "resource144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "paint": {
+      "exit_code": 0,
+      "observer_wall_seconds": 88.34399999998277,
+      "command": [
+        "tests/m14/replay5.py",
+        "paint144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "dialog145-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.7810000000172295,
+      "command": [
+        "tests/m14/replay5.py",
+        "dialog145_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "dib-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.2810000000172295,
+      "command": [
+        "tests/m14/replay5.py",
+        "dib144_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "keymap145-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 0.9379999999946449,
+      "command": [
+        "tests/m14/replay5.py",
+        "keymap145_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "keys145-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.2659999999741558,
+      "command": [
+        "tests/m14/replay5.py",
+        "keys145_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "queue-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 2.562000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "queue144_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "timers": {
+      "exit_code": 0,
+      "observer_wall_seconds": 61.46899999998277,
+      "command": [
+        "tests/m14/replay5.py",
+        "timer144_run"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "resource-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.7820000000065193,
+      "command": [
+        "tests/m14/replay5.py",
+        "resource144_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-find-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 3.687000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "find-host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-http-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 2.562999999994645,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "http-host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-path-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 2.4059999999881256,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "path-host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-unicode-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.7030000000086147,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "unicode-host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "source145-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.562000000005355,
+      "command": [
+        "tests/m14/replay5.py",
+        "source145_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "targets145-host": {
+      "exit_code": 0,
+      "observer_wall_seconds": 1.2349999999860302,
+      "command": [
+        "tests/m14/replay5.py",
+        "targets145_host"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "runtime-download-stream": {
+      "exit_code": 0,
+      "observer_wall_seconds": 14.85899999999674,
+      "command": [
+        "tests/m14/replay5.py",
+        "runtime_regressions4",
+        "download-stream"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    },
+    "windows": {
+      "exit_code": 0,
+      "observer_wall_seconds": 99.25,
+      "command": [
+        "tests/m14/replay5.py",
+        "window144_native"
+      ],
+      "source_tree_sha256": "549e5ea7600cd04537b57c0389b591994268e3cf767f52128eb791b12c239b46"
+    }
+  },
+  "pending": [],
+  "running": [],
+  "observer_wall_seconds": 2157.0779999999795,
+  "scope": "Task orchestration only; direct native/host/source/media and public acceptance remain separate gates"
+}

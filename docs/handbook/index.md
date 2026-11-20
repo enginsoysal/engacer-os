@@ -2,21 +2,21 @@
 
 ## Start here
 
-**Current native release: [Engacer OS M14.4](https://github.com/enginsoysal/engacer-os/releases/tag/m144-v0.14.4).** Native qualification passes within M14-STAGE4-VM-v1, and all twenty public assets have been independently downloaded and verified. Complete actual website closure is being finalized. Follow the guide matching your download.
+**Current native candidate: [M14.5](https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5).** Native qualification passes within M14-STAGE5-VM-v1. Matching public assets and complete website readback are being finalized. Follow the guide matching your download.
 
-- [Download, verify and install in VMware](install-m144.md)
-- [Windows files, persistent settings and browser downloads](windows-m144.md)
-- [What works today and current limitations](../roadmap/status.md)
-- [Release scope and checksums](../releases/m144-v0.14.4.md)
-- [Build and customize your own distribution](distributions.md)
+- [Download, verify and install in VMware](install-m145.md)
+- [Original Windows menus, folders and browser downloads](windows-m145.md)
+- [Current supported behavior and limits](../roadmap/status.md)
+- [Release scope and checksums](../releases/m145-v0.14.5.md)
+- [Build your distribution](distributions.md)
 
-M14.4 adds the original 7-Zip initial-window/input/lifetime preview over the retained supported console/MSI, file/settings and process/thread profiles. Full GUI application tasks remain unqualified. Notepad++/Sumatra remain inspection-only; Firefox remains download-only. There is no embedded Windows guest. [Native acceptance](../../evidence/M14/4/acceptance-results.json), [resource bounds](../../evidence/M14/4/resources.json). M14.15 remains the mandatory whole-system optimization gate.
+M14.5 adds original 7-Zip menu/About, toolbar images, list details and folder-navigation preview tasks. Complete GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. [Native acceptance](../../evidence/M14/5/acceptance-results.json). M14.15 remains the mandatory whole-system optimization gate.
 
 ## Use the desktop
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](first-day-m144.md)
+- [First day, desktop and folders](first-day-m145.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
 - [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)

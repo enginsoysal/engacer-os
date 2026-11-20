@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "archive": "EngacerOS-M14STAGE5-VMware.zip",
+  "sha256": "da4def91a6e4cb427de5c04e53355af9fe4caf394a80087e66609a226ab93cc7",
+  "size": 11290837,
+  "image": "EngacerOS-M14STAGE5",
+  "build_id": "06c8de63a527c32ad9ec73f4b9e333bc",
+  "members": [
+    "7z2606-src.tar.xz",
+    "EngacerOS-M14STAGE5.iso",
+    "EngacerOS.vmdk",
+    "EngacerOS.vmx",
+    "Inter-OFL.txt",
+    "libmspack-LGPL-2.1.txt",
+    "LICENSE",
+    "START-HERE.txt",
+    "THIRD-PARTY-NOTICES.txt"
+  ],
+  "disk": "new growable 20-GiB SATA; not preinstalled",
+  "firmware": "UEFI, Secure Boot off",
+  "boot_order_forced": false,
+  "all_shipped_devices_enabled": true
+}

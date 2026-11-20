@@ -1,7 +1,6 @@
 # M14.5 drawing and control implementation
 
-Development candidate, not accepted M14.5 compatibility. Original application
-interfaces and exact new media still require independent native qualification.
+Native qualification passes on frozen 06c8de63a527c32ad9ec73f4b9e333bc for the named original 7-Zip menu/dialog/folder preview and owned drawing/control profiles. Public delivery is being finalized. This is not general Windows GUI qualification.
 
 ## Copied image tiles
 
@@ -48,3 +47,7 @@ not total OS performance. M14.15 remains mandatory whole-system optimization.
 References: [toolbar contracts](https://learn.microsoft.com/windows/win32/controls/toolbar-control-reference),
 [button states](https://learn.microsoft.com/windows/win32/controls/toolbar-button-states),
 [image-list draw flags](https://learn.microsoft.com/windows/win32/controls/imagelistdrawflags).
+
+## Final named native profile
+
+The 74-task frozen campaign passes: 60 native groups, 13 host groups, 695 exact compiled inputs and the exact enabled-device VMware starter. [Acceptance](../../evidence/M14/5/acceptance-results.json), [release limits](../releases/m145-v0.14.5.md). Earlier candidate waits/failures above are historical development observations, not the final result. Notepad++/Sumatra interfaces, complete original-app tasks and final M14.15 optimization remain unqualified.
