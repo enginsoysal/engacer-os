@@ -4,7 +4,7 @@ extern unsigned desktop_native_windows144(void);
 typedef struct ui_draw_page144 {struct ui_draw_page144*next;wui_draw144 items[7];} ui_draw_page144;
 _Static_assert(sizeof(ui_draw_page144)<=4096,"Draw page quota");
 static unsigned ui_draw_pages144;
-typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;wui_rect144 normal_bounds;unsigned restore_max;} ui_window144;
+typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;wui_rect144 normal_bounds;unsigned restore_max,menu_count,menu_capacity;ui_draw_page144*menu_draws;} ui_window144;
 _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
@@ -37,7 +37,7 @@ static void ui_destroy144(uint64_t handle){
  /* Parent teardown is bounded by the global window quota. Owners are distinct. */
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&(ui_windows144[i]->view.description.parent==handle||ui_windows144[i]->view.description.owner==handle))ui_destroy144(ui_windows144[i]->view.handle);
  for(unsigned i=0;i<THREADS142;++i)if(ui_queues144[w->space][i])wui_purge144(ui_queues144[w->space][i],handle);
- ui_draw_page144*draw=w->draws;while(draw){ui_draw_page144*next=draw->next;ui_free144(draw);--ui_draw_pages144;draw=next;}
+ for(unsigned surface=0;surface<2;++surface){ui_draw_page144*draw=surface?w->menu_draws:w->draws;while(draw){ui_draw_page144*next=draw->next;ui_free144(draw);--ui_draw_pages144;draw=next;}}
  if(ui_focus144[w->space]==handle)ui_focus144[w->space]=0;if(ui_capture144[w->space]==handle)ui_capture144[w->space]=0;if(ui_capture_owner144==handle)ui_capture_owner144=0;ui_timer_release144(w->space,w->thread,handle);unsigned slot=(unsigned)(handle&255);ui_windows144[slot]=0;ui_free144(w);++ui_revision144;
 }
 static void ui_thread_release144(unsigned space,unsigned thread){
@@ -61,7 +61,8 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_NORMAL144){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(argument==2)return pointer?-87:(int64_t)w->restore_max;if(argument==3){if(pointer>1||w->thread!=current142)return -87;w->restore_max=(unsigned)pointer;return 0;}if(argument>1)return -87;if(!argument)return user8(pointer,&w->normal_bounds,sizeof(w->normal_bounds),1)?-998:0;if(w->thread!=current142)return -5;wui_description144 d=w->view.description;if(user8(pointer,&d.bounds,sizeof(d.bounds),0))return -998;unsigned error=ui_description144(&d,handle);if(error)return -(int64_t)error;w->normal_bounds=d.bounds;return 0;}
  if(op==WUI_FOCUS144||op==WUI_CAPTURE144)return pointer?-87:ui_focus_call144(op,handle,argument);
  if(op==WUI_TIMER144)return argument?-87:ui_timer_set144(handle,pointer);
- if(op==WUI_DRAW144||op==WUI_MEASURE144)return ui_draw_call144(op,handle,pointer,argument);
+ if(op==WUI_DRAW144||op==WUI_MEASURE144||op==WUI_MENUDRAW145)return ui_draw_call144(op,handle,pointer,argument);
+ if(op==WUI_MENUBAR145){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;if(pointer||w->view.description.parent||(argument&&argument!=24))return -87;w->view.menu_height=(unsigned)argument;if(!argument)w->menu_count=0;w->view.revision=++ui_revision144;return 0;}
  if(op==WUI_CLIPFORMAT144)return handle||argument?-87:clip_register144(pointer);
  if(op==WUI_CLIPNAME144)return clip_name144(handle,pointer,argument);
  if(op==WUI_METRICS144){

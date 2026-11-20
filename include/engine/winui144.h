@@ -6,7 +6,7 @@
 #define WUI_QUEUE144 64u
 #define WUI_APP_QUEUE144 56u
 #define WUI_HANDLE144 UINT64_C(0x5744000000000000)
-enum {WUI_CREATE144=1,WUI_DESTROY144,WUI_UPDATE144,WUI_POST144,WUI_PEEK144,WUI_WAIT144,WUI_THREAD_POST144,WUI_QUERY144,WUI_QUIT144,WUI_METRICS144,WUI_CURSOR144,WUI_CLIPFORMAT144,WUI_CLIPNAME144,WUI_DRAW144,WUI_MEASURE144,WUI_TIMER144,WUI_FOCUS144,WUI_CAPTURE144,WUI_NORMAL144};
+enum {WUI_CREATE144=1,WUI_DESTROY144,WUI_UPDATE144,WUI_POST144,WUI_PEEK144,WUI_WAIT144,WUI_THREAD_POST144,WUI_QUERY144,WUI_QUIT144,WUI_METRICS144,WUI_CURSOR144,WUI_CLIPFORMAT144,WUI_CLIPNAME144,WUI_DRAW144,WUI_MEASURE144,WUI_TIMER144,WUI_FOCUS144,WUI_CAPTURE144,WUI_NORMAL144,WUI_MENUBAR145,WUI_MENUDRAW145};
 typedef struct {int32_t x,y,width,height;} wui_rect144;
 /* Kind 4 carries at most 128 straight-alpha ARGB pixels, never a user pointer. */
 typedef struct {wui_rect144 bounds,clip;uint32_t kind,color;union {char text[512];uint32_t pixels[128];};} wui_draw144;
@@ -16,7 +16,8 @@ typedef struct {uint64_t id,callback;uint32_t period,reserved;} wui_timer144;
 typedef struct {uint64_t window,wparam,lparam;uint32_t message,time;int32_t x,y;uint32_t reserved[2];} wui_message144;
 typedef struct {uint64_t window;uint32_t first,last,remove,reserved;} wui_filter144;
 typedef struct {uint64_t parent,owner;wui_rect144 bounds;uint32_t style,exstyle,visible,enabled;uint16_t title[128],class_name[64];} wui_description144;
-typedef struct {uint64_t handle;wui_description144 description;uint32_t process,thread,revision,reserved;char caption[384];} wui_view144;
+/* menu_height occupies the former reserved word; the copied record size is stable. */
+typedef struct {uint64_t handle;wui_description144 description;uint32_t process,thread,revision,menu_height;char caption[384];} wui_view144;
 #ifndef W8_USER
 unsigned w8_ui_at144(unsigned,wui_view144*);
 unsigned w8_ui_draw_at144(uint64_t,unsigned,wui_draw144*);
@@ -29,5 +30,7 @@ unsigned w8_ui_normal144(uint64_t,wui_rect144*);
 unsigned w8_ui_restore_max144(uint64_t);
 unsigned w8_ui_visible_roots144(void);
 unsigned w8_ui_style145(uint64_t,uint32_t *);
+unsigned w8_ui_menuheight145(uint64_t);
+unsigned w8_ui_menudraw_at145(uint64_t,unsigned,wui_draw144*);
 #endif
 #endif

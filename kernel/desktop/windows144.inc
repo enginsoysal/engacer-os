@@ -2,34 +2,34 @@
 static uint64_t foreign_focus144;
 static desktop_rect foreign_clip144;
 static desktop_rect foreign_intersect144(desktop_rect a,desktop_rect b){int left=a.x>b.x?a.x:b.x,top=a.y>b.y?a.y:b.y,right=a.x+a.width<b.x+b.width?a.x+a.width:b.x+b.width,bottom=a.y+a.height<b.y+b.height?a.y+a.height:b.y+b.height;return(desktop_rect){left,top,right>left?right-left:0,bottom>top?bottom-top:0};}
+static void foreign_commands145(uint64_t handle,int x,int y,desktop_rect clip,unsigned menu){wui_draw144 draw;
+ for(unsigned n=0;menu?w8_ui_menudraw_at145(handle,n,&draw):w8_ui_draw_at144(handle,n,&draw);++n){
+  desktop_rect bounded=foreign_intersect144(clip,(desktop_rect){x+draw.clip.x,y+draw.clip.y,draw.clip.width,draw.clip.height});if(!bounded.width||!bounded.height)continue;
+  gui7_clip((unsigned)bounded.x,(unsigned)bounded.y,(unsigned)bounded.width,(unsigned)bounded.height);
+  if(draw.kind==1)rectangle((desktop_rect){x+draw.bounds.x,y+draw.bounds.y,draw.bounds.width,draw.bounds.height},draw.color);
+  else if(draw.kind==2)text(x+draw.bounds.x,y+draw.bounds.y,draw.text,1,draw.color);
+  else if(draw.kind==4)ui145_argb_tile(x+draw.bounds.x,y+draw.bounds.y,(unsigned)draw.bounds.width,(unsigned)draw.bounds.height,draw.pixels);
+ }
+}
 /* One bounded traversal stack: legal HWND nesting must not recurse on the kernel stack. */
 static void foreign_draw_node144(uint64_t handle,int x,int y,desktop_rect clip){
- typedef struct {uint64_t handle;int x,y;desktop_rect clip;unsigned next,painted;} frame144;
- frame144 frames[WUI_WINDOWS144];unsigned count=1;frames[0]=(frame144){handle,x,y,clip,0,0};
- wui_draw144 draw;wui_view144 child;
+ typedef struct {uint64_t handle,last_child;int x,y;desktop_rect clip;unsigned phase,painted;} frame144;
+ frame144 frames[WUI_WINDOWS144];unsigned count=1;frames[0]=(frame144){.handle=handle,.x=x,.y=y,.clip=clip};
+ wui_view144 child;
  while(count){frame144*node=frames+count-1;
   if(node->clip.width<=0||node->clip.height<=0){--count;continue;}
-  if(!node->painted){node->painted=1;
-   for(unsigned n=0;w8_ui_draw_at144(node->handle,n,&draw);++n){
-    desktop_rect bounded=foreign_intersect144(node->clip,(desktop_rect){node->x+draw.clip.x,node->y+draw.clip.y,draw.clip.width,draw.clip.height});
-    if(!bounded.width||!bounded.height)continue;
-    gui7_clip((unsigned)bounded.x,(unsigned)bounded.y,(unsigned)bounded.width,(unsigned)bounded.height);
-    if(draw.kind==1)rectangle((desktop_rect){node->x+draw.bounds.x,node->y+draw.bounds.y,draw.bounds.width,draw.bounds.height},draw.color);
-    else if(draw.kind==2)text(node->x+draw.bounds.x,node->y+draw.bounds.y,draw.text,1,draw.color);
-    else if(draw.kind==4)ui145_argb_tile(node->x+draw.bounds.x,node->y+draw.bounds.y,(unsigned)draw.bounds.width,(unsigned)draw.bounds.height,draw.pixels);
-   }
-  }
+  if(!node->painted){node->painted=1;foreign_commands145(node->handle,node->x,node->y,node->clip,0);}
   unsigned descended=0;
-  while(node->next<WUI_WINDOWS144){unsigned slot=node->next++;
-   if(!w8_ui_at144(slot,&child)||child.description.parent!=node->handle||!child.description.visible)continue;
+  while(node->phase<2){unsigned found=0;wui_view144 candidate;for(unsigned slot=0;slot<WUI_WINDOWS144;++slot){if(!w8_ui_at144(slot,&candidate)||candidate.description.parent!=node->handle||!candidate.description.visible||((candidate.description.exstyle&8)!=0)!=node->phase||candidate.handle<=node->last_child)continue;if(!found||candidate.handle<child.handle){child=candidate;found=1;}}
+   if(!found){++node->phase;node->last_child=0;continue;}node->last_child=child.handle;
    wui_rect144 b=child.description.bounds;int border=child.description.style&0x00800000?1:0;
    desktop_rect bounded=foreign_intersect144(node->clip,(desktop_rect){node->x+b.x+border,node->y+b.y+border,b.width-border*2,b.height-border*2});
-   if(count<WUI_WINDOWS144){frames[count++]=(frame144){child.handle,node->x+b.x+border,node->y+b.y+border,bounded,0,0};descended=1;break;}
+   if(count<WUI_WINDOWS144){frames[count++]=(frame144){.handle=child.handle,.x=node->x+b.x+border,.y=node->y+b.y+border,.clip=bounded};descended=1;break;}
   }
   if(!descended)--count;
  }
 }
-static void foreign_draw144(const desktop_window*w,uint64_t handle){desktop_rect clip=foreign_intersect144(foreign_clip144,(desktop_rect){w->bounds.x+1,w->bounds.y+40,w->bounds.width-2,w->bounds.height-41});foreign_draw_node144(handle,w->bounds.x+1,w->bounds.y+40,clip);}
+static void foreign_draw144(const desktop_window*w,uint64_t handle){int menu=(int)w8_ui_menuheight145(handle);if(menu){desktop_rect bar=foreign_intersect144(foreign_clip144,(desktop_rect){w->bounds.x+1,w->bounds.y+40,w->bounds.width-2,menu});foreign_commands145(handle,w->bounds.x+1,w->bounds.y+40,bar,1);}desktop_rect clip=foreign_intersect144(foreign_clip144,(desktop_rect){w->bounds.x+1,w->bounds.y+40+menu,w->bounds.width-2,w->bounds.height-41-menu});foreign_draw_node144(handle,w->bounds.x+1,w->bounds.y+40+menu,clip);}
 
 static unsigned foreign_cursor_kind144(uint64_t token,unsigned x,unsigned y){desktop_window*w=desktop_lookup(&model,token);if(!w||!apps[w-model.windows].foreign144||(int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)return UINT32_MAX;unsigned id=w8_ui_cursor144(apps[w-model.windows].foreign144);return id==0?6:id==32513?1:id==32644?2:id==32645?3:id==32642?4:id==32643?5:0;}
 static __attribute__((noinline)) void foreign_sync144(void){
@@ -46,7 +46,7 @@ static __attribute__((noinline)) void foreign_sync144(void){
   else if(w->bounds.x!=r.x||w->bounds.y!=r.y||w->bounds.width!=r.width||w->bounds.height!=r.height||w->minimized!=((v.description.style&0x20000000)!=0)){
    desktop_rect b=w->bounds;w8_ui_place144(v.handle,(wui_rect144){b.x,b.y,b.width,b.height},1u|(w->minimized?2u:0u)|(window_state_for11(token)->mode==1?4u:0u));
    if(b.x!=r.x||b.y!=r.y)w8_ui_input144(v.handle,3,0,((uint32_t)b.x&65535)|((uint64_t)((uint32_t)b.y&65535)<<16));
-   if(b.width!=r.width||b.height!=r.height||w->minimized!=((v.description.style&0x20000000)!=0))w8_ui_input144(v.handle,5,w->minimized?1:0,(w->minimized?0u:(uint32_t)(b.width-2))|((uint64_t)(w->minimized?0u:(uint32_t)(b.height-41))<<16));
+   if(b.width!=r.width||b.height!=r.height||w->minimized!=((v.description.style&0x20000000)!=0))w8_ui_input144(v.handle,5,w->minimized?1:0,(w->minimized?0u:(uint32_t)(b.width-2))|((uint64_t)(w->minimized?0u:(uint32_t)(b.height-41-(int)v.menu_height))<<16));
    if(w8_ui_at144(i,&v))a->foreign_revision144=v.revision;
   }
  }
@@ -71,7 +71,8 @@ static unsigned foreign_key144(int key){
 static void foreign_pointer144(unsigned x,unsigned y,unsigned buttons,unsigned previous){
  uint64_t captured=w8_ui_capture_root144();uint64_t token=desktop_hit(&model,(int)x,(int)y);if(captured)for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144==captured){token=desktop_token(&model,i);break;}desktop_window*w=desktop_lookup(&model,token);if(!w||dragging||launcher)return;uint64_t handle=apps[w-model.windows].foreign144;if(!handle||(!captured&&((int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)))return;
  wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return;
- uint64_t lp=((x-(unsigned)(w->bounds.x+1))&65535)|((uint64_t)((y-(unsigned)(w->bounds.y+40))&65535)<<16);unsigned flags=(buttons&1?1:0)|(buttons&2?2:0);
+ unsigned menu=w8_ui_menuheight145(handle);if(!captured&&(int)y<w->bounds.y+40+(int)menu){if((buttons^previous)&1)w8_ui_input144(handle,buttons&1?0xa1:0xa2,5,(x&65535)|((uint64_t)(y&65535)<<16));return;}
+ uint64_t lp=((x-(unsigned)(w->bounds.x+1))&65535)|((uint64_t)((y-(unsigned)(w->bounds.y+40+menu))&65535)<<16);unsigned flags=(buttons&1?1:0)|(buttons&2?2:0);
  static uint64_t cursor_owner144;if(cursor_owner144!=handle){cursor_owner144=handle;w8_ui_input144(handle,0x20,handle,0x02000001);}
  w8_ui_input144(handle,0x200,flags,lp);
  if((buttons^previous)&1)w8_ui_input144(handle,buttons&1?0x201:0x202,flags,lp);

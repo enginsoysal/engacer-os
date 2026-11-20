@@ -343,6 +343,8 @@ static int MS f_UnmapViewOfFile(void*base){(void)base;last8(487);return 0;}
 #include "painting144.inc"
 #include "image-draw145.inc"
 #include "menus144.inc"
+#include "menubar145.inc"
+#include "menu-popup145.inc"
 #include "accelerators144.inc"
 #include "controls144.inc"
 #include "dialog145.inc"

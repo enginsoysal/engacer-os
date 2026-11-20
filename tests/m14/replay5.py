@@ -37,6 +37,16 @@ class ReplayLoader(importlib.abc.MetaPathFinder, importlib.abc.Loader):
         text = raw.decode('utf-8')
         for before, after in REPLACEMENTS:
             text = text.replace(before, after)
+        # The stable copied view's former reserved word now reports menu height.
+        # Keep the accepted observer intact; adjust its screen-coordinate oracle.
+        if module.__name__ == 'original_window_trace4':
+            before='title=wide(56,312),class_name=wide(312,440)'
+            assert before in text
+            text=text.replace(before,"menu_height=struct.unpack_from('<I',raw,452)[0],"+before)
+        if module.__name__ == 'original144_run':
+            before="node['bounds'][1]+40;scale="
+            assert before in text
+            text=text.replace(before,"node['bounds'][1]+40+node.get('menu_height',0);scale=")
         observed[source.relative_to(ROOT).as_posix()] = {
             'canonical_sha256': hashlib.sha256(raw).hexdigest(),
             'executed_sha256': hashlib.sha256(text.encode('utf-8')).hexdigest(),
