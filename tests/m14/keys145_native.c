@@ -22,7 +22,7 @@ static void say(const char*s){unsigned n=0,w;while(s[n])++n;WriteFile(GetStdHand
 static void check(int ok,const char*s){if(!ok){say("M145_KEYS_FAIL ");say(s);say("\n");ExitProcess(1);}}
 static I procedure(H h,unsigned m,H wp,I lp){
  if(m==0x100&&wp=='A'){
-  if(!key_checked){check(GetKeyState('A')&0x8000,"consumed real key down");MSG next;check(PeekMessageW(&next,h,0x101,0x101,0)&&next.wp=='A'&&(GetKeyState('A')&0x8000),"no-remove peek preserves down state");check(PeekMessageW(&next,h,0x101,0x101,1)&&!(GetKeyState('A')&0x8000),"removing real key up changes state");key_checked=1;check(PostMessageW(h,0x100,'A',1),"post ordinary key message");}
+  if(!key_checked){check(GetKeyState('A')&0x8000,"consumed real key down");Sleep(150);MSG next;check(PeekMessageW(&next,h,0x101,0x101,0)&&next.wp=='A'&&(GetKeyState('A')&0x8000),"no-remove peek preserves down state");check(PeekMessageW(&next,h,0x101,0x101,1)&&!(GetKeyState('A')&0x8000),"removing real key up changes state");key_checked=1;check(PostMessageW(h,0x100,'A',1),"post ordinary key message");}
   else{check(!(GetKeyState('A')&0x8000),"posted message cannot fabricate native key state");posted_checked=1;say("M145_KEYS_QUEUE_PASS\n");}return 0;
  }
  if(m==0x200){int point[2];for(unsigned n=0;n<20;++n)check(GetCursorPos(point)&&point[0]>=0&&point[1]>=0,"pure cursor query under input");return 0;}

@@ -80,3 +80,27 @@ the normal input consumer retains ownership of the edge queue. The owned
 native keyboard fixture stresses cursor queries, removal versus peeking,
 posted messages, and delayed modifier/mouse state. These source changes must
 pass native tests before being described as qualified behavior.
+
+Development candidate `f80837a0dfa91d1a26a1b511f85393d4` binds 684 compiled
+inputs to `a6b9c143a2edb34dda1778ac5abd0ec2f6414b1b`. Compact installation
+and two disk-only boots, the original MSI/console lifecycle and all 106 payload
+hashes pass. The owned list fixture now passes the published image-list
+assignment/retrieval as well as selection, activation, veto and reentrant-model
+checks. The owned keyboard fixture passes actual input, no-remove peeking,
+posted-message refusal and a callback delayed beyond physical modifier/mouse
+release; both fixtures retain zero pages after completion. Supporting host
+checks cover 8,704 modifier/key assertions and 100,000 queue operations. The
+complete queue structure measures 3,376 bytes, still one lazy page; the older
+queue report's 3,072-byte field counts its message slots only.
+
+Original Documents activation now passes the former GetKeyState stop and reaches
+the missing SHGetSpecialFolderPathW contract. The follow-up source resolves
+physical user folders through USERPROFILE and the existing checked file provider;
+it does not expose C:\ root or virtual namespace items as physical directories.
+A false create flag never creates a missing folder. A true flag attempts actual
+directory creation and verifies the result. Unsupported folders return failure.
+This follow-up awaits a fresh frozen build and original navigation test.
+
+The input contract follows Microsoft's [GetKeyboardState](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardstate)
+and [GetKeyState](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeystate)
+definitions. Physical-folder behavior follows [SHGetSpecialFolderPathW](https://learn.microsoft.com/windows/win32/api/shlobj_core/nf-shlobj_core-shgetspecialfolderpathw).
