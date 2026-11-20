@@ -1,0 +1,4 @@
+{
+  "qualified": false,
+  "scope": "Observer incorrectly expected About from the original Info toolbar button. The bundled upstream App.cpp maps it to IDM_PROPERTIES, which has no selected item in the initial root view. No native About failure is established. The observer also attempted a QMP read after context exit; preserve both errors, never count this as a pass."
+}

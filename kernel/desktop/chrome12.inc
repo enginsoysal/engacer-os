@@ -30,9 +30,10 @@ static void window_caption12(desktop_window*w){
 #endif
  if((w->app==FILES||w->app==EDITOR)&&a->path[0]){const char*name=a->path;for(unsigned i=0;a->path[i];++i)if(a->path[i]=='/'&&a->path[i+1])name=a->path+i+1;copy(title,a->dirty?"* ":"",sizeof(title));append(title,equal(a->path,"/")?"System drive":name,sizeof(title));append(title," - ",sizeof(title));append(title,titles[w->app],sizeof(title));}
  if(w->app==FILES&&a->usb_mode10)files_title12(a,title,sizeof(title));
- ui73_fit(r.x+44,r.y+11,r.width>188?r.width-188:0,title,UI12_BODY,active?p.ink:p.muted);
+ unsigned reserve=56+(window_caption_allowed145(w,1)?44:0)+(window_caption_allowed145(w,2)?44:0);ui73_fit(r.x+44,r.y+11,r.width>(int)(reserve+44)?r.width-reserve-44:0,title,UI12_BODY,active?p.ink:p.muted);
  window_state11*s=window_state_for11(token);
  for(unsigned part=1;part<=4;++part){
+  if(!window_caption_allowed145(w,part))continue;
   desktop_rect button_rect=window_control_rect12(w,part);unsigned action=W12_MIN+part-1,state=enabled?component_state12(token,action):UI12_DISABLED;
   ui12_style style=ui12_caption_style(p,active,part,state);
   if(state&(UI12_HOVER|UI12_PRESSED|UI12_FOCUS))ui73_round(button_rect.x,button_rect.y,button_rect.width,button_rect.height,4,style.fill);
@@ -45,6 +46,7 @@ static void window_caption12(desktop_window*w){
 static unsigned window_action12(uint64_t token,unsigned command){
  if(command<W12_MIN||command>W12_MENU)return 0;
  desktop_window*w=desktop_lookup(&model,token);if(!w||window_disabled144(w)||file_block_owner11(token))return 1;
+ if(!window_caption_allowed145(w,command-W12_MIN+1))return 1;
  if(command==W12_CLOSE){close_window(token,0);task_damage();}
  else if(command==W12_MIN){desktop_minimize(&model,token,1);task_damage();}
  else if(command==W12_TOGGLE){window_state11*s=window_state_for11(token);if(s)window_mode11(token,s->mode?0:1);}

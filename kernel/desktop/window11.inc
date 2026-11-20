@@ -25,6 +25,14 @@ static __attribute__((noinline)) unsigned window_disabled144(desktop_window*w){
  (void)w;
 #endif
  return 0;}
+static uint32_t window_style145(desktop_window*w){
+#ifdef ENGINE_M8
+ if(w&&apps[w-model.windows].foreign144){uint32_t style=0;return w8_ui_style145(apps[w-model.windows].foreign144,&style)?style:0;}
+#endif
+ return w?UINT32_MAX:0;
+}
+static unsigned window_caption_allowed145(desktop_window*w,unsigned part){uint32_t style=window_style145(w);if(!(style&0x80000))return 0;return part==1?(style&0x20000)!=0:part==2?(style&0x10000)!=0:part==3||part==4;}
+static unsigned window_sizable145(desktop_window*w){return(window_style145(w)&0x40000)!=0;}
 static void window_minimum_for144(desktop_window*w,int*width,int*height){window_minimum11(w->app,width,height);
 #ifdef ENGINE_M8
  if(apps[w-model.windows].foreign144){*width=DESKTOP_MIN_WIDTH;*height=DESKTOP_MIN_HEIGHT;}
@@ -32,15 +40,16 @@ static void window_minimum_for144(desktop_window*w,int*width,int*height){window_
 }
 static desktop_rect window_fit11(desktop_rect r){if(r.width>(int)model.width)r.width=model.width;if(r.height>(int)model.height-60)r.height=model.height-60;if(r.x+r.width>(int)model.width)r.x=(int)model.width-r.width;if(r.y+r.height>(int)model.height-60)r.y=(int)model.height-60-r.height;if(r.x<0)r.x=0;if(r.y<0)r.y=0;return r;}
 static void window_admit11(uint64_t token){desktop_window*w=desktop_lookup(&model,token);if(!w)return;int minw,minh;window_minimum_for144(w,&minw,&minh);desktop_rect r=w->bounds;if(w->app<20&&appearance11.normal[w->app].width)r=appearance11.normal[w->app];if(r.width<minw)r.width=minw;if(r.height<minh)r.height=minh;desktop_place(&model,token,window_fit11(r));window_state11*s=window_state_for11(token);s->normal=w->bounds;s->mode=0;}
-static unsigned window_snap_allowed11(desktop_window*w){int minw,minh;window_minimum_for144(w,&minw,&minh);return (int)model.width/2>=minw;}
+static unsigned window_snap_allowed11(desktop_window*w){if(!window_sizable145(w))return 0;int minw,minh;window_minimum_for144(w,&minw,&minh);return (int)model.width/2>=minw;}
 static void window_mode11(uint64_t token,unsigned mode){desktop_window*w=desktop_lookup(&model,token);window_state11*s=window_state_for11(token);if(!w||!s||window_disabled144(w))return;
+ if((mode==1&&!window_caption_allowed145(w,2))||(mode>=2&&!window_sizable145(w)))return;
  if(mode>=2&&!window_snap_allowed11(w)){copy(shell_notice,"This app needs more room. Maximize it or use a wider desktop.",96);whole();return;}
  if(!s->mode&&mode)s->normal=w->bounds;
  desktop_rect r=s->normal;if(mode==1)r=(desktop_rect){0,0,model.width,model.height-60};
  if(mode==2||mode==3){int left=mode==2?0:(int)model.width/2;r=(desktop_rect){left,0,(int)model.width-left,(int)model.height-60};if(mode==2)r.width=model.width/2;}
  launcher=context11=0;s->mode=mode;desktop_place(&model,token,r);desktop_focus11=0;desktop_focus(&model,token);control_active=0;whole();
 }
-static unsigned window_edges11(desktop_window*w,int x,int y){if(!w||window_disabled144(w)||file_block_owner11(desktop_token(&model,w-model.windows)))return 0;window_state11*s=window_state_for11(desktop_token(&model,w-model.windows));if(s&&s->mode==1)return 0;desktop_rect r=w->bounds;unsigned e=0;if(x<r.x+6)e|=1;if(x>=r.x+r.width-6)e|=2;if(y<r.y+6)e|=4;if(y>=r.y+r.height-6)e|=8;if(x>=r.x+r.width-18&&y>=r.y+r.height-18)e=10;return e;}
+static unsigned window_edges11(desktop_window*w,int x,int y){if(!w||!window_sizable145(w)||window_disabled144(w)||file_block_owner11(desktop_token(&model,w-model.windows)))return 0;window_state11*s=window_state_for11(desktop_token(&model,w-model.windows));if(s&&s->mode==1)return 0;desktop_rect r=w->bounds;unsigned e=0;if(x<r.x+6)e|=1;if(x>=r.x+r.width-6)e|=2;if(y<r.y+6)e|=4;if(y>=r.y+r.height-6)e|=8;if(x>=r.x+r.width-18&&y>=r.y+r.height-18)e=10;return e;}
 static void window_caption11(desktop_window*w){
 #ifdef ENGINE_M12
  window_caption12(w);
@@ -70,6 +79,7 @@ desktop_rect r=w->bounds;uint64_t token=desktop_token(&model,w-model.windows);ap
 #endif
 }
 static void window_drag_begin11(i11_target target){desktop_window*w=desktop_lookup(&model,target.window);window_state11*s=window_state_for11(target.window);if(!w||!s||window_disabled144(w))return;window_before11=w->bounds;window_mode_before11=s->mode;window_normal_before11=s->normal;
+ if((target.action==31003||(target.action>=31011&&target.action<=31025))&&!window_sizable145(w))return;
  dragging=1;drag_window=target.window;drag_x=interaction11.x;drag_y=interaction11.y;window_drag_edges11=target.action>=31010&&target.action<=31025?target.action-31010:target.action==31003?10:0;drag_resize=!!window_drag_edges11;
  if(!drag_resize&&s->mode){int offset=(interaction11.x-w->bounds.x)*s->normal.width/w->bounds.width;desktop_rect r=s->normal;r.x=interaction11.x-offset;r.y=interaction11.y-18;s->mode=0;desktop_place(&model,target.window,r);}else if(drag_resize)s->mode=0;
  drag_bounds=w->bounds;window_snap_preview11=0;
@@ -84,7 +94,7 @@ static void window_drag_update11(unsigned x,unsigned y){desktop_window*w=desktop
 #ifdef ENGINE_M13
  &&!window_keyboard_move11
 #endif
- ?(y<8?1:x<12?2:x>model.width-13?3:0):0;if(preview>=2&&!window_snap_allowed11(w))preview=0;
+ ?(y<8?1:x<12?2:x>model.width-13?3:0):0;if(preview==1&&!window_caption_allowed145(w,2))preview=0;if(preview>=2&&!window_snap_allowed11(w))preview=0;
  if(preview!=window_snap_preview11){window_snap_preview11=preview;whole();}
  desktop_rect old=w->bounds;unsigned cache=!drag_resize&&!window_snap_preview11&&!model.damaged&&model.count&&model.order[model.count-1]==(unsigned)(w-model.windows);desktop_place(&model,drag_window,r);if(cache)(void)move_cached9(old,w->bounds);
 }
@@ -106,11 +116,11 @@ static unsigned window_menu11(i11_target t,unsigned x,unsigned y){desktop_window
  if((int)x<8)x=8;if((int)y<8)y=8;
 #endif
  file_menu_begin11(t.window,x,y);
- file_menu_add11("Restore",W11_RESTORE,s->mode!=0||w->minimized);file_menu_add11("Move (arrow keys)",W11_MOVE,!s->mode);file_menu_add11("Size (arrow keys)",W11_SIZE,!s->mode);file_menu_add11("Minimize",31002,1);file_menu_add11("Maximize",W11_MAX,s->mode!=1);file_menu_add11("Snap left",W11_LEFT,window_snap_allowed11(w));file_menu_add11("Snap right",W11_RIGHT,window_snap_allowed11(w));
+ file_menu_add11("Restore",W11_RESTORE,s->mode!=0||w->minimized);file_menu_add11("Move (arrow keys)",W11_MOVE,!s->mode);file_menu_add11("Size (arrow keys)",W11_SIZE,!s->mode&&window_sizable145(w));file_menu_add11("Minimize",31002,window_caption_allowed145(w,1));file_menu_add11("Maximize",W11_MAX,s->mode!=1&&window_caption_allowed145(w,2));file_menu_add11("Snap left",W11_LEFT,window_snap_allowed11(w));file_menu_add11("Snap right",W11_RIGHT,window_snap_allowed11(w));
 #ifdef ENGINE_M12
  file_menu_add11("Arrange windows...",W12_ARRANGE,1);
 #endif
- file_menu_add11("Close",31001,!file_block_owner11(t.window));copy(file_menu_reason11,"Move/size: arrow keys, Enter to keep, Escape to cancel.",128);file_menu_fit11();return 1;}
+ file_menu_add11("Close",31001,!file_block_owner11(t.window)&&window_caption_allowed145(w,3));copy(file_menu_reason11,"Move/size: arrow keys, Enter to keep, Escape to cancel.",128);file_menu_fit11();return 1;}
 static unsigned window_action11(uint64_t token,unsigned command){
  if(command>=W11_SWITCH&&command<W11_SWITCH+DESKTOP_WINDOWS){unsigned i=command-W11_SWITCH;
 #ifdef ENGINE_M12
@@ -118,6 +128,7 @@ static unsigned window_action11(uint64_t token,unsigned command){
 #endif
  if(switch_open11&&i<switch_count11&&desktop_lookup(&model,switch_tokens11[i])){desktop_focus11=0;desktop_focus(&model,switch_tokens11[i]);}switch_open11=0;control_active=0;whole();return 1;}
  if(command<W11_MAX||command>=W11_SWITCH)return 0;desktop_window*w=desktop_lookup(&model,token);if(!w||window_disabled144(w))return 1;
+ if(command==W11_SIZE&&!window_sizable145(w))return 1;
 #ifdef ENGINE_M12
  if(file_block_owner11(token)){copy(shell_notice,"Finish or cancel this window's dialog first.",96);whole();return 1;}
 #endif

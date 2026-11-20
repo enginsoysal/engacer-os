@@ -18,7 +18,8 @@ The original result is returned without truncation. A nested modal message loop
 uses the existing atomic blocking message wait; there is no polling task.
 
 The owner is disabled before initialization and re-enabled only if this call
-disabled it. Keyboard focus returns to the previous live window. Forward Tab,+default-button Enter and Cancel/Escape are routed within the modal hierarchy.
+disabled it. Keyboard focus returns to the previous live window. Forward Tab,
+default-button Enter and Cancel/Escape are routed within the modal hierarchy.
 Pointer buttons send real WM_COMMAND notifications. Callback, malformed-template,
 partial-creation, owner and process/thread cleanup require separate native tests.
 
@@ -28,6 +29,13 @@ dialogs, general group-navigation semantics and every control class are not
 implemented by this initial resource-dialog path. Unsupported classes/flags and
 quota exhaustion fail explicitly. This foundation does not qualify Notepad++
 or SumatraPDF execution or the complete M14 application corpus.
+
+Foreign caption actions follow the application's actual window styles.
+Dialogs without minimize/maximize boxes do not expose those controls, and
+fixed-size dialogs do not accept interactive resize or snap actions. The
+native desktop keeps its existing controls. Static dialog labels inherit the
+dialog background; the original parent can supply its system brush through
+WM_CTLCOLORSTATIC. Control painting revalidates ownership after that callback.
 
 References: [DialogBoxParam](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-dialogboxparamw),
 [EndDialog](https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enddialog),

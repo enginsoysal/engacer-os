@@ -120,3 +120,4 @@ unsigned w8_ui_normal144(uint64_t handle,wui_rect144*out){ui_window144*w=ui_look
 unsigned w8_ui_restore_max144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w?w->restore_max:0;}
 
 unsigned w8_ui_visible_roots144(void){unsigned count=0;for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&!ui_windows144[i]->view.description.parent&&ui_windows144[i]->view.description.visible)++count;return count;}
+unsigned w8_ui_style145(uint64_t handle,uint32_t*out){ui_window144*w=ui_lookup144(handle);if(!w||!out)return 0;*out=w->view.description.style;return 1;}

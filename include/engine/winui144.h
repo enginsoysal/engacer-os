@@ -28,5 +28,6 @@ uint64_t w8_ui_capture_root144(void);
 unsigned w8_ui_normal144(uint64_t,wui_rect144*);
 unsigned w8_ui_restore_max144(uint64_t);
 unsigned w8_ui_visible_roots144(void);
+unsigned w8_ui_style145(uint64_t,uint32_t *);
 #endif
 #endif
