@@ -27,6 +27,10 @@ void input13_usb_keyboard(unsigned,unsigned);
 void input13_pointer(int,int,unsigned);
 #endif
 void input10_toggle_caps(void);
+#ifdef ENGINE_M14
+unsigned input14_snapshot(void);
+unsigned input14_pointer_snapshot(void);
+#endif
 void input10_set_layout(unsigned);
 unsigned input10_hid(unsigned,unsigned);
 void input10_wheel(int);

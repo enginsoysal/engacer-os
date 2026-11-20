@@ -19,8 +19,8 @@ static int64_t list_message144(ui_window_runtime144*w,control_state144*c,unsigne
   int selection=-1;for(unsigned n=0;n<count;++n)if(indices[n]==(unsigned)m->selection)selection=(int)n;
   for(unsigned n=0;n<count;++n)if(indices[n]!=n){list_row144 saved=m->rows[n];unsigned at=n;while(indices[at]!=n){unsigned next=indices[at];m->rows[at]=m->rows[next];indices[at]=at;at=next;}m->rows[at]=saved;indices[at]=at;}
   m->selection=selection;m->sorting=0;free8(indices);free8(temporary);f_InvalidateRect(window,0,1);return 1;}
- if(msg==0x1003)return wp<4?(int64_t)m->images[wp]:0;
- if(msg==0x1002){if(wp>=4){last8(87);return 0;}HANDLE old=m->images[wp];m->images[wp]=(HANDLE)lp;return(int64_t)old;}
+ if(msg==0x1002)return wp<4?(int64_t)m->images[wp]:0;
+ if(msg==0x1003){if(wp>=4){last8(87);return 0;}HANDLE old=m->images[wp];m->images[wp]=(HANDLE)lp;return(int64_t)old;}
  if(msg==0x1037)return m->extended;
  if(msg==0x1036){unsigned old=m->extended;if(wp)m->extended=(old&~(unsigned)wp)|((unsigned)lp&(unsigned)wp);else m->extended=(unsigned)lp;return old;}
  if(msg==0x1004)return c->count;

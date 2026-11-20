@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "fixture_sha256": "829a31ddef3cfb4b6e76cf905c0b825d92fcee9ffcbb16775a7a868a75a98bfd",
+  "clone": {
+    "source_sha256": "1aee17bfd1fc5654fa7283696248cff7a64ac53d45e06a0781c8f38cf5b89429",
+    "clone_sha256": "1aee17bfd1fc5654fa7283696248cff7a64ac53d45e06a0781c8f38cf5b89429",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "scope": "Original granted Documents folder selection/browse/back task; not complete archive tasks or M14.5 acceptance",
+  "single_click_keeps_root": true,
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\original_list145_run.py\", line 27, in main\n    time.sleep(.6);point('Documents');p.down(True);p.down(False);p.down(True);p.down(False);p.drain();wait_for(g,lambda:'M145-navigation'in labels());report['documents_labels']=labels();c.shot(g,'original-documents')\n  File \"<project-root>\\tests\\m14\\original_window_trace4.py\", line 27, in wait_for\n    if state==3:raise AssertionError((raw[304:496].split(b'\\0')[0],output(g)))\nAssertionError: (b'Not implemented: user32.dll!GetKeyState', 'Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\\nRunning the original Windows executable in a protected process.\\n\\n\\nEngacer OS: Not implemented: user32.dll!GetKeyState\\n')\n"
+}

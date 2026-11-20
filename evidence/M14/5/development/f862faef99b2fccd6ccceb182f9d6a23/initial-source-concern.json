@@ -1,0 +1,6 @@
+{
+  "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+  "qualified": false,
+  "native_tests_run": false,
+  "reason": "Source edits continued while this development build ran. Its compiled-input consistency is not established. A fresh committed source-frozen build is required; no guest task or stage claim uses this candidate."
+}

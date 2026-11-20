@@ -1,5 +1,6 @@
 /* Private GUI capabilities. User callbacks never execute in this broker. */
 #include <engine/winqueue144.h>
+#include "keys145.inc"
 extern unsigned desktop_native_windows144(void);
 typedef struct ui_draw_page144 {struct ui_draw_page144*next;wui_draw144 items[7];} ui_draw_page144;
 _Static_assert(sizeof(ui_draw_page144)<=4096,"Draw page quota");
@@ -25,7 +26,7 @@ static int ui_find144(const wui_queue144*q,const wui_filter144*f){
   uint64_t child=m->window;for(unsigned depth=0;child&&depth<WUI_WINDOWS144;++depth){ui_window144*w=ui_lookup144(child);if(!w)break;child=w->view.description.parent;if(child==f->window)return (int)i;}
  }return -1;
 }
-static wui_queue144 *ui_queue144(unsigned space,unsigned thread,unsigned create){if(!ui_queues144[space][thread]&&create)ui_queues144[space][thread]=ui_page144();return ui_queues144[space][thread];}
+static wui_queue144 *ui_queue144(unsigned space,unsigned thread,unsigned create){if(!ui_queues144[space][thread]&&create){ui_queues144[space][thread]=ui_page144();if(ui_queues144[space][thread])ui_keys_initialize145(ui_queues144[space][thread]);}return ui_queues144[space][thread];}
 static unsigned ui_enqueue144(unsigned space,unsigned thread,const wui_message144*m,unsigned native){
  if(space>=SPACES142||!spaces142[space]||thread>=THREADS142)return 0;
  thread142*t=spaces142[space]->threads+thread;if(!t->state||t->state==T142_EXITED||t->exiting)return 0;
@@ -63,11 +64,18 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_TIMER144)return argument?-87:ui_timer_set144(handle,pointer);
  if(op==WUI_DRAW144||op==WUI_MEASURE144||op==WUI_MENUDRAW145)return ui_draw_call144(op,handle,pointer,argument);
  if(op==WUI_MENUBAR145){ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;if(pointer||w->view.description.parent||(argument&&argument!=24))return -87;w->view.menu_height=(unsigned)argument;if(!argument)w->menu_count=0;w->view.revision=++ui_revision144;return 0;}
+ if(op==WUI_KEYSTATE145){
+#ifdef ENGINE_M14
+  if(argument>1||(!argument&&(pointer||handle>255))||(argument&&(handle||!pointer)))return -87;wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;if(!argument)return q->keys[handle];return user8(pointer,q->keys,256,1)?-998:0;
+#else
+  return -50;
+#endif
+ }
  if(op==WUI_CLIPFORMAT144)return handle||argument?-87:clip_register144(pointer);
  if(op==WUI_CLIPNAME144)return clip_name144(handle,pointer,argument);
  if(op==WUI_METRICS144){
 #ifdef ENGINE_M73
-  if(handle||argument)return -87;unsigned width=ui73_width(),height=ui73_height(),x=0,y=0,buttons=0;usb_mouse_state(&x,&y,&buttons);wui_metrics144 metrics={width,height,height>60?height-60:0,ui73_scale(),(ui73_measure("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",1)/26+1)/2,16,x,y};return user8(pointer,&metrics,sizeof(metrics),1)?-998:0;
+  if(handle||argument)return -87;unsigned width=ui73_width(),height=ui73_height(),x=0,y=0,buttons=0;usb_mouse_peek145(&x,&y,&buttons);wui_metrics144 metrics={width,height,height>60?height-60:0,ui73_scale(),(ui73_measure("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",1)/26+1)/2,16,x,y};return user8(pointer,&metrics,sizeof(metrics),1)?-998:0;
 #else
   return -50;
 #endif
@@ -102,7 +110,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
   if(handle||!argument)return -87;wui_filter144 filter;if(user8(argument,&filter,sizeof(filter),0)||filter.reserved||filter.remove>1)return -87;
   if(filter.window&&filter.window!=UINT64_MAX&&!ui_owned144(filter.window))return -1400;
   wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;int index=ui_find144(q,&filter);
-  if(index>=0){if(op==WUI_WAIT144)return 0;if(user8(pointer,q->items+index,sizeof(wui_message144),1))return -998;if(filter.remove)wui_remove144(q,(unsigned)index);return 1;}
+  if(index>=0){if(op==WUI_WAIT144)return 0;if(user8(pointer,q->items+index,sizeof(wui_message144),1))return -998;if(filter.remove){wui_key_commit145(q->keys,q->items+index);wui_remove144(q,(unsigned)index);}return 1;}
   if(q->quit){if(op==WUI_WAIT144)return 0;wui_message144 quit={.message=0x12,.wparam=q->quit_code};if(user8(pointer,&quit,sizeof(quit),1))return -998;if(filter.remove)q->quit=0;return 1;}
   int64_t timer=ui_timer_peek144(&filter,pointer,op==WUI_WAIT144);if(timer)return timer;
   if(op==WUI_PEEK144)return 0;if(pointer)return -87;
@@ -112,7 +120,18 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
 }
 unsigned w8_ui_revision144(void){return ui_revision144;}
 unsigned w8_ui_at144(unsigned index,wui_view144*out){if(index>=WUI_WINDOWS144||!out||!ui_windows144[index])return 0;*out=ui_windows144[index]->view;return 1;}
-unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;if((message==0x10||message==7||(message>=0x100&&message<=0x209))&&!ui_enabled_chain144(w))return 0;handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={message==0x100||message==0x101?1u:0u,0}};return ui_enqueue144(w->space,w->thread,&m,1);}
+unsigned w8_ui_input144(uint64_t handle,unsigned message,uint64_t wp,uint64_t lp){ui_window144*w=ui_lookup144(handle);if(!w)return 0;if((message==0x10||message==7||(message>=0x100&&message<=0x209))&&!ui_enabled_chain144(w))return 0;handle=ui_input_target144(handle,message,&lp);w=ui_lookup144(handle);if(!w)return 0;wui_message144 m={.window=handle,.wparam=wp,.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={message==0x100||message==0x101||message==0x104||message==0x105?1u:0u,ui_input_snapshot145(message)}};return ui_enqueue144(w->space,w->thread,&m,1);}
+unsigned w8_ui_modifiers145(uint64_t root,unsigned snapshot){
+#ifdef ENGINE_M14
+ ui_window144*w=ui_lookup144(root);if(!w||!ui_enabled_chain144(w))return 0;wui_queue144*q=ui_queue144(w->space,w->thread,1);if(!q)return 0;unsigned raw=(snapshot>>8)&255;
+ static const uint8_t vk[8]={0x11,0x10,0x12,0x5b,0x11,0x10,0x12,0x5c},scan[8]={0x1d,0x2a,0x38,0x5b,0x1d,0x36,0x38,0x5c};
+ for(unsigned n=0;n<8;++n){unsigned bit=1u<<n;if(!((raw^q->modifiers_sent145)&bit))continue;unsigned down=(raw&bit)!=0,alt=n==2||n==6,message=alt?(down?0x104u:0x105u):(down?0x100u:0x101u);uint64_t lp=1u|((uint64_t)scan[n]<<16);if(n==3||n==4||n==6||n==7)lp|=1u<<24;if(raw&0x44)lp|=1u<<29;if(!down)lp|=UINT64_C(3)<<30;
+  uint64_t target=ui_input_target144(root,message,&lp);ui_window144*child=ui_lookup144(target);if(!child)return 0;wui_message144 m={.window=target,.wparam=vk[n],.lparam=lp,.message=message,.time=(uint32_t)(m3_clock_ticks()*10),.reserved={1,WUI_KEY_SNAPSHOT145|snapshot}};if(!ui_enqueue144(child->space,child->thread,&m,1))return 0;q->modifiers_sent145=(q->modifiers_sent145&~bit)|(raw&bit);
+ }return 1;
+#else
+ (void)root;(void)snapshot;return 0;
+#endif
+}
 unsigned w8_ui_cursor144(uint64_t handle){ui_window144*w=ui_lookup144(handle);return w?ui_cursors144[w->space]:32512;}
 unsigned w8_ui_place144(uint64_t handle,wui_rect144 bounds,unsigned flags){ui_window144*w=ui_lookup144(handle);if(!w||(flags&~7u)||bounds.width<0||bounds.height<0||bounds.width>16384||bounds.height>16384)return 0;if(!(flags&6u))w->normal_bounds=bounds;else if(!(w->view.description.style&0x21000000u))w->normal_bounds=w->view.description.bounds;w->view.description.bounds=bounds;w->view.description.visible=flags&1;unsigned old_style=w->view.description.style;w->view.description.style&=~0x31000000u;w->restore_max=(flags&2)&&((flags&4)||(old_style&0x01000000u));w->view.description.style|=(flags&1?0x10000000u:0)|(flags&2?0x20000000u:0)|((flags&4)&&!(flags&2)?0x01000000u:0);w->view.revision=++ui_revision144;return 1;}
 

@@ -56,3 +56,27 @@ Enter, veto preserving the earlier selection, callbacks that replace a list
 with the same number of different rows, and final resource cleanup. Original
 7-Zip navigation must be checked separately, including genuine file-provider
 errors and the existing path grants. Do not widen grants to make a UI test pass.
+
+## Input state and image-list correction in development
+
+A native fixture using the published SDK image-list messages exposed a second
+identifier error: GETIMAGELIST is 0x1002 and SETIMAGELIST is 0x1003. Earlier
+code reversed them, preventing original applications from assigning row icons.
+The corrected source is pending native qualification; the failing observation
+and the earlier selection-only pass are retained separately.
+
+Original 7-Zip folder activation also reached the missing GetKeyState API.
+The new implementation keeps 256 key bytes in the existing lazy thread queue
+page. Broker-created input carries a hardware snapshot; removing an input
+message updates that thread's state. PM_NOREMOVE and application-posted key
+messages do not fabricate transitions. GetKeyboardState copies those same
+bytes. Modifier and mouse snapshots retain the input-time state even when
+physical release occurs before the application consumes its queued message.
+This does not claim complete keyboard layouts, IME, or asynchronous key APIs.
+
+Review also found that the cursor-position metrics query consumed pending
+mouse edges. A separate read-only pointer snapshot now serves cursor queries;
+the normal input consumer retains ownership of the edge queue. The owned
+native keyboard fixture stresses cursor queries, removal versus peeking,
+posted messages, and delayed modifier/mouse state. These source changes must
+pass native tests before being described as qualified behavior.

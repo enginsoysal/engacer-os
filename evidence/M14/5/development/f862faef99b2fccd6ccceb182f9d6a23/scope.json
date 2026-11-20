@@ -2,5 +2,13 @@
   "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
   "qualified": false,
   "native_tests_run": false,
-  "reason": "Source edits continued while this development build ran. Its compiled-input consistency is not established. A fresh committed source-frozen build is required; no guest task or stage claim uses this candidate."
+  "status": "Fresh source-frozen rebuild verified; native tasks pending",
+  "compiled_source_commit": "ec1976a6beee4c170c11851b148ccc6a2e8c13bf",
+  "verified_compiled_inputs": 681,
+  "initial_concern_resolved": "The earlier claim that OS source changed during build9 was incorrect. OS files were last edited at 14:14:02 local time; build9 began at 14:14:50. A fresh committed-source rebuild produced the same build ID. No qualification relied on the initial concern or its earlier artifact.",
+  "timestamps": {
+    "last_os_edit": "2026-11-20 14:14:02 Europe/Berlin",
+    "build9_log_created": "2026-11-20 14:14:50 Europe/Berlin",
+    "fresh_build10_log_created": "2026-11-20 14:18:38 Europe/Berlin"
+  }
 }

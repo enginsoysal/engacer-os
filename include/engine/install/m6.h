@@ -43,4 +43,5 @@ void gui6_text(unsigned,unsigned,const char*,unsigned,uint32_t);
 void m6_pointer_report(int,int,unsigned);
 void usb_mouse_limits(unsigned,unsigned);
 void usb_mouse_state(unsigned*,unsigned*,unsigned*);
+void usb_mouse_peek145(unsigned*,unsigned*,unsigned*);
 #endif

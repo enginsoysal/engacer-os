@@ -57,6 +57,9 @@ static __attribute__((noinline)) void foreign_sync144(void){
  if(model.focused<DESKTOP_WINDOWS&&window_disabled144(model.windows+model.focused)){uint64_t owner=apps[model.focused].foreign144;for(unsigned n=model.count;n;--n){unsigned slot=model.order[n-1];if(!apps[slot].foreign144||model.windows[slot].minimized||window_disabled144(model.windows+slot))continue;wui_view144 view;if(w8_ui_at144((unsigned)(apps[slot].foreign144&255),&view)&&view.description.owner==owner){desktop_focus(&model,desktop_token(&model,slot));desktop_focus11=0;task_damage();break;}}}
  uint64_t focus=0;if(model.focused<DESKTOP_WINDOWS&&model.windows[model.focused].live&&!model.windows[model.focused].minimized&&!launcher)focus=apps[model.focused].foreign144;
  if(focus!=foreign_focus144){if(foreign_focus144)w8_ui_input144(foreign_focus144,8,focus,0);if(focus)w8_ui_input144(focus,7,foreign_focus144,0);foreign_focus144=focus;}
+#ifdef ENGINE_M14
+ if(focus)w8_ui_modifiers145(focus,input14_snapshot());
+#endif
 #ifdef ENGINE_M13
  if(!dragging&&!launcher){uint64_t token=desktop_hit(&model,(int)pointer_x,(int)pointer_y);unsigned kind=foreign_cursor_kind144(token,pointer_x,pointer_y);if(kind!=UINT32_MAX)graphics9_cursor_kind(kind);}
 #endif
@@ -72,10 +75,18 @@ static unsigned foreign_key144(int key){
 static void foreign_pointer144(unsigned x,unsigned y,unsigned buttons,unsigned previous){
  uint64_t captured=w8_ui_capture_root144();uint64_t token=desktop_hit(&model,(int)x,(int)y);if(captured)for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144==captured){token=desktop_token(&model,i);break;}desktop_window*w=desktop_lookup(&model,token);if(!w||dragging||launcher)return;uint64_t handle=apps[w-model.windows].foreign144;if(!handle||(!captured&&((int)x<=w->bounds.x||(int)x>=w->bounds.x+w->bounds.width-1||(int)y<w->bounds.y+40||(int)y>=w->bounds.y+w->bounds.height-1)))return;
  wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return;
+#ifdef ENGINE_M14
+ w8_ui_modifiers145(handle,input14_pointer_snapshot());
+#endif
  unsigned menu=w8_ui_menuheight145(handle);if(!captured&&(int)y<w->bounds.y+40+(int)menu){if((buttons^previous)&1)w8_ui_input144(handle,buttons&1?0xa1:0xa2,5,(x&65535)|((uint64_t)(y&65535)<<16));return;}
- uint64_t lp=((x-(unsigned)(w->bounds.x+1))&65535)|((uint64_t)((y-(unsigned)(w->bounds.y+40+menu))&65535)<<16);unsigned flags=(buttons&1?1:0)|(buttons&2?2:0);
+ unsigned modifiers=0;
+#ifdef ENGINE_M11
+ modifiers=input11_pointer_modifiers();
+#endif
+ uint64_t lp=((x-(unsigned)(w->bounds.x+1))&65535)|((uint64_t)((y-(unsigned)(w->bounds.y+40+menu))&65535)<<16);unsigned flags=(buttons&1?1:0)|(buttons&2?2:0)|(buttons&4?16:0)|(modifiers&1?8:0)|(modifiers&2?4:0);
  static uint64_t cursor_owner144;if(cursor_owner144!=handle){cursor_owner144=handle;w8_ui_input144(handle,0x20,handle,0x02000001);}
  w8_ui_input144(handle,0x200,flags,lp);
  if((buttons^previous)&1)w8_ui_input144(handle,buttons&1?0x201:0x202,flags,lp);
  if((buttons^previous)&2)w8_ui_input144(handle,buttons&2?0x204:0x205,flags,lp);
+ if((buttons^previous)&4)w8_ui_input144(handle,buttons&4?0x207:0x208,flags,lp);
 }

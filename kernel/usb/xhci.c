@@ -32,7 +32,17 @@ static unsigned mouse_press_x,mouse_press_y;
 typedef struct {uint64_t ms;unsigned x,y,buttons,modifiers;} mouse_edge11;
 static mouse_edge11 mouse_edges11[16];static unsigned mouse_head11,mouse_tail11,mouse_block11;static uint64_t mouse_overflows11,pointer_ms11;static unsigned pointer_modifiers11;
 uint64_t input11_pointer_ms(void){return pointer_ms11;}
-unsigned input11_pointer_modifiers(void){return pointer_modifiers11;}
+unsigned input11_pointer_modifiers(void){return pointer_modifiers11&15u;}
+#ifdef ENGINE_M14
+unsigned input14_pointer_snapshot(void){return pointer_modifiers11;}
+#endif
+static unsigned pointer_snapshot145(void){
+#ifdef ENGINE_M14
+ return input14_snapshot();
+#else
+ return input11_modifiers();
+#endif
+}
 #endif
 #endif
 static uint64_t mouse_events,key_events,irq_count,dma_pages;
@@ -80,7 +90,7 @@ void m6_pointer_report(int dx,int dy,unsigned buttons){
     if(mouse_block11&&!mouse_buttons)mouse_block11=0;
     if(mouse_buttons!=old_buttons&&!mouse_block11){unsigned next=(mouse_head11+1)&15,reported=mouse_buttons;
         if(next==mouse_tail11){mouse_head11=mouse_tail11=0;mouse_block11=mouse_buttons!=0;reported=0;++mouse_overflows11;input_feed(141);}
-        mouse_edges11[mouse_head11]=(mouse_edge11){m3_clock_ticks()*10,(unsigned)mouse_x,(unsigned)mouse_y,reported,input11_modifiers()};mouse_head11=(mouse_head11+1)&15;mouse_press_pending=1;}
+        mouse_edges11[mouse_head11]=(mouse_edge11){m3_clock_ticks()*10,(unsigned)mouse_x,(unsigned)mouse_y,reported,pointer_snapshot145()};mouse_head11=(mouse_head11+1)&15;mouse_press_pending=1;}
 #else
     if((mouse_buttons&1)&&!(old_buttons&1)&&!mouse_press_pending){mouse_press_x=(unsigned)mouse_x;mouse_press_y=(unsigned)mouse_y;mouse_press_pending=1;}
 #endif
@@ -462,6 +472,17 @@ void usb_mouse_limits(unsigned w,unsigned h){
  mouse_limit_x=w>9?(int)w-9:0;mouse_limit_y=h>15?(int)h-15:0;
 #endif
 }
+void usb_mouse_peek145(unsigned*x,unsigned*y,unsigned*b){
+ uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");*x=(unsigned)mouse_x;*y=(unsigned)mouse_y;*b=
+#ifdef ENGINE_M11
+ mouse_block11?0:
+#endif
+ mouse_buttons;
+#ifdef ENGINE_M73
+ extern unsigned ui73_scale(void);unsigned factor=ui73_scale();*x=*x*2/factor;*y=*y*2/factor;
+#endif
+ if(flags&512)__asm__ volatile("sti":::"memory");
+}
 void usb_mouse_state(unsigned*x,unsigned*y,unsigned*b){
     /* Snapshot the BSP-routed IRQ state without losing a press/release during repaint. */
     uint64_t flags;__asm__ volatile("pushfq; popq %0; cli":"=r"(flags)::"memory");
@@ -470,6 +491,9 @@ void usb_mouse_state(unsigned*x,unsigned*y,unsigned*b){
 #endif
 #ifdef ENGINE_M11
     if(mouse_head11!=mouse_tail11){mouse_edge11 edge=mouse_edges11[mouse_tail11];mouse_tail11=(mouse_tail11+1)&15;*x=edge.x;*y=edge.y;*b=edge.buttons;pointer_ms11=edge.ms;pointer_modifiers11=edge.modifiers;
+#ifdef ENGINE_M14
+ pointer_modifiers11|=(edge.buttons&7u)<<20;
+#endif
 #ifdef ENGINE_M13
     /* Button edges already carry an IRQ receipt timestamp rounded down to
        10 ms. Its latency is a conservative upper bound, not extra precision. */
@@ -481,7 +505,10 @@ void usb_mouse_state(unsigned*x,unsigned*y,unsigned*b){
 #endif
     else{
 #ifdef ENGINE_M11
- pointer_ms11=m3_clock_ticks()*10;pointer_modifiers11=input11_modifiers();
+ pointer_ms11=m3_clock_ticks()*10;pointer_modifiers11=pointer_snapshot145();
+#ifdef ENGINE_M14
+ pointer_modifiers11|=((mouse_block11?0:mouse_buttons)&7u)<<20;
+#endif
 #endif
  *x=(unsigned)mouse_x;*y=(unsigned)mouse_y;*b=
 #ifdef ENGINE_M11

@@ -25,8 +25,15 @@ int input10_take_wheel(void){return __atomic_exchange_n(&wheel10,0,__ATOMIC_ACQ_
 
 #ifdef ENGINE_M11
 static unsigned usb_modifiers11,legacy_modifiers11;
+#ifdef ENGINE_M14
+static unsigned usb_modifier_keys145;
+#endif
 unsigned input11_modifiers(void){return usb_modifiers11|legacy_modifiers11;}
-void input11_usb_modifiers(unsigned value){usb_modifiers11=((value&0x11)?1u:0u)|((value&0x22)?2u:0u)|((value&0x44)?4u:0u)|((value&0x88)?8u:0u);}
+void input11_usb_modifiers(unsigned value){
+#ifdef ENGINE_M14
+ usb_modifier_keys145=value&255u;
+#endif
+ usb_modifiers11=((value&0x11)?1u:0u)|((value&0x22)?2u:0u)|((value&0x44)?4u:0u)|((value&0x88)?8u:0u);}
 void input11_legacy_modifiers(unsigned value){legacy_modifiers11=value&15u;}
 #endif
 
@@ -46,4 +53,12 @@ void input13_legacy_key(unsigned code){
 }
 void input13_usb_keyboard(unsigned changed,unsigned held){__atomic_store_n(&usb_held21,held,__ATOMIC_RELEASE);if(changed)input13_note();}
 void input13_pointer(int dx,int dy,unsigned buttons){unsigned old=__atomic_exchange_n(&pointer_held21,buttons&7,__ATOMIC_ACQ_REL);if(dx||dy||old!=(buttons&7))input13_note();}
+#endif
+#ifdef ENGINE_M14
+unsigned input14_snapshot(void){unsigned raw=usb_modifier_keys145;
+#ifdef ENGINE_M13
+ static const unsigned scan[8]={29,42,56,219,157,54,184,220};for(unsigned n=0;n<8;++n)if(__atomic_load_n(legacy_pressed21+(scan[n]>>3),__ATOMIC_ACQUIRE)&(1u<<(scan[n]&7)))raw|=1u<<n;
+#endif
+ return input11_modifiers()|(raw<<8)|(caps10?0x10000u:0);
+}
 #endif

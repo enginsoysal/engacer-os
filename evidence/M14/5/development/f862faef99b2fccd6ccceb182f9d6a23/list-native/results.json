@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "build_id": "f862faef99b2fccd6ccceb182f9d6a23",
+  "scope": "Owned native list fixture; not complete original app navigation qualification",
+  "clone": {
+    "source_sha256": "1aee17bfd1fc5654fa7283696248cff7a64ac53d45e06a0781c8f38cf5b89429",
+    "clone_sha256": "1aee17bfd1fc5654fa7283696248cff7a64ac53d45e06a0781c8f38cf5b89429",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "7e9e877f40b8ee46225ad666b315e74b10e0bea7ff8483037c1e3eaf7e49c07f",
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\list145_run.py\", line 30, in main\n    at=len(g.log());p.desktop(12100,True,settle=False);g.wait('M8_CPL3_CREATED',at);wait(g,'M145_LIST_READY');p.drain();root=next(v for v in views(g)if v['class_name']=='List145');child=next(v for v in views(g)if v['class_name']=='SysListView32');scale=c.flag(g,'scale73')/2\n  File \"<project-root>\\tests\\m14\\list145_run.py\", line 12, in wait\n    if 'M145_LIST_FAIL'in text:raise AssertionError(text)\nAssertionError: Mapped original image: 7zFM.exe bytes=20480 source-fnv32=1670737178\nRunning the original Windows executable in a protected process.\n\nM145_LIST_FAIL published set/get image-list messages\n\n"
+}

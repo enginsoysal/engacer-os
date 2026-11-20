@@ -2,9 +2,19 @@
 import argparse,hashlib,json,os,struct,time,traceback
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
-from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output,wait
+from window144_native import ui,c,f,t,clone,library,StoppedDisk,task,output
 from original_window_trace4 import views
 from list145_build import build
+def wait(g,marker):
+ deadline=time.monotonic()+30
+ while time.monotonic()<deadline:
+  text=output(g)
+  if 'M145_LIST_FAIL'in text:raise AssertionError(text)
+  if marker in text:return text
+  state,command,status=struct.unpack('<3I',ui.memory(g,ui.symbol('info8',installed=True)[0],12))
+  if state==3 or(state==2 and status):raise AssertionError((state,command,status,text))
+  time.sleep(.03)
+ raise TimeoutError((marker,output(g)))
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--cycles',type=int,default=1);args=parser.parse_args();assert 1<=args.cycles<=21
  out=ROOT/'build/m14-native/stage5/list-native';out.mkdir(parents=True,exist_ok=True);c.OUT=out;fixture=build();meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage5/apps/results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
