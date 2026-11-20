@@ -137,3 +137,8 @@ The separate nesting admission bound returns ERROR_NOT_ENOUGH_QUOTA (1816), pres
 The final visual review of the 95-task candidate finds a separate native editor body loop that calls the scalar renderer once per UTF-8 byte. Filename/GDI pixel checks did not cover that loop. Its screenshot and all successful/incomplete scope records remain preserved; no public release is made from that candidate.
 
 The next implementation extracts at most four bytes for one validated scalar into a five-byte local buffer and uses that same unit for cursor-line calculation, wrapping and drawing. It adds no permanent buffer or font cache. CRLF is one visual line ending, standalone CR/LF breaks a line, and stored bytes remain unchanged. Legacy non-M14 drawing remains unchanged. Hosted tests cover retained ASCII/Unicode layout, actual scalar spans and 10000 malformed-input bounds cases. The owned Windows save fixture now writes actual UTF-8 CRLF bytes, and the independent-start test adds a fresh Inter RGB reference for the native editor body. Native execution and full new-candidate qualification are pending.
+
+
+## Qualified current native candidate
+
+Build `5f49030d412bd7f0587568c029becc2c` passes the 96-task campaign, 76 native/19 host acceptance groups and visual gate. The scalar/CRLF body correction matches 6240 independent reference pixels after disk-only startup. Stored bytes remain exact. Static image comparison independently recomputes baseline deltas: installed/live load pages +4/+9, writable static bytes +1492, overlapping the separately reported components. Public release/site verification remains pending; original full application tasks remain mandatory.

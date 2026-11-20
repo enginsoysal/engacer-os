@@ -1,0 +1,196 @@
+{
+  "passed": true,
+  "stage": "M14.6",
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "desktop_fixed": {
+    "bytes": 557684,
+    "sections": {
+      "bss": 557648,
+      "data": 36
+    },
+    "map_sha256": "fb9645e1fcc77996d6e522219d71125f377372f97fd42068d3605e76a6c34d25"
+  },
+  "font_coverage_bytes": 227452,
+  "protected_worker_physical_page_quota": 10000,
+  "protected_worker_virtual_page_quota": 32768,
+  "module_quota": 32,
+  "image_limit_bytes": 33554432,
+  "one_time_transition_stack_bytes": 16384,
+  "probe_peak_owned_pages": 216,
+  "probe_retained_pages": 0,
+  "profiles": {
+    "ordinary": {
+      "managed_stats": [
+        2072,
+        2072,
+        116010,
+        5
+      ],
+      "framebuffer_bytes": 8294400,
+      "retained_task_delta_pages": 0
+    },
+    "compact": {
+      "managed_stats": [
+        1047,
+        1047,
+        17703,
+        5
+      ],
+      "framebuffer_bytes": 4096000,
+      "retained_task_delta_pages": 0
+    },
+    "4k": {
+      "managed_stats": [
+        8147,
+        8147,
+        247080,
+        5
+      ],
+      "framebuffer_bytes": 33177600,
+      "retained_task_delta_pages": 0
+    }
+  },
+  "limits": [
+    "Synthetic loader probes are not original GUI app performance",
+    "Observer wall times and quanta are not measured Windows CPU time",
+    "M14.15 remains the whole-system performance and optimization gate"
+  ],
+  "runtime": {
+    "live_process_limit": 4,
+    "threads_per_process_limit": 16,
+    "root_metadata_pages_observed": 28,
+    "child_metadata_pages_observed": 32,
+    "shared_object_limit": 128,
+    "created_object_limit_per_process": 32,
+    "synchronization_grants_per_process": 64,
+    "handles_per_wait": 32,
+    "shared_registry_pages_unused": 0,
+    "shared_registry_pages_observed_blocked": 1,
+    "four_process_cancel_peak_group_owned_pages": 768,
+    "four_process_cancel_retained_pages_after_initialization": 0,
+    "four_process_blocked_halted_cpus_observed": 2,
+    "scope": "Component and protected ownership accounting; not total OS RAM, original GUI performance or a Windows speed comparison"
+  },
+  "original_window": {
+    "passed": true,
+    "build_id": "5f49030d412bd7f0587568c029becc2c",
+    "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+    "clone": {
+      "source_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+      "clone_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+      "logical_bytes": 2147483648,
+      "allocated_bytes": 20971520
+    },
+    "cycles": [
+      {
+        "cycle": 1,
+        "live_windows": 10,
+        "gui_owned_pages": 31,
+        "drawing_pages_included": 19,
+        "shared_registered_format_cache_pages": 1,
+        "managed_pages_while_original_open": 1541,
+        "idle_halted_cpu_observations": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "dispatch_quanta_during_observed_idle": 0,
+        "peak_group_owned_pages": 492,
+        "total_dispatch_quanta": 47,
+        "retained_pages": 1
+      },
+      {
+        "cycle": 2,
+        "live_windows": 10,
+        "gui_owned_pages": 31,
+        "drawing_pages_included": 19,
+        "shared_registered_format_cache_pages": 1,
+        "managed_pages_while_original_open": 1541,
+        "idle_halted_cpu_observations": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "dispatch_quanta_during_observed_idle": 0,
+        "peak_group_owned_pages": 492,
+        "total_dispatch_quanta": 38,
+        "retained_pages": 0
+      },
+      {
+        "cycle": 3,
+        "live_windows": 10,
+        "gui_owned_pages": 31,
+        "drawing_pages_included": 19,
+        "shared_registered_format_cache_pages": 1,
+        "managed_pages_while_original_open": 1541,
+        "idle_halted_cpu_observations": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "dispatch_quanta_during_observed_idle": 0,
+        "peak_group_owned_pages": 492,
+        "total_dispatch_quanta": 45,
+        "retained_pages": 0
+      }
+    ],
+    "limits": [
+      "Original window ownership measurements, not complete original-app work or whole-OS optimization",
+      "Dispatch quanta are not measured CPU time",
+      "Configured guest RAM is not measured OS consumption",
+      "M14.15 remains the whole-system CPU/RAM/storage optimization gate"
+    ],
+    "managed_pages_before_original": 1051,
+    "separate_framebuffer_bytes": 4096000,
+    "declared_persistent_pages": {
+      "worker_transition_stack_after_console_warmup": 4,
+      "session_registered_format_cache_after_first_gui": 1
+    }
+  },
+  "files_settings": {
+    "selected_unicode_table_bytes": 3344,
+    "shared_file_objects": 128,
+    "file_grants_per_process": 32,
+    "dirty_data_global_limit_bytes": 8388608,
+    "file_logical_limit_bytes": 67108864,
+    "registry_keys_per_user": 64,
+    "registry_values_per_user": 128,
+    "registry_value_data_limit_bytes": 2048,
+    "environment_max_utf16_units": 8192,
+    "find_handles_per_process": 16,
+    "zero_retention_cycles": 20,
+    "scope": "Bounded component accounting; not a total OS RAM or original GUI speed benchmark"
+  },
+  "interoperability": {
+    "global_objects_per_process": 128,
+    "session_text_clipboard_bytes_including_nul": 8192,
+    "transient_clipboard_staging_pages": 2,
+    "lazy_picker_request_pages": 1,
+    "filter_count_limit": 12,
+    "filter_text_pool_bytes": 1920,
+    "sparse_window_slots": 128,
+    "dialog_controls_per_template": 127,
+    "nesting_levels": 32,
+    "shared_section_objects": 16,
+    "shared_section_max_bytes": 1048576,
+    "section_grants_per_process": 64,
+    "section_views_per_process": 16,
+    "pending_request_lifetimes": 63,
+    "retained_owned_pages": 0,
+    "desktop_fixed_delta_from_m145_bytes": 8,
+    "kernel_writable_static_delta_bytes": 1492,
+    "installed_static_load_delta_pages": 4,
+    "live_static_load_delta_pages": 9,
+    "font_extra_descriptor_bytes": 9888,
+    "scope": "Overlapping component/image figures, not additive total RAM or M14.15 CPU/storage optimization qualification"
+  }
+}

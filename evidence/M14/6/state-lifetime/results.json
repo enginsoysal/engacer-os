@@ -1,0 +1,686 @@
+{
+  "passed": true,
+  "stage": "M14.6 development",
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "scope": "Synthetic real CPL3 file/lock/registry ownership, acknowledged settings versus unflushed file data; no original GUI claim",
+  "cases": [
+    {
+      "name": "normal-exit",
+      "clone": {
+        "source_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+        "clone_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 20971520
+      },
+      "fixture_sha256": "8a934bf8090134eab2873684a638a74b400627c84e5704a85b5591cb9b72bf71",
+      "samples": [
+        {
+          "turn": 1,
+          "retained_pages": 4,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 2,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 3,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 4,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 5,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 6,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 7,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 8,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 9,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 10,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 11,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 12,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 13,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 14,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 15,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 16,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 17,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 18,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 19,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 20,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        },
+        {
+          "turn": 21,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 0
+        }
+      ],
+      "desktop_responsive": true,
+      "saved_bytes_sha256": "ba15ee8f9326d7c01573764f4c69f962367c4189af7df3e2c15934a9066fb2c3",
+      "unflushed_data_committed": true,
+      "acknowledged_registry_survives_restart": true
+    },
+    {
+      "name": "cancel",
+      "clone": {
+        "source_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+        "clone_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 0
+      },
+      "fixture_sha256": "081f428e8eed74bc0618fe008785cc23b32427883d256cc7099baefc150e7f1e",
+      "samples": [
+        {
+          "turn": 1,
+          "retained_pages": 4,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 2,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 3,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 4,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 5,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 6,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 7,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 8,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 9,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 10,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 11,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 12,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 13,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 14,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 15,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 16,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 17,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 18,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 19,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 20,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        },
+        {
+          "turn": 21,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": 2,
+          "status": 1
+        }
+      ],
+      "desktop_responsive": true,
+      "saved_bytes_sha256": "25718360e05d3c2d0963d1381e9dd4dae5fca789244ee4b9f861adcc0cc96218",
+      "unflushed_data_committed": false,
+      "acknowledged_registry_survives_restart": true
+    },
+    {
+      "name": "unhandled-fault",
+      "clone": {
+        "source_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+        "clone_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 20971520
+      },
+      "fixture_sha256": "f22c5d6672f4ccf5fa28944d275959073e12ce4cb51c030be5cbc79a806145f0",
+      "samples": [
+        {
+          "turn": 1,
+          "retained_pages": 4,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 2,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 3,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 4,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 5,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 6,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 7,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 8,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 9,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 10,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 11,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 12,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 13,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 14,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 15,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 16,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 17,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 18,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 19,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 20,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        },
+        {
+          "turn": 21,
+          "retained_pages": 0,
+          "shared_resident_pages": {
+            "file": 0,
+            "registry": 0
+          },
+          "halted_cpus_while_blocked": null,
+          "status": 3221225477
+        }
+      ],
+      "desktop_responsive": true,
+      "saved_bytes_sha256": "25718360e05d3c2d0963d1381e9dd4dae5fca789244ee4b9f861adcc0cc96218",
+      "unflushed_data_committed": false,
+      "acknowledged_registry_survives_restart": true
+    }
+  ]
+}

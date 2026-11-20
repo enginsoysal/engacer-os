@@ -1,0 +1,8 @@
+{
+  "previous_bytes": 557676,
+  "current_bytes": 557684,
+  "delta_bytes": 8,
+  "reason": "Add the eight-byte generation-bound foreign picker state relative to accepted M14.5",
+  "current_map_sha256": "fb9645e1fcc77996d6e522219d71125f377372f97fd42068d3605e76a6c34d25",
+  "scope": "Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification"
+}

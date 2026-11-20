@@ -2,6 +2,12 @@
 
 An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear installation, customization and bounded CPU/RAM/storage use are core requirements. Windows applications are the first foreign ecosystem; Linux, macOS and ARM remain later extensions.
 
+## M14.6 delivery in progress
+
+M14.6 native/source/media qualification passes: 76 native groups, 19 supporting host groups and 96 campaign tasks, with 711 exact compiled inputs. Public release/download and complete website verification are pending. M14.5 remains the last completed public delivery.
+
+[Native acceptance](evidence/M14/6/acceptance-results.json). Original full application tasks and M14.15 optimization remain mandatory.
+
 ## Download and get started
 
 **Current native candidate: [M14.5 / 0.14.5](https://github.com/enginsoysal/engacer-os/releases/tag/m145-v0.14.5).** Native/source/media qualification passes. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. Reported BrixCanvas search/navigation remains nonblocking; missing platform features are not called passed.

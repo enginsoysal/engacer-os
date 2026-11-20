@@ -1,5 +1,11 @@
 # Build your own Engacer OS distribution
 
+## M14.6 delivery in progress
+
+M14.6 native/source/media qualification passes: 76 native groups, 19 supporting host groups and 96 campaign tasks, with 711 exact compiled inputs. Public release/download and complete website verification are pending. M14.5 remains the last completed public delivery.
+
+[Native acceptance](../../evidence/M14/6/acceptance-results.json). Original full application tasks and M14.15 optimization remain mandatory.
+
 ## Current M14 desktop edition
 
 The qualified native base is **M14.5** within M14-STAGE5-VM-v1. Its [exact-source native acceptance](../../evidence/M14/5/acceptance-results.json) passes; use the matching official release and media. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.

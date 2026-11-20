@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scope": "Supporting hosted production metadata and deterministic allocator rollback; no native PTE/shared-process claim",
+  "allocation_failure_positions": 5,
+  "zero_initialization": true,
+  "private_grants_and_source_lifetime": true,
+  "stale_handles": true,
+  "handle_and_object_quotas": true,
+  "output_copy_rollback": true,
+  "generation_exhaustion": true,
+  "retained_pages": 0,
+  "source_sha256": {
+    "include/engine/winmap146.h": "8c7e3a5f92a6af5a0f81e450a945e2cb981e54e2699343cb8d3db7e98c7b5b7d",
+    "kernel/windows8/mapping146.inc": "709820e280217329a192a5723fa1e485da93c5ee2818f4bba964692b79a4ae0b",
+    "tests/m14/mapping146_host.c": "4da06a5e663cce4f3ff4e7610a6dcee18ca09e67b6ba94f93d915596523529e5",
+    "tests/m14/mapping146_host.py": "2c855b62879cc6147cb44dc44211f21bd7c6120929f97d4494b06f133624052a"
+  }
+}

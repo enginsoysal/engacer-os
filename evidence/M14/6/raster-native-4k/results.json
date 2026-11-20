@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "stage": "M14.6",
+  "scope": "Owned pixel/control fixture, not original application task qualification",
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "fixture_sha256": "0d618ce06a731278cec136b4e33fc87ea17c553379189eea354f5fd62f932097",
+  "resource_sha256": "cfe0166a4c43f4f8e2badd27d6862234439f80dd69f95f87ffcc580cf28be278",
+  "clone": {
+    "source_sha256": "2143789b46af3215d4fccc30ac96b8fa412284bec40838f4382692356d1c986d",
+    "clone_sha256": "2143789b46af3215d4fccc30ac96b8fa412284bec40838f4382692356d1c986d",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "profile": "4k",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "disabled_command_refused": true,
+      "ordinary_input_command": true,
+      "exit_status": 0
+    }
+  ],
+  "physical_dimensions": [
+    3840,
+    2160
+  ],
+  "pixel_checks": {
+    "transparent": [
+      0,
+      120,
+      199
+    ],
+    "magenta": [
+      255,
+      0,
+      255
+    ],
+    "black": [
+      0,
+      0,
+      0
+    ],
+    "scaled_transparent": [
+      0,
+      120,
+      199
+    ],
+    "scaled_magenta": [
+      255,
+      0,
+      255
+    ],
+    "copied_list": [
+      255,
+      0,
+      255
+    ],
+    "negative_child_clip": [
+      0,
+      0,
+      0
+    ],
+    "child_right_edge": [
+      255,
+      0,
+      255
+    ],
+    "outside_child": [
+      0,
+      120,
+      199
+    ],
+    "extracted_transparent": [
+      0,
+      120,
+      199
+    ],
+    "extracted_magenta": [
+      255,
+      0,
+      255
+    ],
+    "list_background": [
+      0,
+      255,
+      0
+    ],
+    "list_background_foreground": [
+      255,
+      0,
+      255
+    ],
+    "shifted_bitmap_green": [
+      0,
+      255,
+      0
+    ],
+    "shifted_bitmap_white": [
+      255,
+      255,
+      255
+    ],
+    "static_transparent": [
+      255,
+      255,
+      255
+    ],
+    "static_native_magenta": [
+      255,
+      0,
+      255
+    ],
+    "static_center_magenta": [
+      255,
+      0,
+      255
+    ],
+    "static_stretch_magenta": [
+      255,
+      0,
+      255
+    ]
+  },
+  "short_label_matches_gdi_reference": true
+}

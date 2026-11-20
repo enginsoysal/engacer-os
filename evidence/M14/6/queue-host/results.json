@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "stage": "M14.6 development",
+  "scope": "Host-only bounded queue contract, not native GUI qualification",
+  "randomized_steps": 100000,
+  "accepted": 59948,
+  "rejected": 64,
+  "queue_bytes": 3072,
+  "native_reserve": 8,
+  "sources": {
+    "include/engine/winqueue144.h": "493c220a1d10c262bddc91b8cf8674487d406eacefaffbf9d1d2262facc070df",
+    "include/engine/winui144.h": "12228e7e153204bfff961139d29109f0431933d77470a123fe522e505db8e4fd",
+    "tests/m14/queue144_host.c": "05ec200a5964e4df81084e1336ae129626ff87a723bb09ed4f4e65e61ad7d3df",
+    "tests/m14/queue144_host.py": "28c6f636eaf6eb59579954bbea72c2a566706c12788a2854587b269de0276909"
+  }
+}

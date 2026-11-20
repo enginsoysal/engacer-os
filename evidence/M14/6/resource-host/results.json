@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "scope": "Host-only resource parser against independently enumerated original data; not original GUI execution",
+  "originals": [
+    {
+      "target": "7zip",
+      "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+      "resources": 88,
+      "string_slots": 688
+    },
+    {
+      "target": "notepadpp",
+      "original_sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+      "resources": 2487,
+      "string_slots": 0
+    },
+    {
+      "target": "sumatra",
+      "original_sha256": "719f689b34f47be8ca105ce8484948474dafde0e106bab599e4a89326070c3d0",
+      "resources": 46,
+      "string_slots": 0
+    }
+  ],
+  "malformed_mutations": 20000,
+  "mutation_results": {
+    "1814": 15543,
+    "1813": 3952,
+    "0": 502,
+    "193": 3
+  },
+  "sources": {
+    "user/windows8/resource-core144.h": "0a25e321525e1e884363297f7be4ba6cbbc08e41d9c9580c5dc9841a64e7bf1e",
+    "tests/m14/resource144_host.c": "6d7de29e4d01e1363bca5bdefe735bbd7d150bd3db2526b6396bed1878f5c59a",
+    "tests/m14/resource144_host.py": "1862999fd957f57a27cc0c74b54db5e893f310609a1ca5fcfbf8d7eb6a52aca4"
+  }
+}

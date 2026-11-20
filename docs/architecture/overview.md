@@ -4,6 +4,12 @@ The current native-qualified stage is [M14.5](../releases/m145-v0.14.5.md), with
 
 Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.5 exact candidate qualifies original 7-Zip window/input/menu/About/folder-navigation preview tasks, retained file/settings/runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Full original GUI application tasks remain unqualified. Complete public delivery is recorded separately from native acceptance.
 
+## M14.6 delivery in progress
+
+M14.6 native/source/media qualification passes: 76 native groups, 19 supporting host groups and 96 campaign tasks, with 711 exact compiled inputs. Public release/download and complete website verification are pending. M14.5 remains the last completed public delivery.
+
+[Native acceptance](../../evidence/M14/6/acceptance-results.json). Original full application tasks and M14.15 optimization remain mandatory.
+
 ## Layers
 
 ```text

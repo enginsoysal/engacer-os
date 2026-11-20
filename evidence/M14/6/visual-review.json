@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "scope": "Agent visual review of actual original Browse at compact and physical 4K, plus independently restarted native editor body; not a human usability study or full application qualification.",
+  "captures": [
+    "original-picker-native/original-native-browse.png",
+    "original-picker-native-4k/original-native-unicode-selection.png",
+    "picker-restart-native/unicode-save-after-independent-start.png"
+  ],
+  "capture_sha256": {
+    "original-picker-native/original-native-browse.png": "33e7961a96c674c5ca4e4d0ff4bb09cc3bdf982032e6c5789185bf5e4d31e6c4",
+    "original-picker-native-4k/original-native-unicode-selection.png": "17f66be624a40ac848552edf616945eb9711f1888833cea72008204a38116e56",
+    "picker-restart-native/unicode-save-after-independent-start.png": "a887d6612a9bd03f3ce39c85900480c4c25f4facaf8a6fedcaa505b182ddb5a0"
+  },
+  "observations": [
+    "Native Browse remains within logical work area at 4K/200 percent. Unicode destination and native body text are readable.",
+    "The Windows-written UTF-8 CRLF file reopens after an independent disk-only start; all 6240 body reference pixels match.",
+    "Original background list columns clip at application-requested widths. Original Add combo/check controls and accelerator mnemonic presentation remain incomplete."
+  ],
+  "limits": [
+    "No full GUI archive operation or normal C++ cancellation qualification.",
+    "Notepad++/Sumatra original tasks remain mandatory and unqualified."
+  ]
+}

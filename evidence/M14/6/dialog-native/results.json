@@ -1,0 +1,248 @@
+{
+  "passed": true,
+  "stage": "M14.6",
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "scope": "Owned modal callback/template/input/rollback fixture, not original app task acceptance",
+  "clone": {
+    "source_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+    "clone_sha256": "b23f34944f83af7c966bc866453e32ffe8b45ce84bff79f62a84bd24991ad8cc",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "fixture_sha256": "69c87d383dc1cd23a5bdc41ed265feb9778cbb0b2552aefbf6c5fa2a20bcbb9e",
+  "cycles": [
+    {
+      "cycle": 1,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 2,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 3,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 4,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 5,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 6,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 7,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 8,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 9,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 10,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 11,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 12,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 13,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 14,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 15,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 16,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 17,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 18,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 19,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 20,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 21,
+      "standard_pointer_accept": true,
+      "extended_keyboard_cancel": true,
+      "disabled_owner_close_refused": true,
+      "partial_creation_rollback": true,
+      "malformed_and_template_quota_refused": true,
+      "initialization_time_end": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    }
+  ],
+  "fixed_dialog_resize_refused": true,
+  "absent_caption_actions_refused": true
+}

@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "build_id": "5f49030d412bd7f0587568c029becc2c",
+  "profile": "ordinary",
+  "scope": "Owned native GDI-to-compositor Unicode pixels and lifetime; not original-app font API qualification",
+  "fixture_sha256": "51fa233ec3915b92967777bea151fd6ba83074bacfe436c7df4f3e8ebfb03952",
+  "clone": {
+    "source_sha256": "c4edf6c59d8e707de6ad0c8c49121e063960d043270978342322e46f39b5c590",
+    "clone_sha256": "c4edf6c59d8e707de6ad0c8c49121e063960d043270978342322e46f39b5c590",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "normal_owned_window_close": true
+    }
+  ],
+  "physical_dimensions": [
+    1920,
+    1080
+  ],
+  "scale_half_units": 2,
+  "pixel_rows": [
+    {
+      "text": "A\u00e9\u20ac\u011e\u0131\u015e\u00c6?",
+      "actual_painted": "A\u00e9\u20ac\u011e\u0131\u015e\u00c6?",
+      "exact_rgb_sha256": "f15c405c3452a5cd51010ac3e04a174c8f0b9fa66ba0d808c39c6b51068142a7",
+      "physical_font_size": 16,
+      "checked_pixels": 8000
+    },
+    {
+      "text": "\ud83d\ude00 A",
+      "actual_painted": "? A",
+      "exact_rgb_sha256": "fd15cd890a13ff158c35b5d767fbff23c9084587c5e66bbda5fa548833576687",
+      "physical_font_size": 16,
+      "checked_pixels": 8000
+    }
+  ],
+  "reported_logical_extent": [
+    82,
+    16
+  ],
+  "reported_work_area": [
+    1920,
+    1020
+  ],
+  "subsequent_original_console_success": true
+}

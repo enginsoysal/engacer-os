@@ -87,9 +87,10 @@
       "deliver": "Connect original app file dialogs, clipboard and actual document access with Files.",
       "how_and_why": "Preserve requesting-window ownership and file semantics; original app data must be checked independently.",
       "acceptance": "Open/edit/save/reopen, Unicode names, cancel and cross-app text clipboard tasks pass without lost or misdirected data.",
-      "status": "in_progress",
+      "status": "native-complete-public-pending",
       "evidence": "evidence/M14/6",
-      "publication_status": "Development only; M14.5 remains the qualified native download"
+      "publication_status": "Development only; M14.5 remains the qualified native download",
+      "qualification": "M14-STAGE6-VM-v1"
     },
     {
       "id": "M14.7",

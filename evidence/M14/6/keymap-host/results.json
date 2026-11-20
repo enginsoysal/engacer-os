@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Host factual US mapping and native Dvorak core; not native application qualification",
+  "existing_reference_layout": "04090409",
+  "assertions": 2421,
+  "source_sha256": {
+    "include/engine/keymap145.h": "85e76ea5f0b2834691d98fd8918e3c063e4a1d556ae36f8e55456dd22eb8624c",
+    "include/engine/keymap-us145.inc": "dd6a11807730bb3a1016def7205bb35451203bc19d48d76c908a63734098b82b",
+    "tests/m14/keymap145_host.c": "be1ea18266069ccec2eb72b740dde8ef94421eafb7b455d3507969cf3b5f0954"
+  }
+}
