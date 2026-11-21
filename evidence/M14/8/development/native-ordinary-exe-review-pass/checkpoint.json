@@ -1,0 +1,218 @@
+{
+  "scope": "Development regression and read-only EXE review, not M14.8 acceptance",
+  "build_id": "f5f963060ad66bdc9dfb84a4995f9d9f",
+  "source_commit": "d8b964882be400e5083bc84801d4f78bcf3b23a5",
+  "observer_commit": "c566e0431b55b61294bff628a1cbe67be14c6271",
+  "passed": [
+    "compact",
+    "apps",
+    "exe-review-native",
+    "session-native",
+    "font-native"
+  ],
+  "ordinary_exe_installation_qualified": false,
+  "original_uninstall_reinstall_qualified": false,
+  "public_release": "M14.7",
+  "files": {
+    "apps/browser-choices-capture.json": {
+      "bytes": 317,
+      "sha256": "7f293c798305d8ad5b549c183714394b355e5dc728996d11d72151c1c165bf39"
+    },
+    "apps/browser-choices.png": {
+      "bytes": 77323,
+      "sha256": "fd52104a2b4fab9f078f66b197a4e1ef78b29d1788acc9b71e1320c7f9f5891e"
+    },
+    "apps/original-console-capture.json": {
+      "bytes": 317,
+      "sha256": "dc476408b74578aeaff3b2d79ab37bad7f82e8cf8a5d3c56adb7d10cb27a2fdd"
+    },
+    "apps/original-console.png": {
+      "bytes": 105570,
+      "sha256": "decaac16592e1f44c5a420d8099ff0365994e35e8f2508819076003402d1ca21"
+    },
+    "apps/results.json": {
+      "bytes": 16558,
+      "sha256": "58d01c5a5f3e5d1403ed474dc05fceb6caca672adbb510af671694254d93b175"
+    },
+    "apps/serial.log": {
+      "bytes": 59101,
+      "sha256": "9834aeacd4f33b1c2713ba21ca0c0e4ea85418ffc1bdff6f37c3b33c8a434be6"
+    },
+    "build-manifest.json": {
+      "bytes": 105935,
+      "sha256": "337d84d09c088b9ec4893eff41cc9632eba58a3edf7de874d42a6a9aa958d696"
+    },
+    "compact/desktop-capture.json": {
+      "bytes": 316,
+      "sha256": "2eefea443ec899985cd16377c08d177d2235eb2135c0dfb41f373a0b79affefa"
+    },
+    "compact/desktop.png": {
+      "bytes": 68701,
+      "sha256": "94631ba7ef7f37b29ad3a5cd78265a9b78698d6c229554379d5b6a1b9298b67b"
+    },
+    "compact/disk-only-1-capture.json": {
+      "bytes": 316,
+      "sha256": "2eefea443ec899985cd16377c08d177d2235eb2135c0dfb41f373a0b79affefa"
+    },
+    "compact/disk-only-1.log": {
+      "bytes": 9072,
+      "sha256": "d04d4dd6fe7674045c7d581a7258fbd6e8531cfef2454bfdb46bc3bf5ad2ddb0"
+    },
+    "compact/disk-only-1.png": {
+      "bytes": 68701,
+      "sha256": "94631ba7ef7f37b29ad3a5cd78265a9b78698d6c229554379d5b6a1b9298b67b"
+    },
+    "compact/disk-only-2-capture.json": {
+      "bytes": 316,
+      "sha256": "2eefea443ec899985cd16377c08d177d2235eb2135c0dfb41f373a0b79affefa"
+    },
+    "compact/disk-only-2.log": {
+      "bytes": 9072,
+      "sha256": "7732556fb48ef487a3bd9ce4ce974c16953a1d05f34f25c3c522b1ee3853a1d4"
+    },
+    "compact/disk-only-2.png": {
+      "bytes": 68701,
+      "sha256": "94631ba7ef7f37b29ad3a5cd78265a9b78698d6c229554379d5b6a1b9298b67b"
+    },
+    "compact/install.log": {
+      "bytes": 30490,
+      "sha256": "53e2f9cdbbc8f87413e93f4fad8734b7167d5be77b1cf862b73c35f38a962b3a"
+    },
+    "compact/results.json": {
+      "bytes": 1031,
+      "sha256": "45fc1aa27067a7c4698e3dbd8df31b02f2d11bd450f27fbca949caee92dc3d23"
+    },
+    "compact/review-capture.json": {
+      "bytes": 316,
+      "sha256": "d73ce8d5f6254442e9c53fb75085bb8085361113aa87edf2859c3c009de198a2"
+    },
+    "compact/review.png": {
+      "bytes": 65773,
+      "sha256": "2649be58d8e3689ed0f0aab695d353f92ff5a2f3ee05a745c1f8d931686bc759"
+    },
+    "compact/settings-capture.json": {
+      "bytes": 316,
+      "sha256": "a5809cb12f031c88f5cfab2295973d1bd522087938b7f38a6b394eeba4257cc2"
+    },
+    "compact/settings.png": {
+      "bytes": 86323,
+      "sha256": "c42437b2f94d7d0ff33bc0acd117c5b7ced073071372d0c9ce0ed0acc7bbbef5"
+    },
+    "compact/welcome-capture.json": {
+      "bytes": 316,
+      "sha256": "0b2c53eb3d211222bd87337d128c90a11fb53008bf04b864b1901a78a44eab06"
+    },
+    "compact/welcome.png": {
+      "bytes": 57305,
+      "sha256": "f7fee40913adc400adf57667903a5d346878c41011b14ee216241fbeec2f7c25"
+    },
+    "exe-review-native/ordinary-exe-review-0-capture.json": {
+      "bytes": 316,
+      "sha256": "22f9f2e8df0a33ba0d597c2c53a2d4677c89ba6229cd5211fedb263815ccd60e"
+    },
+    "exe-review-native/ordinary-exe-review-0.png": {
+      "bytes": 68579,
+      "sha256": "19923198e879207b275a3845288c6e62c3a8b6c5b14ac85ab30acd0797be0c64"
+    },
+    "exe-review-native/ordinary-exe-review-1-capture.json": {
+      "bytes": 316,
+      "sha256": "46bc37e1b0b2a7f75455ea03adb6d0785d5a5023e2974ea087beb016625fe925"
+    },
+    "exe-review-native/ordinary-exe-review-1.png": {
+      "bytes": 63943,
+      "sha256": "e49c8a3be17b35e53811d64841a0e895000679f6d864f9de43240e8757f7a3b1"
+    },
+    "exe-review-native/results.json": {
+      "bytes": 1257,
+      "sha256": "82733faa5d3a21f56d22e614decfdfffadf61f3a22cf0cc088756a67d8325491"
+    },
+    "exe-review-native/serial.log": {
+      "bytes": 27967,
+      "sha256": "9f2fe3a58a449d80bd15fcd13fde32cb3b6d77e4521baa838a9effed3108449f"
+    },
+    "font-native/font-raster-1-capture.json": {
+      "bytes": 316,
+      "sha256": "f3a5cb5b16fba41b4f4218090b63d8d9076b022f2676729358e3734c0c8b9cd7"
+    },
+    "font-native/font-raster-1-shield-cleared-capture.json": {
+      "bytes": 316,
+      "sha256": "d5680ee13e218f954825de200d63e84391f067093a2ad2fbbc052cb241f01d15"
+    },
+    "font-native/font-raster-1-shield-cleared.png": {
+      "bytes": 74870,
+      "sha256": "40112a53b649a92af522ab603cbec299bcd74b6b0fe756b780e3e7c7d53802e5"
+    },
+    "font-native/font-raster-1.png": {
+      "bytes": 66565,
+      "sha256": "0c6ea08eba5c1a7f1eac1d5cad6a8ad3d9b3b03832c36657fe1f781f8eba8184"
+    },
+    "font-native/font-raster-2-capture.json": {
+      "bytes": 316,
+      "sha256": "f3a5cb5b16fba41b4f4218090b63d8d9076b022f2676729358e3734c0c8b9cd7"
+    },
+    "font-native/font-raster-2-shield-cleared-capture.json": {
+      "bytes": 316,
+      "sha256": "d5680ee13e218f954825de200d63e84391f067093a2ad2fbbc052cb241f01d15"
+    },
+    "font-native/font-raster-2-shield-cleared.png": {
+      "bytes": 74870,
+      "sha256": "40112a53b649a92af522ab603cbec299bcd74b6b0fe756b780e3e7c7d53802e5"
+    },
+    "font-native/font-raster-2.png": {
+      "bytes": 66565,
+      "sha256": "0c6ea08eba5c1a7f1eac1d5cad6a8ad3d9b3b03832c36657fe1f781f8eba8184"
+    },
+    "font-native/font-raster-3-capture.json": {
+      "bytes": 316,
+      "sha256": "f3a5cb5b16fba41b4f4218090b63d8d9076b022f2676729358e3734c0c8b9cd7"
+    },
+    "font-native/font-raster-3-shield-cleared-capture.json": {
+      "bytes": 316,
+      "sha256": "d5680ee13e218f954825de200d63e84391f067093a2ad2fbbc052cb241f01d15"
+    },
+    "font-native/font-raster-3-shield-cleared.png": {
+      "bytes": 74870,
+      "sha256": "40112a53b649a92af522ab603cbec299bcd74b6b0fe756b780e3e7c7d53802e5"
+    },
+    "font-native/font-raster-3.png": {
+      "bytes": 66565,
+      "sha256": "0c6ea08eba5c1a7f1eac1d5cad6a8ad3d9b3b03832c36657fe1f781f8eba8184"
+    },
+    "font-native/results.json": {
+      "bytes": 3133,
+      "sha256": "27c05794560541ba0f6176e640e6144b37cf865e0e8d2ec1381344aa4d0ad6c9"
+    },
+    "font-native/serial.log": {
+      "bytes": 9966,
+      "sha256": "b2fff77a0947c3354e5d39b1ed9288a9b9ccedc93f1f1e3f9c4c310852188eec"
+    },
+    "session-native/executed-observer.py": {
+      "bytes": 2981,
+      "sha256": "e5d29487e32cb1b89751dde7c7498300b5ff03d6e4b4385ce006c0190d2e955e"
+    },
+    "session-native/global-memory-lifetimes-capture.json": {
+      "bytes": 316,
+      "sha256": "09dbcc9a5af60e9d41922eca5ed2b272f142b410da39e9ecfaf27a53ce8e8c11"
+    },
+    "session-native/global-memory-lifetimes.png": {
+      "bytes": 89814,
+      "sha256": "43ebc5d381007fd9fa6acdc2cc9c90f5178908c3820288462e5c10fcd2881eab"
+    },
+    "session-native/native-shell-link.lnk": {
+      "bytes": 1201,
+      "sha256": "a3efebc3508eff786d2bdc34e807610fe440ed4d9a41207822b5ec9e2f6ff4de"
+    },
+    "session-native/observer.json": {
+      "bytes": 2703,
+      "sha256": "20955140f6477c6f9a759465c662d2d3ddd0cb676dc9eef2344c894bf0fc3075"
+    },
+    "session-native/results.json": {
+      "bytes": 4539,
+      "sha256": "501400b7b3a64f919bca2f707362a5ac675636192900fb304904693873b09573"
+    },
+    "session-native/serial.log": {
+      "bytes": 11202,
+      "sha256": "2262a68806fc3c3cb1645ea73bbaf13382042e9f6afcd93c1228190b13df8684"
+    }
+  }
+}

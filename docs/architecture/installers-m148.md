@@ -569,3 +569,14 @@ installed product from process exit zero. Changed or unexpected product files
 must cause safe refusal before original recursive removal. Personal files and
 shared registry preimages must remain protected. Normal original GUI install,
 helper execution, uninstall and reinstall remain required before acceptance.
+
+## Current ordinary review boundary
+
+Exact development build `f5f963060ad66bdc9dfb84a4995f9d9f` passes ordinary
+EXE selection/cancellation and read-only source review, plus matching compact,
+original MSI/archive, native API and physical graphics regressions. Review does
+not execute source code, change volume entries or grant installation authority.
+The source lease remains inactive. The protected-record type remains a schema,
+not a published installed product. Original installation/removal/reinstall and
+full release delivery are still mandatory. See the
+[development receipt](../../evidence/M14/8/development/native-ordinary-exe-review-pass/checkpoint.json).

@@ -4,6 +4,8 @@
 
 - Superseding owner instruction: missing BrixCanvas search configuration/rendering is report-only and must not block milestone continuation. Keep the website content and GitHub current after every stage. Continue M14 through M14.15 in order without a new stage approval; preserve actual failures and limitations instead of claiming the missing platform controls passed. All native correctness, source/media integrity and optimization gates remain mandatory.
 
+- Latest owner scope, 21 November 2026: finish M14.8 and then stop; do not start M14.9 or later. The owner is conserving weekly credits and expects a four-day break. This supersedes the earlier uninterrupted-through-M14.15/M15 scope, not the native acceptance gates. Preserve an honest resumable checkpoint if M14.8 is unfinished; never rename a development checkpoint as milestone completion.
+
 ## Scope and architecture
 
 - This standalone repository is the canonical project. Never place Engacer OS sources, plans, build outputs or evidence in the unrelated BrixCanvas repository.
