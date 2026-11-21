@@ -1,0 +1,26 @@
+{
+  "passed": false,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Owned native common-dialog ABI, Unicode selected files, native cancel/replacement consent, caller writes and independent bytes; not original-app dialog qualification",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "fixture_sha256": "6fa1577e6d939101b8b8fb8c98e61f42a0bfcde2bdcea66f6c730213f74c7657",
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\picker146_run.py\", line 39, in main\n    p.desktop(54010,True);ready('M146_PICKER_OPEN_READY',7);choose();ready('M146_PICKER_SHORT_READY',7);choose();ready('M146_PICKER_SAVE_READY',8)\n  File \"<project-root>\\tests\\m14\\picker146_run.py\", line 27, in ready\n    wait_for(g,observed,30);p.drain()\n  File \"<project-root>\\tests\\m14\\original_window_trace4.py\", line 27, in wait_for\n    if state==3:raise AssertionError((raw[304:496].split(b'\\0')[0],output(g)))\nAssertionError: (b'', 'Mapped original image: 7zFM.exe bytes=32768 source-fnv32=1586238624\\nRunning the original Windows executable in a protected process.\\n\\nM146_SPARSE_WINDOWS_QUOTA_DEPTH_PASS\\nM146_PICKER_CANCEL_READY\\nM146_PICKER_OPEN_READY\\nM146_PICKER_FAIL file title\\n')\n"
+}
+Traceback (most recent call last):
+  File "<repository>\tests\m14\replay7.py", line 108, in <module>
+    main()
+  File "<repository>\tests\m14\replay7.py", line 92, in main
+    module.main()
+  File "<repository>\tests\m14\picker146_run.py", line 39, in main
+    p.desktop(54010,True);ready('M146_PICKER_OPEN_READY',7);choose();ready('M146_PICKER_SHORT_READY',7);choose();ready('M146_PICKER_SAVE_READY',8)
+  File "<repository>\tests\m14\picker146_run.py", line 27, in ready
+    wait_for(g,observed,30);p.drain()
+  File "<repository>\tests\m14\original_window_trace4.py", line 27, in wait_for
+    if state==3:raise AssertionError((raw[304:496].split(b'\0')[0],output(g)))
+AssertionError: (b'', 'Mapped original image: 7zFM.exe bytes=32768 source-fnv32=1586238624\nRunning the original Windows executable in a protected process.\n\nM146_SPARSE_WINDOWS_QUOTA_DEPTH_PASS\nM146_PICKER_CANCEL_READY\nM146_PICKER_OPEN_READY\nM146_PICKER_FAIL file title\n')

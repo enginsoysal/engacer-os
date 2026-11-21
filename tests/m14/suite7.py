@@ -20,7 +20,7 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
     old = original['files']
     differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
     allowed = {'tests/m14/verify7.py','tests/m14/suite7.py','tests/m14/public_site7_scoped.mjs',
-               'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py',
+               'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/picker147_run.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py',
                'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
     assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
     if name == 'picker-lifetime146' and 'tests/m14/picker_lifetime146_run.py' in differences:
@@ -73,7 +73,7 @@ def main():
  for name,script,arguments in (
   ('global146','global146_run.py',()),('clipboard146','clipboard146_run.py',()),
   ('chords146','chords146_run.py',()),('mapping146','mapping146_run.py',('--cycles','21')),
-  ('picker146','picker146_run.py',('--cycles','21')),
+  ('picker146','picker147_run.py',('--cycles','21')),
   ('picker-lifetime146','picker_lifetime146_run.py',('--cycles','21'))):
   add(name,'tests/m14/'+script,arguments,('apps-compact',),4)
  for name,script in (
@@ -93,6 +93,7 @@ def main():
   ('removal-preservation','remove147_native.py',()),('completion-faults','terminal147_native.py',()),
   ('storage','storage147_native.py',())):
   add('msi147-'+name,'tests/m14/'+script,arguments,('compact',),3)
+ tasks['picker-restart146']['dependencies'].add('picker146')
  tasks['msi147-file-entry']['priority']=1
  tasks['msi147-completion-faults']['dependencies'].add('msi147-removal-preservation')
  for firmware in ('bios','uefi'):

@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "Observer renamed guest data files while the unchanged native fixture expects canonical Unicode file titles",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 45,
+  "correction": "Map media/output/fixture ownership to current stage while retaining canonical guest leaf names and exact title assertions.",
+  "os_source_changed": false
+}
