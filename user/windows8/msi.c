@@ -43,6 +43,9 @@ static void remove_product8(void){
  progress8(100,kept?"Removed. Modified product files were preserved; your documents are unchanged.":"Removed. Your documents are unchanged.");free8(m);
 }
 void msi8_execute(void){
+#ifdef ENGINE_M14
+ if(job8->command==W8_PREVIEW){init_win8();pe8_run("/System/Windows/Installer/msiexec.exe","");return;}
+#endif
  check8(equal8(job8->product_root,ROOT8),"Unsupported product directory.");
  if(job8->command==W8_REMOVE){remove_product8();return;}
  progress8(2,"Reading the original MSI package.");void*package=0;unsigned package_size=load8(job8->source,&package,8*1024*1024);check8(package_size!=0,"The MSI package could not be read.");uint8_t hash[32];digest8(package,package_size,hash);

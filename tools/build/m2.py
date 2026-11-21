@@ -70,6 +70,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m12:sources.extend(sorted((ROOT/'tools/build').glob('m12*.py')))
     if m14:
         sources.extend(sorted((ROOT/'tools/build').glob('m14*.py')))
+        sources.append(ROOT/'tools/build/msi147.py')
         sources.append(ROOT/'tools/build/unicode143.py')
         sources.extend(ROOT/'third_party/unicode'/name for name in ('LICENSE.txt','provenance.json','case-map143.json'))
         unicode=json.loads((ROOT/'third_party/unicode/provenance.json').read_text(encoding='utf-8'))

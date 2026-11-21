@@ -87,6 +87,10 @@ extern NORETURN void w8_escape(void);
 extern uint64_t kernel_entry_pt(void);
 extern const char windows8_licenses[];
 extern const uint8_t windows8_runtime_image[];extern const unsigned windows8_runtime_size;
+#ifdef ENGINE_M14
+extern const uint8_t windows147_msi_image[],windows147_msiexec_image[];
+extern const unsigned windows147_msi_size,windows147_msiexec_size;
+#endif
 static void group_peak142(void);
 /* Shared supervisor-only upper-half pages; no idle allocation per process slot. */
 static void free_space142(unsigned slot){
@@ -137,7 +141,11 @@ static unsigned path8(const char*p,unsigned write){
  if(p[0]!='/'||!p[1]||length8(p)>=255)return 0;unsigned component=0;
  for(unsigned i=1;p[i];++i){if((uint8_t)p[i]<32||p[i]=='\\')return 0;if(p[i]=='/'){if(!component)return 0;component=0;}else{if(++component>63)return 0;if(p[i]=='.'&&(p[i+1]=='/'||!p[i+1])&&(i==1||p[i-1]=='/'||(p[i-1]=='.'&&(i==2||p[i-2]=='/'))))return 0;}}
  if(!component)return 0;
- if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source);
+ if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source)
+#ifdef ENGINE_M14
+  ||prefix8(p,"/System/Windows/Installer")
+#endif
+  ;
  if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
  return input8.command==W8_RUN&&prefix8(p,input8.user_root)&&!equal8(p,input8.user_root);
 }
@@ -151,7 +159,15 @@ static uint64_t now8(void);
 static const uint8_t *boot_package8;static unsigned boot_package_size8;
 unsigned w8_boot_package(const void*p,unsigned bytes){static const uint8_t expected[]={0x6d,0xc8,0x22,0x56,0x9e,0x77,0x7d,0x9a,0x3e,0xcd,0x5f,0xfc,0xbc,0x22,0xb5,0x56,0x00,0xaf,0x87,0xe6,0xc5,0xd9,0x81,0x0a,0x64,0xe8,0x56,0x6c,0xf5,0xa4,0xaf,0x9f};uint8_t hash[32];if(bytes!=2003456)return 1;engine_sha256(p,bytes,hash);if(memcmp(hash,expected,32))return 1;boot_package8=p;boot_package_size8=bytes;serial_text("M8_BOOT_MSI_DIGEST_OK\n");return 0;}
 unsigned w8_distribute(void*opaque,const char*user){if(!boot_package8||!boot_package_size8)return V6_INVALID;char path[256];copy8(path,user,256);unsigned n=length8(path);if(n+27>=256)return V6_INVALID;memcpy(path+n,"/Downloads/7z2606-x64.msi",26);return v6_put(opaque,path,boot_package_size8,memory_source8,(void*)boot_package8);}
-unsigned w8_install_runtime(void*opaque){v6_volume*v=opaque;unsigned parent=v6_mkdir(v,"/Applications/Windows");if(parent&&parent!=V6_EXISTS)return parent;unsigned s=v6_mkdir(v,"/System/Windows");if(s&&s!=V6_EXISTS)return s;if(!windows8_runtime_size)return V6_INVALID;unsigned licenses=length8(windows8_licenses);if(v6_put(v,"/System/Licenses/Windows-runtime-LGPL.txt",licenses,memory_source8,(void*)windows8_licenses))return V6_IO;return v6_put(v,"/System/Windows/runtime8.elf",windows8_runtime_size,memory_source8,(void*)windows8_runtime_image);}
+unsigned w8_install_runtime(void*opaque){
+ v6_volume*v=opaque;unsigned parent=v6_mkdir(v,"/Applications/Windows");if(parent&&parent!=V6_EXISTS)return parent;unsigned s=v6_mkdir(v,"/System/Windows");if(s&&s!=V6_EXISTS)return s;if(!windows8_runtime_size)return V6_INVALID;
+ unsigned licenses=length8(windows8_licenses);if(v6_put(v,"/System/Licenses/Windows-runtime-LGPL.txt",licenses,memory_source8,(void*)windows8_licenses)||v6_put(v,"/System/Windows/runtime8.elf",windows8_runtime_size,memory_source8,(void*)windows8_runtime_image))return V6_IO;
+#ifdef ENGINE_M14
+ if(!windows147_msi_size||!windows147_msiexec_size)return V6_INVALID;s=v6_mkdir(v,"/System/Windows/Installer");if(s&&s!=V6_EXISTS)return s;
+ if(v6_put(v,"/System/Windows/Installer/msi.dll",windows147_msi_size,memory_source8,(void*)windows147_msi_image)||v6_put(v,"/System/Windows/Installer/msiexec.exe",windows147_msiexec_size,memory_source8,(void*)windows147_msiexec_image))return V6_IO;
+#endif
+ return 0;
+}
 static void output_record142(w8_info*record,const char*s,unsigned n){unsigned old=length8(record->output);if(n>W8_TEXT-1){s+=n-(W8_TEXT-1);n=W8_TEXT-1;}if(n>W8_TEXT-1-old){unsigned drop=n-(W8_TEXT-1-old);memmove(record->output,record->output+drop,old-drop);old-=drop;}memcpy(record->output+old,s,n);record->output[old+n]=0;++record->revision;}
 static void output8(const char*s,unsigned n){output_record142(&info8,s,n);if(active_space142)output_record142(root_info142,s,n);}
 #include "files143.inc"
