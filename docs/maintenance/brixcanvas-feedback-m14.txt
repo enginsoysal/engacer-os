@@ -118,3 +118,11 @@ On /blog/guide-project, the first DOM snapshot immediately after navigation show
 Observation M14.7 development, 21 November 2026: handbook ordered-list semantics
 Classification: reproduced public accessibility-tree observation; requires platform investigation.
 The actual public /blog/docs-handbook-windows-m147 article contains ordered instructions in its canonical Markdown, but the browser accessibility snapshot exposes several instruction fragments directly under a list instead of listitem nodes; only text-only entries consistently appear as listitem. Examples: Review and install an original MSI; Remove an installed application. Verify rendered HTML list structure and screen-reader numbering when an item contains inline strong/link nodes. This observation does not establish an OS defect and does not block native milestones. No shared BrixCanvas application code was changed.
+
+Observation M14.8 development, 21 November 2026: transient synchronization request
+Classification: one failed network request; platform root cause unestablished.
+GitHub workflow 44908029154 generated 376 documents / 393 articles / 8060 blocks
+from commit 9a01c39f, then reported only "fetch failed" at 13:17:02 UTC. No HTTP
+status or BrixCanvas application exception was provided. The existing public
+content remained available. The failed job was rerun; its result is pending.
+Do not classify this evidence alone as a BrixCanvas server defect.

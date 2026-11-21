@@ -44,6 +44,10 @@ def main():
                 report.update(state=state,status=status,message=raw[304:496].split(b'\0')[0].decode(errors='replace'),
                     output=raw[496:].split(b'\0')[0].decode(errors='replace'),native_windows=t.records(g),
                     pages_before_cleanup=f.stats(g)[0]-before)
+                report['installer_flag_observed']='flags.install: 1' in report['output']
+                report['command_context_scope']='Private startup command override before runtime initialization; kernel grants still belong to the diagnostic MSI frontend.'
+                if 'flags.install:' in report['output']:
+                    assert report['installer_flag_observed'],report['output']
                 if state==1:
                     p.desktop(12008,True);report['explicit_diagnostic_cancel']=True
                 report['retained_pages_after_cleanup']=f.stats(g)[0]-before
