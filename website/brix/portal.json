@@ -126,6 +126,10 @@
       "description": "Follow the current plan or explore technical reference.",
       "items": [
         [
+          "docs/milestones/m14-8.md",
+          "Follow original x64 EXE installer implementation and remaining gates"
+        ],
+        [
           "docs/milestones/m14.md",
           "Follow M14.0-M14.15 in order"
         ],
@@ -200,8 +204,8 @@
       ]
     }
   ],
-  "developmentProgram": "M14.7",
-  "currentSummary": "M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. All original-app tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public download and website verification are separate and are being completed; reported advanced BrixCanvas search/navigation remains unqualified and nonblocking. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet. The retained private Windows processes run without an embedded Windows guest. Follow M14.0-M14.15, including mandatory whole-system optimization in M14.15.",
+  "developmentProgram": "M14.8",
+  "currentSummary": "M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. All original-app tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified. Browser choices can download the original Firefox installer; Firefox installation and execution are not supported yet. The retained private Windows processes run without an embedded Windows guest. Follow M14.0-M14.15, including mandatory whole-system optimization in M14.15.",
   "currentImageAlt": "Actual Engacer OS M14.7: review of the original Notepad++ x64 MSI. Package installation is qualified; the editor remains unqualified.",
   "reportedPlatformLimit": "BrixCanvas currently omits the saved same-page search and article navigation. Browse the task guides and archive; this reported platform limitation does not block OS milestones."
 }

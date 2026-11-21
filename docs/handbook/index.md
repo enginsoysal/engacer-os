@@ -3,7 +3,7 @@
 
 ## Start here
 
-**Current native release: [M14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native qualification passes within M14-STAGE7-VM-v1. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public download and website verification are separate and are being completed; reported advanced BrixCanvas search/navigation remains unqualified and nonblocking. Follow the guide matching your download.
+**Current native release: [M14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native qualification passes within M14-STAGE7-VM-v1. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified. Follow the guide matching your download.
 
 - [Download, verify and install in VMware](install-m147.md)
 - [Original Windows menus, folders and browser downloads](windows-m147.md)

@@ -5,7 +5,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 ## Download and get started
 
-**Current native release: [M14.7 / 0.14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public download and website verification are separate and are being completed; reported advanced BrixCanvas search/navigation remains unqualified and nonblocking.
+**Current native release: [M14.7 / 0.14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified.
 
 - [Install and restart in VMware](docs/handbook/install-m147.md)
 - [Your first day](docs/handbook/first-day-m147.md)
