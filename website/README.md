@@ -2,7 +2,7 @@
 
 M14.6 is the qualified download: 76 native and 19 host groups, twenty independently verified public assets, and actual public content checks covering 594 pages, 385 exact-source articles and 4383 links (zero known broken targets; twelve unverified external references). Missing advanced BrixCanvas search/sidebar/ordered navigation remains reported and unqualified under the owner exception. [Publication receipt](../evidence/M14/6/publication-results.json), [current status](../docs/roadmap/status.md), [release limits](../docs/releases/m146-v0.14.6.md).
 
-M14.7 is in development. MSI planning, protected registry and anonymous-pipe prerequisites have scoped evidence; generic original MSI writes and custom-action installation remain incomplete. Keep the homepage download label on M14.6 until the next native/source/media/publication gates pass. Native articles synchronize from GitHub; homepage version/layout requires a separate native editor Save and fresh public readback. An article sync is not a complete website release.
+M14.7 is in development. Native source-bound MSI review, protected registry/pipes, version resources and the original WiX deferred body/child-output path have scoped evidence. The authored Notepad++ copy/delete sequence, generic original MSI writes and recovery remain incomplete. Keep the homepage download label on M14.6 until the next native/source/media/publication gates pass. Native articles synchronize from GitHub; homepage version/layout requires a separate native editor Save and fresh public readback. An article sync is not a complete website release.
 
 ## Historical M14.5 delivery
 
