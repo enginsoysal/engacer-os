@@ -398,7 +398,7 @@ void entry(void){
  words=split_command(L" p",&arguments);check(words&&arguments==2&&!words[0][0]&&words[1][0]=='p'&&!LocalFree(words),358);
  words=split_command(L"",&arguments);check(words&&arguments==1,359);for(unsigned i=0;i<=n;++i)check(words[0][i]==path[i],360);check(!LocalFree(words)&&!split_command(0,&arguments)&&!split_command(L"p",0),361);
  uint16_t profile[260],known[260];check(!folder(0,0x28,0,0,profile)&&!folder(0,0x1c,0,0,known),270);unsigned folder_attributes=GetFileAttributesW(known);check(folder_attributes!=UINT32_MAX&&(folder_attributes&16),282);
- uint16_t desktop[260],desktop_directory[260],menu[260];check(!folder(0,0,0,0,desktop)&&!folder(0,16,0,0,desktop_directory),687);for(unsigned i=0;desktop[i]||desktop_directory[i];++i)check(desktop[i]==desktop_directory[i],688);
+ uint16_t desktop_path[260],desktop_directory[260],menu[260];check(!folder(0,0,0,0,desktop_path)&&!folder(0,16,0,0,desktop_directory),687);for(unsigned i=0;desktop_path[i]||desktop_directory[i];++i)check(desktop_path[i]==desktop_directory[i],688);
  check(!folder(0,11,0,0,menu),689);unsigned menu_attributes=GetFileAttributesW(menu);check(menu_attributes!=UINT32_MAX&&(menu_attributes&16),690);
  check(append(profile,L"AppData\\Local"),271);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],272);
  check(!folder(0,0x1c,0,1,profile),273);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],274);
