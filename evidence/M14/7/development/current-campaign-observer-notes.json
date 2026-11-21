@@ -1,0 +1,10 @@
+{
+  "classification": "Historical failed trace removed from current candidate report directory without deletion",
+  "historical_build": "7c2d7fed801f005888a1c37423fda82a",
+  "current_build": "1fb03f1b582d4d153441b6b5ca40da06",
+  "historical_sha256": "2ac0417033d53c751fda08f6fa2899c6261e56dc0296b92daacce34f5b91434d",
+  "canonical_archive": "evidence/M14/7/development/generic-inventory-remove-refusal/serial-failed.log",
+  "canonical_bytes_verified_against_git": true,
+  "original_failure_preserved": true,
+  "current_native_report_unchanged": true
+}
