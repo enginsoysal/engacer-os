@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 661,
-  "table_bytes": 5288,
+  "refusal_keys": 660,
+  "table_bytes": 5280,
   "imports": [
     {
       "app": "notepadpp",
@@ -235,13 +235,6 @@
       "dll": "shell32.dll",
       "symbol": "Shell_NotifyIconW",
       "key": "9c247c727b4008c3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "shell32.dll",
-      "symbol": "SHGetFolderPathW",
-      "key": "cba5a69537d78332",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4447,13 +4440,6 @@
     {
       "app": "sumatra",
       "dll": "shell32.dll",
-      "symbol": "SHGetFolderPathW",
-      "key": "cba5a69537d78332",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "shell32.dll",
       "symbol": "SHOpenFolderAndSelectItems",
       "key": "d22c76bbf0c6ce79",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5884,13 +5870,6 @@
       "dll": "advapi32.dll",
       "symbol": "SetSecurityDescriptorDacl",
       "key": "bd8caff3afae0c7b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "shell32.dll",
-      "symbol": "SHGetFolderPathW",
-      "key": "cba5a69537d78332",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

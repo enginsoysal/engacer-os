@@ -298,6 +298,7 @@ static void MS f_SetFileApisToOEM(void){file_oem8=1;}
 #include "system-directory148.inc"
 #include "pathappend148.inc"
 #include "error-mode148.inc"
+#include "shell-folders148.inc"
 #endif
 static WCHAR *MS f_CharUpperW(WCHAR*p){if((uintptr_t)p<=65535){unsigned v=(unsigned)(uintptr_t)p;if(v>='a'&&v<='z')v-=32;return (WCHAR*)(uintptr_t)v;}for(unsigned i=0;p&&p[i];++i)if(p[i]>='a'&&p[i]<='z')p[i]-=32;return p;}
 static const char *MS f_CharPrevExA(unsigned cp,const char*start,const char*current,unsigned flags){(void)flags;if(current<=start)return start;const char*p=current-1;if(cp==65001||cp==0||cp==1)while(p>start&&((uint8_t)*p&0xc0)==0x80)--p;return p;}
@@ -424,6 +425,7 @@ static const api8 api8_table[]={
  API8(PathAppendW,20),
  API8(HeapCreate,1),API8(HeapDestroy,1),API8(HeapReAlloc,1),
  API8(SetErrorMode,1),API8(GetErrorMode,1),
+ API8(SHGetFolderPathW,10),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

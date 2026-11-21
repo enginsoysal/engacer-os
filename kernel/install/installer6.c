@@ -120,7 +120,7 @@ const storage_disk*d=storage_get(selected);if(!d||persistent||!m6_live()||!bundl
  char user[256]="/Users/";memcpy(user+7,p->user,userlen+1);if(directory(user))return B_IO;
  for(unsigned i=0;i<5;++i){const char*names[]={"Desktop","Documents","Downloads","Pictures","AppData"};char sub[256];memcpy(sub,user,7+userlen);sub[7+userlen]='/';unsigned k=0;do{sub[8+userlen+k]=names[i][k];}while(names[i][k++]);if(directory(sub))return B_IO;}
 #ifdef ENGINE_M14
- {char temporary[256];memcpy(temporary,user,7+userlen);const char*tail="/AppData/Temp";unsigned n=0;do{temporary[7+userlen+n]=tail[n];}while(tail[n++]);if(directory(temporary))return B_IO;}
+ {const char*tails[]={"/AppData/Temp","/AppData/Local","/AppData/Roaming"};for(unsigned i=0;i<3;++i){char target[256];memcpy(target,user,7+userlen);unsigned n=0;do{target[7+userlen+n]=tails[i][n];}while(tails[i][n++]);if(directory(target))return B_IO;}}
 #endif
  if(p->guide){char guidepath[256];memcpy(guidepath,user,7+userlen);const char*tail="/Documents/Welcome.txt";unsigned j=0;do{guidepath[7+userlen+j]=tail[j];}while(tail[j++]);const char*guide=
 #ifdef ENGINE_M7

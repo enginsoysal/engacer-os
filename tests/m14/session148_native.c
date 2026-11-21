@@ -36,6 +36,8 @@ __declspec(dllimport) uint64_t HeapSize(uint64_t,unsigned,const void*);
 __declspec(dllimport) void*HeapReAlloc(uint64_t,unsigned,void*,uint64_t);
 __declspec(dllimport) unsigned SetErrorMode(unsigned);
 __declspec(dllimport) unsigned GetErrorMode(void);
+__declspec(dllimport) unsigned GetFileAttributesW(const uint16_t*);
+__declspec(dllimport) int RemoveDirectoryW(const uint16_t*);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 void entry(void);void*volatile relocation_anchor148=&entry;
@@ -69,7 +71,15 @@ void entry(void){
  check(!LoadLibraryExA("kernel32.dll",1,0)&&GetLastError()==50,242);
  uint16_t system[260];check(GetSystemDirectoryW(system,260)==19,243);
  uint64_t shell=LoadLibraryExA("SHLWAPI.dll",0,0);int(*append)(uint16_t*,const uint16_t*)=GetProcAddress(shell,"PathAppendW");
- check(shell&&append&&append(system,L"own.dll"),244);const uint16_t expected[]=L"C:\\Windows\\System32\\own.dll";for(unsigned i=0;i<sizeof(expected)/2;++i)check(system[i]==expected[i],245);check(FreeLibrary(shell),246);
+ check(shell&&append&&append(system,L"own.dll"),244);const uint16_t expected[]=L"C:\\Windows\\System32\\own.dll";for(unsigned i=0;i<sizeof(expected)/2;++i)check(system[i]==expected[i],245);
+ uint64_t shell32=LoadLibraryExA("shell32.dll",0,0);int(*folder)(uint64_t,int,uint64_t,unsigned,uint16_t*)=GetProcAddress(shell32,"SHGetFolderPathW");check(folder!=0,269);
+ uint16_t profile[260],known[260];check(!folder(0,0x28,0,0,profile)&&!folder(0,0x1c,0,0,known),270);unsigned folder_attributes=GetFileAttributesW(known);check(folder_attributes!=UINT32_MAX&&(folder_attributes&16),282);
+ check(append(profile,L"AppData\\Local"),271);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],272);
+ check(!folder(0,0x1c,0,1,profile),273);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],274);
+ known[0]='x';check(folder(0,0x1c,1,0,known)==(int)0x80070005u&&!known[0],275);
+ check(!folder(0,0x4006,0,0,known),276);unsigned favorites=GetFileAttributesW(known);
+ if(favorites==UINT32_MAX){profile[0]='x';check(folder(0,6,0,0,profile)!=0&&!profile[0],277);check(GetFileAttributesW(known)==UINT32_MAX,278);check(!folder(0,0x8006,0,0,profile),279);folder_attributes=GetFileAttributesW(profile);check(folder_attributes!=UINT32_MAX&&(folder_attributes&16),283);check(RemoveDirectoryW(profile),280);}
+ check(FreeLibrary(shell32)&&FreeLibrary(shell),281);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);
  check(TryAcquireSRWLockShared(&lock)&&TryAcquireSRWLockShared(&lock)&&!TryAcquireSRWLockExclusive(&lock),232);ReleaseSRWLockShared(&lock);ReleaseSRWLockShared(&lock);
