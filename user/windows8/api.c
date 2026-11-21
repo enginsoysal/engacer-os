@@ -413,7 +413,7 @@ static const api8 api8_table[]={
  API8(InitializeSListHead,1),API8(InterlockedFlushSList,1),
  API8(GetFileVersionInfoSizeW,24),API8(GetFileVersionInfoW,24),API8(VerQueryValueW,24),
  API8(RegisterWindowMessageW,4),API8(GlobalFindAtomW,1),API8(GlobalAddAtomW,1),API8(GlobalDeleteAtom,1),API8(GlobalGetAtomNameW,1),
- API8(IsValidCodePage,1),API8(GetCPInfo,1),
+ API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif
  API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(lstrlenA,1),API8(lstrcatW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),

@@ -2,6 +2,11 @@
 static const uint16_t cp1252_high147[]={0x20ac,0x81,0x201a,0x192,0x201e,0x2026,0x2020,0x2021,0x2c6,0x2030,0x160,0x2039,0x152,0x8d,0x17d,0x8f,0x90,0x2018,0x2019,0x201c,0x201d,0x2022,0x2013,0x2014,0x2dc,0x2122,0x161,0x203a,0x153,0x9d,0x17e,0x178};
 static unsigned MS f_GetOEMCP(void){return 65001;}
 static unsigned MS f_GetACP(void){return 65001;}
+/* UTF-8 is variable-width, not a Windows double-byte code page. Neither
+ * supported explicit encoding has DBCS lead ranges; preserve last error on
+ * valid negative results and reject unsupported code pages explicitly. */
+static int MS f_IsDBCSLeadByte(uint8_t value){(void)value;return 0;}
+static int MS f_IsDBCSLeadByteEx(unsigned cp,uint8_t value){(void)value;if(cp!=0&&cp!=1&&cp!=3&&cp!=65001&&cp!=1252)last8(87);return 0;}
 static int MS f_MultiByteToWideChar(unsigned cp,unsigned flags,const char*src,int count,WCHAR*out,int capacity){
  if(!src||count==0||count< -1||capacity<0||(capacity&&!out)||(flags&~8u)||(cp!=0&&cp!=1&&cp!=65001&&cp!=1252)){last8(87);return 0;}unsigned n=count<0?len8(src)+1:(unsigned)count,used=0;
 
