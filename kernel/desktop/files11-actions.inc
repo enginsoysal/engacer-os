@@ -1,10 +1,13 @@
 static unsigned file_handler11(unsigned kind){return kind==EDITOR||kind==IMAGES74||kind==ARCHIVES74||kind==MEDIA74||kind==BROWSER74||kind==WINDOWS8;}
 static void file_extension11(char*out,const char*path){const char*name=file_basename11(path),*dot=0;for(unsigned i=1;name[i];++i)if(name[i]=='.')dot=name+i+1;out[0]=0;if(!dot||!dot[0]||length(dot)>8)return;for(unsigned i=0;dot[i];++i){unsigned c=lower11((uint8_t)dot[i]);if(!((c>='a'&&c<='z')||(c>='0'&&c<='9')))return;out[i]=(char)c;out[i+1]=0;}}
 static unsigned file_suffix11(const char*path,const char*extension){char value[12];file_extension11(value,path);return equal(value,extension);}
+static void file_associations_reload148(void){memset(&file_associations11,0,sizeof(file_associations11));
+ unsigned bytes=0;if(v6_verify(m6_volume(),"/System/Settings/associations11.bin")||v6_read(m6_volume(),"/System/Settings/associations11.bin",0,&file_associations11,sizeof(file_associations11),&bytes)||bytes!=sizeof(file_associations11)||file_associations11.magic!=UINT64_C(0x31434f5353413146)||file_associations11.version!=1||file_associations11.count>32)file_associations11.count=0;
+ for(unsigned i=0;i<file_associations11.count;++i){unsigned terminated=0;for(unsigned n=0;n<12;++n)if(!file_associations11.records[i].extension[n]){terminated=1;break;}if(!terminated||!file_handler11(file_associations11.records[i].app)){file_associations11.count=0;break;}}
+}
 static void file_settings_load11(void){unsigned bytes=0;memset(&file_views_state11,0,sizeof(file_views_state11));memset(&file_associations11,0,sizeof(file_associations11));
  if(!v6_verify(m6_volume(),"/System/Settings/files11.bin")&&!v6_read(m6_volume(),"/System/Settings/files11.bin",0,&file_views_state11,sizeof(file_views_state11),&bytes)&&bytes==sizeof(file_views_state11)&&file_views_state11.magic==UINT64_C(0x3153574549563146)&&file_views_state11.version==1&&file_views_state11.count<=32){for(unsigned i=0;i<file_views_state11.count;++i){file_view_record11*r=&file_views_state11.records[i];if(!file_nul11(r->path)||r->path[0]!='/'||r->view>1||r->sort>2||r->descending>1){file_views_state11.count=0;break;}}}else file_views_state11.count=0;
- bytes=0;if(v6_verify(m6_volume(),"/System/Settings/associations11.bin")||v6_read(m6_volume(),"/System/Settings/associations11.bin",0,&file_associations11,sizeof(file_associations11),&bytes)||bytes!=sizeof(file_associations11)||file_associations11.magic!=UINT64_C(0x31434f5353413146)||file_associations11.version!=1||file_associations11.count>32)file_associations11.count=0;
- for(unsigned i=0;i<file_associations11.count;++i){unsigned terminated=0;for(unsigned n=0;n<12;++n)if(!file_associations11.records[i].extension[n]){terminated=1;break;}if(!terminated||!file_handler11(file_associations11.records[i].app)){file_associations11.count=0;break;}}
+ file_associations_reload148();
  #ifdef ENGINE_M12
  files_usb_view_load12();
 #endif

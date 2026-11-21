@@ -79,6 +79,15 @@ static __attribute__((noinline)) void foreign_sync144(void){
 #endif
 }
 #ifdef ENGINE_M14
+static uint64_t shell_association_revision148;
+uint64_t w8_desktop_association148(unsigned refresh){
+ if(!refresh)return shell_association_revision148;if(shell_association_revision148==INT64_MAX)return 0;
+ file_associations_reload148();
+ for(unsigned i=0;i<=DESKTOP_WINDOWS;++i)file_lists11[i].generation=0;
+ trash_names_generation11=0;
+ for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&(model.windows[i].app==FILES||model.windows[i].app==WINDOWS8))invalidate(model.windows[i].bounds);
+ task_damage();whole();++shell_association_revision148;serial_text("M148_NATIVE_SHELL_ASSOCIATIONS_REFRESH\n");return shell_association_revision148;
+}
 unsigned w8_desktop_foreground_allowed148(uint64_t handle){
  if(launcher||context11||picker_live12()||dragging||file_dialog_state11.mode)return 0;
  if(model.focused>=DESKTOP_WINDOWS||!model.windows[model.focused].live)return 1;

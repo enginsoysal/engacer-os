@@ -219,6 +219,7 @@ static void snapshot_check148(uint64_t snapshot,unsigned child,unsigned present)
  }while(Process32NextW(snapshot,&entry));check(GetLastError()==18&&own==1&&found==present&&count==1+present,289);
 }
 static uint64_t owned_pages148(void){uint64_t values[4];register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_VMINFO;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)(uintptr_t)values),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");check(!result,260);return values[1];}
+static int64_t association_state148(uint64_t argument){register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=argument;uint64_t result=W8_SYS_UI144;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)WUI_SHELL148),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");return(int64_t)result;}
 static int64_t security_profile148(uint64_t argument){register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_SECURITY148;__asm__ volatile("int $0x80":"+a"(result):"D"(argument),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");return(int64_t)result;}
 static unsigned worker(void*kind){
  for(unsigned i=0;i<1000;++i){
@@ -334,7 +335,7 @@ void entry(void){
  uint16_t system[260];check(GetSystemDirectoryW(system,260)==19,243);
  uint64_t shell=LoadLibraryExA("SHLWAPI.dll",0,0);int(*append)(uint16_t*,const uint16_t*)=GetProcAddress(shell,"PathAppendW");
  check(shell&&append&&append(system,L"own.dll"),244);const uint16_t expected[]=L"C:\\Windows\\System32\\own.dll";for(unsigned i=0;i<sizeof(expected)/2;++i)check(system[i]==expected[i],245);
- uint64_t shell32=LoadLibraryExA("shell32.dll",0,0);int(*folder)(uint64_t,int,uint64_t,unsigned,uint16_t*)=GetProcAddress(shell32,"SHGetFolderPathW");check(folder!=0,269);
+ uint64_t shell32=LoadLibraryExA("shell32.dll",0,0);void(*notify)(int32_t,unsigned,const void*,const void*)=GetProcAddress(shell32,"SHChangeNotify");int64_t association_before=association_state148(1);check(notify&&association_before>=0,630);notify(0x08000000,0,0,0);check(association_state148(1)==association_before+1&&association_state148(2)==-87,631);say148("M148_NATIVE_SHELL_ASSOCIATION_REFRESH_DELIVERY_PASS\n");int(*folder)(uint64_t,int,uint64_t,unsigned,uint16_t*)=GetProcAddress(shell32,"SHGetFolderPathW");check(folder!=0,269);
  uint16_t**(*split_command)(const uint16_t*,int*)=GetProcAddress(shell32,"CommandLineToArgvW");check(split_command!=0,355);int arguments=0;uint16_t**words=split_command(L"p \"a b\" \"\" tail",&arguments);check(words&&arguments==4&&words[0][0]=='p'&&!words[0][1]&&words[1][0]=='a'&&words[1][1]==' '&&words[1][2]=='b'&&!words[1][3]&&!words[2][0]&&words[3][0]=='t'&&!words[3][4],356);check(!LocalFree(words),357);
  words=split_command(L" p",&arguments);check(words&&arguments==2&&!words[0][0]&&words[1][0]=='p'&&!LocalFree(words),358);
  words=split_command(L"",&arguments);check(words&&arguments==1,359);for(unsigned i=0;i<=n;++i)check(words[0][i]==path[i],360);check(!LocalFree(words)&&!split_command(0,&arguments)&&!split_command(L"p",0),361);

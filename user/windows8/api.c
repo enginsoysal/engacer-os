@@ -405,6 +405,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "exception142.inc"
 #ifdef ENGINE_M14
 #include "software-exception148.inc"
+#include "shell-notify148.inc"
 #endif
 #include "heap-api144.inc"
 #include "global-memory146.inc"
@@ -488,7 +489,7 @@ static const api8 api8_table[]={
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
- API8(PathAppendW,20),API8(SHDeleteValueW,20),API8(SHDeleteKeyW,20),
+ API8(PathAppendW,20),API8(SHDeleteValueW,20),API8(SHDeleteKeyW,20),API8(SHChangeNotify,10),
  API8(HeapCreate,1),API8(HeapDestroy,1),API8(HeapReAlloc,1),
  API8(SetErrorMode,1),API8(GetErrorMode,1),
  API8(SHGetFolderPathW,10),

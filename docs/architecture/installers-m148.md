@@ -486,3 +486,20 @@ Private `.EngacerMSI` staging/journal paths are excluded from normal product-fil
 metadata. The existing staging move requires absence of metadata records;
 expanding that trusted move to accept them would change its security contract.
 Keep that guard and preserve the failed initial extension as development evidence.
+
+## Windows-contract-first validation
+
+Implement shared Windows contracts rather than vendor-name branches or fixed
+successful responses. For each compatibility family, establish Microsoft's ABI
+and behavior first, use owned Windows reference programs where safe and useful,
+then test native observable effects and unchanged original programs. Preserve
+reference/native differences explicitly. Original applications are independent
+integration callers, not substitutes for the contract.
+
+The initial SHChangeNotify profile is the documented association-change/IDLIST/
+NULL-items event measured in the original installer source. Its consumer is the
+real native shell: reload durable association preferences, invalidate listing
+caches and request native repaint. A delivered revision/serial marker follows
+those effects. This does not introduce Windows change-listener registration,
+COM thumbnail handlers or Windows-program association launching before their
+separate implementation/qualification.

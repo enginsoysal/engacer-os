@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "build_id": "aab73632a5b6d4438945ee27dd2cd6c4",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "fa14f5aa5ade194cdf102443e5e6c1792f6ebdf2c074bde2e300e4ded23be553",
+    "clone_sha256": "fa14f5aa5ade194cdf102443e5e6c1792f6ebdf2c074bde2e300e4ded23be553",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "e118e2610ab44e7725a0576e3130005732a64b5ae6a81c99e01e705da3a2360d",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=77824 source-fnv32=3374170587\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS\nM148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_PROGRESS_RANGE_POSITION_STEP_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=77824 source-fnv32=3374170587\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nMapped original image: 7zFM.exe bytes=77824 source-fnv32=3374170587\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_DERIVED_PARGB_STORAGE_PASS\nM148_NATIVE_GDIPLUS_FONT_FAMILY_FLOAT_ABI_PASS\nM148_NATIVE_GDIPLUS_FORMAT_STATE_CLONE_QUOTA_PASS\nUnsupported GDI+ text layout: wrapped or partial-fit rectangle.\nM148_NATIVE_GDIPLUS_FITTING_TEXT_METRICS_PASS\nM148_NATIVE_GDIPLUS_SOLID_BRUSH_OWNERSHIP_PASS\nM148_NATIVE_GDIPLUS_RECTANGLE_ALPHA_CLIP_MODE_PASS\nM148_NATIVE_GDIPLUS_BITMAP_BLIT_ALPHA_OVERLAP_PASS\nUnsupported GDI+ drawing layout: control or multiple lines.\nUnsupported GDI+ drawing mode or page unit.\nM148_NATIVE_AFFINE_MATRIX_TRANSFORMED_TEXT_PASS\nM148_NATIVE_GDIPLUS_ACTUAL_GLYPHS_ALPHA_CLIP_PASS\nM148_HEAP_PAGES before=280 after=280\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n"
+}
