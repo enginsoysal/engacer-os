@@ -316,3 +316,18 @@ identity for base and matching extended records. No dynamic display list or
 background discovery worker is added, and no second monitor is invented. This
 supports original window placement while keeping multiple displays and arbitrary
 Windows per-monitor DPI awareness outside the current qualification.
+
+The next candidate appends a foreground operation without renumbering earlier
+calls. Only a live, visible, enabled, non-minimized, same-thread owned top-level
+window can request activation. A single scalar pending handle adds no allocation;
+the real desktop consumes it, changes actual focus/z-order and publishes actual
+foreground identity. Native modal surfaces, menus/dragging and another active
+Windows process refuse. A currently active Windows frontend can admit its
+newly launched original window. GetForegroundWindow reads the actual published
+state, never the pending request. Destruction clears stale pending/current
+handles. Asynchronous activation remains subject to native admission; full
+Windows foreground-lock timeout, arbitrary cross-process grants and thread
+priority boosting are not implemented. Native invalid/hidden-window refusal
+and actual keyboard/foreground checks are pending on a new full build.
+
+Primary contract: [SetForegroundWindow](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow).

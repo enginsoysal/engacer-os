@@ -71,6 +71,8 @@ __declspec(dllimport) int GetWindowRect(uint64_t,void*);
 __declspec(dllimport) int GetClientRect(uint64_t,void*);
 __declspec(dllimport) int GetSystemMetrics(int);
 __declspec(dllimport) uint64_t MonitorFromRect(const void*,unsigned);
+__declspec(dllimport) int SetForegroundWindow(uint64_t);
+__declspec(dllimport) uint64_t GetForegroundWindow(void);
 __declspec(dllimport) uint64_t MonitorFromPoint(uint64_t,unsigned);
 __declspec(dllimport) int GetMonitorInfoW(uint64_t,void*);
 __declspec(dllimport) int GetMonitorInfoA(uint64_t,void*);
@@ -226,7 +228,7 @@ void entry(void){
  _Static_assert(sizeof(class_definition)==80,"Owned WNDCLASSEXW ABI");
  check(!RegisterClassExW(&class_readback)&&GetLastError()==87,350);unsigned class_atom=RegisterClassExW(&class_definition);check(class_atom>=0xc000&&!RegisterClassExW(&class_definition)&&GetLastError()==1410,351);
  class_readback.size=80;check(GetClassInfoExW(0,(const uint16_t*)(uintptr_t)class_atom,&class_readback)&&class_readback.proc==class_proc148&&class_readback.window_extra==16&&!class_readback.small_icon,352);
- uint64_t hidden=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned class lifecycle",0,0,0,100,100,0,0,0,0);check(hidden&&class_created148==1&&!UnregisterClassW(class_definition.name,0)&&GetLastError()==1412,353);
+ uint64_t hidden=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned class lifecycle",0,0,0,100,100,0,0,0,0);check(!SetForegroundWindow(0)&&GetLastError()==1400&&!SetForegroundWindow(desktop)&&!SetForegroundWindow(hidden)&&GetLastError()==5,593);check(hidden&&class_created148==1&&!UnregisterClassW(class_definition.name,0)&&GetLastError()==1412,353);
  SetLastError(0x148);check(!GetWindowLongW(hidden,-16)&&GetLastError()==0x148&&GetWindowLongW(desktop,-16)==0x10000000&&!SetWindowLongPtrW(hidden,8,INT64_C(0x11223344aabbccdd))&&GetWindowLongW(hidden,8)==(int)0xaabbccddu&&GetWindowLongW(hidden,12)==0x11223344&&GetWindowLongPtrW(hidden,8)==INT64_C(0x11223344aabbccdd),395);check(!GetWindowLongW(hidden,13)&&GetLastError()==1413,396);
  int adjusted[4]={0,0,123,67},plain_adjusted[4]={0,0,123,67};check(AdjustWindowRectEx(adjusted,0x02c80000,0,0)&&AdjustWindowRect(plain_adjusted,0x02c80000,0),397);for(unsigned i=0;i<4;++i)check(adjusted[i]==plain_adjusted[i],398);
  uint64_t framed=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned client geometry",0x02c80000,0,0,adjusted[2]-adjusted[0],adjusted[3]-adjusted[1],0,0,0,0);int framed_client[4];check(framed&&class_created148==2&&GetClientRect(framed,framed_client)&&!framed_client[0]&&!framed_client[1]&&framed_client[2]==123&&framed_client[3]==67,399);

@@ -48,6 +48,10 @@ static int MS f_GetClipboardFormatNameW(unsigned format,WCHAR*out,int capacity){
 
 static HANDLE MS f_GetFocus(void){int64_t result=ui_call144(WUI_FOCUS144,0,0,1);if(result<0){last8((unsigned)-result);return 0;}return(HANDLE)result;}
 static HANDLE MS f_SetFocus(HANDLE window){int64_t result=ui_call144(WUI_FOCUS144,window,0,0);if(result<0){last8((unsigned)-result);return 0;}HANDLE previous=(HANDLE)result;if(previous!=window){if(previous)f_SendMessageW(previous,8,window,0);if(window&&f_GetFocus()==window)f_SendMessageW(window,7,previous,0);}return previous;}
+#ifdef ENGINE_M14
+static int MS f_SetForegroundWindow(HANDLE window){int64_t result=ui_call144(WUI_FOREGROUND148,window,0,0);if(result<0){last8((unsigned)-result);return 0;}return(int)result;}
+static HANDLE MS f_GetForegroundWindow(void){int64_t result=ui_call144(WUI_FOREGROUND148,0,0,1);if(result<0){last8((unsigned)-result);return 0;}return(HANDLE)result;}
+#endif
 static HANDLE MS f_GetCapture(void){int64_t result=ui_call144(WUI_CAPTURE144,0,0,1);if(result<0){last8((unsigned)-result);return 0;}return(HANDLE)result;}
 static HANDLE MS f_SetCapture(HANDLE window){int64_t result=ui_call144(WUI_CAPTURE144,window,0,0);if(result<0){last8((unsigned)-result);return 0;}if((HANDLE)result!=window&&result)f_SendMessageW((HANDLE)result,0x215,0,(int64_t)window);return(HANDLE)result;}
 static int MS f_ReleaseCapture(void){HANDLE previous=f_GetCapture();int64_t result=ui_call144(WUI_CAPTURE144,0,0,2);if(result<0){last8((unsigned)-result);return 0;}if(previous)f_SendMessageW(previous,0x215,0,0);return(int)result;}

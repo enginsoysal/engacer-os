@@ -65,15 +65,27 @@ static __attribute__((noinline)) void foreign_sync144(void){
 
  for(unsigned pass=0;pass<DESKTOP_WINDOWS;++pass){unsigned changed=0;for(unsigned child=0;child<DESKTOP_WINDOWS;++child){if(!model.windows[child].live||!apps[child].foreign144)continue;wui_view144 view;if(!w8_ui_at144((unsigned)(apps[child].foreign144&255),&view)||!view.description.owner)continue;unsigned owner=DESKTOP_WINDOWS;for(unsigned n=0;n<DESKTOP_WINDOWS;++n)if(model.windows[n].live&&apps[n].foreign144==view.description.owner){owner=n;break;}if(owner==DESKTOP_WINDOWS)continue;unsigned cp=model.count,op=model.count;for(unsigned n=0;n<model.count;++n){if(model.order[n]==child)cp=n;if(model.order[n]==owner)op=n;}if(cp<op){for(unsigned n=cp;n<op;++n)model.order[n]=model.order[n+1];model.order[op]=(uint8_t)child;invalidate(model.windows[child].bounds);invalidate(model.windows[owner].bounds);++model.changes;changed=1;}}if(!changed)break;}
  if(model.focused<DESKTOP_WINDOWS&&window_disabled144(model.windows+model.focused)){uint64_t owner=apps[model.focused].foreign144;for(unsigned n=model.count;n;--n){unsigned slot=model.order[n-1];if(!apps[slot].foreign144||model.windows[slot].minimized||window_disabled144(model.windows+slot))continue;wui_view144 view;if(w8_ui_at144((unsigned)(apps[slot].foreign144&255),&view)&&view.description.owner==owner){desktop_focus(&model,desktop_token(&model,slot));desktop_focus11=0;task_damage();break;}}}
+#ifdef ENGINE_M14
+ /* Respect native modal surfaces; requests never restore hidden/minimized windows. */
+ uint64_t requested=w8_ui_foreground_request148();if(requested&&!launcher&&!context11&&!picker_live12()){for(unsigned i=0;i<DESKTOP_WINDOWS;++i)if(model.windows[i].live&&apps[i].foreign144==requested&&!model.windows[i].minimized&&!window_disabled144(model.windows+i)){desktop_focus(&model,desktop_token(&model,i));desktop_focus11=0;task_damage();whole();break;}}
+#endif
  uint64_t focus=0;if(model.focused<DESKTOP_WINDOWS&&model.windows[model.focused].live&&!model.windows[model.focused].minimized&&!launcher)focus=apps[model.focused].foreign144;
  if(focus!=foreign_focus144){if(foreign_focus144)w8_ui_input144(foreign_focus144,8,focus,0);if(focus)w8_ui_input144(focus,7,foreign_focus144,0);foreign_focus144=focus;}
 #ifdef ENGINE_M14
- if(focus)w8_ui_modifiers145(focus,input14_snapshot());
+ w8_ui_foreground_changed148(focus);if(focus)w8_ui_modifiers145(focus,input14_snapshot());
 #endif
 #ifdef ENGINE_M13
  if(!dragging&&!launcher){uint64_t token=desktop_hit(&model,(int)pointer_x,(int)pointer_y);unsigned kind=foreign_cursor_kind144(token,pointer_x,pointer_y);if(kind!=UINT32_MAX&&graphics9_cursor_kind(kind))usb_mouse_draw();}
 #endif
 }
+#ifdef ENGINE_M14
+unsigned w8_desktop_foreground_allowed148(uint64_t handle){
+ if(launcher||context11||picker_live12()||dragging||file_dialog_state11.mode)return 0;
+ if(model.focused>=DESKTOP_WINDOWS||!model.windows[model.focused].live)return 1;
+ unsigned slot=model.focused;if(!apps[slot].foreign144)return model.windows[slot].app==WINDOWS8;
+ wui_view144 current,target;return w8_ui_at144((unsigned)(apps[slot].foreign144&255),&current)&&w8_ui_at144((unsigned)(handle&255),&target)&&current.process==target.process;
+}
+#endif
 static unsigned foreign_key144(int key){
  if(launcher||model.focused>=DESKTOP_WINDOWS||!model.windows[model.focused].live||key==137||key==135)return 0;
  uint64_t handle=apps[model.focused].foreign144;if(!handle)return 0;wui_view144 v;if(!w8_ui_at144((unsigned)(handle&255),&v)||!v.description.enabled)return 1;

@@ -15,6 +15,9 @@ typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,dra
 } ui_window144;
 _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
+#ifdef ENGINE_M14
+static uint64_t ui_foreground148,ui_foreground_pending148;
+#endif
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
 static unsigned ui_generation144,ui_revision144;
 static uint64_t ui_focus144[SPACES142],ui_capture144[SPACES142],ui_capture_owner144;
@@ -51,6 +54,7 @@ static void ui_destroy144(uint64_t handle){
  ui_window144*w=ui_lookup144(handle);if(!w)return;
 #ifdef ENGINE_M14
  clip_owner_destroy146(handle);picker_owner_destroy146(handle);ui_images_release148(w);
+ if(ui_foreground148==handle)ui_foreground148=0;if(ui_foreground_pending148==handle)ui_foreground_pending148=0;
 #endif
  /* Parent teardown is bounded by the global window quota. Owners are distinct. */
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&(ui_windows144[i]->view.description.parent==handle||ui_windows144[i]->view.description.owner==handle))ui_destroy144(ui_windows144[i]->view.handle);
@@ -84,6 +88,9 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 #include "timers144.inc"
 #include "focus144.inc"
 #ifdef ENGINE_M14
+#include "foreground148.inc"
+#endif
+#ifdef ENGINE_M14
 #include "picker146.inc"
 #include "atom147.inc"
 #endif
@@ -93,6 +100,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_ATOM147)return atom_call147(handle,pointer,argument);
  if(op==WUI_MESSAGE148)return handle||argument?-87:message_call148(pointer);
  if(op==WUI_IMAGE148)return argument?-87:ui_image_call148(handle,pointer);
+ if(op==WUI_FOREGROUND148){if(pointer||argument>1)return -87;if(argument)return handle?-87:(int64_t)ui_foreground148;ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;if(w->view.description.parent||!w->view.description.visible||!ui_enabled_chain144(w)||(w->view.description.style&0x20000000u))return -5;ui_window144*old=ui_lookup144(ui_foreground148);if(old&&old->space!=active_space142)return -5;if(!w8_desktop_foreground_allowed148(handle))return -5;ui_foreground_pending148=handle;++ui_revision144;return 1;}
  if(op==WUI_FONT148){ui_font_metrics148 info;if(argument||handle>UINT32_MAX||!ui148_font_info((unsigned)handle,&info))return -87;return user8(pointer,&info,sizeof(info),1)?-998:0;}
  if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
  if(op==WUI_PICKER146)return picker_call146(handle,pointer,argument,f);
