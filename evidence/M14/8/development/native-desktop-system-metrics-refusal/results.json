@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "build_id": "d6421fcea294b667058809aa6d05c905",
+  "scope": "Native private-worker process/message/shell/GDI lifetimes, SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "5363505a5f06f9f90ebec910b3b4513840ac01ea755c198961b1264b6f508849",
+    "clone_sha256": "5363505a5f06f9f90ebec910b3b4513840ac01ea755c198961b1264b6f508849",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "3b188466a09a1be2e3aff340e9ace4b8cf4ccea1717933476b95334f55bcd3c5",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 21, in main\n    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: Required Windows API is unavailable; see the call-site diagnostic. OUTPUT Mapped original image: 7zFM.exe bytes=40960 source-fnv32=2298073852\nRunning the original Windows executable in a protected process.\n\nUnavailable Win32 API caller=0x00000001100011e5 main=0x0000000110000000\nABI GPR arguments: 0x0000000000000000 0x0000000010000000 0x0000000000000000 0x0000000000000500\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n\n"
+}

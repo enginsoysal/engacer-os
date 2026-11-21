@@ -67,6 +67,9 @@ __declspec(dllimport) int IsWindow(uint64_t);
 __declspec(dllimport) int GetWindowRect(uint64_t,void*);
 __declspec(dllimport) int GetClientRect(uint64_t,void*);
 __declspec(dllimport) int GetSystemMetrics(int);
+__declspec(dllimport) uint64_t GetDC(uint64_t);
+__declspec(dllimport) int ReleaseDC(uint64_t,uint64_t);
+__declspec(dllimport) int GetDeviceCaps(uint64_t,int);
 static unsigned class_created148,class_destroyed148;
 static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){(void)window;(void)wp;(void)lp;if(message==1)++class_created148;if(message==0x82)++class_destroyed148;return message==0x81;}
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
@@ -92,11 +95,12 @@ static unsigned worker(void*kind){
  for(unsigned i=0;i<1000;++i){
   if((uintptr_t)kind<4){AcquireSRWLockExclusive(&lock);++left;right=left*3;ReleaseSRWLockExclusive(&lock);}
   else{AcquireSRWLockShared(&lock);check(right==left*3,241);ReleaseSRWLockShared(&lock);}
- }return 0;
+ }for(unsigned i=0;i<64;++i){uint64_t dc=GetDC(0);check(dc&&GetDeviceCaps(dc,88)==96&&ReleaseDC(0,dc),393);}return 0;
 }
 void entry(void){
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
+ uint64_t desktop_dc=GetDC(0);check(desktop_dc&&GetDeviceCaps(desktop_dc,8)==desktop_rect[2]&&GetDeviceCaps(desktop_dc,10)==desktop_rect[3]&&GetDeviceCaps(desktop_dc,12)==32&&GetDeviceCaps(desktop_dc,14)==1&&GetDeviceCaps(desktop_dc,24)==-1&&GetDeviceCaps(desktop_dc,88)==96&&GetDeviceCaps(desktop_dc,90)==96&&ReleaseDC(0,desktop_dc),391);check(!GetDeviceCaps(desktop_dc,88)&&GetLastError()==6,392);
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
