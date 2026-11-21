@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "checks": 1024,
+  "scope": "Production fresh-install controller, MSI/CAB, V6 and kernel stream/rename routines with confined real Windows registry adapter; host supporting test only, native follow-up for authored false-condition Notepad++ actions, removal and selected deferred custom bodies remain unqualified",
+  "packages": [
+    {
+      "package": "7z2606-x64.msi",
+      "payloads": 106,
+      "shortcuts": 2,
+      "registry_rows": 16,
+      "journal_bytes": 42976,
+      "journal_sha256": "56804bc80cdf4a9e865a3aac0f24175427620c2b850a250f34a7abf5396a244e",
+      "registered_after_verification": true,
+      "duplicate_refused": true
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "payloads": 217,
+      "shortcuts": 1,
+      "registry_rows": 9,
+      "journal_bytes": 74744,
+      "journal_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b",
+      "registered_after_verification": true,
+      "duplicate_refused": true
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "refused_custom_actions_before_effects": true
+    }
+  ],
+  "peak_host_tracked_bytes": 7955474,
+  "retained_host_tracked_bytes": 0,
+  "sources": {
+    "user/windows8/msi-install147.c": "0f0242d5ad6f96b5f1da292879a0bdbb2cdce124cf9fd5e4795687f2ca2f5fde",
+    "user/windows8/msi-registry147.c": "6c1cb730293e07e064ca866b8e8cfbf65426b8540e00a3f487f4a22a7c10080c",
+    "user/windows8/msi-files147.c": "1c9bcfc70550dca04137abfb21715c5951f6d7932ae1dd9c61322aff304ea804",
+    "user/windows8/msi-shortcuts147.c": "a0e481b6dfe3a60c1426f86f59a9aac22ca7896764701e63d02f96a4de4f23ec",
+    "user/windows8/msi-journal147.c": "a0887e3c429dd9ac93640c3b7be333e80d6913462823d6ec618912d3ea709c9a",
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "kernel/storage/volume6.c": "9a0901c17b26106c22b0f9806743f28a1c779027c92275db061aeb5c7fab020a",
+    "tests/m14/files147_host.c": "358037cc5e05bbbd5b4b871281239a2cd1a8737604a1097d837645e412c5fe29",
+    "tests/m14/install147_host.py": "e8aea07213adca78c25157a5787a7b87181aea526464c9541042e9cf0a7e85c2",
+    "tests/m14/registry147_adapter.py": "2bfb6ea19540af91e55cef39063fe6c9e35d9a7398f4a30ba8461f002eab26a6",
+    "user/windows8/msi-install147.h": "4aa87ad88f07208573924e5238c04796062197468dd563d7622e8ba1062d22db",
+    "user/windows8/msi-condition147.h": "b2f899a5f43a07ce8fe611a65d1d4f28d96333b3eab13f90679927bd325938c6",
+    "kernel/windows8/transaction147.inc": "38e0a7ac0664b2830fadf4e73e57ee03a8565f71ee061f57855e2138b3a87da1"
+  }
+}

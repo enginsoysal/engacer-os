@@ -26,16 +26,22 @@ def main():
  lib.v6_format.argtypes=[c.POINTER(Volume)];lib.v6_mkdir.argtypes=[c.POINTER(Volume),c.c_char_p];lib.v6_mount.argtypes=[c.POINTER(Volume)]
  from registry147_adapter import create
  registry,cleanup,registry_state=create();lib.files_registry147.argtypes=[type(registry)];lib.files_registry147(registry)
- originals=json.loads((ROOT/'evidence/M14/7/development/cab-host-initial.json').read_text(encoding='utf-8'))['originals'];checks=0;samples=[]
+ originals=json.loads((ROOT/'evidence/M14/7/development/cab-host-initial.json').read_text(encoding='utf-8'))['originals'];metadata=json.loads((ROOT/'evidence/M14/7/development/msi-tables147.json').read_text(encoding='utf-8-sig'))['packages'];checks=0;samples=[]
  packages=[ROOT/'third_party/7zip/7z2606-x64.msi',Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/npp.8.9.9.1.Installer.x64.msi']
+ packages.append(packages[1])
  try:
   for index,package in enumerate(packages):
-   raw=package.read_bytes();data=c.create_string_buffer(raw);lib.open147(data,len(raw));assert lib.set147(b'ALLUSERS',b'1')==0 and lib.set147(b'Privileged',b'1')==0;lib.cost147(b'C:\\Users\\Owner')
+   raw=package.read_bytes();data=c.create_string_buffer(raw);lib.open147(data,len(raw));assert lib.set147(b'ALLUSERS',b'1')==0 and lib.set147(b'Privileged',b'1')==0;
+   if index==2:assert lib.set147(b'NPP_LANG',b'french')==0
+   lib.cost147(b'C:\\Users\\Owner')
    disk=storage.Disk(bytearray(64*1024*1024));v=disk.volume();assert lib.v6_format(c.byref(v))==0
    for path in [b'/Applications',b'/Applications/Windows']:assert lib.v6_mkdir(c.byref(v),path)==0
-   lib.files_init147(c.byref(v),size,data,len(raw));before=hashlib.sha256(disk.data).digest();base=state['bytes'];status=lib.install_controller147()
-   if index:
-    assert status==50 and hashlib.sha256(disk.data).digest()==before and state['bytes']==base;(samples.append(dict(package=package.name,refused_custom_actions_before_effects=True)));checks+=3;lib.files_close147();lib.close147();continue
+   lib.files_init147(c.byref(v),size,data,len(raw));before=hashlib.sha256(disk.data).digest();base=state['bytes']
+   if index<2:
+    for shape in range(2 if index==0 else 3):assert lib.install_order_fixture147(shape)==50 and hashlib.sha256(disk.data).digest()==before;checks+=2
+   status=lib.install_controller147()
+   if index==2:
+    assert status==50 and hashlib.sha256(disk.data).digest()==before;(samples.append(dict(package=package.name,refused_custom_actions_before_effects=True)));checks+=3;lib.files_close147();lib.close147();continue
    assert status==0,(status,registry_state);assert lib.installed_read147()==0;assert lib.verify147()==0;assert lib.keep147()==0;checks+=4
    n=lib.journal_bytes147();journal=c.string_at(lib.journal_data147(),n);assert journal[72:104]==hashlib.sha256(journal[:72]+bytes(32)+journal[104:]).digest();root=b'/Applications/Windows/'+journal[104:144].split(b'\0')[0];entries={e.path:e for e in v.entries if e.kind};assert root+b'/product.bin'in entries and root+b'/.EngacerMSI/transaction.bin'not in entries;checks+=3
    reference=next(p for p in originals if p['package_sha256']==hashlib.sha256(raw).hexdigest());remaining=list(reference['all_file_sha256'].values());at=1024;files=0;links=0;registry_rows=0
@@ -47,11 +53,12 @@ def main():
      elif kind==3:links+=1
     elif kind==2:registry_rows+=1
     at+=count
-   assert not remaining and files==106 and links==2 and registry_rows==16;checks+=4
+   tables=next(p['tables']for p in metadata if p['file']==package.name);enabled={r[0]for r in tables['Feature']if 0<int(r[5])<=1};selected_components={r[1]for r in tables['FeatureComponents']if r[0]in enabled};expected_registry=sum(r[5]in selected_components for r in tables['Registry'])
+   assert not remaining and files==(106 if index==0 else 217) and links==(2 if index==0 else 1) and registry_rows==expected_registry,(package.name,len(remaining),files,links,registry_rows);checks+=4
    # Existing product refuses before any filesystem or registry publication.
    disk_before=hashlib.sha256(disk.data).digest();allocated=state['bytes'];assert lib.install_controller147()==1638;assert hashlib.sha256(disk.data).digest()==disk_before and state['bytes']==allocated;checks+=3
    assert lib.installed_undo_registry147()==0;checks+=1
    samples.append(dict(package=package.name,payloads=files,shortcuts=links,registry_rows=registry_rows,journal_bytes=n,journal_sha256=hashlib.sha256(journal).hexdigest(),registered_after_verification=True,duplicate_refused=True));lib.files_close147();lib.close147();assert not live and state['bytes']==0 and not state['bad'];checks+=1
-  assert not registry_state['error'];report=dict(passed=True,checks=checks,scope='Production fresh-install controller, MSI/CAB, V6 and kernel stream/rename routines with confined real Windows registry adapter; host supporting test only, native controller/removal/custom actions remain unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['tests/m14/install147_host.py','tests/m14/registry147_adapter.py','user/windows8/msi-install147.h','user/windows8/msi-condition147.h','kernel/windows8/transaction147.inc']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS original MSI fresh-install controller',checks)
+  assert not registry_state['error'];report=dict(passed=True,checks=checks,scope='Production fresh-install controller, MSI/CAB, V6 and kernel stream/rename routines with confined real Windows registry adapter; host supporting test only, native follow-up for authored false-condition Notepad++ actions, removal and selected deferred custom bodies remain unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['tests/m14/install147_host.py','tests/m14/registry147_adapter.py','user/windows8/msi-install147.h','user/windows8/msi-condition147.h','kernel/windows8/transaction147.inc']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS original MSI fresh-install controller',checks)
  finally:cleanup()
 if __name__=='__main__':main()

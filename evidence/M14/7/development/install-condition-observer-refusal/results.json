@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "scope": "Supporting observer assumption; not an omitted selected registry write",
+  "package": "npp.8.9.9.1.Installer.x64.msi",
+  "expected_all_registry_rows": 10,
+  "actual_selected_registry_rows": 9,
+  "payloads_verified": 217,
+  "shortcuts_verified": 1,
+  "cause": "The original NativeLangFeature is level zero unless NPP_LANG is set; its nativeLang_registry component is therefore not selected for a default installation."
+}

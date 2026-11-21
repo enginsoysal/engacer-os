@@ -76,3 +76,5 @@ __declspec(dllexport) void files_registry147(registry_callback147 callback){regi
 __declspec(dllexport) unsigned install_controller147(void){return msia_install147(plan147,source147,source_bytes147);}
 __declspec(dllexport) unsigned installed_read147(void){char path[256];copy8(path,plan147->product_root,256);append8(path,"/product.bin",256);journal147=msij_read147(path,plan147->product_root,input8.user_root);return journal147?0:13;}
 __declspec(dllexport) unsigned installed_undo_registry147(void){return msireg_undo147(journal147);}
+
+__declspec(dllexport) unsigned install_order_fixture147(unsigned which){const char*name=which==0?"CreateShortcuts":which==1?"WriteRegistryValues":"SetCopyNativeLangAction";for(unsigned i=0;i<plan147->action_count;++i)if(equal8(plan147->actions[i].name,name)){unsigned old=plan147->actions[i].sequence;plan147->actions[i].sequence=which==0?1499:which==1?1601:6700;unsigned status=msia_install147(plan147,source147,source_bytes147);plan147->actions[i].sequence=old;return status;}return 87;}
