@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "scope": "Read-only Windows UTC and calendar reference; no system-clock changes.",
+  "current_systemtime": [
+    2026,
+    11,
+    6,
+    21,
+    18,
+    53,
+    7,
+    97
+  ],
+  "bracket_before": 134397607870975539,
+  "bracket_after": 134397607870975539,
+  "vectors": [
+    {
+      "filetime": 0,
+      "systemtime": [
+        1601,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "filetime": 94405824000000000,
+      "systemtime": [
+        1900,
+        3,
+        4,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "filetime": 125963423981230000,
+      "systemtime": [
+        2000,
+        2,
+        2,
+        29,
+        23,
+        59,
+        58,
+        123
+      ]
+    },
+    {
+      "filetime": 133536836967890000,
+      "systemtime": [
+        2024,
+        2,
+        4,
+        29,
+        12,
+        34,
+        56,
+        789
+      ]
+    },
+    {
+      "filetime": 2650467743999990000,
+      "systemtime": [
+        9999,
+        12,
+        5,
+        31,
+        23,
+        59,
+        59,
+        999
+      ]
+    }
+  ],
+  "source_sha256": "a6b4a48a67ce11e48760dde39d78b128a87ff68124a5ad75e797f4a2eb48236b"
+}

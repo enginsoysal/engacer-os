@@ -324,6 +324,12 @@ static int MS f_FormatMessageW(unsigned flags,const void*source,unsigned code,un
 static void *MS f_LocalFree(void*p){if(!p)return 0;if(global_contains146(p)||allocation_size8(p)==SIZE_MAX){last8(6);return p;}free8(p);return 0;}
 static int leap8(unsigned year){return !(year%4)&&(year%100||!(year%400));}
 static int MS f_FileTimeToSystemTime(const uint64_t*time,uint16_t*out){if(!time||!out)return 0;uint64_t seconds=*time/10000000,days=seconds/86400;unsigned year=1601;uint64_t remaining=days;while(year<=9999&&remaining>=(uint64_t)(365+leap8(year))){remaining-=365+(unsigned)leap8(year);++year;}if(year>9999){last8(87);return 0;}static const unsigned months[]={31,28,31,30,31,30,31,31,30,31,30,31};unsigned month=0;while(month<11){unsigned n=months[month]+(month==1&&leap8(year));if(remaining<n)break;remaining-=n;++month;}out[0]=(uint16_t)year;out[1]=(uint16_t)(month+1);out[2]=(uint16_t)((days+1)%7);out[3]=(uint16_t)(remaining+1);out[4]=(uint16_t)((seconds/3600)%24);out[5]=(uint16_t)((seconds/60)%60);out[6]=(uint16_t)(seconds%60);out[7]=(uint16_t)((*time%10000000)/10000);return 1;}
+#ifdef ENGINE_M14
+static void MS f_GetSystemTime(uint16_t*out){
+ if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,16,2,0,0))fail8("GetSystemTime requires a writable SYSTEMTIME output.");
+ uint64_t time=sys8(W8_SYS_TIME,1,0,0,0,0);if(!time||!f_FileTimeToSystemTime(&time,out))fail8("The UTC system clock could not be read.");
+}
+#endif
 static int MS f_FileTimeToDosDateTime(const uint64_t*time,uint16_t*date,uint16_t*clock){uint16_t s[8];if(!date||!clock||!f_FileTimeToSystemTime(time,s)||s[0]<1980||s[0]>2107)return 0;*date=(uint16_t)(((s[0]-1980)<<9)|(s[1]<<5)|s[3]);*clock=(uint16_t)((s[4]<<11)|(s[5]<<5)|(s[6]/2));return 1;}
 static int MS f_DosDateTimeToFileTime(unsigned date,unsigned time,uint64_t*out){unsigned year=1980+(date>>9),month=(date>>5)&15,day=date&31,hour=time>>11,minute=(time>>5)&63,second=(time&31)*2;static const unsigned lengths[]={31,28,31,30,31,30,31,31,30,31,30,31};if(!out||month<1||month>12||!day||day>lengths[month-1]+(month==2&&leap8(year))||hour>23||minute>59||second>59){last8(87);return 0;}uint64_t days=0;for(unsigned y=1601;y<year;++y)days+=365+(unsigned)leap8(y);for(unsigned m=1;m<month;++m)days+=lengths[m-1]+(m==2&&leap8(year));days+=day-1;*out=(days*86400+hour*3600+minute*60+second)*10000000;return 1;}
 static int MS f_FileTimeToLocalFileTime(const uint64_t*in,uint64_t*out){if(!in||!out)return 0;*out=*in;return 1;}
@@ -489,7 +495,7 @@ static const api8 api8_table[]={
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
- API8(PathAppendW,20),API8(SHDeleteValueW,20),API8(SHDeleteKeyW,20),API8(SHChangeNotify,10),
+ API8(PathAppendW,20),API8(SHDeleteValueW,20),API8(SHDeleteKeyW,20),API8(SHChangeNotify,10),API8(GetSystemTime,1),
  API8(HeapCreate,1),API8(HeapDestroy,1),API8(HeapReAlloc,1),
  API8(SetErrorMode,1),API8(GetErrorMode,1),
  API8(SHGetFolderPathW,10),
