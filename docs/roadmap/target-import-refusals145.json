@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 672,
-  "table_bytes": 5376,
+  "refusal_keys": 668,
+  "table_bytes": 5344,
   "imports": [
     {
       "app": "notepadpp",
@@ -907,27 +907,6 @@
       "dll": "kernel32.dll",
       "symbol": "FormatMessageA",
       "key": "4c5e1be319ae65ed",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "TryAcquireSRWLockExclusive",
-      "key": "467ae758702e5d54",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "AcquireSRWLockExclusive",
-      "key": "0f356eb10b98f50b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "ReleaseSRWLockExclusive",
-      "key": "ea9f0f9788a3f2ae",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2690,13 +2669,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "InitializeSRWLock",
-      "key": "712c410dc145b673",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "LCMapStringEx",
       "key": "6d85565f61e578fd",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -2881,27 +2853,6 @@
       "dll": "kernel32.dll",
       "symbol": "WakeAllConditionVariable",
       "key": "930d62fd8d2425a0",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "TryAcquireSRWLockExclusive",
-      "key": "467ae758702e5d54",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "AcquireSRWLockExclusive",
-      "key": "0f356eb10b98f50b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "ReleaseSRWLockExclusive",
-      "key": "ea9f0f9788a3f2ae",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
