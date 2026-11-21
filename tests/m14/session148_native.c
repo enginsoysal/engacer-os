@@ -2,6 +2,9 @@
 #include <stdint.h>
 #include <engine/windows8.h>
 #include <engine/winui144.h>
+__declspec(dllimport) uint64_t OpenProcess(unsigned,int,unsigned);
+__declspec(dllimport) int QueryFullProcessImageNameW(uint64_t,unsigned,uint16_t*,unsigned*);
+__declspec(dllimport) int TerminateProcess(uint64_t,unsigned);
 __declspec(dllimport) int RegCreateKeyExW(uint64_t,const uint16_t*,unsigned,uint16_t*,unsigned,unsigned,void*,uint64_t*,unsigned*);
 __declspec(dllimport) int RegOpenKeyExW(uint64_t,const uint16_t*,unsigned,unsigned,uint64_t*);
 __declspec(dllimport) int RegSetValueExW(uint64_t,const uint16_t*,unsigned,unsigned,const void*,unsigned);
@@ -361,6 +364,14 @@ static void shell_link_tests148(void){
 }
 
 void entry(void){
+ {
+  uint16_t expected[512],actual[512];unsigned length=GetModuleFileNameW(0,expected,512),capacity=512;uint64_t query=OpenProcess(0x1000,0,GetCurrentProcessId());check(length&&query&&QueryFullProcessImageNameW(query,0,actual,&capacity)&&capacity==length,740);for(unsigned i=0;i<=length;++i)check(actual[i]==expected[i],741);
+  for(unsigned n=0;n<3;++n){capacity=n;actual[0]=0x9b9b;check(!QueryFullProcessImageNameW(query,0,actual,&capacity)&&GetLastError()==122&&capacity==n&&actual[0]==0x9b9b,742);}
+  check(!TerminateProcess(query,17)&&GetLastError()==5&&WaitForSingleObject(query,0)==UINT32_MAX&&GetLastError()==5&&CloseHandle(query),743);
+  capacity=512;check(!QueryFullProcessImageNameW(query,0,actual,&capacity)&&GetLastError()==6&&!OpenProcess(0x1000,0,0)&&GetLastError()==87,744);
+  uint64_t denied=OpenProcess(0,0,GetCurrentProcessId());check(denied&&!QueryFullProcessImageNameW(denied,0,actual,&capacity)&&GetLastError()==5&&CloseHandle(denied),745);
+  say148("M148_NATIVE_PROCESS_QUERY_ACCESS_BUFFER_LIFETIME_PASS\n");
+ }
 
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);

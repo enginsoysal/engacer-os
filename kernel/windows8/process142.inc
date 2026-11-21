@@ -9,15 +9,28 @@ static int process_handle_slot142(uint64_t handle){
 }
 static uint64_t new_process_handle142(unsigned object,unsigned kind){
  if(process_handle_generation142>=0x7fffffu)return 0;unsigned slot=0;while(slot<32&&spaces142[active_space142]->handles[slot].live)++slot;if(slot==32)return 0;
- process_handle142*h=spaces142[active_space142]->handles+slot;*h=(process_handle142){1,++process_handle_generation142,object,kind};++process_objects142[object].refs;
+ process_handle142*h=spaces142[active_space142]->handles+slot;*h=(process_handle142){1,++process_handle_generation142,object,kind,0x1fffffu};++process_objects142[object].refs;
  return W8_PROCESS_TAG|((uint64_t)h->generation<<6)|slot;
 }
 static int64_t close_process_handle142(uint64_t handle){int slot=process_handle_slot142(handle);if(slot<0)return -1;process_handle142*h=spaces142[active_space142]->handles+slot;unsigned object=h->object;h->live=0;--process_objects142[object].refs;drop_process_object142(object);return 0;}
+#ifdef ENGINE_M14
+static int64_t open_process148(unsigned pid,unsigned access,unsigned inherit){
+ if(!pid)return -87;if(inherit||access&~0x101400u)return -50;
+ for(unsigned i=0;i<SPACES142;++i){private_space142*p=spaces142[i];if(!p)continue;process_object142*o=process_objects142+p->object;if(o->pid!=pid||!o->live)continue;if(!equal8(p->input.user_root,input8.user_root))return -5;
+  uint64_t handle=new_process_handle142(p->object,1);if(!handle)return -8;int slot=process_handle_slot142(handle);spaces142[active_space142]->handles[slot].access=access;return (int64_t)handle;
+ }return -87;
+}
+static int64_t process_image148(uint64_t handle,uint64_t output){
+ unsigned object=spaces142[active_space142]->object;if(handle!=UINT64_MAX){int slot=process_handle_slot142(handle);if(slot<0)return -6;process_handle142*h=spaces142[active_space142]->handles+slot;if(h->kind!=1)return -6;if(!(h->access&0x1400u))return -5;object=h->object;}
+ process_object142*o=process_objects142+object;if(!o->live||o->slot>=SPACES142||!spaces142[o->slot])return -6;private_space142*target=spaces142[o->slot];const char*path=target->exe_context148&&o->slot==0?"/System/Windows/runtime8.elf":target->input.source;
+ return user8(output,(void*)path,length8(path)+1,1)?-998:0;
+}
+#endif
 static void release_grants142(void){for(unsigned i=0;i<32;++i){process_handle142*h=spaces142[active_space142]->handles+i;if(h->live){unsigned object=h->object;h->live=0;if(object<32&&process_objects142[object].used&&process_objects142[object].refs){--process_objects142[object].refs;drop_process_object142(object);}}}}
 static void wake_process_waiters142(void){for(unsigned p=0;p<SPACES142;++p)if(spaces142[p]){++spaces142[p]->wait_epoch;for(unsigned i=0;i<THREADS142;++i){thread142*t=spaces142[p]->threads+i;if(t->state==T142_PARK){t->state=T142_READY;t->frame.rax=0;}}}refresh_sync_waits142();}
 static int64_t process_status142(uint64_t handle,uint64_t output,unsigned required){
  process_object142*o;unsigned kind;if(handle==UINT64_MAX){if(required==2)return -1;o=process_objects142+spaces142[active_space142]->object;kind=1;}
- else{int slot=process_handle_slot142(handle);if(slot<0)return -1;process_handle142*h=spaces142[active_space142]->handles+slot;kind=h->kind;if(required&&kind!=required)return -1;o=process_objects142+h->object;}
+ else{int slot=process_handle_slot142(handle);if(slot<0)return -1;process_handle142*h=spaces142[active_space142]->handles+slot;kind=h->kind;if(required&&kind!=required)return -1;if(!(h->access&(required?0x1400u:0x100000u)))return -5;o=process_objects142+h->object;}
  unsigned done=kind==1?!o->live:o->primary_done,code=kind==1?o->code:o->primary_code;if(output&&user8(output,&code,4,1))return -1;return done?0:259;
 }
 static int choose_space142(void){for(unsigned n=0;n<SPACES142;++n){unsigned slot=(space_cursor142+n)%SPACES142;if(!spaces142[slot])continue;active_space142=slot;reap_threads142();if(choose_thread142()){space_cursor142=(slot+1)%SPACES142;return 1;}}active_space142=0;return 0;}
@@ -45,6 +58,7 @@ static int64_t resume_process_thread142(uint64_t handle){
 static int64_t terminate_process142(uint64_t handle,unsigned code){
  if(handle==UINT64_MAX){finish8(code);return -1;}
  int h=process_handle_slot142(handle);if(h<0)return -1;process_handle142*cap=spaces142[active_space142]->handles+h;process_object142*o=process_objects142+cap->object;
+ if(!(cap->access&1u))return -5;
  if(cap->kind!=1||!o->live||o->slot>=SPACES142||!spaces142[o->slot])return -1;
  unsigned caller=active_space142,target=o->slot;active_space142=target;info8.status=code;info8.state=code?3:2;copy8(info8.message,"The Windows process was terminated without application cleanup.",sizeof(info8.message));end_space142(target,code);active_space142=caller;return 0;
 }

@@ -31,7 +31,7 @@ typedef struct {
  unsigned state,generation,code,closed,exiting,exception_depth;
  uint64_t exception_stack,exception_packets[4],wait_handles[32];unsigned wait_count,wait_all;
 } thread142;
-typedef struct {unsigned live,generation,object,kind;} process_handle142;
+typedef struct {unsigned live,generation,object,kind,access;} process_handle142;
 typedef struct {unsigned live,generation,object,access;} sync_cap142;
 typedef struct {unsigned live,generation,object,access;} registry_cap143;
 typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code,refs,slot,parent_pid;} process_object142;
@@ -463,7 +463,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_PROCESS_CREATE:return create_process142(a,b);
  case W8_SYS_PROCESS_STATUS:return process_status142(a,b,(unsigned)c);
  case W8_SYS_PROCESS_CLOSE:return close_process_handle142(a);
- case W8_SYS_PROCESS_ID:{if(a==UINT64_MAX)return input8.process_id;int h=process_handle_slot142(a);return h<0||spaces142[active_space142]->handles[h].kind!=1?-1:(int64_t)process_objects142[spaces142[active_space142]->handles[h].object].pid;}
+ case W8_SYS_PROCESS_ID:{if(a==UINT64_MAX)return input8.process_id;int h=process_handle_slot142(a);if(h<0||spaces142[active_space142]->handles[h].kind!=1)return -1;return spaces142[active_space142]->handles[h].access&0x1400u?(int64_t)process_objects142[spaces142[active_space142]->handles[h].object].pid:-5;}
  case W8_SYS_THREAD_ID:{if(a==UINT64_MAX-1)return (int64_t)thread_token142(current142);int h=process_handle_slot142(a);if(h>=0){process_handle142*cap=spaces142[active_space142]->handles+h;return cap->kind==2?(int64_t)process_objects142[cap->object].primary_id:-1;}int t=thread_slot142(a);return t<0?-1:(int64_t)thread_token142((unsigned)t);}
  case W8_SYS_PROCESS_TERMINATE:return terminate_process142(a,(unsigned)b);
  case W8_SYS_SECURITY148:{
@@ -476,6 +476,8 @@ static int64_t dispatch8(trap_frame*f){
 #endif
  }
  case W8_SYS_PROCESSES148:{
+  if(b==2)return e?-87:open_process148((unsigned)a,(unsigned)c,(unsigned)d);
+  if(b==3)return d||e?-87:process_image148(a,c);
   _Static_assert(SPACES142==W8_PROCESS_SNAPSHOT_MAX148,"Process inventory must cover every Windows space");
   if(c||d||e||b>1)return -87;
   if(b==1){if(string8(a,path,256))return -998;if(!path8(path,0))return -5;unsigned error=child_image142(path);if(error)return -(int64_t)error;

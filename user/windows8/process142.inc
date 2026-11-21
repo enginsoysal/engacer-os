@@ -38,7 +38,14 @@ static int MS f_CreateProcessA(const char*application,char*command,void*process_
 }
 static int MS f_GetExitCodeProcess(HANDLE handle,unsigned*code){if(!code){last8(87);return 0;}int64_t state=(int64_t)sys8(W8_SYS_PROCESS_STATUS,handle,(uint64_t)(uintptr_t)code,1,0,0);if(state<0){last8(6);return 0;}if(state==259)*code=259;return 1;}
 static unsigned MS f_GetProcessId(HANDLE handle){int64_t id=(int64_t)sys8(W8_SYS_PROCESS_ID,handle,0,0,0,0);if(id<0){last8(6);return 0;}return (unsigned)id;}
-static int MS f_TerminateProcess(HANDLE handle,unsigned code){int64_t status=(int64_t)sys8(W8_SYS_PROCESS_TERMINATE,handle,code,0,0,0);if(status<0){last8(6);return 0;}return 1;}
+#ifdef ENGINE_M14
+static HANDLE MS f_OpenProcess(unsigned access,int inherit,unsigned pid){int64_t result=(int64_t)sys8(W8_SYS_PROCESSES148,pid,2,access,inherit!=0,0);if(result<0){last8((unsigned)-result);return 0;}return(HANDLE)result;}
+static int MS f_QueryFullProcessImageNameW(HANDLE handle,unsigned flags,WCHAR*out,unsigned*capacity){
+ if(!capacity||!out){last8(87);return 0;}if(flags){last8(flags==1?50:87);return 0;}if(sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)capacity,4,3,0,0)||*capacity>INT32_MAX||(*capacity&&sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,(uint64_t)*capacity*2,2,0,0))){last8(998);return 0;}
+ char native[256],windows[512];int64_t result=(int64_t)sys8(W8_SYS_PROCESSES148,handle,3,(uint64_t)(uintptr_t)native,0,0);if(result<0){last8((unsigned)-result);return 0;}winpath8(native,windows,512);WCHAR wide[512];int count=utf8_to16(windows,wide,512);if(count<0){last8(1113);return 0;}if((unsigned)count>=*capacity){last8(122);return 0;}memcpy(out,wide,((unsigned)count+1)*2);*capacity=(unsigned)count;return 1;
+}
+#endif
+static int MS f_TerminateProcess(HANDLE handle,unsigned code){int64_t status=(int64_t)sys8(W8_SYS_PROCESS_TERMINATE,handle,code,0,0,0);if(status<0){last8(status==-1?6:(unsigned)-status);return 0;}return 1;}
 static void MS f_GetStartupInfoW(startup142*startup){if(startup){memset(startup,0,sizeof(*startup));startup->size=sizeof(*startup);startup->input=1;startup->output=2;startup->error=3;
 #ifdef ENGINE_M14
  startup->flags=job8->startup_flags147;if(startup->flags&0x100u){startup->input=job8->std_handles147[0];startup->output=job8->std_handles147[1];startup->error=job8->std_handles147[2];}

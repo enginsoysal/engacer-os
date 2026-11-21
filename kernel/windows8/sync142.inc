@@ -34,7 +34,7 @@ static int64_t evaluate_wait142(thread142*t,unsigned consume){
  unsigned ready=0,first=UINT32_MAX;sync_object142*objects[32]={0};uint64_t now=m3_clock_ticks()*10;
  for(unsigned i=0;i<t->wait_count;++i){uint64_t h=t->wait_handles[i];int signaled=0;
   if((h&W8_HANDLE_TAG_MASK)==SYNC_TAG142){int slot=sync_slot142(h);if(slot<0)return -6;sync_cap142*cap=spaces142[active_space142]->sync_handles+slot;if(!(cap->access&0x100000))return -5;sync_object142*o=sync_object_at142(cap->object);objects[i]=o;for(unsigned j=0;j<i;++j)if(objects[j]==o)return -87;update_sync_timer142(o,now);signaled=o->count>0;}
-  else if((h&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG){int64_t status=process_status142(h,0,0);if(status<0)return -6;signaled=status==0;}
+  else if((h&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG){int64_t status=process_status142(h,0,0);if(status<0)return status==-5?-5:-6;signaled=status==0;}
   else if(h==UINT64_MAX)signaled=0;
   else if(h==UINT64_MAX-1||(h&UINT64_C(0xffffffffc0000000))==UINT64_C(0x40000000)){int slot=h==UINT64_MAX-1?(int)(t-threads142):thread_slot142(h);if(slot<0)return -6;signaled=threads142[slot].state==T142_EXITED;}
   else return -6;

@@ -54,6 +54,7 @@ static unsigned exe_admit148(unsigned command,const uint8_t*digest){
  else{if(error||r->state!=EXE148_INSTALLED||!equal8(input8.source,EXE148_ROOT "/SumatraPDF.exe")){error=5;goto done;}error=exe_payloads_check148();}
  if(error)goto done;
  spaces142[0]->exe_context148=command==W8_INSTALL?1:2;input8.reserved147=input8.process_id;input8.profile147=W8_PROFILE_EXE148;copy8(input8.windows_root,EXE148_ALIAS,256);
+ copy8(spaces142[0]->image_name148,"runtime8.elf",64);
  if(command==W8_INSTALL){const v6_entry*e=find8(input8.source);spaces142[0]->image_pin148=(unsigned)(e-m6_volume()->entries)+1;}
  if(user8(W8_MAILBOX,&input8,sizeof(input8),1))error=998;
  done:page_free(page);return error;
