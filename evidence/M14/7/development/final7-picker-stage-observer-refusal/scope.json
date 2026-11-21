@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "Test-observer stage mismatch before native scenario",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 40,
+  "correction": "New stage-7 wrapper applies the recorded mappings to the nested canonical observer; accepted stage-6 observers remain unchanged.",
+  "os_source_changed": false
+}
