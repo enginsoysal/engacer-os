@@ -1,5 +1,5 @@
 {
-  "scope": "Known frozen main-image function imports only; no updater, plugin, helper or API compatibility claim",
+  "scope": "Frozen original main-image and selected WiX helper static function imports; diagnostic refusal only, not API or custom-action compatibility",
   "provider_ids": {
     "kernel32.dll": 1,
     "msvcrt.dll": 2,
@@ -27,10 +27,12 @@
     "version.dll": 24,
     "wininet.dll": 25,
     "winspool.drv": 26,
-    "wintrust.dll": 27
+    "wintrust.dll": 27,
+    "activeds.dll": 28,
+    "netapi32.dll": 29
   },
-  "refusal_keys": 634,
-  "table_bytes": 5072,
+  "refusal_keys": 689,
+  "table_bytes": 5512,
   "imports": [
     {
       "app": "notepadpp",
@@ -1029,13 +1031,6 @@
     {
       "app": "notepadpp",
       "dll": "kernel32.dll",
-      "symbol": "DuplicateHandle",
-      "key": "6ef1e6cf8570eabb",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
       "symbol": "EncodePointer",
       "key": "f68512aac4119237",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -1045,13 +1040,6 @@
       "dll": "kernel32.dll",
       "symbol": "FreeLibraryAndExitThread",
       "key": "b152324f7db0bf1a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "GetFileType",
-      "key": "3362fd198f4d0e8e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1150,13 +1138,6 @@
       "dll": "kernel32.dll",
       "symbol": "HeapReAlloc",
       "key": "2b7d7455e66dcc2c",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "SetStdHandle",
-      "key": "483ded16d8a9ca23",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2884,13 +2865,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "SetStdHandle",
-      "key": "483ded16d8a9ca23",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "EnumSystemLocalesW",
       "key": "00f4fbc1461a77cc",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3047,13 +3021,6 @@
       "dll": "kernel32.dll",
       "symbol": "ReleaseSRWLockExclusive",
       "key": "ea9f0f9788a3f2ae",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GetFileType",
-      "key": "3362fd198f4d0e8e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5875,6 +5842,685 @@
       "dll": "wininet.dll",
       "symbol": "InternetCloseHandle",
       "key": "e83762f869bc37a1",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "lstrcmpW",
+      "key": "570632d3ef25faa2",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetShortPathNameW",
+      "key": "c7d1b4678874efaf",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetComputerNameW",
+      "key": "3166c9740ff3045f",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "lstrcmpiW",
+      "key": "05c0631f5dbd379d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "WriteConsoleW",
+      "key": "b505227338fa95b5",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetConsoleOutputCP",
+      "key": "5b8ab2cc090e0eb3",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetStringTypeW",
+      "key": "1fedac91ede056da",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "FlsFree",
+      "key": "4f07f1d7474f893d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "FlsSetValue",
+      "key": "4dbadbd3a898e14a",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "FlsGetValue",
+      "key": "cdf7ec45d55b3606",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "FlsAlloc",
+      "key": "bbc3fa1646f5fa74",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetCPInfo",
+      "key": "a7164836f6c62897",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "IsValidCodePage",
+      "key": "f1e96f006abdb3a0",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "FindFirstFileExW",
+      "key": "25a6c99c58f9bf5d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetModuleHandleExW",
+      "key": "a8e6c310c741a61c",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "EncodePointer",
+      "key": "f68512aac4119237",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "RtlPcToFileHeader",
+      "key": "6f54da9c204a6769",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "InterlockedFlushSList",
+      "key": "cb56f4af66bfe85f",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "RtlUnwindEx",
+      "key": "c4210f2fd88758c6",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "InitializeSListHead",
+      "key": "947a043e9470f1d1",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GlobalDeleteAtom",
+      "key": "dfa3eec4aa84d3c9",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GlobalAddAtomW",
+      "key": "23c073bf09e1bcd4",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GlobalFindAtomW",
+      "key": "8f93a22f5014b79a",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "HeapReAlloc",
+      "key": "2b7d7455e66dcc2c",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "LCMapStringW",
+      "key": "e2f33400ceca818d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetFileTime",
+      "key": "a9e5691941bcdb27",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "kernel32.dll",
+      "symbol": "GetSystemDirectoryW",
+      "key": "06ae4ddba45ce339",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "user32.dll",
+      "symbol": "SendMessageTimeoutW",
+      "key": "76fe1fcf20636790",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "user32.dll",
+      "symbol": "GetSystemMetrics",
+      "key": "f037968b3abc0a91",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "user32.dll",
+      "symbol": "EnumWindows",
+      "key": "3702a9f0df9d5787",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "user32.dll",
+      "symbol": "GetWindowThreadProcessId",
+      "key": "d677cc4bff7c12bb",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "user32.dll",
+      "symbol": "UnregisterClassW",
+      "key": "f7533000bf16fae8",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "GetTokenInformation",
+      "key": "f20c820d45eff759",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "CreateWellKnownSid",
+      "key": "a42612d0e29ccd55",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "QueryServiceConfig2W",
+      "key": "ed306d4c5aecb4f6",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "OpenServiceW",
+      "key": "c2d79c3d8b2e1d64",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "OpenSCManagerW",
+      "key": "5ca86427e4fff936",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "CloseServiceHandle",
+      "key": "81fd24aa76ff36b9",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "ChangeServiceConfig2W",
+      "key": "1361e34264b80112",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "ConvertSecurityDescriptorToStringSecurityDescriptorW",
+      "key": "6cc920ef39646504",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "ConvertStringSecurityDescriptorToSecurityDescriptorW",
+      "key": "fccdf1e1b8b68260",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "SetNamedSecurityInfoW",
+      "key": "f70e921c125e2428",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "GetNamedSecurityInfoW",
+      "key": "2e6b455974c5424c",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "GetSecurityDescriptorControl",
+      "key": "a8b59c0c2de24090",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "GetExplicitEntriesFromAclW",
+      "key": "fc6cb90200cf2839",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "GetSecurityDescriptorDacl",
+      "key": "9a6330979dcbef4f",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "BuildTrusteeWithSidW",
+      "key": "353b2b41189bc741",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "SetEntriesInAclW",
+      "key": "ab894605edeeff96",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "RegQueryInfoKeyW",
+      "key": "ecc49ecea511c51e",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "LookupAccountSidW",
+      "key": "3efddd6a15aec66c",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "EqualSid",
+      "key": "03af25e7f4f1da44",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "LsaFreeMemory",
+      "key": "3ee695f28457823d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "LsaEnumerateAccountsWithUserRight",
+      "key": "686557f4ed2ee14d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "LsaRemoveAccountRights",
+      "key": "2fcae5fe3ae1171c",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "LsaNtStatusToWinError",
+      "key": "a284c5785acd2879",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "InitializeSecurityDescriptor",
+      "key": "3e3d57c3d6030bf9",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "advapi32.dll",
+      "symbol": "SetSecurityDescriptorDacl",
+      "key": "bd8caff3afae0c7b",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "shell32.dll",
+      "symbol": "SHGetFolderPathW",
+      "key": "cba5a69537d78332",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "ole32.dll",
+      "symbol": "CLSIDFromProgID",
+      "key": "de292fedc9822db8",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "oleaut32.dll",
+      "symbol": "#8",
+      "key": "fa2fde03a77a6ba5",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "activeds.dll",
+      "symbol": "#3",
+      "key": "d9c6c62aea80e3db",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#51",
+      "key": "dcc026d920d72bcf",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#76",
+      "key": "dcf9ecd921084188",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#34",
+      "key": "dc8660d920a61616",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#49",
+      "key": "dcb95ad920d1657d",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#32",
+      "key": "dc7f94d920a04fc4",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#162",
+      "key": "de3960d92217aa96",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#159",
+      "key": "de13fed921f7e7d3",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#160",
+      "key": "de3294d92211e444",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#163",
+      "key": "de3cc6d9221a8dbf",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#166",
+      "key": "de2bc8d9220c1df2",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#26",
+      "key": "dc6b30d9208efcce",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "msi.dll",
+      "symbol": "#120",
+      "key": "ddaaa4d9219e65dc",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetApiBufferFree",
+      "key": "fffe8f6f8e51c935",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetUserGetInfo",
+      "key": "38bf6d7603563690",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetUserSetInfo",
+      "key": "6301e3c04321909c",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetUserDel",
+      "key": "c43392db3583ecd5",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetGroupAddUser",
+      "key": "0e9c21183cfe439e",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetUserGetLocalGroups",
+      "key": "7270c286719053f7",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetUserGetGroups",
+      "key": "705fe0e66c2745c4",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetShareDel",
+      "key": "282d94ca7a166043",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetShareSetInfo",
+      "key": "c5fb3d4ac1c68952",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetShareGetInfo",
+      "key": "ba4c480504774b96",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetShareAdd",
+      "key": "0f0705ca6c13ec31",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "DsGetDcNameW",
+      "key": "bcbd247a7f33d78e",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetUserAdd",
+      "key": "aa4eebdb26e026f3",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetLocalGroupDelMembers",
+      "key": "85d0bbb3a11b1d05",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetLocalGroupAddMembers",
+      "key": "3235a8a17dbdb7df",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetLocalGroupDel",
+      "key": "6b474f85cbc0aada",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetLocalGroupSetInfo",
+      "key": "9b5e1edfe80d4f07",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetLocalGroupGetInfo",
+      "key": "0f65bed7a34bd883",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetLocalGroupAdd",
+      "key": "852bae85da63f664",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "netapi32.dll",
+      "symbol": "NetGroupDelUser",
+      "key": "4e09d49dce9cb380",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "shlwapi.dll",
+      "symbol": "#176",
+      "key": "769b9ad701f91378",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "version.dll",
+      "symbol": "VerQueryValueW",
+      "key": "9a04d2fdb0d6f536",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "version.dll",
+      "symbol": "GetFileVersionInfoSizeW",
+      "key": "4d31f328915180cd",
+      "status": "Refusal diagnostic only; no implementation or execution qualification"
+    },
+    {
+      "app": "msi-streams",
+      "dll": "version.dll",
+      "symbol": "GetFileVersionInfoW",
+      "key": "652273c5e685e10a",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     }
   ],

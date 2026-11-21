@@ -154,3 +154,8 @@ MSI destination leaves now enforce the existing native V6 limit of 63 ASCII byte
 ### Original WiX admission failure
 
 The unchanged Notepad++ Wix4UtilCA_X64 binary (SHA-256 54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381) was staged only in an owned native VM clone. Its actual load refuses KERNEL32.dll!lstrlenA on build 82d11f48c807b70110f04b4cef3ab8d8. This is a real missing import, retained as failed admission in development/wix-admission-initial. The original custom action has not executed successfully; record/pipe probes do not waive this blocker.
+
+
+### Helper static-import diagnostics
+
+The next runtime revision adds real lstrlenA byte-length behavior and extends the existing compact fatal-refusal inventory to the selected unchanged WiX helper. Existing provider IDs remain stable; helper-only ActiveDS/NetAPI namespaces append after them. MSI remains a real separately loaded PE: actual exports are resolved first, and only missing original static imports may receive a fatal refusal. Optional GetProcAddress queries continue to return absent for unavailable functions. Refusal lookup checks pass (1886 assertions, 5512 immutable key bytes); this is diagnostic routing, never a compatibility claim. Native helper admission is tested separately on the next frozen candidate.

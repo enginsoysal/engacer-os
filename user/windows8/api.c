@@ -24,6 +24,7 @@ static void last8(unsigned e){error8=e;*(volatile uint32_t*)(uintptr_t)(teb142()
 #ifdef ENGINE_M14
 #include "pipe147.inc"
 #endif
+static unsigned MS f_lstrlenA(const char*text){return len8(text);}
 static unsigned lower8(unsigned c){return c>='A'&&c<='Z'?c+32:c;}
 static void widecopy8(WCHAR*out,const WCHAR*in,unsigned cap){unsigned n=0;while(n+1<cap&&in&&in[n]){out[n]=in[n];++n;}if(cap)out[n]=0;}
 static void winpath8(const char*native,char*out,unsigned cap){
@@ -402,7 +403,7 @@ static const api8 api8_table[]={
  API8(CoInitializeEx,9),API8(CoInitialize,9),API8(CoUninitialize,9),API8(OleInitialize,9),API8(OleUninitialize,9),API8(RegisterDragDrop,9),API8(RevokeDragDrop,9),
  API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(SetDlgItemTextA,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
- API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(lstrcatW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),
+ API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(lstrlenA,1),API8(lstrcatW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),
  API8(LoadIconW,4),API8(LoadBitmapW,4),API8(LoadImageW,4),API8(DestroyIcon,4),API8(DeleteObject,8),API8(ImageList_Create,6),API8(ImageList_Destroy,6),API8(ImageList_GetImageCount,6),API8(ImageList_ReplaceIcon,6),API8(ImageList_AddMasked,6),
  API8(FindResourceW,1),API8(FindResourceExW,1),API8(LoadResource,1),API8(LockResource,1),API8(SizeofResource,1),API8(FreeResource,1),API8(LoadStringW,4),
  API8(RegisterClassW,4),API8(GetClassInfoW,4),API8(CallWindowProcW,4),API8(SendMessageW,4),API8(CreateWindowExW,4),API8(DestroyWindow,4),API8(PostMessageW,4),API8(PostQuitMessage,4),API8(PeekMessageW,4),API8(GetMessageW,4),API8(DispatchMessageW,4),API8(TranslateMessage,4),API8(DefWindowProcW,4),API8(SetWindowTextW,4),API8(GetWindowTextW,4),API8(GetWindowTextLengthW,4),API8(GetWindowLongPtrW,4),API8(SetWindowLongPtrW,4),API8(ShowWindow,4),API8(GetParent,4),API8(IsWindow,4),
@@ -428,7 +429,7 @@ static const api8 api8_table[]={
 #include "target-guards145.inc"
 void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provider=provider8(dll);if(provider==2&&name&&equal8(name,"__initenv")&&!initenv8){initenv8=environment_crt143();if(!initenv8)return 0;}if(provider==3){switch(ordinal){case 2:return f_SysAllocString;case 4:return f_SysAllocStringLen;case 6:return f_SysFreeString;case 7:return f_SysStringLen;case 9:return f_VariantClear;case 10:return f_VariantCopy;case 149:return f_SysStringByteLen;case 150:return f_SysAllocStringByteLen;}if(name){if(equal8(name,"SysAllocString"))return f_SysAllocString;if(equal8(name,"SysAllocStringLen"))return f_SysAllocStringLen;if(equal8(name,"SysFreeString"))return f_SysFreeString;if(equal8(name,"SysStringLen"))return f_SysStringLen;if(equal8(name,"SysStringByteLen"))return f_SysStringByteLen;if(equal8(name,"SysAllocStringByteLen"))return f_SysAllocStringByteLen;if(equal8(name,"VariantClear"))return f_VariantClear;if(equal8(name,"VariantCopy"))return f_VariantCopy;}return guard_lookup145(provider,name,ordinal);}
  if(provider==6&&!name&&ordinal==17)return f_InitCommonControls;
- if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;void*guard=guard_lookup144(provider,name,ordinal);return guard?guard:guard_lookup145(provider,name,ordinal);}return pe8_import(dll,name,ordinal);
+ if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;void*guard=guard_lookup144(provider,name,ordinal);return guard?guard:guard_lookup145(provider,name,ordinal);}void*address=pe8_import(dll,name,ordinal);if(!address&&!case8(dll,"msi.dll"))return guard_lookup145(0,name,ordinal);return address;
 }
 void init_win8(void){
 #ifdef ENGINE_M14
