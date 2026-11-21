@@ -169,3 +169,10 @@ The legacy root-deletion rollback must not erase the only external-effect undo j
 
 
 Build e53ce13e33e0537b288478d79d52c283 passes compact installation, retained-ISO restart, two independent disk starts, original 7-Zip install/run/archive/extract/remove/reinstall and all 106 original file hashes. The original WiX DLL now resolves its static imports and reaches actual CRT initialization, where the missing FlsAlloc behavior refuses. Its recorded caller address maps through the unchanged original import thunk to KERNEL32.dll!FlsAlloc. This is failed helper admission, not a passed custom action; evidence remains in development/wix-admission-fls.
+
+
+### Lazy FLS development
+
+The next runtime adds 64 FLS indices with one current fiber per each of the 16 native thread slots. State allocates lazily on first use and releases when the last index and outstanding callback finish; ordinary processes do not reserve a full FLS matrix. Values stay thread-local. Freeing an index retires it before invoking callbacks for all non-null thread values, outside the state lock; normal thread/main exit also invokes callbacks while module code remains mapped. Recursive callback allocation/free is supported. Repeated data rearming is bounded to four cleanup passes and refuses rather than silently looping forever. Fiber creation/switching and forced-termination callbacks remain unqualified.
+
+Own host checks pass 88600 assertions over 21 cycles: quotas, invalid indices, allocation failure, sixteen isolated rows, cleanup, reentrant callbacks and zero retained allocations. Native real-thread lifecycle and original WiX initialization remain separate pending gates. References: [FlsAlloc](https://learn.microsoft.com/en-us/windows/win32/api/fibersapi/nf-fibersapi-flsalloc), [FlsGetValue](https://learn.microsoft.com/en-us/windows/win32/api/fibersapi/nf-fibersapi-flsgetvalue), [FlsFree](https://learn.microsoft.com/en-us/windows/win32/api/fibersapi/nf-fibersapi-flsfree).

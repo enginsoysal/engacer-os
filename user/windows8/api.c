@@ -107,6 +107,9 @@ static unsigned MS f_TlsAlloc(void){lock_enter142(&tls_lock142);for(unsigned i=0
 static int MS f_TlsFree(unsigned i){lock_enter142(&tls_lock142);int valid=i<64&&(tls_used8&(UINT64_C(1)<<i));if(valid){tls_used8&=~(UINT64_C(1)<<i);for(unsigned t=0;t<16;++t)tls_values8[t][i]=0;}lock_leave142(&tls_lock142);if(!valid)last8(87);return valid;}
 static uint64_t MS f_TlsGetValue(unsigned i){lock_enter142(&tls_lock142);int valid=i<64&&(tls_used8&(UINT64_C(1)<<i));uint64_t value=valid?tls_values8[tid142()&255][i]:0;lock_leave142(&tls_lock142);last8(valid?0:87);return value;}
 static int MS f_TlsSetValue(unsigned i,uint64_t value){lock_enter142(&tls_lock142);int valid=i<64&&(tls_used8&(UINT64_C(1)<<i));if(valid)tls_values8[tid142()&255][i]=value;lock_leave142(&tls_lock142);if(!valid)last8(87);return valid;}
+#ifdef ENGINE_M14
+#include "fls147.inc"
+#endif
 static int MS f_IsProcessorFeaturePresent(unsigned feature){uint32_t a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));if(feature==6)return !!(d&(1u<<25));if(feature==10)return !!(d&(1u<<26));if(feature==13)return !!(d&(1u<<0));if(feature==17)return !!(c&(1u<<0));if(feature==23)return !!(c&(1u<<23));return 0;}
 static int MS f_SystemFunction036(void*out,unsigned bytes){uint32_t a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));if(!(c&(1u<<30)))return 0;uint8_t*p=out;while(bytes){uint64_t v=0;unsigned char ok=0;for(unsigned retry=0;retry<16&&!ok;++retry)__asm__ volatile("rdrand %0; setc %1":"=r"(v),"=qm"(ok));if(!ok)return 0;unsigned n=bytes>8?8:bytes;memcpy(p,&v,n);p+=n;bytes-=n;}return 1;}
 static void *MS f_SysAllocStringByteLen(const char*s,unsigned bytes){if(bytes>16*1024*1024)return 0;uint8_t*p=alloc8((size_t)bytes+6);if(!p)return 0;*(uint32_t*)p=bytes;if(s)memcpy(p+4,s,bytes);else memset(p+4,0,bytes);p[4+bytes]=p[5+bytes]=0;return p+4;}
@@ -251,7 +254,11 @@ static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=tid142()||c->rec
 static void MS f_DeleteCriticalSection(critical8*c){if(c->owner||c->recursion)fail8("A Windows process deleted an owned critical section.");memset(c,0,sizeof(*c));}
 #include "sync142.inc"
 static unsigned MS f_ResumeThread(HANDLE h){int64_t result=(int64_t)sys8(W8_SYS_THREAD_RESUME,h,0,0,0,0);if(result<0)last8(6);return (unsigned)result;}
-static NORETURN void MS f_ExitThread(unsigned code){if(sys8(W8_SYS_THREAD_BEGIN_EXIT,0,0,0,0,0)==1)pe8_exit(code);cleanup_thread144();pe8_thread_detach();sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
+static NORETURN void MS f_ExitThread(unsigned code){if(sys8(W8_SYS_THREAD_BEGIN_EXIT,0,0,0,0,0)==1)pe8_exit(code);cleanup_thread144();pe8_thread_detach();
+#ifdef ENGINE_M14
+fls_thread_exit147();
+#endif
+sys8(W8_SYS_THREAD_EXIT,code,0,0,0,0);pe8_exit(code);}
 static void thread_entry142(uint64_t entry,void*arg){
  unsigned row=tid142()&255;lock_enter142(&tls_lock142);memset(tls_values8[row],0,sizeof(tls_values8[row]));lock_leave142(&tls_lock142);
  pe8_thread_attach();
@@ -403,6 +410,9 @@ static const api8 api8_table[]={
  API8(CoInitializeEx,9),API8(CoInitialize,9),API8(CoUninitialize,9),API8(OleInitialize,9),API8(OleUninitialize,9),API8(RegisterDragDrop,9),API8(RevokeDragDrop,9),
  API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(SetDlgItemTextA,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
+#ifdef ENGINE_M14
+ API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
+#endif
  API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(lstrlenA,1),API8(lstrcatW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),
  API8(LoadIconW,4),API8(LoadBitmapW,4),API8(LoadImageW,4),API8(DestroyIcon,4),API8(DeleteObject,8),API8(ImageList_Create,6),API8(ImageList_Destroy,6),API8(ImageList_GetImageCount,6),API8(ImageList_ReplaceIcon,6),API8(ImageList_AddMasked,6),
  API8(FindResourceW,1),API8(FindResourceExW,1),API8(LoadResource,1),API8(LockResource,1),API8(SizeofResource,1),API8(FreeResource,1),API8(LoadStringW,4),

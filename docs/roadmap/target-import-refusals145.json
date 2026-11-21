@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 689,
-  "table_bytes": 5512,
+  "refusal_keys": 685,
+  "table_bytes": 5480,
   "imports": [
     {
       "app": "notepadpp",
@@ -1052,36 +1052,8 @@
     {
       "app": "notepadpp",
       "dll": "kernel32.dll",
-      "symbol": "FlsAlloc",
-      "key": "bbc3fa1646f5fa74",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
       "symbol": "RtlUnwind",
       "key": "03c47f6f4199947b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "FlsGetValue",
-      "key": "cdf7ec45d55b3606",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "FlsSetValue",
-      "key": "4dbadbd3a898e14a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "FlsFree",
-      "key": "4f07f1d7474f893d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2888,34 +2860,6 @@
       "dll": "kernel32.dll",
       "symbol": "LCMapStringW",
       "key": "e2f33400ceca818d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "FlsFree",
-      "key": "4f07f1d7474f893d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "FlsSetValue",
-      "key": "4dbadbd3a898e14a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "FlsGetValue",
-      "key": "cdf7ec45d55b3606",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "FlsAlloc",
-      "key": "bbc3fa1646f5fa74",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5891,34 +5835,6 @@
       "dll": "kernel32.dll",
       "symbol": "GetStringTypeW",
       "key": "1fedac91ede056da",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "FlsFree",
-      "key": "4f07f1d7474f893d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "FlsSetValue",
-      "key": "4dbadbd3a898e14a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "FlsGetValue",
-      "key": "cdf7ec45d55b3606",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "FlsAlloc",
-      "key": "bbc3fa1646f5fa74",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
