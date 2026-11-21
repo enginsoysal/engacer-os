@@ -2,6 +2,9 @@
 #include <engine/elf.h>
 #include <engine/boot/validate_v0.h>
 #include "build.h"
+#ifdef ENGINE_M14
+#include <engine/winbundle147.h>
+#endif
 static efi_boot_services *bs;
 #ifdef ENGINE_M72
 #include "bootentry72.inc"
@@ -102,7 +105,9 @@ efi_status efi_main(efi_handle image,efi_system_table *system) {
 #endif
     if(EFI_ERROR(root->close(root)))fail("close root");
     if(
-#ifdef ENGINE_M8
+#ifdef ENGINE_M14
+       (init_size!=48&&!winbundle_parse147(init,init_size,&(winbundle147){0})) ||
+#elif defined(ENGINE_M8)
        (init_size!=48&&(init_size<96||memcmp(init+48,"ENGMSI81",8)||os_read64(init+56)!=init_size-96)) ||
 #else
        init_size!=48 ||

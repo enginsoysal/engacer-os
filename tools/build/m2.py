@@ -227,6 +227,10 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m8 and m5_live:
         payload=(ROOT/'third_party/7zip/7z2606-x64.msi').read_bytes()
         init+=struct.pack('<8sQ32s',b'ENGMSI81',len(payload),hashlib.sha256(payload).digest())+payload
+    if m14 and m5_live:
+        dll=(BUILD/'msi147/msi.dll').read_bytes();exe=(BUILD/'msi147/msiexec.exe').read_bytes()
+        init+=struct.pack('<8sIIII32s32s',b'ENGMS147',1,2,len(dll),len(exe),hashlib.sha256(dll).digest(),hashlib.sha256(exe).digest())+dll+exe
+        if len(init)>4*1024*1024:raise RuntimeError('M14 init bundle exceeds the existing 4 MiB boot-module limit')
     (BUILD/'INIT.BIN').write_bytes(init)
     stem='EngacerOS' if m10 else 'EngineOS'
     package(BUILD/'normal',(BUILD/'BOOTX64.EFI').read_bytes(),(BUILD/'KERNEL.ELF').read_bytes(),init,artifact_name)

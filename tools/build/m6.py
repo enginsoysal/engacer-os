@@ -37,10 +37,6 @@ def embed(work,live):
         text+='const char windows8_licenses[]={'+','.join(map(str,notices.encode()+b'\0'))+'};\n'
         data=(work/'WINDOWS8.ELF').read_bytes() if live else b''
         text+='const uint8_t windows8_runtime_image[]={'+','.join(map(str,data or b'\0'))+'};\nconst unsigned windows8_runtime_size='+str(len(data))+';\n'
-    if work.name=='m14':
-        for label,filename in [('msi','msi.dll'),('msiexec','msiexec.exe')]:
-            data=(work/'msi147'/filename).read_bytes() if live else b''
-            text+='const uint8_t windows147_'+label+'_image[]={'+','.join(map(str,data or b'\0'))+'};\nconst unsigned windows147_'+label+'_size='+str(len(data))+';\n'
     (work/'installer-image.c').write_bytes(text.encode())
 
 def pack(parts, compressed=False):

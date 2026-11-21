@@ -1,6 +1,9 @@
 #include <engine/base.h>
 #include <engine/boot/validate_v0.h>
 #include "build.h"
+#ifdef ENGINE_M14
+#include <engine/winbundle147.h>
+#endif
 #ifdef ENGINE_M2
 #include <engine/process.h>
 #endif
@@ -45,7 +48,9 @@ NORETURN void kernel_main(const os_boot_info_v0 *boot) {
     }
     const uint8_t *init=(const uint8_t*)(uintptr_t)boot->initimage.physical_address;
     if(
-#ifdef ENGINE_M8
+#ifdef ENGINE_M14
+       (boot->initimage.byte_length!=48&&!winbundle_parse147(init,boot->initimage.byte_length,&(winbundle147){0})) ||
+#elif defined(ENGINE_M8)
        (boot->initimage.byte_length!=48&&(boot->initimage.byte_length<96||boot->initimage.byte_length>4*1024*1024||memcmp(init+48,"ENGMSI81",8)||os_read64(init+56)!=boot->initimage.byte_length-96)) ||
 #else
        boot->initimage.byte_length!=48 ||
@@ -61,7 +66,12 @@ NORETURN void kernel_main(const os_boot_info_v0 *boot) {
 #endif
     #ifdef ENGINE_M8
     extern unsigned w8_boot_package(const void*,unsigned);
+#ifdef ENGINE_M14
+    if(boot->initimage.byte_length>48){winbundle147 bundle;extern unsigned w8_boot_services147(const winbundle147*);
+     if(!winbundle_parse147(init,boot->initimage.byte_length,&bundle)||w8_boot_package(bundle.msi,bundle.msi_size)||w8_boot_services147(&bundle))reject("M14 MSI boot module digest");}
+#else
     if(boot->initimage.byte_length>48&&w8_boot_package(init+96,(unsigned)boot->initimage.byte_length-96))reject("M8 original MSI boot module digest");
+#endif
     #endif
     if(boot->framebuffer.byte_length && (!low_range(boot->framebuffer.physical_address,boot->framebuffer.byte_length) ||
        boot->framebuffer_width>8192 || boot->framebuffer_height>8192))reject("framebuffer bounds");
