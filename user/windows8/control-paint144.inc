@@ -17,6 +17,9 @@ static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;
  unsigned color_message=c->kind==C144_STATIC?0x138:c->kind==C144_EDIT?0x133:c->kind==C144_BUTTON?0x135:c->kind==C144_LISTBOX?0x134:0;
  if(parent&&color_message){HANDLE requested=(HANDLE)f_SendMessageW(parent->handle,color_message,dc,(int64_t)h);w=ui_window_lookup144(h);d=dc_lookup144(dc);if(!w||!d||!w->control){f_EndPaint(h,&paint);return;}c=w->control;if(requested>=1&&requested<=31)brush=requested;}
  f_FillRect(dc,&client,brush);
+#ifdef ENGINE_M14
+ if(c->kind==C144_PROGRESS){progress_paint148(d,c,&client,w->description.style);f_EndPaint(h,&paint);return;}
+#endif
  if(c->kind==C144_LISTVIEW&&c->model){list_model144*m=c->model;int x=0;
   for(unsigned order=0;order<m->columns&&x<client.right;++order){unsigned col=0;while(col<m->columns&&m->column[col].order!=(int)order)++col;if(col==m->columns)continue;int width=m->column[col].width>0?m->column[col].width:160;control_cell_label145(dc,x+8,4,m->labels[col],(win_rect144){x,0,x+width,28},(unsigned)m->column[col].format);x+=width;}
   int y=m->columns?28:4;for(unsigned row=(unsigned)m->top;row<c->count&&y+16<=client.bottom;row++,y+=24){list_row144*r=m->rows+row;unsigned selected=(r->state&2)!=0;if(selected){win_rect144 highlight={0,y-2,client.right,y+20};f_FillRect(dc,&highlight,14);}f_SetTextColor(dc,selected?0xffffff:m->text_color);x=0;

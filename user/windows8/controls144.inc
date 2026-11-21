@@ -25,13 +25,20 @@ static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(te
 #include "edit-input144.inc"
 #include "button-input145.inc"
 #include "static-image145.inc"
+#ifdef ENGINE_M14
+#include "progress148.inc"
+#endif
 #include "control-paint144.inc"
 #ifdef ENGINE_M14
 #include "button-size148.inc"
 #endif
 static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  ui_window_runtime144*w=ui_window_lookup144(handle);if(!w){last8(1400);return 0;}control_state144*c=w->control;
- if(message==0x81){if(c)return 0;unsigned kind=control_kind144(w->class_->name);if(!kind)return 0;c=calloc8(1,sizeof(*c));if(!c)return 0;c->kind=kind;c->unicode=1;c->redraw=1;c->selected=-1;w->control=c;return 1;}
+ if(message==0x81){if(c)return 0;unsigned kind=control_kind144(w->class_->name);if(!kind)return 0;c=calloc8(1,sizeof(*c));if(!c)return 0;c->kind=kind;c->unicode=1;c->redraw=1;c->selected=-1;
+#ifdef ENGINE_M14
+ if(kind==C144_PROGRESS){if(w->description.style&8){free8(c);last8(50);return 0;}c->selected=0;c->edges[1]=100;c->edges[2]=10;}
+#endif
+ w->control=c;return 1;}
  if(!c)return f_DefWindowProcW(handle,message,wp,lp);
  if(c->kind==C144_STATIC){unsigned handled;int64_t result=static_message145(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_REBAR&&(message==0x111||message==0x4e))return w->description.parent?f_SendMessageW(w->description.parent,message,wp,lp):0;
@@ -39,6 +46,7 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  if(c->kind==C144_REBAR&&(message==5||message>=0x400)){unsigned handled;int64_t result=rebar_message144(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_EDIT){unsigned handled;int64_t result=edit_input144(w,c,message,wp,lp,&handled);if(handled)return result;}
 #ifdef ENGINE_M14
+ if(c->kind==C144_PROGRESS&&message>=0x400){unsigned handled;int64_t result=progress_message148(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_BUTTON&&message==0x1601)return button_ideal148(w,c,wp,lp);
  if(c->kind==C144_BUTTON&&message==0x160c){unsigned type=w->description.style&15;if(wp){last8(87);return 0;}if(type!=0&&type!=1&&type!=14&&type!=15){last8(50);return 0;}HANDLE icon=lp?shield_create148():0;if(lp&&!icon)return 0;HANDLE previous=c->image;c->image=icon;c->style=(c->style&~1u)|(lp?1u:0u);f_InvalidateRect(handle,0,0);return(int64_t)previous;}
  if(c->kind==C144_BUTTON&&message==0xf6){if(wp!=1){last8(50);return 0;}return(int64_t)c->image;}

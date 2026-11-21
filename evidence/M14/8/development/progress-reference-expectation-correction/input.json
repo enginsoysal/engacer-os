@@ -1,0 +1,7 @@
+{
+  "scope": "Supporting reference expectation error, not native progress failure.",
+  "raw_log_sha256": "179b34298c24c6dee08d867f59a086e440996fa48bea1e8458966f01e73d4f65",
+  "redacted_log_sha256": "b9267c863e71e77fc2e089350abc9565e41bf058a41dbe933283844f5cd48093",
+  "observer_sha256": "477fde6883dd04770792f4061f0de50b2d9684e4f4b57d51ace4ccfc4674420f",
+  "correction": "With inverted range 10..-5, previous position 50 clamps to -5; the earlier sample started below the lower bound and clamped to 10."
+}
