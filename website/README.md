@@ -1,6 +1,12 @@
 # BrixCanvas documentation website
 
-M14.5 native/source/media qualification passes: 60 native groups, 13 host groups and exact VMware media. Complete actual website verification passes within the owner-approved content/layout scope: 588 pages, 379 exact-source articles and 4307 links; zero known broken targets and 12 explicitly unverified external references. All twenty public release assets are independently downloaded and verified. Missing advanced BrixCanvas search/task navigation remains reported and unqualified. M14.5 adds original 7-Zip x64 menus/About dialog, toolbar images, list details and Documents/subfolder/Backspace navigation preview through the own native compatibility APIs. Existing console/MSI tasks remain supported. Full GUI archive tasks, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All three original target scenarios remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15. Reported BrixCanvas search/navigation remains explicitly nonblocking and is not called passed. [Acceptance](../evidence/M14/5/acceptance-results.json), [stage gates](../docs/milestones/m14-5.md).
+M14.6 is the qualified download: 76 native and 19 host groups, twenty independently verified public assets, and actual public content checks covering 594 pages, 385 exact-source articles and 4383 links (zero known broken targets; twelve unverified external references). Missing advanced BrixCanvas search/sidebar/ordered navigation remains reported and unqualified under the owner exception. [Publication receipt](../evidence/M14/6/publication-results.json), [current status](../docs/roadmap/status.md), [release limits](../docs/releases/m146-v0.14.6.md).
+
+M14.7 is in development. MSI planning, protected registry and anonymous-pipe prerequisites have scoped evidence; generic original MSI writes and custom-action installation remain incomplete. Keep the homepage download label on M14.6 until the next native/source/media/publication gates pass. Native articles synchronize from GitHub; homepage version/layout requires a separate native editor Save and fresh public readback. An article sync is not a complete website release.
+
+## Historical M14.5 delivery
+
+The immutable historical delivery passes 60 native and 13 host groups, twenty verified assets and a public audit of 588 pages/379 exact-source articles/4307 links. [Historical publication receipt](../evidence/M14/5/publication-results.json).
 
 ## Historical M14.4 delivery
 
