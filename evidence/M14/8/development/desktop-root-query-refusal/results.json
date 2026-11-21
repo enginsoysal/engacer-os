@@ -1,0 +1,47 @@
+{
+  "diagnostic_completed": true,
+  "original_installer_qualified": false,
+  "scope": "Private native routing of the unchanged original installer on full M14.8 development media; not a shipped route or successful installation.",
+  "kernel_build_id": "d6421fcea294b667058809aa6d05c905",
+  "original_sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+  "original_bytes": 11075960,
+  "private_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "d6421fcea294b667058809aa6d05c905",
+    "source_commit": "2bd057b1e6adbdbd1d0e13e45dc8cba647779e96",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "808d818558830da4c805eacf5d4eb337378cfb718c7dfa7242ab51f0af9ce460",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "f6bf5b5e1c75934c6829d540d4aa8002d3c802734c312b1d24a15f41755330c3",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "adbbec3bb3ba2ecf99ec051cda4a47b6ffbb743afe296cc0ddcc40c2107f216f"
+  },
+  "clone": {
+    "source_sha256": "377e5803614f9bec65033db0f1f8fd5c6948c0606ac3ab14e606932597ad95c8",
+    "clone_sha256": "377e5803614f9bec65033db0f1f8fd5c6948c0606ac3ab14e606932597ad95c8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "owned_fixture": "f0e8f21ad0f04287a806210cf72a20d1",
+  "state": 3,
+  "status": 1,
+  "message": "Required Windows API is unavailable; see the call-site diagnostic.",
+  "output": "Mapped original image: SumatraPDF-3.6.1-64-install.exe bytes=11137024 source-fnv32=3521778578\nRunning the original Windows executable in a protected process.\n\nParseFlags: argName: '-install', arg: 16\r\nParseFlags: argName: '-d', arg: 53\r\nStarting: '\"C:\\Users\\Owner\\Downloads\\SumatraPDF-3.6.1-64-install.exe\" -install -d \"C:\\Applications\\Windows\\{23170F69-40C1-2702-2606-000001000000}\"'\r\n  ver 3.6.1, flags.install: 1, flags.uninstall: 0\r\n------------- Starting SumatraPDF installation\r\nParent process: unknown\r\nOpenEmbeddedFilesArchive: opened archive\r\nGetExistingInstallationDir()\r\nReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\SumatraPDF, InstallLocation) => '(null)'\r\nReadRegStrTemp(HKEY_CURRENT_USER, Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\SumatraPDF, InstallLocation) => '(null)'\r\nGetPreviousInstallInfo: not installed\r\nHasPreviousInstall(): hasPrev: 0\r\nRunInstaller: 'C:\\Users\\Owner\\Downloads\\SumatraPDF-3.6.1-64-install.exe', cmdLine: '\"C:\\Users\\Owner\\Downloads\\SumatraPDF-3.6.1-64-install.exe\" -install -d \"C:\\Applications\\Windows\\{23170F69-40C1-2702-2606-000001000000}\"', installing into dir 'C:\\Applications\\Windows\\{23170F69-40C1-2702-2606-000001000000}'\r\nRunInstaller: requiresSilentElevation: 0, isElevated: 0\r\nRunInstaller: gCliNew.silent: 0, gCliNew.allUsers: 0, gCliNew.runInstallNow: 0, gCliNew.withFilter: 0, gCliNew.withPreview: 0, gCliNew.fastInstall: 0\r\nBefore CreateInstallerWindow()\r\nUnavailable Win32 API caller=0x00000001100d1a25 main=0x0000000110000000\nABI GPR arguments: 0x5744000000000100 0x000000010a7ff330 0x000000010a7ff328 0x0000000000000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "pages_before_cleanup": 5,
+  "installer_flag_observed": true,
+  "original_startup_name_observed": true,
+  "command_context_scope": "Private startup command override before runtime initialization; kernel grants still belong to the diagnostic MSI frontend.",
+  "retained_pages_after_cleanup": 5
+}

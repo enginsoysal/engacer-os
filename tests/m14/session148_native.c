@@ -61,6 +61,12 @@ __declspec(dllimport) int GetClassInfoExW(uint64_t,const uint16_t*,void*);
 __declspec(dllimport) int UnregisterClassW(const uint16_t*,uint64_t);
 __declspec(dllimport) uint64_t CreateWindowExW(unsigned,const uint16_t*,const uint16_t*,unsigned,int,int,int,int,uint64_t,uint64_t,uint64_t,void*);
 __declspec(dllimport) int DestroyWindow(uint64_t);
+__declspec(dllimport) uint64_t GetDesktopWindow(void);
+__declspec(dllimport) uint64_t GetParent(uint64_t);
+__declspec(dllimport) int IsWindow(uint64_t);
+__declspec(dllimport) int GetWindowRect(uint64_t,void*);
+__declspec(dllimport) int GetClientRect(uint64_t,void*);
+__declspec(dllimport) int GetSystemMetrics(int);
 static unsigned class_created148,class_destroyed148;
 static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){(void)window;(void)wp;(void)lp;if(message==1)++class_created148;if(message==0x82)++class_destroyed148;return message==0x81;}
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
@@ -90,6 +96,7 @@ static unsigned worker(void*kind){
 }
 void entry(void){
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
+ uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
@@ -98,6 +105,7 @@ void entry(void){
  uint64_t advapi=LoadLibraryExA("advapi32.dll",0,0);int(*allocate_sid)(const unsigned char*,unsigned char,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,void**)=GetProcAddress(advapi,"AllocateAndInitializeSid");void*(*free_sid)(void*)=GetProcAddress(advapi,"FreeSid");unsigned(*length_sid)(const void*)=GetProcAddress(advapi,"GetLengthSid");int(*valid_sid)(const void*)=GetProcAddress(advapi,"IsValidSid");int(*equal_sid)(const void*,const void*)=GetProcAddress(advapi,"EqualSid");check(advapi&&allocate_sid&&free_sid&&length_sid&&valid_sid&&equal_sid,375);
  unsigned char authority[6]={0,0,0,0,0,5};void*admin_sid=0,*same_sid=0,*users_sid=0;check(allocate_sid(authority,2,32,544,0,0,0,0,0,0,&admin_sid)&&allocate_sid(authority,2,32,544,0,0,0,0,0,0,&same_sid)&&allocate_sid(authority,2,32,545,0,0,0,0,0,0,&users_sid),376);
  int(*membership)(uint64_t,const void*,int*)=GetProcAddress(advapi,"CheckTokenMembership");int member[3]={0x148,99,0x148};check(membership&&membership(0,admin_sid,member+1)&&!member[1]&&member[0]==0x148&&member[2]==0x148&&membership(0,users_sid,member+1)&&member[1]==1,382);
+ w8_mailbox*startup_mailbox=(void*)(uintptr_t)W8_MAILBOX;char saved_root=startup_mailbox->user_root[0];startup_mailbox->user_root[0]='?';check(security_profile148(0)==7&&membership(0,users_sid,member+1)&&member[1]==1,387);startup_mailbox->user_root[0]=saved_root;
  member[1]=99;check(!membership(1,users_sid,member+1)&&!member[1]&&GetLastError()==50,383);
  for(unsigned i=0;i<3;++i){void*group=0;unsigned rid=i==0?11:i==1?4:999;check(allocate_sid(authority,1,rid,0,0,0,0,0,0,0,&group)&&membership(0,group,member+1)&&member[1]==(i<2)&&!free_sid(group),384);}
  unsigned char world[6]={0,0,0,0,0,1};void*everyone=0;check(allocate_sid(world,1,0,0,0,0,0,0,0,0,&everyone)&&membership(0,everyone,member+1)&&member[1]==1&&!free_sid(everyone),385);

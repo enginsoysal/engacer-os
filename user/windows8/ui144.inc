@@ -1,5 +1,7 @@
 /* USER32 callbacks remain in this protected runtime and use the Win64 ABI. */
 #include <engine/winui144.h>
+/* Adapter identity for the actual native compositor root, not an owned window. */
+#define DESKTOP_HANDLE148 UINT64_C(0x5744ffffffffffff)
 typedef int64_t(MS*ui_proc144)(HANDLE,unsigned,uint64_t,int64_t);
 typedef struct {unsigned style;ui_proc144 proc;int cls_extra,win_extra;HANDLE instance,icon,cursor,background;const WCHAR*menu,*name;} ui_class_definition144;
 typedef struct ui_class144 {struct ui_class144*next;ui_class_definition144 definition;WCHAR name[64];unsigned atom,windows;HANDLE small_icon;} ui_class144;
@@ -69,6 +71,7 @@ static HANDLE MS f_CreateWindowExW(unsigned exstyle,const WCHAR*class_name,const
  lock_enter142(&ui_lock144);w=ui_window_lookup144(handle);unsigned shown=0;if(w){w->description.visible=(style&0x10000000)!=0;shown=ui_sync144(w);}lock_leave142(&ui_lock144);if(w&&!shown){unsigned error=f_GetLastError();f_DestroyWindow(handle);last8(error);return 0;}if(w&&(style&0x10000000)){f_SendMessageW(handle,0x18,1,0);lock_enter142(&ui_lock144);w=ui_window_lookup144(handle);lock_leave142(&ui_lock144);}return w?handle:0;
 }
 static int MS f_DestroyWindow(HANDLE handle){
+ if(handle==DESKTOP_HANDLE148){last8(5);return 0;}
  lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);if(!w||w->thread!=tid142()){lock_leave142(&ui_lock144);last8(w?5:1400);return 0;}if(w->destroying){lock_leave142(&ui_lock144);return 1;}w->destroying=1;lock_leave142(&ui_lock144);
  if(w->created)f_SendMessageW(handle,2,0,0);
  for(;;){HANDLE child=0;lock_enter142(&ui_lock144);for(ui_window_runtime144*n=ui_runtime_windows144;n;n=n->next)if(!n->destroying&&(n->description.parent==handle||n->description.owner==handle)){child=n->handle;break;}lock_leave142(&ui_lock144);if(!child)break;f_DestroyWindow(child);}
@@ -107,8 +110,8 @@ static int show_window144(HANDLE handle,int command,unsigned*previous){if(comman
  if(old.visible!=current.visible)f_SendMessageW(handle,0x18,current.visible,0);if(old.bounds.x!=current.bounds.x||old.bounds.y!=current.bounds.y)f_SendMessageW(handle,3,0,(current.bounds.x&65535)|((int64_t)(current.bounds.y&65535)<<16));if(old.bounds.width!=current.bounds.width||old.bounds.height!=current.bounds.height||((old.style^current.style)&0x21000000u)){wui_rect144 r=current.bounds;unsigned width=(unsigned)(r.width>2?r.width-2:0),height=(unsigned)(r.height>41?r.height-41:0);unsigned kind=current.style&0x20000000u?1:current.style&0x01000000u?2:0;if(kind==1)width=height=0;f_SendMessageW(handle,5,kind,(width&65535)|((int64_t)(height&65535)<<16));}return 1;}
 static int MS f_ShowWindow(HANDLE handle,int command){unsigned previous=0;show_window144(handle,command,&previous);return(int)previous;}
 
-static HANDLE MS f_GetParent(HANDLE handle){lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);HANDLE parent=w?(w->description.parent?w->description.parent:w->description.owner):0;lock_leave142(&ui_lock144);if(!w)last8(1400);return parent;}
-static int MS f_IsWindow(HANDLE handle){lock_enter142(&ui_lock144);unsigned found=ui_window_lookup144(handle)!=0;lock_leave142(&ui_lock144);return(int)found;}
+static HANDLE MS f_GetParent(HANDLE handle){if(handle==DESKTOP_HANDLE148)return 0;lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);HANDLE parent=w?(w->description.parent?w->description.parent:w->description.owner):0;lock_leave142(&ui_lock144);if(!w)last8(1400);return parent;}
+static int MS f_IsWindow(HANDLE handle){if(handle==DESKTOP_HANDLE148){wui_metrics144 metrics;return ui_call144(WUI_METRICS144,0,&metrics,0)>=0;}lock_enter142(&ui_lock144);unsigned found=ui_window_lookup144(handle)!=0;lock_leave142(&ui_lock144);return(int)found;}
 
 static int MS f_SetWindowTextW(HANDLE handle,const WCHAR*text){return(int)f_SendMessageW(handle,0xc,0,(int64_t)(uintptr_t)text);}
 static int MS f_GetWindowTextW(HANDLE handle,WCHAR*out,int capacity){return(int)f_SendMessageW(handle,0xd,(unsigned)capacity,(int64_t)(uintptr_t)out);}

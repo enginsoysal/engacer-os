@@ -444,6 +444,7 @@ static const api8 api8_table[]={
  API8(GetUserDefaultUILanguage,1),API8(GetSystemDefaultUILanguage,1),
  API8(AllocateAndInitializeSid,5),API8(FreeSid,5),API8(IsValidSid,5),API8(GetLengthSid,5),API8(EqualSid,5),
  API8(CheckTokenMembership,5),
+ API8(GetDesktopWindow,4),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
