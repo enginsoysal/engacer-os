@@ -7,7 +7,8 @@ def build():
  out=ROOT/'build/m14-native/stage8/session-fixture';out.mkdir(parents=True,exist_ok=True)
  t=pinned_tools();source=ROOT/'tests/m14/session148_native.c'
  imports=set(re.findall(r'__declspec\(dllimport\).*?\b(\w+)\([^;]*;',source.read_text()))
- for provider,names in [('user32',{'RegisterWindowMessageW'}),('kernel32',imports-{'RegisterWindowMessageW'})]:
+ user={'RegisterWindowMessageW','PeekMessageW','PostMessageW'}
+ for provider,names in [('user32',user),('kernel32',imports-user)]:
   definition=out/(provider+'.def');definition.write_bytes(('LIBRARY '+provider+'.dll\nEXPORTS\n'+'\n'.join(sorted(names))+'\n').encode())
   command([t['lld-link'],'/lib','/machine:x64','/def:'+str(definition),'/out:'+str(out/(provider+'.lib'))])
  command([t['clang'],'--target=x86_64-pc-windows-msvc','-O2','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-I',ROOT/'include','-c',source,'-o',out/'probe.obj'])

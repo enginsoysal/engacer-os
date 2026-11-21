@@ -69,7 +69,14 @@ static void MS f_PostQuitMessage(int code){int64_t result=ui_call144(WUI_QUIT144
 typedef struct {HANDLE window;unsigned message,pad;uint64_t wp;int64_t lp;unsigned time;int x,y;unsigned private_;} ui_msg144;
 _Static_assert(sizeof(ui_msg144)==48,"Win64 MSG layout");
 static int paint_peek144(ui_msg144*,HANDLE,unsigned,unsigned,unsigned);
-static int ui_peek144(ui_msg144*out,HANDLE window,unsigned first,unsigned last,unsigned remove){if(!out){last8(87);return -1;}wui_filter144 filter={window,first,last,remove,0};wui_message144 m;int64_t result=ui_call144(WUI_PEEK144,0,&m,(uint64_t)(uintptr_t)&filter);if(result<0){last8((unsigned)-result);return -1;}if(result)*out=(ui_msg144){m.window,m.message,0,m.wparam,(int64_t)m.lparam,m.time,m.x,m.y,m.reserved[0]};if(!result)return paint_peek144(out,window,first,last,remove);return(int)result;}
+#ifdef ENGINE_M14
+static void gp_message148(unsigned);
+#endif
+static int ui_peek144(ui_msg144*out,HANDLE window,unsigned first,unsigned last,unsigned remove){if(!out){last8(87);return -1;}wui_filter144 filter={window,first,last,remove,0};wui_message144 m;int64_t result=ui_call144(WUI_PEEK144,0,&m,(uint64_t)(uintptr_t)&filter);if(result<0){last8((unsigned)-result);return -1;}if(result){*out=(ui_msg144){m.window,m.message,0,m.wparam,(int64_t)m.lparam,m.time,m.x,m.y,m.reserved[0]};
+#ifdef ENGINE_M14
+ gp_message148(m.message);
+#endif
+ }if(!result)return paint_peek144(out,window,first,last,remove);return(int)result;}
 static int MS f_PeekMessageW(ui_msg144*out,HANDLE window,unsigned first,unsigned last,unsigned remove){if(remove&~1u){last8(87);return 0;}return ui_peek144(out,window,first,last,remove)>0;}
 static int MS f_GetMessageW(ui_msg144*out,HANDLE window,unsigned first,unsigned last){for(;;){int result=ui_peek144(out,window,first,last,1);if(result<0)return -1;if(result)return out->message!=0x12;wui_filter144 filter={window,first,last,1,0};int64_t status=ui_call144(WUI_WAIT144,0,0,(uint64_t)(uintptr_t)&filter);if(status<0){last8((unsigned)-status);return -1;}}}
 static int64_t MS f_DispatchMessageW(const ui_msg144*m){if(!m)return 0;if(m->message==0x113&&m->lp){typedef void(MS*timer_proc144)(HANDLE,unsigned,uint64_t,unsigned);((timer_proc144)(uintptr_t)m->lp)(m->window,m->message,m->wp,m->time);return 0;}return m->window?f_SendMessageW(m->window,m->message,m->wp,m->lp):0;}

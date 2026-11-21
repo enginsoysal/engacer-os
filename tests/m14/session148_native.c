@@ -44,6 +44,8 @@ __declspec(dllimport) int Process32FirstW(uint64_t,void*);
 __declspec(dllimport) int Process32NextW(uint64_t,void*);
 __declspec(dllimport) unsigned GetCurrentProcessId(void);
 __declspec(dllimport) unsigned ResumeThread(uint64_t);
+__declspec(dllimport) int PeekMessageW(void*,uint64_t,unsigned,unsigned,unsigned);
+__declspec(dllimport) int PostMessageW(uint64_t,unsigned,uint64_t,int64_t);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 static void(*shutdown_gp148)(uint64_t);
@@ -105,7 +107,16 @@ void entry(void){
  check(!startup_gp(&gp_token,&gp_input,0)&&gp_token,304);uint64_t gp_thread=CreateThread(0,0,gp_shutdown_worker148,(void*)(uintptr_t)gp_token,0,0);check(gp_thread&&WaitForSingleObject(gp_thread,30000)==0&&CloseHandle(gp_thread),305);
  uint64_t gp_tokens[8];gp_input.suppress_codecs=1;for(unsigned i=0;i<8;++i){check(!startup_gp(gp_tokens+i,&gp_input,0)&&gp_tokens[i]!=gp_token,306);for(unsigned j=0;j<i;++j)check(gp_tokens[j]!=gp_tokens[i],307);}
  check(startup_gp(&gp_token,&gp_input,0)==3&&!gp_token,308);for(unsigned i=0;i<8;++i)shutdown_gp148(gp_tokens[i]);
- gp_input.version=0;check(startup_gp(&gp_token,&gp_input,0)==17&&!gp_token,309);gp_input.version=1;gp_input.suppress_thread=1;check(startup_gp(&gp_token,&gp_input,0)==2&&!gp_token,310);uint64_t hooks[2]={99,99};check(startup_gp(&gp_token,&gp_input,hooks)==6&&!gp_token&&hooks[0]==99&&hooks[1]==99,311);check(FreeLibrary(gdiplus),312);
+ gp_input.version=0;check(startup_gp(&gp_token,&gp_input,0)==17&&!gp_token,309);gp_input.version=1;gp_input.suppress_thread=1;check(startup_gp(&gp_token,&gp_input,0)==2&&!gp_token,310);
+ uint64_t hooks[2]={99,99};check(!startup_gp(&gp_token,&gp_input,hooks)&&gp_token&&hooks[0]!=99&&hooks[1]!=99&&hooks[0]&&hooks[1],311);
+ unsigned(*hook)(uint64_t*)=(void*)(uintptr_t)hooks[0];void(*unhook)(uint64_t)=(void*)(uintptr_t)hooks[1];uint64_t hook_tokens[8];
+ check(hook(0)==2,313);for(unsigned i=0;i<8;++i){check(!hook(hook_tokens+i)&&hook_tokens[i],314);for(unsigned j=0;j<i;++j)check(hook_tokens[j]!=hook_tokens[i],315);}
+ uint64_t extra_hook=99;check(hook(&extra_hook)==3&&!extra_hook,316);
+ struct{uint64_t window;unsigned message,pad;uint64_t wp;int64_t lp;unsigned time;int x,y;unsigned private_;} notification={0};
+ _Static_assert(sizeof(notification)==48,"AMD64 MSG ABI");
+ check(PostMessageW(0,0x7e,0,0)&&PeekMessageW(&notification,0,0x7e,0x7e,1)&&notification.message==0x7e,317);
+ for(unsigned i=0;i<8;++i)unhook(hook_tokens[i]);uint64_t renewed_hook=0;check(!hook(&renewed_hook)&&renewed_hook!=hook_tokens[7],318);unhook(renewed_hook);
+ shutdown_gp148(gp_token);extra_hook=99;check(hook(&extra_hook)==18&&!extra_hook,319);check(FreeLibrary(gdiplus),312);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);
  check(TryAcquireSRWLockShared(&lock)&&TryAcquireSRWLockShared(&lock)&&!TryAcquireSRWLockExclusive(&lock),232);ReleaseSRWLockShared(&lock);ReleaseSRWLockShared(&lock);
