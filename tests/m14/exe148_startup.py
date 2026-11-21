@@ -4,12 +4,12 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 
 def main():
+    from exe148_probe_build import build
     import replay8
     loader=replay8.ReplayLoader();sys.meta_path.insert(0,loader)
     try:
         from window144_native import ui,c,f,t,clone,StoppedDisk
         from fixture1 import library
-        from exe148_probe_build import build
         private,inputs=build()
         original=Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/SumatraPDF-3.6.1-64-install.exe'
         data=original.read_bytes();digest=hashlib.sha256(data).hexdigest()
