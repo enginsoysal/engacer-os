@@ -232,3 +232,19 @@ RGB channels with the exact native integer helper. No framebuffer duplication,
 new render thread or per-pixel syscall is introduced. External borrowed backing
 is validated before access; stride/padding and bitmap lifetime rules remain.
 The visible fixture must show actual red pixels through the GDI+ client path.
+
+## Bitmap blitting candidate
+
+GdipDrawImageI has a real bitmap-to-bitmap path with actual RGB/ARGB/PARGB source
+conversion, PARGB destination, source-over/copy, wide clipping and overlap-safe
+row/column order. It uses existing backing directly and allocates no full-image
+temporary. Both borrowed buffers are checked before access. Pixel/Display page
+units use the current native pixel grid; other units refuse.
+
+The window destination remains explicitly unimplemented and stops the task
+with actual image dimensions for investigation. Existing tiny icon tiles cannot
+qualify arbitrary large image submission. Original window presentation must be
+implemented and tested before installer qualification. Own Windows references
+also show that logical GetPixel readback can change while an original borrowed
+scan pointer remains unchanged after a self-blit; do not infer success/failure
+only from the reference's backing pointer. Native tests verify bitmap readback.
