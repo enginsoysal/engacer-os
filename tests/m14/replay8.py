@@ -15,10 +15,19 @@ text=text.replace("'assert stage==7'","'assert stage==8'")
 # Map that nested adapter explicitly and retain both actual source hashes.
 needle148="        observed[source.relative_to(ROOT).as_posix()] = {"
 assert text.count(needle148)==1
-hook148=r"""        if module.__name__ == 'native147_entry':
+def map_current148(source):
+ for before,after in mappings148:source=source.replace(before,after)
+ return source
+hook148=r"""        if module.__name__ == 'review147_stale':
+            module.__dict__['map_current148']=map_current148
+            assert text.count('text=raw.decode()')==1
+            text=text.replace('text=raw.decode()','text=map_current148(raw.decode())')
+        if module.__name__ == 'nested147':
+            text=text.replace('str(147)', 'str(148)')
+        if module.__name__ == 'native147_entry':
             old148="    exec(compile(raw.decode('utf-8'),str(source),'exec'),scope)"
             assert text.count(old148)==1
-            new148="    adapter148=raw.decode('utf-8')\n    for before148,after148 in replay7.REPLACEMENTS:adapter148=adapter148.replace(before148,after148)\n    replay7.observed[source.relative_to(source.parents[2]).as_posix()]['executed_sha256']=hashlib.sha256(adapter148.encode()).hexdigest()\n    exec(compile(adapter148,str(source),'exec'),scope)"
+            new148="    adapter148=raw.decode('utf-8')\n    for before148,after148 in replay7.mappings148:adapter148=adapter148.replace(before148,after148)\n    replay7.observed[source.relative_to(source.parents[2]).as_posix()]['executed_sha256']=hashlib.sha256(adapter148.encode()).hexdigest()\n    exec(compile(adapter148,str(source),'exec'),scope)"
             text=text.replace(old148,new148)
 """
 text=text.replace(needle148,hook148+needle148)
