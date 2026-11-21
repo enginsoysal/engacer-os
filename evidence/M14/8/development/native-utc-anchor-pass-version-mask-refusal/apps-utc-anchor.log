@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "stage": "M14.8 console regression development",
+  "build_id": "a8c87d3cc68b4b134814546efce3b089",
+  "clone": {
+    "source_sha256": "a295374b1759edd0ae109b5e1c841ce38c90a7d7bf6159bfc68807b00e571397",
+    "clone_sha256": "a295374b1759edd0ae109b5e1c841ce38c90a7d7bf6159bfc68807b00e571397",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "owned_fixture": "c4be90dc753b43bcbb03eba99b0e687f",
+  "profile": "compact",
+  "checks": [
+    "Original 7-Zip MSI install/run/archive/extract/remove/reinstall and all 106 original payload hashes pass",
+    "Browser choices opens and returns through ordinary controls; Firefox explicitly remains download-only"
+  ]
+}

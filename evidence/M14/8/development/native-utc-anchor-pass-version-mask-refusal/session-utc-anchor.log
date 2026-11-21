@@ -1,0 +1,50 @@
+{"worker": "WINDOWS8.ELF", "kernel_build_id": "a8c87d3cc68b4b134814546efce3b089", "sha256": "d77642b11d91abee2aeb969b73fae9f338a4bb0869d133dd7792fe469c5d2342"}
+{
+  "passed": true,
+  "build_id": "a8c87d3cc68b4b134814546efce3b089",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "3a35f401991a0f7ebc8ec509146ee53169247c2c1f083531fb283f54ddef2873",
+    "clone_sha256": "3a35f401991a0f7ebc8ec509146ee53169247c2c1f083531fb283f54ddef2873",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "499249048ce90ed996317e6d98ca0560e54a0b958449658ec0b0117b39b63be9",
+  "rtc_fault_injection": {
+    "scope": "Owned QEMU RTC fault injection through documented monitor I/O, no guest-memory patching.",
+    "saved_status_b": 18,
+    "injected_status_b": 146,
+    "initialized_anchor_filetime": 134397619870000000,
+    "observed_frozen_status_b": 130,
+    "restored_status_b": 18
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=77824 source-fnv32=1206550486\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nM148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS\nM148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_PROGRESS_RANGE_POSITION_STEP_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=77824 source-fnv32=1206550486\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nMapped original image: 7zFM.exe bytes=77824 source-fnv32=1206550486\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nM148_NATIVE_SHELL_ASSOCIATION_REFRESH_DELIVERY_PASS\nM148_NATIVE_DERIVED_PARGB_STORAGE_PASS\nM148_NATIVE_GDIPLUS_FONT_FAMILY_FLOAT_ABI_PASS\nM148_NATIVE_GDIPLUS_FORMAT_STATE_CLONE_QUOTA_PASS\nUnsupported GDI+ text layout: wrapped or partial-fit rectangle.\nM148_NATIVE_GDIPLUS_FITTING_TEXT_METRICS_PASS\nM148_NATIVE_GDIPLUS_SOLID_BRUSH_OWNERSHIP_PASS\nM148_NATIVE_GDIPLUS_RECTANGLE_ALPHA_CLIP_MODE_PASS\nM148_NATIVE_GDIPLUS_BITMAP_BLIT_ALPHA_OVERLAP_PASS\nUnsupported GDI+ drawing layout: control or multiple lines.\nUnsupported GDI+ drawing mode or page unit.\nM148_NATIVE_AFFINE_MATRIX_TRANSFORMED_TEXT_PASS\nM148_NATIVE_GDIPLUS_ACTUAL_GLYPHS_ALPHA_CLIP_PASS\nM148_HEAP_PAGES before=280 after=280\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n",
+  "native_shell_refresh_deliveries": 3
+}

@@ -13,6 +13,7 @@ __declspec(dllimport) int SHSetValueW(uint64_t,const uint16_t*,const uint16_t*,u
 __declspec(dllimport) int SHDeleteKeyW(uint64_t,const uint16_t*);
 __declspec(dllimport) int RegEnumKeyExW(uint64_t,unsigned,uint16_t*,unsigned*,unsigned*,uint16_t*,unsigned*,void*);
 __declspec(dllimport) void GetSystemTime(uint16_t*);
+__declspec(dllimport) uint64_t VerSetConditionMask(uint64_t,unsigned,uint8_t);
 __declspec(dllimport) void GetSystemTimeAsFileTime(uint64_t*);
 __declspec(dllimport) int FileTimeToSystemTime(const uint64_t*,uint16_t*);
 int _fltused=0; /* Freestanding PE floating-point linkage marker. */
@@ -244,6 +245,15 @@ static void font_tests148(void){
  lf.italic=1;check(!CreateFontIndirectW(&lf)&&GetLastError()==50,434);lf.italic=0;lf.width=10;check(!CreateFontIndirectW(&lf)&&GetLastError()==50,435);check(!CreateFontIndirectW((void*)1)&&GetLastError()==998,436);check(!GetStockObject(10)&&GetLastError()==50,437);
  say148("M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\n");
 }
+static void version_mask_tests148(void){
+ for(unsigned base=0;base<2;++base)for(unsigned bit=0;bit<8;++bit)for(unsigned condition=1;condition<8;++condition){
+  uint64_t prior=base?UINT64_C(0x123456789abcdef0):0;
+  check(VerSetConditionMask(prior,1u<<bit,(uint8_t)condition)==(prior|UINT64_C(0x8000000000000000)|((uint64_t)condition<<(bit*3))),670);
+ }
+ check(VerSetConditionMask(7,1,1)==UINT64_C(0x8000000000000007),671);
+ check(VerSetConditionMask(123,0,2)==0,672);
+ say148("M148_NATIVE_VERSION_CONDITION_MASK_PASS\n");
+}
 static void utc_tests148(void){
  uint16_t fields[8];uint64_t before=0,after=0;GetSystemTimeAsFileTime(&before);GetSystemTime(fields);GetSystemTimeAsFileTime(&after);
  unsigned year=fields[0],month=fields[1];check(year>=1601&&year<=9999&&month>=1&&month<=12&&fields[3]>=1&&fields[3]<=31&&fields[4]<24&&fields[5]<60&&fields[6]<60&&fields[7]<1000,640);
@@ -295,7 +305,7 @@ static void registry_delete_tests148(void){
  say148("M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\n");
 }
 void entry(void){
- font_tests148();raster_packet_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();
+ font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
  int inside_monitor[4]={1,1,50,50},outside_monitor[4]={INT32_MAX-10,INT32_MAX-10,INT32_MAX,INT32_MAX};uint64_t monitor=MonitorFromRect(inside_monitor,0);check(monitor&&!MonitorFromRect(outside_monitor,0)&&MonitorFromRect(outside_monitor,1)==monitor&&MonitorFromRect(outside_monitor,2)==monitor&&MonitorFromPoint(0,0)==monitor&&!MonitorFromPoint(UINT64_MAX,0)&&MonitorFromPoint(UINT64_MAX,2)==monitor,587);inside_monitor[2]=inside_monitor[0];inside_monitor[3]=inside_monitor[1];check(MonitorFromRect(inside_monitor,0)==monitor&&!MonitorFromRect((void*)1,0)&&GetLastError()==998,588);int inverted_monitor[4]={INT32_MAX,100,50,200},empty_spanning_monitor[4]={-100,0,100,0};check(!MonitorFromRect(inverted_monitor,0)&&!MonitorFromRect(empty_spanning_monitor,0),592);unsigned monitor_info[26]={0};monitor_info[0]=104;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[1]==0&&monitor_info[2]==0&&monitor_info[3]==(unsigned)desktop_rect[2]&&monitor_info[4]==(unsigned)desktop_rect[3]&&monitor_info[9]==1&&((uint16_t*)(monitor_info+10))[0]=='E',589);monitor_info[0]=72;check(GetMonitorInfoA(monitor,monitor_info)&&((char*)(monitor_info+10))[0]=='E'&&!GetMonitorInfoW(monitor,monitor_info)&&GetLastError()==87,590);monitor_info[0]=40;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[7]==(unsigned)desktop_rect[2]&&monitor_info[8]<(unsigned)desktop_rect[3],591);
