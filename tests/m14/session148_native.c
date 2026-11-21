@@ -8,6 +8,7 @@ __declspec(dllimport) unsigned short GlobalAddAtomW(const uint16_t*);
 __declspec(dllimport) unsigned short GlobalDeleteAtom(unsigned short);
 __declspec(dllimport) const uint16_t*GetCommandLineW(void);
 __declspec(dllimport) unsigned GetModuleFileNameW(uint64_t,uint16_t*,unsigned);
+__declspec(dllimport) unsigned GetLongPathNameW(const uint16_t*,uint16_t*,unsigned);
 __declspec(dllimport) int CreateProcessW(const uint16_t*,uint16_t*,void*,void*,int,unsigned,void*,const uint16_t*,void*,void*);
 __declspec(dllimport) unsigned WaitForSingleObject(uint64_t,unsigned);
 __declspec(dllimport) unsigned WaitForMultipleObjects(unsigned,const uint64_t*,int,unsigned);
@@ -95,6 +96,7 @@ void entry(void){
  check(DestroyWindow(hidden)&&class_destroyed148==1&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
+ uint16_t long_path[512];check(GetLongPathNameW(path,0,0)==n+1,362);long_path[0]=0x9b9b;check(GetLongPathNameW(path,long_path,n)==n+1&&long_path[0]==0x9b9b,363);check(GetLongPathNameW(path,long_path,512)==n,364);for(unsigned i=0;i<=n;++i)check(long_path[i]==path[i],365);check(GetLongPathNameW(long_path,long_path,512)==n&&!GetLongPathNameW(L"relative",long_path,512)&&GetLastError()==50,366);
  command[0]='"';for(unsigned i=0;i<n;++i)command[i+1]=path[i];command[n+1]='"';command[n+2]=' ';command[n+3]='!';command[n+4]=0;
  uint8_t startup[104]={0};*(unsigned*)startup=104;struct{uint64_t process,thread;unsigned pid,tid;} process={0};
  check(CreateProcessW(path,command,0,0,0,4,0,0,startup,&process),225);uint64_t snapshot=CreateToolhelp32Snapshot(2,0);check(snapshot!=UINT64_MAX,290);snapshot_check148(snapshot,process.pid,1);check(ResumeThread(process.thread)==1,291);check(WaitForSingleObject(process.process,30000)==0,226);

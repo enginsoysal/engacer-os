@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "build_id": "a7237cc97170470e7324ca26af5e6206",
+  "scope": "Native private-worker process/message/shell/GDI lifetimes, SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "9f38968b206f1e464b824b4d549e7ef8061282e1212cbc3bb55858d3adc17229",
+    "clone_sha256": "9f38968b206f1e464b824b4d549e7ef8061282e1212cbc3bb55858d3adc17229",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "81eac10aba7d93c9b2b4df400308a4a2b809be70b97797b0aba2e92148a726cb",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=32768 source-fnv32=2102052786\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zFM.exe bytes=32768 source-fnv32=2102052786\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zFM.exe bytes=32768 source-fnv32=2102052786\nRunning the original Windows executable in a protected process.\n\nM148_HEAP_PAGES before=248 after=248\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n"
+}
