@@ -189,6 +189,9 @@ static int MS f_SetFileTime(HANDLE h,const FILETIME*creation,const FILETIME*acce
 }
 static int file_path_api143(unsigned operation,const WCHAR*name,w8_file_info*information,unsigned attributes){char path[256];if(!nativepath8(name,path))return 0;int64_t status=(int64_t)sys8(W8_SYS_FILE_OP143,0,operation,(uint64_t)path,information?(uint64_t)information:attributes,0);if(status<0){last8((unsigned)-status);return 0;}return 1;}
 static unsigned MS f_GetFileAttributesW(const WCHAR*name){w8_file_info information;if(!file_path_api143(15,name,&information,0))return UINT32_MAX;return information.attributes;}
+#ifdef ENGINE_M14
+#include "file-attributes148.inc"
+#endif
 static int MS f_SetFileAttributesW(const WCHAR*name,unsigned attributes){return file_path_api143(14,name,0,attributes);}
 static int MS f_CreateDirectoryW(const WCHAR*name,void*security){if(security){last8(50);return 0;}return file_path_api143(16,name,0,0);}
 static int MS f_DeleteFileW(const WCHAR*name){w8_file_info information;if(!file_path_api143(15,name,&information,0))return 0;if(information.kind!=1){last8(5);return 0;}return file_path_api143(10,name,0,0);}
@@ -433,6 +436,7 @@ static const api8 api8_table[]={
  API8(RegisterWindowMessageW,4),API8(RegisterWindowMessageA,4),API8(GlobalFindAtomW,1),API8(GlobalAddAtomW,1),API8(GlobalDeleteAtom,1),API8(GlobalGetAtomNameW,1),
  API8(CommandLineToArgvW,10),
  API8(GetLongPathNameW,1),API8(GetShortPathNameW,1),
+ API8(GetFileAttributesExW,1),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
