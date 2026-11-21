@@ -20,7 +20,7 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
     old = original['files']
     differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
     allowed = {'tests/m14/verify7.py','tests/m14/suite7.py','tests/m14/public_site7_scoped.mjs',
-               'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/picker147_run.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py',
+               'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/native147_entry.py','tests/m14/picker147_run.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py',
                'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
     assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
     if name == 'picker-lifetime146' and 'tests/m14/picker_lifetime146_run.py' in differences:
@@ -87,6 +87,7 @@ def main():
   add('msi147-'+name+'-host','tests/m14/'+('msireg147_host.py'if name=='registry'else name+'147_host.py'),priority=30)
  for name in ('api','codepage','atom','fls','machine','pipe','slist','version','wix_system','wix_action'):
   add('msi147-'+name+'-native','tests/m14/'+('wix_action147_lifetimes.py'if name=='wix_action'else name+'147_run.py'),dependencies=('apps-compact',),priority=6)
+  tasks['msi147-'+name+'-native']['command']=[sys.executable,'tests/m14/replay7.py','native147_entry','--scenario','wix_action147_lifetimes'if name=='wix_action'else name+'147_run']
  for name,script,arguments in (
   ('generic-default','generic147_native.py',()),('generic-french','generic147_native.py',('--french',)),
   ('generic-cancel','install147_cancel.py',()),('file-entry','msi_entry147_native.py',()),('review-stale','review147_stale.py',()),

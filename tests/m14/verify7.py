@@ -57,7 +57,11 @@ def main():
   for path,row in r['observer_sources'].items():
    raw=(ROOT/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==row['canonical_sha256'],path
    executed=raw.decode('utf-8')
-   for before,after in r['replacements']:executed=executed.replace(before,after)
+   if row.get('execution_mode')=='canonical-stage7-entry':
+    from native147_entry import SCENARIOS
+    assert r['target']=='native147_entry' and Path(path).stem in SCENARIOS and r['arguments']==['--scenario',Path(path).stem]
+   else:
+    for before,after in r['replacements']:executed=executed.replace(before,after)
    module=Path(path).stem
    if module=='original_window_trace4':executed=executed.replace('title=wide(56,312),class_name=wide(312,440)',"menu_height=struct.unpack_from('<I',raw,452)[0],title=wide(56,312),class_name=wide(312,440)")
    if module in ('original_window_trace4','original_menu145_run'):
@@ -129,7 +133,7 @@ def main():
   differences={path:{'before':prior['files'].get(path),'after':tree['files'].get(path)}for path in prior['files'].keys()|tree['files'].keys()if prior['files'].get(path)!=tree['files'].get(path)}
   assert differences==record['verified_unconsumed_tree_changes']
   if task_name=='picker-lifetime146':assert 'tests/m14/picker_lifetime146_run.py'not in differences
-  assert differences.keys()<={'tests/m14/verify7.py','tests/m14/suite7.py','tests/m14/public_site7_scoped.mjs','tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/picker147_run.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py','tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
+  assert differences.keys()<={'tests/m14/verify7.py','tests/m14/suite7.py','tests/m14/public_site7_scoped.mjs','tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/native147_entry.py','tests/m14/picker147_run.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py','tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
   reused_trees[record['source_tree_sha256']]=prior
  for module,folder,canonical in [('window146_run','window-native','window144_native.py'),('picker_restart146_run','picker-restart-native','picker146_run.py')]:
   import importlib

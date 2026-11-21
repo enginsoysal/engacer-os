@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<repository>\tests\m14\replay7.py", line 108, in <module>
+    main()
+  File "<repository>\tests\m14\replay7.py", line 92, in main
+    module.main()
+  File "<repository>\tests\m14\api147_run.py", line 12, in main
+    for a,b in replacements:assert text.count(a)==1,(a,text.count(a));text=text.replace(a,b)
+AssertionError: ('stage7/global-native', 0)

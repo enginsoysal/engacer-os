@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "New current-stage adapter transformed twice before native VM launch",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 49,
+  "correction": "Execute each explicitly enumerated current-stage native adapter canonically once; retain its own nested stage mappings, functional assertions and source receipts. The outer replay records exact canonical execution and independently verifies mode and scenario.",
+  "os_source_changed": false
+}
