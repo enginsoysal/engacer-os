@@ -1,0 +1,6 @@
+{
+  "source": "tests/m14/firmware147_run.py",
+  "sha256": "bfcd9ac489cf23cfeea6245d9b312585c1e53c910c7c76c9e6309ccf7fb18d12",
+  "source_commit": "9300490c8778ce2e9c025b0b8db8d91cd74d621d",
+  "scope": "Exact test source for BIOS ISO/USB installation and retained/disconnected-media startups; no human usability or physical hardware claim"
+}

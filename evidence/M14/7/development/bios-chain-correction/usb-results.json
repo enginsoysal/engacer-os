@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build_id": "66c1fe0152932cc1fd131ea3b4e6ee59",
+  "firmware": "bios",
+  "media": "usb",
+  "owned_fixture": "8144e93545d34eec9361c90086759bf4",
+  "scope": "Exact stage-seven boot bundle through ordinary BIOS/UEFI installation and disk boots.",
+  "media_sha256": "a08977b1c3726a95b7adaa4e56929ff05f60115496ec38400d5dd3933f635308",
+  "checks": [
+    "Ordinary wizard installs and Finish reaches the persistent desktop on the exact live module.",
+    "Two independent no-media starts use ordinary firmware discovery without forced boot order."
+  ],
+  "installed_runtime_sha256": "8de1580cfdb5ca04232b9ae9e74e708d25a6817257e2957d86a2a89f8c4d13e9"
+}

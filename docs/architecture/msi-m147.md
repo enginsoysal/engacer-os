@@ -103,3 +103,17 @@ After adding machine registry support, candidate 93b05fbf5b5e9b656c162819633c0d0
 ### Retained-ISO BIOS failure
 
 The version-2 runtime-module candidate passes UEFI install/restart/independent startup, original console tasks, both MSI previews, native MSI exports, the restored HKCU regression and machine-view rights/persistence. Its explicit BIOS test installs successfully but restarts into the retained ISO wizard. Generated live BIOS configurations have BIOS_CHAIN75=0 because historical feature detection searched host folder spellings that omit m14-native. This real failure is retained; BIOS qualification does not pass. The next builder passes the live-chain decision explicitly from the milestone identity, covering both CD and USB layouts independently of the host path. Installed BIOS stages retain their separate non-chain behavior.
+
+### BIOS correction native result
+
+Build 66c1fe0152932cc1fd131ea3b4e6ee59 passes real BIOS installation from both ISO and USB, Restart with the original medium retained, and two independent no-media starts for each path. The copied worker is independently read from disk and matches SHA-256 8de1580cfdb5ca04232b9ae9e74e708d25a6817257e2957d86a2a89f8c4d13e9. The earlier failed retained-ISO attempt remains preserved. This closes the specific development boot regression; the full M14.7 MSI write/custom-action gate remains open.
+
+### Next native installation prerequisites
+
+1. Replace the single hard-coded product grant with a validated GUID root and a source-bound review/confirmation. Keep physical grants separate from the logical Windows alias.
+2. Add bounded real anonymous pipes, duplication, inherited standard handles and cross-process EOF/backpressure. Block waiting threads and wake them on state changes; do not poll. Propagate a separate confirmed-install capability to authorized child helpers while retaining ordinary RUN restrictions.
+3. Run the unchanged original WiX DLL with the real MSI exports and correctly assigned ordinals. Required reached imports need real behavior; named optional discovery must not advertise diagnostic guards as implemented.
+4. Publish standard file/registry/shortcut effects through a durable ownership/recovery journal. Cache the unchanged package when recovery or original uninstall custom actions require it. Preserve modified and personal files.
+5. Connect ordinary installer selection/review/confirmation, then qualify original 7-Zip and Notepad++ installation/removal/reinstallation, language actions, cancellation and recovery.
+
+These are remaining requirements, not qualified capabilities.
