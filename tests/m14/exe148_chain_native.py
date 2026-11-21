@@ -18,8 +18,11 @@ def main():
   finally:mounted.close()
   report=dict(passed=False,scope=__doc__,build_id=meta['build_id'],compiled_source=meta.get('source_commit'),observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),clone=cloned,owned_fixture=work.name,cycles=[],full_production_media=not args.development_worker,development_worker_sha256=hashlib.sha256(args.development_worker.read_bytes()).hexdigest()if args.development_worker else None)
   previous_output='';observed_output=''
+  def residents(g):
+   names=['sync_resident142','file_resident143','registry_resident143','ui_resident144','clipboard_resident144','mapping_resident146','pipe_resident147','exe_resident148']
+   return {name:ui.integer(g,name,True)for name in names}
   def state(g):
-   raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496);return dict(state=struct.unpack_from('<I',raw)[0],status=struct.unpack_from('<I',raw,8)[0],message=raw[304:496].split(b'\0')[0].decode(errors='replace'))
+   raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496);return dict(state=struct.unpack_from('<I',raw)[0],status=struct.unpack_from('<I',raw,8)[0],peak_native_managed_pages=struct.unpack_from('<Q',raw,24)[0],scheduled_quanta=struct.unpack_from('<Q',raw,32)[0],message=raw[304:496].split(b'\0')[0].decode(errors='replace'))
   def wait_condition(g,p,predicate,seconds=240):
    nonlocal previous_output,observed_output
    deadline=time.monotonic()+seconds
@@ -48,12 +51,12 @@ def main():
     p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19)
     if removing:p.desktop(12208,True);assert any(r[5]==12300 for r in f.controls(g));p.desktop(12300,True)
     else:choose(g,p)
-    before=f.stats(g)[0];p.desktop(12002 if removing else 12001,True);c.shot(g,'confirmation-'+str(cycle));at=len(g.log());p.desktop(12003,True,settle=False);g.wait('M8_CPL3_CREATED',at)
+    before=f.stats(g)[0];before_residents=residents(g);p.desktop(12002 if removing else 12001,True);c.shot(g,'confirmation-'+str(cycle));at=len(g.log());p.desktop(12003,True,settle=False);g.wait('M8_CPL3_CREATED',at)
     def originals():return[w for w in t.records(g)if w['token']!=front['token']]
     wait_condition(g,p,lambda:len(originals())==1,45);window=originals()[0];t.focus(g,p,window);p.drain();c.shot(g,'original-before-click-'+str(cycle));x,y,width,height=f.model(g)[1];scale=c.flag(g,'scale73');p.click((x+width-100)*scale//2,(y+height-25)*scale//2);p.drain()
     marker='UninstallerThread finished'if removing else'OnInstallationFinished:';start=time.monotonic();wait_condition(g,p,lambda:marker in output(g));duration=round(time.monotonic()-start,3);p.drain();c.shot(g,'original-after-operation-'+str(cycle));assert originals();t.focus(g,p,originals()[0]);p.desktop(49002,True)
     wait_condition(g,p,lambda:state(g)['state']!=1);assert state(g)['state']==2 and state(g)['status']==0,(state(g),output(g));assert('M148_ORDINARY_ORIGINAL_REMOVE_VERIFIED'if removing else'M148_ORDINARY_ORIGINAL_INSTALL_VERIFIED')in output(g)
-    after=f.stats(g)[0];entries=f.entries(g);assert (PRODUCT in entries)==(not removing);assert ui.s.s.document(disk,sentinel,4096)==b'Personal document preserved across original EXE lifecycle';assert hashlib.sha256(ui.s.s.document(disk,download,16*1024*1024)).hexdigest()==hashlib.sha256(data).hexdigest();report['cycles'].append(dict(cycle=cycle,removing=removing,observed_original_seconds=duration,retained_pages=after-before,volume_entries=len(entries),state=state(g),original_output=output(g)));(out/('serial-'+str(cycle)+'.log')).write_bytes(g.log().encode());c.shot(g,'verified-'+str(cycle))
+    after=f.stats(g)[0];entries=f.entries(g);assert (PRODUCT in entries)==(not removing);assert ui.s.s.document(disk,sentinel,4096)==b'Personal document preserved across original EXE lifecycle';assert hashlib.sha256(ui.s.s.document(disk,download,16*1024*1024)).hexdigest()==hashlib.sha256(data).hexdigest();report['cycles'].append(dict(cycle=cycle,removing=removing,observed_original_seconds=duration,retained_pages=after-before,volume_entries=len(entries),resident_pages_before=before_residents,resident_pages_after=residents(g),state=state(g),original_output=output(g)));(out/('serial-'+str(cycle)+'.log')).write_bytes(g.log().encode());c.shot(g,'verified-'+str(cycle))
    mounted=StoppedDisk(disk,library())
    try:
     if not removing:

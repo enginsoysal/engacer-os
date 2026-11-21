@@ -45,7 +45,7 @@ static unsigned exe_shared_restore148(exe_record148*r){registry_machine147=0;reg
    * this profile or an absent value removed by the original uninstaller. */
   static const uint16_t mime[]={ 'a','p','p','l','i','c','a','t','i','o','n','/','p','d','f',0 },ext[]={'.','p','d','f',0};const void*expected=i?(const void*)ext:(const void*)mime;unsigned bytes=i?sizeof(ext):sizeof(mime);
   if(!error&&(v->type!=1||v->bytes!=bytes||memcmp(v->data,expected,bytes)))continue;
-  if(r->shared[i].present){if(r->shared[i].bytes>512)return 13;exe_shared_path148(i,v,path);v->type=r->shared[i].type;v->bytes=r->shared[i].bytes;memcpy(v->data,r->shared[i].data,v->bytes);if(v6_put(m6_volume(),path,offsetof(registry_value_record143,data)+v->bytes,memory_source8,v))return 1117;}
+  if(r->shared[i].present){if(r->shared[i].bytes>512)return 13;error=registry_ensure_key143(exe_shared_key148(i),exe_shared_key148(i),(void*)io8);if(error)return error;exe_shared_path148(i,v,path);v->type=r->shared[i].type;v->bytes=r->shared[i].bytes;memcpy(v->data,r->shared[i].data,v->bytes);if(v6_put(m6_volume(),path,offsetof(registry_value_record143,data)+v->bytes,memory_source8,v))return 1117;}
   else if(!error&&v6_remove(m6_volume(),path))return 1117;
  }return 0;
 }

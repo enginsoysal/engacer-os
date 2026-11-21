@@ -9,4 +9,6 @@ text=raw.decode().replace('stage7','stage8').replace('STAGE7','STAGE8').replace(
 needle='observed = {}'
 assert text.count(needle)==1
 text=text.replace(needle,"REPLACEMENTS.extend([('stage7','stage8'),('STAGE7','STAGE8'),('M14.7','M14.8'),('0.14.7','0.14.8'),('m147-','m148-'),('evidence/M14/7','evidence/M14/8')])\n"+needle)
+text=text.replace("'assert stage==7'","'assert stage==8'")
+sys.modules['replay7']=sys.modules[__name__]
 exec(compile(text,str(canonical),'exec'),globals())

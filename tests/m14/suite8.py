@@ -19,10 +19,14 @@ def main():
   ('exe148-review','exe148_review_run.py',('compact',)),
   ('exe148-chain','exe148_chain_native.py',('compact',)),
   ('batch148-host','batch148_host.py',()),
-  ('registry-info148-reference','registry_info148_reference.py',())):
+  ('registry-info148-reference','registry_info148_reference.py',()),
+  ('static148-host','static148_host.py',()),
+  ('rtl148-native','rtl148_run.py',('apps-compact',)),
+  ('software148-native','software148_run.py',('apps-compact',))):
   add(name,'tests/m14/'+script,dependencies=dependencies,priority=5 if dependencies else 30)
   tasks[name]['command']=[sys.executable,'tests/m14/'+script]
- assert len(tasks)==145,len(tasks)'''"""
+ del tasks['static146-host']
+ assert len(tasks)==147,len(tasks)'''"""
  text=text.replace(needle,additions)
  needle='def validate_resume(prior, name, record, command, current_tree, current_digest, out, build):'
  assert text.count(needle)==1
