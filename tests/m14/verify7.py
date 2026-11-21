@@ -11,7 +11,7 @@ def main():
  final=ROOT/'evidence/M14/7';assert not(final/'publication-results.json').exists()
  scratch=work/'verification-base';scratch.mkdir(exist_ok=True)
  source=ROOT/'tests/m14/verify4.py';raw=source.read_bytes();text=raw.decode()
- replacements=[('EngacerOS-M14STAGE4','EngacerOS-M14STAGE7'),('M14-STAGE4-VM-v1','M14-STAGE7-VM-v1'),('m14stage4','m14stage7'),('stage4','stage7'),('M14.4','M14.7'),('0.14.4','0.14.6')]
+ replacements=[('EngacerOS-M14STAGE4','EngacerOS-M14STAGE7'),('M14-STAGE4-VM-v1','M14-STAGE7-VM-v1'),('m14stage4','m14stage7'),('stage4','stage7'),('M14.4','M14.7'),('0.14.4','0.14.7')]
  for before,after in replacements:text=text.replace(before,after)
  before="out=ROOT/'evidence/M14/4'";assert before in text;text=text.replace(before,"out=ROOT/'build/m14-native/stage7/verification-base'")
  before="assert font['coverage_bytes']==251248 and font['header_sha256']==read(ROOT/'third_party/inter/raster-lock12.json')['header_sha256']";assert text.count(before)==1;text=text.replace(before,"assert font['coverage_bytes']==227452 and font['header_sha256']==read(ROOT/'third_party/inter/raster-lock146.json')['header_sha256'] and font['glyphs']==1663")
@@ -119,9 +119,13 @@ def main():
    # This verifier does not execute any campaign task. Preserve its exact
    # campaign-start source and bind its additive acceptance-only corrections.
    import subprocess
-   historical=subprocess.check_output(['git','show',meta['source_commit']+':'+path],cwd=ROOT)
-   assert hashlib.sha256(historical).hexdigest()==digest
-   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit=meta['source_commit'],scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
+   commits=subprocess.check_output(['git','log','-n','100','--format=%H','--',path],cwd=ROOT).decode().splitlines()
+   canonical_commit=None
+   for commit in commits:
+    historical=subprocess.check_output(['git','show',commit+':'+path],cwd=ROOT)
+    if hashlib.sha256(historical).hexdigest()==digest:canonical_commit=commit;break
+   assert canonical_commit,('Campaign-start verifier bytes must exist in immutable Git history',path,digest)
+   verifier_maintenance.append(dict(path=path,campaign_start_sha256=digest,current_sha256=current,canonical_commit=canonical_commit,scope='Acceptance-only verifier correction; no executed native/host observer or fixture changes'))
   else:assert current==digest,('Suite observer input changed',path)
  assert all(r.get('validated_source_tree_sha256',r['source_tree_sha256'])==tree['source_tree_sha256']for r in suite['tasks'].values())
  reused_trees={}
@@ -142,6 +146,11 @@ def main():
   assert receipt['canonical_sha256']==hashlib.sha256(path.read_bytes()).hexdigest()
   assert receipt['executed_sha256']==hashlib.sha256(adapter['derive'](path.read_bytes().decode()).encode()).hexdigest()
   assert receipt['adapter_sha256']==hashlib.sha256((ROOT/'tests/m14'/(module+'.py')).read_bytes()).hexdigest()
+ from nested147 import map_source
+ picker_observer=read(work/'picker-native/observer.json');picker_source=ROOT/'tests/m14/picker146_run.py'
+ assert picker_observer['canonical_sha256']==hashlib.sha256(picker_source.read_bytes()).hexdigest()
+ assert picker_observer['executed_sha256']==hashlib.sha256(map_source(picker_source.read_bytes().decode()).encode()).hexdigest()
+ assert picker_observer['adapter_sha256']==hashlib.sha256((ROOT/'tests/m14/picker147_run.py').read_bytes()).hexdigest()
  comparison=read(work/'static-resource-comparison.json');assert comparison['passed']and comparison['build_id']==build
  import struct
  for stage in (6,7):
