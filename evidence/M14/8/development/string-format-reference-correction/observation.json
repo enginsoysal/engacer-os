@@ -1,0 +1,43 @@
+{
+  "classification": "Owned reference expectation and development candidate correction; not an accepted OS failure",
+  "initial_assumption": "Negative measurable range count is retained",
+  "observed": "Windows accepts a non-null negative-count request and resets the stored range count to zero",
+  "reference_sequence": [
+    [
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      32,
+      0,
+      32
+    ],
+    [
+      33,
+      11,
+      32
+    ],
+    [
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "correction": "Normalize nonpositive counts to zero; preserve null-pointer rejection and >32 ValueOverflow"
+}

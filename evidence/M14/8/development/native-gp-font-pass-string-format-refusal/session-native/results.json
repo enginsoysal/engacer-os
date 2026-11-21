@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "build_id": "13bbccbc57ab1e4008aad659fda3100e",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "d0feeef507ce284122d9e9a3bef8883a18b3cb811c29316893778848d67638ff",
+    "clone_sha256": "d0feeef507ce284122d9e9a3bef8883a18b3cb811c29316893778848d67638ff",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "fd3c6498749fbac3280c97fab54d61ef8fae6005489eb8d2b46b75541cd1e989",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=53248 source-fnv32=2523131796\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=53248 source-fnv32=2523131796\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nMapped original image: 7zFM.exe bytes=53248 source-fnv32=2523131796\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_DERIVED_PARGB_STORAGE_PASS\nM148_NATIVE_GDIPLUS_FONT_FAMILY_FLOAT_ABI_PASS\nM148_HEAP_PAGES before=261 after=261\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n"
+}

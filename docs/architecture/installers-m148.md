@@ -171,3 +171,18 @@ user font functions enable SSE2 code generation; the rest of the freestanding
 runtime/kernel retain their current compilation settings. Native scheduling
 already saves/restores user floating state. Native callers must verify actual
 floating arguments/results, not call these exports with integer substitutes.
+
+## Text-format state candidate
+
+GDI+ text formats are independently owned bounded objects, with actual flags,
+horizontal/vertical alignment, trimming, language and up to 32 copied character
+ranges. Generic default and typographic requests allocate independent objects;
+clones own their state, so one application's mutation cannot change another
+format. Arbitrary flags are retained as requested; later layout must explicitly
+reject rendering modes it does not implement. Metadata storage cannot qualify
+right-to-left/vertical layout, trimming or formatted text drawing by itself.
+
+Own off-screen Windows references verify default values (typographic 0x6004,
+no trimming), enum rejection, all flag bits, clone independence, range counts,
+ValueOverflow above 32 and normalization of negative counts to zero. Native
+format object quota is 32. No background worker or font/glyph copy is added.
