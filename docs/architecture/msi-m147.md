@@ -2,7 +2,11 @@
 
 ## Current integration state
 
-M14.7 remains in development; M14.6 is the qualified download. Build `351c2b6edf612c0882aeb53527f10c01` passes 21 original native WiX deferred-action/child-output lifetimes using a test-only owner around exact production MSI objects, and 21 session-atom parent/child lifetimes. Native source choice/review, changed-source refusal, original console and installed startup regressions also pass. The authored Notepad++ copy/delete sequence, generic write actions, recovery and installation/removal remain open. Historical development entries below preserve earlier failures and qualification boundaries.
+M14.7 is in development; M14.6 remains the qualified download. Source-free completion recovery, bounded streaming, original 7-Zip installation/removal/reinstallation and preservation of changed files pass the scoped native d2 development campaigns. Supporting current integration checks pass 1043 installation assertions and 6594 MSI API assertions; matching removal/terminal campaigns pass 1114/295 assertions on their recorded source snapshots.
+
+The ordinary original Notepad++ MSI now installs and independently verifies all 217 payloads, one original shortcut and nine registry ownership records. Its first restart test exposed a missing Remove button for a registered selection. The corrected frontend is being rebuilt and the complete lifecycle will be repeated. The actual authored French WiX copy/delete sequence, generic installed-app removal/reinstallation, full regression, exact media and public delivery still block stage acceptance. An initial compact observer was also started before that rebuild fully exited; its refusal is preserved and is not used as OS qualification.
+
+Earlier development notes below are historical evidence and may describe superseded implementation gaps. They do not override this current state or establish a completed stage.
 
 ## How and why
 

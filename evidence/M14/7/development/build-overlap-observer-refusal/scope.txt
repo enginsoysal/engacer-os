@@ -1,0 +1,1 @@
+The compact observer was started before the full build process completed. Its early manifest was not the final media/source snapshot. This refusal is invalid as OS qualification and will be rerun only after the complete build exits successfully. No successful qualification is claimed from this run.

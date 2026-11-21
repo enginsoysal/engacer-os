@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "baseline": false,
+  "stage": "M14.7",
+  "build_id": "338f750f23590712c09e4a621f56ef6f",
+  "iso_sha256": "5ef0fc1fc0bfbd8a0f9269aa9b8c9f3ec1eea20f67f08ed82db1852bb50c6e3a",
+  "physical": [
+    1280,
+    800
+  ],
+  "configured_guest_mib": 128,
+  "owned_fixture": "eeda43a2bd33401a80e843b43106b448",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\native1.py\", line 34, in main\n    ptr=ui.Pointer(g);ptr.drain();shot(g,out,'welcome');wizard(g,ptr,2);wizard(g,ptr,scale)\n  File \"<project-root>\\tests\\m14\\native1.py\", line 19, in wizard\n    rows=[struct.unpack_from('<5I',raw,i*20)for i in range(n)if struct.unpack_from('<I',raw,i*20+16)[0]==action];assert len(rows)==1,(action,n)\nAssertionError: (2, 2)\n"
+}
