@@ -281,21 +281,7 @@ static int MS f_GetConsoleScreenBufferInfo(HANDLE h,void*out){if((h!=2&&h!=3)||!
 static uint64_t console_handlers8[16];static unsigned ignore_console8,file_oem8;
 static int MS f_SetConsoleCtrlHandler(uint64_t callback,int add){if(!callback){ignore_console8=add!=0;return 1;}if(add){for(unsigned i=0;i<16;++i)if(!console_handlers8[i]){console_handlers8[i]=callback;return 1;}last8(8);return 0;}for(unsigned i=0;i<16;++i)if(console_handlers8[i]==callback){console_handlers8[i]=0;return 1;}last8(87);return 0;}
 static void MS f_SetFileApisToOEM(void){file_oem8=1;}
-static unsigned MS f_GetOEMCP(void){return 65001;}
-static unsigned MS f_GetACP(void){return 65001;}
-static int MS f_MultiByteToWideChar(unsigned cp,unsigned flags,const char*src,int count,WCHAR*out,int capacity){
- if(!src||count==0||count< -1||capacity<0||(flags&~8u)||(cp!=0&&cp!=1&&cp!=65001&&cp!=1252)){last8(87);return 0;}unsigned n=count<0?len8(src)+1:(unsigned)count,used=0;
- static const uint16_t high[]={0x20ac,0x81,0x201a,0x192,0x201e,0x2026,0x2020,0x2021,0x2c6,0x2030,0x160,0x2039,0x152,0x8d,0x17d,0x8f,0x90,0x2018,0x2019,0x201c,0x201d,0x2022,0x2013,0x2014,0x2dc,0x2122,0x161,0x203a,0x153,0x9d,0x17e,0x178};
- for(unsigned i=0;i<n;){unsigned v=(uint8_t)src[i++],extra=0,min=0;if(cp==1252){if(v>=128&&v<160)v=high[v-128];}else{if(v>=0xf0){v&=7;extra=3;min=65536;}else if(v>=0xe0){v&=15;extra=2;min=2048;}else if(v>=0xc2){v&=31;extra=1;min=128;}else if(v>=128){last8(1113);return 0;}if(extra>n-i){last8(1113);return 0;}for(unsigned j=0;j<extra;++j){unsigned b=(uint8_t)src[i++];if((b&0xc0)!=0x80){last8(1113);return 0;}v=(v<<6)|(b&63);}if(v<min||v>0x10ffff||(v>=0xd800&&v<=0xdfff)){last8(1113);return 0;}}
-  unsigned units=v>65535?2:1;if(capacity&&used+units>(unsigned)capacity){last8(122);return 0;}if(out&&capacity){if(units==1)out[used]=(WCHAR)v;else{v-=0x10000;out[used]=(WCHAR)(0xd800+(v>>10));out[used+1]=(WCHAR)(0xdc00+(v&1023));}}used+=units;
- }return (int)used;
-}
-static int MS f_WideCharToMultiByte(unsigned cp,unsigned flags,const WCHAR*src,int count,char*out,int capacity,const char*default_char,int*used_default){
- if(!src||count==0||count< -1||capacity<0||(flags&~0x400u)||(cp!=0&&cp!=1&&cp!=65001&&cp!=1252)){last8(87);return 0;}unsigned n=count<0?wlen8(src)+1:(unsigned)count,used=0;if(used_default)*used_default=0;
- for(unsigned i=0;i<n;++i){unsigned v=src[i];if(v>=0xd800&&v<=0xdbff){if(i+1>=n||src[i+1]<0xdc00||src[i+1]>0xdfff){last8(1113);return 0;}v=0x10000+((v-0xd800)<<10)+(src[++i]-0xdc00);}else if(v>=0xdc00&&v<=0xdfff){last8(1113);return 0;}
-  unsigned bytes=cp==1252?1:v<128?1:v<2048?2:v<65536?3:4;if(capacity&&used+bytes>(unsigned)capacity){last8(122);return 0;}if(out&&capacity){if(cp==1252){if(v<=255)out[used]=(char)v;else{out[used]=default_char?*default_char:'?';if(used_default)*used_default=1;}}else if(bytes==1)out[used]=(char)v;else{out[used]=(char)((bytes==2?0xc0:bytes==3?0xe0:0xf0)|(v>>(6*(bytes-1))));for(unsigned j=1;j<bytes;++j)out[used+j]=(char)(0x80|((v>>(6*(bytes-j-1)))&63));}}used+=bytes;
- }return (int)used;
-}
+#include "codepage147.inc"
 static WCHAR *MS f_CharUpperW(WCHAR*p){if((uintptr_t)p<=65535){unsigned v=(unsigned)(uintptr_t)p;if(v>='a'&&v<='z')v-=32;return (WCHAR*)(uintptr_t)v;}for(unsigned i=0;p&&p[i];++i)if(p[i]>='a'&&p[i]<='z')p[i]-=32;return p;}
 static const char *MS f_CharPrevExA(unsigned cp,const char*start,const char*current,unsigned flags){(void)flags;if(current<=start)return start;const char*p=current-1;if(cp==65001||cp==0||cp==1)while(p>start&&((uint8_t)*p&0xc0)==0x80)--p;return p;}
 static int MS f_FormatMessageW(unsigned flags,const void*source,unsigned code,unsigned language,void*out,unsigned capacity,void*args){(void)source;(void)language;(void)args;if(!(flags&0x1000u)){last8(50);return 0;}const char*message=code==2?"The file could not be found.":code==3?"The path could not be found.":code==5?"Access is denied.":code==50?"This operation is not supported by this runtime.":code==80||code==183?"The file already exists.":code==8?"Not enough memory.":"The requested operation failed.";WCHAR wide[128];int n=utf8_to16(message,wide,128);if(n<0)return 0;if(flags&0x100u){WCHAR*p=alloc8(((unsigned)n+1)*2);if(!p){last8(8);return 0;}memcpy(p,wide,((unsigned)n+1)*2);*(WCHAR**)out=p;}else{if(capacity<=(unsigned)n){last8(122);return 0;}memcpy(out,wide,((unsigned)n+1)*2);}return n;}
@@ -411,6 +397,7 @@ static const api8 api8_table[]={
  API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(SetDlgItemTextA,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
 #ifdef ENGINE_M14
+ API8(IsValidCodePage,1),API8(GetCPInfo,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif
  API8(GetProcessHeap,1),API8(HeapAlloc,1),API8(HeapFree,1),API8(HeapSize,1),API8(LocalAlloc,1),API8(lstrlenW,1),API8(lstrlenA,1),API8(lstrcatW,1),API8(GetUserDefaultLangID,1),API8(GetSystemDefaultLangID,1),API8(wcslen,2),API8(srand,2),API8(rand,2),API8(CoTaskMemAlloc,9),API8(CoTaskMemFree,9),API8(CoTaskMemRealloc,9),

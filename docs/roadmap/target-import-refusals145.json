@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 685,
-  "table_bytes": 5480,
+  "refusal_keys": 683,
+  "table_bytes": 5464,
   "imports": [
     {
       "app": "notepadpp",
@@ -1003,13 +1003,6 @@
     {
       "app": "notepadpp",
       "dll": "kernel32.dll",
-      "symbol": "GetCPInfo",
-      "key": "a7164836f6c62897",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
       "symbol": "InitializeSListHead",
       "key": "947a043e9470f1d1",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -1096,13 +1089,6 @@
       "dll": "kernel32.dll",
       "symbol": "GetConsoleOutputCP",
       "key": "5b8ab2cc090e0eb3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "IsValidCodePage",
-      "key": "f1e96f006abdb3a0",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2816,13 +2802,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "IsValidCodePage",
-      "key": "f1e96f006abdb3a0",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "FindFirstFileExW",
       "key": "25a6c99c58f9bf5d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3000,13 +2979,6 @@
       "dll": "kernel32.dll",
       "symbol": "IsDBCSLeadByte",
       "key": "91d1fdf140ffccc8",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GetCPInfo",
-      "key": "a7164836f6c62897",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5835,20 +5807,6 @@
       "dll": "kernel32.dll",
       "symbol": "GetStringTypeW",
       "key": "1fedac91ede056da",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "GetCPInfo",
-      "key": "a7164836f6c62897",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "IsValidCodePage",
-      "key": "f1e96f006abdb3a0",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

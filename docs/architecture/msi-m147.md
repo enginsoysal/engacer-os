@@ -179,3 +179,10 @@ Own host checks pass 88600 assertions over 21 cycles: quotas, invalid indices, a
 
 
 Build a6eed77f46a4baa3b5364b847e7a3535 passes compact install/retained-media restart/two independent starts, all original console/MSI tasks and 106 payload hashes, and 21 real native FLS lifetimes. Each lifetime creates eight workers, exercises normal-exit callbacks and freeing live-worker values, then verifies the main ExitProcess callback; all retain zero managed pages, and the original console still works afterward. The unchanged original WiX DLL passes its prior FLS initialization point and next refuses IsValidCodePage during CRT setup. That failed admission and its exact import/call-site attribution remain preserved, not counted as a passed custom action. Evidence: development/fls-native.
+
+
+### Selected code-page development
+
+The next runtime implements IsValidCodePage for the installed UTF-8 and Windows-1252 profiles and GetCPInfo for these profiles plus the existing UTF-8 ACP/OEM aliases. Unsupported numeric pages remain unavailable. Queries report the real maximum character width and preserve caller buffer boundaries. The shared production codec now correctly reverses Windows-1252 Euro/typographic mappings, reports default-character use during size-only queries, rejects null output with positive capacity, and refuses invalid UTF-8 lead bytes above F4. Existing strict malformed-input behavior remains; full Windows replacement, best-fit, normalization and all flag combinations are not claimed.
+
+Supporting host checks pass 15590 independent Python-codec/buffer/invalid-input assertions, including all 256 selected Windows-1252 byte mappings and thousands of Unicode scalars. Native conversion and original WiX continuation remain separately pending. References: [code-page information](https://learn.microsoft.com/en-us/windows/win32/api/winnls/nf-winnls-getcpinfo), [UTF-8 API use](https://learn.microsoft.com/en-us/windows/apps/design/globalizing/use-utf8-code-page), [conversion contracts](https://learn.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte).
