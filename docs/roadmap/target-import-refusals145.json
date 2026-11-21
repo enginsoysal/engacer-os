@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 660,
-  "table_bytes": 5280,
+  "refusal_keys": 658,
+  "table_bytes": 5264,
   "imports": [
     {
       "app": "notepadpp",
@@ -4869,20 +4869,6 @@
       "dll": "gdiplus.dll",
       "symbol": "GdipAddPathRectangleI",
       "key": "1b93c68ff631b57b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdiplusShutdown",
-      "key": "d196b703f9273939",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdiplusStartup",
-      "key": "b386a1ffe17e60f4",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

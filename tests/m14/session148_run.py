@@ -1,4 +1,4 @@
-"""Native private-worker message identity and SRW contention, not shipped-route acceptance."""
+"""Native private-worker process/message/shell/GDI lifetimes, SRW contention and heap release; not shipped-route acceptance."""
 import hashlib,json,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]

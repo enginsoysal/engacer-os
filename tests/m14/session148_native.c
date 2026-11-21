@@ -46,6 +46,8 @@ __declspec(dllimport) unsigned GetCurrentProcessId(void);
 __declspec(dllimport) unsigned ResumeThread(uint64_t);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
+static void(*shutdown_gp148)(uint64_t);
+static unsigned gp_shutdown_worker148(void*token){shutdown_gp148((uint64_t)(uintptr_t)token);return 0;}
 void entry(void);void*volatile relocation_anchor148=&entry;
 static void say148(const char*text){unsigned n=0,written;while(text[n])++n;check(WriteFile(GetStdHandle((unsigned)-11),text,n,&written,0)&&written==n,264);}
 static void number148(uint64_t value){char text[32],reverse[24];unsigned n=0,used=0;do{reverse[n++]=(char)('0'+value%10);value/=10;}while(value);while(n)text[used++]=reverse[--n];text[used]=0;say148(text);}
@@ -98,6 +100,12 @@ void entry(void){
  check(!folder(0,0x4006,0,0,known),276);unsigned favorites=GetFileAttributesW(known);
  if(favorites==UINT32_MAX){profile[0]='x';check(folder(0,6,0,0,profile)!=0&&!profile[0],277);check(GetFileAttributesW(known)==UINT32_MAX,278);check(!folder(0,0x8006,0,0,profile),279);folder_attributes=GetFileAttributesW(profile);check(folder_attributes!=UINT32_MAX&&(folder_attributes&16),283);check(RemoveDirectoryW(profile),280);}
  check(FreeLibrary(shell32)&&FreeLibrary(shell),281);
+ uint64_t gdiplus=LoadLibraryExA("gdiplus.dll",0,0);unsigned(*startup_gp)(uint64_t*,const void*,void*)=GetProcAddress(gdiplus,"GdiplusStartup");shutdown_gp148=GetProcAddress(gdiplus,"GdiplusShutdown");check(startup_gp&&shutdown_gp148,303);
+ struct{unsigned version,pad;uint64_t callback;int suppress_thread,suppress_codecs;} gp_input={1,0,0,0,0};uint64_t gp_token=0;
+ check(!startup_gp(&gp_token,&gp_input,0)&&gp_token,304);uint64_t gp_thread=CreateThread(0,0,gp_shutdown_worker148,(void*)(uintptr_t)gp_token,0,0);check(gp_thread&&WaitForSingleObject(gp_thread,30000)==0&&CloseHandle(gp_thread),305);
+ uint64_t gp_tokens[8];gp_input.suppress_codecs=1;for(unsigned i=0;i<8;++i){check(!startup_gp(gp_tokens+i,&gp_input,0)&&gp_tokens[i]!=gp_token,306);for(unsigned j=0;j<i;++j)check(gp_tokens[j]!=gp_tokens[i],307);}
+ check(startup_gp(&gp_token,&gp_input,0)==3&&!gp_token,308);for(unsigned i=0;i<8;++i)shutdown_gp148(gp_tokens[i]);
+ gp_input.version=0;check(startup_gp(&gp_token,&gp_input,0)==17&&!gp_token,309);gp_input.version=1;gp_input.suppress_thread=1;check(startup_gp(&gp_token,&gp_input,0)==2&&!gp_token,310);uint64_t hooks[2]={99,99};check(startup_gp(&gp_token,&gp_input,hooks)==6&&!gp_token&&hooks[0]==99&&hooks[1]==99,311);check(FreeLibrary(gdiplus),312);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);
  check(TryAcquireSRWLockShared(&lock)&&TryAcquireSRWLockShared(&lock)&&!TryAcquireSRWLockExclusive(&lock),232);ReleaseSRWLockShared(&lock);ReleaseSRWLockShared(&lock);
