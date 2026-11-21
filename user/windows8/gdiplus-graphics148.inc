@@ -18,6 +18,9 @@ static unsigned gp_dpi148(void*pointer,void*out,unsigned vertical){
 }
 static unsigned MS f_GdipGetDpiX(void*g,void*out){lock_enter142(&ui_lock144);unsigned status=gp_dpi148(g,out,0);lock_leave142(&ui_lock144);return status;}
 static unsigned MS f_GdipGetDpiY(void*g,void*out){lock_enter142(&ui_lock144);unsigned status=gp_dpi148(g,out,1);lock_leave142(&ui_lock144);return status;}
+static unsigned MS f_GdipCreateBitmapFromGraphics(int width,int height,void*pointer,void**output){
+ if(!output||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)output,8,2,0,0))return 2;*output=0;lock_enter142(&ui_lock144);lock_enter142(&gp_lock148);gp_graphics148*context=gp_context_find148(pointer);if(!context||(context->dc&&!dc_lookup144(context->dc))){lock_leave142(&gp_lock148);lock_leave142(&ui_lock144);return 2;}unsigned status=f_GdipCreateBitmapFromScan0(width,height,0,0xe200b,0,output);lock_leave142(&gp_lock148);lock_leave142(&ui_lock144);return status;
+}
 static unsigned gp_setting148(void*pointer,unsigned index,int*value,unsigned write){
  if(!value||(!write&&sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)value,4,2,0,0)))return 2;
  int next=write?*value:0;if(write){if(index==1){if(next<0||next>5)return 2;if(next<2)next=3;else if(next==2)next=4;}else if(index==2){if(next<0||next>5)return 2;}else if(index==3&&(next<1||next>6))return 2;}
@@ -35,8 +38,9 @@ static unsigned gp_clear148(void*pointer,unsigned color){
  gp_bitmap148*image=context->image;unsigned bpp=gp_pixel_bytes148(image->format);
  uint64_t pitch=image->stride<0?-(int64_t)image->stride:image->stride,base=(uint64_t)(uintptr_t)image->pixels;if(image->stride<0)base-=pitch*((unsigned)image->height-1);
  if(sys8(W8_SYS_ACCESS,base,pitch*(unsigned)image->height,2,0,0)){lock_leave142(&gp_lock148);return 2;}
- unsigned alpha=image->format==0x26200a?color>>24:255;
- for(int y=0;y<image->height;++y){uint8_t*row=image->pixels+(int64_t)y*image->stride;for(int x=0;x<image->width;++x){uint8_t*p=row+(size_t)x*bpp;p[0]=(uint8_t)color;p[1]=(uint8_t)(color>>8);p[2]=(uint8_t)(color>>16);if(bpp==4)p[3]=(uint8_t)alpha;}}
+ unsigned alpha=image->format==0x26200a||image->format==0xe200b?color>>24:255,b=color&255,g=(color>>8)&255,r=(color>>16)&255;
+ if(image->format==0xe200b){b=pargb_pack148(b,alpha);g=pargb_pack148(g,alpha);r=pargb_pack148(r,alpha);}
+ for(int y=0;y<image->height;++y){uint8_t*row=image->pixels+(int64_t)y*image->stride;for(int x=0;x<image->width;++x){uint8_t*p=row+(size_t)x*bpp;p[0]=(uint8_t)b;p[1]=(uint8_t)g;p[2]=(uint8_t)r;if(bpp==4)p[3]=(uint8_t)alpha;}}
  lock_leave142(&gp_lock148);return 0;
 }
 

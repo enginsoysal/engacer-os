@@ -1,8 +1,9 @@
 /* Bounded process-owned GDI+ raster objects. External scan lines stay borrowed. */
+#include "pargb148.h"
 typedef struct {int width,height,stride;unsigned format,owned,contexts;uint8_t*pixels;} gp_bitmap148;
 static gp_bitmap148*gp_bitmaps148[32];
 static gp_bitmap148*gp_bitmap_find148(const void*image){for(unsigned i=0;i<32;++i)if(image&&gp_bitmaps148[i]==image)return gp_bitmaps148[i];return 0;}
-static unsigned gp_pixel_bytes148(unsigned format){return format==0x21808?3:format==0x22009||format==0x26200a?4:0;}
+static unsigned gp_pixel_bytes148(unsigned format){return format==0x21808?3:format==0x22009||format==0x26200a||format==0xe200b?4:0;}
 static unsigned MS f_GdipCreateBitmapFromScan0(int width,int height,int stride,unsigned format,uint8_t*scan,void**output){
  if(!output||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)output,8,2,0,0))return 2;*output=0;
  unsigned bpp=gp_pixel_bytes148(format);if(width<=0||height<=0||!bpp)return 2;
@@ -26,10 +27,12 @@ static unsigned gp_pixel148(void*pointer,int x,int y,unsigned*color,unsigned wri
  lock_enter142(&gp_lock148);gp_bitmap148*image=gp_bitmap_find148(pointer);if(!image||x<0||y<0||x>=image->width||y>=image->height){lock_leave142(&gp_lock148);return 2;}
  unsigned bpp=gp_pixel_bytes148(image->format);uint8_t*p=image->pixels+(int64_t)y*image->stride+(size_t)x*bpp;
  if(sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)p,bpp,write?2:1,0,0)){lock_leave142(&gp_lock148);return 2;}
- unsigned alpha=image->format==0x26200a;
- if(write){p[0]=(uint8_t)*color;p[1]=(uint8_t)(*color>>8);p[2]=(uint8_t)(*color>>16);if(bpp==4)p[3]=(uint8_t)(alpha?*color>>24:255);}
- else *color=((alpha?(unsigned)p[3]:255)<<24)|((unsigned)p[2]<<16)|((unsigned)p[1]<<8)|p[0];
+ unsigned alpha=image->format==0x26200a||image->format==0xe200b,premultiplied=image->format==0xe200b;
+ if(write){unsigned a=*color>>24,b=*color&255,g=(*color>>8)&255,r=(*color>>16)&255;if(premultiplied){b=pargb_pack148(b,a);g=pargb_pack148(g,a);r=pargb_pack148(r,a);}p[0]=(uint8_t)b;p[1]=(uint8_t)g;p[2]=(uint8_t)r;if(bpp==4)p[3]=(uint8_t)(alpha?a:255);}
+ else{unsigned a=alpha?(unsigned)p[3]:255,b=p[0],g=p[1],r=p[2];if(premultiplied){b=pargb_unpack148(b,a);g=pargb_unpack148(g,a);r=pargb_unpack148(r,a);}*color=(a<<24)|(r<<16)|(g<<8)|b;}
  lock_leave142(&gp_lock148);return 0;
 }
 static unsigned MS f_GdipBitmapGetPixel(void*image,int x,int y,unsigned*color){return gp_pixel148(image,x,y,color,0);}
 static unsigned MS f_GdipBitmapSetPixel(void*image,int x,int y,unsigned color){return gp_pixel148(image,x,y,&color,1);}
+
+static unsigned MS f_GdipGetImagePixelFormat(void*pointer,unsigned*out){if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,4,2,0,0))return 2;lock_enter142(&gp_lock148);gp_bitmap148*image=gp_bitmap_find148(pointer);if(!image){lock_leave142(&gp_lock148);return 2;}*out=image->format;lock_leave142(&gp_lock148);return 0;}

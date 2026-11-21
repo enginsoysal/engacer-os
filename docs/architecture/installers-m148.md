@@ -129,3 +129,21 @@ Translucent, desktop and non-client clears return NotImplemented; alpha blending
 is not silently discarded. Mixed DC/graphics operations acquire UI metadata
 before graphics metadata, avoiding an inverted lock order. Own visible raster
 and bitmap/task-lifetime regressions must pass before qualification.
+
+## Derived premultiplied bitmap candidate
+
+GdipCreateBitmapFromGraphics creates an independent real 32-bit premultiplied
+ARGB bitmap, retaining the existing 32-object and 24-MiB-per-bitmap limits and
+native allocator bounds. Its source context must be valid; the new bitmap does
+not retain the caller's HDC or graphics context. The selected compatibility
+profile has actual 96-DPI coordinates, so no unimplemented DPI transform is
+invented. GdipGetImagePixelFormat reports the actual storage format.
+
+Premultiplication rounds channel*alpha/255 to nearest; inverse conversion uses
+channel multiplied by floor((255<<16)/alpha), shifted right 16, with zero alpha
+handled separately. This reproduces the observed lossy Windows readback,
+including full channels becoming 254 for some alpha values. Own native scalar
+code is exhaustively compared against actual Windows GDI+ bitmap data, not only
+against an algebraically similar formula. Clear converts its fill color once
+before the pixel loop. No second image, color table or background worker is
+allocated. Native storage/clear/lifetime qualification remains required.
