@@ -1,0 +1,9 @@
+{
+  "scope": "Compile an own native code-page caller; no host PE execution.",
+  "sources": {
+    "tests/m14/codepage147_native.c": "553c2c9c84f6db486df6e1a2c9a2b7ee48e60b5e8a23a5147006546070284f9f",
+    "tests/m14/codepage147_build.py": "fe0431cbd6f221f5d3fa854ddc196abcf08e3d2816a262474774a9afae795f7a"
+  },
+  "fixture_sha256": "c715a7d5b71fdf3afe44f863672f61e9eacf0a436bc0d0ca3c6614aa6cade0f8",
+  "independent_expected_header_sha256": "9be3fc1bfa4b8f44154cabdd37587d49025d638ea5575018e3037e35e5ae13b2"
+}

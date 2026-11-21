@@ -27,6 +27,7 @@ def inspect(return_rva):
   thunk=return_rva+struct.unpack_from('<i',data,before-4)[0];via.append(thunk);position=rva(thunk)
   if data[position:position+3]==b'\x48\xff\x25':target=thunk+7+struct.unpack_from('<i',data,position+3)[0]
   elif data[position:position+2]==b'\xff\x25':target=thunk+6+struct.unpack_from('<i',data,position+2)[0]
+  elif data[position:position+3]==b'\x48\x8d\x0d'and data[position+7:position+10]==b'\x48\xff\x25':target=thunk+14+struct.unpack_from('<i',data,position+10)[0]
  if target not in table:raise ValueError('Call does not resolve through a recognized original import thunk')
  dll,symbol=table[target];return dict(scope='Original bytes and relative call/import metadata only; no host PE execution',original_sha256=digest,return_rva=hex(return_rva),thunks=[hex(v)for v in via],iat_rva=hex(target),dll=dll,symbol=symbol)
 

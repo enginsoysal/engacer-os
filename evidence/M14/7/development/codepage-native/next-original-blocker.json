@@ -1,0 +1,12 @@
+{
+  "scope": "Original bytes and relative call/import metadata only; no host PE execution",
+  "original_sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+  "return_rva": "0x28272",
+  "thunks": [
+    "0x28630"
+  ],
+  "iat_rva": "0x3f368",
+  "dll": "KERNEL32.dll",
+  "symbol": "InitializeSListHead",
+  "observer_sha256": "ab7454315aa43ec07cf6412c946aad53896b620c161775c591a328e501124582"
+}
