@@ -1,0 +1,28 @@
+<project-root>\tools\build\trust7.py:17: CryptographyDeprecationWarning: Parsed a serial number which wasn't positive (i.e., it was negative or zero), which is disallowed by RFC 5280. Loading this certificate will cause an exception in a future release of cryptography.
+  certificates=x509.load_pem_x509_certificates(source.read_bytes())
+Traceback (most recent call last):
+  File "<project-root>\tools\build\m14.py", line 22, in <module>
+    main()
+  File "<project-root>\tools\build\m14.py", line 19, in main
+    build('stage'+str(args.stage), profile, m14=True)
+  File "<project-root>\tools\build\m6.py", line 74, in build
+    base=main('M5',distro=profile,m6=True,m6_revision=revision,m7=desktop,m71=disk_manager,m72=desktop_first,m73=polished,m74=standard_apps,m75=installer_ux,m8=windows,m9=graphics,m92=hardware,m10=devices,m11=m11,m12=m12,m13=m13,m14=m14)
+  File "<project-root>\tools\build\m2.py", line 205, in main
+    kernel=[compile_file(p,'kernel',p.endswith('.S')) for p in inputs]
+  File "<project-root>\tools\build\m2.py", line 205, in <listcomp>
+    kernel=[compile_file(p,'kernel',p.endswith('.S')) for p in inputs]
+  File "<project-root>\tools\build\m2.py", line 159, in compile_file
+    command([tools['clang'],'--target='+target,*flags,'-c',path.as_posix(),'-o',obj]);return obj
+  File "<project-root>\tools\build\m1.py", line 30, in command
+    if process.returncode:raise RuntimeError(process.stderr.replace(str(ROOT),'<project-root>'))
+RuntimeError: kernel/windows8/process.c:79:18: error: call to undeclared function 'equal8'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+   79 |   else if(!path||equal8(path,volume->entries[index].path))return V6_BUSY;
+      |                  ^
+kernel/windows8/process.c:145:12: error: static declaration of 'equal8' follows non-static declaration
+  145 | static int equal8(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
+      |            ^
+kernel/windows8/process.c:79:18: note: previous implicit declaration is here
+   79 |   else if(!path||equal8(path,volume->entries[index].path))return V6_BUSY;
+      |                  ^
+2 errors generated.
+

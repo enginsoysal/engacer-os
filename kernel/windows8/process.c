@@ -69,6 +69,7 @@ volatile unsigned w8_active;
 uint64_t w8_saved_rsp,w8_kernel_cr3;
 #ifdef ENGINE_M14
 static unsigned installer_authority147(void){return spaces142[active_space142]->install_authority147;}
+static int equal8(const char*,const char*);
 /* A reviewed image lease protects its actual table entry without a duplicate
  * installer cache or a larger resident table. Bind it only in the EXE broker. */
 static unsigned exe_volume_guard148(v6_volume*volume,const char*path,const v6_entry*pending){
