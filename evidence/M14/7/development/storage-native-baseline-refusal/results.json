@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "build_id": "db545f773e6a4ce1db64a52c79344084",
+  "observer_sha256": "80748f101ffd06c86089a953c07c4e80bf557586db4ce62e76ba83a9df7a541a",
+  "fixture_sha256": "e99d2337f27835a6f6159339f2ecf0122397d9c0b928f6a8167615e5622fc9fb",
+  "scope": "Test-only native worker over the production kernel; confirmed INSTALL, actual 9-MiB streaming, extent promotion, cancellation and recovery-record retention. Not authored original MSI installation or complete rollback qualification.",
+  "cases": [],
+  "last_observed": {
+    "mode": "success",
+    "state": 2,
+    "status": 0,
+    "message": "Native storage fixture passed; no application was installed.",
+    "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\nM147_NATIVE_STREAM_JOURNAL_PROMOTION_PASS rounds=19\n",
+    "stream_owner": 0,
+    "dirty_pages": 0,
+    "retained_managed_pages": 4,
+    "before_managed_pages": 1047,
+    "after_managed_pages": 1051
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\storage147_native.py\", line 36, in main\n    report['last_observed']=dict(mode=mode,state=state,status=status,message=message,output=output,stream_owner=owner,dirty_pages=dirty,retained_managed_pages=retained,before_managed_pages=before,after_managed_pages=f.stats(g)[0]);(out/(mode+'-serial.log')).write_bytes(g.log().encode());assert owner==0 and dirty==0,(owner,dirty);assert retained==0,retained\nAssertionError: 4\n"
+}

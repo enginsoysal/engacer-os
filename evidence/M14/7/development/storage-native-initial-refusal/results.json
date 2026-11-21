@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "build_id": "db545f773e6a4ce1db64a52c79344084",
+  "observer_sha256": "5a001eaae3bc6c8af069058d70c7ca30966e3c76e33bbe7f7d10c55cc6a6eedf",
+  "fixture_sha256": "e99d2337f27835a6f6159339f2ecf0122397d9c0b928f6a8167615e5622fc9fb",
+  "scope": "Test-only native worker over the production kernel; confirmed INSTALL, actual 9-MiB streaming, extent promotion, cancellation and recovery-record retention. Not authored original MSI installation or complete rollback qualification.",
+  "cases": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\storage147_native.py\", line 35, in main\n    p.drain();raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384);state,command,status=struct.unpack_from('<III',raw);message=raw[304:496].split(b'\\0')[0].decode();output=raw[496:].split(b'\\0')[0].decode();assert ui.integer(g,'stream_owner147',True)==0 and ui.integer(g,'file_dirty_pages143',True)==0;retained=f.stats(g)[0]-before;assert retained==0\nAssertionError\n"
+}

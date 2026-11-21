@@ -1,0 +1,58 @@
+{
+  "build_id": "db545f773e6a4ce1db64a52c79344084",
+  "source_commit": "b6c715df9620c8fe59c8515347fb6e98b6a93a74",
+  "artifacts": {
+    "EngacerOS-M14STAGE7.iso": {
+      "sha256": "40c14a8eeb95a14fddba9c3c9e53d96d0806fb8969d08e0414ccf37622172205",
+      "size": 75847680
+    },
+    "EngacerOS-M14STAGE7-usb.img": {
+      "sha256": "362d8682572d65ec848a17a34122a87543e36ae02a03d7237a4cc932da3f8fb7",
+      "size": 84934656
+    },
+    "EngacerOS-M14STAGE7-kernel.elf": {
+      "sha256": "c439f52849b08a48fc6dc1eba13b3341f41a7be783dc0797bf13c06cdef2257b",
+      "size": 4153748
+    },
+    "EngacerOS-M14STAGE7-kernel.map": {
+      "sha256": "c20d7f037bd78264746eb2701b66da72696410db13c9e6b09fd99a1374a76051",
+      "size": 434395
+    },
+    "EngacerOS-M14STAGE7-user.elf": {
+      "sha256": "c82c7f44394c65fbd9295a1b30d32e1684a243932ba7ffc9aa098c9b87de963f",
+      "size": 68064
+    },
+    "EngacerOS-M14STAGE7-installed-kernel.elf": {
+      "sha256": "4b4f2ebc25fb92af0da7a16d01415855051399e2008f25fb53cdf17f5e448d81",
+      "size": 1593748
+    },
+    "EngacerOS-M14STAGE7-installed-kernel.map": {
+      "sha256": "5b5275b8f91b9adb231755a896391582b6c4f394cd43db397506dcbf8e95b929",
+      "size": 434103
+    },
+    "EngacerOS-M14STAGE7-editor.elf": {
+      "sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399",
+      "size": 8232
+    },
+    "EngacerOS-M14STAGE7-calculator.elf": {
+      "sha256": "5193f62e9f16e90ad96905b6bc2e47152c9a524402c5db6f32c8f8e50e1af8a0",
+      "size": 12976
+    },
+    "EngacerOS-M14STAGE7-calendar.elf": {
+      "sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399",
+      "size": 8232
+    },
+    "EngacerOS-M14STAGE7-archives.elf": {
+      "sha256": "9008a959466f7288e7ef99dab89ecb8e40439e9ee693faf825b4c602b98f8a84",
+      "size": 17068
+    },
+    "EngacerOS-M14STAGE7-browser.elf": {
+      "sha256": "3046e4a9af08551315191e2907d572ebde73b54b389b6c3a37dfb41222140cc0",
+      "size": 12639
+    },
+    "EngacerOS-M14STAGE7-help.elf": {
+      "sha256": "f99e2ef762ba3d508249a63dbfaa0cf1098ae238b1bc95ca9d8dc69ecd1ac399",
+      "size": 8232
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "Own primitive test worker replaces only msi8_execute; confirmed real INSTALL job and unchanged production kernel. Not an original MSI installer task or public media.",
+  "kernel_build_id": "db545f773e6a4ce1db64a52c79344084",
+  "source_commit": "b6c715df9620c8fe59c8515347fb6e98b6a93a74",
+  "test_sources": {
+    "tests/m14/storage147_native.c": "4fa69f58751c9681d33f388983d222b4a66ca9c3f55856f3643150288c5c13f8",
+    "tests/m14/storage147_build.py": "c48f60b0864c33923d81fc5c4a62414e669300e92b6c261fa5b6f98871c2a2a9"
+  },
+  "artifacts": {
+    "production-runtime8.elf": {
+      "bytes": 319572,
+      "sha256": "f08a4769fde53e80b4e6c508728b71af083b05d20fcd2868728c0530b0459309"
+    },
+    "fixture-runtime8.elf": {
+      "bytes": 323664,
+      "sha256": "e99d2337f27835a6f6159339f2ecf0122397d9c0b928f6a8167615e5622fc9fb"
+    }
+  }
+}

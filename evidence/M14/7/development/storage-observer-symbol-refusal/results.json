@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "build_id": "db545f773e6a4ce1db64a52c79344084",
+  "observer_sha256": "941ae9d3b018ff1c8cab2720b63082fd4c57583a64c4c066e566853606edac60",
+  "fixture_sha256": "e99d2337f27835a6f6159339f2ecf0122397d9c0b928f6a8167615e5622fc9fb",
+  "scope": "Test-only native worker over the production kernel; confirmed INSTALL, actual 9-MiB streaming, extent promotion, cancellation and recovery-record retention. Not authored original MSI installation or complete rollback qualification.",
+  "cases": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\storage147_native.py\", line 25, in main\n    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);initial_pages=f.stats(g)[0];assert ui.integer(g,'ready8',True)==0\n  File \"<project-root>\\tests\\m74\\ui.py\", line 27, in integer\n    def integer(g,name,installed=False):return struct.unpack('<I',memory(g,symbol(name,4,installed)[0],4))[0]\n  File \"<project-root>\\tests\\m13\\observer8.py\", line 18, in symbol\n    return base(name, size, installed)\n  File \"<project-root>\\tests\\m74\\ui.py\", line 20, in symbol\n    assert len(values)==1,(name,values);return int(values[0][0],16),int(values[0][1],16)\nAssertionError: ('ready8', [])\n"
+}

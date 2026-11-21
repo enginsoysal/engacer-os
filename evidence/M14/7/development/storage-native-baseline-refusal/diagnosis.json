@@ -1,0 +1,9 @@
+{
+  "scope": "Observer baseline error, not a retained process allocation",
+  "native_functional_result": "9 MiB plus 17 bytes stream, checksum, promotion and cleanup completed successfully",
+  "observed_managed_pages_before": 1047,
+  "observed_managed_pages_after": 1051,
+  "persistent_first_activation_pages": 4,
+  "production_source": "kernel/windows8/process.c:prepare_transition8",
+  "correction": "Measure and report the first Windows activation separately, then keep the zero retained task-page requirement"
+}

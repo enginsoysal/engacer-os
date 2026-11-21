@@ -1,0 +1,5 @@
+{
+  "scope": "Observer error before starting the native fixture",
+  "reason": "The compiler stores the ready8 boolean in one byte; the observer incorrectly requested a four-byte symbol",
+  "correction": "Use the actual checked one-byte linker symbol"
+}
