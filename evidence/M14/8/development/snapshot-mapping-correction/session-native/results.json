@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "build_id": "76e30d8fad47e7b306d628ed4e1b5d86",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "790adaa2baff7140631ff72ba62144ef22b4ee42b1015d24b48cf2ea6dd7d7a2",
+    "clone_sha256": "790adaa2baff7140631ff72ba62144ef22b4ee42b1015d24b48cf2ea6dd7d7a2",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "d9fb4d49410f4efefa3711810f43ac5c91fc3fb88c7fd05a5952ab51a6e565cd",
+  "rtc_fault_injection": {
+    "scope": "Owned QEMU RTC fault injection through documented monitor I/O, no guest-memory patching.",
+    "saved_status_b": 18,
+    "injected_status_b": 146,
+    "initialized_anchor_filetime": 134397777190000000,
+    "observed_frozen_status_b": 130,
+    "restored_status_b": 18
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=143360 source-fnv32=2137402352\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_PROCESS_QUERY_ACCESS_BUFFER_LIFETIME_PASS\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_VERSION_CONDITION_MASK_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nM148_NATIVE_REGISTRY_QUERY_COUNTS_MAXIMA_ACCESS_PASS\nM148_NATIVE_DURABLE_REGISTRY_PAST_LEGACY_LIMITS_PASS\nM148_NATIVE_SHELL_LINK_COM_SAVE_IDENTITY_QUOTA_RELEASE_PASS\nM148_NATIVE_SHELL_PERMANENT_DELETE_GUARDS_PASS\nM148_NATIVE_SNAPSHOT_MAPPING_HANDLE_DOMAIN_COEXISTENCE_PASS\nM148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS\nM148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_PROGRESS_RANGE_POSITION_STEP_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=143360 source-fnv32=2137402352\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_PROCESS_QUERY_ACCESS_BUFFER_LIFETIME_PASS\nMapped original image: 7zFM.exe bytes=143360 source-fnv32=2137402352\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_PROCESS_QUERY_ACCESS_BUFFER_LIFETIME_PASS\nM148_NATIVE_SHELL_ASSOCIATION_REFRESH_DELIVERY_PASS\nM148_NATIVE_DERIVED_PARGB_STORAGE_PASS\nM148_NATIVE_GDIPLUS_FONT_FAMILY_FLOAT_ABI_PASS\nM148_NATIVE_GDIPLUS_FORMAT_STATE_CLONE_QUOTA_PASS\nM148_NATIVE_GDIPLUS_FITTING_TEXT_METRICS_PASS\nM148_NATIVE_GDIPLUS_SOLID_BRUSH_OWNERSHIP_PASS\nM148_NATIVE_GDIPLUS_RECTANGLE_ALPHA_CLIP_MODE_PASS\nM148_NATIVE_GDIPLUS_BITMAP_BLIT_ALPHA_OVERLAP_PASS\nUnsupported GDI+ drawing mode or page unit.\nM148_NATIVE_AFFINE_MATRIX_TRANSFORMED_TEXT_PASS\nM148_NATIVE_GDIPLUS_ACTUAL_GLYPHS_ALPHA_CLIP_PASS\nM148_HEAP_PAGES before=301 after=301\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n",
+  "native_shell_refresh_deliveries": 3,
+  "windows_native_link_readback": {
+    "passed": true,
+    "scope": "Inspect one stopped owned fixture link with the original Windows metadata reader.",
+    "native_file_bytes": 1201,
+    "sha256": "a3efebc3508eff786d2bdc34e807610fe440ed4d9a41207822b5ec9e2f6ff4de",
+    "metadata": {
+      "target": "C:\\Program Files\\7-Zip\\7zFM.exe",
+      "description": "Owned shortcut \u00e4",
+      "working_directory": "C:\\Users\\Owner\\Documents",
+      "arguments": "--native 148",
+      "show": 3
+    },
+    "icon": {
+      "path": "C:\\Program Files\\7-Zip\\7zFM.exe",
+      "index": 7
+    },
+    "reader_source_sha256": {
+      "tests/m14/shell148_readback.py": "8cd9815afe31fc335d883d01ce7e81684c913b01eb8a2a5dbee7202fde968867",
+      "tests/m14/shell148_reference.py": "6775db2b9be20d2cbbd8b266c1b5f0444407c361a5231749fc88d6cd497c623a",
+      "tests/m14/link147_reader.py": "f42f8df3ecdd10efd4e9fe8e3853947022910f5a967aff0f5a9030ac665dc880",
+      "tests/m14/link147_host.py": "2462bcaae309c6ffccbb79af084177b0a6057f8de6ae7d2155293fd34f366c14"
+    }
+  }
+}

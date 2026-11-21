@@ -1,0 +1,6 @@
+{
+  "scope": "Development worker correction on unchanged kernel 76e30d8fad47e7b306d628ed4e1b5d86. Not full media acceptance.",
+  "original_mapping_pass": true,
+  "native_snapshot_mapping_coexistence_cycles": 3,
+  "replacement_full_media_and_complete_campaign_required": true
+}

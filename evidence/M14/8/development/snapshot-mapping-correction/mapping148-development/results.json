@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "build_id": "76e30d8fad47e7b306d628ed4e1b5d86",
+  "scope": "Owned shared mappings across actual private processes, read-only fault containment, source exit, alias/protection/handle/view/object limits; not original-app qualification",
+  "clone": {
+    "source_sha256": "790adaa2baff7140631ff72ba62144ef22b4ee42b1015d24b48cf2ea6dd7d7a2",
+    "clone_sha256": "790adaa2baff7140631ff72ba62144ef22b4ee42b1015d24b48cf2ea6dd7d7a2",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "6af4e7e2045a6dbb9f24efcbf7133c3a2f8844b70df0c0420d2602939b0597fe",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "actual_private_child_processes": 3,
+      "readonly_child_fault_contained": true
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=24576 source-fnv32=3672713452\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3672713452\nRunning the original Windows executable in a protected process.\n\nM146_MAPPING_PRIVATE_WRITER_PASS\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3672713452\nRunning the original Windows executable in a protected process.\n\nM146_MAPPING_READONLY_FAULT_EXPECTED\nUnhandled exception code=3221225477 flags=0 parameters=2\nThe Windows process ended after an unhandled native exception.\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3672713452\nRunning the original Windows executable in a protected process.\n\nM146_SHARED_MAPPING_PRIVATE_PROCESSES_LIFETIMES_LIMITS_PASS\n",
+  "full_production_media": false,
+  "development_worker_sha256": "cf848453498a0361d80cf1dcfb673e893805bf48e37a63310834aa03b4a40b7c",
+  "observer_derivation": {
+    "canonical_sha256": "9a943f82ce4d031bc3e2c0dd4b4415ca74c010bf054cc8b0db8a9ef652e38471",
+    "executed_sha256": "cf3d59ec3989cb6f9ddf72e1402cfc7ab713f73165b030cb808743da11773709",
+    "adapter_sha256": "b3bfd7d1b2effb153dea8ff1101acc4fd77b45295c28c00cc32db59ffac2531f"
+  }
+}

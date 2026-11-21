@@ -75,4 +75,4 @@ peaks and retained memory must accompany final acceptance; configured VM RAM
 does not measure OS consumption. Whole-system optimization remains M14.16.
 
 [M14.8 implementation and current evidence](../milestones/m14-8.md) Â·
-[Approved M14.9â€“M14.16 plan](../milestones/m14-consolidated.md)
+[Approved M14.9-M14.16 plan](../milestones/m14-consolidated.md)
