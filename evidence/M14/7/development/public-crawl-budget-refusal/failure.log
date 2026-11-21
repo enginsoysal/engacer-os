@@ -1,0 +1,8 @@
+Public pages checked: 392 additional discovered: 34
+Public pages checked: 426 additional discovered: 178
+Traceback (most recent call last):
+  File "<project-root>\website\brix\audit.py", line 89, in <module>
+    if __name__=='__main__':main()
+  File "<project-root>\website\brix\audit.py", line 60, in main
+    assert len(results)+len(pending)<=600,'Unexpectedly large public crawl'
+AssertionError: Unexpectedly large public crawl

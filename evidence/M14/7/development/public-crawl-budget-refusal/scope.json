@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "classification": "Historical public-crawl page budget exceeded by real documentation growth",
+  "completed_pages_before_refusal": 426,
+  "additional_discovered": 178,
+  "previous_page_budget": 600,
+  "source_commit": "5da7ad0034c91bfd59a1ec0c7f63a16c0a4c80e3",
+  "correction": "Preserve all checks and derive a finite page budget from the exact publication article count; repeat the entire post-Save crawl. This is an observer limit, not a BrixCanvas or OS defect."
+}
