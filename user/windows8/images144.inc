@@ -2,6 +2,10 @@
 #include "dib-core144.h"
 typedef struct image_object144 {struct image_object144*next;uint64_t handle,resource;unsigned kind,width,height,shared,count,capacity,grow,background;uint32_t*pixels;uint32_t**items;} image_object144;
 _Static_assert(sizeof(image_object144)==72,"Image background reuses metadata padding");
+#ifdef ENGINE_M14
+#define SHIELD_RESOURCE148 UINT64_C(0x534849454c443134)
+static uint32_t*shield_pixels148;static unsigned shield_refs148;
+#endif
 static image_object144*images144;static unsigned image_count144,image_sequence144;static size_t image_bytes144;static lock142 image_lock144;
 #define IMAGE_BYTES144 (16u*1024*1024)
 static image_object144 *image_find144(HANDLE handle,unsigned kind){for(image_object144*p=images144;p;p=p->next)if(p->handle==handle&&(!kind||p->kind==kind))return p;last8(6);return 0;}
@@ -9,7 +13,11 @@ static unsigned image_size145(HANDLE handle,unsigned kind,unsigned*width,unsigne
 static void*image_memory144(size_t bytes){if(bytes>IMAGE_BYTES144-image_bytes144){last8(8);return 0;}void*p=calloc8(1,bytes);if(!p){last8(8);return 0;}image_bytes144+=bytes;return p;}
 static void image_free144(void*p,size_t bytes){if(p){free8(p);image_bytes144-=bytes;}}
 static image_object144 *image_new144(unsigned kind,unsigned width,unsigned height){if(image_count144==256||image_sequence144==0xfffffff){last8(1816);return 0;}image_object144*p=image_memory144(sizeof(*p));if(!p)return 0;p->handle=UINT64_C(0x60000000)|++image_sequence144;p->kind=kind;p->width=width;p->height=height;p->next=images144;images144=p;++image_count144;return p;}
-static void image_destroy144(image_object144*p){image_object144**link=&images144;while(*link&&*link!=p)link=&(*link)->next;if(!*link)return;*link=p->next;size_t bytes=(size_t)p->width*p->height*4;image_free144(p->pixels,bytes);for(unsigned i=0;i<p->count;++i)image_free144(p->items[i],bytes);image_free144(p->items,(size_t)p->capacity*sizeof(void*));image_free144(p,sizeof(*p));--image_count144;}
+static void image_destroy144(image_object144*p){image_object144**link=&images144;while(*link&&*link!=p)link=&(*link)->next;if(!*link)return;*link=p->next;size_t bytes=(size_t)p->width*p->height*4;
+#ifdef ENGINE_M14
+ if(p->kind==1&&p->resource==SHIELD_RESOURCE148){if(shield_refs148&&!--shield_refs148){image_free144(shield_pixels148,16*16*4);shield_pixels148=0;}}else
+#endif
+ image_free144(p->pixels,bytes);for(unsigned i=0;i<p->count;++i)image_free144(p->items[i],bytes);image_free144(p->items,(size_t)p->capacity*sizeof(void*));image_free144(p,sizeof(*p));--image_count144;}
 static HANDLE image_load_dib144(HANDLE resource,const void*data,unsigned bytes,unsigned kind,unsigned target_w,unsigned target_h,unsigned shared){
  dib_info144 info;unsigned error=dib_info_read144(data,bytes,kind==1,&info);if(error){last8(error);return 0;}if(!target_w)target_w=info.width;if(!target_h)target_h=info.height;if(target_w>4096||target_h>4096||(uint64_t)target_w*target_h>IMAGE_BYTES144/4){last8(8);return 0;}
  lock_enter142(&image_lock144);if(shared)for(image_object144*p=images144;p;p=p->next)if(p->shared&&p->resource==resource&&p->kind==kind&&p->width==target_w&&p->height==target_h){HANDLE found=p->handle;lock_leave142(&image_lock144);return found;}
@@ -44,3 +52,8 @@ static int MS f_ImageList_AddMasked(HANDLE list,HANDLE bitmap,uint32_t mask){loc
  for(;done<count;++done){uint32_t*copy=image_memory144(bytes);if(!copy)break;for(unsigned y=0;y<p->height;++y)for(unsigned x=0;x<p->width;++x){uint32_t value=source->pixels[y*source->width+done*p->width+x];copy[y*p->width+x]=mask!=UINT32_MAX&&(value&0xffffffu)==color?value&0xffffffu:value|0xff000000u;}p->items[first+done]=copy;}
  if(done!=count){while(done)image_free144(p->items[first+--done],bytes);lock_leave142(&image_lock144);return -1;}p->count+=count;lock_leave142(&image_lock144);return(int)first;
 }
+
+#ifdef ENGINE_M14
+/* Unique icon handles share one original native shield mask per process. */
+static HANDLE shield_create148(void){lock_enter142(&image_lock144);if(!shield_pixels148){shield_pixels148=image_memory144(16*16*4);if(!shield_pixels148){lock_leave142(&image_lock144);return 0;}for(unsigned y=1;y<15;++y){unsigned half=y<8?6:15-y;for(unsigned x=8-half;x<8+half;++x){unsigned edge=y==1||x==8-half||x+1==8+half||y==14;shield_pixels148[y*16+x]=0xff000000u|(edge?0x28485au:((x<8)==(y<8)?0x2386c8u:0xefc158u));}}}image_object144*icon=image_new144(1,16,16);if(!icon){if(!shield_refs148){image_free144(shield_pixels148,16*16*4);shield_pixels148=0;}lock_leave142(&image_lock144);return 0;}icon->resource=SHIELD_RESOURCE148;icon->pixels=shield_pixels148;++shield_refs148;HANDLE handle=icon->handle;lock_leave142(&image_lock144);return handle;}
+#endif

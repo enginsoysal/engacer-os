@@ -41,8 +41,10 @@ def main():
      assert image.getpixel((650,390))==(255,0,0),'GDI+ solid client rectangle did not draw red pixels'
      assert image.getpixel((650,320))==(127,255,127) and image.getpixel((690,320))==(0,0,255),'Copied image pixels changed after source disposal/mutation or premultiplied alpha was lost'
      blue=ink(image,'blue',(205,185,870,230));red=ink(image,'red',(205,250,875,305));assert red['height']>blue['height']*1.5 and red['width']>blue['width']*1.5,(blue,red);assert blue['coverage_colors']>8 and red['coverage_colors']>8,(blue,red)
+     shield_colors=[image.getpixel((xx,yy)) for yy in range(340,380) for xx in range(211,391)];assert shield_colors.count((35,134,200))>5 and shield_colors.count((239,193,88))>5,'Native shield glyph is missing'
+     c.key(g,'a');wait(g,'M148_SHIELD_CLEARED');p.drain();c.shot(g,name+'-shield-cleared');cleared=Image.open(out/(name+'-shield-cleared.png')).convert('RGB');assert not any(cleared.getpixel((xx,yy)) in ((35,134,200),(239,193,88))for yy in range(340,380)for xx in range(211,391)),'Shield remained visible after clearing'
      p.desktop(49002,True);g.wait('M8_JOB_DONE',at);p.drain();assert 'M148_FONT_RASTER_LIFETIME_PASS' in output(g),output(g);assert len(t.records(g))==1 and t.records(g)[0]['token']==front['token'];assert ui.integer(g,'ui_resident144',True)==0
-     retained=f.stats(g)[0]-before;assert retained==0,retained;samples.append(dict(cycle=cycle+1,blue14=blue,red28_underlined=red,actual_gdiplus_client_clear=True,actual_gdiplus_client_rectangle=True,actual_copied_image_after_source_disposal=True,retained_pages=retained))
+     retained=f.stats(g)[0]-before;assert retained==0,retained;samples.append(dict(cycle=cycle+1,blue14=blue,red28_underlined=red,actual_gdiplus_client_clear=True,actual_gdiplus_client_rectangle=True,actual_copied_image_after_source_disposal=True,actual_shield_show_hide=True,retained_pages=retained))
     report.update(passed=True,cycles=samples);(out/'serial.log').write_bytes(g.log().encode())
   except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
   finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report,indent=2),flush=True)

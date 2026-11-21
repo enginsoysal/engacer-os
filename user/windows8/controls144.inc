@@ -11,7 +11,11 @@ static unsigned control_kind144(const WCHAR*name){for(unsigned i=0;i<sizeof(cont
 static void toolbar_release144(control_state144*);
 static void list_release144(control_state144*);
 static void combo_release144(control_state144*);
-static void control_release144(ui_window_runtime144*w){control_state144*c=w->control;if(!c)return;for(unsigned i=0;i<16;++i)free8(c->texts[i]);if(c->kind==C144_TOOLBAR)toolbar_release144(c);if(c->kind==C144_LISTVIEW)list_release144(c);if(c->kind==C144_COMBO||c->kind==C144_COMBOEX)combo_release144(c);free8(c->model);free8(c);w->control=0;}
+static void control_release144(ui_window_runtime144*w){control_state144*c=w->control;if(!c)return;for(unsigned i=0;i<16;++i)free8(c->texts[i]);if(c->kind==C144_TOOLBAR)toolbar_release144(c);if(c->kind==C144_LISTVIEW)list_release144(c);if(c->kind==C144_COMBO||c->kind==C144_COMBOEX)combo_release144(c);
+#ifdef ENGINE_M14
+ if(c->kind==C144_BUTTON&&(c->style&1)&&c->image)f_DestroyIcon(c->image);
+#endif
+ free8(c->model);free8(c);w->control=0;}
 static unsigned control_text144(WCHAR**out,const WCHAR*text){unsigned n=wlen8(text);if(n>2047){last8(206);return 0;}WCHAR*copy=alloc8(((size_t)n+1)*2);if(!copy){last8(8);return 0;}if(text)memcpy(copy,text,(size_t)n*2);copy[n]=0;free8(*out);*out=copy;return 1;}
 #include "toolbar144.inc"
 #include "listview144.inc"
@@ -36,6 +40,9 @@ static int64_t MS control_proc144(HANDLE handle,unsigned message,uint64_t wp,int
  if(c->kind==C144_EDIT){unsigned handled;int64_t result=edit_input144(w,c,message,wp,lp,&handled);if(handled)return result;}
 #ifdef ENGINE_M14
  if(c->kind==C144_BUTTON&&message==0x1601)return button_ideal148(w,c,wp,lp);
+ if(c->kind==C144_BUTTON&&message==0x160c){unsigned type=w->description.style&15;if(wp){last8(87);return 0;}if(type!=0&&type!=1&&type!=14&&type!=15){last8(50);return 0;}HANDLE icon=lp?shield_create148():0;if(lp&&!icon)return 0;HANDLE previous=c->image;c->image=icon;c->style=(c->style&~1u)|(lp?1u:0u);f_InvalidateRect(handle,0,0);return(int64_t)previous;}
+ if(c->kind==C144_BUTTON&&message==0xf6){if(wp!=1){last8(50);return 0;}return(int64_t)c->image;}
+
 #endif
  if(c->kind==C144_BUTTON){unsigned handled;int64_t result=button_input145(w,c,message,wp,lp,&handled);if(handled)return result;}
  if(c->kind==C144_LISTVIEW){unsigned handled;int64_t result=list_input145(w,c,message,wp,lp,&handled);if(handled)return result;}

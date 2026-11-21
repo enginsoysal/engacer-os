@@ -275,3 +275,21 @@ The new image request is appended. The candidate requires a new full media build
 and exact native/physical-framebuffer tests; private workers on the previous ABI
 cannot qualify it. Per-window/global quota exhaustion and inaccessible source
 bytes must not leak pages or publish a partially copied image.
+
+## Native button permission indicator candidate
+
+BCM_SETSHIELD changes actual push/command-button icon state; BM_GETIMAGE returns
+the current icon. The return is the previous real HICON, matching independent
+version-6 Windows observations rather than inventing BOOL success. The button
+reserves actual icon space in ideal sizing and paints an original native blue/
+gold shield next to its label. Clearing it invalidates and repaints the control.
+This is visual state only: native review grants and restricted Windows identity
+remain unchanged; setting the icon cannot grant administrator privileges.
+
+Each enable creates an independently destroyable icon handle. Those handles
+share one lazily allocated 1-KiB pixel mask per process, with a reference count;
+last destruction frees the mask. A replaced icon is returned to its caller;
+current control-owned icons are released with control teardown. Existing image
+count/storage caps remain. No font, renderer, service or permission worker is
+loaded just to show a shield. Native visible show/hide and resource regressions
+must pass before claiming this control behavior.
