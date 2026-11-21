@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "Initial desktop focus/close observation refusal before native menu fixture executes; root cause not established",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 93,
+  "next_check": "Repeat the exact unchanged observer on the same frozen candidate. Preserve the original refusal; do not label it as an OS or observer fix without reproduction evidence.",
+  "os_source_changed": false
+}

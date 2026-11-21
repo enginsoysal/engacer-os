@@ -1,0 +1,17 @@
+{
+  "passed": false,
+  "stage": "M14.7 development",
+  "scope": "Owned native menu tree and state fixture; not original GUI qualification",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixtures": {
+    "menu.exe": "aa93f564bc38dbe8549ec26e08dc0ee1ac5fde9186b716379d2ad19ca159f2e4"
+  },
+  "cycles": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\menu144_run.py\", line 25, in main\n    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);before=f.stats(g)[0]\n  File \"<project-root>\\tests\\m12\\taskbar_observe.py\", line 59, in close_all\n    target=records(g)[-1];focus(g,p,target);s.close(g,p)\n  File \"<project-root>\\tests\\m12\\start_observe.py\", line 20, in close\n    slot=f.model(g)[0];rows=[r for r in f.controls(g) if r[5]==49002 and (r[4]&0xffffffff)==slot+1];assert len(rows)==1\nAssertionError\n"
+}
