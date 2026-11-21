@@ -1,0 +1,1 @@
+The native repeated condition-mask contract passes on worker e3476141 with kernel a8c87d3cc68b4b134814546efce3b089. Actual original installation next requires VerifyVersionInfoW at return RVA 0x31cdb. This is development evidence, not successful original installation or ordinary EXE review/grant qualification.

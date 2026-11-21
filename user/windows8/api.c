@@ -103,7 +103,17 @@ static void MS f_GetSystemTimeAsFileTime(uint64_t*out){if(out)*out=sys8(W8_SYS_T
 #include "version-mask148.h"
 static uint64_t MS f_VerSetConditionMask(uint64_t mask,uint32_t type,uint8_t condition){return version_mask148(mask,type,condition);}
 static uint32_t MS f_GetVersion(void){return 0x1db10106u;}
-static int MS f_GetVersionExW(void*data){uint32_t*n=data;if(!n||(n[0]!=276&&n[0]!=284)){last8(87);return 0;}unsigned bytes=n[0];memset((uint8_t*)data+4,0,bytes-4);n[1]=6;n[2]=1;n[3]=7601;n[4]=2;return 1;}
+static int MS f_GetVersionExW(void*data){uint32_t*n=data;if(!n||(n[0]!=276&&n[0]!=284)){last8(87);return 0;}unsigned bytes=n[0];memset((uint8_t*)data+4,0,bytes-4);n[1]=6;n[2]=1;n[3]=7601;n[4]=2;if(bytes==284)((uint8_t*)data)[282]=1;return 1;}
+#include "version-compare148.h"
+static int MS f_VerifyVersionInfoW(const void*data,unsigned types,uint64_t mask){
+ if(!data||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)data,284,1,0,0)||*(const uint32_t*)data!=284){last8(87);return 0;}
+ const uint32_t*n=data;const uint16_t*words=data;const uint8_t*bytes=data;
+ uint32_t requested[8]={n[2],n[1],n[3],n[4],words[139],words[138],words[140],bytes[282]};
+ /* The established compatibility profile, not the actual host Windows version.
+  * This predicate never substitutes for feature discovery or API qualification. */
+ const uint32_t current[8]={1,6,7601,2,0,0,0,1};
+ unsigned status=version_compare148(current,requested,types,mask);if(status){last8(status);return 0;}return 1;
+}
 static void MS f_GetSystemInfo(void*out){memset(out,0,48);*(uint16_t*)out=9;*(uint32_t*)((uint8_t*)out+4)=4096;*(uint64_t*)((uint8_t*)out+8)=W8_BASE;*(uint64_t*)((uint8_t*)out+16)=W8_LIMIT-1;*(uint64_t*)((uint8_t*)out+24)=1;*(uint32_t*)((uint8_t*)out+32)=1;*(uint32_t*)((uint8_t*)out+36)=8664;*(uint32_t*)((uint8_t*)out+40)=65536;*(uint16_t*)((uint8_t*)out+44)=6;}
 static int MS f_GetProcessAffinityMask(HANDLE p,uint64_t*process,uint64_t*system){if(p!=UINT64_MAX||!process||!system){last8(87);return 0;}*process=*system=1;return 1;}
 static int MS f_SetProcessAffinityMask(HANDLE p,uint64_t mask){if(p!=UINT64_MAX||mask!=1){last8(87);return 0;}return 1;}
@@ -462,6 +472,7 @@ typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
  API8(VerSetConditionMask,1),
+ API8(VerifyVersionInfoW,1),
  API8(GetOpenFileNameW,7),API8(GetSaveFileNameW,7),API8(CommDlgExtendedError,7),
  API8(OpenClipboard,4),API8(CloseClipboard,4),API8(EmptyClipboard,4),API8(SetClipboardData,4),API8(GetClipboardData,4),API8(IsClipboardFormatAvailable,4),API8(CountClipboardFormats,4),API8(EnumClipboardFormats,4),API8(GetClipboardOwner,4),API8(GetOpenClipboardWindow,4),API8(GetClipboardSequenceNumber,4),
  API8(GlobalAlloc,1),API8(GlobalFree,1),API8(GlobalLock,1),API8(GlobalUnlock,1),API8(GlobalSize,1),API8(GlobalFlags,1),API8(GlobalHandle,1),

@@ -14,6 +14,8 @@ __declspec(dllimport) int SHDeleteKeyW(uint64_t,const uint16_t*);
 __declspec(dllimport) int RegEnumKeyExW(uint64_t,unsigned,uint16_t*,unsigned*,unsigned*,uint16_t*,unsigned*,void*);
 __declspec(dllimport) void GetSystemTime(uint16_t*);
 __declspec(dllimport) uint64_t VerSetConditionMask(uint64_t,unsigned,uint8_t);
+__declspec(dllimport) int GetVersionExW(void*);
+__declspec(dllimport) int VerifyVersionInfoW(const void*,unsigned,uint64_t);
 __declspec(dllimport) void GetSystemTimeAsFileTime(uint64_t*);
 __declspec(dllimport) int FileTimeToSystemTime(const uint64_t*,uint16_t*);
 int _fltused=0; /* Freestanding PE floating-point linkage marker. */
@@ -252,6 +254,15 @@ static void version_mask_tests148(void){
  }
  check(VerSetConditionMask(7,1,1)==UINT64_C(0x8000000000000007),671);
  check(VerSetConditionMask(123,0,2)==0,672);
+ uint32_t version[71]={284};check(GetVersionExW(version)&&version[1]==6&&version[2]==1&&version[3]==7601&&((uint8_t*)version)[282]==1,673);
+ uint64_t exact=0,atleast=0,greater=0;for(unsigned bit=0;bit<8;++bit){exact=VerSetConditionMask(exact,1u<<bit,(uint8_t)(bit==6?6:1));if((1u<<bit)&0x33u){atleast=VerSetConditionMask(atleast,1u<<bit,3);greater=VerSetConditionMask(greater,1u<<bit,2);}}
+ check(VerifyVersionInfoW(version,255,exact)&&VerifyVersionInfoW(version,0x33,atleast),674);
+ check(!VerifyVersionInfoW(version,0x33,greater)&&GetLastError()==1150,675);
+ version[1]=5;version[2]=99;((uint16_t*)version)[138]=99;check(VerifyVersionInfoW(version,0x33,atleast),676);
+ version[1]=7;version[2]=0;check(!VerifyVersionInfoW(version,0x33,atleast)&&GetLastError()==1150,677);
+ version[1]=6;version[2]=2;check(!VerifyVersionInfoW(version,3,atleast)&&GetLastError()==1150,678);
+ check(!VerifyVersionInfoW(0,3,atleast)&&GetLastError()==87&&!VerifyVersionInfoW(version,0,atleast)&&GetLastError()==87,679);
+ version[0]=276;check(!VerifyVersionInfoW(version,3,atleast)&&GetLastError()==87,680);
  say148("M148_NATIVE_VERSION_CONDITION_MASK_PASS\n");
 }
 static void utc_tests148(void){

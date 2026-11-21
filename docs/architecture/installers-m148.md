@@ -516,3 +516,15 @@ second. Setting/resynchronizing wall time and suspend calibration are separate.
 A disposable-VM RTC SET fault, restored through monitor I/O, tests continuity after
 a real initial seed; it is not proof that UTC can be obtained with no trusted
 initial time source.
+
+## Version queries are compatibility predicates, not feature promises
+
+Keep GetVersionExW and VerifyVersionInfoW consistent with the explicit existing
+6.1/build-7601, zero-service-pack workstation query profile. Compare actual
+requested fields, hierarchical version conditions, suite AND/OR and independent
+build/platform/product values. False predicates use error 1150; malformed inputs
+use error 87. The pure implementation is compared with original Windows using
+its own reported reference version. This neither imports host-version data into
+the guest nor claims that every feature of that Windows version exists. Manifest
+negotiation and additional version profiles remain separate work. Feature/API
+presence and original application behavior must still be tested independently.
