@@ -82,4 +82,18 @@ static int MS f_SHDeleteValueW(HANDLE root,const WCHAR*subkey,const WCHAR*value)
  HANDLE opened=0;int status=f_RegOpenKeyExW(root,subkey,0,2,&opened);if(status)return status;
  status=f_RegDeleteValueW(opened,value);int closed=f_RegCloseKey(opened);return status?status:closed;
 }
+static int shell_delete_tree148(HANDLE root,const WCHAR*subkey,unsigned*budget,unsigned depth){
+ if(depth>=32)return 206;if(!*budget)return 8;--*budget;
+ HANDLE opened=0;int status=f_RegOpenKeyExW(root,subkey,0,0x1000bu,&opened);if(status)return status;
+ for(;;){WCHAR child[768];unsigned units=768;status=f_RegEnumKeyExW(opened,0,child,&units,0,0,0,0);
+  if(status==259){status=0;break;}if(status)break;status=shell_delete_tree148(opened,child,budget,depth+1);if(status)break;
+ }
+ /* NULL clears values/children but retains the key; an empty string deletes it. */
+ if(!status&&!subkey)for(;;){WCHAR value[256];unsigned units=256;status=f_RegEnumValueW(opened,0,value,&units,0,0,0,0);
+  if(status==259){status=0;break;}if(status)break;if(!*budget){status=8;break;}--*budget;status=f_RegDeleteValueW(opened,value);if(status)break;
+ }
+ int closed=f_RegCloseKey(opened);if(!status)status=closed;
+ return status||!subkey?status:f_RegDeleteKeyW(root,subkey);
+}
+static int MS f_SHDeleteKeyW(HANDLE root,const WCHAR*subkey){unsigned budget=1024;return shell_delete_tree148(root,subkey,&budget,0);}
 #endif

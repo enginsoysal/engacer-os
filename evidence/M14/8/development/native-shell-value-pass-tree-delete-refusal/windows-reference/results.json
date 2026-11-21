@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scope": "Owned temporary HKCU tree-deletion reference; never modify unrelated keys.",
+  "observations": {
+    "recursive_status": 0,
+    "peer_preserved": true,
+    "null_status": 0,
+    "null_keeps_key": true,
+    "readonly_null_status": 0,
+    "readonly_guard_remains": true,
+    "empty_status": 0,
+    "empty_deletes_key": true,
+    "missing_status": 2,
+    "invalid_handle": 6
+  },
+  "current_native_capability_difference": "Native readonly-relative reopening is denied with 5. This Windows readonly-NULL call returns 0 while leaving its value untouched.",
+  "source_sha256": "3f30a5b9955b24d94b1a79e118210761bcd80f846e2acc56eac8bebcc67814e2"
+}

@@ -9,6 +9,8 @@ __declspec(dllimport) int RegQueryValueExW(uint64_t,const uint16_t*,unsigned*,un
 __declspec(dllimport) int RegDeleteKeyW(uint64_t,const uint16_t*);
 __declspec(dllimport) int RegCloseKey(uint64_t);
 __declspec(dllimport) int SHDeleteValueW(uint64_t,const uint16_t*,const uint16_t*);
+__declspec(dllimport) int SHDeleteKeyW(uint64_t,const uint16_t*);
+__declspec(dllimport) int RegEnumKeyExW(uint64_t,unsigned,uint16_t*,unsigned*,unsigned*,uint16_t*,unsigned*,void*);
 int _fltused=0; /* Freestanding PE floating-point linkage marker. */
 void*memset(void*pointer,int value,size_t bytes){volatile uint8_t*out=pointer;for(size_t i=0;i<bytes;++i)out[i]=(uint8_t)value;return pointer;}
 __declspec(dllimport) unsigned RegisterWindowMessageW(const uint16_t*);
@@ -237,6 +239,20 @@ static void font_tests148(void){
  lf.italic=1;check(!CreateFontIndirectW(&lf)&&GetLastError()==50,434);lf.italic=0;lf.width=10;check(!CreateFontIndirectW(&lf)&&GetLastError()==50,435);check(!CreateFontIndirectW((void*)1)&&GetLastError()==998,436);check(!GetStockObject(10)&&GetLastError()==50,437);
  say148("M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\n");
 }
+static void registry_tree_tests148(void){
+ uint64_t root=0xffffffff80000001ull,key=0,child=0,peer=0,opened=0,readonly=0;unsigned disposition=0,value=0x148,bytes=4,type=0,readback=0;
+ const uint16_t*path=L"Software\\EngacerOS\\NativeDeleteTree148";
+ check(!RegCreateKeyExW(root,path,0,0,0,0x1000f,0,&key,&disposition)&&!RegSetValueExW(key,L"root",0,4,&value,4),620);
+ check(!RegCreateKeyExW(key,L"gone\\child\\grand",0,0,0,0x1000f,0,&child,&disposition)&&!RegSetValueExW(child,L"value",0,4,&value,4)&&!RegCloseKey(child),621);
+ check(!RegCreateKeyExW(key,L"peer",0,0,0,0x1000f,0,&peer,&disposition)&&!RegSetValueExW(peer,L"value",0,4,&value,4)&&!RegCloseKey(peer),622);
+ check(!SHDeleteKeyW(key,L"gone")&&RegOpenKeyExW(key,L"gone",0,1,&opened)==2,623);
+ check(!RegOpenKeyExW(key,L"peer",0,1,&peer)&&!RegQueryValueExW(peer,L"value",0,&type,&readback,&bytes)&&readback==value&&!RegCloseKey(peer),624);
+ check(!SHDeleteKeyW(key,0),625);uint16_t name[16];unsigned units=16;check(RegEnumKeyExW(key,0,name,&units,0,0,0,0)==259&&RegQueryValueExW(key,L"root",0,&type,&readback,&bytes)==2,626);
+ check(!RegSetValueExW(key,L"after",0,4,&value,4)&&!RegOpenKeyExW(root,path,0,1,&readonly)&&SHDeleteKeyW(readonly,0)==5&&!RegCloseKey(readonly),627);
+ check(!SHDeleteKeyW(key,L"")&&RegOpenKeyExW(root,path,0,1,&opened)==2&&!RegCloseKey(key),628);
+ check(SHDeleteKeyW(root,path)==2&&SHDeleteKeyW(0x12345678,L"x")==6,629);
+ say148("M148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\n");
+}
 static void registry_delete_tests148(void){
  uint64_t root=0xffffffff80000001ull,key=0,readonly=0;const uint16_t*path=L"Software\\EngacerOS\\NativeDelete148";unsigned disposition=0,value=37,type=0,bytes=4,readback=0;
  check(!RegCreateKeyExW(root,path,0,0,0,3,0,&key,&disposition),610);
@@ -252,7 +268,7 @@ static void registry_delete_tests148(void){
  say148("M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\n");
 }
 void entry(void){
- font_tests148();raster_packet_tests148();registry_delete_tests148();
+ font_tests148();raster_packet_tests148();registry_delete_tests148();registry_tree_tests148();
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
  int inside_monitor[4]={1,1,50,50},outside_monitor[4]={INT32_MAX-10,INT32_MAX-10,INT32_MAX,INT32_MAX};uint64_t monitor=MonitorFromRect(inside_monitor,0);check(monitor&&!MonitorFromRect(outside_monitor,0)&&MonitorFromRect(outside_monitor,1)==monitor&&MonitorFromRect(outside_monitor,2)==monitor&&MonitorFromPoint(0,0)==monitor&&!MonitorFromPoint(UINT64_MAX,0)&&MonitorFromPoint(UINT64_MAX,2)==monitor,587);inside_monitor[2]=inside_monitor[0];inside_monitor[3]=inside_monitor[1];check(MonitorFromRect(inside_monitor,0)==monitor&&!MonitorFromRect((void*)1,0)&&GetLastError()==998,588);int inverted_monitor[4]={INT32_MAX,100,50,200},empty_spanning_monitor[4]={-100,0,100,0};check(!MonitorFromRect(inverted_monitor,0)&&!MonitorFromRect(empty_spanning_monitor,0),592);unsigned monitor_info[26]={0};monitor_info[0]=104;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[1]==0&&monitor_info[2]==0&&monitor_info[3]==(unsigned)desktop_rect[2]&&monitor_info[4]==(unsigned)desktop_rect[3]&&monitor_info[9]==1&&((uint16_t*)(monitor_info+10))[0]=='E',589);monitor_info[0]=72;check(GetMonitorInfoA(monitor,monitor_info)&&((char*)(monitor_info+10))[0]=='E'&&!GetMonitorInfoW(monitor,monitor_info)&&GetLastError()==87,590);monitor_info[0]=40;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[7]==(unsigned)desktop_rect[2]&&monitor_info[8]<(unsigned)desktop_rect[3],591);
