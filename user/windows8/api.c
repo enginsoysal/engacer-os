@@ -340,6 +340,7 @@ static unsigned MS f_GetModuleFileNameA(HANDLE module,char*out,unsigned cap){WCH
 #include "argv148.inc"
 #include "long-path148.inc"
 #include "sid148.inc"
+#include "muldiv148.inc"
 /* Native desktop and setup currently ship one UI language: US English. */
 static uint16_t MS f_GetUserDefaultUILanguage(void){return 0x0409;}
 static uint16_t MS f_GetSystemDefaultUILanguage(void){return 0x0409;}
@@ -446,6 +447,7 @@ static const api8 api8_table[]={
  API8(CheckTokenMembership,5),
  API8(GetDesktopWindow,4),
  API8(GetSystemMetrics,4),API8(GetDeviceCaps,8),
+ API8(MulDiv,1),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),

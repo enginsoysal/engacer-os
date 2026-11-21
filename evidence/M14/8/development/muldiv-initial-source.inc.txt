@@ -1,0 +1,6 @@
+/* Signed 32-bit scaling with a full 64-bit product and nearest rounding. */
+static int MS f_MulDiv(int number,int numerator,int denominator){
+ if(!denominator)return -1;int64_t product=(int64_t)number*numerator;unsigned negative=(product<0)^(denominator<0);
+ uint64_t magnitude=(uint64_t)(product<0?-product:product),divisor=(uint64_t)(denominator<0?-(int64_t)denominator:denominator);
+ uint64_t rounded=(magnitude+divisor/2)/divisor;if(rounded>(negative?UINT64_C(2147483648):INT32_MAX))return -1;return negative?(int)(-(int64_t)rounded):(int)rounded;
+}

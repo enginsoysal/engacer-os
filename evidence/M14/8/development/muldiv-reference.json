@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Production signed scaling versus Windows; supporting reference, not guest proof.",
+  "checks": 14913,
+  "differences": [],
+  "sources": {
+    "user/windows8/muldiv148.inc": "15390652fbb6cd14d976622d81dd2c34fa62deb59625f1645b635f79779e3545",
+    "tests/m14/muldiv148_host.c": "676e9fbda433f8885bf660f56b41c10ce23c3a80d5c59a6ae9fdc2b0d77cb528",
+    "tests/m14/muldiv148_host.py": "6c718425fdd66c82bd6b76665057f5ae041459435101d2e3006e944315651cf1"
+  }
+}

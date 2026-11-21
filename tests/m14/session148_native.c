@@ -33,6 +33,7 @@ __declspec(dllimport) uint64_t LoadLibraryExA(const char*,uint64_t,unsigned);
 __declspec(dllimport) uint64_t GetModuleHandleW(const uint16_t*);
 __declspec(dllimport) int FreeLibrary(uint64_t);
 __declspec(dllimport) unsigned GetLastError(void);
+__declspec(dllimport) int MulDiv(int,int,int);
 __declspec(dllimport) void SetLastError(unsigned);
 __declspec(dllimport) uint16_t GetUserDefaultUILanguage(void);
 __declspec(dllimport) uint16_t GetSystemDefaultUILanguage(void);
@@ -106,6 +107,7 @@ void entry(void){
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
+ check(MulDiv(420,96,96)==420&&MulDiv(5,1,2)==3&&MulDiv(-5,1,2)==-3&&MulDiv(5,1,-2)==-3&&MulDiv(-5,1,-2)==3&&MulDiv(INT32_MAX,INT32_MAX,INT32_MAX)==INT32_MAX&&MulDiv(INT32_MAX,INT32_MAX,1)==-1&&MulDiv(1,1,0)==-1&&MulDiv(INT32_MIN,0,1)==0&&MulDiv(INT32_MIN,1,INT32_MIN)==-1&&GetLastError()==0x148,394);
  uint64_t advapi=LoadLibraryExA("advapi32.dll",0,0);int(*allocate_sid)(const unsigned char*,unsigned char,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,void**)=GetProcAddress(advapi,"AllocateAndInitializeSid");void*(*free_sid)(void*)=GetProcAddress(advapi,"FreeSid");unsigned(*length_sid)(const void*)=GetProcAddress(advapi,"GetLengthSid");int(*valid_sid)(const void*)=GetProcAddress(advapi,"IsValidSid");int(*equal_sid)(const void*,const void*)=GetProcAddress(advapi,"EqualSid");check(advapi&&allocate_sid&&free_sid&&length_sid&&valid_sid&&equal_sid,375);
  unsigned char authority[6]={0,0,0,0,0,5};void*admin_sid=0,*same_sid=0,*users_sid=0;check(allocate_sid(authority,2,32,544,0,0,0,0,0,0,&admin_sid)&&allocate_sid(authority,2,32,544,0,0,0,0,0,0,&same_sid)&&allocate_sid(authority,2,32,545,0,0,0,0,0,0,&users_sid),376);
  int(*membership)(uint64_t,const void*,int*)=GetProcAddress(advapi,"CheckTokenMembership");int member[3]={0x148,99,0x148};check(membership&&membership(0,admin_sid,member+1)&&!member[1]&&member[0]==0x148&&member[2]==0x148&&membership(0,users_sid,member+1)&&member[1]==1,382);
