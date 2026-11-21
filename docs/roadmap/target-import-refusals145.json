@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 665,
-  "table_bytes": 5320,
+  "refusal_keys": 662,
+  "table_bytes": 5296,
   "imports": [
     {
       "app": "notepadpp",
@@ -1033,13 +1033,6 @@
       "dll": "kernel32.dll",
       "symbol": "GetConsoleOutputCP",
       "key": "5b8ab2cc090e0eb3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "HeapReAlloc",
-      "key": "2b7d7455e66dcc2c",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3103,13 +3096,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "HeapDestroy",
-      "key": "e07cb4437ebfd364",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "Module32FirstW",
       "key": "adc207b6b8ffd722",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3154,13 +3140,6 @@
       "dll": "kernel32.dll",
       "symbol": "WritePrivateProfileStringW",
       "key": "7871ec5890b69c7b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "HeapReAlloc",
-      "key": "2b7d7455e66dcc2c",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3217,13 +3196,6 @@
       "dll": "kernel32.dll",
       "symbol": "VerifyVersionInfoW",
       "key": "74e521964ba8abc8",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "HeapCreate",
-      "key": "baba491a44a3151e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5695,13 +5667,6 @@
       "dll": "kernel32.dll",
       "symbol": "RtlUnwindEx",
       "key": "c4210f2fd88758c6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "HeapReAlloc",
-      "key": "2b7d7455e66dcc2c",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

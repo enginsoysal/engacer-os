@@ -421,6 +421,7 @@ static const api8 api8_table[]={
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
  API8(PathAppendW,20),
+ API8(HeapCreate,1),API8(HeapDestroy,1),API8(HeapReAlloc,1),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

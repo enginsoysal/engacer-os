@@ -1,0 +1,44 @@
+{
+  "diagnostic_completed": true,
+  "original_installer_qualified": false,
+  "scope": "Private native routing of the unchanged original installer on full M14.8 development media; not a shipped route or successful installation.",
+  "kernel_build_id": "87d34bba6ce1108cde8ee0032d2f8a85",
+  "original_sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+  "original_bytes": 11075960,
+  "private_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "87d34bba6ce1108cde8ee0032d2f8a85",
+    "source_commit": "849781b3d15df2a89bdba0010b4555076ebab59b",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "1bf7f18e833da845f00c5c86c354052756017c68c900301a28c07b6db9f7f69e",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "527b62e7c4a98fc4bcf8aff65ce6d0bf070307f19a16504dbe6ab2993fc1ce39",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "e5cb9e233bc29f569c35e6ab6287f58c36c0c62fbad52fa0174b6b425ae3f19a"
+  },
+  "clone": {
+    "source_sha256": "1c20ca67ab52ba95bf924371caa4de2968ac5e9d852dbba80596c0a77a3c14ce",
+    "clone_sha256": "1c20ca67ab52ba95bf924371caa4de2968ac5e9d852dbba80596c0a77a3c14ce",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "owned_fixture": "ae94d6b04a2844a6a7f235fce68ce701",
+  "state": 3,
+  "status": 1,
+  "message": "Required Windows API is unavailable; see the call-site diagnostic.",
+  "output": "Mapped original image: SumatraPDF-3.6.1-64-install.exe bytes=11137024 source-fnv32=3521778578\nRunning the original Windows executable in a protected process.\n\nUnavailable Win32 API caller=0x00000001100c5330 main=0x0000000110000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "pages_before_cleanup": 5,
+  "retained_pages_after_cleanup": 5
+}
