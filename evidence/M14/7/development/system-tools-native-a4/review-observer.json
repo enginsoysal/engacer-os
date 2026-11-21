@@ -1,0 +1,18 @@
+{
+  "canonical_sha256": "779ef10eecf13eaaf147f044fb0419c0b3ccb81ef314146143483ee30352fca8",
+  "executed_sha256": "d9139524873fc4ad87a788f0211fc13e449473439f2e5abf4a6a54d48892963b",
+  "replacements": [
+    [
+      "stage7/review-native",
+      "stage7/review-stale-native"
+    ],
+    [
+      "m147-review-native",
+      "m147-review-stale-native"
+    ],
+    [
+      "    report['checks']=['Chooser opens with MSI filter; cancel preserves previous selection'",
+      "    package=packages[0];path='/Users/Owner/Downloads/'+package.name;p.desktop(12013,True);p.desktop(54017,True);row=f.entries(g)[path]['index']\n    for _ in range(128):\n     if any(r[5]==55000+row for r in f.controls(g)):break\n     p.desktop(54023,True)\n    else:raise AssertionError('Reviewed MSI is not reachable')\n    p.desktop(55000+row,True);p.desktop(54011,True);task(g,p,12000);assert state()[1]==1 and state()[4]==1;p.desktop(12001,True);assert any(r[5]==12003 for r in f.controls(g))\n    terminal=t.launch(g,p,'terminal',7);c.type_text(g,'write '+path+' Changed reviewed installer');c.key(g,'ret');p.drain();assert b'Write status: 0' in bytes(t.app_view(g).text);p.desktop(49002,True);t.focus(g,p,front);p.drain();assert state()[1]==0\n    at=len(g.log())\n    if any(r[5]==12003 for r in f.controls(g)):p.desktop(12003,True)\n    assert not c.flag(g,'w8_active') and 'M8_CPL3_CREATED'not in g.log()[at:];assert ui.s.s.document(disk,path,4096)==b'Changed reviewed installer';assert not any(k.startswith('/Applications/Windows/')for k in f.entries(g));c.shot(g,'changed-source-refusal');report['changed_source_blocks_confirmation']=True\n    report['checks']=['Chooser opens with MSI filter; cancel preserves previous selection'"
+    ]
+  ]
+}
