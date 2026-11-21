@@ -1,0 +1,13 @@
+{
+  "scope": "Preserved first private routing diagnostic, not installation qualification",
+  "source_commit": "d2b4780a8cdcb1aa36786e3d40812014e4be8871",
+  "sha256": {
+    "results.json": "a8db4dfab5344f051131e3e88628635d2a6bb66f5f5c8a506e4b2ab107c94323",
+    "serial.log": "a48e060a18671efb365a1e0ddbbfa6553506a570b04d0f5a4fdb67c62b2dcc2c",
+    "callsite-disassembly.txt": "e637aa9dd8406ffc47f54ac30f0303d4d75c4719710436b1a4d996d62e57e879",
+    "original-installer-startup.png": "549cdf057ad191de9b55b9e018a5070069c757ba93be010fe64b0bcadcb86e40"
+  },
+  "first_missing_api": "USER32.dll!RegisterWindowMessageW",
+  "original_argument": "TaskbarCreated",
+  "original_call_return_rva": "0x2f91"
+}

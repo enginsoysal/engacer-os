@@ -80,6 +80,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(extra)return -87;
 #ifdef ENGINE_M14
  if(op==WUI_ATOM147)return atom_call147(handle,pointer,argument);
+ if(op==WUI_MESSAGE148)return handle||argument?-87:message_call148(pointer);
  if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
  if(op==WUI_PICKER146)return picker_call146(handle,pointer,argument,f);
 #endif

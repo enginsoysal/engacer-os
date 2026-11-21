@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 674,
-  "table_bytes": 5392,
+  "refusal_keys": 673,
+  "table_bytes": 5384,
   "imports": [
     {
       "app": "notepadpp",
@@ -1649,13 +1649,6 @@
       "dll": "user32.dll",
       "symbol": "AddClipboardFormatListener",
       "key": "12a9830e886240d3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "RegisterWindowMessageW",
-      "key": "122693a7c13b4d4a",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3343,13 +3336,6 @@
       "dll": "user32.dll",
       "symbol": "GetClassInfoExW",
       "key": "e03fed9d52eca4b3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "RegisterWindowMessageW",
-      "key": "122693a7c13b4d4a",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

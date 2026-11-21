@@ -1,6 +1,16 @@
 /* Session-global atoms survive creator exit; only matching Delete releases them.
  * Broker traps are serialized on the assigned Windows execution processor. */
 #include <engine/winatom147.h>
+#include <engine/winmessage148.h>
+static watom_table147*messages148;
+static int64_t message_call148(uint64_t pointer){
+ if(pointer<=65535)return -87;
+ uint16_t name[256];unsigned n=0;
+ for(;n<256;++n){if(pointer>UINT64_MAX-n*2u||user8(pointer+n*2u,name+n,2,0))return -998;if(!name[n])break;}
+ if(!watom_valid147(name,n))return -87;
+ if(!messages148){messages148=ui_page144();if(!messages148)return -8;}
+ return wmessage_register148(messages148,name,n);
+}
 static watom_table147*atoms147;
 static int64_t atom_call147(uint64_t operation,uint64_t pointer,uint64_t argument){
  if(argument)return -87;
