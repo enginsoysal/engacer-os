@@ -1,0 +1,31 @@
+{
+  "passed": false,
+  "stage": "M14.8 console regression development",
+  "build_id": "87bf4a9722e59b216b7ab4dc77680d1a",
+  "clone": {
+    "source_sha256": "ea9b851a26c97e0001cb80715f971719687637bc96069f3858a5a31c6f77457c",
+    "clone_sha256": "ea9b851a26c97e0001cb80715f971719687637bc96069f3858a5a31c6f77457c",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "owned_fixture": "7952d4ef754941ad84b13be9efea754a",
+  "profile": "compact",
+  "checks": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 45, in main\n    p.desktop(12001,True);task(g,p,12003)\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: Installation stopped. Its transaction was kept; choose Recover / remove. OUTPUT Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\nMSI operation status: 50\n\n"
+}
+Traceback (most recent call last):
+  File "<project-root>\tests\m14\replay8.py", line 12, in <module>
+    exec(compile(text,str(canonical),'exec'),globals())
+  File "<project-root>\tests\m14\replay7.py", line 109, in <module>
+  File "<project-root>\tests\m14\replay7.py", line 93, in main
+    receipt['passed'] = True
+  File "<project-root>\tests\m14\apps_native4.py", line 45, in main
+    p.desktop(12001,True);task(g,p,12003)
+  File "<project-root>\tests\m14\apps_native4.py", line 22, in task
+    raise AssertionError(raw[304:].split(b'\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\0',1)[0].decode(errors='replace'))
+AssertionError: Installation stopped. Its transaction was kept; choose Recover / remove. OUTPUT Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515
+Mapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052
+Running the native Engacer MSI service in a protected process.
+
+MSI operation status: 50
+

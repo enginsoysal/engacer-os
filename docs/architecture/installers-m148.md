@@ -481,3 +481,8 @@ their captured results. Direct handle-to-extent copying reuses the volume page,
 retains the 8-MiB ordinary dirty-data budget and performs existing complete
 storage readback verification. An 11-MiB deterministic native copy checks bytes
 beyond that budget; it does not qualify arbitrary unbounded WriteFile use.
+
+Private `.EngacerMSI` staging/journal paths are excluded from normal product-file
+metadata. The existing staging move requires absence of metadata records;
+expanding that trusted move to accept them would change its security contract.
+Keep that guard and preserve the failed initial extension as development evidence.

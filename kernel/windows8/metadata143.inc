@@ -5,7 +5,7 @@ static unsigned metadata_scope148(const char*path){
  if(prefix8(path,input8.user_root))return 1;
 #ifdef ENGINE_M14
  /* This scope stores metadata only; file effects still require path8 grants. */
- if(input8.product_root[0]&&prefix8(path,input8.product_root))return 1;
+ unsigned root=length8(input8.product_root);if(root&&prefix8(path,input8.product_root)&&!prefix8(path+root,"/.EngacerMSI"))return 1;
 #endif
  return 0;
 }
