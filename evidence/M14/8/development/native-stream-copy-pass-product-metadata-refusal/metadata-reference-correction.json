@@ -1,0 +1,1 @@
+{"native_byte_copy_passed":true,"old_all_three_source_timestamps_expectation_correct":false,"windows_observation":{"new_destination_creation":"new","replacement_destination_creation":"preserved existing destination","destination_access":"current","destination_write":"source last-write"},"metadata_requalification_required":true}

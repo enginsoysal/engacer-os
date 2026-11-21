@@ -58,7 +58,7 @@ static unsigned file_set_metadata143(file_object143*object,const w8_file_info*in
  memcpy(object->metadata.times,information->time,sizeof(object->metadata.times));object->metadata.attributes=information->attributes?information->attributes:128;object->metadata_dirty=1;
  unsigned error=file_flush_metadata143(object);if(error){object->metadata=previous;object->metadata_dirty=dirty;}return error;
 }
-static void file_modified143(file_object143*object){if(!prefix8(object->path,input8.user_root))return;uint64_t time=now8();unsigned attributes=(object->metadata.attributes&~128u)|32;if(time!=object->metadata.times[2]||attributes!=object->metadata.attributes){object->metadata.times[2]=time;object->metadata.attributes=attributes;object->metadata_dirty=1;}}
+static void file_modified143(file_object143*object){if(!metadata_scope148(object->path))return;uint64_t time=now8();unsigned attributes=(object->metadata.attributes&~128u)|32;if(time!=object->metadata.times[2]||attributes!=object->metadata.attributes){object->metadata.times[2]=time;object->metadata.attributes=attributes;object->metadata_dirty=1;}}
 static unsigned file_flush143(file_object143*object){
  if(!object->dirty)return file_flush_metadata143(object);const v6_entry*entry=find8(object->path);
  if((entry&&!object->existed)||(!entry&&object->existed)||(entry&&(entry->kind!=1||entry->crc!=object->crc)))return 1117;
@@ -102,7 +102,7 @@ static int64_t file_open143(const char*path,unsigned access,unsigned share,unsig
   uint64_t page=file_page143();if(!page)return -8;value=(void*)(uintptr_t)page;copy8(value->path,path,256);
   value->size=value->backing_size=entry?entry->size:0;value->existed=entry!=0;value->crc=entry?entry->crc:0;
   unsigned error=metadata_load143(path,1,&value->metadata);if(error&&entry){file_free_page143(page);return -(int64_t)error;}
-  if(!entry){metadata_default143(path,1,&value->metadata);for(unsigned i=0;i<3;++i)value->metadata.times[i]=now8();unsigned attributes=flags&0xa7u;value->metadata.attributes=(attributes&~128u)?attributes&~128u:32;value->metadata_dirty=prefix8(path,input8.user_root);}
+  if(!entry){metadata_default143(path,1,&value->metadata);for(unsigned i=0;i<3;++i)value->metadata.times[i]=now8();unsigned attributes=flags&0xa7u;value->metadata.attributes=(attributes&~128u)?attributes&~128u:32;value->metadata_dirty=metadata_scope148(path);}
   if(entry&&((access&2)||(flags&0x04000000u))&&(value->metadata.attributes&1)){file_free_page143(page);return -5;}
   file_objects143[object]=value;allocated=1;
  }

@@ -461,3 +461,23 @@ quarter-turn pixel placement and a physical purple vertical text image after
 source deletion. Supporting reference and fixture compilation pass; native
 execution on a source-bound production worker is pending. Full M14.8 shipped
 EXE installation, original removal/reinstall and publication remain mandatory.
+
+## Scoped product-file metadata candidate
+
+Keep file metadata outside application directories in protected owner records,
+bound to both the owner root and exact file path. M14.8 extends that existing
+record store from user files to the current kernel-validated product root.
+Reads/defaults, writes, modification tracking and cleanup use the same scope.
+Actual file effects still require existing handle access and path8 permissions;
+this is not an administrator or cross-product write grant. Ignoring a failed
+metadata update would conceal a real installation error, so refusal remains
+visible until this scoped persistence works.
+
+For CopyFileW, retain destination creation time (new for a new file), refresh
+access time and copy source last-write plus supported attributes. Owned Windows
+new/replacement references establish this behavior. Earlier development tests
+that expected all three source times are explicitly superseded, without rewriting
+their captured results. Direct handle-to-extent copying reuses the volume page,
+retains the 8-MiB ordinary dirty-data budget and performs existing complete
+storage readback verification. An 11-MiB deterministic native copy checks bytes
+beyond that budget; it does not qualify arbitrary unbounded WriteFile use.

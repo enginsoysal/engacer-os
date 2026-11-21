@@ -26,10 +26,11 @@ void entry(void){char*message=0;unsigned chars=FormatMessageA(0x1300,0,8,0x400,&
  for(unsigned i=0;i<sizeof(data);++i)data[i]=(unsigned char)(i*37+11);
  U f=CreateFileW(a,0x40000000,0,0,1,0x80,0);unsigned wrote=0;U times[3]={133000000000000000ull,133100000000000000ull,133200000000000000ull};check(f!=~0ull&&WriteFile(f,data,sizeof(data),&wrote,0)&&wrote==sizeof(data)&&SetFileTime(f,times,times+1,times+2)&&CloseHandle(f),102);
  check(SetFileAttributesW(a,0x23)&&CopyFileW(a,b,1),103);verify(b);check(GetFileAttributesW(b)==0x23,104);
- unsigned meta[9];check(GetFileAttributesExW(b,0,meta),105);for(unsigned i=0;i<3;++i)check(((U)meta[2+i*2]<<32|meta[1+i*2])==times[i],106);
+ unsigned meta[9];check(GetFileAttributesExW(b,0,meta),105);check(((U)meta[2]<<32|meta[1])>times[0]&&((U)meta[4]<<32|meta[3])>times[1]&&((U)meta[6]<<32|meta[5])==times[2],106);
  check(!CopyFileW(a,b,2)&&GetLastError()==80,107);check(!CopyFileW(a,b,0)&&GetLastError()==5,108);verify(b);
  check(SetFileAttributesW(a,0x80)&&SetFileAttributesW(b,0x80),109);check(!CopyFileW(a,a,0)&&GetLastError()==32,110);verify(a);
- f=CreateFileW(b,0x40000000,0,0,2,0x80,0);check(f!=~0ull&&WriteFile(f,"short",5,&wrote,0)&&CloseHandle(f),114);check(CopyFileW(a,b,0),115);verify(b);
+ f=CreateFileW(b,0x40000000,0,0,2,0x80,0);check(f!=~0ull&&WriteFile(f,"short",5,&wrote,0)&&CloseHandle(f),114);U previous[3]={132000000000000000ull,132100000000000000ull,132200000000000000ull};f=CreateFileW(b,0x100,7,0,3,0x80,0);check(f!=~0ull&&SetFileTime(f,previous,previous+1,previous+2)&&CloseHandle(f),128);check(CopyFileW(a,b,0),115);verify(b);check(GetFileAttributesExW(b,0,meta)&&((U)meta[2]<<32|meta[1])==previous[0]&&((U)meta[4]<<32|meta[3])>previous[1]&&((U)meta[6]<<32|meta[5])==times[2],129);
+ check(!CopyFileW(a,L"C:\\Windows\\System32\\engacer-copy148-denied.bin",0)&&GetLastError()==5,130);
  check(DeleteFileW(a)&&!CopyFileW(a,b,0)&&GetLastError()==2,116);verify(b);check(DeleteFileW(b),117);
  f=CreateFileW(a,0x40000000,0,0,1,0x80,0);check(f!=~0ull&&CloseHandle(f)&&CopyFileW(a,b,1),118);check(GetFileAttributesExW(b,0,meta)&&!meta[7]&&!meta[8]&&DeleteFileW(a)&&DeleteFileW(b),119);
  check(CopyFileW(L"C:\\Users\\Owner\\Downloads\\copy148-large.bin",b,1),120);

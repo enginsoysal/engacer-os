@@ -67,6 +67,24 @@ def main():
                     t.focus(g,p,front);p.desktop(12008,True);report['explicit_diagnostic_cancel']=True
                 report['retained_pages_after_cleanup']=f.stats(g)[0]-before
                 (out/'serial.log').write_bytes(g.log().encode())
+            mounted=StoppedDisk(disk,library())
+            try:
+                target=b'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/SumatraPDF.exe'
+                copied=next((e for e in mounted.volume.entries if e.kind==1 and e.path==target),None)
+                report['diagnostic_self_copy_present']=copied is not None
+                if copied:
+                    assert copied.size<=64*1024*1024
+                    mounted.file.seek(mounted.offset+copied.first*4096);copied_bytes=mounted.file.read(copied.size)
+                    report['diagnostic_self_copy_bytes']=len(copied_bytes)
+                    report['diagnostic_self_copy_sha256']=hashlib.sha256(copied_bytes).hexdigest()
+                    report['diagnostic_self_copy_matches_original']=len(copied_bytes)==len(data) and report['diagnostic_self_copy_sha256']==digest
+                for entry in mounted.volume.entries:
+                    if entry.kind!=1 or entry.size!=552:continue
+                    mounted.file.seek(mounted.offset+entry.first*4096);metadata=mounted.file.read(552)
+                    if struct.unpack_from('<Q',metadata)[0]!=0x314d464e4534314d or metadata[264:520].split(b'\0')[0]!=target:continue
+                    report['diagnostic_self_copy_metadata_times']=list(struct.unpack_from('<3Q',metadata,520))
+                    report['diagnostic_self_copy_metadata_attributes']=struct.unpack_from('<I',metadata,544)[0]
+            finally:mounted.close()
             report['diagnostic_completed']=True
         except Exception:
             report['observer_error']=ui.q.clean(traceback.format_exc());raise
