@@ -3,6 +3,7 @@
 #include <engine/windows8.h>
 void*memset(void*pointer,int value,size_t bytes){volatile uint8_t*out=pointer;for(size_t i=0;i<bytes;++i)out[i]=(uint8_t)value;return pointer;}
 __declspec(dllimport) unsigned RegisterWindowMessageW(const uint16_t*);
+__declspec(dllimport) unsigned RegisterWindowMessageA(const char*);
 __declspec(dllimport) unsigned short GlobalAddAtomW(const uint16_t*);
 __declspec(dllimport) unsigned short GlobalDeleteAtom(unsigned short);
 __declspec(dllimport) const uint16_t*GetCommandLineW(void);
@@ -76,6 +77,8 @@ void entry(void){
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  unsigned id=RegisterWindowMessageW(L"Engacer.Message148.Parent");check(id>=0xc000&&id<=0xffff,222);
+ check(RegisterWindowMessageA("engacer.message148.parent")==id,347);check(RegisterWindowMessageA("Engacer.Message148.\xc3\xa9")==RegisterWindowMessageW(L"Engacer.Message148.\u00e9"),348);
+ check(!RegisterWindowMessageA(0)&&GetLastError()==87&&!RegisterWindowMessageA("\xff")&&GetLastError()==1113,349);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
  command[0]='"';for(unsigned i=0;i<n;++i)command[i+1]=path[i];command[n+1]='"';command[n+2]=' ';command[n+3]='!';command[n+4]=0;
