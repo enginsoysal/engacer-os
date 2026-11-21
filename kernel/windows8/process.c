@@ -405,7 +405,8 @@ static int64_t dispatch8(trap_frame*f){
 #ifdef ENGINE_M14
  &&!(f->rax==W8_SYS_MKDIR&&installer_authority147()&&installer_user_grant147(path,1))
 #endif
- )return -1;unsigned s=f->rax==W8_SYS_MKDIR?v6_mkdir(m6_volume(),path):file_delete143(path);if(b&&s==V6_EXISTS)return -80;if(!s&&f->rax==W8_SYS_MKDIR&&input8.command==W8_INSTALL&&equal8(path,input8.product_root))created_root8=1;return !s||s==V6_EXISTS?0:-1;}
+ ){return -1;}
+ unsigned s=f->rax==W8_SYS_MKDIR?v6_mkdir(m6_volume(),path):file_delete143(path);if(b&&s==V6_EXISTS)return -80;if(!s&&f->rax==W8_SYS_MKDIR&&input8.command==W8_INSTALL&&equal8(path,input8.product_root))created_root8=1;return !s||s==V6_EXISTS?0:-1;}
  case W8_SYS_MOVE:{char destination[256];if(string8(a,path,256)||string8(b,destination,256)||!path8(path,1)||!path8(destination,1)||d||e)return -1;
 #ifdef ENGINE_M14
  if(c==2)return staging_move147(path,destination);
