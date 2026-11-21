@@ -7,7 +7,7 @@ def build():
  out=ROOT/'build/m14-native/stage8/session-fixture';out.mkdir(parents=True,exist_ok=True)
  t=pinned_tools();source=ROOT/'tests/m14/session148_native.c'
  imports=set(re.findall(r'__declspec\(dllimport\).*?\b(\w+)\([^;]*;',source.read_text()))
- user={'RegisterWindowMessageW','RegisterWindowMessageA','PeekMessageW','PostMessageW','RegisterClassExW','GetClassInfoExW','UnregisterClassW','CreateWindowExW','DestroyWindow','GetDesktopWindow','GetParent','IsWindow','GetWindowRect','GetClientRect','GetSystemMetrics','GetDC','ReleaseDC','GetWindowLongW','GetWindowLongPtrW','SetWindowLongPtrW','AdjustWindowRectEx','AdjustWindowRect'};gdi={'GetDeviceCaps'}
+ user={'RegisterWindowMessageW','RegisterWindowMessageA','PeekMessageW','PostMessageW','RegisterClassExW','GetClassInfoExW','UnregisterClassW','CreateWindowExW','DestroyWindow','GetDesktopWindow','GetParent','IsWindow','GetWindowRect','GetClientRect','GetSystemMetrics','GetDC','ReleaseDC','GetWindowLongW','GetWindowLongPtrW','SetWindowLongPtrW','AdjustWindowRectEx','AdjustWindowRect','SetWindowPos','DefWindowProcW'};gdi={'GetDeviceCaps'}
  for provider,names in [('user32',user),('gdi32',gdi),('kernel32',imports-user-gdi)]:
   definition=out/(provider+'.def');definition.write_bytes(('LIBRARY '+provider+'.dll\nEXPORTS\n'+'\n'.join(sorted(names))+'\n').encode())
   command([t['lld-link'],'/lib','/machine:x64','/def:'+str(definition),'/out:'+str(out/(provider+'.lib'))])

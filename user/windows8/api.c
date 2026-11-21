@@ -450,6 +450,7 @@ static const api8 api8_table[]={
  API8(MulDiv,1),
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
+ API8(SetWindowPos,4),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
