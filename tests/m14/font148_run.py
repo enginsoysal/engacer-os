@@ -41,6 +41,8 @@ def main():
      assert image.getpixel((650,390))==(255,0,0),'GDI+ solid client rectangle did not draw red pixels'
      assert image.getpixel((650,320))==(127,255,127) and image.getpixel((690,320))==(0,0,255),'Copied image pixels changed after source disposal/mutation or premultiplied alpha was lost'
      assert image.getpixel((631,250))==(2,2,2),('Straight-ARGB window blend differs from owned Windows HDC reference',image.getpixel((631,250)))
+     green=[image.getpixel((xx,yy))for yy in range(210,240)for xx in range(631,811)];assert sum(1 for rr,gg,bb in green if gg>rr+25 and gg>bb+25)>80 and len(set(green))>8,'Actual GDI+ bitmap glyphs are missing'
+     brown=[image.getpixel((xx,yy))for yy in range(170,200)for xx in range(631,821)];assert sum(1 for rr,gg,bb in brown if rr>gg+30 and gg>bb+15)>80 and len(set(brown))>8,'Actual GDI+ client glyphs are missing'
      blue=ink(image,'blue',(205,185,870,230));red=ink(image,'red',(205,250,875,305));assert red['height']>blue['height']*1.5 and red['width']>blue['width']*1.5,(blue,red);assert blue['coverage_colors']>8 and red['coverage_colors']>8,(blue,red)
      shield_colors=[image.getpixel((xx,yy)) for yy in range(340,380) for xx in range(211,391)];assert shield_colors.count((35,134,200))>5 and shield_colors.count((239,193,88))>5,'Native shield glyph is missing'
      c.key(g,'a');wait(g,'M148_SHIELD_CLEARED');assert 'M148_ACTUAL_FOREGROUND_KEYBOARD_PASS' in output(g);p.drain();c.shot(g,name+'-shield-cleared');cleared=Image.open(out/(name+'-shield-cleared.png')).convert('RGB');assert not any(cleared.getpixel((xx,yy)) in ((35,134,200),(239,193,88))for yy in range(340,380)for xx in range(211,391)),'Shield remained visible after clearing'

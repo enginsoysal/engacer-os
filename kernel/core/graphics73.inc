@@ -217,6 +217,8 @@ static const font73_face *face73(unsigned role){
  return &font73_faces[index+(role>=3?6:0)];
 }
 #ifdef ENGINE_M14
+#include <engine/ui/font-raster148.h>
+#include "font-raster148.inc"
 unsigned ui148_font_role(unsigned em){switch(em){case 0:case 16:return 1;case 14:return 5;case 21:return 3;case 28:return 4;default:return 0;}}
 unsigned ui148_font_height(unsigned em){unsigned role=ui148_font_role(em);return role?(face73(role)->height*2+scale73-1)/scale73:0;}
 unsigned ui148_font_info(unsigned em,ui_font_metrics148*out){

@@ -419,6 +419,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "gdiplus-brush148.inc"
 #include "gdiplus-image148.inc"
 #include "gdiplus-text148.inc"
+#include "gdiplus-draw-text148.inc"
 #endif
 #include "image-draw145.inc"
 #include "image-list145.inc"
@@ -484,7 +485,7 @@ static const api8 api8_table[]={
  API8(GdipDrawImageI,16),
  API8(GdipFillRectangleI,16),API8(GdipSetCompositingMode,16),API8(GdipGetCompositingMode,16),
  API8(GdipCreateSolidFill,16),API8(GdipSetSolidFillColor,16),API8(GdipGetSolidFillColor,16),API8(GdipGetBrushType,16),API8(GdipCloneBrush,16),API8(GdipDeleteBrush,16),
- API8(GdipMeasureString,16),
+ API8(GdipMeasureString,16),API8(GdipDrawString,16),
  API8(GdipCreateStringFormat,16),API8(GdipCloneStringFormat,16),API8(GdipDeleteStringFormat,16),API8(GdipStringFormatGetGenericDefault,16),API8(GdipStringFormatGetGenericTypographic,16),
  API8(GdipSetStringFormatFlags,16),API8(GdipGetStringFormatFlags,16),API8(GdipSetStringFormatAlign,16),API8(GdipGetStringFormatAlign,16),API8(GdipSetStringFormatLineAlign,16),API8(GdipGetStringFormatLineAlign,16),API8(GdipSetStringFormatTrimming,16),API8(GdipGetStringFormatTrimming,16),API8(GdipSetStringFormatMeasurableCharacterRanges,16),API8(GdipGetStringFormatMeasurableCharacterRangeCount,16),
  API8(GdipCreateFontFamilyFromName,16),API8(GdipGetGenericFontFamilySansSerif,16),API8(GdipDeleteFontFamily,16),API8(GdipGetFamilyName,16),

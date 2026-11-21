@@ -370,3 +370,49 @@ handoff additionally uses atomic exchange, and its getter reports no Windows
 foreground while the native desktop/modal surface is active.
 
 Primary contracts: [MsgWaitForMultipleObjects](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-msgwaitformultipleobjects), [queue-state categories](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getqueuestatus).
+
+### Native queue/timer waits pass; real text raster candidate
+
+Source-bound production worker `292cb370` on full kernel/media
+`790c2d5bbc9991ac7a7206479045e2b9` passes all three native API sessions,
+including repeated/new versus old posted input, filtered/unfiltered peeks,
+finite empty-mask deadlines, actual cross-thread post wake and a GUI timer.
+Heap probe pages return 270 to 270. All three actual font/image/shield/focus
+lifetimes retain zero managed task pages. Original Sumatra reaches painting in
+RunApp and reports a real delay-load failure for gdiplus!GdipDrawString. The
+exception is not swallowed. Preserve the pass and original refusal in
+`evidence/M14/8/development/native-message-wait-pass-draw-string-refusal`.
+
+A new appended raster operation exports copied, public OFL Inter coverage from
+the existing immutable atlas. It never maps kernel memory into an application
+or retains an app pointer. A checked 528-byte request selects an actual canonical
+96-DPI strike (14/16 regular, 21/28 semibold). A size/metric query copies only a
+32-byte header. A draw query returns a 3872-byte bounded metadata table plus
+packed grayscale glyph pixels, with at most 160 glyphs, 64x64 per glyph and
+128 KiB per packet. A temporary managed kernel page holds the metadata and is
+freed on every result; the caller's temporary packet is freed after drawing.
+No second full atlas, per-character syscall, persistent font cache, interpreter
+or new service is introduced. Invalid pointers, writable-page rights, sizes,
+missing termination and unsupported strikes are checked before publication.
+
+GDI+ bitmap measurement now uses the same canonical advances as bitmap drawing,
+independent of physical monitor scale. Direct native GDI text retains the actual
+physical 100/150/200% strikes. The new DrawString candidate paints actual
+SourceOver grayscale coverage into PARGB backing with a per-call 1-KiB color
+table, actual brush opacity, bounds/layout clipping, alignment and optional
+underline/strike pixels. Opaque plain client text can use the native retained
+text command. Original bitmap presentation remains the qualified copied-image
+route. Family aliases report Inter; this is not Windows font/shaping identity.
+
+The first bounded drawing profile covers fitting horizontal single lines in
+Display/Pixel page units and default/grayscale rendering. Multiple/control-line
+text, wrapping/partial fit, complex shaping/RTL, SourceCopy text, other hinting
+modes, non-PARGB bitmap targets, translucent/decorated client text and other
+units still return unsupported. They must be implemented if original tasks
+require them. No unsupported drawing call reports success.
+
+Native packet query/coverage/buffer guards, actual transparent glyph pixels,
+clip/sentinel/lifetime checks and visible bitmap/direct-client glyphs are added.
+Both owned fixtures compile; execution on a new full kernel/media remains
+pending. Source disposal and zero retained pages are required in all three
+visible cycles. This is development, not original installer acceptance.

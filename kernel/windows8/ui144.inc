@@ -95,6 +95,7 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 #include "focus144.inc"
 #ifdef ENGINE_M14
 #include "foreground148.inc"
+#include "font-raster148.inc"
 #endif
 #ifdef ENGINE_M14
 #include "picker146.inc"
@@ -106,6 +107,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
  if(op==WUI_ATOM147)return atom_call147(handle,pointer,argument);
  if(op==WUI_MESSAGE148)return handle||argument?-87:message_call148(pointer);
  if(op==WUI_IMAGE148)return argument?-87:ui_image_call148(handle,pointer);
+ if(op==WUI_RASTER148)return argument?-87:ui_raster_call148(handle,pointer);
  if(op==WUI_FOREGROUND148){if(pointer||argument>1)return -87;if(argument)return handle?-87:(int64_t)ui_foreground148;ui_window144*w=ui_owned144(handle);if(!w)return -1400;if(w->thread!=current142)return -5;if(w->view.description.parent||!w->view.description.visible||!ui_enabled_chain144(w)||(w->view.description.style&0x20000000u))return -5;ui_window144*old=ui_lookup144(ui_foreground148);if(old&&old->space!=active_space142)return -5;if(!w8_desktop_foreground_allowed148(handle))return -5;__atomic_store_n(&ui_foreground_pending148,handle,__ATOMIC_RELEASE);++ui_revision144;return 1;}
  if(op==WUI_FONT148){ui_font_metrics148 info;if(argument||handle>UINT32_MAX||!ui148_font_info((unsigned)handle,&info))return -87;return user8(pointer,&info,sizeof(info),1)?-998:0;}
  if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
