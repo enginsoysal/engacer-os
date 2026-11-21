@@ -1,0 +1,44 @@
+{
+  "diagnostic_completed": true,
+  "original_installer_qualified": false,
+  "scope": "Private native routing of the unchanged original installer on full M14.8 development media; not a shipped route or successful installation.",
+  "kernel_build_id": "a7237cc97170470e7324ca26af5e6206",
+  "original_sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+  "original_bytes": 11075960,
+  "private_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "a7237cc97170470e7324ca26af5e6206",
+    "source_commit": "83632618ee3b16972e5d69ee934cadad44b18e4f",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "05f1f7537d43834724387784c4659344945d91e8015793444cfcad87a07252b4",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "527b62e7c4a98fc4bcf8aff65ce6d0bf070307f19a16504dbe6ab2993fc1ce39",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "5b0a248c730087312b2255d50ddc0a0432977c7ecd48532285d0fd955cc7b6b8"
+  },
+  "clone": {
+    "source_sha256": "b413c1b2070e3e22c444db8309f7ba07f5630791ce014362cb6525a19f262ff8",
+    "clone_sha256": "b413c1b2070e3e22c444db8309f7ba07f5630791ce014362cb6525a19f262ff8",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "owned_fixture": "e63e2151440644bea04946e185eb72f7",
+  "state": 3,
+  "status": 1,
+  "message": "Not implemented: kernel32.dll!RaiseException",
+  "output": "Mapped original image: SumatraPDF-3.6.1-64-install.exe bytes=11137024 source-fnv32=3521778578\nRunning the original Windows executable in a protected process.\n\nUnsupported software exception code=3228369023 flags=0 parameters=1\nOriginal delay-load DLL: gdiplus.dll symbol: GdipCreateBitmapFromScan0 error=127\n\nEngacer OS: Not implemented: kernel32.dll!RaiseException\n",
+  "native_windows": [
+    {
+      "slot": 0,
+      "token": 8589934593,
+      "app": 19,
+      "minimized": false
+    }
+  ],
+  "pages_before_cleanup": 5,
+  "retained_pages_after_cleanup": 5
+}

@@ -119,6 +119,15 @@ void entry(void){
  void*(*gp_alloc)(size_t)=GetProcAddress(gdiplus,"GdipAlloc");void(*gp_free)(void*)=GetProcAddress(gdiplus,"GdipFree");check(gp_alloc&&gp_free,320);
  unsigned char*gp_blocks[8];for(unsigned i=0;i<8;++i){size_t bytes=17+(size_t)i*8192;gp_blocks[i]=gp_alloc(bytes);check(gp_blocks[i]&&!((uintptr_t)gp_blocks[i]&15),321);for(size_t j=0;j<bytes;++j)gp_blocks[i][j]=(unsigned char)(i+j);}
  for(unsigned i=0;i<8;++i){size_t bytes=17+(size_t)i*8192;for(size_t j=0;j<bytes;++j)check(gp_blocks[i][j]==(unsigned char)(i+j),322);gp_free(gp_blocks[i]);}gp_free(0);check(!gp_alloc(SIZE_MAX),323);
+ unsigned(*bitmap_create)(int,int,int,unsigned,void*,void**)=GetProcAddress(gdiplus,"GdipCreateBitmapFromScan0");unsigned(*bitmap_dispose)(void*)=GetProcAddress(gdiplus,"GdipDisposeImage");
+ unsigned(*bitmap_width)(void*,unsigned*)=GetProcAddress(gdiplus,"GdipGetImageWidth");unsigned(*bitmap_height)(void*,unsigned*)=GetProcAddress(gdiplus,"GdipGetImageHeight");unsigned(*bitmap_get)(void*,int,int,unsigned*)=GetProcAddress(gdiplus,"GdipBitmapGetPixel");unsigned(*bitmap_set)(void*,int,int,unsigned)=GetProcAddress(gdiplus,"GdipBitmapSetPixel");
+ check(bitmap_create&&bitmap_dispose&&bitmap_width&&bitmap_height&&bitmap_get&&bitmap_set,324);
+ void*bitmap=0;unsigned dimension=0,color=99;check(!bitmap_create(7,3,0,0x26200a,0,&bitmap)&&bitmap,325);check(!bitmap_width(bitmap,&dimension)&&dimension==7&&!bitmap_height(bitmap,&dimension)&&dimension==3,326);
+ check(!bitmap_get(bitmap,6,2,&color)&&!color&&!bitmap_set(bitmap,6,2,0x80402010)&&!bitmap_get(bitmap,6,2,&color)&&color==0x80402010,327);check(bitmap_get(bitmap,7,0,&color)==2&&bitmap_set(bitmap,0,-1,0)==2,328);check(!bitmap_dispose(bitmap)&&bitmap_dispose(bitmap)==2,329);
+ unsigned external[6]={0xff112233,0xff445566,0xff778899,0xffaabbcc,0xff123456,0xff654321};
+ check(!bitmap_create(3,2,-12,0x26200a,external+3,&bitmap)&&!bitmap_get(bitmap,0,1,&color)&&color==external[0],330);check(!bitmap_set(bitmap,2,0,0x80abcdef)&&external[5]==0x80abcdef&&!bitmap_dispose(bitmap)&&external[0]==0xff112233,331);
+ bitmap=(void*)99;check(bitmap_create(0,1,0,0x26200a,0,&bitmap)==2&&!bitmap,332);check(bitmap_create(100000,100000,0,0x26200a,0,&bitmap)==3&&!bitmap,333);
+ void*bitmaps[32];for(unsigned i=0;i<32;++i)check(!bitmap_create(1,1,0,0x21808,0,bitmaps+i),334);check(bitmap_create(1,1,0,0x21808,0,&bitmap)==3&&!bitmap,335);for(unsigned i=0;i<32;++i)check(!bitmap_dispose(bitmaps[i]),336);
  shutdown_gp148(gp_token);extra_hook=99;check(hook(&extra_hook)==18&&!extra_hook,319);check(FreeLibrary(gdiplus),312);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);

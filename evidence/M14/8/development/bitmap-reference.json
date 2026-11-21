@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "scope": "Observe Windows GDI+ pixel ownership; supporting reference, not guest proof.",
+  "formats": [
+    {
+      "format": 137224,
+      "initial": 4278190080,
+      "roundtrip": 4282392592
+    },
+    {
+      "format": 139273,
+      "initial": 4278190080,
+      "roundtrip": 4282392592
+    },
+    {
+      "format": 2498570,
+      "initial": 0,
+      "roundtrip": 2151686160
+    },
+    {
+      "format": 925707,
+      "initial": 0,
+      "roundtrip": 2151620367
+    }
+  ],
+  "premultiplied_readback_qualified": false,
+  "negative_stride_borrowed_writeback": true
+}
