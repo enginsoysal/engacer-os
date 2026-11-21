@@ -295,6 +295,7 @@ static void MS f_SetFileApisToOEM(void){file_oem8=1;}
 #include "version147.inc"
 #include "atom147.inc"
 #include "srw148.inc"
+#include "system-directory148.inc"
 #endif
 static WCHAR *MS f_CharUpperW(WCHAR*p){if((uintptr_t)p<=65535){unsigned v=(unsigned)(uintptr_t)p;if(v>='a'&&v<='z')v-=32;return (WCHAR*)(uintptr_t)v;}for(unsigned i=0;p&&p[i];++i)if(p[i]>='a'&&p[i]<='z')p[i]-=32;return p;}
 static const char *MS f_CharPrevExA(unsigned cp,const char*start,const char*current,unsigned flags){(void)flags;if(current<=start)return start;const char*p=current-1;if(cp==65001||cp==0||cp==1)while(p>start&&((uint8_t)*p&0xc0)==0x80)--p;return p;}
@@ -415,6 +416,7 @@ static const api8 api8_table[]={
  API8(GetFileVersionInfoSizeW,24),API8(GetFileVersionInfoW,24),API8(VerQueryValueW,24),
  API8(RegisterWindowMessageW,4),API8(GlobalFindAtomW,1),API8(GlobalAddAtomW,1),API8(GlobalDeleteAtom,1),API8(GlobalGetAtomNameW,1),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
+ API8(GetSystemDirectoryW,1),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

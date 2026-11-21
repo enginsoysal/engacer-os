@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 668,
-  "table_bytes": 5344,
+  "refusal_keys": 667,
+  "table_bytes": 5336,
   "imports": [
     {
       "app": "notepadpp",
@@ -2900,13 +2900,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "GetSystemDirectoryW",
-      "key": "06ae4ddba45ce339",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "OpenThread",
       "key": "779fee6480171714",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5744,13 +5737,6 @@
       "dll": "kernel32.dll",
       "symbol": "GetFileTime",
       "key": "a9e5691941bcdb27",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "GetSystemDirectoryW",
-      "key": "06ae4ddba45ce339",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
