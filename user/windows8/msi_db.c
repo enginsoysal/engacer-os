@@ -54,7 +54,8 @@ msi8_table msi8_table_open(const char*name){
   int number=msi8_integer(&columns_table8,row,1);require8(number>=1&&number<=32,"MSI column number is unsupported.");unsigned i=(unsigned)number-1;require8(!t.column[i].type,"MSI has duplicate columns.");copy8(t.column[i].name,msi8_text(&columns_table8,row,2),64);t.column[i].type=(unsigned)msi8_integer(&columns_table8,row,3);if((unsigned)number>t.columns)t.columns=(unsigned)number;
  }
  for(unsigned i=0;i<t.columns;++i){require8(t.column[i].type!=0,"MSI column sequence has a gap.");width+=column_width8(t.column[i].type);}
- t.data=msi8_stream(name,1);if(!t.data.data){require8(!t.columns,"MSI table stream is missing.");return t;}
+ /* Authored empty tables may retain columns without a row-data stream. */
+ t.data=msi8_stream(name,1);if(!t.data.data)return t;
  require8(width&&!(t.data.size%width)&&t.data.size/width<=4096,"MSI table row layout is unsupported.");t.rows=t.data.size/width;return t;
 }
 void msi8_database_close(void){

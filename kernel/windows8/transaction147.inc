@@ -1,4 +1,5 @@
 /* Keep the only durable external-effect undo record across process failure. */
+static unsigned transaction_pending147(void){char path[256];copy8(path,input8.product_root,sizeof(path));unsigned n=length8(path);const char*tail="/.EngacerMSI/transaction.bin";if(n+length8(tail)>=sizeof(path))return 0;copy8(path+n,tail,sizeof(path)-n);return find8(path)!=0;}
 static unsigned transaction_keep147(void){
  char path[256];copy8(path,input8.product_root,sizeof(path));unsigned n=length8(path);
  const char*names[]={"/.EngacerMSI/transaction.bin","/product.bin"};

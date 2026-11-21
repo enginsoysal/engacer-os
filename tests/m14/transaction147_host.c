@@ -26,7 +26,7 @@ static void metadata_path143(const char*p,char*out){(void)p;copy8(out,"/never-a-
 static v6_volume*m6_volume(void){return 0;}
 unsigned v6_rename(v6_volume*v,const char*a,const char*b,unsigned replace){(void)v;(void)a;(void)b;(void)replace;return 0;}
 #include "../../kernel/windows8/transaction147.inc"
-__declspec(dllexport) unsigned keep147(const void*p,unsigned n,unsigned mode,unsigned fail,const char*root,const char*user){memset(&input8,0,sizeof(input8));copy8(input8.product_root,root,256);copy8(input8.user_root,user,256);test_data147=p;test_bytes147=n;test_mode147=mode;test_fail147=fail;return transaction_keep147();}
+__declspec(dllexport) unsigned keep147(const void*p,unsigned n,unsigned mode,unsigned fail,const char*root,const char*user){memset(&input8,0,sizeof(input8));copy8(input8.product_root,root,256);copy8(input8.user_root,user,256);test_data147=p;test_bytes147=n;test_mode147=mode;test_fail147=fail;if(mode==1&&!transaction_pending147())return 99;return transaction_keep147();}
 __declspec(dllexport) int64_t alias147(unsigned command,const char*alias){memset(&input8,0,sizeof(input8));memset(&mailbox147,0,sizeof(mailbox147));input8.command=command;copy8(input8.product_root,"/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}",256);int64_t status=alias_set147((uint64_t)(uintptr_t)alias,0,0,0,0);if(!status&&(memcmp(input8.windows_root,mailbox147.windows_root,256)||!win_product_root147(input8.product_root)))return -999;return status;}
 
 __declspec(dllexport) unsigned grant147(const char*path,unsigned ancestor){copy8(input8.product_root,"/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}",256);copy8(input8.user_root,"/Users/Owner",256);return installer_user_grant147(path,ancestor);}

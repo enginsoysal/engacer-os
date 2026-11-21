@@ -27,6 +27,7 @@ void msi8_execute(void){
  check147(win_tx_digest147(journal147,sizeof(journal147),h->checksum)&&win_tx_validate147(journal147,sizeof(journal147)),"Fixture recovery image failed production admission.");
  if(equal8(mode,"corrupt-journal"))h->checksum[0]^=1;
  check147(!save8(pending,journal147,sizeof(journal147)),"Fixture recovery image could not be saved.");
+ if(equal8(mode,"cancel-journal")){progress8(70,"M147_JOURNAL_CANCEL_READY");volatile uint32_t parked=1;for(;;)sys8(W8_SYS_PARK,(uint64_t)(uintptr_t)&parked,1,UINT32_MAX,0,0);}
  if(equal8(mode,"journal-fail")||equal8(mode,"corrupt-journal")){print8("M147_EXPECTED_FAILURE_AFTER_JOURNAL\n");fail8("Intentional test-only failure after journal publication.");}
  check147((int64_t)sys8(W8_SYS_MOVE,(uint64_t)(uintptr_t)staged,(uint64_t)(uintptr_t)target,2,0,0)==0,"Native extent promotion failed.");hash_file147(target,bytes,actual);check147(!memcmp(actual,expected,32),"Promoted native payload differs.");
  check147(!remove8(target)&&!remove8(pending)&&!remove8(stage_dir)&&!remove8(private_dir)&&!remove8(job8->product_root),"Owned successful fixture cleanup failed.");

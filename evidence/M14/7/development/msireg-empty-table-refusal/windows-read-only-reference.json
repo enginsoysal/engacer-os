@@ -1,0 +1,57 @@
+{
+  "scope": "Trusted Windows data-only read-only queries; no actions or installers executed",
+  "tables": [
+    {
+      "package": "7z2606-x64.msi",
+      "table": "Signature",
+      "open_status": 0,
+      "execute_status": 0,
+      "first_fetch_status": 259
+    },
+    {
+      "package": "7z2606-x64.msi",
+      "table": "CreateFolder",
+      "open_status": 1615
+    },
+    {
+      "package": "7z2606-x64.msi",
+      "table": "AppSearch",
+      "open_status": 0,
+      "execute_status": 0,
+      "first_fetch_status": 0
+    },
+    {
+      "package": "7z2606-x64.msi",
+      "table": "RegLocator",
+      "open_status": 0,
+      "execute_status": 0,
+      "first_fetch_status": 0
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "table": "Signature",
+      "open_status": 0,
+      "execute_status": 0,
+      "first_fetch_status": 259
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "table": "CreateFolder",
+      "open_status": 1615
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "table": "AppSearch",
+      "open_status": 0,
+      "execute_status": 0,
+      "first_fetch_status": 0
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "table": "RegLocator",
+      "open_status": 0,
+      "execute_status": 0,
+      "first_fetch_status": 0
+    }
+  ]
+}

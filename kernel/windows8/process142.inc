@@ -102,7 +102,7 @@ unsigned w8_start_reviewed147(unsigned command,const char*source,const char*root
  memcpy(input8.source_sha147,digest,32);if(user8(W8_MAILBOX+offsetof(w8_mailbox,source_sha147),input8.source_sha147,32,1)){w8_cancel();return V6_INVALID;}return 0;
 }
 void w8_cancel(void){
- if(!w8_pending())return;unsigned cleanup_failed=0;
- for(unsigned slot=0;slot<SPACES142;++slot)if(spaces142[slot]){active_space142=slot;cancel8=1;info8.state=3;info8.status=1223;cleanup_failed|=rollback8();end_space142(slot,1223);}
- active_space142=0;root_terminal142=3;root_info142->state=3;root_info142->status=1;copy8(root_info142->message,cleanup_failed?"Cancelled. Disk cleanup was interrupted; use Recover / remove.":"Operation cancelled. Uncommitted file writes were discarded.",sizeof(root_info142->message));++root_info142->revision;timer_needed142=0;timer_claim142(1,0);
+ if(!w8_pending())return;unsigned cleanup_failed=0,kept=0,damaged=0;
+ for(unsigned slot=0;slot<SPACES142;++slot)if(spaces142[slot]){active_space142=slot;cancel8=1;info8.state=3;info8.status=1223;unsigned cleanup=rollback8();if(cleanup==2)kept=1;else if(cleanup==3)damaged=1;else if(cleanup)cleanup_failed=1;end_space142(slot,1223);}
+ active_space142=0;root_terminal142=3;root_info142->state=3;root_info142->status=1;copy8(root_info142->message,damaged?"Cancelled. A recovery record needs inspection. Files were kept.":kept?"Cancelled. Its transaction was kept; choose Recover / remove.":cleanup_failed?"Cancelled. Disk cleanup was interrupted; use Recover / remove.":"Operation cancelled. Uncommitted file writes were discarded.",sizeof(root_info142->message));++root_info142->revision;timer_needed142=0;timer_claim142(1,0);
 }

@@ -159,6 +159,7 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
   if(operation==2||operation==3||operation==6||operation==10||((operation==1)&&(request.access&~0x20019u)))return -5;
  }
 #endif
+ if(operation==11){if(request.flags||request.name||request.data||!request.result)return -87;result.type=registry_count143(0);result.bytes=registry_count143(1);result.name_units=REGISTRY_KEYS143;result.disposition=REGISTRY_VALUES143;return user8(request.result,&result,sizeof(result),1)?-998:0;}
  if(operation==1||operation==2){if(!request.result)return -87;if(user8(request.result,&result,sizeof(result),1))return -998;unsigned error=registry_open143(&request,operation==2,&result);if(error)return -(int64_t)error;if(user8(request.result,&result,sizeof(result),1)){(void)registry_close143(result.handle);return -998;}return 0;}
  if(request.flags)return -87;
  if(operation==5)return -(int64_t)registry_close143(request.root);

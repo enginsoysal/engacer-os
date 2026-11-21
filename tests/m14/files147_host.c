@@ -54,7 +54,7 @@ __declspec(dllexport) unsigned stage147(void){journal147=msij_create147(plan147)
 __declspec(dllexport) unsigned pending147(void){char path[256];copy8(path,plan147->product_root,256);append8(path,"/.EngacerMSI/transaction.bin",256);return msij_write147(journal147,path);}
 __declspec(dllexport) unsigned promote147(void){return msif_promote147(plan147);}
 __declspec(dllexport) unsigned verify147(void){return msif_verify147(journal147);}
-__declspec(dllexport) unsigned keep147(void){return transaction_keep147();}
+__declspec(dllexport) unsigned keep147(void){return transaction_pending147()?transaction_keep147():0;}
 __declspec(dllexport) const void*journal_data147(void){return journal147->data;}
 __declspec(dllexport) unsigned journal_bytes147(void){return journal147->bytes;}
 __declspec(dllexport) void files_close147(void){stream_release147();for(unsigned i=0;i<8;++i)if(handles147[i].live)(void)close_handle147(i,0);msij_close147(journal147);journal147=0;}

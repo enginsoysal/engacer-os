@@ -235,6 +235,9 @@ static void reap_threads142(void){
 #include "transaction147.inc"
 #endif
 static unsigned rollback8(void){
+#ifdef ENGINE_M14
+ if((input8.command==W8_INSTALL||input8.command==W8_REMOVE)&&transaction_pending147()){unsigned pending=transaction_keep147();if(pending)return pending;}
+#endif
  if(!created_root8)return 0;
 #ifdef ENGINE_M14
  unsigned keep=transaction_keep147();if(keep)return keep;

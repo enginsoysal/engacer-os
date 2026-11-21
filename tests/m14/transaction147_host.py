@@ -38,7 +38,7 @@ def main():
  check(make([file(b'.EngacerMSI/source.msi',4)]),1)
  for path,flag in [(b'wrong-cache.msi',4),(b'.EngacerMSI/source.msi',1),(b'.engacermsi/other',2)]:check(make([file(path,flag)]),0)
  check(make([file(),file()]),0);check(make([file(b'folder/FILE'),file(b'FOLDER/file')]),0)
- check(make([reg(b'bad')]),0);check(make([reg(),reg()]),0);check(make([prop,prop]),0);check(make([file(b'product.bin')]),0)
+ check(make([reg(b'bad')]),1);check(make([reg(),reg()]),0);check(make([prop,prop]),0);check(make([file(b'product.bin')]),0)
  for alias in [b'',b'C:\\Windows\\System32',b'C:\\Program Files',b'C:\\Program Files\\..\\Windows',b'C:\\Program Files\\A\\..\\B',b'C:\\Program Files\\']:
   bad=bytearray(good);bad[400:656]=alias.ljust(256,b'\0');check(seal(bad),0)
  rng=random.Random(147)
