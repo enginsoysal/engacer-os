@@ -130,12 +130,28 @@
           "Follow M14.0-M14.15 in order"
         ],
         [
+          "docs/milestones/m14-7.md",
+          "Follow M14.7 MSI development and remaining installation gates"
+        ],
+        [
+          "docs/architecture/msi-m147.md",
+          "Understand native MSI execution, evidence and current limits"
+        ],
+        [
+          "docs/milestones/m14-6.md",
+          "Read the qualified M14.6 runtime stage"
+        ],
+        [
+          "docs/architecture/interoperability-m146.md",
+          "Understand owner-bound dialogs, clipboard and shared RAM"
+        ],
+        [
           "docs/architecture/drawing-m145.md",
           "Understand drawing, controls and their tested limits"
         ],
         [
           "docs/milestones/m14-5.md",
-          "Follow M14.5 drawing, controls and remaining runtime gates"
+          "Read the historical M14.5 drawing and controls stage"
         ],
         [
           "docs/architecture/messages-m144.md",
