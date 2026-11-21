@@ -1,0 +1,15 @@
+{
+  "scope": "Normalize only absolute host repository paths in structured failure receipts. Exceptions, source/executed hashes, assertion details, build identities and failure status are retained. Original raw receipts remain in local replay outputs; no Git history rewrite.",
+  "receipts": [
+    {
+      "path": "evidence/M14/7/development/final7-picker-stage-observer-refusal/replay.json",
+      "raw_receipt_sha256": "d6ea3c644f078769d0ad36f39771e75060ab4a8666dc807cfe5dc149fc6f09ef",
+      "normalized_receipt_sha256": "f2afee0f0c9592918106b0b18104db4ac63b74d83ef0db76eb310f71b6d914d5"
+    },
+    {
+      "path": "evidence/M14/7/development/final7-restart-stage-observer-refusal/replay.json",
+      "raw_receipt_sha256": "87c8db03bd3cc6f4b50e15d1714cd640303d970c93e84344c1d79fb031ac6cfc",
+      "normalized_receipt_sha256": "6c4871ac7b076f9bf246c28d9d13b59a2c55d6ed44733ffcc2ca872b8b04688a"
+    }
+  ]
+}
