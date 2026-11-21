@@ -617,3 +617,12 @@ EXE rollback is not implemented; the frontend does not offer MSI recovery as
 though it works for these records. The reader and optional DLL functionality
 remain unqualified. The final frozen media campaign and independent publication
 must still pass before this candidate is marked complete.
+
+Process snapshots use the reserved 32-significant-bit `0xd0000000` handle domain,
+separate from shared mappings at `0xe0000000` and legacy registry objects at
+`0xc0000000`. Snapshot lookup and close normalize only zero-extended or correctly
+sign-extended 32-bit values; other upper-bit combinations refuse. This fixes a
+real integrated CloseHandle collision without enlarging tables. Native tests
+exercise simultaneous snapshot/mapping lifetimes and cross-type refusal. The
+broader execution-foundation inventory must audit 32-significant-bit behavior
+across the other handle families before general interoperability is claimed.
