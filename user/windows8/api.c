@@ -388,6 +388,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #ifdef ENGINE_M14
 #include "gdiplus-startup148.inc"
 #include "gdiplus-bitmap148.inc"
+#include "gdiplus-graphics148.inc"
 #endif
 #include "keys145.inc"
 #include "painting144.inc"
@@ -436,6 +437,7 @@ static const api8 api8_table[]={
  API8(CreateToolhelp32Snapshot,1),API8(Process32FirstW,1),API8(Process32NextW,1),
  API8(GdiplusStartup,16),API8(GdiplusShutdown,16),API8(GdipAlloc,16),API8(GdipFree,16),
  API8(GdipCreateBitmapFromScan0,16),API8(GdipDisposeImage,16),API8(GdipGetImageWidth,16),API8(GdipGetImageHeight,16),API8(GdipBitmapGetPixel,16),API8(GdipBitmapSetPixel,16),
+ API8(GdipGetImageGraphicsContext,16),API8(GdipDeleteGraphics,16),API8(GdipGraphicsClear,16),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif
