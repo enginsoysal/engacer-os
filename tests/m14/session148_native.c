@@ -71,6 +71,9 @@ __declspec(dllimport) int GetSystemMetrics(int);
 __declspec(dllimport) uint64_t GetDC(uint64_t);
 __declspec(dllimport) int ReleaseDC(uint64_t,uint64_t);
 __declspec(dllimport) int GetDeviceCaps(uint64_t,int);
+__declspec(dllimport) int GetWindowLongW(uint64_t,int);
+__declspec(dllimport) int64_t GetWindowLongPtrW(uint64_t,int);
+__declspec(dllimport) int64_t SetWindowLongPtrW(uint64_t,int,int64_t);
 static unsigned class_created148,class_destroyed148;
 static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){(void)window;(void)wp;(void)lp;if(message==1)++class_created148;if(message==0x82)++class_destroyed148;return message==0x81;}
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
@@ -126,6 +129,7 @@ void entry(void){
  check(!RegisterClassExW(&class_readback)&&GetLastError()==87,350);unsigned class_atom=RegisterClassExW(&class_definition);check(class_atom>=0xc000&&!RegisterClassExW(&class_definition)&&GetLastError()==1410,351);
  class_readback.size=80;check(GetClassInfoExW(0,(const uint16_t*)(uintptr_t)class_atom,&class_readback)&&class_readback.proc==class_proc148&&class_readback.window_extra==16&&!class_readback.small_icon,352);
  uint64_t hidden=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned class lifecycle",0,0,0,100,100,0,0,0,0);check(hidden&&class_created148==1&&!UnregisterClassW(class_definition.name,0)&&GetLastError()==1412,353);
+ SetLastError(0x148);check(!GetWindowLongW(hidden,-16)&&GetLastError()==0x148&&GetWindowLongW(desktop,-16)==0x10000000&&!SetWindowLongPtrW(hidden,8,INT64_C(0x11223344aabbccdd))&&GetWindowLongW(hidden,8)==(int)0xaabbccddu&&GetWindowLongW(hidden,12)==0x11223344&&GetWindowLongPtrW(hidden,8)==INT64_C(0x11223344aabbccdd),395);check(!GetWindowLongW(hidden,13)&&GetLastError()==1413,396);
  check(DestroyWindow(hidden)&&class_destroyed148==1&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
