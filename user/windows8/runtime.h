@@ -73,6 +73,8 @@ NORETURN void pe8_exit(unsigned);
 void pe8_run(const char*,const char*);
 unsigned pe8_exception_dispatch(w8_exception_record142*,w8_context142*);
 unsigned pe8_software_dispatch148(w8_exception_record142*,w8_context142*);
+NORETURN void pe8_rtl_unwind148(uint64_t,uint64_t,w8_exception_record142*,uint64_t,w8_context142*,uint64_t);
+NORETURN void exception_resume148(w8_context142*);
 int seh_c_specific142(w8_exception_record142*,uint64_t,w8_context142*,void*);
 void msi8_execute(void);
 #endif

@@ -2,7 +2,7 @@
 typedef struct {uint64_t control_pc,image_base,function,establisher,target_ip,context,handler,handler_data,history;uint32_t scope_index,pad;} dispatcher_context142;
 _Static_assert(sizeof(dispatcher_context142)==80,"Windows dispatcher context ABI");
 typedef struct {module141*module;uint8_t*function;uint64_t pc,establisher,handler,data;unsigned handler_flags;} unwind_frame142;
-typedef struct seh_state142 {struct seh_state142*previous;w8_context142*original;uint64_t target,frame,function;w8_context142 selected;unsigned chosen;} seh_state142;
+typedef struct seh_state142 {struct seh_state142*previous;w8_context142*original;uint64_t target,frame,function;w8_context142 selected;unsigned chosen,software148,unwinding148;} seh_state142;
 static seh_state142*seh_states142[16];
 static NORETURN void unwind_fail142(const char*message){print8(message);print8("\n");exit8(0xc0000027u);}
 static void checked_unwind_read142(uint64_t address,void*out,unsigned bytes){if(!bytes||sys8(W8_SYS_ACCESS,address,bytes,1,0,0))unwind_fail142("The Windows unwind stack or metadata is unreadable.");memcpy(out,(void*)(uintptr_t)address,bytes);}
@@ -60,7 +60,7 @@ int seh_c_specific142(w8_exception_record142*record,uint64_t frame,w8_context142
  }return 1;
 }
 static unsigned exception_dispatch_mode148(w8_exception_record142*record,w8_context142*context,unsigned software){
- unsigned thread=tid142()&255u;if(thread>=16)return 0;seh_state142 state={.previous=seh_states142[thread],.original=context};seh_states142[thread]=&state;w8_context142 walk=*context;unsigned caller=software;
+ unsigned thread=tid142()&255u;if(thread>=16)return 0;seh_state142 state={.previous=seh_states142[thread],.original=context,.software148=software};seh_states142[thread]=&state;w8_context142 walk=*context;unsigned caller=software;
  for(unsigned depth=0;depth<256;++depth){if(!walk.rip)break;uint64_t pc=walk.rip-(caller?1:0);if(!unwind_image142(pc))break;w8_context142 before=walk;unwind_frame142 frame;virtual_unwind142(&walk,pc,&frame);if(frame.handler&&(frame.handler_flags&1)){dispatcher_context142 d=dispatcher142(&frame,&before,0);int result=((int(MS*)(w8_exception_record142*,uint64_t,w8_context142*,dispatcher_context142*))(uintptr_t)frame.handler)(record,frame.establisher,context,&d);if(!result){seh_states142[thread]=state.previous;return 1;}if(result!=1)unwind_fail142("The exception language-handler disposition is unsupported.");if(state.chosen)break;}if(walk.rsp<=before.rsp||walk.rsp-before.rsp>8*1024*1024)unwind_fail142("The Windows virtual unwind did not advance its stack.");caller=1;}
  if(!state.chosen){seh_states142[thread]=state.previous;return 0;}walk=*context;caller=software;unsigned old_flags=record->flags;
  for(unsigned depth=0;depth<256;++depth){uint64_t pc=walk.rip-(caller?1:0);w8_context142 before=walk;unwind_frame142 frame;virtual_unwind142(&walk,pc,&frame);unsigned target=frame.establisher==state.frame&&(uint64_t)frame.function==state.function;record->flags=old_flags|2|(target?32u:0u);
@@ -71,3 +71,31 @@ static unsigned exception_dispatch_mode148(w8_exception_record142*record,w8_cont
 
 unsigned pe8_exception_dispatch(w8_exception_record142*r,w8_context142*c){return exception_dispatch_mode148(r,c,0);}
 unsigned pe8_software_dispatch148(w8_exception_record142*r,w8_context142*c){return exception_dispatch_mode148(r,c,1);}
+
+#ifdef ENGINE_M14
+/* Active-exception target unwinds reuse the fault context, never ELF frames. */
+NORETURN void pe8_rtl_unwind148(uint64_t target,uint64_t ip,w8_exception_record142*record,uint64_t value,w8_context142*output,uint64_t history){
+ unsigned thread=tid142()&255u;if(thread>=16)unwind_fail142("The unwind thread is outside the supported profile.");
+ seh_state142*state=seh_states142[thread];
+ if(!state||state->unwinding148||!target||!ip||history||!output||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)output,sizeof(*output),3,0,0))unwind_fail142("Only active-exception target unwinds without a history table are supported.");
+ w8_exception_record142*owned=(w8_exception_record142*)((uint8_t*)state->original-offsetof(w8_exception_packet142,context)+offsetof(w8_exception_packet142,record));
+ if(record&&record!=owned)unwind_fail142("The target unwind exception record is not the active record.");record=owned;
+ if(sys8(W8_SYS_ACCESS,ip,1,5,0,0)||!unwind_image142(ip))unwind_fail142("The target unwind address is not executable PE code.");
+ state->unwinding148=1;w8_context142 walk=*state->original;unsigned caller=state->software148,old_flags=record->flags;
+ for(unsigned depth=0;depth<256;++depth){
+  uint64_t pc=walk.rip-(caller?1:0);if(!walk.rip||!unwind_image142(pc))break;
+  w8_context142 before=walk;unwind_frame142 frame;virtual_unwind142(&walk,pc,&frame);unsigned at=frame.establisher==target;
+  if(at&&(frame.module!=unwind_image142(ip)||!frame.function||ip<(uint64_t)frame.module->base+u32(frame.function)||ip>=(uint64_t)frame.module->base+u32(frame.function+4)))unwind_fail142("The target unwind crosses an unsupported image boundary.");
+  record->flags=old_flags|2u|(at?32u:0u);
+  if(frame.handler&&(frame.handler_flags&2)){
+   dispatcher_context142 d=dispatcher142(&frame,&before,ip);
+   int result=((int(MS*)(w8_exception_record142*,uint64_t,w8_context142*,dispatcher_context142*))(uintptr_t)frame.handler)(record,frame.establisher,state->original,&d);
+   if(result!=1)unwind_fail142("Collided or unsupported target-unwind disposition.");
+  }
+  if(at){before.rsp=target;before.rip=ip;before.rax=value;record->flags=old_flags;*output=before;*state->original=before;seh_states142[thread]=state->previous;exception_resume148(state->original);}
+  if(walk.rsp<=before.rsp||walk.rsp-before.rsp>8*1024*1024)unwind_fail142("The target unwind did not advance its stack.");caller=1;
+ }
+ unwind_fail142("The target unwind frame was not reached.");
+}
+
+#endif

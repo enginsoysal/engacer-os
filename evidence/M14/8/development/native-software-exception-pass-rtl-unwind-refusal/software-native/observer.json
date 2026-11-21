@@ -1,0 +1,30 @@
+{
+  "canonical_sha256": "2e44edcdde6eb56480bd6ae102a8ce77fdf0bd5f1d7cd21e3d3edee1fcc912fc",
+  "executed_sha256": "23e99a043ef23184fb820b5684142c51ce0205f38960957d28f0db277b1cf6f0",
+  "replacements": [
+    [
+      "from unwind_fixtures2 import build",
+      "from software148_build import build"
+    ],
+    [
+      "m142-unwind",
+      "m148-software"
+    ],
+    [
+      "stage8/unwind'",
+      "stage8/software-native'"
+    ],
+    [
+      "M142_C_SEH_FINALLY_UNWIND_PASS",
+      "M148_SOFTWARE_VECTORED_C_SEH_FINALLY_PASS"
+    ],
+    [
+      "Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification",
+      "Native software raises: 48 vectored resumptions and 60 C filters/finally across five stacks; continuable flags-zero profile only"
+    ],
+    [
+      "handled_faults_per_execution=60",
+      "handled_faults_per_execution=60,vectored_continuations_per_execution=48"
+    ]
+  ]
+}
