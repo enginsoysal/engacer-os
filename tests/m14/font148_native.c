@@ -25,12 +25,17 @@ __declspec(dllimport) int TextOutW(H,int,int,const W*,int);
 __declspec(dllimport) H GetStdHandle(unsigned);
 __declspec(dllimport) int WriteFile(H,const void*,unsigned,unsigned*,void*);
 __declspec(dllimport) void ExitProcess(unsigned);
+__declspec(dllimport) unsigned GdiplusStartup(uint64_t*,const void*,void*);
+__declspec(dllimport) void GdiplusShutdown(uint64_t);
+__declspec(dllimport) unsigned GdipCreateFromHDC(H,void**);
+__declspec(dllimport) unsigned GdipGraphicsClear(void*,unsigned);
+__declspec(dllimport) unsigned GdipDeleteGraphics(void*);
 static H small,big;static unsigned paints;
 static void say(const char*s){unsigned n=0,w;while(s[n])++n;WriteFile(GetStdHandle((unsigned)-11),s,n,&w,0);}
 static void check(int ok){if(!ok){say("M148_FONT_RASTER_FAIL\n");ExitProcess(1);}}
 static int64_t procedure(H h,unsigned msg,uint64_t wp,int64_t lp){
- if(msg==15){PAINT paint;H dc=BeginPaint(h,&paint);check(dc!=0);check(FillRect(dc,&paint.rect,6));check(SetBkMode(dc,1));H old=SelectObject(dc,small);check(old!=0);SetTextColor(dc,0xff0000);check(TextOutW(dc,30,30,L"Native glyphs WWW iii",20));check(SelectObject(dc,big)==small);SetTextColor(dc,0x0000ff);check(TextOutW(dc,30,95,L"Native glyphs WWW iii",20));check(SelectObject(dc,old)==big);check(EndPaint(h,&paint));++paints;say("M148_FONT_RASTER_WAITING\n");return 0;}
+ if(msg==15){PAINT paint;H dc=BeginPaint(h,&paint);check(dc!=0);check(FillRect(dc,&paint.rect,16));void*graphics=0;check(!GdipCreateFromHDC(dc,&graphics)&&graphics);check(!GdipGraphicsClear(graphics,0xffffffff)&&!GdipDeleteGraphics(graphics));check(SetBkMode(dc,1));H old=SelectObject(dc,small);check(old!=0);SetTextColor(dc,0xff0000);check(TextOutW(dc,30,30,L"Native glyphs WWW iii",20));check(SelectObject(dc,big)==small);SetTextColor(dc,0x0000ff);check(TextOutW(dc,30,95,L"Native glyphs WWW iii",20));check(SelectObject(dc,old)==big);check(EndPaint(h,&paint));++paints;say("M148_FONT_RASTER_WAITING\n");return 0;}
  if(msg==2){PostQuitMessage(0);return 0;}return DefWindowProcW(h,msg,wp,lp);
 }
 static PROC volatile relocation=procedure;
-void entry(void){FONT f={0};f.height=-14;f.weight=400;small=CreateFontIndirectW(&f);f.height=-28;f.weight=600;f.underline=1;big=CreateFontIndirectW(&f);check(small&&big);CLASS c={0};c.proc=relocation;c.name=L"EngacerFontRaster148";check(RegisterClassW(&c));H h=CreateWindowExW(0,c.name,L"Real native Inter glyphs: 14 and 28 pixels",0x10cf0000,180,120,700,350,0,0,0,0);check(h!=0);MSG m;int state;while((state=GetMessageW(&m,0,0,0))>0){TranslateMessage(&m);DispatchMessageW(&m);}check(state==0&&paints&&DeleteObject(small)&&DeleteObject(big));say("M148_FONT_RASTER_LIFETIME_PASS\n");ExitProcess(0);}
+void entry(void){struct{unsigned version,pad;uint64_t callback;int suppress_thread,suppress_codecs;} input={1,0,0,0,0};uint64_t token=0;check(!GdiplusStartup(&token,&input,0)&&token);FONT f={0};f.height=-14;f.weight=400;small=CreateFontIndirectW(&f);f.height=-28;f.weight=600;f.underline=1;big=CreateFontIndirectW(&f);check(small&&big);CLASS c={0};c.proc=relocation;c.name=L"EngacerFontRaster148";check(RegisterClassW(&c));H h=CreateWindowExW(0,c.name,L"Real native Inter glyphs: 14 and 28 pixels",0x10cf0000,180,120,700,350,0,0,0,0);check(h!=0);MSG m;int state;while((state=GetMessageW(&m,0,0,0))>0){TranslateMessage(&m);DispatchMessageW(&m);}check(state==0&&paints&&DeleteObject(small)&&DeleteObject(big));GdiplusShutdown(token);say("M148_FONT_RASTER_LIFETIME_PASS\n");ExitProcess(0);}

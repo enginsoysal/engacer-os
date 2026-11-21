@@ -113,3 +113,19 @@ the caller's rectangle only after validation. The current profile caps text at
 painting mode. No requested text is silently drawn or wrapped differently.
 General DrawText painting remains a separate required implementation when used
 by original task paths; measurement alone cannot qualify GUI rendering.
+
+## GDI+ HDC contexts candidate
+
+GdipCreateFromHDC creates one of the existing bounded 32 graphics objects and
+borrows a validated thread-owned native DC. It creates no second framebuffer,
+bitmap copy or worker. DPI queries report the actual 96-DPI compatibility
+coordinate space; native display scaling remains the compositor's job. Releasing
+the borrowed HDC invalidates subsequent queries/drawing; deleting the graphics
+object never releases a caller-owned DC. Bitmap contexts still hold actual
+bitmap references and retain their prior independent lifetime behavior.
+
+Opaque client clears submit a real clipped rectangle to the native compositor.
+Translucent, desktop and non-client clears return NotImplemented; alpha blending
+is not silently discarded. Mixed DC/graphics operations acquire UI metadata
+before graphics metadata, avoiding an inverted lock order. Own visible raster
+and bitmap/task-lifetime regressions must pass before qualification.

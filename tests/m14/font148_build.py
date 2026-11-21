@@ -7,9 +7,9 @@ from m1 import pinned_tools,command
 def build():
  out=ROOT/'build/m14-native/stage8/font-fixture';out.mkdir(parents=True,exist_ok=True);t=pinned_tools();source=ROOT/'tests/m14/font148_native.c'
  names=set(re.findall(r'__declspec\(dllimport\).*?\b(\w+)\([^;]*;',source.read_text()))
- kernel={'GetStdHandle','WriteFile','ExitProcess'};gdi={'CreateFontIndirectW','SelectObject','DeleteObject','SetTextColor','SetBkMode','TextOutW'}
- for provider,exports in [('kernel32',kernel),('gdi32',gdi),('user32',names-kernel-gdi)]:
+ gp={'GdiplusStartup','GdiplusShutdown','GdipCreateFromHDC','GdipGraphicsClear','GdipDeleteGraphics'};kernel={'GetStdHandle','WriteFile','ExitProcess'};gdi={'CreateFontIndirectW','SelectObject','DeleteObject','SetTextColor','SetBkMode','TextOutW'}
+ for provider,exports in [('kernel32',kernel),('gdi32',gdi),('gdiplus',gp),('user32',names-kernel-gdi-gp)]:
   d=out/(provider+'.def');d.write_bytes(('LIBRARY '+provider+'.dll\nEXPORTS\n'+'\n'.join(sorted(exports))+'\n').encode());command([t['lld-link'],'/lib','/machine:x64','/def:'+str(d),'/out:'+str(out/(provider+'.lib'))])
  command([t['clang'],'--target=x86_64-pc-windows-msvc','-O2','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-c',source,'-o',out/'font.obj'])
- exe=out/'font.exe';command([t['lld-link'],'/nodefaultlib','/timestamp:0','/subsystem:windows','/entry:entry','/dynamicbase','/fixed:no','/out:'+str(exe),out/'font.obj',out/'kernel32.lib',out/'gdi32.lib',out/'user32.lib']);return exe
+ exe=out/'font.exe';command([t['lld-link'],'/nodefaultlib','/timestamp:0','/subsystem:windows','/entry:entry','/dynamicbase','/fixed:no','/out:'+str(exe),out/'font.obj',out/'kernel32.lib',out/'gdi32.lib',out/'gdiplus.lib',out/'user32.lib']);return exe
 if __name__=='__main__':build()
