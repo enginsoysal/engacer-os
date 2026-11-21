@@ -99,14 +99,17 @@ extern const char windows8_licenses[];
 extern const uint8_t windows8_runtime_image[];extern const unsigned windows8_runtime_size;
 #ifdef ENGINE_M14
 #include <engine/winbundle147.h>
-static const uint8_t *windows147_msi_image,*windows147_msiexec_image,*windows147_runtime_image;
-static unsigned windows147_msi_size,windows147_msiexec_size,windows147_runtime_size;
+static const uint8_t *windows147_msi_image,*windows147_msiexec_image,*windows147_runtime_image,*windows147_xcopy_image,*windows147_cmd_image;
+static unsigned windows147_msi_size,windows147_msiexec_size,windows147_runtime_size,windows147_xcopy_size,windows147_cmd_size;
 #define windows8_runtime_image windows147_runtime_image
 #define windows8_runtime_size windows147_runtime_size
-unsigned w8_boot_services147(const winbundle147*b){uint8_t hash[32];if(!b||!b->dll||!b->exe||!b->runtime)return 1;
+unsigned w8_boot_services147(const winbundle147*b){uint8_t hash[32];if(!b||!b->dll||!b->exe||!b->runtime||!b->xcopy||!b->cmd)return 1;
  engine_sha256(b->dll,b->dll_size,hash);if(memcmp(hash,b->dll_hash,32))return 1;
  engine_sha256(b->exe,b->exe_size,hash);if(memcmp(hash,b->exe_hash,32))return 1;
  engine_sha256(b->runtime,b->runtime_size,hash);if(memcmp(hash,b->runtime_hash,32))return 1;
+ engine_sha256(b->xcopy,b->xcopy_size,hash);if(memcmp(hash,b->xcopy_hash,32))return 1;
+ engine_sha256(b->cmd,b->cmd_size,hash);if(memcmp(hash,b->cmd_hash,32))return 1;
+ windows147_xcopy_image=b->xcopy;windows147_xcopy_size=b->xcopy_size;windows147_cmd_image=b->cmd;windows147_cmd_size=b->cmd_size;
  windows147_runtime_image=b->runtime;windows147_runtime_size=b->runtime_size;
  windows147_msi_image=b->dll;windows147_msi_size=b->dll_size;windows147_msiexec_image=b->exe;windows147_msiexec_size=b->exe_size;
  serial_text("M147_BOOT_SERVICE_DIGESTS_OK\n");return 0;}
@@ -164,6 +167,7 @@ static unsigned path8(const char*p,unsigned write){
  if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source)
 #ifdef ENGINE_M14
   ||prefix8(p,"/System/Windows/Installer")
+  ||equal8(p,"/System/Windows/Tools/cmd.exe")||equal8(p,"/System/Windows/Tools/xcopy.exe")
 #endif
   ;
 #ifdef ENGINE_M14
@@ -188,6 +192,8 @@ unsigned w8_install_runtime(void*opaque){
  v6_volume*v=opaque;unsigned parent=v6_mkdir(v,"/Applications/Windows");if(parent&&parent!=V6_EXISTS)return parent;unsigned s=v6_mkdir(v,"/System/Windows");if(s&&s!=V6_EXISTS)return s;if(!windows8_runtime_size)return V6_INVALID;
  unsigned licenses=length8(windows8_licenses);if(v6_put(v,"/System/Licenses/Windows-runtime-LGPL.txt",licenses,memory_source8,(void*)windows8_licenses)||v6_put(v,"/System/Windows/runtime8.elf",windows8_runtime_size,memory_source8,(void*)windows8_runtime_image))return V6_IO;
 #ifdef ENGINE_M14
+ if(!windows147_xcopy_size||!windows147_cmd_size)return V6_INVALID;s=v6_mkdir(v,"/System/Windows/Tools");if(s&&s!=V6_EXISTS)return s;
+ if(v6_put(v,"/System/Windows/Tools/xcopy.exe",windows147_xcopy_size,memory_source8,(void*)windows147_xcopy_image)||v6_put(v,"/System/Windows/Tools/cmd.exe",windows147_cmd_size,memory_source8,(void*)windows147_cmd_image))return V6_IO;
  if(!windows147_msi_size||!windows147_msiexec_size)return V6_INVALID;s=v6_mkdir(v,"/System/Windows/Installer");if(s&&s!=V6_EXISTS)return s;
  if(v6_put(v,"/System/Windows/Installer/msi.dll",windows147_msi_size,memory_source8,(void*)windows147_msi_image)||v6_put(v,"/System/Windows/Installer/msiexec.exe",windows147_msiexec_size,memory_source8,(void*)windows147_msiexec_image))return V6_IO;
 #endif

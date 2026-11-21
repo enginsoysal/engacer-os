@@ -71,6 +71,7 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m14:
         sources.extend(sorted((ROOT/'tools/build').glob('m14*.py')))
         sources.append(ROOT/'tools/build/msi147.py')
+        sources.append(ROOT/'tools/build/tools147.py')
         sources.append(ROOT/'tools/build/unicode143.py')
         sources.extend(ROOT/'third_party/unicode'/name for name in ('LICENSE.txt','provenance.json','case-map143.json'))
         unicode=json.loads((ROOT/'third_party/unicode/provenance.json').read_text(encoding='utf-8'))
@@ -230,7 +231,9 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
     if m14 and m5_live:
         dll=(BUILD/'msi147/msi.dll').read_bytes();exe=(BUILD/'msi147/msiexec.exe').read_bytes()
         runtime=(BUILD/'WINDOWS8.ELF').read_bytes()
-        init+=struct.pack('<8sIIIII32s32s32s',b'ENGMS147',2,3,len(dll),len(exe),len(runtime),hashlib.sha256(dll).digest(),hashlib.sha256(exe).digest(),hashlib.sha256(runtime).digest())+dll+exe+runtime
+        xcopy=(BUILD/'tools147/xcopy.exe').read_bytes();cmd=(BUILD/'tools147/cmd.exe').read_bytes()
+        assets=(dll,exe,runtime,xcopy,cmd)
+        init+=struct.pack('<8sIIIIIII32s32s32s32s32s',b'ENGMS147',3,5,*(len(a)for a in assets),*(hashlib.sha256(a).digest()for a in assets))+b''.join(assets)
         if len(init)>4*1024*1024:raise RuntimeError('M14 init bundle exceeds the existing 4 MiB boot-module limit')
     (BUILD/'INIT.BIN').write_bytes(init)
     stem='EngacerOS' if m10 else 'EngineOS'

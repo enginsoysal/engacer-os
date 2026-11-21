@@ -28,6 +28,9 @@ static unsigned MS f_lstrlenA(const char*text){return len8(text);}
 static unsigned lower8(unsigned c){return c>='A'&&c<='Z'?c+32:c;}
 static void widecopy8(WCHAR*out,const WCHAR*in,unsigned cap){unsigned n=0;while(n+1<cap&&in&&in[n]){out[n]=in[n];++n;}if(cap)out[n]=0;}
 static void winpath8(const char*native,char*out,unsigned cap){
+#ifdef ENGINE_M14
+ if(equal8(native,"/System/Windows/Tools/cmd.exe")||equal8(native,"/System/Windows/Tools/xcopy.exe")){copy8(out,"C:\\Windows\\System32",cap);append8(out,native+len8("/System/Windows/Tools"),cap);for(unsigned i=0;out[i];++i)if(out[i]=='/')out[i]='\\';return;}
+#endif
  if(!memcmp(native,job8->product_root,len8(job8->product_root))&&job8->product_root[0]){copy8(out,job8->windows_root,cap);append8(out,native+len8(job8->product_root),cap);}
  else if(!memcmp(native,job8->user_root,len8(job8->user_root))){copy8(out,"C:\\Users\\",cap);const char*name=job8->user_root;for(unsigned i=0;job8->user_root[i];++i)if(job8->user_root[i]=='/')name=job8->user_root+i+1;append8(out,name,cap);append8(out,native+len8(job8->user_root),cap);}
  else copy8(out,native,cap);for(unsigned i=0;out[i];++i)if(out[i]=='/')out[i]='\\';

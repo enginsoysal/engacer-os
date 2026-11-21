@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": 780,
+  "scope": "Shared production boot-bundle shape parser; content SHA verified separately by the kernel, not a native boot result",
+  "sources": {
+    "include/engine/winbundle147.h": "5568dded1c33f4d9f932299541c64f8b41496ae7fdb8716d8430b12e3dd459f4",
+    "tests/m14/bundle147_host.c": "dc5000af2cc33ff463cf8d9e5547fbd4e9f2d7fe3507fea7d80c79d9831c8a4c",
+    "tests/m14/bundle147_host.py": "0a9d639f6b086fd60df4fb519c47160d01df7a5d645b60c059c9bf3bb82519f4"
+  }
+}

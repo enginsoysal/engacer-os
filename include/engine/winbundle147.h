@@ -2,7 +2,7 @@
 #define ENGINE_WINBUNDLE147_H
 #include <engine/base.h>
 /* Borrowed slices remain owned by the reserved init boot module. */
-typedef struct {const uint8_t *msi,*dll,*exe,*runtime,*dll_hash,*exe_hash,*runtime_hash;unsigned msi_size,dll_size,exe_size,runtime_size;} winbundle147;
+typedef struct {const uint8_t *msi,*dll,*exe,*runtime,*dll_hash,*exe_hash,*runtime_hash,*xcopy,*cmd,*xcopy_hash,*cmd_hash;unsigned msi_size,dll_size,exe_size,runtime_size,xcopy_size,cmd_size;} winbundle147;
 static inline uint32_t bundle32_147(const uint8_t*p){return (uint32_t)p[0]|(uint32_t)p[1]<<8|(uint32_t)p[2]<<16|(uint32_t)p[3]<<24;}
 static inline int winbundle_parse147(const void*data,size_t n,winbundle147*out){
  const uint8_t*p=data;winbundle147 v={0};
@@ -12,12 +12,14 @@ static inline int winbundle_parse147(const void*data,size_t n,winbundle147*out){
  if(off!=n){
   if(n-off<16||memcmp(p+off,"ENGMS147",8))return 0;
   unsigned version=bundle32_147(p+off+8),count=bundle32_147(p+off+12),header=0,hashes=0;
-  if(version==1&&count==2){header=88;hashes=24;}else if(version==2&&count==3){header=124;hashes=28;}else return 0;
+  if(version==1&&count==2){header=88;hashes=24;}else if(version==2&&count==3){header=124;hashes=28;}else if(version==3&&count==5){header=196;hashes=36;}else return 0;
   if(n-off<header)return 0;v.dll_size=bundle32_147(p+off+16);v.exe_size=bundle32_147(p+off+20);
-  if(version==2)v.runtime_size=bundle32_147(p+off+24);
-  if(!v.dll_size||!v.exe_size||v.dll_size>1024*1024||v.exe_size>1024*1024||v.runtime_size>1024*1024||(version==2&&!v.runtime_size)||n-off-header!=(size_t)v.dll_size+v.exe_size+v.runtime_size)return 0;
+  if(version>=2)v.runtime_size=bundle32_147(p+off+24);
+  if(version==3){v.xcopy_size=bundle32_147(p+off+28);v.cmd_size=bundle32_147(p+off+32);if(!v.xcopy_size||!v.cmd_size||v.xcopy_size>1024*1024||v.cmd_size>1024*1024)return 0;}
+  if(!v.dll_size||!v.exe_size||v.dll_size>1024*1024||v.exe_size>1024*1024||v.runtime_size>1024*1024||(version>=2&&!v.runtime_size)||n-off-header!=(size_t)v.dll_size+v.exe_size+v.runtime_size+v.xcopy_size+v.cmd_size)return 0;
   v.dll_hash=p+off+hashes;v.exe_hash=v.dll_hash+32;v.dll=p+off+header;v.exe=v.dll+v.dll_size;
-  if(version==2){v.runtime_hash=v.exe_hash+32;v.runtime=v.exe+v.exe_size;}
+  if(version>=2){v.runtime_hash=v.exe_hash+32;v.runtime=v.exe+v.exe_size;}
+  if(version==3){v.xcopy_hash=v.runtime_hash+32;v.cmd_hash=v.xcopy_hash+32;v.xcopy=v.runtime+v.runtime_size;v.cmd=v.xcopy+v.xcopy_size;}
  }
  *out=v;return 1;
 }

@@ -41,8 +41,8 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   button(token,x+154,w->bounds.y+w->bounds.height-57,140,"Read more",OUTPUT_NEXT8,0);
   button(token,x+308,w->bounds.y+w->bounds.height-57,140,"Back to app",BACK8,1);return;
  }
- review_capture147(app,info);if(app->msi147.ready&&!review_source147(app)){app->msi147.ready=0;notice(app,"The installer changed. Review it again before installing.");}
- unsigned legacy=!app->msi147.selected||(app->msi147.ready&&(app->msi147.profile&W8_PROFILE_LEGACY147));unsigned installed=legacy&&installed8();
+ review_capture147(app,info);if(app->msi147.ready&&!review_source147(app)){app->msi147.ready=0;app->number=0;notice(app,"The installer changed. Review it again before installing.");}
+ unsigned legacy=app->msi147.ready?!!(app->msi147.profile&W8_PROFILE_LEGACY147):!app->msi147.selected;unsigned installed=legacy&&installed8();
  ui73_round(x,y,64,64,12,preferences.accent);text(x+13,y+18,legacy?"7z":"MSI",2,0x102d29);
  ui73_fit(x+84,y+4,width-250,app->msi147.ready?app->msi147.product:legacy?"7-Zip Console":"Windows installer",2,ink());
  char identity[160];identity[0]=0;if(app->msi147.ready){copy(identity,app->msi147.version,sizeof(identity));append(identity,"  /  ",sizeof(identity));append(identity,app->msi147.publisher,sizeof(identity));}ui73_fit(x+84,y+38,width-100,app->msi147.ready?identity:legacy?"26.06  /  Igor Pavlov  /  Windows x64":"Choose an MSI, then review its package details.",1,ink());

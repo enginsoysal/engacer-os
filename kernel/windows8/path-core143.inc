@@ -85,6 +85,17 @@ static unsigned path_policy143(const path_context143*ctx,const char*input,const 
  if(flags&2)return 0;
  char user[512];if(path_user_alias143(ctx,user,sizeof(user)))return 206;
  unsigned skip=0;const char*root=0;
+#ifdef ENGINE_M14
+ const char*systems[]={"C:\\Windows\\System32","C:\\Windows\\SysWOW64"};
+ for(unsigned i=0;i<2;++i){unsigned used=0;if(!path_prefix143(clean,systems[i],&used))continue;
+  const char*leaf=clean+used;const char*names[]={"\\cmd.exe","\\xcopy.exe"};
+  for(unsigned j=0;j<2;++j){if(equal_utf8_143(leaf,path_length143(leaf,1024),names[j],path_length143(names[j],32))==1){
+   unsigned e=path_copy143(out->native,"/System/Windows/Tools",256);if(e)return e;
+   e=path_append143(out->native,j?"/xcopy.exe":"/cmd.exe",256);return e;
+  }}
+  return 5;
+ }
+#endif
  if(path_prefix143(clean,ctx->windows,&skip))root=ctx->product;
  else if(path_prefix143(clean,user,&skip))root=ctx->user;
  if(!root)return 5;return path_resolve143(ctx,root,clean+skip,flags,out->native);

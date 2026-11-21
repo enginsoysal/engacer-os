@@ -15,6 +15,8 @@ def runtime(work, tools, common):
     if '-DENGINE_M14' in common:
         from msi147 import build as build_msi147
         build_msi147(work, tools)
+        from tools147 import build as build_tools147
+        build_tools147(work, tools)
     sources = ['runtime', 'pe', 'api', 'msi_db', 'cab', 'msi']
     objects = []
     for name in sources:
