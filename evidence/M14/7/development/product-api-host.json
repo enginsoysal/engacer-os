@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "checks": 6512,
+  "scope": "Call production native MSI exports with original database data and real host locks.\n\nOnly Engacer-authored functions execute. This is supporting host API evidence,\nnot original installer/custom-action or native OS qualification.\n",
+  "packages": [
+    {
+      "file": "7z2606-x64.msi",
+      "sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f"
+    },
+    {
+      "file": "npp.8.9.9.1.Installer.x64.msi",
+      "sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80"
+    }
+  ],
+  "peak_host_allocated_bytes": 162793,
+  "retained_allocations": 0,
+  "sources": {
+    "user/windows8/msi-api147.c": "ade64aee7b6832bd73c00ee0afab2db8aaf7fce557fb95c2c5278c93511885e0",
+    "user/windows8/msi-plan147.c": "3e2bf2de1b5f7eb697e2405fb1049416c20e63cd3bf7d5bc05494fe94d3047b6",
+    "user/windows8/msi-cost147.c": "70eef2524ed7b47e2719887f99fc095a226e10b59f36c7da4296b46f3bfd09bd",
+    "user/windows8/msi_db.c": "ee942dcd15b5d3769b265eb2e5edf00c34c3024b437594ea0419c1241659aacd",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "tests/m14/api147_host.c": "53b235e421da03ee34c469a122d51807dba4bfa5cfc62e1762f45124e97a6c57",
+    "user/windows8/msi-record147.h": "6f1022cae19194091241da712bcf9a4add9966925df83101a1f4839fcf557506",
+    "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+    "tests/m14/api147_host.py": "6e5348c8aa6b86e737e76e97c0a367364e93f92398c75305f3204a3e85da689c",
+    "tests/m14/plan147_host.c": "414e3a1f2a11cfa556a45bdc8f82bfae9828da15a6682ee082e086d750b75a08",
+    "include/engine/winproduct147.h": "8af74ed0e4e97c9db78d520272971628db12459fb9ab24ebb188df6e54f9b2ed"
+  }
+}

@@ -117,3 +117,7 @@ Build 66c1fe0152932cc1fd131ea3b4e6ee59 passes real BIOS installation from both I
 5. Connect ordinary installer selection/review/confirmation, then qualify original 7-Zip and Notepad++ installation/removal/reinstallation, language actions, cancellation and recovery.
 
 These are remaining requirements, not qualified capabilities.
+
+### Product grant development
+
+A shared canonical GUID/root parser now replaces the single-product kernel admission check and the duplicated MSI identity parser. It admits exactly one uppercase /Applications/Windows/{GUID} root, with no suffix, traversal or alternate spelling. The kernel stores confirmed-install authority separately from the RUN/INSTALL command and propagates it only from an authorized parent when creating child processes. A normal application cannot gain that authority by editing its own mailbox. Authorized helpers remain confined to the selected product root; ordinary RUN workers retain user-folder writes and read-only machine registry access. Supporting checks pass 17006 root cases, the retained 44679 original MSI plan checks and 6512 MSI API checks. Native grant/child qualification remains pending; generic MSI writes are not yet enabled.

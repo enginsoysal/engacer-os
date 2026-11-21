@@ -155,7 +155,7 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
  }
  /* Machine writes require the owner-confirmed install/remove worker context.
   * Ordinary applications can read both views but cannot obtain write grants. */
- if(registry_machine147&&input8.command!=W8_INSTALL&&input8.command!=W8_REMOVE){
+ if(registry_machine147&&!installer_authority147()){
   if(operation==2||operation==3||operation==6||operation==10||((operation==1)&&(request.access&~0x20019u)))return -5;
  }
 #endif

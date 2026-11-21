@@ -80,6 +80,9 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  const w8_mailbox*parent=&spaces142[caller]->input;
  unsigned status=start_space142(W8_RUN,request.source,parent->product_root,parent->user_root,"",target,(unsigned)object,&request);active_space142=caller;
  if(status){drop_process_object142((unsigned)object);return -8;}
+#ifdef ENGINE_M14
+ spaces142[target]->install_authority147=spaces142[caller]->install_authority147;
+#endif
  error=environment_copy143(&request,caller,target);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  result.process=new_process_handle142((unsigned)object,1);result.thread=new_process_handle142((unsigned)object,2);
  if(!result.process||!result.thread){if(result.process)close_process_handle142(result.process);if(result.thread)close_process_handle142(result.thread);active_space142=target;info8.status=8;info8.state=3;end_space142(target,8);active_space142=caller;return -8;}

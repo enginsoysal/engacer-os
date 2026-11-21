@@ -3,6 +3,9 @@
 #include <engine/elf.h>
 #include <engine/m3.h>
 #include <engine/sha256.h>
+#ifdef ENGINE_M14
+#include <engine/winproduct147.h>
+#endif
 extern void *memmove(void*,const void*,size_t);
 #define NX (UINT64_C(1)<<63)
 #define RESERVED141 UINT64_C(0x200)
@@ -28,6 +31,9 @@ typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code
 typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,virtual_pages,lazy_faults;
  unsigned count,cancel,created_root,current,cursor,object;
+#ifdef ENGINE_M14
+ unsigned install_authority147;
+#endif
  process_handle142 handles[32];sync_cap142 sync_handles[64];registry_cap143 registry_handles[32];
  uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
  _Alignas(16) w8_info child_info;
@@ -58,6 +64,9 @@ static unsigned mapping_name_taken146(const uint16_t*);
 #endif
 volatile unsigned w8_active;
 uint64_t w8_saved_rsp,w8_kernel_cr3;
+#ifdef ENGINE_M14
+static unsigned installer_authority147(void){return spaces142[active_space142]->install_authority147;}
+#endif
 #define created_root8 (spaces142[active_space142]->created_root)
 #define owned8 (spaces142[active_space142]->owned)
 #define cr3_8 (spaces142[active_space142]->cr3)
@@ -156,7 +165,12 @@ static unsigned path8(const char*p,unsigned write){
   ||prefix8(p,"/System/Windows/Installer")
 #endif
   ;
- if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
+#ifdef ENGINE_M14
+ if(installer_authority147())return prefix8
+#else
+ if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8
+#endif
+ (p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
  return input8.command==W8_RUN&&prefix8(p,input8.user_root)&&!equal8(p,input8.user_root);
 }
 static const v6_entry *find8(const char*p){v6_volume*v=m6_volume();if(!v)return 0;for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&equal8(v->entries[i].path,p))return v->entries+i;return 0;}
@@ -217,7 +231,12 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
  active_space142=slot;if(allocate_space142(slot))goto failure;spaces142[slot]->object=object;memset(&info8,0,sizeof(info8));info8.peak_pages=metadata_pages142[slot];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
  copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
+#ifdef ENGINE_M14
+ spaces142[slot]->install_authority147=command==W8_INSTALL||command==W8_REMOVE;
+ if(!win_product_root147(root))goto failure;
+#else
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
+#endif
  if(prepare_transition8())goto failure;cr3_8=allocate8();uint64_t pdpt=allocate8();pd8=allocate8();if(!cr3_8||!pdpt||!pd8)goto failure;
  ((uint64_t*)(uintptr_t)cr3_8)[0]=pdpt|7;((uint64_t*)(uintptr_t)cr3_8)[256]=kernel_stack_branch()|3;for(unsigned i=0;i<4;++i)((uint64_t*)(uintptr_t)pdpt)[i]=kernel_pd(i)|3;((uint64_t*)(uintptr_t)pdpt)[4]=pd8|7;
  elf_header header;if(v6_verify(m6_volume(),"/System/Windows/runtime8.elf")||exact8("/System/Windows/runtime8.elf",0,&header,sizeof(header))||memcmp(header.ident,"\177ELF\2\1\1",7)||header.machine!=62||header.type!=2||header.phnum>8||header.phentsize!=56)goto failure;

@@ -3,6 +3,7 @@
 #include "msi_db.h"
 #include "msi-condition147.h"
 #include <engine/sha256.h>
+#include <engine/winproduct147.h>
 static msia_plan147 *active_plan147;
 static void require147(int condition,const char *message){if(!condition)fail8(message);}
 static void *allocate_plan147(void *context,size_t bytes){(void)context;return alloc8(bytes);}
@@ -15,10 +16,7 @@ static int standard147(const char *name){
  static const char *const names[]={"AppSearch","FindRelatedProducts","LaunchConditions","ValidateProductID","CostInitialize","FileCost","CostFinalize","MigrateFeatureStates","InstallValidate","RemoveExistingProducts","InstallInitialize","ProcessComponents","UnpublishFeatures","RemoveRegistryValues","RemoveShortcuts","RemoveFiles","RemoveFolders","CreateFolders","InstallFiles","CreateShortcuts","WriteRegistryValues","RegisterUser","RegisterProduct","PublishFeatures","PublishProduct","InstallFinalize"};
  for(unsigned i=0;i<sizeof(names)/sizeof(names[0]);++i)if(equal8(name,names[i]))return 1;return 0;
 }
-static int guid147(const char *text){
- if(len8(text)!=38||text[0]!='{'||text[37]!='}')return 0;
- for(unsigned i=1;i<37;++i){unsigned c=(unsigned char)text[i];if(i==9||i==14||i==19||i==24){if(c!='-')return 0;}else if(!((c>='0'&&c<='9')||(c>='A'&&c<='F')||(c>='a'&&c<='f')))return 0;}return 1;
-}
+static int guid147(const char *text){return win_product_guid147(text,0);}
 static void metadata147(char *out,unsigned capacity,const char *value){require147(value[0]&&len8(value)<capacity,"MSI product metadata is missing or exceeds the supported bound.");copy8(out,value,capacity);}
 void msia_close147(msia_plan147 *plan){
  if(!plan)return;require147(plan==active_plan147,"MSI session ownership is invalid.");
@@ -31,7 +29,7 @@ msia_plan147 *msia_prepare147(const void *source,unsigned bytes){
  for(unsigned row=0;row<properties.rows;++row){const char *name=msi8_text(&properties,row,0),*value=msi8_text(&properties,row,1);for(unsigned prior=0;prior<row;++prior)require147(!equal8(name,msi8_text(&properties,prior,0)),"MSI Property keys are duplicated.");require147(msip_set147(&plan->properties,name,value)==0,"MSI Property name/value or allocation exceeds its bound.");}free8(properties.data.data);
  metadata147(plan->product,sizeof(plan->product),msip_get147(&plan->properties,"ProductName"));metadata147(plan->version,sizeof(plan->version),msip_get147(&plan->properties,"ProductVersion"));metadata147(plan->publisher,sizeof(plan->publisher),msip_get147(&plan->properties,"Manufacturer"));
  const char *code=msip_get147(&plan->properties,"ProductCode");require147(guid147(code),"MSI ProductCode is not a valid bounded GUID.");copy8(plan->code,code,sizeof(plan->code));for(unsigned i=0;plan->code[i];++i)if(plan->code[i]>='a'&&plan->code[i]<='f')plan->code[i]-=32;
- copy8(plan->product_root,"/Applications/Windows/",sizeof(plan->product_root));append8(plan->product_root,plan->code,sizeof(plan->product_root));
+ require147(win_product_make147(plan->product_root,sizeof(plan->product_root),plan->code),"MSI product root is invalid.");
  msi8_table custom=msi8_table_open("CustomAction");require147(custom.rows<=32&&(!custom.rows||(custom.columns>=4&&custom.columns<=5)),"MSI custom-action metadata exceeds its bound.");
  for(unsigned row=0;row<custom.rows;++row){unsigned type=(unsigned)msi8_integer(&custom,row,1);const char *name=msi8_text(&custom,row,0),*action_source=msi8_text(&custom,row,2),*target=msi8_text(&custom,row,3);unsigned n=0;
   require147(name[0]&&len8(name)<=72&&!standard147(name)&&len8(target)<=4096,"MSI custom-action identity/target is invalid.");require147(type==MSIA_PROPERTY147||type==MSIA_DEFERRED_DLL147,"MSI requires a custom-action type that is not implemented.");

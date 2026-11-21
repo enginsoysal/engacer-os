@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": 17006,
+  "scope": "Shared production canonical GUID/product-root parser; native grant inheritance is separately required",
+  "sources": {
+    "include/engine/winproduct147.h": "8af74ed0e4e97c9db78d520272971628db12459fb9ab24ebb188df6e54f9b2ed",
+    "tests/m14/product147_host.c": "005620714f06454708cac6cb901c5e4c8deabdccfe0998093627f1f72b343182",
+    "tests/m14/product147_host.py": "caf616407d392ca7bd7447cd110e09fa5fdbf4e3a198f8555b8b6935fb35c27a"
+  }
+}
