@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "Nested test-observer stage mismatch before native restart scenario",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 44,
+  "correction": "New derived stage-7 restart/window wrappers map nested inputs and retain functional assertions. Accepted historical canonical files remain unchanged.",
+  "os_source_changed": false
+}

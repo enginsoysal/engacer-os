@@ -20,7 +20,7 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
     old = original['files']
     differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
     allowed = {'tests/m14/verify7.py','tests/m14/suite7.py','tests/m14/public_site7_scoped.mjs',
-               'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/picker_lifetime146_run.py',
+               'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py',
                'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
     assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
     if name == 'picker-lifetime146' and 'tests/m14/picker_lifetime146_run.py' in differences:
@@ -63,12 +63,12 @@ def main():
     addition = ''' assert len(tasks)==74,len(tasks)
  # Retain the original dialog parser corpus, adding actual helper templates.
  tasks['dialog145-host']['command']=[sys.executable,'tests/m14/replay7.py','dialog146_host']
- tasks['windows']['command']=[sys.executable,'tests/m14/replay7.py','window146_run']
- add('picker-restart146','tests/m14/picker_restart146_run.py',('--cycles','1'),('apps-compact',),4)
+ tasks['windows']['command']=[sys.executable,'tests/m14/replay7.py','window147_run']
+ add('picker-restart146','tests/m14/picker_restart147_run.py',('--cycles','1'),('apps-compact',),4)
  for profile in ('compact','ordinary','4k'):
   dependency=('apps-'+profile,)
   add('original-clipboard146-'+profile,'tests/m14/original_clipboard146_run.py',('--profile',profile),dependency,4)
-  add('original-picker146-'+profile,'tests/m14/original_picker147_run.py',('--profile',profile),dependency,4)
+  add('original-picker146-'+profile,'tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py',('--profile',profile),dependency,4)
   add('font146-'+profile,'tests/m14/font146_run.py',('--profile',profile,'--cycles','21'if profile=='compact'else'1'),dependency,4)
  for name,script,arguments in (
   ('global146','global146_run.py',()),('clipboard146','clipboard146_run.py',()),

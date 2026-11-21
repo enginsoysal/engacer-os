@@ -30,7 +30,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--stage', type=int, required=True)
     stage = parser.parse_args().stage
-    assert stage == 6
+    assert stage == 7
     out = ROOT / f'evidence/M14/{stage}'
     def load(name):
         return json.loads((out / name).read_text(encoding='utf-8-sig'))
