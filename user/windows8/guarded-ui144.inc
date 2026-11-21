@@ -132,7 +132,20 @@ static NORETURN void MS ui_guard144_127(void){fail8("Not implemented: kernel32.d
 static NORETURN void MS ui_guard144_128(void){fail8("Not implemented: kernel32.dll!GetDriveTypeW");}
 static NORETURN void MS ui_guard144_129(void){fail8("Not implemented: kernel32.dll!GetVolumeInformationW");}
 static NORETURN void MS ui_guard144_130(void){fail8("Not implemented: kernel32.dll!LocalAlloc");}
-static NORETURN void MS ui_guard144_131(void){fail8("Not implemented: kernel32.dll!RaiseException");}
+static void raise_text148(uint64_t pointer){for(unsigned i=0;i<256;++i){if(pointer>UINT64_MAX-i||sys8(W8_SYS_ACCESS,pointer+i,1,1,0,0)){print8("<unreadable>");return;}char value[2]={*(char*)(uintptr_t)(pointer+i),0};if(!value[0])return;if((uint8_t)value[0]<32||(uint8_t)value[0]>126){print8("?");}else print8(value);}print8("<bounded>");}
+static NORETURN void MS ui_guard144_131(unsigned code,unsigned flags,unsigned count,const uint64_t*arguments){
+ print8("Unsupported software exception code=");number8(code);print8(" flags=");number8(flags);print8(" parameters=");number8(count);print8("\n");
+ /* Delay-load diagnostics only. Never swallow the original exception or
+  * turn a missing original DLL/function into a successful load. */
+ if((code==0xc06d007eu||code==0xc06d007fu)&&count==1&&arguments&&!sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)arguments,8,1,0,0)){
+  uint64_t info=arguments[0];if(!sys8(W8_SYS_ACCESS,info,72,1,0,0)&&*(uint32_t*)(uintptr_t)info==72){
+   print8("Original delay-load DLL: ");raise_text148(*(uint64_t*)(uintptr_t)(info+24));print8(" symbol: ");
+   if(*(uint32_t*)(uintptr_t)(info+32))raise_text148(*(uint64_t*)(uintptr_t)(info+40));else number8(*(uint32_t*)(uintptr_t)(info+40));
+   print8(" error=");number8(*(uint32_t*)(uintptr_t)(info+64));print8("\n");
+  }
+ }
+ fail8("Not implemented: kernel32.dll!RaiseException");
+}
 static NORETURN void MS ui_guard144_132(void){fail8("Not implemented: kernel32.dll!UnhandledExceptionFilter");}
 static NORETURN void MS ui_guard144_133(void){fail8("Not implemented: kernel32.dll!RtlVirtualUnwind");}
 static NORETURN void MS ui_guard144_134(void){fail8("Not implemented: kernel32.dll!RtlLookupFunctionEntry");}
