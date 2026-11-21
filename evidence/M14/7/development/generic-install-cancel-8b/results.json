@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "scope": "Cancel an original generic MSI after durable staging, then recover without download.",
+  "kernel_build_id": "338f750f23590712c09e4a621f56ef6f",
+  "service_source_commit": "8b05eedcb92fb06850687808dfa6d9bb252398be",
+  "observer_sha256": "d58cc886bd414b7814a345f30c5794512ef0e5131ba6efbc38e876fada367d8f",
+  "private_service_receipt_sha256": "85e98813e3b656c0939e0ef46f34c3406d32763463f56c6de1e42535535af340",
+  "owned_fixture": "8b305a915de141ad9f364d5ff86cb05b",
+  "clone": {
+    "source_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "clone_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "last_observed": {
+    "job": {
+      "state": 3,
+      "status": 1,
+      "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n"
+    },
+    "managed_delta": 0
+  },
+  "cancel": {
+    "state": 3,
+    "status": 1,
+    "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+    "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+    "retained_managed_pages": 0,
+    "transaction_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+  },
+  "recovery": {
+    "state": 2,
+    "status": 0,
+    "message": "Removed. Your personal files are unchanged.",
+    "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+    "retained_managed_pages": 0,
+    "first_activation_pages": 4,
+    "original_download_absent": true
+  }
+}

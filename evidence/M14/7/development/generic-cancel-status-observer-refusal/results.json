@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "scope": "Cancel an original generic MSI after durable staging, then recover without download.",
+  "kernel_build_id": "338f750f23590712c09e4a621f56ef6f",
+  "service_source_commit": "8b05eedcb92fb06850687808dfa6d9bb252398be",
+  "observer_sha256": "d6280f1d659022d795c9caa8a154df1a6416187208b8d33ffa2bd739d3bedf18",
+  "private_service_receipt_sha256": "85e98813e3b656c0939e0ef46f34c3406d32763463f56c6de1e42535535af340",
+  "owned_fixture": "088be56ecf284ab1a6a81558f84416f9",
+  "clone": {
+    "source_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "clone_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\install147_cancel.py\", line 38, in main\n    p.desktop(12008,True);state=job(g);assert state['state']==3 and state['status']==1223 and'kept'in state['message'];assert f.stats(g)[0]==before;entries=f.entries(g);assert pending in entries and root+'/product.bin'not in entries;image=ui.s.s.document(disk,pending,512*1024);assert image[72:104]==hashlib.sha256(image[:72]+bytes(32)+image[104:]).digest();report['cancel']=dict(**state,retained_managed_pages=0,transaction_sha256=hashlib.sha256(image).hexdigest());c.shot(g,'generic-durable-cancel');(out/'cancel-serial.log').write_bytes(g.log().encode())\nAssertionError\n"
+}

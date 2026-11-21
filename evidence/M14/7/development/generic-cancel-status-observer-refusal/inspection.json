@@ -1,0 +1,7 @@
+{
+  "scope": "Read-only stopped owned-disk inspection after the failed observer",
+  "pending_bytes": 74744,
+  "pending_sha256_valid": true,
+  "source_cache_bytes": 7933952,
+  "observation": "The process exits with cancellation 1223; the established public root task status is 1. The observer incorrectly required the process code in the public status field."
+}
