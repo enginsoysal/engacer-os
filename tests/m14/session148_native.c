@@ -27,6 +27,7 @@ __declspec(dllimport) int FreeLibrary(uint64_t);
 __declspec(dllimport) unsigned GetLastError(void);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
+void entry(void);void*volatile relocation_anchor148=&entry;
 static unsigned worker(void*kind){
  for(unsigned i=0;i<1000;++i){
   if((uintptr_t)kind<4){AcquireSRWLockExclusive(&lock);++left;right=left*3;ReleaseSRWLockExclusive(&lock);}

@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "build_id": "87d34bba6ce1108cde8ee0032d2f8a85",
+  "scope": "Native private-worker message identity and SRW contention, not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "210c8d6fc20673c2e4257d299a0ad46e0721d556c98b35c6f594d56f92217a19",
+    "clone_sha256": "210c8d6fc20673c2e4257d299a0ad46e0721d556c98b35c6f594d56f92217a19",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "d8509dcd33878c222644904ae1d00dc8b58f2304148f05e07593e52622deb90c",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 21, in main\n    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: The Windows image has no usable relocation directory. OUTPUT Mapped original image: 7zFM.exe bytes=16384 source-fnv32=3465295856\n\nEngacer OS: The Windows image has no usable relocation directory.\n\n"
+}

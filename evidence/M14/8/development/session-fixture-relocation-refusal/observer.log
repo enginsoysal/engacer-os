@@ -1,0 +1,27 @@
+{"worker": "WINDOWS8.ELF", "kernel_build_id": "87d34bba6ce1108cde8ee0032d2f8a85", "sha256": "f515dd0e836243dcd3e572b50b99a9cc51ef44ac61e507f25f60fc63f39b4378"}
+{
+  "passed": false,
+  "build_id": "87d34bba6ce1108cde8ee0032d2f8a85",
+  "scope": "Native private-worker message identity and SRW contention, not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "210c8d6fc20673c2e4257d299a0ad46e0721d556c98b35c6f594d56f92217a19",
+    "clone_sha256": "210c8d6fc20673c2e4257d299a0ad46e0721d556c98b35c6f594d56f92217a19",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "d8509dcd33878c222644904ae1d00dc8b58f2304148f05e07593e52622deb90c",
+Traceback (most recent call last):
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 21, in main\n    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: The Windows image has no usable relocation directory. OUTPUT Mapped original image: 7zFM.exe bytes=16384 source-fnv32=3465295856\n\nEngacer OS: The Windows image has no usable relocation directory.\n\n"
+}
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 21, in <module>
+    if __name__=='__main__':main()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 19, in main
+    namespace=dict(__file__=str(source),__name__='session148_derived',production=production);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\global146_run.py", line 21, in main
+    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\apps_native4.py", line 22, in task
+    raise AssertionError(raw[304:].split(b'\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\0',1)[0].decode(errors='replace'))
+AssertionError: The Windows image has no usable relocation directory. OUTPUT Mapped original image: 7zFM.exe bytes=16384 source-fnv32=3465295856
+
+Engacer OS: The Windows image has no usable relocation directory.
+
