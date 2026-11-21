@@ -1,6 +1,13 @@
 /* Durable bounded HKCU records. Hashes locate records; full identities authorize them. */
 #define REGISTRY_KEYS143 64u
+#ifdef ENGINE_M14
+/* Durable namespace capacity is independent of the lazy live-object budget. */
+#define REGISTRY_PERSISTED_KEYS148 256u
+#define REGISTRY_VALUES143 512u
+#else
+#define REGISTRY_PERSISTED_KEYS148 REGISTRY_KEYS143
 #define REGISTRY_VALUES143 128u
+#endif
 #define REGISTRY_KEY_MAGIC143 UINT64_C(0x314b52454734314d)
 #define REGISTRY_VALUE_MAGIC143 UINT64_C(0x315652454734314d)
 typedef struct {uint64_t magic,time;char user[256],canonical[768],display[768];} registry_key_record143;
@@ -50,7 +57,7 @@ static unsigned registry_count143(unsigned values){char root[256];registry_root1
 }
 static unsigned registry_ensure_key143(const char*canonical,const char*display,registry_key_record143*scratch){
  char directory[256],path[256];registry_directory143(canonical,directory);unsigned error=registry_load_key143(canonical,directory,scratch);if(!error)return 0;if(error!=2)return error;
- if(registry_count143(0)>=REGISTRY_KEYS143)return 1450;error=registry_prepare143(directory);if(error)return error;
+ if(registry_count143(0)>=REGISTRY_PERSISTED_KEYS148)return 1450;error=registry_prepare143(directory);if(error)return error;
  memset(scratch,0,sizeof(*scratch));scratch->magic=REGISTRY_KEY_MAGIC143;scratch->time=now8();copy8(scratch->user,registry_owner147(),256);copy8(scratch->canonical,canonical,768);copy8(scratch->display,display,768);
  copy8(path,directory,256);path_append143(path,"/$key",256);return v6_put(m6_volume(),path,sizeof(*scratch),memory_source8,scratch)?1117:0;
 }
@@ -159,7 +166,7 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
   if(operation==2||operation==3||operation==6||operation==10||((operation==1)&&(request.access&~0x20019u)))return -5;
  }
 #endif
- if(operation==11){if(request.flags||request.name||request.data||!request.result)return -87;result.type=registry_count143(0);result.bytes=registry_count143(1);result.name_units=REGISTRY_KEYS143;result.disposition=REGISTRY_VALUES143;return user8(request.result,&result,sizeof(result),1)?-998:0;}
+ if(operation==11){if(request.flags||request.name||request.data||!request.result)return -87;result.type=registry_count143(0);result.bytes=registry_count143(1);result.name_units=REGISTRY_PERSISTED_KEYS148;result.disposition=REGISTRY_VALUES143;return user8(request.result,&result,sizeof(result),1)?-998:0;}
  if(operation==1||operation==2){if(!request.result)return -87;if(user8(request.result,&result,sizeof(result),1))return -998;unsigned error=registry_open143(&request,operation==2,&result);if(error)return -(int64_t)error;if(user8(request.result,&result,sizeof(result),1)){(void)registry_close143(result.handle);return -998;}return 0;}
  if(request.flags)return -87;
  if(operation==5)return -(int64_t)registry_close143(request.root);

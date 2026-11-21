@@ -9,7 +9,7 @@ static int MS f_SHGetFolderPathW(HANDLE owner,int csidl,HANDLE token,unsigned fl
  switch(id){
  case 0x28:suffix="";break;
  case 0x05:suffix="/Documents";break;
- case 0x10:suffix="/Desktop";break;
+ case 0x00:case 0x10:suffix="/Desktop";break;
  case 0x1a:suffix="/AppData/Roaming";break;
  case 0x1c:suffix="/AppData/Local";break;
  case 0x02:suffix="/AppData/Roaming/Microsoft/Windows/Start Menu/Programs";break;

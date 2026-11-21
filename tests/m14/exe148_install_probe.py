@@ -69,6 +69,13 @@ def main():
                 (out/'serial.log').write_bytes(g.log().encode())
             mounted=StoppedDisk(disk,library())
             try:
+                keys=values=0
+                for entry in mounted.volume.entries:
+                    if entry.kind!=1 or b'/Registry/' not in entry.path:continue
+                    mounted.file.seek(mounted.offset+entry.first*4096);magic=mounted.file.read(8)
+                    keys+=magic==struct.pack('<Q',0x314b52454734314d);values+=magic==struct.pack('<Q',0x315652454734314d)
+                report['diagnostic_persistent_registry_keys']=keys
+                report['diagnostic_persistent_registry_values']=values
                 target=b'/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/SumatraPDF.exe'
                 copied=next((e for e in mounted.volume.entries if e.kind==1 and e.path==target),None)
                 report['diagnostic_self_copy_present']=copied is not None

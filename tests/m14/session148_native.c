@@ -265,6 +265,17 @@ static void version_mask_tests148(void){
  version[0]=276;check(!VerifyVersionInfoW(version,3,atleast)&&GetLastError()==87,680);
  say148("M148_NATIVE_VERSION_CONDITION_MASK_PASS\n");
 }
+static void registry_capacity_tests148(void){
+ uint64_t root=0xffffffff80000001ull,key=0,child=0;unsigned disposition=0,value=0x148,read=0,type=0,bytes=4;
+ const uint16_t*path=L"Software\\EngacerOS\\NativeCapacity148";
+ check(!RegCreateKeyExW(root,path,0,0,0,0xf003f,0,&key,&disposition),681);
+ for(unsigned i=0;i<65;++i){uint16_t name[]={'k',(uint16_t)('0'+i/100),(uint16_t)('0'+i/10%10),(uint16_t)('0'+i%10),0};check(!RegCreateKeyExW(key,name,0,0,0,0xf003f,0,&child,&disposition)&&!RegCloseKey(child),682);}
+ for(unsigned i=0;i<130;++i){uint16_t name[]={'v',(uint16_t)('0'+i/100),(uint16_t)('0'+i/10%10),(uint16_t)('0'+i%10),0};value=0x148000u+i;check(!RegSetValueExW(key,name,0,4,&value,4),683);}
+ check(!RegCloseKey(key)&&!RegOpenKeyExW(root,path,0,1,&key),684);
+ for(unsigned i=0;i<130;++i){uint16_t name[]={'v',(uint16_t)('0'+i/100),(uint16_t)('0'+i/10%10),(uint16_t)('0'+i%10),0};bytes=4;check(!RegQueryValueExW(key,name,0,&type,&read,&bytes)&&type==4&&bytes==4&&read==0x148000u+i,685);}
+ check(!RegCloseKey(key)&&!SHDeleteKeyW(root,path)&&RegOpenKeyExW(root,path,0,1,&key)==2,686);
+ say148("M148_NATIVE_DURABLE_REGISTRY_PAST_LEGACY_LIMITS_PASS\n");
+}
 static void utc_tests148(void){
  uint16_t fields[8];uint64_t before=0,after=0;GetSystemTimeAsFileTime(&before);GetSystemTime(fields);GetSystemTimeAsFileTime(&after);
  unsigned year=fields[0],month=fields[1];check(year>=1601&&year<=9999&&month>=1&&month<=12&&fields[3]>=1&&fields[3]<=31&&fields[4]<24&&fields[5]<60&&fields[6]<60&&fields[7]<1000,640);
@@ -316,7 +327,7 @@ static void registry_delete_tests148(void){
  say148("M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\n");
 }
 void entry(void){
- font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();
+ font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
  int inside_monitor[4]={1,1,50,50},outside_monitor[4]={INT32_MAX-10,INT32_MAX-10,INT32_MAX,INT32_MAX};uint64_t monitor=MonitorFromRect(inside_monitor,0);check(monitor&&!MonitorFromRect(outside_monitor,0)&&MonitorFromRect(outside_monitor,1)==monitor&&MonitorFromRect(outside_monitor,2)==monitor&&MonitorFromPoint(0,0)==monitor&&!MonitorFromPoint(UINT64_MAX,0)&&MonitorFromPoint(UINT64_MAX,2)==monitor,587);inside_monitor[2]=inside_monitor[0];inside_monitor[3]=inside_monitor[1];check(MonitorFromRect(inside_monitor,0)==monitor&&!MonitorFromRect((void*)1,0)&&GetLastError()==998,588);int inverted_monitor[4]={INT32_MAX,100,50,200},empty_spanning_monitor[4]={-100,0,100,0};check(!MonitorFromRect(inverted_monitor,0)&&!MonitorFromRect(empty_spanning_monitor,0),592);unsigned monitor_info[26]={0};monitor_info[0]=104;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[1]==0&&monitor_info[2]==0&&monitor_info[3]==(unsigned)desktop_rect[2]&&monitor_info[4]==(unsigned)desktop_rect[3]&&monitor_info[9]==1&&((uint16_t*)(monitor_info+10))[0]=='E',589);monitor_info[0]=72;check(GetMonitorInfoA(monitor,monitor_info)&&((char*)(monitor_info+10))[0]=='E'&&!GetMonitorInfoW(monitor,monitor_info)&&GetLastError()==87,590);monitor_info[0]=40;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[7]==(unsigned)desktop_rect[2]&&monitor_info[8]<(unsigned)desktop_rect[3],591);
@@ -387,6 +398,8 @@ void entry(void){
  words=split_command(L" p",&arguments);check(words&&arguments==2&&!words[0][0]&&words[1][0]=='p'&&!LocalFree(words),358);
  words=split_command(L"",&arguments);check(words&&arguments==1,359);for(unsigned i=0;i<=n;++i)check(words[0][i]==path[i],360);check(!LocalFree(words)&&!split_command(0,&arguments)&&!split_command(L"p",0),361);
  uint16_t profile[260],known[260];check(!folder(0,0x28,0,0,profile)&&!folder(0,0x1c,0,0,known),270);unsigned folder_attributes=GetFileAttributesW(known);check(folder_attributes!=UINT32_MAX&&(folder_attributes&16),282);
+ uint16_t desktop[260],desktop_directory[260],menu[260];check(!folder(0,0,0,0,desktop)&&!folder(0,16,0,0,desktop_directory),687);for(unsigned i=0;desktop[i]||desktop_directory[i];++i)check(desktop[i]==desktop_directory[i],688);
+ check(!folder(0,11,0,0,menu),689);unsigned menu_attributes=GetFileAttributesW(menu);check(menu_attributes!=UINT32_MAX&&(menu_attributes&16),690);
  check(append(profile,L"AppData\\Local"),271);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],272);
  check(!folder(0,0x1c,0,1,profile),273);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],274);
  known[0]='x';check(folder(0,0x1c,1,0,known)==(int)0x80070005u&&!known[0],275);
