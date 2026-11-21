@@ -199,6 +199,9 @@ static int MS f_SetFileAttributesW(const WCHAR*name,unsigned attributes){return 
 static int MS f_CreateDirectoryW(const WCHAR*name,void*security){if(security){last8(50);return 0;}return file_path_api143(16,name,0,0);}
 static int MS f_DeleteFileW(const WCHAR*name){w8_file_info information;if(!file_path_api143(15,name,&information,0))return 0;if(information.kind!=1){last8(5);return 0;}return file_path_api143(10,name,0,0);}
 static int MS f_RemoveDirectoryW(const WCHAR*name){return file_path_api143(17,name,0,0);}
+#ifdef ENGINE_M14
+#include "copy-file148.inc"
+#endif
 static int MS f_MoveFileExW(const WCHAR*from,const WCHAR*to,unsigned flags){char a[256],b[256];if(flags&~1u){last8(50);return 0;}if(!nativepath8(from,a)||!nativepath_mode143(to,b,4))return 0;int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,0,11,(uint64_t)a,(uint64_t)b,flags);if(result<0){last8((unsigned)-result);return 0;}return 1;}
 static int MS f_MoveFileW(const WCHAR*a,const WCHAR*b){return f_MoveFileExW(a,b,0);}
 static int MS f_MoveFileWithProgressW(const WCHAR*a,const WCHAR*b,uint64_t callback,void*data,unsigned flags){if(callback){last8(50);return 0;}(void)data;return f_MoveFileExW(a,b,flags);}
@@ -473,7 +476,7 @@ static const api8 api8_table[]={
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
  API8(SetWindowPos,4),
- API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(MapWindowPoints,4),API8(GetTickCount64,1),API8(RaiseException,1),API8(RtlUnwindEx,1),
+ API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(MapWindowPoints,4),API8(GetTickCount64,1),API8(RaiseException,1),API8(RtlUnwindEx,1),API8(CopyFileW,1),
  API8(GetWindowDC,4),API8(DrawTextExW,4),API8(DrawTextW,4),
  API8(SetWindowSubclass,6),API8(GetWindowSubclass,6),API8(RemoveWindowSubclass,6),API8(DefSubclassProc,6),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
