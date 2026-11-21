@@ -20,11 +20,27 @@ static unsigned snapshot_exception_handlers142(unsigned kind,exception_handler14
  unsigned count=0;lock_enter142(&exception_lock142);for(unsigned i=0;i<64;++i)if(exception_handlers142[i].live&&(exception_handlers142[i].kind&3)==kind)out[count++]=exception_handlers142[i];lock_leave142(&exception_lock142);
  for(unsigned i=1;i<count;++i){exception_handler142 value=out[i];unsigned j=i;while(j){exception_handler142 previous=out[j-1];unsigned before=(value.kind&4)?(!(previous.kind&4)||value.generation>previous.generation):(!(previous.kind&4)&&value.generation<previous.generation);if(!before)break;out[j]=previous;--j;}out[j]=value;}return count;
 }
+#ifdef ENGINE_M14
+static void raise_text148(uint64_t);
+static void exception_diagnostic148(const w8_exception_record142*record){
+ print8("Unhandled exception code=");number8(record->code);print8(" flags=");number8(record->flags);print8(" parameters=");number8(record->count);print8("\n");
+ if((record->code==0xc06d007eu||record->code==0xc06d007fu)&&record->count==1){
+  uint64_t info=record->arguments[0];if(!sys8(W8_SYS_ACCESS,info,72,1,0,0)&&*(uint32_t*)(uintptr_t)info==72){
+   print8("Original delay-load DLL: ");raise_text148(*(uint64_t*)(uintptr_t)(info+24));print8(" symbol: ");
+   if(*(uint32_t*)(uintptr_t)(info+32))raise_text148(*(uint64_t*)(uintptr_t)(info+40));else number8(*(uint32_t*)(uintptr_t)(info+40));
+   print8(" error=");number8(*(uint32_t*)(uintptr_t)(info+64));print8("\n");
+  }
+ }
+}
+#endif
 static NORETURN void exception_entry142(w8_exception_packet142*packet){
  exception_handler142 handlers[64];unsigned count=snapshot_exception_handlers142(1,handlers);int handled=0;
  for(unsigned i=0;i<count;++i){int result=((int(MS*)(w8_exception_pointers142*))(uintptr_t)handlers[i].callback)(&packet->pointers);if(result==-1){handled=1;break;}if(result!=0)break;}
  if(!handled)handled=packet->software148?pe8_software_dispatch148(&packet->record,&packet->context):pe8_exception_dispatch(&packet->record,&packet->context);
  if(!handled){lock_enter142(&exception_lock142);uint64_t filter=unhandled_filter142;lock_leave142(&exception_lock142);if(filter&&((int(MS*)(w8_exception_pointers142*))(uintptr_t)filter)(&packet->pointers)==-1)handled=1;}
  if(handled&&!(packet->record.flags&1)){count=snapshot_exception_handlers142(2,handlers);for(unsigned i=0;i<count;++i)((int(MS*)(w8_exception_pointers142*))(uintptr_t)handlers[i].callback)(&packet->pointers);sys8(W8_SYS_EXCEPTION_RETURN,(uint64_t)(uintptr_t)packet,0,0,0,0);exit8(0xc0000028u);}
+#ifdef ENGINE_M14
+ exception_diagnostic148(&packet->record);
+#endif
  print8("The Windows process ended after an unhandled native exception.\n");exit8(packet->record.code);
 }

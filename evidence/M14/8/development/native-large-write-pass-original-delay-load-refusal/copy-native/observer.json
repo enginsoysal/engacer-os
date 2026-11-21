@@ -1,0 +1,48 @@
+{
+  "canonical_sha256": "2e44edcdde6eb56480bd6ae102a8ce77fdf0bd5f1d7cd21e3d3edee1fcc912fc",
+  "executed_sha256": "78293824a2b44c76cae19d0b6684dc86d5bfba322a028f835e6a223eb1509574",
+  "large_source_bytes": 11534336,
+  "large_source_sha256": "c14b845932eb70fc4aec13616a255186230be0f126cbc69680a47b65ef5bc963",
+  "production_worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "aab73632a5b6d4438945ee27dd2cd6c4",
+    "source_commit": "72e6d6f97d8b8783149d3014cff459b1a953ea6d",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "2379a9ece681da9dc58951e868176f451a2d9d8c4d5873c3176f93f5ec3d2546",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "f356be59df1800c54f7d06530db4d7a0545fd2d19ed8b21c783a85a60253ff04"
+  },
+  "production_worker_sha256": "55e35fe225535f3e51b38df1e6d6720b2bdeddd75d03a61cdb2620baad62e429",
+  "replacements": [
+    [
+      "from unwind_fixtures2 import build",
+      "from copy148_build import build"
+    ],
+    [
+      "m142-unwind",
+      "m148-copy"
+    ],
+    [
+      "stage8/unwind'",
+      "stage8/copy-native'"
+    ],
+    [
+      "M142_C_SEH_FINALLY_UNWIND_PASS",
+      "M148_COPY_FILE_BYTES_REPLACEMENT_METADATA_GUARDS_PASS"
+    ],
+    [
+      "Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification",
+      "Native CopyFileW bytes, replacement, metadata, readonly/hidden guards, same-file protection, missing source and empty file"
+    ],
+    [
+      "handled_faults_per_execution=60",
+      "copied_payload_bytes=8193,large_copied_payload_bytes=11*1024*1024,large_written_payload_bytes=11*1024*1024"
+    ]
+  ]
+}
