@@ -206,3 +206,12 @@ format does not make those layouts supported. Original tasks requiring them
 must expand this profile and pass actual drawing/measurement consistency tests.
 Formatted drawing itself remains unimplemented; measurement is not a drawing
 qualification. Native integer glyph advances remain shared with the compositor.
+
+## Solid brush candidate
+
+Solid brushes own their actual 32-bit ARGB color and remain independent after
+clone/mutation/source destruction. They use a lazy 32-object process table and
+share existing allocation bounds. Color/type queries report actual retained
+state, including transparent colors; no alpha channel is silently removed.
+Other brush kinds remain unsupported. These metadata/lifetime operations do not
+substitute for the actual pixel drawing APIs required by the original installer.

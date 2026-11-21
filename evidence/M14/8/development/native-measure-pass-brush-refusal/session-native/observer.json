@@ -1,0 +1,66 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "beff9262582f378e0fb0260265809b54c8b2e5553af5153e22484a7bbbc1fb5b",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from session148_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/session-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-session-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M148_NATIVE_SESSION_MESSAGES_SRW_PASS"
+    ],
+    [
+      "range(21)",
+      "range(3)"
+    ],
+    [
+      "assert ui.integer(g,'ui_resident144',True)==0",
+      "assert ui.integer(g,'ui_resident144',True)==1"
+    ],
+    [
+      "assert retained==0,(cycle,retained)",
+      "assert retained==(1 if cycle==0 else 0),(cycle,retained);before=f.stats(g)[0]"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "writer_threads=4,reader_threads=4,writer_operations=4000,desktop_dc_rounds=512"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance."
+    ]
+  ],
+  "production_worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "13bbccbc57ab1e4008aad659fda3100e",
+    "source_commit": "89ec67c48ce4f9155976bdc4f921a3a307a12858",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "d6cf026dc906dd36f879fffc40f747eb2a9f5ed9243f58a017858b3e713db9e7",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "ae23f86bfe42cbc9f030598cad01f12a191e6ee1af727d98ed016988ec3c56a7"
+  },
+  "production_worker_sha256": "6e7cc2c3c5e7cf4c26bca040f9440af396c746113366b07b9c7f40e78a535ec3"
+}
