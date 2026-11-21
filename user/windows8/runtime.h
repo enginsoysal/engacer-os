@@ -80,5 +80,6 @@ void msi8_execute(void);
 #ifdef ENGINE_M14
 unsigned exe148_source(const char*);
 void exe148_review(void);
+void exe148_execute(void);
 #endif
 #endif

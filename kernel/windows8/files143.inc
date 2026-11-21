@@ -87,6 +87,9 @@ static unsigned file_resize143(file_object143*object,uint64_t size){
 static int64_t file_open143(const char*path,unsigned access,unsigned share,unsigned creation,unsigned flags,unsigned legacy){
  if(access&~31u||share&~7u||creation<1||creation>5)return -87;
  if(!path8(path,0)||((access&22)&&!path8(path,1)))return -5;
+#ifdef ENGINE_M14
+ if(((access&22)||creation==2||creation==5)&&exe_image_pinned148(path))return -32;
+#endif
  if(flags&~0x040000a7u)return -50;if((flags&0x04000000u)&&!(access&4))return -5;
  const v6_entry*entry=find8(path);unsigned object=file_object_slot143(path);file_object143*value=object<FILE_OBJECTS143?file_objects143[object]:0;
  unsigned exists=entry||value;
@@ -176,6 +179,9 @@ static int64_t file_lock_call143(trap_frame*frame,unsigned slot,uint64_t handle,
  context8=*frame;context8.rax=0;w8_active=0;w8_escape();
 }
 static unsigned file_delete143(const char*path){
+#ifdef ENGINE_M14
+ if(exe_image_pinned148(path))return 5;
+#endif
  if(!path8(path,1))return 5;const v6_entry*entry=find8(path);if(!entry)return 2;
  unsigned object=file_object_slot143(path);
  file_metadata143 metadata;unsigned error=0;if(object<FILE_OBJECTS143)metadata=file_objects143[object]->metadata;else error=metadata_load143(path,entry->kind,&metadata);if(error)return error;if(entry->kind==1&&(metadata.attributes&1))return 5;
@@ -185,6 +191,9 @@ static unsigned file_delete143(const char*path){
  if(v6_remove(m6_volume(),path))return 1117;return metadata_remove143(path);
 }
 static unsigned file_move143(const char*source,const char*destination,unsigned replace){
+#ifdef ENGINE_M14
+ if(exe_image_pinned148(source)||exe_image_pinned148(destination))return 32;
+#endif
  if(replace>1)return 87;if(!path8(source,1)||!path8(destination,1))return 5;
  const v6_entry*entry=find8(source);if(!entry)return 2;if(equal8(source,destination))return 0;
  unsigned source_slot=file_object_slot143(source),target_slot=file_object_slot143(destination);

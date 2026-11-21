@@ -23,4 +23,7 @@ typedef struct {uint32_t present,type,bytes,key_present;uint8_t data[512];} exe_
 typedef struct {uint64_t magic;uint32_t schema,bytes,state,nonce;uint8_t source_sha[32],checksum[32];char user[256],root[256],alias[256],source[256],temporary[256];exe_shared148 shared[2];uint32_t reserved[8];} exe_record148;
 #define EXE148_RECORD_MAGIC UINT64_C(0x314558454e453431)
 _Static_assert(offsetof(exe_record148,checksum)==56&&sizeof(exe_record148)<=4096,"EXE record must retain a checked single-page schema");
+#ifndef W8_USER
+unsigned w8_exe_record148(const char*,exe_record148*);
+#endif
 #endif

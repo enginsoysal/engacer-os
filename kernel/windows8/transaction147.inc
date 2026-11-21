@@ -26,6 +26,7 @@ static unsigned transaction_keep147(void){
 }
 static int64_t alias_set147(uint64_t address,uint64_t b,uint64_t c,uint64_t d,uint64_t e){
  if(b||c||d||e)return -87;
+ if(spaces142[active_space142]->exe_context148)return -5;
  if(input8.command!=W8_INSTALL&&input8.command!=W8_REMOVE&&input8.command!=W8_PREVIEW)return -5;
  char alias[256];if(string8(address,alias,sizeof(alias))||!win_tx_alias147(alias))return -87;
  /* Only the logical alias changes. The canonical physical grant never moves. */
@@ -33,6 +34,7 @@ static int64_t alias_set147(uint64_t address,uint64_t b,uint64_t c,uint64_t d,ui
  copy8(input8.windows_root,alias,sizeof(input8.windows_root));return 0;
 }
 static unsigned installer_user_grant147(const char*path,unsigned ancestor){
+ if(spaces142[active_space142]->exe_context148)return exe_user_grant148(path,ancestor);
  if(!path||path[0]!='/'||!win_tx_relative147(path+1,'/')||!win_product_root147(input8.product_root))return 0;
  char completion[256];if(win_product_completion147(completion,sizeof(completion),input8.product_root)){if(equal8(path,completion))return 1;if(ancestor&&prefix8(completion,path))return 1;}
  const char*common="/Data/Windows/Common/Programs";

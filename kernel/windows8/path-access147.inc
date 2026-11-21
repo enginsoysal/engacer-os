@@ -11,6 +11,9 @@ static unsigned path8(const char*p,unsigned write){
 #endif
   ;
 #ifdef ENGINE_M14
+#ifdef ENGINE_EXE_BROKER148
+ if(spaces142[active_space142]->exe_context148)return prefix8(p,input8.product_root)||exe_user_grant148(p,0);
+#endif
  if(installer_authority147())return (prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE))||installer_user_grant147(p,0);
 #else
  if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);

@@ -29,6 +29,9 @@ static void end_space142(unsigned slot,unsigned code){
  active_space142=slot;unsigned object=spaces142[slot]->object;process_object142*o=process_objects142+object;unsigned pid=o->pid;
  if(!slot){root_terminal142=info8.state;copy8(root_end_message142,root_info142->message,sizeof(root_end_message142));}
  o->code=code;o->live=0;o->slot=UINT32_MAX;if(!o->primary_done){o->primary_done=1;o->primary_code=code;}
+#ifdef ENGINE_M14
+ if(slot&&code&&spaces142[0]&&spaces142[0]->exe_context148)spaces142[0]->exe_child_error148=code;
+#endif
  release8();drop_process_object142(object);wake_process_waiters142();
  serial_text(slot?"M142_CHILD_EXIT pid=":"M142_ROOT_EXIT pid=");serial_hex(pid);serial_text(" code=");serial_hex(code);serial_text("\n");
  if(!slot&&w8_pending()){root_waiting142=1;root_info142->state=1;copy8(root_info142->message,"The main program ended; waiting for child processes.",sizeof(root_info142->message));++root_info142->revision;}
@@ -81,6 +84,9 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  w8_process_request request;w8_process_result result={0};if(user8(request_address,&request,sizeof(request),0)||user8(result_address,&result,sizeof(result),1))return -87;
  if(!terminated142(request.source,sizeof(request.source))||!terminated142(request.command,sizeof(request.command))||!terminated142(request.directory,sizeof(request.directory))||(request.flags&~W8_CREATE_FLAGS147))return -87;
  if(!path8(request.source,0)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);if(error)return -(int64_t)error;
+#ifdef ENGINE_M14
+ if(spaces142[active_space142]->exe_context148&&!equal8(request.source,"/System/Windows/Tools/cmd.exe")&&!equal8(request.source,"/System/Windows/Tools/xcopy.exe")){error=exe_hash_file148(request.source,EXE148_SOURCE_BYTES,EXE148_SOURCE_SHA);if(error)return -(int64_t)error;}
+#endif
  unsigned caller=active_space142,target=1,free_handles=0;while(target<SPACES142&&spaces142[target])++target;for(unsigned i=0;i<32;++i)if(!spaces142[caller]->handles[i].live)++free_handles;if(target==SPACES142||free_handles<2)return -8;
  int object=new_process_object142();if(object<0)return -8;
  const w8_mailbox*parent=&spaces142[caller]->input;
@@ -89,6 +95,8 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  process_objects142[object].parent_pid=spaces142[caller]->input.process_id;
 #ifdef ENGINE_M14
  spaces142[target]->install_authority147=spaces142[caller]->install_authority147;
+ spaces142[target]->exe_context148=spaces142[caller]->exe_context148;
+ if(spaces142[target]->exe_context148){const v6_entry*image=find8(request.source);spaces142[target]->image_pin148=(unsigned)(image-m6_volume()->entries)+1;spaces142[target]->input.reserved147=spaces142[caller]->input.reserved147;spaces142[target]->input.profile147=W8_PROFILE_EXE148;}
  error=pipe_inherit147(caller,target,&request);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  spaces142[target]->input.startup_flags147=request.startup_flags147;memcpy(spaces142[target]->input.std_handles147,request.std_handles147,sizeof(request.std_handles147));copy8(spaces142[target]->input.windows_root,spaces142[caller]->input.windows_root,256);
  spaces142[target]->input.error_mode148=(request.flags&0x04000000u)?0:request.error_mode148;
@@ -105,12 +113,20 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
  v6_set_guard148(exe_volume_guard148);
 #endif
  if(w8_pending())return V6_INVALID;active_space142=0;root_terminal142=root_waiting142=0;root_end_message142[0]=0;space_cursor142=0;memset(root_info142,0,sizeof(*root_info142));int object=new_process_object142();if(object<0)return V6_INVALID;
- unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0);active_space142=0;if(status)drop_process_object142((unsigned)object);return status;
+ unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0);active_space142=0;if(status)drop_process_object142((unsigned)object);
+#ifdef ENGINE_M14
+ if(!status&&command==W8_REMOVE&&equal8(root,EXE148_ROOT)){status=exe_admit148(command,0);if(status)w8_cancel();}
+#endif
+ return status;
 }
 unsigned w8_start_reviewed147(unsigned command,const char*source,const char*root,const char*user,const char*arguments,const uint8_t digest[32]){
  if(command!=W8_INSTALL||!digest)return V6_INVALID;unsigned nonzero=0;for(unsigned i=0;i<32;++i)nonzero|=digest[i];if(!nonzero)return V6_INVALID;
  unsigned status=w8_start(command,source,root,user,arguments);if(status)return status;
- memcpy(input8.source_sha147,digest,32);if(user8(W8_MAILBOX+offsetof(w8_mailbox,source_sha147),input8.source_sha147,32,1)){w8_cancel();return V6_INVALID;}return 0;
+ memcpy(input8.source_sha147,digest,32);
+#ifdef ENGINE_M14
+ if(equal8(root,EXE148_ROOT)){status=exe_admit148(command,digest);if(status){w8_cancel();return status;}}
+#endif
+ if(user8(W8_MAILBOX+offsetof(w8_mailbox,source_sha147),input8.source_sha147,32,1)){w8_cancel();return V6_INVALID;}return 0;
 }
 void w8_cancel(void){
  if(!w8_pending())return;unsigned cleanup_failed=0,kept=0,damaged=0;

@@ -2,8 +2,8 @@
 #define REGISTRY_KEYS143 64u
 #ifdef ENGINE_M14
 /* Durable namespace capacity is independent of the lazy live-object budget. */
-#define REGISTRY_PERSISTED_KEYS148 256u
-#define REGISTRY_VALUES143 512u
+#define REGISTRY_PERSISTED_KEYS148 512u
+#define REGISTRY_VALUES143 1024u
 #else
 #define REGISTRY_PERSISTED_KEYS148 REGISTRY_KEYS143
 #define REGISTRY_VALUES143 128u
@@ -162,7 +162,7 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
  }
  /* Machine writes require the owner-confirmed install/remove worker context.
   * Ordinary applications can read both views but cannot obtain write grants. */
- if(registry_machine147&&!installer_authority147()){
+ if(registry_machine147&&(!installer_authority147()||spaces142[active_space142]->exe_context148)){
   if(operation==2||operation==3||operation==6||operation==10||((operation==1)&&(request.access&~0x20019u)))return -5;
  }
 #endif

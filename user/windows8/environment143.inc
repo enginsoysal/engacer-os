@@ -51,7 +51,11 @@ static unsigned environment_ensure143(void){
   if(sys8(W8_SYS_UNMAP,job8->environment,(job8->environment_bytes+4095u)&~UINT64_C(4095),0,0,0)){error=87;goto fail;}job8->environment=0;job8->environment_bytes=0;return 0;
  }
  {char native[256],win[512];WCHAR profile[512],temporary[512],path[512],username[256];copy8(native,job8->user_root,256);winpath8(native,win,512);
-  if(utf8_to16(win,profile,512)<0){error=1113;goto fail;}append8(win,"\\AppData\\Temp",512);if(utf8_to16(win,temporary,512)<0){error=1113;goto fail;}
+  if(utf8_to16(win,profile,512)<0){error=1113;goto fail;}append8(win,"\\AppData\\Temp",512);
+#ifdef ENGINE_M14
+  if(job8->profile147&W8_PROFILE_EXE148){append8(win,"\\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-",512);char digits[16],reverse[16];unsigned at=0,n=0,value=job8->reserved147;do{reverse[n++]=(char)('0'+value%10);value/=10;}while(value);while(n)digits[at++]=reverse[--n];digits[at]=0;append8(win,digits,512);}
+#endif
+  if(utf8_to16(win,temporary,512)<0){error=1113;goto fail;}
   winpath8(job8->product_root,win,512);if(utf8_to16(win,path,512)<0){error=1113;goto fail;}const char*leaf=job8->user_root;for(unsigned i=0;job8->user_root[i];++i)if(job8->user_root[i]=='/')leaf=job8->user_root+i+1;if(utf8_to16(leaf,username,256)<0){error=1113;goto fail;}
   const WCHAR*names[]={u"USERPROFILE",u"USERNAME",u"TEMP",u"TMP",u"Path",u"PROCESSOR_ARCHITECTURE",u"NUMBER_OF_PROCESSORS"};
   const WCHAR*values[]={profile,username,temporary,temporary,path,u"AMD64",u"1"};

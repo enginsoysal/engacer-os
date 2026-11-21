@@ -6,7 +6,12 @@
 #ifdef ENGINE_M14
 #include <engine/winproduct147.h>
 #include <engine/wintxn147.h>
+#include <engine/winexe148.h>
+#define ENGINE_EXE_BROKER148 1
 static unsigned installer_user_grant147(const char*,unsigned);
+static unsigned exe_user_grant148(const char*,unsigned);
+static unsigned exe_admit148(unsigned,const uint8_t*);
+static unsigned exe_hash_file148(const char*,uint64_t,const char*);
 #endif
 extern void *memmove(void*,const void*,size_t);
 #define NX (UINT64_C(1)<<63)
@@ -34,7 +39,7 @@ typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,virtual_pages,lazy_faults;
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
- unsigned install_authority147,exe_context148,image_pin148;
+ unsigned install_authority147,exe_context148,image_pin148,exe_child_error148;
 #endif
  process_handle142 handles[32];sync_cap142 sync_handles[64];registry_cap143 registry_handles[32];
  uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;char image_name148[64];
@@ -70,6 +75,7 @@ uint64_t w8_saved_rsp,w8_kernel_cr3;
 #ifdef ENGINE_M14
 static unsigned installer_authority147(void){return spaces142[active_space142]->install_authority147;}
 static int equal8(const char*,const char*);
+static unsigned exe_image_pinned148(const char*path){for(unsigned i=0;i<SPACES142;++i){private_space142*s=spaces142[i];if(s&&s->exe_context148&&s->image_pin148&&process_objects142[s->object].live&&s->image_pin148<=V6_ENTRIES&&equal8(path,m6_volume()->entries[s->image_pin148-1].path))return 1;}return 0;}
 /* A reviewed image lease protects its actual table entry without a duplicate
  * installer cache or a larger resident table. Bind it only in the EXE broker. */
 static unsigned exe_volume_guard148(v6_volume*volume,const char*path,const v6_entry*pending){
@@ -202,7 +208,7 @@ static void output8(const char*s,unsigned n){output_record142(&info8,s,n);if(act
 static void snapshot8(void){w8_mailbox value;if(user8(W8_MAILBOX,&value,sizeof(value),0))return;
  info8.percent=value.percent<=100?value.percent:0;copy8(info8.product,value.product,sizeof(info8.product));copy8(info8.version,value.version,sizeof(info8.version));copy8(info8.publisher,value.publisher,sizeof(info8.publisher));copy8(info8.code,value.code,sizeof(info8.code));copy8(info8.message,value.message,sizeof(info8.message));info8.files=value.files;info8.total_bytes=value.total_bytes;
 #ifdef ENGINE_M14
- memcpy(info8.source_sha147,value.source_sha147,32);info8.profile147=value.profile147&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147);info8.registry147=value.registry;info8.shortcuts147=value.shortcuts;info8.features147=value.features;
+ memcpy(info8.source_sha147,value.source_sha147,32);info8.profile147=value.profile147&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147|W8_PROFILE_EXE148);info8.registry147=value.registry;info8.shortcuts147=value.shortcuts;info8.features147=value.features;
 #endif
 ++info8.revision;serial_text("M8_PROGRESS percent=");serial_hex(info8.percent);serial_text(" ");serial_text(info8.message);serial_text("\n");}
 static void finish8(unsigned status){snapshot8();info8.status=status;info8.state=status?3:2;
@@ -232,6 +238,7 @@ static void reap_threads142(void){
 #endif
 static unsigned rollback8(void){
 #ifdef ENGINE_M14
+ if(spaces142[active_space142]->exe_context148)return 2;
  if((input8.command==W8_INSTALL||input8.command==W8_REMOVE)&&transaction_pending147()){unsigned pending=transaction_keep147();if(pending)return pending;}
 #endif
  if(!created_root8)return 0;
@@ -333,6 +340,9 @@ static unsigned information8(const v6_entry*entry,w8_file_info*out){
  const char*name=entry->path;for(unsigned i=0;entry->path[i];++i)if(entry->path[i]=='/')name=entry->path+i+1;copy8(out->name,name,256);return 0;
 }
 #include "registry143.inc"
+#ifdef ENGINE_M14
+#include "exe-broker148.inc"
+#endif
 static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i]==page){owned8[i]=owned8[--count8];page_free(page);return;}}
 #include "exception142.inc"
 static int64_t dispatch8(trap_frame*f){
@@ -372,6 +382,9 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_EXCEPTION_REGISTER:if(!access_exception142(a,4))return -1;spaces142[active_space142]->exception_entry=a;return 0;
  case W8_SYS_EXCEPTION_RETURN:return return_exception142(f,a);
  case W8_SYS_SOFTWARE148:return software_exception148(f,a,b,c,d);
+#ifdef ENGINE_M14
+ case W8_SYS_EXE148:return exe_syscall148(f,a,b,c,d,e);
+#endif
  case W8_SYS_VMINFO:{uint64_t values[4]={virtual_pages141,count8,lazy_faults141,OWN8};return user8(a,values,sizeof(values),1)?-1:0;}
  case W8_SYS_UNMAP:case W8_SYS_PROTECT:{
   if(!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -1;
