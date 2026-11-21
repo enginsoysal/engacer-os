@@ -1,12 +1,12 @@
 /* Immutable snapshots of actual live Windows execution-domain processes.
  * Native desktop components are outside this compatibility PID namespace. */
-#define SNAPSHOT_TAG148 UINT64_C(0x534e000000000000)
-#define SNAPSHOT_MASK148 UINT64_C(0xffff000000000000)
+#define SNAPSHOT_TAG148 UINT64_C(0xd0000000)
+static HANDLE snapshot_handle148(HANDLE handle){uint64_t low=(uint32_t)handle;if(handle!=low&&handle!=(uint64_t)(int64_t)(int32_t)low)return 0;return(low&UINT64_C(0xf0000000))==SNAPSHOT_TAG148?low:0;}
 typedef struct {uint32_t size,usage,pid,pad;uint64_t heap;uint32_t module,threads,parent;int32_t priority;uint32_t flags;WCHAR name[260];uint32_t tail;} process_entry148;
 _Static_assert(sizeof(process_entry148)==568&&offsetof(process_entry148,name)==44,"AMD64 PROCESSENTRY32W layout");
 typedef struct {HANDLE handle;unsigned next,reserved;w8_process_snapshot148 view;} snapshot148;
 static snapshot148*snapshots148[8];static unsigned snapshot_generation148;static lock142 snapshot_lock148;
-static snapshot148*snapshot_find148(HANDLE handle){unsigned slot=(unsigned)(handle&7u);snapshot148*s=snapshots148[slot];return s&&s->handle==handle?s:0;}
+static snapshot148*snapshot_find148(HANDLE handle){handle=snapshot_handle148(handle);if(!handle)return 0;unsigned slot=(unsigned)(handle&7u);snapshot148*s=snapshots148[slot];return s&&s->handle==handle?s:0;}
 static int snapshot_close148(HANDLE handle){lock_enter142(&snapshot_lock148);snapshot148*s=snapshot_find148(handle);if(!s){lock_leave142(&snapshot_lock148);last8(6);return 0;}snapshots148[handle&7u]=0;free8(s);lock_leave142(&snapshot_lock148);return 1;}
 static HANDLE MS f_CreateToolhelp32Snapshot(unsigned flags,unsigned pid){
  (void)pid;if(flags!=2){last8(50);return UINT64_MAX;}

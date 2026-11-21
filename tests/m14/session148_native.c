@@ -387,10 +387,10 @@ static void shell_file_tests148(void){
  check(!operation(&request)&&!request.aborted&&GetFileAttributesW(directory)==UINT32_MAX&&FreeLibrary(module),760);say148("M148_NATIVE_SHELL_PERMANENT_DELETE_GUARDS_PASS\n");
 }
 static void snapshot_mapping_tests148(void){
- uint64_t snapshot=CreateToolhelp32Snapshot(2,0),mapping=CreateFileMappingW(UINT64_MAX,0,4,0,8192,L"Engacer.SnapshotMapping148");check(snapshot!=UINT64_MAX&&mapping&&snapshot!=mapping,761);
+ uint64_t snapshot=CreateToolhelp32Snapshot(2,0),mapping=CreateFileMappingW(UINT64_MAX,0,4,0,8192,L"Engacer.SnapshotMapping148");check(snapshot!=UINT64_MAX&&snapshot<=UINT32_MAX&&mapping&&snapshot!=mapping,761);
  uint64_t existing=CreateFileMappingW(UINT64_MAX,0,2,0,0,L"Engacer.SnapshotMapping148");check(existing&&GetLastError()==183&&CloseHandle(existing),762);
  process_entry_native148 entry={.size=sizeof(entry)};check(!Process32FirstW(mapping,&entry)&&GetLastError()==6&&!MapViewOfFile(snapshot,4,0,0,4096)&&GetLastError()==6,763);
- check(CloseHandle(snapshot)&&CloseHandle(mapping),764);say148("M148_NATIVE_SNAPSHOT_MAPPING_HANDLE_DOMAIN_COEXISTENCE_PASS\n");
+ check(!Process32FirstW(snapshot|UINT64_C(0x100000000),&entry)&&GetLastError()==6,765);uint64_t signed_snapshot=(uint64_t)(int64_t)(int32_t)(uint32_t)snapshot;check(Process32FirstW(signed_snapshot,&entry)&&CloseHandle(signed_snapshot)&&!CloseHandle(snapshot)&&GetLastError()==6&&CloseHandle(mapping),764);say148("M148_NATIVE_SNAPSHOT_MAPPING_HANDLE_DOMAIN_COEXISTENCE_PASS\n");
 }
 void entry(void){
  {
