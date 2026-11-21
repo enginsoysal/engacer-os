@@ -339,6 +339,9 @@ static unsigned MS f_GetModuleFileNameA(HANDLE module,char*out,unsigned cap){WCH
 #ifdef ENGINE_M14
 #include "argv148.inc"
 #include "long-path148.inc"
+/* Native desktop and setup currently ship one UI language: US English. */
+static uint16_t MS f_GetUserDefaultUILanguage(void){return 0x0409;}
+static uint16_t MS f_GetSystemDefaultUILanguage(void){return 0x0409;}
 #endif
 static int MS f_IsDebuggerPresent(void){return 0;}
 static int MS f_LookupPrivilegeValueW(const WCHAR*system,const WCHAR*name,void*luid){(void)system;(void)name;(void)luid;last8(1313);return 0;}
@@ -437,6 +440,7 @@ static const api8 api8_table[]={
  API8(CommandLineToArgvW,10),
  API8(GetLongPathNameW,1),API8(GetShortPathNameW,1),
  API8(GetFileAttributesExW,1),
+ API8(GetUserDefaultUILanguage,1),API8(GetSystemDefaultUILanguage,1),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),

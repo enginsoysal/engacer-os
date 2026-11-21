@@ -33,6 +33,9 @@ __declspec(dllimport) uint64_t LoadLibraryExA(const char*,uint64_t,unsigned);
 __declspec(dllimport) uint64_t GetModuleHandleW(const uint16_t*);
 __declspec(dllimport) int FreeLibrary(uint64_t);
 __declspec(dllimport) unsigned GetLastError(void);
+__declspec(dllimport) void SetLastError(unsigned);
+__declspec(dllimport) uint16_t GetUserDefaultUILanguage(void);
+__declspec(dllimport) uint16_t GetSystemDefaultUILanguage(void);
 __declspec(dllimport) void*GetProcAddress(uint64_t,const char*);
 __declspec(dllimport) unsigned GetSystemDirectoryW(uint16_t*,unsigned);
 __declspec(dllimport) uint64_t HeapCreate(unsigned,uint64_t,uint64_t);
@@ -89,6 +92,7 @@ void entry(void){
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
+ SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
  unsigned id=RegisterWindowMessageW(L"Engacer.Message148.Parent");check(id>=0xc000&&id<=0xffff,222);
  check(RegisterWindowMessageA("engacer.message148.parent")==id,347);unsigned unicode_message=RegisterWindowMessageA("Engacer.Message148.\xc3\xa9");check(unicode_message>=0xc000&&unicode_message==RegisterWindowMessageW(L"Engacer.Message148.\u00e9"),348);
  check(!RegisterWindowMessageA(0)&&GetLastError()==87&&!RegisterWindowMessageA("\xff")&&GetLastError()==1113,349);

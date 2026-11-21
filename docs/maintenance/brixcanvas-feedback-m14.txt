@@ -126,3 +126,6 @@ from commit 9a01c39f, then reported only "fetch failed" at 13:17:02 UTC. No HTTP
 status or BrixCanvas application exception was provided. The existing public
 content remained available. The failed job was rerun; its result is pending.
 Do not classify this evidence alone as a BrixCanvas server defect.
+Follow-up: rerunning the unchanged failed job succeeded and verified the generated
+articles. Classification is now resolved transient request failure; the newer
+source synchronization continues normally.
