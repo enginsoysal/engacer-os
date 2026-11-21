@@ -10,7 +10,7 @@ def main():
      if any(r[5]==55000+row for r in f.controls(g)):break
      p.desktop(54023,True)
     else:raise AssertionError('Reviewed MSI is not reachable')
-    p.desktop(55000+row,True);p.desktop(54011,True);task(g,p,12000);assert state()[1]==1 and state()[4]==1;p.desktop(12001,True);assert any(r[5]==12003 for r in f.controls(g))
+    p.desktop(55000+row,True);p.desktop(54011,True);task(g,p,12000);assert state()[1]==1 and state()[4]==3;p.desktop(12001,True);assert any(r[5]==12003 for r in f.controls(g))
     terminal=t.launch(g,p,'terminal',7);c.type_text(g,'write '+path+' Changed reviewed installer');c.key(g,'ret');p.drain();assert b'Write status: 0' in bytes(t.app_view(g).text);p.desktop(49002,True);t.focus(g,p,front);p.drain();assert state()[1]==0
     at=len(g.log())
     if any(r[5]==12003 for r in f.controls(g)):p.desktop(12003,True)

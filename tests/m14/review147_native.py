@@ -37,12 +37,12 @@ def main():
      p.desktop(55000+row,True);p.desktop(54011,True);assert not c.flag(g,'file_dialog_state11');assert state()[0]==1 and state()[1]==0
      output=task(g,p,12000);assert 'M147_NATIVE_MSI_READ_ONLY_PLAN_PASS' in output;review=state();assert review[:3]==(1,1,0),review
      digest=ui.memory(g,address+68,32);expected=hashlib.sha256(package.read_bytes()).digest();assert digest==expected,(digest.hex(),expected.hex())
-     assert review[4]==(1 if index==0 else 0),review
+     assert review[4]==(3 if index==0 else 2),review
      raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496);assert ('7-Zip' if index==0 else 'Notepad++')in raw[40:136].split(b'\0')[0].decode()
      if index==1:
-      assert not c.flag(g,'w8_active');assert not any(r[5]in(12001,12003)for r in f.controls(g));assert not any(k.startswith('/Applications/Windows/')for k in f.entries(g))
+      assert not c.flag(g,'w8_active');assert any(r[5]==12001 for r in f.controls(g)) and not any(r[5]==12003 for r in f.controls(g));assert not any(k.startswith('/Applications/Windows/')for k in f.entries(g))
      c.shot(g,'review-'+str(index));report['packages'].append(dict(file=package.name,sha256=expected.hex(),profile=review[4],files=review[5],registry=review[6],shortcuts=review[7],features=review[8],output=output))
-    report['checks']=['Chooser opens with MSI filter; cancel preserves previous selection','Both unchanged original MSI packages produce their independently computed source digest','7-Zip has the qualified profile; Notepad++ remains review-only without a job or product mutation'];report['passed']=True;(out/'serial.log').write_bytes(g.log().encode())
+    report['checks']=['Chooser opens with MSI filter; cancel preserves previous selection','Both unchanged original MSI packages produce their independently computed source digest','Both original packages pass read-only generic admission without starting an install job or mutating a product'];report['passed']=True;(out/'serial.log').write_bytes(g.log().encode())
   except Exception:report['error']=ui.q.clean(traceback.format_exc());raise
   finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report,indent=2),flush=True)
  finally:sys.meta_path.remove(loader)
