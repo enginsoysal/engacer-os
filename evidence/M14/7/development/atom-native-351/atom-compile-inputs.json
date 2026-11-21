@@ -1,0 +1,5 @@
+{
+  "scope": "Own parent/child native global atom callers; no host original image execution.",
+  "source_sha256": "d5fd141dc0a379c12f03ebfd0b20e310dcd2ca135adcce0f9836a00ace7d3fd5",
+  "fixture_sha256": "c9fecbb25178ed604032393a73ca2ebcfa8e56f59358f56158269319c14a59c7"
+}

@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "build_id": "351c2b6edf612c0882aeb53527f10c01",
+  "clone": {
+    "source_sha256": "d593b4d6f582252572c99bb8c5a59f19f277ea2305c43d6cf6aa63c005369cda",
+    "clone_sha256": "d593b4d6f582252572c99bb8c5a59f19f277ea2305c43d6cf6aa63c005369cda",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "scope": "Native ordinary-input MSI chooser, cancellation and source-bound metadata review.",
+  "packages": [
+    {
+      "file": "7z2606-x64.msi",
+      "sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "profile": 1,
+      "files": 106,
+      "registry": 16,
+      "shortcuts": 2,
+      "features": 3,
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=405504 source-fnv32=754398156\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: 7-Zip 26.06 (x64 edition)\nSelected original files: 106 bytes: 5882028\nAuthored registry entries: 16 shortcuts: 2\nMSI execute actions: 23 custom-action metadata: 0\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    },
+    {
+      "file": "npp.8.9.9.1.Installer.x64.msi",
+      "sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "profile": 0,
+      "files": 217,
+      "registry": 10,
+      "shortcuts": 1,
+      "features": 3,
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=405504 source-fnv32=754398156\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: Notepad++ (x64)\nSelected original files: 217 bytes: 28130419\nAuthored registry entries: 10 shortcuts: 1\nMSI execute actions: 30 custom-action metadata: 4\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    }
+  ],
+  "changed_source_blocks_confirmation": true,
+  "checks": [
+    "Chooser opens with MSI filter; cancel preserves previous selection",
+    "Both unchanged original MSI packages produce their independently computed source digest",
+    "7-Zip has the qualified profile; Notepad++ remains review-only without a job or product mutation"
+  ]
+}
