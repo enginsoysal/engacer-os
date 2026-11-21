@@ -1,0 +1,19 @@
+{
+  "canonical_sha256": "ec16b94636ef9b1e3cabeed5713fb446dd5e8d937a5c455e59aaa34fa3ff8727",
+  "executed_sha256": "6cadb151198aca88d843743a726db69da46f73b395ed74282afe040e54cabacc",
+  "changes": [
+    [
+      "stage7/wix-tools-pilot",
+      "stage7/wix-tools-french"
+    ],
+    [
+      "m147-wix-tools-pilot",
+      "m147-wix-tools-french"
+    ],
+    [
+      "payload=bytes((i*37+19)&255 for i in range(1024*1024+17));",
+      "payload=(Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/notepadpp-msi/filtWRK_yvXKeZnh2irUzylG9VQuQk').read_bytes();assert len(payload)==122556 and hashlib.sha256(payload).hexdigest()=='7bd00f2d43f7700524d2a11ba643909229d87255b8aa43b27a0a7bc6ca7e52ef';"
+    ]
+  ],
+  "original_payload_sha256": "7bd00f2d43f7700524d2a11ba643909229d87255b8aa43b27a0a7bc6ca7e52ef"
+}

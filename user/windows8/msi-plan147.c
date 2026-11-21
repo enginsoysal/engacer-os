@@ -32,8 +32,8 @@ msia_plan147 *msia_prepare147(const void *source,unsigned bytes){
  require147(win_product_make147(plan->product_root,sizeof(plan->product_root),plan->code),"MSI product root is invalid.");
  msi8_table custom=msi8_table_open("CustomAction");require147(custom.rows<=32&&(!custom.rows||(custom.columns>=4&&custom.columns<=5)),"MSI custom-action metadata exceeds its bound.");
  for(unsigned row=0;row<custom.rows;++row){unsigned type=(unsigned)msi8_integer(&custom,row,1);const char *name=msi8_text(&custom,row,0),*action_source=msi8_text(&custom,row,2),*target=msi8_text(&custom,row,3);unsigned n=0;
-  require147(name[0]&&len8(name)<=72&&!standard147(name)&&len8(target)<=4096,"MSI custom-action identity/target is invalid.");require147(type==MSIA_PROPERTY147||type==MSIA_DEFERRED_DLL147,"MSI requires a custom-action type that is not implemented.");
-  require147(msip_name147(action_source,&n),"MSI custom-action source is invalid.");if(type==MSIA_DEFERRED_DLL147)require147(msip_name147(target,&n),"MSI DLL export name is outside the supported profile.");
+  require147(name[0]&&len8(name)<=72&&!standard147(name)&&len8(target)<=4096,"MSI custom-action identity/target is invalid.");require147(type==MSIA_PROPERTY147||msia_dll_type147(type),"MSI requires a custom-action type that is not implemented.");
+  require147(msip_name147(action_source,&n),"MSI custom-action source is invalid.");if(msia_dll_type147(type))require147(msip_name147(target,&n),"MSI DLL export name is outside the supported profile.");
   for(unsigned prior=0;prior<row;++prior)require147(!equal8(name,msi8_text(&custom,prior,0)),"MSI custom-action keys are duplicated.");
   if(custom.columns==5)require147(msi8_integer(&custom,row,4)==INT32_MIN||msi8_integer(&custom,row,4)==0,"MSI extended custom-action flags are unsupported.");
  }

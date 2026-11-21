@@ -1,0 +1,35 @@
+{
+  "canonical_sha256": "fb3361afb4a0d197504bb2b078361d54367825beda073b0c672b90d03bdcf90d",
+  "executed_sha256": "8ac59e644e2be67543681775e91425fce27ba5fee7eb3e324629ea7d82ce1d12",
+  "changes": [
+    [
+      "from wix_action147_build import build",
+      "from wix_tools147_build import build"
+    ],
+    [
+      "stage7/wix-action-pilot",
+      "stage7/wix-tools-native"
+    ],
+    [
+      "m147-wix-action-pilot",
+      "m147-wix-tools-native"
+    ],
+    [
+      "  mounted.put(prefix+'quiet-child147.exe',(fixture.parent/'quiet-child147.exe').read_bytes())",
+      "  mounted.put(prefix+'xcopy147.exe',(fixture.parent/'tools147/xcopy.exe').read_bytes())\n  mounted.put(prefix+'cmd147.exe',(fixture.parent/'tools147/cmd.exe').read_bytes())\n  payload=bytes((i*37+19)&255 for i in range(1024*1024+17));mounted.put('/Users/Owner/Documents/source-'+chr(0xe9)+'.xml',payload)"
+    ],
+    [
+      "Original unchanged WiX deferred action and own output child through real MSI services in a test-only session-owner DLL; not authored Notepad++ copy/delete, full installation or unmodified production service qualification",
+      "Original unchanged WiX drives own native copy/delete utilities, byte-exact Unicode-path copy, quoted ampersands, missing-file and self-copy/directory/operator refusals; test-only session owner, not the authored Notepad++ sequence or full installation"
+    ],
+    [
+      "'M147_REAL_WIX_CAPTURED_CHILD_OUTPUT' in text",
+      "'M147_ORIGINAL_WIX_COPY_DELETE_FAILURE_PROPAGATION_PASS' in text"
+    ],
+    [
+      "original_deferred_action_calls=1,peak_native_managed_pages=",
+      "original_deferred_action_calls=8,peak_native_managed_pages="
+    ]
+  ],
+  "byte_check_insertion": "('range(21)','range(21)'),('before=f.stats(g)[0];samples=[]','before=f.stats(g)[0];samples=[];initial_paths=set(f.entries(g))'),('retained=f.stats(g)[0]-before;',\"assert ui.s.s.document(disk,'/Users/Owner/Documents/nativeLang.xml',2*1024*1024)==payload;assert ui.s.s.document(disk,'/Users/Owner/Documents/source-'+chr(0xe9)+'.xml',2*1024*1024)==payload;assert '/Users/Owner/Documents/Delete & test.xml'not in f.entries(g) and '/Users/Owner/Documents/Must not exist.xml'not in f.entries(g);metadata_path='/Data/Windows/'+hashlib.sha256(b'/Users/Owner').hexdigest()[:32]+'/Files/m'+hashlib.sha256(b'/Users/Owner/Documents/nativeLang.xml').hexdigest()[:32];assert set(f.entries(g))==initial_paths|{'/Users/Owner/Documents/nativeLang.xml',metadata_path};metadata=ui.s.s.document(disk,metadata_path,1024);assert len(metadata)==552 and struct.unpack_from('<Q',metadata)[0]==0x314d464e4534314d and metadata[8:264].split(bytes([0]))[0]==b'/Users/Owner' and metadata[264:520].split(bytes([0]))[0]==b'/Users/Owner/Documents/nativeLang.xml' and struct.unpack_from('<II',metadata,544)==(32,0);retained=f.stats(g)[0]-before;\"),"
+}

@@ -299,3 +299,5 @@ Accepted historical reports and artifacts are immutable. Reproduce them only in
 a separate checkout. Every new behavior updates English design, user instructions,
 tests/evidence and GitHub together. No splash screen, stub or host-only probe
 qualifies a runtime milestone.
+
+M14.7 development update: the production deferred dispatcher passes 189 original WiX action calls on native threads, including checked failures and authored Continue handling, with zero retained process-group pages. Own bounded command utilities pass byte-exact copy/deletion and refusal cases. Full authored installation, durable writes and recovery remain pending; M14.6 is still the qualified download. See docs/architecture/msi-m147.md and evidence/M14/7/development/wix-threads-native-351.

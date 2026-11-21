@@ -1,0 +1,18 @@
+{
+  "canonical_sha256": "33847dd23742dad57133a1647b5f4c4371561d705c82e46a2bd7074f6b2c8065",
+  "executed_sha256": "368df5be397044c50d4c09dea133560841828ffd498ab9814334a15f8791bdd4",
+  "changes": [
+    [
+      "stage7/wix-tools-pilot",
+      "stage7/wix-tools-native"
+    ],
+    [
+      "m147-wix-tools-pilot",
+      "m147-wix-tools-native"
+    ],
+    [
+      "extra=\"\"\"('range(21)','range(1)'),",
+      "extra=\"\"\"('range(21)','range(21)'),"
+    ]
+  ]
+}

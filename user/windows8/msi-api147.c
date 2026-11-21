@@ -21,6 +21,7 @@ void msi_end_deferred147(void){if(api_plan147)msip_set147(&api_plan147->properti
 static const char*api_property147(const char*name){if(deferred147&&!equal8(name,"CustomActionData")&&!equal8(name,"ProductCode")&&!equal8(name,"UserSID"))return "";if(!deferred147&&equal8(name,"CustomActionData"))return "";return msip_get147(&api_plan147->properties,name);}
 static int api_enter147(void){if(!initialized147)return 0;EnterCriticalSection(api_lock147);return 1;}
 static void api_leave147(void){LeaveCriticalSection(api_lock147);}
+unsigned msi_immediate147(unsigned h){if(!api_enter147())return 0;unsigned valid=api_plan147&&h&&h==session147&&!deferred147;api_leave147();return valid;}
 #define MSI_EXPORT147 __declspec(dllexport)
 static msia_plan147 *api_database147(unsigned handle){unsigned slot=handle&15;return api_plan147&&handle&&database_handles147[slot]==handle?api_plan147:0;}
 /* Internal engine table access still checks the real database capability.

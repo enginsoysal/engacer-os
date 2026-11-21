@@ -337,3 +337,5 @@ Generated download and archive posts supply an explicit excerpt so promoting an
 owned empty draft also replaces its temporary draft marker. Final readback
 compares every published field and reports mismatched field names without
 printing an entire archive body. This check must pass before homepage Save.
+
+M14.7 development update: the production deferred dispatcher passes 189 original WiX action calls on native threads, including checked failures and authored Continue handling, with zero retained process-group pages. Own bounded command utilities pass byte-exact copy/deletion and refusal cases. Full authored installation, durable writes and recovery remain pending; M14.6 is still the qualified download. See docs/architecture/msi-m147.md and evidence/M14/7/development/wix-threads-native-351.

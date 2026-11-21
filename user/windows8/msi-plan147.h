@@ -2,7 +2,8 @@
 #define ENGINE_MSI_PLAN147_H
 #include "runtime.h"
 #include "msi-properties147.h"
-enum {MSIA_STANDARD147=0,MSIA_PROPERTY147=51,MSIA_DEFERRED_DLL147=3137};
+enum {MSIA_STANDARD147=0,MSIA_PROPERTY147=51,MSIA_DEFERRED_CHECKED147=3073,MSIA_DEFERRED_DLL147=3137};
+static inline int msia_dll_type147(unsigned type){return type==MSIA_DEFERRED_CHECKED147||type==MSIA_DEFERRED_DLL147;}
 typedef struct {const char *name,*condition,*source,*target;unsigned kind,sequence;} msia_action147;
 typedef struct {const char *condition,*message;} msia_launch147;
 typedef struct {const char *id,*parent,*target;char windows[256],relative[256];unsigned state,inside;} msia_directory147;

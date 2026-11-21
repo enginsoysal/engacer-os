@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "scope": "Own synchronous-action cleanup, authored return policy and injected API failure paths. Host adapters execute the callback synchronously; real action-thread and original DLL qualification are separate.",
+  "checks": 109,
+  "original_dll_executed_on_host": false,
+  "failed_join_preserves_executable_module": true,
+  "sources": {
+    "user/windows8/msi-custom147.c": "f1d6cab2330dd2e0e4bfefce0bc37106a94906e3abcdf958d9e886cb647e91d5",
+    "user/windows8/msi-custom147.h": "2a5a3ef18b1fef4bb94353285fb7164bf7487b51d291cebe5ee1e62146dca04e",
+    "user/windows8/msi-plan147.h": "34d49f4ca287e3313f5ab5104d0a0a89078ec5555720003098dceb55adba241d",
+    "tests/m14/custom147_host.c": "8e17c36b4e56ac37a33b16116b2d6994c2759687ddeff7bd9cefd4204449db55",
+    "tests/m14/custom147_host.py": "f2e4ef2a1ec2b4edac73ff993ea95efb8e00c833a4f57021fc5cdb179a3828d5"
+  }
+}

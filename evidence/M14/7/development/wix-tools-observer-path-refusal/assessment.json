@@ -1,0 +1,10 @@
+{
+  "classification": "Test-observer error, not a runtime copy failure",
+  "finding": "The strict file-set oracle omitted the required protected metadata record for the newly copied file. Independent stopped-volume inspection confirms both source and copied bytes have the expected SHA-256 and the only extra post-fixture file is the correct 552-byte metadata record for nativeLang.xml.",
+  "payload_bytes": 1048593,
+  "payload_sha256": "4b79b7523d647416e0454e9131e5ed784940a43fe3c4921e1a4053805c0c6840",
+  "metadata_magic": "0x314d464e4534314d",
+  "metadata_user": "/Users/Owner",
+  "metadata_path": "/Users/Owner/Documents/nativeLang.xml",
+  "metadata_attributes": 32
+}

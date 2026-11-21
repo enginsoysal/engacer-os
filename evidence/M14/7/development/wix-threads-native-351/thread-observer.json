@@ -1,0 +1,31 @@
+{
+  "canonical_sha256": "ec16b94636ef9b1e3cabeed5713fb446dd5e8d937a5c455e59aaa34fa3ff8727",
+  "executed_sha256": "e2635164ae744416788ea20c3b9e9a15a4be258fa3e4072358da0357f90d3734",
+  "changes": [
+    [
+      "from wix_tools147_build import build",
+      "from wix_threads147_build import build"
+    ],
+    [
+      "stage7/wix-tools-pilot",
+      "stage7/wix-threads-pilot"
+    ],
+    [
+      "m147-wix-tools-pilot",
+      "m147-wix-threads-pilot"
+    ],
+    [
+      "M147_ORIGINAL_WIX_COPY_DELETE_FAILURE_PROPAGATION_PASS",
+      "M147_THREADED_ORIGINAL_WIX_COPY_DELETE_CONTINUE_PASS"
+    ],
+    [
+      "original_deferred_action_calls=8",
+      "original_deferred_action_calls=9"
+    ],
+    [
+      "Original unchanged WiX drives own native copy/delete utilities, byte-exact Unicode-path copy, quoted ampersands, missing-file and self-copy/directory/operator refusals; test-only session owner, not the authored Notepad++ sequence or full installation",
+      "Production deferred dispatcher creates and joins real action threads for original unchanged WiX; byte-exact utilities, checked failures and authored Continue handling. Test-only session owner; authored Notepad++ sequence and full installation remain unqualified."
+    ]
+  ],
+  "cycles": 21
+}
