@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 667,
-  "table_bytes": 5336,
+  "refusal_keys": 666,
+  "table_bytes": 5328,
   "imports": [
     {
       "app": "notepadpp",
@@ -2713,13 +2713,6 @@
       "dll": "kernel32.dll",
       "symbol": "GetLogicalDrives",
       "key": "a8c9355a348eac5e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "LoadLibraryExA",
-      "key": "1063c577e0b50b75",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

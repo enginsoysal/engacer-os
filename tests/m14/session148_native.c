@@ -21,6 +21,10 @@ __declspec(dllimport) uint8_t TryAcquireSRWLockShared(uint64_t*);
 __declspec(dllimport) uint64_t GetStdHandle(unsigned);
 __declspec(dllimport) int WriteFile(uint64_t,const void*,unsigned,unsigned*,void*);
 __declspec(dllimport) void ExitProcess(unsigned);
+__declspec(dllimport) uint64_t LoadLibraryExA(const char*,uint64_t,unsigned);
+__declspec(dllimport) uint64_t GetModuleHandleW(const uint16_t*);
+__declspec(dllimport) int FreeLibrary(uint64_t);
+__declspec(dllimport) unsigned GetLastError(void);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 static unsigned worker(void*kind){
@@ -41,6 +45,10 @@ void entry(void){
  check(CreateProcessW(path,command,0,0,0,0,0,0,startup,&process),225);check(WaitForSingleObject(process.process,30000)==0,226);
  unsigned result=0;check(GetExitCodeProcess(process.process,&result)&&result==id,227);check(CloseHandle(process.thread)&&CloseHandle(process.process),228);
  unsigned other=RegisterWindowMessageW(L"Engacer.Message148.ChildFirst");check(other>=0xc000&&other!=id,229);
+ uint64_t module=LoadLibraryExA("kernel32.dll",0,0);check(module&&module==GetModuleHandleW(L"kernel32.dll")&&FreeLibrary(module),238);
+ check(!LoadLibraryExA(0,0,0)&&GetLastError()==87,239);
+ check(!LoadLibraryExA("\xff",0,0)&&GetLastError()==1113,240);
+ check(!LoadLibraryExA("kernel32.dll",1,0)&&GetLastError()==50,242);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);
  check(TryAcquireSRWLockShared(&lock)&&TryAcquireSRWLockShared(&lock)&&!TryAcquireSRWLockExclusive(&lock),232);ReleaseSRWLockShared(&lock);ReleaseSRWLockShared(&lock);
