@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "scope": "Ordinary original Notepad++ MSI lifecycle; optional owned French preference seed.\n\nNo original DLL or application executes on the host. The French variant changes\nonly the own worker to seed an existing preference through native registry APIs;\nall installer effects and original deferred bodies run in the production service.\n",
+  "profile": "french",
+  "build_id": "338f750f23590712c09e4a621f56ef6f",
+  "source_commit": "a64f197d25801b8f6d370f610be447ea3350df25",
+  "observer_sha256": "d9c457a7416a2e7f83af25fe880d4db966a35a425c33f96f15a958253763ff4e",
+  "clone": {
+    "source_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "clone_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "tasks": [
+    {
+      "operation": "install",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 0,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 4541,
+      "message": "Application files, registry values and shortcuts were installed and verified.",
+      "output": "M147_OWNED_EXISTING_FRENCH_PREFERENCE_SEEDED\nMapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=499712 source-fnv32=2661466915\nRunning the native Engacer MSI service in a protected process.\n\nMapped original image: action.dll bytes=438272 source-fnv32=1471946921\nMapped original image: xcopy.exe bytes=24576 source-fnv32=3808129900\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  1 File(s) copied\nM147_ORIGINAL_DEFERRED_BODY CopyNativeLangAction result=0 continued=0\n",
+      "payloads": 217,
+      "links": 1,
+      "registry_ownerships": 10,
+      "generated_files": 1,
+      "journal_sha256": "713911eb9563da4deac1138d0fcef3d9c96d1cef99fdb3e0f1f6f943855c7c66"
+    },
+    {
+      "operation": "remove without original download after independent restart",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 2806,
+      "message": "Removed. Changed files were saved in Documents > Recovered applications.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=499712 source-fnv32=2661466915\nRunning the native Engacer MSI service in a protected process.\n\nMapped original image: action.dll bytes=438272 source-fnv32=1471946921\nMapped original image: cmd.exe bytes=20480 source-fnv32=4184089684\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  The file was not found.\nM147_ORIGINAL_DEFERRED_BODY DeleteNativeLangAction result=0 continued=0\n"
+    }
+  ],
+  "preference_fixture_receipt_sha256": "8c01e6b73b73d69b1f8ecf66f77422e793f1dec8cab1b54c43a7879106f44178",
+  "preserved_generated_file": {
+    "path": "/Users/Owner/Documents/Recovered applications/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}/0583cd4bca6c3ff8-940b334dabb37fbc11cd730e-nativeLang.xml",
+    "sha256": "940b334dabb37fbc11cd730eac3ef6d3bb9f5efcdcd5e50b41c3f63d2b672452"
+  }
+}

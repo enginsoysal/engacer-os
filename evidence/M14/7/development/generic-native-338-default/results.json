@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "scope": "Ordinary original Notepad++ MSI lifecycle; optional owned French preference seed.\n\nNo original DLL or application executes on the host. The French variant changes\nonly the own worker to seed an existing preference through native registry APIs;\nall installer effects and original deferred bodies run in the production service.\n",
+  "profile": "default",
+  "build_id": "338f750f23590712c09e4a621f56ef6f",
+  "source_commit": "a64f197d25801b8f6d370f610be447ea3350df25",
+  "observer_sha256": "d9c457a7416a2e7f83af25fe880d4db966a35a425c33f96f15a958253763ff4e",
+  "clone": {
+    "source_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "clone_sha256": "695e1e8538dcd00165fae1033a3a31d113d824f1d577ae1763f649ee6c2b90e0",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "tasks": [
+    {
+      "operation": "install",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 0,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 4218,
+      "message": "Application files, registry values and shortcuts were installed and verified.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=499712 source-fnv32=2661466915\nRunning the native Engacer MSI service in a protected process.\n\n",
+      "payloads": 217,
+      "links": 1,
+      "registry_ownerships": 9,
+      "generated_files": 0,
+      "journal_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+    },
+    {
+      "operation": "remove without original download after independent restart",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 2368,
+      "message": "Removed. Your personal files are unchanged.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=499712 source-fnv32=2661466915\nRunning the native Engacer MSI service in a protected process.\n\n"
+    }
+  ]
+}

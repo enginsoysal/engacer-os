@@ -1,0 +1,29 @@
+{
+  "scope": "Build a private French preference fixture over an unchanged full-kernel ABI.",
+  "kernel_build_id": "338f750f23590712c09e4a621f56ef6f",
+  "source_commit": "adf241ff89c75ac75460591bc2bb03885349ca38",
+  "private_runtime_receipt_sha256": "aafc57fef4a3ace70261335f50ad6d55e16f60bc01e249f4ca9320b650603519",
+  "test_sources": {
+    "tests/m14/french147_native.c": "7428f6e0b3f45428b9d9066f85f51bc6eb9ed9af417ee664fc95a6f95fd771ae",
+    "tests/m14/french147_build.py": "76cdae9234903f56458fd37984685eb464d7d3ce36ded4f7dc499f903f0e99d3",
+    "tests/m14/fixture1.py": "e84a8b8cdccb731fbbb3aedc4290c147442ca0550fd000085cbb95904c840fa5"
+  },
+  "artifacts": {
+    "WINDOWS8.ELF": {
+      "bytes": 319572,
+      "sha256": "5f9169d720da8b0ee97ae6b507b9b8ff31b7b07cc498d535f08eb3d8252a3a1d"
+    },
+    "fixture-runtime8.elf": {
+      "bytes": 311376,
+      "sha256": "8fb21fe2bb00d502260e70585eaf99bfd245225e5c9367e6a0c84ace2963d279"
+    },
+    "msi.dll": {
+      "bytes": 291328,
+      "sha256": "1f2c6b95d97647c22b543a2b33650c37ddf9ffe0a8e55b507e63cbd7953f1372"
+    },
+    "msiexec.exe": {
+      "bytes": 3072,
+      "sha256": "783c7306a50e0ff345870cd4907c4b3684875821180d1d137c6252300583ce66"
+    }
+  }
+}
