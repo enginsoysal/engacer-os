@@ -73,7 +73,7 @@ static void shell_tables148(void){
 }
 static int MS f_CoCreateInstance(const void*clsid,void*outer,unsigned context,const void*iid,void**out){
  if(!shell_access148(out,8,1))return(int)0x80004003u;*out=0;if(!shell_access148(clsid,16,0)||!shell_access148(iid,16,0))return(int)0x80004003u;
- if(outer)return(int)0x80040110u;if(context!=1)return(int)0x80040154u;
+ if(outer)return(int)0x80040110u;if(!(context&1u)||(context&~0x17u))return(int)0x80040154u;
  lock_enter142(&apartment_lock144);unsigned initialized=apartment_find144(tid142())!=0;lock_leave142(&apartment_lock144);if(!initialized)return(int)0x800401f0u;
  if(memcmp(clsid,shell_clsid148,16))return(int)0x80040154u;
  if(memcmp(iid,shell_iid148,16)&&memcmp(iid,unknown_iid148,16)&&memcmp(iid,persist_iid148,16)&&memcmp(iid,persist_base_iid148,16))return(int)0x80004002u;

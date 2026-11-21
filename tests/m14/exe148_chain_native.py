@@ -1,9 +1,10 @@
 """Ordinary unchanged x64 EXE GUI install, cold removal and reinstall on production media."""
-import hashlib,json,os,struct,sys,time,traceback,zlib
+import argparse,hashlib,json,os,struct,sys,time,traceback,zlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 PRODUCT='/Applications/Windows/{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}'
 def main():
+ parser=argparse.ArgumentParser();parser.add_argument('--development-worker',type=Path);args=parser.parse_args()
  import replay8
  loader=replay8.ReplayLoader();sys.meta_path.insert(0,loader)
  try:
@@ -11,14 +12,23 @@ def main():
   out=ROOT/'build/m14-native/stage8/exe-chain-native';out.mkdir(parents=True,exist_ok=True);c.OUT=out;meta=json.loads(ui.manifest_path12().read_text());base=json.loads((ROOT/'build/m14-native/stage8/compact/results.json').read_text());assert base['passed']and base['build_id']==meta['build_id']
   source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage8-compact'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m148-ordinary-exe-chain');original=Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/SumatraPDF-3.6.1-64-install.exe';data=original.read_bytes();assert hashlib.sha256(data).hexdigest()=='1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381';download='/Users/Owner/Downloads/'+original.name;sentinel='/Users/Owner/Documents/EXE-personal-sentinel148.txt'
   mounted=StoppedDisk(disk,library())
-  try:mounted.put(download,data);mounted.put(sentinel,b'Personal document preserved across original EXE lifecycle')
+  try:
+   mounted.put(download,data);mounted.put(sentinel,b'Personal document preserved across original EXE lifecycle')
+   if args.development_worker:mounted.put('/System/Windows/runtime8.elf',args.development_worker.read_bytes())
   finally:mounted.close()
-  report=dict(passed=False,scope=__doc__,build_id=meta['build_id'],compiled_source=meta.get('source_commit'),observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),clone=cloned,owned_fixture=work.name,cycles=[])
+  report=dict(passed=False,scope=__doc__,build_id=meta['build_id'],compiled_source=meta.get('source_commit'),observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),clone=cloned,owned_fixture=work.name,cycles=[],full_production_media=not args.development_worker,development_worker_sha256=hashlib.sha256(args.development_worker.read_bytes()).hexdigest()if args.development_worker else None)
+  previous_output='';observed_output=''
   def state(g):
    raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496);return dict(state=struct.unpack_from('<I',raw)[0],status=struct.unpack_from('<I',raw,8)[0],message=raw[304:496].split(b'\0')[0].decode(errors='replace'))
   def wait_condition(g,p,predicate,seconds=240):
+   nonlocal previous_output,observed_output
    deadline=time.monotonic()+seconds
    while time.monotonic()<deadline:
+    current_output=output(g)
+    if current_output!=previous_output:
+     overlap=min(len(previous_output),len(current_output))
+     while overlap and not current_output.startswith(previous_output[-overlap:]):overlap-=1
+     observed_output+=current_output[overlap:];previous_output=current_output;(out/'observed-original-output.log').write_bytes(observed_output.encode())
     if predicate():return
     current=state(g)
     if current['state']==3:

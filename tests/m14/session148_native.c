@@ -339,6 +339,7 @@ static void shell_link_tests148(void){
  check(create(clsid,(void*)1,1,iid,&link)==(int)0x80040110u&&!link&&create(bad_iid,0,1,iid,&link)==(int)0x80040154u&&!link,702);
  check(create(clsid,0,1,bad_iid,&link)==(int)0x80004002u&&!link&&create(clsid,0,1,iid,&link)==0&&link,703);
 #define SL148(p,slot,result,args) ((result(*)args)(*(void***)p)[slot])
+ {const unsigned contexts[]={1,3,5,7,17,19,21,23};for(unsigned i=0;i<8;++i){void*other=0;check(!create(clsid,0,contexts[i],iid,&other)&&other&&SL148(other,2,unsigned,(void*))(other)==0,746);}const unsigned unavailable[]={0,2,4,8,16,0x80000000u};for(unsigned i=0;i<6;++i){void*other=(void*)1;check(create(clsid,0,unavailable[i],iid,&other)==(int)0x80040154u&&!other,747);}}
  void*persist=0,*identity=0;check(!SL148(link,0,int,(void*,const void*,void**))(link,persist_iid,&persist)&&persist,704);
  check(!SL148(persist,0,int,(void*,const void*,void**))(persist,unknown_iid,&identity)&&identity==link&&SL148(identity,2,unsigned,(void*))(identity)==2,705);
  uint16_t target[260],filename[260],copy[260];unsigned units=GetModuleFileNameW(0,target,260),temp=GetTempPathW(260,filename);check(units&&units<260&&temp&&temp+22<260,706);
