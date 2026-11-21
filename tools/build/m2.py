@@ -229,7 +229,8 @@ def main(milestone='M2',m5_live=False,distro=None,m6=False,m6_revision="standard
         init+=struct.pack('<8sQ32s',b'ENGMSI81',len(payload),hashlib.sha256(payload).digest())+payload
     if m14 and m5_live:
         dll=(BUILD/'msi147/msi.dll').read_bytes();exe=(BUILD/'msi147/msiexec.exe').read_bytes()
-        init+=struct.pack('<8sIIII32s32s',b'ENGMS147',1,2,len(dll),len(exe),hashlib.sha256(dll).digest(),hashlib.sha256(exe).digest())+dll+exe
+        runtime=(BUILD/'WINDOWS8.ELF').read_bytes()
+        init+=struct.pack('<8sIIIII32s32s32s',b'ENGMS147',2,3,len(dll),len(exe),len(runtime),hashlib.sha256(dll).digest(),hashlib.sha256(exe).digest(),hashlib.sha256(runtime).digest())+dll+exe+runtime
         if len(init)>4*1024*1024:raise RuntimeError('M14 init bundle exceeds the existing 4 MiB boot-module limit')
     (BUILD/'INIT.BIN').write_bytes(init)
     stem='EngacerOS' if m10 else 'EngineOS'

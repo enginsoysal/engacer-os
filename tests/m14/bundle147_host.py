@@ -18,6 +18,13 @@ def main():
   if n!=len(base):check((base+ext)[:n],0)
  for off in [48,56,60,99,107,111,115,119]:
   bad=bytearray(base+ext);bad[off]^=128;check(bad,0)
+ ext2=struct.pack('<8sIIIII32s32s32s',b'ENGMS147',2,3,5,4,6,hashlib.sha256(b'hello').digest(),hashlib.sha256(b'test').digest(),hashlib.sha256(b'elf123').digest())+b'hellotestelf123'
+ check(base+ext2,3)
+ for n in range(len(base+ext2)):
+  if n!=len(base):check((base+ext2)[:n],0)
+ for off in [107,111,115,119,123]:
+  bad=bytearray(base+ext2);bad[off]^=128;check(bad,0)
+ check(base+ext2+b'x',0)
  check(base+ext+b'x',0);check(base+ext+b'x'*(4*1024*1024),0)
  assert lib.parse147(None,200)==0;checks+=1
  report=dict(passed=True,checks=checks,scope='Shared production boot-bundle shape parser; content SHA verified separately by the kernel, not a native boot result',sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in ['include/engine/winbundle147.h','tests/m14/bundle147_host.c','tests/m14/bundle147_host.py']})

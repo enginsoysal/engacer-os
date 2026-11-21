@@ -89,11 +89,15 @@ extern const char windows8_licenses[];
 extern const uint8_t windows8_runtime_image[];extern const unsigned windows8_runtime_size;
 #ifdef ENGINE_M14
 #include <engine/winbundle147.h>
-static const uint8_t *windows147_msi_image,*windows147_msiexec_image;
-static unsigned windows147_msi_size,windows147_msiexec_size;
-unsigned w8_boot_services147(const winbundle147*b){uint8_t hash[32];if(!b||!b->dll||!b->exe)return 1;
+static const uint8_t *windows147_msi_image,*windows147_msiexec_image,*windows147_runtime_image;
+static unsigned windows147_msi_size,windows147_msiexec_size,windows147_runtime_size;
+#define windows8_runtime_image windows147_runtime_image
+#define windows8_runtime_size windows147_runtime_size
+unsigned w8_boot_services147(const winbundle147*b){uint8_t hash[32];if(!b||!b->dll||!b->exe||!b->runtime)return 1;
  engine_sha256(b->dll,b->dll_size,hash);if(memcmp(hash,b->dll_hash,32))return 1;
  engine_sha256(b->exe,b->exe_size,hash);if(memcmp(hash,b->exe_hash,32))return 1;
+ engine_sha256(b->runtime,b->runtime_size,hash);if(memcmp(hash,b->runtime_hash,32))return 1;
+ windows147_runtime_image=b->runtime;windows147_runtime_size=b->runtime_size;
  windows147_msi_image=b->dll;windows147_msi_size=b->dll_size;windows147_msiexec_image=b->exe;windows147_msiexec_size=b->exe_size;
  serial_text("M147_BOOT_SERVICE_DIGESTS_OK\n");return 0;}
 #endif
