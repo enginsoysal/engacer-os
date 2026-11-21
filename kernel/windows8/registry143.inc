@@ -150,6 +150,7 @@ static unsigned registry_delete_key143(const w8_registry_request143*request,void
  for(unsigned i=0;i<REGISTRY_KEYS143;++i){registry_object143*object=registry_objects143[i];if(object&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))object->deleted=1;}
  return v6_remove(volume,directory)?1117:0;
 }
+#include "registry-info148.inc"
 static int64_t registry_syscall143(uint64_t operation,uint64_t address){
  w8_registry_request143 request;w8_registry_result143 result={0};if(user8(address,&request,sizeof(request),0))return -998;
 #ifdef ENGINE_M14
@@ -173,6 +174,7 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
  if(operation==10){uint64_t temporary=registry_page143();if(!temporary)return -8;unsigned error=registry_delete_key143(&request,(void*)(uintptr_t)temporary);registry_free143(temporary);return -(int64_t)error;}
  int slot=registry_slot143(request.root);if(slot<0)return -6;registry_cap143*cap=spaces142[active_space142]->registry_handles+slot;registry_object143*object=registry_objects143[cap->object];if(object->deleted)return -1018;
  if(operation==8)return cap->access&1?0:-5;
+ if(operation==12){if(!(cap->access&1))return -5;if(request.bytes!=sizeof(w8_registry_info148)||!request.data||request.name||request.result)return -87;uint64_t page=registry_page143();if(!page)return -8;w8_registry_info148 info;unsigned error=registry_info148(object,&info,(void*)(uintptr_t)page);registry_free143(page);if(!error&&user8(request.data,&info,sizeof(info),1))error=998;return -(int64_t)error;}
  if(operation==7||operation==9){if(!(cap->access&(operation==7?1u:8u)))return -5;uint64_t temporary=registry_page143();if(!temporary)return -8;unsigned error=registry_enum143((unsigned)operation,object,&request,&result,(void*)(uintptr_t)temporary);if(request.result&&user8(request.result,&result,sizeof(result),1))error=998;registry_free143(temporary);return -(int64_t)error;}
  if(operation!=3&&operation!=4&&operation!=6)return -50;
  if(!(cap->access&(operation==4?1u:2u)))return -5;

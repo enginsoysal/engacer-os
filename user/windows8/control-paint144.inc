@@ -41,13 +41,14 @@ static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;
   }
  }else if(c->kind==C144_STATUS){int x=6;for(unsigned n=0;n<c->parts&&n<16&&x<client.right;++n){control_label144(dc,x,4,c->texts[n]);if(c->edges[n]<0)break;x=c->edges[n]+6;}
  }else if(c->kind==C144_BUTTON){
+  WCHAR caption[160];unsigned used=0;for(unsigned i=0;i<159&&w->description.title[i];++i){WCHAR ch=w->description.title[i];if(ch=='&'&&w->description.title[i+1])ch=w->description.title[++i];caption[used++]=ch;}caption[used]=0;
   unsigned type=w->description.style&15;f_FillRect(dc,&client,type==1?14:17);
   win_rect144 inside={type==1?2:1,type==1?2:1,client.right-(type==1?2:1),client.bottom-(type==1?2:1)};f_FillRect(dc,&inside,c->selected>=0?17:16);
-  int size[2]={0,16};unsigned length=wlen8(w->description.title);if(length>159)length=159;f_GetTextExtentPoint32W(dc,w->description.title,(int)length,size);f_SetTextColor(dc,w->description.enabled?0:0x808080);
+  int size[2]={0,16};unsigned length=used;f_GetTextExtentPoint32W(dc,caption,(int)length,size);f_SetTextColor(dc,w->description.enabled?0:0x808080);
 #ifdef ENGINE_M14
-  int group_width=size[0]+((c->style&1)&&c->image?24:0),label_x=(client.right-group_width)/2;if((c->style&1)&&c->image){f_DrawIconEx(dc,label_x,(client.bottom-16)/2,c->image,16,16,0,0,3);label_x+=24;}control_label_clip145(dc,label_x,(client.bottom-size[1])/2,w->description.title,client);
+  int group_width=size[0]+((c->style&1)&&c->image?24:0),label_x=(client.right-group_width)/2;if((c->style&1)&&c->image){f_DrawIconEx(dc,label_x,(client.bottom-16)/2,c->image,16,16,0,0,3);label_x+=24;}control_label_clip145(dc,label_x,(client.bottom-size[1])/2,caption,client);
 #else
-  control_label_clip145(dc,(client.right-size[0])/2,(client.bottom-size[1])/2,w->description.title,client);
+  control_label_clip145(dc,(client.right-size[0])/2,(client.bottom-size[1])/2,caption,client);
 #endif
  }else if(c->kind==C144_STATIC&&c->image){unsigned width,height;if(image_size145(c->image,1,&width,&height)){unsigned style=w->description.style;int x=0,y=0;
   if(style&0x200){x=(client.right-(int)width)/2;y=(client.bottom-(int)height)/2;}

@@ -2,6 +2,9 @@
 #define ENGACER_FONT_RASTER148_H
 #include <stdint.h>
 #define UI_RASTER_CAP148 (128u*1024u)
+#define UI_FONT_SEMIBOLD148 0x10000u
+#define UI_FONT_REGULAR148 0x20000u
+#define UI_RASTER_MAX_HEIGHT148 96u
 typedef struct {uint32_t offset,width,height;int32_t x,y;uint32_t advance;} ui_raster_glyph148;
 typedef struct {uint32_t bytes,count,width,height,ascent,em,reserved[2];} ui_raster_info148;
 typedef struct {uint32_t bytes,count,width,height,ascent,em,reserved[2];ui_raster_glyph148 glyphs[160];} ui_raster_line148;

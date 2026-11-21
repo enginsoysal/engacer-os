@@ -20,6 +20,7 @@ void ui148_image(int,int,const wui_image_view148*);
 unsigned ui148_font_role(unsigned);
 unsigned ui148_font_height(unsigned);
 unsigned ui148_font_info(unsigned,ui_font_metrics148*);
+unsigned ui148_font_canonical(unsigned,ui_font_metrics148*);
 #include <engine/ui/font-raster148.h>
 unsigned ui148_raster_plan(unsigned,const char*,ui_raster_line148*);
 unsigned ui148_raster_emit(unsigned,const char*,const ui_raster_line148*,ui_raster_write148,void*);

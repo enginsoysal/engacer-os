@@ -230,6 +230,14 @@ unsigned ui148_font_info(unsigned em,ui_font_metrics148*out){
  unsigned height=ui148_font_height(em),ascent=(f->ascent*2+scale73-1)/scale73;
  *out=(ui_font_metrics148){em?em:16,height,ascent,height-ascent,role==3||role==4?600:400,(total*2+26*scale73)/(52*scale73),(maximum*2+scale73-1)/scale73,32,last};return 1;
 }
+unsigned ui148_font_canonical(unsigned tag,ui_font_metrics148*out){
+ const font73_face*f=raster_face148(tag);if(!f||!out||!(tag&0xffff0000u))return 0;unsigned maximum=0,total=0,last=126;
+ for(unsigned i=0;i<95;++i){unsigned advance=font73_glyphs[f->first+i].advance;if(advance>maximum)maximum=advance;if((i+32>='A'&&i+32<='Z')||(i+32>='a'&&i+32<='z'))total+=advance;}
+#ifdef FONT146_PACKET
+ if(f->first<=475&&f->first%95==0)for(unsigned i=0;i<FONT146_CODES;++i){const font146_extra*e=font146_extras+f->first/95*FONT146_CODES+i;if(e->codepoint>last)last=e->codepoint;if(e->glyph.advance>maximum)maximum=e->glyph.advance;}
+#endif
+ *out=(ui_font_metrics148){f->size,f->height,f->ascent,f->height-f->ascent,(tag&0xffff0000u)==UI_FONT_SEMIBOLD148?600:400,(total+26)/52,maximum,32,last};return 1;
+}
 #endif
 #ifdef FONT146_PACKET
 unsigned ui73_measure(const char*s,unsigned role){const font73_face*f=face73(role);unsigned width=0,at=0;while(at<1024&&s[at]){uint32_t code=font146_next(s,&at,1024);if(!code)break;unsigned base;const font73_glyph*g=font146_lookup(f,code,&base);width+=g->advance;}return(width*2+scale73-1)/scale73;}

@@ -11,6 +11,7 @@ __declspec(dllimport) int RegSetValueExW(uint64_t,const uint16_t*,unsigned,unsig
 __declspec(dllimport) int RegQueryValueExW(uint64_t,const uint16_t*,unsigned*,unsigned*,void*,unsigned*);
 __declspec(dllimport) int RegDeleteKeyW(uint64_t,const uint16_t*);
 __declspec(dllimport) int RegCloseKey(uint64_t);
+__declspec(dllimport) int RegQueryInfoKeyW(uint64_t,uint16_t*,unsigned*,unsigned*,unsigned*,unsigned*,unsigned*,unsigned*,unsigned*,unsigned*,unsigned*,void*);
 __declspec(dllimport) int SHDeleteValueW(uint64_t,const uint16_t*,const uint16_t*);
 __declspec(dllimport) int SHSetValueW(uint64_t,const uint16_t*,const uint16_t*,unsigned,const void*,unsigned);
 __declspec(dllimport) int SHDeleteKeyW(uint64_t,const uint16_t*);
@@ -278,6 +279,14 @@ static void registry_capacity_tests148(void){
  for(unsigned i=0;i<65;++i){uint16_t name[]={'k',(uint16_t)('0'+i/100),(uint16_t)('0'+i/10%10),(uint16_t)('0'+i%10),0};check(!RegCreateKeyExW(key,name,0,0,0,0xf003f,0,&child,&disposition)&&!RegCloseKey(child),682);}
  for(unsigned i=0;i<130;++i){uint16_t name[]={'v',(uint16_t)('0'+i/100),(uint16_t)('0'+i/10%10),(uint16_t)('0'+i%10),0};value=0x148000u+i;check(!RegSetValueExW(key,name,0,4,&value,4),683);}
  check(!RegCloseKey(key)&&!RegOpenKeyExW(root,path,0,1,&key),684);
+ {unsigned subkeys=0,maxkey=0,classes=99,values=0,maxname=0,maxbytes=0,class_units=99;
+  check(!RegQueryInfoKeyW(key,0,&class_units,0,&subkeys,&maxkey,&classes,&values,&maxname,&maxbytes,0,0)&&subkeys==65&&maxkey==4&&!classes&&values==130&&maxname==4&&maxbytes==4&&!class_units,748);
+  uint16_t text[2]={0x148,0x148};class_units=1;check(!RegQueryInfoKeyW(key,text,&class_units,0,0,0,0,0,0,0,0,0)&&!text[0]&&text[1]==0x148&&!class_units,749);
+  uint64_t denied=0;check(!RegOpenKeyExW(root,path,0,0,&denied)&&RegQueryInfoKeyW(denied,0,0,0,0,0,0,0,0,0,0,0)==5&&!RegCloseKey(denied),750);
+  uint64_t write=0,unicode_child=0;unsigned disposition=0;unsigned char payload[7]={1,2,3,4,5,6,7};check(!RegOpenKeyExW(root,path,0,0xf003f,&write)&&!RegCreateKeyExW(write,L"ABC\u00e9\U0001f600",0,0,0,0xf003f,0,&unicode_child,&disposition)&&!RegCloseKey(unicode_child)&&!RegSetValueExW(write,L"value\U0001f600",0,3,payload,7)&&!RegCloseKey(write),751);
+  check(!RegQueryInfoKeyW(key,0,0,0,&subkeys,&maxkey,&classes,&values,&maxname,&maxbytes,0,0)&&subkeys==66&&maxkey==6&&values==131&&maxname==7&&maxbytes==7,752);
+  say148("M148_NATIVE_REGISTRY_QUERY_COUNTS_MAXIMA_ACCESS_PASS\n");
+ }
  for(unsigned i=0;i<130;++i){uint16_t name[]={'v',(uint16_t)('0'+i/100),(uint16_t)('0'+i/10%10),(uint16_t)('0'+i%10),0};bytes=4;check(!RegQueryValueExW(key,name,0,&type,&read,&bytes)&&type==4&&bytes==4&&read==0x148000u+i,685);}
  check(!RegCloseKey(key)&&!SHDeleteKeyW(root,path)&&RegOpenKeyExW(root,path,0,1,&key)==2,686);
  say148("M148_NATIVE_DURABLE_REGISTRY_PAST_LEGACY_LIMITS_PASS\n");

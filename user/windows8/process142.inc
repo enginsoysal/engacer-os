@@ -36,8 +36,8 @@ static int MS f_CreateProcessA(const char*application,char*command,void*process_
  WCHAR app[256],line[1200],cwd[256];if((application&&utf8_to16(application,app,256)<0)||(command&&utf8_to16(command,line,1200)<0)||(directory&&utf8_to16(directory,cwd,256)<0)){last8(206);return 0;}
  return f_CreateProcessW(application?app:0,command?line:0,process_security,thread_security,inherit,flags,environment,directory?cwd:0,startup,result);
 }
-static int MS f_GetExitCodeProcess(HANDLE handle,unsigned*code){if(!code){last8(87);return 0;}int64_t state=(int64_t)sys8(W8_SYS_PROCESS_STATUS,handle,(uint64_t)(uintptr_t)code,1,0,0);if(state<0){last8(6);return 0;}if(state==259)*code=259;return 1;}
-static unsigned MS f_GetProcessId(HANDLE handle){int64_t id=(int64_t)sys8(W8_SYS_PROCESS_ID,handle,0,0,0,0);if(id<0){last8(6);return 0;}return (unsigned)id;}
+static int MS f_GetExitCodeProcess(HANDLE handle,unsigned*code){if(!code){last8(87);return 0;}int64_t state=(int64_t)sys8(W8_SYS_PROCESS_STATUS,handle,(uint64_t)(uintptr_t)code,1,0,0);if(state<0){last8(state==-1?6:(unsigned)-state);return 0;}if(state==259)*code=259;return 1;}
+static unsigned MS f_GetProcessId(HANDLE handle){int64_t id=(int64_t)sys8(W8_SYS_PROCESS_ID,handle,0,0,0,0);if(id<0){last8(id==-1?6:(unsigned)-id);return 0;}return (unsigned)id;}
 #ifdef ENGINE_M14
 static HANDLE MS f_OpenProcess(unsigned access,int inherit,unsigned pid){int64_t result=(int64_t)sys8(W8_SYS_PROCESSES148,pid,2,access,inherit!=0,0);if(result<0){last8((unsigned)-result);return 0;}return(HANDLE)result;}
 static int MS f_QueryFullProcessImageNameW(HANDLE handle,unsigned flags,WCHAR*out,unsigned*capacity){

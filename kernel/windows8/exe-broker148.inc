@@ -1,8 +1,10 @@
+static uint64_t exe_page148(void){uint64_t page=page_alloc();if(page){++exe_resident148;group_peak142();}return page;}
+static void exe_free148(uint64_t page){page_free(page);--exe_resident148;}
 /* Product-specific admission metadata is separate from shared Windows APIs.
  * The first original EXE profile is deliberately bounded and independently
  * checks effects; later general installation work must replace its admission
  * inventory without weakening the kernel-owned authority boundary. */
-static void exe_record_path148(const char*owner,char*out){char hash[33];protected_hash143(owner,hash);copy8(out,"/Data/Windows/",256);path_append143(out,hash,256);path_append143(out,"/EXE",256);path_append143(out,EXE148_CODE ".bin",256);}
+static void exe_record_path148(const char*owner,char*out){char hash[33];protected_hash143(owner,hash);copy8(out,"/Data/Windows/",256);path_append143(out,hash,256);path_append143(out,"/EXE/",256);path_append143(out,EXE148_CODE ".bin",256);}
 static unsigned exe_record_load148(const char*owner,exe_record148*r){
  char path[256];exe_record_path148(owner,path);const v6_entry*e=find8(path);unsigned got=0;
  if(!e)return 2;if(e->kind!=1||e->size!=sizeof(*r)||v6_verify(m6_volume(),path)||v6_read(m6_volume(),path,0,r,sizeof(*r),&got)||got!=sizeof(*r))return 13;
@@ -49,7 +51,7 @@ static unsigned exe_shared_restore148(exe_record148*r){registry_machine147=0;reg
 }
 static unsigned exe_admit148(unsigned command,const uint8_t*digest){
  if(active_space142||!equal8(input8.product_root,EXE148_ROOT)||(command!=W8_INSTALL&&command!=W8_REMOVE))return 87;
- uint64_t page=page_alloc();if(!page)return 8;exe_record148*r=(void*)(uintptr_t)page;unsigned error=exe_record_load148(input8.user_root,r);
+ uint64_t page=exe_page148();if(!page)return 8;exe_record148*r=(void*)(uintptr_t)page;unsigned error=exe_record_load148(input8.user_root,r);
  if(command==W8_INSTALL){if(!digest||!exe_digest148(digest,EXE148_SOURCE_SHA)||find8(EXE148_ROOT)||(error!=2&&error)||(!error&&r->state!=EXE148_REMOVED)){error=5;goto done;}error=exe_hash_file148(input8.source,EXE148_SOURCE_BYTES,EXE148_SOURCE_SHA);}
  else{if(error||r->state!=EXE148_INSTALLED||!equal8(input8.source,EXE148_ROOT "/SumatraPDF.exe")){error=5;goto done;}error=exe_payloads_check148();}
  if(error)goto done;
@@ -57,20 +59,20 @@ static unsigned exe_admit148(unsigned command,const uint8_t*digest){
  copy8(spaces142[0]->image_name148,"runtime8.elf",64);
  if(command==W8_INSTALL){const v6_entry*e=find8(input8.source);spaces142[0]->image_pin148=(unsigned)(e-m6_volume()->entries)+1;}
  if(user8(W8_MAILBOX,&input8,sizeof(input8),1))error=998;
- done:page_free(page);return error;
+ done:exe_free148(page);return error;
 }
 static int64_t exe_syscall148(trap_frame*frame,uint64_t op,uint64_t b,uint64_t c,uint64_t d,uint64_t e){
  if(b||c||d||e||active_space142||!spaces142[0]->exe_context148)return -5;
  if(op==0)return spaces142[0]->exe_context148;
  if(op==4){for(unsigned i=1;i<SPACES142;++i)if(spaces142[i]&&process_objects142[spaces142[i]->object].live){thread142*t=threads142+current142;t->state=T142_PARK;t->deadline=UINT64_MAX;context8=*frame;context8.rax=0;w8_active=0;w8_escape();}return 1;}
- uint64_t page=page_alloc();if(!page)return -8;exe_record148*r=(void*)(uintptr_t)page;unsigned error=0;
+ uint64_t page=exe_page148();if(!page)return -8;exe_record148*r=(void*)(uintptr_t)page;unsigned error=0;
  if(op==1){unsigned loaded=exe_record_load148(input8.user_root,r);if(spaces142[0]->exe_context148==1){if(loaded!=2&&(loaded||r->state!=EXE148_REMOVED)){error=5;goto done;}memset(r,0,sizeof(*r));r->magic=EXE148_RECORD_MAGIC;r->schema=1;r->bytes=sizeof(*r);r->state=EXE148_INSTALLING;r->nonce=input8.reserved147;copy8(r->user,input8.user_root,256);copy8(r->root,EXE148_ROOT,256);copy8(r->alias,EXE148_ALIAS,256);copy8(r->source,input8.source,256);memcpy(r->source_sha,input8.source_sha147,32);exe_temporary148(r->temporary);
    for(unsigned i=0;i<2;++i){char path[256];exe_leaf148(i,path);if(find8(path)){error=80;goto done;}}error=exe_shared_capture148(r);if(error)goto done;
   }else{if(loaded||r->state!=EXE148_INSTALLED){error=5;goto done;}r->state=EXE148_REMOVING;r->nonce=input8.reserved147;exe_temporary148(r->temporary);}
   if(find8(r->temporary)){error=80;goto done;}error=exe_record_save148(r);if(!error)error=protected_prepare143(r->temporary);
  }else if(op==2||op==3){error=exe_record_load148(input8.user_root,r);if(error||r->nonce!=input8.reserved147){error=13;goto done;}if(spaces142[0]->exe_child_error148){error=spaces142[0]->exe_child_error148;goto done;}
-  if(op==2){if(r->state!=EXE148_INSTALLING){error=5;goto done;}error=exe_payloads_check148();for(unsigned i=0;!error&&i<2;++i){char path[256];exe_leaf148(i,path);error=exe_link_check148(path);}if(!error){r->state=EXE148_INSTALLED;error=exe_record_save148(r);}}
-  else{if(r->state!=EXE148_REMOVING||find8(EXE148_ROOT)){error=5;goto done;}for(unsigned i=0;i<2;++i){char path[256];exe_leaf148(i,path);if(find8(path)){error=5;goto done;}}error=exe_shared_restore148(r);if(!error){r->state=EXE148_REMOVED;error=exe_record_save148(r);}}
+  if(op==2){if(r->state!=EXE148_INSTALLING){error=5;goto done;}error=exe_payloads_check148();for(unsigned i=0;!error&&i<2;++i){char path[256];exe_leaf148(i,path);error=exe_link_check148(path);}if(!error&&find8(r->temporary)&&v6_remove_tree11(m6_volume(),r->temporary))error=1117;if(!error){r->state=EXE148_INSTALLED;error=exe_record_save148(r);}}
+  else{if(r->state!=EXE148_REMOVING||find8(EXE148_ROOT)){error=5;goto done;}for(unsigned i=0;i<2;++i){char path[256];exe_leaf148(i,path);if(find8(path)){error=5;goto done;}}error=exe_shared_restore148(r);if(!error&&find8(r->temporary)&&v6_remove_tree11(m6_volume(),r->temporary))error=1117;if(!error){r->state=EXE148_REMOVED;error=exe_record_save148(r);}}
  }else error=87;
- done:page_free(page);return -(int64_t)error;
+ done:exe_free148(page);return -(int64_t)error;
 }
