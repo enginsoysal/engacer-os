@@ -4,7 +4,7 @@ static void gp_text_pixel148(gp_bitmap148*image,int64_t x,int64_t y,uint32_t sou
  if(!source||x<clip->left||y<clip->top||x>=clip->right||y>=clip->bottom)return;uint8_t*p=image->pixels+y*image->stride+x*4;uint32_t previous=(uint32_t)p[0]|((uint32_t)p[1]<<8)|((uint32_t)p[2]<<16)|((uint32_t)p[3]<<24),value=pargb_over148(source,previous);memcpy(p,&value,4);
 }
 #include "gdiplus-transformed-text148.inc"
-static unsigned MS __attribute__((target("sse2"))) f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
+static unsigned MS __attribute__((target("sse2"))) gp_draw_line148(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
  WCHAR text[160];unsigned units=0,status=gp_text_input148(input,count,text,&units);if(status)return status;for(unsigned i=0;i<units;++i)if(text[i]<32){print8("Unsupported GDI+ drawing layout: control or multiple lines.\n");return 6;}
  gp_rect148 measured;status=f_GdipMeasureString(graphics,text,(int)units,font,layout,format,&measured,0,0);if(status)return status;gp_rect148 box=*layout;
  lock_enter142(&ui_lock144);lock_enter142(&gp_lock148);gp_graphics148*g=gp_context_find148(graphics);gp_font148*f=gp_font_find148(font);gp_brush148*b=gp_brush_find148(brush);gp_format148 defaults={.trimming=1};gp_format148*fmt=format?gp_format_find148(format):&defaults;ui_font_metrics148 metrics;void*packet=0;
@@ -19,4 +19,14 @@ static unsigned MS __attribute__((target("sse2"))) f_GdipDrawString(void*graphic
  for(unsigned i=0;i<line->count;++i){const ui_raster_glyph148*glyph=line->glyphs+i;if(glyph->offset>(unsigned)bytes||glyph->width>64||glyph->height>UI_RASTER_MAX_HEIGHT148||glyph->width*glyph->height>(unsigned)bytes-glyph->offset){status=2;goto done;}const uint8_t*alpha=(uint8_t*)packet+glyph->offset;for(unsigned y=0;y<glyph->height;++y)for(unsigned x=0;x<glyph->width;++x)gp_text_pixel148(image,pen+glyph->x+x,(int64_t)origin_y+line->ascent+glyph->y+y,colors[alpha[y*glyph->width+x]],&clip);pen+=glyph->advance;}
  if(f->style&12)for(unsigned x=0;x<line->width;++x){if(f->style&4)gp_text_pixel148(image,(int64_t)origin_x+x,(int64_t)origin_y+line->ascent+1,colors[255],&clip);if(f->style&8)gp_text_pixel148(image,(int64_t)origin_x+x,(int64_t)origin_y+line->ascent/2,colors[255],&clip);}status=0;
  done:free8(packet);lock_leave142(&gp_lock148);lock_leave142(&ui_lock144);return status;
+}
+static unsigned MS __attribute__((target("sse2"))) f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
+ WCHAR text[160];unsigned units=0,status=gp_text_input148(input,count,text,&units);if(status)return status;gp_rect148 measured;
+ status=f_GdipMeasureString(graphics,text,(int)units,font,layout,format,&measured,0,0);if(status)return status;
+ lock_enter142(&ui_lock144);lock_enter142(&gp_lock148);gp_graphics148*g=gp_context_find148(graphics);gp_font148*f=gp_font_find148(font);gp_format148 defaults={.trimming=1};gp_format148*fmt=format?gp_format_find148(format):&defaults;ui_font_metrics148 metrics;gp_lines148 plan;float line_height=0;
+ if(!g||!f||!fmt||!gp_font_info148(f,&metrics,0))status=2;
+ else{float factor=g->settings[3]==3?0.75f:1.0f;line_height=(float)metrics.height*factor;status=gp_lines_layout148(text,units,f->tag,&metrics,fmt->flags,layout->width,factor,&plan);}
+ lock_leave142(&gp_lock148);lock_leave142(&ui_lock144);if(status)return status;
+ for(unsigned i=0;i<plan.count;++i){gp_rect148 line={layout->x,measured.y+(float)i*line_height,layout->width,line_height};status=gp_draw_line148(graphics,text+plan.start[i],(int)plan.length[i],font,&line,format,brush);if(status)return status;}
+ return 0;
 }

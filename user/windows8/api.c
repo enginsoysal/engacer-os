@@ -463,6 +463,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "dialog145.inc"
 #include "com144.inc"
 #include "shell-link148.inc"
+#include "shell-file148.inc"
 #include "security-api144.inc"
 #include "shell-icons144.inc"
 #include "shell-folders145.inc"
@@ -513,7 +514,7 @@ static const api8 api8_table[]={
  API8(PathAppendW,20),API8(SHDeleteValueW,20),API8(SHSetValueW,20),API8(SHDeleteKeyW,20),API8(SHChangeNotify,10),API8(GetSystemTime,1),
  API8(HeapCreate,1),API8(HeapDestroy,1),API8(HeapReAlloc,1),
  API8(SetErrorMode,1),API8(GetErrorMode,1),
- API8(SHGetFolderPathW,10),
+ API8(SHGetFolderPathW,10),API8(SHFileOperationW,10),
  API8(CreateToolhelp32Snapshot,1),API8(Process32FirstW,1),API8(Process32NextW,1),
  API8(GdiplusStartup,16),API8(GdiplusShutdown,16),API8(GdipAlloc,16),API8(GdipFree,16),
  API8(GdipCreateBitmapFromScan0,16),API8(GdipDisposeImage,16),API8(GdipGetImageWidth,16),API8(GdipGetImageHeight,16),API8(GdipBitmapGetPixel,16),API8(GdipBitmapSetPixel,16),

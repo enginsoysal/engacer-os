@@ -81,7 +81,7 @@ static int MS f_RegQueryInfoKeyW(HANDLE handle,WCHAR*class_name,unsigned*class_u
  unsigned*outputs[]={class_units,subkeys,max_subkey,max_class,values,max_value_name,max_value_bytes};for(unsigned i=0;i<7;++i)if(outputs[i]&&sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)outputs[i],4,3,0,0))return 998;
  if(class_name&&*class_units&&sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)class_name,2,2,0,0))return 998;
  HANDLE view=0;int status=registry_root_view143(handle,1,0,&view);if(status)return status;w8_registry_info148 info;w8_registry_request143 request={.root=view,.data=(uint64_t)(uintptr_t)&info,.bytes=sizeof(info)};status=registry_api143(12,&request,0);if(view!=handle)f_RegCloseKey(view);if(status)return status;
- if(class_name&&!*class_units)return 234;if(class_name)*class_name=0;if(class_units)*class_units=0;if(subkeys)*subkeys=info.subkeys;if(max_subkey)*max_subkey=info.max_subkey_units;if(max_class)*max_class=info.max_class_units;if(values)*values=info.values;if(max_value_name)*max_value_name=info.max_value_name_units;if(max_value_bytes)*max_value_bytes=info.max_value_bytes;return 0;
+ if(class_name&&*class_units)*class_name=0;if(class_units)*class_units=0;if(subkeys)*subkeys=info.subkeys;if(max_subkey)*max_subkey=info.max_subkey_units;if(max_class)*max_class=info.max_class_units;if(values)*values=info.values;if(max_value_name)*max_value_name=info.max_value_name_units;if(max_value_bytes)*max_value_bytes=info.max_value_bytes;return 0;
 }
 #endif
 
