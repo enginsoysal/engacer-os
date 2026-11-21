@@ -1,0 +1,9 @@
+{
+  "canonical_path": "website/brix/audit.py",
+  "canonical_sha256": "3be93858d70a71df43ed26f7ac9cb026557ba0802a8e6e7e70d62abcf13587db",
+  "executed_sha256": "0da3e2d96c1f9d184b573e772bb8162c8e85fccad979536e8c46187f9f32f272",
+  "adapter_sha256": "35a76b8c3606a846c9cd2e25ba68fbfcab79230aa6769a3fcee0a0505073d8d0",
+  "article_count": 391,
+  "page_budget": 782,
+  "scope": "Only the finite navigation budget grows with the exact article corpus. All original network, branding, language, soft-404, link discovery and stale-link checks remain unchanged. Complete independent readback and target validation are separate gates."
+}

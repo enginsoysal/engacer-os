@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "stage": "M14.7",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "source_commit": "5da7ad0034c91bfd59a1ec0c7f63a16c0a4c80e3",
+  "observer_sha256": "3a30c4d27e36b3fe76335e64aae3d63bba920db52a7f7d494003c38e364578ef",
+  "owner_scope": "owner-publication-scope.json",
+  "full_public_site_qualified": false,
+  "native_editor_save": "Saved ✓",
+  "recovery_editor_save": "Saved ✓",
+  "production_search": false,
+  "task_sidebar": false,
+  "ordered_task_navigation": false,
+  "mobile_menu": true,
+  "current_guide": true,
+  "matching_download": true,
+  "desktop": {
+    "viewport": 1280,
+    "document": 1280,
+    "images": [
+      {
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/7/feature.png",
+        "loaded": true
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": 390,
+    "document": 390,
+    "images": [
+      {
+        "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/7/feature.png",
+        "loaded": true
+      }
+    ]
+  },
+  "reports": [
+    {
+      "width": 1280,
+      "passed": true,
+      "layout": {
+        "viewport": 1280,
+        "document": 1280,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/7/feature.png",
+            "loaded": true
+          }
+        ]
+      },
+      "platform": {
+        "search_opener_count": 0,
+        "mobile_menu_opener_count": 0,
+        "task_sidebar_count": 0,
+        "expected_task_next_count": 0
+      },
+      "mobile_menu_verified": false,
+      "page_errors": [],
+      "checks": [
+        "current native homepage",
+        "loaded actual images",
+        "task routes and archive",
+        "exact guide source",
+        "matching ISO/VMware links and ISO checksum",
+        "404 recovery",
+        "no runtime errors"
+      ]
+    },
+    {
+      "width": 390,
+      "passed": true,
+      "layout": {
+        "viewport": 390,
+        "document": 390,
+        "images": [
+          {
+            "src": "https://raw.githubusercontent.com/enginsoysal/engacer-os/main/evidence/M14/7/feature.png",
+            "loaded": true
+          }
+        ]
+      },
+      "platform": {
+        "search_opener_count": 0,
+        "mobile_menu_opener_count": 1,
+        "task_sidebar_count": 0,
+        "expected_task_next_count": 0
+      },
+      "mobile_menu_verified": true,
+      "page_errors": [],
+      "checks": [
+        "current native homepage",
+        "loaded actual images",
+        "task routes and archive",
+        "exact guide source",
+        "matching ISO/VMware links and ISO checksum",
+        "404 recovery",
+        "no runtime errors"
+      ]
+    }
+  ],
+  "limits": [
+    "Reported advanced search/sidebar/ordered article navigation are not qualified by this scoped observer. Their original strict failure remains preserved. No platform feature is relabelled as passed."
+  ]
+}

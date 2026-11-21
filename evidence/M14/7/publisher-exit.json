@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "tests": 50,
+  "commands": [
+    "node --test website/brix/branding.test.mjs website/brix/sync.test.mjs website/brix/navigation.test.mjs website/brix/releases11.test.mjs website/brix/portal.test.mjs website/brix/provenance.test.mjs",
+    "python website/brix/audit_test.py",
+    "python tests/m13/website_readback_test.py",
+    "python tests/m13/website_fresh_audit_test.py"
+  ],
+  "scope": "Fifty publisher tests and nine audit/readback freshness tests completed with exit zero; native and public browser checks are separately recorded."
+}

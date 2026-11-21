@@ -1,0 +1,11 @@
+{
+  "source_commit": "5da7ad0034c91bfd59a1ec0c7f63a16c0a4c80e3",
+  "checked_at": "2026-11-21T10:37:33.012Z",
+  "home": "Saved ✓",
+  "recovery": "Saved ✓",
+  "home_roots": 4,
+  "recovery_roots": 2,
+  "owned_native_editor": true,
+  "method": "Owned native BrixCanvas editor; prepared virtual-clipboard sections, native reversible root replacement and explicit Save. Historical recovery body preserved; current menu installed.",
+  "public_home_version": "M14.7"
+}
