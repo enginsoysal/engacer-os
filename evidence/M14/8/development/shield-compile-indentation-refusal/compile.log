@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 21, in <module>
+    if __name__=='__main__':main()
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 7, in main
+    private,inputs=build();production=private.parent/'WINDOWS8.ELF'
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\exe148_probe_build.py", line 22, in build
+    if not(out/'compile-inputs.json').exists():scope['build'](name)
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\runtime147_build.py", line 24, in build
+    runtime(out,tools,flags);verify_working_inputs(ROOT,hashes);binary=out/'WINDOWS8.ELF';data=binary.read_bytes();assert len(data)<=1024*1024 and data[:7]==b'\x7fELF\x02\x01\x01'
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tools\build\m8.py", line 27, in runtime
+    command([tools['clang'], '--target=x86_64-unknown-none-elf', *common,
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tools\build\m1.py", line 30, in command
+    if process.returncode:raise RuntimeError(process.stderr.replace(str(ROOT),'<project-root>'))
+RuntimeError: In file included from <project-root>\user\windows8\api.c:400:
+<project-root>\user\windows8\images144.inc:20:33: error: misleading indentation; statement is not part of the previous 'else' [-Werror,-Wmisleading-indentation]
+   20 |  image_free144(p->pixels,bytes);for(unsigned i=0;i<p->count;++i)image_free144(p->items[i],bytes);image_free144(p->items,(size_t)p->capacity*sizeof(void*));image_free144(p,sizeof(*p));--image_count144;}
+      |                                 ^
+<project-root>\user\windows8\images144.inc:18:149: note: previous statement is here
+   18 |  if(p->kind==1&&p->resource==SHIELD_RESOURCE148){if(shield_refs148&&!--shield_refs148){image_free144(shield_pixels148,16*16*4);shield_pixels148=0;}}else
+      |                                                                                                                                                     ^
+1 error generated.
+

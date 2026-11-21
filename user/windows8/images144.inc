@@ -15,9 +15,13 @@ static void image_free144(void*p,size_t bytes){if(p){free8(p);image_bytes144-=by
 static image_object144 *image_new144(unsigned kind,unsigned width,unsigned height){if(image_count144==256||image_sequence144==0xfffffff){last8(1816);return 0;}image_object144*p=image_memory144(sizeof(*p));if(!p)return 0;p->handle=UINT64_C(0x60000000)|++image_sequence144;p->kind=kind;p->width=width;p->height=height;p->next=images144;images144=p;++image_count144;return p;}
 static void image_destroy144(image_object144*p){image_object144**link=&images144;while(*link&&*link!=p)link=&(*link)->next;if(!*link)return;*link=p->next;size_t bytes=(size_t)p->width*p->height*4;
 #ifdef ENGINE_M14
- if(p->kind==1&&p->resource==SHIELD_RESOURCE148){if(shield_refs148&&!--shield_refs148){image_free144(shield_pixels148,16*16*4);shield_pixels148=0;}}else
+ if(p->kind==1&&p->resource==SHIELD_RESOURCE148){if(shield_refs148&&!--shield_refs148){image_free144(shield_pixels148,16*16*4);shield_pixels148=0;}}else{
 #endif
- image_free144(p->pixels,bytes);for(unsigned i=0;i<p->count;++i)image_free144(p->items[i],bytes);image_free144(p->items,(size_t)p->capacity*sizeof(void*));image_free144(p,sizeof(*p));--image_count144;}
+ image_free144(p->pixels,bytes);
+#ifdef ENGINE_M14
+ }
+#endif
+ for(unsigned i=0;i<p->count;++i)image_free144(p->items[i],bytes);image_free144(p->items,(size_t)p->capacity*sizeof(void*));image_free144(p,sizeof(*p));--image_count144;}
 static HANDLE image_load_dib144(HANDLE resource,const void*data,unsigned bytes,unsigned kind,unsigned target_w,unsigned target_h,unsigned shared){
  dib_info144 info;unsigned error=dib_info_read144(data,bytes,kind==1,&info);if(error){last8(error);return 0;}if(!target_w)target_w=info.width;if(!target_h)target_h=info.height;if(target_w>4096||target_h>4096||(uint64_t)target_w*target_h>IMAGE_BYTES144/4){last8(8);return 0;}
  lock_enter142(&image_lock144);if(shared)for(image_object144*p=images144;p;p=p->next)if(p->shared&&p->resource==resource&&p->kind==kind&&p->width==target_w&&p->height==target_h){HANDLE found=p->handle;lock_leave142(&image_lock144);return found;}
