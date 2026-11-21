@@ -186,3 +186,23 @@ Own off-screen Windows references verify default values (typographic 0x6004,
 no trimming), enum rejection, all flag bits, clone independence, range counts,
 ValueOverflow above 32 and normalization of negative counts to zero. Native
 format object quota is 32. No background worker or font/glyph copy is added.
+
+## Formatted measurement candidate
+
+GdipMeasureString calculates actual selected-font glyph advances/cell heights
+using the existing copied native font service, with no per-character syscall or
+glyph duplication for fitting lines. Bounds and optional fitted/line counters
+are committed together after validation. Source text is bounded to 159 UTF-16
+units and 32 lines. Default native overhang allowance is one third of the EM
+across both sides; typographic fitting uses advances without that allowance.
+Actual selected raster metrics remain authoritative and differ from substituted
+Windows fonts and full shaping engines.
+
+Pixel and point page units, line separators, trailing-space selection and
+horizontal/vertical block alignment are supported for rectangles containing the
+complete measured text. Wrapped/partial-fit rectangles, tabs, RTL/vertical,
+custom fallback and ellipsis layouts explicitly refuse. Metadata success for a
+format does not make those layouts supported. Original tasks requiring them
+must expand this profile and pass actual drawing/measurement consistency tests.
+Formatted drawing itself remains unimplemented; measurement is not a drawing
+qualification. Native integer glyph advances remain shared with the compositor.
