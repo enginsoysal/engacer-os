@@ -96,3 +96,20 @@ or image measurement that painting does not perform. The original caller
 receives actual native dimensions, not copied Windows theme constants.
 
 Contract: https://learn.microsoft.com/en-us/windows/win32/controls/bcm-getidealsize
+
+## Full-window metadata and rectangle calculation candidate
+
+GetWindowDC exposes real window geometry and selected-font metrics in a
+thread-owned DC. Non-client pixel commands fail explicitly; the current retained
+compositor only supports client painting. ReleaseDC identifies the actual
+thread-owned DC handle; its advisory HWND does not prevent release, matching
+own hidden-window Windows observations. This prevents leaking DCs when an
+original client releases with a null window.
+
+DrawTextExW/DrawTextW CALCRECT queries measure the same native glyphs, handle
+line separators, single-line mode, escaped ampersands and NOPREFIX, and update
+the caller's rectangle only after validation. The current profile caps text at
+159 UTF-16 units, rejects tabs/word wrapping, custom parameter records and
+painting mode. No requested text is silently drawn or wrapped differently.
+General DrawText painting remains a separate required implementation when used
+by original task paths; measurement alone cannot qualify GUI rendering.

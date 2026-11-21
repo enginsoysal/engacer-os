@@ -409,6 +409,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "painting144.inc"
 #ifdef ENGINE_M14
 #include "font-api148.inc"
+#include "drawtext148.inc"
 #endif
 #include "image-draw145.inc"
 #include "image-list145.inc"
@@ -458,6 +459,7 @@ static const api8 api8_table[]={
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
  API8(SetWindowPos,4),
+ API8(GetWindowDC,4),API8(DrawTextExW,4),API8(DrawTextW,4),
  API8(SetWindowSubclass,6),API8(GetWindowSubclass,6),API8(RemoveWindowSubclass,6),API8(DefSubclassProc,6),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),

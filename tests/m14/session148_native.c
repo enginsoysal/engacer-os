@@ -69,6 +69,10 @@ __declspec(dllimport) int GetWindowRect(uint64_t,void*);
 __declspec(dllimport) int GetClientRect(uint64_t,void*);
 __declspec(dllimport) int GetSystemMetrics(int);
 __declspec(dllimport) uint64_t GetDC(uint64_t);
+__declspec(dllimport) uint64_t GetWindowDC(uint64_t);
+__declspec(dllimport) int DrawTextExW(uint64_t,uint16_t*,int,void*,unsigned,void*);
+__declspec(dllimport) int TextOutW(uint64_t,int,int,const uint16_t*,int);
+
 __declspec(dllimport) int ReleaseDC(uint64_t,uint64_t);
 __declspec(dllimport) int GetDeviceCaps(uint64_t,int);
 __declspec(dllimport) uint64_t CreateFontIndirectW(const void*);
@@ -124,6 +128,16 @@ typedef struct {int height,ascent,descent,internal,external,average,maximum,weig
 _Static_assert(sizeof(native_logfont148)==92&&sizeof(native_textmetric148)==60,"Owned Windows font records");
 static int64_t subclass_auto148(uint64_t h,unsigned m,uint64_t wp,int64_t lp,uint64_t id,uint64_t data){(void)id;(void)data;return def_sub148(h,m,wp,lp);}
 static void subclass_cleanup148(unsigned atom){for(unsigned turn=0;turn<10;++turn){uint64_t h=CreateWindowExW(0,(const uint16_t*)(uintptr_t)atom,L"Automatic callback cleanup",0,0,0,100,100,0,0,0,0);check(h!=0,461);for(unsigned i=0;i<16;++i)check(set_sub148(h,subclass_auto148,i,turn),462);check(DestroyWindow(h),463);}say148("M148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\n");}
+static void drawtext_tests148(uint64_t h){
+ uint64_t dc=GetWindowDC(h);check(dc!=0,473);int extent[2],wide[2],r[4]={5,7,5,7};check(GetTextExtentPoint32W(dc,L"ABC",3,extent)&&DrawTextExW(dc,(uint16_t*)L"ABC",3,r,0x2500,0)==extent[1]&&r[0]==5&&r[1]==7&&r[2]==5+extent[0]&&r[3]==7+extent[1],474);
+ check(!TextOutW(dc,0,0,L"Forbidden non-client drawing",28)&&GetLastError()==50,475);
+ check(GetTextExtentPoint32W(dc,L"WWW",3,wide),476);r[0]=r[1]=r[2]=r[3]=0;check(DrawTextExW(dc,(uint16_t*)L"A\nWWW",-1,r,0x2500,0)==extent[1]*2&&r[2]==wide[0]&&r[3]==extent[1]*2,477);
+ check(GetTextExtentPoint32W(dc,L"A",1,wide),478);check(DrawTextExW(dc,(uint16_t*)L"A\n",-1,r,0x2500,0)==extent[1]&&r[2]==wide[0]&&r[3]==extent[1],479);check(DrawTextExW(dc,(uint16_t*)L"&A",-1,r,0x2500,0)==extent[1]&&r[2]==wide[0],480);
+ check(GetTextExtentPoint32W(dc,L"&A",2,wide)&&DrawTextExW(dc,(uint16_t*)L"&&A",-1,r,0x2500,0)==extent[1]&&r[2]==wide[0]&&DrawTextExW(dc,(uint16_t*)L"&A",-1,r,0x2d00,0)==extent[1]&&r[2]==wide[0],481);
+ check(GetTextExtentPoint32W(dc,L"AB",2,wide)&&DrawTextExW(dc,(uint16_t*)L"A\nB",-1,r,0x2520,0)==extent[1]&&r[2]==wide[0],482);check(DrawTextExW(dc,(uint16_t*)L"",0,r,0x2500,0)==1&&!r[2]&&!r[3]&&DrawTextExW(dc,(uint16_t*)L"",0,r,0x2520,0)==extent[1]&&r[3]==extent[1],483);
+ r[2]=55;r[3]=66;check(!DrawTextExW(dc,(uint16_t*)L"Unsupported wrap",-1,r,0x2510,0)&&GetLastError()==50&&r[2]==55&&r[3]==66,484);check(!DrawTextExW(dc,(uint16_t*)1,3,r,0x2500,0)&&GetLastError()==998&&r[2]==55&&r[3]==66,485);check(ReleaseDC(0,dc)&&!GetCurrentObject(dc,6)&&GetLastError()==6,486);
+ dc=GetDC(h);check(dc&&ReleaseDC(UINT64_C(0x12345678),dc),487);say148("M148_NATIVE_WINDOW_DC_CALCRECT_PASS\n");
+}
 static void button_tests148(uint64_t parent){
  uint64_t button=CreateWindowExW(0,L"Button",L"Install now",0x40000000,0,0,120,30,parent,41,0,0);check(button!=0,464);uint64_t dc=GetDC(button);int text[2],ideal[2]={0,0};check(dc&&GetTextExtentPoint32W(dc,L"Install now",11,text)&&ReleaseDC(button,dc)&&SendMessageW(button,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[0]>=text[0]+12&&ideal[1]>=text[1]+8,465);
  int natural=ideal[1];ideal[0]=80;ideal[1]=0;check(SendMessageW(button,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[0]==80&&ideal[1]==natural,466);native_logfont148 lf={.height=-28,.weight=600};uint64_t font=CreateFontIndirectW(&lf);check(font!=0,467);SendMessageW(button,0x30,font,0);ideal[0]=0;check(SendMessageW(button,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[1]>natural,468);
@@ -203,6 +217,7 @@ void entry(void){
  int placed[4];check(SetWindowPos(framed,0,30,40,-7,-9,0x215)&&GetWindowRect(framed,placed)&&placed[0]==30&&placed[1]==40&&placed[2]-placed[0]==212&&placed[3]-placed[1]==141&&class_pre148==2&&class_post148==2&&class_moves148==1&&class_sizes148==1&&class_move148==(31u|(80u<<16)),402);
  check(SetWindowPos(framed,0,35,45,0,0,0x415)&&class_pre148==2&&class_post148==3&&class_moves148==2&&class_sizes148==1&&class_move148==(36u|(85u<<16)),403);check(!SetWindowPos(framed,0,1,1,1,1,0)&&GetLastError()==50&&GetWindowRect(framed,placed)&&placed[0]==35&&placed[1]==45&&DestroyWindow(framed)&&class_destroyed148==1,404);
  int invalid_adjustment[4]={INT32_MIN,0,10,10};check(!AdjustWindowRectEx(invalid_adjustment,0x02c80000,0,0)&&invalid_adjustment[0]==INT32_MIN&&!AdjustWindowRectEx(plain_adjusted,0x02c80000,0,0x200),400);
+ drawtext_tests148(hidden);
  button_tests148(hidden);
  subclass_tests148(hidden);
  check(DestroyWindow(hidden)&&class_destroyed148==2,354);subclass_cleanup148(class_atom);check(UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
