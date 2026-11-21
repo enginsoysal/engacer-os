@@ -21,6 +21,9 @@
 #include <engine/m3.h>
 #ifdef ENGINE_M8
 #include <engine/windows8.h>
+#ifdef ENGINE_M14
+#include <engine/winreview147.h>
+#endif
 #include <engine/winui144.h>
 #endif
 #include "build.h"
@@ -50,6 +53,9 @@ enum { OPEN_FILES=1, OPEN_EDITOR, OPEN_SETTINGS, OPEN_CALCULATOR, OPEN_DOWNLOADS
 typedef struct {
     union {
         app7_view view;
+#ifdef ENGINE_M14
+        win_review147 msi147;
+#endif
         struct {
             char text[APP7_TEXT];
             uint32_t length,cursor,dirty,calc_error;

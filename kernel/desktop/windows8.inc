@@ -1,3 +1,6 @@
+#ifdef ENGINE_M14
+#include "windows147.inc"
+#else
 /* Native frontend for the bounded original Windows-console compatibility profile. */
 #define PRODUCT_ROOT8 "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
 enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,GUI144=12100};
@@ -105,3 +108,5 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
   unsigned result=w8_start(job,source,PRODUCT_ROOT8,user,arguments);notice(app,result?"The Windows task could not start. Open System Monitor for memory details.":"");app->offset=0;
  }invalidate(w->bounds);return 1;
 }
+
+#endif

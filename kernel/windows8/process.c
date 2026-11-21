@@ -197,7 +197,11 @@ static void output_record142(w8_info*record,const char*s,unsigned n){unsigned ol
 static void output8(const char*s,unsigned n){output_record142(&info8,s,n);if(active_space142)output_record142(root_info142,s,n);}
 #include "files143.inc"
 static void snapshot8(void){w8_mailbox value;if(user8(W8_MAILBOX,&value,sizeof(value),0))return;
- info8.percent=value.percent<=100?value.percent:0;copy8(info8.product,value.product,sizeof(info8.product));copy8(info8.version,value.version,sizeof(info8.version));copy8(info8.publisher,value.publisher,sizeof(info8.publisher));copy8(info8.code,value.code,sizeof(info8.code));copy8(info8.message,value.message,sizeof(info8.message));info8.files=value.files;info8.total_bytes=value.total_bytes;++info8.revision;serial_text("M8_PROGRESS percent=");serial_hex(info8.percent);serial_text(" ");serial_text(info8.message);serial_text("\n");}
+ info8.percent=value.percent<=100?value.percent:0;copy8(info8.product,value.product,sizeof(info8.product));copy8(info8.version,value.version,sizeof(info8.version));copy8(info8.publisher,value.publisher,sizeof(info8.publisher));copy8(info8.code,value.code,sizeof(info8.code));copy8(info8.message,value.message,sizeof(info8.message));info8.files=value.files;info8.total_bytes=value.total_bytes;
+#ifdef ENGINE_M14
+ memcpy(info8.source_sha147,value.source_sha147,32);info8.profile147=value.profile147&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147);info8.registry147=value.registry;info8.shortcuts147=value.shortcuts;info8.features147=value.features;
+#endif
+++info8.revision;serial_text("M8_PROGRESS percent=");serial_hex(info8.percent);serial_text(" ");serial_text(info8.message);serial_text("\n");}
 static void finish8(unsigned status){snapshot8();info8.status=status;info8.state=status?3:2;
  for(unsigned i=0;i<32;++i)if(files8[i].live){unsigned error=close8(i,status?0:1);if(error){(void)close8(i,0);info8.status=error;info8.state=3;copy8(info8.message,"An open file could not be saved.",sizeof(info8.message));}}w8_active=0;w8_escape();}
 static void release_grants142(void);
@@ -231,7 +235,7 @@ static unsigned prepare_transition8(void){if(ready8)return 0;uint64_t pages[4];u
 static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request){
  if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
  active_space142=slot;if(allocate_space142(slot))goto failure;spaces142[slot]->object=object;memset(&info8,0,sizeof(info8));info8.peak_pages=metadata_pages142[slot];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
- copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
+ copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;info8.job_id147=input8.process_id;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
 #ifdef ENGINE_M14
  spaces142[slot]->install_authority147=command==W8_INSTALL||command==W8_REMOVE;
  if(!win_product_root147(root))goto failure;

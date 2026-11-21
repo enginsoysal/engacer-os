@@ -21,6 +21,7 @@
 #endif
 #define W8_TEXT 16384u
 enum {W8_PREVIEW=1,W8_INSTALL,W8_RUN,W8_REMOVE,W8_INSPECT};
+enum {W8_PROFILE_LEGACY147=1,W8_PROFILE_GENERIC147=2};
 enum {W8_SYS_MAP=0x800,W8_SYS_UNMAP,W8_SYS_PROTECT,W8_SYS_OPEN,W8_SYS_READ,
  W8_SYS_WRITE,W8_SYS_SEEK,W8_SYS_CLOSE,W8_SYS_STAT,W8_SYS_ENUM,W8_SYS_MKDIR,
  W8_SYS_DELETE,W8_SYS_MOVE,W8_SYS_OUTPUT,W8_SYS_EXIT,W8_SYS_TIME,W8_SYS_YIELD,
@@ -56,15 +57,18 @@ typedef struct {
  uint32_t process_id,startup_flags;
  uint64_t environment;uint32_t environment_bytes,reserved143;
  uint64_t std_handles147[3];uint32_t startup_flags147,reserved147;
+ uint8_t source_sha147[32];uint32_t profile147,reserved_source147;
 } w8_mailbox;
 _Static_assert(sizeof(w8_mailbox)<=4096,"Windows startup mailbox must fit its checked page");
 #ifndef W8_USER
 #include <engine/process.h>
 typedef struct {unsigned state,command,status,percent,revision;uint64_t peak_pages,quanta;
  char product[96],version[32],publisher[96],code[40],message[192],output[W8_TEXT];
- unsigned files;uint64_t total_bytes;} w8_info;
+ unsigned files;uint64_t total_bytes;
+ uint8_t source_sha147[32];uint32_t profile147,job_id147,registry147,shortcuts147,features147;} w8_info;
 extern volatile unsigned w8_active;
 unsigned w8_start(unsigned,const char*,const char*,const char*,const char*);
+unsigned w8_start_reviewed147(unsigned,const char*,const char*,const char*,const char*,const uint8_t[32]);
 unsigned w8_pending(void);
 unsigned w8_runnable(void);
 void w8_pump(void);

@@ -96,6 +96,11 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
  if(w8_pending())return V6_INVALID;active_space142=0;root_terminal142=root_waiting142=0;root_end_message142[0]=0;space_cursor142=0;memset(root_info142,0,sizeof(*root_info142));int object=new_process_object142();if(object<0)return V6_INVALID;
  unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0);active_space142=0;if(status)drop_process_object142((unsigned)object);return status;
 }
+unsigned w8_start_reviewed147(unsigned command,const char*source,const char*root,const char*user,const char*arguments,const uint8_t digest[32]){
+ if(command!=W8_INSTALL||!digest)return V6_INVALID;unsigned nonzero=0;for(unsigned i=0;i<32;++i)nonzero|=digest[i];if(!nonzero)return V6_INVALID;
+ unsigned status=w8_start(command,source,root,user,arguments);if(status)return status;
+ memcpy(input8.source_sha147,digest,32);if(user8(W8_MAILBOX+offsetof(w8_mailbox,source_sha147),input8.source_sha147,32,1)){w8_cancel();return V6_INVALID;}return 0;
+}
 void w8_cancel(void){
  if(!w8_pending())return;unsigned cleanup_failed=0;
  for(unsigned slot=0;slot<SPACES142;++slot)if(spaces142[slot]){active_space142=slot;cancel8=1;info8.state=3;info8.status=1223;cleanup_failed|=rollback8();end_space142(slot,1223);}
