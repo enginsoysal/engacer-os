@@ -75,3 +75,11 @@ static int MS f_RegEnumKeyExW(HANDLE handle,unsigned index,WCHAR*name,unsigned*n
  if(!status||status==234){*name_units=result.name_units;if(class_units)*class_units=0;if(time){time->lo=(uint32_t)result.time;time->hi=(uint32_t)(result.time>>32);}}if(view!=handle)f_RegCloseKey(view);return status;
 }
 static int MS f_RegFlushKey(HANDLE handle){HANDLE view=0;int status=registry_root_view143(handle,1,0,&view);if(status)return status;w8_registry_request143 request={.root=view};status=registry_api143(8,&request,0);if(view!=handle)f_RegCloseKey(view);return status;}
+
+#ifdef ENGINE_M14
+/* Shell convenience deletion retains existing registry capability checks. */
+static int MS f_SHDeleteValueW(HANDLE root,const WCHAR*subkey,const WCHAR*value){
+ HANDLE opened=0;int status=f_RegOpenKeyExW(root,subkey,0,2,&opened);if(status)return status;
+ status=f_RegDeleteValueW(opened,value);int closed=f_RegCloseKey(opened);return status?status:closed;
+}
+#endif
