@@ -76,6 +76,8 @@ __declspec(dllimport) unsigned SetErrorMode(unsigned);
 __declspec(dllimport) unsigned GetErrorMode(void);
 __declspec(dllimport) unsigned GetFileAttributesW(const uint16_t*);
 __declspec(dllimport) int RemoveDirectoryW(const uint16_t*);
+__declspec(dllimport) int CreateDirectoryW(const uint16_t*,void*);
+__declspec(dllimport) int SetFileAttributesW(const uint16_t*,unsigned);
 __declspec(dllimport) void*LocalFree(void*);
 __declspec(dllimport) uint64_t CreateToolhelp32Snapshot(unsigned,unsigned);
 __declspec(dllimport) int Process32FirstW(uint64_t,void*);
@@ -281,7 +283,7 @@ static void registry_capacity_tests148(void){
  check(!RegCloseKey(key)&&!RegOpenKeyExW(root,path,0,1,&key),684);
  {unsigned subkeys=0,maxkey=0,classes=99,values=0,maxname=0,maxbytes=0,class_units=99;
   check(!RegQueryInfoKeyW(key,0,&class_units,0,&subkeys,&maxkey,&classes,&values,&maxname,&maxbytes,0,0)&&subkeys==65&&maxkey==4&&!classes&&values==130&&maxname==4&&maxbytes==4&&!class_units,748);
-  uint16_t text[2]={0x148,0x148};class_units=1;check(!RegQueryInfoKeyW(key,text,&class_units,0,0,0,0,0,0,0,0,0)&&!text[0]&&text[1]==0x148&&!class_units,749);
+  uint16_t text[2]={0x148,0x148};class_units=0;check(!RegQueryInfoKeyW(key,text,&class_units,0,0,0,0,0,0,0,0,0)&&text[0]==0x148&&!class_units,753);class_units=1;check(!RegQueryInfoKeyW(key,text,&class_units,0,0,0,0,0,0,0,0,0)&&!text[0]&&text[1]==0x148&&!class_units,749);
   uint64_t denied=0;check(!RegOpenKeyExW(root,path,0,0,&denied)&&RegQueryInfoKeyW(denied,0,0,0,0,0,0,0,0,0,0,0)==5&&!RegCloseKey(denied),750);
   uint64_t write=0,unicode_child=0;unsigned disposition=0;unsigned char payload[7]={1,2,3,4,5,6,7};check(!RegOpenKeyExW(root,path,0,0xf003f,&write)&&!RegCreateKeyExW(write,L"ABC\u00e9\U0001f600",0,0,0,0xf003f,0,&unicode_child,&disposition)&&!RegCloseKey(unicode_child)&&!RegSetValueExW(write,L"value\U0001f600",0,3,payload,7)&&!RegCloseKey(write),751);
   check(!RegQueryInfoKeyW(key,0,0,0,&subkeys,&maxkey,&classes,&values,&maxname,&maxbytes,0,0)&&subkeys==66&&maxkey==6&&values==131&&maxname==7&&maxbytes==7,752);
@@ -373,6 +375,15 @@ static void shell_link_tests148(void){
 #undef SL148
 }
 
+static void shell_file_tests148(void){
+ uint64_t module=LoadLibraryExA("shell32.dll",0,0);check(module!=0,754);int(*operation)(void*)=GetProcAddress(module,"SHFileOperationW");check(operation!=0,755);
+ struct{uint64_t window;unsigned operation,pad;const uint16_t*from,*to;uint16_t flags,pad2;int aborted;void*mappings;const uint16_t*title;} request={0};
+ const uint16_t*directory=L"C:\\Users\\Owner\\Documents\\ShellDelete148";const uint16_t*child=L"C:\\Users\\Owner\\Documents\\ShellDelete148\\Child";const uint16_t*file=L"C:\\Users\\Owner\\Documents\\ShellDelete148\\Child\\guard.txt";
+ check(CreateDirectoryW(directory,0)&&CreateDirectoryW(child,0),756);uint64_t handle=CreateFileW(file,0x40000000,0,0,1,0x80,0);unsigned written=0;check(handle!=UINT64_MAX&&WriteFile(handle,"guard",5,&written,0)&&written==5&&CloseHandle(handle),757);
+ request.operation=3;request.from=L"C:\\Users\\Owner\\Documents\\ShellDelete148\0";request.flags=0x654;check(operation(&request)==50&&request.aborted&&GetFileAttributesW(file)!=UINT32_MAX,758);
+ request.flags=0x614;check(SetFileAttributesW(file,1)&&operation(&request)!=0&&request.aborted&&GetFileAttributesW(file)!=UINT32_MAX&&SetFileAttributesW(file,0x80),759);
+ check(!operation(&request)&&!request.aborted&&GetFileAttributesW(directory)==UINT32_MAX&&FreeLibrary(module),760);say148("M148_NATIVE_SHELL_PERMANENT_DELETE_GUARDS_PASS\n");
+}
 void entry(void){
  {
   uint16_t expected[512],actual[512];unsigned length=GetModuleFileNameW(0,expected,512),capacity=512;uint64_t query=OpenProcess(0x1000,0,GetCurrentProcessId());check(length&&query&&QueryFullProcessImageNameW(query,0,actual,&capacity)&&capacity==length,740);for(unsigned i=0;i<=length;++i)check(actual[i]==expected[i],741);
@@ -390,7 +401,7 @@ void entry(void){
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
- font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();shell_link_tests148();
+ font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();shell_link_tests148();shell_file_tests148();
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
  check(MulDiv(420,96,96)==420&&MulDiv(5,1,2)==3&&MulDiv(-5,1,2)==-3&&MulDiv(5,1,-2)==-3&&MulDiv(-5,1,-2)==3&&MulDiv(INT32_MAX,INT32_MAX,INT32_MAX)==INT32_MAX&&MulDiv(INT32_MAX,INT32_MAX,1)==-1&&MulDiv(1,1,0)==-1&&MulDiv(INT32_MIN,0,1)==0&&MulDiv(INT32_MIN,1,INT32_MIN)==-1&&GetLastError()==0x148,394);

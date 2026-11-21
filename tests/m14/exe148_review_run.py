@@ -26,14 +26,15 @@ def main():
       p.desktop(54023,True)
      else:raise AssertionError('EXE source is not reachable in the installer list')
      p.desktop(55000+row,True);p.desktop(54011,True);assert not c.flag(g,'file_dialog_state11');before=f.entries(g);output=task(g,p,12000);after=f.entries(g);assert before==after,'Read-only EXE review changed the volume entries'
-     assert 'Mapped original image'not in output and not c.flag(g,'w8_active');review=state();assert review[4]==0 and review[1]==(1 if index==0 else 0),review
+     assert 'Mapped original image'not in output and not c.flag(g,'w8_active');review=state();assert review[4]==(4 if index==0 else 0) and review[1]==(1 if index==0 else 0),review
      raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496)
      if index==0:
       digest=ui.memory(g,address+68,32);assert digest==hashlib.sha256(data).digest();assert review[5:9]==(4,227,2,1),review;assert raw[40:136].split(b'\0')[0]==b'SumatraPDF'
      assert not any(k.startswith('/Applications/Windows/')for k in after);at=len(g.log())
-     if any(r[5]==12001 for r in f.controls(g)):p.desktop(12001,True)
+     if index==0:
+      p.desktop(12001,True);assert any(r[5]==12003 for r in f.controls(g));assert not c.flag(g,'w8_active');p.desktop(12004,True)
      p.drain();assert not c.flag(g,'w8_active')and 'M8_CPL3_CREATED'not in g.log()[at:]and not any(r[5]==12003 for r in f.controls(g))
-     c.shot(g,'ordinary-exe-review-'+str(index));report['cases'].append(dict(file=name,review=review,source_digest=hashlib.sha256(data if index==0 else b'MZUnknown review-only content').hexdigest(),unchanged_volume=True,no_original_executed=True,installation_disabled=True))
+     c.shot(g,'ordinary-exe-review-'+str(index));report['cases'].append(dict(file=name,review=review,source_digest=hashlib.sha256(data if index==0 else b'MZUnknown review-only content').hexdigest(),unchanged_volume=True,no_original_executed=True,installation_disabled=index!=0,confirmation_cancelled=index==0))
     assert ui.s.s.document(disk,'/Users/Owner/Documents/Review-sentinel148.txt',4096)==b'Personal data retained';report['passed']=True;(out/'serial.log').write_bytes(g.log().encode())
   except Exception:
    if 'g'in locals():(out/'serial.log').write_bytes(g.log().encode())
