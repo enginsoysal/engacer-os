@@ -1,0 +1,30 @@
+{
+  "scope": "Historical failure traces from older builds, preserved separately from current successful candidate reports. No older failure is relabelled as a current pass; root causes remain in their development histories.",
+  "current_build": "1fb03f1b582d4d153441b6b5ca40da06",
+  "traces": [
+    {
+      "group": "generic-cancel-native",
+      "historical_build": "338f750f23590712c09e4a621f56ef6f",
+      "raw_sha256": "e8d305edcd65fbba98d88ad28c2491dae04f39b881ec23ec8f844758362eb4f2",
+      "archived_sha256": "e8d305edcd65fbba98d88ad28c2491dae04f39b881ec23ec8f844758362eb4f2",
+      "archive": "generic-cancel-native-338f750f23590712c09e4a621f56ef6f-serial-failed.log",
+      "current_successful_report_unchanged": true
+    },
+    {
+      "group": "storage-native",
+      "historical_build": "db545f773e6a4ce1db64a52c79344084",
+      "raw_sha256": "28a8cccc49d887c34f510857dfcca31c0cc414a03324f6fc935483ef0fc96c59",
+      "archived_sha256": "28a8cccc49d887c34f510857dfcca31c0cc414a03324f6fc935483ef0fc96c59",
+      "archive": "storage-native-db545f773e6a4ce1db64a52c79344084-serial-failed.log",
+      "current_successful_report_unchanged": true
+    },
+    {
+      "group": "terminal-native",
+      "historical_build": "d2e2a2ffb0e6919a274a78c22600f79c",
+      "raw_sha256": "757e75fb199d94308c8d93df1145db7686b711b672623701c41fe806fdb1a902",
+      "archived_sha256": "757e75fb199d94308c8d93df1145db7686b711b672623701c41fe806fdb1a902",
+      "archive": "terminal-native-d2e2a2ffb0e6919a274a78c22600f79c-serial-failed.log",
+      "current_successful_report_unchanged": true
+    }
+  ]
+}
