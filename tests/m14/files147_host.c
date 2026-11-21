@@ -2,10 +2,14 @@
 #include "plan147_host.c"
 #include "../../user/windows8/msi-files147.h"
 #include "../../user/windows8/msi-shortcuts147.h"
+#include "../../user/windows8/msi-install147.h"
+#include "../../user/windows8/msi-registry147.h"
 #include "../../user/windows8/msi-text147.h"
 #include <engine/storage/volume6.h>
 typedef size_t (*size_callback147)(const void*);
 static size_callback147 size_host147;
+typedef int64_t (*registry_callback147)(unsigned,uint64_t);
+static registry_callback147 registry_host147;
 static v6_volume*volume147;
 static w8_mailbox input8;
 w8_mailbox*const job8=&input8;
@@ -30,7 +34,7 @@ static void metadata_path143(const char*p,char*out){(void)p;copy_kernel147(out,"
 #define copy8 copy_kernel147
 #include "../../kernel/windows8/transaction147.inc"
 #undef copy8
-static unsigned path8(const char*p,unsigned write){return prefix8(p,input8.product_root)||(!write&&(prefix8(p,input8.user_root)||prefix8(p,"/Data/Windows/Common/Programs")))||(write&&installer_user_grant147(p,0));}
+static unsigned path8(const char*p,unsigned write){return prefix8(p,input8.product_root)||(!write&&(prefix8(p,input8.user_root)||prefix8(p,"/Data/Windows/Common/Programs")||prefix8(p,"/Applications/Windows")))||(write&&installer_user_grant147(p,0));}
 #include "../../kernel/windows8/stream147.inc"
 #include "../../kernel/windows8/path-core143.inc"
 int stat8(const char*p,w8_file_info*out){if(!path8(p,0))return -1;const v6_entry*e=find8(p);if(!e)return -1;memset(out,0,sizeof(*out));out->kind=e->kind;out->size=e->size;return 0;}
@@ -44,6 +48,8 @@ int close8(int h){return close_handle147((unsigned)h,1);}
 unsigned load8(const char*p,void**out,unsigned cap){const v6_entry*e=find8(p);if(!e||e->kind!=1||e->size>cap)return 0;void*data=alloc8((size_t)e->size+1);if(!data)return 0;unsigned got=0;if(v6_read(volume147,p,0,data,(unsigned)e->size,&got)||got!=e->size){free8(data);return 0;}((uint8_t*)data)[got]=0;*out=data;return got;}
 void progress8(unsigned percent,const char*text){input8.percent=percent;copy8(input8.message,text,sizeof(input8.message));}
 uint64_t sys8(uint64_t call,uint64_t a,uint64_t b,uint64_t c,uint64_t d,uint64_t e){
+ if(call==W8_SYS_REGISTRY143)return registry_host147?(uint64_t)registry_host147((unsigned)a,b):UINT64_MAX;
+ if(call==W8_SYS_ENUM){const char*parent=(const void*)(uintptr_t)a;unsigned n=len8(parent);if(!path8(parent,0)||c>=V6_ENTRIES)return UINT64_MAX;for(unsigned i=(unsigned)c;i<V6_ENTRIES;++i){const v6_entry*entry=volume147->entries+i;if(!entry->kind||memcmp(entry->path,parent,n)||entry->path[n]!='/')continue;const char*leaf=entry->path+n+1;unsigned nested=0;for(unsigned k=0;leaf[k];++k)if(leaf[k]=='/')nested=1;if(nested)continue;w8_file_info*info=(void*)(uintptr_t)b;memset(info,0,sizeof(*info));info->kind=entry->kind;info->size=entry->size;copy8(info->name,leaf,256);return i+1;}return 0;}
  if(call==W8_SYS_PATH143){char text[2048],cwd[1024];unsigned code=msit_fromwide147((const void*)(uintptr_t)a,text,sizeof(text));if(!code)code=msit_fromwide147((const void*)(uintptr_t)b,cwd,sizeof(cwd));if(code)return (uint64_t)-(int64_t)code;path_context143 context={input8.user_root,input8.product_root,input8.windows_root,volume147->entries,V6_ENTRIES};return (uint64_t)-(int64_t)path_policy143(&context,text,cwd,(unsigned)d,(void*)(uintptr_t)c);}
  if(call==W8_SYS_STREAM147)return (uint64_t)stream_call147(a,b,c,d,e);
  if(call==W8_SYS_ALIAS147)return (uint64_t)alias_set147(a,b,c,d,e);
@@ -65,3 +71,8 @@ __declspec(dllexport) unsigned journal_bytes147(void){return journal147->bytes;}
 __declspec(dllexport) void files_close147(void){stream_release147();for(unsigned i=0;i<8;++i)if(handles147[i].live)(void)close_handle147(i,0);msij_close147(journal147);journal147=0;msil_close147(links147);links147=0;}
 
 __declspec(dllexport) unsigned links_collision147(void){msij147*j=msij_create147(plan147);if(!j)return 8;msil_plan147*links=0;unsigned status=msil_prepare147(plan147,j,&links);msil_close147(links);msij_close147(j);return status;}
+
+__declspec(dllexport) void files_registry147(registry_callback147 callback){registry_host147=callback;}
+__declspec(dllexport) unsigned install_controller147(void){return msia_install147(plan147,source147,source_bytes147);}
+__declspec(dllexport) unsigned installed_read147(void){char path[256];copy8(path,plan147->product_root,256);append8(path,"/product.bin",256);journal147=msij_read147(path,plan147->product_root,input8.user_root);return journal147?0:13;}
+__declspec(dllexport) unsigned installed_undo_registry147(void){return msireg_undo147(journal147);}

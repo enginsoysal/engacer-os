@@ -170,6 +170,7 @@ static unsigned path8(const char*p,unsigned write){
 #ifdef ENGINE_M14
   ||prefix8(p,"/System/Windows/Installer")||prefix8(p,"/Data/Windows/Common/Programs")
   ||equal8(p,"/System/Windows/Tools/cmd.exe")||equal8(p,"/System/Windows/Tools/xcopy.exe")
+  ||(installer_authority147()&&prefix8(p,"/Applications/Windows"))
 #endif
   ;
 #ifdef ENGINE_M14

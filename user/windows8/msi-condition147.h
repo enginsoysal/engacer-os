@@ -90,7 +90,7 @@ static unsigned msic_precedence147(unsigned t){switch(t){case MC_AND147:return 6
 static int msic_expression147(msic_parser147 *p,unsigned minimum){
  int left=msic_unary147(p);while(!p->error){unsigned op=p->token,precedence=msic_precedence147(op);if(!precedence||precedence<minimum)break;msic_next147(p);int right=msic_expression147(p,precedence+1);switch(op){case MC_AND147:left=left&&right;break;case MC_OR147:left=left||right;break;case MC_XOR147:left=left!=right;break;case MC_EQV147:left=left==right;break;case MC_IMP147:left=!left||right;break;}}return left;
 }
-static int msic_evaluate147(const char *text,msic_lookup147 lookup,void *context){
+static inline int msic_evaluate147(const char *text,msic_lookup147 lookup,void *context){
  if(!text)return MSIC_NONE147;msic_parser147 p={0};p.text=text;p.lookup=lookup;p.context=context;while(p.length<=4096&&text[p.length])++p.length;if(p.length>4096)return MSIC_ERROR147;msic_next147(&p);if(p.token==MC_END147)return p.error?MSIC_ERROR147:MSIC_NONE147;int value=msic_expression147(&p,1);return p.error||p.token!=MC_END147?MSIC_ERROR147:value?MSIC_TRUE147:MSIC_FALSE147;
 }
 #endif
