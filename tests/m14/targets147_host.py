@@ -1,30 +1,15 @@
-"""Check compact refusal lookup; never invoke a refusal body or original app."""
-import ctypes as c
-import hashlib,json,sys
+"""Retain all refusal checks, including real-PE MSI provider-zero diagnostics."""
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools/build'))
-from m1 import command,pinned_tools
-from m14_targets145 import generate
+import hashlib,json
+import replay7
 
 def main():
- for path,data in generate().items():assert(ROOT/path).read_bytes()==data,path
- out=ROOT/'build/m14-native/stage7/wix-refusal-host';out.mkdir(parents=True,exist_ok=True);tools=pinned_tools()
- command([tools['clang'],'--target=x86_64-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-c',ROOT/'tests/m14/targets145_host.c','-o',out/'targets.obj'])
- command([tools['lld-link'],'/dll','/noentry','/nodefaultlib','/timestamp:0','/out:'+str(out/'targets.dll'),out/'targets.obj'])
- lib=c.CDLL(str(out/'targets.dll'));lib.refusal_key145.argtypes=[c.c_uint,c.c_char_p,c.c_uint];lib.refusal_key145.restype=c.c_uint64;lib.refusal_lookup145.argtypes=lib.refusal_key145.argtypes;lib.refusal_lookup145.restype=c.c_uint;lib.refusal_bytes145.restype=c.c_uint
- data=json.loads((ROOT/'docs/roadmap/target-import-refusals145.json').read_text(encoding='utf-8'));checked=0
- for row in data['imports']:
-  symbol=row['symbol'];ordinal=int(symbol[1:])if symbol.startswith('#')else 0;name=None if ordinal else symbol.encode();provider=0 if row['dll']=='msi.dll'else data['provider_ids'][row['dll']]
-  assert lib.refusal_key145(provider,name,ordinal)==int(row['key'],16)
-  assert lib.refusal_lookup145(provider,name,ordinal)==1
-  checked+=2
- for provider in data['provider_ids'].values():
-  assert lib.refusal_lookup145(provider,b'EngacerUnknownExport145',0)==0
-  checked+=1
- for ordinal in (8,17,47,49,64,73,74,80,103,116,118,119,121,124,125,143,145,171):assert lib.refusal_lookup145(0,None,ordinal)==0
- assert lib.refusal_lookup145(1,b'GetStdHandle',0)==0 and lib.refusal_lookup145(3,b'SysAllocString',0)==0
- size=lib.refusal_bytes145();assert size==data['table_bytes']and size<=8192
- result=dict(passed=True,scope='Host refusal-key and generation checks only; no refusal-body invocation or API compatibility proof',assertions=checked+3,keys=data['refusal_keys'],immutable_key_bytes=size,sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in('user/windows8/target-guards145.inc','user/windows8/target-refusals145.inc','user/windows8/providers145.inc','tools/build/m14_targets145.py','tests/m14/targets145_host.c','tests/m14/targets147_host.py')})
- (out/'results.json').write_bytes((json.dumps(result,indent=2)+'\n').encode());print(json.dumps(result))
-
-if __name__=='__main__':main()
+    canonical=Path(__file__).with_name('targets145_host.py');raw=canonical.read_bytes();source=raw.decode('utf-8')
+    for before,after in replay7.REPLACEMENTS:source=source.replace(before,after)
+    before="provider=data['provider_ids'][row['dll']]"
+    assert source.count(before)==1
+    source=source.replace(before,"provider=0 if row['dll']=='msi.dll' else data['provider_ids'][row['dll']]")
+    scope=dict(__file__=str(canonical),__name__='targets147_derived')
+    exec(compile(source,str(canonical),'exec'),scope);scope['main']()
+    root=canonical.parents[2];table=json.loads((root/'docs/roadmap/target-import-refusals145.json').read_text(encoding='utf-8'));count=sum(row['dll']=='msi.dll' for row in table['imports']);assert count>0
+    (root/'build/m14-native/stage7/targets-host/observer.json').write_bytes((json.dumps(dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(source.encode()).hexdigest(),adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),msi_provider=0,msi_unresolved_import_rows_checked=count,no_import_rows_skipped=True),indent=2)+'\n').encode())

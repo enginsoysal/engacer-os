@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m14\replay7.py", line 108, in <module>
+    main()
+  File "<project-root>\tests\m14\replay7.py", line 92, in main
+    module.main()
+  File "<project-root>\tests\m14\targets145_host.py", line 17, in main
+    symbol=row['symbol'];ordinal=int(symbol[1:])if symbol.startswith('#')else 0;name=None if ordinal else symbol.encode();provider=data['provider_ids'][row['dll']]
+KeyError: 'msi.dll'

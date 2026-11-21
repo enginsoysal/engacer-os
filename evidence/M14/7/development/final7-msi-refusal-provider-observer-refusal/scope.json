@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "Historical refusal observer assumes every import DLL has a synthetic provider; actual MSI is a separately loaded PE using provider zero for unresolved ordinal diagnostics",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 137,
+  "os_source_changed": false,
+  "correction": "Use provider zero explicitly for msi.dll, retain every generated refusal-key and lookup assertion; supported MSI exports remain independently native-tested."
+}
