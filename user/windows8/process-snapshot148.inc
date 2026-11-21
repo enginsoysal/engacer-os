@@ -1,6 +1,7 @@
 /* Immutable snapshots of actual live Windows execution-domain processes.
  * Native desktop components are outside this compatibility PID namespace. */
-#define SNAPSHOT_TAG148 UINT64_C(0xe0000000)
+#define SNAPSHOT_TAG148 UINT64_C(0x534e000000000000)
+#define SNAPSHOT_MASK148 UINT64_C(0xffff000000000000)
 typedef struct {uint32_t size,usage,pid,pad;uint64_t heap;uint32_t module,threads,parent;int32_t priority;uint32_t flags;WCHAR name[260];uint32_t tail;} process_entry148;
 _Static_assert(sizeof(process_entry148)==568&&offsetof(process_entry148,name)==44,"AMD64 PROCESSENTRY32W layout");
 typedef struct {HANDLE handle;unsigned next,reserved;w8_process_snapshot148 view;} snapshot148;

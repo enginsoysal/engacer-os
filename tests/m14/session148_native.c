@@ -78,6 +78,8 @@ __declspec(dllimport) unsigned GetFileAttributesW(const uint16_t*);
 __declspec(dllimport) int RemoveDirectoryW(const uint16_t*);
 __declspec(dllimport) int CreateDirectoryW(const uint16_t*,void*);
 __declspec(dllimport) int SetFileAttributesW(const uint16_t*,unsigned);
+__declspec(dllimport) uint64_t CreateFileMappingW(uint64_t,void*,unsigned,unsigned,unsigned,const uint16_t*);
+__declspec(dllimport) void*MapViewOfFile(uint64_t,unsigned,unsigned,unsigned,uint64_t);
 __declspec(dllimport) void*LocalFree(void*);
 __declspec(dllimport) uint64_t CreateToolhelp32Snapshot(unsigned,unsigned);
 __declspec(dllimport) int Process32FirstW(uint64_t,void*);
@@ -384,6 +386,12 @@ static void shell_file_tests148(void){
  request.flags=0x614;check(SetFileAttributesW(file,1)&&operation(&request)!=0&&request.aborted&&GetFileAttributesW(file)!=UINT32_MAX&&SetFileAttributesW(file,0x80),759);
  check(!operation(&request)&&!request.aborted&&GetFileAttributesW(directory)==UINT32_MAX&&FreeLibrary(module),760);say148("M148_NATIVE_SHELL_PERMANENT_DELETE_GUARDS_PASS\n");
 }
+static void snapshot_mapping_tests148(void){
+ uint64_t snapshot=CreateToolhelp32Snapshot(2,0),mapping=CreateFileMappingW(UINT64_MAX,0,4,0,8192,L"Engacer.SnapshotMapping148");check(snapshot!=UINT64_MAX&&mapping&&snapshot!=mapping,761);
+ uint64_t existing=CreateFileMappingW(UINT64_MAX,0,2,0,0,L"Engacer.SnapshotMapping148");check(existing&&GetLastError()==183&&CloseHandle(existing),762);
+ process_entry_native148 entry={.size=sizeof(entry)};check(!Process32FirstW(mapping,&entry)&&GetLastError()==6&&!MapViewOfFile(snapshot,4,0,0,4096)&&GetLastError()==6,763);
+ check(CloseHandle(snapshot)&&CloseHandle(mapping),764);say148("M148_NATIVE_SNAPSHOT_MAPPING_HANDLE_DOMAIN_COEXISTENCE_PASS\n");
+}
 void entry(void){
  {
   uint16_t expected[512],actual[512];unsigned length=GetModuleFileNameW(0,expected,512),capacity=512;uint64_t query=OpenProcess(0x1000,0,GetCurrentProcessId());check(length&&query&&QueryFullProcessImageNameW(query,0,actual,&capacity)&&capacity==length,740);for(unsigned i=0;i<=length;++i)check(actual[i]==expected[i],741);
@@ -401,7 +409,7 @@ void entry(void){
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
- font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();shell_link_tests148();shell_file_tests148();
+ font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();shell_link_tests148();shell_file_tests148();snapshot_mapping_tests148();
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
  check(MulDiv(420,96,96)==420&&MulDiv(5,1,2)==3&&MulDiv(-5,1,2)==-3&&MulDiv(5,1,-2)==-3&&MulDiv(-5,1,-2)==3&&MulDiv(INT32_MAX,INT32_MAX,INT32_MAX)==INT32_MAX&&MulDiv(INT32_MAX,INT32_MAX,1)==-1&&MulDiv(1,1,0)==-1&&MulDiv(INT32_MIN,0,1)==0&&MulDiv(INT32_MIN,1,INT32_MIN)==-1&&GetLastError()==0x148,394);
