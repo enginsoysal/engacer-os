@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "stage": "M14.7 development",
+  "scope": "Synthetic native persistent user registry, rights, sizes, enumeration and private parent/child grants",
+  "build_id": "93b05fbf5b5e9b656c162819633c0d0e",
+  "clone": {
+    "source_sha256": "daf39b5300524224fe0aec540b4935468b539e36c0af84c33ecc8a08ec1510fc",
+    "clone_sha256": "daf39b5300524224fe0aec540b4935468b539e36c0af84c33ecc8a08ec1510fc",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "owned_fixture": "52b4fd7fa76840b987d3fb8ed7ebf0e4",
+  "fixture_sha256": {
+    "probe.exe": "3b56a36e4ea2045f31f425c3f451eb069d42775db80b3274f5d7d2d0d5964505",
+    "read.exe": "5c62d9ed90cdf0e7c5a3ef350d90ccde0efdf90341a1fb4f6c33410c87d860a1"
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\registry143_native.py\", line 41, in main\n    warm=task(g,p,12005);assert 'M143_NATIVE_REGISTRY_PASS' in warm,warm;report['warm_output']=warm\n  File \"<project-root>\\tests\\m14\\apps_native3.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError:  OUTPUT Mapped original image: 7z.exe bytes=24576 source-fnv32=767394032\nRunning the original Windows executable in a protected process.\n\nM143_REGISTRY_CHECK_046\n\n"
+}

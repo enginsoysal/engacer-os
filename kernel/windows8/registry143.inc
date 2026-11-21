@@ -148,7 +148,8 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
 #ifdef ENGINE_M14
  registry_machine147=0;unsigned view=request.access&0x300u;if(view==0x300u)return -87;request.access&=~0x300u;
  if(registry_hklm147(request.root))registry_machine147=view==0x200u?2:1;
- else if(!registry_hkcu143(request.root)){int selected=registry_slot143(request.root);if(selected<0)return -6;const char*owner=registry_objects143[spaces142[active_space142]->registry_handles[selected].object]->record.user;
+ else if(registry_hkcu143(request.root)){if(view)return -50;}
+ else {int selected=registry_slot143(request.root);if(selected<0)return -6;const char*owner=registry_objects143[spaces142[active_space142]->registry_handles[selected].object]->record.user;
   if(equal8(owner,"/Machine/64"))registry_machine147=1;else if(equal8(owner,"/Machine/32"))registry_machine147=2;
   if(view&&registry_machine147&&registry_machine147!=(view==0x200u?2u:1u))return -50;
  }

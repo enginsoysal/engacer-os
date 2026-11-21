@@ -1,0 +1,22 @@
+{
+  "scope": "Build a test-only installer-context dispatcher and own registry caller.\n\nThe production kernel and API objects remain unchanged. Only the owned clone's\nruntime entry dispatcher is replaced, so normal user confirmation creates the\nreal REMOVE authority. This dispatcher is never included in release media.\n",
+  "os_build_id": "93b05fbf5b5e9b656c162819633c0d0e",
+  "source_commit": "d74b4e3b59f82378b87c946f2fd12c3f62176728",
+  "sources": {
+    "tests/m14/machine147_native.c": "aae17deca0793869e1395e44828abc972bc0e791eff493483c758e13f8048d35",
+    "tests/m14/machine147_build.py": "53f1864429e38f2e37cae4e924df99a910247a4ed0824896d0fe87c6495a4a2f"
+  },
+  "production_objects": {
+    "windows8-runtime.o": "7b313f8d6c7389142c85bb84cd01c65834bd70741e0c412d2e49e36296aa138a",
+    "windows8-pe.o": "bf900ee6fe4b07e1cb6d9a7c3e8e60d62a2915121c8d703eefa33225e3dccdb7",
+    "windows8-api.o": "abfde64b00007cf7a5f95bb1714832de6b3cb0ffa1d70cfbfceab4c8792edefc",
+    "windows8-msi_db.o": "0f8ab26832f3d113b3b443049c38b3b4c03f2881f0aea266b17bc5945e95d714",
+    "windows8-cab.o": "03a9840e9e0806b521e01f12a5ea9b2167fee25a8db26f865aeb9ed48373d4ba",
+    "windows8-sha256.o": "968c91aabec23e2af40f968f0d7e9a29238b81aa9d4319586b67015a53bc4c05",
+    "windows8-lzxd.o": "7ea60e3879ebe06cf71641391594eb760739ada95756aa80e732610b58ed0003"
+  },
+  "dispatcher_source": "#include \"runtime.h\"\nvoid msi8_execute(void){char path[256];copy8(path,job8->product_root,256);append8(path,\"/machine147.exe\",256);init_win8();pe8_run(path,\"\");}\n",
+  "dispatcher_sha256": "c5ea9a540f284aafa47929b0a61fd22990c58ae726f08739543bf27a11167486",
+  "fixture_sha256": "ae847b931cf820357829298ce40d1e41ef7838d6a1f724651b5f97293c4a47a8",
+  "runtime_sha256": "6656e07cbc9ccfae9ad3126df67bb415ab4d8a48ec07a07edff1b65400e085c9"
+}
