@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "scope": "Observe real CPL3 GDI font pixels and lifecycle; not vendor qualification.",
+  "build_id": "3dcc08715fc0fd410ccb9bfc2ed3712f",
+  "production_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "3dcc08715fc0fd410ccb9bfc2ed3712f",
+    "source_commit": "abdd7a5022e97f5f0a2bc0b5f8db2912eaea8bbe",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "21634599e46bd1f8fb83563ca823de779bb78f074ca5a48487e4546386f6be48",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "a930a5dc2fde214268827bc580717e9f2540a0cd7a19811822074982c0f7565f"
+  },
+  "fixture_sha256": "84b063109d1d14e3f1692995478f421698ddcd84e13ee9d3029054e9409fd096",
+  "observer_sha256": "797335353f8d5118f13f0429631ff5c4cf98e04e0d9e2ea858a29f66c7567d56",
+  "clone": {
+    "source_sha256": "d7960386aaeafcc4125fe72f3299c5ddd7135cb3bde844a1f3c41b1f22cfa7f1",
+    "clone_sha256": "d7960386aaeafcc4125fe72f3299c5ddd7135cb3bde844a1f3c41b1f22cfa7f1",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "blue14": {
+        "pixels": 716,
+        "width": 145,
+        "height": 14,
+        "coverage_colors": 158
+      },
+      "red28_underlined": {
+        "pixels": 3019,
+        "width": 288,
+        "height": 26,
+        "coverage_colors": 191
+      },
+      "actual_gdiplus_client_clear": true,
+      "actual_gdiplus_client_rectangle": true,
+      "actual_copied_image_after_source_disposal": true,
+      "actual_shield_show_hide": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "blue14": {
+        "pixels": 716,
+        "width": 145,
+        "height": 14,
+        "coverage_colors": 158
+      },
+      "red28_underlined": {
+        "pixels": 3019,
+        "width": 288,
+        "height": 26,
+        "coverage_colors": 191
+      },
+      "actual_gdiplus_client_clear": true,
+      "actual_gdiplus_client_rectangle": true,
+      "actual_copied_image_after_source_disposal": true,
+      "actual_shield_show_hide": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "blue14": {
+        "pixels": 716,
+        "width": 145,
+        "height": 14,
+        "coverage_colors": 158
+      },
+      "red28_underlined": {
+        "pixels": 3019,
+        "width": 288,
+        "height": 26,
+        "coverage_colors": 191
+      },
+      "actual_gdiplus_client_clear": true,
+      "actual_gdiplus_client_rectangle": true,
+      "actual_copied_image_after_source_disposal": true,
+      "actual_shield_show_hide": true,
+      "retained_pages": 0
+    }
+  ]
+}
