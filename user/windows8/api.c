@@ -438,6 +438,7 @@ static const api8 api8_table[]={
  API8(GdiplusStartup,16),API8(GdiplusShutdown,16),API8(GdipAlloc,16),API8(GdipFree,16),
  API8(GdipCreateBitmapFromScan0,16),API8(GdipDisposeImage,16),API8(GdipGetImageWidth,16),API8(GdipGetImageHeight,16),API8(GdipBitmapGetPixel,16),API8(GdipBitmapSetPixel,16),
  API8(GdipGetImageGraphicsContext,16),API8(GdipDeleteGraphics,16),API8(GdipGraphicsClear,16),
+ API8(GdipSetCompositingQuality,16),API8(GdipGetCompositingQuality,16),API8(GdipSetSmoothingMode,16),API8(GdipGetSmoothingMode,16),API8(GdipSetTextRenderingHint,16),API8(GdipGetTextRenderingHint,16),API8(GdipSetPageUnit,16),API8(GdipGetPageUnit,16),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

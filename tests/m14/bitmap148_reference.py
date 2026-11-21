@@ -37,6 +37,18 @@ def main():
      color=c.c_uint();assert get(image,0,0,c.byref(color))==0
      # Observe the platform's premultiplied readback; that format is deferred.
   finally:assert dispose(image)==0
+  image=c.c_void_p();assert create(2,2,0,0x26200a,None,c.byref(image))==0
+  graphics=c.c_void_p();make_graphics=api('GdipGetImageGraphicsContext',[c.c_void_p,c.POINTER(c.c_void_p)])
+  delete_graphics=api('GdipDeleteGraphics',[c.c_void_p]);assert make_graphics(image,c.byref(graphics))==0
+  settings={}
+  try:
+   for name,values in [('CompositingQuality',range(-1,6)),('SmoothingMode',range(-1,7)),('TextRenderingHint',range(-1,7)),('PageUnit',range(-1,8))]:
+    setter=api('GdipSet'+name,[c.c_void_p,c.c_int]);getter=api('GdipGet'+name,[c.c_void_p,c.POINTER(c.c_int)])
+    current=c.c_int();assert getter(graphics,c.byref(current))==0;rows=[dict(default=current.value)]
+    for value in values:
+     status=setter(graphics,value);assert getter(graphics,c.byref(current))==0;rows.append(dict(input=value,status=status,readback=current.value))
+    settings[name]=rows
+  finally:assert delete_graphics(graphics)==0 and dispose(image)==0
   pixels=(c.c_uint*6)(0xff112233,0xff445566,0xff778899,0xffaabbcc,0xff123456,0xff654321)
   image=c.c_void_p();assert create(3,2,-12,0x26200a,c.byref(pixels,12),c.byref(image))==0
   try:
@@ -44,6 +56,6 @@ def main():
    assert setpixel(image,2,0,0x80abcdef)==0 and pixels[5]==0x80abcdef
   finally:assert dispose(image)==0
  finally:shutdown(token)
- out=ROOT/'build/m14-native/stage8/bitmap-reference.json';out.write_text(json.dumps(dict(passed=True,scope=__doc__,formats=observations,premultiplied_readback_qualified=False,negative_stride_borrowed_writeback=True),indent=2)+'\n',encoding='utf-8')
+ out=ROOT/'build/m14-native/stage8/bitmap-reference.json';out.write_text(json.dumps(dict(passed=True,scope=__doc__,formats=observations,graphics_settings=settings,premultiplied_readback_qualified=False,negative_stride_borrowed_writeback=True),indent=2)+'\n',encoding='utf-8')
  print(out.read_text())
 if __name__=='__main__':main()
