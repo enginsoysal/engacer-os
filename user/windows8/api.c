@@ -339,6 +339,7 @@ static unsigned MS f_GetModuleFileNameA(HANDLE module,char*out,unsigned cap){WCH
 #ifdef ENGINE_M14
 #include "argv148.inc"
 #include "long-path148.inc"
+#include "sid148.inc"
 /* Native desktop and setup currently ship one UI language: US English. */
 static uint16_t MS f_GetUserDefaultUILanguage(void){return 0x0409;}
 static uint16_t MS f_GetSystemDefaultUILanguage(void){return 0x0409;}
@@ -441,6 +442,7 @@ static const api8 api8_table[]={
  API8(GetLongPathNameW,1),API8(GetShortPathNameW,1),
  API8(GetFileAttributesExW,1),
  API8(GetUserDefaultUILanguage,1),API8(GetSystemDefaultUILanguage,1),
+ API8(AllocateAndInitializeSid,5),API8(FreeSid,5),API8(IsValidSid,5),API8(GetLengthSid,5),API8(EqualSid,5),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
