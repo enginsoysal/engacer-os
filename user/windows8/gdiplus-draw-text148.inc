@@ -1,9 +1,9 @@
 /* Fitting horizontal text uses real native coverage and ordinary bitmap pixels. */
-static int GP_FLOAT148 gp_text_round148(float value){int result=(int)(value+0.5f);if((float)result>value+0.5f)--result;return result;}
+static int __attribute__((target("sse2"))) gp_text_round148(float value){int result=(int)(value+0.5f);if((float)result>value+0.5f)--result;return result;}
 static void gp_text_pixel148(gp_bitmap148*image,int64_t x,int64_t y,uint32_t source,const win_rect144*clip){
  if(!source||x<clip->left||y<clip->top||x>=clip->right||y>=clip->bottom)return;uint8_t*p=image->pixels+y*image->stride+x*4;uint32_t previous=(uint32_t)p[0]|((uint32_t)p[1]<<8)|((uint32_t)p[2]<<16)|((uint32_t)p[3]<<24),value=pargb_over148(source,previous);memcpy(p,&value,4);
 }
-static unsigned MS GP_FLOAT148 f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
+static unsigned MS __attribute__((target("sse2"))) f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
  WCHAR text[160];unsigned units=0,status=gp_text_input148(input,count,text,&units);if(status)return status;for(unsigned i=0;i<units;++i)if(text[i]<32){print8("Unsupported GDI+ drawing layout: control or multiple lines.\n");return 6;}
  gp_rect148 measured;status=f_GdipMeasureString(graphics,text,(int)units,font,layout,format,&measured,0,0);if(status)return status;gp_rect148 box=*layout;
  lock_enter142(&ui_lock144);lock_enter142(&gp_lock148);gp_graphics148*g=gp_context_find148(graphics);gp_font148*f=gp_font_find148(font);gp_brush148*b=gp_brush_find148(brush);gp_format148 defaults={.trimming=1};gp_format148*fmt=format?gp_format_find148(format):&defaults;ui_font_metrics148 metrics;void*packet=0;

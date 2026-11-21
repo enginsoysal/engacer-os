@@ -1,0 +1,51 @@
+<project-root>\tools\build\trust7.py:17: CryptographyDeprecationWarning: Parsed a serial number which wasn't positive (i.e., it was negative or zero), which is disallowed by RFC 5280. Loading this certificate will cause an exception in a future release of cryptography.
+  certificates=x509.load_pem_x509_certificates(source.read_bytes())
+Traceback (most recent call last):
+  File "<project-root>\tools\build\m14.py", line 22, in <module>
+    main()
+  File "<project-root>\tools\build\m14.py", line 19, in main
+    build('stage'+str(args.stage), profile, m14=True)
+  File "<project-root>\tools\build\m6.py", line 74, in build
+    base=main('M5',distro=profile,m6=True,m6_revision=revision,m7=desktop,m71=disk_manager,m72=desktop_first,m73=polished,m74=standard_apps,m75=installer_ux,m8=windows,m9=graphics,m92=hardware,m10=devices,m11=m11,m12=m12,m13=m13,m14=m14)
+  File "<project-root>\tools\build\m2.py", line 146, in main
+    runtime(BUILD,tools,common)
+  File "<project-root>\tools\build\m8.py", line 27, in runtime
+    command([tools['clang'], '--target=x86_64-unknown-none-elf', *common,
+  File "<project-root>\tools\build\m1.py", line 30, in command
+    if process.returncode:raise RuntimeError(process.stderr.replace(str(ROOT),'<project-root>'))
+RuntimeError: In file included from <project-root>\user\windows8\api.c:422:
+<project-root>\user\windows8\gdiplus-draw-text148.inc:2:23: error: expected ';' after top level declarator
+    2 | static int GP_FLOAT148 gp_text_round148(float value){int result=(int)(value+0.5f);if((float)result>value+0.5f)--result;return result;}
+      |                       ^
+      |                       ;
+<project-root>\user\windows8\gdiplus-draw-text148.inc:6:17: error: 'ms_abi' only applies to function types; type here is 'unsigned int' [-Werror,-Wignored-attributes]
+    6 | static unsigned MS GP_FLOAT148 f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
+      |                 ^
+<project-root>\user\windows8\runtime.h:7:27: note: expanded from macro 'MS'
+    7 | #define MS __attribute__((ms_abi))
+      |                           ^
+In file included from <project-root>\user\windows8\api.c:422:
+<project-root>\user\windows8\gdiplus-draw-text148.inc:6:20: error: redefinition of 'GP_FLOAT148' with a different type: 'unsigned int' vs 'int'
+    6 | static unsigned MS GP_FLOAT148 f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
+      |                    ^
+<project-root>\user\windows8\gdiplus-draw-text148.inc:2:12: note: previous definition is here
+    2 | static int GP_FLOAT148 gp_text_round148(float value){int result=(int)(value+0.5f);if((float)result>value+0.5f)--result;return result;}
+      |            ^
+<project-root>\user\windows8\gdiplus-draw-text148.inc:6:31: error: expected ';' after top level declarator
+    6 | static unsigned MS GP_FLOAT148 f_GdipDrawString(void*graphics,const WCHAR*input,int count,void*font,const gp_rect148*layout,void*format,void*brush){
+      |                               ^
+      |                               ;
+<project-root>\user\windows8\api.c:488:29: error: use of undeclared identifier 'f_GdipDrawString'
+  488 |  API8(GdipMeasureString,16),API8(GdipDrawString,16),
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~
+<project-root>\user\windows8\api.c:440:55: note: expanded from macro 'API8'
+  440 | #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
+      |                                                       ^~~~~~~~
+<scratch space>:161:1: note: expanded from here
+  161 | f_GdipDrawString
+      | ^~~~~~~~~~~~~~~~
+<project-root>\user\windows8\api.c:529:48: error: invalid application of 'sizeof' to an incomplete type 'const api8[]'
+  529 |  if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;void*guard=guard_lookup144(provider,name,ordinal);return guard?guard:guard_lookup145(provider,name,ordinal);}void*address=pe8_import(dll,name,ordinal);if(!address&&!case8(dll,"msi.dll"))return guard_lookup145(0,name,ordinal);return address;
+      |                                                ^~~~~~~~~~~~
+6 errors generated.
+

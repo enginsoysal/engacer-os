@@ -1,0 +1,6 @@
+{
+  "failed_source": "6face7be",
+  "raw_log_sha256": "a09b03f9bf45dd9e7694774cf1f12967eabb5399c6c01532cd016feebbb7111e",
+  "redacted_log_sha256": "d6dfe31737d229a720182e6f57b724917df54384db786149ef7b0c7aa2040232",
+  "scope": "Actual compiler refusal; local host root redacted; no native glyph qualification."
+}
