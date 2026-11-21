@@ -10,3 +10,10 @@ static unsigned MS f_GetLongPathNameW(const WCHAR*name,WCHAR*out,unsigned capaci
  if(sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,((uint64_t)(unsigned)units+1)*2,2,0,0)){last8(998);return 0;}
  memcpy(out,wide,((size_t)(unsigned)units+1)*2);return(unsigned)units;
 }
+static unsigned MS f_GetShortPathNameW(const WCHAR*name,WCHAR*out,unsigned capacity){
+ if(!name||(capacity&&!out)){last8(87);return 0;}w8_file_info information;if(!file_path_api143(15,name,&information,0))return 0;
+ WCHAR copy[1024];unsigned units=0;while(units<1024&&name[units]){copy[units]=name[units];++units;}if(units==1024){last8(206);return 0;}copy[units]=0;
+ /* A volume without stored short aliases returns its existing long-name path,
+  * as permitted by the Windows API contract. No guessed alias is published. */
+ if(capacity<=units)return units+1;if(sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,((uint64_t)units+1)*2,2,0,0)){last8(998);return 0;}memcpy(out,copy,((size_t)units+1)*2);return units;
+}
