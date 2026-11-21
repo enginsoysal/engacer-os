@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "scope": "Own PE metadata only; native ordinal execution is separately required",
+  "implemented_ordinals": {
+    "8": "MsiCloseHandle",
+    "17": "MsiCreateRecord",
+    "47": "MsiEvaluateConditionW",
+    "49": "MsiGetActiveDatabase",
+    "64": "MsiGetMode",
+    "73": "MsiGetPropertyA",
+    "74": "MsiGetPropertyW",
+    "80": "MsiGetTargetPathW",
+    "103": "MsiProcessMessage",
+    "116": "MsiRecordGetInteger",
+    "118": "MsiRecordGetStringW",
+    "119": "MsiRecordIsNull",
+    "121": "MsiRecordSetInteger",
+    "124": "MsiRecordSetStringA",
+    "125": "MsiRecordSetStringW",
+    "143": "MsiSetMode",
+    "145": "MsiSetPropertyW",
+    "171": "MsiFormatRecordW"
+  },
+  "actual_caller_ordinals": [
+    8,
+    17,
+    171,
+    49,
+    116,
+    118,
+    119,
+    121,
+    125
+  ],
+  "named_caller_imports": 3,
+  "artifacts": {
+    "msi147\\msi.dll": "f18b36006f0d5e42ceb5f44dababfe7b072e23d6bbc35677e5c28ee14492e823",
+    "api.exe": "2bfd8748aee392eaf0ed63330bacf7cf41f36a2eff3d6a1eb8cb604a218d88e9"
+  }
+}

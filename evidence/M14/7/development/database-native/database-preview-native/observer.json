@@ -1,0 +1,30 @@
+{
+  "canonical_sha256": "5e3eacb7fcdce9c7097eaa9cd659eb9a1ce3ac315473e753950c30f704036b4f",
+  "executed_sha256": "66045bc85c6d32f4de1c2e597a89dfa75c1a0790757a629f191afa82dd8a72ff",
+  "substitutions": [
+    [
+      "stage7/preview-native",
+      "stage7/database-preview-native"
+    ],
+    [
+      "m147-preview-",
+      "m147-database-preview-"
+    ],
+    [
+      "  meta=json.loads(ui.manifest_path12()",
+      "  binaries=ROOT/'build/m14-native/stage7/api-native-fixture/msi147';receipt=json.loads((binaries/'build-inputs.json').read_text());dll=(binaries/'msi.dll').read_bytes();exe=(binaries/'msiexec.exe').read_bytes();assert hashlib.sha256(dll).hexdigest()==receipt['artifacts']['msi.dll']['sha256'];assert hashlib.sha256(exe).hexdigest()==receipt['artifacts']['msiexec.exe']['sha256']\n  meta=json.loads(ui.manifest_path12()"
+    ],
+    [
+      "    try:mounted.put('/Users/Owner/Downloads/7z2606-x64.msi',data)",
+      "    try:\n     mounted.put('/Users/Owner/Downloads/7z2606-x64.msi',data)\n     mounted.put('/System/Windows/Installer/msi.dll',dll)\n     mounted.put('/System/Windows/Installer/msiexec.exe',exe)"
+    ],
+    [
+      "      raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496)",
+      "      assert ('Authored registry entries: 16 shortcuts: 2'if index==0 else'Authored registry entries: 10 shortcuts: 1')in output\n      raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496)"
+    ],
+    [
+      "report=dict(passed=False,build_id=meta['build_id'],scope=__doc__,packages=[])",
+      "report=dict(passed=False,build_id=meta['build_id'],scope=__doc__,packages=[],production_service_override=receipt,override_sha256=hashlib.sha256(dll).hexdigest())"
+    ]
+  ]
+}

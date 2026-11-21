@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "build_id": "09118ff036841c1444e1c54f618fc077",
+  "scope": "Exercise the new native read-only service with both unchanged original MSIs.\n\nThe legacy chooser filename is reused only in a private offline clone. This is\nnot qualification of a Notepad++ chooser, custom actions or installation.\n",
+  "packages": [
+    {
+      "file": "7z2606-x64.msi",
+      "sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "product": "7-Zip 26.06 (x64 edition)",
+      "code": "{23170F69-40C1-2702-2606-000001000000}",
+      "clone": {
+        "source_sha256": "2d10dc29ce95c9a811c15930d2651de7f94d57b705ae42c967274b71aa248f2b",
+        "clone_sha256": "2d10dc29ce95c9a811c15930d2651de7f94d57b705ae42c967274b71aa248f2b",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "cycles": [
+        {
+          "cycle": 1,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 2,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 3,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 4,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 5,
+          "retained_pages": 0
+        }
+      ],
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=405504 source-fnv32=1363557647\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: 7-Zip 26.06 (x64 edition)\nSelected original files: 106 bytes: 5882028\nAuthored registry entries: 16 shortcuts: 2\nMSI execute actions: 23 custom-action metadata: 0\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    },
+    {
+      "file": "npp.8.9.9.1.Installer.x64.msi",
+      "sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "product": "Notepad++ (x64)",
+      "code": "{A23B657D-838B-4C9B-8F9D-386E50C1A76B}",
+      "clone": {
+        "source_sha256": "2d10dc29ce95c9a811c15930d2651de7f94d57b705ae42c967274b71aa248f2b",
+        "clone_sha256": "2d10dc29ce95c9a811c15930d2651de7f94d57b705ae42c967274b71aa248f2b",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "cycles": [
+        {
+          "cycle": 1,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 2,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 3,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 4,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 5,
+          "retained_pages": 0
+        }
+      ],
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=405504 source-fnv32=1363557647\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: Notepad++ (x64)\nSelected original files: 217 bytes: 28130419\nAuthored registry entries: 10 shortcuts: 1\nMSI execute actions: 30 custom-action metadata: 4\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    }
+  ],
+  "production_service_override": {
+    "scope": "Engacer-authored native service build; execution/installation qualification is separate",
+    "sources": {
+      "user/windows8/msi-native147.c": "4d2397962f54e3b0d2e93202027e99c3d23249fc53f0f929f8c9375cc7f6c7ea",
+      "user/windows8/msi-service147.c": "299f7d4ab0868719ae984afa04005eb68cbfb07f1cef4ccb66c090b418a21a60",
+      "user/windows8/msi-api147.c": "0ca6c1d92593f4f615b08410a9f3e5896c9edcf674855fd496bfcf14eaa4e9b9",
+      "user/windows8/msi_db.c": "ee942dcd15b5d3769b265eb2e5edf00c34c3024b437594ea0419c1241659aacd",
+      "user/windows8/msi-plan147.c": "3e2bf2de1b5f7eb697e2405fb1049416c20e63cd3bf7d5bc05494fe94d3047b6",
+      "user/windows8/msi-cost147.c": "ef838bd9ba9e4ae10e28042c309fefb4ff02aab1540eee59128639d0bc7a7c98",
+      "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+      "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+      "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+      "user/windows8/msiexec147.c": "02c3cdd78c67d24b59fff4a92c9870ce94b34ffb2598a0692220b91aea73330d",
+      "user/windows8/msi-plan147.h": "e35afed2c271c1e6a310bd96b1a92c2b3ae44eb6f95aef4be0b8f0850ba6db69",
+      "user/windows8/msi-properties147.h": "6a9d0db86a2f24b13e2b86ea28546b19884586bd1d0255916e94d1041bf3679b",
+      "user/windows8/msi-condition147.h": "2b7f67b911c464f72355a494ddd85042c6eddc95802d51e04e2cf223c171d515",
+      "user/windows8/cab147.h": "4abefd395274d4fb281912f0074943052907c427f2722758986f3eeb4d380bf5",
+      "user/windows8/msi_db.h": "79b020bad568b03d01c25337cef2dba57e4b7dffbd12f465bd54d991ef5d2fe1",
+      "user/windows8/msi-record147.h": "6f1022cae19194091241da712bcf9a4add9966925df83101a1f4839fcf557506",
+      "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+      "tools/build/msi147.py": "702287201e882953b2a37d7687ed6021ae50e3e4684167fc7f86578daeb865b5",
+      "include/engine/winproduct147.h": "8af74ed0e4e97c9db78d520272971628db12459fb9ab24ebb188df6e54f9b2ed"
+    },
+    "artifacts": {
+      "msiexec.exe": {
+        "bytes": 3072,
+        "sha256": "783c7306a50e0ff345870cd4907c4b3684875821180d1d137c6252300583ce66"
+      },
+      "msi.dll": {
+        "bytes": 197120,
+        "sha256": "f18b36006f0d5e42ceb5f44dababfe7b072e23d6bbc35677e5c28ee14492e823"
+      }
+    }
+  },
+  "override_sha256": "f18b36006f0d5e42ceb5f44dababfe7b072e23d6bbc35677e5c28ee14492e823"
+}
