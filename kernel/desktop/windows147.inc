@@ -86,7 +86,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  if(info->state==1){
   button(token,x,actions,150,"Cancel task",CANCEL8,0);
  }else{
-  if(recovering&&(app->msi147.profile&W8_PROFILE_EXE148))){ui73_fit(x,actions+10,160,"Inspection required",1,ink());}else if(installed||(legacy&&(!app->msi147.selected||app->msi147.selected==1))||recovering||(app->msi147.selected==1&&app->msi147.ready&&(app->msi147.profile&(W8_PROFILE_GENERIC147|W8_PROFILE_EXE148))))button(token,x,actions,160,installed?(legacy?"Run 7-Zip console":"Remove app"):recovering?"Recover app":"Install app",installed?(legacy?INFO8:REMOVE8):recovering?REMOVE8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
+  if(recovering&&(app->msi147.profile&W8_PROFILE_EXE148)){ui73_fit(x,actions+10,160,"Inspection required",1,ink());}else if(installed||(legacy&&(!app->msi147.selected||app->msi147.selected==1))||recovering||(app->msi147.selected==1&&app->msi147.ready&&(app->msi147.profile&(W8_PROFILE_GENERIC147|W8_PROFILE_EXE148))))button(token,x,actions,160,installed?(legacy?"Run 7-Zip console":"Remove app"):recovering?"Recover app":"Install app",installed?(legacy?INFO8:REMOVE8):recovering?REMOVE8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
   button(token,x+174,actions,170,installed?(legacy?"Remove app":"Choose installer..."):"Review installer",installed?(legacy?REMOVE8:CHOOSE_MSI147):PREVIEW8,!legacy);
   button(token,x+358,actions,130,"Licenses",LICENSE8,0);button(token,x+736,actions,140,app->entered?"Hide details":"Details",DETAILS_MSI147,0);
   if(installed||(!entry(selected_root147(app))&&!completion))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);

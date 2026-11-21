@@ -15,13 +15,13 @@ def main():
  for name,script,dependencies in (
   ('session148-native','session148_run.py',('apps-compact',)),
   ('font148-native','font148_run.py',('session148-native',)),
-  ('copy148-native','copy148_run.py',('apps-compact',)),
+  ('copy148-native','copy148_run.py',('font148-native',)),
   ('exe148-review','exe148_review_run.py',('compact',)),
   ('exe148-chain','exe148_chain_native.py',('compact',)),
   ('batch148-host','batch148_host.py',()),
   ('registry-info148-reference','registry_info148_reference.py',()),
   ('static148-host','static148_host.py',()),
-  ('rtl148-native','rtl148_run.py',('apps-compact',)),
+  ('rtl148-native','rtl148_run.py',('copy148-native',)),
   ('software148-native','software148_run.py',('apps-compact',))):
   add(name,'tests/m14/'+script,dependencies=dependencies,priority=5 if dependencies else 30)
   tasks[name]['command']=[sys.executable,'tests/m14/'+script]
