@@ -1,0 +1,10 @@
+{
+  "state": "running; not qualification or release acceptance",
+  "build_id": "5afb03120dfcd8d559e5fb0755384f5a",
+  "source_commit": "cb87891a5629171dc5ef9ec351c3129b19c2ed91",
+  "iso_sha256": "a4785214ac067c4561eccbb37f24848c9c69f4752a18926833cdc60b2030ccf5",
+  "task_count": 137,
+  "workers": 3,
+  "observer_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4",
+  "source_and_media_frozen": true
+}
