@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m14\install147_host.py", line 66, in <module>
+    if __name__=='__main__':main()
+  File "<project-root>\tests\m14\install147_host.py", line 45, in main
+    admission=lib.actions_probe147(1);assert admission==0,(admission,lib.get147(b'CopyNativeLangAction'));checks+=1
+AssertionError: (50, b'"C:\\Windows\\SysWOW64\\xcopy.exe" "C:\\Program Files\\Notepad++\\localization\\french.xml" "C:\\Program Files\\Notepad++\\nativeLang.xml*" /Y /Q')

@@ -2,6 +2,7 @@
 #include "msi-remove147.h"
 #include "msi-registry147.h"
 #include "msi-condition147.h"
+#include "msi-actions147.h"
 static unsigned remove_path147(char out[256],const char*base,const char*tail){unsigned n=len8(base),m=len8(tail);if(n+m>=256)return 206;memcpy(out,base,n);memcpy(out+n,tail,m+1);return 0;}
 static void hex_remove147(char*out,const uint8_t*bytes,unsigned n){const char*hex="0123456789abcdef";for(unsigned i=0;i<n;++i){out[i*2]=hex[bytes[i]>>4];out[i*2+1]=hex[bytes[i]&15];}out[n*2]=0;}
 static void decimal_remove147(char out[24],uint64_t n){char reverse[24];unsigned count=0,at=0;do{reverse[count++]=(char)('0'+n%10);n/=10;}while(n);while(count)out[at++]=reverse[--count];out[at]=0;}
@@ -31,7 +32,7 @@ static const win_tx_file147*stage_remove147(const msia_plan147*p,const msij147*j
 static unsigned tree_remove147(const msia_plan147*p,const msij147*j,const char*directory,unsigned depth,unsigned*kept){
  if(depth>32)return 206;uint64_t cursor=0;unsigned root=len8(p->product_root);for(;;){w8_file_info entry;int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)(uintptr_t)directory,(uint64_t)(uintptr_t)&entry,cursor,0,0);if(next<0)return 5;if(!next)return 0;if((uint64_t)next<=cursor)return 13;cursor=(uint64_t)next;char tail[257],path[256];tail[0]='/';copy8(tail+1,entry.name,256);unsigned status=remove_path147(path,directory,tail);if(status)return status;const char*relative=path+root+1;
   if(entry.kind==2){status=tree_remove147(p,j,path,depth+1,kept);if(status)return status;if(!equal8(relative,".EngacerMSI")&&remove8(path))return 1117;}
-  else if(entry.kind==1){if(equal8(relative,".EngacerMSI/transaction.bin")||equal8(relative,".EngacerMSI/source.msi"))continue;const win_tx_file147*f=stage_remove147(p,j,relative);if(f&&entry.size==f->bytes){uint8_t sha[32];status=msif_hash147(path,entry.size,sha);if(status)return status;if(!memcmp(sha,f->sha,32)){if(remove8(path))return 1117;continue;}}status=preserve_remove147(p,path,kept);if(status)return status;}
+  else if(entry.kind==1){if(equal8(relative,".EngacerMSI/stage/action.dll")){status=msica_clean147(p,path);if(status==2)status=preserve_remove147(p,path,kept);if(status)return status;continue;}if(equal8(relative,".EngacerMSI/transaction.bin")||equal8(relative,".EngacerMSI/source.msi"))continue;const win_tx_file147*f=stage_remove147(p,j,relative);if(f&&entry.size==f->bytes){uint8_t sha[32];status=msif_hash147(path,entry.size,sha);if(status)return status;if(!memcmp(sha,f->sha,32)){if(remove8(path))return 1117;continue;}}status=preserve_remove147(p,path,kept);if(status)return status;}
   else return 50;
  }
 }
@@ -57,18 +58,23 @@ unsigned msir_finish147(unsigned*kept){
  }
  if(!status&&remove8(done))status=1117;if(!status)*kept+=extra;free8(p);msij_close147(j);return status;
 }
-unsigned msir_remove147(msia_plan147*p,msij147*j,unsigned*kept){
+static unsigned execute_remove147(msia_plan147*p,msij147*j,unsigned*kept,msica147**actions){
  if(!p||!p->costed||!j||!kept||job8->command!=W8_REMOVE||!equal8(p->product_root,job8->product_root)||!win_tx_validate147(j->data,j->bytes)||!win_tx_bound147((const void*)j->data,p->product_root,job8->user_root,p->source_sha256))return 87;*kept=0;unsigned completed=msir_finish147(kept);if(completed!=2)return completed;if(property_flag_remove147(j,"_EngacerRemoveDone147"))return 13;
  char pending[256],product[256],cache[256];unsigned status=remove_path147(pending,p->product_root,"/.EngacerMSI/transaction.bin");if(!status)status=remove_path147(product,p->product_root,"/product.bin");if(!status)status=remove_path147(cache,p->product_root,"/.EngacerMSI/source.msi");if(status)return status;w8_file_info info;unsigned has_pending=!stat8(pending,&info),installed=!stat8(product,&info)||flag_remove147(j)==1;if(flag_remove147(j)==2)return 13;
  if(has_pending&&!stat8(product,&info)){msij147*registered=msij_read147(product,p->product_root,job8->user_root);if(!registered)return 13;const win_tx_header147*header=(const void*)registered->data;unsigned valid=win_tx_bound147(header,p->product_root,job8->user_root,p->source_sha256)&&equal8(header->alias,p->program_alias);msij_close147(registered);if(!valid)return 13;}
  uint8_t source_sha[32];if(stat8(cache,&info)||info.kind!=1)return 2;status=msif_hash147(cache,info.size,source_sha);if(status||memcmp(source_sha,p->source_sha256,32))return status?status:23;
  if(installed)status=msip_set147(&p->properties,"Installed","1");if(!status)status=msip_set147(&p->properties,"REMOVE","ALL");if(status)return status;
- unsigned file_action=0,link_action=0,registry_action=0;for(unsigned i=0;i<p->action_count;++i){msia_action147*a=p->actions+i;int condition=msia_condition147(p,a->condition);if(condition==MSIC_ERROR147)return 87;if(installed&&a->kind==MSIA_PROPERTY147){status=msia_property_action147(p,i);if(status)return status;}else if(installed&&a->kind&&condition!=MSIC_FALSE147)return 50;if(condition==MSIC_FALSE147)continue;if(equal8(a->name,"RemoveFiles"))file_action=1;if(equal8(a->name,"RemoveShortcuts"))link_action=1;if(equal8(a->name,"RemoveRegistryValues"))registry_action=1;}
+ unsigned file_action=0,link_action=0,registry_action=0;for(unsigned i=0;i<p->action_count;++i){msia_action147*a=p->actions+i;int condition=msia_condition147(p,a->condition);if(condition==MSIC_ERROR147)return 87;if(installed&&a->kind==MSIA_PROPERTY147){status=msia_property_action147(p,i);if(status)return status;}else if(installed&&a->kind&&!msia_dll_type147(a->kind)&&condition!=MSIC_FALSE147)return 50;if(condition==MSIC_FALSE147)continue;if(equal8(a->name,"RemoveFiles"))file_action=1;if(equal8(a->name,"RemoveShortcuts"))link_action=1;if(equal8(a->name,"RemoveRegistryValues"))registry_action=1;}
  const win_tx_header147*h=(const void*)j->data;if(!file_action||(h->links&&!link_action)||(h->registry&&!registry_action))return 50;
+ if(installed){status=msica_prepare147(p,actions);if(status)return status;}
  if(!has_pending){if(installed&&!flag_remove147(j)){status=append_flag_remove147(j,"_EngacerRemove147");if(status)return status;}status=msij_write147(j,pending);if(status)return status;}
  if(!stat8(product,&info)&&remove8(product))return 1117;
  unsigned files_done=0,links_done=0,registry_done=0;for(unsigned i=0;i<p->action_count&&!status;++i){msia_action147*a=p->actions+i;int condition=msia_condition147(p,a->condition);if(condition==MSIC_FALSE147)continue;
-  if(equal8(a->name,"RemoveRegistryValues")){status=msireg_undo147(j);registry_done=!status;}
+  if(installed&&msia_dll_type147(a->kind)){
+   for(unsigned at=1024;at<j->bytes&&!status;){const win_tx_record147*r=(const void*)(j->data+at);if(r->type==WIN_TX_FILE147){const win_tx_file147*f=(const void*)(r+1);if(f->flags==WIN_TX_GENERATED147){char path[256],tail[257];tail[0]='/';copy8(tail+1,f->path,256);status=remove_path147(path,p->product_root,tail);w8_file_info info;if(!status&&!stat8(path,&info)){uint8_t hash[32];if(info.kind!=1)status=183;else{unsigned same=0;if(info.size==f->bytes){status=msif_hash147(path,info.size,hash);same=!status&&!memcmp(hash,f->sha,32);}if(!status&&!same)status=preserve_remove147(p,path,kept);}}}}at+=r->bytes;}
+   if(!status){msia_custom_result147 result;status=msica_run147(*actions,p,i,&result);}
+  }
+  else if(equal8(a->name,"RemoveRegistryValues")){status=msireg_undo147(j);registry_done=!status;}
   else if(equal8(a->name,"RemoveShortcuts")||equal8(a->name,"RemoveFiles")){unsigned link=equal8(a->name,"RemoveShortcuts");for(unsigned at=1024;at<j->bytes&&!status;){const win_tx_record147*r=(const void*)(j->data+at);if(r->type==(link?WIN_TX_LINK147:WIN_TX_FILE147)){const win_tx_file147*f=(const void*)(r+1);if(link||f->flags!=WIN_TX_CACHE147)status=owned_remove147(p,f,link,kept);}at+=r->bytes;}if(link)links_done=!status;else files_done=!status;}
   sys8(W8_SYS_YIELD,0,0,0,0,0);
  }
@@ -77,3 +83,5 @@ unsigned msir_remove147(msia_plan147*p,msij147*j,unsigned*kept){
  char done[256],parent[256];if(!win_product_completion147(done,sizeof(done),p->product_root))return 87;copy8(parent,done,256);unsigned n=len8(parent);while(n&&parent[n-1]!='/')--n;if(!n)return 87;parent[n-1]=0;status=msif_directory147(parent);if(status)return status;status=append_flag_remove147(j,"_EngacerRemoveDone147");if(!status)status=msij_write147(j,done);if(status)return status;
  return msir_finish147(kept);
 }
+
+unsigned msir_remove147(msia_plan147*p,msij147*j,unsigned*kept){msica147*actions=0;unsigned status=execute_remove147(p,j,kept,&actions);msica_close147(actions);return status;}

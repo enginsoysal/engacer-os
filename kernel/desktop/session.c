@@ -23,6 +23,7 @@
 #include <engine/windows8.h>
 #ifdef ENGINE_M14
 #include <engine/winreview147.h>
+#include <engine/wintxn147.h>
 #endif
 #include <engine/winui144.h>
 #endif

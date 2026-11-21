@@ -7,7 +7,7 @@ spec=importlib.util.spec_from_file_location('files147_disk',ROOT/'tests/m11/volu
 
 def main():
  out=ROOT/'build/m14-native/stage7/install-host';out.mkdir(parents=True,exist_ok=True);tools=pinned_tools();objects=[]
- sources=['user/windows8/msi-remove147.c','user/windows8/msi-install147.c','user/windows8/msi-registry147.c','user/windows8/msi-files147.c','user/windows8/msi-shortcuts147.c','user/windows8/msi-journal147.c','user/windows8/msi-plan147.c','user/windows8/msi-cost147.c','user/windows8/msi_db.c','user/windows8/cab147.c','third_party/libmspack/lzxd.c','runtime/sha256.c','kernel/storage/volume6.c','tests/m14/files147_host.c']
+ sources=['user/windows8/msi-actions147.c','user/windows8/msi-remove147.c','user/windows8/msi-install147.c','user/windows8/msi-registry147.c','user/windows8/msi-files147.c','user/windows8/msi-shortcuts147.c','user/windows8/msi-journal147.c','user/windows8/msi-plan147.c','user/windows8/msi-cost147.c','user/windows8/msi_db.c','user/windows8/cab147.c','third_party/libmspack/lzxd.c','runtime/sha256.c','kernel/storage/volume6.c','tests/m14/files147_host.c']
  for source in sources:
   obj=out/(Path(source).stem+'.obj');command([tools['clang'],'--target=x86_64-pc-windows-msvc','-O2','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-DENGINE_M7','-DENGINE_M8','-DENGINE_M11','-DENGINE_M14','-DMSPACK_NO_DEFAULT_SYSTEM','-DSIZEOF_OFF_T=8','-DDEBUG=0','-I',ROOT/'include','-I',ROOT/'third_party/libmspack-port','-I',ROOT/'third_party/libmspack','-c',ROOT/source,'-o',obj]);objects.append(obj)
  dll=out/'files.dll';command([tools['lld-link'],'/dll','/noentry','/nodefaultlib','/timestamp:0','/out:'+str(dll),'/export:v6_format','/export:v6_mkdir','/export:v6_mount',*objects]);lib=c.CDLL(str(dll));Alloc=c.CFUNCTYPE(c.c_void_p,c.c_void_p,c.c_size_t);Free=c.CFUNCTYPE(None,c.c_void_p,c.c_void_p);Failure=c.CFUNCTYPE(None,c.c_char_p);Size=c.CFUNCTYPE(c.c_size_t,c.c_void_p);live={};state=dict(bytes=0,peak=0,bad=False)
@@ -39,9 +39,15 @@ def main():
    lib.files_init147(c.byref(v),size,data,len(raw));before=hashlib.sha256(disk.data).digest();base=state['bytes']
    if index<2:
     for shape in range(2 if index==0 else 3):assert lib.install_order_fixture147(shape)==50 and hashlib.sha256(disk.data).digest()==before;checks+=2
-   status=lib.install_controller147()
+   status=lib.install_unknown_body147() if index==2 else lib.install_controller147()
    if index==2:
-    assert status==50 and hashlib.sha256(disk.data).digest()==before;(samples.append(dict(package=package.name,refused_custom_actions_before_effects=True)));checks+=3;lib.files_close147();lib.close147();continue
+    lib.get147.argtypes=[c.c_char_p];lib.get147.restype=c.c_char_p
+    admission=lib.actions_probe147(1);assert admission==0,(admission,lib.get147(b'CopyNativeLangAction'));checks+=1
+    for language in [b'../french',b'french" & bad',b'%PATH%',b'not-a-payload']:
+     assert lib.set147(b'NPP_LANG',language)==0;assert lib.actions_probe147(1)!=0;assert hashlib.sha256(disk.data).digest()==before;checks+=3
+    assert lib.set147(b'NPP_LANG',b'french')==0;assert lib.set147(b'Installed',b'1')==0;assert lib.set147(b'REMOVE',b'ALL')==0;assert lib.actions_probe147(2)==0;checks+=4
+    assert lib.set147(b'Installed',b'')==0 and lib.set147(b'REMOVE',b'')==0;assert lib.actions_probe147(1)==0;checks+=2
+    assert status==50 and hashlib.sha256(disk.data).digest()==before;(samples.append(dict(package=package.name,qualified_copy_command_admission=True,unknown_body_refused_before_effects=True)));checks+=3;lib.files_close147();lib.close147();continue
    assert status==0,(status,registry_state);assert lib.installed_read147()==0;assert lib.verify147()==0;assert lib.keep147()==0;checks+=4
    n=lib.journal_bytes147();journal=c.string_at(lib.journal_data147(),n);assert journal[72:104]==hashlib.sha256(journal[:72]+bytes(32)+journal[104:]).digest();root=b'/Applications/Windows/'+journal[104:144].split(b'\0')[0];entries={e.path:e for e in v.entries if e.kind};assert root+b'/product.bin'in entries and root+b'/.EngacerMSI/transaction.bin'not in entries;checks+=3
    reference=next(p for p in originals if p['package_sha256']==hashlib.sha256(raw).hexdigest());remaining=list(reference['all_file_sha256'].values());at=1024;files=0;links=0;registry_rows=0
@@ -59,6 +65,6 @@ def main():
    disk_before=hashlib.sha256(disk.data).digest();allocated=state['bytes'];assert lib.install_controller147()==1638;assert hashlib.sha256(disk.data).digest()==disk_before and state['bytes']==allocated;checks+=3
    assert lib.installed_undo_registry147()==0;checks+=1
    samples.append(dict(package=package.name,payloads=files,shortcuts=links,registry_rows=registry_rows,journal_bytes=n,journal_sha256=hashlib.sha256(journal).hexdigest(),registered_after_verification=True,duplicate_refused=True));lib.files_close147();lib.close147();assert not live and state['bytes']==0 and not state['bad'];checks+=1
-  assert not registry_state['error'];report=dict(passed=True,checks=checks,scope='Production fresh-install controller, MSI/CAB, V6 and kernel stream/rename routines with confined real Windows registry adapter; host supporting test only, native follow-up for authored false-condition Notepad++ actions, removal and selected deferred custom bodies remain unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['kernel/windows8/path-access147.inc','include/engine/winproduct147.h','tests/m14/install147_host.py','tests/m14/registry147_adapter.py','user/windows8/msi-install147.h','user/windows8/msi-condition147.h','kernel/windows8/transaction147.inc']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS original MSI fresh-install controller',checks)
+  assert not registry_state['error'];report=dict(passed=True,checks=checks,scope='Production fresh-install controller, MSI/CAB, V6 and kernel stream/rename routines with confined real Windows registry adapter; host supporting test only, native follow-up for authored false-condition Notepad++ actions, removal and selected original custom-action command admission passes; original body execution remains native-only and separately unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['kernel/windows8/path-access147.inc','include/engine/winproduct147.h','tests/m14/install147_host.py','tests/m14/registry147_adapter.py','user/windows8/msi-install147.h','user/windows8/msi-condition147.h','kernel/windows8/transaction147.inc']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS original MSI fresh-install controller',checks)
  finally:cleanup()
 if __name__=='__main__':main()

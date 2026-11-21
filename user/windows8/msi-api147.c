@@ -22,6 +22,7 @@ static const char*api_property147(const char*name){if(deferred147&&!equal8(name,
 static int api_enter147(void){if(!initialized147)return 0;EnterCriticalSection(api_lock147);return 1;}
 static void api_leave147(void){LeaveCriticalSection(api_lock147);}
 unsigned msi_immediate147(unsigned h){if(!api_enter147())return 0;unsigned valid=api_plan147&&h&&h==session147&&!deferred147;api_leave147();return valid;}
+unsigned msi_current147(void){if(!api_enter147())return 0;unsigned h=api_plan147&&!deferred147?session147:0;api_leave147();return h;}
 #define MSI_EXPORT147 __declspec(dllexport)
 static msia_plan147 *api_database147(unsigned handle){unsigned slot=handle&15;return api_plan147&&handle&&database_handles147[slot]==handle?api_plan147:0;}
 /* Internal engine table access still checks the real database capability.

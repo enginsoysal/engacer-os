@@ -102,3 +102,13 @@ __declspec(dllexport) void remove_pending_delete_fault147(unsigned count){pendin
 __declspec(dllexport) unsigned access_role147(unsigned command,const char*path,unsigned write){unsigned old=input8.command;input8.command=command;unsigned result=path8(path,write);input8.command=old;return result;}
 __declspec(dllexport) unsigned finish_controller147(void){if(journal147){msij_close147(journal147);journal147=0;}msia_close147(plan147);plan147=0;const void*saved=source147;unsigned bytes=source_bytes147;source147=0;source_bytes147=0;input8.command=W8_REMOVE;removed_kept147=0;unsigned status=msir_finish147(&removed_kept147);source147=saved;source_bytes147=bytes;return status;}
 __declspec(dllexport) void terminal_delete_fault147_set(unsigned which){terminal_delete_fault147=which;}
+
+/* Host supporting adapter: never load or execute an original vendor DLL. */
+#include "../../user/windows8/msi-actions147.h"
+int case8(const char*a,const char*b){while(*a&&*b){unsigned x=(uint8_t)*a++,y=(uint8_t)*b++;if(x>='A'&&x<='Z')x+=32;if(y>='A'&&y<='Z')y+=32;if(x!=y)return (int)x-(int)y;}return (uint8_t)*a-(uint8_t)*b;}
+void print8(const char*s){(void)s;}
+void number8(uint64_t n){(void)n;}
+unsigned msi_current147(void){return 0;}
+unsigned msia_deferred147(unsigned session,unsigned type,const WCHAR*dll,const char*target,const char*data,msia_custom_result147*out){(void)session;(void)type;(void)dll;(void)target;(void)data;*out=(msia_custom_result147){.engine_error=50};return 50;}
+__declspec(dllexport) unsigned actions_probe147(unsigned expected){unsigned command=input8.command;input8.command=expected==2?W8_REMOVE:W8_INSTALL;msica147*a=0;unsigned status=msica_prepare147(plan147,&a);input8.command=command;if(!status&&(!a||a->count!=1||a->items[0]->operation!=expected))status=87;msica_close147(a);return status;}
+__declspec(dllexport) unsigned install_unknown_body147(void){for(unsigned i=0;i<plan147->action_count;++i)if(equal8(plan147->actions[i].name,"CopyNativeLangAction")){const char*old=plan147->actions[i].target;plan147->actions[i].target="UnqualifiedBody";unsigned status=msia_install147(plan147,source147,source_bytes147);plan147->actions[i].target=old;return status;}return 87;}

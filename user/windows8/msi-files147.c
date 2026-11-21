@@ -73,7 +73,7 @@ unsigned msif_promote147(const msia_plan147*p){
 unsigned msif_verify147(const msij147*j){
  if(!j||!win_tx_validate147(j->data,j->bytes))return 87;const win_tx_header147*h=(const void*)j->data;char root[256];if(!win_product_make147(root,sizeof(root),h->code))return 87;
  unsigned checked=0;for(unsigned at=sizeof(*h);at<j->bytes;){const win_tx_record147*r=(const void*)(j->data+at);
-  if(r->type==WIN_TX_FILE147||r->type==WIN_TX_LINK147){const win_tx_file147*f=(const void*)(r+1);char path[256];const char*base=r->type==WIN_TX_FILE147?root:f->flags?"/Data/Windows/Common/Programs":h->user;unsigned a=len8(base),b=len8(f->path);if(a+b+1>=sizeof(path))return 206;copy8(path,base,sizeof(path));path[a++]='/';memcpy(path+a,f->path,b+1);uint8_t hash[32];unsigned status=msif_hash147(path,f->bytes,hash);if(status||memcmp(hash,f->sha,32))return status?status:23;++checked;progress8(85+checked*10/(h->files+h->links),"Verifying installed application ownership.");}
+  if(r->type==WIN_TX_FILE147||r->type==WIN_TX_LINK147){const win_tx_file147*f=(const void*)(r+1);if(r->type==WIN_TX_FILE147&&f->flags==WIN_TX_GENERATED147){at+=r->bytes;continue;}char path[256];const char*base=r->type==WIN_TX_FILE147?root:f->flags?"/Data/Windows/Common/Programs":h->user;unsigned a=len8(base),b=len8(f->path);if(a+b+1>=sizeof(path))return 206;copy8(path,base,sizeof(path));path[a++]='/';memcpy(path+a,f->path,b+1);uint8_t hash[32];unsigned status=msif_hash147(path,f->bytes,hash);if(status||memcmp(hash,f->sha,32))return status?status:23;++checked;progress8(85+checked*10/(h->files+h->links),"Verifying installed application ownership.");}
   at+=r->bytes;
  }return 0;
 }
