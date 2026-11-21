@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m14\replay7.py", line 108, in <module>
+    main()
+  File "<project-root>\tests\m14\replay7.py", line 92, in main
+    module.main()
+  File "<project-root>\tests\m14\static147_host.py", line 8, in main
+    baseline_path=ROOT/'evidence/M14/6/static-resource-comparison.json';baseline=json.loads(baseline_path.read_text(encoding='utf-8'));assert baseline['passed'];accepted=json.loads((ROOT/'evidence/M14/6/acceptance-results.json').read_text(encoding='utf-8'));assert accepted['passed']and accepted['build_id']==baseline['build_id'];meta=json.loads((ROOT/'dist/m14stage7-build-manifest.json').read_text(encoding='utf-8'))
+  File "C:\Users\EnginSoysal\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\EnginSoysal\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: '<project-root>\\evidence\\M14\\7\\static-resource-comparison.json'

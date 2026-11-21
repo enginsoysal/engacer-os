@@ -21,7 +21,7 @@ def validate_resume(prior, name, record, command, current_tree, current_digest, 
     differences = {path for path in old.keys() | current_tree.keys() if old.get(path) != current_tree.get(path)}
     allowed = {'tests/m14/verify7.py','tests/m14/suite7.py','tests/m14/public_site7_scoped.mjs',
                'tests/m14/close7_scoped.py','tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/native147_entry.py','tests/m14/picker147_run.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py','tests/m14/picker_lifetime146_run.py',
-               'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py'}
+               'tests/m14/window146_run.py','tests/m14/picker_restart146_run.py','tests/m14/static146_host.py','tests/m14/static147_entry.py'}
     assert differences <= allowed, ('Unreviewed campaign input changes', sorted(differences))
     if name == 'picker-lifetime146' and 'tests/m14/picker_lifetime146_run.py' in differences:
         return False
@@ -82,7 +82,7 @@ def main():
   add(name,'tests/m14/'+script,priority=30)
  assert len(tasks)==96,len(tasks)
  tasks['runtime-msi-cancel']['command']=[sys.executable,'tests/m14/replay7.py','msi_cancel147']
- tasks['static146-host']['command']=[sys.executable,'tests/m14/replay7.py','static147_host']
+ tasks['static146-host']['command']=[sys.executable,'tests/m14/replay7.py','static147_entry']
  for name in ('condition','properties','record','text','plan','api','cab','transaction','journal','files','registry','link','install','remove','terminal','binary','tools','custom','version','codepage'):
   add('msi147-'+name+'-host','tests/m14/'+('msireg147_host.py'if name=='registry'else name+'147_host.py'),priority=30)
  for name in ('api','codepage','atom','fls','machine','pipe','slist','version','wix_system','wix_action'):

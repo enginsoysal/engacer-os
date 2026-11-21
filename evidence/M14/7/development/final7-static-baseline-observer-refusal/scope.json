@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "classification": "Current-stage static observer was replay-transformed; intended immutable M14.6 baseline became a nonexistent M14.7 baseline",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "passed_tasks": 136,
+  "os_source_changed": false,
+  "correction": "Execute the exact existing stage-seven comparison canonically, record its source/executed hash, and retain the accepted stage-six baseline."
+}
