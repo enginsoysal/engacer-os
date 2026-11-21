@@ -28,6 +28,7 @@ unsigned msia_property_action147(msia_plan147 *,unsigned);
 /* Selected clean-install feature/directory/component/file costing only.
  * It mutates session properties, never target files or registration. */
 void msia_cost147(msia_plan147 *,const char *);
+int msia_leaf147(const char *,unsigned);
 unsigned msia_file_path147(const msia_plan147 *,unsigned,char[256]);
 unsigned msia_format147(msia_plan147 *,const char *,char *,unsigned);
 #endif

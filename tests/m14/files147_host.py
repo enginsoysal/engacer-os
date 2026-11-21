@@ -1,5 +1,5 @@
 """Original MSI/CAB staging, immutable ownership, and extent promotion on actual V6."""
-import ctypes as c,hashlib,importlib.util,json,os,struct,sys
+import ctypes as c,hashlib,importlib.util,json,os,re,struct,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT/'tools/build'),str(ROOT/'tests/m6')]
 from m1 import command,pinned_tools
@@ -7,7 +7,7 @@ spec=importlib.util.spec_from_file_location('files147_disk',ROOT/'tests/m11/volu
 
 def main():
  out=ROOT/'build/m14-native/stage7/files-host';out.mkdir(parents=True,exist_ok=True);tools=pinned_tools();objects=[]
- sources=['user/windows8/msi-files147.c','user/windows8/msi-journal147.c','user/windows8/msi-plan147.c','user/windows8/msi-cost147.c','user/windows8/msi_db.c','user/windows8/cab147.c','third_party/libmspack/lzxd.c','runtime/sha256.c','kernel/storage/volume6.c','tests/m14/files147_host.c']
+ sources=['user/windows8/msi-files147.c','user/windows8/msi-shortcuts147.c','user/windows8/msi-journal147.c','user/windows8/msi-plan147.c','user/windows8/msi-cost147.c','user/windows8/msi_db.c','user/windows8/cab147.c','third_party/libmspack/lzxd.c','runtime/sha256.c','kernel/storage/volume6.c','tests/m14/files147_host.c']
  for source in sources:
   obj=out/(Path(source).stem+'.obj');command([tools['clang'],'--target=x86_64-pc-windows-msvc','-O2','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-DENGINE_M7','-DENGINE_M8','-DENGINE_M11','-DENGINE_M14','-DMSPACK_NO_DEFAULT_SYSTEM','-DSIZEOF_OFF_T=8','-DDEBUG=0','-I',ROOT/'include','-I',ROOT/'third_party/libmspack-port','-I',ROOT/'third_party/libmspack','-c',ROOT/source,'-o',obj]);objects.append(obj)
  dll=out/'files.dll';command([tools['lld-link'],'/dll','/noentry','/nodefaultlib','/timestamp:0','/out:'+str(dll),'/export:v6_format','/export:v6_mkdir','/export:v6_mount',*objects]);lib=c.CDLL(str(dll));Alloc=c.CFUNCTYPE(c.c_void_p,c.c_void_p,c.c_size_t);Free=c.CFUNCTYPE(None,c.c_void_p,c.c_void_p);Failure=c.CFUNCTYPE(None,c.c_char_p);Size=c.CFUNCTYPE(c.c_size_t,c.c_void_p);live={};state=dict(bytes=0,peak=0,bad=False)
@@ -53,9 +53,25 @@ def main():
    if flags==1:assert (digest,length)==expected[path];matched.append(digest);assert (e.first,e.size,e.crc)in before.values()
    else:assert flags==4 and digest==hashlib.sha256(raw).hexdigest() and payload==raw
    checks+=3
+  # Independently derive authored destinations and fields, then ask Windows to read actual stored link bytes.
+  def win_directory(identifier):
+   if identifier=='TARGETDIR':return 'C:\\'
+   if identifier=='ProgramFiles64Folder':return 'C:\\Program Files\\'
+   if identifier=='ProgramFilesFolder':return 'C:\\Program Files (x86)\\'
+   if identifier=='ProgramMenuFolder':return 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\'
+   row=directories[identifier];leaf=name(row[2]);return win_directory(row[1])+(''if leaf=='.'else leaf+'\\')
+  props=dict(tables['Property']);props.update({d:win_directory(d)for d in directories});file_windows={r[0]:win_directory(components[r[1]][2])+name(r[2])for r in tables['File']}
+  def fmt(value):return re.sub(r'\[(#?)([^\[\]]+)\]',lambda m:file_windows[m[2]]if m[1]else props.get(m[2],''),value)
+  from link147_reader import read as read_link
+  linked=[]
+  for row in tables['Shortcut']:
+   windows=win_directory(row[1])+name(row[2])+'.lnk';prefix=win_directory('ProgramMenuFolder');assert windows.startswith(prefix);native='/Data/Windows/Common/Programs/'+windows[len(prefix):].replace('\\','/');e=entries[native.encode()];payload=bytes(disk.data[e.first*4096:e.first*4096+e.size]);file=out/(str(len(samples))+'-link'+str(len(linked))+'.lnk');file.write_bytes(payload);actual=read_link(file);expected_link=dict(target=fmt(row[4]),description=row[6],working_directory=win_directory(row[11])if row[11]else'',arguments=fmt(row[5]),show=int(row[10])if row[10]else 1);assert actual==expected_link,(actual,expected_link);linked.append(dict(path=native,sha256=hashlib.sha256(payload).hexdigest(),windows_metadata=actual));checks+=6
+  assert len(linked)==len(tables['Shortcut']);checks+=1
+  # A pre-existing shortcut must refuse in preparation without touching disk.
+  disk_before=hashlib.sha256(disk.data).digest();allocated_before=state['bytes'];assert lib.links_collision147()==183;assert hashlib.sha256(disk.data).digest()==disk_before and state['bytes']==allocated_before;checks+=3
   # A changed final payload is refused while the immutable recovery image survives.
   changed=next(e for path,e in entries.items()if path in owned and owned[path][2]==1);disk.data[changed.first*4096]^=1;assert lib.verify147()==23 and lib.keep147()==2;disk.data[changed.first*4096]^=1;checks+=2
   independent=disk.volume();assert lib.v6_mount(c.byref(independent))==0;assert {e.path:(e.first,e.size,e.crc)for e in independent.entries if e.kind}=={e.path:(e.first,e.size,e.crc)for e in v.entries if e.kind};checks+=2
-  samples.append(dict(package=package.name,source_sha256=hashlib.sha256(raw).hexdigest(),selected_payloads=len(matched),payload_bytes=sum(length for _,length,flags in owned.values()if flags==1),journal_bytes=n,extent_promotion_preserves_data=True,pending_record_retained=True));lib.files_close147();lib.close147();assert not live and state['bytes']==0 and not state['bad'];checks+=1
- report=dict(passed=True,checks=checks,scope='Actual production MSI/CAB file staging, journal, kernel stream/move routines and V6 on a private memory disk with host syscall/file-handle adapters; original custom sequence, external effects, native guest installation and recovery remain unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['user/windows8/msi-files147.h','user/windows8/msi-journal147.h','include/engine/wintxn147.h','kernel/windows8/stream147.inc','kernel/windows8/transaction147.inc','tests/m14/files147_host.py']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS original MSI file staging/promotion',checks)
+  samples.append(dict(package=package.name,source_sha256=hashlib.sha256(raw).hexdigest(),selected_payloads=len(matched),payload_bytes=sum(length for _,length,flags in owned.values()if flags==1),journal_bytes=n,shortcuts=linked,extent_promotion_preserves_data=True,pending_record_retained=True));lib.files_close147();lib.close147();assert not live and state['bytes']==0 and not state['bad'];checks+=1
+ report=dict(passed=True,checks=checks,scope='Actual production MSI/CAB file staging, journal, kernel stream/move routines and V6 on a private memory disk with host syscall/file-handle adapters; including authored links read back through trusted Windows metadata APIs and collision refusal; original custom sequence, integrated registry effects, native guest installation and recovery remain unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['user/windows8/msi-files147.h','user/windows8/msi-shortcuts147.h','user/windows8/msi-link147.h','kernel/windows8/path-core143.inc','kernel/windows8/unicode143.inc','kernel/windows8/unicode-table143.inc','user/windows8/msi-journal147.h','include/engine/wintxn147.h','kernel/windows8/stream147.inc','kernel/windows8/transaction147.inc','tests/m14/files147_host.py','tests/m14/link147_reader.py']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS original MSI file staging/promotion',checks)
 if __name__=='__main__':main()

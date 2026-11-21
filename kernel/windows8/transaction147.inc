@@ -47,7 +47,7 @@ static unsigned installer_user_grant147(const char*path,unsigned ancestor){
 static int64_t staging_move147(const char*source,const char*target){
  if(input8.command!=W8_INSTALL||!installer_authority147())return -5;
  unsigned root=length8(input8.product_root);const char*private_name="/.EngacerMSI/";unsigned private_bytes=sizeof("/.EngacerMSI/")-1;
- if(!prefix8(source,input8.product_root)||!prefix8(target,input8.product_root)||length8(source)<=root+private_bytes||memcmp(source+root,private_name,private_bytes))return -5;
+ if(!prefix8(source,input8.product_root)||(!prefix8(target,input8.product_root)&&!installer_user_grant147(target,0))||length8(source)<=root+private_bytes||memcmp(source+root,private_name,private_bytes))return -5;
  const v6_entry*from=find8(source);if(!from||from->kind!=1)return -2;if(find8(target))return -80;
  if(file_object_slot143(source)<FILE_OBJECTS143||file_object_slot143(target)<FILE_OBJECTS143)return -32;
  /* This path is for untouched native staging files, never Windows file objects. */

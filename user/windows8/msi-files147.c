@@ -14,7 +14,10 @@ static unsigned stage_path147(const msia_plan147*p,unsigned index,char out[256])
 }
 unsigned msif_directory147(const char*path){
  if(!path||path[0]!='/'||len8(path)>=256)return 87;char part[256];copy8(part,path,sizeof(part));
- for(unsigned i=1;;++i)if(!part[i]||part[i]=='/'){char saved=part[i];part[i]=0;w8_file_info info;unsigned status=stat8(part,&info)?(mkdir8(part)?1117:0):info.kind==2?0:183;part[i]=saved;if(status)return status;if(!saved)break;}
+ unsigned start=1,root=len8(job8->product_root),user=len8(job8->user_root);
+ if(root&&len8(path)>=root&&!memcmp(path,job8->product_root,root)&&(!path[root]||path[root]=='/'))start=root;
+ else if(user&&len8(path)>=user&&!memcmp(path,job8->user_root,user)&&(!path[user]||path[user]=='/'))start=user;
+ for(unsigned i=start;;++i)if(!part[i]||part[i]=='/'){char saved=part[i];part[i]=0;w8_file_info info;unsigned status=stat8(part,&info)?(mkdir8(part)?1117:0):info.kind==2?0:183;part[i]=saved;if(status)return status;if(!saved)break;}
  return 0;
 }
 unsigned msif_hash147(const char*path,uint64_t bytes,uint8_t hash[32]){

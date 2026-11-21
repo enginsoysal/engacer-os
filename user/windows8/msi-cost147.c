@@ -4,7 +4,7 @@
 static void cost_require147(int yes,const char *message){if(!yes)fail8(message);}
 static void join147(char *out,const char *text){cost_require147(len8(out)+len8(text)<256,"MSI destination exceeds the native path bound.");append8(out,text,256);}
 static int case_equal147(const char *a,const char *b){unsigned i=0;while(a[i]&&b[i]){unsigned x=(uint8_t)a[i],y=(uint8_t)b[i];if(x>='a'&&x<='z')x-=32;if(y>='a'&&y<='z')y-=32;if(x!=y)return 0;++i;}return a[i]==b[i];}
-static int leaf147(const char *text,unsigned n){
+int msia_leaf147(const char *text,unsigned n){
  if(!n||n>63||text[n-1]==' '||text[n-1]=='.')return 0;
  char base[16];unsigned bn=0;
  for(unsigned i=0;i<n;++i){unsigned c=(uint8_t)text[i];if(c<32||c>=127||c=='/'||c=='\\'||c==':'||c=='*'||c=='?'||c=='"'||c=='<'||c=='>'||c=='|')return 0;}
@@ -16,7 +16,7 @@ static void target147(const char *field,char out[128],unsigned directory){
  unsigned end=0;while(field[end]&&(!directory||field[end]!=':'))++end;unsigned start=0;
  for(unsigned i=0;i<end;++i)if(field[i]=='|'){cost_require147(!start,"MSI long-name metadata is malformed.");start=i+1;}
  unsigned n=end-start;if(directory&&n==1&&field[start]=='.'){out[0]='.';out[1]=0;return;}
- cost_require147(leaf147(field+start,n),"MSI payload/directory leaf is invalid or outside the ASCII name profile.");memcpy(out,field+start,n);out[n]=0;
+ cost_require147(msia_leaf147(field+start,n),"MSI payload/directory leaf is invalid or outside the ASCII name profile.");memcpy(out,field+start,n);out[n]=0;
 }
 static unsigned directory147(const msia_plan147 *p,const char *id){for(unsigned i=0;i<p->directory_count;++i)if(equal8(p->directories[i].id,id))return i;fail8("MSI references a missing directory.");}
 static unsigned feature147(const msia_plan147 *p,const char *id){for(unsigned i=0;i<p->feature_count;++i)if(equal8(p->features[i].id,id))return i;fail8("MSI references a missing feature.");}

@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "scope": "Own binary Shell Link read with trusted Windows COM metadata API; no activation",
+  "load_hresult": 0,
+  "get_path_hresult": 1,
+  "get_path": "",
+  "expected_target": "C:\\Program Files\\7-Zip\\7zFM.exe",
+  "note": "The LinkInfo-only candidate loads but does not provide the target through the selected Windows GetPath raw-path profile. Kept as an initial refusal; not a native guest result."
+}
