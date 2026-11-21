@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 666,
-  "table_bytes": 5328,
+  "refusal_keys": 665,
+  "table_bytes": 5320,
   "imports": [
     {
       "app": "notepadpp",
@@ -109,13 +109,6 @@
       "dll": "shlwapi.dll",
       "symbol": "PathCanonicalizeW",
       "key": "452d55a242da6745",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "shlwapi.dll",
-      "symbol": "PathAppendW",
-      "key": "9d9cfbef7335cbf1",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5429,13 +5422,6 @@
       "dll": "shlwapi.dll",
       "symbol": "PathFindFileNameA",
       "key": "ce8dae0ec38f4191",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "shlwapi.dll",
-      "symbol": "PathAppendW",
-      "key": "9d9cfbef7335cbf1",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

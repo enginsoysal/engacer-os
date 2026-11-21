@@ -25,6 +25,8 @@ __declspec(dllimport) uint64_t LoadLibraryExA(const char*,uint64_t,unsigned);
 __declspec(dllimport) uint64_t GetModuleHandleW(const uint16_t*);
 __declspec(dllimport) int FreeLibrary(uint64_t);
 __declspec(dllimport) unsigned GetLastError(void);
+__declspec(dllimport) void*GetProcAddress(uint64_t,const char*);
+__declspec(dllimport) unsigned GetSystemDirectoryW(uint16_t*,unsigned);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 void entry(void);void*volatile relocation_anchor148=&entry;
@@ -50,6 +52,9 @@ void entry(void){
  check(!LoadLibraryExA(0,0,0)&&GetLastError()==87,239);
  check(!LoadLibraryExA("\xff",0,0)&&GetLastError()==1113,240);
  check(!LoadLibraryExA("kernel32.dll",1,0)&&GetLastError()==50,242);
+ uint16_t system[260];check(GetSystemDirectoryW(system,260)==19,243);
+ uint64_t shell=LoadLibraryExA("SHLWAPI.dll",0,0);int(*append)(uint16_t*,const uint16_t*)=GetProcAddress(shell,"PathAppendW");
+ check(shell&&append&&append(system,L"own.dll"),244);const uint16_t expected[]=L"C:\\Windows\\System32\\own.dll";for(unsigned i=0;i<sizeof(expected)/2;++i)check(system[i]==expected[i],245);check(FreeLibrary(shell),246);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);
  check(TryAcquireSRWLockShared(&lock)&&TryAcquireSRWLockShared(&lock)&&!TryAcquireSRWLockExclusive(&lock),232);ReleaseSRWLockShared(&lock);ReleaseSRWLockShared(&lock);
