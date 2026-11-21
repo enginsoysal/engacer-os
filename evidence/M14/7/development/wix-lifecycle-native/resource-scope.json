@@ -1,0 +1,7 @@
+{
+  "scope": "Managed Windows process-group page peak for this DLL lifecycle only; excludes whole OS, firmware and framebuffer. Not complete installer/app RAM or final M14 optimization.",
+  "minimum_pages": 354,
+  "maximum_pages": 354,
+  "page_bytes": 4096,
+  "retained_pages": 0
+}
