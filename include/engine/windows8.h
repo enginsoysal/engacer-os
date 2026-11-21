@@ -65,7 +65,7 @@ _Static_assert(sizeof(w8_mailbox)<=4096,"Windows startup mailbox must fit its ch
 typedef struct {unsigned state,command,status,percent,revision;uint64_t peak_pages,quanta;
  char product[96],version[32],publisher[96],code[40],message[192],output[W8_TEXT];
  unsigned files;uint64_t total_bytes;
- uint8_t source_sha147[32];uint32_t profile147,job_id147,registry147,shortcuts147,features147;} w8_info;
+ uint8_t source_sha147[32];uint32_t profile147,job_id147,registry147,shortcuts147,features147;uint64_t reserved_review147;} w8_info;
 extern volatile unsigned w8_active;
 unsigned w8_start(unsigned,const char*,const char*,const char*,const char*);
 unsigned w8_start_reviewed147(unsigned,const char*,const char*,const char*,const char*,const uint8_t[32]);
