@@ -554,12 +554,12 @@ APIs must not branch on its vendor name or substitute its effects.
 Use a kernel-owned source-image lease throughout the original process/helper
 lifetime. Protect its existing volume entry at direct mutations and final table
 commit, including ancestor moves/deletion and destructive format. This avoids a
-second installer-sized persistent cache. It is not yet an admitted frontend
-feature: context/pin fields currently stay zero. Windows reference write/delete
+second installer-sized persistent cache. At the earlier read-only checkpoint it was not admitted by the frontend and
+context/pin fields stayed zero; the implementation below supersedes that state. Windows reference write/delete
 denials are observed independently; reviewed-source rename refusal is stricter
 than the observed Windows rename behavior and must be labeled as broker policy.
 
-Future admission must retain the restricted interactive token, keep machine
+The admission contract must retain the restricted interactive token, keep machine
 registry writes outside the per-user EXE profile, permit only the approved
 application root, explicit shortcuts and a fresh job temporary folder, and carry
 the same immutable scope to verified original helpers. Protected product records
@@ -570,7 +570,7 @@ must cause safe refusal before original recursive removal. Personal files and
 shared registry preimages must remain protected. Normal original GUI install,
 helper execution, uninstall and reinstall remain required before acceptance.
 
-## Current ordinary review boundary
+## Historical ordinary review checkpoint
 
 Exact development build `f5f963060ad66bdc9dfb84a4995f9d9f` passes ordinary
 EXE selection/cancellation and read-only source review, plus matching compact,
@@ -580,3 +580,40 @@ The source lease remains inactive. The protected-record type remains a schema,
 not a published installed product. Original installation/removal/reinstall and
 full release delivery are still mandatory. See the
 [development receipt](../../evidence/M14/8/development/native-ordinary-exe-review-pass/checkpoint.json).
+
+## Implemented admission and lifecycle candidate
+
+The production frontend now admits the first pinned EXE profile after review
+and a separate confirmation. Kernel admission independently rechecks its SHA-256,
+destination, protected record and actual source entry. The product scope remains
+the broader x64 landscape; this bounded first profile is an acceptance fixture.
+Unknown originals remain review-only until their required contracts work.
+
+Immutable kernel context, rather than mutable user mailbox profile fields,
+grants the product root, two exact shortcut leaves and a fresh job temporary
+namespace. Verified original descendants inherit that same scope. Their source
+entries remain pinned. HKLM writes remain denied under the restricted per-user
+identity. The own broker truthfully identifies itself as a native ELF; process
+queries do not impersonate the original vendor process.
+
+A checked 2,456-byte inventory record under the owner's protected EXE data
+directory stores state, source identity, destination, temporary namespace and
+two bounded shared registry preimages. It lives outside the removable product
+root. Publication requires actual payload hashes, both real shortcut records
+and successful descendant completion. Waiting uses existing PARK/WAKE process
+exit notifications, not a polling service. On removal, modified or extra product
+files refuse admission before the original program can delete them. Restore
+preimages conditionally so newer user values survive.
+
+Original GUI installation, original self-copy removal helper, silent checked
+shell deletion, original self-delete batch and reinstall pass the development
+three-cold-cycle chain. The provider implements actual operations through common
+file APIs; it does not substitute manual payload extraction for the installer.
+Shared layout uses actual canonical glyph metrics and bounded word wrapping.
+The fallback font still differs from original Windows typography.
+
+Interrupted EXE records are preserved and exposed for inspection. Automatic
+EXE rollback is not implemented; the frontend does not offer MSI recovery as
+though it works for these records. The reader and optional DLL functionality
+remain unqualified. The final frozen media campaign and independent publication
+must still pass before this candidate is marked complete.

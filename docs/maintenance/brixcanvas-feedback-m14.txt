@@ -129,3 +129,20 @@ Do not classify this evidence alone as a BrixCanvas server defect.
 Follow-up: rerunning the unchanged failed job succeeded and verified the generated
 articles. Classification is now resolved transient request failure; the newer
 source synchronization continues normally.
+
+Observation M14.8 development, 21 November 2026: native homepage Save cannot read website
+Classification: reproduced editor failure; platform root cause unestablished.
+Destination: the existing native editor /s/codename-engine-os-ltvck/edit for
+engaceros.brixcanvas.com. The editor loads its previously saved homepage, but
+editing the roadmap paragraph/button and using the ordinary Save control first
+shows Saving..., then "Error: The website could not be read. Keep this window
+open." A repeated explicit Save after completing the native property panel has
+the same result. Browser console error/warning collection is empty. The public
+site and GitHub-driven article synchronization remain available; workflow
+44957368120 completed successfully. Do not infer a storage-limit root cause from
+the error alone. No shared BrixCanvas source or production configuration changed.
+Pending native changes replace the obsolete M14.0-M14.15 homepage description
+with the approved planned M14.9-M14.16 program, while retaining M14.7 as the
+qualified download until M14.8 qualification. The new roadmap articles are live.
+Keep this observation in the combined handoff; do not ask the owner to forward
+individual findings while native qualification continues.
