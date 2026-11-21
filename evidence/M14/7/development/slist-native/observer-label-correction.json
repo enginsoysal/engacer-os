@@ -1,0 +1,4 @@
+{
+  "scope": "Observer metadata label error; runtime assertions remain valid",
+  "detail": "The inherited wix-native cycle field native_record_thread_rounds=400 is incorrect. Each cycle only loads the unchanged original WiX DLL, checks the WixQuietExec export and unloads it. No 400 record/thread rounds or original custom-action body are claimed. Preserve this initial result; the next observer corrects the field and repeats the same native assertions."
+}

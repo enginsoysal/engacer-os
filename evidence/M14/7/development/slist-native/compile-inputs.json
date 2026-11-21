@@ -1,0 +1,8 @@
+{
+  "scope": "Compile an own native SLIST caller; no host PE execution.",
+  "sources": {
+    "tests/m14/slist147_native.c": "074c1ab0a5d6e260feb1b531701ad077b43d8780b1a36468651dad3278531349",
+    "tests/m14/slist147_build.py": "7f8f0450825520ca1cca68d9c87a2f3dda755b9ba7e77693c9bd1eb20fdfbaf6"
+  },
+  "fixture_sha256": "e71fd211b12aff68c9ef221572f519c96fca6a978872a917ea0a1a2fd11d75cc"
+}

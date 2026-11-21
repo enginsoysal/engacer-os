@@ -1,5 +1,9 @@
 # M14.7 MSI execution contract
 
+## Current integration state
+
+M14.7 remains in development; M14.6 is the qualified download. Build 09118ff036841c1444e1c54f618fc077 passes real original WiX DLL load/export/unload over 21 native lifetimes, plus the atomic/CPU, retained threading and exception regressions. Original custom-action bodies, generic MSI writes, transaction recovery and Notepad++ installation are still open. Earlier development paragraphs below retain their historical candidate results and failures; they do not override this current status.
+
 ## How and why
 
 Retain the checked CFB/MSI reader, pinned cabinet decoder and native protected worker. Replace hard-coded product identity/destination/action behavior with a checked database-derived session. Package hashes identify reproducible qualification inputs; they must not substitute for parsing required behavior. No host Windows Installer service or embedded guest implements the installation.
@@ -198,3 +202,6 @@ The next runtime implements the AMD64 16-byte InitializeSListHead/InterlockedFlu
 Code inspection also found misnumbered old feature reports: SSE3 was tested as an FPU bit, SSE3 availability was advertised as XSAVE, and POPCNT was advertised as Windows fast-fail. The new M14 profile maps the correct SSE/CX16 bits and withholds XSAVE/AVX and Windows fast-fail until their required OS state/ABI support exists. This is a reporting correction, not evidence that those old reports caused a previously observed crash. Native feature/atomic tests and retained original behavior remain pending.
 
 References: [InitializeSListHead](https://learn.microsoft.com/en-us/windows/win32/api/interlockedapi/nf-interlockedapi-initializeslisthead), [atomic flush](https://learn.microsoft.com/en-us/windows/win32/api/interlockedapi/nf-interlockedapi-interlockedflushslist), [processor feature identifiers](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-isprocessorfeaturepresent). The public AMD64 header layout was inspected in microsoft/win32metadata winnt.h blob 9cff0d5c088d98294c8def907a47a0ed9c650521; no Windows implementation code is copied.
+
+
+Build 09118ff036841c1444e1c54f618fc077 passes compact install/restart/independent startup, the retained original 7-Zip corpus, 21 native atomic-list lifetimes (5376 independently produced nodes), retained thread waiting/idle halt, and 48 handled hardware exceptions per execution. The unchanged original WiX DLL now also loads, exposes WixQuietExec and unloads across 21 native lifetimes with zero retained pages and subsequent original console success. No custom-action body ran. The first WiX observer inherited an incorrect record-round metadata label; this label is explicitly excluded from the claim and preserved with its correction note. A corrected observer repeats the DLL lifecycle and records native managed-page peaks separately. Evidence: development/slist-native.

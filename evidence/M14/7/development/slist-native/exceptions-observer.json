@@ -1,0 +1,223 @@
+{
+  "passed": true,
+  "stage": "M14.7 development regression",
+  "case": "exceptions",
+  "build_id": "09118ff036841c1444e1c54f618fc077",
+  "replacements": [
+    [
+      "evidence/M14/3",
+      "evidence/M14/7"
+    ],
+    [
+      "M14.3",
+      "M14.7"
+    ],
+    [
+      "0.14.3",
+      "0.14.7"
+    ],
+    [
+      "EngacerOS-M14STAGE3",
+      "EngacerOS-M14STAGE7"
+    ],
+    [
+      "stage3",
+      "stage7"
+    ],
+    [
+      "m143-regress-",
+      "m147-regress-"
+    ],
+    [
+      "m143-",
+      "m147-"
+    ],
+    [
+      "EngacerOS-M14STAGE2",
+      "EngacerOS-M14STAGE7"
+    ],
+    [
+      "EngacerOS-M14STAGE1",
+      "EngacerOS-M14STAGE7"
+    ],
+    [
+      "stage2",
+      "stage7"
+    ],
+    [
+      "stage1",
+      "stage7"
+    ],
+    [
+      "m142-",
+      "m147-regress-"
+    ],
+    [
+      "build/m14-native/fixtures",
+      "build/m14-native/stage7/regression-fixtures"
+    ],
+    [
+      "M14.2 development",
+      "M14.7 runtime regression"
+    ],
+    [
+      "M14.25",
+      "M14.15"
+    ],
+    [
+      "assert metadata==[41,45,45,45],metadata",
+      "assert metadata==[28,32,32,32],metadata"
+    ],
+    [
+      "EngacerOS-M14STAGE4",
+      "EngacerOS-M14STAGE7"
+    ],
+    [
+      "M14-STAGE4-VM-v1",
+      "M14-STAGE7-VM-v1"
+    ],
+    [
+      "m14stage4",
+      "m14stage7"
+    ],
+    [
+      "evidence/M14/4",
+      "evidence/M14/6"
+    ],
+    [
+      "stage4",
+      "stage7"
+    ],
+    [
+      "M14.4",
+      "M14.7"
+    ],
+    [
+      "0.14.4",
+      "0.14.7"
+    ],
+    [
+      "m144-",
+      "m147-"
+    ],
+    [
+      "EngacerOS-M14STAGE5",
+      "EngacerOS-M14STAGE7"
+    ],
+    [
+      "M14-STAGE5-VM-v1",
+      "M14-STAGE7-VM-v1"
+    ],
+    [
+      "m14stage5",
+      "m14stage7"
+    ],
+    [
+      "evidence/M14/5",
+      "evidence/M14/6"
+    ],
+    [
+      "stage5",
+      "stage7"
+    ],
+    [
+      "M14.5",
+      "M14.7"
+    ],
+    [
+      "0.14.5",
+      "0.14.7"
+    ],
+    [
+      "m145-",
+      "m147-"
+    ],
+    [
+      "EngacerOS-M14STAGE6",
+      "EngacerOS-M14STAGE7"
+    ],
+    [
+      "M14-STAGE6-VM-v1",
+      "M14-STAGE7-VM-v1"
+    ],
+    [
+      "m14stage6",
+      "m14stage7"
+    ],
+    [
+      "evidence/M14/6",
+      "evidence/M14/7"
+    ],
+    [
+      "stage6",
+      "stage7"
+    ],
+    [
+      "M14.6",
+      "M14.7"
+    ],
+    [
+      "0.14.6",
+      "0.14.7"
+    ],
+    [
+      "m146-",
+      "m147-"
+    ],
+    [
+      "build/m14-native/stage7/fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/fixtures"
+    ],
+    [
+      "build/m14-native/stage7/exception-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/exception-fixtures"
+    ],
+    [
+      "build/m14-native/stage7/lifetime-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/lifetime-fixtures"
+    ],
+    [
+      "build/m14-native/stage7/process-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/process-fixtures"
+    ],
+    [
+      "build/m14-native/stage7/named-sync-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/named-sync-fixtures"
+    ],
+    [
+      "build/m14-native/stage7/tls-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/tls-fixtures"
+    ],
+    [
+      "build/m14-native/stage7/unwind-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/unwind-fixtures"
+    ],
+    [
+      "build/m14-native/stage7/regression-fixtures",
+      "build/m14-native/stage7/private-fixtures/exceptions/regression-fixtures"
+    ]
+  ],
+  "observer_sources": {
+    "tests/m14/exception_native2.py": {
+      "canonical_sha256": "4e66f4184e677678e7d90fcd184bd9bb7093e9ec2be5a2b2a233106c7a8806a0",
+      "executed_source_sha256": "bd7cce564ffe87134de9a0447b1022b963a72d0a0aeff301ea6fd7531a4b5094"
+    },
+    "tests/m14/thread_native2.py": {
+      "canonical_sha256": "910983de9d3c22cb737dd36256e7429ebad5a42c20015fa75b304f5af845f355",
+      "executed_source_sha256": "02bd3ef9716bc6bc4dd2c116902c666b49c5f6f41c3f04a88a23dac0690262af"
+    },
+    "tests/m14/fixture1.py": {
+      "canonical_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050",
+      "executed_source_sha256": "2c6326c1f8feae36e4262227e28d18fc83167b544c9027524b34531700281050"
+    },
+    "tests/m14/build_fixtures2.py": {
+      "canonical_sha256": "167583c5ca172acad237b0a4c171e7de1d6e3d3c44fd9c142125a8aff472edea",
+      "executed_source_sha256": "bcc372fc2ad2609b2d0172a35c415c16c29d666a8e9537fa54c203871af7efc3"
+    },
+    "tests/m14/exception_fixtures2.py": {
+      "canonical_sha256": "26f3909965108cfe3944fb357adecca5f334c73bd450e4ae477b2660ec854c2e",
+      "executed_source_sha256": "c21c21a76c3af0021cf8c49904a098f1606bb223e9821a2ba186d7d528bcfafd"
+    }
+  },
+  "adapter_sha256": "c69908d56974cf4607f3bab71ae5cd9431cf868c3d9e2e20ef7b372f78e9f60c"
+}
