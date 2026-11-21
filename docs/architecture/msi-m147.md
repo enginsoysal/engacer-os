@@ -189,3 +189,12 @@ Supporting host checks pass 15590 independent Python-codec/buffer/invalid-input 
 
 
 Build 1fdc0438e109f4b2a27826e90498a093 passes compact installation/restart/independent starts, the retained original console/MSI/106-file corpus, 21 native code-page lifetimes with all 256 independently expected Windows-1252 bytes, and the retained Unicode-path/lifetime regression. No pages remain after each codec lifetime. Original WiX initialization advances again and now refuses InitializeSListHead; this actual failure and original call-site attribution remain preserved in development/codepage-native. Neither successful conversion probes nor import admission qualify the custom action.
+
+
+### Atomic SLIST and usable processor-feature development
+
+The next runtime implements the AMD64 16-byte InitializeSListHead/InterlockedFlushSList contract with real CMPXCHG16B synchronization. Flush atomically detaches the actual chain, clears depth and advances the sequence without allocating per-list state; it does not walk or free caller nodes. Headers must be 16-byte aligned and this selected flush profile requires the CPU CX16 feature. General SLIST push/pop exports remain unavailable; original code may use its own compatible inline producers. Supporting host tests pass 172593 checks, including ten rounds of 4096 nodes pushed by independent public host Windows APIs concurrently with the own flush. Host interoperability is not native original-CRT qualification.
+
+Code inspection also found misnumbered old feature reports: SSE3 was tested as an FPU bit, SSE3 availability was advertised as XSAVE, and POPCNT was advertised as Windows fast-fail. The new M14 profile maps the correct SSE/CX16 bits and withholds XSAVE/AVX and Windows fast-fail until their required OS state/ABI support exists. This is a reporting correction, not evidence that those old reports caused a previously observed crash. Native feature/atomic tests and retained original behavior remain pending.
+
+References: [InitializeSListHead](https://learn.microsoft.com/en-us/windows/win32/api/interlockedapi/nf-interlockedapi-initializeslisthead), [atomic flush](https://learn.microsoft.com/en-us/windows/win32/api/interlockedapi/nf-interlockedapi-interlockedflushslist), [processor feature identifiers](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-isprocessorfeaturepresent). The public AMD64 header layout was inspected in microsoft/win32metadata winnt.h blob 9cff0d5c088d98294c8def907a47a0ed9c650521; no Windows implementation code is copied.

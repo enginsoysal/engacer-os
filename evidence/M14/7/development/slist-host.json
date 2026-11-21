@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": 172593,
+  "concurrent_rounds": 10,
+  "nodes_per_round": 4096,
+  "scope": "Own atomic flush with independent public Windows API producers and pure feature-policy checks; not native Engacer or original CRT qualification",
+  "sources": {
+    "user/windows8/slist147.inc": "ad76811a2af4ca0f11637d7c94c3402efa64eca512c10b70a2eee81faaca6461",
+    "user/windows8/processor147.h": "a3968dcf1db8aab04313909fd13dc27790bdc56b50bc76346a9cc1c1d1311c83",
+    "tests/m14/slist147_host.c": "70d87f8563f4119c10b9591c476205f1dee14812ef402e772a1e78a06e621c94",
+    "tests/m14/slist147_host.py": "00f0ef5d86ba5cb09d97869713ac88e181c7b12388ab8b147cdc1c0410c58936"
+  }
+}

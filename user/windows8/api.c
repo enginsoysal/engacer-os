@@ -110,7 +110,13 @@ static int MS f_TlsSetValue(unsigned i,uint64_t value){lock_enter142(&tls_lock14
 #ifdef ENGINE_M14
 #include "fls147.inc"
 #endif
+#ifdef ENGINE_M14
+#include "processor147.h"
+static int MS f_IsProcessorFeaturePresent(unsigned feature){uint32_t a,b,c,d,extended;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(0x80000001u),"c"(0));extended=d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));return processor_feature147(feature,c,d,extended);}
+#include "slist147.inc"
+#else
 static int MS f_IsProcessorFeaturePresent(unsigned feature){uint32_t a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));if(feature==6)return !!(d&(1u<<25));if(feature==10)return !!(d&(1u<<26));if(feature==13)return !!(d&(1u<<0));if(feature==17)return !!(c&(1u<<0));if(feature==23)return !!(c&(1u<<23));return 0;}
+#endif
 static int MS f_SystemFunction036(void*out,unsigned bytes){uint32_t a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1u),"c"(0));if(!(c&(1u<<30)))return 0;uint8_t*p=out;while(bytes){uint64_t v=0;unsigned char ok=0;for(unsigned retry=0;retry<16&&!ok;++retry)__asm__ volatile("rdrand %0; setc %1":"=r"(v),"=qm"(ok));if(!ok)return 0;unsigned n=bytes>8?8:bytes;memcpy(p,&v,n);p+=n;bytes-=n;}return 1;}
 static void *MS f_SysAllocStringByteLen(const char*s,unsigned bytes){if(bytes>16*1024*1024)return 0;uint8_t*p=alloc8((size_t)bytes+6);if(!p)return 0;*(uint32_t*)p=bytes;if(s)memcpy(p+4,s,bytes);else memset(p+4,0,bytes);p[4+bytes]=p[5+bytes]=0;return p+4;}
 static WCHAR *MS f_SysAllocStringLen(const WCHAR*s,unsigned len){if(len>8*1024*1024)return 0;return f_SysAllocStringByteLen((const char*)s,len*2);}
@@ -397,6 +403,7 @@ static const api8 api8_table[]={
  API8(GetClientRect,4),API8(GetWindowRect,4),API8(ClientToScreen,4),API8(ScreenToClient,4),API8(MoveWindow,4),API8(GetDlgItem,4),API8(SendDlgItemMessageW,4),API8(SetDlgItemTextW,4),API8(SetDlgItemTextA,4),API8(IsWindowEnabled,4),API8(EnableWindow,4),API8(IsZoomed,4),API8(GetDialogBaseUnits,4),API8(MapDialogRect,4),API8(SystemParametersInfoW,4),API8(MonitorFromWindow,4),API8(GetMonitorInfoA,4),API8(GetCursorPos,4),API8(LoadCursorW,4),API8(SetCursor,4),
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
 #ifdef ENGINE_M14
+ API8(InitializeSListHead,1),API8(InterlockedFlushSList,1),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif
