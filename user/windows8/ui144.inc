@@ -2,7 +2,7 @@
 #include <engine/winui144.h>
 typedef int64_t(MS*ui_proc144)(HANDLE,unsigned,uint64_t,int64_t);
 typedef struct {unsigned style;ui_proc144 proc;int cls_extra,win_extra;HANDLE instance,icon,cursor,background;const WCHAR*menu,*name;} ui_class_definition144;
-typedef struct ui_class144 {struct ui_class144*next;ui_class_definition144 definition;WCHAR name[64];unsigned atom,windows;} ui_class144;
+typedef struct ui_class144 {struct ui_class144*next;ui_class_definition144 definition;WCHAR name[64];unsigned atom,windows;HANDLE small_icon;} ui_class144;
 typedef struct ui_window_runtime144 {struct ui_window_runtime144*next;HANDLE handle,menu;ui_class144*class_;ui_proc144 proc;unsigned thread,destroying,created,extra_size;void*control;void*drop_target;unsigned drop_pending;unsigned invalid,erase,restore_max;wui_rect144 damage,normal_bounds;int64_t userdata,id;wui_description144 description;uint8_t extra[];} ui_window_runtime144;
 static ui_class144 *ui_classes144;static ui_window_runtime144 *ui_runtime_windows144;
 static lock142 ui_lock144;static unsigned ui_atom144=0xc000,ui_class_count144;
@@ -33,6 +33,17 @@ static unsigned MS f_RegisterClassW(const ui_class_definition144*d){
  c->definition=*d;c->definition.name=c->name;c->atom=++ui_atom144;c->next=ui_classes144;ui_classes144=c;++ui_class_count144;unsigned atom=c->atom;lock_leave142(&ui_lock144);return atom;
 }
 static int MS f_GetClassInfoW(HANDLE instance,const WCHAR*name,ui_class_definition144*out){(void)instance;lock_enter142(&ui_lock144);ui_class144*c=ui_class_lookup144(name);if(c&&out)*out=c->definition;lock_leave142(&ui_lock144);if(!c||!out){last8(c?87:1411);return 0;}return 1;}
+typedef struct {unsigned size,style;ui_proc144 proc;int cls_extra,win_extra;HANDLE instance,icon,cursor,background;const WCHAR*menu,*name;HANDLE small_icon;} ui_class_ex148;
+_Static_assert(sizeof(ui_class_ex148)==80,"AMD64 WNDCLASSEXW ABI");
+static unsigned MS f_RegisterClassExW(const ui_class_ex148*input){
+ if(!input||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)input,sizeof(*input),1,0,0)){last8(87);return 0;}ui_class_ex148 d=*input;if(d.size!=sizeof(d)){last8(87);return 0;}
+ ui_class_definition144 definition={d.style,d.proc,d.cls_extra,d.win_extra,d.instance,d.icon,d.cursor,d.background,d.menu,d.name};lock_enter142(&ui_lock144);unsigned atom=f_RegisterClassW(&definition);if(atom){ui_class144*c=ui_class_lookup144((const WCHAR*)(uintptr_t)atom);c->small_icon=d.small_icon;}lock_leave142(&ui_lock144);return atom;
+}
+static int MS f_GetClassInfoExW(HANDLE instance,const WCHAR*name,ui_class_ex148*out){
+ if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,sizeof(*out),3,0,0)||out->size!=sizeof(*out)){last8(87);return 0;}
+ lock_enter142(&ui_lock144);ui_class144*c=ui_class_lookup144(name);if(!c||(instance&&instance!=c->definition.instance)){lock_leave142(&ui_lock144);last8(1411);return 0;}ui_class_definition144 d=c->definition;*out=(ui_class_ex148){80,d.style,d.proc,d.cls_extra,d.win_extra,d.instance,d.icon,d.cursor,d.background,d.menu,d.name,c->small_icon};lock_leave142(&ui_lock144);return 1;
+}
+static int MS f_UnregisterClassW(const WCHAR*name,HANDLE instance){lock_enter142(&ui_lock144);ui_class144*c=ui_class_lookup144(name);if(!c||(instance&&instance!=c->definition.instance)){lock_leave142(&ui_lock144);last8(1411);return 0;}if(c->windows){lock_leave142(&ui_lock144);last8(1412);return 0;}ui_class144**link=&ui_classes144;while(*link!=c)link=&(*link)->next;*link=c->next;--ui_class_count144;free8(c);lock_leave142(&ui_lock144);return 1;}
 static int64_t MS f_CallWindowProcW(ui_proc144 proc,HANDLE window,unsigned message,uint64_t wp,int64_t lp){if(!proc){last8(87);return 0;}return proc(window,message,wp,lp);}
 static int64_t MS f_SendMessageW(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);ui_proc144 proc=w?w->proc:0;unsigned thread=w?w->thread:0;lock_leave142(&ui_lock144);

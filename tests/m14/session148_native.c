@@ -47,6 +47,13 @@ __declspec(dllimport) unsigned GetCurrentProcessId(void);
 __declspec(dllimport) unsigned ResumeThread(uint64_t);
 __declspec(dllimport) int PeekMessageW(void*,uint64_t,unsigned,unsigned,unsigned);
 __declspec(dllimport) int PostMessageW(uint64_t,unsigned,uint64_t,int64_t);
+__declspec(dllimport) unsigned RegisterClassExW(const void*);
+__declspec(dllimport) int GetClassInfoExW(uint64_t,const uint16_t*,void*);
+__declspec(dllimport) int UnregisterClassW(const uint16_t*,uint64_t);
+__declspec(dllimport) uint64_t CreateWindowExW(unsigned,const uint16_t*,const uint16_t*,unsigned,int,int,int,int,uint64_t,uint64_t,uint64_t,void*);
+__declspec(dllimport) int DestroyWindow(uint64_t);
+static unsigned class_created148,class_destroyed148;
+static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){(void)window;(void)wp;(void)lp;if(message==1)++class_created148;if(message==0x82)++class_destroyed148;return message==0x81;}
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 static void(*shutdown_gp148)(uint64_t);
@@ -77,8 +84,14 @@ void entry(void){
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  unsigned id=RegisterWindowMessageW(L"Engacer.Message148.Parent");check(id>=0xc000&&id<=0xffff,222);
- check(RegisterWindowMessageA("engacer.message148.parent")==id,347);check(RegisterWindowMessageA("Engacer.Message148.\xc3\xa9")==RegisterWindowMessageW(L"Engacer.Message148.\u00e9"),348);
+ check(RegisterWindowMessageA("engacer.message148.parent")==id,347);unsigned unicode_message=RegisterWindowMessageA("Engacer.Message148.\xc3\xa9");check(unicode_message>=0xc000&&unicode_message==RegisterWindowMessageW(L"Engacer.Message148.\u00e9"),348);
  check(!RegisterWindowMessageA(0)&&GetLastError()==87&&!RegisterWindowMessageA("\xff")&&GetLastError()==1113,349);
+ struct{unsigned size,style;int64_t(*proc)(uint64_t,unsigned,uint64_t,int64_t);int class_extra,window_extra;uint64_t instance,icon,cursor,background;const uint16_t*menu,*name;uint64_t small_icon;} class_definition={80,0,class_proc148,0,16,0,0,0,0,0,L"Engacer.ClassEx148",0},class_readback={0};
+ _Static_assert(sizeof(class_definition)==80,"Owned WNDCLASSEXW ABI");
+ check(!RegisterClassExW(&class_readback)&&GetLastError()==87,350);unsigned class_atom=RegisterClassExW(&class_definition);check(class_atom>=0xc000&&!RegisterClassExW(&class_definition)&&GetLastError()==1410,351);
+ class_readback.size=80;check(GetClassInfoExW(0,(const uint16_t*)(uintptr_t)class_atom,&class_readback)&&class_readback.proc==class_proc148&&class_readback.window_extra==16&&!class_readback.small_icon,352);
+ uint64_t hidden=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned class lifecycle",0,0,0,100,100,0,0,0,0);check(hidden&&class_created148==1&&!UnregisterClassW(class_definition.name,0)&&GetLastError()==1412,353);
+ check(DestroyWindow(hidden)&&class_destroyed148==1&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
  command[0]='"';for(unsigned i=0;i<n;++i)command[i+1]=path[i];command[n+1]='"';command[n+2]=' ';command[n+3]='!';command[n+4]=0;
