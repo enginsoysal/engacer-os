@@ -48,9 +48,9 @@ static unsigned exe_shared_restore148(exe_record148*r){registry_machine147=0;reg
  }return 0;
 }
 static unsigned exe_admit148(unsigned command,const uint8_t*digest){
- if(active_space142||!equal8(input8.product_root,EXE148_ROOT)||command!=W8_INSTALL&&command!=W8_REMOVE)return 87;
+ if(active_space142||!equal8(input8.product_root,EXE148_ROOT)||(command!=W8_INSTALL&&command!=W8_REMOVE))return 87;
  uint64_t page=page_alloc();if(!page)return 8;exe_record148*r=(void*)(uintptr_t)page;unsigned error=exe_record_load148(input8.user_root,r);
- if(command==W8_INSTALL){if(!digest||!exe_digest148(digest,EXE148_SOURCE_SHA)||find8(EXE148_ROOT)||error!=2&&error||!error&&r->state!=EXE148_REMOVED){error=5;goto done;}error=exe_hash_file148(input8.source,EXE148_SOURCE_BYTES,EXE148_SOURCE_SHA);}
+ if(command==W8_INSTALL){if(!digest||!exe_digest148(digest,EXE148_SOURCE_SHA)||find8(EXE148_ROOT)||(error!=2&&error)||(!error&&r->state!=EXE148_REMOVED)){error=5;goto done;}error=exe_hash_file148(input8.source,EXE148_SOURCE_BYTES,EXE148_SOURCE_SHA);}
  else{if(error||r->state!=EXE148_INSTALLED||!equal8(input8.source,EXE148_ROOT "/SumatraPDF.exe")){error=5;goto done;}error=exe_payloads_check148();}
  if(error)goto done;
  spaces142[0]->exe_context148=command==W8_INSTALL?1:2;input8.reserved147=input8.process_id;input8.profile147=W8_PROFILE_EXE148;copy8(input8.windows_root,EXE148_ALIAS,256);
