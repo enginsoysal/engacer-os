@@ -86,13 +86,14 @@ def main():
  for name in ('condition','properties','record','text','plan','api','cab','transaction','journal','files','registry','link','install','remove','terminal','binary','tools','custom','version','codepage'):
   add('msi147-'+name+'-host','tests/m14/'+('msireg147_host.py'if name=='registry'else name+'147_host.py'),priority=30)
  for name in ('api','codepage','atom','fls','machine','pipe','slist','version','wix_system','wix_action'):
-  add('msi147-'+name+'-native','tests/m14/'+name+'147_run.py',dependencies=('apps-compact',),priority=6)
+  add('msi147-'+name+'-native','tests/m14/'+('wix_action147_lifetimes.py'if name=='wix_action'else name+'147_run.py'),dependencies=('apps-compact',),priority=6)
  for name,script,arguments in (
   ('generic-default','generic147_native.py',()),('generic-french','generic147_native.py',('--french',)),
   ('generic-cancel','install147_cancel.py',()),('review-stale','review147_stale.py',()),
   ('removal-preservation','remove147_native.py',()),('completion-faults','terminal147_native.py',()),
   ('storage','storage147_native.py',())):
   add('msi147-'+name,'tests/m14/'+script,arguments,('compact',),5)
+ tasks['msi147-completion-faults']['dependencies'].add('msi147-removal-preservation')
  for firmware in ('bios','uefi'):
   for medium in ('iso','usb'):
    add('firmware147-'+firmware+'-'+medium,'tests/m14/firmware147_run.py',('--firmware',firmware,'--media',medium),priority=2)
