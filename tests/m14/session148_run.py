@@ -21,8 +21,24 @@ def main():
   marker="report.update(passed=True,cycles=samples,subsequent_original_console_success=True,output=text);"
   assert text.count(marker)==1
   text=text.replace(marker,"delivered=g.log().count('M148_NATIVE_SHELL_ASSOCIATIONS_REFRESH');assert delivered==3,delivered;"+marker+"report['native_shell_refresh_deliveries']=delivered;")
+  failure="except Exception:report['error']=ui.q.clean(traceback.format_exc());raise"
+  assert text.count(failure)==1
+  text=text.replace(failure,"except Exception:\n  if 'g' in locals():(out/'serial.log').write_bytes(g.log().encode())\n  report['error']=ui.q.clean(traceback.format_exc());raise")
   out=ROOT/'build/m14-native/stage8/session-native';out.mkdir(parents=True,exist_ok=True)
-  (out/'observer.json').write_bytes((json.dumps(dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,rtc_observer_sha256=hashlib.sha256((ROOT/'tests/m14/rtc148_observer.py').read_bytes()).hexdigest(),production_worker_inputs=inputs,production_worker_sha256=hashlib.sha256(production.read_bytes()).hexdigest()),indent=2)+'\n').encode())
-  namespace=dict(__file__=str(source),__name__='session148_derived',production=production,rtc_begin148=rtc_begin148,rtc_end148=rtc_end148);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
+  executed=out/'executed-observer.py';executed.write_bytes(text.encode())
+  (out/'observer.json').write_bytes((json.dumps(dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,runner_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),rtc_observer_sha256=hashlib.sha256((ROOT/'tests/m14/rtc148_observer.py').read_bytes()).hexdigest(),production_worker_inputs=inputs,production_worker_sha256=hashlib.sha256(production.read_bytes()).hexdigest()),indent=2)+'\n').encode())
+  namespace=dict(__file__=str(source),__name__='session148_derived',production=production,rtc_begin148=rtc_begin148,rtc_end148=rtc_end148);exec(compile(text,str(executed),'exec'),namespace)
+  original_clone=namespace['clone'];owned=[]
+  def capture_clone(*args,**kwargs):
+   result=original_clone(*args,**kwargs);owned.append(result[1]);return result
+  namespace['clone']=capture_clone;namespace['main']();assert len(owned)==1
+  report=json.loads((out/'results.json').read_text())
+  try:
+   from shell148_readback import validate
+   report['windows_native_link_readback']=validate(owned[0],namespace['StoppedDisk'],namespace['library'],out)
+  except BaseException:
+   import traceback
+   report['passed']=False;report['windows_link_readback_error']=namespace['ui'].q.clean(traceback.format_exc());raise
+  finally:(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode())
  finally:sys.meta_path.remove(loader)
 if __name__=='__main__':main()

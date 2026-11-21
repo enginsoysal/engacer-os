@@ -462,6 +462,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "controls144.inc"
 #include "dialog145.inc"
 #include "com144.inc"
+#include "shell-link148.inc"
 #include "security-api144.inc"
 #include "shell-icons144.inc"
 #include "shell-folders145.inc"
@@ -471,7 +472,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 typedef struct {const char*name;void*address;unsigned provider;} api8;
 #define API8(name,provider) {#name,(void*)(uintptr_t)&f_##name,provider}
 static const api8 api8_table[]={
- API8(VerSetConditionMask,1),
+ API8(VerSetConditionMask,1),API8(CoCreateInstance,9),
  API8(VerifyVersionInfoW,1),
  API8(GetOpenFileNameW,7),API8(GetSaveFileNameW,7),API8(CommDlgExtendedError,7),
  API8(OpenClipboard,4),API8(CloseClipboard,4),API8(EmptyClipboard,4),API8(SetClipboardData,4),API8(GetClipboardData,4),API8(IsClipboardFormatAvailable,4),API8(CountClipboardFormats,4),API8(EnumClipboardFormats,4),API8(GetClipboardOwner,4),API8(GetOpenClipboardWindow,4),API8(GetClipboardSequenceNumber,4),

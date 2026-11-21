@@ -13,6 +13,9 @@ __declspec(dllimport) int SHSetValueW(uint64_t,const uint16_t*,const uint16_t*,u
 __declspec(dllimport) int SHDeleteKeyW(uint64_t,const uint16_t*);
 __declspec(dllimport) int RegEnumKeyExW(uint64_t,unsigned,uint16_t*,unsigned*,unsigned*,uint16_t*,unsigned*,void*);
 __declspec(dllimport) void GetSystemTime(uint16_t*);
+__declspec(dllimport) unsigned GetTempPathW(unsigned,uint16_t*);
+__declspec(dllimport) int DeleteFileW(const uint16_t*);
+__declspec(dllimport) int ReadFile(uint64_t,void*,unsigned,unsigned*,void*);
 __declspec(dllimport) uint64_t VerSetConditionMask(uint64_t,unsigned,uint8_t);
 __declspec(dllimport) int GetVersionExW(void*);
 __declspec(dllimport) int VerifyVersionInfoW(const void*,unsigned,uint64_t);
@@ -326,6 +329,37 @@ static void registry_delete_tests148(void){
  check(!RegCloseKey(key)&&!RegDeleteKeyW(root,path)&&SHDeleteValueW(root,path,L"alpha")==2,618);
  say148("M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\n");
 }
+static void shell_link_tests148(void){
+ uint64_t ole=LoadLibraryExA("ole32.dll",0,0);int(*initialize)(void*,unsigned)=GetProcAddress(ole,"CoInitializeEx");void(*uninitialize)(void)=GetProcAddress(ole,"CoUninitialize");int(*create)(const void*,void*,unsigned,const void*,void**)=GetProcAddress(ole,"CoCreateInstance");check(ole&&initialize&&uninitialize&&create,700);
+ const uint8_t clsid[16]={1,0x14,2,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46},iid[16]={0xf9,0x14,2,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46},persist_iid[16]={0x0b,1,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46},unknown_iid[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46},bad_iid[16]={0x48};
+ void*link=(void*)1;check(create(clsid,0,1,iid,&link)==(int)0x800401f0u&&!link&&initialize(0,2)==0,701);
+ check(create(clsid,(void*)1,1,iid,&link)==(int)0x80040110u&&!link&&create(bad_iid,0,1,iid,&link)==(int)0x80040154u&&!link,702);
+ check(create(clsid,0,1,bad_iid,&link)==(int)0x80004002u&&!link&&create(clsid,0,1,iid,&link)==0&&link,703);
+#define SL148(p,slot,result,args) ((result(*)args)(*(void***)p)[slot])
+ void*persist=0,*identity=0;check(!SL148(link,0,int,(void*,const void*,void**))(link,persist_iid,&persist)&&persist,704);
+ check(!SL148(persist,0,int,(void*,const void*,void**))(persist,unknown_iid,&identity)&&identity==link&&SL148(identity,2,unsigned,(void*))(identity)==2,705);
+ uint16_t target[260],filename[260],copy[260];unsigned units=GetModuleFileNameW(0,target,260),temp=GetTempPathW(260,filename);check(units&&units<260&&temp&&temp+22<260,706);
+ const uint16_t leaf[]=L"NativeShellLink148.lnk";for(unsigned i=0;i<sizeof(leaf)/2;++i)filename[temp+i]=leaf[i];for(unsigned i=0;i<=temp;++i)copy[i]=filename[i];const uint16_t copy_leaf[]=L"NativeShellCopy148.lnk";for(unsigned i=0;i<sizeof(copy_leaf)/2;++i)copy[temp+i]=copy_leaf[i];
+ check(!SL148(link,20,int,(void*,const uint16_t*))(link,target)&&!SL148(link,9,int,(void*,const uint16_t*))(link,L"C:\\Users\\Owner\\Documents"),707);
+ check(!SL148(link,11,int,(void*,const uint16_t*))(link,L"--native 148")&&!SL148(link,7,int,(void*,const uint16_t*))(link,L"Owned shortcut \u00e4"),708);
+ check(!SL148(link,17,int,(void*,const uint16_t*,int))(link,target,7)&&!SL148(link,15,int,(void*,int))(link,3),709);
+ uint16_t icon[260],description[260];int icon_index=-1,show=0;check(!SL148(link,16,int,(void*,uint16_t*,int,int*))(link,icon,260,&icon_index)&&icon_index==7&&!SL148(link,14,int,(void*,int*))(link,&show)&&show==3,710);for(unsigned i=0;target[i]||icon[i];++i)check(target[i]==icon[i],711);
+ const uint16_t expected[]=L"Owned shortcut \u00e4";check(!SL148(link,6,int,(void*,uint16_t*,int))(link,description,260),712);for(unsigned i=0;i<sizeof(expected)/2;++i)check(description[i]==expected[i],713);
+ identity=(void*)1;check(SL148(link,0,int,(void*,const void*,void**))(link,bad_iid,&identity)==(int)0x80004002u&&!identity,714);
+ check(SL148(persist,4,int,(void*))(persist)==0&&!SL148(persist,6,int,(void*,const uint16_t*,int))(persist,filename,1)&&SL148(persist,4,int,(void*))(persist)==1,715);
+ check(!SL148(link,11,int,(void*,const uint16_t*))(link,L"--native 148")&&!SL148(persist,6,int,(void*,const uint16_t*,int))(persist,copy,0)&&SL148(persist,4,int,(void*))(persist)==0,716);
+ check(!SL148(persist,6,int,(void*,const uint16_t*,int))(persist,0,1)&&SL148(persist,4,int,(void*))(persist)==1&&DeleteFileW(copy),717);
+ check(!SL148(link,7,int,(void*,const uint16_t*))(link,L"Owned shortcut \u00e4")&&SL148(persist,6,int,(void*,const uint16_t*,int))(persist,L"C:\\Windows\\System32\\Denied148.lnk",1)==(int)0x80070005u&&SL148(persist,4,int,(void*))(persist)==0,718);
+ check(!SL148(persist,6,int,(void*,const uint16_t*,int))(persist,0,1)&&SL148(persist,4,int,(void*))(persist)==1,719);
+ uint64_t file=CreateFileW(filename,0x80000000,1,0,3,0x80,0);uint8_t data[4096];unsigned got=0;check(file!=UINT64_MAX&&ReadFile(file,data,sizeof(data),&got,0)&&got>76&&got<4096&&CloseHandle(file),720);
+ check(*(uint32_t*)data==76&&data[4]==1&&data[5]==0x14&&data[6]==2&&(data[20]&64)&&*(int32_t*)(data+56)==7,721);
+ check(SL148(persist,2,unsigned,(void*))(persist)==1&&SL148(link,2,unsigned,(void*))(link)==0,722);
+ void*objects[32];for(unsigned i=0;i<32;++i)check(!create(clsid,0,1,iid,objects+i)&&objects[i],723);link=(void*)1;check(create(clsid,0,1,iid,&link)==(int)0x8007000eu&&!link,724);for(unsigned i=0;i<32;++i)check(SL148(objects[i],2,unsigned,(void*))(objects[i])==0,725);
+ for(unsigned i=0;i<64;++i){check(!create(clsid,0,1,iid,&link)&&!SL148(link,20,int,(void*,const uint16_t*))(link,target)&&SL148(link,2,unsigned,(void*))(link)==0,726);}
+ uninitialize();check(FreeLibrary(ole),727);say148("M148_NATIVE_SHELL_LINK_COM_SAVE_IDENTITY_QUOTA_RELEASE_PASS\n");
+#undef SL148
+}
+
 void entry(void){
 
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
@@ -335,7 +369,7 @@ void entry(void){
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
- font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();
+ font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();shell_link_tests148();
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
  check(MulDiv(420,96,96)==420&&MulDiv(5,1,2)==3&&MulDiv(-5,1,2)==-3&&MulDiv(5,1,-2)==-3&&MulDiv(-5,1,-2)==3&&MulDiv(INT32_MAX,INT32_MAX,INT32_MAX)==INT32_MAX&&MulDiv(INT32_MAX,INT32_MAX,1)==-1&&MulDiv(1,1,0)==-1&&MulDiv(INT32_MIN,0,1)==0&&MulDiv(INT32_MIN,1,INT32_MIN)==-1&&GetLastError()==0x148,394);

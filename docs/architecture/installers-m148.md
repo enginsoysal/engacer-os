@@ -528,3 +528,18 @@ its own reported reference version. This neither imports host-version data into
 the guest nor claims that every feature of that Windows version exists. Manifest
 negotiation and additional version profiles remain separate work. Feature/API
 presence and original application behavior must still be tested independently.
+
+## Selected ShellLink COM activation and persistence
+
+The M14.8 candidate activates one shared Windows class, ShellLink, inside an
+initialized native apartment. It provides real reference identity and selected
+Unicode setters/getters with 32 bounded objects and exact-length property storage.
+Saving uses the existing checked native file layer and a binary MS-SHLLINK
+encoder; Unicode icon StringData extends the existing unchanged MSI encoder.
+A remembered filename supports Save(NULL); copy-save does not clear dirty state.
+No filename or COM success grants access outside existing filesystem authority.
+Unsupported PIDL, loading, resolving, task-allocated current-file queries and
+other class/RPC features return explicit errors. This is a selected interface
+subset, not general COM or shortcut-launch compatibility. Original Windows must
+read the actual native-saved file, independently of host-encoder checks, before
+this candidate is qualified.

@@ -1,0 +1,1 @@
+New durable-capacity and initialized-folder contracts pass three parent scenarios, including the RTC fault and real 65-key/130-value readbacks/removal. The original installer now obtains the actual Desktop shortcut path and stops at unimplemented CoCreateInstance. No complete installation, shortcut save or ordinary EXE route is qualified.

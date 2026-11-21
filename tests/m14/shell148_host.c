@@ -1,0 +1,2 @@
+#include "../../user/windows8/shell-link-format148.h"
+__declspec(dllexport) unsigned encode148(const char*target,const char*working,const char*arguments,const char*description,const char*icon,int icon_index,unsigned show,unsigned file_bytes,uint8_t*out,unsigned capacity,unsigned*bytes){return shell_link_encode148(target,working,arguments,description,icon,icon_index,show,file_bytes,out,capacity,bytes);}
