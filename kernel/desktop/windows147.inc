@@ -45,7 +45,7 @@ static void review_capture147(application*a,const w8_info*i){
  notice(a,r->profile&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147)?"Installer reviewed. You can now confirm installation.":"Installer reviewed. Installation of this package is not enabled yet; no files were installed.");
 }
 static void init_windows8(application*app,uint64_t token){
- memset(&app->msi147,0,sizeof(app->msi147));if(!app->path[0])root_path(app->path,"Downloads/7z2606-x64.msi");app->number=0;app->offset=0;app->entered=0;
+ unsigned supplied=app->path[0]!=0;memset(&app->msi147,0,sizeof(app->msi147));if(!supplied)root_path(app->path,"Downloads/7z2606-x64.msi");else if(!windows_choose_source147(app,app->path)){app->msi147.selected=1;notice(app,"Choose an available MSI in your folders, then review it before installing.");}app->number=0;app->offset=0;app->entered=0;
  int width=(int)model.width-80;if(width>940)width=940;int height=(int)model.height-120;if(height>730)height=730;
  desktop_place(&model,token,(desktop_rect){((int)model.width-width)/2,35,width,height});
 }
@@ -92,7 +92,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  }
  if(info->state!=1)button(token,x+width-174,y+82,174,"Installed apps",PRODUCTS147,0);
  const char*message=app->notice[0]?app->notice:info->message[0]?info->message:
-  info->state==1?"7-Zip is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?"Ready. Open the original Windows app or try creating and extracting a test archive.":recovering?"A previous operation needs cleanup. Choose Recover app. The original download is not needed.":"Choose Install 7-Zip to get started. Use Choose MSI to review another installer. Review alone does not install it.";
+  info->state==1?"A Windows task is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?(legacy?"Ready. Open 7-Zip or try creating and extracting a test archive.":"Installed. Opening this app is not supported yet. Use Installed apps to manage it."):recovering?"A previous operation needs cleanup. Choose Recover app. The original download is not needed.":"Choose Install app for the included 7-Zip, or Choose MSI to review another installer. Review alone does not install it.";
  ui73_paragraph(x,y+294,width,info->command==W8_RUN||info->command==W8_INSPECT?2:3,message,ink());
  if(info->state==1&&info->command!=W8_RUN){
   unsigned filled=(unsigned)width*info->percent/100;ui73_round(x,y+374,width,8,4,desktop_dark16()?0x233c47:0xdce8ee);

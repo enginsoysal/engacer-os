@@ -1,0 +1,298 @@
+{
+  "passed": false,
+  "build_id": "5afb03120dfcd8d559e5fb0755384f5a",
+  "workers": 3,
+  "tasks": {
+    "compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 75.29700000002049,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "7",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "starter": {
+      "exit_code": 0,
+      "observer_wall_seconds": 2.7820000000065193,
+      "command": [
+        "tools/release/vmware_starter14.py",
+        "--stage",
+        "7"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 80.14100000000326,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "7",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 112.625,
+      "command": [
+        "tests/m14/native1.py",
+        "--stage",
+        "7",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "apps-compact": {
+      "exit_code": 0,
+      "observer_wall_seconds": 167.2960000000021,
+      "command": [
+        "tests/m14/replay7.py",
+        "apps_native4",
+        "--profile",
+        "compact"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "apps-ordinary": {
+      "exit_code": 0,
+      "observer_wall_seconds": 170.35899999999674,
+      "command": [
+        "tests/m14/replay7.py",
+        "apps_native4",
+        "--profile",
+        "ordinary"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "firmware147-bios-iso": {
+      "exit_code": 0,
+      "observer_wall_seconds": 34.60999999998603,
+      "command": [
+        "tests/m14/replay7.py",
+        "firmware147_run",
+        "--firmware",
+        "bios",
+        "--media",
+        "iso"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "firmware147-bios-usb": {
+      "exit_code": 0,
+      "observer_wall_seconds": 34.921000000002095,
+      "command": [
+        "tests/m14/replay7.py",
+        "firmware147_run",
+        "--firmware",
+        "bios",
+        "--media",
+        "usb"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "firmware147-uefi-iso": {
+      "exit_code": 0,
+      "observer_wall_seconds": 71.875,
+      "command": [
+        "tests/m14/replay7.py",
+        "firmware147_run",
+        "--firmware",
+        "uefi",
+        "--media",
+        "iso"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "firmware147-uefi-usb": {
+      "exit_code": 0,
+      "observer_wall_seconds": 70.18799999999464,
+      "command": [
+        "tests/m14/replay7.py",
+        "firmware147_run",
+        "--firmware",
+        "uefi",
+        "--media",
+        "usb"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "chords146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 39.48399999999674,
+      "command": [
+        "tests/m14/replay7.py",
+        "chords146_run"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "apps-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 298.875,
+      "command": [
+        "tests/m14/replay7.py",
+        "apps_native4",
+        "--profile",
+        "4k"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "clipboard146": {
+      "exit_code": 0,
+      "observer_wall_seconds": 59.969000000011874,
+      "command": [
+        "tests/m14/replay7.py",
+        "clipboard146_run"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    },
+    "font146-4k": {
+      "exit_code": 0,
+      "observer_wall_seconds": 51.812999999994645,
+      "command": [
+        "tests/m14/replay7.py",
+        "font146_run",
+        "--profile",
+        "4k",
+        "--cycles",
+        "1"
+      ],
+      "source_tree_sha256": "bc46107f228659a0ff1069f7fc8a42e615d359151cc357320e3b19e33870d2a4"
+    }
+  },
+  "pending": [
+    "com",
+    "controls",
+    "deep",
+    "dialog145-host",
+    "dib-host",
+    "document146-host",
+    "faults",
+    "files-browser-download",
+    "files-environment",
+    "files-files",
+    "files-find",
+    "files-metadata",
+    "files-paths",
+    "files-registry",
+    "files-state-lifetime",
+    "font146-host",
+    "font146-ordinary",
+    "formats",
+    "global146",
+    "global146-host",
+    "guard145",
+    "heap",
+    "keymap145-host",
+    "keys145",
+    "keys145-host",
+    "list145",
+    "mapping146",
+    "mapping146-host",
+    "menus",
+    "menus145",
+    "msi147-api-host",
+    "msi147-api-native",
+    "msi147-atom-native",
+    "msi147-binary-host",
+    "msi147-cab-host",
+    "msi147-codepage-host",
+    "msi147-codepage-native",
+    "msi147-completion-faults",
+    "msi147-condition-host",
+    "msi147-custom-host",
+    "msi147-files-host",
+    "msi147-fls-native",
+    "msi147-generic-cancel",
+    "msi147-generic-default",
+    "msi147-generic-french",
+    "msi147-install-host",
+    "msi147-journal-host",
+    "msi147-link-host",
+    "msi147-machine-native",
+    "msi147-pipe-native",
+    "msi147-plan-host",
+    "msi147-properties-host",
+    "msi147-record-host",
+    "msi147-registry-host",
+    "msi147-removal-preservation",
+    "msi147-remove-host",
+    "msi147-review-stale",
+    "msi147-slist-native",
+    "msi147-storage",
+    "msi147-terminal-host",
+    "msi147-text-host",
+    "msi147-tools-host",
+    "msi147-transaction-host",
+    "msi147-version-host",
+    "msi147-version-native",
+    "msi147-wix_action-native",
+    "msi147-wix_system-native",
+    "original-4k",
+    "original-clipboard146-4k",
+    "original-clipboard146-compact",
+    "original-clipboard146-ordinary",
+    "original-compact",
+    "original-list145",
+    "original-list145-4k",
+    "original-list145-ordinary",
+    "original-menu-4k",
+    "original-menu-compact",
+    "original-ordinary",
+    "original-picker146-4k",
+    "original-picker146-compact",
+    "original-picker146-ordinary",
+    "original-resources",
+    "pack146-host",
+    "paint",
+    "picker-lifetime146",
+    "picker-restart146",
+    "picker146",
+    "protect145",
+    "queue-host",
+    "raster-4k",
+    "raster-compact",
+    "resource-host",
+    "resources",
+    "runtime-cancel",
+    "runtime-download-stream",
+    "runtime-exception-invalid",
+    "runtime-exception-nested",
+    "runtime-exceptions",
+    "runtime-find-host",
+    "runtime-http-host",
+    "runtime-inspection",
+    "runtime-last-thread",
+    "runtime-msi-cancel",
+    "runtime-named-sync",
+    "runtime-named-sync-cancel",
+    "runtime-path-host",
+    "runtime-probes",
+    "runtime-processes",
+    "runtime-threads",
+    "runtime-tls",
+    "runtime-unicode-host",
+    "runtime-unwind",
+    "runtime-unwind-chain",
+    "runtime-unwind-invalid",
+    "source145-host",
+    "static146-host",
+    "targets145-host",
+    "timers",
+    "vmware",
+    "windows"
+  ],
+  "running": [
+    "dialogs145",
+    "font146-compact",
+    "owners"
+  ],
+  "observer_wall_seconds": 517.2189999999828,
+  "scope": "Task orchestration only; direct native/host/source/media and public acceptance remain separate gates"
+}

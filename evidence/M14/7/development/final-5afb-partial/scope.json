@@ -1,0 +1,7 @@
+{
+  "complete": false,
+  "reason": "Explicitly stopped owned campaign processes to correct misleading runtime-status text and MSI file-entry review state before public delivery",
+  "completed_tasks": 14,
+  "passed_completed_tasks": 14,
+  "not_a_native_failure_or_stability_soak": true
+}

@@ -1,4 +1,4 @@
-"""Retain 96 earlier tasks and add 41 MSI/firmware qualification tasks."""
+"""Retain 96 earlier tasks and add 42 MSI/firmware qualification tasks."""
 import hashlib
 import json
 import os
@@ -89,7 +89,7 @@ def main():
   add('msi147-'+name+'-native','tests/m14/'+('wix_action147_lifetimes.py'if name=='wix_action'else name+'147_run.py'),dependencies=('apps-compact',),priority=6)
  for name,script,arguments in (
   ('generic-default','generic147_native.py',()),('generic-french','generic147_native.py',('--french',)),
-  ('generic-cancel','install147_cancel.py',()),('review-stale','review147_stale.py',()),
+  ('generic-cancel','install147_cancel.py',()),('file-entry','msi_entry147_native.py',()),('review-stale','review147_stale.py',()),
   ('removal-preservation','remove147_native.py',()),('completion-faults','terminal147_native.py',()),
   ('storage','storage147_native.py',())):
   add('msi147-'+name,'tests/m14/'+script,arguments,('compact',),5)
@@ -97,7 +97,7 @@ def main():
  for firmware in ('bios','uefi'):
   for medium in ('iso','usb'):
    add('firmware147-'+firmware+'-'+medium,'tests/m14/firmware147_run.py',('--firmware',firmware,'--media',medium),priority=2)
- assert len(tasks)==137,len(tasks)'''
+ assert len(tasks)==138,len(tasks)'''
     source = source.replace(before, addition)
     before = " assert all(t['dependencies']<=tasks.keys()for t in tasks.values())"
     assert source.count(before) == 1
@@ -123,7 +123,7 @@ def main():
     derivation = dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),
                       executed_sha256=hashlib.sha256(source.encode()).hexdigest(),
                       adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                      replacements=replacements, retained_tasks=74, total_tasks=137)
+                      replacements=replacements, retained_tasks=74, total_tasks=138)
     namespace = dict(__name__='m146_suite_derivation', __file__=str(canonical), suite_derivation146=derivation, suite_list146=listing, validate_resume146=lambda *args: validate_resume(prior_tree,*args))
     exec(compile(source, str(canonical), 'exec'), namespace)
     namespace['main']()

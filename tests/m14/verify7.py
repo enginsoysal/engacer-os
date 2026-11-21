@@ -42,7 +42,7 @@ def main():
  # Canonical/executed receipts are independently required; orchestration hashes alone cannot qualify observers.
  observers=[]
  import re
- suite=read(work/'development/final7/suite-results.json');assert suite['passed']and suite['build_id']==build and len(suite['tasks'])==137
+ suite=read(work/'development/final7/suite-results.json');assert suite['passed']and suite['build_id']==build and len(suite['tasks'])==138
  required=[]
  for task in suite['tasks'].values():
   assert task['exit_code']==0
@@ -50,7 +50,7 @@ def main():
   if command[0]!='tests/m14/replay7.py':continue
   target,arguments=command[1],command[2:];suffix='-'.join(re.sub('[^a-zA-Z0-9_-]','',a)for a in arguments)
   required.append(work/'replay-observers'/(target+('-'+suffix if suffix else'')+'.json'))
- assert len(required)==133
+ assert len(required)==134
  for p in required:
   r=read(p);assert r['passed']and r['build_id']==build
   assert r['adapter_sha256']==hashlib.sha256((ROOT/'tests/m14/replay7.py').read_bytes()).hexdigest()
@@ -168,7 +168,7 @@ def main():
  result['native_groups'].extend(names);result['host_groups'].extend(host_names)
  result['limits'].extend(['Original Notepad++ and Sumatra startup reaches FlsAlloc but their interfaces, installation and tasks remain unqualified; required runtime work continues in M14.10 and complete corpus acceptance in M14.12','Read-only/read-write/execute-read image/allocation protections only; general Windows virtual-memory semantics remain incomplete','Original 7-Zip details clip at requested column widths; universal controls, theme, drag services and arbitrary Windows application compatibility are not qualified'])
  # The new MSI groups must all be actual current native results.
- msi_native=['api-native','codepage-native','atom-native','fls-native','machine-native','pipe-native','slist-native','version-native','wix-system-native','wix-action-native','generic-native-default','generic-native-french','generic-cancel-native','review-stale-native','remove-native','terminal-native','storage-native']+[f'firmware-{firmware}-{medium}'for firmware in('bios','uefi')for medium in('iso','usb')]
+ msi_native=['api-native','codepage-native','atom-native','fls-native','machine-native','pipe-native','slist-native','version-native','wix-system-native','wix-action-native','generic-native-default','generic-native-french','generic-cancel-native','msi-entry-native','review-stale-native','remove-native','terminal-native','storage-native']+[f'firmware-{firmware}-{medium}'for firmware in('bios','uefi')for medium in('iso','usb')]
  msi_results={name:read(work/name/'results.json')for name in msi_native}
  for name,r in msi_results.items():
   assert r['passed']and r.get('build_id',r.get('kernel_build_id',r.get('os_build_id')))==build,name
@@ -180,6 +180,7 @@ def main():
   r=msi_results['generic-native-'+profile];assert len(r['tasks'])==4 and all(t['status']==0 and t['retained_managed_pages']==0 for t in r['tasks']);assert r['production_worker_final_restart_preserves_user_data'];assert len(r['registry_readback'])==4 and all(x['write_callbacks_refused']and len(x['checked'])==reg_count for x in r['registry_readback']);assert all(t['payloads']==217 and t['links']==1 for t in r['tasks']if'payloads'in t)
   if profile=='french':assert r['preserved_generated_file']and r['preserved_case_alias'];assert all('M147_ORIGINAL_DEFERRED_BODY'in t['output']for t in r['tasks'])
  r=msi_results['generic-cancel-native'];assert r['cancel']['retained_managed_pages']==0 and r['recovery']['retained_managed_pages']==0 and r['recovery']['original_download_absent']
+ r=msi_results['msi-entry-native'];assert len(r['cases'])==2 and all(c['single_click_selects']and c['supplied_source_requires_review']and c['no_product_mutation']and c['retained_task_pages']==0 for c in r['cases'])
  r=msi_results['review-stale-native'];assert r['changed_source_blocks_confirmation']
  r=msi_results['terminal-native'];assert len(r['cases'])==2 and all(c['independent_restart_source_free_recovery']and c['original_download_absent']and c['source_cache_absent']and c['recovery_retained_managed_pages']==0 for c in r['cases'])
  r=msi_results['remove-native'];assert r['production_worker_restored_and_restart_preserves_saved_data']and all(t['retained_managed_pages']==0 for t in r['tasks'])

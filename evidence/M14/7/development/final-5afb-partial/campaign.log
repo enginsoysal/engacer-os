@@ -1,0 +1,31 @@
+START 4k
+START compact
+START ordinary
+END compact exit 0 completed 1 of 137
+START starter
+END starter exit 0 completed 2 of 137
+START apps-compact
+END ordinary exit 0 completed 3 of 137
+START apps-ordinary
+END 4k exit 0 completed 4 of 137
+START apps-4k
+END apps-compact exit 0 completed 5 of 137
+START firmware147-bios-iso
+END apps-ordinary exit 0 completed 6 of 137
+START firmware147-bios-usb
+END firmware147-bios-iso exit 0 completed 7 of 137
+START firmware147-uefi-iso
+END firmware147-bios-usb exit 0 completed 8 of 137
+START firmware147-uefi-usb
+END firmware147-uefi-iso exit 0 completed 9 of 137
+START owners
+END firmware147-uefi-usb exit 0 completed 10 of 137
+START chords146
+END chords146 exit 0 completed 11 of 137
+START clipboard146
+END apps-4k exit 0 completed 12 of 137
+START dialogs145
+END clipboard146 exit 0 completed 13 of 137
+START font146-4k
+END font146-4k exit 0 completed 14 of 137
+START font146-compact
