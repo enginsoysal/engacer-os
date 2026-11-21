@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": 2108,
+  "scope": "Production bounded MSI Unicode conversion/output sizing; not original custom-action qualification",
+  "sources": {
+    "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+    "tests/m14/text147_host.c": "0454076f6403af1b02c8ed999db1ac7a74a44e7bf4fb8844cd7bee9a2267c23d",
+    "tests/m14/text147_host.py": "82d084bcd81380e6b2b42af729ceb795629ea5704dffdbd21068294073802b06"
+  }
+}

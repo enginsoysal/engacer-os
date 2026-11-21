@@ -73,3 +73,11 @@ The first development build exceeded the existing 8 MiB low-memory kernel envelo
 ### Native read-only service integration result
 
 Candidate ed82ff06e537d9a4b026625e5ce25653 installs and reaches the desktop through the retained-ISO restart and two independent no-ISO starts. Its own x64 MSI service parses both unchanged original MSI packages in CPL3: 106 7-Zip files and 217 Notepad++ files. Five measured repeated lifetimes per package retain zero managed pages and no native UI state. The existing 7-Zip install/run/archive/extract/remove/reinstall path and all 106 payload hashes also pass. These are development results: generic write actions, actual original WiX execution and Notepad++ installation remain open. No M14.7 release is claimed.
+
+### Native MSI export foundation
+
+The reusable DLL now implements real privately owned record fields, generational handles, property access, condition evaluation and bounded log delivery. Records allocate lazily with 64 live handles, 32 data fields plus field zero, 4096-byte string values and a 256 KiB transient record budget. Failed updates preserve prior values; stale handles refuse. UTF-16 output counts code units and never truncates a surrogate pair. ANSI exports use the existing runtime UTF-8 ACP. A real critical section serializes the shared context; record creation also works without an installation session. Bind/unbind occur only while custom-action threads are quiescent.
+
+Supporting tests pass 3056 ownership checks, 2108 Unicode/buffer checks and 6466 API checks against both original MSI databases, including real host-lock concurrency. Host tests execute only Engacer code; original custom actions remain unqualified. The native DLL caller is being tested separately on the frozen development candidate. Required MSI exports still missing are not silently supplied.
+
+Primary API references: [MSI records](https://learn.microsoft.com/en-us/windows/win32/msi/working-with-records), [record formatting](https://learn.microsoft.com/en-us/windows/win32/api/msiquery/nf-msiquery-msiformatrecordw). Required original ordinal names were read from host export metadata only; no Windows code is copied into the OS.

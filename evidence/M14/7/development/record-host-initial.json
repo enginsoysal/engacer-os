@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": 3056,
+  "peak_host_allocated_bytes": 259727,
+  "retained_allocations": 0,
+  "scope": "Production record ownership core; native exported MSI API and original WiX execution remain separate",
+  "sources": {
+    "user/windows8/msi-record147.h": "6f1022cae19194091241da712bcf9a4add9966925df83101a1f4839fcf557506",
+    "tests/m14/record147_host.c": "6049f44d47ea86a290ab037b0d04cca8631efd6c3ddb43fef9b903b1b9226399",
+    "tests/m14/record147_host.py": "e5e5af950fcfbcf471c7f03fe3642af8e8841de925e6aef2c526e8283b7b0352"
+  }
+}
