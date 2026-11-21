@@ -47,6 +47,7 @@ typedef struct {char native[256];uint16_t windows[512];} w8_path_result143;
 typedef struct {char path[256];uint32_t access,share,creation,flags;} w8_file_request143;
 typedef struct {uint64_t offset,length;uint32_t flags,reserved;} w8_file_lock_request143;
 #define W8_FILE_COPY148 24u
+#define W8_FILE_WRITE148 25u
 #define W8_FILE_TAG143 UINT64_C(0x10000000)
 #define W8_REGISTRY_TAG143 UINT64_C(0xa0000000)
 typedef struct {uint64_t root,name,data,result;uint32_t access,flags,bytes,type,index,name_capacity;uint64_t name_output;} w8_registry_request143;

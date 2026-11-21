@@ -229,4 +229,23 @@ static int64_t file_copy148(unsigned destination,uint64_t source){
  file_clear_dirty143(to);to->size=from->size;to->backing_size=from->size;to->crc=entry->crc;to->existed=1;to->dirty=0;to->staged=0;file_modified143(to);
  return -(int64_t)file_flush_metadata143(to);
 }
+/* Whole-buffer writes to an empty/truncated file need no second RAM copy. */
+typedef struct {uint64_t pointer;unsigned error;} file_memory148;
+static unsigned file_memory_source148(void*opaque,uint64_t offset,void*out,unsigned bytes){file_memory148*source=opaque;if(user8(source->pointer+offset,out,bytes,0)){source->error=8;return 1;}return 0;}
+static int64_t file_write_large148(unsigned slot,uint64_t input,unsigned bytes){
+ if(slot>=32||!files8[slot].live)return -6;file8*grant=files8+slot;
+ if(!(grant->access&2)||!path8(grant->path,1))return -5;
+ if(bytes>64u*1024u*1024u)return -223;
+ file_object143*object=file_objects143[grant->object];if(bytes<=65536||grant->position||object->size)return -50;
+ if(input<W8_BASE||input>=W8_LIMIT||bytes>W8_LIMIT-input)return -998;
+ for(uint64_t at=input&~UINT64_C(4095);at<input+bytes;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -998;}
+ unsigned error=file_io_lock143(object,grant->generation,0,bytes,1);if(error)return -(int64_t)error;
+ const v6_entry*previous=find8(object->path);
+ if((previous&&!object->existed)||(!previous&&object->existed)||(previous&&(previous->kind!=1||previous->crc!=object->crc)))return -1117;
+ file_memory148 source={input,0};unsigned status=v6_put(m6_volume(),object->path,bytes,file_memory_source148,&source);
+ if(source.error)return -(int64_t)source.error;if(status)return status==V6_FULL?-112:status==V6_RO?-19:-1117;
+ const v6_entry*entry=find8(object->path);if(!entry)return -1117;
+ file_clear_dirty143(object);object->size=bytes;object->backing_size=bytes;object->crc=entry->crc;object->existed=1;object->dirty=0;object->staged=0;grant->position=bytes;file_modified143(object);
+ return bytes;
+}
 #endif

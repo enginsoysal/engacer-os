@@ -16,6 +16,10 @@ __declspec(dllimport) int GetFileAttributesExW(const W*,unsigned,void*);
 __declspec(dllimport) int SetFileTime(U,const U*,const U*,const U*);
 __declspec(dllimport) unsigned FormatMessageA(unsigned,const void*,unsigned,unsigned,void*,unsigned,void*);
 __declspec(dllimport) void* LocalFree(void*);
+__declspec(dllimport) void* VirtualAlloc(void*,U,unsigned,unsigned);
+__declspec(dllimport) int VirtualFree(void*,U,unsigned);
+__declspec(dllimport) int GetFileSizeEx(U,U*);
+__declspec(dllimport) int SetFilePointerEx(U,long long,U*,unsigned);
 static unsigned char data[8193],readback[8193];
 static void check(int value,unsigned code){if(!value)ExitProcess(code);}
 static void append(W*path,unsigned n,const W*tail){while(*tail)path[n++]=*tail++;path[n]=0;}
@@ -37,5 +41,14 @@ void entry(void){char*message=0;unsigned chars=FormatMessageA(0x1300,0,8,0x400,&
  f=CreateFileW(b,0x80000000,1,0,3,0x80,0);check(f!=~0ull,121);unsigned total=0;
  for(;;){unsigned got=0;check(ReadFile(f,readback,4096,&got,0),122);if(!got)break;for(unsigned j=0;j<got;++j)check(readback[j]==(unsigned char)((total+j)*37+11),123);total+=got;}
  check(total==11u*1024*1024&&CloseHandle(f)&&DeleteFileW(b),124);
+ unsigned large_bytes=11u*1024*1024;unsigned char*large=VirtualAlloc(0,large_bytes,0x3000,4);check(large!=0,131);for(unsigned j=0;j<large_bytes;++j)large[j]=(unsigned char)(j*37+11);
+ f=CreateFileW(b,0xc0000000,0,0,1,0x80,0);check(f!=~0ull,132);wrote=99;U size=99,position=99;
+ check(!WriteFile(f,(void*)(U)1,70000,&wrote,0)&&!wrote&&GetLastError()==998&&GetFileSizeEx(f,&size)&&!size&&SetFilePointerEx(f,0,&position,1)&&!position,133);
+ check(!WriteFile(f,large,64u*1024*1024+1,&wrote,0)&&!wrote&&GetLastError()==223,134);
+ check(WriteFile(f,large,large_bytes,&wrote,0)&&wrote==large_bytes&&SetFilePointerEx(f,0,&position,1)&&position==large_bytes&&GetFileSizeEx(f,&size)&&size==large_bytes&&CloseHandle(f),135);
+ check(VirtualFree(large,0,0x8000),136);f=CreateFileW(b,0x80000000,1,0,3,0x80,0);check(f!=~0ull,137);total=0;
+ for(;;){unsigned got=0;check(ReadFile(f,readback,4096,&got,0),138);if(!got)break;for(unsigned j=0;j<got;++j)check(readback[j]==(unsigned char)((total+j)*37+11),139);total+=got;}
+ check(total==large_bytes&&CloseHandle(f)&&DeleteFileW(b),140);
+ static const char bulk_ok[]="M148_LARGE_WRITE_STREAM_AND_POINTER_GUARDS_PASS\n";WriteFile(GetStdHandle((unsigned)-11),bulk_ok,sizeof(bulk_ok)-1,&wrote,0);
  static const char ok[]="M148_COPY_FILE_BYTES_REPLACEMENT_METADATA_GUARDS_PASS\n";WriteFile(GetStdHandle((unsigned)-11),ok,sizeof(ok)-1,&wrote,0);ExitProcess(0);
 }

@@ -11,7 +11,7 @@ def main():
  try:
   source=ROOT/'tests/m14/unwind_native2.py';raw=source.read_bytes();text=raw.decode()
   for a,b in replay8.REPLACEMENTS:text=text.replace(a,b)
-  replacements=[('from unwind_fixtures2 import build','from copy148_build import build'),('m142-unwind','m148-copy'),("stage8/unwind'","stage8/copy-native'"),('M142_C_SEH_FINALLY_UNWIND_PASS','M148_COPY_FILE_BYTES_REPLACEMENT_METADATA_GUARDS_PASS'),('Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification','Native CopyFileW bytes, replacement, metadata, readonly/hidden guards, same-file protection, missing source and empty file'),('handled_faults_per_execution=60','copied_payload_bytes=8193,large_copied_payload_bytes=11*1024*1024')]
+  replacements=[('from unwind_fixtures2 import build','from copy148_build import build'),('m142-unwind','m148-copy'),("stage8/unwind'","stage8/copy-native'"),('M142_C_SEH_FINALLY_UNWIND_PASS','M148_COPY_FILE_BYTES_REPLACEMENT_METADATA_GUARDS_PASS'),('Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification','Native CopyFileW bytes, replacement, metadata, readonly/hidden guards, same-file protection, missing source and empty file'),('handled_faults_per_execution=60','copied_payload_bytes=8193,large_copied_payload_bytes=11*1024*1024,large_written_payload_bytes=11*1024*1024')]
   for a,b in replacements:
    assert a in text,a
    text=text.replace(a,b)

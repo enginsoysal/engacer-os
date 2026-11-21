@@ -160,6 +160,9 @@ static int MS f_WriteFile(HANDLE h,const void*in,unsigned size,unsigned*written,
  if(pipe_handle147(h))return pipe_write147(h,in,size,written);
 #endif
  if(h==2||h==3){const uint8_t*p=in;unsigned remain=size;while(remain){unsigned n=remain>4096?4096:remain;if((int64_t)sys8(W8_SYS_OUTPUT,(uint64_t)p,n,0,0,0)<0){last8(29);return 0;}p+=n;remain-=n;}*written=size;return 1;}
+#ifdef ENGINE_M14
+ if(size>65536){int64_t result=file_api143(h,W8_FILE_WRITE148,(uint64_t)(uintptr_t)in,size);if(result!=-50){if(result<0)return 0;*written=(unsigned)result;return 1;}}
+#endif
  unsigned total=0;while(total<size){unsigned count=size-total;if(count>4096)count=4096;int64_t n=file_api143(h,2,(uint64_t)(uintptr_t)((const uint8_t*)in+total),count);if(n<0){*written=total;return 0;}total+=(unsigned)n;}
  if(!size&&file_api143(h,2,(uint64_t)(uintptr_t)in,0)<0)return 0;*written=total;return 1;
 }
