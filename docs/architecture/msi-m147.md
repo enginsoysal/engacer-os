@@ -81,3 +81,9 @@ The reusable DLL now implements real privately owned record fields, generational
 Supporting tests pass 3056 ownership checks, 2108 Unicode/buffer checks and 6466 API checks against both original MSI databases, including real host-lock concurrency. Host tests execute only Engacer code; original custom actions remain unqualified. The native DLL caller is being tested separately on the frozen development candidate. Required MSI exports still missing are not silently supplied.
 
 Primary API references: [MSI records](https://learn.microsoft.com/en-us/windows/win32/msi/working-with-records), [record formatting](https://learn.microsoft.com/en-us/windows/win32/api/msiquery/nf-msiquery-msiformatrecordw). Required original ordinal names were read from host export metadata only; no Windows code is copied into the OS.
+
+### Deferred API context and record formatting
+
+The next API revision adds numeric-record-then-property formatting, costed target-directory lookup, real session reboot-request flags, and restricted deferred CustomActionData/ProductCode/UserSID reads. Deferred formatting only exposes CustomActionData/ProductCode, following the primary deferred-context contract. Unsupported nested/optional formatted groups still refuse explicitly. Reboot flags record requests; they do not reboot the machine automatically. Supporting API tests now pass 6512 checks; this revision is not yet the native-export pilot DLL.
+
+References: [deferred context](https://learn.microsoft.com/en-us/windows/win32/msi/obtaining-context-information-for-deferred-execution-custom-actions), [run modes](https://learn.microsoft.com/en-us/windows/win32/api/msiquery/nf-msiquery-msigetmode), [record data size](https://learn.microsoft.com/en-us/windows/win32/api/msiquery/nf-msiquery-msirecorddatasize).
