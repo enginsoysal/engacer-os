@@ -1,0 +1,46 @@
+{
+  "scope": "Engacer-authored native service build; execution/installation qualification is separate",
+  "sources": {
+    "user/windows8/msi-native147.c": "4d2397962f54e3b0d2e93202027e99c3d23249fc53f0f929f8c9375cc7f6c7ea",
+    "user/windows8/msi-service147.c": "cad961ef44bc8bdbf0344245f785a18c5dcae9aec3659002727003e797ea30c7",
+    "user/windows8/msi-api147.c": "2477da9c69651d2c923568ed2766400ff2e9ff63a5a9029d01c17abffcb27d2a",
+    "user/windows8/msi-custom147.c": "f1d6cab2330dd2e0e4bfefce0bc37106a94906e3abcdf958d9e886cb647e91d5",
+    "user/windows8/msi-journal147.c": "a0887e3c429dd9ac93640c3b7be333e80d6913462823d6ec618912d3ea709c9a",
+    "user/windows8/msi-files147.c": "1c9bcfc70550dca04137abfb21715c5951f6d7932ae1dd9c61322aff304ea804",
+    "user/windows8/msi-registry147.c": "6c1cb730293e07e064ca866b8e8cfbf65426b8540e00a3f487f4a22a7c10080c",
+    "user/windows8/msi-shortcuts147.c": "a0e481b6dfe3a60c1426f86f59a9aac22ca7896764701e63d02f96a4de4f23ec",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "user/windows8/msiexec147.c": "02c3cdd78c67d24b59fff4a92c9870ce94b34ffb2598a0692220b91aea73330d",
+    "user/windows8/msi-plan147.h": "10c2124a781b26a8c565ab3d598c85ee6eeb6254fc74e0b032572f268052678f",
+    "user/windows8/msi-properties147.h": "6a9d0db86a2f24b13e2b86ea28546b19884586bd1d0255916e94d1041bf3679b",
+    "user/windows8/msi-condition147.h": "2b7f67b911c464f72355a494ddd85042c6eddc95802d51e04e2cf223c171d515",
+    "user/windows8/cab147.h": "4abefd395274d4fb281912f0074943052907c427f2722758986f3eeb4d380bf5",
+    "user/windows8/msi_db.h": "79b020bad568b03d01c25337cef2dba57e4b7dffbd12f465bd54d991ef5d2fe1",
+    "user/windows8/msi-record147.h": "6f1022cae19194091241da712bcf9a4add9966925df83101a1f4839fcf557506",
+    "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+    "user/windows8/msi-custom147.h": "2a5a3ef18b1fef4bb94353285fb7164bf7487b51d291cebe5ee1e62146dca04e",
+    "user/windows8/msi-journal147.h": "43d81a5d5ec5d0d8c182f346370c5bf0ccf25ae9ce84d964ece784e4b0c50ca4",
+    "user/windows8/msi-files147.h": "4cf0f0dd3552b387c305cf85000a8bd87858d1833723ac46b9a6bc2b4374ecde",
+    "user/windows8/msi-registry147.h": "7414c079c22a9ca9b363036cfad6276c0a072a2823dc2347e0ff2ebd54e52636",
+    "user/windows8/msi-shortcuts147.h": "43f9746119298592e72190ff488a566b0611fce9cbc99f53dfe4b24cfc2efae1",
+    "user/windows8/msi-link147.h": "87dffa8bc1d29ba1635f6dd17149a448ea78c8fee288f0ac6f7fb98d3f4651ae",
+    "include/engine/wintxn147.h": "b4bf8707c9c72adb8daf896bf0d47202d45861b2dc722df4a84e195f35cd3837",
+    "tools/build/msi147.py": "8aede5bdb7d493ab1e6128bfdae8590eae2986126c364f8e9d8a82f0d44c20ab",
+    "include/engine/winproduct147.h": "8af74ed0e4e97c9db78d520272971628db12459fb9ab24ebb188df6e54f9b2ed"
+  },
+  "artifacts": {
+    "msiexec.exe": {
+      "bytes": 3072,
+      "sha256": "783c7306a50e0ff345870cd4907c4b3684875821180d1d137c6252300583ce66"
+    },
+    "msi.dll": {
+      "bytes": 246272,
+      "sha256": "89bbb3e3f9e8b5b870ec374d832dda6605ed8a485dfc7eb5a5c2e3278178155f"
+    }
+  }
+}
