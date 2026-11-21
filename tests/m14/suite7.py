@@ -68,7 +68,7 @@ def main():
  for profile in ('compact','ordinary','4k'):
   dependency=('apps-'+profile,)
   add('original-clipboard146-'+profile,'tests/m14/original_clipboard146_run.py',('--profile',profile),dependency,4)
-  add('original-picker146-'+profile,'tests/m14/original_picker147_run.py','tests/m14/nested147.py','tests/m14/window147_run.py','tests/m14/picker_restart147_run.py',('--profile',profile),dependency,4)
+  add('original-picker146-'+profile,'tests/m14/original_picker147_run.py',('--profile',profile),dependency,4)
   add('font146-'+profile,'tests/m14/font146_run.py',('--profile',profile,'--cycles','21'if profile=='compact'else'1'),dependency,4)
  for name,script,arguments in (
   ('global146','global146_run.py',()),('clipboard146','clipboard146_run.py',()),
