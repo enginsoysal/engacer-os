@@ -1,0 +1,37 @@
+{
+  "scope": "Engacer-authored native service build; execution/installation qualification is separate",
+  "sources": {
+    "user/windows8/msi-native147.c": "4d2397962f54e3b0d2e93202027e99c3d23249fc53f0f929f8c9375cc7f6c7ea",
+    "user/windows8/msi-service147.c": "90f1f9219a7310a87be789f66dc5964b68c9fb72452f0294e80039318c3ef1c9",
+    "user/windows8/msi-api147.c": "ade64aee7b6832bd73c00ee0afab2db8aaf7fce557fb95c2c5278c93511885e0",
+    "user/windows8/msi_db.c": "ee942dcd15b5d3769b265eb2e5edf00c34c3024b437594ea0419c1241659aacd",
+    "user/windows8/msi-plan147.c": "3e2bf2de1b5f7eb697e2405fb1049416c20e63cd3bf7d5bc05494fe94d3047b6",
+    "user/windows8/msi-cost147.c": "70eef2524ed7b47e2719887f99fc095a226e10b59f36c7da4296b46f3bfd09bd",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "user/windows8/msiexec147.c": "02c3cdd78c67d24b59fff4a92c9870ce94b34ffb2598a0692220b91aea73330d",
+    "user/windows8/msi-plan147.h": "e35afed2c271c1e6a310bd96b1a92c2b3ae44eb6f95aef4be0b8f0850ba6db69",
+    "user/windows8/msi-properties147.h": "6a9d0db86a2f24b13e2b86ea28546b19884586bd1d0255916e94d1041bf3679b",
+    "user/windows8/msi-condition147.h": "2b7f67b911c464f72355a494ddd85042c6eddc95802d51e04e2cf223c171d515",
+    "user/windows8/cab147.h": "4abefd395274d4fb281912f0074943052907c427f2722758986f3eeb4d380bf5",
+    "user/windows8/msi_db.h": "79b020bad568b03d01c25337cef2dba57e4b7dffbd12f465bd54d991ef5d2fe1",
+    "user/windows8/msi-record147.h": "6f1022cae19194091241da712bcf9a4add9966925df83101a1f4839fcf557506",
+    "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+    "tools/build/msi147.py": "4b0f01fa31d5ac98074d9c1f75673e126fac91453bf7b28ff5d4d3fe02af5dd0",
+    "include/engine/winproduct147.h": "8af74ed0e4e97c9db78d520272971628db12459fb9ab24ebb188df6e54f9b2ed",
+    "tests/m14/api147_native.c": "290da2c344b2252b68f4443da0d7b3d262c6cec0751f7283432c7468dc200daa",
+    "tests/m14/api147_build.py": "73e5347bfd4f94b3f0ef706b28c71f80f9c2079072e8c20707d4c0fcb32460b5"
+  },
+  "artifacts": {
+    "msiexec.exe": {
+      "bytes": 3072,
+      "sha256": "783c7306a50e0ff345870cd4907c4b3684875821180d1d137c6252300583ce66"
+    },
+    "msi.dll": {
+      "bytes": 196096,
+      "sha256": "775efa8f11c0123ce6024b904b45d21b368b732384e08f964552449c5e999467"
+    }
+  },
+  "fixture_sha256": "3d2dc42170f217f92f1026f5d4dbca75d6d97133d62f2fe90139ce069343f430"
+}

@@ -1,6 +1,7 @@
 """Build Engacer's own lazy native Win64 MSI service; never execute it on host."""
 import hashlib
 import json
+import re
 from pathlib import Path
 from m1 import ROOT,command,pinned_tools
 
@@ -16,7 +17,13 @@ def build(work,tools=None):
     flags=['--target=x86_64-pc-windows-msvc','-O2','-std=c17','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-DMSPACK_NO_DEFAULT_SYSTEM','-DSIZEOF_OFF_T=8','-DDEBUG=0','-I',ROOT/'include','-I',ROOT/'third_party/libmspack-port','-I',ROOT/'third_party/libmspack']
     for source in sources:
         obj=out/(Path(source).stem+'.obj');command([tools['clang'],*flags,'-c',ROOT/source,'-o',obj]);objects.append(obj)
-    exports=out/'msi.def';exports.write_bytes(('LIBRARY msi.dll\nEXPORTS\n'+'\n'.join(name+' @'+str(ordinal)for ordinal,name in sorted(ORDINALS147.items()))+'\n').encode())
+    # Give every other own export an explicit private ordinal. Automatic linker
+    # numbering could otherwise alias a missing Windows ordinal to a wrong API.
+    public=[]
+    for source in ['user/windows8/msi-api147.c','user/windows8/msi-service147.c']:
+        public+=re.findall(r'(?m)^(?:MSI_EXPORT147|__declspec\(dllexport\))\s+(?:unsigned|int|int32_t)\s+(\w+)\s*\(', (ROOT/source).read_text())
+    known=set(ORDINALS147.values());private={0x7000+i:name for i,name in enumerate(sorted(set(public)-known))};assigned={**ORDINALS147,**private}
+    exports=out/'msi.def';exports.write_bytes(('LIBRARY msi.dll\nEXPORTS\n'+'\n'.join(name+' @'+str(ordinal)for ordinal,name in sorted(assigned.items()))+'\n').encode())
     dll=out/'msi.dll';command([tools['lld-link'],'/def:'+str(exports),'/dll','/entry:EngacerMsiDllEntry147','/nodefaultlib','/timestamp:0','/dynamicbase','/fixed:no','/out:'+str(dll),'/implib:'+str(out/'msi.lib'),*objects,out/'kernel32.lib'])
     entry=out/'msiexec147.obj';command([tools['clang'],*flags,'-c',ROOT/'user/windows8/msiexec147.c','-o',entry]);exe=out/'msiexec.exe';command([tools['lld-link'],'/nodefaultlib','/timestamp:0','/subsystem:console','/entry:entry','/dynamicbase','/fixed:no','/out:'+str(exe),entry,out/'msi.lib',out/'kernel32.lib'])
     inputs=sources+['user/windows8/msiexec147.c','user/windows8/msi-plan147.h','user/windows8/msi-properties147.h','user/windows8/msi-condition147.h','user/windows8/cab147.h','user/windows8/msi_db.h','user/windows8/msi-record147.h','user/windows8/msi-text147.h','tools/build/msi147.py','include/engine/winproduct147.h'];report=dict(scope='Engacer-authored native service build; execution/installation qualification is separate',sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in inputs},artifacts={p.name:dict(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())for p in [exe,dll]});(out/'build-inputs.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());return {'msi':dll,'msiexec':exe}
