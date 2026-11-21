@@ -2,7 +2,7 @@
 #define ENGINE_WINQUEUE144_H
 #include <engine/winui144.h>
 /* Caller serializes access. No allocation, foreign pointers or timer polling. */
-typedef struct {wui_message144 items[WUI_QUEUE144];uint32_t count,quit,quit_code;wui_filter144 waiting;uint8_t keys[256];uint32_t modifiers_sent145;} wui_queue144;
+typedef struct {wui_message144 items[WUI_QUEUE144];uint32_t count,quit,quit_code;wui_filter144 waiting;uint8_t keys[256];uint32_t modifiers_sent145,new_input148;uint64_t timer_seen148;} wui_queue144;
 _Static_assert(sizeof(wui_queue144)<=4096,"A GUI queue must fit one lazy page");
 static inline unsigned wui_matches144(const wui_message144*m,const wui_filter144*f){
  if(m->message==0x12)return 1;

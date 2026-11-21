@@ -72,7 +72,7 @@ static __attribute__((noinline)) void foreign_sync144(void){
  uint64_t focus=0;if(model.focused<DESKTOP_WINDOWS&&model.windows[model.focused].live&&!model.windows[model.focused].minimized&&!launcher)focus=apps[model.focused].foreign144;
  if(focus!=foreign_focus144){if(foreign_focus144)w8_ui_input144(foreign_focus144,8,focus,0);if(focus)w8_ui_input144(focus,7,foreign_focus144,0);foreign_focus144=focus;}
 #ifdef ENGINE_M14
- w8_ui_foreground_changed148(focus);if(focus)w8_ui_modifiers145(focus,input14_snapshot());
+ w8_ui_foreground_changed148(desktop_focus11||file_dialog_state11.mode?0:focus);if(focus)w8_ui_modifiers145(focus,input14_snapshot());
 #endif
 #ifdef ENGINE_M13
  if(!dragging&&!launcher){uint64_t token=desktop_hit(&model,(int)pointer_x,(int)pointer_y);unsigned kind=foreign_cursor_kind144(token,pointer_x,pointer_y);if(kind!=UINT32_MAX&&graphics9_cursor_kind(kind))usb_mouse_draw();}

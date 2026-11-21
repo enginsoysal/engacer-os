@@ -5,7 +5,7 @@
 typedef int64_t(MS*ui_proc144)(HANDLE,unsigned,uint64_t,int64_t);
 typedef struct {unsigned style;ui_proc144 proc;int cls_extra,win_extra;HANDLE instance,icon,cursor,background;const WCHAR*menu,*name;} ui_class_definition144;
 typedef struct ui_class144 {struct ui_class144*next;ui_class_definition144 definition;WCHAR name[64];unsigned atom,windows;HANDLE small_icon;} ui_class144;
-typedef struct ui_window_runtime144 {struct ui_window_runtime144*next;HANDLE handle,menu;ui_class144*class_;ui_proc144 proc;unsigned thread,destroying,created,extra_size;void*control;void*drop_target;unsigned drop_pending;unsigned invalid,erase,restore_max;wui_rect144 damage,normal_bounds;int64_t userdata,id;wui_description144 description;uint8_t extra[];} ui_window_runtime144;
+typedef struct ui_window_runtime144 {struct ui_window_runtime144*next;HANDLE handle,menu;ui_class144*class_;ui_proc144 proc;unsigned thread,destroying,created,extra_size;void*control;void*drop_target;unsigned drop_pending;unsigned invalid,erase,restore_max,paint_seen148;wui_rect144 damage,normal_bounds;int64_t userdata,id;wui_description144 description;uint8_t extra[];} ui_window_runtime144;
 static ui_class144 *ui_classes144;static ui_window_runtime144 *ui_runtime_windows144;
 static lock142 ui_lock144;static unsigned ui_atom144=0xc000,ui_class_count144;
 static int64_t MS f_DefWindowProcW(HANDLE,unsigned,uint64_t,int64_t);

@@ -28,6 +28,9 @@ static int64_t create_sync142(uint64_t request,uint64_t output,uint64_t open_onl
 static void update_sync_timer142(sync_object142*o,uint64_t now){if(o->kind!=3||!o->active||now<o->due)return;o->count=1;if(o->period){uint64_t steps=(now-o->due)/o->period+1;if(steps>(UINT64_MAX-o->due)/o->period)o->active=0;else o->due+=steps*o->period;}else o->active=0;}
 /* Returns -1 while unsatisfied, other negative values encode API errors. */
 static int64_t evaluate_wait142(thread142*t,unsigned consume){
+#ifdef ENGINE_M14
+ if(t->wait_all==2)return ui_message_ready148((unsigned)(t-threads142),t->wait_handles[0])?0:-1;
+#endif
  unsigned ready=0,first=UINT32_MAX;sync_object142*objects[32]={0};uint64_t now=m3_clock_ticks()*10;
  for(unsigned i=0;i<t->wait_count;++i){uint64_t h=t->wait_handles[i];int signaled=0;
   if((h&W8_HANDLE_TAG_MASK)==SYNC_TAG142){int slot=sync_slot142(h);if(slot<0)return -6;sync_cap142*cap=spaces142[active_space142]->sync_handles+slot;if(!(cap->access&0x100000))return -5;sync_object142*o=sync_object_at142(cap->object);objects[i]=o;for(unsigned j=0;j<i;++j)if(objects[j]==o)return -87;update_sync_timer142(o,now);signaled=o->count>0;}
@@ -41,9 +44,17 @@ static int64_t evaluate_wait142(thread142*t,unsigned consume){
  return -1;
 }
 static void refresh_sync_waits142(void){unsigned saved=active_space142;uint64_t now=m3_clock_ticks()*10;for(unsigned p=0;p<SPACES142;++p)if(spaces142[p]){active_space142=p;for(unsigned i=0;i<THREADS142;++i){thread142*t=threads142+i;if(t->state!=T142_OBJECT)continue;int64_t result=evaluate_wait142(t,1);if(result==-1&&t->deadline!=UINT64_MAX&&now>=t->deadline)result=258;if(result!=-1){t->state=T142_READY;t->frame.rax=(uint64_t)result;}}}active_space142=saved;}
-static unsigned sync_deadline_needed142(void){unsigned saved=active_space142,needed=0;for(unsigned p=0;p<SPACES142&&!needed;++p)if(spaces142[p]){active_space142=p;for(unsigned i=0;i<THREADS142&&!needed;++i){thread142*t=threads142+i;if(t->state!=T142_OBJECT)continue;if(t->deadline!=UINT64_MAX){needed=1;break;}for(unsigned n=0;n<t->wait_count;++n){int slot=sync_slot142(t->wait_handles[n]);if(slot>=0){sync_object142*o=sync_object_at142(spaces142[p]->sync_handles[slot].object);if(o->kind==3&&o->active){needed=1;break;}}}}}active_space142=saved;return needed;}
+static unsigned sync_deadline_needed142(void){unsigned saved=active_space142,needed=0;for(unsigned p=0;p<SPACES142&&!needed;++p)if(spaces142[p]){active_space142=p;for(unsigned i=0;i<THREADS142&&!needed;++i){thread142*t=threads142+i;if(t->state!=T142_OBJECT)continue;if(t->deadline!=UINT64_MAX){needed=1;break;}
+#ifdef ENGINE_M14
+ if(t->wait_all==2&&ui_message_timer_deadline148(i,(unsigned)t->wait_handles[0])!=UINT64_MAX){needed=1;break;}
+#endif
+ for(unsigned n=0;n<t->wait_count;++n){int slot=sync_slot142(t->wait_handles[n]);if(slot>=0){sync_object142*o=sync_object_at142(spaces142[p]->sync_handles[slot].object);if(o->kind==3&&o->active){needed=1;break;}}}}}active_space142=saved;return needed;}
 static int64_t wait_objects142(trap_frame*f,uint64_t address){
- w8_wait_request142 r;if(user8(address,&r,sizeof(r),0)||!r.count||r.count>32||r.all>1)return -87;for(unsigned i=0;i<r.count;++i)for(unsigned j=0;j<i;++j)if(r.handles[i]==r.handles[j])return -87;
+ w8_wait_request142 r;if(user8(address,&r,sizeof(r),0))return -87;
+#ifdef ENGINE_M14
+ if(r.all==2){if(r.count||(r.pad&~0x1dffu))return -87;wui_queue144*q=ui_queue144(active_space142,current142,1);if(!q)return -8;thread142*t=threads142+current142;t->wait_count=0;t->wait_all=2;t->wait_handles[0]=r.pad;if(ui_message_ready148(current142,r.pad))return 0;if(!r.timeout)return 258;t->state=T142_OBJECT;t->deadline=r.timeout==UINT32_MAX?UINT64_MAX:m3_clock_ticks()*10+r.timeout;context8=*f;context8.rax=0;w8_active=0;w8_escape();}
+#endif
+ if(!r.count||r.count>32||r.all>1||r.pad)return -87;for(unsigned i=0;i<r.count;++i)for(unsigned j=0;j<i;++j)if(r.handles[i]==r.handles[j])return -87;
  thread142*t=threads142+current142;t->wait_count=r.count;t->wait_all=r.all;memcpy(t->wait_handles,r.handles,r.count*8);int64_t result=evaluate_wait142(t,1);if(result!=-1)return result;if(!r.timeout)return 258;t->state=T142_OBJECT;t->deadline=r.timeout==UINT32_MAX?UINT64_MAX:m3_clock_ticks()*10+r.timeout;context8=*f;context8.rax=0;w8_active=0;w8_escape();
 }
 static int64_t operate_sync142(uint64_t h,uint64_t operation,uint64_t value,uint64_t argument){

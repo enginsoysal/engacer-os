@@ -21,6 +21,7 @@ __declspec(dllimport) unsigned WaitForMultipleObjects(unsigned,const uint64_t*,i
 __declspec(dllimport) int GetExitCodeProcess(uint64_t,unsigned*);
 __declspec(dllimport) uint64_t CreateThread(void*,uint64_t,unsigned(*)(void*),void*,unsigned,unsigned*);
 __declspec(dllimport) int CloseHandle(uint64_t);
+__declspec(dllimport) int GetExitCodeThread(uint64_t,unsigned*);
 __declspec(dllimport) void InitializeSRWLock(uint64_t*);
 __declspec(dllimport) void AcquireSRWLockExclusive(uint64_t*);
 __declspec(dllimport) void AcquireSRWLockShared(uint64_t*);
@@ -73,6 +74,11 @@ __declspec(dllimport) int GetSystemMetrics(int);
 __declspec(dllimport) uint64_t MonitorFromRect(const void*,unsigned);
 __declspec(dllimport) int SetForegroundWindow(uint64_t);
 __declspec(dllimport) uint64_t GetForegroundWindow(void);
+__declspec(dllimport) unsigned MsgWaitForMultipleObjects(unsigned,const uint64_t*,int,unsigned,unsigned);
+__declspec(dllimport) void Sleep(unsigned);
+__declspec(dllimport) uint64_t GetTickCount64(void);
+__declspec(dllimport) uint64_t SetTimer(uint64_t,uint64_t,unsigned,void*);
+__declspec(dllimport) int KillTimer(uint64_t,uint64_t);
 __declspec(dllimport) uint64_t MonitorFromPoint(uint64_t,unsigned);
 __declspec(dllimport) int GetMonitorInfoW(uint64_t,void*);
 __declspec(dllimport) int GetMonitorInfoA(uint64_t,void*);
@@ -164,6 +170,19 @@ static void button_tests148(uint64_t parent){
 }
 static uint64_t lock,left,right;
 static void(*shutdown_gp148)(uint64_t);
+static unsigned post_wakeup148(void*window){Sleep(25);return PostMessageW((uint64_t)(uintptr_t)window,0x814a,0,0)?0:1;}
+static void message_wait_tests148(uint64_t window){
+ struct{uint64_t window;unsigned message,pad;uint64_t wp;int64_t lp;unsigned time;int x,y;unsigned private_;} msg;
+ while(PeekMessageW(&msg,0,0,0,1)){}
+ check(MsgWaitForMultipleObjects(0,0,0,0,0x1cff)==258,594);check(PostMessageW(window,0x8148,0,0)&&MsgWaitForMultipleObjects(0,0,1,0,8)==0&&MsgWaitForMultipleObjects(0,0,0,0,8)==0&&MsgWaitForMultipleObjects(0,0,1,0,256)==0,595);
+ check(PeekMessageW(&msg,0,0x8148,0x8148,0)&&MsgWaitForMultipleObjects(0,0,1,0,8)==258&&MsgWaitForMultipleObjects(0,0,0,0,256)==0,596);
+ check(PeekMessageW(&msg,0,0,0,1)&&msg.message==0x8148&&MsgWaitForMultipleObjects(0,0,0,0,256)==258,597);
+ check(MsgWaitForMultipleObjects(1,0,0,0,8)==UINT32_MAX&&GetLastError()==50&&MsgWaitForMultipleObjects(0,0,0,0,0x200)==UINT32_MAX&&GetLastError()==87,598);
+ uint64_t start=GetTickCount64();check(MsgWaitForMultipleObjects(0,0,1,25,0)==258&&GetTickCount64()-start>=25,599);
+ uint64_t thread=CreateThread(0,0,post_wakeup148,(void*)(uintptr_t)window,0,0);check(thread&&MsgWaitForMultipleObjects(0,0,1,30000,8)==0&&PeekMessageW(&msg,0,0,0,1)&&msg.message==0x814a&&WaitForSingleObject(thread,30000)==0,600);unsigned code=99;check(GetExitCodeThread(thread,&code)&&!code&&CloseHandle(thread),601);
+ uint64_t timer=SetTimer(window,0x148,25,0);check(timer&&MsgWaitForMultipleObjects(0,0,0,30000,16)==0&&PeekMessageW(&msg,window,0x113,0x113,1)&&msg.message==0x113&&msg.wp==timer&&KillTimer(window,timer),602);
+ say148("M148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS\n");
+}
 static unsigned gp_shutdown_worker148(void*token){shutdown_gp148((uint64_t)(uintptr_t)token);return 0;}
 void entry(void);void*volatile relocation_anchor148=&entry;
 static void say148(const char*text){unsigned n=0,written;while(text[n])++n;check(WriteFile(GetStdHandle((unsigned)-11),text,n,&written,0)&&written==n,264);}
@@ -236,6 +255,7 @@ void entry(void){
  int placed[4];check(SetWindowPos(framed,0,30,40,-7,-9,0x215)&&GetWindowRect(framed,placed)&&placed[0]==30&&placed[1]==40&&placed[2]-placed[0]==212&&placed[3]-placed[1]==141&&class_pre148==2&&class_post148==2&&class_moves148==1&&class_sizes148==1&&class_move148==(31u|(80u<<16)),402);
  check(SetWindowPos(framed,0,35,45,0,0,0x415)&&class_pre148==2&&class_post148==3&&class_moves148==2&&class_sizes148==1&&class_move148==(36u|(85u<<16)),403);check(!SetWindowPos(framed,0,1,1,1,1,0)&&GetLastError()==50&&GetWindowRect(framed,placed)&&placed[0]==35&&placed[1]==45&&DestroyWindow(framed)&&class_destroyed148==1,404);
  int invalid_adjustment[4]={INT32_MIN,0,10,10};check(!AdjustWindowRectEx(invalid_adjustment,0x02c80000,0,0)&&invalid_adjustment[0]==INT32_MIN&&!AdjustWindowRectEx(plain_adjusted,0x02c80000,0,0x200),400);
+ message_wait_tests148(hidden);
  image_snapshot_tests148(hidden);
  drawtext_tests148(hidden);
  button_tests148(hidden);
