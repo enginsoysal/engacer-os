@@ -74,6 +74,8 @@ __declspec(dllimport) int GetDeviceCaps(uint64_t,int);
 __declspec(dllimport) int GetWindowLongW(uint64_t,int);
 __declspec(dllimport) int64_t GetWindowLongPtrW(uint64_t,int);
 __declspec(dllimport) int64_t SetWindowLongPtrW(uint64_t,int,int64_t);
+__declspec(dllimport) int AdjustWindowRectEx(void*,unsigned,int,unsigned);
+__declspec(dllimport) int AdjustWindowRect(void*,unsigned,int);
 static unsigned class_created148,class_destroyed148;
 static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){(void)window;(void)wp;(void)lp;if(message==1)++class_created148;if(message==0x82)++class_destroyed148;return message==0x81;}
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
@@ -130,7 +132,10 @@ void entry(void){
  class_readback.size=80;check(GetClassInfoExW(0,(const uint16_t*)(uintptr_t)class_atom,&class_readback)&&class_readback.proc==class_proc148&&class_readback.window_extra==16&&!class_readback.small_icon,352);
  uint64_t hidden=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned class lifecycle",0,0,0,100,100,0,0,0,0);check(hidden&&class_created148==1&&!UnregisterClassW(class_definition.name,0)&&GetLastError()==1412,353);
  SetLastError(0x148);check(!GetWindowLongW(hidden,-16)&&GetLastError()==0x148&&GetWindowLongW(desktop,-16)==0x10000000&&!SetWindowLongPtrW(hidden,8,INT64_C(0x11223344aabbccdd))&&GetWindowLongW(hidden,8)==(int)0xaabbccddu&&GetWindowLongW(hidden,12)==0x11223344&&GetWindowLongPtrW(hidden,8)==INT64_C(0x11223344aabbccdd),395);check(!GetWindowLongW(hidden,13)&&GetLastError()==1413,396);
- check(DestroyWindow(hidden)&&class_destroyed148==1&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
+ int adjusted[4]={0,0,123,67},plain_adjusted[4]={0,0,123,67};check(AdjustWindowRectEx(adjusted,0x02c80000,0,0)&&AdjustWindowRect(plain_adjusted,0x02c80000,0),397);for(unsigned i=0;i<4;++i)check(adjusted[i]==plain_adjusted[i],398);
+ uint64_t framed=CreateWindowExW(0,(const uint16_t*)(uintptr_t)class_atom,L"Owned client geometry",0x02c80000,0,0,adjusted[2]-adjusted[0],adjusted[3]-adjusted[1],0,0,0,0);int framed_client[4];check(framed&&class_created148==2&&GetClientRect(framed,framed_client)&&!framed_client[0]&&!framed_client[1]&&framed_client[2]==123&&framed_client[3]==67&&DestroyWindow(framed)&&class_destroyed148==1,399);
+ int invalid_adjustment[4]={INT32_MIN,0,10,10};check(!AdjustWindowRectEx(invalid_adjustment,0x02c80000,0,0)&&invalid_adjustment[0]==INT32_MIN&&!AdjustWindowRectEx(plain_adjusted,0x02c80000,0,0x200),400);
+ check(DestroyWindow(hidden)&&class_destroyed148==2&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
  uint16_t long_path[512];check(GetLongPathNameW(path,0,0)==n+1,362);long_path[0]=0x9b9b;check(GetLongPathNameW(path,long_path,n)==n+1&&long_path[0]==0x9b9b,363);check(GetLongPathNameW(path,long_path,512)==n,364);for(unsigned i=0;i<=n;++i)check(long_path[i]==path[i],365);check(GetLongPathNameW(long_path,long_path,512)==n&&!GetLongPathNameW(L"relative",long_path,512)&&GetLastError()==50,366);

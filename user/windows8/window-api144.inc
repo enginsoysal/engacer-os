@@ -3,6 +3,15 @@ typedef struct {int left,top,right,bottom;} win_rect144;
 static unsigned window_metrics144(wui_metrics144*out){int64_t status=ui_call144(WUI_METRICS144,0,out,0);if(status<0){last8((unsigned)-status);return 0;}return 1;}
 static HANDLE MS f_GetDesktopWindow(void){wui_metrics144 metrics;return window_metrics144(&metrics)?DESKTOP_HANDLE148:0;}
 static int MS f_GetSystemMetrics(int index){wui_metrics144 metrics;if(!window_metrics144(&metrics))return 0;switch(index){case 0:case 78:return(int)metrics.width;case 1:case 79:return(int)metrics.height;case 76:case 77:case 42:return 0;case 80:case 81:return 1;default:last8(50);return 0;}}
+static int MS f_AdjustWindowRectEx(win_rect144*out,unsigned style,int menu,unsigned exstyle){
+ if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,sizeof(*out),3,0,0)){last8(87);return 0;}
+ unsigned child=(style&0x40000000u)!=0;if(exstyle||(child&&menu)||(!child&&(style&0x00c00000u)!=0x00c00000u)){last8(50);return 0;}
+ int border=style&0x00800000u?1:0,top=child?border:40+(menu?24:0),bottom=child?border:1;
+ int64_t left=(int64_t)out->left-border,right=(int64_t)out->right+border,upper=(int64_t)out->top-top,lower=(int64_t)out->bottom+bottom;
+ if(left<INT32_MIN||left>INT32_MAX||right<INT32_MIN||right>INT32_MAX||upper<INT32_MIN||upper>INT32_MAX||lower<INT32_MIN||lower>INT32_MAX){last8(87);return 0;}
+ *out=(win_rect144){(int)left,(int)upper,(int)right,(int)lower};return 1;
+}
+static int MS f_AdjustWindowRect(win_rect144*out,unsigned style,int menu){return f_AdjustWindowRectEx(out,style,menu,0);}
 static unsigned window_view144(HANDLE handle,wui_view144*out){if(handle==DESKTOP_HANDLE148){wui_metrics144 metrics;if(!window_metrics144(&metrics))return 0;memset(out,0,sizeof(*out));out->handle=handle;out->description.bounds=(wui_rect144){0,0,(int)metrics.width,(int)metrics.height};out->description.style=0x10000000;out->description.visible=out->description.enabled=1;ui_wide144(out->description.class_name,64,u"Desktop");return 1;}int64_t status=ui_call144(WUI_QUERY144,handle,out,0);if(status<0){last8((unsigned)-status);return 0;}return 1;}
 static int MS f_GetClientRect(HANDLE handle,win_rect144*out){if(!out){last8(87);return 0;}wui_view144 v;if(!window_view144(handle,&v))return 0;int border=v.description.style&0x00800000?1:0,caption=v.description.parent||handle==DESKTOP_HANDLE148?0:40+(int)v.menu_height,width=v.description.bounds.width-border*2,height=v.description.bounds.height-border*2-caption+(caption?1:0);if(v.description.style&0x20000000u)width=height=0;*out=(win_rect144){0,0,width>0?width:0,height>0?height:0};return 1;}
 static int MS f_GetWindowRect(HANDLE handle,win_rect144*out){if(!out){last8(87);return 0;}wui_view144 v;if(!window_view144(handle,&v))return 0;int64_t x=v.description.bounds.x,y=v.description.bounds.y;unsigned width=(unsigned)v.description.bounds.width,height=(unsigned)v.description.bounds.height;HANDLE parent=v.description.parent;

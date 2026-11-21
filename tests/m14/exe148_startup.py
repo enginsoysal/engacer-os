@@ -30,7 +30,7 @@ def main():
         try:
             boot=ui.guest(work/'startup',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
             with boot as g:
-                p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19)
+                p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);front=t.launch(g,p,'windows apps',19)
                 before=f.stats(g)[0];p.desktop(12001,True);at=len(g.log());p.desktop(12003,True,settle=False)
                 g.wait('M8_CPL3_CREATED',at)
                 deadline=time.monotonic()+45
@@ -51,7 +51,7 @@ def main():
                     assert report['installer_flag_observed'],report['output']
                     assert report['original_startup_name_observed'],report['output']
                 if state==1:
-                    p.desktop(12008,True);report['explicit_diagnostic_cancel']=True
+                    t.focus(g,p,front);p.desktop(12008,True);report['explicit_diagnostic_cancel']=True
                 report['retained_pages_after_cleanup']=f.stats(g)[0]-before
                 (out/'serial.log').write_bytes(g.log().encode())
             report['diagnostic_completed']=True
