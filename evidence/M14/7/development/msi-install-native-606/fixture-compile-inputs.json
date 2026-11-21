@@ -1,0 +1,19 @@
+{
+  "scope": "Own routing fixture replaces only msi8_execute to call the production lazy MSI service with the pinned original package digest. Native original MSI data task; not a qualified ordinary UI lifecycle or public media.",
+  "kernel_build_id": "60698b078e4bc6763b8a1a940fed1454",
+  "source_commit": "6ba467aa0b4517de414e6acd63dda93bd98b036f",
+  "test_sources": {
+    "tests/m14/install147_native.c": "f3e0e61e52d5665e099c15acb4be5be5f2bfea336cf02aba7848f7c93f06b7fe",
+    "tests/m14/install147_build.py": "63871c2e94c49cc7c51cc4c17cddf5223605524f3eac67e48399ab778ea1cbee"
+  },
+  "artifacts": {
+    "production-runtime8.elf": {
+      "bytes": 319572,
+      "sha256": "5170d76ce456b66a026a8b7f385a23263d22ec89dd7d638ad118483890326f31"
+    },
+    "fixture-runtime8.elf": {
+      "bytes": 311376,
+      "sha256": "8cdf73b1db2b696453058b163a39bcaccbd18b9038b56eb142d108af05218584"
+    }
+  }
+}

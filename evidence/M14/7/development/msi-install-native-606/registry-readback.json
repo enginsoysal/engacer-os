@@ -1,0 +1,155 @@
+{
+  "passed": true,
+  "build_id": "60698b078e4bc6763b8a1a940fed1454",
+  "journal_sha256": "56804bc80cdf4a9e865a3aac0f24175427620c2b850a250f34a7abf5396a244e",
+  "scope": "Independently decode durable native registry records on one stopped owned clone.",
+  "checked": [
+    {
+      "root": 1,
+      "view": 64,
+      "key": "Software\\7-Zip",
+      "name": "Path",
+      "type": 1,
+      "bytes": 48,
+      "sha256": "9d667a8f69fc017dbe3ecc3b3ef028449878138d18eba5515d685e9bee5d8723"
+    },
+    {
+      "root": 1,
+      "view": 64,
+      "key": "Software\\7-Zip",
+      "name": "Path64",
+      "type": 1,
+      "bytes": 48,
+      "sha256": "9d667a8f69fc017dbe3ecc3b3ef028449878138d18eba5515d685e9bee5d8723"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\7-Zip",
+      "name": "Path",
+      "type": 1,
+      "bytes": 48,
+      "sha256": "9d667a8f69fc017dbe3ecc3b3ef028449878138d18eba5515d685e9bee5d8723"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\7-Zip",
+      "name": "Path64",
+      "type": 1,
+      "bytes": 48,
+      "sha256": "9d667a8f69fc017dbe3ecc3b3ef028449878138d18eba5515d685e9bee5d8723"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\*\\shellex\\ContextMenuHandlers\\7-Zip",
+      "name": "",
+      "type": 1,
+      "bytes": 78,
+      "sha256": "f1016acb5bb64d5ebc306766e3875b486157ec971b5f75da06aa2b5018b41567"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\Directory\\shellex\\ContextMenuHandlers\\7-Zip",
+      "name": "",
+      "type": 1,
+      "bytes": 78,
+      "sha256": "f1016acb5bb64d5ebc306766e3875b486157ec971b5f75da06aa2b5018b41567"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\Folder\\shellex\\ContextMenuHandlers\\7-Zip",
+      "name": "",
+      "type": 1,
+      "bytes": 78,
+      "sha256": "f1016acb5bb64d5ebc306766e3875b486157ec971b5f75da06aa2b5018b41567"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\Directory\\shellex\\DragDropHandlers\\7-Zip",
+      "name": "",
+      "type": 1,
+      "bytes": 78,
+      "sha256": "f1016acb5bb64d5ebc306766e3875b486157ec971b5f75da06aa2b5018b41567"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\Drive\\shellex\\DragDropHandlers\\7-Zip",
+      "name": "",
+      "type": 1,
+      "bytes": 78,
+      "sha256": "f1016acb5bb64d5ebc306766e3875b486157ec971b5f75da06aa2b5018b41567"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
+      "name": "{23170F69-40C1-278A-1000-000100020000}",
+      "type": 1,
+      "bytes": 44,
+      "sha256": "64c3d0ccabc6856250b6d23d71b0fd11bb272afda010b45dee65eb1149c46085"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\7zFM.exe",
+      "name": "",
+      "type": 1,
+      "bytes": 64,
+      "sha256": "9015ac8676ff5f1095adf399a2c807d55642ba79c7d3e474d54cc777ca51e719"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\7zFM.exe",
+      "name": "Path",
+      "type": 1,
+      "bytes": 48,
+      "sha256": "9d667a8f69fc017dbe3ecc3b3ef028449878138d18eba5515d685e9bee5d8723"
+    },
+    {
+      "root": 2,
+      "view": 32,
+      "key": "Software\\Classes\\CLSID\\{23170F69-40C1-278A-1000-000100020000}\\InprocServer32",
+      "name": "",
+      "type": 1,
+      "bytes": 70,
+      "sha256": "fc4dc86f7ec02e97058b6c3892df98fbb22eeb483db2ad9330b8618fd82390ac"
+    },
+    {
+      "root": 2,
+      "view": 32,
+      "key": "Software\\Classes\\CLSID\\{23170F69-40C1-278A-1000-000100020000}\\InprocServer32",
+      "name": "ThreadingModel",
+      "type": 1,
+      "bytes": 20,
+      "sha256": "37b9977bec31aaca91131e6230234f6ce9e6ac87752b91e52f596280ea1a96d2"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\CLSID\\{23170F69-40C1-278A-1000-000100020000}\\InprocServer32",
+      "name": "",
+      "type": 1,
+      "bytes": 66,
+      "sha256": "e3fcfdc1a522ead21f323baa98640116e4961cb9056b00c3bc508483efcca020"
+    },
+    {
+      "root": 2,
+      "view": 64,
+      "key": "Software\\Classes\\CLSID\\{23170F69-40C1-278A-1000-000100020000}\\InprocServer32",
+      "name": "ThreadingModel",
+      "type": 1,
+      "bytes": 20,
+      "sha256": "37b9977bec31aaca91131e6230234f6ce9e6ac87752b91e52f596280ea1a96d2"
+    }
+  ],
+  "write_callbacks_refused": true,
+  "whole_disk_sha_checked": true,
+  "observer_sha256": "d66d9ca65fbb5e1692859bd783c9646837df97c1bd55f930eab15b96c3cdbdde"
+}

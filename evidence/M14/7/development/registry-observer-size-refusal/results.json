@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "scope": "Read-only observer error, not a native registry corruption",
+  "expected_fixed_bytes": 3600,
+  "observed_bytes": 1600,
+  "cause": "The observer assumed sizeof(record); durable records intentionally store offsetof(data)+actual value length.",
+  "native_build_id": "60698b078e4bc6763b8a1a940fed1454"
+}
