@@ -1,0 +1,28 @@
+
+<original-installer>:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+140002f40: 28 02                       	subb	%al, (%rdx)
+140002f42: 11 00                       	adcl	%eax, (%rax)
+140002f44: 48 8d 0d 81 70 14 00        	leaq	0x147081(%rip), %rcx    # 0x140149fcc <.text+0x148fcc>
+140002f4b: e9 1c 02 11 00              	jmp	0x14011316c <.text+0x11216c>
+140002f50: 48 8d 0d 85 70 14 00        	leaq	0x147085(%rip), %rcx    # 0x140149fdc <.text+0x148fdc>
+140002f57: e9 10 02 11 00              	jmp	0x14011316c <.text+0x11216c>
+140002f5c: 48 8d 0d c1 70 14 00        	leaq	0x1470c1(%rip), %rcx    # 0x14014a024 <.text+0x149024>
+140002f63: e9 04 02 11 00              	jmp	0x14011316c <.text+0x11216c>
+140002f68: 48 8d 0d fd 70 14 00        	leaq	0x1470fd(%rip), %rcx    # 0x14014a06c <.text+0x14906c>
+140002f6f: e9 f8 01 11 00              	jmp	0x14011316c <.text+0x11216c>
+140002f74: 48 8d 0d 39 71 14 00        	leaq	0x147139(%rip), %rcx    # 0x14014a0b4 <.text+0x1490b4>
+140002f7b: e9 ec 01 11 00              	jmp	0x14011316c <.text+0x11216c>
+140002f80: 48 83 ec 28                 	subq	$0x28, %rsp
+140002f84: 48 8d 0d e5 63 17 00        	leaq	0x1763e5(%rip), %rcx    # 0x140179370
+140002f8b: ff 15 17 8c 14 00           	callq	*0x148c17(%rip)         # 0x14014bba8
+140002f91: 89 05 41 98 19 00           	movl	%eax, 0x199841(%rip)    # 0x14019c7d8
+140002f97: 48 83 c4 28                 	addq	$0x28, %rsp
+140002f9b: c3                          	retq
+140002f9c: 48 83 ec 28                 	subq	$0x28, %rsp
+140002fa0: 48 8d 0d e9 63 17 00        	leaq	0x1763e9(%rip), %rcx    # 0x140179390
+140002fa7: ff 15 fb 8b 14 00           	callq	*0x148bfb(%rip)         # 0x14014bba8
+140002fad: 89 05 29 98 19 00           	movl	%eax, 0x199829(%rip)    # 0x14019c7dc

@@ -116,6 +116,9 @@ void entry(void){
  _Static_assert(sizeof(notification)==48,"AMD64 MSG ABI");
  check(PostMessageW(0,0x7e,0,0)&&PeekMessageW(&notification,0,0x7e,0x7e,1)&&notification.message==0x7e,317);
  for(unsigned i=0;i<8;++i)unhook(hook_tokens[i]);uint64_t renewed_hook=0;check(!hook(&renewed_hook)&&renewed_hook!=hook_tokens[7],318);unhook(renewed_hook);
+ void*(*gp_alloc)(size_t)=GetProcAddress(gdiplus,"GdipAlloc");void(*gp_free)(void*)=GetProcAddress(gdiplus,"GdipFree");check(gp_alloc&&gp_free,320);
+ unsigned char*gp_blocks[8];for(unsigned i=0;i<8;++i){size_t bytes=17+(size_t)i*8192;gp_blocks[i]=gp_alloc(bytes);check(gp_blocks[i]&&!((uintptr_t)gp_blocks[i]&15),321);for(size_t j=0;j<bytes;++j)gp_blocks[i][j]=(unsigned char)(i+j);}
+ for(unsigned i=0;i<8;++i){size_t bytes=17+(size_t)i*8192;for(size_t j=0;j<bytes;++j)check(gp_blocks[i][j]==(unsigned char)(i+j),322);gp_free(gp_blocks[i]);}gp_free(0);check(!gp_alloc(SIZE_MAX),323);
  shutdown_gp148(gp_token);extra_hook=99;check(hook(&extra_hook)==18&&!extra_hook,319);check(FreeLibrary(gdiplus),312);
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);

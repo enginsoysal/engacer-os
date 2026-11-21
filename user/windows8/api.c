@@ -433,7 +433,7 @@ static const api8 api8_table[]={
  API8(SetErrorMode,1),API8(GetErrorMode,1),
  API8(SHGetFolderPathW,10),
  API8(CreateToolhelp32Snapshot,1),API8(Process32FirstW,1),API8(Process32NextW,1),
- API8(GdiplusStartup,16),API8(GdiplusShutdown,16),
+ API8(GdiplusStartup,16),API8(GdiplusShutdown,16),API8(GdipAlloc,16),API8(GdipFree,16),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

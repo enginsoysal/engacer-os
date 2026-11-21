@@ -6,6 +6,9 @@ typedef struct {uint64_t token;unsigned thread,reserved;} gp_hook148;
 _Static_assert(sizeof(gp_input148)==24,"AMD64 GdiplusStartupInput ABI");
 static gp_runtime148 gp_runtimes148[8];static unsigned gp_generation148,gp_references148;static lock142 gp_lock148;
 static gp_hook148 gp_hooks148[8];static unsigned gp_hook_generation148;
+/* GDI+ object storage shares the process allocator and its existing bounds. */
+static void*MS f_GdipAlloc(size_t bytes){return alloc8(bytes);}
+static void MS f_GdipFree(void*pointer){free8(pointer);}
 static unsigned MS gp_hook_create148(uint64_t*token){
  if(!token||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)token,8,2,0,0))return 2;*token=0;
  lock_enter142(&gp_lock148);unsigned active=gp_references148;lock_leave142(&gp_lock148);if(!active)return 18;
