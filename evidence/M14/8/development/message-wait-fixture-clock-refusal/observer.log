@@ -1,0 +1,32 @@
+{"worker": "WINDOWS8.ELF", "kernel_build_id": "790c2d5bbc9991ac7a7206479045e2b9", "sha256": "4f5fa04910b137f12ca1a8f7dba13b597d56ea2a6fbf1c03efa1e83204d101a3"}
+{
+  "passed": false,
+  "build_id": "790c2d5bbc9991ac7a7206479045e2b9",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "53a9c01da609d21108a990caf217efc09fd45c9bff7d45d7791dc58cab9884ef",
+    "clone_sha256": "53a9c01da609d21108a990caf217efc09fd45c9bff7d45d7791dc58cab9884ef",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "93bf2921961e5623298382eb18d531cae01e39ea92ff6b3287493ec129f86b6a",
+Traceback (most recent call last):
+  File "<project-root>\tests\m14\session148_run.py", line 21, in <module>
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 21, in main\n    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: Required Windows API is unavailable; see the call-site diagnostic. OUTPUT Mapped original image: 7zFM.exe bytes=65536 source-fnv32=1166354069\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nUnavailable Win32 API caller=0x0000000110002ffe main=0x0000000110000000\nABI GPR arguments: 0x0000000000000000 0x0000000000000000 0x0000000000000000 0x0000000000000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n\n"
+}
+    if __name__=='__main__':main()
+  File "<project-root>\tests\m14\session148_run.py", line 19, in main
+    namespace=dict(__file__=str(source),__name__='session148_derived',production=production);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
+  File "<project-root>\tests\m14\global146_run.py", line 21, in main
+    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))
+  File "<project-root>\tests\m14\apps_native4.py", line 22, in task
+    raise AssertionError(raw[304:].split(b'\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\0',1)[0].decode(errors='replace'))
+AssertionError: Required Windows API is unavailable; see the call-site diagnostic. OUTPUT Mapped original image: 7zFM.exe bytes=65536 source-fnv32=1166354069
+Running the original Windows executable in a protected process.
+
+M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS
+Unavailable Win32 API caller=0x0000000110002ffe main=0x0000000110000000
+ABI GPR arguments: 0x0000000000000000 0x0000000000000000 0x0000000000000000 0x0000000000000000
+
+Engacer OS: Required Windows API is unavailable; see the call-site diagnostic.
+

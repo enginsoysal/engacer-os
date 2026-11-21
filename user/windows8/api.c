@@ -94,6 +94,9 @@ static HANDLE MS f_GetStdHandle(int32_t kind){
 #endif
 }
 static uint32_t MS f_GetTickCount(void){return (uint32_t)sys8(W8_SYS_TIME,0,0,0,0,0);}
+#ifdef ENGINE_M14
+static uint64_t MS f_GetTickCount64(void){return sys8(W8_SYS_TIME,0,0,0,0,0);}
+#endif
 static int MS f_QueryPerformanceCounter(uint64_t*out){if(!out){last8(87);return 0;}*out=sys8(W8_SYS_TIME,0,0,0,0,0);return 1;}
 static int MS f_QueryPerformanceFrequency(uint64_t*out){if(!out){last8(87);return 0;}*out=1000;return 1;}
 static void MS f_GetSystemTimeAsFileTime(uint64_t*out){if(out)*out=sys8(W8_SYS_TIME,1,0,0,0,0);}
@@ -465,7 +468,7 @@ static const api8 api8_table[]={
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
  API8(SetWindowPos,4),
- API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),
+ API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(GetTickCount64,1),
  API8(GetWindowDC,4),API8(DrawTextExW,4),API8(DrawTextW,4),
  API8(SetWindowSubclass,6),API8(GetWindowSubclass,6),API8(RemoveWindowSubclass,6),API8(DefSubclassProc,6),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
