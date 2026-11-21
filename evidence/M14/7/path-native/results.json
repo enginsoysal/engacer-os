@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "stage": "M14.7 development",
+  "scope": "Synthetic native path syscall and resource regression only",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "owned_fixture": "bd87c16ea3ef4e49a407d7b50dd2cf1f",
+  "fixture_sha256": "f058cde8d6841948745b431ccbc3553624496c6d7730a34bb76b36f245287c14",
+  "warm_output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=1617849361\nRunning the original Windows executable in a protected process.\n\nM143_NATIVE_PATH_BOUNDARY_PASS\n",
+  "samples": [
+    {
+      "turn": 1,
+      "retained_pages": 0
+    },
+    {
+      "turn": 2,
+      "retained_pages": 0
+    },
+    {
+      "turn": 3,
+      "retained_pages": 0
+    },
+    {
+      "turn": 4,
+      "retained_pages": 0
+    },
+    {
+      "turn": 5,
+      "retained_pages": 0
+    },
+    {
+      "turn": 6,
+      "retained_pages": 0
+    },
+    {
+      "turn": 7,
+      "retained_pages": 0
+    },
+    {
+      "turn": 8,
+      "retained_pages": 0
+    },
+    {
+      "turn": 9,
+      "retained_pages": 0
+    },
+    {
+      "turn": 10,
+      "retained_pages": 0
+    },
+    {
+      "turn": 11,
+      "retained_pages": 0
+    },
+    {
+      "turn": 12,
+      "retained_pages": 0
+    },
+    {
+      "turn": 13,
+      "retained_pages": 0
+    },
+    {
+      "turn": 14,
+      "retained_pages": 0
+    },
+    {
+      "turn": 15,
+      "retained_pages": 0
+    },
+    {
+      "turn": 16,
+      "retained_pages": 0
+    },
+    {
+      "turn": 17,
+      "retained_pages": 0
+    },
+    {
+      "turn": 18,
+      "retained_pages": 0
+    },
+    {
+      "turn": 19,
+      "retained_pages": 0
+    },
+    {
+      "turn": 20,
+      "retained_pages": 0
+    }
+  ]
+}

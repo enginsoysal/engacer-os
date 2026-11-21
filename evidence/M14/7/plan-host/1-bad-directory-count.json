@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "package": "npp.8.9.9.1.Installer.x64.msi",
+  "scope": "Owned metadata refusal before any target mutation",
+  "expected_refusal": "MSI directory-sector count is invalid.",
+  "mutation": "bad-directory-count"
+}

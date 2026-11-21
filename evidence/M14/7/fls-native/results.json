@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Own native lazy FLS, thread-isolated values, normal worker-exit callbacks, freeing live-thread values and main ExitProcess callbacks; not full fiber switching or original CRT qualification",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "a2a013765ebc80363c5cf414bc10b54391ccfb4633140dc31410ec4f68b1acf2",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "native_fls_worker_lifetimes": 8
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=883901641\nRunning the original Windows executable in a protected process.\n\nM147_NATIVE_FLS_THREADS_FREE_CALLBACKS_MAIN_EXIT_PASS\n"
+}

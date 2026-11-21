@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "checks": 1029,
+  "scope": "Actual production MSI/CAB file staging, journal, kernel stream/move routines and V6 on a private memory disk with host syscall/file-handle adapters; including authored links read back through trusted Windows metadata APIs and collision refusal; original custom sequence, integrated registry effects, native guest installation and recovery remain unqualified",
+  "packages": [
+    {
+      "package": "7z2606-x64.msi",
+      "source_sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "selected_payloads": 106,
+      "payload_bytes": 5882028,
+      "journal_bytes": 37720,
+      "shortcuts": [
+        {
+          "path": "/Data/Windows/Common/Programs/7-Zip/7-Zip File Manager.lnk",
+          "sha256": "2965d977c065d15486771f421a2624e0f04ecd069774346b811417a5f2b898ba",
+          "windows_metadata": {
+            "target": "C:\\Program Files\\7-Zip\\7zFM.exe",
+            "description": "",
+            "working_directory": "",
+            "arguments": "",
+            "show": 1
+          }
+        },
+        {
+          "path": "/Data/Windows/Common/Programs/7-Zip/7-Zip Help.lnk",
+          "sha256": "02565f6192938a3f5b97c6f5a0502c3390cf8647317b10232504399ff356c0c0",
+          "windows_metadata": {
+            "target": "C:\\Program Files\\7-Zip\\7-zip.chm",
+            "description": "",
+            "working_directory": "",
+            "arguments": "",
+            "show": 1
+          }
+        }
+      ],
+      "extent_promotion_preserves_data": true,
+      "pending_record_retained": true
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "source_sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "selected_payloads": 217,
+      "payload_bytes": 28130419,
+      "journal_bytes": 71280,
+      "shortcuts": [
+        {
+          "path": "/Data/Windows/Common/Programs/Notepad++/Notepad++.lnk",
+          "sha256": "cf38364a8b2b317b2f61b6d905a143fd5a5fff88f378c0888b226bcab0460a0a",
+          "windows_metadata": {
+            "target": "C:\\Program Files\\Notepad++\\notepad++.exe",
+            "description": "",
+            "working_directory": "C:\\Program Files\\Notepad++\\",
+            "arguments": "",
+            "show": 1
+          }
+        }
+      ],
+      "extent_promotion_preserves_data": true,
+      "pending_record_retained": true
+    }
+  ],
+  "peak_host_tracked_bytes": 7955200,
+  "retained_host_tracked_bytes": 0,
+  "sources": {
+    "user/windows8/msi-actions147.c": "b43bdc667606994411ff5e2e1c1b85b2dbedf5bb1e941c0ea1f06d385b64250e",
+    "user/windows8/msi-remove147.c": "c3f10370563169156c6634cadec5768c5b45f82ab79424e0e49279424fb2de9b",
+    "user/windows8/msi-install147.c": "5c58846dcd24685b094dab022ea0def28b8a52cc6a8b2b8167a3d6d416c56e58",
+    "user/windows8/msi-registry147.c": "6c1cb730293e07e064ca866b8e8cfbf65426b8540e00a3f487f4a22a7c10080c",
+    "user/windows8/msi-files147.c": "087da51f5a13002a64c1aaba78ecb86bc6b0960788fcca693919965f5a56b402",
+    "user/windows8/msi-shortcuts147.c": "a0e481b6dfe3a60c1426f86f59a9aac22ca7896764701e63d02f96a4de4f23ec",
+    "user/windows8/msi-journal147.c": "359e332db479ea43704103818d8ec0b743944603f37c2dd1c99a2a617b93baad",
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "kernel/storage/volume6.c": "9a0901c17b26106c22b0f9806743f28a1c779027c92275db061aeb5c7fab020a",
+    "tests/m14/files147_host.c": "e1feb2175d93d27e53ef9b9bce69e7cb9ee1375b72f4ce5d9bf9c3f138e5073a",
+    "kernel/windows8/path-access147.inc": "8a61158a6acd6469917568542cd6625563c3e94e5fdd7adc4a7870b82ad76e8b",
+    "include/engine/winproduct147.h": "bd434ed6b9a423637fa99d399ff3ffa8ea462341b6106c02848994ea456cc884",
+    "user/windows8/msi-files147.h": "4cf0f0dd3552b387c305cf85000a8bd87858d1833723ac46b9a6bc2b4374ecde",
+    "user/windows8/msi-shortcuts147.h": "43f9746119298592e72190ff488a566b0611fce9cbc99f53dfe4b24cfc2efae1",
+    "user/windows8/msi-link147.h": "87dffa8bc1d29ba1635f6dd17149a448ea78c8fee288f0ac6f7fb98d3f4651ae",
+    "kernel/windows8/path-core143.inc": "c2646b3d135f71c5c508c9d45949d54f4e291ab041ea9c43ee0b7487b6e96a71",
+    "kernel/windows8/unicode143.inc": "7e53b8018d924aa80cfa9a75d28da68aa6a3ccf4fb27138b8e06be7109a082f5",
+    "kernel/windows8/unicode-table143.inc": "d3c4ff60ac7ea152682746efc92deb4d00216547dd580abec9ca534c03271171",
+    "user/windows8/msi-journal147.h": "9e7709f0f7c2ecc69f28d0c26bccd2a399022c9ce7b447c951d48dcc1937105f",
+    "include/engine/wintxn147.h": "b4bf8707c9c72adb8daf896bf0d47202d45861b2dc722df4a84e195f35cd3837",
+    "kernel/windows8/stream147.inc": "e0f0bff648929f2690afbbd50251bbef8391309deb2e82dfe5407a52060c4441",
+    "kernel/windows8/transaction147.inc": "f5d036f86e58b4ca59bed92cec6da77e5990fe001916ee989256421efa41f56b",
+    "tests/m14/files147_host.py": "159ad3e944a3bc7845c1fddef5c3fad1581a3cf23bd794f964b4db7f4332b3c9",
+    "tests/m14/link147_reader.py": "f42f8df3ecdd10efd4e9fe8e3853947022910f5a967aff0f5a9030ac665dc880"
+  }
+}

@@ -1,8 +1,10 @@
-# BrixCanvas documentation website
+# Engacer OS website
 
-M14.6 is the qualified download: 76 native and 19 host groups, twenty independently verified public assets, and actual public content checks covering 594 pages, 385 exact-source articles and 4383 links (zero known broken targets; twelve unverified external references). Missing advanced BrixCanvas search/sidebar/ordered navigation remains reported and unqualified under the owner exception. [Publication receipt](../evidence/M14/6/publication-results.json), [current status](../docs/roadmap/status.md), [release limits](../docs/releases/m146-v0.14.6.md).
+M14.7 native/source/media qualification passes on build `1fb03f1b582d4d153441b6b5ca40da06`, compiled source `ad9ea25eea112dddb662c506c7631989b63b78b3` and 765 exact inputs. All 138 campaign tasks pass, covering 98 native and 39 supporting host groups plus starter preparation. Original 7-Zip and Notepad++ default/French MSI install/remove/reinstall, 217 original Notepad++ payloads, 76 durable registry readbacks, actual WiX bodies, changed-file preservation, ordinary cancellation, source-free recovery, compact/ordinary/actual 4K regressions and actual enabled-device VMware installation/two independent starts pass. Native managed task retention is zero after the documented first-use caches. Public downloads and the complete website are being verified separately. The Notepad++ editor and Sumatra original-app tasks remain unqualified.
 
-M14.7 is in development. Native source-bound MSI review, protected registry/pipes, version resources and the original WiX deferred body/child-output path have scoped evidence. The authored Notepad++ copy/delete sequence, generic original MSI writes and recovery remain incomplete. Keep the homepage download label on M14.6 until the next native/source/media/publication gates pass. Native articles synchronize from GitHub; homepage version/layout requires a separate native editor Save and fresh public readback. An article sync is not a complete website release.
+The current native release is M14.7. Native articles synchronize from GitHub; homepage version/layout requires a separate native editor Save and fresh public readback. An article sync is not a complete website release. [Status](../docs/roadmap/status.md), [native acceptance](../evidence/M14/7/acceptance-results.json), [matching release scope](../docs/releases/m147-v0.14.7.md).
+
+Historical M14.6 publication: twenty verified downloads, 594 pages, 385 exact-source articles and 4383 links; [immutable receipt](../evidence/M14/6/publication-results.json).
 
 ## Historical M14.5 delivery
 
@@ -338,4 +340,4 @@ owned empty draft also replaces its temporary draft marker. Final readback
 compares every published field and reports mismatched field names without
 printing an entire archive body. This check must pass before homepage Save.
 
-M14.7 development update: the production deferred dispatcher passes 189 original WiX action calls on native threads, including checked failures and authored Continue handling, with zero retained process-group pages. Own bounded command utilities pass byte-exact copy/deletion and refusal cases. Full authored installation, durable writes and recovery remain pending; M14.6 is still the qualified download. See docs/architecture/msi-m147.md and evidence/M14/7/development/wix-threads-native-351.
+Historical early M14.7 development update (superseded by current native acceptance above): the production deferred dispatcher passes 189 original WiX action calls on native threads, including checked failures and authored Continue handling, with zero retained process-group pages. Own bounded command utilities pass byte-exact copy/deletion and refusal cases. Full authored installation, durable writes and recovery remain pending; M14.6 is still the qualified download. See docs/architecture/msi-m147.md and evidence/M14/7/development/wix-threads-native-351.

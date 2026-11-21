@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": 400,
+  "peak_host_allocated_bytes": 128013,
+  "retained_allocations": 0,
+  "scope": "Supporting production property ownership/scalar formatting with deterministic allocation failures; no native MSI/custom-action/installation qualification",
+  "limits": [
+    "256 properties, 72-byte names, 4096-byte values, 128-KiB total transient allocation budget",
+    "Nested keys, optional formatted groups and binary NUL formatting currently refuse; external costed references require an explicit resolver"
+  ],
+  "sources": {
+    "user/windows8/msi-properties147.h": "6a9d0db86a2f24b13e2b86ea28546b19884586bd1d0255916e94d1041bf3679b",
+    "tests/m14/properties147_host.c": "896638d1ed5b535c6e6847e47f8babc1eb1b9a65f9689fc7ad55528cfc4008f7",
+    "tests/m14/properties147_host.py": "454afe4972e85d0114ff86f2546683c6dfb8ea3f38079610df41502b2908c46c"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "scope": "Host-compiled pure matcher supporting checks, not native Windows API qualification",
+  "explicit_cases": 9,
+  "independent_random_cases": 10000,
+  "malformed_input_cases": 10,
+  "guarded_results": true,
+  "official_case_data_sha256": "ff8d8fefbf123574205085d6714c36149eb946d717a0c585c27f0f4ef58c4183",
+  "source_sha256": {
+    "kernel/windows8/find-core143.inc": "e04784f7fad736e2e7b399d3003d04552e8301ffb1089d0d95b587eac04475f9",
+    "kernel/windows8/unicode143.inc": "7e53b8018d924aa80cfa9a75d28da68aa6a3ccf4fb27138b8e06be7109a082f5",
+    "kernel/windows8/unicode-table143.inc": "d3c4ff60ac7ea152682746efc92deb4d00216547dd580abec9ca534c03271171",
+    "tests/m14/find143_host.c": "8542f49221ad9645ba7e73d0f6342f0771eed93bd3ebbe4a9043d2bf99f9c5ca",
+    "tests/m14/find143_host.py": "e3a1b8863f0773dc881777d6d37067739cc9e17374b39f853e11a6bf853c2d0d",
+    "tests/m14/path143_host.c": "0f2b14ce98959c4ecbecf25f5a1afdc6fca587d3cd7e82857bfdec9b6c25d211"
+  }
+}

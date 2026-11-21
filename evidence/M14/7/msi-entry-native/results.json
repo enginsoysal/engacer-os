@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "scope": "Open original MSIs through Files: select once, open, then review before install.",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "observer_sha256": "bb79f5025fff1ac8d69ca84156f6f99a9cb7019ee33657f66ebea432382fc0ed",
+  "owned_fixture": "22d26e7a062c496eaee5a107574ec14f",
+  "clone": {
+    "source_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+    "clone_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 6291456
+  },
+  "cases": [
+    {
+      "file": "npp.8.9.9.1.Installer.x64.msi",
+      "single_click_selects": true,
+      "supplied_source_requires_review": true,
+      "reviewed_profile": 2,
+      "no_product_mutation": true,
+      "retained_task_pages": 0,
+      "first_activation_pages": 4,
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: Notepad++ (x64)\nSelected original files: 217 bytes: 28130419\nAuthored registry entries: 10 shortcuts: 1\nMSI execute actions: 30 custom-action metadata: 4\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    },
+    {
+      "file": "7z2606-x64.msi",
+      "single_click_selects": true,
+      "supplied_source_requires_review": true,
+      "reviewed_profile": 3,
+      "no_product_mutation": true,
+      "retained_task_pages": 0,
+      "first_activation_pages": 0,
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: 7-Zip 26.06 (x64 edition)\nSelected original files: 106 bytes: 5882028\nAuthored registry entries: 16 shortcuts: 2\nMSI execute actions: 23 custom-action metadata: 0\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    }
+  ]
+}

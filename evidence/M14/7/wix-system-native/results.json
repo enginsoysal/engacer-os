@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Production deferred dispatcher creates and joins real action threads for original unchanged WiX; byte-exact utilities, checked failures and authored Continue handling. Test-only session owner; authored Notepad++ sequence and full installation remain unqualified.",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "d109eb40796c2be6e5eb78c290273ccb4decc3441dbe87e7f1c6b8f1b81bb4b7",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 9,
+      "peak_native_managed_pages": 2853
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=3901395285\nRunning the original Windows executable in a protected process.\n\nMapped original image: msi.dll bytes=524288 source-fnv32=1727619140\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: xcopy.exe bytes=24576 source-fnv32=3808129900\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  1 File(s) copied\nM147_THREADED_ORIGINAL_WIX_ACTION=0 result=0 body=0 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: xcopy.exe bytes=24576 source-fnv32=3808129900\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  1 File(s) copied\nM147_THREADED_ORIGINAL_WIX_ACTION=1 result=0 body=0 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: cmd.exe bytes=20480 source-fnv32=4184089684\nRunning the original Windows executable in a protected process.\n\nM147_THREADED_ORIGINAL_WIX_ACTION=2 result=0 body=0 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: cmd.exe bytes=20480 source-fnv32=4184089684\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  The file was not found.\nM147_THREADED_ORIGINAL_WIX_ACTION=3 result=0 body=0 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: xcopy.exe bytes=24576 source-fnv32=3808129900\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  The source could not be opened (Windows error 2).\nMSI: WixQuietExec:  Error 0x80070001: Command line returned an error.\nMSI: WixQuietExec:  Error 0x80070001: QuietExec Failed\nMSI: WixQuietExec:  Error 0x80070001: Failed in ExecCommon method\nM147_THREADED_ORIGINAL_WIX_ACTION=4 result=1603 body=1603 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: xcopy.exe bytes=24576 source-fnv32=3808129900\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  The destination could not be created (Windows error 32).\nMSI: WixQuietExec:  Error 0x80070005: Command line returned an error.\nMSI: WixQuietExec:  Error 0x80070005: QuietExec Failed\nMSI: WixQuietExec:  Error 0x80070005: Failed in ExecCommon method\nM147_THREADED_ORIGINAL_WIX_ACTION=5 result=1603 body=1603 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: cmd.exe bytes=20480 source-fnv32=4184089684\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  A directory cannot be deleted by this command (Windows error 5).\nMSI: WixQuietExec:  Error 0x80070001: Command line returned an error.\nMSI: WixQuietExec:  Error 0x80070001: QuietExec Failed\nMSI: WixQuietExec:  Error 0x80070001: Failed in ExecCommon method\nM147_THREADED_ORIGINAL_WIX_ACTION=6 result=1603 body=1603 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: cmd.exe bytes=20480 source-fnv32=4184089684\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  The command line is outside the supported utility profile (Windows error 50).\nMSI: WixQuietExec:  Error 0x80070001: Command line returned an error.\nMSI: WixQuietExec:  Error 0x80070001: QuietExec Failed\nMSI: WixQuietExec:  Error 0x80070001: Failed in ExecCommon method\nM147_THREADED_ORIGINAL_WIX_ACTION=7 result=1603 body=1603 continued=0\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: xcopy.exe bytes=24576 source-fnv32=3808129900\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  The source could not be opened (Windows error 2).\nMSI: WixQuietExec:  Error 0x80070001: Command line returned an error.\nMSI: WixQuietExec:  Error 0x80070001: QuietExec Failed\nMSI: WixQuietExec:  Error 0x80070001: Failed in ExecCommon method\nM147_THREADED_ORIGINAL_WIX_ACTION=8 result=0 body=1603 continued=1\nM147_THREADED_ORIGINAL_WIX_COPY_DELETE_CONTINUE_PASS\nM147_ORIGINAL_WIX_DEFERRED_CHILD_OUTPUT_PASS\n"
+}

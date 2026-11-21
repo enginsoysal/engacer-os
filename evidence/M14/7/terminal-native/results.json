@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "kernel_build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "source_commit": "560f25f49a014601dabfe7689901d7cf8b3a815b",
+  "scope": "Labelled native DELETE faults after semantic undo, followed by source-free recovery.\n\nFault DLL changes only the native remove8 adapter; recovery restores the production DLL.\n",
+  "observer_sha256": "df71f7dcecfa7b6e261978308af80cbd83d183bd6d0156fa0a7b33e649e58a0c",
+  "cases": [
+    {
+      "mode": "pending",
+      "clone": {
+        "source_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+        "clone_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 0
+      },
+      "fault": {
+        "state": 3,
+        "status": 1117,
+        "message": "The operation could not finish. Recovery records and your files were kept; inspect Details before retrying.",
+        "output": "M147_TEST_ROUTE_TO_PRODUCTION_MSI_REMOVE_SERVICE\nMapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=2851861052\nRunning the native Engacer MSI service in a protected process.\n\nM147_TEST_IO_DELETE_REFUSAL pending\nMSI operation status: 1117\n",
+        "peak_native_managed_pages": 866
+      },
+      "fault_retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "completion_sha256": "d01f10273ffac02f0824002005d7d1e1e251335da44a68f4263ae6dadafc135a",
+      "recovery": {
+        "state": 2,
+        "status": 0,
+        "message": "Removal finished. Any saved application files remain in Documents > Recovered applications.",
+        "output": "M147_TEST_ROUTE_TO_PRODUCTION_MSI_REMOVE_SERVICE\nMapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+        "peak_native_managed_pages": 286
+      },
+      "recovery_retained_managed_pages": 0,
+      "original_download_absent": true,
+      "source_cache_absent": true,
+      "independent_restart_source_free_recovery": true
+    },
+    {
+      "mode": "done",
+      "clone": {
+        "source_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+        "clone_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "fault": {
+        "state": 3,
+        "status": 1117,
+        "message": "The operation could not finish. Recovery records and your files were kept; inspect Details before retrying.",
+        "output": "M147_TEST_ROUTE_TO_PRODUCTION_MSI_REMOVE_SERVICE\nMapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=2851861052\nRunning the native Engacer MSI service in a protected process.\n\nM147_TEST_IO_DELETE_REFUSAL done\nMSI operation status: 1117\n",
+        "peak_native_managed_pages": 866
+      },
+      "fault_retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "completion_sha256": "d01f10273ffac02f0824002005d7d1e1e251335da44a68f4263ae6dadafc135a",
+      "recovery": {
+        "state": 2,
+        "status": 0,
+        "message": "Removal finished. Any saved application files remain in Documents > Recovered applications.",
+        "output": "M147_TEST_ROUTE_TO_PRODUCTION_MSI_REMOVE_SERVICE\nMapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+        "peak_native_managed_pages": 275
+      },
+      "recovery_retained_managed_pages": 0,
+      "original_download_absent": true,
+      "source_cache_absent": true,
+      "independent_restart_source_free_recovery": true
+    }
+  ],
+  "last_observed": {
+    "mode": "done",
+    "job": {
+      "state": 3,
+      "status": 1117,
+      "message": "The operation could not finish. Recovery records and your files were kept; inspect Details before retrying.",
+      "output": "M147_TEST_ROUTE_TO_PRODUCTION_MSI_REMOVE_SERVICE\nMapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=2851861052\nRunning the native Engacer MSI service in a protected process.\n\nM147_TEST_IO_DELETE_REFUSAL done\nMSI operation status: 1117\n",
+      "peak_native_managed_pages": 866
+    },
+    "managed_delta": 4
+  }
+}

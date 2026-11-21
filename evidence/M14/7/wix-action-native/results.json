@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Original unchanged WiX deferred action and own output child through real MSI services in a test-only session-owner DLL; not authored Notepad++ copy/delete, full installation or unmodified production service qualification",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "d109eb40796c2be6e5eb78c290273ccb4decc3441dbe87e7f1c6b8f1b81bb4b7",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "original_deferred_action_calls": 1,
+      "peak_native_managed_pages": 2584
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=3901395285\nRunning the original Windows executable in a protected process.\n\nMapped original image: msi.dll bytes=520192 source-fnv32=1983078140\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nM147_ORIGINAL_WIX_ACTION_BEGIN\nMapped original image: quiet-child147.exe bytes=20480 source-fnv32=1486660981\nRunning the original Windows executable in a protected process.\n\nMSI: WixQuietExec:  M147_REAL_WIX_CAPTURED_CHILD_OUTPUT\nM147_ORIGINAL_WIX_ACTION_RESULT=0\nM147_ORIGINAL_WIX_DEFERRED_CHILD_OUTPUT_PASS\n"
+}

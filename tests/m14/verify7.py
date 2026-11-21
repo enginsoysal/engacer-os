@@ -16,6 +16,18 @@ def main():
  before="out=ROOT/'evidence/M14/4'";assert before in text;text=text.replace(before,"out=ROOT/'build/m14-native/stage7/verification-base'")
  before="assert font['coverage_bytes']==251248 and font['header_sha256']==read(ROOT/'third_party/inter/raster-lock12.json')['header_sha256']";assert text.count(before)==1;text=text.replace(before,"assert font['coverage_bytes']==227452 and font['header_sha256']==read(ROOT/'third_party/inter/raster-lock146.json')['header_sha256'] and font['glyphs']==1663")
  before="assert fixed['bytes']==557692";assert text.count(before)==1;text=text.replace(before,"assert fixed['bytes']==557692")
+ # The current cancellation scenario directly uses the current UI harness,
+ # so its actual replay receipt replaces the historical regression adapter.
+ before="    for case in {**CASES,**FILE_CASES}:"
+ assert text.count(before)==1
+ text=text.replace(before,before+"""
+        if case=='msi-cancel':
+            direct=read(work/'replay-observers/msi_cancel147.json')
+            assert direct['passed'] and direct['build_id']==meta['build_id'] and direct['target']=='msi_cancel147'
+            assert direct['adapter_sha256']==sha(ROOT/'tests/m14/replay7.py')
+            assert direct['observer_sources']['tests/m14/msi_cancel147.py']['canonical_sha256']==sha(ROOT/'tests/m14/msi_cancel147.py')
+            observers[case]=dict(scope='Actual current-stage UI cancellation observer; parent verifier independently reconstructs every replay source hash',replay=direct)
+            continue""")
  current_map=(ROOT/'dist/EngacerOS-M14STAGE7-installed-kernel.map').read_text();assert 'foreign_pointer144.cursor_owner144'not in current_map
  historical=read(ROOT/'evidence/M14/4/resources.json')['desktop_fixed'];assert historical['bytes']==557692
  namespace={'__name__':'verified_m146_base','__file__':str(source)};exec(compile(text,str(source),'exec'),namespace);namespace['main']()

@@ -1,0 +1,418 @@
+{
+  "passed": true,
+  "scope": "Original MSI install/remove/reinstall, durable registry bytes and preserved data.\n\nNo original DLL or application executes on the host. The French variant changes\nonly the own worker to seed an existing preference through native registry APIs;\nall installer effects and original deferred bodies run in the production service.\n",
+  "profile": "default",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "source_commit": "ad9ea25eea112dddb662c506c7631989b63b78b3",
+  "observer_sha256": "29582c2fbf1f39d68399ac7d03fdeb9fd9e9441ec783a069ad8ed5840fc0936c",
+  "clone": {
+    "source_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+    "clone_sha256": "0902740e232a85a7b6898fd506388b32f22adcf24157d0a53412f3bf8e4ff8c3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "owned_fixture": "edc0ca37fa96494d9125633ceec768fc",
+  "tasks": [
+    {
+      "operation": "install",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 0,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 4219,
+      "message": "Application files, registry values and shortcuts were installed and verified.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+      "payloads": 217,
+      "links": 1,
+      "registry_ownerships": 9,
+      "generated_files": 0,
+      "journal_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+    },
+    {
+      "operation": "remove without original download after independent restart",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 2369,
+      "message": "Removed. Your personal files are unchanged.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n"
+    },
+    {
+      "operation": "reinstall original selection",
+      "retained_managed_pages": 0,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 4219,
+      "message": "Application files, registry values and shortcuts were installed and verified.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+      "payloads": 217,
+      "links": 1,
+      "registry_ownerships": 9,
+      "generated_files": 0,
+      "journal_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+    },
+    {
+      "operation": "remove unchanged reinstalled product",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "peak_native_managed_pages": 2369,
+      "message": "Removed. Your personal files are unchanged.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n"
+    }
+  ],
+  "registry_readback": [
+    {
+      "phase": "installed",
+      "checked": [
+        {
+          "owner": "/Users/Owner",
+          "key": "Software\\Notepad++",
+          "name": "StartMenuShortcut",
+          "type": 4,
+          "bytes": 4,
+          "sha256": "67abdd721024f0ff4e0b3f4c2fc13bc5bad42d0b7851d456d88d203d15aaa450",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "",
+          "type": 1,
+          "bytes": 46,
+          "sha256": "92b6b26fd9c8e6d1b1944e1f857be710e6f46cbf9238427d9e3580da26add4bd",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "ExplorerCommandHandler",
+          "type": 1,
+          "bytes": 78,
+          "sha256": "7cf4fcc2f9e768258582babc3aa4a328f1ddbc79201759237ece94cd49eddda8",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "NeverDefault",
+          "type": 1,
+          "bytes": 2,
+          "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}",
+          "name": "",
+          "type": 1,
+          "bytes": 20,
+          "sha256": "e105e508558e33158ce786437b76802bf816822d612e61a3d37bbe6b2788fb8d",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "",
+          "type": 1,
+          "bytes": 104,
+          "sha256": "362e0afbb606009793f24f24488e599db10e1210d384b17446466cb659740b6b",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "ThreadingModel",
+          "type": 1,
+          "bytes": 20,
+          "sha256": "37b9977bec31aaca91131e6230234f6ce9e6ac87752b91e52f596280ea1a96d2",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Notepad++",
+          "name": "ContextMenuFolder",
+          "type": 1,
+          "bytes": 80,
+          "sha256": "5b15f2810ef2ebe44c470ddfa39f9e9e18edfb240ecfe465bba45fc642cc4ea7",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+          "name": "RegisterNppShell",
+          "type": 1,
+          "bytes": 902,
+          "sha256": "84c86060b3347d02188d38331a0c3d47b6c8607f9d1b9e2773976f6ed518e808",
+          "absent": false
+        }
+      ],
+      "write_callbacks_refused": true
+    },
+    {
+      "phase": "removed",
+      "checked": [
+        {
+          "owner": "/Users/Owner",
+          "key": "Software\\Notepad++",
+          "name": "StartMenuShortcut",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "ExplorerCommandHandler",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "NeverDefault",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}",
+          "name": "",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "ThreadingModel",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Notepad++",
+          "name": "ContextMenuFolder",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+          "name": "RegisterNppShell",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        }
+      ],
+      "write_callbacks_refused": true
+    },
+    {
+      "phase": "installed",
+      "checked": [
+        {
+          "owner": "/Users/Owner",
+          "key": "Software\\Notepad++",
+          "name": "StartMenuShortcut",
+          "type": 4,
+          "bytes": 4,
+          "sha256": "67abdd721024f0ff4e0b3f4c2fc13bc5bad42d0b7851d456d88d203d15aaa450",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "",
+          "type": 1,
+          "bytes": 46,
+          "sha256": "92b6b26fd9c8e6d1b1944e1f857be710e6f46cbf9238427d9e3580da26add4bd",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "ExplorerCommandHandler",
+          "type": 1,
+          "bytes": 78,
+          "sha256": "7cf4fcc2f9e768258582babc3aa4a328f1ddbc79201759237ece94cd49eddda8",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "NeverDefault",
+          "type": 1,
+          "bytes": 2,
+          "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}",
+          "name": "",
+          "type": 1,
+          "bytes": 20,
+          "sha256": "e105e508558e33158ce786437b76802bf816822d612e61a3d37bbe6b2788fb8d",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "",
+          "type": 1,
+          "bytes": 104,
+          "sha256": "362e0afbb606009793f24f24488e599db10e1210d384b17446466cb659740b6b",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "ThreadingModel",
+          "type": 1,
+          "bytes": 20,
+          "sha256": "37b9977bec31aaca91131e6230234f6ce9e6ac87752b91e52f596280ea1a96d2",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Notepad++",
+          "name": "ContextMenuFolder",
+          "type": 1,
+          "bytes": 80,
+          "sha256": "5b15f2810ef2ebe44c470ddfa39f9e9e18edfb240ecfe465bba45fc642cc4ea7",
+          "absent": false
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+          "name": "RegisterNppShell",
+          "type": 1,
+          "bytes": 902,
+          "sha256": "84c86060b3347d02188d38331a0c3d47b6c8607f9d1b9e2773976f6ed518e808",
+          "absent": false
+        }
+      ],
+      "write_callbacks_refused": true
+    },
+    {
+      "phase": "removed",
+      "checked": [
+        {
+          "owner": "/Users/Owner",
+          "key": "Software\\Notepad++",
+          "name": "StartMenuShortcut",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "ExplorerCommandHandler",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\*\\shell\\ANotepad++64",
+          "name": "NeverDefault",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}",
+          "name": "",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "Software\\Classes\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\InProcServer32",
+          "name": "ThreadingModel",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Notepad++",
+          "name": "ContextMenuFolder",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        },
+        {
+          "owner": "/Machine/64",
+          "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+          "name": "RegisterNppShell",
+          "type": null,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "absent": true
+        }
+      ],
+      "write_callbacks_refused": true
+    }
+  ],
+  "registry_observer_sha256": "64b6da8da63117da9be0a8b61215715ee476e4966e3bee23689252b7173ed4a9",
+  "production_worker_final_restart_preserves_user_data": true
+}

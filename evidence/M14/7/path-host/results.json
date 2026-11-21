@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "scope": "Host compiled path policy, not native syscall or Windows app qualification",
+  "checks": [
+    {
+      "input": "c:/users/OWNER/documents/r\u00c9sum\u00c9.TXT",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "..\\Downloads\\new.txt",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "C:..\\Downloads\\new.txt",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "\\Users\\OWNER\\Documents\\smile-\ud83d\ude42.txt",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\folder\\CHILD.TXT",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\folder\\CHILD.TXT",
+      "flags": 4,
+      "status": 0
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\literal. ",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "\\\\?\\C:\\Users\\Owner\\Documents\\literal. ",
+      "flags": 0,
+      "status": 0
+    },
+    {
+      "input": "\\\\server\\share\\file",
+      "flags": 0,
+      "status": 50
+    },
+    {
+      "input": "\\\\.\\PhysicalDrive0",
+      "flags": 0,
+      "status": 50
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\NUL.txt",
+      "flags": 0,
+      "status": 50
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\COM\u00b9.txt",
+      "flags": 0,
+      "status": 50
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\x:stream",
+      "flags": 0,
+      "status": 50
+    },
+    {
+      "input": "C:\\Users\\Owner\\..\\Other\\private",
+      "flags": 0,
+      "status": 5
+    },
+    {
+      "input": "C:\\Windows\\..\\Data\\file",
+      "flags": 2,
+      "status": 0
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\*.txt",
+      "flags": 1,
+      "status": 0
+    },
+    {
+      "input": "C:\\Users\\Owner\\*\\file",
+      "flags": 1,
+      "status": 123
+    },
+    {
+      "input": "\\\\?\\C:\\Users\\Owner\\Documents\\..\\file",
+      "flags": 0,
+      "status": 50
+    },
+    {
+      "input": "D:\\file",
+      "flags": 2,
+      "status": 15
+    },
+    {
+      "input": "",
+      "flags": 0,
+      "status": 3
+    },
+    {
+      "input": "",
+      "flags": 2,
+      "status": 87
+    },
+    {
+      "input": "C:\\Users\\Owner\\Documents\\aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "flags": 0,
+      "status": 206
+    },
+    {
+      "input": "433a5c55736572735c4f776e65725c446f63756d656e74735ceda080",
+      "flags": 0,
+      "status": 1113
+    }
+  ],
+  "ambiguous_native_case_refused": true,
+  "mutation_cases": 5000,
+  "statuses": {
+    "0": 714,
+    "123": 2540,
+    "50": 1737,
+    "5": 9
+  },
+  "source_sha256": {
+    "kernel/windows8/path-core143.inc": "c2646b3d135f71c5c508c9d45949d54f4e291ab041ea9c43ee0b7487b6e96a71",
+    "kernel/windows8/unicode143.inc": "7e53b8018d924aa80cfa9a75d28da68aa6a3ccf4fb27138b8e06be7109a082f5",
+    "kernel/windows8/unicode-table143.inc": "d3c4ff60ac7ea152682746efc92deb4d00216547dd580abec9ca534c03271171",
+    "include/engine/windows8.h": "3d0d83d057098dbada965cec6ecb5ceb0375177a51adb5d2960e1393322995ad",
+    "tests/m14/path143_host.c": "0f2b14ce98959c4ecbecf25f5a1afdc6fca587d3cd7e82857bfdec9b6c25d211",
+    "tests/m14/path143_host.py": "7210ba084cf368141237b48150c770ee8192a13e6656cb1ebb758f417b523d1c"
+  }
+}

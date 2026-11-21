@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "scope": "Own version parsing vs trusted Windows data-only version APIs; original images never execute.",
+  "checks": 6505,
+  "packages": [
+    {
+      "file": "_7z.exe",
+      "sha256": "dc0493429fe28136fcb177a0e77c9875cbb3b0bff5f2f8eeba4df302e98cef76",
+      "resource_bytes": 684,
+      "reference_buffer_bytes": 1372,
+      "values": {
+        "\\": "bd04effe0000010006001a000000000006001a00000000003f000000000000000400040001000000000000000000000000000000",
+        "\\VarFileInfo\\Translation": "0904b004",
+        "\\StringFileInfo\\040904b0\\FileVersion": "26.06\u0000",
+        "\\StringFileInfo\\040904b0\\ProductVersion": "26.06\u0000",
+        "\\StringFileInfo\\040904b0\\CompanyName": "Igor Pavlov\u0000",
+        "\\StringFileInfo\\040904b0\\ProductName": "7-Zip\u0000",
+        "\\StringFileInfo\\040904b0\\FileDescription": "7-Zip Console\u0000"
+      }
+    },
+    {
+      "file": "Wix4UtilCA_X64.bin",
+      "sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+      "resource_bytes": 816,
+      "reference_buffer_bytes": 1636,
+      "values": {
+        "\\": "bd04effe00000100000006000000020000000600000000003f000000000000000400000002000000000000000000000000000000",
+        "\\VarFileInfo\\Translation": "09040000",
+        "\\StringFileInfo\\04090000\\FileVersion": "6.0.2.0\u0000",
+        "\\StringFileInfo\\04090000\\ProductVersion": "6.0.2\u0000",
+        "\\StringFileInfo\\04090000\\CompanyName": "WiX Toolset\u0000",
+        "\\StringFileInfo\\04090000\\ProductName": "WiX Toolset\u0000",
+        "\\StringFileInfo\\04090000\\FileDescription": "WiX Toolset Util CustomAction\u0000"
+      }
+    },
+    {
+      "file": "notepad++.exe",
+      "sha256": "5518ad65f576b993c48da1878bda83a62f7a101d246aefab472379ca8800390c",
+      "resource_bytes": 732,
+      "reference_buffer_bytes": 1468,
+      "values": {
+        "\\": "bd04effe00000100090008000100090009000800010009003f000000000000000400040001000000000000000000000000000000",
+        "\\VarFileInfo\\Translation": "0904b004",
+        "\\StringFileInfo\\040904b0\\FileVersion": "8.9.9.1\u0000",
+        "\\StringFileInfo\\040904b0\\ProductVersion": "8.9.9.1\u0000",
+        "\\StringFileInfo\\040904b0\\CompanyName": "Don HO don.h@free.fr\u0000",
+        "\\StringFileInfo\\040904b0\\ProductName": "Notepad++\u0000",
+        "\\StringFileInfo\\040904b0\\FileDescription": "Notepad++\u0000"
+      }
+    }
+  ],
+  "peak_transient_host_bytes": 816,
+  "retained_host_bytes": 0,
+  "sources": {
+    "user/windows8/version147.h": "ae9ac0d109811319456e6a0f3b1a6bbfc9f31da84d03d818f370d74abc0bbf20",
+    "user/windows8/version147.inc": "b5c3592cdbf59fb90faa51e18f35055881b8d3d279a82f827057f5d29c105d7a",
+    "tests/m14/version147_host.c": "3b8c9af7b440c2c07c8ed30796c41b850de481c1f8a706511e18605ee7cf4e03",
+    "tests/m14/version147_host.py": "b95490a3ecc99948e63aed5d0910d21cc88827de9627a014418d77dbe8a8387e"
+  }
+}

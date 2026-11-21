@@ -3,21 +3,21 @@
 
 ## Start here
 
-**Current native candidate: [M14.6](https://github.com/enginsoysal/engacer-os/releases/tag/m146-v0.14.6).** Native qualification passes within M14-STAGE6-VM-v1. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; public content/link verification is recorded separately in evidence/M14/6; advanced BrixCanvas search/task navigation remains reported and unqualified. Follow the guide matching your download.
+**Current native release: [M14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native qualification passes within M14-STAGE7-VM-v1. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public download and website verification are separate and are being completed; reported advanced BrixCanvas search/navigation remains unqualified and nonblocking. Follow the guide matching your download.
 
-- [Download, verify and install in VMware](install-m146.md)
-- [Original Windows menus, folders and browser downloads](windows-m146.md)
+- [Download, verify and install in VMware](install-m147.md)
+- [Original Windows menus, folders and browser downloads](windows-m147.md)
 - [Current supported behavior and limits](../roadmap/status.md)
-- [Release scope and checksums](../releases/m146-v0.14.6.md)
+- [Release scope and checksums](../releases/m147-v0.14.7.md)
 - [Build your distribution](distributions.md)
 
-M14.6 adds owner-bound original 7-Zip Browse/Unicode-path and cross-app clipboard previews, actual shared RAM sections, and exact native UTF-8/CRLF editor reopening. Full GUI archive operations, normal C++ cancellation, Notepad++/Sumatra interfaces and Firefox execution remain unqualified. All original target tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
+M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. All original-app tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
 
 ## Use the desktop
 
 These task guides explain retained desktop features. Their original test records belong to their named historical media; use the current installation guide and release scope above for current downloads and qualification.
 
-- [First day, desktop and folders](first-day-m146.md)
+- [First day, desktop and folders](first-day-m147.md)
 - [Saved work, screensaver and stability limits](stability-m1313.md)
 - [Select files, navigate folders and use USB drives](files-m137.md)
 - [Choose views, sorting and full names](files-m126.md)

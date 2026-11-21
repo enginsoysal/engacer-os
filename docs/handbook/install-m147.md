@@ -1,6 +1,6 @@
-# Install the M14.7 candidate in VMware
+# Install Engacer OS M14.7 in VMware
 
-**Candidate guide: final qualification is running.** Build `1fb03f1b582d4d153441b6b5ca40da06` is under the full native/source/media campaign. M14.6 remains the qualified public download until M14.7 closes. This page describes the new candidate; it is not a release acceptance receipt.
+**Native/source/media qualification passes.** Use the matching M14.7 ISO or prepared VMware package. Build `1fb03f1b582d4d153441b6b5ca40da06` passes the 138-task campaign, including actual VMware installation and two disk-only starts. Public delivery is verified separately; follow the current release status.
 
 ## Before starting
 

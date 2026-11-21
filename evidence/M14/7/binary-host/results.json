@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checks": 9,
+  "scope": "Read the actual original MSI Binary stream with the production reader and compare independent extraction. Opaque data only: no vendor code, installer or DLL executes on host.",
+  "package_sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+  "streams": [
+    {
+      "stream": "Binary.Wix4UtilCA_X64",
+      "bytes": 423704,
+      "sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+      "independent_extractor_bytes_match": true
+    }
+  ],
+  "retained_host_tracked_bytes": 0,
+  "sources": {
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "tests/m14/binary147_host.c": "f7b45ee4984c92df8203a29ddb2d07e79b812646db044f63c96f2999abbc3e95",
+    "tests/m14/binary147_host.py": "974a412e808c920d28e56925efe698f98f03d11f1da0c54c84c768773833380c",
+    "user/windows8/msi_db.h": "79b020bad568b03d01c25337cef2dba57e4b7dffbd12f465bd54d991ef5d2fe1"
+  }
+}

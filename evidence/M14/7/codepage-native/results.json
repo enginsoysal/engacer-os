@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Own native selected code-page metadata, 256 independently referenced CP1252 bytes, UTF-8 scalar/surrogate conversions and malformed refusal; not full NLS or original CRT qualification",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "c715a7d5b71fdf3afe44f863672f61e9eacf0a436bc0d0ca3c6614aa6cade0f8",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "native_cp1252_reference_bytes": 256
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=1205888420\nRunning the original Windows executable in a protected process.\n\nM147_NATIVE_CODEPAGE_UTF8_CP1252_REFERENCE_PASS\n"
+}

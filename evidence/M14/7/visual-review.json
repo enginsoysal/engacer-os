@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Agent review of eight actual native compact Windows Apps review/install/inventory/removal/recovery captures; not complete stage acceptance or a human usability study.",
+  "captures": [
+    "generic-native-default/default-reviewed-original.png",
+    "generic-native-default/default-installed.png",
+    "generic-native-default/default-installed-apps.png",
+    "generic-native-default/default-remove-confirmation.png",
+    "msi-entry-native/msi-entry-unreviewed-0.png",
+    "msi-entry-native/msi-entry-reviewed-0.png",
+    "generic-cancel-native/generic-recovery-confirmation.png",
+    "terminal-native/native-tail-done-recovery-confirmation.png"
+  ],
+  "capture_sha256": {
+    "generic-native-default/default-reviewed-original.png": "3162163b4511a12d00b55938af292e738a01511ffee258c8982caa5008644052",
+    "generic-native-default/default-installed.png": "45143bba292c6ad72a72f8bd9b3cdb14d53995097ca292ad343dc8684585774a",
+    "generic-native-default/default-installed-apps.png": "90e875466237c0c950ecf6916a84f78562c8eae60ecf4ad8624c3f05f64b07f3",
+    "generic-native-default/default-remove-confirmation.png": "dae546186b1c555b335f9dc9d54cdef1a2438bbe380072de355349668ceea694",
+    "msi-entry-native/msi-entry-unreviewed-0.png": "c9ea303604b195de0d73e579776c4c742b0d758b1e412a97abd6e13064381fc6",
+    "msi-entry-native/msi-entry-reviewed-0.png": "2b990263885a1cb178dd3b4f8cfa34f961081aa7b1ada29a4c774d1fb028bc9e",
+    "generic-cancel-native/generic-recovery-confirmation.png": "94703d69bb41a4159b061a0653f33fb4535cd3e060cf146765a43875bc1bc7a7",
+    "terminal-native/native-tail-done-recovery-confirmation.png": "d62b90aa5c0136a0a326ef3bbef2eb889759804b308251f56bb69e3108a3c367"
+  },
+  "observations": [
+    "Readable consistent native typography; no overlapping essential text or actions in the reviewed captures.",
+    "Reviewed original Notepad++ identity/version/217-file cost and explicit install/removal/recovery buttons are visible.",
+    "Files entry remains unreviewed with no Install action until the package is reviewed.",
+    "Recovery messages identify saved application files and preserve other files."
+  ],
+  "limits": [
+    "The unreviewed supplied-MSI help paragraph still refers to the included 7-Zip Install action although Review installer is the available primary action. This stale helper copy is recorded for native integration work; the review/confirmation guards remain enforced.",
+    "Installed state qualifies package installation, not opening the Notepad++ editor; there is no qualified editor launch action.",
+    "No new arbitrary-application or full GUI archive qualification is claimed."
+  ]
+}

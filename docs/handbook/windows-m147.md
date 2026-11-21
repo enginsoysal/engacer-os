@@ -1,8 +1,8 @@
 # Original Windows MSI applications in M14.7
 
-**Candidate guide: final qualification is running.** M14.6 remains the qualified public download until the M14.7 release checks finish. These instructions describe the implemented M14.7 interface; they do not make the Notepad++ editor or arbitrary Windows installers supported.
+**M14.7 native/source/media qualification passes.** These instructions cover the tested original MSI profiles. Installing the Notepad++ package does not qualify using its editor or arbitrary Windows installers.
 
-## What works in this candidate
+## What works in this release
 
 | Application | Installation and removal | Using the application |
 | --- | --- | --- |
@@ -31,7 +31,7 @@ Personal documents stay separate from application files. The original file manag
 5. Check the product name, version, publisher and file count. The tested Notepad++ package shows version **8.9.9.1** and **217 files**.
 6. Choose **Install app**, read the confirmation, and confirm. Wait for the verified completion message.
 
-If the file changes, review it again before installing. A review-only result means required installer behavior is unsupported; repeated confirmation cannot enable it. Installing Notepad++ in this candidate does not qualify opening or editing documents with it yet.
+If the file changes, review it again before installing. A review-only result means required installer behavior is unsupported; repeated confirmation cannot enable it. Installing Notepad++ in this release does not qualify opening or editing documents with it yet.
 
 Existing supported language preferences are read from the original package's authored registry search. The original WiX DLL executes its selected copy/delete actions through native services. A separate native test establishes an existing French preference; the ordinary interface does not currently offer a new language chooser.
 
@@ -60,6 +60,8 @@ If the record needs inspection, read **Details** and keep the files. A damaged o
 
 The engine has bounded MSI input, cabinet, file, property and transaction limits. Unsupported required tables/actions, upgrades, transforms, advertised shortcuts and shared-component behavior are not silently skipped. An x64 application label does not establish that its separate EXE installer is AMD64; mixed x86 chains remain M15 work.
 
-Native development tests cover actual original payload hashes, required WiX bodies, registry bytes, changed-file preservation, restart, reinstall and cancellation. The full final-source campaign and public delivery remain open at the time of this draft. Fixed kernel data, managed task peaks, framebuffer memory and configured VM RAM are different measurements. Whole-system CPU/RAM/storage optimization remains mandatory in M14.15.
+Native tests cover actual original payload hashes, required WiX bodies, registry bytes, changed-file preservation, restart, reinstall and cancellation. The full 138-task native/source/media campaign passes on the exact candidate. Public download and website delivery are verified separately. Fixed kernel data, managed task peaks, framebuffer memory and configured VM RAM are different measurements. Whole-system CPU/RAM/storage optimization remains mandatory in M14.15.
 
 [Current milestone and exact evidence](../milestones/m14-7.md), [execution contract and bounds](../architecture/msi-m147.md), [qualified M14.6 guide](windows-m146.md).
+
+The unreviewed supplied-MSI screen still has a helper paragraph referring to the included 7-Zip. Choose the visible **Review installer** action; an unreviewed supplied package cannot be installed. This wording is recorded for the M14.9 integration work.

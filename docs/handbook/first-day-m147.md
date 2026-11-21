@@ -1,6 +1,6 @@
-# Your first day with the M14.7 candidate
+# Your first day with Engacer OS M14.7
 
-**Draft: full final qualification is running.** M14.6 remains the qualified public download. Use the guide matching your actual image.
+**M14.7 native/source/media qualification passes.** Use the guide matching your actual image; check the current status for the separate public delivery record.
 
 Start with the [VMware installation steps](install-m147.md). Install into a separate disposable VM, finish the wizard and restart to the installed desktop. Source inspection or a live desktop is not a substitute for successful installed startup.
 
@@ -24,4 +24,4 @@ Changed application files remain in **Documents > Recovered applications**, with
 
 ## Understand the scope
 
-The exact qualified image, resource figures and complete public delivery will be recorded in the M14.7 release notes after acceptance. Current development evidence is in the [milestone record](../milestones/m14-7.md). Configured guest RAM, fixed kernel state, framebuffer storage and owned task memory are separate measurements. Whole-system optimization remains a final M14.15 gate.
+The exact qualified image and resource figures are recorded in the [M14.7 release scope](../releases/m147-v0.14.7.md). Public delivery is verified separately. The [milestone record](../milestones/m14-7.md) links native evidence and remaining program gates. Configured guest RAM, fixed kernel state, framebuffer storage and owned task memory are separate measurements. Whole-system optimization remains a final M14.15 gate.

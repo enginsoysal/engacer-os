@@ -1,0 +1,926 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "scope": "Owned actual displayed modal requests, timer-dispatched owner/thread/process teardown and idle/lifetime observations",
+  "fixture_sha256": "bc5c710c9aec5185a36e126490d8fa08beaa680dea3a94ad82efdb6ec8145b9b",
+  "cycles": [
+    {
+      "cycle": 1,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 1,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 2,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 3,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 4,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 5,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 6,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            1,
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 7,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 8,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 9,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 10,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 11,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 12,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 13,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 14,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 15,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 16,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 17,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 18,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 7,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 19,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 20,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 21,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 8,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 22,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 23,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 24,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            1,
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 9,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 25,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 26,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 27,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 10,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 28,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 29,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 30,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 11,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 31,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 32,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 33,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 12,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 34,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 35,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 36,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 13,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 37,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 38,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 39,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 14,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 40,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 41,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 42,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 15,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 43,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 44,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 45,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 16,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 46,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 47,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 48,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 17,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 49,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 50,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 51,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 18,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 52,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 53,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 54,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 19,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 55,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 56,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 57,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 20,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 58,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 59,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 60,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 21,
+      "phases": [
+        {
+          "phase": "owner",
+          "generation": 61,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "thread",
+          "generation": 62,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "phase": "process",
+          "generation": 63,
+          "actual_native_picker_displayed": true,
+          "blocked_halted_cpus": 2,
+          "idle_observations": [
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "expected_process_exit": 42,
+      "owner_output_preserved": true,
+      "abandoned_thread_output_preserved": true,
+      "picker_and_window_pages_released": true,
+      "retained_pages": 0
+    }
+  ],
+  "subsequent_original_console_success": true
+}

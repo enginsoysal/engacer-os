@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "clone": {
+    "source_sha256": "70878d6dea25486fdef2d2f4ee081045cf44a50d4ecb85ee5fc9a9420c49a4c9",
+    "clone_sha256": "70878d6dea25486fdef2d2f4ee081045cf44a50d4ecb85ee5fc9a9420c49a4c9",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    {
+      "name": "Real in-progress HTTPS cancellation leaves no published partial installer",
+      "bytes_before_cancel": 137216,
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi"
+    },
+    {
+      "name": "Actual native HTTPS transfer from Mozilla and independent stopped-disk hash",
+      "path": "/Users/Owner/Downloads/Firefox-160.0.1-x641.msi",
+      "bytes": 95924224,
+      "sha256": "6dc28633cbd77cb1d044f339185cd467dda39397e4bcca942bfb0ddb2360c681",
+      "installer_executed": false
+    }
+  ],
+  "download_observations": [
+    {
+      "state": 2,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 0,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 8519808,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 16857216,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 25255040,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 33709184,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 41993227,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 50405225,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 58945385,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 67157865,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 75704169,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 83900265,
+      "tls_error": 0
+    },
+    {
+      "state": 3,
+      "bytes": 92337382,
+      "tls_error": 0
+    },
+    {
+      "state": 4,
+      "bytes": 95924224,
+      "tls_error": 0
+    }
+  ]
+}

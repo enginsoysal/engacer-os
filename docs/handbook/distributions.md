@@ -3,12 +3,12 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.6** within M14-STAGE6-VM-v1. Its [exact-source native acceptance](../../evidence/M14/6/acceptance-results.json) passes; use the matching official release and media. Native/source/media qualification passes with 76 native and 19 host groups across 96 campaign tasks. All twenty public downloads pass independent hash verification; public content/link verification is recorded separately in evidence/M14/6; advanced BrixCanvas search/task navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.7** within M14-STAGE7-VM-v1. Its [exact-source native acceptance](../../evidence/M14/7/acceptance-results.json) passes; use the matching official release and media. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public download and website verification are separate and are being completed; reported advanced BrixCanvas search/navigation remains unqualified and nonblocking. The older M11/M10 sections below are historical, not the recommended starting point.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 
 ```powershell
-git clone --branch m146-v0.14.6 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
+git clone --branch m147-v0.14.7 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
 cd my-engacer-edition
 New-Item -ItemType Directory -Force build
 $editionBuildRoot = Join-Path $env:LOCALAPPDATA 'EngacerOS\Build\my-edition\m14'
@@ -35,9 +35,9 @@ python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Pa
 python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from m6 import build; build('custom', Path('distros/my-edition.json'), m14=True)"
 ```
 
-Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 6` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
+Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 7` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
 
-Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.6 installation](install-m146.md), [supported Windows behavior](windows-m146.md), [desktop use](first-day-m146.md).
+Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.7 installation](install-m147.md), [supported Windows behavior](windows-m147.md), [desktop use](first-day-m147.md).
 
 Saved per-user preferences can override distribution defaults. Changing a profile does not add unsupported Windows APIs, hardware drivers, arbitrary font plugins or executable package hooks. Destructive storage consent and protected core ownership remain enforced. Distribute source, licenses and third-party notices with your edition.
 

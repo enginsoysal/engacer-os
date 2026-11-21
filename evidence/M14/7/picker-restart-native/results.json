@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Owned native common-dialog ABI, Unicode selected files, native cancel/replacement consent, caller writes and independent bytes; not original-app dialog qualification",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "6fa1577e6d939101b8b8fb8c98e61f42a0bfcde2bdcea66f6c730213f74c7657",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "cancel_preserves_buffer": true,
+      "nt4_and_current_structures": true,
+      "short_buffer_required_units": true,
+      "filters_exclude_binary": true,
+      "unicode_open_read_save_replace": true,
+      "dialog_does_not_create_destination": true
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "editor_body_pixels": {
+    "passed": true,
+    "text": "final dialog save \u00e9",
+    "exact_rgb_sha256": "c9844df960edc4a6db55bac96a668b73f34513bc691b32222fc543cd2a483339",
+    "checked_pixels": 6240,
+    "physical_font_size": 16,
+    "crlf_does_not_paint_extra_glyph": true
+  },
+  "independent_start_reopened_unicode_path_and_bytes": true,
+  "source_unchanged": true,
+  "saved_bytes_independently_verified": true
+}

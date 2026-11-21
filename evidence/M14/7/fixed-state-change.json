@@ -1,0 +1,8 @@
+{
+  "previous_bytes": 557684,
+  "current_bytes": 557692,
+  "delta_bytes": 8,
+  "reason": "Add the eight-byte volume-generation cache for MSI completion status relative to accepted M14.6",
+  "current_map_sha256": "b1c79f0b729ba81d2d35f8145e8880f44dcec805c808fa59255f02ba2cead4dc",
+  "scope": "Desktop session object BSS/data only; not total OS RAM or M14.15 optimization qualification"
+}

@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "scope": "Owned native consumed-input state fixture; not general keyboard compatibility",
+  "clone": {
+    "source_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "clone_sha256": "9f28cd67b63768c6024a47a357294dd87a24780b9dfe1c421450b1030534420a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "4bb1208e1548de552387938aa270a8528b0791b4d3ede047ce8580158159b883",
+  "cycles": [
+    {
+      "cycle": 1,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 4,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 5,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 6,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 7,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 8,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 9,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 10,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 11,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 12,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 13,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 14,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 15,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 16,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 17,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 18,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 19,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 20,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 21,
+      "consumed_state": true,
+      "no_remove_preserves_state": true,
+      "posted_input_cannot_fabricate": true,
+      "physical_release_preserves_unconsumed_snapshot": true,
+      "cursor_queries_do_not_consume_edges": true,
+      "client_cursor_changes_without_extra_motion": true,
+      "retained_pages": 0
+    }
+  ]
+}
