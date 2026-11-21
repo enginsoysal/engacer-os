@@ -6,7 +6,7 @@ def create():
  Registry=c.CFUNCTYPE(c.c_int64,c.c_uint,c.c_uint64)
  fixture='Software\\EngacerOS-M147-Test-'+uuid.uuid4().hex
  assert re.fullmatch(r'Software\\EngacerOS-M147-Test-[0-9a-f]{32}',fixture)
- bucket='controller';handles={};state=dict(error=None)
+ bucket='controller';handles={};state=dict(error=None,calls=0)
  api=c.WinDLL('advapi32',use_last_error=True)
  api.RegSetValueExW.argtypes=[c.c_void_p,c.c_wchar_p,c.c_uint32,c.c_uint32,c.c_void_p,c.c_uint32];api.RegSetValueExW.restype=c.c_int32
  api.RegQueryValueExW.argtypes=[c.c_void_p,c.c_wchar_p,c.c_void_p,c.POINTER(c.c_uint32),c.c_void_p,c.POINTER(c.c_uint32)];api.RegQueryValueExW.restype=c.c_int32
@@ -22,6 +22,7 @@ def create():
   except FileNotFoundError:return 0,0
  @Registry
  def registry(op,address):
+  state['calls']+=1
   try:
    q=Request.from_address(address);r=Result.from_address(q.result)if q.result else None;name=c.wstring_at(q.name)if q.name else''
    if op in [1,2]:

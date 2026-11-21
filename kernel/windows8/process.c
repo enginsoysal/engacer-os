@@ -162,24 +162,7 @@ static unsigned user8(uint64_t va,void*buffer,unsigned bytes,unsigned to_user){
   if(to_user)memcpy(physical,b,n);else memcpy(b,physical,n);b+=n;va+=n;bytes-=n;}return 0;
 }
 static unsigned string8(uint64_t va,char*out,unsigned cap){for(unsigned i=0;i<cap;++i){if(user8(va+i,out+i,1,0))return 1;if(!out[i])return 0;}return 1;}
-static unsigned path8(const char*p,unsigned write){
- if(p[0]!='/'||!p[1]||length8(p)>=255)return 0;unsigned component=0;
- for(unsigned i=1;p[i];++i){if((uint8_t)p[i]<32||p[i]=='\\')return 0;if(p[i]=='/'){if(!component)return 0;component=0;}else{if(++component>63)return 0;if(p[i]=='.'&&(p[i+1]=='/'||!p[i+1])&&(i==1||p[i-1]=='/'||(p[i-1]=='.'&&(i==2||p[i-2]=='/'))))return 0;}}
- if(!component)return 0;
- if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source)
-#ifdef ENGINE_M14
-  ||prefix8(p,"/System/Windows/Installer")||prefix8(p,"/Data/Windows/Common/Programs")
-  ||equal8(p,"/System/Windows/Tools/cmd.exe")||equal8(p,"/System/Windows/Tools/xcopy.exe")
-  ||(installer_authority147()&&prefix8(p,"/Applications/Windows"))
-#endif
-  ;
-#ifdef ENGINE_M14
- if(installer_authority147())return (prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE))||installer_user_grant147(p,0);
-#else
- if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
-#endif
- return input8.command==W8_RUN&&prefix8(p,input8.user_root)&&!equal8(p,input8.user_root);
-}
+#include "path-access147.inc"
 static const v6_entry *find8(const char*p){v6_volume*v=m6_volume();if(!v)return 0;for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&equal8(v->entries[i].path,p))return v->entries+i;return 0;}
 #include "path143.inc"
 static unsigned exact8(const char*p,uint64_t off,void*out,unsigned n){unsigned got=0;return v6_read(m6_volume(),p,off,out,n,&got)||got!=n;}

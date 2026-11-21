@@ -1,13 +1,14 @@
-/* Keep the only durable external-effect undo record across process failure. */
-static unsigned transaction_pending147(void){char path[256];copy8(path,input8.product_root,sizeof(path));unsigned n=length8(path);const char*tail="/.EngacerMSI/transaction.bin";if(n+length8(tail)>=sizeof(path))return 0;copy8(path+n,tail,sizeof(path)-n);return find8(path)!=0;}
+/* Retain valid or damaged undo/completion records across process failure. */
+static unsigned transaction_pending147(void){char path[256];copy8(path,input8.product_root,sizeof(path));unsigned n=length8(path);const char*tail="/.EngacerMSI/transaction.bin";if(n+length8(tail)>=sizeof(path))return 0;copy8(path+n,tail,sizeof(path)-n);if(find8(path))return 1;return win_product_completion147(path,sizeof(path),input8.product_root)&&find8(path)!=0;}
 static unsigned transaction_keep147(void){
  char path[256];copy8(path,input8.product_root,sizeof(path));unsigned n=length8(path);
- const char*names[]={"/.EngacerMSI/transaction.bin","/product.bin"};
- for(unsigned i=0;i<2;++i){
-  if(n+length8(names[i])>=sizeof(path))return 3;copy8(path+n,names[i],sizeof(path)-n);
+ const char*names[]={"","/.EngacerMSI/transaction.bin","/product.bin"};
+ for(unsigned i=0;i<3;++i){
+  if(i==0){if(!win_product_completion147(path,sizeof(path),input8.product_root))return 3;}
+  else{if(n+length8(names[i])>=sizeof(path))return 3;copy8(path,input8.product_root,sizeof(path));copy8(path+n,names[i],sizeof(path)-n);}
   const v6_entry*e=find8(path);if(!e)continue;
   win_tx_header147 header;
-  if(i==1){uint64_t magic=0;if(e->kind!=1||e->size<8||exact8(path,0,&magic,8))return 3;
+  if(i==2){uint64_t magic=0;if(e->kind!=1||e->size<8||exact8(path,0,&magic,8))return 3;
    if(magic==UINT64_C(0x31494d38574f53))continue;
    if(magic!=WIN_TX_MAGIC147)return 3;
   }
@@ -33,6 +34,7 @@ static int64_t alias_set147(uint64_t address,uint64_t b,uint64_t c,uint64_t d,ui
 }
 static unsigned installer_user_grant147(const char*path,unsigned ancestor){
  if(!path||path[0]!='/'||!win_tx_relative147(path+1,'/')||!win_product_root147(input8.product_root))return 0;
+ char completion[256];if(win_product_completion147(completion,sizeof(completion),input8.product_root)){if(equal8(path,completion))return 1;if(ancestor&&prefix8(completion,path))return 1;}
  const char*common="/Data/Windows/Common/Programs";
  if(prefix8(path,common))return 1;
  if(ancestor&&prefix8(common,path))return 1;

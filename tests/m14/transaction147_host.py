@@ -75,5 +75,5 @@ def main():
  assert lib.move147(root+b'/.EngacerMSI/stage/file',b'/Users/Owner/Documents/file',2)==-5;checks+=1
  assert lib.move147(root+b'/.EngacerMSI/stage/file',root+b'/file',3)==-5;checks+=1
  assert lib.validate147(None,1024)==0;checks+=1
- report=dict(passed=True,checks=checks,scope='Production transaction binary/checksum/shape admission only; native durable write/recovery is not qualified',sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in ['include/engine/wintxn147.h','runtime/sha256.c','tests/m14/transaction147_host.c','tests/m14/transaction147_host.py','kernel/windows8/transaction147.inc','include/engine/windows8.h']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS transaction admission',checks)
+ report=dict(passed=True,checks=checks,scope='Production transaction binary/checksum/shape admission only; native durable write/recovery is not qualified',sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in ['include/engine/winproduct147.h','include/engine/wintxn147.h','runtime/sha256.c','tests/m14/transaction147_host.c','tests/m14/transaction147_host.py','kernel/windows8/transaction147.inc','include/engine/windows8.h']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS transaction admission',checks)
 if __name__=='__main__':main()

@@ -7,6 +7,7 @@ static unsigned installed8(void){
  v6_volume*v=m6_volume();if(generation!=v->generation){generation=v->generation;const v6_entry*e=entry(PRODUCT_ROOT8 "/product.bin");valid=e&&e->kind==1&&!v6_verify(v,PRODUCT_ROOT8 "/product.bin");}
  return valid;
 }
+static unsigned removal_completion147(void){static uint64_t generation=UINT64_MAX;static unsigned present;v6_volume*v=m6_volume();if(generation!=v->generation){generation=v->generation;char path[256];present=win_product_completion147(path,sizeof(path),PRODUCT_ROOT8)&&entry(path)!=0;}return present;}
 static unsigned review_source147(application*a){
  const v6_entry*e=entry(a->path);win_review147*r=&a->msi147;
  return e&&e->kind==1&&e->size==r->source_size&&e->first==r->source_first&&e->crc==r->source_crc;
@@ -42,16 +43,16 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   button(token,x+308,w->bounds.y+w->bounds.height-57,140,"Back to app",BACK8,1);return;
  }
  review_capture147(app,info);if(app->msi147.ready&&!review_source147(app)){app->msi147.ready=0;app->number=0;notice(app,"The installer changed. Review it again before installing.");}
- unsigned legacy=app->msi147.ready?!!(app->msi147.profile&W8_PROFILE_LEGACY147):!app->msi147.selected;unsigned installed=legacy&&installed8();
+ unsigned legacy=app->msi147.ready?!!(app->msi147.profile&W8_PROFILE_LEGACY147):!app->msi147.selected;unsigned installed=legacy&&installed8(),completion=legacy&&removal_completion147(),recovering=legacy&&!installed&&(entry(PRODUCT_ROOT8)||completion);
  ui73_round(x,y,64,64,12,preferences.accent);text(x+13,y+18,legacy?"7z":"MSI",2,0x102d29);
  ui73_fit(x+84,y+4,width-250,app->msi147.ready?app->msi147.product:legacy?"7-Zip Console":"Windows installer",2,ink());
  char identity[160];identity[0]=0;if(app->msi147.ready){copy(identity,app->msi147.version,sizeof(identity));append(identity,"  /  ",sizeof(identity));append(identity,app->msi147.publisher,sizeof(identity));}ui73_fit(x+84,y+38,width-100,app->msi147.ready?identity:legacy?"26.06  /  Igor Pavlov  /  Windows x64":"Choose an MSI, then review its package details.",1,ink());
- ui73_fit(x+width-150,y+9,150,info->state==1?"Working...":installed?"Installed":"Not installed",1,ink());
+ ui73_fit(x+width-150,y+9,150,info->state==1?"Working...":installed?"Installed":recovering?"Recovery needed":"Not installed",1,ink());
  ui73_paragraph(x,y+84,width,2,"Native Windows application support is being expanded. Review shows package metadata without running custom actions.",ink());
  if(app->number){
-  text(x,y+145,app->number==1?"Install 7-Zip Console?":"Remove 7-Zip Console?",2,ink());
-  ui73_paragraph(x,y+194,width,5,app->number==1?"" ENGINE_PRODUCT_NAME " will verify the included MSI before changing files, then install its 106 original files in a separate application folder. Your documents stay separate. The console program is supported; the Windows GUI is unavailable.":"Unchanged application files and product registrations will be removed. Your documents and modified application files will be kept. You can install the application again later.",ink());
-  button(token,x,y+340,150,"Go back",BACK8,0);button(token,x+166,y+340,190,app->number==1?"Install 7-Zip":"Remove 7-Zip",CONFIRM8,1);
+  text(x,y+145,app->number==1?"Install 7-Zip Console?":recovering?"Finish recovery?":"Remove 7-Zip Console?",2,ink());
+  ui73_paragraph(x,y+194,width,5,app->number==1?"" ENGINE_PRODUCT_NAME " will verify the included MSI before changing files, then install its 106 original files in a separate application folder. Your documents stay separate. The console program and selected graphical previews are supported.":recovering?"Engacer OS will finish the interrupted operation using its recovery records. Saved application files stay in Documents > Recovered applications. Your other files will not be removed.":"Unchanged application files and product registrations will be removed. Your documents and modified application files will be kept. You can install the application again later.",ink());
+  button(token,x,y+340,150,"Go back",BACK8,0);button(token,x+166,y+340,190,app->number==1?"Install 7-Zip":recovering?"Finish recovery":"Remove 7-Zip",CONFIRM8,1);
   button(token,x+372,y+340,150,"Licenses",LICENSE8,0);return;
  }
  if(!installed){
@@ -62,11 +63,10 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  if(info->state==1){
   button(token,x,actions,150,"Cancel task",CANCEL8,0);
  }else{
-  if(legacy)button(token,x,actions,160,installed?"Open 7-Zip":"Install 7-Zip",installed?INFO8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
+  if(legacy)button(token,x,actions,160,installed?"Open 7-Zip":recovering?"Recover app":"Install 7-Zip",installed?INFO8:recovering?REMOVE8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
   button(token,x+174,actions,170,installed?"Remove app":"Review installer",installed?REMOVE8:PREVIEW8,!legacy);
   button(token,x+358,actions,130,"Licenses",LICENSE8,0);button(token,x+736,actions,140,app->entered?"Hide details":"Details",DETAILS_MSI147,0);
-  if(installed||!entry(PRODUCT_ROOT8))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
-  if(legacy&&entry(PRODUCT_ROOT8)&&!installed)button(token,x+502,actions,190,"Recover / remove",REMOVE8,0);
+  if(installed||(!entry(PRODUCT_ROOT8)&&!completion))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
  }
  if(installed&&info->state!=1){
   button(token,x,y+194,195,"Create test archive",ZIP8,0);button(token,x+209,y+194,195,"Extract test archive",EXTRACT8,0);
@@ -74,7 +74,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   ui73_fit(x,y+246,width,"The test uses a separate sample document in your Documents folder.",1,ink());
  }
  const char*message=app->notice[0]?app->notice:info->message[0]?info->message:
-  info->state==1?"7-Zip is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?"Ready. Open the original Windows app or try creating and extracting a test archive.":"Choose Install 7-Zip to get started. Use Choose MSI to review another installer. Review alone does not install it.";
+  info->state==1?"7-Zip is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?"Ready. Open the original Windows app or try creating and extracting a test archive.":recovering?"A previous operation needs cleanup. Choose Recover app. The original download is not needed.":"Choose Install 7-Zip to get started. Use Choose MSI to review another installer. Review alone does not install it.";
  ui73_paragraph(x,y+294,width,info->command==W8_RUN||info->command==W8_INSPECT?2:3,message,ink());
  if(info->state==1&&info->command!=W8_RUN){
   unsigned filled=(unsigned)width*info->percent/100;ui73_round(x,y+374,width,8,4,desktop_dark16()?0x233c47:0xdce8ee);

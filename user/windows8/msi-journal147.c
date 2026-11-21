@@ -58,7 +58,7 @@ unsigned msij_restore147(const msij147*j,msia_plan147*p){
  msip_session147 restored={.alloc=p->properties.alloc,.release=p->properties.release,.context=p->properties.context};unsigned status=0;
  for(unsigned at=1024;at<j->bytes&&!status;){const win_tx_record147*r=(const void*)(j->data+at);
   if(r->type==WIN_TX_PROPERTY147){const win_tx_property147*property=(const void*)(r+1);const char*name=(const void*)(property+1),*value=name+property->name_bytes;
-   if(equal8(name,"_EngacerRemove147")){if(!equal8(value,"1"))status=87;}
+   if(equal8(name,"_EngacerRemove147")||equal8(name,"_EngacerRemoveDone147")){if(!equal8(value,"1"))status=87;}
    else status=msip_set147(&restored,name,value);
   }at+=r->bytes;
  }

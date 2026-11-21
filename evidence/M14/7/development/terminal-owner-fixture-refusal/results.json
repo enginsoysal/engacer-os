@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "scope": "Supporting fixture setup error, not a native cleanup failure",
+  "mode": "late-file",
+  "status": 1117,
+  "cause": "The synthetic formatted volume did not create /Users/Owner. The installed OS has that directory before Windows tasks; the preservation grant correctly refuses creating the account root.",
+  "observer_sha256": "16b857f07ba359fc46c5119ab1fa0b9c4bb7f2eb098272b3e48491ccb9d2f365"
+}

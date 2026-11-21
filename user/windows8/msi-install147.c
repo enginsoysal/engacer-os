@@ -8,7 +8,7 @@ static unsigned install_path147(char out[256],const char*root,const char*tail){u
 static unsigned install_shape147(msia_plan147*p){
  /* An authored false condition means no body is scheduled. Continue never
   * authorizes skipping a body whose condition actually selects execution. */
- if(msip_get147(&p->properties,"Installed")[0]||msip_get147(&p->properties,"REMOVE")[0]||msip_get147(&p->properties,"REINSTALL")[0]||msip_get147(&p->properties,"_EngacerRemove147")[0])return 50;
+ if(msip_get147(&p->properties,"Installed")[0]||msip_get147(&p->properties,"REMOVE")[0]||msip_get147(&p->properties,"REINSTALL")[0]||msip_get147(&p->properties,"_EngacerRemove147")[0]||msip_get147(&p->properties,"_EngacerRemoveDone147")[0])return 50;
  unsigned cost=0;for(unsigned i=0;i<p->action_count;++i)if(equal8(p->actions[i].name,"CostFinalize"))cost=p->actions[i].sequence;
  for(unsigned i=0;i<p->action_count;++i){msia_action147*a=p->actions+i;int condition=msia_condition147(p,a->condition);if(condition==MSIC_ERROR147)return 87;
   if(a->kind==MSIA_PROPERTY147){if(a->sequence<=cost)return 50;unsigned captured=0;for(unsigned k=0;k<p->action_count;++k)if(msia_dll_type147(p->actions[k].kind)&&equal8(a->source,p->actions[k].name))captured=1;if(!captured)return 50;unsigned status=msia_property_action147(p,i);if(status)return status;}
@@ -23,9 +23,10 @@ static unsigned install_shape147(msia_plan147*p){
  static const char*const unsupported[]={"CreateFolder"};for(unsigned i=0;i<1;++i){msi8_table table=msi8_table_open(unsupported[i]);unsigned rows=table.rows;if(table.data.data)free8(table.data.data);if(rows)return 50;}
  msi8_table removal=msi8_table_open("RemoveFile");unsigned status=0;if(removal.rows&&(removal.columns!=5||removal.rows>256))status=50;
  for(unsigned i=0;!status&&i<removal.rows;++i){if(msi8_text(&removal,i,2)[0]||msi8_integer(&removal,i,4)!=2){status=50;break;}unsigned component=0,directory=0;for(unsigned k=0;k<p->component_count;++k)if(equal8(msi8_text(&removal,i,1),p->components[k].id))component=1;for(unsigned k=0;k<p->directory_count;++k)if(equal8(msi8_text(&removal,i,3),p->directories[k].id))directory=1;if(!component||!directory)status=87;}
- if(removal.data.data)free8(removal.data.data);if(!status&&p->properties.count>=256)status=1816;return status;
+ if(removal.data.data)free8(removal.data.data);if(!status&&p->properties.count>254)status=1816;if(!status&&(msip_get147(&p->properties,"_EngacerRemove147")[0]||msip_get147(&p->properties,"_EngacerRemoveDone147")[0]))status=50;return status;
 }
 static unsigned install_related147(msia_plan147*p){
+ char completion[256];if(!win_product_completion147(completion,sizeof(completion),p->product_root))return 87;w8_file_info pending_done;if(!stat8(completion,&pending_done))return 1618;
  const char*base="/Applications/Windows";w8_file_info info;uint64_t cursor=0;const char*upgrade=msip_get147(&p->properties,"UpgradeCode");
  for(;;){int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)(uintptr_t)base,(uint64_t)(uintptr_t)&info,cursor,0,0);if(next<0)return 5;if(!next)return 0;if((uint64_t)next<=cursor)return 13;cursor=(uint64_t)next;
   if(info.kind!=2||!win_product_guid147(info.name,1))return 50;char root[256],path[256];if(!win_product_make147(root,sizeof(root),info.name))return 13;
@@ -46,6 +47,7 @@ unsigned msia_install147(msia_plan147*p,const void*source,unsigned bytes){
  if(!status){int64_t alias=(int64_t)sys8(W8_SYS_ALIAS147,(uint64_t)(uintptr_t)p->program_alias,0,0,0,0);if(alias<0)status=(unsigned)-alias;}
  if(!status)status=msif_stage147(p,j,source,bytes);if(!status)status=msil_stage147(p,links);
  char pending[256],product[256];if(!status)status=install_path147(pending,p->product_root,"/.EngacerMSI/transaction.bin");if(!status)status=install_path147(product,p->product_root,"/product.bin");
+ if(!status&&j->bytes>WIN_TX_LIMIT147-128)status=1816;
  if(!status)status=msij_write147(j,pending);
  unsigned files=0,registry=0,shortcuts=0,final=0;
  for(unsigned i=0;!status&&i<p->action_count;++i){msia_action147*a=p->actions+i;int condition=msia_condition147(p,a->condition);if(condition==MSIC_ERROR147){status=87;break;}if(condition==MSIC_FALSE147)continue;

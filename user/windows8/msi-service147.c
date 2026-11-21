@@ -26,6 +26,7 @@ static void metadata_service147(msia_plan147*p,unsigned database){
 }
 __declspec(dllexport) unsigned EngacerMsiRun147(void){
  if(job8->magic!=W8_MAGIC)exit8(87);if(job8->command!=W8_PREVIEW&&job8->command!=W8_INSTALL&&job8->command!=W8_REMOVE)fail8("This MSI operation is not supported.");
+ if(job8->command==W8_REMOVE){unsigned kept=0,status=msir_finish147(&kept);if(status!=2){if(status){print8("MSI final cleanup status: ");number8(status);print8("\n");copy8(job8->message,status==13?"The completion record needs inspection. Your saved files were kept. Open Details before retrying.":"Final removal cleanup could not finish. Its completion record and your files were kept; choose Recover / remove.",sizeof(job8->message));return status;}progress8(100,"Removal finished. Any saved application files remain in Documents > Recovered applications.");return 0;}}
  char source_path[256];copy8(source_path,job8->source,256);msij147*recovery=job8->command==W8_REMOVE?removal_journal147(source_path):0;
  progress8(2,recovery?"Reading the application's saved original installer.":"Reading the selected original MSI package.");void*source=0;unsigned bytes=load8(source_path,&source,8*1024*1024);if(!bytes)fail8("The original installer is missing or exceeds its input bound. No installation or removal was started.");msia_plan147*p=msia_prepare147(source,bytes);
  if(job8->command==W8_INSTALL&&memcmp(job8->source_sha147,p->source_sha256,32))fail8("The reviewed MSI source changed. No installation was started.");
@@ -45,6 +46,7 @@ __declspec(dllexport) unsigned EngacerMsiRun147(void){
   print8("MSI original product: ");print8(p->product);print8("\nSelected original files: ");number8(p->selected_files);print8(" bytes: ");number8(p->selected_bytes);print8("\nAuthored registry entries: ");number8(job8->registry);print8(" shortcuts: ");number8(job8->shortcuts);print8("\nMSI execute actions: ");number8(p->action_count);print8(" custom-action metadata: ");number8(p->custom_count);print8("\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n");
  }
  if(MsiCloseHandle(database))fail8("The active MSI database could not be closed.");msi_unbind147();msia_close147(p);msij_close147(recovery);free8(source);
+ if(status==1618){copy8(job8->message,"Finish the previous removal with Recover / remove before installing.",sizeof(job8->message));return status;}
  if(status){print8("MSI operation status: ");number8(status);print8("\n");copy8(job8->message,"The operation could not finish. Recovery records and your files were kept; inspect Details before retrying.",sizeof(job8->message));return status;}
  if(job8->command==W8_INSTALL)progress8(100,"Application files, registry values and shortcuts were installed and verified.");
  else if(job8->command==W8_REMOVE)progress8(100,kept?"Removed. Changed files were saved in Documents > Recovered applications.":"Removed. Your personal files are unchanged.");

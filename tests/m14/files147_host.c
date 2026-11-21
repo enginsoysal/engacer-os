@@ -11,7 +11,7 @@ typedef size_t (*size_callback147)(const void*);
 static size_callback147 size_host147;
 typedef int64_t (*registry_callback147)(unsigned,uint64_t);
 static registry_callback147 registry_host147;
-static unsigned move_fault147,promote_fault147,pending_delete_fault147,removed_kept147;
+static unsigned move_fault147,promote_fault147,pending_delete_fault147,terminal_delete_fault147,removed_kept147;
 static v6_volume*volume147;
 static w8_mailbox input8;
 w8_mailbox*const job8=&input8;
@@ -36,7 +36,7 @@ static void metadata_path143(const char*p,char*out){(void)p;copy_kernel147(out,"
 #define copy8 copy_kernel147
 #include "../../kernel/windows8/transaction147.inc"
 #undef copy8
-static unsigned path8(const char*p,unsigned write){return prefix8(p,input8.product_root)||(!write&&(prefix8(p,input8.user_root)||prefix8(p,"/Data/Windows/Common/Programs")||prefix8(p,"/Applications/Windows")))||(write&&installer_user_grant147(p,0));}
+#include "../../kernel/windows8/path-access147.inc"
 #include "../../kernel/windows8/stream147.inc"
 #include "../../kernel/windows8/path-core143.inc"
 int stat8(const char*p,w8_file_info*out){if(!path8(p,0))return -1;const v6_entry*e=find8(p);if(!e)return -1;memset(out,0,sizeof(*out));out->kind=e->kind;out->size=e->size;return 0;}
@@ -82,7 +82,7 @@ __declspec(dllexport) unsigned installed_undo_registry147(void){return msireg_un
 
 __declspec(dllexport) unsigned install_order_fixture147(unsigned which){const char*name=which==0?"CreateShortcuts":which==1?"WriteRegistryValues":"SetCopyNativeLangAction";for(unsigned i=0;i<plan147->action_count;++i)if(equal8(plan147->actions[i].name,name)){unsigned old=plan147->actions[i].sequence;plan147->actions[i].sequence=which==0?1499:which==1?1601:6700;unsigned status=msia_install147(plan147,source147,source_bytes147);plan147->actions[i].sequence=old;return status;}return 87;}
 
-int remove8(const char*path){if(pending_delete_fault147){char pending[256];copy8(pending,input8.product_root,256);append8(pending,"/.EngacerMSI/transaction.bin",256);if(equal8(path,pending)){--pending_delete_fault147;return -1;}}return path8(path,1)&&!v6_remove(volume147,path)?0:-1;}
+int remove8(const char*path){if(terminal_delete_fault147){char wanted[256];copy8(wanted,input8.product_root,256);if(terminal_delete_fault147==1)append8(wanted,"/.EngacerMSI/source.msi",256);else if(terminal_delete_fault147==2)append8(wanted,"/.EngacerMSI",256);else if(terminal_delete_fault147==4)win_product_completion147(wanted,sizeof(wanted),input8.product_root);if(equal8(path,wanted)){terminal_delete_fault147=0;return -1;}}if(pending_delete_fault147){char pending[256];copy8(pending,input8.product_root,256);append8(pending,"/.EngacerMSI/transaction.bin",256);if(equal8(path,pending)){--pending_delete_fault147;return -1;}}return path8(path,1)&&!v6_remove(volume147,path)?0:-1;}
 __declspec(dllexport) unsigned fixture_write147(const char*path,const void*data,unsigned bytes){char parent[256];copy8(parent,path,256);for(unsigned i=1;parent[i];++i)if(parent[i]=='/'){parent[i]=0;unsigned status=v6_mkdir(volume147,parent);parent[i]='/';if(status&&status!=V6_EXISTS)return status;}return v6_put(volume147,path,bytes,write_source147,(void*)data);}
 __declspec(dllexport) void remove_move_fault147(unsigned count){move_fault147=count;}
 __declspec(dllexport) unsigned remove_kept147(void){return removed_kept147;}
@@ -98,3 +98,7 @@ __declspec(dllexport) void install_promote_fault147(unsigned at){promote_fault14
 __declspec(dllexport) unsigned fixture_delete147(const char*path){return v6_remove(volume147,path);}
 
 __declspec(dllexport) void remove_pending_delete_fault147(unsigned count){pending_delete_fault147=count;}
+
+__declspec(dllexport) unsigned access_role147(unsigned command,const char*path,unsigned write){unsigned old=input8.command;input8.command=command;unsigned result=path8(path,write);input8.command=old;return result;}
+__declspec(dllexport) unsigned finish_controller147(void){if(journal147){msij_close147(journal147);journal147=0;}msia_close147(plan147);plan147=0;const void*saved=source147;unsigned bytes=source_bytes147;source147=0;source_bytes147=0;input8.command=W8_REMOVE;removed_kept147=0;unsigned status=msir_finish147(&removed_kept147);source147=saved;source_bytes147=bytes;return status;}
+__declspec(dllexport) void terminal_delete_fault147_set(unsigned which){terminal_delete_fault147=which;}

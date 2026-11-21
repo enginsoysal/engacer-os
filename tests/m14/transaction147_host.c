@@ -13,6 +13,7 @@ static w8_mailbox input8,mailbox147;
 static const uint8_t*test_data147;static unsigned test_bytes147,test_mode147,test_fail147;
 static v6_entry test_entry147;
 static unsigned length8(const char*s){return win_tx_length147(s,4096);}
+static unsigned equal8(const char*a,const char*b){unsigned n=length8(a);return n==length8(b)&&!memcmp(a,b,n);}
 static void copy8(char*out,const char*in,unsigned n){unsigned i=0;if(!n)return;while(i+1<n&&in[i]){out[i]=in[i];++i;}out[i]=0;}
 static const v6_entry*find8(const char*path){unsigned n=length8(path);const char*leaf=test_mode147==1?"/.EngacerMSI/transaction.bin":"/product.bin";unsigned len=length8(leaf);if(!test_mode147||n<len||memcmp(path+n-len,leaf,len+1))return 0;test_entry147.kind=1;test_entry147.size=test_bytes147;return &test_entry147;}
 static unsigned exact8(const char*path,uint64_t off,void*out,unsigned n){(void)path;if(off+n>test_bytes147||off==test_fail147)return 1;memcpy(out,test_data147+off,n);return 0;}
