@@ -1,5 +1,6 @@
 /* Real bounded session/property/record exports for native MSI custom actions. */
 #include "msi-plan147.h"
+#include "msi_db.h"
 #include "msi-record147.h"
 #include "msi-text147.h"
 __declspec(dllimport) void InitializeCriticalSection(void*);
@@ -7,22 +8,34 @@ __declspec(dllimport) void EnterCriticalSection(void*);
 __declspec(dllimport) void LeaveCriticalSection(void*);
 __declspec(dllimport) void DeleteCriticalSection(void*);
 static uint64_t api_lock147[5];static unsigned initialized147,session147,epoch147;
-static unsigned deferred147,reboot147;
+static unsigned deferred147,reboot147,database_generation147,database_handles147[16];
 static msia_plan147 *api_plan147;static msir_context147 records147;
 static void *api_alloc147(void*c,size_t n){(void)c;return alloc8(n);}
 static void api_free147(void*c,void*p){(void)c;free8(p);}
-int EngacerMsiDllEntry147(void*module,unsigned reason,void*reserved){(void)module;(void)reserved;if(reason==1){InitializeCriticalSection(api_lock147);records147.alloc=api_alloc147;records147.release=api_free147;initialized147=1;}else if(reason==0&&initialized147){msir_destroy147(&records147);api_plan147=0;session147=0;initialized147=0;DeleteCriticalSection(api_lock147);}return 1;}
+int EngacerMsiDllEntry147(void*module,unsigned reason,void*reserved){(void)module;(void)reserved;if(reason==1){InitializeCriticalSection(api_lock147);records147.alloc=api_alloc147;records147.release=api_free147;initialized147=1;}else if(reason==0&&initialized147){msir_destroy147(&records147);memset(database_handles147,0,sizeof(database_handles147));api_plan147=0;session147=0;initialized147=0;DeleteCriticalSection(api_lock147);}return 1;}
 unsigned msi_bind147(msia_plan147*p){if(!initialized147||!p||api_plan147||epoch147==0xffffu)return 0;api_plan147=p;session147=0x14700000u|++epoch147;return session147;}
-void msi_unbind147(void){if(!api_plan147)return;EnterCriticalSection(api_lock147);msir_destroy147(&records147);session147=0;api_plan147=0;deferred147=reboot147=0;LeaveCriticalSection(api_lock147);}
+void msi_unbind147(void){if(!api_plan147)return;EnterCriticalSection(api_lock147);msir_destroy147(&records147);memset(database_handles147,0,sizeof(database_handles147));session147=0;api_plan147=0;deferred147=reboot147=0;LeaveCriticalSection(api_lock147);}
 /* The engine changes phase only after all prior custom-action threads finish. */
-unsigned msi_begin_deferred147(const char*data){if(!api_plan147||deferred147)return 6;unsigned code=msip_set147(&api_plan147->properties,"CustomActionData",data);if(!code)deferred147=1;return code;}
+unsigned msi_begin_deferred147(const char*data){if(!api_plan147||deferred147)return 6;unsigned code=msip_set147(&api_plan147->properties,"CustomActionData",data);if(!code){memset(database_handles147,0,sizeof(database_handles147));deferred147=1;}return code;}
 void msi_end_deferred147(void){if(api_plan147)msip_set147(&api_plan147->properties,"CustomActionData",0);deferred147=0;}
 static const char*api_property147(const char*name){if(deferred147&&!equal8(name,"CustomActionData")&&!equal8(name,"ProductCode")&&!equal8(name,"UserSID"))return "";if(!deferred147&&equal8(name,"CustomActionData"))return "";return msip_get147(&api_plan147->properties,name);}
 static int api_enter147(void){if(!initialized147)return 0;EnterCriticalSection(api_lock147);return 1;}
 static void api_leave147(void){LeaveCriticalSection(api_lock147);}
 #define MSI_EXPORT147 __declspec(dllexport)
+static msia_plan147 *api_database147(unsigned handle){unsigned slot=handle&15;return api_plan147&&handle&&database_handles147[slot]==handle?api_plan147:0;}
+/* Internal engine table access still checks the real database capability.
+ * Deferred custom actions cannot obtain or reuse immediate database handles. */
+unsigned msi_table147(unsigned handle,const char*name,msi8_table*out){
+ if(!name||!out)return 87;if(!api_enter147())return 6;unsigned code=6;
+ if(!deferred147&&api_database147(handle)){*out=msi8_table_open(name);code=0;}api_leave147();return code;
+}
+MSI_EXPORT147 unsigned MsiGetActiveDatabase(unsigned install){
+ if(!api_enter147())return 0;unsigned handle=0;
+ if(install&&install==session147&&!deferred147&&database_generation147<0xffffu)for(unsigned i=0;i<16;++i)if(!database_handles147[i]){handle=0x14900000u|(++database_generation147<<4)|i;database_handles147[i]=handle;break;}
+ api_leave147();return handle;
+}
 MSI_EXPORT147 unsigned MsiCreateRecord(unsigned fields){if(!api_enter147())return 0;unsigned h=msir_create147(&records147,fields);api_leave147();return h;}
-MSI_EXPORT147 unsigned MsiCloseHandle(unsigned h){if(!api_enter147())return 6;unsigned code;if(h&&h==session147){session147=0;code=0;}else code=msir_close147(&records147,h);api_leave147();return code;}
+MSI_EXPORT147 unsigned MsiCloseHandle(unsigned h){if(!api_enter147())return 6;unsigned code;if(h&&h==session147){session147=0;code=0;}else if(api_database147(h)){database_handles147[h&15]=0;code=0;}else code=msir_close147(&records147,h);api_leave147();return code;}
 MSI_EXPORT147 unsigned MsiRecordGetFieldCount(unsigned h){if(!api_enter147())return 0;msir_record147*r=msir_find147(&records147,h);unsigned n=r?r->fields:0;api_leave147();return n;}
 MSI_EXPORT147 unsigned MsiRecordClearData(unsigned h){if(!api_enter147())return 6;unsigned code=msir_clear147(&records147,h);api_leave147();return code;}
 MSI_EXPORT147 int MsiRecordIsNull(unsigned h,unsigned field){if(!api_enter147())return 1;msir_record147*r=msir_find147(&records147,h);int result=!r||field>r->fields||!r->values[field].kind;api_leave147();return result;}

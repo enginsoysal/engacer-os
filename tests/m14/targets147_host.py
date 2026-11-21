@@ -21,7 +21,7 @@ def main():
  for provider in data['provider_ids'].values():
   assert lib.refusal_lookup145(provider,b'EngacerUnknownExport145',0)==0
   checked+=1
- for ordinal in (8,17,47,64,73,74,80,103,116,118,119,121,124,125,143,145,171):assert lib.refusal_lookup145(0,None,ordinal)==0
+ for ordinal in (8,17,47,49,64,73,74,80,103,116,118,119,121,124,125,143,145,171):assert lib.refusal_lookup145(0,None,ordinal)==0
  assert lib.refusal_lookup145(1,b'GetStdHandle',0)==0 and lib.refusal_lookup145(3,b'SysAllocString',0)==0
  size=lib.refusal_bytes145();assert size==data['table_bytes']and size<=8192
  result=dict(passed=True,scope='Host refusal-key and generation checks only; no refusal-body invocation or API compatibility proof',assertions=checked+3,keys=data['refusal_keys'],immutable_key_bytes=size,sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in('user/windows8/target-guards145.inc','user/windows8/target-refusals145.inc','user/windows8/providers145.inc','tools/build/m14_targets145.py','tests/m14/targets145_host.c','tests/m14/targets147_host.py')})

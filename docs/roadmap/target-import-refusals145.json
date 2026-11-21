@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 681,
-  "table_bytes": 5448,
+  "refusal_keys": 680,
+  "table_bytes": 5440,
   "imports": [
     {
       "app": "notepadpp",
@@ -6136,13 +6136,6 @@
       "dll": "msi.dll",
       "symbol": "#34",
       "key": "dc8660d920a61616",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "msi.dll",
-      "symbol": "#49",
-      "key": "dcb95ad920d1657d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

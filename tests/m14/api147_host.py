@@ -30,6 +30,7 @@ def main():
  lib.init147.argtypes=[alloc_type,free_type,failure_type];lib.open147.argtypes=[ctypes.c_void_p,ctypes.c_uint];lib.init147(allocate,release,failure)
  U=ctypes.c_uint;P=ctypes.c_void_p;W=ctypes.c_wchar_p
  signatures={'MsiCreateRecord':[U],'MsiCloseHandle':[U],'MsiRecordSetStringW':[U,U,W],'MsiRecordSetStringA':[U,U,ctypes.c_char_p],'MsiRecordGetStringW':[U,U,P,ctypes.POINTER(U)],'MsiRecordGetInteger':[U,U],'MsiRecordSetInteger':[U,U,ctypes.c_int32],'MsiRecordDataSize':[U,U],'MsiRecordIsNull':[U,U],'MsiRecordClearData':[U],'MsiRecordGetFieldCount':[U],'MsiGetPropertyW':[U,W,P,ctypes.POINTER(U)],'MsiGetPropertyA':[U,ctypes.c_char_p,P,ctypes.POINTER(U)],'MsiSetPropertyW':[U,W,W],'MsiEvaluateConditionW':[U,W],'MsiProcessMessage':[U,U,U],'MsiFormatRecordW':[U,U,P,ctypes.POINTER(U)],'MsiGetMode':[U,U],'MsiSetMode':[U,U,ctypes.c_int],'MsiGetTargetPathW':[U,W,P,ctypes.POINTER(U)]}
+ signatures['MsiGetActiveDatabase']=[U];lib.MsiGetActiveDatabase.restype=U;lib.database_count147.argtypes=[U,ctypes.c_char_p]
  for name,args in signatures.items():getattr(lib,name).argtypes=args
  lib.defer147.argtypes=[ctypes.c_char_p];lib.cost147.argtypes=[ctypes.c_char_p];lib.MsiCreateRecord.restype=U;lib.bind147.restype=U;checks=0;packages=[]
  def check(v):
@@ -37,6 +38,12 @@ def main():
   assert v;checks+=1
  for path in [ROOT/'third_party/7zip/7z2606-x64.msi',Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/npp.8.9.9.1.Installer.x64.msi']:
   data=path.read_bytes();buf=ctypes.create_string_buffer(data);lib.open147(buf,len(data));h=lib.bind147();check(h!=0);before=state['bytes']
+  databases=[lib.MsiGetActiveDatabase(h)for _ in range(16)];check(all(databases)and len(set(databases))==16);check(lib.MsiGetActiveDatabase(h)==0 and lib.MsiGetActiveDatabase(0)==0)
+  expected_registry=16 if path.name.startswith('7z')else 10
+  for database in databases:check(lib.database_count147(database,b'Registry')==expected_registry and lib.MsiRecordGetFieldCount(database)==0)
+  old=databases[0];check(lib.MsiCloseHandle(old)==0 and lib.MsiCloseHandle(old)==6);databases[0]=lib.MsiGetActiveDatabase(h);check(databases[0]and databases[0]!=old and lib.database_count147(old,b'Registry')==-6)
+  for database in databases:check(lib.MsiCloseHandle(database)==0)
+  check(state['bytes']==before)
   for prop in ['ProductName','ProductCode','Missing']:
    output=ctypes.create_unicode_buffer(128);size=U(128);check(lib.MsiGetPropertyW(h,prop,output,ctypes.byref(size))==0 and size.value==len(output.value));check(bool(output.value)==(prop!='Missing'))
   text='Euro \u20ac Smile \U0001f600';check(lib.MsiSetPropertyW(h,'TestUnicode',text)==0);size=U(0);output=ctypes.create_unicode_buffer(1);check(lib.MsiGetPropertyW(h,'TestUnicode',output,ctypes.byref(size))==234 and size.value==len(text.encode('utf-16-le'))//2)
@@ -65,13 +72,15 @@ def main():
   with concurrent.futures.ThreadPoolExecutor(max_workers=4)as pool:checks+=sum(pool.map(threaded,range(4)))
   check(state['bytes']==before)
   check(lib.MsiGetMode(h,16)==0 and lib.MsiSetMode(h,16,1)==87);check(lib.MsiSetMode(h,6,1)==0 and lib.MsiGetMode(h,6)==1 and lib.MsiSetMode(h,6,0)==0 and lib.MsiGetMode(h,6)==0)
-  check(lib.MsiSetPropertyW(h,'UserSID','test-context-sid')==0 and lib.defer147(b'command-data')==0);check(lib.MsiGetMode(h,16)==1 and lib.MsiGetMode(h,4)==0 and lib.MsiGetMode(h,6)==0)
+  deferred_database=lib.MsiGetActiveDatabase(h);check(deferred_database!=0)
+  check(lib.MsiSetPropertyW(h,'UserSID','test-context-sid')==0 and lib.defer147(b'command-data')==0);check(lib.MsiGetActiveDatabase(h)==0 and lib.database_count147(deferred_database,b'Registry')==-6 and lib.MsiCloseHandle(deferred_database)==6);check(lib.MsiGetMode(h,16)==1 and lib.MsiGetMode(h,4)==0 and lib.MsiGetMode(h,6)==0)
   for prop,expected in [('CustomActionData','command-data'),('ProductName',''),('UserSID','test-context-sid')]:
    output=ctypes.create_unicode_buffer(128);size=U(128);check(lib.MsiGetPropertyW(h,prop,output,ctypes.byref(size))==0 and output.value==expected)
   check(lib.MsiSetPropertyW(h,'Forbidden','value')==6 and lib.MsiEvaluateConditionW(h,'1')==3)
   r=lib.MsiCreateRecord(0);check(r!=0 and lib.MsiRecordSetStringW(r,0,'[CustomActionData]|[ProductName]|[UserSID]')==0);output=ctypes.create_unicode_buffer(128);size=U(128);check(lib.MsiFormatRecordW(h,r,output,ctypes.byref(size))==0 and output.value=='command-data||');check(lib.MsiCloseHandle(r)==0)
   lib.immediate147();check(lib.MsiGetMode(h,16)==0);check(lib.MsiSetPropertyW(h,'Privileged','1')==0);lib.cost147(b'C:\\Users\\Owner')
   output=ctypes.create_unicode_buffer(512);size=U(512);directory='INSTALLDIR' if path.name.startswith('7z') else 'INSTALLFOLDER';check(lib.MsiGetTargetPathW(h,directory,output,ctypes.byref(size))==0 and output.value.startswith('C:\\Program Files\\'));size=U(512);check(lib.MsiGetTargetPathW(h,'Missing',output,ctypes.byref(size))==267)
-  r=lib.MsiCreateRecord(1);check(r!=0);lib.unbind147();check(lib.MsiCloseHandle(r)==6 and lib.MsiSetPropertyW(h,'stale','bad')==6);lib.close147();check(not live and state['bytes']==0 and not state['bad_free']);packages.append(dict(file=path.name,sha256=hashlib.sha256(data).hexdigest()))
- sources+=['user/windows8/msi-record147.h','user/windows8/msi-text147.h','tests/m14/api147_host.py','tests/m14/plan147_host.c','include/engine/winproduct147.h'];report=dict(passed=True,checks=checks,scope=__doc__,packages=packages,peak_host_allocated_bytes=state['peak'],retained_allocations=len(live),sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS MSI API checks',checks)
+  stale_database=lib.MsiGetActiveDatabase(h);check(stale_database!=0)
+  r=lib.MsiCreateRecord(1);check(r!=0);lib.unbind147();check(lib.MsiCloseHandle(stale_database)==6 and lib.database_count147(stale_database,b'Registry')==-6);check(lib.MsiCloseHandle(r)==6 and lib.MsiSetPropertyW(h,'stale','bad')==6);lib.close147();check(not live and state['bytes']==0 and not state['bad_free']);packages.append(dict(file=path.name,sha256=hashlib.sha256(data).hexdigest()))
+ sources+=['user/windows8/msi-record147.h','user/windows8/msi-text147.h','user/windows8/msi_db.h','tests/m14/api147_host.py','tests/m14/plan147_host.c','include/engine/winproduct147.h'];report=dict(passed=True,checks=checks,scope=__doc__,packages=packages,peak_host_allocated_bytes=state['peak'],retained_allocations=len(live),sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS MSI API checks',checks)
 if __name__=='__main__':main()

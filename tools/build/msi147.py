@@ -7,7 +7,7 @@ from m1 import ROOT,command,pinned_tools
 
 # Stable Windows MSI ordinals for implemented exports only. Missing services
 # stay absent; never map an unimplemented ordinal to a success stub.
-ORDINALS147={8:'MsiCloseHandle',17:'MsiCreateRecord',47:'MsiEvaluateConditionW',64:'MsiGetMode',73:'MsiGetPropertyA',74:'MsiGetPropertyW',80:'MsiGetTargetPathW',103:'MsiProcessMessage',116:'MsiRecordGetInteger',118:'MsiRecordGetStringW',119:'MsiRecordIsNull',121:'MsiRecordSetInteger',124:'MsiRecordSetStringA',125:'MsiRecordSetStringW',143:'MsiSetMode',145:'MsiSetPropertyW',171:'MsiFormatRecordW'}
+ORDINALS147={8:'MsiCloseHandle',17:'MsiCreateRecord',47:'MsiEvaluateConditionW',49:'MsiGetActiveDatabase',64:'MsiGetMode',73:'MsiGetPropertyA',74:'MsiGetPropertyW',80:'MsiGetTargetPathW',103:'MsiProcessMessage',116:'MsiRecordGetInteger',118:'MsiRecordGetStringW',119:'MsiRecordIsNull',121:'MsiRecordSetInteger',124:'MsiRecordSetStringA',125:'MsiRecordSetStringW',143:'MsiSetMode',145:'MsiSetPropertyW',171:'MsiFormatRecordW'}
 
 def build(work,tools=None):
     tools=tools or pinned_tools();out=Path(work)/'msi147';out.mkdir(parents=True,exist_ok=True)

@@ -3,6 +3,7 @@
 #include <stddef.h>
 __declspec(dllimport) unsigned MsiCreateRecord(unsigned);
 __declspec(dllimport) unsigned MsiCloseHandle(unsigned);
+__declspec(dllimport) unsigned MsiGetActiveDatabase(unsigned);
 __declspec(dllimport) unsigned MsiRecordSetStringW(unsigned,unsigned,const uint16_t*);
 __declspec(dllimport) unsigned MsiRecordGetStringW(unsigned,unsigned,uint16_t*,unsigned*);
 __declspec(dllimport) unsigned MsiRecordSetInteger(unsigned,unsigned,int32_t);
@@ -24,6 +25,7 @@ static const uint16_t text147[]={'E','u','r','o',' ',0x20ac,' ',0xd83d,0xde00,0}
 static unsigned worker147(void*opaque){unsigned id=(unsigned)(uintptr_t)opaque;for(unsigned i=0;i<100;++i){unsigned h=MsiCreateRecord(2);check147(h&&MsiRecordGetFieldCount(h)==2,10);check147(!MsiRecordSetInteger(h,1,(int32_t)(id*100+i))&&MsiRecordGetInteger(h,1)==(int32_t)(id*100+i),11);check147(!MsiRecordSetStringW(h,0,text147)&&MsiRecordDataSize(h,0)==9,12);uint16_t out[12];unsigned cap=12;check147(!MsiRecordGetStringW(h,0,out,&cap)&&cap==9,13);for(unsigned n=0;n<10;++n)check147(out[n]==text147[n],14);check147(!MsiCloseHandle(h)&&MsiCloseHandle(h)==6,15);}return 0;}
 void entry(void);void*volatile anchor147=&entry;
 void entry(void){
+ check147(!MsiGetActiveDatabase(0)&&!MsiGetActiveDatabase(0x14700001),51);
  unsigned records[64];for(unsigned i=0;i<64;++i){records[i]=MsiCreateRecord(0);check147(records[i]!=0,20);}check147(!MsiCreateRecord(0)&&!MsiCreateRecord(33),21);for(unsigned i=0;i<64;++i)check147(!MsiCloseHandle(records[i]),22);
  unsigned h=MsiCreateRecord(1);check147(h&&MsiRecordIsNull(h,0),23);check147(!MsiRecordSetStringW(h,0,text147),24);uint16_t out[12];for(unsigned i=0;i<12;++i)out[i]=0x9b9b;unsigned cap=8;check147(MsiRecordGetStringW(h,0,out,&cap)==234&&cap==9&&out[7]==0&&out[8]==0x9b9b,25);cap=9;check147(MsiRecordGetStringW(h,0,out,&cap)==234&&out[7]==0&&out[9]==0x9b9b,26);
  uint16_t invalid[]={0xd800,0};check147(MsiRecordSetStringW(h,0,invalid)==1113,27);cap=12;check147(!MsiRecordGetStringW(h,0,out,&cap)&&out[7]==0xd83d&&out[8]==0xde00,28);check147(!MsiRecordClearData(h)&&MsiRecordIsNull(h,0)&&!MsiCloseHandle(h),29);

@@ -22,7 +22,7 @@ def main():
   name=text(struct.unpack_from('<I',data,rva(nt)+i*4)[0]);index=struct.unpack_from('<H',data,rva(ot)+i*2)[0];address=struct.unpack_from('<I',data,rva(ft)+index*4)[0];assert address;exports[name]=base+index
  for ordinal,name in ORDINALS147.items():assert exports[name]==ordinal,(name,exports[name],ordinal)
  for name,ordinal in exports.items():assert ordinal in ORDINALS147 or ordinal>=0x7000,(name,ordinal)
- for ordinal in [26,32,34,49,51,76,120,159,160,162,163,166]:
+ for ordinal in [26,32,34,51,76,120,159,160,162,163,166]:
   index=ordinal-base
   assert index<0 or index>=functions or struct.unpack_from('<I',data,rva(ft)+index*4)[0]==0,ordinal
  # Actual caller thunks must contain ordinal imports, not merely named aliases.

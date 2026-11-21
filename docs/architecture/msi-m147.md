@@ -208,3 +208,10 @@ Build 09118ff036841c1444e1c54f618fc077 passes compact install/restart/independen
 
 
 The corrected original-WiX lifecycle observer repeats all 21 native load/export/unload cycles successfully, now recording one DLL lifecycle per cycle rather than the inherited record-round label. Every cycle has a managed process-group peak of 354 pages and zero retained pages. This measured component peak excludes the rest of the OS, firmware and framebuffer; it is not total application RAM or M14.15 optimization qualification. No custom-action body ran. Corrected evidence: development/wix-lifecycle-native.
+
+
+### Active MSI database capabilities
+
+The next lazy service supplies MsiGetActiveDatabase at Windows ordinal 49 with sixteen bounded, generational capabilities referencing the actual active original database. Stale, closed, foreign-record and unbound handles refuse; deferred entry invalidates immediate database capabilities and returns no active database, preserving the restricted original custom-action context. The production read-only preview now acquires a real capability and uses checked internal table reads for its authored registry/shortcut counts, then closes the capability. It still performs no installation. General Windows MSI SQL/view exports remain unavailable.
+
+Supporting API checks pass 6594 assertions across both unchanged original databases, including database quotas, real 16/10-row registry reads, stale/reused handles, deferred refusal, cleanup and retained record/Unicode/concurrency checks. PE metadata verifies eighteen actual Windows ordinal exports and nine ordinal imports in the own caller. The next native tests stage the separately compiled service in owned clones of the frozen kernel; this does not retroactively change the old ISO boot module.
