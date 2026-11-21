@@ -9,7 +9,7 @@ typedef struct {
 } w8_context142;
 typedef struct {uint32_t code,flags;uint64_t next,address;uint32_t count,pad;uint64_t arguments[15];} w8_exception_record142;
 typedef struct {uint64_t record,context;} w8_exception_pointers142;
-typedef struct {w8_exception_record142 record;w8_exception_pointers142 pointers;_Alignas(16) w8_context142 context;} w8_exception_packet142;
+typedef struct {w8_exception_record142 record;w8_exception_pointers142 pointers;_Alignas(16) w8_context142 context;uint32_t software148,reserved148;} w8_exception_packet142;
 _Static_assert(sizeof(w8_context142)==1232,"Windows AMD64 CONTEXT ABI");
 _Static_assert(offsetof(w8_context142,rax)==120,"Windows integer context offset");
 _Static_assert(offsetof(w8_context142,rip)==248,"Windows instruction pointer offset");

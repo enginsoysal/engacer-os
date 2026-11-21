@@ -28,3 +28,18 @@ static int64_t return_exception142(trap_frame*f,uint64_t packet){
 #undef RESTORE142
  f->cs=0x1b;f->ss=0x23;f->rflags=(c.eflags&0x240dd5u)|0x202u;--t->exception_depth;__asm__ volatile("fxrstor64 %0"::"m"(c.fx):"memory");return (int64_t)c.rax;
 }
+
+/* Software raises start at the original PE caller, outside the ELF API thunk. */
+static int64_t software_exception148(trap_frame*f,uint64_t code,uint64_t flags,uint64_t count,uint64_t arguments){
+ if(code>UINT32_MAX||flags||count>15)return -87;
+ uint64_t saved[3],values[15]={0};
+ if(user8(f->rsp,saved,sizeof(saved),0)||(count&&user8(arguments,values,count*8,0)))return -998;
+ if(!access_exception142(saved[2],4)||f->rsp>UINT64_MAX-24||!access_exception142(f->rsp+23,2))return -998;
+ trap_frame origin=*f;if(!enter_exception142(f,0))return -8;
+ thread142*t=threads142+current142;uint64_t address=t->exception_packets[t->exception_depth-1];w8_exception_packet142 packet;
+ if(user8(address,&packet,sizeof(packet),0)){--t->exception_depth;*f=origin;return -998;}
+ packet.record.code=(uint32_t)code&~0x10000000u;packet.record.flags=0;packet.record.count=(unsigned)count;packet.record.address=saved[2];
+ memcpy(packet.record.arguments,values,sizeof(values));packet.context.rip=saved[2];packet.context.rsp=origin.rsp+24;packet.context.rsi=saved[0];packet.context.rdi=saved[1];packet.software148=1;
+ if(user8(address,&packet,sizeof(packet),1)){--t->exception_depth;*f=origin;return -998;}
+ return (int64_t)f->rax;
+}

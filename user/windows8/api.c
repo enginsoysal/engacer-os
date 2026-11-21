@@ -394,6 +394,9 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "mapping146.inc"
 #include "process142.inc"
 #include "exception142.inc"
+#ifdef ENGINE_M14
+#include "software-exception148.inc"
+#endif
 #include "heap-api144.inc"
 #include "global-memory146.inc"
 #include "resource-api144.inc"
@@ -470,7 +473,7 @@ static const api8 api8_table[]={
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
  API8(SetWindowPos,4),
- API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(MapWindowPoints,4),API8(GetTickCount64,1),
+ API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(MapWindowPoints,4),API8(GetTickCount64,1),API8(RaiseException,1),
  API8(GetWindowDC,4),API8(DrawTextExW,4),API8(DrawTextW,4),
  API8(SetWindowSubclass,6),API8(GetWindowSubclass,6),API8(RemoveWindowSubclass,6),API8(DefSubclassProc,6),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),

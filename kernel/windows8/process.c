@@ -343,6 +343,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_PROCESS_EPOCH:return (int64_t)spaces142[active_space142]->wait_epoch;
  case W8_SYS_EXCEPTION_REGISTER:if(!access_exception142(a,4))return -1;spaces142[active_space142]->exception_entry=a;return 0;
  case W8_SYS_EXCEPTION_RETURN:return return_exception142(f,a);
+ case W8_SYS_SOFTWARE148:return software_exception148(f,a,b,c,d);
  case W8_SYS_VMINFO:{uint64_t values[4]={virtual_pages141,count8,lazy_faults141,OWN8};return user8(a,values,sizeof(values),1)?-1:0;}
  case W8_SYS_UNMAP:case W8_SYS_PROTECT:{
   if(!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -1;
