@@ -52,7 +52,13 @@ static unsigned child_image142(const char*source){
  if(machine!=0x8664||(flags&0x2000)||bytes<72||exact8(source,(uint64_t)at+24,optional,72))return 193;memcpy(&magic,optional,2);memcpy(&subsystem,optional+68,2);if(magic!=0x20b)return 193;return subsystem==3||subsystem==2?0:50;
 }
 static unsigned environment_validate143(const w8_process_request*request){
- unsigned bytes=request->environment_bytes;if(request->reserved)return 87;if(!bytes)return request->environment?87:0;
+ unsigned bytes=request->environment_bytes;
+#ifdef ENGINE_M14
+ if(request->error_mode148&~0x8003u)return 87;
+#else
+ if(request->error_mode148)return 87;
+#endif
+ if(!bytes)return request->environment?87:0;
  if(!request->environment||bytes<4||bytes>W8_ENVIRONMENT_LIMIT143||(bytes&1))return 87;
  if(bytes==4){uint16_t empty[2];if(user8(request->environment,empty,4,0))return 998;if(!empty[0]&&!empty[1])return 0;}
  unsigned ended=0,value=0,name_units=0,value_units=0,entries=0,surrogate=0;
@@ -84,6 +90,7 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  spaces142[target]->install_authority147=spaces142[caller]->install_authority147;
  error=pipe_inherit147(caller,target,&request);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  spaces142[target]->input.startup_flags147=request.startup_flags147;memcpy(spaces142[target]->input.std_handles147,request.std_handles147,sizeof(request.std_handles147));copy8(spaces142[target]->input.windows_root,spaces142[caller]->input.windows_root,256);
+ spaces142[target]->input.error_mode148=(request.flags&0x04000000u)?0:request.error_mode148;
  active_space142=target;error=user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
 #endif
  error=environment_copy143(&request,caller,target);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}

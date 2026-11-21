@@ -34,9 +34,13 @@ __declspec(dllimport) void*HeapAlloc(uint64_t,unsigned,uint64_t);
 __declspec(dllimport) int HeapFree(uint64_t,unsigned,void*);
 __declspec(dllimport) uint64_t HeapSize(uint64_t,unsigned,const void*);
 __declspec(dllimport) void*HeapReAlloc(uint64_t,unsigned,void*,uint64_t);
+__declspec(dllimport) unsigned SetErrorMode(unsigned);
+__declspec(dllimport) unsigned GetErrorMode(void);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 void entry(void);void*volatile relocation_anchor148=&entry;
+static void say148(const char*text){unsigned n=0,written;while(text[n])++n;check(WriteFile(GetStdHandle((unsigned)-11),text,n,&written,0)&&written==n,264);}
+static void number148(uint64_t value){char text[32],reverse[24];unsigned n=0,used=0;do{reverse[n++]=(char)('0'+value%10);value/=10;}while(value);while(n)text[used++]=reverse[--n];text[used]=0;say148(text);}
 static uint64_t owned_pages148(void){uint64_t values[4];register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_VMINFO;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)(uintptr_t)values),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");check(!result,260);return values[1];}
 static unsigned worker(void*kind){
  for(unsigned i=0;i<1000;++i){
@@ -46,8 +50,9 @@ static unsigned worker(void*kind){
 }
 void entry(void){
  const uint16_t*line=GetCommandLineW();unsigned child=0;
- for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&line[i+1]=='!'&&!line[i+2])child=1;
- if(child){check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
+ for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
+ if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
+ check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  unsigned id=RegisterWindowMessageW(L"Engacer.Message148.Parent");check(id>=0xc000&&id<=0xffff,222);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
@@ -55,6 +60,8 @@ void entry(void){
  uint8_t startup[104]={0};*(unsigned*)startup=104;struct{uint64_t process,thread;unsigned pid,tid;} process={0};
  check(CreateProcessW(path,command,0,0,0,0,0,0,startup,&process),225);check(WaitForSingleObject(process.process,30000)==0,226);
  unsigned result=0;check(GetExitCodeProcess(process.process,&result)&&result==id,227);check(CloseHandle(process.thread)&&CloseHandle(process.process),228);
+ command[n+3]='?';check(CreateProcessW(path,command,0,0,0,0x04000000u,0,0,startup,&process),265);check(WaitForSingleObject(process.process,30000)==0,266);
+ check(GetExitCodeProcess(process.process,&result)&&result==id&&CloseHandle(process.thread)&&CloseHandle(process.process),267);check(SetErrorMode(0)==0x8001&&!GetErrorMode(),268);
  unsigned other=RegisterWindowMessageW(L"Engacer.Message148.ChildFirst");check(other>=0xc000&&other!=id,229);
  uint64_t module=LoadLibraryExA("kernel32.dll",0,0);check(module&&module==GetModuleHandleW(L"kernel32.dll")&&FreeLibrary(module),238);
  check(!LoadLibraryExA(0,0,0)&&GetLastError()==87,239);
@@ -77,7 +84,8 @@ void entry(void){
  check(!HeapReAlloc(h,16,data,1024*1024)&&data[0]==0x3f,253);
  uint8_t*small=HeapReAlloc(h,0,data,32);check(small==data&&HeapFree(h,0,small),254);
  check(HeapAlloc(other_heap,8,16000)!=0,255);check(HeapDestroy(h)&&HeapDestroy(other_heap),256);
- check(!HeapAlloc(h,0,1)&&!HeapDestroy(h),257);check(owned_pages148()==pages,258);
+ check(!HeapAlloc(h,0,1)&&!HeapDestroy(h),257);uint64_t after=owned_pages148();check(after==pages,258);
+ say148("M148_HEAP_PAGES before=");number148(pages);say148(" after=");number148(after);say148("\n");
  static const char text[]="M148_NATIVE_SESSION_MESSAGES_SRW_PASS\n";unsigned written=0;
  check(WriteFile(GetStdHandle((unsigned)-11),text,sizeof(text)-1,&written,0)&&written==sizeof(text)-1,237);ExitProcess(0);
 }

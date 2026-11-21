@@ -16,6 +16,7 @@ static int MS f_CreateProcessW(const WCHAR*application,WCHAR*command,void*proces
  w8_process_request request;memset(&request,0,sizeof(request));request.flags=flags;
 #ifdef ENGINE_M14
  request.inherit147=inherit!=0;request.startup_flags147=startup->flags;request.std_handles147[0]=startup->input;request.std_handles147[1]=startup->output;request.std_handles147[2]=startup->error;
+ request.error_mode148=(flags&0x04000000u)?0:f_GetErrorMode();
 #endif
  WCHAR executable[256];const WCHAR*name=application;
  if(!name){if(!first_executable142(command,executable,256)){last8(87);return 0;}name=executable;}

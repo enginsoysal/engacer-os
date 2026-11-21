@@ -15,7 +15,7 @@
 #define W8_MAGIC 0x38574f53u
 #define W8_IO 4096u
 #ifdef ENGINE_M14
-#define W8_CREATE_FLAGS147 0x08000424u
+#define W8_CREATE_FLAGS147 0x0c000424u
 #else
 #define W8_CREATE_FLAGS147 0x424u
 #endif
@@ -31,7 +31,7 @@ enum {W8_SYS_MAP=0x800,W8_SYS_UNMAP,W8_SYS_PROTECT,W8_SYS_OPEN,W8_SYS_READ,
  W8_SYS_PROCESS_CLOSE,W8_SYS_PROCESS_ID,W8_SYS_THREAD_ID,W8_SYS_PROCESS_TERMINATE,W8_SYS_EXCEPTION_REGISTER,W8_SYS_EXCEPTION_RETURN,W8_SYS_PROCESS_EPOCH,W8_SYS_SYNC_CREATE,W8_SYS_SYNC_OPERATION,W8_SYS_SYNC_CLOSE,W8_SYS_WAIT_OBJECTS,W8_SYS_PATH143,W8_SYS_FILE_OPEN143,W8_SYS_FILE_OP143,W8_SYS_REGISTRY143,W8_SYS_TEXT143,W8_SYS_UI144,W8_SYS_PAGE145,W8_SYS_MAPPING146,W8_SYS_PIPE147,W8_SYS_ALIAS147,W8_SYS_STREAM147};
 #define W8_PROCESS_TAG UINT64_C(0x80000000)
 #define W8_HANDLE_TAG_MASK UINT64_C(0xffffffffe0000000)
-typedef struct {char source[256],command[1200],directory[256];uint32_t flags;uint64_t environment;uint32_t environment_bytes,reserved;uint32_t inherit147,startup_flags147;uint64_t std_handles147[3];} w8_process_request;
+typedef struct {char source[256],command[1200],directory[256];uint32_t flags;uint64_t environment;uint32_t environment_bytes,error_mode148;uint32_t inherit147,startup_flags147;uint64_t std_handles147[3];} w8_process_request;
 typedef struct {uint64_t process,thread;uint32_t process_id,thread_id;} w8_process_result;
 typedef struct {uint32_t kind,manual;int32_t count,maximum;uint32_t access;uint16_t name[96];} w8_sync_request142;
 typedef struct {uint64_t handle;uint32_t existed,pad;} w8_sync_result142;
@@ -57,7 +57,7 @@ typedef struct {
  uint32_t process_id,startup_flags;
  uint64_t environment;uint32_t environment_bytes,reserved143;
  uint64_t std_handles147[3];uint32_t startup_flags147,reserved147;
- uint8_t source_sha147[32];uint32_t profile147,reserved_source147;
+ uint8_t source_sha147[32];uint32_t profile147,error_mode148;
 } w8_mailbox;
 _Static_assert(sizeof(w8_mailbox)<=4096,"Windows startup mailbox must fit its checked page");
 #ifndef W8_USER

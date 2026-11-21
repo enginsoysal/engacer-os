@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 662,
-  "table_bytes": 5296,
+  "refusal_keys": 661,
+  "table_bytes": 5288,
   "imports": [
     {
       "app": "notepadpp",
@@ -3028,13 +3028,6 @@
       "dll": "kernel32.dll",
       "symbol": "DisconnectNamedPipe",
       "key": "63b9ce84faa7389f",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "SetErrorMode",
-      "key": "7e2581718ad45759",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
