@@ -40,6 +40,7 @@ __declspec(dllimport) unsigned SetErrorMode(unsigned);
 __declspec(dllimport) unsigned GetErrorMode(void);
 __declspec(dllimport) unsigned GetFileAttributesW(const uint16_t*);
 __declspec(dllimport) int RemoveDirectoryW(const uint16_t*);
+__declspec(dllimport) void*LocalFree(void*);
 __declspec(dllimport) uint64_t CreateToolhelp32Snapshot(unsigned,unsigned);
 __declspec(dllimport) int Process32FirstW(uint64_t,void*);
 __declspec(dllimport) int Process32NextW(uint64_t,void*);
@@ -111,6 +112,9 @@ void entry(void){
  uint64_t shell=LoadLibraryExA("SHLWAPI.dll",0,0);int(*append)(uint16_t*,const uint16_t*)=GetProcAddress(shell,"PathAppendW");
  check(shell&&append&&append(system,L"own.dll"),244);const uint16_t expected[]=L"C:\\Windows\\System32\\own.dll";for(unsigned i=0;i<sizeof(expected)/2;++i)check(system[i]==expected[i],245);
  uint64_t shell32=LoadLibraryExA("shell32.dll",0,0);int(*folder)(uint64_t,int,uint64_t,unsigned,uint16_t*)=GetProcAddress(shell32,"SHGetFolderPathW");check(folder!=0,269);
+ uint16_t**(*split_command)(const uint16_t*,int*)=GetProcAddress(shell32,"CommandLineToArgvW");check(split_command!=0,355);int arguments=0;uint16_t**words=split_command(L"p \"a b\" \"\" tail",&arguments);check(words&&arguments==4&&words[0][0]=='p'&&!words[0][1]&&words[1][0]=='a'&&words[1][1]==' '&&words[1][2]=='b'&&!words[1][3]&&!words[2][0]&&words[3][0]=='t'&&!words[3][4],356);check(!LocalFree(words),357);
+ words=split_command(L" p",&arguments);check(words&&arguments==2&&!words[0][0]&&words[1][0]=='p'&&!LocalFree(words),358);
+ words=split_command(L"",&arguments);check(words&&arguments==1,359);for(unsigned i=0;i<=n;++i)check(words[0][i]==path[i],360);check(!LocalFree(words)&&!split_command(0,&arguments)&&!split_command(L"p",0),361);
  uint16_t profile[260],known[260];check(!folder(0,0x28,0,0,profile)&&!folder(0,0x1c,0,0,known),270);unsigned folder_attributes=GetFileAttributesW(known);check(folder_attributes!=UINT32_MAX&&(folder_attributes&16),282);
  check(append(profile,L"AppData\\Local"),271);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],272);
  check(!folder(0,0x1c,0,1,profile),273);for(unsigned i=0;profile[i]||known[i];++i)check(profile[i]==known[i],274);

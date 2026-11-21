@@ -333,6 +333,9 @@ static HANDLE MS f_LoadLibraryA(const char*name){WCHAR wide[256];if(utf8_to16(na
 static int MS f_FreeLibrary(HANDLE module){for(unsigned id=1;id<PROVIDERS145;++id)if(module==0x70000000+id*0x10000)return 1;if(pe8_release(module))return 1;last8(6);return 0;}
 static unsigned MS f_GetModuleFileNameW(HANDLE module,WCHAR*out,unsigned cap){if(!cap||!out){last8(87);return 0;}const char*path=pe8_path(module?module:pe8_main());if(!path){last8(126);return 0;}char win[512];winpath8(path,win,512);WCHAR wide[512];int n=utf8_to16(win,wide,512);if(n<0){last8(206);return 0;}if((unsigned)n>=cap){widecopy8(out,wide,cap);last8(122);return cap;}widecopy8(out,wide,cap);return (unsigned)n;}
 static unsigned MS f_GetModuleFileNameA(HANDLE module,char*out,unsigned cap){WCHAR wide[512];unsigned n=f_GetModuleFileNameW(module,wide,512);if(!n)return 0;char value[1024];if(utf16_to8(wide,value,1024)<0)return 0;unsigned bytes=len8(value);if(cap<=bytes){copy8(out,value,cap);last8(122);return cap;}copy8(out,value,cap);return bytes;}
+#ifdef ENGINE_M14
+#include "argv148.inc"
+#endif
 static int MS f_IsDebuggerPresent(void){return 0;}
 static int MS f_LookupPrivilegeValueW(const WCHAR*system,const WCHAR*name,void*luid){(void)system;(void)name;(void)luid;last8(1313);return 0;}
 static int MS f_OpenProcessToken(HANDLE process,unsigned access,HANDLE*out){(void)process;(void)access;if(out)*out=0;last8(50);return 0;}
@@ -427,6 +430,7 @@ static const api8 api8_table[]={
  API8(InitializeSListHead,1),API8(InterlockedFlushSList,1),
  API8(GetFileVersionInfoSizeW,24),API8(GetFileVersionInfoW,24),API8(VerQueryValueW,24),
  API8(RegisterWindowMessageW,4),API8(RegisterWindowMessageA,4),API8(GlobalFindAtomW,1),API8(GlobalAddAtomW,1),API8(GlobalDeleteAtom,1),API8(GlobalGetAtomNameW,1),
+ API8(CommandLineToArgvW,10),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
