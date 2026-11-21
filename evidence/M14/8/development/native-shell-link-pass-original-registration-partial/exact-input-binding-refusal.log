@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<project-root>\tests\m14\session148_run.py", line 44, in <module>
+    if __name__=='__main__':main()
+  File "<project-root>\tests\m14\session148_run.py", line 8, in main
+    private,inputs=build();production=private.parent/'WINDOWS8.ELF'
+  File "<project-root>\tests\m14\exe148_probe_build.py", line 22, in build
+    if not(out/'compile-inputs.json').exists():scope['build'](name)
+  File "<project-root>\tests\m14\runtime147_build.py", line 21, in build
+    hashes={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()for p in sorted(files)};commit=verify_committed_inputs(ROOT,hashes);tools=pinned_tools()
+  File "<project-root>\tools\build\m14_integrity.py", line 24, in verify_committed_inputs
+    raise RuntimeError('Build bytes differ from commit (including line endings): '+path)
+RuntimeError: Build bytes differ from commit (including line endings): user/windows8/api.c

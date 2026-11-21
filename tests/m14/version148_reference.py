@@ -31,6 +31,9 @@ def main():
   C.set_last_error(0);result=k.VerifyVersionInfoW(C.byref(requested),types,mask);expected=0 if result else C.get_last_error();query=[getattr(requested,f)for f in fields]
   actual=compare(array(*values),array(*query),types,mask);assert actual==expected,(index,values,query,hex(types),hex(mask),actual,expected)
   comparisons.append(dict(requested=query,types=types,mask=mask,status=expected))
- report=dict(passed=True,scope=__doc__,cases=cases,current_reference_version=values,comparisons=comparisons,source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [source,header,compare_header,Path(__file__)]})
+ malformed=[]
+ for size,types,mask in [(284,0,0),(284,256,1),(284,1,0),(276,1,1),(0,1,1)]:
+  query=Info.from_buffer_copy(current);query.size=size;C.set_last_error(0);ok=k.VerifyVersionInfoW(C.byref(query),types,mask);malformed.append(dict(size=size,types=types,mask=mask,windows_status=0 if ok else C.get_last_error(),native_documented_input_guard=87))
+ report=dict(passed=True,scope=__doc__,cases=cases,current_reference_version=values,comparisons=comparisons,malformed_reference_observations=malformed,malformed_scope='Observed Windows tolerance differs from the explicit native documented-input guard; not equivalence checks',source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [source,header,compare_header,Path(__file__)]})
  (out/'results.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(passed=True,cases=len(cases),comparisons=len(comparisons))))
 if __name__=='__main__':main()

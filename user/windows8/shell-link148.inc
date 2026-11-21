@@ -10,6 +10,7 @@ static const uint8_t persist_iid148[16]={0x0b,1,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x4
 static const uint8_t persist_base_iid148[16]={0x0c,1,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
 static const uint8_t unknown_iid148[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
 static int shell_hr148(unsigned error){return error?(int)(0x80070000u|error):0;}
+static unsigned shell_file_error148(void){unsigned error=f_GetLastError();return error?error:29;}
 static unsigned shell_access148(const void*p,unsigned bytes,unsigned write){return p&&!sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)p,bytes,write?2:1,0,0);}
 static shell_link148*shell_find148(const void*p){for(unsigned i=0;i<32;++i){shell_link148*s=shell_links148[i];if(s&&(p==s||p==&s->persist))return s;}return 0;}
 static int MS shell_notimpl148(void*self){(void)self;return(int)0x80004001u;}
@@ -60,7 +61,7 @@ static int MS shell_save148(void*self,const WCHAR*filename,int remember){
  if(!s||!s->text[0])status=s?87:6;
  else{revision=s->revision;status=shell_link_encode148(s->text[0],s->text[1]?s->text[1]:"",s->text[2]?s->text[2]:"",s->text[3]?s->text[3]:"",s->text[4],s->icon_index,s->show,0,data,4096,&bytes);}
  lock_leave142(&shell_link_lock148);
- if(!status){HANDLE file=f_CreateFileW(destination,0x40000000u,0,0,2,0x80,0);if(file==UINT64_MAX)status=error8;else{unsigned written=0;if(!f_WriteFile(file,data,bytes,&written,0)||written!=bytes||!f_FlushFileBuffers(file))status=error8?error8:29;if(!f_CloseHandle(file)&&!status)status=error8;}}
+ if(!status){HANDLE file=f_CreateFileW(destination,0x40000000u,0,0,2,0x80,0);if(file==UINT64_MAX)status=shell_file_error148();else{unsigned written=0;if(!f_WriteFile(file,data,bytes,&written,0))status=shell_file_error148();else if(written!=bytes)status=29;else if(!f_FlushFileBuffers(file))status=shell_file_error148();if(!f_CloseHandle(file)&&!status)status=shell_file_error148();}}
  free8(data);if(!status&&(!filename||remember)){lock_enter142(&shell_link_lock148);s=shell_find148(self);if(s){if(s->revision==revision)s->dirty=0;if(remembered){char*old=s->current;s->current=remembered;remembered=old;}}lock_leave142(&shell_link_lock148);}if(remembered)free8(remembered);return shell_hr148(status);
 }
 static void shell_tables148(void){

@@ -45,11 +45,17 @@ def main():
                     t.focus(g,p,original_window);x,y,width,height=f.model(g)[1];scale=c.flag(g,'scale73');click_x,click_y=x+width-100,y+height-25
                     report['ordinary_original_button_click']=dict(window_token=original_window['token'],logical_x=click_x,logical_y=click_y,source='Original visible Install SumatraPDF button; ordinary guest pointer down/up')
                     p.click(click_x*scale//2,click_y*scale//2);p.drain()
-                    deadline=time.monotonic()+30
+                    deadline=time.monotonic()+240;observed_start=time.monotonic()
                     while time.monotonic()<deadline:
                         raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384)
                         if struct.unpack_from('<I',raw)[0]!=1:break
+                        text=raw[496:].split(b'\0')[0]
+                        if b'Installer thread finished' in text and b'OnInstallationFinished:' in text:
+                            report['original_installer_thread_completion_observed']=True;break
                         time.sleep(.05)
+                    report['post_click_observed_seconds']=round(time.monotonic()-observed_start,3)
+                    report['post_click_observation_limit_seconds']=240
+                    report['post_click_observation_limit_reached']=time.monotonic()>=deadline
                 p.drain();c.shot(g,'original-installer-after-click')
                 raw=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384)
                 state,command,status=struct.unpack_from('<3I',raw)
