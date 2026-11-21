@@ -25,7 +25,7 @@ def main():
  @Failure
  def failure(message):
   (out/'unexpected-refusal.json').write_bytes(json.dumps(dict(passed=False,error=message.decode())).encode());os._exit(87)
- lib.init147.argtypes=[Alloc,Free,Failure];lib.init147(allocate,release,failure);lib.journal_init147.argtypes=[Size];lib.journal_init147(size);lib.open147.argtypes=[ctypes.c_void_p,ctypes.c_uint];lib.cost147.argtypes=[ctypes.c_char_p];lib.set147.argtypes=[ctypes.c_char_p,ctypes.c_char_p];lib.journal_file147.argtypes=[ctypes.c_char_p,ctypes.c_uint64,ctypes.c_void_p,ctypes.c_uint];lib.journal_data147.restype=ctypes.c_void_p
+ lib.init147.argtypes=[Alloc,Free,Failure];lib.init147(allocate,release,failure);lib.journal_init147.argtypes=[Size];lib.journal_init147(size);lib.open147.argtypes=[ctypes.c_void_p,ctypes.c_uint];lib.cost147.argtypes=[ctypes.c_char_p];lib.set147.argtypes=[ctypes.c_char_p,ctypes.c_char_p];lib.journal_file147.argtypes=[ctypes.c_char_p,ctypes.c_uint64,ctypes.c_void_p,ctypes.c_uint];lib.journal_data147.restype=ctypes.c_void_p;lib.get147.argtypes=[ctypes.c_char_p];lib.get147.restype=ctypes.c_char_p
  packages=[ROOT/'third_party/7zip/7z2606-x64.msi',Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/npp.8.9.9.1.Installer.x64.msi'];samples=[]
  for package in packages:
   raw=package.read_bytes();source=ctypes.create_string_buffer(raw);lib.open147(source,len(raw));assert lib.set147(b'ALLUSERS',b'1')==0;lib.cost147(b'C:\\Users\\Owner');baseline=state['bytes']
@@ -50,5 +50,14 @@ def main():
   for fault,wanted in [(1,5),(2,29),(3,1117),(4,1117),(5,1117),(0,0)]:assert lib.journal_write147(fault)==wanted;checks+=1
   assert lib.journal_read147(0)==1 and lib.journal_read147(1)==0;checks+=2
   samples.append(dict(package=package.name,source_sha256=hashlib.sha256(raw).hexdigest(),journal_bytes=n,properties=len(actual),journal_sha256=hashlib.sha256(data).hexdigest()));lib.journal_close147();assert state['bytes']==baseline;lib.close147();assert not live and state['bytes']==0 and not state['bad'];checks+=2
- report=dict(passed=True,checks=checks,scope='Production builder and original MSI properties with independent binary/SHA decoding, allocation failures and simulated I/O faults; native durable filesystem recovery remains unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['user/windows8/msi-journal147.h','include/engine/wintxn147.h','tests/m14/journal147_host.py']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS journal builder',checks)
+  # Reopen the original source and reconstruct the exact selection atomically.
+  lib.open147(source,len(raw));assert lib.journal_import_image147()==0;checks+=1
+  for fail_after in range(61):
+   state['fail_after']=-1;assert lib.set147(b'EngacerUserSentinel',b'keep until successful restore')==0;baseline=state['bytes'];state['fail_after']=fail_after;status=lib.journal_restore147();state['fail_after']=-1
+   if status==8:assert lib.get147(b'EngacerUserSentinel')==b'keep until successful restore' and state['bytes']==baseline
+   else:assert status==0 and not lib.get147(b'EngacerUserSentinel') and lib.get147(b'ProductVersion')==actual['ProductVersion'].encode()
+   assert not state['bad'];checks+=3
+  assert lib.journal_restore147()==0;lib.cost147(b'C:\\Users\\Owner');assert lib.journal_restore147()==87;checks+=2
+  lib.journal_close147();lib.close147();assert not live and state['bytes']==0;checks+=1
+ report=dict(passed=True,checks=checks,scope='Production builder and original MSI properties with independent binary/SHA decoding, allocation failures, atomic selection restoration before recosting and simulated I/O faults; native durable filesystem recovery remains unqualified',packages=samples,peak_host_tracked_bytes=state['peak'],retained_host_tracked_bytes=state['bytes'],sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in sources+['user/windows8/msi-journal147.h','include/engine/wintxn147.h','tests/m14/journal147_host.py']});(out/'results.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print('PASS journal builder',checks)
 if __name__=='__main__':main()

@@ -21,9 +21,9 @@ unsigned msif_directory147(const char*path){
  return 0;
 }
 unsigned msif_hash147(const char*path,uint64_t bytes,uint8_t hash[32]){
- w8_file_info info;if(stat8(path,&info)||info.kind!=1||info.size!=bytes||bytes>32u*1024u*1024u)return 2;
- int handle=open8(path,0);if(handle<0)return 5;uint8_t buffer[4096];engine_sha256_context context;engine_sha256_init(&context);unsigned status=0;
- while(bytes){unsigned n=bytes>sizeof(buffer)?sizeof(buffer):(unsigned)bytes;if(read8(handle,buffer,n)!=(int)n||!engine_sha256_update(&context,buffer,n)){status=23;break;}bytes-=n;}
+ w8_file_info info;if(stat8(path,&info)||info.kind!=1||info.size!=bytes)return 2;
+ int handle=open8(path,0);if(handle<0)return 5;uint8_t buffer[4096];engine_sha256_context context;engine_sha256_init(&context);unsigned status=0,blocks=0;
+ while(bytes){unsigned n=bytes>sizeof(buffer)?sizeof(buffer):(unsigned)bytes;if(read8(handle,buffer,n)!=(int)n||!engine_sha256_update(&context,buffer,n)){status=23;break;}bytes-=n;if(!(++blocks&127))sys8(W8_SYS_YIELD,0,0,0,0,0);}
  if(close8(handle))status=1117;if(!status&&!engine_sha256_final(&context,hash))status=87;return status;
 }
 typedef struct {msia_plan147*plan;msij147*journal;const cab147_archive*archive;uint16_t map[256];unsigned active,current,offset,completed,status;engine_sha256_context hash;} stage147;

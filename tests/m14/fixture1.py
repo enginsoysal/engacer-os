@@ -14,7 +14,8 @@ spec = importlib.util.spec_from_file_location('volume_types141', ROOT/'tests/m6/
 types = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(types)
 
-def library():
+def library(extra=()):
+    assert all(name in ['remove']for name in extra)
     work = ROOT/'build/m14-native/host-volume'/uuid.uuid4().hex
     work.mkdir(parents=True, exist_ok=True)
     tools = pinned_tools()
@@ -23,7 +24,7 @@ def library():
              '-Wall', '-Wextra', '-Werror', '-ffreestanding', '-fno-builtin',
              '-fno-stack-protector', '-DENGINE_M7', '-DENGINE_M8', '-DENGINE_M11', '-DENGINE_M14',
              '-I', ROOT/'include', '-c', ROOT/'kernel/storage/volume6.c', '-o', obj])
-    names = ['mount','mkdir','put','read','verify','stream_begin','stream_append','stream_finish','stream_abort']
+    names = ['mount','mkdir','put','read','verify','stream_begin','stream_append','stream_finish','stream_abort']+list(extra)
     dll = work/'volume.dll'
     command([tools['lld-link'], '/dll','/noentry','/nodefaultlib','/timestamp:0',
              *['/export:v6_'+n for n in names], obj, '/out:'+str(dll)])
@@ -37,6 +38,7 @@ def library():
     lib.v6_stream_begin.argtypes=[vp,c.c_char_p,c.c_uint64]
     lib.v6_stream_append.argtypes=[vp,c.c_void_p,c.c_uint]
     lib.v6_read.argtypes=[vp,c.c_char_p,c.c_uint64,c.c_void_p,c.c_uint,c.POINTER(c.c_uint)]
+    if 'remove'in extra:lib.v6_remove.argtypes=[vp,c.c_char_p]
     return lib
 
 class StoppedDisk:

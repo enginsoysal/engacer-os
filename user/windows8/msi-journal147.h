@@ -11,4 +11,7 @@ unsigned msij_properties147(msij147*,const msip_session147*);
 unsigned msij_seal147(msij147*);
 unsigned msij_write147(msij147*,const char*);
 msij147 *msij_read147(const char*,const char*,const char*);
+/* Restore the exact original selection before recosting for removal/recovery.
+ * Allocation/validation failure leaves the caller's entire session unchanged. */
+unsigned msij_restore147(const msij147*,msia_plan147*);
 #endif

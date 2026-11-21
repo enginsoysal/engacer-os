@@ -52,3 +52,17 @@ msij147 *msij_read147(const char*path,const char*root,const char*user){
  if(!win_tx_validate147(data,bytes)||!win_tx_bound147(data,root,user,0)){free8(data);return 0;}
  msij147*j=calloc8(1,sizeof(*j));if(!j){free8(data);return 0;}j->data=data;j->bytes=bytes;j->capacity=bytes;return j;
 }
+unsigned msij_restore147(const msij147*j,msia_plan147*p){
+ if(!j||!p||p->costed||!win_tx_validate147(j->data,j->bytes)||!win_tx_bound147((const void*)j->data,p->product_root,job8->user_root,p->source_sha256))return 87;
+ const win_tx_header147*h=(const void*)j->data;if(!h->properties||!equal8(h->code,p->code)||!equal8(h->product,p->product)||!equal8(h->version,p->version)||!equal8(h->publisher,p->publisher))return 87;
+ msip_session147 restored={.alloc=p->properties.alloc,.release=p->properties.release,.context=p->properties.context};unsigned status=0;
+ for(unsigned at=1024;at<j->bytes&&!status;){const win_tx_record147*r=(const void*)(j->data+at);
+  if(r->type==WIN_TX_PROPERTY147){const win_tx_property147*property=(const void*)(r+1);const char*name=(const void*)(property+1),*value=name+property->name_bytes;
+   if(equal8(name,"_EngacerRemove147")){if(!equal8(value,"1"))status=87;}
+   else status=msip_set147(&restored,name,value);
+  }at+=r->bytes;
+ }
+ if(!status&&(!win_tx_equal147(msip_get147(&restored,"ProductCode"),p->code)||!equal8(msip_get147(&restored,"ProductName"),p->product)||!equal8(msip_get147(&restored,"ProductVersion"),p->version)||!equal8(msip_get147(&restored,"Manufacturer"),p->publisher)))status=87;
+ if(status){msip_destroy147(&restored);return status;}
+ msip_session147 old=p->properties;p->properties=restored;msip_destroy147(&old);return 0;
+}

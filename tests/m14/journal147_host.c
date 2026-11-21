@@ -24,3 +24,6 @@ __declspec(dllexport) unsigned journal_bytes147(void){return journal_host147?jou
 __declspec(dllexport) unsigned journal_write147(unsigned fault){io_fault147=fault;io_live147=io_exists147=image_bytes147=0;return msij_write147(journal_host147,"/owned-test/journal.bin");}
 __declspec(dllexport) unsigned journal_read147(unsigned wrong_user){io_fault147=0;msij147*j=msij_read147("/owned-test/journal.bin",plan147->product_root,wrong_user?"/Users/Other":"/Users/Owner");unsigned good=j&&j->bytes==journal_host147->bytes&&!memcmp(j->data,journal_host147->data,j->bytes);msij_close147(j);return good;}
 __declspec(dllexport) void journal_close147(void){msij_close147(journal_host147);journal_host147=0;}
+
+__declspec(dllexport) unsigned journal_import_image147(void){if(journal_host147)return 87;journal_host147=msij_read147("/owned-test/journal.bin",plan147->product_root,job_host147.user_root);return journal_host147?0:13;}
+__declspec(dllexport) unsigned journal_restore147(void){return msij_restore147(journal_host147,plan147);}

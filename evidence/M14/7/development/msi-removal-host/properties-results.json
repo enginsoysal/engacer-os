@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "checks": 522,
+  "scope": "Production builder and original MSI properties with independent binary/SHA decoding, allocation failures, atomic selection restoration before recosting and simulated I/O faults; native durable filesystem recovery remains unqualified",
+  "packages": [
+    {
+      "package": "7z2606-x64.msi",
+      "source_sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "journal_bytes": 4024,
+      "properties": 45,
+      "journal_sha256": "e7e5af3d7c287eb78a863b9801f910f25e94ac25a57ef0bd1e98e54dfbdaa96e"
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "source_sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "journal_bytes": 3264,
+      "properties": 29,
+      "journal_sha256": "f79a015f9d9d8a0efcd3530aef54ee278b03bb39fdcd17055d66bcd50eb3f457"
+    }
+  ],
+  "peak_host_tracked_bytes": 166673,
+  "retained_host_tracked_bytes": 0,
+  "sources": {
+    "user/windows8/msi-journal147.c": "192facdd91c437118b73485a33e6a9335a713e6468d2dded2a0eb9c340c6d3fc",
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "tests/m14/journal147_host.c": "807759ff321bc829783afece1df8d2dbf8c736e71a9a25864a0cd0f289f9d585",
+    "user/windows8/msi-journal147.h": "9e7709f0f7c2ecc69f28d0c26bccd2a399022c9ce7b447c951d48dcc1937105f",
+    "include/engine/wintxn147.h": "b4bf8707c9c72adb8daf896bf0d47202d45861b2dc722df4a84e195f35cd3837",
+    "tests/m14/journal147_host.py": "2cba41815d55d4480a06c6ba6ac79cce04cc28ab008265d3daac53e17554a538"
+  }
+}

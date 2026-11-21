@@ -4,12 +4,14 @@
 #include "../../user/windows8/msi-shortcuts147.h"
 #include "../../user/windows8/msi-install147.h"
 #include "../../user/windows8/msi-registry147.h"
+#include "../../user/windows8/msi-remove147.h"
 #include "../../user/windows8/msi-text147.h"
 #include <engine/storage/volume6.h>
 typedef size_t (*size_callback147)(const void*);
 static size_callback147 size_host147;
 typedef int64_t (*registry_callback147)(unsigned,uint64_t);
 static registry_callback147 registry_host147;
+static unsigned move_fault147,promote_fault147,removed_kept147;
 static v6_volume*volume147;
 static w8_mailbox input8;
 w8_mailbox*const job8=&input8;
@@ -26,7 +28,7 @@ static unsigned string8(uint64_t address,char*out,unsigned cap){if(!address)retu
 static unsigned user8(uint64_t address,void*data,unsigned n,unsigned write){if(write){if(address!=W8_MAILBOX+offsetof(w8_mailbox,windows_root)||n>256)return 1;memcpy(input8.windows_root,data,n);return 0;}if(!address)return 1;memcpy(data,(const void*)(uintptr_t)address,n);return 0;}
 static const v6_entry*find8(const char*p){for(unsigned i=0;i<V6_ENTRIES;++i)if(volume147->entries[i].kind&&equal8(p,volume147->entries[i].path))return volume147->entries+i;return 0;}
 static unsigned exact8(const char*p,uint64_t off,void*out,unsigned n){unsigned got=0;return v6_read(volume147,p,off,out,n,&got)||got!=n;}
-static unsigned installer_authority147(void){return input8.command==W8_INSTALL;}
+static unsigned installer_authority147(void){return input8.command==W8_INSTALL||input8.command==W8_REMOVE;}
 static v6_volume*m6_volume(void){return volume147;}
 #define FILE_OBJECTS143 64u
 static unsigned file_object_slot143(const char*p){(void)p;return FILE_OBJECTS143;}
@@ -56,7 +58,8 @@ uint64_t sys8(uint64_t call,uint64_t a,uint64_t b,uint64_t c,uint64_t d,uint64_t
  if(call==W8_SYS_INFO){if(a==3)return v6_capacity(volume147)-v6_used(volume147);if(a==5){unsigned free=0;for(unsigned i=0;i<V6_ENTRIES;++i)if(!volume147->entries[i].kind)++free;return free;}}
  if(call==W8_SYS_YIELD)return 0;
  if(call==W8_SYS_MKDIR){const char*path=(const void*)(uintptr_t)a;if(!path8(path,1)&&!installer_user_grant147(path,1))return UINT64_MAX;unsigned status=v6_mkdir(volume147,(const char*)(uintptr_t)a);return status&&!(status==V6_EXISTS&&!b)?UINT64_MAX:0;}
- if(call==W8_SYS_MOVE&&c==2)return (uint64_t)staging_move147((const char*)(uintptr_t)a,(const char*)(uintptr_t)b);
+ if(call==W8_SYS_MOVE&&c==0){const char*from=(const void*)(uintptr_t)a,*to=(const void*)(uintptr_t)b;if(!path8(from,1)||!path8(to,1))return UINT64_MAX;if(move_fault147){--move_fault147;return (uint64_t)-1117;}return v6_rename(volume147,from,to,0)?(uint64_t)-1117:0;}
+ if(call==W8_SYS_MOVE&&c==2){if(promote_fault147&&!--promote_fault147)return (uint64_t)-1117;return (uint64_t)staging_move147((const char*)(uintptr_t)a,(const char*)(uintptr_t)b);}
  if(call==W8_SYS_CLOSE)return (uint64_t)close_handle147((unsigned)a,!b);
  return UINT64_MAX;
 }
@@ -78,3 +81,18 @@ __declspec(dllexport) unsigned installed_read147(void){char path[256];copy8(path
 __declspec(dllexport) unsigned installed_undo_registry147(void){return msireg_undo147(journal147);}
 
 __declspec(dllexport) unsigned install_order_fixture147(unsigned which){const char*name=which==0?"CreateShortcuts":which==1?"WriteRegistryValues":"SetCopyNativeLangAction";for(unsigned i=0;i<plan147->action_count;++i)if(equal8(plan147->actions[i].name,name)){unsigned old=plan147->actions[i].sequence;plan147->actions[i].sequence=which==0?1499:which==1?1601:6700;unsigned status=msia_install147(plan147,source147,source_bytes147);plan147->actions[i].sequence=old;return status;}return 87;}
+
+int remove8(const char*path){return path8(path,1)&&!v6_remove(volume147,path)?0:-1;}
+__declspec(dllexport) unsigned fixture_write147(const char*path,const void*data,unsigned bytes){char parent[256];copy8(parent,path,256);for(unsigned i=1;parent[i];++i)if(parent[i]=='/'){parent[i]=0;unsigned status=v6_mkdir(volume147,parent);parent[i]='/';if(status&&status!=V6_EXISTS)return status;}return v6_put(volume147,path,bytes,write_source147,(void*)data);}
+__declspec(dllexport) void remove_move_fault147(unsigned count){move_fault147=count;}
+__declspec(dllexport) unsigned remove_kept147(void){return removed_kept147;}
+__declspec(dllexport) unsigned remove_controller147(void){
+ if(journal147){msij_close147(journal147);journal147=0;}msia_close147(plan147);plan147=msia_prepare147(source147,source_bytes147);input8.command=W8_REMOVE;char path[256];copy8(path,input8.product_root,256);append8(path,"/.EngacerMSI/transaction.bin",256);w8_file_info info;if(stat8(path,&info)){copy8(path,input8.product_root,256);append8(path,"/product.bin",256);}journal147=msij_read147(path,input8.product_root,input8.user_root);if(!journal147)return 13;unsigned status=msij_restore147(journal147,plan147);if(status)return status;msia_cost147(plan147,"C:\\Users\\Owner");return msir_remove147(plan147,journal147,&removed_kept147);
+}
+__declspec(dllexport) unsigned reinstall_controller147(void){
+ if(journal147){msij_close147(journal147);journal147=0;}msia_close147(plan147);plan147=msia_prepare147(source147,source_bytes147);unsigned status=msip_set147(&plan147->properties,"ALLUSERS","1");if(!status)status=msip_set147(&plan147->properties,"Privileged","1");if(status)return status;msia_cost147(plan147,"C:\\Users\\Owner");input8.command=W8_INSTALL;return msia_install147(plan147,source147,source_bytes147);
+}
+
+__declspec(dllexport) void install_promote_fault147(unsigned at){promote_fault147=at;}
+
+__declspec(dllexport) unsigned fixture_delete147(const char*path){return v6_remove(volume147,path);}

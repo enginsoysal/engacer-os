@@ -23,7 +23,7 @@ static unsigned install_shape147(msia_plan147*p){
  static const char*const unsupported[]={"CreateFolder"};for(unsigned i=0;i<1;++i){msi8_table table=msi8_table_open(unsupported[i]);unsigned rows=table.rows;if(table.data.data)free8(table.data.data);if(rows)return 50;}
  msi8_table removal=msi8_table_open("RemoveFile");unsigned status=0;if(removal.rows&&(removal.columns!=5||removal.rows>256))status=50;
  for(unsigned i=0;!status&&i<removal.rows;++i){if(msi8_text(&removal,i,2)[0]||msi8_integer(&removal,i,4)!=2){status=50;break;}unsigned component=0,directory=0;for(unsigned k=0;k<p->component_count;++k)if(equal8(msi8_text(&removal,i,1),p->components[k].id))component=1;for(unsigned k=0;k<p->directory_count;++k)if(equal8(msi8_text(&removal,i,3),p->directories[k].id))directory=1;if(!component||!directory)status=87;}
- if(removal.data.data)free8(removal.data.data);return status;
+ if(removal.data.data)free8(removal.data.data);if(!status&&p->properties.count>=256)status=1816;return status;
 }
 static unsigned install_related147(msia_plan147*p){
  const char*base="/Applications/Windows";w8_file_info info;uint64_t cursor=0;const char*upgrade=msip_get147(&p->properties,"UpgradeCode");
