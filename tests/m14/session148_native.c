@@ -129,7 +129,7 @@ typedef struct{uint64_t window,after;int x,y,width,height;unsigned flags,pad;} n
 _Static_assert(sizeof(native_position148)==40,"Owned WINDOWPOS ABI");
 static unsigned class_created148,class_destroyed148,class_pre148,class_post148,class_moves148,class_sizes148;static uint32_t class_move148,class_size148;static int class_delta148;
 static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){if(message==1)++class_created148;if(message==0x82)++class_destroyed148;if(message==0x46){++class_pre148;if(class_delta148){((native_position148*)(uintptr_t)lp)->width+=class_delta148;class_delta148=0;}}if(message==0x47)++class_post148;if(message==3){++class_moves148;class_move148=(uint32_t)lp;}if(message==5){++class_sizes148;class_size148=(uint32_t)lp;}if(message>=0x8100&&message<=0x8104)return 10;return DefWindowProcW(window,message,wp,lp);}
-static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
+static void check(int ok,unsigned error){if(!ok){char text[]="M148_NATIVE_CHECK_FAILED 000\n";text[sizeof(text)-5]=(char)('0'+error/100%10);text[sizeof(text)-4]=(char)('0'+error/10%10);text[sizeof(text)-3]=(char)('0'+error%10);unsigned written=0;WriteFile(GetStdHandle((unsigned)-11),text,sizeof(text)-1,&written,0);ExitProcess(error);}}
 static void say148(const char*);
 typedef int64_t(*native_subproc148)(uint64_t,unsigned,uint64_t,int64_t,uint64_t,uint64_t);
 static int(*set_sub148)(uint64_t,native_subproc148,uint64_t,uint64_t);static int(*get_sub148)(uint64_t,native_subproc148,uint64_t,uint64_t*);static int(*remove_sub148)(uint64_t,native_subproc148,uint64_t);static int64_t(*def_sub148)(uint64_t,unsigned,uint64_t,int64_t);static uint64_t subclass_order148,subclass_data148;
@@ -327,7 +327,7 @@ static void registry_delete_tests148(void){
  say148("M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\n");
 }
 void entry(void){
- font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();
+
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
  int inside_monitor[4]={1,1,50,50},outside_monitor[4]={INT32_MAX-10,INT32_MAX-10,INT32_MAX,INT32_MAX};uint64_t monitor=MonitorFromRect(inside_monitor,0);check(monitor&&!MonitorFromRect(outside_monitor,0)&&MonitorFromRect(outside_monitor,1)==monitor&&MonitorFromRect(outside_monitor,2)==monitor&&MonitorFromPoint(0,0)==monitor&&!MonitorFromPoint(UINT64_MAX,0)&&MonitorFromPoint(UINT64_MAX,2)==monitor,587);inside_monitor[2]=inside_monitor[0];inside_monitor[3]=inside_monitor[1];check(MonitorFromRect(inside_monitor,0)==monitor&&!MonitorFromRect((void*)1,0)&&GetLastError()==998,588);int inverted_monitor[4]={INT32_MAX,100,50,200},empty_spanning_monitor[4]={-100,0,100,0};check(!MonitorFromRect(inverted_monitor,0)&&!MonitorFromRect(empty_spanning_monitor,0),592);unsigned monitor_info[26]={0};monitor_info[0]=104;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[1]==0&&monitor_info[2]==0&&monitor_info[3]==(unsigned)desktop_rect[2]&&monitor_info[4]==(unsigned)desktop_rect[3]&&monitor_info[9]==1&&((uint16_t*)(monitor_info+10))[0]=='E',589);monitor_info[0]=72;check(GetMonitorInfoA(monitor,monitor_info)&&((char*)(monitor_info+10))[0]=='E'&&!GetMonitorInfoW(monitor,monitor_info)&&GetLastError()==87,590);monitor_info[0]=40;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[7]==(unsigned)desktop_rect[2]&&monitor_info[8]<(unsigned)desktop_rect[3],591);
@@ -335,6 +335,7 @@ void entry(void){
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
+ font_tests148();raster_packet_tests148();version_mask_tests148();utc_tests148();registry_delete_tests148();registry_tree_tests148();registry_set_tests148();registry_capacity_tests148();
  check(!GetErrorMode()&&!SetErrorMode(4)&&!GetErrorMode()&&!SetErrorMode(0x8001)&&GetErrorMode()==0x8001,262);
  SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
  check(MulDiv(420,96,96)==420&&MulDiv(5,1,2)==3&&MulDiv(-5,1,2)==-3&&MulDiv(5,1,-2)==-3&&MulDiv(-5,1,-2)==3&&MulDiv(INT32_MAX,INT32_MAX,INT32_MAX)==INT32_MAX&&MulDiv(INT32_MAX,INT32_MAX,1)==-1&&MulDiv(1,1,0)==-1&&MulDiv(INT32_MIN,0,1)==0&&MulDiv(INT32_MIN,1,INT32_MIN)==-1&&GetLastError()==0x148,394);

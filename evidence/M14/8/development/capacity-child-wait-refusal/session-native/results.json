@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "build_id": "e53f60d156d5e9d2bdf6bd62154b74b5",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "f69bf80b33e829add0294a34d6750d4f913d3c1e14a67bc222219487b079e9c3",
+    "clone_sha256": "f69bf80b33e829add0294a34d6750d4f913d3c1e14a67bc222219487b079e9c3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "b893ef604837fce3ffa2125d54d88b4f7b0a842e2d27a1f7975be59ced87233a",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 22, in main\n    c.shot(g,'global-memory-lifetimes');value=task(g,p,12005);assert 'Mapped original image: 7z.exe' in value and '7-Zip' in value\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: The main program and its child processes have finished. OUTPUT Mapped original image: 7zFM.exe bytes=81920 source-fnv32=3712380513\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_VERSION_CONDITION_MASK_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nM148_NATIVE_DURABLE_REGISTRY_PAST_LEGACY_LIMITS_PASS\nM148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS\nM148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_PROGRESS_RANGE_POSITION_STEP_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=81920 source-fnv32=3712380513\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_VERSION_CONDITION_MASK_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nM148_NATIVE_DURABLE_REGISTRY_PAST_LEGACY_LIMITS_PASS\n\n"
+}
