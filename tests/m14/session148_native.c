@@ -81,6 +81,7 @@ static void snapshot_check148(uint64_t snapshot,unsigned child,unsigned present)
  }while(Process32NextW(snapshot,&entry));check(GetLastError()==18&&own==1&&found==present&&count==1+present,289);
 }
 static uint64_t owned_pages148(void){uint64_t values[4];register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_VMINFO;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)(uintptr_t)values),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");check(!result,260);return values[1];}
+static int64_t security_profile148(uint64_t argument){register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_SECURITY148;__asm__ volatile("int $0x80":"+a"(result):"D"(argument),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");return(int64_t)result;}
 static unsigned worker(void*kind){
  for(unsigned i=0;i<1000;++i){
   if((uintptr_t)kind<4){AcquireSRWLockExclusive(&lock);++left;right=left*3;ReleaseSRWLockExclusive(&lock);}
@@ -88,6 +89,7 @@ static unsigned worker(void*kind){
  }return 0;
 }
 void entry(void){
+ check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;
  if(child){check(GetErrorMode()==(child==1?0x8001u:0u),261);check(RegisterWindowMessageW(L"Engacer.Message148.ChildFirst")>=0xc000,221);ExitProcess(RegisterWindowMessageW(L"Engacer.Message148.Parent"));}
@@ -95,6 +97,10 @@ void entry(void){
  SetLastError(0x148);check(GetUserDefaultUILanguage()==0x409&&GetSystemDefaultUILanguage()==0x409&&GetLastError()==0x148,374);
  uint64_t advapi=LoadLibraryExA("advapi32.dll",0,0);int(*allocate_sid)(const unsigned char*,unsigned char,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,void**)=GetProcAddress(advapi,"AllocateAndInitializeSid");void*(*free_sid)(void*)=GetProcAddress(advapi,"FreeSid");unsigned(*length_sid)(const void*)=GetProcAddress(advapi,"GetLengthSid");int(*valid_sid)(const void*)=GetProcAddress(advapi,"IsValidSid");int(*equal_sid)(const void*,const void*)=GetProcAddress(advapi,"EqualSid");check(advapi&&allocate_sid&&free_sid&&length_sid&&valid_sid&&equal_sid,375);
  unsigned char authority[6]={0,0,0,0,0,5};void*admin_sid=0,*same_sid=0,*users_sid=0;check(allocate_sid(authority,2,32,544,0,0,0,0,0,0,&admin_sid)&&allocate_sid(authority,2,32,544,0,0,0,0,0,0,&same_sid)&&allocate_sid(authority,2,32,545,0,0,0,0,0,0,&users_sid),376);
+ int(*membership)(uint64_t,const void*,int*)=GetProcAddress(advapi,"CheckTokenMembership");int member[3]={0x148,99,0x148};check(membership&&membership(0,admin_sid,member+1)&&!member[1]&&member[0]==0x148&&member[2]==0x148&&membership(0,users_sid,member+1)&&member[1]==1,382);
+ member[1]=99;check(!membership(1,users_sid,member+1)&&!member[1]&&GetLastError()==50,383);
+ for(unsigned i=0;i<3;++i){void*group=0;unsigned rid=i==0?11:i==1?4:999;check(allocate_sid(authority,1,rid,0,0,0,0,0,0,0,&group)&&membership(0,group,member+1)&&member[1]==(i<2)&&!free_sid(group),384);}
+ unsigned char world[6]={0,0,0,0,0,1};void*everyone=0;check(allocate_sid(world,1,0,0,0,0,0,0,0,0,&everyone)&&membership(0,everyone,member+1)&&member[1]==1&&!free_sid(everyone),385);
  check(valid_sid(admin_sid)&&length_sid(admin_sid)==16&&equal_sid(admin_sid,same_sid)&&!equal_sid(admin_sid,users_sid)&&((unsigned char*)admin_sid)[0]==1&&((unsigned char*)admin_sid)[1]==2&&((unsigned char*)admin_sid)[7]==5&&((unsigned*)admin_sid)[2]==32&&((unsigned*)admin_sid)[3]==544,377);
  check(!free_sid(admin_sid)&&!free_sid(same_sid)&&!free_sid(users_sid),378);void*maximum_sid=0;check(allocate_sid(authority,8,1,2,3,4,5,6,7,8,&maximum_sid)&&length_sid(maximum_sid)==40&&((unsigned*)maximum_sid)[9]==8&&!free_sid(maximum_sid),379);
  maximum_sid=(void*)99;check(!allocate_sid(authority,9,0,0,0,0,0,0,0,0,&maximum_sid)&&!maximum_sid&&GetLastError()==1337,380);unsigned char bad_sid[8]={2,0,0,0,0,0,0,5};check(!valid_sid(bad_sid)&&!valid_sid(0)&&FreeLibrary(advapi),381);

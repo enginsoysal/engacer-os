@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 def main():
  out=ROOT/'build/m14-native/stage8/sid-host';out.mkdir(parents=True,exist_ok=True);binary=out/'sid148.dll'
- subprocess.run(['clang','-shared','-O2','-Wall','-Wextra','-Werror',str(ROOT/'tests/m14/sid148_host.c'),'-o',str(binary)],check=True,cwd=ROOT)
+ subprocess.run(['clang','-shared','-O2','-Wall','-Wextra','-Werror','-I',str(ROOT/'include'),str(ROOT/'tests/m14/sid148_host.c'),'-o',str(binary)],check=True,cwd=ROOT)
  own=c.CDLL(str(binary));win=c.WinDLL('advapi32',use_last_error=True)
  own.sid148.argtypes=[c.c_void_p,c.c_ubyte,c.c_void_p,c.POINTER(c.c_void_p)];own.release148.argtypes=[c.c_void_p]
  own.size148.argtypes=own.valid148.argtypes=[c.c_void_p];own.size148.restype=c.c_uint;own.equal148.argtypes=[c.c_void_p,c.c_void_p]

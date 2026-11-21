@@ -420,6 +420,15 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_PROCESS_ID:{if(a==UINT64_MAX)return input8.process_id;int h=process_handle_slot142(a);return h<0||spaces142[active_space142]->handles[h].kind!=1?-1:(int64_t)process_objects142[spaces142[active_space142]->handles[h].object].pid;}
  case W8_SYS_THREAD_ID:{if(a==UINT64_MAX-1)return (int64_t)thread_token142(current142);int h=process_handle_slot142(a);if(h>=0){process_handle142*cap=spaces142[active_space142]->handles+h;return cap->kind==2?(int64_t)process_objects142[cap->object].primary_id:-1;}int t=thread_slot142(a);return t<0?-1:(int64_t)thread_token142((unsigned)t);}
  case W8_SYS_PROCESS_TERMINATE:return terminate_process142(a,(unsigned)b);
+ case W8_SYS_SECURITY148:{
+  if(a||b||c||d||e)return -87;
+#ifdef ENGINE_M14
+  const v6_entry*owner=find8(input8.user_root);if(!owner||owner->kind!=2)return -1008;
+  return W8_SECURITY_AUTHENTICATED148|W8_SECURITY_USERS148|W8_SECURITY_INTERACTIVE148;
+#else
+  return -50;
+#endif
+ }
  case W8_SYS_PROCESSES148:{
   _Static_assert(SPACES142==W8_PROCESS_SNAPSHOT_MAX148,"Process inventory must cover every Windows space");
   if(c||d||e||b>1)return -87;

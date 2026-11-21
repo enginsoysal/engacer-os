@@ -12,6 +12,28 @@ The matching 3.6.1 source identifies self-copy, embedded LZMA extraction, native
 
 ## Resources and persistence
 
+### Restricted Windows identity
+
+Windows clients use the current native owner's restricted interactive profile.
+The kernel's read-only W8_SYS_SECURITY148 query verifies the actual owner root
+and reports authenticated/user/interactive categories without allocating token
+objects or adding services. Existing syscall numbers remain unchanged; the new
+query is appended. It changes no filesystem or registry grant.
+
+CheckTokenMembership with a null token maps that profile to Everyone,
+Authenticated Users, Builtin Users and Interactive well-known SIDs. It does not
+map the process to Administrators, LocalSystem or a service account. A selected
+product's installation review gives bounded broker authority, not Windows
+administrator membership. This prevents an installer privilege query from
+inventing broad OS access. Explicit token handles, impersonation and the full NT
+token/ACL model remain unsupported; their calls must fail visibly.
+
+SID allocation/serialization is ordinary caller-owned data. Neither constructing
+an Administrators SID nor changing user-writable startup fields changes the
+kernel-owned identity profile or authorization. This kernel query is preferred
+over inferring membership from mutable environment strings or pretending that
+every installation runs as administrator.
+
 Allocate session state lazily and account image, heap, stack, kernel, framebuffer and caches separately. Stream OS-owned copies and hashes in bounded chunks. Preserve original allocation semantics and measure high-water/retained pages rather than silently expanding all quotas. Whole-system optimization remains M14.15.
 
 Use an explicitly selected fresh destination and preserve personal files, modified app data and protected records. Original removal and required children must run. Independently inspect outputs and persistence after restarting. Later M14.11 repair/upgrade work does not waive the normal removal/reinstall chain or current data protection.
