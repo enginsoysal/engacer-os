@@ -43,3 +43,28 @@ Use an explicitly selected fresh destination and preserve personal files, modifi
 Record source/media/build identity, original hashes and architectures, API/fault traces, native windows/input, actual file/registry/shortcut effects, child executions, independent starts and resource limits. Preserve failures and distinguish private routing probes from shipped behavior.
 
 [Stage gates](../milestones/m14-8.md), [vendor source](https://github.com/sumatrapdfreader/sumatrapdf/blob/3.6.1rel/src/Installer.cpp), [official command line](https://www.sumatrapdfreader.org/docs/Installer-cmd-line-arguments), [M14 requirements](windows-m14.md).
+
+## Bounded native logical fonts (development)
+
+Logical GDI font objects select the existing shared OFL Inter raster strikes:
+14/16 regular and 21/28 semibold logical pixels, with actual 100/150/200%
+physical coverage. Negative LOGFONT height selects by EM; positive height by
+actual cell height. Nearest size takes priority over weight. Missing families
+map to Inter; GetTextFace and TEXTMETRIC report the actual selected face and
+metrics. This is not arbitrary TrueType family/size support. Rotation, custom
+width and italic remain explicit unsupported operations.
+
+This reuses the native immutable atlas instead of allocating per-process glyph
+copies or adding a font interpreter/service. Up to 64 lazy logical objects keep
+original LOGFONT descriptors and generated handles. Selected objects cannot be
+deleted; DC release drops the reference. Text measurement and retained rendering
+use the same strike. Underline and strikeout are real retained line primitives.
+The copied draw record stays 552 bytes and keeps seven commands per kernel page;
+its text height now selects the known strike. An appended read-only IPC reports
+actual font metadata without changing earlier operation identifiers.
+
+Initial validation is pending. The original installer reaching CreateFontIndirectW
+is a diagnostic observation, not a successful installation. Owned native font
+lifetime and pixel tests and the unchanged original installer must pass before
+these changes qualify. GetObjectW supports LOGFONTW-sized or smaller buffers;
+extended undocumented object records remain unsupported.

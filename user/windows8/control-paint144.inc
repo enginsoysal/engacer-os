@@ -7,7 +7,11 @@ static void control_label_clip145(HANDLE dc,int x,int y,const WCHAR*label,win_re
  if(d->clip.left<d->clip.right&&d->clip.top<d->clip.bottom)control_label144(dc,x,y,label);d->clip=old;
 }
 static void control_cell_label145(HANDLE dc,int minimum,int y,const WCHAR*label,win_rect144 cell,unsigned format){int x=minimum,size[2];unsigned align=format&3,n=wlen8(label);if((align==1||align==2)&&n&&f_GetTextExtentPoint32W(dc,label,(int)n,size)){x=align==1?cell.right-8-size[0]:cell.left+(cell.right-cell.left-size[0])/2;if(x<minimum)x=minimum;}control_label_clip145(dc,x,y,label,cell);}
-static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;HANDLE dc=f_BeginPaint(h,&paint);if(!dc)return;native_dc144*d=dc_lookup144(dc);
+static void control_paint144(HANDLE h,control_state144*c){native_paint144 paint;HANDLE dc=f_BeginPaint(h,&paint);if(!dc)return;
+#ifdef ENGINE_M14
+ if(c->font&&!f_SelectObject(dc,c->font)){f_EndPaint(h,&paint);return;}
+#endif
+ native_dc144*d=dc_lookup144(dc);
  ui_window_runtime144*w=ui_window_lookup144(h);if(!w||!d){f_EndPaint(h,&paint);return;}win_rect144 client=d->clip;HANDLE brush=6;f_SetBkMode(dc,1);
  ui_window_runtime144*parent=ui_window_lookup144(w->description.parent);if(c->kind==C144_STATIC&&parent&&!f_wcscmp(parent->class_->name,u"#32770"))brush=16;
  unsigned color_message=c->kind==C144_STATIC?0x138:c->kind==C144_EDIT?0x133:c->kind==C144_BUTTON?0x135:c->kind==C144_LISTBOX?0x134:0;

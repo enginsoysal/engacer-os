@@ -81,6 +81,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
 #ifdef ENGINE_M14
  if(op==WUI_ATOM147)return atom_call147(handle,pointer,argument);
  if(op==WUI_MESSAGE148)return handle||argument?-87:message_call148(pointer);
+ if(op==WUI_FONT148){ui_font_metrics148 info;if(argument||handle>UINT32_MAX||!ui148_font_info((unsigned)handle,&info))return -87;return user8(pointer,&info,sizeof(info),1)?-998:0;}
  if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
  if(op==WUI_PICKER146)return picker_call146(handle,pointer,argument,f);
 #endif

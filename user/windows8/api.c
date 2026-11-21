@@ -394,6 +394,9 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "heap-api144.inc"
 #include "global-memory146.inc"
 #include "resource-api144.inc"
+#ifdef ENGINE_M14
+#include "font-object148.inc"
+#endif
 #include "images144.inc"
 #include "ui144.inc"
 #include "window-api144.inc"
@@ -404,6 +407,9 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #endif
 #include "keys145.inc"
 #include "painting144.inc"
+#ifdef ENGINE_M14
+#include "font-api148.inc"
+#endif
 #include "image-draw145.inc"
 #include "image-list145.inc"
 #include "menus144.inc"
@@ -447,6 +453,7 @@ static const api8 api8_table[]={
  API8(CheckTokenMembership,5),
  API8(GetDesktopWindow,4),
  API8(GetSystemMetrics,4),API8(GetDeviceCaps,8),
+ API8(CreateFontIndirectW,8),API8(GetStockObject,8),API8(GetObjectW,8),API8(SelectObject,8),API8(GetCurrentObject,8),API8(GetTextMetricsW,8),API8(GetTextFaceW,8),
  API8(MulDiv,1),
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),

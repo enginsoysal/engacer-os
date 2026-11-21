@@ -4,7 +4,12 @@ static int64_t ui_draw_call144(uint64_t op,uint64_t handle,uint64_t pointer,uint
  if(argument)return -87;wui_draw144 draw;if(user8(pointer,&draw,sizeof(draw),0))return -998;
  if(op==WUI_MEASURE144){if(handle||!ui_draw_text144(draw.text))return -87;
 #ifdef ENGINE_M73
+#ifdef ENGINE_M14
+ unsigned role=ui148_font_role((unsigned)draw.bounds.height);if(!role)return -87;
+ return (int64_t)((uint64_t)ui148_font_height((unsigned)draw.bounds.height)<<32)|ui73_measure(draw.text,role);
+#else
  return (int64_t)((uint64_t)16<<32)|ui73_measure(draw.text,1);
+#endif
 #else
  return -50;
 #endif
@@ -14,6 +19,9 @@ static int64_t ui_draw_call144(uint64_t op,uint64_t handle,uint64_t pointer,uint
  unsigned*count=menu?&w->menu_count:&w->draw_count,*capacity=menu?&w->menu_capacity:&w->draw_capacity;ui_draw_page144**head=menu?&w->menu_draws:&w->draws;
  if(draw.kind==3){*count=0;w->view.revision=++ui_revision144;return 0;}
  if(draw.kind!=1&&draw.kind!=2&&draw.kind!=4)return -50;
+#ifdef ENGINE_M14
+ if(draw.kind==2&&!ui148_font_role((unsigned)draw.bounds.height))return -87;
+#endif
  if(draw.kind==4&&(draw.bounds.width<1||draw.bounds.width>16||draw.bounds.height<1||draw.bounds.height>8))return -87;
  if(draw.color&0xff000000u||draw.bounds.width<0||draw.bounds.height<0||draw.bounds.width>16384||draw.bounds.height>16384||draw.clip.width<0||draw.clip.height<0||draw.clip.width>16384||draw.clip.height>16384||draw.bounds.x< -32768||draw.bounds.x>32767||draw.bounds.y< -32768||draw.bounds.y>32767||draw.clip.x< -32768||draw.clip.x>32767||draw.clip.y< -32768||draw.clip.y>32767||(draw.kind!=4&&!ui_draw_text144(draw.text)))return -87;
  if(*count==(menu?64u:224u))return -1816;

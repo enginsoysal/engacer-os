@@ -8,7 +8,13 @@ static void foreign_commands145(uint64_t handle,int x,int y,desktop_rect clip,un
   desktop_rect bounded=foreign_intersect144(clip,(desktop_rect){x+draw.clip.x,y+draw.clip.y,draw.clip.width,draw.clip.height});if(!bounded.width||!bounded.height)continue;
   gui7_clip((unsigned)bounded.x,(unsigned)bounded.y,(unsigned)bounded.width,(unsigned)bounded.height);
   if(draw.kind==1)rectangle((desktop_rect){x+draw.bounds.x,y+draw.bounds.y,draw.bounds.width,draw.bounds.height},draw.color);
-  else if(draw.kind==2)text(x+draw.bounds.x,y+draw.bounds.y,draw.text,1,draw.color);
+  else if(draw.kind==2){
+#ifdef ENGINE_M14
+   text(x+draw.bounds.x,y+draw.bounds.y,draw.text,ui148_font_role((unsigned)draw.bounds.height),draw.color);
+#else
+   text(x+draw.bounds.x,y+draw.bounds.y,draw.text,1,draw.color);
+#endif
+  }
   else if(draw.kind==4)ui145_argb_tile(x+draw.bounds.x,y+draw.bounds.y,(unsigned)draw.bounds.width,(unsigned)draw.bounds.height,draw.pixels);
  }
 }
