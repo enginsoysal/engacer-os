@@ -74,6 +74,10 @@ def main():
         for leaf in ['other.exe','cmd.exe\\child','cmd.exe.bak','*','xcopy.exe:stream']:
             assert call('C:\\Windows\\'+directory+'\\'+leaf)[0]!=0
     assert call(r'C:\Windows\System32\..\other.exe')[0]!=0
+    for tail in ['',r'\Notepad++.lnk',r'\7-Zip\7-Zip File Manager.lnk']:
+        code,native,_=call(r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'+tail)
+        assert code==0 and native=='/Data/Windows/Common/Programs'+tail.replace('\\','/')
+    assert call(r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\..\outside')[0]==5
     ambiguous=(Entry*3)()
     ambiguous[0].path=b'/Users/Owner/Documents';ambiguous[0].kind=2
     for row,name in zip(ambiguous[1:],['Alpha','alpha']):row.path=('/Users/Owner/Documents/'+name).encode();row.kind=1

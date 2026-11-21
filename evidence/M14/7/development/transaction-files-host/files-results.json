@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "checks": 1003,
+  "scope": "Actual production MSI/CAB file staging, journal, kernel stream/move routines and V6 on a private memory disk with host syscall/file-handle adapters; original custom sequence, external effects, native guest installation and recovery remain unqualified",
+  "packages": [
+    {
+      "package": "7z2606-x64.msi",
+      "source_sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "selected_payloads": 106,
+      "payload_bytes": 5882028,
+      "journal_bytes": 37096,
+      "extent_promotion_preserves_data": true,
+      "pending_record_retained": true
+    },
+    {
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "source_sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "selected_payloads": 217,
+      "payload_bytes": 28130419,
+      "journal_bytes": 70968,
+      "extent_promotion_preserves_data": true,
+      "pending_record_retained": true
+    }
+  ],
+  "peak_host_tracked_bytes": 7953562,
+  "retained_host_tracked_bytes": 0,
+  "sources": {
+    "user/windows8/msi-files147.c": "f7548b15fa27c8072920d703de22142d0f815b52f6781f4a598367f11aec0e23",
+    "user/windows8/msi-journal147.c": "a0887e3c429dd9ac93640c3b7be333e80d6913462823d6ec618912d3ea709c9a",
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "4e8e0735f8b41a6448aef0347ac58d42f2b9483aaec95ad67d5f9d82dc07ac67",
+    "user/windows8/msi_db.c": "ee942dcd15b5d3769b265eb2e5edf00c34c3024b437594ea0419c1241659aacd",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "kernel/storage/volume6.c": "9a0901c17b26106c22b0f9806743f28a1c779027c92275db061aeb5c7fab020a",
+    "tests/m14/files147_host.c": "72eac8b9ae0e5da10d14f8a6ee82efcdf1022451ab501b92159baf006f1e3f57",
+    "user/windows8/msi-files147.h": "4cf0f0dd3552b387c305cf85000a8bd87858d1833723ac46b9a6bc2b4374ecde",
+    "user/windows8/msi-journal147.h": "43d81a5d5ec5d0d8c182f346370c5bf0ccf25ae9ce84d964ece784e4b0c50ca4",
+    "include/engine/wintxn147.h": "f6a58700093f89dfd9654b57561b9ee3ea49379cc77d10adbf41942b1b619491",
+    "kernel/windows8/stream147.inc": "e0f0bff648929f2690afbbd50251bbef8391309deb2e82dfe5407a52060c4441",
+    "kernel/windows8/transaction147.inc": "3e51c88e368b6be96efec1a24265167304d817ac665fbd78381a6837dbd786a6",
+    "tests/m14/files147_host.py": "68c5341003a1804a3d866f6f2287aba28c5a1bd174b3c6ee183d2de11ae4453f"
+  }
+}

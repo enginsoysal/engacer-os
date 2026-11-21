@@ -86,6 +86,8 @@ static unsigned path_policy143(const path_context143*ctx,const char*input,const 
  char user[512];if(path_user_alias143(ctx,user,sizeof(user)))return 206;
  unsigned skip=0;const char*root=0;
 #ifdef ENGINE_M14
+ const char*common="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs";
+ unsigned common_skip=0;if(path_prefix143(clean,common,&common_skip))return path_resolve143(ctx,"/Data/Windows/Common/Programs",clean+common_skip,flags,out->native);
  const char*systems[]={"C:\\Windows\\System32","C:\\Windows\\SysWOW64"};
  for(unsigned i=0;i<2;++i){unsigned used=0;if(!path_prefix143(clean,systems[i],&used))continue;
   const char*leaf=clean+used;const char*names[]={"\\cmd.exe","\\xcopy.exe"};

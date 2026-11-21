@@ -5,6 +5,8 @@
 #include <engine/sha256.h>
 #ifdef ENGINE_M14
 #include <engine/winproduct147.h>
+#include <engine/wintxn147.h>
+static unsigned installer_user_grant147(const char*,unsigned);
 #endif
 extern void *memmove(void*,const void*,size_t);
 #define NX (UINT64_C(1)<<63)
@@ -166,16 +168,15 @@ static unsigned path8(const char*p,unsigned write){
  if(!component)return 0;
  if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source)
 #ifdef ENGINE_M14
-  ||prefix8(p,"/System/Windows/Installer")
+  ||prefix8(p,"/System/Windows/Installer")||prefix8(p,"/Data/Windows/Common/Programs")
   ||equal8(p,"/System/Windows/Tools/cmd.exe")||equal8(p,"/System/Windows/Tools/xcopy.exe")
 #endif
   ;
 #ifdef ENGINE_M14
- if(installer_authority147())return prefix8
+ if(installer_authority147())return (prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE))||installer_user_grant147(p,0);
 #else
- if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8
+ if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
 #endif
- (p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
  return input8.command==W8_RUN&&prefix8(p,input8.user_root)&&!equal8(p,input8.user_root);
 }
 static const v6_entry *find8(const char*p){v6_volume*v=m6_volume();if(!v)return 0;for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&equal8(v->entries[i].path,p))return v->entries+i;return 0;}
@@ -213,9 +214,12 @@ static void finish8(unsigned status){snapshot8();info8.status=status;info8.state
 static void release_grants142(void);
 static void registry_release143(void);
 #include "ui144.inc"
+#ifdef ENGINE_M14
+#include "stream147.inc"
+#endif
 static void release8(void){if(!spaces142[active_space142])return;ui_release144();release_sync_grants142();release_grants142();file_release143();registry_release143();
 #ifdef ENGINE_M14
- mapping_release146();pipe_release147();
+ stream_release147();mapping_release146();pipe_release147();
 #endif
  while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
 
@@ -227,8 +231,15 @@ static void reap_threads142(void){
   if(i&&t->closed)memset(t,0,sizeof(*t));
  }
 }
+#ifdef ENGINE_M14
+#include "transaction147.inc"
+#endif
 static unsigned rollback8(void){
- if(!created_root8)return 0;v6_volume*v=m6_volume();
+ if(!created_root8)return 0;
+#ifdef ENGINE_M14
+ unsigned keep=transaction_keep147();if(keep)return keep;
+#endif
+ v6_volume*v=m6_volume();
  char plan[256],product[256];copy8(plan,input8.product_root,256);copy8(product,input8.product_root,256);
  unsigned root_length=length8(input8.product_root);memcpy(plan+root_length,"/install.plan",14);memcpy(product+root_length,"/product.bin",13);
  for(unsigned pass=0;pass<V6_ENTRIES;++pass){const char*chosen=0;unsigned longest=0;
@@ -294,7 +305,7 @@ void w8_pump(void){
  __asm__ volatile("fxrstor64 %0"::"m"(fx8):"memory");w8_enter(&context8,cr3_8);__asm__ volatile("fxsave64 %0":"=m"(fx8)::"memory");save_thread142();
  __asm__ volatile("wrmsr"::"a"((uint32_t)old_gs8),"d"((uint32_t)(old_gs8>>32)),"c"(0xc0000101u));out8(0x21,pic8);interrupts_set_kernel_stack(KERNEL_STACK_TOP);if(flags&512)__asm__ volatile("sti":::"memory");
  if(active_space142)++info8.quanta;++root_info142->quanta;peak8();
- if(info8.state!=1){unsigned code=info8.status,slot=active_space142;if(info8.status&&created_root8){unsigned cleanup=rollback8();copy8(info8.message,cleanup?"Installation stopped and cleanup was interrupted; use Recover / remove.":"Installation stopped. Its new files were removed. Restore resources, then choose Install again.",sizeof(info8.message));}end_space142(slot,code);}
+ if(info8.state!=1){unsigned code=info8.status,slot=active_space142;if(info8.status&&created_root8){unsigned cleanup=rollback8();copy8(info8.message,cleanup==2?"Installation stopped. Its transaction was kept; choose Recover / remove.":cleanup==3?"The recovery record needs inspection. Files were kept; no automatic rollback was performed.":cleanup?"Installation stopped and cleanup was interrupted; use Recover / remove.":"Installation stopped. Its new files were removed. Restore resources, then choose Install again.",sizeof(info8.message));}end_space142(slot,code);}
 
 }
 
@@ -316,6 +327,8 @@ static int64_t dispatch8(trap_frame*f){
 #ifdef ENGINE_M14
  case W8_SYS_MAPPING146:return e?-87:mapping_call146(a,b,c,d);
  case W8_SYS_PIPE147:return e?-87:pipe_call147(a,b,c,d,f);
+ case W8_SYS_ALIAS147:return alias_set147(a,b,c,d,e);
+ case W8_SYS_STREAM147:return stream_call147(a,b,c,d,e);
 #endif
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);
@@ -388,8 +401,16 @@ static int64_t dispatch8(trap_frame*f){
   if(string8(a,path,256)||!path8(path,0)||c>=V6_ENTRIES)return -1;unsigned len=length8(path);v6_volume*v=m6_volume();
   for(unsigned i=(unsigned)c;i<V6_ENTRIES;++i){const v6_entry*e=v->entries+i;if(!e->kind||memcmp(e->path,path,len)||e->path[len]!='/')continue;const char*p=e->path+len+1;unsigned slash=0;while(*p)if(*p++=='/')slash=1;if(slash)continue;w8_file_info result;if(information8(e,&result)||user8(b,&result,sizeof(result),1))return -1;return i+1;}return 0;
  }
- case W8_SYS_MKDIR:case W8_SYS_DELETE:{if(string8(a,path,256)||!path8(path,1))return -1;unsigned s=f->rax==W8_SYS_MKDIR?v6_mkdir(m6_volume(),path):file_delete143(path);if(!s&&f->rax==W8_SYS_MKDIR&&input8.command==W8_INSTALL&&equal8(path,input8.product_root))created_root8=1;return !s||s==V6_EXISTS?0:-1;}
- case W8_SYS_MOVE:{char destination[256];if(string8(a,path,256)||string8(b,destination,256)||!path8(path,1)||!path8(destination,1)||c>1)return -1;return file_move143(path,destination,(unsigned)c)?-1:0;}
+ case W8_SYS_MKDIR:case W8_SYS_DELETE:{if(string8(a,path,256)||b>1||c||d||e)return -1;if(!path8(path,1)
+#ifdef ENGINE_M14
+ &&!(f->rax==W8_SYS_MKDIR&&installer_authority147()&&installer_user_grant147(path,1))
+#endif
+ )return -1;unsigned s=f->rax==W8_SYS_MKDIR?v6_mkdir(m6_volume(),path):file_delete143(path);if(b&&s==V6_EXISTS)return -80;if(!s&&f->rax==W8_SYS_MKDIR&&input8.command==W8_INSTALL&&equal8(path,input8.product_root))created_root8=1;return !s||s==V6_EXISTS?0:-1;}
+ case W8_SYS_MOVE:{char destination[256];if(string8(a,path,256)||string8(b,destination,256)||!path8(path,1)||!path8(destination,1)||d||e)return -1;
+#ifdef ENGINE_M14
+ if(c==2)return staging_move147(path,destination);
+#endif
+ if(c>1)return -1;return file_move143(path,destination,(unsigned)c)?-1:0;}
  case W8_SYS_TRUNCATE:{if(a>=32||!files8[a].live||!files8[a].write)return -1;return file_resize143(file_objects143[files8[a].object],files8[a].position)?-1:0;}
  case W8_SYS_OUTPUT:{if(b>4096||user8(a,io8,(unsigned)b,0))return -1;output8((char*)io8,(unsigned)b);return (int64_t)b;}
  case W8_SYS_THREAD_CREATE:{
@@ -445,7 +466,7 @@ static int64_t dispatch8(trap_frame*f){
   if(b){if(!path8(files8[a].path,1)||user8(c,&data,sizeof(data),0))return -1;return file_set_metadata143(object,&data)?-1:0;}
   memcpy(data.time,object->metadata.times,sizeof(data.time));data.attributes=object->metadata.attributes;return user8(c,&data,sizeof(data),1)?-1:0;
  }
- case W8_SYS_INFO:if(a==0)return 1;else if(a==1)return (int64_t)(pages_stats().total_pages*4096);else if(a==2)return (int64_t)((pages_stats().total_pages-pages_stats().current_pages)*4096);else if(a==3)return (int64_t)(v6_capacity(m6_volume())-v6_used(m6_volume()));else if(a==4)return (int64_t)v6_capacity(m6_volume());return -1;
+ case W8_SYS_INFO:if(a==0)return 1;else if(a==1)return (int64_t)(pages_stats().total_pages*4096);else if(a==2)return (int64_t)((pages_stats().total_pages-pages_stats().current_pages)*4096);else if(a==3)return (int64_t)(v6_capacity(m6_volume())-v6_used(m6_volume()));else if(a==4)return (int64_t)v6_capacity(m6_volume());else if(a==5){v6_volume*v=m6_volume();unsigned free=0;if(v)for(unsigned i=0;i<V6_ENTRIES;++i)if(!v->entries[i].kind)++free;return free;}return -1;
  default:(void)d;return -1;
  }return -1;
 }
