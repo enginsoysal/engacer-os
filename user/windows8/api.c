@@ -288,6 +288,9 @@ static uint64_t console_handlers8[16];static unsigned ignore_console8,file_oem8;
 static int MS f_SetConsoleCtrlHandler(uint64_t callback,int add){if(!callback){ignore_console8=add!=0;return 1;}if(add){for(unsigned i=0;i<16;++i)if(!console_handlers8[i]){console_handlers8[i]=callback;return 1;}last8(8);return 0;}for(unsigned i=0;i<16;++i)if(console_handlers8[i]==callback){console_handlers8[i]=0;return 1;}last8(87);return 0;}
 static void MS f_SetFileApisToOEM(void){file_oem8=1;}
 #include "codepage147.inc"
+#ifdef ENGINE_M14
+#include "version147.inc"
+#endif
 static WCHAR *MS f_CharUpperW(WCHAR*p){if((uintptr_t)p<=65535){unsigned v=(unsigned)(uintptr_t)p;if(v>='a'&&v<='z')v-=32;return (WCHAR*)(uintptr_t)v;}for(unsigned i=0;p&&p[i];++i)if(p[i]>='a'&&p[i]<='z')p[i]-=32;return p;}
 static const char *MS f_CharPrevExA(unsigned cp,const char*start,const char*current,unsigned flags){(void)flags;if(current<=start)return start;const char*p=current-1;if(cp==65001||cp==0||cp==1)while(p>start&&((uint8_t)*p&0xc0)==0x80)--p;return p;}
 static int MS f_FormatMessageW(unsigned flags,const void*source,unsigned code,unsigned language,void*out,unsigned capacity,void*args){(void)source;(void)language;(void)args;if(!(flags&0x1000u)){last8(50);return 0;}const char*message=code==2?"The file could not be found.":code==3?"The path could not be found.":code==5?"Access is denied.":code==50?"This operation is not supported by this runtime.":code==80||code==183?"The file already exists.":code==8?"Not enough memory.":"The requested operation failed.";WCHAR wide[128];int n=utf8_to16(message,wide,128);if(n<0)return 0;if(flags&0x100u){WCHAR*p=alloc8(((unsigned)n+1)*2);if(!p){last8(8);return 0;}memcpy(p,wide,((unsigned)n+1)*2);*(WCHAR**)out=p;}else{if(capacity<=(unsigned)n){last8(122);return 0;}memcpy(out,wide,((unsigned)n+1)*2);}return n;}
@@ -404,6 +407,7 @@ static const api8 api8_table[]={
  API8(InitCommonControls,6),API8(InitCommonControlsEx,6),
 #ifdef ENGINE_M14
  API8(InitializeSListHead,1),API8(InterlockedFlushSList,1),
+ API8(GetFileVersionInfoSizeW,24),API8(GetFileVersionInfoW,24),API8(VerQueryValueW,24),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

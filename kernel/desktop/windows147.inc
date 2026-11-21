@@ -43,7 +43,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  }
  review_capture147(app,info);if(app->msi147.ready&&!review_source147(app)){app->msi147.ready=0;notice(app,"The installer changed. Review it again before installing.");}
  unsigned legacy=!app->msi147.selected||(app->msi147.ready&&(app->msi147.profile&W8_PROFILE_LEGACY147));unsigned installed=legacy&&installed8();
- ui73_round(x,y,64,64,12,preferences.accent);text(x+13,y+18,"7z",2,0x102d29);
+ ui73_round(x,y,64,64,12,preferences.accent);text(x+13,y+18,legacy?"7z":"MSI",2,0x102d29);
  ui73_fit(x+84,y+4,width-250,app->msi147.ready?app->msi147.product:legacy?"7-Zip Console":"Windows installer",2,ink());
  ui73_fit(x+84,y+38,width-100,app->msi147.ready?app->msi147.publisher:legacy?"26.06  /  Igor Pavlov  /  Windows x64":"Choose an MSI, then review its package details.",1,ink());
  ui73_fit(x+width-150,y+9,150,info->state==1?"Working...":installed?"Installed":"Not installed",1,ink());
@@ -62,11 +62,11 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  if(info->state==1){
   button(token,x,actions,150,"Cancel task",CANCEL8,0);
  }else{
-  button(token,x,actions,160,installed?"Open 7-Zip":"Install 7-Zip",installed?INFO8:INSTALL8,1);
+  if(legacy)button(token,x,actions,160,installed?"Open 7-Zip":"Install 7-Zip",installed?INFO8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
   button(token,x+174,actions,170,installed?"Remove app":"Review installer",installed?REMOVE8:PREVIEW8,0);
   button(token,x+358,actions,130,"Licenses",LICENSE8,0);
   if(installed||!entry(PRODUCT_ROOT8))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
-  if(entry(PRODUCT_ROOT8)&&!installed)button(token,x+502,actions,190,"Recover / remove",REMOVE8,0);
+  if(legacy&&entry(PRODUCT_ROOT8)&&!installed)button(token,x+502,actions,190,"Recover / remove",REMOVE8,0);
  }
  if(installed&&info->state!=1){
   button(token,x,y+194,195,"Create test archive",ZIP8,0);button(token,x+209,y+194,195,"Extract test archive",EXTRACT8,0);
@@ -100,7 +100,7 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
  if(command==CANCEL8){w8_cancel();invalidate(w->bounds);return 1;}
  if(w8_pending()){notice(app,"A Windows task is already running. Wait or cancel it.");invalidate(w->bounds);return 1;}
  if(command==CHOOSE_MSI147){picker_begin12(token,P12_WINDOWS_MSI147);return 1;}
- if(command==INSTALL8&&app->msi147.selected&&(!app->msi147.ready||!review_source147(app)||!(app->msi147.profile&W8_PROFILE_LEGACY147))){notice(app,"Review this installer first. Installation is enabled only for qualified package profiles.");invalidate(w->bounds);return 1;}
+ if(command==INSTALL8&&app->msi147.selected&&(!app->msi147.ready||!review_source147(app)||!(app->msi147.profile&W8_PROFILE_LEGACY147))){notice(app,app->msi147.ready?"This package is review-only while its installation support is being completed.":"Review this installer before installing.");invalidate(w->bounds);return 1;}
  if(command==INSTALL8||command==REMOVE8){app->number=command==INSTALL8?1:2;invalidate(w->bounds);return 1;}
  if(command==INSPECT141){picker_begin12(token,P12_WINDOWS_INSPECT);return 1;}
  unsigned job=0;const char*source=app->path,*arguments="";char sample_arguments[512];

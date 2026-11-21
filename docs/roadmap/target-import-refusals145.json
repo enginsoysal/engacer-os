@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 680,
-  "table_bytes": 5440,
+  "refusal_keys": 677,
+  "table_bytes": 5416,
   "imports": [
     {
       "app": "notepadpp",
@@ -277,27 +277,6 @@
       "dll": "dbghelp.dll",
       "symbol": "ImageNtHeader",
       "key": "3fc14a0d5a620379",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "version.dll",
-      "symbol": "GetFileVersionInfoW",
-      "key": "652273c5e685e10a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "version.dll",
-      "symbol": "GetFileVersionInfoSizeW",
-      "key": "4d31f328915180cd",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "version.dll",
-      "symbol": "VerQueryValueW",
-      "key": "9a04d2fdb0d6f536",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -6339,27 +6318,6 @@
       "dll": "shlwapi.dll",
       "symbol": "#176",
       "key": "769b9ad701f91378",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "version.dll",
-      "symbol": "VerQueryValueW",
-      "key": "9a04d2fdb0d6f536",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "version.dll",
-      "symbol": "GetFileVersionInfoSizeW",
-      "key": "4d31f328915180cd",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "version.dll",
-      "symbol": "GetFileVersionInfoW",
-      "key": "652273c5e685e10a",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     }
   ],

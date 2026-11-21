@@ -1,0 +1,14 @@
+{
+  "scope": "Original bytes and relative call/import metadata only; no host PE execution",
+  "original_sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+  "return_rva": "0x21ca2",
+  "thunks": [
+    "0x27e12"
+  ],
+  "iat_rva": "0x3f6e8",
+  "dll": "VERSION.dll",
+  "symbol": "GetFileVersionInfoSizeW",
+  "module_base": "0x1100a0000",
+  "caller": "0x1100c1ca2",
+  "base_derivation": "Frozen allocator: main 0x5000 at arena start, 64-KiB guards/alignment; MSI image 0x69000 at +0x20000; next image at +0xa0000."
+}
