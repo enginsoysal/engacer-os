@@ -1,6 +1,6 @@
 /* Native frontend for the bounded original Windows-console compatibility profile. */
 #define PRODUCT_ROOT8 "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
-enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,CHOOSE_MSI147,GUI144=12100};
+enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,CHOOSE_MSI147,DETAILS_MSI147,GUI144=12100};
 extern const char windows8_licenses[];
 static unsigned installed8(void){
  static uint64_t generation=UINT64_MAX;static unsigned valid;
@@ -28,7 +28,7 @@ static void review_capture147(application*a,const w8_info*i){
  notice(a,r->profile&W8_PROFILE_LEGACY147?"Installer reviewed. You can now confirm installation.":"Installer reviewed. Installation of this package is not enabled yet; no files were installed.");
 }
 static void init_windows8(application*app,uint64_t token){
- memset(&app->msi147,0,sizeof(app->msi147));if(!app->path[0])root_path(app->path,"Downloads/7z2606-x64.msi");app->number=0;app->offset=0;
+ memset(&app->msi147,0,sizeof(app->msi147));if(!app->path[0])root_path(app->path,"Downloads/7z2606-x64.msi");app->number=0;app->offset=0;app->entered=0;
  int width=(int)model.width-80;if(width>940)width=940;int height=(int)model.height-120;if(height>730)height=730;
  desktop_place(&model,token,(desktop_rect){((int)model.width-width)/2,35,width,height});
 }
@@ -45,7 +45,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  unsigned legacy=!app->msi147.selected||(app->msi147.ready&&(app->msi147.profile&W8_PROFILE_LEGACY147));unsigned installed=legacy&&installed8();
  ui73_round(x,y,64,64,12,preferences.accent);text(x+13,y+18,legacy?"7z":"MSI",2,0x102d29);
  ui73_fit(x+84,y+4,width-250,app->msi147.ready?app->msi147.product:legacy?"7-Zip Console":"Windows installer",2,ink());
- ui73_fit(x+84,y+38,width-100,app->msi147.ready?app->msi147.publisher:legacy?"26.06  /  Igor Pavlov  /  Windows x64":"Choose an MSI, then review its package details.",1,ink());
+ char identity[160];identity[0]=0;if(app->msi147.ready){copy(identity,app->msi147.version,sizeof(identity));append(identity,"  /  ",sizeof(identity));append(identity,app->msi147.publisher,sizeof(identity));}ui73_fit(x+84,y+38,width-100,app->msi147.ready?identity:legacy?"26.06  /  Igor Pavlov  /  Windows x64":"Choose an MSI, then review its package details.",1,ink());
  ui73_fit(x+width-150,y+9,150,info->state==1?"Working...":installed?"Installed":"Not installed",1,ink());
  ui73_paragraph(x,y+84,width,2,"Native Windows application support is being expanded. Review shows package metadata without running custom actions.",ink());
  if(app->number){
@@ -63,8 +63,8 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   button(token,x,actions,150,"Cancel task",CANCEL8,0);
  }else{
   if(legacy)button(token,x,actions,160,installed?"Open 7-Zip":"Install 7-Zip",installed?INFO8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
-  button(token,x+174,actions,170,installed?"Remove app":"Review installer",installed?REMOVE8:PREVIEW8,0);
-  button(token,x+358,actions,130,"Licenses",LICENSE8,0);
+  button(token,x+174,actions,170,installed?"Remove app":"Review installer",installed?REMOVE8:PREVIEW8,!legacy);
+  button(token,x+358,actions,130,"Licenses",LICENSE8,0);button(token,x+736,actions,140,app->entered?"Hide details":"Details",DETAILS_MSI147,0);
   if(installed||!entry(PRODUCT_ROOT8))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
   if(legacy&&entry(PRODUCT_ROOT8)&&!installed)button(token,x+502,actions,190,"Recover / remove",REMOVE8,0);
  }
@@ -81,7 +81,8 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   if(filled)ui73_round(x,y+374,(int)filled,8,4,preferences.accent);
   char progress[40];decimal(progress,info->percent);append(progress,"% complete",40);text(x,y+390,progress,1,ink());
  }
- if(w->bounds.height>600&&info->output[0]){
+ if(app->msi147.ready&&info->state!=1&&info->command!=W8_RUN&&info->command!=W8_INSPECT){char summary[128],number[32];decimal(number,app->msi147.files);copy(summary,number,sizeof(summary));append(summary," files  /  ",sizeof(summary));decimal(number,(app->msi147.total_bytes+1023)/1024);append(summary,number,sizeof(summary));append(summary," KiB installed size",sizeof(summary));ui73_fit(x,y+374,width,summary,1,ink());}
+ if(w->bounds.height>600&&info->output[0]&&(app->entered||info->command==W8_RUN||info->command==W8_INSPECT)){
   int top=y+(info->command==W8_RUN||info->command==W8_INSPECT?382:442);unsigned rows=(unsigned)(w->bounds.y+w->bounds.height-80-top)/24;
   text(x,top-28,info->command==W8_INSPECT?"File check details - application not started":info->command==W8_RUN?"Output from the original Windows program":"Installer details",1,ink());
   app->source_crc=page74(x,top,(unsigned)width,rows,info->output,app->offset);
@@ -92,7 +93,8 @@ static void sample_name8(char*out,const char*base,unsigned number,const char*ext
  copy(out,base,256);if(number){char suffix[24];decimal(suffix,number+1);append(out,"-",256);append(out,suffix,256);}append(out,extension,256);
 }
 static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,unsigned command){
- (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>CHOOSE_MSI147&&command!=GUI144))return 0;
+ (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>DETAILS_MSI147&&command!=GUI144))return 0;
+ if(command==DETAILS_MSI147){app->entered^=1;invalidate(w->bounds);return 1;}
  if(command==LICENSE8){app->calc_error=1;app->offset=0;invalidate(w->bounds);return 1;}
  if(command==BACK8){app->number=0;app->calc_error=0;app->offset=0;invalidate(w->bounds);return 1;}
  if(command==OUTPUT_PREV8){app->offset=0;invalidate(w->bounds);return 1;}

@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "scope": "Own atom core vs independent model and bounded private Windows atom references.",
+  "checks": 181171,
+  "private_reference_atoms_released": true,
+  "reference": [
+    {
+      "units": 48,
+      "capacity": 0,
+      "copied": 0,
+      "error": 234
+    },
+    {
+      "units": 48,
+      "capacity": 1,
+      "copied": 1,
+      "error": 0
+    },
+    {
+      "units": 48,
+      "capacity": 2,
+      "copied": 2,
+      "error": 0
+    },
+    {
+      "units": 48,
+      "capacity": 3,
+      "copied": 3,
+      "error": 0
+    },
+    {
+      "units": 48,
+      "capacity": 48,
+      "copied": 48,
+      "error": 0
+    },
+    {
+      "units": 48,
+      "capacity": 49,
+      "copied": 48,
+      "error": 0
+    },
+    {
+      "units": 48,
+      "capacity": 50,
+      "copied": 48,
+      "error": 0
+    },
+    {
+      "units": 51,
+      "capacity": 0,
+      "copied": 0,
+      "error": 234
+    },
+    {
+      "units": 51,
+      "capacity": 1,
+      "copied": 1,
+      "error": 0
+    },
+    {
+      "units": 51,
+      "capacity": 2,
+      "copied": 2,
+      "error": 0
+    },
+    {
+      "units": 51,
+      "capacity": 3,
+      "copied": 3,
+      "error": 0
+    },
+    {
+      "units": 51,
+      "capacity": 51,
+      "copied": 51,
+      "error": 0
+    },
+    {
+      "units": 51,
+      "capacity": 52,
+      "copied": 51,
+      "error": 0
+    },
+    {
+      "units": 51,
+      "capacity": 53,
+      "copied": 51,
+      "error": 0
+    },
+    {
+      "units": 255,
+      "capacity": 0,
+      "copied": 0,
+      "error": 234
+    },
+    {
+      "units": 255,
+      "capacity": 1,
+      "copied": 1,
+      "error": 0
+    },
+    {
+      "units": 255,
+      "capacity": 2,
+      "copied": 2,
+      "error": 0
+    },
+    {
+      "units": 255,
+      "capacity": 3,
+      "copied": 3,
+      "error": 0
+    },
+    {
+      "units": 255,
+      "capacity": 255,
+      "copied": 255,
+      "error": 0
+    },
+    {
+      "units": 255,
+      "capacity": 256,
+      "copied": 255,
+      "error": 0
+    },
+    {
+      "units": 255,
+      "capacity": 257,
+      "copied": 255,
+      "error": 0
+    }
+  ],
+  "table_bytes": 4096,
+  "slot_quota": 64,
+  "name_pool_utf16_units": 1854,
+  "sources": {
+    "include/engine/winatom147.h": "fa44e9837e0f9b88eeba976bbefc78d5b3d48d34c053affbb9966061e28eb589",
+    "tests/m14/atom147_host.c": "6b08cc1d2a087428c656819c3b61a48d9c20fab5d46be1a710b6fb3b3980490b",
+    "tests/m14/atom147_host.py": "e7f942e2e5eeda0e5b5f64c8988ff77b9e6f13d1d06f200336f6d5401d783f4b"
+  }
+}

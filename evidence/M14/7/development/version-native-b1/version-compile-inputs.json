@@ -1,0 +1,6 @@
+{
+  "scope": "Build an own version caller and copy the pinned original only as data.",
+  "source_sha256": "1d6b3e16f6982bdf85b740ac7b811f7fa9413c7a331ce461e52efe01b56c9818",
+  "fixture_sha256": "b694eaa4462ec2afc705a5b78702e5df944621699921e22954a928bc1ee7e72d",
+  "original_sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381"
+}

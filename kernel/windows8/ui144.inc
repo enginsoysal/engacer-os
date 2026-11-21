@@ -74,10 +74,12 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 #include "focus144.inc"
 #ifdef ENGINE_M14
 #include "picker146.inc"
+#include "atom147.inc"
 #endif
 static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64_t argument,uint64_t extra,trap_frame*f){
  if(extra)return -87;
 #ifdef ENGINE_M14
+ if(op==WUI_ATOM147)return atom_call147(handle,pointer,argument);
  if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
  if(op==WUI_PICKER146)return picker_call146(handle,pointer,argument,f);
 #endif

@@ -1,0 +1,12 @@
+{
+  "scope": "Original bytes and relative call/import metadata only; no host PE execution",
+  "original_sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+  "return_rva": "0x1a2e3",
+  "thunks": [],
+  "iat_rva": "0x3f3d0",
+  "dll": "KERNEL32.dll",
+  "symbol": "GlobalFindAtomW",
+  "module_base": "0x1100a0000",
+  "caller": "0x1100ba2e3",
+  "base_derivation": "Same frozen allocator/image sizes as the preserved version-refusal pilot."
+}

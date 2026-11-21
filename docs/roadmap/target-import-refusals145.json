@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 677,
-  "table_bytes": 5416,
+  "refusal_keys": 674,
+  "table_bytes": 5392,
   "imports": [
     {
       "app": "notepadpp",
@@ -3152,20 +3152,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "GlobalAddAtomW",
-      "key": "23c073bf09e1bcd4",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GlobalDeleteAtom",
-      "key": "dfa3eec4aa84d3c9",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "GetSystemTime",
       "key": "30ddfe45429b9790",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5807,27 +5793,6 @@
       "dll": "kernel32.dll",
       "symbol": "RtlUnwindEx",
       "key": "c4210f2fd88758c6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "GlobalDeleteAtom",
-      "key": "dfa3eec4aa84d3c9",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "GlobalAddAtomW",
-      "key": "23c073bf09e1bcd4",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
-      "symbol": "GlobalFindAtomW",
-      "key": "8f93a22f5014b79a",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
