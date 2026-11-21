@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "scope": "Host execution of production volume mutation-policy boundaries, not native EXE-broker qualification.",
+  "checks": [
+    "write pinned image before I/O",
+    "delete pinned image",
+    "rename pinned source",
+    "replace pinned destination",
+    "move ancestor tree at commit",
+    "remove ancestor tree at commit",
+    "format before header writes",
+    "finish earlier stream after policy change",
+    "refused stream releases its reservation",
+    "unrelated writes remain allowed",
+    "released image can be removed"
+  ],
+  "guard_calls": 17,
+  "source_sha256": {
+    "kernel/storage/volume6.c": "785876b4ee020bff9a3b2482d91e1db43c657d4704751258fe4d6b0ac1e8b1df",
+    "include/engine/storage/volume6.h": "5000ae096ce149cc510bbd57c4882b7538b3ce1dece9bdf64f3c4015ce14e41f",
+    "tests/m14/volume148_guard.py": "9236899de79871e7f1f7afcfa1d5acfc88a169fa7f7b8e740105be683d904829"
+  }
+}

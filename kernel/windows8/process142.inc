@@ -101,6 +101,9 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  if(user8(result_address,&result,sizeof(result),1))return -87;return 0;
 }
 unsigned w8_start(unsigned command,const char*source,const char*root,const char*user,const char*arguments){
+#ifdef ENGINE_M14
+ v6_set_guard148(exe_volume_guard148);
+#endif
  if(w8_pending())return V6_INVALID;active_space142=0;root_terminal142=root_waiting142=0;root_end_message142[0]=0;space_cursor142=0;memset(root_info142,0,sizeof(*root_info142));int object=new_process_object142();if(object<0)return V6_INVALID;
  unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0);active_space142=0;if(status)drop_process_object142((unsigned)object);return status;
 }

@@ -543,3 +543,29 @@ other class/RPC features return explicit errors. This is a selected interface
 subset, not general COM or shortcut-launch compatibility. Original Windows must
 read the actual native-saved file, independently of host-encoder checks, before
 this candidate is qualified.
+
+## Reviewed EXE broker: next implementation boundary
+
+The ordinary route must bind original source bytes, explicit arguments,
+destination and authority before execution. A launch profile describes the first
+pinned original installer and its independently known payloads; shared Windows
+APIs must not branch on its vendor name or substitute its effects.
+
+Use a kernel-owned source-image lease throughout the original process/helper
+lifetime. Protect its existing volume entry at direct mutations and final table
+commit, including ancestor moves/deletion and destructive format. This avoids a
+second installer-sized persistent cache. It is not yet an admitted frontend
+feature: context/pin fields currently stay zero. Windows reference write/delete
+denials are observed independently; reviewed-source rename refusal is stricter
+than the observed Windows rename behavior and must be labeled as broker policy.
+
+Future admission must retain the restricted interactive token, keep machine
+registry writes outside the per-user EXE profile, permit only the approved
+application root, explicit shortcuts and a fresh job temporary folder, and carry
+the same immutable scope to verified original helpers. Protected product records
+belong outside the directory the original uninstaller removes. They must bind
+owner/profile/source/destination and verified payload hashes. Do not infer an
+installed product from process exit zero. Changed or unexpected product files
+must cause safe refusal before original recursive removal. Personal files and
+shared registry preimages must remain protected. Normal original GUI install,
+helper execution, uninstall and reinstall remain required before acceptance.

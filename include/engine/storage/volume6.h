@@ -12,6 +12,7 @@
 #define V6_FULL 5u
 #define V6_RO 7u
 #define V6_LIMIT 8u
+#define V6_BUSY 9u
 typedef struct {char path[256];uint64_t first,size;uint32_t crc,kind;} v6_entry;
 typedef unsigned (*v6_transfer)(void*,uint64_t,void*,unsigned);
 typedef unsigned (*v6_flush)(void*);
@@ -22,6 +23,12 @@ typedef struct {
  v6_entry entries[V6_ENTRIES],previous[V6_ENTRIES],pending[V6_ENTRIES];
  uint8_t page[V6_PAGE];
 } v6_volume;
+#ifdef ENGINE_M14
+/* Optional kernel policy, outside the durable format. A path preflights a direct
+ * mutation; pending validates a complete candidate table; two NULLs mean format. */
+typedef unsigned (*v6_guard148)(v6_volume*,const char*,const v6_entry*);
+void v6_set_guard148(v6_guard148);
+#endif
 unsigned v6_format(v6_volume*);
 unsigned v6_mount(v6_volume*);
 unsigned v6_mkdir(v6_volume*,const char*);

@@ -34,7 +34,7 @@ typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,virtual_pages,lazy_faults;
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
- unsigned install_authority147;
+ unsigned install_authority147,exe_context148,image_pin148;
 #endif
  process_handle142 handles[32];sync_cap142 sync_handles[64];registry_cap143 registry_handles[32];
  uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;char image_name148[64];
@@ -69,6 +69,17 @@ volatile unsigned w8_active;
 uint64_t w8_saved_rsp,w8_kernel_cr3;
 #ifdef ENGINE_M14
 static unsigned installer_authority147(void){return spaces142[active_space142]->install_authority147;}
+/* A reviewed image lease protects its actual table entry without a duplicate
+ * installer cache or a larger resident table. Bind it only in the EXE broker. */
+static unsigned exe_volume_guard148(v6_volume*volume,const char*path,const v6_entry*pending){
+ if(volume!=m6_volume())return 0;
+ for(unsigned i=0;i<SPACES142;++i){private_space142*s=spaces142[i];if(!s||!s->exe_context148||!s->image_pin148||!process_objects142[s->object].live)continue;
+  unsigned index=s->image_pin148-1;if(index>=V6_ENTRIES||volume->entries[index].kind!=1)return V6_BUSY;
+  if(pending){if(memcmp(volume->entries+index,pending+index,sizeof(v6_entry)))return V6_BUSY;}
+  else if(!path||equal8(path,volume->entries[index].path))return V6_BUSY;
+ }
+ return 0;
+}
 #endif
 #define created_root8 (spaces142[active_space142]->created_root)
 #define owned8 (spaces142[active_space142]->owned)

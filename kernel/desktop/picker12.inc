@@ -55,7 +55,7 @@ static unsigned picker_match12(const v6_entry*e){
  if(e->kind==2)return 1;if(e->kind!=1||picker12.purpose==P12_ZIP_FOLDER)return 0;
  if(picker12.filter)return 1;const char*extension=ui12_file_extension(file_basename11(e->path));
  if(picker12.purpose==P12_IMAGE_OPEN)return !ui12_file_natural(extension,"bmp");
- if(picker12.purpose==P12_WINDOWS_MSI147)return !ui12_file_natural(extension,"msi");
+ if(picker12.purpose==P12_WINDOWS_MSI147)return !ui12_file_natural(extension,"msi")||!ui12_file_natural(extension,"exe");
  if(picker12.purpose==P12_WINDOWS_INSPECT)return !ui12_file_natural(extension,"exe")||!ui12_file_natural(extension,"dll");
  if(picker12.purpose==P12_ZIP_OPEN)return !ui12_file_natural(extension,"zip");
  return !ui12_file_natural(extension,"txt")||!ui12_file_natural(extension,"md")||!ui12_file_natural(extension,"log")||!ui12_file_natural(extension,"ini")||!ui12_file_natural(extension,"cfg")||!ui12_file_natural(extension,"json")||!ui12_file_natural(extension,"csv");
@@ -135,7 +135,7 @@ static void picker_accept12(unsigned decision){
  char path[256];copy(path,e->path,256);
  if(picker12.purpose==P12_WINDOWS_MSI147){
 #ifdef ENGINE_M14
-  if(!windows_choose_source147(a,path)){picker_error12("Choose an MSI in your own folders, no larger than 8 MiB. Copy USB files to Downloads first.");return;}
+  if(!windows_choose_source147(a,path)){picker_error12("Choose an MSI up to 8 MiB or an EXE up to 64 MiB in your folders. Copy USB files to Downloads first.");return;}
   picker_close12(a,"Installer selected. Choose Review installer before installing.",1);invalidate(w->bounds);return;
 #else
   picker_error12("This installer picker requires the M14 compatibility runtime.");return;
@@ -266,7 +266,7 @@ static unsigned picker_draw12(void){
  int controls_y=y+height-164;picker_button12(x+24,controls_y,64,"Prev",P12_PREVIOUS,picker12.offset>0,0,14);picker_button12(x+96,controls_y,64,"Next",P12_NEXT,picker12.offset+picker12.rows<picker12.count,0,15);
  picker_button12(x+168,controls_y,108,"New folder",P12_NEW_FOLDER,picker_writable12(picker12.path)&&!picker_busy12(),0,13);
  if(picker_saving12()){text(x+24,y+height-116,"Name",UI12_SECONDARY,ink());desktop_rect field={x+84,y+height-122,width-108,36};file_text_field11(field,picker12.name,picker12.name_cursor,picker12.name_anchor,d->focus==2,0);file_control11(d->owner,field,P12_NAME);}
- if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker_foreign12()?picker_foreign_filter146("All files"):picker12.filter?"All files":picker12.purpose==P12_WINDOWS_MSI147?"MSI installers":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker_saving12()?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
+ if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker_foreign12()?picker_foreign_filter146("All files"):picker12.filter?"All files":picker12.purpose==P12_WINDOWS_MSI147?"MSI and EXE":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker_saving12()?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
  ui73_fit(x+24,y+height-76,width-48,picker12.error[0]?picker12.error:picker_foreign12()?(picker_saving12()?"Choose a destination. Your app writes the file after this dialog closes.":"Choose a file. Your app opens it after this dialog closes."):picker_saving12()?"Text type adds .txt when no extension is supplied. The original is kept.":"Click selects. Double-click or Enter opens. Escape cancels.",UI12_SECONDARY,ink());
  picker_button12(x+24,y+height-46,120,"Cancel",P12_CANCEL,1,0,5);picker_button12(x+width-190,y+height-46,166,picker_saving12()?"Save":picker12.purpose==P12_ZIP_FOLDER?"Choose folder":"Open",P12_ACCEPT,1,1,4);
  return 1;

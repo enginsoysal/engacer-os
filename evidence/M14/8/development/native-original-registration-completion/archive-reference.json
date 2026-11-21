@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "scope": "Read/hash the pinned original PE resource archive with an independent host decoder; never execute or deploy it.",
+  "original_sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+  "resource_identity": [
+    10,
+    1,
+    1033
+  ],
+  "resource_file_offset": 1727536,
+  "resource_bytes": 6987343,
+  "archive_header_crc_verified": true,
+  "payloads": [
+    {
+      "name": "libmupdf.dll",
+      "bytes": 16625528,
+      "sha256": "a1290f350cc6c5de0c44d64be2f8e193f927c368224cb6b0738f9b843110c08c",
+      "crc32": 197125815,
+      "compression_method": 1
+    },
+    {
+      "name": "PdfFilter.dll",
+      "bytes": 342904,
+      "sha256": "f4de564a26049dd93c0cbb33a40273bccfacf29b266f57dbe7673c4b1f363e8f",
+      "crc32": 1167518459,
+      "compression_method": 1
+    },
+    {
+      "name": "PdfPreview.dll",
+      "bytes": 746360,
+      "sha256": "7f4ee56e1d36d2dc53dc684841316a163c9d91c8e0b544baf6992b4596c26e92",
+      "crc32": 1534824848,
+      "compression_method": 1
+    }
+  ],
+  "native_outputs_match_independent_archive": true,
+  "format_source": "https://github.com/sumatrapdfreader/sumatrapdf/blob/3.6.1rel/src/utils/LzmaSimpleArchive.cpp",
+  "observer_sha256": "5a7c91f937c1ced2781569386a8a32f1b36dee459c0a103006eef201d84cd4dc"
+}

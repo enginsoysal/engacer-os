@@ -102,7 +102,14 @@ unsigned v6_mount(v6_volume*v){
  else{v->active=0;v->generation=a;v->previous_valid=!sb;}
  v->mounted=1;v->readonly=0;return V6_OK;
 }
+#ifdef ENGINE_M14
+static v6_guard148 mutation_guard148;
+void v6_set_guard148(v6_guard148 guard){mutation_guard148=guard;}
+#endif
 static unsigned commit(v6_volume*v){
+#ifdef ENGINE_M14
+ if(mutation_guard148){unsigned denied=mutation_guard148(v,0,v->pending);if(denied)return denied;}
+#endif
 #ifdef ENGINE_M11
  uint32_t requested_crc11=crc(v->pending,TABLE_BYTES);
 #endif
@@ -118,6 +125,9 @@ static unsigned commit(v6_volume*v){
  copy(v->previous,v->entries,TABLE_BYTES);copy(v->entries,v->pending,TABLE_BYTES);v->previous_valid=1;v->active=bank;++v->generation;return V6_OK;
 }
 unsigned v6_format(v6_volume*v){
+#ifdef ENGINE_M14
+ if(mutation_guard148){unsigned denied=mutation_guard148(v,0,0);if(denied)return denied;}
+#endif
  if(!v->read||!v->write||!v->flush||v->blocks<V6_DATA_START+1)return V6_INVALID;
  v->mounted=0;v->readonly=1;zero(v->page,V6_PAGE);
  /* Caller owns destructive confirmation. Invalidate both banks before format. */
@@ -127,6 +137,9 @@ unsigned v6_format(v6_volume*v){
 }
 static unsigned prepare(v6_volume*v,const char*p,int*index){
  if(!v->mounted||v->readonly)return V6_RO;if(!valid_path(p)||!parent_exists(v,p))return V6_INVALID;
+#ifdef ENGINE_M14
+ if(mutation_guard148){unsigned denied=mutation_guard148(v,p,0);if(denied)return denied;}
+#endif
  *index=find(v->entries,p);if(*index<0)for(unsigned i=0;i<V6_ENTRIES;++i)if(!v->entries[i].kind){*index=(int)i;break;}
  if(*index<0)return V6_FULL;copy(v->pending,v->entries,TABLE_BYTES);return V6_OK;
 }

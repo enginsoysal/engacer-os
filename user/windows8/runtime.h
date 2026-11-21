@@ -77,4 +77,8 @@ NORETURN void pe8_rtl_unwind148(uint64_t,uint64_t,w8_exception_record142*,uint64
 NORETURN void exception_resume148(w8_context142*);
 int seh_c_specific142(w8_exception_record142*,uint64_t,w8_context142*,void*);
 void msi8_execute(void);
+#ifdef ENGINE_M14
+unsigned exe148_source(const char*);
+void exe148_review(void);
+#endif
 #endif

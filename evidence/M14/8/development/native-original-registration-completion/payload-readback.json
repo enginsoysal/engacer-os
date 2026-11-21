@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "scope": "Independent stopped-volume CRC/SHA/PE readback of the actual diagnostic installation payloads.",
+  "ordinary_installer_qualified": false,
+  "kernel_build_id": "e53f60d156d5e9d2bdf6bd62154b74b5",
+  "worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "e53f60d156d5e9d2bdf6bd62154b74b5",
+    "source_commit": "b552828b4436f7ceb261ec065df3e3ff3f868f2f",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "682d7c68d4ff28784765357e6369f3996a4f32887fc408e08fe8d180618efc08",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "1a57c0e62744630dcfc1b2477f2090ec39e0671d2470927dd12bf26ebadbdd6e"
+  },
+  "payloads": [
+    {
+      "name": "SumatraPDF.exe",
+      "bytes": 11075960,
+      "sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+      "crc32": 2042335303,
+      "machine": 34404,
+      "optional_magic": 523
+    },
+    {
+      "name": "libmupdf.dll",
+      "bytes": 16625528,
+      "sha256": "a1290f350cc6c5de0c44d64be2f8e193f927c368224cb6b0738f9b843110c08c",
+      "crc32": 197125815,
+      "machine": 34404,
+      "optional_magic": 523
+    },
+    {
+      "name": "PdfFilter.dll",
+      "bytes": 342904,
+      "sha256": "f4de564a26049dd93c0cbb33a40273bccfacf29b266f57dbe7673c4b1f363e8f",
+      "crc32": 1167518459,
+      "machine": 34404,
+      "optional_magic": 523
+    },
+    {
+      "name": "PdfPreview.dll",
+      "bytes": 746360,
+      "sha256": "7f4ee56e1d36d2dc53dc684841316a163c9d91c8e0b544baf6992b4596c26e92",
+      "crc32": 1534824848,
+      "machine": 34404,
+      "optional_magic": 523
+    }
+  ],
+  "observer_sha256": "7fdf9b30c9f23b1ec1ee7615214e828c1a7a81864167a5cb79dba7349b31f1f8",
+  "dll_reference_scope": "DLL hashes are measured native output, not yet an independent extraction oracle from the original resource archive"
+}

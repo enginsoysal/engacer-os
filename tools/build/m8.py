@@ -18,6 +18,8 @@ def runtime(work, tools, common):
         from tools147 import build as build_tools147
         build_tools147(work, tools)
     sources = ['runtime', 'pe', 'api', 'msi_db', 'cab', 'msi']
+    if '-DENGINE_M14' in common:
+        sources.append('exe148')
     objects = []
     for name in sources:
         source = ROOT / 'user/windows8' / (name + '.c')
