@@ -1,0 +1,20 @@
+{
+  "scope": "Exact inherited immutable reference data for unchanged original MSI/helper bytes; not new native stage-eight acceptance.",
+  "files": [
+    {
+      "source": "evidence/M14/7/development/cab-host-initial.json",
+      "target": "evidence/M14/8/development/cab-host-initial.json",
+      "sha256": "5471c412ae715a00c643e6332ce32a6ec9df1f9c5a5feaa48eb43ed83ead2521"
+    },
+    {
+      "source": "evidence/M14/7/development/msi-tables147.json",
+      "target": "evidence/M14/8/development/msi-tables147.json",
+      "sha256": "afed16e1eae9f1ca038136317d658aa983526ee30f953799a5a5e0e7b566e096"
+    },
+    {
+      "source": "evidence/M14/7/development/helpers-reference.json",
+      "target": "evidence/M14/8/development/helpers-reference.json",
+      "sha256": "3a5f16e00030e62770ed57ddd0388dd9d50fbd117edf1c214eaf93267c8724a0"
+    }
+  ]
+}

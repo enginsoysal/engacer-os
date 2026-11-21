@@ -20,7 +20,8 @@ silently grants unrestricted access to the rest of the system.
 
 ## Original EXE installer workflow
 
-The first candidate profile uses unchanged **SumatraPDF 3.6.1 x64**:
+The first candidate profile uses unchanged [SumatraPDF 3.6.1 x64 from its
+official download](https://www.sumatrapdfreader.org/dl/rel/3.6.1/SumatraPDF-3.6.1-64-install.exe):
 `SumatraPDF-3.6.1-64-install.exe`, 11,075,960 bytes, SHA-256
 `1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381`.
 

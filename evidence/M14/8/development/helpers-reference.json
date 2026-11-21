@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "scope": "Data-only utility reference in an owned temporary directory; no vendor installer executes.",
+  "source_sha256": "f1287dee1d4f3ee91a3ef72f6ecee841ac8a34d0e9abe5c12e439821d9e994fe",
+  "copies": [
+    {
+      "pattern": "nativeLang.xml*",
+      "status": 0,
+      "files": [
+        "nativeLang.xml"
+      ],
+      "stdout": "1 File(s) copied\r\n",
+      "stderr": ""
+    },
+    {
+      "pattern": "copy.txt*",
+      "status": 0,
+      "files": [
+        "copy.txt",
+        "nativeLang.xml"
+      ],
+      "stdout": "1 File(s) copied\r\n",
+      "stderr": ""
+    },
+    {
+      "pattern": "nativeLang.*",
+      "status": 0,
+      "files": [
+        "copy.txt",
+        "nativeLang.xml"
+      ],
+      "stdout": "1 File(s) copied\r\n",
+      "stderr": ""
+    }
+  ],
+  "deletes": [
+    {
+      "initially_present": true,
+      "status": 0,
+      "exists": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "initially_present": false,
+      "status": 0,
+      "exists": false,
+      "stdout": "",
+      "stderr": "Could Not Find <owned-reference>\\nativeLang.xml\r\n"
+    }
+  ],
+  "owned_fixture_removed": true
+}
