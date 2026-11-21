@@ -1,0 +1,13 @@
+{
+  "repeat_passed": true,
+  "original_refusal_preserved": true,
+  "root_cause_established": false,
+  "scope": "Exact unchanged canonical menu observer, same frozen OS build and same cloned source bytes. All 21 actual menu state/lifetime cycles pass on repeat. The initial close-control observation refusal is not reproduced and is not relabelled as a diagnosed/fixed OS or observer defect.",
+  "build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "canonical_observer": "tests/m14/menu144_run.py",
+  "canonical_observer_sha256": "9d6c4550e548bb3ce78a9a2f07f798e0c993dd006f2737b5c295a5df75a6afad",
+  "fixture_sha256": "aa93f564bc38dbe8549ec26e08dc0ee1ac5fde9186b716379d2ad19ca159f2e4",
+  "native_cycles": 21,
+  "first_worker_cache_pages": 4,
+  "subsequent_retained_pages": 0
+}
