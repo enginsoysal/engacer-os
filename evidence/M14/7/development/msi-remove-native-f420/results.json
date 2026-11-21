@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "kernel_build_id": "60698b078e4bc6763b8a1a940fed1454",
+  "source_commit": "f420eafb4caaebb4f39f61b2ba6c663b3d336004",
+  "clone": {
+    "source_sha256": "da372107f43bb99b5ee9c26d3680ccacc331427e618d652cfa06fb364e2d48f9",
+    "clone_sha256": "da372107f43bb99b5ee9c26d3680ccacc331427e618d652cfa06fb364e2d48f9",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "scope": "Native cached-source removal, cancellation, preserved data and reinstallation.\n\nPrivate stopped-clone worker/service update over the frozen kernel, not public ISO qualification.\n",
+  "observer_sha256": "b5badbe5d188cd512036ad8245eb7c5b26d9664948ba28bef9db031b67327292",
+  "tasks": [
+    {
+      "operation": "install",
+      "retained_managed_pages": 0,
+      "state": 2,
+      "status": 0,
+      "message": "Application files, registry values and shortcuts were installed and verified.",
+      "peak_native_managed_pages": 1856
+    },
+    {
+      "operation": "cancel after durable removal journal",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 3,
+      "status": 1,
+      "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+      "peak_native_managed_pages": 852
+    },
+    {
+      "operation": "recover removal after independent restart",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "message": "Removed. Changed files were saved in Documents > Recovered applications.",
+      "peak_native_managed_pages": 821
+    },
+    {
+      "operation": "reinstall after saved modified files",
+      "retained_managed_pages": 0,
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "message": "Application files, registry values and shortcuts were installed and verified.",
+      "peak_native_managed_pages": 1856
+    },
+    {
+      "operation": "remove reinstalled unchanged product",
+      "retained_managed_pages": 0,
+      "state": 2,
+      "status": 0,
+      "message": "Removed. Your personal files are unchanged.",
+      "peak_native_managed_pages": 852
+    }
+  ],
+  "preserved": {
+    "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/User-\u00e9\ud83d\ude80.txt": {
+      "path": "/Users/Owner/Documents/Recovered applications/{23170F69-40C1-2702-2606-000001000000}/69b1ac35dcceb830-8cd7a4233a427ebb46008519-saved-file.dat",
+      "sha256": "8cd7a4233a427ebb46008519f49cad464630183eed267b45265a8a7dfc199143",
+      "bytes": 35,
+      "native_metadata_attributes": 32
+    },
+    "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/Large personal file.bin": {
+      "path": "/Users/Owner/Documents/Recovered applications/{23170F69-40C1-2702-2606-000001000000}/f384cdba3c3653d3-0b3d36a473552061cd0720e1-saved-file.dat",
+      "sha256": "0b3d36a473552061cd0720e176fb349bfe6779fb99b785afeb6e51fe2028e054",
+      "bytes": 34603008,
+      "native_metadata_attributes": 32
+    },
+    "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe": {
+      "path": "/Users/Owner/Documents/Recovered applications/{23170F69-40C1-2702-2606-000001000000}/06537a1205db822b-7a4566998a7cef1ad29ab730-7zFM.exe",
+      "sha256": "7a4566998a7cef1ad29ab7302c338e09a2ffbd8ca01410f80341dcfeeb258b78",
+      "bytes": 30,
+      "native_metadata_attributes": 32
+    },
+    "/Data/Windows/Common/Programs/7-Zip/7-Zip File Manager.lnk": {
+      "path": "/Users/Owner/Documents/Recovered applications/{23170F69-40C1-2702-2606-000001000000}/619279b75ad98071-e9dd9bf2fccba47c7c695f96-saved-file.dat",
+      "sha256": "e9dd9bf2fccba47c7c695f961022272db847c9d31b2c3dd1d29a9742e5c14a11",
+      "bytes": 24,
+      "native_metadata_attributes": 32
+    }
+  },
+  "production_worker_restored_and_restart_preserves_saved_data": true
+}

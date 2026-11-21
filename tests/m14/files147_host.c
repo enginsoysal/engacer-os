@@ -11,7 +11,7 @@ typedef size_t (*size_callback147)(const void*);
 static size_callback147 size_host147;
 typedef int64_t (*registry_callback147)(unsigned,uint64_t);
 static registry_callback147 registry_host147;
-static unsigned move_fault147,promote_fault147,removed_kept147;
+static unsigned move_fault147,promote_fault147,pending_delete_fault147,removed_kept147;
 static v6_volume*volume147;
 static w8_mailbox input8;
 w8_mailbox*const job8=&input8;
@@ -82,7 +82,7 @@ __declspec(dllexport) unsigned installed_undo_registry147(void){return msireg_un
 
 __declspec(dllexport) unsigned install_order_fixture147(unsigned which){const char*name=which==0?"CreateShortcuts":which==1?"WriteRegistryValues":"SetCopyNativeLangAction";for(unsigned i=0;i<plan147->action_count;++i)if(equal8(plan147->actions[i].name,name)){unsigned old=plan147->actions[i].sequence;plan147->actions[i].sequence=which==0?1499:which==1?1601:6700;unsigned status=msia_install147(plan147,source147,source_bytes147);plan147->actions[i].sequence=old;return status;}return 87;}
 
-int remove8(const char*path){return path8(path,1)&&!v6_remove(volume147,path)?0:-1;}
+int remove8(const char*path){if(pending_delete_fault147){char pending[256];copy8(pending,input8.product_root,256);append8(pending,"/.EngacerMSI/transaction.bin",256);if(equal8(path,pending)){--pending_delete_fault147;return -1;}}return path8(path,1)&&!v6_remove(volume147,path)?0:-1;}
 __declspec(dllexport) unsigned fixture_write147(const char*path,const void*data,unsigned bytes){char parent[256];copy8(parent,path,256);for(unsigned i=1;parent[i];++i)if(parent[i]=='/'){parent[i]=0;unsigned status=v6_mkdir(volume147,parent);parent[i]='/';if(status&&status!=V6_EXISTS)return status;}return v6_put(volume147,path,bytes,write_source147,(void*)data);}
 __declspec(dllexport) void remove_move_fault147(unsigned count){move_fault147=count;}
 __declspec(dllexport) unsigned remove_kept147(void){return removed_kept147;}
@@ -96,3 +96,5 @@ __declspec(dllexport) unsigned reinstall_controller147(void){
 __declspec(dllexport) void install_promote_fault147(unsigned at){promote_fault147=at;}
 
 __declspec(dllexport) unsigned fixture_delete147(const char*path){return v6_remove(volume147,path);}
+
+__declspec(dllexport) void remove_pending_delete_fault147(unsigned count){pending_delete_fault147=count;}

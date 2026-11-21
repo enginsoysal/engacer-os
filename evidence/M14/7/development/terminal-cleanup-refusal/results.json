@@ -1,0 +1,23 @@
+{
+  "passed": false,
+  "reproduced": true,
+  "scope": "Before-fix host reproduction: cache deletion succeeded, the next pending-record deletion failed, and retry refused because the original cached source was already gone. No user data loss was observed; automatic cleanup/reinstall remains blocked.",
+  "package_sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+  "sources": {
+    "user/windows8/msi-remove147.c": "a7bc114ab13fa6046b61c73f653c9d960105ddf477d974012120593f400c6cfb",
+    "user/windows8/msi-install147.c": "0e71f43b210b11477b7f5f85983220e312c67e4d94df99e0b91dc217af5e71b0",
+    "user/windows8/msi-registry147.c": "6c1cb730293e07e064ca866b8e8cfbf65426b8540e00a3f487f4a22a7c10080c",
+    "user/windows8/msi-files147.c": "a7035dbfb3ad2d2c3fd5c1a9d17054e264a7b763b2f9663484cb948a73989f43",
+    "user/windows8/msi-shortcuts147.c": "a0e481b6dfe3a60c1426f86f59a9aac22ca7896764701e63d02f96a4de4f23ec",
+    "user/windows8/msi-journal147.c": "192facdd91c437118b73485a33e6a9335a713e6468d2dded2a0eb9c340c6d3fc",
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "user/windows8/cab147.c": "4bdf9b136df3d40740a56744e29cae2241c7ea6efc92bcf2bb3c9e846db365e1",
+    "third_party/libmspack/lzxd.c": "bc4a14a5938d99cb1e2521a0fcc16fa44e8ea262ab0bc072e3f9003e19c816da",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "kernel/storage/volume6.c": "9a0901c17b26106c22b0f9806743f28a1c779027c92275db061aeb5c7fab020a",
+    "tests/m14/files147_host.c": "7dc9cf36ca019ce01046583449555bc87e18aafab7e2d5208de4c6263a416144",
+    "tests/m14/terminal147_refusal.py": "a7cb21700d45f0115c96f1947f1f3f00eee481b5e7d1da6b7f39ceb48732cab1"
+  }
+}
