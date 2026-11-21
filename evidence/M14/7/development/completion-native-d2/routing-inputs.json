@@ -1,0 +1,29 @@
+{
+  "scope": "Build a private removal routing fixture over an unchanged full-kernel ABI.",
+  "kernel_build_id": "d2e2a2ffb0e6919a274a78c22600f79c",
+  "source_commit": "eb7a1135a74ce0870c0ebe3675ab66990138a37d",
+  "private_runtime_receipt_sha256": "4c1250b4bb6f218bc4fd02ff47e273d0088f4a573b14177b58fc9742479e2c52",
+  "test_sources": {
+    "tests/m14/remove147_native.c": "0d0c0907f8ac06171bb11a7dc205a26149e7360b89c49d38362c424f6ce17545",
+    "tests/m14/remove147_build.py": "e45a2b4940d8552dcd5d98c3302d9322711ec3b28199adb5c82442290e594399",
+    "tests/m14/fixture1.py": "e84a8b8cdccb731fbbb3aedc4290c147442ca0550fd000085cbb95904c840fa5"
+  },
+  "artifacts": {
+    "WINDOWS8.ELF": {
+      "bytes": 319572,
+      "sha256": "5170d76ce456b66a026a8b7f385a23263d22ec89dd7d638ad118483890326f31"
+    },
+    "fixture-runtime8.elf": {
+      "bytes": 311376,
+      "sha256": "7ef2d846418a2af1cf6b58b3812580e6bd137137e027377806934103b43cba78"
+    },
+    "msi.dll": {
+      "bytes": 283648,
+      "sha256": "c0041369263793f1153c255dd9f2db237e2622b952104f5a8763374831b0259e"
+    },
+    "msiexec.exe": {
+      "bytes": 3072,
+      "sha256": "783c7306a50e0ff345870cd4907c4b3684875821180d1d137c6252300583ce66"
+    }
+  }
+}

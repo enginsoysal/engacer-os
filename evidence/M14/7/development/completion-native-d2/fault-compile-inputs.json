@@ -1,0 +1,30 @@
+{
+  "scope": "Relink only an explicitly labelled native DELETE fault adapter into a private MSI DLL.",
+  "routing_receipt_sha256": "f75a7178a38083551c31952cf971e2f059e5d241e23704b5d399f8f32076f452",
+  "test_sources": {
+    "tests/m14/terminal147_native_io.c": "36b6f3fbe806b0595190a11ed30337e319b1e01d85704dc1b8ffc71a1c406880",
+    "tests/m14/terminal147_build.py": "04a1d7943bcc929614bd45824d5d90f10240804db9aae1a1c9041b89eeee0248"
+  },
+  "objects": {
+    "cab147.obj": "9a134130fe08d83d796cf090da35335fcf972df8c26448eda4be6b2258d7247f",
+    "lzxd.obj": "7df17d9af6a7ce5b64ae8f6def55feca2c6fd9c798d0a9a0e9c026869ee23929",
+    "msi-api147.obj": "fe0f541ee888999045f2b624df4979fd5f4a0084d28aa55ee8aa238404a60cae",
+    "msi-cost147.obj": "9f26086e146e5ba0bd7d826d0ca80d72d9727979702e37941eb14564795c9624",
+    "msi-custom147.obj": "0a5e6e1c088f222a56a11017e41aa8151847519e16aa69893f86eef82167fa0a",
+    "msi-files147.obj": "62ca01b9540b3f61821566a64aa7a6466983008d84b5bfa2ddcf54ae75194cd4",
+    "msi-install147.obj": "f7b3526bdae20fc6a0ffcffb715877be832e77311745485b73f6ee531e859afb",
+    "msi-journal147.obj": "39b7b16ac316d6f7102aa992199fd0233dcd0a70daa5b5bfff15b705ce503c91",
+    "msi-plan147.obj": "19e648965cb27b317be9ef16eca053fc2e721f36a00d33c532149191d6ea17f0",
+    "msi-registry147.obj": "833db154f521c7d786928c491b1c972bf068b5179e9463f456a67e6180a39766",
+    "msi-remove147.obj": "edf36b6f135c7baed5f500bbd83f27e9f182f055ed7492517c550e567776e00e",
+    "msi-service147.obj": "eafb0980a5c6c132a7d72418d0cd78532a8ed9a375eb29904325675b8c53a88f",
+    "msi-shortcuts147.obj": "225d49123b87e977bbdbdc55245691956b6583ecff17f0b50da68c00fbb60924",
+    "msi_db.obj": "16e156a710532345d2195ded127ca5569e42fb7f4b3b54f3c5db78780f0e3f4b",
+    "sha256.obj": "c41a419f62076fbc7873d94e20b696bdcf1f076f8334a16ccd8f5eb024d0bc13",
+    "msi-native-fault.obj": "fc1aff1bd39e1426c263137aee3b30db0a40aef13dedc0e69103cf106b082e49"
+  },
+  "artifact": {
+    "bytes": 285184,
+    "sha256": "5907f8be3aa0c3f3da5c31b2e72ab2c07600f18a0d37f0bb86d5bb4f326b642b"
+  }
+}

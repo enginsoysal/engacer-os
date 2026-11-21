@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "kernel_build_id": "d2e2a2ffb0e6919a274a78c22600f79c",
+  "source_commit": "eb7a1135a74ce0870c0ebe3675ab66990138a37d",
+  "scope": "Labelled native DELETE faults after semantic undo, followed by source-free recovery.\n\nFault DLL changes only the native remove8 adapter; recovery restores the production DLL.\n",
+  "observer_sha256": "4680689fb8d2c292a980be949a94896c524b22b6fe1b14ef55ed37848b9b41f3",
+  "cases": [],
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\terminal147_native.py\", line 39, in main\n    p.drain();state=job(g);assert state['state']==3 and state['status']!=0 and'M147_TEST_IO_DELETE_REFUSAL '+mode in state['output'];assert'transaction was kept'in state['message'];assert f.stats(g)[0]-before==4\nAssertionError\n"
+}

@@ -36,7 +36,7 @@ def main():
       if'M8_JOB_FAILED'in log or'M8_JOB_DONE'in log:break
       time.sleep(.05)
      else:raise TimeoutError('The labelled native delete-fault task did not finish')
-     p.drain();state=job(g);assert state['state']==3 and state['status']!=0 and'M147_TEST_IO_DELETE_REFUSAL '+mode in state['output'];assert'transaction was kept'in state['message'];assert f.stats(g)[0]-before==4
+     p.drain();state=job(g);report['last_observed']=dict(mode=mode,job=state,managed_delta=f.stats(g)[0]-before);assert state['state']==3 and state['status']!=0,report['last_observed'];assert'M147_TEST_IO_DELETE_REFUSAL '+mode in state['output'],report['last_observed'];assert'kept'in state['message'],report['last_observed'];assert f.stats(g)[0]-before==4,report['last_observed']
      entries=f.entries(g);assert done in entries and root+'/.EngacerMSI/source.msi'not in entries and download not in entries;image=ui.s.s.document(disk,done,512*1024);assert image[72:104]==hashlib.sha256(image[:72]+bytes(32)+image[104:]).digest()
      if mode=='pending':assert root+'/.EngacerMSI/transaction.bin'in entries
      else:assert not any(path==root or path.startswith(root+'/')for path in entries)
