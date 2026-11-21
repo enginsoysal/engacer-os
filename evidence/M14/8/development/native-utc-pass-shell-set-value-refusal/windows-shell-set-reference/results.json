@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "scope": "Owned temporary HKCU shell-value creation/update reference.",
+  "observations": {
+    "creates_named_key": 0,
+    "null_subkey_default": 0,
+    "empty_subkey_zero_binary": 0,
+    "readonly_null_subkey": 5,
+    "invalid_handle": 6
+  },
+  "source_sha256": "9c74ddeb8400ee81f805fc5e16cf5d6227c8685751b8daa52022f3ef4a4032ae"
+}

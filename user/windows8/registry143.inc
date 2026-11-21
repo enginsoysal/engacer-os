@@ -96,4 +96,10 @@ static int shell_delete_tree148(HANDLE root,const WCHAR*subkey,unsigned*budget,u
  return status||!subkey?status:f_RegDeleteKeyW(root,subkey);
 }
 static int MS f_SHDeleteKeyW(HANDLE root,const WCHAR*subkey){unsigned budget=1024;return shell_delete_tree148(root,subkey,&budget,0);}
+static int MS f_SHSetValueW(HANDLE root,const WCHAR*subkey,const WCHAR*name,unsigned type,const void*data,unsigned bytes){
+ if(subkey&&sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)subkey,2,1,0,0))return 998;
+ if(!subkey||!subkey[0])return f_RegSetValueExW(root,name,0,type,data,bytes);
+ HANDLE opened=0;int status=f_RegCreateKeyExW(root,subkey,0,0,0,2,0,&opened,0);if(status)return status;
+ status=f_RegSetValueExW(opened,name,0,type,data,bytes);int closed=f_RegCloseKey(opened);return status?status:closed;
+}
 #endif

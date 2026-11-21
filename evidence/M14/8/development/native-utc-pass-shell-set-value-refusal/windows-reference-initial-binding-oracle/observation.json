@@ -1,0 +1,7 @@
+{
+  "scope": "Supporting host-observer expectation correction, not a native API failure.",
+  "source_sha256": "6b2e05cf8a25eaeb775cd25977a4cad524377d47d868506c8f55ab7a805df4ad",
+  "initial_assertion": "Python winreg zero-byte REG_BINARY data was expected as empty bytes.",
+  "observed_binding": "Python winreg returns None for zero-byte REG_BINARY; direct SHSetValueW returned 0, type 3, length 0.",
+  "native_oracle_unchanged": true
+}

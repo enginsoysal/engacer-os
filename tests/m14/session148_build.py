@@ -8,7 +8,7 @@ def build():
  t=pinned_tools();source=ROOT/'tests/m14/session148_native.c'
  imports=set(re.findall(r'__declspec\(dllimport\).*?\b(\w+)\([^;]*;',source.read_text()))
  user={'RegisterWindowMessageW','RegisterWindowMessageA','PeekMessageW','PostMessageW','RegisterClassExW','GetClassInfoExW','UnregisterClassW','CreateWindowExW','DestroyWindow','GetDesktopWindow','GetParent','IsWindow','GetWindowRect','GetClientRect','GetSystemMetrics','GetDC','ReleaseDC','GetWindowLongW','GetWindowLongPtrW','SetWindowLongPtrW','AdjustWindowRectEx','AdjustWindowRect','SetWindowPos','DefWindowProcW','SendMessageW','GetWindowDC','DrawTextExW','MonitorFromRect','MonitorFromPoint','GetMonitorInfoW','GetMonitorInfoA','SetForegroundWindow','GetForegroundWindow','MsgWaitForMultipleObjects','SetTimer','KillTimer','MapWindowPoints'};gdi={'GetDeviceCaps','CreateFontIndirectW','GetStockObject','SelectObject','GetCurrentObject','GetObjectW','GetTextMetricsW','GetTextFaceW','GetTextExtentPoint32W','DeleteObject','TextOutW'}
- advapi={'RegCreateKeyExW','RegOpenKeyExW','RegSetValueExW','RegQueryValueExW','RegDeleteKeyW','RegCloseKey','RegEnumKeyExW'};shell={'SHDeleteValueW','SHDeleteKeyW'}
+ advapi={'RegCreateKeyExW','RegOpenKeyExW','RegSetValueExW','RegQueryValueExW','RegDeleteKeyW','RegCloseKey','RegEnumKeyExW'};shell={'SHDeleteValueW','SHDeleteKeyW','SHSetValueW'}
  for provider,names in [('user32',user),('gdi32',gdi),('advapi32',advapi),('shlwapi',shell),('kernel32',imports-user-gdi-advapi-shell)]:
   definition=out/(provider+'.def');definition.write_bytes(('LIBRARY '+provider+'.dll\nEXPORTS\n'+'\n'.join(sorted(names))+'\n').encode())
   command([t['lld-link'],'/lib','/machine:x64','/def:'+str(definition),'/out:'+str(out/(provider+'.lib'))])

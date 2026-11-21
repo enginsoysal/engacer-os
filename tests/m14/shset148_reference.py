@@ -1,0 +1,20 @@
+"""Owned temporary HKCU shell-value creation/update reference."""
+import ctypes as C,hashlib,json,uuid,winreg as R
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+def main():
+ name='Software\\EngacerOS-Ref-'+uuid.uuid4().hex;assert name.startswith('Software\\EngacerOS-Ref-') and len(name.rsplit('-',1)[1])==32
+ shell=C.WinDLL('shlwapi',use_last_error=True);shell.SHSetValueW.argtypes=[C.c_void_p,C.c_wchar_p,C.c_wchar_p,C.c_uint,C.c_void_p,C.c_uint];shell.SHSetValueW.restype=C.c_long
+ value=C.c_uint32(0x148);text=C.create_unicode_buffer('UTC value');rows={}
+ try:
+  rows['creates_named_key']=shell.SHSetValueW(C.c_void_p(-2147483647),name,'number',4,C.byref(value),4);assert rows['creates_named_key']==0
+  with R.OpenKey(R.HKEY_CURRENT_USER,name,0,R.KEY_READ|R.KEY_WRITE) as key:
+   assert R.QueryValueEx(key,'number')==(0x148,4)
+   rows['null_subkey_default']=shell.SHSetValueW(int(key),None,None,1,text,C.sizeof(text));assert rows['null_subkey_default']==0 and R.QueryValueEx(key,'')==('UTC value',1)
+   rows['empty_subkey_zero_binary']=shell.SHSetValueW(int(key),'','empty',3,None,0);assert rows['empty_subkey_zero_binary']==0;binary,kind=R.QueryValueEx(key,'empty');assert kind==3 and binary in (None,b'')
+   with R.OpenKey(R.HKEY_CURRENT_USER,name,0,R.KEY_READ) as readonly:rows['readonly_null_subkey']=shell.SHSetValueW(int(readonly),None,'number',4,C.byref(value),4)
+   assert rows['readonly_null_subkey']==5
+   rows['invalid_handle']=shell.SHSetValueW(0x12345678,None,'x',4,C.byref(value),4);assert rows['invalid_handle']==6
+ finally:R.DeleteKey(R.HKEY_CURRENT_USER,name)
+ report=dict(passed=True,scope=__doc__,observations=rows,source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest());out=ROOT/'build/m14-native/stage8/shset-reference';out.mkdir(parents=True,exist_ok=True);(out/'results.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+if __name__=='__main__':main()
