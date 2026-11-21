@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "build_id": "ed82ff06e537d9a4b026625e5ce25653",
+  "scope": "Exercise the new native read-only service with both unchanged original MSIs.\n\nThe legacy chooser filename is reused only in a private offline clone. This is\nnot qualification of a Notepad++ chooser, custom actions or installation.\n",
+  "packages": [
+    {
+      "file": "7z2606-x64.msi",
+      "sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "product": "7-Zip 26.06 (x64 edition)",
+      "code": "{23170F69-40C1-2702-2606-000001000000}",
+      "clone": {
+        "source_sha256": "d2c8fec210bcb6bbd319fed253ae2a76f1d1b60e5f212b291c77429544788abd",
+        "clone_sha256": "d2c8fec210bcb6bbd319fed253ae2a76f1d1b60e5f212b291c77429544788abd",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "cycles": [
+        {
+          "cycle": 1,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 2,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 3,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 4,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 5,
+          "retained_pages": 0
+        }
+      ],
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=902512259\nMapped Engacer service image: msi.dll bytes=274432 source-fnv32=1168373061\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: 7-Zip 26.06 (x64 edition)\nSelected original files: 106 bytes: 5882028\nMSI execute actions: 23 custom-action metadata: 0\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    },
+    {
+      "file": "npp.8.9.9.1.Installer.x64.msi",
+      "sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "product": "Notepad++ (x64)",
+      "code": "{A23B657D-838B-4C9B-8F9D-386E50C1A76B}",
+      "clone": {
+        "source_sha256": "d2c8fec210bcb6bbd319fed253ae2a76f1d1b60e5f212b291c77429544788abd",
+        "clone_sha256": "d2c8fec210bcb6bbd319fed253ae2a76f1d1b60e5f212b291c77429544788abd",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "cycles": [
+        {
+          "cycle": 1,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 2,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 3,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 4,
+          "retained_pages": 0
+        },
+        {
+          "cycle": 5,
+          "retained_pages": 0
+        }
+      ],
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=902512259\nMapped Engacer service image: msi.dll bytes=274432 source-fnv32=1168373061\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: Notepad++ (x64)\nSelected original files: 217 bytes: 28130419\nMSI execute actions: 30 custom-action metadata: 4\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    }
+  ]
+}

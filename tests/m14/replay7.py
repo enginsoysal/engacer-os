@@ -78,7 +78,7 @@ class ReplayLoader(importlib.abc.MetaPathFinder, importlib.abc.Loader):
 def main():
     assert len(sys.argv) >= 2 and re.fullmatch(r'[a-z][a-z0-9_]*', sys.argv[1])
     name, arguments = sys.argv[1], sys.argv[2:]
-    assert not (ROOT / 'evidence/M14/6/publication-results.json').exists()
+    assert not (ROOT / 'evidence/M14/7/publication-results.json').exists()
     meta = json.loads((ROOT / 'dist/m14stage7-build-manifest.json').read_text(encoding='utf-8'))
     assert meta['qualification_scope'] == 'M14-STAGE7-VM-v1'
     os.environ['ENGACER12_IMAGE'] = 'EngacerOS-M14STAGE7'

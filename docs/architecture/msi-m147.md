@@ -69,3 +69,7 @@ Install writes use a new, isolated product root and staged payloads, then known 
 ### Boot-module placement
 
 The first development build exceeded the existing 8 MiB low-memory kernel envelope by 56,620 bytes. It is retained as a failed candidate, not qualified media. The own installer DLL and executable now travel in a versioned extension after the unchanged original MSI inside the reserved INIT boot module. The existing 4 MiB module limit remains unchanged. EFI and kernel share bounded shape validation; the kernel checks both asset digests before retaining borrowed pointers. This moves storage away from firmware-reserved low memory; it does not remove the assets from total guest RAM. Runtime installation copies the validated assets into the system installer directory. Native qualification remains pending.
+
+### Native read-only service integration result
+
+Candidate ed82ff06e537d9a4b026625e5ce25653 installs and reaches the desktop through the retained-ISO restart and two independent no-ISO starts. Its own x64 MSI service parses both unchanged original MSI packages in CPL3: 106 7-Zip files and 217 Notepad++ files. Five measured repeated lifetimes per package retain zero managed pages and no native UI state. The existing 7-Zip install/run/archive/extract/remove/reinstall path and all 106 payload hashes also pass. These are development results: generic write actions, actual original WiX execution and Notepad++ installation remain open. No M14.7 release is claimed.
