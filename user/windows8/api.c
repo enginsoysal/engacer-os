@@ -458,6 +458,7 @@ static const api8 api8_table[]={
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
  API8(SetWindowPos,4),
+ API8(SetWindowSubclass,6),API8(GetWindowSubclass,6),API8(RemoveWindowSubclass,6),API8(DefSubclassProc,6),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),
  API8(GetSystemDirectoryW,1),
  API8(LoadLibraryExA,1),
@@ -499,6 +500,9 @@ static const api8 api8_table[]={
 #include "target-guards145.inc"
 void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provider=provider8(dll);if(provider==2&&name&&equal8(name,"__initenv")&&!initenv8){initenv8=environment_crt143();if(!initenv8)return 0;}if(provider==3){switch(ordinal){case 2:return f_SysAllocString;case 4:return f_SysAllocStringLen;case 6:return f_SysFreeString;case 7:return f_SysStringLen;case 9:return f_VariantClear;case 10:return f_VariantCopy;case 149:return f_SysStringByteLen;case 150:return f_SysAllocStringByteLen;}if(name){if(equal8(name,"SysAllocString"))return f_SysAllocString;if(equal8(name,"SysAllocStringLen"))return f_SysAllocStringLen;if(equal8(name,"SysFreeString"))return f_SysFreeString;if(equal8(name,"SysStringLen"))return f_SysStringLen;if(equal8(name,"SysStringByteLen"))return f_SysStringByteLen;if(equal8(name,"SysAllocStringByteLen"))return f_SysAllocStringByteLen;if(equal8(name,"VariantClear"))return f_VariantClear;if(equal8(name,"VariantCopy"))return f_VariantCopy;}return guard_lookup145(provider,name,ordinal);}
  if(provider==6&&!name&&ordinal==17)return f_InitCommonControls;
+#ifdef ENGINE_M14
+ if(provider==6&&!name){switch(ordinal){case 410:return f_SetWindowSubclass;case 411:return f_GetWindowSubclass;case 412:return f_RemoveWindowSubclass;case 413:return f_DefSubclassProc;}}
+#endif
  if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;void*guard=guard_lookup144(provider,name,ordinal);return guard?guard:guard_lookup145(provider,name,ordinal);}void*address=pe8_import(dll,name,ordinal);if(!address&&!case8(dll,"msi.dll"))return guard_lookup145(0,name,ordinal);return address;
 }
 void init_win8(void){

@@ -48,9 +48,19 @@ static int MS f_GetClassInfoExW(HANDLE instance,const WCHAR*name,ui_class_ex148*
 }
 static int MS f_UnregisterClassW(const WCHAR*name,HANDLE instance){lock_enter142(&ui_lock144);ui_class144*c=ui_class_lookup144(name);if(!c||(instance&&instance!=c->definition.instance)){lock_leave142(&ui_lock144);last8(1411);return 0;}if(c->windows){lock_leave142(&ui_lock144);last8(1412);return 0;}ui_class144**link=&ui_classes144;while(*link!=c)link=&(*link)->next;*link=c->next;--ui_class_count144;free8(c);lock_leave142(&ui_lock144);return 1;}
 static int64_t MS f_CallWindowProcW(ui_proc144 proc,HANDLE window,unsigned message,uint64_t wp,int64_t lp){if(!proc){last8(87);return 0;}return proc(window,message,wp,lp);}
+#ifdef ENGINE_M14
+#include "subclass148.inc"
+#endif
 static int64_t MS f_SendMessageW(HANDLE handle,unsigned message,uint64_t wp,int64_t lp){
  lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);ui_proc144 proc=w?w->proc:0;unsigned thread=w?w->thread:0;lock_leave142(&ui_lock144);
- if(!proc){last8(1400);return 0;}if(thread!=tid142()){last8(50);return 0;}int64_t result=proc(handle,message,wp,lp);paint_changed144(handle,message);return result;
+ if(!proc){last8(1400);return 0;}if(thread!=tid142()){last8(50);return 0;}int64_t result;
+#ifdef ENGINE_M14
+ result=subclass_dispatch148(proc,handle,message,wp,lp);
+ if(message==0x82)subclass_release148(handle);
+#else
+ result=proc(handle,message,wp,lp);
+#endif
+ paint_changed144(handle,message);return result;
 }
 static HANDLE MS f_CreateWindowExW(unsigned exstyle,const WCHAR*class_name,const WCHAR*name,unsigned style,int x,int y,int width,int height,HANDLE parent,HANDLE menu,HANDLE instance,void*parameter){
  lock_enter142(&ui_lock144);ui_class144*c=ui_class_lookup144(class_name);if(!c&&ui_builtin144(class_name))c=ui_class_lookup144(class_name);if(!c){lock_leave142(&ui_lock144);last8(1407);return 0;}

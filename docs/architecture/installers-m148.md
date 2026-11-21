@@ -68,3 +68,18 @@ is a diagnostic observation, not a successful installation. Owned native font
 lifetime and pixel tests and the unchanged original installer must pass before
 these changes qualify. GetObjectW supports LOGFONTW-sized or smaller buffers;
 extended undocumented object records remain unsupported.
+
+## Common-control subclass candidate
+
+COMCTL32 names and ordinals 410-413 bind to actual same-thread subclass
+registration/query/removal/continuation. Each callback owns its procedure/id
+pair and mutable reference data; duplicate registration updates data in place.
+The live chain runs newest first. A bounded stack frame preserves the chain
+position across nested sends, self-removal and removal of later callbacks.
+Newly registered callbacks join subsequent dispatches. NCDESTROY delivers the
+remaining callbacks and then releases the window's metadata automatically.
+Cross-thread use is explicitly unsupported rather than unsafely invoking code
+on the wrong thread. Limits are 16 entries/window, 128/process, 32 active
+subclass dispatches/thread. Metadata is allocated lazily and creates no worker,
+service, polling loop or kernel callback pointer. Real mutation/continuation
+and native cleanup tests are pending; export identity alone is not behavior.

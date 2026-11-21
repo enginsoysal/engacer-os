@@ -88,11 +88,37 @@ __declspec(dllimport) int AdjustWindowRectEx(void*,unsigned,int,unsigned);
 __declspec(dllimport) int AdjustWindowRect(void*,unsigned,int);
 __declspec(dllimport) int SetWindowPos(uint64_t,uint64_t,int,int,int,int,unsigned);
 __declspec(dllimport) int64_t DefWindowProcW(uint64_t,unsigned,uint64_t,int64_t);
+__declspec(dllimport) int64_t SendMessageW(uint64_t,unsigned,uint64_t,int64_t);
 typedef struct{uint64_t window,after;int x,y,width,height;unsigned flags,pad;} native_position148;
 _Static_assert(sizeof(native_position148)==40,"Owned WINDOWPOS ABI");
 static unsigned class_created148,class_destroyed148,class_pre148,class_post148,class_moves148,class_sizes148;static uint32_t class_move148,class_size148;static int class_delta148;
-static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){if(message==1)++class_created148;if(message==0x82)++class_destroyed148;if(message==0x46){++class_pre148;if(class_delta148){((native_position148*)(uintptr_t)lp)->width+=class_delta148;class_delta148=0;}}if(message==0x47)++class_post148;if(message==3){++class_moves148;class_move148=(uint32_t)lp;}if(message==5){++class_sizes148;class_size148=(uint32_t)lp;}return DefWindowProcW(window,message,wp,lp);}
+static int64_t class_proc148(uint64_t window,unsigned message,uint64_t wp,int64_t lp){if(message==1)++class_created148;if(message==0x82)++class_destroyed148;if(message==0x46){++class_pre148;if(class_delta148){((native_position148*)(uintptr_t)lp)->width+=class_delta148;class_delta148=0;}}if(message==0x47)++class_post148;if(message==3){++class_moves148;class_move148=(uint32_t)lp;}if(message==5){++class_sizes148;class_size148=(uint32_t)lp;}if(message>=0x8100&&message<=0x8104)return 10;return DefWindowProcW(window,message,wp,lp);}
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
+static void say148(const char*);
+typedef int64_t(*native_subproc148)(uint64_t,unsigned,uint64_t,int64_t,uint64_t,uint64_t);
+static int(*set_sub148)(uint64_t,native_subproc148,uint64_t,uint64_t);static int(*get_sub148)(uint64_t,native_subproc148,uint64_t,uint64_t*);static int(*remove_sub148)(uint64_t,native_subproc148,uint64_t);static int64_t(*def_sub148)(uint64_t,unsigned,uint64_t,int64_t);static uint64_t subclass_order148,subclass_data148;
+static int64_t subclass_proc_test148(uint64_t h,unsigned message,uint64_t wp,int64_t lp,uint64_t id,uint64_t data){
+ if(message==0x82){check(remove_sub148(h,subclass_proc_test148,id),440);return def_sub148(h,message,wp,lp);}
+ if(message>=0x8100&&message<=0x8104){subclass_order148=subclass_order148*10+id;subclass_data148=data;
+  if(id==2&&message==0x8101)check(remove_sub148(h,subclass_proc_test148,1),441);
+  if(id==2&&message==0x8102)check(set_sub148(h,subclass_proc_test148,1,77),442);
+  if(id==2&&message==0x8103)check(remove_sub148(h,subclass_proc_test148,2),443);
+  if(message==0x8104)check(SendMessageW(h,0x8100,0,0)==110,444);
+  return def_sub148(h,message,wp,lp)+(int64_t)id*100;
+ }return def_sub148(h,message,wp,lp);
+}
+static void subclass_tests148(uint64_t h){
+ uint64_t dll=LoadLibraryExA("comctl32.dll",0,0);check(dll!=0,445);set_sub148=GetProcAddress(dll,"SetWindowSubclass");get_sub148=GetProcAddress(dll,"GetWindowSubclass");remove_sub148=GetProcAddress(dll,"RemoveWindowSubclass");def_sub148=GetProcAddress(dll,"DefSubclassProc");check(set_sub148&&get_sub148&&remove_sub148&&def_sub148,446);check(GetProcAddress(dll,(const char*)410)==(void*)set_sub148&&GetProcAddress(dll,(const char*)413)==(void*)def_sub148,447);
+ check(set_sub148(h,subclass_proc_test148,1,11)&&set_sub148(h,subclass_proc_test148,2,22),448);uint64_t data=99;for(unsigned i=0;i<500;++i)check(set_sub148(h,subclass_proc_test148,1,i),449);check(get_sub148(h,subclass_proc_test148,1,&data)&&data==499,450);
+ subclass_order148=0;check(SendMessageW(h,0x8100,0,0)==310&&subclass_order148==21&&subclass_data148==499,451);
+ subclass_order148=0;check(SendMessageW(h,0x8101,0,0)==210&&subclass_order148==2&&!get_sub148(h,subclass_proc_test148,1,&data),452);
+ subclass_order148=0;check(SendMessageW(h,0x8102,0,0)==210&&subclass_order148==2&&get_sub148(h,subclass_proc_test148,1,&data)&&data==77,453);
+ subclass_order148=0;check(SendMessageW(h,0x8103,0,0)==310&&subclass_order148==12&&!get_sub148(h,subclass_proc_test148,2,&data),454);
+ subclass_order148=0;check(SendMessageW(h,0x8104,0,0)==110&&subclass_order148==11,455);
+ check(remove_sub148(h,subclass_proc_test148,1)&&!remove_sub148(h,subclass_proc_test148,1)&&SendMessageW(h,0x8100,0,0)==10,456);
+ for(unsigned i=0;i<16;++i)check(set_sub148(h,subclass_proc_test148,10+i,i),457);check(!set_sub148(h,subclass_proc_test148,99,0)&&GetLastError()==1816,458);for(unsigned i=0;i<16;++i)check(remove_sub148(h,subclass_proc_test148,10+i),459);
+ check(set_sub148(h,subclass_proc_test148,1,0)&&FreeLibrary(dll),460);say148("M148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\n");
+}
 static uint64_t lock,left,right;
 static void(*shutdown_gp148)(uint64_t);
 static unsigned gp_shutdown_worker148(void*token){shutdown_gp148((uint64_t)(uintptr_t)token);return 0;}
@@ -169,6 +195,7 @@ void entry(void){
  int placed[4];check(SetWindowPos(framed,0,30,40,-7,-9,0x215)&&GetWindowRect(framed,placed)&&placed[0]==30&&placed[1]==40&&placed[2]-placed[0]==212&&placed[3]-placed[1]==141&&class_pre148==2&&class_post148==2&&class_moves148==1&&class_sizes148==1&&class_move148==(31u|(80u<<16)),402);
  check(SetWindowPos(framed,0,35,45,0,0,0x415)&&class_pre148==2&&class_post148==3&&class_moves148==2&&class_sizes148==1&&class_move148==(36u|(85u<<16)),403);check(!SetWindowPos(framed,0,1,1,1,1,0)&&GetLastError()==50&&GetWindowRect(framed,placed)&&placed[0]==35&&placed[1]==45&&DestroyWindow(framed)&&class_destroyed148==1,404);
  int invalid_adjustment[4]={INT32_MIN,0,10,10};check(!AdjustWindowRectEx(invalid_adjustment,0x02c80000,0,0)&&invalid_adjustment[0]==INT32_MIN&&!AdjustWindowRectEx(plain_adjusted,0x02c80000,0,0x200),400);
+ subclass_tests148(hidden);
  check(DestroyWindow(hidden)&&class_destroyed148==2&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
