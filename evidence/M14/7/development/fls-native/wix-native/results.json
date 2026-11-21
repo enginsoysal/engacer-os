@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "build_id": "a6eed77f46a4baa3b5364b847e7a3535",
+  "scope": "Original unchanged WiX native DLL load/export/unload only; not custom-action execution or MSI installation qualification",
+  "clone": {
+    "source_sha256": "df14367c1f3eb7742fb0d9a4dafcc6f375780f34630bc4f21cddd7a1a12f4e41",
+    "clone_sha256": "df14367c1f3eb7742fb0d9a4dafcc6f375780f34630bc4f21cddd7a1a12f4e41",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "7a6bc9b2571dd70db2f7602217e1c9c4486a8c474ee05147c7c23415b8232ca2",
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 22, in main\n    c.shot(g,'global-memory-lifetimes');value=task(g,p,12005);assert 'Mapped original image: 7z.exe' in value and '7-Zip' in value\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: Required Windows API is unavailable; see the call-site diagnostic. OUTPUT Mapped original image: 7zFM.exe bytes=20480 source-fnv32=3760766323\nRunning the original Windows executable in a protected process.\n\nMapped original image: wix147.dll bytes=438272 source-fnv32=1471946921\nMapped original image: msi.dll bytes=405504 source-fnv32=1308780851\nUnavailable Win32 API caller=0x000000011005610d main=0x0000000110000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n\n"
+}

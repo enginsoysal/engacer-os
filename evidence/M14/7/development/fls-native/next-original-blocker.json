@@ -1,0 +1,10 @@
+{
+  "scope": "Original bytes and relative call/import metadata only; no host PE execution",
+  "original_sha256": "54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381",
+  "return_rva": "0x3610d",
+  "thunks": [],
+  "iat_rva": "0x3f2e0",
+  "dll": "KERNEL32.dll",
+  "symbol": "IsValidCodePage",
+  "observer_sha256": "d252609d89e2425aa44f7403c2f4cc3f807285a091b562eb2b76d3103455cf42"
+}

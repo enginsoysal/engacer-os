@@ -1,0 +1,8 @@
+{
+  "scope": "Compile an own native FLS caller; no host PE execution.",
+  "sources": {
+    "tests/m14/fls147_native.c": "01af9d6f78d740ba0cf982e0b68505c2972a925a3fedd1a043768a612780d1fa",
+    "tests/m14/fls147_build.py": "1c550b536e9296646f60fc0b9aa8226196aa46f13aaf6b36788e946d215d57be"
+  },
+  "fixture_sha256": "a2a013765ebc80363c5cf414bc10b54391ccfb4633140dc31410ec4f68b1acf2"
+}
