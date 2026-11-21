@@ -297,7 +297,23 @@ void w8_pump(void){
 }
 
 #include <engine/network/clock.h>
+#ifdef ENGINE_M14
+/* One worker CPU serializes this shared wall-clock anchor across app lifetimes. */
+static uint64_t utc_filetime148,utc_microseconds148;
+static uint64_t now8(void){
+ if(!utc_filetime148){uint64_t began=m3_clock_microseconds();clock7_time t;
+  for(unsigned attempt=0;attempt<64;++attempt){
+   if(!clock7_read(&t)&&t.days>=584754){utc_filetime148=(((uint64_t)t.days-584754)*86400+t.seconds)*UINT64_C(10000000);utc_microseconds148=m3_clock_microseconds();break;}
+   if(m3_clock_microseconds()-began>=5000)break;__asm__ volatile("pause");
+  }
+  if(!utc_filetime148)return 0;
+ }
+ uint64_t current=m3_clock_microseconds();if(current<utc_microseconds148)return 0;uint64_t elapsed=current-utc_microseconds148;
+ if(elapsed>(UINT64_MAX-utc_filetime148)/10)return 0;return utc_filetime148+elapsed*10;
+}
+#else
 static uint64_t now8(void){clock7_time t;if(clock7_read(&t)||t.days<584754)return 0;return (((uint64_t)t.days-584754)*86400+t.seconds)*UINT64_C(10000000);}
+#endif
 static unsigned information8(const v6_entry*entry,w8_file_info*out){
  memset(out,0,sizeof(*out));out->size=entry->size;out->crc=entry->crc;out->kind=entry->kind;out->identity=(uint64_t)(entry-m6_volume()->entries)+1;
  file_metadata143 metadata;unsigned object=file_object_slot143(entry->path),error=0;if(object<FILE_OBJECTS143){metadata=file_objects143[object]->metadata;out->size=file_objects143[object]->size;}else error=metadata_load143(entry->path,entry->kind,&metadata);if(error)return error;

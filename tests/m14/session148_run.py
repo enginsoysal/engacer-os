@@ -3,6 +3,7 @@ import hashlib,json,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 def main():
+ from rtc148_observer import begin as rtc_begin148,end as rtc_end148
  from exe148_probe_build import build
  private,inputs=build();production=private.parent/'WINDOWS8.ELF'
  import replay8
@@ -14,11 +15,14 @@ def main():
   needle="try:mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())"
   assert text.count(needle)==1
   text=text.replace(needle,"try:\n  mounted.put('/System/Windows/runtime8.elf',production.read_bytes())\n  mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())")
+  fault_call='    text=task(g,p,12100);'
+  assert text.count(fault_call)==1
+  text=text.replace(fault_call,"    fault=rtc_begin148(g,ui) if cycle==1 else None\n    try:text=task(g,p,12100)\n    finally:\n     if fault:report['rtc_fault_injection']=rtc_end148(g,fault)\n    ")
   marker="report.update(passed=True,cycles=samples,subsequent_original_console_success=True,output=text);"
   assert text.count(marker)==1
   text=text.replace(marker,"delivered=g.log().count('M148_NATIVE_SHELL_ASSOCIATIONS_REFRESH');assert delivered==3,delivered;"+marker+"report['native_shell_refresh_deliveries']=delivered;")
   out=ROOT/'build/m14-native/stage8/session-native';out.mkdir(parents=True,exist_ok=True)
-  (out/'observer.json').write_bytes((json.dumps(dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,production_worker_inputs=inputs,production_worker_sha256=hashlib.sha256(production.read_bytes()).hexdigest()),indent=2)+'\n').encode())
-  namespace=dict(__file__=str(source),__name__='session148_derived',production=production);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
+  (out/'observer.json').write_bytes((json.dumps(dict(canonical_sha256=hashlib.sha256(raw).hexdigest(),executed_sha256=hashlib.sha256(text.encode()).hexdigest(),replacements=replacements,rtc_observer_sha256=hashlib.sha256((ROOT/'tests/m14/rtc148_observer.py').read_bytes()).hexdigest(),production_worker_inputs=inputs,production_worker_sha256=hashlib.sha256(production.read_bytes()).hexdigest()),indent=2)+'\n').encode())
+  namespace=dict(__file__=str(source),__name__='session148_derived',production=production,rtc_begin148=rtc_begin148,rtc_end148=rtc_end148);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
  finally:sys.meta_path.remove(loader)
 if __name__=='__main__':main()

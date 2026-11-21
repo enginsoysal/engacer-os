@@ -1,0 +1,56 @@
+{"worker": "WINDOWS8.ELF", "kernel_build_id": "b5eb85452a231bef9798ee57c86901d1", "sha256": "d77642b11d91abee2aeb969b73fae9f338a4bb0869d133dd7792fe469c5d2342"}
+Traceback (most recent call last):
+{
+  "passed": false,
+  "build_id": "b5eb85452a231bef9798ee57c86901d1",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "b2e53695da03ed5ec99db38e37c2960a14cd9d5fe989999dc586393f240226a7",
+    "clone_sha256": "b2e53695da03ed5ec99db38e37c2960a14cd9d5fe989999dc586393f240226a7",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "06d807a872067ee5ddeaca15a0880fa8e61a6e550ae452b4c953ebd420a57478",
+  File "<project-root>\tests\m14\session148_run.py", line 24, in <module>
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 21, in main\n    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError:  OUTPUT Mapped original image: 7zFM.exe bytes=77824 source-fnv32=3560221193\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nM148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS\nM148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_PROGRESS_RANGE_POSITION_STEP_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=77824 source-fnv32=3560221193\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\nM148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\nM148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS\nM148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS\nMapped original image: 7zFM.exe bytes=77824 source-fnv32=3560221193\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS\n\nEngacer OS: The UTC system clock could not be read.\n\n"
+}
+    if __name__=='__main__':main()
+  File "<project-root>\tests\m14\session148_run.py", line 22, in main
+    namespace=dict(__file__=str(source),__name__='session148_derived',production=production);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
+  File "<project-root>\tests\m14\global146_run.py", line 21, in main
+    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))
+  File "<project-root>\tests\m14\apps_native4.py", line 22, in task
+    raise AssertionError(raw[304:].split(b'\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\0',1)[0].decode(errors='replace'))
+AssertionError:  OUTPUT Mapped original image: 7zFM.exe bytes=77824 source-fnv32=3560221193
+Running the original Windows executable in a protected process.
+
+M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS
+M148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS
+M148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS
+M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS
+M148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS
+M148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS
+M148_NATIVE_QUEUE_ONLY_MESSAGE_WAIT_DEADLINE_WAKE_PASS
+M148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS
+M148_NATIVE_WINDOW_DC_CALCRECT_PASS
+M148_NATIVE_PROGRESS_RANGE_POSITION_STEP_PASS
+M148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS
+M148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS
+M148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS
+Mapped original image: 7zFM.exe bytes=77824 source-fnv32=3560221193
+Running the original Windows executable in a protected process.
+
+M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS
+M148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS
+M148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS
+M148_NATIVE_SHELL_REGISTRY_VALUE_DELETE_GUARDS_PASS
+M148_NATIVE_SHELL_REGISTRY_TREE_NULL_EMPTY_GUARDS_PASS
+M148_NATIVE_SHELL_REGISTRY_SET_VALUE_READBACK_GUARDS_PASS
+Mapped original image: 7zFM.exe bytes=77824 source-fnv32=3560221193
+Running the original Windows executable in a protected process.
+
+M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS
+M148_NATIVE_GLYPH_PACKET_COVERAGE_GUARDS_PASS
+
+Engacer OS: The UTC system clock could not be read.
+

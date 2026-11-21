@@ -251,6 +251,7 @@ static void utc_tests148(void){
  if(month>2&&!(year%4)&&(year%100||!(year%400)))++days;
  uint64_t time=((days*86400+(uint64_t)fields[4]*3600+fields[5]*60+fields[6])*1000+fields[7])*10000;
  check(fields[2]==(days+1)%7&&time+9999>=before&&time<=after,641);
+ uint64_t advanced=0;Sleep(40);GetSystemTimeAsFileTime(&advanced);check(advanced>=after+200000,644);
  static const struct{uint64_t time;uint16_t fields[8];} cases[]={{UINT64_C(0),{1601,1,1,1,0,0,0,0}},{UINT64_C(94405824000000000),{1900,3,4,1,0,0,0,0}},{UINT64_C(125963423981230000),{2000,2,2,29,23,59,58,123}},{UINT64_C(133536836967890000),{2024,2,4,29,12,34,56,789}},{UINT64_C(2650467743999990000),{9999,12,5,31,23,59,59,999}}};
  for(unsigned i=0;i<sizeof(cases)/sizeof(*cases);++i){uint16_t actual[8];check(FileTimeToSystemTime(&cases[i].time,actual),642);for(unsigned j=0;j<8;++j)check(actual[j]==cases[i].fields[j],643);}
  say148("M148_NATIVE_UTC_SYSTEMTIME_CLOCK_COHERENCE_PASS\n");

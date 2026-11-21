@@ -503,3 +503,16 @@ caches and request native repaint. A delivered revision/serial marker follows
 those effects. This does not introduce Windows change-listener registration,
 COM thumbnail handlers or Windows-program association launching before their
 separate implementation/qualification.
+
+## Shared UTC clock continuity
+
+A valid RTC sample seeds one compatibility UTC clock. Its value advances with
+existing HPET elapsed microseconds across applications and CPU halt periods.
+Initialization alone retries RTC stability, bounded by both attempts and five
+milliseconds; subsequent Win32 time and file/registry timestamp calls avoid raw
+CMOS sampling. This corrects an observed transient zero-time result rather than
+returning a fixed fallback date. The initial absolute precision remains the RTC
+second. Setting/resynchronizing wall time and suspend calibration are separate.
+A disposable-VM RTC SET fault, restored through monitor I/O, tests continuity after
+a real initial seed; it is not proof that UTC can be obtained with no trusted
+initial time source.
