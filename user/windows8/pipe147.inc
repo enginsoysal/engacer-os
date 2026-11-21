@@ -1,0 +1,16 @@
+/* Native anonymous pipes; kernel grants own buffering, inheritance and blocking. */
+#include <engine/winpipe147.h>
+static HANDLE std_handles147[3]={1,2,3};
+typedef struct {uint32_t size,pad;uint64_t descriptor;uint32_t inherit,pad2;} pipe_security147;
+static unsigned pipe_handle147(HANDLE h){return(h&WPIPE_TAG_MASK147)==WPIPE_TAG147;}
+static int64_t pipe_api147(unsigned op,uint64_t a,uint64_t b,uint64_t c){int64_t result=(int64_t)sys8(W8_SYS_PIPE147,op,a,b,c,0);if(result<0)last8((unsigned)-result);return result;}
+static int MS f_CreatePipe(HANDLE*read,HANDLE*write,pipe_security147*security,unsigned hint){if(!read||!write){last8(87);return 0;}*read=*write=0;if(security&&(security->size!=sizeof(*security)||security->descriptor)){last8(security->descriptor?50:87);return 0;}wpipe_pair147 pair={.hint=hint,.inherit=security&&security->inherit!=0};if(pipe_api147(WPIPE_CREATE147,(uint64_t)(uintptr_t)&pair,0,0)<0)return 0;*read=pair.read;*write=pair.write;last8(0);return 1;}
+static int MS f_DuplicateHandle(HANDLE source_process,HANDLE source,HANDLE target_process,HANDLE*out,unsigned access,int inherit,unsigned flags){if(!out){last8(87);return 0;}*out=0;if(source_process!=UINT64_MAX||target_process!=UINT64_MAX||!pipe_handle147(source)){last8(50);return 0;}if(flags&~2u){last8(50);return 0;}if(!(flags&2)&&(access&~0xc0000000u)){last8(87);return 0;}wpipe_duplicate147 request={.source=source,.inherit=inherit!=0,.flags=flags,.access=((access&0x80000000u)?1u:0u)|((access&0x40000000u)?2u:0u)};if(pipe_api147(WPIPE_DUPLICATE147,(uint64_t)(uintptr_t)&request,0,0)<0)return 0;*out=request.result;return 1;}
+static int MS f_GetHandleInformation(HANDLE h,unsigned*out){if(!out){last8(87);return 0;}if(!pipe_handle147(h)){last8(50);return 0;}int64_t value=pipe_api147(WPIPE_QUERY147,h,0,0);if(value<0)return 0;*out=(unsigned)value;return 1;}
+static int MS f_SetHandleInformation(HANDLE h,unsigned mask,unsigned flags){if(!pipe_handle147(h)){last8(50);return 0;}return pipe_api147(WPIPE_FLAGS147,h,mask,flags)>=0;}
+static int pipe_read147(HANDLE h,void*out,unsigned size,unsigned*got){unsigned n=size>4096?4096:size;int64_t result=pipe_api147(WPIPE_READ147,h,(uint64_t)(uintptr_t)out,n);if(result<0)return 0;*got=(unsigned)result;return 1;}
+static int pipe_write147(HANDLE h,const void*data,unsigned size,unsigned*written){unsigned at=0;do{unsigned n=size-at;if(n>4096)n=4096;int64_t result=pipe_api147(WPIPE_WRITE147,h,(uint64_t)(uintptr_t)data+at,n);if(result<0){*written=at;return 0;}if(n&&!result){*written=at;last8(29);return 0;}at+=(unsigned)result;}while(at<size);*written=at;return 1;}
+static int MS f_SetStdHandle(int32_t which,HANDLE value){unsigned at=which==-10?0:which==-11?1:which==-12?2:3;if(at==3){last8(87);return 0;}__atomic_store_n(std_handles147+at,value,__ATOMIC_RELEASE);return 1;}
+static unsigned MS f_GetFileType(HANDLE h){if(h>=1&&h<=3)return 2;if(pipe_handle147(h))return pipe_api147(WPIPE_QUERY147,h,0,0)<0?0:3;int64_t result=(int64_t)sys8(W8_SYS_FILE_OP143,h,4,0,0,0);if(result<0){last8((unsigned)-result);return 0;}return 1;}
+
+static unsigned MS f_GetPriorityClass(HANDLE process){if((int64_t)sys8(W8_SYS_PROCESS_ID,process,0,0,0,0)<0){last8(6);return 0;}return 0x20u;}

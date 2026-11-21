@@ -17,7 +17,7 @@ typedef struct {char path[256];uint64_t position,size;unsigned live,write,object
 #define THREADS142 16u
 #define THREAD_STACK142(i) (UINT64_C(0x104000000)+(uint64_t)(i)*0x200000)
 #define THREAD_TEB142(i) (W8_TEB+(uint64_t)(i)*0x10000)
-enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED,T142_OBJECT,T143_FILELOCK,T144_GUI};
+enum {T142_FREE,T142_READY,T142_SLEEP,T142_PARK,T142_SUSPENDED,T142_EXITED,T142_OBJECT,T143_FILELOCK,T144_GUI,T147_PIPE};
 typedef struct {
  trap_frame frame;_Alignas(16) uint8_t fx[512];
  uint64_t deadline,address,teb,low,top;
@@ -54,12 +54,13 @@ static trap_frame context8;static _Alignas(16) uint8_t fx8[512];static uint8_t p
 static uint64_t old_gs8;static w8_info info8;static w8_info*const root_info142=&info8;static uint8_t io8[4096];
 #define info8 (*(active_space142?&spaces142[active_space142]->child_info:root_info142))
 extern void timer_claim142(unsigned,unsigned);
-static unsigned timer_needed142,sync_resident142,file_resident143,registry_resident143,ui_resident144,clipboard_resident144,mapping_resident146;
+static unsigned timer_needed142,sync_resident142,file_resident143,registry_resident143,ui_resident144,clipboard_resident144,mapping_resident146,pipe_resident147;
 static void refresh_sync_waits142(void);
 static unsigned sync_deadline_needed142(void);
 static void release_sync_grants142(void);
 #ifdef ENGINE_M14
 static void mapping_release146(void);
+static void pipe_release147(void);
 static unsigned mapping_name_taken146(const uint16_t*);
 #endif
 volatile unsigned w8_active;
@@ -128,7 +129,7 @@ static unsigned length8(const char*s){unsigned n=0;while(s[n])++n;return n;}
 static int equal8(const char*a,const char*b){while(*a&&*a==*b){++a;++b;}return *a==*b;}
 static void copy8(char*out,const char*in,unsigned cap){unsigned n=0;while(n+1<cap&&in[n]){out[n]=in[n];++n;}out[n]=0;}
 static int prefix8(const char*p,const char*root){unsigned n=length8(root);return n&&(!memcmp(p,root,n))&&(p[n]=='/'||!p[n]);}
-static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143+ui_resident144+clipboard_resident144+mapping_resident146;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
+static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143+ui_resident144+clipboard_resident144+mapping_resident146+pipe_resident147;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
 static void peak8(void){if((uint64_t)count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+metadata_pages142[active_space142];group_peak142();}
 static uint64_t allocate8(void){if(count8==OWN8)return 0;uint64_t p=page_alloc();if(p)owned8[count8++]=p;peak8();return p;}
 static uint64_t *pte8(uint64_t va,unsigned create){
@@ -204,7 +205,7 @@ static void registry_release143(void);
 #include "ui144.inc"
 static void release8(void){if(!spaces142[active_space142])return;ui_release144();release_sync_grants142();release_grants142();file_release143();registry_release143();
 #ifdef ENGINE_M14
- mapping_release146();
+ mapping_release146();pipe_release147();
 #endif
  while(count8)page_free(owned8[--count8]);free_space142(active_space142);}
 
@@ -260,6 +261,9 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  serial_text(slot?"M142_CHILD_CREATED command=":"M8_CPL3_CREATED command=");serial_hex(command);serial_text(" pid=");serial_hex(input8.process_id);serial_text("\n");return 0;
  failure:release8();if(!slot){root_info142->state=3;root_info142->status=1;copy8(root_info142->message,"The protected Windows runtime could not be loaded.",sizeof(root_info142->message));++root_info142->revision;}return V6_INVALID;
 }
+#ifdef ENGINE_M14
+#include "pipe147.inc"
+#endif
 #include "process142.inc"
 #include "sync142.inc"
 #ifdef ENGINE_M14
@@ -301,6 +305,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_UI144:return ui_syscall144(a,b,c,d,e,f);
 #ifdef ENGINE_M14
  case W8_SYS_MAPPING146:return e?-87:mapping_call146(a,b,c,d);
+ case W8_SYS_PIPE147:return e?-87:pipe_call147(a,b,c,d,f);
 #endif
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);

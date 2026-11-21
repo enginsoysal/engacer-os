@@ -73,7 +73,7 @@ static unsigned environment_copy143(const w8_process_request*request,unsigned ca
 }
 static int64_t create_process142(uint64_t request_address,uint64_t result_address){
  w8_process_request request;w8_process_result result={0};if(user8(request_address,&request,sizeof(request),0)||user8(result_address,&result,sizeof(result),1))return -87;
- if(!terminated142(request.source,sizeof(request.source))||!terminated142(request.command,sizeof(request.command))||!terminated142(request.directory,sizeof(request.directory))||(request.flags&~0x424u))return -87;
+ if(!terminated142(request.source,sizeof(request.source))||!terminated142(request.command,sizeof(request.command))||!terminated142(request.directory,sizeof(request.directory))||(request.flags&~W8_CREATE_FLAGS147))return -87;
  if(!path8(request.source,0)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);if(error)return -(int64_t)error;
  unsigned caller=active_space142,target=1,free_handles=0;while(target<SPACES142&&spaces142[target])++target;for(unsigned i=0;i<32;++i)if(!spaces142[caller]->handles[i].live)++free_handles;if(target==SPACES142||free_handles<2)return -8;
  int object=new_process_object142();if(object<0)return -8;
@@ -82,6 +82,9 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  if(status){drop_process_object142((unsigned)object);return -8;}
 #ifdef ENGINE_M14
  spaces142[target]->install_authority147=spaces142[caller]->install_authority147;
+ error=pipe_inherit147(caller,target,&request);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
+ spaces142[target]->input.startup_flags147=request.startup_flags147;memcpy(spaces142[target]->input.std_handles147,request.std_handles147,sizeof(request.std_handles147));copy8(spaces142[target]->input.windows_root,spaces142[caller]->input.windows_root,256);
+ active_space142=target;error=user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
 #endif
  error=environment_copy143(&request,caller,target);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  result.process=new_process_handle142((unsigned)object,1);result.thread=new_process_handle142((unsigned)object,2);

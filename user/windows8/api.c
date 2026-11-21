@@ -21,6 +21,9 @@ static virtual8 virtual_blocks8[128];static uint64_t next_virtual8=UINT64_C(0x12
 static uint64_t tls_values8[16][64],tls_used8;
 static lock142 tls_lock142;
 static void last8(unsigned e){error8=e;*(volatile uint32_t*)(uintptr_t)(teb142()+0x68)=e;}
+#ifdef ENGINE_M14
+#include "pipe147.inc"
+#endif
 static unsigned lower8(unsigned c){return c>='A'&&c<='Z'?c+32:c;}
 static void widecopy8(WCHAR*out,const WCHAR*in,unsigned cap){unsigned n=0;while(n+1<cap&&in&&in[n]){out[n]=in[n];++n;}if(cap)out[n]=0;}
 static void winpath8(const char*native,char*out,unsigned cap){
@@ -79,7 +82,13 @@ static uint32_t MS f_GetCurrentProcessId(void){return *(volatile uint32_t*)(uint
 static uint32_t MS f_GetCurrentThreadId(void){return tid142();}
 static HANDLE MS f_GetCurrentProcess(void){return UINT64_MAX;}
 static HANDLE MS f_GetCurrentThread(void){return UINT64_MAX-1;}
-static HANDLE MS f_GetStdHandle(int32_t kind){return kind==-10?1:kind==-11?2:kind==-12?3:UINT64_MAX;}
+static HANDLE MS f_GetStdHandle(int32_t kind){
+#ifdef ENGINE_M14
+ unsigned at=kind==-10?0:kind==-11?1:kind==-12?2:3;if(at==3){last8(87);return UINT64_MAX;}return __atomic_load_n(std_handles147+at,__ATOMIC_ACQUIRE);
+#else
+ return kind==-10?1:kind==-11?2:kind==-12?3:UINT64_MAX;
+#endif
+}
 static uint32_t MS f_GetTickCount(void){return (uint32_t)sys8(W8_SYS_TIME,0,0,0,0,0);}
 static int MS f_QueryPerformanceCounter(uint64_t*out){if(!out){last8(87);return 0;}*out=sys8(W8_SYS_TIME,0,0,0,0,0);return 1;}
 static int MS f_QueryPerformanceFrequency(uint64_t*out){if(!out){last8(87);return 0;}*out=1000;return 1;}
@@ -121,12 +130,20 @@ static HANDLE MS f_CreateFileW(const WCHAR*name,unsigned access,unsigned share,v
  last8(exists&&(creation==2||creation==4)?183:0);return (HANDLE)result;
 }
 static int MS f_ReadFile(HANDLE h,void*out,unsigned size,unsigned*got,void*overlapped){
- if(got)*got=0;if(!got||overlapped){last8(87);return 0;}if(h==1)return 1;
+ if(got)*got=0;if(!got||overlapped){last8(87);return 0;}
+#ifdef ENGINE_M14
+ if(pipe_handle147(h))return pipe_read147(h,out,size,got);
+#endif
+ if(h==1)return 1;
  unsigned total=0;while(total<size){unsigned count=size-total;if(count>4096)count=4096;int64_t read=file_api143(h,1,(uint64_t)(uintptr_t)((uint8_t*)out+total),count);if(read<0){*got=total;return 0;}total+=(unsigned)read;if((unsigned)read<count)break;}
  if(!size&&file_api143(h,1,(uint64_t)(uintptr_t)out,0)<0)return 0;*got=total;return 1;
 }
 static int MS f_WriteFile(HANDLE h,const void*in,unsigned size,unsigned*written,void*overlapped){
- if(written)*written=0;if(!written||overlapped){last8(87);return 0;}if(h==2||h==3){const uint8_t*p=in;unsigned remain=size;while(remain){unsigned n=remain>4096?4096:remain;if((int64_t)sys8(W8_SYS_OUTPUT,(uint64_t)p,n,0,0,0)<0){last8(29);return 0;}p+=n;remain-=n;}*written=size;return 1;}
+ if(written)*written=0;if(!written||overlapped){last8(87);return 0;}
+#ifdef ENGINE_M14
+ if(pipe_handle147(h))return pipe_write147(h,in,size,written);
+#endif
+ if(h==2||h==3){const uint8_t*p=in;unsigned remain=size;while(remain){unsigned n=remain>4096?4096:remain;if((int64_t)sys8(W8_SYS_OUTPUT,(uint64_t)p,n,0,0,0)<0){last8(29);return 0;}p+=n;remain-=n;}*written=size;return 1;}
  unsigned total=0;while(total<size){unsigned count=size-total;if(count>4096)count=4096;int64_t n=file_api143(h,2,(uint64_t)(uintptr_t)((const uint8_t*)in+total),count);if(n<0){*written=total;return 0;}total+=(unsigned)n;}
  if(!size&&file_api143(h,2,(uint64_t)(uintptr_t)in,0)<0)return 0;*written=total;return 1;
 }
@@ -396,6 +413,9 @@ static const api8 api8_table[]={
  {"__CxxFrameHandler",guard_frame146,2},{"_CxxThrowException",guard_throw146,2},{"?terminate@@YAXXZ",guard_cxx8,2},{"__C_specific_handler",f___C_specific_handler,2},{"_XcptFilter",guard_seh8,2},{"_purecall",guard_pure8,2},{"??1type_info@@UEAA@XZ",f_type_info_destructor,2},
  API8(GetEnvironmentVariableW,1),API8(GetEnvironmentVariableA,1),API8(SetEnvironmentVariableW,1),API8(SetEnvironmentVariableA,1),API8(GetEnvironmentStringsW,1),API8(GetEnvironmentStringsA,1),API8(FreeEnvironmentStringsW,1),API8(FreeEnvironmentStringsA,1),API8(ExpandEnvironmentStringsW,1),API8(ExpandEnvironmentStringsA,1),API8(CreateProcessW,1),API8(CreateProcessA,1),API8(GetExitCodeProcess,1),API8(GetProcessId,1),API8(TerminateProcess,1),API8(GetStartupInfoW,1),API8(GetStartupInfoA,1),API8(ExitProcess,1),API8(GetCommandLineW,1),API8(GetCommandLineA,1),API8(GetLastError,1),API8(SetLastError,1),API8(GetCurrentProcessId,1),API8(GetCurrentThreadId,1),API8(GetCurrentProcess,1),API8(GetCurrentThread,1),API8(GetStdHandle,1),API8(GetTickCount,1),API8(QueryPerformanceCounter,1),API8(QueryPerformanceFrequency,1),API8(GetSystemTimeAsFileTime,1),API8(GetVersion,1),API8(GetVersionExW,1),API8(GetSystemInfo,1),API8(GetProcessAffinityMask,1),API8(SetProcessAffinityMask,1),API8(SetThreadAffinityMask,1),API8(GlobalMemoryStatusEx,1),API8(GetLargePageMinimum,1),API8(VirtualAlloc,1),API8(VirtualFree,1),API8(VirtualProtect,1),API8(TlsAlloc,1),API8(TlsFree,1),API8(TlsGetValue,1),API8(TlsSetValue,1),API8(IsProcessorFeaturePresent,1),
  API8(CreateFileW,1),API8(ReadFile,1),API8(WriteFile,1),API8(SetFilePointer,1),API8(SetFilePointerEx,1),API8(GetFileSize,1),API8(GetFileSizeEx,1),API8(SetEndOfFile,1),API8(FlushFileBuffers,1),API8(LockFileEx,1),API8(UnlockFileEx,1),API8(LockFile,1),API8(UnlockFile,1),API8(GetFileInformationByHandle,1),API8(SetFileTime,1),API8(GetFileAttributesW,1),API8(SetFileAttributesW,1),API8(CreateDirectoryW,1),API8(DeleteFileW,1),API8(RemoveDirectoryW,1),API8(MoveFileW,1),API8(MoveFileExW,1),API8(MoveFileWithProgressW,1),API8(CreateHardLinkW,1),API8(GetFullPathNameW,1),API8(GetFullPathNameA,1),API8(GetCurrentDirectoryW,1),API8(SetCurrentDirectoryW,1),API8(GetTempPathW,1),API8(GetTempPathA,1),API8(GetTempFileNameW,1),API8(GetTempFileNameA,1),API8(GetDiskFreeSpaceExW,1),API8(GetDiskFreeSpaceW,1),API8(GetLogicalDriveStringsW,1),API8(FindFirstFileW,1),API8(FindNextFileW,1),API8(FindClose,1),API8(FindFirstStreamW,1),API8(FindNextStreamW,1),API8(DeviceIoControl,1),
+#ifdef ENGINE_M14
+ API8(CreatePipe,1),API8(DuplicateHandle,1),API8(GetHandleInformation,1),API8(SetHandleInformation,1),API8(SetStdHandle,1),API8(GetFileType,1),API8(GetPriorityClass,1),
+#endif
  API8(InitializeCriticalSection,1),API8(InitializeCriticalSectionAndSpinCount,1),API8(InitializeCriticalSectionEx,1),API8(EnterCriticalSection,1),API8(TryEnterCriticalSection,1),API8(LeaveCriticalSection,1),API8(DeleteCriticalSection,1),API8(CreateWaitableTimerW,1),API8(SetWaitableTimer,1),API8(CancelWaitableTimer,1),API8(CreateEventW,1),API8(CreateSemaphoreW,1),API8(SetEvent,1),API8(ResetEvent,1),API8(ReleaseSemaphore,1),API8(OpenEventW,1),API8(OpenSemaphoreW,1),API8(OpenWaitableTimerW,1),API8(WaitForSingleObject,1),API8(WaitForMultipleObjects,1),API8(CloseHandle,1),API8(CreateThread,1),API8(ExitThread,1),API8(GetExitCodeThread,1),API8(GetThreadId,1),API8(ResumeThread,1),API8(Sleep,1),API8(GetProcessTimes,1),API8(GetConsoleMode,1),API8(SetConsoleMode,1),API8(GetConsoleScreenBufferInfo,1),API8(SetConsoleCtrlHandler,1),API8(SetFileApisToOEM,1),API8(GetOEMCP,1),API8(GetACP,1),API8(MultiByteToWideChar,1),API8(WideCharToMultiByte,1),API8(FormatMessageW,1),API8(LocalFree,1),API8(FileTimeToSystemTime,1),API8(FileTimeToDosDateTime,1),API8(DosDateTimeToFileTime,1),API8(FileTimeToLocalFileTime,1),API8(LocalFileTimeToFileTime,1),API8(CompareFileTime,1),API8(GetModuleHandleA,1),API8(GetModuleHandleW,1),API8(GetProcAddress,1),API8(LoadLibraryExW,1),API8(LoadLibraryW,1),API8(LoadLibraryA,1),API8(FreeLibrary,1),API8(GetModuleFileNameW,1),API8(GetModuleFileNameA,1),API8(IsDebuggerPresent,1),
  API8(CreateFileMappingW,1),API8(OpenFileMappingW,1),API8(MapViewOfFile,1),API8(UnmapViewOfFile,1),
  API8(CreateMenu,4),API8(CreatePopupMenu,4),API8(IsMenu,4),API8(InsertMenuItemW,4),API8(SetMenuItemInfoW,4),API8(GetMenuItemInfoW,4),API8(GetMenuItemCount,4),API8(GetSubMenu,4),API8(GetMenuItemID,4),API8(DestroyMenu,4),API8(RemoveMenu,4),API8(AppendMenuW,4),API8(EnableMenuItem,4),API8(CheckMenuItem,4),API8(GetMenu,4),API8(SetMenu,4),API8(DrawMenuBar,4),API8(LoadMenuW,4),
@@ -411,6 +431,9 @@ void *resolve8(const char*dll,const char*name,unsigned ordinal){unsigned provide
  if(provider){if(name)for(unsigned i=0;i<sizeof(api8_table)/sizeof(api8_table[0]);++i)if(api8_table[i].provider==provider&&equal8(api8_table[i].name,name))return api8_table[i].address;void*guard=guard_lookup144(provider,name,ordinal);return guard?guard:guard_lookup145(provider,name,ordinal);}return pe8_import(dll,name,ordinal);
 }
 void init_win8(void){
+#ifdef ENGINE_M14
+ for(unsigned i=0;i<3;++i)std_handles147[i]=(job8->startup_flags147&0x100u)?job8->std_handles147[i]:i+1;
+#endif
  if(sys8(W8_SYS_EXCEPTION_REGISTER,(uint64_t)(uintptr_t)exception_entry142,0,0,0,0))fail8("Native exception dispatcher registration failed.");
  char win[512];if(job8->startup_command[0])copy8(command_utf8,job8->startup_command,sizeof(command_utf8));else{winpath8(job8->source,win,sizeof(win));copy8(command_utf8,"\"",sizeof(command_utf8));append8(command_utf8,win,sizeof(command_utf8));append8(command_utf8,"\" ",sizeof(command_utf8));append8(command_utf8,job8->arguments,sizeof(command_utf8));}if(utf8_to16(command_utf8,command8,1200)<0)fail8("Windows command line exceeds its bound.");
  char cwd[256];if(job8->startup_directory[0])copy8(cwd,job8->startup_directory,256);else{copy8(cwd,job8->user_root,256);append8(cwd,"/Documents",256);}winpath8(cwd,win,sizeof(win));if(utf8_to16(win,cwd8,512)<0)fail8("Windows working directory is too long.");
