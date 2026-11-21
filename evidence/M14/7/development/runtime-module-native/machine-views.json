@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "scope": "Native confirmed-worker authority, independent boot persistence and read-only apps.",
+  "build_id": "28d5e48025c0b026e680fd80f80e7d3a",
+  "clone": {
+    "source_sha256": "cfda86f43649fe8830bc9823985edc2b8ad6e75894adc08f68e2537430985a9a",
+    "clone_sha256": "cfda86f43649fe8830bc9823985edc2b8ad6e75894adc08f68e2537430985a9a",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "owned_fixture": "c993ab9ea3854affaad5507bc9dbfc51",
+  "checks": [
+    "Mapped original image: 7z.exe bytes=20480 source-fnv32=2490431462\nRunning the original Windows executable in a protected process.\n\nM147_MACHINE_RUN_READ_ONLY_VIEWS_PASS\n",
+    "Mapped original image: 7z.exe bytes=20480 source-fnv32=2490431462\nRunning the original Windows executable in a protected process.\n\nM147_MACHINE_ABSENT_READ_ONLY_PASS\n",
+    "Original console succeeds after restoring the production runtime and original program bytes."
+  ],
+  "samples": [
+    {
+      "boot": 1,
+      "cycle": 1,
+      "retained_pages": 0
+    },
+    {
+      "boot": 1,
+      "cycle": 2,
+      "retained_pages": 0
+    },
+    {
+      "boot": 1,
+      "cycle": 3,
+      "retained_pages": 0
+    },
+    {
+      "boot": 1,
+      "cycle": 4,
+      "retained_pages": 0
+    },
+    {
+      "boot": 1,
+      "cycle": 5,
+      "retained_pages": 0
+    },
+    {
+      "boot": 2,
+      "cycle": 1,
+      "retained_pages": 0
+    },
+    {
+      "boot": 2,
+      "cycle": 2,
+      "retained_pages": 0
+    },
+    {
+      "boot": 2,
+      "cycle": 3,
+      "retained_pages": 0
+    },
+    {
+      "boot": 2,
+      "cycle": 4,
+      "retained_pages": 0
+    },
+    {
+      "boot": 2,
+      "cycle": 5,
+      "retained_pages": 0
+    }
+  ]
+}

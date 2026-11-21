@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build_id": "28d5e48025c0b026e680fd80f80e7d3a",
+  "scope": "Exact built artifact placement and independent digests; not native startup or total-RAM savings",
+  "init_bytes": 2394904,
+  "init_limit_bytes": 4194304,
+  "kernel_end": "0x7b5d60",
+  "kernel_low_limit": "0x800000",
+  "kernel_placement_headroom_bytes": 303776,
+  "assets": {
+    "msi.dll": {
+      "bytes": 80896,
+      "sha256": "93f2fb812411f029770e9b34b30b42c3a7c459b7eb4c491d3b0702ab18c93f0a"
+    },
+    "msiexec.exe": {
+      "bytes": 3072,
+      "sha256": "9822dd8a2ad31cc470eb6b7f938d38dc66f1abff1b2e92e12687df9ea885ad84"
+    },
+    "runtime8.elf": {
+      "bytes": 307260,
+      "sha256": "8de1580cfdb5ca04232b9ae9e74e708d25a6817257e2957d86a2a89f8c4d13e9"
+    }
+  }
+}

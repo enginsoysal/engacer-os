@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "baseline": false,
+  "stage": "M14.7",
+  "build_id": "28d5e48025c0b026e680fd80f80e7d3a",
+  "iso_sha256": "4ee02d7bf5a7ade8294a0b21b055adeefba7888c984851c4851aca01d0ebda50",
+  "physical": [
+    1280,
+    800
+  ],
+  "configured_guest_mib": 128,
+  "owned_fixture": "08bc8a2c59214f81976810a8d1f47928",
+  "checks": [
+    "Actual reference-size installation, retained-ISO restart, ordinary keyboard Settings launch, native physical captures and stable idle halt pass",
+    "Two independent no-ISO startups use ordinary firmware discovery"
+  ],
+  "scale_units": 2,
+  "resources": {
+    "managed_stats": [
+      1047,
+      1047,
+      17702,
+      5
+    ],
+    "framebuffer_bytes": 4096000,
+    "retained_task_delta_pages": 0
+  },
+  "idle_observations": [
+    {
+      "before": 27,
+      "after": 27,
+      "halted": 2
+    },
+    {
+      "before": 27,
+      "after": 27,
+      "halted": 2
+    },
+    {
+      "before": 27,
+      "after": 27,
+      "halted": 2
+    }
+  ]
+}

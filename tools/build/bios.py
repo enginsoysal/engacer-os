@@ -27,7 +27,7 @@ def flatten32(path):
     for s in loads:out[s[3]-low:s[3]-low+s[4]]=data[s[1]:s[1]+s[4]]
     return bytes(out)
 
-def stages(work,kernel,init,sector_bytes=512,stage_lba=64,kernel_lba=128,video_mode=0x144,bad_boot=False,kernel_limit=0x400000):
+def stages(work,kernel,init,sector_bytes=512,stage_lba=64,kernel_lba=128,video_mode=0x144,bad_boot=False,kernel_limit=0x400000,chain_live=None):
     if sector_bytes not in (512,2048) or (len(init)!=48 and (len(init)>4*1024*1024 or init[48:56]!=b'ENGMSI81')):raise ValueError('BIOS profile')
     work=Path(work);work.mkdir(parents=True,exist_ok=True);raw,entry=flatten64(kernel,kernel_limit);tools=pinned_tools();blocks=32768//sector_bytes
     defines={'BIOS_SECTOR_BYTES':sector_bytes,'BIOS_STAGE_BLOCKS':blocks,'BIOS_STAGE_LBA':stage_lba,'BIOS_KERNEL_LBA':kernel_lba,'BIOS_KERNEL_CHUNKS':len(raw)//32768,'BIOS_KERNEL_BYTES':len(raw),'BIOS_KERNEL_ENTRY':entry,'BIOS_KERNEL_CRC':zlib.crc32(raw),'BIOS_VIDEO_MODE':video_mode,'BIOS_BAD_BOOT':int(bad_boot)}
@@ -36,7 +36,7 @@ def stages(work,kernel,init,sector_bytes=512,stage_lba=64,kernel_lba=128,video_m
         raw+=init+bytes((-len(init))%32768)
         if 0x200000+len(raw)>kernel_limit:raise ValueError('BIOS module load bound')
         defines.update(BIOS_KERNEL_CHUNKS=len(raw)//32768,BIOS_KERNEL_BYTES=len(raw),BIOS_KERNEL_CRC=zlib.crc32(raw))
-    defines['BIOS_CHAIN75']=int(any(part in work.as_posix() for part in ('/m75/','/m8/','/m9/','/m92/','/m10/','/m11/','/m12/','/m13/')) and '/installed/' not in work.as_posix())
+    defines['BIOS_CHAIN75']=int(chain_live if chain_live is not None else any(part in work.as_posix() for part in ('/m75/','/m8/','/m9/','/m92/','/m10/','/m11/','/m12/','/m13/')) and '/installed/' not in work.as_posix())
     header=''.join(f'#define {name} {value}\n' for name,value in defines.items())+'#ifndef __ASSEMBLER__\nstatic const unsigned char bios_init[]={'+','.join(map(str,init[:48]))+'};\n#endif\n';(work/'bios-config.h').write_bytes((header+'#define BIOS_BUILD75 \"'+init[16:48].decode()+'\"\n').encode())
     def command(args):
         p=subprocess.run(list(map(str,args)),cwd=ROOT,capture_output=True,text=True)
@@ -59,12 +59,13 @@ def dual_media(build,milestone='M45'):
     stem='EngacerOS' if milestone.startswith(('M10','M11','M12','M13','M14')) else 'EngineOS'
     expanded=milestone.startswith(('M74','M75','M8','M9','M10','M11','M12','M13','M14'))
     limit=0xe00000 if milestone.startswith(('M8','M9','M10','M11','M12','M13','M14')) else 0xa00000 if expanded else 0x5f8000 if milestone.startswith('M7') else 0x400000
-    mbr,stage2,raw,usb_config=stages(work/'usb',kernel,init,kernel_limit=limit)
+    chain_live=milestone.startswith(('M75','M8','M9','M10','M11','M12','M13','M14'))
+    mbr,stage2,raw,usb_config=stages(work/'usb',kernel,init,kernel_limit=limit,chain_live=chain_live)
     usb=gpt(fat,('Engacer OS ' if milestone.startswith(('M10','M11','M12','M13','M14')) else 'Engine OS ')+milestone,first=32768 if expanded else 16384 if milestone.startswith('M7') else 8192,bios=(mbr,stage2,raw),bios_limit=limit-0x200000);(dist/(stem+'-'+milestone+'-usb.img')).write_bytes(usb)
-    placeholder,cd_stage,cd_raw,ignored=stages(work/'cd-layout',kernel,init,2048,1,17,kernel_limit=limit);blob=placeholder+bytes(1536)+cd_stage+cd_raw;boot_file=work/'bios-cd.img';boot_file.write_bytes(blob)
+    placeholder,cd_stage,cd_raw,ignored=stages(work/'cd-layout',kernel,init,2048,1,17,kernel_limit=limit,chain_live=chain_live);blob=placeholder+bytes(1536)+cd_stage+cd_raw;boot_file=work/'bios-cd.img';boot_file.write_bytes(blob)
     iso=pycdlib.PyCdlib();iso.new(interchange_level=3,vol_ident=('ENGACER_OS_' if milestone.startswith(('M10','M11','M12','M13','M14')) else 'ENGINE_OS_')+milestone);iso.add_file(str(boot_file),iso_path='/BIOS.IMG;1');iso.add_file(str(build/'normal/efi-fat.img'),iso_path='/EFI.IMG;1');iso.add_eltorito('/BIOS.IMG;1',platform_id=0,boot_load_size=4);iso.add_eltorito('/EFI.IMG;1',platform_id=0xef,efi=True,boot_load_size=1)
     target=dist/(stem+'-'+milestone+'.iso');iso.write(str(target));iso.close();reader=pycdlib.PyCdlib();reader.open(str(target));extent=reader.get_record(iso_path='/BIOS.IMG;1').extent_location();reader.close()
-    mbr,cd_stage,cd_raw,cd_config=stages(work/'cd',kernel,init,2048,extent+1,extent+17,kernel_limit=limit);final=mbr+bytes(1536)+cd_stage+cd_raw
+    mbr,cd_stage,cd_raw,cd_config=stages(work/'cd',kernel,init,2048,extent+1,extent+17,kernel_limit=limit,chain_live=chain_live);final=mbr+bytes(1536)+cd_stage+cd_raw
     if len(final)!=len(blob):raise RuntimeError('BIOS CD layout changed')
     with target.open('r+b') as f:f.seek(extent*2048);f.write(final)
     record={'kernel_sha256':hashlib.sha256(kernel).hexdigest(),'raw_kernel_sha256':hashlib.sha256(raw).hexdigest(),'usb':usb_config,'iso':cd_config,'iso_bios_extent':extent,'scope':'original EDD/E820/VBE BIOS path; unsigned UEFI path shares the same kernel; Secure Boot applies only to separately signed UEFI media'}
