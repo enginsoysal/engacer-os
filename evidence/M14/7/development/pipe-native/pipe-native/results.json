@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "build_id": "82d11f48c807b70110f04b4cef3ab8d8",
+  "scope": "Own callers of production native pipes: 1 MiB child stream/hash, duplication, inherited stderr EOF, quotas and ordinary privilege refusal; not original WiX or MSI installation qualification",
+  "clone": {
+    "source_sha256": "c710261e1f0f385ced3f7619476727efb218a11e9630b57966ed412dda8d4d07",
+    "clone_sha256": "c710261e1f0f385ced3f7619476727efb218a11e9630b57966ed412dda8d4d07",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 20971520
+  },
+  "fixture_sha256": "04ce2b385b22cb2be5201f8251839d34f091915f8c2466de33f3d1382654455a",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "transferred_bytes": 1048576
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=24576 source-fnv32=2265698353\nRunning the original Windows executable in a protected process.\n\nMapped original image: child147.exe bytes=24576 source-fnv32=2265698353\nRunning the original Windows executable in a protected process.\n\nM147_NATIVE_PIPE_INHERITED_1M_SHA_EOF_QUOTA_PASS\n"
+}

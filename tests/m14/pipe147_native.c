@@ -60,6 +60,7 @@ void entry(void){
  ExitProcess(71);
 #else
  H r=0,w=0;check147(CreatePipe(&r,&w,0,0)&&GetFileType(r)==3&&GetFileType(w)==3,20);unsigned n=0,flags=9;check147(GetHandleInformation(r,&flags)&&flags==0,21);check147(!ReadFile(w,&flags,1,&n,0)&&GetLastError()==5&&!n,22);check147(!WriteFile(r,&flags,1,&n,0)&&GetLastError()==5&&!n,23);H duplicate=0;check147(DuplicateHandle(GetCurrentProcess(),r,GetCurrentProcess(),&duplicate,0,0,2)&&duplicate!=r,24);check147(CloseHandle(r)&&!CloseHandle(r)&&GetLastError()==6,25);check147(CloseHandle(w),26);check147(!ReadFile(duplicate,&flags,1,&n,0)&&GetLastError()==109&&!n,27);check147(CloseHandle(duplicate),28);
+ check147(CreatePipe(&r,&w,0,0)&&CloseHandle(r),54);check147(!WriteFile(w,&flags,1,&n,0)&&GetLastError()==109&&!n&&CloseHandle(w),55);
  H handles[32];for(unsigned i=0;i<16;++i)check147(CreatePipe(handles+i*2,handles+i*2+1,0,0),30);check147(!CreatePipe(&r,&w,0,0)&&GetLastError()==8,31);for(unsigned i=0;i<32;++i)check147(CloseHandle(handles[i]),32);
  SA147 sa={.size=sizeof(sa),.inherit=1};H inread=0,inwrite=0,outread=0,outwrite=0,errwrite=0;check147(CreatePipe(&inread,&inwrite,&sa,0)&&CreatePipe(&outread,&outwrite,&sa,0),40);check147(SetHandleInformation(inwrite,1,0)&&SetHandleInformation(outread,1,0),41);flags=0;check147(GetHandleInformation(inread,&flags)&&flags==1&&GetHandleInformation(inwrite,&flags)&&flags==0,42);
  check147(DuplicateHandle(GetCurrentProcess(),outwrite,GetCurrentProcess(),&errwrite,0,1,2),53);

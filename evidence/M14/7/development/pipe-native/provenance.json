@@ -1,0 +1,34 @@
+{
+  "scope": "Own native pipe callers and test-only confirmed-worker dispatcher, not original WiX qualification",
+  "os_source_commit": "ef03d8f3e55ea2fbae8961e49fbc8f0fbf26de55",
+  "build_id": "82d11f48c807b70110f04b4cef3ab8d8",
+  "observers": {
+    "tests/m14/pipe147_run.py": "8c16a56afb93ff950c3afa7b1303c6727900994cd486fa009d8c3ef4a175baf5",
+    "tests/m14/pipe147_cancel.py": "ad97ca59989d675890018374e116070a58abf569267ee6d6a63ae6626c688e1c",
+    "tests/m14/pipe147_authority.py": "6c1ca6f050e48404fc37f293502296e52aed44a1abc19e9252c1630c83f95c30",
+    "tests/m14/replay7.py": "fd5eb8660f4f7e3f1748f557389ad0e0923caba9f44eae5c4dd160ee223a456d",
+    "tests/m14/machine147_build.py": "53f1864429e38f2e37cae4e924df99a910247a4ed0824896d0fe87c6495a4a2f"
+  },
+  "artifacts": {
+    "compile-inputs.json": "7bdbd23ef391a9306d080b1eea6abd212e78cbf4f518bb374ade14fc0a2e2582",
+    "pipe-authority/confirmed-helper-capture.json": "84f4cca205a75717edc1ae0c1aea15d5f0ad80d9b8b5fa9c671bd2df69160281",
+    "pipe-authority/confirmed-helper.png": "efad1f1eeb27b7e5267da3408acb99dfee9c1c3163aa8d7281507dd658396702",
+    "pipe-authority/dependencies.json": "984ce48d491a8af621d6b3c3edde1e5fad4ec26a30e8bb2df23fe5b7caa8dd56",
+    "pipe-authority/results.json": "fad7f75b3c22e82704a3c378e6708fddf6345be80374fade0fea211311c05168",
+    "pipe-authority/serial.log": "d772bfb907aee244365399d681a4ed2cf34f8aaa446e40c3e85a92654c5389b4",
+    "pipe-cancel/block-read-capture.json": "76f5569d3faeb185e95e51f5759c95d1575062f6ff7105736c9f17e0a371503e",
+    "pipe-cancel/block-read.log": "24dffa8c7fc17f271957bcd63c587033c85655487dfa30554703598543496bf5",
+    "pipe-cancel/block-read.png": "fe312c12029b3577a09ee02d1a7b454dfe27949a19a897f42767b99e181fddd6",
+    "pipe-cancel/block-write-capture.json": "9b8837dd87eb092cd1a1b8405cc7b984cbe6cd721076a7051679916057aa99b6",
+    "pipe-cancel/block-write.log": "42031b0df957ad221d17314738a8ef1f0926441d869aa90ac21d5034292fa9ac",
+    "pipe-cancel/block-write.png": "c70c5f166ed3e397d8dad4b15e0720c8cf079d3da4cd55157b4703daddca3f3e",
+    "pipe-cancel/dependencies.json": "5b72804603387f3910279c543c4ffa4f5701b04f02496ec8da7bf9a00ce42410",
+    "pipe-cancel/results.json": "0b27a71985ecb693ff7ff4ec130ae67bb711d6f6a61bbfd488ffe7c1186e79a8",
+    "pipe-native/dependencies.json": "5b72804603387f3910279c543c4ffa4f5701b04f02496ec8da7bf9a00ce42410",
+    "pipe-native/global-memory-lifetimes-capture.json": "b6e680131114ace31541b7b0db4b65185466d2c769acd3cc1a6d8912aa0cdf62",
+    "pipe-native/global-memory-lifetimes.png": "62742588aac2eadbeade8c3424e540e4e47d4350f8443316cefb1e63c8e35db0",
+    "pipe-native/observer.json": "10362cb345a404d753bcddb2f3027431b1fd1e7f086b6d2968145ce5fc0b7041",
+    "pipe-native/results.json": "fab243720ca3d6dc3e4ab99fa556bf47c725f1efb1508bf767dd80b4c444f3d2",
+    "pipe-native/serial.log": "21b0788d8aa591d8c732d7b1eac3deec863872aacada5809c53ed0c7930d54a1"
+  }
+}

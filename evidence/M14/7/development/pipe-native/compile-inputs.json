@@ -1,0 +1,17 @@
+{
+  "scope": "Exact own caller compilation; native protocol and original WiX execution are separate gates",
+  "sources": {
+    "tests/m14/pipe147_native.c": "52e70636d0264c00749529d55f1ca15358092b536e6326bcdb478f62af54e490",
+    "tests/m14/pipe147_build.py": "64cd4675d8f73e69755a61f9de4c5b4e71d556cbffd4710128b5575d02d4375b",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "include/engine/sha256.h": "f0782b06f745be9a3d0bf8d160c1f13a0b5dd1b28719a1e889e9fe47e9f826eb",
+    "include/engine/windows8.h": "cd227b05023172edcbf06f12eb1f6efebca3f60c4830ce45a4316d4cb3a20a00"
+  },
+  "artifacts": {
+    "probe": "04ce2b385b22cb2be5201f8251839d34f091915f8c2466de33f3d1382654455a",
+    "authorized": "2e1a5f37382fac99709e32bc5a5f41ad74900bb59a8b426ddc2b3ed6b177f741",
+    "block-read": "d21dd8db74893418884bc09c5477689b6aa1ecd303a73b121524959d0d45db6f",
+    "block-write": "17e72947eb3a71f3b22698f2110f9c61a4e4752731c0687d75bb91a67c9a0552"
+  },
+  "independent_stream_sha256": "e8f97c62d0d5e59b143c482b166aa5ade29d87d4ee705bc8ee341fbe88c1b17d"
+}

@@ -14,4 +14,6 @@ def build():
   obj=out/(name+'.obj');exe=out/(name+'.exe');command([t['clang'],*flags,*extra,'-c',source,'-o',obj]);command([t['lld-link'],'/nodefaultlib','/timestamp:0','/subsystem:console','/entry:entry','/dynamicbase','/fixed:no','/out:'+str(exe),obj,out/'sha.obj',*libraries]);files[name]=exe
  expected=hashlib.sha256(bytes((i*37+(i>>8))&255 for i in range(1024*1024))).digest();assert ','.join('0x%02x'%x for x in expected) in source.read_text()
  inputs=['tests/m14/pipe147_native.c','tests/m14/pipe147_build.py','runtime/sha256.c','include/engine/sha256.h','include/engine/windows8.h'];report=dict(scope='Exact own caller compilation; native protocol and original WiX execution are separate gates',sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()for p in inputs},artifacts={name:hashlib.sha256(p.read_bytes()).hexdigest()for name,p in files.items()},independent_stream_sha256=expected.hex());(out/'compile-inputs.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());return files
+def probe():return build()['probe']
+
 if __name__=='__main__':build()
