@@ -23,10 +23,10 @@ def build():
 
 def worker(index,mutation):
     inputs=[ROOT/'third_party/7zip/7z2606-x64.msi',Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/npp.8.9.9.1.Installer.x64.msi'];path=inputs[index];data=path.read_bytes();inventory=json.loads((ROOT/'evidence/M14/0/msi-inventory.json').read_text(encoding='utf-8-sig'));original=next(x for x in inventory['packages']if x['file']==path.name);assert hashlib.sha256(data).hexdigest()==original['sha256'];target=OUT/(str(index)+'-'+mutation+'.json')
-    refusal={'unknown':'MSI requires an unknown standard/custom action.','bad-shift':'MSI compound-file geometry is unsupported.','bad-directory-count':'MSI directory-sector count is invalid.','mini-fat-overquota':'MSI mini FAT exceeds its bound.','fat-cycle':'MSI directory chain is invalid.','truncated-sector':'MSI compound-file sector length is invalid.'}
+    refusal={'overlong-file-leaf':'MSI payload/directory leaf is invalid or outside the ASCII name profile.','unknown':'MSI requires an unknown standard/custom action.','bad-shift':'MSI compound-file geometry is unsupported.','bad-directory-count':'MSI directory-sector count is invalid.','mini-fat-overquota':'MSI mini FAT exceeds its bound.','fat-cycle':'MSI directory chain is invalid.','truncated-sector':'MSI compound-file sector length is invalid.'}
     if mutation=='unknown':
         assert data.count(b'InstallFiles')==1;data=data.replace(b'InstallFiles',b'UnsupportedX')
-    elif mutation in refusal:
+    elif mutation in refusal and mutation!='overlong-file-leaf':
         data=bytearray(data);sector=1<<struct.unpack_from('<H',data,30)[0]
         if mutation=='bad-shift':struct.pack_into('<H',data,30,12 if sector==512 else 9)
         elif mutation=='bad-directory-count':struct.pack_into('<I',data,40,struct.unpack_from('<I',data,40)[0]+1)
@@ -35,7 +35,7 @@ def worker(index,mutation):
             directory=struct.unpack_from('<I',data,48)[0];fat=struct.unpack_from('<I',data,76+(directory//(sector//4))*4)[0];struct.pack_into('<I',data,(fat+1)*sector+(directory%(sector//4))*4,directory)
         elif mutation=='truncated-sector':data=data[:-1]
         data=bytes(data)
-    elif mutation!='normal':raise ValueError(mutation)
+    elif mutation not in ('normal','overlong-file-leaf'):raise ValueError(mutation)
     lib=ctypes.CDLL(str(OUT/'plan147.dll'));alloc_type=ctypes.CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_size_t);free_type=ctypes.CFUNCTYPE(None,ctypes.c_void_p,ctypes.c_void_p);failure_type=ctypes.CFUNCTYPE(None,ctypes.c_char_p);live={};state={'bytes':0,'peak':0,'bad_free':False}
     @alloc_type
     def allocate(context,n):
@@ -64,7 +64,7 @@ def worker(index,mutation):
         if directory==root_id:return ''
         row=directories[directory];parent=relative(row[1]);leaf=target_name(row[2]);return '/'.join(x for x in [parent,''if leaf=='.'else leaf]if x)
     for cycle in range(21):
-        count=lib.open147(buf,len(data));check(mutation=='normal'and count==len(expected_sequence))
+        count=lib.open147(buf,len(data));check(mutation in ('normal','overlong-file-leaf')and count==len(expected_sequence))
         for name,value in tables['Property']:check(lib.get147(name.encode()).decode()==value)
         for i,expected in enumerate(expected_sequence):
             action=lib.action147(i).contents;name=action.name.decode();check([name,action.condition.decode(),str(action.sequence)]==expected)
@@ -77,6 +77,9 @@ def worker(index,mutation):
         if index==1:
             check(lib.set147(b'NPP_LANG',b'english'if language else b'')==0);check(lib.set147(b'NOUPDATER',b'1'if no_updater else b'')==0)
         lib.cost147(b'C:\\Users\\Owner');check(lib.files147()==len(expected_files));check(lib.alias147().decode()=='C:\\Program Files\\'+target_name(directories[root_id][2]))
+        if mutation=='overlong-file-leaf':
+            file=lib.file147(0).contents;name=b'a'*63;file.name=name;output=ctypes.create_string_buffer(256);check(lib.path147(0,output)==0 and output.value.endswith(name))
+            name=b'a'*64;file.name=name;lib.path147(0,output);raise AssertionError('An overlong native file leaf was accepted')
         check(lib.get147(b'SystemFolder')==b'C:\\Windows\\SysWOW64\\'and lib.get147(b'System64Folder')==b'C:\\Windows\\System32\\'and lib.get147(b'WindowsFolder')==b'C:\\Windows\\')
         selected_features={'Program','Complete','LanguageFiles'}if index==0 else {'MainApplication'}|({'AutoUpdaterFeature'}if not no_updater else set())|({'NativeLangFeature'}if language else set())
         expected_components={row[1]for row in cost_tables['FeatureComponents']if row[0]in selected_features};selected_count=selected_bytes=0
@@ -108,7 +111,7 @@ def main():
         assert sys.argv[1]=='--worker';worker(int(sys.argv[2]),sys.argv[3]);return
     build();reports=[]
     for index in range(2):
-        for mutation in ['normal','unknown','bad-shift','bad-directory-count','mini-fat-overquota','fat-cycle','truncated-sector']:
+        for mutation in ['normal','overlong-file-leaf','unknown','bad-shift','bad-directory-count','mini-fat-overquota','fat-cycle','truncated-sector']:
             run=subprocess.run([sys.executable,str(Path(__file__).resolve()),'--worker',str(index),mutation],cwd=ROOT,capture_output=True);report=OUT/(str(index)+'-'+mutation+'.json')
             if run.returncode:raise RuntimeError('Owned MSI plan test failed '+str(run.returncode)+' '+(report.read_text()if report.exists()else run.stderr.decode(errors='replace')))
             result=json.loads(report.read_text());assert result['passed'];reports.append(result)

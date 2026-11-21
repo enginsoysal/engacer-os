@@ -5,7 +5,7 @@ static void cost_require147(int yes,const char *message){if(!yes)fail8(message);
 static void join147(char *out,const char *text){cost_require147(len8(out)+len8(text)<256,"MSI destination exceeds the native path bound.");append8(out,text,256);}
 static int case_equal147(const char *a,const char *b){unsigned i=0;while(a[i]&&b[i]){unsigned x=(uint8_t)a[i],y=(uint8_t)b[i];if(x>='a'&&x<='z')x-=32;if(y>='a'&&y<='z')y-=32;if(x!=y)return 0;++i;}return a[i]==b[i];}
 static int leaf147(const char *text,unsigned n){
- if(!n||n>127||text[n-1]==' '||text[n-1]=='.')return 0;
+ if(!n||n>63||text[n-1]==' '||text[n-1]=='.')return 0;
  char base[16];unsigned bn=0;
  for(unsigned i=0;i<n;++i){unsigned c=(uint8_t)text[i];if(c<32||c>=127||c=='/'||c=='\\'||c==':'||c=='*'||c=='?'||c=='"'||c=='<'||c=='>'||c=='|')return 0;}
  while(bn<n&&text[bn]!='.'&&bn+1<sizeof(base)){unsigned c=(uint8_t)text[bn];base[bn]=(char)(c>='a'&&c<='z'?c-32:c);++bn;}base[bn]=0;

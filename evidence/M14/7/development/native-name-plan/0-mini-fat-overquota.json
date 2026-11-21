@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "package": "7z2606-x64.msi",
+  "scope": "Owned metadata refusal before any target mutation",
+  "expected_refusal": "MSI mini FAT exceeds its bound.",
+  "mutation": "mini-fat-overquota"
+}

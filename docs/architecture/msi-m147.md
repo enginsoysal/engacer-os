@@ -144,3 +144,8 @@ The own DLL assigns the Windows ordinal numbers of 17 implemented MSI services e
 
 
 The subsequent export-hole correction explicitly assigns private ordinals starting at 0x7000 to all other own named services. This prevents automatic linker allocation from binding a missing Windows ordinal to an unrelated implemented function. Metadata checks require every unimplemented ordinal imported by the original WiX DLL to stay empty. The corrected DLL repeats all 21 native lifetimes/8400 concurrent operations with zero retained pages and subsequent original console success; separate evidence is preserved in development/ordinal-hole-native. The sparse table is bounded but currently costs approximately 112 KiB of additional lazy DLL bytes; it is not an optimization result.
+
+
+### Destination-name preflight
+
+MSI destination leaves now enforce the existing native V6 limit of 63 ASCII bytes before any payload write, rather than admitting 127-byte leaves that the filesystem would later refuse. Both unchanged original package plans still pass the independent table/selection corpus (44681 checks). Each package also accepts a 63-byte substituted target and refuses a 64-byte target through the production path resolver in an isolated metadata-only process. This does not broaden the ASCII-only payload-name profile or qualify write actions. Evidence: development/native-name-plan.
