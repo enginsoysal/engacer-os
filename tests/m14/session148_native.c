@@ -71,6 +71,16 @@ __declspec(dllimport) int GetSystemMetrics(int);
 __declspec(dllimport) uint64_t GetDC(uint64_t);
 __declspec(dllimport) int ReleaseDC(uint64_t,uint64_t);
 __declspec(dllimport) int GetDeviceCaps(uint64_t,int);
+__declspec(dllimport) uint64_t CreateFontIndirectW(const void*);
+__declspec(dllimport) uint64_t GetStockObject(int);
+__declspec(dllimport) uint64_t SelectObject(uint64_t,uint64_t);
+__declspec(dllimport) uint64_t GetCurrentObject(uint64_t,unsigned);
+__declspec(dllimport) int GetObjectW(uint64_t,int,void*);
+__declspec(dllimport) int GetTextMetricsW(uint64_t,void*);
+__declspec(dllimport) int GetTextFaceW(uint64_t,int,uint16_t*);
+__declspec(dllimport) int GetTextExtentPoint32W(uint64_t,const uint16_t*,int,void*);
+__declspec(dllimport) int DeleteObject(uint64_t);
+
 __declspec(dllimport) int GetWindowLongW(uint64_t,int);
 __declspec(dllimport) int64_t GetWindowLongPtrW(uint64_t,int);
 __declspec(dllimport) int64_t SetWindowLongPtrW(uint64_t,int,int64_t);
@@ -107,7 +117,24 @@ static unsigned worker(void*kind){
   else{AcquireSRWLockShared(&lock);check(right==left*3,241);ReleaseSRWLockShared(&lock);}
  }for(unsigned i=0;i<64;++i){uint64_t dc=GetDC(0);check(dc&&GetDeviceCaps(dc,88)==96&&ReleaseDC(0,dc),393);}return 0;
 }
+typedef struct {int height,width,escapement,orientation,weight;uint8_t italic,underline,strike,charset,out_precision,clip_precision,quality,pitch;uint16_t face[32];} native_logfont148;
+typedef struct {int height,ascent,descent,internal,external,average,maximum,weight,overhang,aspect_x,aspect_y;uint16_t first,last,default_char,break_char;uint8_t italic,underline,strike,pitch,charset,pad[3];} native_textmetric148;
+_Static_assert(sizeof(native_logfont148)==92&&sizeof(native_textmetric148)==60,"Owned Windows font records");
+static void font_tests148(void){
+ native_logfont148 lf={.height=-14,.weight=400},copy={0};lf.face[0]='S';lf.face[1]='e';lf.face[2]='g';
+ uint64_t dc=GetDC(0),font=CreateFontIndirectW(&lf);check(dc&&font,420);uint64_t stock=GetCurrentObject(dc,6);check(stock==GetStockObject(13)&&SelectObject(dc,font)==stock&&GetCurrentObject(dc,6)==font,421);
+ check(GetObjectW(font,0,0)==92&&GetObjectW(font,92,&copy)==92&&copy.height==-14&&copy.face[0]=='S',422);uint8_t fragment[4]={0,0,0,0xa5};check(GetObjectW(font,3,fragment)==3&&fragment[3]==0xa5&&fragment[0]==0xf2,423);
+ native_textmetric148 small,big;uint16_t face[16];check(GetTextMetricsW(dc,&small)&&small.height>=14&&small.height==small.ascent+small.descent&&small.weight==400&&!small.italic&&small.pitch==0x21&&small.first==32&&small.last==0x20ac,424);
+ check(GetTextFaceW(dc,0,0)==6&&GetTextFaceW(dc,16,face)==6&&face[0]=='I'&&face[4]=='r'&&!face[5],425);face[0]=99;check(GetTextFaceW(dc,1,face)==1&&!face[0],426);
+ int narrow[2],wide[2];check(GetTextExtentPoint32W(dc,L"iii",3,narrow)&&GetTextExtentPoint32W(dc,L"WWW",3,wide)&&wide[0]>narrow[0]&&wide[1]==small.height,427);
+ check(!DeleteObject(font)&&GetLastError()==170&&SelectObject(dc,stock)==font&&DeleteObject(font)&&!DeleteObject(font),428);
+ lf.height=-28;lf.weight=700;font=CreateFontIndirectW(&lf);check(font&&SelectObject(dc,font)==stock&&GetTextMetricsW(dc,&big)&&big.height>small.height&&big.weight==600&&big.last==126,429);
+ check(ReleaseDC(0,dc)&&DeleteObject(font),430);lf.height=-16;lf.weight=400;uint64_t fonts[64];for(unsigned i=0;i<64;++i){fonts[i]=CreateFontIndirectW(&lf);check(fonts[i]&&fonts[i]!=font,431);}check(!CreateFontIndirectW(&lf)&&GetLastError()==1816,432);for(unsigned i=0;i<64;++i)check(DeleteObject(fonts[i]),433);
+ lf.italic=1;check(!CreateFontIndirectW(&lf)&&GetLastError()==50,434);lf.italic=0;lf.width=10;check(!CreateFontIndirectW(&lf)&&GetLastError()==50,435);check(!CreateFontIndirectW((void*)1)&&GetLastError()==998,436);check(!GetStockObject(10)&&GetLastError()==50,437);
+ say148("M148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\n");
+}
 void entry(void){
+ font_tests148();
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
  uint64_t desktop_dc=GetDC(0);check(desktop_dc&&GetDeviceCaps(desktop_dc,8)==desktop_rect[2]&&GetDeviceCaps(desktop_dc,10)==desktop_rect[3]&&GetDeviceCaps(desktop_dc,12)==32&&GetDeviceCaps(desktop_dc,14)==1&&GetDeviceCaps(desktop_dc,24)==-1&&GetDeviceCaps(desktop_dc,88)==96&&GetDeviceCaps(desktop_dc,90)==96&&ReleaseDC(0,desktop_dc),391);check(!GetDeviceCaps(desktop_dc,88)&&GetLastError()==6,392);
