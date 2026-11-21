@@ -149,3 +149,8 @@ The subsequent export-hole correction explicitly assigns private ordinals starti
 ### Destination-name preflight
 
 MSI destination leaves now enforce the existing native V6 limit of 63 ASCII bytes before any payload write, rather than admitting 127-byte leaves that the filesystem would later refuse. Both unchanged original package plans still pass the independent table/selection corpus (44681 checks). Each package also accepts a 63-byte substituted target and refuses a 64-byte target through the production path resolver in an isolated metadata-only process. This does not broaden the ASCII-only payload-name profile or qualify write actions. Evidence: development/native-name-plan.
+
+
+### Original WiX admission failure
+
+The unchanged Notepad++ Wix4UtilCA_X64 binary (SHA-256 54febbd1f0a3875df16a4b88621cc0a10729b3c94b9a68639aab27d36fe39381) was staged only in an owned native VM clone. Its actual load refuses KERNEL32.dll!lstrlenA on build 82d11f48c807b70110f04b4cef3ab8d8. This is a real missing import, retained as failed admission in development/wix-admission-initial. The original custom action has not executed successfully; record/pipe probes do not waive this blocker.
