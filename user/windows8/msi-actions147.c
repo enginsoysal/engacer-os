@@ -61,5 +61,6 @@ unsigned msica_run147(const msica147*actions,msia_plan147*p,unsigned index,msia_
  status=msia_deferred147(session,p->actions[index].kind,wide,p->actions[index].target,item->data,out);
  print8("M147_ORIGINAL_DEFERRED_BODY ");print8(p->actions[index].name);print8(" result=");number8(out->body_status);print8(" continued=");number8(out->continued);print8("\n");
  if(!status&&item->operation==1&&!out->body_status){char generated[256];copy8(generated,p->product_root,256);append8(generated,"/nativeLang.xml",256);const msia_file147*f=p->files+item->file;status=msif_hash147(generated,f->size,actual);if(!status&&memcmp(actual,f->sha256,32))status=23;}
+ if(!status&&item->operation==2&&!out->body_status){uint64_t cursor=0;for(;;){w8_file_info entry;int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)(uintptr_t)p->product_root,(uint64_t)(uintptr_t)&entry,cursor,0,0);if(next<0){status=5;break;}if(!next)break;if((uint64_t)next<=cursor){status=13;break;}cursor=(uint64_t)next;if(!case8(entry.name,"nativeLang.xml")){status=23;break;}}}
  if(remove8(native)&&!status)status=1117;return status;
 }

@@ -390,3 +390,10 @@ The first complete ordinary Notepad++ run installs and independently verifies al
 
 
 [Ordinary native original lifecycle](../../evidence/M14/7/development/generic-native-338-default/results.json), [original French body and preservation](../../evidence/M14/7/development/generic-native-338-french/results.json), [changed-source refusal](../../evidence/M14/7/development/review-stale-native-338/results.json). These are scoped development passes, not a completed M14.7 release or usable Notepad++ editor claim.
+
+
+## Generated-file deletion and reinstallation follow-up
+
+The next candidate checks the real delete body's postcondition before the generic RemoveFiles cleanup can mask a missing delete effect. A zero-return body must leave no case-equivalent language target in its native parent enumeration. Changed generated content and unknown differently cased aliases are preserved before that destructive original command; only the exact owned, unchanged original remains eligible for deletion. Thus Windows case-insensitive lookup cannot accidentally delete an unowned differently cased native file.
+
+The expanded native observer independently decodes durable native registry records after installation and removal, checking actual typed bytes against the original immutable after/before images. It adds complete reinstall/unchanged-remove cycles, preservation of both changed and differently cased language files, and another independent startup with the production worker. Private-service runs explicitly record the new service source/receipt over the unchanged full kernel; they do not claim those service bytes were in the older ISO. Final frozen full-media qualification remains required. These extensions are being qualified, not accepted from compilation.

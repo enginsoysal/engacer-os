@@ -1,4 +1,4 @@
-"""Ordinary original Notepad++ MSI lifecycle; optional owned French preference seed.
+"""Original MSI install/remove/reinstall, durable registry bytes and preserved data.
 
 No original DLL or application executes on the host. The French variant changes
 only the own worker to seed an existing preference through native registry APIs;
@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 
 def main():
- args=argparse.ArgumentParser();args.add_argument('--french',action='store_true');options=args.parse_args()
+ args=argparse.ArgumentParser();args.add_argument('--french',action='store_true');args.add_argument('--private-service',action='store_true');options=args.parse_args()
  import replay7
  loader=replay7.ReplayLoader();sys.meta_path.insert(0,loader)
  try:
@@ -18,14 +18,20 @@ def main():
   tag='french' if options.french else 'default';out=ROOT/'build/m14-native/stage7'/('generic-native-'+tag);out.mkdir(parents=True,exist_ok=True);c.OUT=out
   meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage7/compact/results.json').read_text(encoding='utf-8'));assert base['passed'] and base['build_id']==meta['build_id']
   source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage7-compact'/base['owned_fixture']/'owned.img';work,disk,cloned=clone(ui,source,'m147-generic-'+tag)
-  package=Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/npp.8.9.9.1.Installer.x64.msi';download='/Users/Owner/Downloads/'+package.name;root='/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}';reference=next(p for p in json.loads((ROOT/'evidence/M14/7/development/cab-host-initial.json').read_text(encoding='utf-8'))['originals'] if p['package_sha256']==hashlib.sha256(package.read_bytes()).hexdigest());report=dict(passed=False,scope=__doc__,profile=tag,build_id=meta['build_id'],source_commit=meta['source_commit'],observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),clone=cloned,tasks=[])
+  package=Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/npp.8.9.9.1.Installer.x64.msi';download='/Users/Owner/Downloads/'+package.name;root='/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}';reference=next(p for p in json.loads((ROOT/'evidence/M14/7/development/cab-host-initial.json').read_text(encoding='utf-8'))['originals'] if p['package_sha256']==hashlib.sha256(package.read_bytes()).hexdigest());report=dict(passed=False,scope=__doc__,profile=tag,build_id=meta['build_id'],source_commit=meta['source_commit'],observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),clone=cloned,owned_fixture=work.name,tasks=[],registry_readback=[])
   mounted=StoppedDisk(disk,library())
   try:
    mounted.put(download,package.read_bytes());mounted.put('/Users/Owner/Documents/Keep personal.txt',b'Independent personal document')
    if options.french:
     from french147_build import build
-    fixture=build();mounted.put('/System/Windows/runtime8.elf',fixture.read_bytes());report['preference_fixture_receipt_sha256']=hashlib.sha256((fixture.parent/'routing-inputs.json').read_bytes()).hexdigest()
+    fixture=build();mounted.put('/System/Windows/runtime8.elf',fixture.read_bytes());mounted.put('/System/Windows/Installer/msi.dll',(fixture.parent/'msi147/msi.dll').read_bytes());mounted.put('/System/Windows/Installer/msiexec.exe',(fixture.parent/'msi147/msiexec.exe').read_bytes());report['preference_fixture_receipt_sha256']=hashlib.sha256((fixture.parent/'routing-inputs.json').read_bytes()).hexdigest();report['service_source_commit']=json.loads((fixture.parent/'compile-inputs.json').read_text(encoding='utf-8'))['source_commit']
+   elif options.private_service:
+    from remove147_build import build
+    fixture=build();mounted.put('/System/Windows/runtime8.elf',(fixture.parent/'WINDOWS8.ELF').read_bytes());mounted.put('/System/Windows/Installer/msi.dll',(fixture.parent/'msi147/msi.dll').read_bytes());mounted.put('/System/Windows/Installer/msiexec.exe',(fixture.parent/'msi147/msiexec.exe').read_bytes());report['private_service_receipt_sha256']=hashlib.sha256((fixture.parent/'compile-inputs.json').read_bytes()).hexdigest();report['service_source_commit']=json.loads((fixture.parent/'compile-inputs.json').read_text(encoding='utf-8'))['source_commit']
   finally:mounted.close()
+  from registry_readback147 import check_registry147
+  report['registry_observer_sha256']=hashlib.sha256((ROOT/'tests/m14/registry_readback147.py').read_bytes()).hexdigest()
+  journal_state={}
   def document(path,limit=32*1024*1024):return ui.s.s.document(disk,path,limit)
   def snapshot(g):
    data=ui.memory(g,ui.symbol('info8',installed=True)[0],496+16384)
@@ -49,6 +55,7 @@ def main():
     elif kind==2:registry+=1
     at+=count
    assert not remaining and payloads==217 and links==1 and registry==(10 if options.french else 9) and generated==int(options.french)
+   journal_state['image']=image
    return dict(payloads=payloads,links=links,registry_ownerships=registry,generated_files=generated,journal_sha256=hashlib.sha256(image).hexdigest())
   try:
    boot=ui.guest(work/'install',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
@@ -56,17 +63,44 @@ def main():
     p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);choose_review(g,p);before=f.stats(g)[0];p.desktop(12001,True);task(g,p,12003);after=f.stats(g)[0];state=snapshot(g);assert state['state']==2 and state['status']==0;assert after-before in (0,4),(before,after)
     if options.french:assert'M147_ORIGINAL_DEFERRED_BODY CopyNativeLangAction result=0 continued=0'in state['output']
     report['tasks'].append(dict(operation='install',retained_managed_pages=0,first_activation_pages=after-before,**state,**verify_install(g)));c.shot(g,tag+'-installed');(out/'install-serial.log').write_bytes(g.log().encode())
+   report['registry_readback'].append(check_registry147(disk,journal_state['image']))
    mounted=StoppedDisk(disk,library(['remove']))
    try:
     assert mounted.lib.v6_remove(__import__('ctypes').byref(mounted.volume),download.encode())==0
-    if options.french:mounted.put(root+'/nativeLang.xml',b'Modified language file must survive removal')
+    if options.french:mounted.put(root+'/nativeLang.xml',b'Modified language file must survive removal');mounted.put(root+'/NATIVELANG.XML',b'Unknown differently cased language file')
    finally:mounted.close()
    boot=ui.guest(work/'remove',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
    with boot as g:
     p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);p.desktop(12208,True);c.shot(g,tag+'-installed-apps');p.desktop(12200,True);before=f.stats(g)[0];p.desktop(12002,True);c.shot(g,tag+'-remove-confirmation');task(g,p,12003);after=f.stats(g)[0];state=snapshot(g);assert state['state']==2 and state['status']==0;assert after-before in (0,4);assert not any(path==root or path.startswith(root+'/') for path in f.entries(g));assert download not in f.entries(g)
     if options.french:
-     assert'M147_ORIGINAL_DEFERRED_BODY DeleteNativeLangAction result=0 continued=0'in state['output'];saved=[path for path in f.entries(g) if '/Recovered applications/' in path and path.endswith('-nativeLang.xml')];assert len(saved)==1 and document(saved[0])==b'Modified language file must survive removal';report['preserved_generated_file']=dict(path=saved[0],sha256=hashlib.sha256(document(saved[0])).hexdigest())
+     assert'M147_ORIGINAL_DEFERRED_BODY DeleteNativeLangAction result=0 continued=0'in state['output'];saved=[path for path in f.entries(g) if '/Recovered applications/' in path and path.endswith('-nativeLang.xml')];assert len(saved)==1 and document(saved[0])==b'Modified language file must survive removal';report['preserved_generated_file']=dict(path=saved[0],sha256=hashlib.sha256(document(saved[0])).hexdigest());aliases=[path for path in f.entries(g)if '/Recovered applications/'in path and path.endswith('-NATIVELANG.XML')];assert len(aliases)==1 and document(aliases[0])==b'Unknown differently cased language file';report['preserved_case_alias']=dict(path=aliases[0],sha256=hashlib.sha256(document(aliases[0])).hexdigest())
     assert document('/Users/Owner/Documents/Keep personal.txt')==b'Independent personal document';report['tasks'].append(dict(operation='remove without original download after independent restart',retained_managed_pages=0,first_activation_pages=after-before,**state));c.shot(g,tag+'-removed');(out/'remove-serial.log').write_bytes(g.log().encode())
+   report['registry_readback'].append(check_registry147(disk,journal_state['image'],removed=True))
+   mounted=StoppedDisk(disk,library())
+   try:mounted.put(download,package.read_bytes())
+   finally:mounted.close()
+   boot=ui.guest(work/'reinstall',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
+   with boot as g:
+    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);choose_review(g,p);before=f.stats(g)[0];p.desktop(12001,True);task(g,p,12003);assert f.stats(g)[0]==before;state=snapshot(g);assert state['state']==2 and state['status']==0
+    if options.french:assert'M147_ORIGINAL_DEFERRED_BODY CopyNativeLangAction result=0 continued=0'in state['output']
+    report['tasks'].append(dict(operation='reinstall original selection',retained_managed_pages=0,**state,**verify_install(g)));c.shot(g,tag+'-reinstalled');(out/'reinstall-serial.log').write_bytes(g.log().encode())
+   report['registry_readback'].append(check_registry147(disk,journal_state['image']))
+   boot=ui.guest(work/'unchanged-remove',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
+   with boot as g:
+    p=ui.Pointer(g);p.drain();c.key(g,'esc');t.close_all(g,p);t.launch(g,p,'windows apps',19);p.desktop(12208,True);p.desktop(12200,True);before=f.stats(g)[0];p.desktop(12002,True);task(g,p,12003);assert f.stats(g)[0]-before==4;state=snapshot(g);assert state['state']==2 and state['status']==0;assert not any(path==root or path.startswith(root+'/')for path in f.entries(g))
+    if options.french:assert'M147_ORIGINAL_DEFERRED_BODY DeleteNativeLangAction result=0 continued=0'in state['output']
+    report['tasks'].append(dict(operation='remove unchanged reinstalled product',retained_managed_pages=0,first_activation_pages=4,**state));c.shot(g,tag+'-unchanged-removed');(out/'unchanged-remove-serial.log').write_bytes(g.log().encode())
+   report['registry_readback'].append(check_registry147(disk,journal_state['image'],removed=True))
+   if options.french:
+    mounted=StoppedDisk(disk,library())
+    try:mounted.put('/System/Windows/runtime8.elf',(fixture.parent/'WINDOWS8.ELF').read_bytes())
+    finally:mounted.close()
+   boot=ui.guest(work/'final',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
+   with boot as g:
+    assert document('/Users/Owner/Documents/Keep personal.txt')==b'Independent personal document';assert root not in f.entries(g)
+    if options.french:
+     for field in ['preserved_generated_file','preserved_case_alias']:assert hashlib.sha256(document(report[field]['path'])).hexdigest()==report[field]['sha256']
+    report['production_worker_final_restart_preserves_user_data']=True;c.shot(g,tag+'-final-restart')
    report['passed']=True
   except Exception:
    report['error']=ui.q.clean(traceback.format_exc())

@@ -23,6 +23,14 @@ static unsigned owned_remove147(const msia_plan147*p,const win_tx_file147*f,unsi
  uint8_t sha[32];if(info.size==f->bytes){status=msif_hash147(path,info.size,sha);if(status)return status;if(!memcmp(sha,f->sha,32))return remove8(path)?1117:0;}
  return preserve_remove147(p,path,kept);
 }
+static unsigned generated_before_body147(const msia_plan147*p,const msij147*j,unsigned*kept){
+ for(unsigned at=1024;at<j->bytes;){const win_tx_record147*r=(const void*)(j->data+at);if(r->type==WIN_TX_FILE147){const win_tx_file147*f=(const void*)(r+1);if(f->flags==WIN_TX_GENERATED147){
+   if(!equal8(f->path,"nativeLang.xml"))return 50;uint64_t cursor=0;for(;;){w8_file_info info;int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)(uintptr_t)p->product_root,(uint64_t)(uintptr_t)&info,cursor,0,0);if(next<0)return 5;if(!next)break;if((uint64_t)next<=cursor)return 13;cursor=(uint64_t)next;if(case8(info.name,f->path))continue;if(info.kind!=1)return 183;
+    char path[256],tail[257];tail[0]='/';copy8(tail+1,info.name,256);unsigned status=remove_path147(path,p->product_root,tail);if(status)return status;unsigned same=0;if(equal8(info.name,f->path)&&info.size==f->bytes){uint8_t sha[32];status=msif_hash147(path,info.size,sha);if(status)return status;same=!memcmp(sha,f->sha,32);}if(!same){status=preserve_remove147(p,path,kept);if(status)return status;}
+   }
+  }}at+=r->bytes;
+ }return 0;
+}
 static const win_tx_file147*record_file_remove147(const msij147*j,const char*relative){for(unsigned at=1024;at<j->bytes;){const win_tx_record147*r=(const void*)(j->data+at);if(r->type==WIN_TX_FILE147){const win_tx_file147*f=(const void*)(r+1);if(win_tx_equal147(f->path,relative))return f;}at+=r->bytes;}return 0;}
 static const win_tx_file147*stage_remove147(const msia_plan147*p,const msij147*j,const char*relative){
  const char*prefix=".EngacerMSI/stage/";unsigned n=len8(prefix);if(len8(relative)!=n+4||memcmp(relative,prefix,n))return 0;const char*name=relative+n;if((name[0]!='f'&&name[0]!='s')||name[1]<'0'||name[1]>'9'||name[2]<'0'||name[2]>'9'||name[3]<'0'||name[3]>'9')return 0;unsigned index=(name[1]-'0')*100+(name[2]-'0')*10+name[3]-'0';
@@ -71,7 +79,7 @@ static unsigned execute_remove147(msia_plan147*p,msij147*j,unsigned*kept,msica14
  if(!stat8(product,&info)&&remove8(product))return 1117;
  unsigned files_done=0,links_done=0,registry_done=0;for(unsigned i=0;i<p->action_count&&!status;++i){msia_action147*a=p->actions+i;int condition=msia_condition147(p,a->condition);if(condition==MSIC_FALSE147)continue;
   if(installed&&msia_dll_type147(a->kind)){
-   for(unsigned at=1024;at<j->bytes&&!status;){const win_tx_record147*r=(const void*)(j->data+at);if(r->type==WIN_TX_FILE147){const win_tx_file147*f=(const void*)(r+1);if(f->flags==WIN_TX_GENERATED147){char path[256],tail[257];tail[0]='/';copy8(tail+1,f->path,256);status=remove_path147(path,p->product_root,tail);w8_file_info info;if(!status&&!stat8(path,&info)){uint8_t hash[32];if(info.kind!=1)status=183;else{unsigned same=0;if(info.size==f->bytes){status=msif_hash147(path,info.size,hash);same=!status&&!memcmp(hash,f->sha,32);}if(!status&&!same)status=preserve_remove147(p,path,kept);}}}}at+=r->bytes;}
+   status=generated_before_body147(p,j,kept);
    if(!status){msia_custom_result147 result;status=msica_run147(*actions,p,i,&result);}
   }
   else if(equal8(a->name,"RemoveRegistryValues")){status=msireg_undo147(j);registry_done=!status;}
