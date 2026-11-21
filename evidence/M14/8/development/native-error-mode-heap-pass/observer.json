@@ -1,0 +1,66 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "7e98d51a8b6fad9bfa8ef3161c95bf4c10079a53305d61c3cee670512e0c9ab4",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from session148_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/session-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-session-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M148_NATIVE_SESSION_MESSAGES_SRW_PASS"
+    ],
+    [
+      "range(21)",
+      "range(3)"
+    ],
+    [
+      "assert ui.integer(g,'ui_resident144',True)==0",
+      "assert ui.integer(g,'ui_resident144',True)==1"
+    ],
+    [
+      "assert retained==0,(cycle,retained)",
+      "assert retained==(1 if cycle==0 else 0),(cycle,retained);before=f.stats(g)[0]"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "writer_threads=4,reader_threads=4,writer_operations=4000"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Native private-worker message identity and SRW contention, not shipped-route acceptance."
+    ]
+  ],
+  "production_worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "fb44dc1dc11440a89a7d6996652a1bef",
+    "source_commit": "20c5ce9326b56570f6864fe9898663f9abd08d18",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "dd8a4b15f32f40dfa8a61e51bfa6e17d161d8e1c82a665fd1588b411734fdd0d",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "527b62e7c4a98fc4bcf8aff65ce6d0bf070307f19a16504dbe6ab2993fc1ce39",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "af27aa43f86411d6733706012fa0de81511c8e5759eefce5bca4353a6d43bd3c"
+  },
+  "production_worker_sha256": "2208a50cad9ad4b6c41d1cdbe29cc8b5c4821bb0b492788bcfeafaf97256f925"
+}
