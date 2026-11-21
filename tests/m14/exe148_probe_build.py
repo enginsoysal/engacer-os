@@ -15,6 +15,7 @@ def build():
     before="out=ROOT/'build/m14-native/stage7'/('runtime-'+name)"
     assert source.count(before)==1
     source=source.replace(before,"out=ROOT/'build/m14-native/stage8'/('runtime-'+name)")
+    source=source.replace('dist/m14stage7-build-manifest.json','dist/m14stage8-build-manifest.json')
     scope=dict(__file__=str(canonical),__name__='exe148_private_production_build')
     exec(compile(source,str(canonical),'exec'),scope)
     out=ROOT/'build/m14-native/stage8'/('runtime-'+name)

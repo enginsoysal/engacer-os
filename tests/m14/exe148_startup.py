@@ -4,8 +4,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 
 def main():
-    import replay7
-    loader=replay7.ReplayLoader();sys.meta_path.insert(0,loader)
+    import replay8
+    loader=replay8.ReplayLoader();sys.meta_path.insert(0,loader)
     try:
         from window144_native import ui,c,f,t,clone,StoppedDisk
         from fixture1 import library
@@ -14,9 +14,9 @@ def main():
         original=Path(os.environ['LOCALAPPDATA'])/'EngacerOS/Research/M14/0/SumatraPDF-3.6.1-64-install.exe'
         data=original.read_bytes();digest=hashlib.sha256(data).hexdigest()
         assert len(data)==11075960 and digest=='1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381'
-        base=json.loads((ROOT/'build/m14-native/stage7/compact/results.json').read_text(encoding='utf-8'))
+        base=json.loads((ROOT/'build/m14-native/stage8/compact/results.json').read_text(encoding='utf-8'))
         assert base['passed'] and base['build_id']==inputs['kernel_build_id']
-        source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage7-compact'/base['owned_fixture']/'owned.img'
+        source=Path(os.environ['LOCALAPPDATA'])/'EngineOS/Tests/M6/m141-stage8-compact'/base['owned_fixture']/'owned.img'
         work,disk,cloned=clone(ui,source,'m148-original-installer-startup')
         mounted=StoppedDisk(disk,library())
         try:
@@ -25,7 +25,7 @@ def main():
         finally:mounted.close()
         out=ROOT/'build/m14-native/stage8/startup-native';out.mkdir(parents=True,exist_ok=True);c.OUT=out
         report=dict(diagnostic_completed=False,original_installer_qualified=False,
-            scope='Private native routing of the unchanged original installer on accepted M14.7 kernel; not a shipped M14.8 route or successful installation.',
+            scope='Private native routing of the unchanged original installer on full M14.8 development media; not a shipped route or successful installation.',
             kernel_build_id=base['build_id'],original_sha256=digest,original_bytes=len(data),private_inputs=inputs,clone=cloned,owned_fixture=work.name)
         try:
             boot=ui.guest(work/'startup',disk,media='installed',ready='M7_DESKTOP_READY',ram=128);ui.s.normal_boot(boot)
