@@ -473,6 +473,7 @@ static const api8 api8_table[]={
  API8(CreateToolhelp32Snapshot,1),API8(Process32FirstW,1),API8(Process32NextW,1),
  API8(GdiplusStartup,16),API8(GdiplusShutdown,16),API8(GdipAlloc,16),API8(GdipFree,16),
  API8(GdipCreateBitmapFromScan0,16),API8(GdipDisposeImage,16),API8(GdipGetImageWidth,16),API8(GdipGetImageHeight,16),API8(GdipBitmapGetPixel,16),API8(GdipBitmapSetPixel,16),
+ API8(GdipFillRectangleI,16),API8(GdipSetCompositingMode,16),API8(GdipGetCompositingMode,16),
  API8(GdipCreateSolidFill,16),API8(GdipSetSolidFillColor,16),API8(GdipGetSolidFillColor,16),API8(GdipGetBrushType,16),API8(GdipCloneBrush,16),API8(GdipDeleteBrush,16),
  API8(GdipMeasureString,16),
  API8(GdipCreateStringFormat,16),API8(GdipCloneStringFormat,16),API8(GdipDeleteStringFormat,16),API8(GdipStringFormatGetGenericDefault,16),API8(GdipStringFormatGetGenericTypographic,16),

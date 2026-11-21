@@ -1,17 +1,17 @@
 /* Raster graphics contexts reference real bitmap storage; no rendering stubs. */
-typedef struct {gp_bitmap148*image;HANDLE dc;int settings[4];} gp_graphics148;
+typedef struct {gp_bitmap148*image;HANDLE dc;int settings[4];int compositing;} gp_graphics148;
 static gp_graphics148*gp_contexts148[32];
 static gp_graphics148*gp_context_find148(const void*pointer){for(unsigned i=0;i<32;++i)if(pointer&&gp_contexts148[i]==pointer)return gp_contexts148[i];return 0;}
 static unsigned MS f_GdipGetImageGraphicsContext(void*pointer,void**output){
  if(!output||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)output,8,2,0,0))return 2;*output=0;
  lock_enter142(&gp_lock148);gp_bitmap148*image=gp_bitmap_find148(pointer);if(!image){lock_leave142(&gp_lock148);return 2;}
  unsigned slot=0;while(slot<32&&gp_contexts148[slot])++slot;if(slot==32){lock_leave142(&gp_lock148);return 3;}
- gp_graphics148*context=alloc8(sizeof(*context));if(!context){lock_leave142(&gp_lock148);return 3;}*context=(gp_graphics148){image,0,{0,3,0,1}};++image->contexts;gp_contexts148[slot]=context;*output=context;lock_leave142(&gp_lock148);return 0;
+ gp_graphics148*context=alloc8(sizeof(*context));if(!context){lock_leave142(&gp_lock148);return 3;}*context=(gp_graphics148){image,0,{0,3,0,1},0};++image->contexts;gp_contexts148[slot]=context;*output=context;lock_leave142(&gp_lock148);return 0;
 }
 /* HDC storage stays borrowed. Queries and client clears use the actual native DC. */
 static unsigned MS f_GdipCreateFromHDC(HANDLE dc,void**output){
  if(!output||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)output,8,2,0,0))return 2;*output=0;if(!dc||!dc_lookup144(dc))return 2;
- lock_enter142(&gp_lock148);if(!gp_references148){lock_leave142(&gp_lock148);return 18;}unsigned slot=0;while(slot<32&&gp_contexts148[slot])++slot;if(slot==32){lock_leave142(&gp_lock148);return 3;}gp_graphics148*context=alloc8(sizeof(*context));if(!context){lock_leave142(&gp_lock148);return 3;}*context=(gp_graphics148){0,dc,{0,3,0,1}};gp_contexts148[slot]=context;*output=context;lock_leave142(&gp_lock148);return 0;
+ lock_enter142(&gp_lock148);if(!gp_references148){lock_leave142(&gp_lock148);return 18;}unsigned slot=0;while(slot<32&&gp_contexts148[slot])++slot;if(slot==32){lock_leave142(&gp_lock148);return 3;}gp_graphics148*context=alloc8(sizeof(*context));if(!context){lock_leave142(&gp_lock148);return 3;}*context=(gp_graphics148){0,dc,{0,3,0,1},0};gp_contexts148[slot]=context;*output=context;lock_leave142(&gp_lock148);return 0;
 }
 static unsigned gp_dpi148(void*pointer,void*out,unsigned vertical){
  if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,4,2,0,0))return 2;lock_enter142(&gp_lock148);gp_graphics148*context=gp_context_find148(pointer);if(!context){lock_leave142(&gp_lock148);return 2;}if(context->dc&&f_GetDeviceCaps(context->dc,vertical?90:88)!=96){lock_leave142(&gp_lock148);return 2;}uint32_t dpi=0x42c00000u;memcpy(out,&dpi,4);lock_leave142(&gp_lock148);return 0;
@@ -46,3 +46,6 @@ static unsigned gp_clear148(void*pointer,unsigned color){
 
 /* All mixed DC/graphics operations acquire UI before graphics metadata. */
 static unsigned MS f_GdipGraphicsClear(void*pointer,unsigned color){lock_enter142(&ui_lock144);unsigned status=gp_clear148(pointer,color);lock_leave142(&ui_lock144);return status;}
+
+static unsigned MS f_GdipSetCompositingMode(void*p,int mode){if(mode<0||mode>1)return 2;lock_enter142(&gp_lock148);gp_graphics148*g=gp_context_find148(p);if(g)g->compositing=mode;lock_leave142(&gp_lock148);return g?0:2;}
+static unsigned MS f_GdipGetCompositingMode(void*p,int*out){if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,4,2,0,0))return 2;lock_enter142(&gp_lock148);gp_graphics148*g=gp_context_find148(p);if(g)*out=g->compositing;lock_leave142(&gp_lock148);return g?0:2;}

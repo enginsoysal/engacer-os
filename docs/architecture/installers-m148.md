@@ -215,3 +215,20 @@ share existing allocation bounds. Color/type queries report actual retained
 state, including transparent colors; no alpha channel is silently removed.
 Other brush kinds remain unsupported. These metadata/lifetime operations do not
 substitute for the actual pixel drawing APIs required by the original installer.
+
+## Real integer rectangle filling candidate
+
+GdipFillRectangleI clips integer rectangles to real bitmap/client bounds using
+64-bit intermediates. Nonpositive dimensions and empty intersections are no-ops,
+matching owned Windows observations. Opaque client rectangles submit actual
+native retained primitives. Non-client/desktop and translucent DC rectangles
+remain unsupported. Premultiplied bitmaps support real SourceOver and SourceCopy;
+other bitmap formats currently admit opaque fills only.
+
+Solid source conversion happens once per rectangle. Each premultiplied channel
+uses source + round(destination*(255-sourceAlpha)/255), including alpha. Own
+Windows GDI+ reference compares 65,536 source/destination alpha pairs and distinct
+RGB channels with the exact native integer helper. No framebuffer duplication,
+new render thread or per-pixel syscall is introduced. External borrowed backing
+is validated before access; stride/padding and bitmap lifetime rules remain.
+The visible fixture must show actual red pixels through the GDI+ client path.

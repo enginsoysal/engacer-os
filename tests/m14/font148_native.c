@@ -30,11 +30,14 @@ __declspec(dllimport) void GdiplusShutdown(uint64_t);
 __declspec(dllimport) unsigned GdipCreateFromHDC(H,void**);
 __declspec(dllimport) unsigned GdipGraphicsClear(void*,unsigned);
 __declspec(dllimport) unsigned GdipDeleteGraphics(void*);
+__declspec(dllimport) unsigned GdipCreateSolidFill(unsigned,void**);
+__declspec(dllimport) unsigned GdipDeleteBrush(void*);
+__declspec(dllimport) unsigned GdipFillRectangleI(void*,void*,int,int,int,int);
 static H small,big;static unsigned paints;
 static void say(const char*s){unsigned n=0,w;while(s[n])++n;WriteFile(GetStdHandle((unsigned)-11),s,n,&w,0);}
 static void check(int ok){if(!ok){say("M148_FONT_RASTER_FAIL\n");ExitProcess(1);}}
 static int64_t procedure(H h,unsigned msg,uint64_t wp,int64_t lp){
- if(msg==15){PAINT paint;H dc=BeginPaint(h,&paint);check(dc!=0);check(FillRect(dc,&paint.rect,16));void*graphics=0;check(!GdipCreateFromHDC(dc,&graphics)&&graphics);check(!GdipGraphicsClear(graphics,0xffffffff)&&!GdipDeleteGraphics(graphics));check(SetBkMode(dc,1));H old=SelectObject(dc,small);check(old!=0);SetTextColor(dc,0xff0000);check(TextOutW(dc,30,30,L"Native glyphs WWW iii",20));check(SelectObject(dc,big)==small);SetTextColor(dc,0x0000ff);check(TextOutW(dc,30,95,L"Native glyphs WWW iii",20));check(SelectObject(dc,old)==big);check(EndPaint(h,&paint));++paints;say("M148_FONT_RASTER_WAITING\n");return 0;}
+ if(msg==15){PAINT paint;H dc=BeginPaint(h,&paint);check(dc!=0);check(FillRect(dc,&paint.rect,16));void*graphics=0;check(!GdipCreateFromHDC(dc,&graphics)&&graphics);check(!GdipGraphicsClear(graphics,0xffffffff));void*brush=0;check(!GdipCreateSolidFill(0xffff0000,&brush)&&brush&&!GdipFillRectangleI(graphics,brush,450,210,100,40)&&!GdipDeleteBrush(brush)&&!GdipDeleteGraphics(graphics));check(SetBkMode(dc,1));H old=SelectObject(dc,small);check(old!=0);SetTextColor(dc,0xff0000);check(TextOutW(dc,30,30,L"Native glyphs WWW iii",20));check(SelectObject(dc,big)==small);SetTextColor(dc,0x0000ff);check(TextOutW(dc,30,95,L"Native glyphs WWW iii",20));check(SelectObject(dc,old)==big);check(EndPaint(h,&paint));++paints;say("M148_FONT_RASTER_WAITING\n");return 0;}
  if(msg==2){PostQuitMessage(0);return 0;}return DefWindowProcW(h,msg,wp,lp);
 }
 static PROC volatile relocation=procedure;

@@ -1,4 +1,4 @@
-/* Real independently owned ARGB solid brushes, consumed by implemented drawing. */
+/* Real independently owned ARGB solid brushes, for original drawing APIs. */
 typedef struct {uint32_t color;} gp_brush148;
 static gp_brush148*gp_brushes148[32];
 static gp_brush148*gp_brush_find148(const void*p){for(unsigned i=0;i<32;++i)if(p&&gp_brushes148[i]==p)return gp_brushes148[i];return 0;}
@@ -9,3 +9,13 @@ static unsigned MS f_GdipGetSolidFillColor(void*p,unsigned*out){if(!out||sys8(W8
 static unsigned MS f_GdipGetBrushType(void*p,int*out){if(!out||sys8(W8_SYS_ACCESS,(uint64_t)(uintptr_t)out,4,2,0,0))return 2;lock_enter142(&gp_lock148);unsigned valid=gp_brush_find148(p)!=0;if(valid)*out=0;lock_leave142(&gp_lock148);return valid?0:2;}
 static unsigned MS f_GdipCloneBrush(void*p,void**out){if(!gp_output148(out))return 2;lock_enter142(&gp_lock148);gp_brush148*b=gp_brush_find148(p);unsigned status=b?gp_brush_new148(b->color,out):2;lock_leave142(&gp_lock148);return status;}
 static unsigned MS f_GdipDeleteBrush(void*p){lock_enter142(&gp_lock148);gp_brush148*b=gp_brush_find148(p);if(!b){lock_leave142(&gp_lock148);return 2;}for(unsigned i=0;i<32;++i)if(gp_brushes148[i]==b){gp_brushes148[i]=0;break;}free8(b);lock_leave142(&gp_lock148);return 0;}
+
+static unsigned MS f_GdipFillRectangleI(void*graphics,void*brush,int x,int y,int width,int height){
+ lock_enter142(&ui_lock144);lock_enter142(&gp_lock148);gp_graphics148*g=gp_context_find148(graphics);gp_brush148*b=gp_brush_find148(brush);unsigned status=2;if(!g||!b)goto done;
+ if(width<=0||height<=0){status=0;goto done;}uint32_t color=b->color;unsigned alpha=color>>24;if(!alpha&&!g->compositing){status=0;goto done;}if(g->settings[3]!=1&&g->settings[3]!=2){status=6;goto done;}
+ if(g->dc){native_dc144*d=dc_lookup144(g->dc);if(!d)goto done;if(d->window_surface||d->window==DESKTOP_HANDLE148||alpha!=255){status=6;goto done;}int64_t left=x,top=y,right=left+width,bottom=top+height;if(left<d->clip.left)left=d->clip.left;if(top<d->clip.top)top=d->clip.top;if(right>d->clip.right)right=d->clip.right;if(bottom>d->clip.bottom)bottom=d->clip.bottom;if(left>=right||top>=bottom){status=0;goto done;}wui_draw144 draw={.kind=1,.color=color&0xffffff,.bounds={(int)left,(int)top,(int)(right-left),(int)(bottom-top)}};status=draw_call144(d,&draw)?0:7;goto done;}
+ gp_bitmap148*image=g->image;int64_t left=x,top=y,right=left+width,bottom=top+height;if(left<0)left=0;if(top<0)top=0;if(right>image->width)right=image->width;if(bottom>image->height)bottom=image->height;if(left>=right||top>=bottom){status=0;goto done;}
+ unsigned premultiplied=image->format==0xe200b,bpp=gp_pixel_bytes148(image->format);if(!premultiplied&&alpha!=255){status=6;goto done;}uint64_t pitch=image->stride<0?-(int64_t)image->stride:image->stride,base=(uint64_t)(uintptr_t)image->pixels;if(image->stride<0)base-=pitch*((unsigned)image->height-1);if(sys8(W8_SYS_ACCESS,base,pitch*(unsigned)image->height,3,0,0))goto done;
+ uint32_t source=premultiplied?pargb_color148(color):color;for(int64_t row=top;row<bottom;++row){uint8_t*p=image->pixels+row*image->stride+left*bpp;for(int64_t col=left;col<right;++col,p+=bpp){uint32_t value=source;if(premultiplied&&!g->compositing&&alpha!=255){uint32_t previous=(uint32_t)p[0]|((uint32_t)p[1]<<8)|((uint32_t)p[2]<<16)|((uint32_t)p[3]<<24);value=pargb_over148(source,previous);}p[0]=(uint8_t)value;p[1]=(uint8_t)(value>>8);p[2]=(uint8_t)(value>>16);if(bpp==4)p[3]=(uint8_t)(value>>24);}}status=0;
+ done:lock_leave142(&gp_lock148);lock_leave142(&ui_lock144);return status;
+}
