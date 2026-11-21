@@ -315,6 +315,9 @@ static void MS f_SetFileApisToOEM(void){file_oem8=1;}
 static WCHAR *MS f_CharUpperW(WCHAR*p){if((uintptr_t)p<=65535){unsigned v=(unsigned)(uintptr_t)p;if(v>='a'&&v<='z')v-=32;return (WCHAR*)(uintptr_t)v;}for(unsigned i=0;p&&p[i];++i)if(p[i]>='a'&&p[i]<='z')p[i]-=32;return p;}
 static const char *MS f_CharPrevExA(unsigned cp,const char*start,const char*current,unsigned flags){(void)flags;if(current<=start)return start;const char*p=current-1;if(cp==65001||cp==0||cp==1)while(p>start&&((uint8_t)*p&0xc0)==0x80)--p;return p;}
 static int MS f_FormatMessageW(unsigned flags,const void*source,unsigned code,unsigned language,void*out,unsigned capacity,void*args){(void)source;(void)language;(void)args;if(!(flags&0x1000u)){last8(50);return 0;}const char*message=code==2?"The file could not be found.":code==3?"The path could not be found.":code==5?"Access is denied.":code==50?"This operation is not supported by this runtime.":code==80||code==183?"The file already exists.":code==8?"Not enough memory.":"The requested operation failed.";WCHAR wide[128];int n=utf8_to16(message,wide,128);if(n<0)return 0;if(flags&0x100u){WCHAR*p=alloc8(((unsigned)n+1)*2);if(!p){last8(8);return 0;}memcpy(p,wide,((unsigned)n+1)*2);*(WCHAR**)out=p;}else{if(capacity<=(unsigned)n){last8(122);return 0;}memcpy(out,wide,((unsigned)n+1)*2);}return n;}
+#ifdef ENGINE_M14
+#include "format-message148.inc"
+#endif
 static void *MS f_LocalFree(void*p){if(!p)return 0;if(global_contains146(p)||allocation_size8(p)==SIZE_MAX){last8(6);return p;}free8(p);return 0;}
 static int leap8(unsigned year){return !(year%4)&&(year%100||!(year%400));}
 static int MS f_FileTimeToSystemTime(const uint64_t*time,uint16_t*out){if(!time||!out)return 0;uint64_t seconds=*time/10000000,days=seconds/86400;unsigned year=1601;uint64_t remaining=days;while(year<=9999&&remaining>=(uint64_t)(365+leap8(year))){remaining-=365+(unsigned)leap8(year);++year;}if(year>9999){last8(87);return 0;}static const unsigned months[]={31,28,31,30,31,30,31,31,30,31,30,31};unsigned month=0;while(month<11){unsigned n=months[month]+(month==1&&leap8(year));if(remaining<n)break;remaining-=n;++month;}out[0]=(uint16_t)year;out[1]=(uint16_t)(month+1);out[2]=(uint16_t)((days+1)%7);out[3]=(uint16_t)(remaining+1);out[4]=(uint16_t)((seconds/3600)%24);out[5]=(uint16_t)((seconds/60)%60);out[6]=(uint16_t)(seconds%60);out[7]=(uint16_t)((*time%10000000)/10000);return 1;}
@@ -476,7 +479,7 @@ static const api8 api8_table[]={
  API8(GetWindowLongW,4),
  API8(AdjustWindowRectEx,4),API8(AdjustWindowRect,4),
  API8(SetWindowPos,4),
- API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(MapWindowPoints,4),API8(GetTickCount64,1),API8(RaiseException,1),API8(RtlUnwindEx,1),API8(CopyFileW,1),
+ API8(MonitorFromRect,4),API8(MonitorFromPoint,4),API8(GetMonitorInfoW,4),API8(SetForegroundWindow,4),API8(GetForegroundWindow,4),API8(MsgWaitForMultipleObjects,4),API8(MapWindowPoints,4),API8(GetTickCount64,1),API8(RaiseException,1),API8(RtlUnwindEx,1),API8(CopyFileW,1),API8(FormatMessageA,1),
  API8(GetWindowDC,4),API8(DrawTextExW,4),API8(DrawTextW,4),
  API8(SetWindowSubclass,6),API8(GetWindowSubclass,6),API8(RemoveWindowSubclass,6),API8(DefSubclassProc,6),
  API8(IsValidCodePage,1),API8(GetCPInfo,1),API8(IsDBCSLeadByte,1),API8(IsDBCSLeadByteEx,1),

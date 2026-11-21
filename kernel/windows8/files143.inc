@@ -209,3 +209,24 @@ static unsigned file_attributes143(const char*path,unsigned attributes){
  unsigned selected=attributes&0xa7u;if(!selected)selected=128;if((selected&~128u)||entry->kind==2)selected&=~128u;selected|=entry->kind==2?16u:0u;if(selected==record.attributes)return 0;record.attributes=selected;error=metadata_save143(&record);
  if(!error&&object<FILE_OBJECTS143){file_objects143[object]->metadata=record;file_objects143[object]->metadata_dirty=0;}return error;
 }
+
+#ifdef ENGINE_M14
+/* Stream directly into one checked copy-on-write extent; no dirty-page growth. */
+static int64_t file_copy148(unsigned destination,uint64_t source){
+ int input=file_handle143(source);if(input<0||destination>=32||!files8[destination].live)return -6;
+ file8*in=files8+input,*out=files8+destination;
+ if(!(in->access&1)||!(out->access&2)||!path8(in->path,0)||!path8(out->path,1))return -5;
+ if(in->object==out->object)return -32;
+ file_object143*from=file_objects143[in->object],*to=file_objects143[out->object];
+ if(from->size>64*1024*1024)return -223;
+ unsigned error=file_io_lock143(from,in->generation,0,(unsigned)from->size,0);
+ if(!error)error=file_io_lock143(to,out->generation,0,(unsigned)from->size,1);if(error)return -(int64_t)error;
+ const v6_entry*previous=find8(to->path);
+ if((previous&&!to->existed)||(!previous&&to->existed)||(previous&&(previous->kind!=1||previous->crc!=to->crc)))return -1117;
+ unsigned status=v6_put(m6_volume(),to->path,from->size,file_source143,from);
+ if(status)return status==V6_FULL?-112:status==V6_RO?-19:-1117;
+ const v6_entry*entry=find8(to->path);if(!entry)return -1117;
+ file_clear_dirty143(to);to->size=from->size;to->backing_size=from->size;to->crc=entry->crc;to->existed=1;to->dirty=0;to->staged=0;file_modified143(to);
+ return -(int64_t)file_flush_metadata143(to);
+}
+#endif

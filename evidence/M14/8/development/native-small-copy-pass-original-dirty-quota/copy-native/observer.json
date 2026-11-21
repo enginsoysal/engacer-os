@@ -1,0 +1,46 @@
+{
+  "canonical_sha256": "2e44edcdde6eb56480bd6ae102a8ce77fdf0bd5f1d7cd21e3d3edee1fcc912fc",
+  "executed_sha256": "39153b686275f9e06eb3a9d9c1e40806caeae9fcdcd5f49187d9de54e64f969a",
+  "production_worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "1486c6d002dd6bbb586c970342cd4d1e",
+    "source_commit": "e19f4eb133888f1f74525f7138a34dfce04e01f7",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "9d7ca438d19ea00de0704d048779de0b6c76cd28fe7e628103a3913d43ef991a",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "9eff5203048798349ffa7679e8b6390f2e07ae5b33934ae3dee68a547565b1bf"
+  },
+  "production_worker_sha256": "cc68625de2a92df7bb2ca4c74b0bec01ebea46636ecc5e3785944e7c1551d9f1",
+  "replacements": [
+    [
+      "from unwind_fixtures2 import build",
+      "from copy148_build import build"
+    ],
+    [
+      "m142-unwind",
+      "m148-copy"
+    ],
+    [
+      "stage8/unwind'",
+      "stage8/copy-native'"
+    ],
+    [
+      "M142_C_SEH_FINALLY_UNWIND_PASS",
+      "M148_COPY_FILE_BYTES_REPLACEMENT_METADATA_GUARDS_PASS"
+    ],
+    [
+      "Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification",
+      "Native CopyFileW bytes, replacement, metadata, readonly/hidden guards, same-file protection, missing source and empty file"
+    ],
+    [
+      "handled_faults_per_execution=60",
+      "copied_payload_bytes=8193"
+    ]
+  ]
+}

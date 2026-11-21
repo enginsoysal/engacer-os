@@ -10,13 +10,7 @@ static int MS f_CopyFileW(const WCHAR*from,const WCHAR*to,int fail_exists){
  if(!error&&exists>=0){if(fail_exists)error=80;else if(target.kind!=1||(target.attributes&3))error=5;else if(source.identity&&source.identity==target.identity)error=32;}
  if(!error&&exists<0&&exists!=-2&&exists!=-3)error=(unsigned)-exists;
  if(!error){output=f_CreateFileW(to,0x40000000u,0,0,fail_exists?1:2,0x80,0);if(output==UINT64_MAX)error=f_GetLastError();}
- _Alignas(16) uint8_t buffer[4096];uint64_t left=source.size;
- while(!error&&left){unsigned bytes=left>sizeof(buffer)?sizeof(buffer):(unsigned)left,got=0,written=0;
-  if(!f_ReadFile(input,buffer,bytes,&got,0))error=f_GetLastError();else if(got!=bytes)error=38;
-  else if(!f_WriteFile(output,buffer,got,&written,0))error=f_GetLastError();else if(written!=got)error=29;
-  if(!error)left-=got;
- }
- if(!error&&file_api143(output,6,0,0)<0)error=f_GetLastError();
+ if(!error&&file_api143(output,W8_FILE_COPY148,input,0)<0)error=f_GetLastError();
  if(!error&&file_api143(output,9,(uint64_t)(uintptr_t)&source,0)<0)error=f_GetLastError();
  if(output!=UINT64_MAX&&file_api143(output,7,0,0)<0&&!error)error=f_GetLastError();
  if(file_api143(input,7,0,0)<0&&!error)error=f_GetLastError();

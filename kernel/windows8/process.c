@@ -375,6 +375,9 @@ static int64_t dispatch8(trap_frame*f){
    case 8:case 9:{w8_file_info info;memset(&info,0,sizeof(info));
     if(b==9){if(!(grant->access&18)||!path8(grant->path,1))return -5;if(user8(c,&info,sizeof(info),0))return -998;return -(int64_t)file_set_metadata143(object,&info);}
     info.size=object->size;info.kind=1;info.attributes=object->metadata.attributes;memcpy(info.time,object->metadata.times,sizeof(info.time));const v6_entry*entry=find8(object->path);info.identity=entry?(uint64_t)(entry-m6_volume()->entries)+1:0;return user8(c,&info,sizeof(info),1)?-998:0;}
+#ifdef ENGINE_M14
+   case W8_FILE_COPY148:return d||e?-87:file_copy148((unsigned)slot,c);
+#endif
    case 12:case 13:return d||e?-87:file_lock_call143(f,(unsigned)slot,a,c,b==13);
    default:return -50;
   }
