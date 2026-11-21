@@ -16,6 +16,9 @@ static void foreign_commands145(uint64_t handle,int x,int y,desktop_rect clip,un
 #endif
   }
   else if(draw.kind==4)ui145_argb_tile(x+draw.bounds.x,y+draw.bounds.y,(unsigned)draw.bounds.width,(unsigned)draw.bounds.height,draw.pixels);
+#ifdef ENGINE_M14
+  else if(draw.kind==5){uint64_t id;memcpy(&id,draw.text,8);wui_image_view148 image;if(w8_ui_image148(handle,id,&image))ui148_image(x+draw.bounds.x,y+draw.bounds.y,&image);}
+#endif
  }
 }
 /* One bounded traversal stack: legal HWND nesting must not recurse on the kernel stack. */

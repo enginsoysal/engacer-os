@@ -15,6 +15,8 @@ uint64_t ui73_framebuffer_bytes(void);
 unsigned ui73_measure(const char *,unsigned);
 #ifdef ENGINE_M14
 #include <engine/ui/font-metrics148.h>
+#include <engine/ui/image148.h>
+void ui148_image(int,int,const wui_image_view148*);
 unsigned ui148_font_role(unsigned);
 unsigned ui148_font_height(unsigned);
 unsigned ui148_font_info(unsigned,ui_font_metrics148*);

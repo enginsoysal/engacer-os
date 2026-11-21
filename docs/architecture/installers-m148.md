@@ -248,3 +248,30 @@ implemented and tested before installer qualification. Own Windows references
 also show that logical GetPixel readback can change while an original borrowed
 scan pointer remains unchanged after a self-blit; do not infer success/failure
 only from the reference's backing pointer. Native tests verify bitmap readback.
+
+## Copied window-image submission candidate
+
+GDI+ window images use one bounded UI request rather than thousands of tiny
+icon tiles. The kernel copies its fixed 56-byte request, validates window/thread
+ownership, format, dimensions, signed stride, coordinates and quotas, allocates
+owned pages, copies checked source rows, then publishes one retained command.
+Failed copies/allocations roll back all temporary pages. Source pointers never
+reach the compositor. Actual native image disposal/mutation after submission
+must leave captured frame pixels unchanged.
+
+The pixel budget is 4 MiB/image and 8 MiB globally, with eight snapshots/window
+and 32 globally. Up to two pointer-table pages cover each image. Image metadata,
+pointer tables and pixel pages use normal managed UI accounting and are freed
+on paint reset, window destruction or process teardown. A source format is
+straight or premultiplied ARGB; the latter blends stored premultiplied channels
+directly, preserving alpha precision. Client cropping/display scaling reuse the
+native compositor, and image updates mark actual graphics damage. This is CPU
+compositing, not a GPU acceleration claim. Windows bitmap scaling follows the
+current fixed 96-DPI compatibility profile; it is not arbitrary per-monitor
+Windows DPI awareness or newly rasterized HiDPI Windows bitmap text.
+
+Earlier UI operation numbers and the 552-byte retained primitive are preserved.
+The new image request is appended. The candidate requires a new full media build
+and exact native/physical-framebuffer tests; private workers on the previous ABI
+cannot qualify it. Per-window/global quota exhaustion and inaccessible source
+bytes must not leak pages or publish a partially copied image.

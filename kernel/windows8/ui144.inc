@@ -5,7 +5,14 @@ extern unsigned desktop_native_windows144(void);
 typedef struct ui_draw_page144 {struct ui_draw_page144*next;wui_draw144 items[7];} ui_draw_page144;
 _Static_assert(sizeof(ui_draw_page144)<=4096,"Draw page quota");
 static unsigned ui_draw_pages144;
-typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;wui_rect144 normal_bounds;unsigned restore_max,menu_count,menu_capacity;ui_draw_page144*menu_draws;} ui_window144;
+#ifdef ENGINE_M14
+typedef struct ui_image148 ui_image148;
+#endif
+typedef struct {wui_view144 view;unsigned space,thread,generation,draw_count,draw_capacity;ui_draw_page144*draws;wui_rect144 normal_bounds;unsigned restore_max,menu_count,menu_capacity;ui_draw_page144*menu_draws;
+#ifdef ENGINE_M14
+ ui_image148*images148;unsigned image_count148;
+#endif
+} ui_window144;
 _Static_assert(sizeof(ui_window144)<=4096,"Window metadata exceeds one page");
 static ui_window144 *ui_windows144[WUI_WINDOWS144];
 static wui_queue144 *ui_queues144[SPACES142][THREADS142];
@@ -17,6 +24,7 @@ static void clip_owner_destroy146(uint64_t);
 static void clip_thread_release146(unsigned,unsigned);
 static void picker_owner_destroy146(uint64_t);
 static void picker_thread_release146(unsigned,unsigned);
+static void ui_images_release148(ui_window144*);
 #endif
 static unsigned ui_cursors144[SPACES142]={32512,32512,32512,32512};
 #ifdef ENGINE_M73
@@ -42,7 +50,7 @@ static unsigned ui_enqueue144(unsigned space,unsigned thread,const wui_message14
 static void ui_destroy144(uint64_t handle){
  ui_window144*w=ui_lookup144(handle);if(!w)return;
 #ifdef ENGINE_M14
- clip_owner_destroy146(handle);picker_owner_destroy146(handle);
+ clip_owner_destroy146(handle);picker_owner_destroy146(handle);ui_images_release148(w);
 #endif
  /* Parent teardown is bounded by the global window quota. Owners are distinct. */
  for(unsigned i=0;i<WUI_WINDOWS144;++i)if(ui_windows144[i]&&(ui_windows144[i]->view.description.parent==handle||ui_windows144[i]->view.description.owner==handle))ui_destroy144(ui_windows144[i]->view.handle);
@@ -70,6 +78,9 @@ static unsigned ui_description144(wui_description144*d,uint64_t self){
 #include "clipboard146.inc"
 #endif
 #include "drawing144.inc"
+#ifdef ENGINE_M14
+#include "image148.inc"
+#endif
 #include "timers144.inc"
 #include "focus144.inc"
 #ifdef ENGINE_M14
@@ -81,6 +92,7 @@ static int64_t ui_syscall144(uint64_t op,uint64_t handle,uint64_t pointer,uint64
 #ifdef ENGINE_M14
  if(op==WUI_ATOM147)return atom_call147(handle,pointer,argument);
  if(op==WUI_MESSAGE148)return handle||argument?-87:message_call148(pointer);
+ if(op==WUI_IMAGE148)return argument?-87:ui_image_call148(handle,pointer);
  if(op==WUI_FONT148){ui_font_metrics148 info;if(argument||handle>UINT32_MAX||!ui148_font_info((unsigned)handle,&info))return -87;return user8(pointer,&info,sizeof(info),1)?-998:0;}
  if(op==WUI_CLIPBOARD146)return clip_call146(handle,pointer,argument);
  if(op==WUI_PICKER146)return picker_call146(handle,pointer,argument,f);

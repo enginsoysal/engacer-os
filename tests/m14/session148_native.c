@@ -1,6 +1,7 @@
 /* Owned native callers; unchanged original installers are tested separately. */
 #include <stdint.h>
 #include <engine/windows8.h>
+#include <engine/winui144.h>
 int _fltused=0; /* Freestanding PE floating-point linkage marker. */
 void*memset(void*pointer,int value,size_t bytes){volatile uint8_t*out=pointer;for(size_t i=0;i<bytes;++i)out[i]=(uint8_t)value;return pointer;}
 __declspec(dllimport) unsigned RegisterWindowMessageW(const uint16_t*);
@@ -129,6 +130,15 @@ typedef struct {int height,ascent,descent,internal,external,average,maximum,weig
 _Static_assert(sizeof(native_logfont148)==92&&sizeof(native_textmetric148)==60,"Owned Windows font records");
 static int64_t subclass_auto148(uint64_t h,unsigned m,uint64_t wp,int64_t lp,uint64_t id,uint64_t data){(void)id;(void)data;return def_sub148(h,m,wp,lp);}
 static void subclass_cleanup148(unsigned atom){for(unsigned turn=0;turn<10;++turn){uint64_t h=CreateWindowExW(0,(const uint16_t*)(uintptr_t)atom,L"Automatic callback cleanup",0,0,0,100,100,0,0,0,0);check(h!=0,461);for(unsigned i=0;i<16;++i)check(set_sub148(h,subclass_auto148,i,turn),462);check(DestroyWindow(h),463);}say148("M148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\n");}
+static int64_t image_submit148(uint64_t window,const void*request){register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_UI144;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)WUI_IMAGE148),"S"(window),"d"((uint64_t)(uintptr_t)request),"r"(r10),"r"(r8):"memory","rcx","r11");return(int64_t)result;}
+static int64_t image_clear148(uint64_t window,unsigned kind){wui_draw144 draw={.kind=kind};register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_UI144;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)WUI_DRAW144),"S"(window),"d"((uint64_t)(uintptr_t)&draw),"r"(r10),"r"(r8):"memory","rcx","r11");return(int64_t)result;}
+static unsigned image_foreign_thread148(void*window){check(image_submit148((uint64_t)(uintptr_t)window,0)==-5,566);return 0;}
+static void image_snapshot_tests148(uint64_t window){
+ uint32_t pixels[4]={0xffff0000,0x80008000,0xff0000ff,0};wui_image_request148 request={.pixels=(uint64_t)(uintptr_t)pixels,.width=2,.height=2,.stride=8,.format=2,.clip_width=100,.clip_height=100};check(image_submit148(1,&request)==-1400&&image_submit148(window,(void*)1)==-998,567);request.reserved[0]=1;check(image_submit148(window,&request)==-87,568);request.reserved[0]=0;request.format=0;check(image_submit148(window,&request)==-87,569);request.format=2;request.pixels=1;for(unsigned i=0;i<32;++i)check(image_submit148(window,&request)==-998,570);request.pixels=(uint64_t)(uintptr_t)pixels;request.stride=0;check(image_submit148(window,&request)==-87,571);request.stride=8;check(image_clear148(window,5)==-50,572);
+ for(unsigned round=0;round<2;++round){for(unsigned i=0;i<8;++i)check(!image_submit148(window,&request),573);check(image_submit148(window,&request)==-1816&&!image_clear148(window,3),574);}request.stride=-8;request.pixels=(uint64_t)(uintptr_t)(pixels+2);check(!image_submit148(window,&request)&&!image_clear148(window,3),575);
+ uint64_t worker=CreateThread(0,0,image_foreign_thread148,(void*)(uintptr_t)window,0,0);check(worker&&WaitForSingleObject(worker,30000)==0&&CloseHandle(worker),576);
+ uint64_t heap=HeapCreate(0,0,0);void*source=heap?HeapAlloc(heap,8,4*1024*1024):0;check(source!=0,577);request=(wui_image_request148){.pixels=(uint64_t)(uintptr_t)source,.width=512,.height=1024,.stride=2048,.format=1,.clip_width=100,.clip_height=100};for(unsigned i=0;i<4;++i)check(!image_submit148(window,&request),578);check(image_submit148(window,&request)==-1816&&!image_clear148(window,3),579);request.height=2048;check(!image_submit148(window,&request)&&!image_submit148(window,&request)&&image_submit148(window,&request)==-1816&&!image_clear148(window,3)&&HeapDestroy(heap),580);say148("M148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\n");
+}
 static void drawtext_tests148(uint64_t h){
  uint64_t dc=GetWindowDC(h);check(dc!=0,473);int extent[2],wide[2],r[4]={5,7,5,7};check(GetTextExtentPoint32W(dc,L"ABC",3,extent)&&DrawTextExW(dc,(uint16_t*)L"ABC",3,r,0x2500,0)==extent[1]&&r[0]==5&&r[1]==7&&r[2]==5+extent[0]&&r[3]==7+extent[1],474);
  check(!TextOutW(dc,0,0,L"Forbidden non-client drawing",28)&&GetLastError()==50,475);
@@ -218,6 +228,7 @@ void entry(void){
  int placed[4];check(SetWindowPos(framed,0,30,40,-7,-9,0x215)&&GetWindowRect(framed,placed)&&placed[0]==30&&placed[1]==40&&placed[2]-placed[0]==212&&placed[3]-placed[1]==141&&class_pre148==2&&class_post148==2&&class_moves148==1&&class_sizes148==1&&class_move148==(31u|(80u<<16)),402);
  check(SetWindowPos(framed,0,35,45,0,0,0x415)&&class_pre148==2&&class_post148==3&&class_moves148==2&&class_sizes148==1&&class_move148==(36u|(85u<<16)),403);check(!SetWindowPos(framed,0,1,1,1,1,0)&&GetLastError()==50&&GetWindowRect(framed,placed)&&placed[0]==35&&placed[1]==45&&DestroyWindow(framed)&&class_destroyed148==1,404);
  int invalid_adjustment[4]={INT32_MIN,0,10,10};check(!AdjustWindowRectEx(invalid_adjustment,0x02c80000,0,0)&&invalid_adjustment[0]==INT32_MIN&&!AdjustWindowRectEx(plain_adjusted,0x02c80000,0,0x200),400);
+ image_snapshot_tests148(hidden);
  drawtext_tests148(hidden);
  button_tests148(hidden);
  subclass_tests148(hidden);

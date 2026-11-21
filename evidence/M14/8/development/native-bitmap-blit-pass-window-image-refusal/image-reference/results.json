@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "scope": "Own off-screen Windows image blit, alpha, clipping and overlap observations.",
+  "cases": [
+    {
+      "task": "SourceOver ARGB source into PARGB destination",
+      "pixels": [
+        "0xc0bf0a05",
+        "0xff0000ff",
+        "0x803f1f0f",
+        "0xff00ff00"
+      ]
+    },
+    {
+      "task": "Overlapping self blit",
+      "pixels": [
+        "0xffff0000",
+        "0xffff0000",
+        "0xff0000ff"
+      ],
+      "borrowed_pointer_after": [
+        "0xffff0000",
+        "0xff0000ff",
+        "0xff00ff00"
+      ],
+      "observer_note": "Windows logical readback changes while this borrowed backing remains unchanged; raw pointer observation alone would incorrectly report no draw. Native tests assert actual bitmap readback."
+    }
+  ],
+  "visible_windows_created": 0
+}
