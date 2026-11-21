@@ -22,6 +22,9 @@ static int window_origin144(HANDLE handle,int*x,int*y){if(handle==DESKTOP_HANDLE
 static int window_point144(HANDLE handle,void*point,int direction){if(!point){last8(87);return 0;}int x,y;if(!window_origin144(handle,&x,&y))return 0;int*p=point;int64_t a=(int64_t)p[0]+(int64_t)direction*x,b=(int64_t)p[1]+(int64_t)direction*y;if(a<INT32_MIN||a>INT32_MAX||b<INT32_MIN||b>INT32_MAX){last8(87);return 0;}p[0]=(int)a;p[1]=(int)b;return 1;}
 static int MS f_ClientToScreen(HANDLE handle,void*point){return window_point144(handle,point,1);}
 static int MS f_ScreenToClient(HANDLE handle,void*point){return window_point144(handle,point,-1);}
+#ifdef ENGINE_M14
+#include "map-points148.inc"
+#endif
 static int MS f_MoveWindow(HANDLE handle,int x,int y,int width,int height,int repaint){(void)repaint;lock_enter142(&ui_lock144);ui_window_runtime144*w=ui_window_lookup144(handle);if(!w||w->thread!=tid142()||!ui_refresh144(w)){lock_leave142(&ui_lock144);last8(w?5:1400);return 0;}wui_description144 previous=w->description;w->description.bounds=(wui_rect144){x,y,width,height};unsigned ok=ui_sync144(w);if(!ok)w->description=previous;lock_leave142(&ui_lock144);if(!ok)return 0;win_rect144 client;f_SendMessageW(handle,3,0,(x&65535)|((int64_t)(y&65535)<<16));if(f_GetClientRect(handle,&client))f_SendMessageW(handle,5,0,(client.right&65535)|((int64_t)(client.bottom&65535)<<16));return 1;}
 static HANDLE MS f_GetDlgItem(HANDLE parent,int id){lock_enter142(&ui_lock144);HANDLE result=0;for(ui_window_runtime144*w=ui_runtime_windows144;w;w=w->next)if(w->description.parent==parent&&w->id==id){result=w->handle;break;}lock_leave142(&ui_lock144);if(!result)last8(1421);return result;}
 static int64_t MS f_SendDlgItemMessageW(HANDLE parent,int id,unsigned message,uint64_t wp,int64_t lp){HANDLE child=f_GetDlgItem(parent,id);return child?f_SendMessageW(child,message,wp,lp):0;}
