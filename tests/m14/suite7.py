@@ -92,7 +92,8 @@ def main():
   ('generic-cancel','install147_cancel.py',()),('file-entry','msi_entry147_native.py',()),('review-stale','review147_stale.py',()),
   ('removal-preservation','remove147_native.py',()),('completion-faults','terminal147_native.py',()),
   ('storage','storage147_native.py',())):
-  add('msi147-'+name,'tests/m14/'+script,arguments,('compact',),5)
+  add('msi147-'+name,'tests/m14/'+script,arguments,('compact',),3)
+ tasks['msi147-file-entry']['priority']=1
  tasks['msi147-completion-faults']['dependencies'].add('msi147-removal-preservation')
  for firmware in ('bios','uefi'):
   for medium in ('iso','usb'):
