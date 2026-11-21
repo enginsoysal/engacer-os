@@ -408,6 +408,7 @@ static void MS f_type_info_destructor(void*p){(void)p; /* type_info carries no c
 #include "gdiplus-startup148.inc"
 #include "gdiplus-bitmap148.inc"
 #include "gdiplus-graphics148.inc"
+#include "gdiplus-font148.inc"
 #endif
 #include "image-draw145.inc"
 #include "image-list145.inc"
@@ -469,6 +470,8 @@ static const api8 api8_table[]={
  API8(CreateToolhelp32Snapshot,1),API8(Process32FirstW,1),API8(Process32NextW,1),
  API8(GdiplusStartup,16),API8(GdiplusShutdown,16),API8(GdipAlloc,16),API8(GdipFree,16),
  API8(GdipCreateBitmapFromScan0,16),API8(GdipDisposeImage,16),API8(GdipGetImageWidth,16),API8(GdipGetImageHeight,16),API8(GdipBitmapGetPixel,16),API8(GdipBitmapSetPixel,16),
+ API8(GdipCreateFontFamilyFromName,16),API8(GdipGetGenericFontFamilySansSerif,16),API8(GdipDeleteFontFamily,16),API8(GdipGetFamilyName,16),
+ API8(GdipCreateFont,16),API8(GdipCreateFontFromDC,16),API8(GdipCreateFontFromLogfontW,16),API8(GdipCreateFontFromLogfontA,16),API8(GdipDeleteFont,16),API8(GdipGetFamily,16),API8(GdipGetFontUnit,16),API8(GdipGetFontStyle,16),API8(GdipGetFontSize,16),API8(GdipGetFontHeight,16),API8(GdipGetLogFontW,16),
  API8(GdipCreateBitmapFromGraphics,16),API8(GdipGetImagePixelFormat,16),
  API8(GdipCreateFromHDC,16),API8(GdipGetDpiX,16),API8(GdipGetDpiY,16),
  API8(GdipGetImageGraphicsContext,16),API8(GdipDeleteGraphics,16),API8(GdipGraphicsClear,16),

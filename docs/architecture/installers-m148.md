@@ -147,3 +147,27 @@ code is exhaustively compared against actual Windows GDI+ bitmap data, not only
 against an algebraically similar formula. Clear converts its fill color once
 before the pixel loop. No second image, color table or background worker is
 allocated. Native storage/clear/lifetime qualification remains required.
+
+## GDI+ logical font families candidate
+
+The native installed family is Inter. Explicit compatibility aliases (Arial,
+Segoe UI, Tahoma, Microsoft Sans Serif, MS Shell Dlg/2, Helvetica, sans-serif)
+select Inter and expose that actual name in family/logfont queries. Unrecognized
+names return FontFamilyNotFound; custom font collections remain unsupported.
+This is a declared native substitution profile, not bundled Microsoft fonts.
+
+Up to 32 independently allocated family objects and 32 font objects share the
+immutable raster atlas. Fonts clone logical selection instead of borrowing
+family objects or selected caller HFONTs. Destroying the source family, DC or
+HFONT does not invalidate an independent font. Regular sizes select 14/16 pixel
+strikes; bold selects available 21/28 semibold strikes, reporting actual weight
+600 and actual selected size. Underline/strike are retained logical decorations;
+italic and unsupported physical units fail explicitly. Pixel/point conversion
+uses the actual 96-DPI coordinate profile. Arbitrary font sizes/outlines and
+font rendering APIs remain unqualified until their actual implementations pass.
+
+GdipCreateFont's emSize is a real Win64 floating argument. Only the necessary
+user font functions enable SSE2 code generation; the rest of the freestanding
+runtime/kernel retain their current compilation settings. Native scheduling
+already saves/restores user floating state. Native callers must verify actual
+floating arguments/results, not call these exports with integer substitutes.

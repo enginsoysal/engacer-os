@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "scope": "Exhaustive own GDI+ premultiplication reference; no vendor application execution.",
+  "source_sha256": {
+    "user/windows8/pargb148.h": "ae7a254cf1f84cabac7e490e0557bc9a17640cda5191d42813a6fff54e4b1d5f",
+    "tests/m14/pargb148_reference.c": "a9e2250dc3eb4bb4422d8c0bb9c45c5b62f6ce26920a108c966d607df0d3b639",
+    "tests/m14/pargb148_reference.py": "22e8e5d8061ee46c58da14c945b9907f0c8ad3fbad7c5dce3339fa172ec2e08a"
+  },
+  "own_dll_sha256": "aa1468cbbe5b488a8cf37dc3c744713aeb98afca4b95256864520481abf674b2",
+  "pack_pairs": 65536,
+  "inverse_pairs": 32895,
+  "channels_per_pair": 3,
+  "derived_bitmap_format": "0xe200b",
+  "examples": [
+    {
+      "alpha": 0,
+      "input": "0xffca00",
+      "stored": "0x0",
+      "readback": "0x0"
+    },
+    {
+      "alpha": 1,
+      "input": "0x180937f",
+      "stored": "0x1010100",
+      "readback": "0x1ffff00"
+    },
+    {
+      "alpha": 7,
+      "input": "0x7ffca00",
+      "stored": "0x7070600",
+      "readback": "0x7feda00"
+    },
+    {
+      "alpha": 127,
+      "input": "0x7fffca00",
+      "stored": "0x7f7f6500",
+      "readback": "0x7ffeca00"
+    },
+    {
+      "alpha": 128,
+      "input": "0x804053bf",
+      "stored": "0x80202a60",
+      "readback": "0x803f53bf"
+    },
+    {
+      "alpha": 255,
+      "input": "0xffffca00",
+      "stored": "0xffffca00",
+      "readback": "0xffffca00"
+    }
+  ],
+  "visible_windows_created": 0,
+  "conversion": "Rounded integer premultiplication; 16-bit truncated reciprocal unpremultiplication, including lossy full-channel cases."
+}
