@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "scope": "Observe real CPL3 GDI font pixels and lifecycle; not vendor qualification.",
+  "build_id": "13bbccbc57ab1e4008aad659fda3100e",
+  "production_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "13bbccbc57ab1e4008aad659fda3100e",
+    "source_commit": "6cb35b2978d188fc082dfb36a4143f7105f55017",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "efe2d4d7fb7aa660774b91129c9ceb41c8f25ff9b4d7a2fed53087389c8cf7c4",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "03b6425c3f3b1bbee04b487285631390dbd002e40fd7a92051e60a4c17a2cb8d"
+  },
+  "fixture_sha256": "2f4d75c3419a007e4cbd6fdbdc6eb930a6646761c7c2bda9abf3399d001b0f79",
+  "observer_sha256": "9ebc97cbc42cdc5a4eb905fd6d15ace81e821eaf620464e6099c7394c741fe1e",
+  "clone": {
+    "source_sha256": "d0feeef507ce284122d9e9a3bef8883a18b3cb811c29316893778848d67638ff",
+    "clone_sha256": "d0feeef507ce284122d9e9a3bef8883a18b3cb811c29316893778848d67638ff",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "blue14": {
+        "pixels": 716,
+        "width": 145,
+        "height": 14,
+        "coverage_colors": 158
+      },
+      "red28_underlined": {
+        "pixels": 3019,
+        "width": 288,
+        "height": 26,
+        "coverage_colors": 191
+      },
+      "retained_pages": 0
+    },
+    {
+      "cycle": 2,
+      "blue14": {
+        "pixels": 716,
+        "width": 145,
+        "height": 14,
+        "coverage_colors": 158
+      },
+      "red28_underlined": {
+        "pixels": 3019,
+        "width": 288,
+        "height": 26,
+        "coverage_colors": 191
+      },
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "blue14": {
+        "pixels": 716,
+        "width": 145,
+        "height": 14,
+        "coverage_colors": 158
+      },
+      "red28_underlined": {
+        "pixels": 3019,
+        "width": 288,
+        "height": 26,
+        "coverage_colors": 191
+      },
+      "retained_pages": 0
+    }
+  ]
+}

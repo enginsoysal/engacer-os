@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "scope": "Own hidden Windows callback-chain reference; no vendor app or visible UI.",
+  "visible_windows_created": 0,
+  "duplicate_updates": 500,
+  "cases": [
+    {
+      "message": "0x8100",
+      "result": 310,
+      "order": [
+        2,
+        1
+      ]
+    },
+    {
+      "message": "0x8101",
+      "result": 210,
+      "order": [
+        2
+      ]
+    },
+    {
+      "message": "0x8102",
+      "result": 210,
+      "order": [
+        2
+      ]
+    },
+    {
+      "message": "0x8103",
+      "result": 310,
+      "order": [
+        1,
+        2
+      ]
+    },
+    {
+      "message": "0x8104",
+      "result": 110,
+      "order": [
+        1,
+        1
+      ]
+    }
+  ]
+}

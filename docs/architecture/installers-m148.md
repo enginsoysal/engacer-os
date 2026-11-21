@@ -83,3 +83,16 @@ on the wrong thread. Limits are 16 entries/window, 128/process, 32 active
 subclass dispatches/thread. Metadata is allocated lazily and creates no worker,
 service, polling loop or kernel callback pointer. Real mutation/continuation
 and native cleanup tests are pending; export identity alone is not behavior.
+
+## Ideal button geometry
+
+BCM_GETIDEALSIZE uses the real selected native font and the native button
+padding. Single-line pushbutton width is measured text plus 24 pixels; height
+is measured cell height plus 12, at least 32. A requested width is retained,
+matching the currently implemented single-line clipped paint behavior. Other
+button types return actual window dimensions. Multiline and image pushbutton
+layout remain explicit unsupported profiles instead of claiming text wrapping
+or image measurement that painting does not perform. The original caller
+receives actual native dimensions, not copied Windows theme constants.
+
+Contract: https://learn.microsoft.com/en-us/windows/win32/controls/bcm-getidealsize

@@ -119,6 +119,17 @@ static void subclass_tests148(uint64_t h){
  for(unsigned i=0;i<16;++i)check(set_sub148(h,subclass_proc_test148,10+i,i),457);check(!set_sub148(h,subclass_proc_test148,99,0)&&GetLastError()==1816,458);for(unsigned i=0;i<16;++i)check(remove_sub148(h,subclass_proc_test148,10+i),459);
  check(set_sub148(h,subclass_proc_test148,1,0)&&FreeLibrary(dll),460);say148("M148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\n");
 }
+typedef struct {int height,width,escapement,orientation,weight;uint8_t italic,underline,strike,charset,out_precision,clip_precision,quality,pitch;uint16_t face[32];} native_logfont148;
+typedef struct {int height,ascent,descent,internal,external,average,maximum,weight,overhang,aspect_x,aspect_y;uint16_t first,last,default_char,break_char;uint8_t italic,underline,strike,pitch,charset,pad[3];} native_textmetric148;
+_Static_assert(sizeof(native_logfont148)==92&&sizeof(native_textmetric148)==60,"Owned Windows font records");
+static int64_t subclass_auto148(uint64_t h,unsigned m,uint64_t wp,int64_t lp,uint64_t id,uint64_t data){(void)id;(void)data;return def_sub148(h,m,wp,lp);}
+static void subclass_cleanup148(unsigned atom){for(unsigned turn=0;turn<10;++turn){uint64_t h=CreateWindowExW(0,(const uint16_t*)(uintptr_t)atom,L"Automatic callback cleanup",0,0,0,100,100,0,0,0,0);check(h!=0,461);for(unsigned i=0;i<16;++i)check(set_sub148(h,subclass_auto148,i,turn),462);check(DestroyWindow(h),463);}say148("M148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\n");}
+static void button_tests148(uint64_t parent){
+ uint64_t button=CreateWindowExW(0,L"Button",L"Install now",0x40000000,0,0,120,30,parent,41,0,0);check(button!=0,464);uint64_t dc=GetDC(button);int text[2],ideal[2]={0,0};check(dc&&GetTextExtentPoint32W(dc,L"Install now",11,text)&&ReleaseDC(button,dc)&&SendMessageW(button,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[0]>=text[0]+12&&ideal[1]>=text[1]+8,465);
+ int natural=ideal[1];ideal[0]=80;ideal[1]=0;check(SendMessageW(button,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[0]==80&&ideal[1]==natural,466);native_logfont148 lf={.height=-28,.weight=600};uint64_t font=CreateFontIndirectW(&lf);check(font!=0,467);SendMessageW(button,0x30,font,0);ideal[0]=0;check(SendMessageW(button,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[1]>natural,468);
+ ideal[0]=55;ideal[1]=66;check(!SendMessageW(button,0x1601,1,(int64_t)(uintptr_t)ideal)&&GetLastError()==87&&ideal[0]==55&&ideal[1]==66,469);check(!SendMessageW(button,0x1601,0,1)&&GetLastError()==998,470);check(DestroyWindow(button)&&DeleteObject(font),471);
+ uint64_t checkbutton=CreateWindowExW(0,L"Button",L"Optional item",0x40000003,0,0,123,37,parent,42,0,0);ideal[0]=0;ideal[1]=0;check(checkbutton&&SendMessageW(checkbutton,0x1601,0,(int64_t)(uintptr_t)ideal)&&ideal[0]==123&&ideal[1]==37&&DestroyWindow(checkbutton),472);say148("M148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\n");
+}
 static uint64_t lock,left,right;
 static void(*shutdown_gp148)(uint64_t);
 static unsigned gp_shutdown_worker148(void*token){shutdown_gp148((uint64_t)(uintptr_t)token);return 0;}
@@ -143,9 +154,6 @@ static unsigned worker(void*kind){
   else{AcquireSRWLockShared(&lock);check(right==left*3,241);ReleaseSRWLockShared(&lock);}
  }for(unsigned i=0;i<64;++i){uint64_t dc=GetDC(0);check(dc&&GetDeviceCaps(dc,88)==96&&ReleaseDC(0,dc),393);}return 0;
 }
-typedef struct {int height,width,escapement,orientation,weight;uint8_t italic,underline,strike,charset,out_precision,clip_precision,quality,pitch;uint16_t face[32];} native_logfont148;
-typedef struct {int height,ascent,descent,internal,external,average,maximum,weight,overhang,aspect_x,aspect_y;uint16_t first,last,default_char,break_char;uint8_t italic,underline,strike,pitch,charset,pad[3];} native_textmetric148;
-_Static_assert(sizeof(native_logfont148)==92&&sizeof(native_textmetric148)==60,"Owned Windows font records");
 static void font_tests148(void){
  native_logfont148 lf={.height=-14,.weight=400},copy={0};lf.face[0]='S';lf.face[1]='e';lf.face[2]='g';
  uint64_t dc=GetDC(0),font=CreateFontIndirectW(&lf);check(dc&&font,420);uint64_t stock=GetCurrentObject(dc,6);check(stock==GetStockObject(13)&&SelectObject(dc,font)==stock&&GetCurrentObject(dc,6)==font,421);
@@ -195,8 +203,9 @@ void entry(void){
  int placed[4];check(SetWindowPos(framed,0,30,40,-7,-9,0x215)&&GetWindowRect(framed,placed)&&placed[0]==30&&placed[1]==40&&placed[2]-placed[0]==212&&placed[3]-placed[1]==141&&class_pre148==2&&class_post148==2&&class_moves148==1&&class_sizes148==1&&class_move148==(31u|(80u<<16)),402);
  check(SetWindowPos(framed,0,35,45,0,0,0x415)&&class_pre148==2&&class_post148==3&&class_moves148==2&&class_sizes148==1&&class_move148==(36u|(85u<<16)),403);check(!SetWindowPos(framed,0,1,1,1,1,0)&&GetLastError()==50&&GetWindowRect(framed,placed)&&placed[0]==35&&placed[1]==45&&DestroyWindow(framed)&&class_destroyed148==1,404);
  int invalid_adjustment[4]={INT32_MIN,0,10,10};check(!AdjustWindowRectEx(invalid_adjustment,0x02c80000,0,0)&&invalid_adjustment[0]==INT32_MIN&&!AdjustWindowRectEx(plain_adjusted,0x02c80000,0,0x200),400);
+ button_tests148(hidden);
  subclass_tests148(hidden);
- check(DestroyWindow(hidden)&&class_destroyed148==2&&UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
+ check(DestroyWindow(hidden)&&class_destroyed148==2,354);subclass_cleanup148(class_atom);check(UnregisterClassW(class_definition.name,0)&&!GetClassInfoExW(0,class_definition.name,&class_readback)&&GetLastError()==1411,354);
  for(unsigned i=0;i<70000;++i)check(RegisterWindowMessageW(L"engacer.message148.parent")==id,223);
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
  uint16_t long_path[512];check(GetLongPathNameW(path,0,0)==n+1,362);long_path[0]=0x9b9b;check(GetLongPathNameW(path,long_path,n)==n+1&&long_path[0]==0x9b9b,363);check(GetLongPathNameW(path,long_path,512)==n,364);for(unsigned i=0;i<=n;++i)check(long_path[i]==path[i],365);check(GetLongPathNameW(long_path,long_path,512)==n&&!GetLongPathNameW(L"relative",long_path,512)&&GetLastError()==50,366);
