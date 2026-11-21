@@ -33,7 +33,12 @@ static unsigned MS f_GetDialogBaseUnits(void){wui_metrics144 m;return window_met
 static int MS f_MapDialogRect(HANDLE handle,win_rect144*rect){if(!rect||!f_IsWindow(handle)){last8(87);return 0;}unsigned units=f_GetDialogBaseUnits();int64_t values[4]={(int64_t)rect->left*(units&65535)/4,(int64_t)rect->top*(units>>16)/8,(int64_t)rect->right*(units&65535)/4,(int64_t)rect->bottom*(units>>16)/8};for(unsigned i=0;i<4;++i)if(values[i]<INT32_MIN||values[i]>INT32_MAX){last8(87);return 0;}*rect=(win_rect144){(int)values[0],(int)values[1],(int)values[2],(int)values[3]};return 1;}
 static int MS f_SystemParametersInfoW(unsigned action,unsigned value,void*out,unsigned flags){(void)value;if(!out||flags){last8(87);return 0;}wui_metrics144 m;if(!window_metrics144(&m))return 0;if(action==0x30){*(win_rect144*)out=(win_rect144){0,0,(int)m.width,(int)m.work_height};return 1;}last8(50);return 0;}
 static HANDLE MS f_MonitorFromWindow(HANDLE handle,unsigned flags){if(flags>2){last8(87);return 0;}if(!f_IsWindow(handle)&&!flags)return 0;return UINT64_C(0x4d000001);}
+#ifdef ENGINE_M14
+#include "monitor148.inc"
+static int MS f_GetMonitorInfoA(HANDLE monitor,void*out){return monitor_info148(monitor,out,0);}
+#else
 static int MS f_GetMonitorInfoA(HANDLE monitor,void*out){if(monitor!=UINT64_C(0x4d000001)||!out||(*(unsigned*)out!=40&&*(unsigned*)out!=72)){last8(87);return 0;}wui_metrics144 m;if(!window_metrics144(&m))return 0;win_rect144*r=(void*)((uint8_t*)out+4);r[0]=(win_rect144){0,0,(int)m.width,(int)m.height};r[1]=(win_rect144){0,0,(int)m.width,(int)m.work_height};*(unsigned*)((uint8_t*)out+36)=1;if(*(unsigned*)out==72){memset((uint8_t*)out+40,0,32);copy8((char*)out+40,"Engacer Display",32);}return 1;}
+#endif
 static int MS f_GetCursorPos(void*out){if(!out){last8(87);return 0;}wui_metrics144 m;if(!window_metrics144(&m))return 0;((int*)out)[0]=(int)m.pointer_x;((int*)out)[1]=(int)m.pointer_y;return 1;}
 static HANDLE MS f_LoadCursorW(HANDLE module,const WCHAR*name){if(module||(uintptr_t)name>65535){last8(50);return 0;}unsigned id=(unsigned)(uintptr_t)name;if(id!=32512&&id!=32513&&id!=32642&&id!=32643&&id!=32644&&id!=32645){last8(50);return 0;}return UINT64_C(0x43000000)|id;}
 static HANDLE MS f_SetCursor(HANDLE cursor){if(cursor&&(cursor&UINT64_C(0xffff0000))!=UINT64_C(0x43000000)){last8(6);return 0;}int64_t old=ui_call144(WUI_CURSOR144,cursor&65535,0,0);if(old<0){last8((unsigned)-old);return 0;}return old?UINT64_C(0x43000000)|(unsigned)old:0;}

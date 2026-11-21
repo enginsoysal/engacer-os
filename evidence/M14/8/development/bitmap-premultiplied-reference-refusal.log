@@ -1,6 +1,6 @@
 Traceback (most recent call last):
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\bitmap148_reference.py", line 50, in <module>
+  File "<project-root>\tests\m14\bitmap148_reference.py", line 50, in <module>
     if __name__=='__main__':main()
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\bitmap148_reference.py", line 39, in main
+  File "<project-root>\tests\m14\bitmap148_reference.py", line 39, in main
     assert color.value==((alpha<<24)|(recovered<<16)|(recovered<<8)|recovered),(alpha,channel,hex(color.value),recovered)
 AssertionError: (127, 254, '0x7ffefefe', 255)

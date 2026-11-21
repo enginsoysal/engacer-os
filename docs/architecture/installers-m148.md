@@ -293,3 +293,26 @@ current control-owned icons are released with control teardown. Existing image
 count/storage caps remain. No font, renderer, service or permission worker is
 loaded just to show a shield. Native visible show/hide and resource regressions
 must pass before claiming this control behavior.
+
+## Shared window/bitmap alpha rounding correction
+
+Straight ARGB snapshots must first round source premultiplication and then
+separately round the destination contribution, matching actual Windows GDI+
+memory-HDC output. A fused division can differ by one channel level. The scalar
+helper now lives in a common original header used by both kernel image rendering
+and user bitmap processing; its exact host reference covers 65,536 pack pairs,
+32,895 inverse pairs and 65,536 source/destination alpha pairs. A separate
+4096-case HDC reference and a physical native framebuffer counterexample bind
+the window behavior. Existing native UI glyph/icon blend paths are unchanged.
+The corrected kernel requires new full-media qualification.
+
+## Actual single-monitor placement candidate
+
+MonitorFromRect/Point use the current native logical display bounds and real
+primary/nearest/null fallback in the existing single-display profile. An empty
+or inverted rectangle uses its top-left point, not a normalized area. Checked
+GetMonitorInfoA/W returns actual monitor/work-area rectangles and native display
+identity for base and matching extended records. No dynamic display list or
+background discovery worker is added, and no second monitor is invented. This
+supports original window placement while keeping multiple displays and arbitrary
+Windows per-monitor DPI awareness outside the current qualification.

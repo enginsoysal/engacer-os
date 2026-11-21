@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "scope": "Observe real CPL3 GDI font pixels and lifecycle; not vendor qualification.",
+  "build_id": "dc5e340126fa923103c98b3ad34e5e93",
+  "production_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "dc5e340126fa923103c98b3ad34e5e93",
+    "source_commit": "dc926689fb070bce86c5c122a1025afdd0fe03af",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "56525b4dd5341f6fec76437724fa59d30a63b48b61cafe619f9ac417b0319e57",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "e321e5878360b70dc35c13c7074cccb59e988346cae2c523fa9a8b858b48a1a5"
+  },
+  "fixture_sha256": "e1d40bb9b19e1d3f57d8536b3e297bb8fc77fbaa6ae87f0085c94226f8d718a9",
+  "observer_sha256": "4c53bf8175a775e84e8a780e69edbaf16eb8f0c2b195561e242c45128a131878",
+  "clone": {
+    "source_sha256": "a3b2b58d0bb3795d0eb26bdbc412157cc1fd529e29818d792163ee69273e6e15",
+    "clone_sha256": "a3b2b58d0bb3795d0eb26bdbc412157cc1fd529e29818d792163ee69273e6e15",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\font148_run.py\", line 43, in main\n    assert image.getpixel((631,250))==(2,2,2),('Straight-ARGB window blend differs from owned Windows HDC reference',image.getpixel((631,250)))\nAssertionError: ('Straight-ARGB window blend differs from owned Windows HDC reference', (1, 1, 1))\n"
+}

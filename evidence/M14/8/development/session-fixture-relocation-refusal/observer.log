@@ -13,13 +13,13 @@
 Traceback (most recent call last):
   "error": "Traceback (most recent call last):\n  File \"<project-root>\\tests\\m14\\global146_run.py\", line 21, in main\n    retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))\n  File \"<project-root>\\tests\\m14\\apps_native4.py\", line 22, in task\n    raise AssertionError(raw[304:].split(b'\\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\\0',1)[0].decode(errors='replace'))\nAssertionError: The Windows image has no usable relocation directory. OUTPUT Mapped original image: 7zFM.exe bytes=16384 source-fnv32=3465295856\n\nEngacer OS: The Windows image has no usable relocation directory.\n\n"
 }
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 21, in <module>
+  File "<project-root>\tests\m14\session148_run.py", line 21, in <module>
     if __name__=='__main__':main()
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 19, in main
+  File "<project-root>\tests\m14\session148_run.py", line 19, in main
     namespace=dict(__file__=str(source),__name__='session148_derived',production=production);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\global146_run.py", line 21, in main
+  File "<project-root>\tests\m14\global146_run.py", line 21, in main
     retained=f.stats(g)[0]-before;assert retained==0,(cycle,retained);samples.append(dict(cycle=cycle+1,retained_pages=retained,concurrent_alloc_free_rounds=200))
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\apps_native4.py", line 22, in task
+  File "<project-root>\tests\m14\apps_native4.py", line 22, in task
     raise AssertionError(raw[304:].split(b'\0',1)[0].decode(errors='replace')+' OUTPUT '+raw[496:].split(b'\0',1)[0].decode(errors='replace'))
 AssertionError: The Windows image has no usable relocation directory. OUTPUT Mapped original image: 7zFM.exe bytes=16384 source-fnv32=3465295856
 

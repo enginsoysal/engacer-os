@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "build_id": "dc5e340126fa923103c98b3ad34e5e93",
+  "scope": "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "a3b2b58d0bb3795d0eb26bdbc412157cc1fd529e29818d792163ee69273e6e15",
+    "clone_sha256": "a3b2b58d0bb3795d0eb26bdbc412157cc1fd529e29818d792163ee69273e6e15",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "b8ff5b0283b10cbe8125f103a17198c576fcedc2c3d6f5fda56af8b09db814a1",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000,
+      "desktop_dc_rounds": 512
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=61440 source-fnv32=2980328027\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_IMAGE_SNAPSHOT_AUTHORITY_QUOTA_CLEANUP_PASS\nM148_NATIVE_WINDOW_DC_CALCRECT_PASS\nM148_NATIVE_BUTTON_IDEAL_FONT_GEOMETRY_PASS\nM148_NATIVE_SUBCLASS_CHAIN_MUTATION_PASS\nM148_NATIVE_SUBCLASS_AUTOMATIC_CLEANUP_PASS\nMapped original image: 7zFM.exe bytes=61440 source-fnv32=2980328027\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nMapped original image: 7zFM.exe bytes=61440 source-fnv32=2980328027\nRunning the original Windows executable in a protected process.\n\nM148_NATIVE_FONT_OBJECT_METRICS_LIFETIME_PASS\nM148_NATIVE_DERIVED_PARGB_STORAGE_PASS\nM148_NATIVE_GDIPLUS_FONT_FAMILY_FLOAT_ABI_PASS\nM148_NATIVE_GDIPLUS_FORMAT_STATE_CLONE_QUOTA_PASS\nUnsupported GDI+ text layout: wrapped or partial-fit rectangle.\nM148_NATIVE_GDIPLUS_FITTING_TEXT_METRICS_PASS\nM148_NATIVE_GDIPLUS_SOLID_BRUSH_OWNERSHIP_PASS\nM148_NATIVE_GDIPLUS_RECTANGLE_ALPHA_CLIP_MODE_PASS\nM148_NATIVE_GDIPLUS_BITMAP_BLIT_ALPHA_OVERLAP_PASS\nM148_HEAP_PAGES before=268 after=268\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n"
+}

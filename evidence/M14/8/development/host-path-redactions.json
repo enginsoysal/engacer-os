@@ -1,0 +1,30 @@
+{
+  "classification": "Host filesystem path redaction in unaccepted development logs; failure/status content preserved. Original and redacted hashes distinguish the bytes.",
+  "files": [
+    {
+      "file": "evidence/M14/8/development/bitmap-premultiplied-reference-refusal.log",
+      "original_sha256": "8676f3cc60da566f94c4e184d04853cbab23bbeeabcb769e008ba3c37d4578f8",
+      "redacted_sha256": "e02f3fd24b082767d6e664349847ffcd3600ed692022aee55408010ce433929f"
+    },
+    {
+      "file": "evidence/M14/8/development/observer-double-stage-refusal/observer.log",
+      "original_sha256": "0ea1deacf8de6821bcd129327b2cfd7df1e0893926e99f06c8cd579eeac5be92",
+      "redacted_sha256": "f2209e3159567ab78f200fe42eab047eaef3a52022829a6aefbf9923b63b4f0a"
+    },
+    {
+      "file": "evidence/M14/8/development/session-fixture-relocation-refusal/observer.log",
+      "original_sha256": "78255278e2249c777264de896acb97ebf8d21aba0e1356d1bd2a030452041e9d",
+      "redacted_sha256": "25c96018bff8360cb14d9a001b703fb366280e85f9108a3b0d9df186d5fd8ab6"
+    },
+    {
+      "file": "evidence/M14/8/development/shield-compile-indentation-refusal/compile.log",
+      "original_sha256": "8bc8628df10fb9755a792055064bcd3ebdc469c601f98a16672e1ea394e76673",
+      "redacted_sha256": "edc4fd725c56ef2b2c34a34d4acb093e3d176ce1661547a4706056ccb21d5ca2"
+    },
+    {
+      "file": "evidence/M14/8/development/stale-app-baseline-refusal/observer.log",
+      "original_sha256": "32d8e987ceab9f35fcb2e229f3bee3835aa92c99f8c6786f0c598bad4e8ec648",
+      "redacted_sha256": "cec777bd010eda0b506981fe83edd01f1f53c88033e3ea7ef437bd37e02d91b2"
+    }
+  ]
+}

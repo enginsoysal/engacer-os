@@ -1,9 +1,9 @@
 {"worker": "WINDOWS8.ELF", "kernel_build_id": "fb44dc1dc11440a89a7d6996652a1bef", "sha256": "2208a50cad9ad4b6c41d1cdbe29cc8b5c4821bb0b492788bcfeafaf97256f925"}
 Traceback (most recent call last):
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 21, in <module>
+  File "<project-root>\tests\m14\session148_run.py", line 21, in <module>
     if __name__=='__main__':main()
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\session148_run.py", line 19, in main
+  File "<project-root>\tests\m14\session148_run.py", line 19, in main
     namespace=dict(__file__=str(source),__name__='session148_derived',production=production);exec(compile(text,str(source),'exec'),namespace);namespace['main']()
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\global146_run.py", line 9, in main
+  File "<project-root>\tests\m14\global146_run.py", line 9, in main
     out=ROOT/'build/m14-native/stage6/global-native';out.mkdir(parents=True,exist_ok=True);c.OUT=out;fixture=build();meta=json.loads(ui.manifest_path12().read_text(encoding='utf-8'));base=json.loads((ROOT/'build/m14-native/stage6/apps/results.json').read_text(encoding='utf-8'));assert base['passed']and base['build_id']==meta['build_id']
 AssertionError

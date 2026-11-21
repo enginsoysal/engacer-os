@@ -70,6 +70,10 @@ __declspec(dllimport) int IsWindow(uint64_t);
 __declspec(dllimport) int GetWindowRect(uint64_t,void*);
 __declspec(dllimport) int GetClientRect(uint64_t,void*);
 __declspec(dllimport) int GetSystemMetrics(int);
+__declspec(dllimport) uint64_t MonitorFromRect(const void*,unsigned);
+__declspec(dllimport) uint64_t MonitorFromPoint(uint64_t,unsigned);
+__declspec(dllimport) int GetMonitorInfoW(uint64_t,void*);
+__declspec(dllimport) int GetMonitorInfoA(uint64_t,void*);
 __declspec(dllimport) uint64_t GetDC(uint64_t);
 __declspec(dllimport) uint64_t GetWindowDC(uint64_t);
 __declspec(dllimport) int DrawTextExW(uint64_t,uint16_t*,int,void*,unsigned,void*);
@@ -197,6 +201,7 @@ void entry(void){
  font_tests148();
  check(security_profile148(0)==7&&security_profile148(1)==-87,386);
  uint64_t desktop=GetDesktopWindow();int desktop_rect[4],desktop_client[4];check(desktop&&IsWindow(desktop)&&!GetParent(desktop)&&GetWindowRect(desktop,desktop_rect)&&GetClientRect(desktop,desktop_client),388);for(unsigned i=0;i<4;++i)check(desktop_rect[i]==desktop_client[i],389);check(!desktop_rect[0]&&!desktop_rect[1]&&desktop_rect[2]==GetSystemMetrics(0)&&desktop_rect[3]==GetSystemMetrics(1)&&desktop_rect[2]>0&&desktop_rect[3]>0&&!DestroyWindow(desktop)&&GetLastError()==5&&IsWindow(desktop),390);
+ int inside_monitor[4]={1,1,50,50},outside_monitor[4]={INT32_MAX-10,INT32_MAX-10,INT32_MAX,INT32_MAX};uint64_t monitor=MonitorFromRect(inside_monitor,0);check(monitor&&!MonitorFromRect(outside_monitor,0)&&MonitorFromRect(outside_monitor,1)==monitor&&MonitorFromRect(outside_monitor,2)==monitor&&MonitorFromPoint(0,0)==monitor&&!MonitorFromPoint(UINT64_MAX,0)&&MonitorFromPoint(UINT64_MAX,2)==monitor,587);inside_monitor[2]=inside_monitor[0];inside_monitor[3]=inside_monitor[1];check(MonitorFromRect(inside_monitor,0)==monitor&&!MonitorFromRect((void*)1,0)&&GetLastError()==998,588);int inverted_monitor[4]={INT32_MAX,100,50,200},empty_spanning_monitor[4]={-100,0,100,0};check(!MonitorFromRect(inverted_monitor,0)&&!MonitorFromRect(empty_spanning_monitor,0),592);unsigned monitor_info[26]={0};monitor_info[0]=104;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[1]==0&&monitor_info[2]==0&&monitor_info[3]==(unsigned)desktop_rect[2]&&monitor_info[4]==(unsigned)desktop_rect[3]&&monitor_info[9]==1&&((uint16_t*)(monitor_info+10))[0]=='E',589);monitor_info[0]=72;check(GetMonitorInfoA(monitor,monitor_info)&&((char*)(monitor_info+10))[0]=='E'&&!GetMonitorInfoW(monitor,monitor_info)&&GetLastError()==87,590);monitor_info[0]=40;check(GetMonitorInfoW(monitor,monitor_info)&&monitor_info[7]==(unsigned)desktop_rect[2]&&monitor_info[8]<(unsigned)desktop_rect[3],591);
  uint64_t desktop_dc=GetDC(0);check(desktop_dc&&GetDeviceCaps(desktop_dc,8)==desktop_rect[2]&&GetDeviceCaps(desktop_dc,10)==desktop_rect[3]&&GetDeviceCaps(desktop_dc,12)==32&&GetDeviceCaps(desktop_dc,14)==1&&GetDeviceCaps(desktop_dc,24)==-1&&GetDeviceCaps(desktop_dc,88)==96&&GetDeviceCaps(desktop_dc,90)==96&&ReleaseDC(0,desktop_dc),391);check(!GetDeviceCaps(desktop_dc,88)&&GetLastError()==6,392);
  const uint16_t*line=GetCommandLineW();unsigned child=0;
  for(unsigned i=0;line&&line[i];++i)if(line[i]==' '&&(line[i+1]=='!'||line[i+1]=='?')&&!line[i+2])child=line[i+1]=='!'?1:2;

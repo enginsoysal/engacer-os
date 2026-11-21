@@ -7,6 +7,9 @@
 #ifdef FONT146_PACKET
 #include <engine/ui/font146.h>
 #endif
+#ifdef ENGINE_M14
+#include <engine/ui/premultiplied148.h>
+#endif
 #ifdef ENGINE_M12
 _Static_assert(sizeof(font73_faces)/sizeof(font73_faces[0])>=21,"Semantic typography requires all 21 bounded physical font faces");
 #endif
@@ -96,8 +99,8 @@ void ui145_argb_tile(int x,int y,unsigned width,unsigned height,const uint32_t*p
 }
 #ifdef ENGINE_M14
 static void image_premul148(unsigned x,unsigned y,uint32_t value){
- unsigned alpha=value>>24;if(!alpha)return;if(alpha==255){blend73(x,y,value&0xffffff,255,0);return;}volatile uint32_t*p=pixel73(x,y);uint32_t fg=color(value&0xffffff),bg=*p;unsigned inverse=255-alpha;
- unsigned r=((fg>>16)&255)+(((bg>>16)&255)*inverse+127)/255,g=((fg>>8)&255)+(((bg>>8)&255)*inverse+127)/255,b=(fg&255)+((bg&255)*inverse+127)/255;if(r>255)r=255;if(g>255)g=255;if(b>255)b=255;*p=(r<<16)|(g<<8)|b;
+ unsigned alpha=value>>24;if(!alpha)return;if(alpha==255){blend73(x,y,value&0xffffff,255,0);return;}volatile uint32_t*p=pixel73(x,y);uint32_t fg=color(value&0xffffff),bg=*p;
+ *p=pargb_over148((alpha<<24)|fg,bg)&0xffffffu;
 }
 void ui148_image(int x,int y,const wui_image_view148*image){
  if(!image||!image->width||!image->height)return;int64_t left=x,top=y,right=left+image->width,bottom=top+image->height;if(left<0)left=0;if(top<0)top=0;if(right>view73.framebuffer_width)right=view73.framebuffer_width;if(bottom>view73.framebuffer_height)bottom=view73.framebuffer_height;
@@ -105,7 +108,7 @@ void ui148_image(int x,int y,const wui_image_view148*image){
 #ifdef ENGINE_M9
  graphics9_dirty(phys73((unsigned)left),phys73((unsigned)top),phys73((unsigned)right)-phys73((unsigned)left),phys73((unsigned)bottom)-phys73((unsigned)top));
 #endif
- for(int64_t row=top;row<bottom;++row){unsigned py=phys73((unsigned)row),pb=phys73((unsigned)row+1);for(int64_t col=left;col<right;++col){uint64_t offset=((uint64_t)(row-y)*image->width+(unsigned)(col-x))*4;unsigned page=(unsigned)(offset/4096);const uint64_t*table=(const uint64_t*)(uintptr_t)image->tables[page/512];const uint32_t*p=(const uint32_t*)(uintptr_t)(table[page%512]+offset%4096);uint32_t value=*p;unsigned alpha=value>>24;if(!alpha)continue;unsigned px=phys73((unsigned)col),pr=phys73((unsigned)col+1);for(unsigned yy=py;yy<pb;++yy)for(unsigned xx=px;xx<pr;++xx){if(image->format==2)image_premul148(xx,yy,value);else blend73(xx,yy,value&0xffffff,alpha,0);}}}
+ for(int64_t row=top;row<bottom;++row){unsigned py=phys73((unsigned)row),pb=phys73((unsigned)row+1);for(int64_t col=left;col<right;++col){uint64_t offset=((uint64_t)(row-y)*image->width+(unsigned)(col-x))*4;unsigned page=(unsigned)(offset/4096);const uint64_t*table=(const uint64_t*)(uintptr_t)image->tables[page/512];const uint32_t*p=(const uint32_t*)(uintptr_t)(table[page%512]+offset%4096);uint32_t value=*p;unsigned alpha=value>>24;if(!alpha)continue;if(image->format==1&&alpha!=255)value=pargb_color148(value);unsigned px=phys73((unsigned)col),pr=phys73((unsigned)col+1);for(unsigned yy=py;yy<pb;++yy)for(unsigned xx=px;xx<pr;++xx){image_premul148(xx,yy,value);}}}
 }
 #endif
 static inline void fill_row73(unsigned x,unsigned y,unsigned width,uint32_t value){
