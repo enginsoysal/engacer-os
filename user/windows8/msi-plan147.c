@@ -22,7 +22,7 @@ static int guid147(const char *text){
 static void metadata147(char *out,unsigned capacity,const char *value){require147(value[0]&&len8(value)<capacity,"MSI product metadata is missing or exceeds the supported bound.");copy8(out,value,capacity);}
 void msia_close147(msia_plan147 *plan){
  if(!plan)return;require147(plan==active_plan147,"MSI session ownership is invalid.");
- if(plan->actions)free8(plan->actions);if(plan->launches)free8(plan->launches);msip_destroy147(&plan->properties);msi8_database_close();active_plan147=0;free8(plan);
+ if(plan->actions)free8(plan->actions);if(plan->launches)free8(plan->launches);if(plan->directories)free8(plan->directories);if(plan->features)free8(plan->features);if(plan->components)free8(plan->components);if(plan->files)free8(plan->files);msip_destroy147(&plan->properties);msi8_database_close();active_plan147=0;free8(plan);
 }
 msia_plan147 *msia_prepare147(const void *source,unsigned bytes){
  require147(!active_plan147,"Only one MSI database session may be active in this worker.");
@@ -57,5 +57,5 @@ msia_plan147 *msia_prepare147(const void *source,unsigned bytes){
 unsigned msia_property_action147(msia_plan147 *plan,unsigned index){
  if(!plan||plan!=active_plan147||index>=plan->action_count||plan->actions[index].kind!=MSIA_PROPERTY147)return MSIP_PARAMETER147;
  msia_action147 *action=plan->actions+index;int condition=msia_condition147(plan,action->condition);if(condition==MSIC_ERROR147)return MSIP_PARAMETER147;if(condition==MSIC_FALSE147)return MSIP_OK147;
- char formatted[4097];unsigned status=msip_format147(&plan->properties,action->target,formatted,sizeof(formatted),0,0);return status?status:msip_set147(&plan->properties,action->source,formatted);
+ char formatted[4097];unsigned status=msia_format147(plan,action->target,formatted,sizeof(formatted));return status?status:msip_set147(&plan->properties,action->source,formatted);
 }
