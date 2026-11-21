@@ -261,6 +261,9 @@ static void MS f_EnterCriticalSection(critical8*c){uint64_t self=tid142();for(;;
 static int MS f_TryEnterCriticalSection(critical8*c){uint64_t self=tid142(),owner=0;if(c->owner==self){++c->recursion;return 1;}if(!__atomic_compare_exchange_n(&c->owner,&owner,self,0,__ATOMIC_ACQUIRE,__ATOMIC_RELAXED))return 0;c->recursion=1;c->lock=0;return 1;}
 static void MS f_LeaveCriticalSection(critical8*c){if(c->owner!=tid142()||c->recursion<=0)fail8("A Windows critical section was released without ownership.");if(!--c->recursion){c->lock=-1;__atomic_store_n(&c->owner,0,__ATOMIC_RELEASE);sys8(W8_SYS_WAKE,(uint64_t)(uintptr_t)&c->owner,UINT32_MAX,0,0,0);}}
 static void MS f_DeleteCriticalSection(critical8*c){if(c->owner||c->recursion)fail8("A Windows process deleted an owned critical section.");memset(c,0,sizeof(*c));}
+#ifdef ENGINE_M14
+#include "process-snapshot148.inc"
+#endif
 #include "sync142.inc"
 static unsigned MS f_ResumeThread(HANDLE h){int64_t result=(int64_t)sys8(W8_SYS_THREAD_RESUME,h,0,0,0,0);if(result<0)last8(6);return (unsigned)result;}
 static NORETURN void MS f_ExitThread(unsigned code){if(sys8(W8_SYS_THREAD_BEGIN_EXIT,0,0,0,0,0)==1)pe8_exit(code);cleanup_thread144();pe8_thread_detach();
@@ -426,6 +429,7 @@ static const api8 api8_table[]={
  API8(HeapCreate,1),API8(HeapDestroy,1),API8(HeapReAlloc,1),
  API8(SetErrorMode,1),API8(GetErrorMode,1),
  API8(SHGetFolderPathW,10),
+ API8(CreateToolhelp32Snapshot,1),API8(Process32FirstW,1),API8(Process32NextW,1),
  API8(InitializeSRWLock,1),API8(AcquireSRWLockExclusive,1),API8(AcquireSRWLockShared,1),API8(ReleaseSRWLockExclusive,1),API8(ReleaseSRWLockShared,1),API8(TryAcquireSRWLockExclusive,1),API8(TryAcquireSRWLockShared,1),
  API8(FlsAlloc,1),API8(FlsFree,1),API8(FlsGetValue,1),API8(FlsSetValue,1),
 #endif

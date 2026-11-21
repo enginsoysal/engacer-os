@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "build_id": "802c0451f32dc7f9035b0c4422f3ce6f",
+  "scope": "Native private-worker message identity and SRW contention, not shipped-route acceptance.",
+  "clone": {
+    "source_sha256": "e26151d69f930324209ea83458a9f269118045c738b2e4f409ef0ef5a21add35",
+    "clone_sha256": "e26151d69f930324209ea83458a9f269118045c738b2e4f409ef0ef5a21add35",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "4b5d51987e8f53c4a690e8beaa8d86c56eefb87546b5bdca7ce7b2f441dc9602",
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 1,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "writer_threads": 4,
+      "reader_threads": 4,
+      "writer_operations": 4000
+    }
+  ],
+  "subsequent_original_console_success": true,
+  "output": "Mapped original image: 7zFM.exe bytes=24576 source-fnv32=3345642877\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3345642877\nRunning the original Windows executable in a protected process.\n\nMapped original image: 7zFM.exe bytes=24576 source-fnv32=3345642877\nRunning the original Windows executable in a protected process.\n\nM148_HEAP_PAGES before=177 after=177\nM148_NATIVE_SESSION_MESSAGES_SRW_PASS\n"
+}

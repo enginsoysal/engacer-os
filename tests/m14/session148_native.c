@@ -1,6 +1,7 @@
 /* Owned native callers; unchanged original installers are tested separately. */
 #include <stdint.h>
 #include <engine/windows8.h>
+void*memset(void*pointer,int value,size_t bytes){volatile uint8_t*out=pointer;for(size_t i=0;i<bytes;++i)out[i]=(uint8_t)value;return pointer;}
 __declspec(dllimport) unsigned RegisterWindowMessageW(const uint16_t*);
 __declspec(dllimport) unsigned short GlobalAddAtomW(const uint16_t*);
 __declspec(dllimport) unsigned short GlobalDeleteAtom(unsigned short);
@@ -38,11 +39,26 @@ __declspec(dllimport) unsigned SetErrorMode(unsigned);
 __declspec(dllimport) unsigned GetErrorMode(void);
 __declspec(dllimport) unsigned GetFileAttributesW(const uint16_t*);
 __declspec(dllimport) int RemoveDirectoryW(const uint16_t*);
+__declspec(dllimport) uint64_t CreateToolhelp32Snapshot(unsigned,unsigned);
+__declspec(dllimport) int Process32FirstW(uint64_t,void*);
+__declspec(dllimport) int Process32NextW(uint64_t,void*);
+__declspec(dllimport) unsigned GetCurrentProcessId(void);
+__declspec(dllimport) unsigned ResumeThread(uint64_t);
 static void check(int ok,unsigned error){if(!ok)ExitProcess(error);}
 static uint64_t lock,left,right;
 void entry(void);void*volatile relocation_anchor148=&entry;
 static void say148(const char*text){unsigned n=0,written;while(text[n])++n;check(WriteFile(GetStdHandle((unsigned)-11),text,n,&written,0)&&written==n,264);}
 static void number148(uint64_t value){char text[32],reverse[24];unsigned n=0,used=0;do{reverse[n++]=(char)('0'+value%10);value/=10;}while(value);while(n)text[used++]=reverse[--n];text[used]=0;say148(text);}
+typedef struct {unsigned size,usage,pid,pad;uint64_t heap;unsigned module,threads,parent;int priority;unsigned flags;uint16_t name[260];unsigned tail;} process_entry_native148;
+_Static_assert(sizeof(process_entry_native148)==568,"Native caller PROCESSENTRY32W size");
+static void snapshot_check148(uint64_t snapshot,unsigned child,unsigned present){
+ process_entry_native148 entry={0};check(!Process32FirstW(snapshot,&entry)&&GetLastError()==24,284);entry.size=567;check(!Process32FirstW(snapshot,&entry)&&GetLastError()==24,296);entry.size=600;check(!Process32FirstW(snapshot,&entry)&&GetLastError()==24,297);entry.size=sizeof(entry);
+ unsigned count=0,own=0,found=0;check(Process32FirstW(snapshot,&entry),285);
+ do{++count;check(!entry.usage&&!entry.heap&&!entry.module&&!entry.flags&&entry.threads==1&&entry.priority==8,286);
+  const uint16_t expected[]=L"7zFM.exe";for(unsigned i=0;i<sizeof(expected)/2;++i)check(entry.name[i]==expected[i],287);
+  if(entry.pid==GetCurrentProcessId())++own;if(entry.pid==child){++found;check(entry.parent==GetCurrentProcessId(),288);}
+ }while(Process32NextW(snapshot,&entry));check(GetLastError()==18&&own==1&&found==present&&count==1+present,289);
+}
 static uint64_t owned_pages148(void){uint64_t values[4];register uint64_t r8 __asm__("r8")=0;register uint64_t r10 __asm__("r10")=0;uint64_t result=W8_SYS_VMINFO;__asm__ volatile("int $0x80":"+a"(result):"D"((uint64_t)(uintptr_t)values),"S"(UINT64_C(0)),"d"(UINT64_C(0)),"r"(r10),"r"(r8):"memory","rcx","r11");check(!result,260);return values[1];}
 static unsigned worker(void*kind){
  for(unsigned i=0;i<1000;++i){
@@ -60,8 +76,10 @@ void entry(void){
  uint16_t path[512],command[520];unsigned n=GetModuleFileNameW(0,path,512);check(n&&n<512,224);
  command[0]='"';for(unsigned i=0;i<n;++i)command[i+1]=path[i];command[n+1]='"';command[n+2]=' ';command[n+3]='!';command[n+4]=0;
  uint8_t startup[104]={0};*(unsigned*)startup=104;struct{uint64_t process,thread;unsigned pid,tid;} process={0};
- check(CreateProcessW(path,command,0,0,0,0,0,0,startup,&process),225);check(WaitForSingleObject(process.process,30000)==0,226);
+ check(CreateProcessW(path,command,0,0,0,4,0,0,startup,&process),225);uint64_t snapshot=CreateToolhelp32Snapshot(2,0);check(snapshot!=UINT64_MAX,290);snapshot_check148(snapshot,process.pid,1);check(ResumeThread(process.thread)==1,291);check(WaitForSingleObject(process.process,30000)==0,226);
  unsigned result=0;check(GetExitCodeProcess(process.process,&result)&&result==id,227);check(CloseHandle(process.thread)&&CloseHandle(process.process),228);
+ snapshot_check148(snapshot,process.pid,1);check(CloseHandle(snapshot),292);process_entry_native148 stale={.size=sizeof(stale)};check(!Process32FirstW(snapshot,&stale)&&GetLastError()==6,293);
+ uint64_t fresh=CreateToolhelp32Snapshot(2,UINT32_MAX);check(fresh!=UINT64_MAX&&fresh!=snapshot,294);snapshot_check148(fresh,process.pid,0);check(CloseHandle(fresh),295);
  command[n+3]='?';check(CreateProcessW(path,command,0,0,0,0x04000000u,0,0,startup,&process),265);check(WaitForSingleObject(process.process,30000)==0,266);
  check(GetExitCodeProcess(process.process,&result)&&result==id&&CloseHandle(process.thread)&&CloseHandle(process.process),267);check(SetErrorMode(0)==0x8001&&!GetErrorMode(),268);
  unsigned other=RegisterWindowMessageW(L"Engacer.Message148.ChildFirst");check(other>=0xc000&&other!=id,229);
@@ -83,7 +101,10 @@ void entry(void){
  unsigned short atom=GlobalAddAtomW(L"Engacer.Message148.Parent");check(atom>=0xc000&&!GlobalDeleteAtom(atom)&&RegisterWindowMessageW(L"Engacer.Message148.Parent")==id,230);
  InitializeSRWLock(&lock);check(TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockExclusive(&lock)&&!TryAcquireSRWLockShared(&lock),231);ReleaseSRWLockExclusive(&lock);
  check(TryAcquireSRWLockShared(&lock)&&TryAcquireSRWLockShared(&lock)&&!TryAcquireSRWLockExclusive(&lock),232);ReleaseSRWLockShared(&lock);ReleaseSRWLockShared(&lock);
- uint64_t threads[8];for(unsigned i=0;i<8;++i){threads[i]=CreateThread(0,0,worker,(void*)(uintptr_t)i,0,0);check(threads[i]!=0,233);}
+ uint64_t threads[8];for(unsigned i=0;i<8;++i){threads[i]=CreateThread(0,0,worker,(void*)(uintptr_t)i,4,0);check(threads[i]!=0,233);}
+ uint64_t snapshots[8];for(unsigned i=0;i<8;++i){snapshots[i]=CreateToolhelp32Snapshot(2,0);check(snapshots[i]!=UINT64_MAX,298);}
+ check(CreateToolhelp32Snapshot(2,0)==UINT64_MAX&&GetLastError()==8,299);process_entry_native148 thread_entry={.size=sizeof(thread_entry)};check(Process32FirstW(snapshots[0],&thread_entry)&&thread_entry.pid==GetCurrentProcessId()&&thread_entry.threads==9,300);
+ for(unsigned i=0;i<8;++i)check(CloseHandle(snapshots[i]),301);for(unsigned i=0;i<8;++i)check(ResumeThread(threads[i])==1,302);
  check(WaitForMultipleObjects(8,threads,1,30000)==0,234);for(unsigned i=0;i<8;++i)check(CloseHandle(threads[i]),235);
  check(left==4000&&right==12000&&!lock,236);
  uint64_t warm=HeapCreate(0,0,0);check(warm&&HeapDestroy(warm),247);uint64_t pages=owned_pages148();

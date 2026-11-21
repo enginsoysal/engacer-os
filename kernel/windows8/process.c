@@ -29,7 +29,7 @@ typedef struct {
 typedef struct {unsigned live,generation,object,kind;} process_handle142;
 typedef struct {unsigned live,generation,object,access;} sync_cap142;
 typedef struct {unsigned live,generation,object,access;} registry_cap143;
-typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code,refs,slot;} process_object142;
+typedef struct {unsigned used,pid,live,code,primary_id,primary_done,primary_code,refs,slot,parent_pid;} process_object142;
 typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,virtual_pages,lazy_faults;
  unsigned count,cancel,created_root,current,cursor,object;
@@ -37,7 +37,7 @@ typedef struct {
  unsigned install_authority147;
 #endif
  process_handle142 handles[32];sync_cap142 sync_handles[64];registry_cap143 registry_handles[32];
- uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;
+ uint64_t exception_entry,wait_epoch;file8 files[32];thread142 threads[THREADS142];w8_mailbox input;char image_name148[64];
  _Alignas(16) w8_info child_info;
 } private_space142;
 #define SPACES142 4u
@@ -420,6 +420,19 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_PROCESS_ID:{if(a==UINT64_MAX)return input8.process_id;int h=process_handle_slot142(a);return h<0||spaces142[active_space142]->handles[h].kind!=1?-1:(int64_t)process_objects142[spaces142[active_space142]->handles[h].object].pid;}
  case W8_SYS_THREAD_ID:{if(a==UINT64_MAX-1)return (int64_t)thread_token142(current142);int h=process_handle_slot142(a);if(h>=0){process_handle142*cap=spaces142[active_space142]->handles+h;return cap->kind==2?(int64_t)process_objects142[cap->object].primary_id:-1;}int t=thread_slot142(a);return t<0?-1:(int64_t)thread_token142((unsigned)t);}
  case W8_SYS_PROCESS_TERMINATE:return terminate_process142(a,(unsigned)b);
+ case W8_SYS_PROCESSES148:{
+  _Static_assert(SPACES142==W8_PROCESS_SNAPSHOT_MAX148,"Process inventory must cover every Windows space");
+  if(c||d||e||b>1)return -87;
+  if(b==1){if(string8(a,path,256))return -998;if(!path8(path,0))return -5;unsigned error=child_image142(path);if(error)return -(int64_t)error;
+   const char*name=path;for(unsigned j=0;path[j];++j)if(path[j]=='/')name=path+j+1;char*current=spaces142[active_space142]->image_name148;
+   if(current[0]&&!equal8(current,name))return -5;copy8(current,name,64);return 0;
+  }w8_process_snapshot148 snapshot={0};
+  for(unsigned i=0;i<SPACES142;++i){private_space142*p=spaces142[i];if(!p)continue;process_object142*o=process_objects142+p->object;if(!o->used||!o->live)continue;
+   w8_process_record148*r=snapshot.records+snapshot.count++;r->pid=o->pid;r->parent=o->parent_pid;
+   for(unsigned j=0;j<THREADS142;++j)if(p->threads[j].state&&p->threads[j].state!=T142_EXITED)++r->threads;
+   const char*name=p->image_name148;if(!name[0]){name=p->input.source;for(unsigned j=0;p->input.source[j];++j)if(p->input.source[j]=='/')name=p->input.source+j+1;}copy8(r->name,name,sizeof(r->name));
+  }return user8(a,&snapshot,sizeof(snapshot),1)?-998:0;
+ }
  case W8_SYS_THREAD_LIST:{w8_thread_snapshot result[THREADS142];memset(result,0,sizeof(result));unsigned count=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED){result[i]=(w8_thread_snapshot){threads142[i].teb,(uint32_t)thread_token142(i),threads142[i].state};++count;}return user8(a,result,sizeof(result),1)?-1:(int64_t)count;}
  case W8_SYS_ACCESS:{if(!b||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||!c||(c&~7u))return -1;for(uint64_t at=a&~UINT64_C(4095);at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141))||((c&2)&&!(*p&2))||((c&4)&&(*p&NX)))return -1;}return 0;}
  case W8_SYS_QUIESCE:for(unsigned i=0;i<THREADS142;++i)if(i!=current142&&threads142[i].state){threads142[i].state=T142_EXITED;threads142[i].code=(unsigned)a;}return 0;

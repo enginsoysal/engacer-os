@@ -114,7 +114,14 @@ static int pe8_release_impl142(uint64_t base){if(terminating142)return 0;int ind
  for(unsigned pass=0;pass<MODULES141;++pass){int chosen=-1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&!(reachable&(UINT32_C(1)<<i))&&(chosen<0||modules141[i].sequence>modules141[chosen].sequence))chosen=(int)i;if(chosen<0)break;module141*m=modules141+chosen;if(m->attached)tls_notify_impl142(m,0);if(m->attached&&m->dll&&m->entry)(void)((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,0,0);tls_release_module142((unsigned)chosen);resource_release144((uint64_t)(uintptr_t)m->base);if(sys8(W8_SYS_UNMAP,(uint64_t)(uintptr_t)m->base,m->size,0,0,0))fail8("The Windows module could not be released.");for(unsigned i=0;i<MODULES141;++i)modules141[i].dependencies&=~(UINT32_C(1)<<chosen);memset(m,0,sizeof(*m));}return 1;
 }
 void pe8_inspect(const char*path){inspect141=1;pe8_load(path);uint64_t values[4];if(sys8(W8_SYS_VMINFO,(uint64_t)values,0,0,0,0))fail8("The Windows memory observation could not be read.");print8("Memory pages: reserved=");number8(values[0]);print8(" owned=");number8(values[1]);print8(" demand-commits=");number8(values[2]);print8(" physical-quota=");number8(values[3]);print8("\nMapping inspection completed. Running this app is a separate compatibility test.\n");exit8(0);}
-void pe8_run(const char*path,const char*arguments){(void)arguments;uint64_t base=pe8_load(path);module141*m=modules141;if(m->dll||(m->subsystem!=3&&m->subsystem!=2))fail8("This Windows executable subsystem is not supported. The app was not started.");print8(equal8(path,"/System/Windows/Installer/msiexec.exe")?"Running the native Engacer MSI service in a protected process.\n\n":"Running the original Windows executable in a protected process.\n\n");((void(MS*)(void))(uintptr_t)(base+m->entry))();pe8_exit(0);}
+static void process_image_register148(const char*path){
+#ifdef ENGINE_M14
+ if((int64_t)sys8(W8_SYS_PROCESSES148,(uint64_t)(uintptr_t)path,1,0,0,0)<0)fail8("The executable process identity could not be registered.");
+#else
+ (void)path;
+#endif
+}
+void pe8_run(const char*path,const char*arguments){(void)arguments;uint64_t base=pe8_load(path);module141*m=modules141;if(m->dll||(m->subsystem!=3&&m->subsystem!=2))fail8("This Windows executable subsystem is not supported. The app was not started.");process_image_register148(path);print8(equal8(path,"/System/Windows/Installer/msiexec.exe")?"Running the native Engacer MSI service in a protected process.\n\n":"Running the original Windows executable in a protected process.\n\n");((void(MS*)(void))(uintptr_t)(base+m->entry))();pe8_exit(0);}
 
 uint64_t pe8_load(const char*path){lock_enter142(&loader_lock142);uint64_t result=pe8_load_impl142(path);lock_leave142(&loader_lock142);return result;}
 uint64_t pe8_named(const char*name){lock_enter142(&loader_lock142);uint64_t result=pe8_named_impl142(name);lock_leave142(&loader_lock142);return result;}
