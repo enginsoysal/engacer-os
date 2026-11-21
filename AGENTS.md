@@ -8,6 +8,8 @@
 
 ## Scope and architecture
 
+- Superseding owner-approved roadmap, 21 November 2026: docs/milestones/m14-consolidated.md defines the eight future work packages M14.9-M14.16, replacing previous future schedules. The scope is the full Windows 7/8/8.1/10/11 x64 application landscape and necessary helper/runtime/service/driver dependencies, not a list of three applications. Final integrated optimization/release is M14.16. Current authorization: record and publish this plan, finish M14.8, then stop. Do not implement M14.9 yet. Preserve scoped evidence; a finite passing corpus does not prove universal compatibility. Keep accumulated BrixCanvas feedback for the eventual final M14 handoff under the revised schedule.
+
 - This standalone repository is the canonical project. Never place Engacer OS sources, plans, build outputs or evidence in the unrelated BrixCanvas repository.
 - The old planning copy has been moved out of BrixCanvas into this repository's ignored `tools/local/legacy-planning` archive. It is historical and must not be published or treated as current source. Use this repository root explicitly as the working directory even when the chat opens elsewhere.
 - Read README.md, docs/roadmap/status.md and relevant architecture contracts before implementing changes.

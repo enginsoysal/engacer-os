@@ -5,6 +5,13 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 ## Download and get started
 
+**Approved future roadmap:** [M14.9-M14.16](docs/milestones/m14-consolidated.md)
+are eight consolidated Windows x64 platform work packages. The scope covers
+original Windows 7/8/8.1/10/11 x64 software and necessary dependencies; the named
+test applications are fixtures, not a compatibility whitelist. M14.8 remains in
+development. Finish it and stop before future implementation. M14.16 is the
+revised final integrated optimization/release gate.
+
 **Current native release: [M14.7 / 0.14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified.
 
 - [Install and restart in VMware](docs/handbook/install-m147.md)
@@ -13,13 +20,13 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 - [Exact release scope and limits](docs/releases/m147-v0.14.7.md)
 - [Documentation and downloads](https://engaceros.brixcanvas.com)
 
-M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. All original-app tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
+M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. The pinned originals remain mandatory regression fixtures in the broader x64 scope. The approved future plan is M14.9-M14.16; final integrated optimization is M14.16.
 
 ## Native qualification
 
 All 98 native and 39 supporting host groups pass on build `1fb03f1b582d4d153441b6b5ca40da06` with 765 exact compiled inputs. Compact, ordinary and actual 4K/200% installation/startup, original 7-Zip/106-payload tasks and original Notepad++/217-payload installation/removal/reinstallation pass. The exact VMware package installs, starts the original app, moves/closes it and boots twice without ISO. [Acceptance](evidence/M14/7/acceptance-results.json), [resources](evidence/M14/7/resources.json), [stage gates](docs/milestones/m14-7.md).
 
-Windows program instructions run through the own compatibility APIs and kernel. VMware/QEMU are external test hosts; an embedded Windows guest is not the implementation. Optional app removal preserves the desktop and personal files. M14.15 remains the mandatory whole-system optimization gate.
+Windows program instructions run through the own compatibility APIs and kernel. VMware/QEMU are external test hosts; an embedded Windows guest is not the implementation. Optional app removal preserves the desktop and personal files. M14.16 is the approved final integrated optimization/release gate.
 
 ## Use, customize and contribute
 

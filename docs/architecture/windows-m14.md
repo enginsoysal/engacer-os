@@ -2,6 +2,15 @@
 
 ## Execution and trust boundary
 
+The owner approved the [eight consolidated M14.9-M14.16 work packages](../milestones/m14-consolidated.md)
+on 21 November 2026. They supersede older future-stage numbering in historical
+research below. Scope is the full original Windows 7/8/8.1/10/11 x64 application
+landscape, including necessary mixed-architecture helpers, runtimes, services
+and drivers. The pinned three originals remain regression fixtures, not the
+compatibility scope or an application whitelist. M14.16 is the final integrated
+optimization/release gate; efficiency is measured throughout. Current work must
+finish M14.8 and then stop before M14.9 implementation.
+
 Extend the existing direct AMD64 PE execution in a private native CPL3 address space. Original app code calls original Engacer API/NT-compatible implementations, which use the native kernel, storage, compositor and drivers. Do not replace a named app with a native imitation. This plan adopts neither a Windows/Linux kernel nor a Wine runtime. Reuse of any third-party implementation requires an explicit dependency/port/provenance/license decision and actual task qualification; it cannot be slipped in as a compatibility claim.
 
 Separate loader, Win64 process/thread/exception model, file/registry/environment, USER/GDI/control/dialog and installation services. Stable internal interfaces must support later x86 and Win16 adapters without assuming identical pointer widths or semantics. App resources belong to processes/windows/generations; cancellation or faults cannot publish stale work into another owner. Compatibility services load lazily and are independently bounded. Standard apps remain optional.

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "program": "M14",
-  "current_stage": "M14.7",
-  "current_native_download": "M14.6",
-  "final_release_stage": "M14.15",
-  "scope": "Original Windows x64 applications; own kernel/runtime; M15 Windows x86, M16 Win16/DOS remain separate",
+  "current_stage": "M14.8",
+  "current_native_download": "M14.7",
+  "final_release_stage": "M14.16",
+  "scope": "Full original Windows 7/8/8.1/10/11 x64 landscape including required mixed-architecture helpers, runtimes, services and drivers; own kernel/native execution; evidence remains scoped",
   "optimization_core_requirement": true,
   "stages": [
     {
@@ -100,7 +100,7 @@
       "deliver": "Implement the selected packages' actual MSI standard actions, conditions/properties/component lifecycle, rollback and required custom actions.",
       "how_and_why": "Replace the current one-digest console adapter with reusable behavior. Notepad++ MSI requires a real x64 WiX custom-action DLL and cmd/xcopy semantics; never skip it to claim successful installation.",
       "acceptance": "Selected original MSI packages install/remove/reinstall correctly, including conditions, cancellation and fault recovery; missing mandatory actions refuse clearly.",
-      "status": "development",
+      "status": "complete",
       "evidence": "evidence/M14/7"
     },
     {
@@ -109,65 +109,68 @@
       "deliver": "Execute pinned original AMD64 installer code, its GUI and required helpers/uninstaller.",
       "how_and_why": "SumatraPDF provides a measured x64 route. The measured Notepad++ x64-labelled EXE is x86 and explicitly waits for M15; its original x64 MSI remains an M14 target.",
       "acceptance": "At least one complete original x64 EXE installer chain and original MSI chains work; all required child binaries are inventoried and exercised.",
-      "status": "planned"
+      "status": "in_development"
     },
     {
       "id": "M14.9",
-      "title": "Native desktop integration",
-      "deliver": "Publish real installed app icons, Start/taskbar entries, shortcuts, file associations and Open with behavior.",
-      "how_and_why": "Keep a single native desktop with lazy compatibility services and independently removable applications.",
-      "acceptance": "Apps launch from normal desktop routes without a terminal; icon/focus/grouping/association behavior is correct and removal leaves the base usable.",
-      "status": "planned"
+      "title": "Compatibility architecture and reference laboratory",
+      "deliver": "**Deliver:** A version-bound inventory of APIs, ABIs, system calls, component and\ndriver interfaces, formats and protocols; a dependency graph and missing-behavior\nregister; automated differential tests against Windows 7/8/8.1/10/11.\n\n**How and why:** Use primary documentation and SDK/WDK metadata to inventory\ninterfaces. Run owned probes to compare results, side effects, errors, ordering,\nlifetime and concurrency. Signatures alone do not specify behavior.\n\n**Acceptance:** Reproducible reference/native mismatches, provenance and baseline\nversions are recorded. Known requirements have an implementation owner and test\nor explicit investigation task. The reference lab operates independently of\nspecific commercial app success.",
+      "status": "planned",
+      "document": "docs/milestones/m14-9.md"
     },
     {
       "id": "M14.10",
-      "title": "Required runtimes and COM",
-      "deliver": "Implement or deliberately integrate the exact required runtime/API/COM contracts with provenance and versioned dependency records.",
-      "how_and_why": "Start from measured dependencies. Optional plugin/updater/shell-extension and .NET/Electron/WebView2/DirectX families are separate profiles, never implied by PE loading.",
-      "acceptance": "Required target dependencies actually work; no fake success or silent omission. Deferred optional features remain visible in the compatibility matrix.",
-      "status": "planned"
+      "title": "Complete execution foundation",
+      "deliver": "**Deliver:** Required loader, DLL, NT object, process, memory, thread, exception,\nfile, registry, identity and access-control behavior. Include necessary x86\ninstallers/helpers of x64 products instead of deferring those dependencies to M15.\n\n**How and why:** Translate Windows-visible contracts into own kernel operations,\npreserving binary layouts, results, errors, lifetime and security semantics.\n\n**Acceptance:** Real effects, faults, concurrent execution, mixed-architecture\ntransitions and resource cleanup pass reference and native tests. Unimplemented\noperations never become successful no-ops.",
+      "status": "planned",
+      "document": "docs/milestones/m14-10.md"
     },
     {
       "id": "M14.11",
-      "title": "Removal, repair and reinstall",
-      "deliver": "Exercise original removal paths and ownership-aware cleanup, changed files, interrupted install/remove and repair.",
-      "how_and_why": "Deleting application-owned unchanged files must not remove user documents, shared required components or the OS.",
-      "acceptance": "Install/use/remove/reinstall and fault retries preserve independently checked user data and release owned processes, files and resources.",
-      "status": "planned"
+      "title": "Windows platform services",
+      "deliver": "**Deliver:** Required services, IPC/RPC, COM/OLE/WinRT, native/managed runtimes,\ncommand/script environments, data interfaces, network, cryptography and\nauthentication.\n\n**How and why:** Build shared providers and actual component/service lifetimes.\nResolve dependencies of original runtimes and helpers instead of substituting\nproduct-specific effects.\n\n**Acceptance:** Components execute and communicate, errors propagate, appropriate\nstate survives restart, and peak/retained resources remain bounded.",
+      "status": "planned",
+      "document": "docs/milestones/m14-11.md"
     },
     {
       "id": "M14.12",
-      "title": "Complete original-app scenarios",
-      "deliver": "Run the frozen exact-app functional corpus through original installation, launch, use, save, restart, removal and reinstall.",
-      "how_and_why": "A copied payload, version banner or single window is insufficient. Record installed, launchable, usable and task performance separately.",
-      "acceptance": "All three registered app/version/task profiles pass their mandatory tasks, or M14 remains incomplete; scope revisions require explicit documented owner direction.",
-      "status": "planned"
+      "title": "General installation and maintenance",
+      "deliver": "**Deliver:** MSI/MSP, EXE bootstrappers, MSIX/AppX, prerequisites, custom actions,\nupdates, repair, rollback, restart/resume and removal.\n\n**How and why:** Provide general package and execution semantics. An application\nname/digest allowlist is not the compatibility architecture. Source integrity,\nexplicit consent and authorization checks remain mandatory.\n\n**Acceptance:** Original installation and maintenance chains run including\nhelpers/services. Independently verify files, registry, shared ownership, user\ndata and interrupted-operation recovery.",
+      "status": "planned",
+      "document": "docs/milestones/m14-12.md"
     },
     {
       "id": "M14.13",
-      "title": "Performance and failure qualification",
-      "deliver": "Measure CPU time, input/presentation latency, peak/retained memory, storage requests/bytes/flushes and app/OS fault containment.",
-      "how_and_why": "Compare repeated complete workloads and idle periods with the frozen protocol; count host, kernel, compatibility and application costs separately.",
-      "acceptance": "No unexplained retention or idle polling; declared limits and critical regressions resolved; saves remain durable and the desktop remains responsive.",
-      "status": "planned"
+      "title": "Hardware drivers and acceleration",
+      "deliver": "**Deliver:** Required Windows driver contracts, device stacks, GPU graphics and\ncompute, multimedia, input and virtualization facilities over Engacer hardware\nmanagement.\n\n**How and why:** Implement actual operations and necessary binary/kernel\nstructures, requests, synchronization and device lifetimes. Discovery is not\nfunctional acceleration.\n\n**Acceptance:** Original callers perform actual device/render/media/virtualization\ntasks on declared hardware profiles. Preserve device-specific results and\npeak/retained resource measurements.",
+      "status": "planned",
+      "document": "docs/milestones/m14-13.md"
     },
     {
       "id": "M14.14",
-      "title": "Release candidate and public rehearsal",
-      "deliver": "Freeze candidate source/media, verify installation/startup and full current app/desktop regressions, docs, downloads and website.",
-      "how_and_why": "This is an explicit release candidate, not the final M14 release. Its public label must state that M14.15 is still blocking.",
-      "acceptance": "Matching tested candidate and complete public rehearsal delivered; no final performance claim, final tag or automatic advancement around M14.15.",
-      "status": "planned"
+      "title": "Application interfaces and desktop integration",
+      "deliver": "**Deliver:** Windows, controls, text, fonts, DPI, accessibility, international\ninput, clipboard, printing, shortcuts, associations and shell integration.\n\n**How and why:** Keep the Engacer desktop while honoring original callbacks,\nmessage ordering, owner identities and visible effects.\n\n**Acceptance:** Original interfaces are readable and usable. Ordinary launch,\nopen/save/close, integration and actual ordinary/HiDPI physical rendering pass.",
+      "status": "planned",
+      "document": "docs/milestones/m14-14.md"
     },
     {
       "id": "M14.15",
-      "title": "Mandatory whole-system optimization and final release",
-      "deliver": "Optimize CPU, RAM and HDD/SSD traffic across the entire OS and every qualified Windows app; repeat the same exact functional and performance corpus on frozen final bytes.",
-      "how_and_why": "Measure cold/warm starts, real CPU time, cache/resident/commit/shared memory, physical and logical I/O and drained writeback. Fix causes instead of hiding work in caches or delayed writes.",
-      "acceptance": "Functional correctness, resource budgets and no-regression gates all pass; publish measurements and limits, exact final ISO/VMware media, English guides, GitHub and complete actual website verification. Only now release final M14.",
-      "status": "planned"
+      "title": "Broad compatibility and stability",
+      "deliver": "**Deliver:** Windows-version behavior, historical quirks, external platform\nintegrations, broad original-app campaigns, long-duration/concurrent execution,\nfault injection and recovery.\n\n**How and why:** Contract tests provide the foundation; diverse original software\nchecks composition. New dependencies feed back to their owning subsystems.\nNecessary external service or vendor-trust integration remains explicit work,\nnot a fabricated success or an exception removed from the product scope.\n\n**Acceptance:** Preserve reproducible failures and actual install/start/use/update/\nremove outcomes, resource observations and resolutions. A finite corpus is\nscoped evidence, not an automatic universal-compatibility declaration.",
+      "status": "planned",
+      "document": "docs/milestones/m14-15.md"
+    },
+    {
+      "id": "M14.16",
+      "title": "Whole-system optimization and release qualification",
+      "deliver": "**Deliver:** Optimize CPU, peak/retained RAM, latency, storage bytes/requests/\nflushes and idle behavior. Repeat full regression on exact frozen media and\npublish matching ISO/VMware artifacts, documentation and actual website content.\n\n**How and why:** Efficiency is measured throughout every stage. This is the final\nintegrated optimization round, replacing the former M14.15 optimization gate.\nCorrectness, user data and readable interfaces cannot be traded for benchmarks.\n\n**Acceptance:** Exact source/media bindings, functional/performance evidence,\nhardware profiles, independently downloaded assets and fresh website readback\nagree. Unresolved required functionality remains open; a release number does\nnot establish universal compatibility.",
+      "status": "planned",
+      "document": "docs/milestones/m14-16.md"
     }
   ],
   "next_stage": "M14.4",
-  "development_stage": "M14.4"
+  "development_stage": "M14.4",
+  "authorized_implementation_through": "M14.8",
+  "stop_after": "M14.8",
+  "future_plan": "docs/milestones/m14-consolidated.md"
 }

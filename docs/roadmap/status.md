@@ -1,5 +1,11 @@
 # Current status
 
+**Approved future plan:** [M14.9-M14.16](../milestones/m14-consolidated.md) are
+eight consolidated platform work packages covering the full Windows x64 product
+scope. They are planned, not started. Final integrated optimization/release is
+M14.16, replacing former M14.15 numbering. Finish M14.8 and stop before future
+implementation; this planning update does not qualify new application behavior.
+
 **Current development: M14.8 original x64 EXE installers.** M14.7 remains the qualified public release. No M14.8 image or original Sumatra installation is accepted yet. [Ordered stage plan](../milestones/m14-8.md).
 
 M14.8 development now passes the ordinary read-only EXE chooser/review on exact build `f5f963060ad66bdc9dfb84a4995f9d9f`. Known and unknown EXEs leave the volume entry table unchanged, execute no original image and receive no installation authority. Compact installation/two disk-only starts, the original 7-Zip MSI/archive/remove/reinstall chain, three native API lifetimes and three physical graphics/input lifetimes pass on that same media. Selected ShellLink COM persistence, UTC fault continuity and expanded durable registry capacity pass with bounded live allocations. A separate private diagnostic reaches the original Sumatra installation completion handler, with all four payloads independently matching the original bytes/archive. This does not qualify ordinary EXE installation: immutable admission, required original helpers, protected records, normal GUI removal/reinstallation, larger installer typography and final VMware/media delivery remain open. M14.7 remains the qualified download. [Stage and remaining work](../milestones/m14-8.md), [exact development regression receipt](../../evidence/M14/8/development/native-ordinary-exe-review-pass/checkpoint.json), [original diagnostic evidence](../../evidence/M14/8/development/native-original-registration-completion/install-click-native/results.json).
@@ -10,7 +16,7 @@ The latest owner scope ends after M14.8; M14.9 and later are not started. Develo
 
 [Acceptance](../../evidence/M14/7/acceptance-results.json), [resource scopes](../../evidence/M14/7/resources.json), [current gates](../milestones/m14-7.md), [install](../handbook/install-m147.md), [Windows MSI tasks](../handbook/windows-m147.md), [release scope](../releases/m147-v0.14.7.md).
 
-M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. All original-app tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
+M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. The pinned originals remain mandatory regression fixtures in the broader x64 scope. The approved future plan is M14.9-M14.16; final integrated optimization is M14.16.
 
 ## Historical M14.6 delivery
 
@@ -34,7 +40,7 @@ M14.4 remains immutable within M14-STAGE4-VM-v1, with 47 native/eight host group
 
 **M14.2 native qualification passes within M14-STAGE2-VM-v1.** Private parent/child lifetimes, threads/TLS, shared synchronization, atomic mixed waits and the documented AMD64 hardware-fault/C exception profile pass exact-source native tests. The exact enabled-device VMware ZIP installs, restarts with its ISO retained and starts twice without the ISO. Compact 128-MiB, ordinary and actual 4K profiles pass. [Native acceptance](../../evidence/M14/2/acceptance-results.json), [resource accounting](../../evidence/M14/2/resources.json).
 
-**Historical native delivery: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/2/publication-results.json). [Install](../handbook/install-m142.md), [Windows tasks and browser downloads](../handbook/windows-m142.md), [release scope](../releases/m142-v0.14.2.md). Notepad++/Sumatra remain inspection-only. Firefox remains download-only; arbitrary Windows GUI/installers are unsupported. M14.15 remains the mandatory whole-system optimization gate. Earlier qualified M14.1 media and its complete publication receipt remain immutable.
+**Historical native delivery: [Engacer OS M14.2](https://github.com/enginsoysal/engacer-os/releases/tag/m142-v0.14.2).** Complete actual website verification passes: 545 pages, 352 exact-source articles and 3,932 links, with zero known broken targets and 12 explicitly unverified external references. [Publication receipt](../../evidence/M14/2/publication-results.json). [Install](../handbook/install-m142.md), [Windows tasks and browser downloads](../handbook/windows-m142.md), [release scope](../releases/m142-v0.14.2.md). Notepad++/Sumatra remain inspection-only. Firefox remains download-only; arbitrary Windows GUI/installers are unsupported. M14.16 is the approved final integrated optimization/release gate. Earlier qualified M14.1 media and its complete publication receipt remain immutable.
 
 **M13.0-M13.13 complete within the recorded and owner-revised scopes.** The owner accepted ninety minutes; actual observation reached 108.78 minutes. The original eight-hour/two-hour gates were stopped and did not pass. This is development media with named virtual scope, not universal stability or unlimited uptime.
 
