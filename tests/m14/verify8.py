@@ -23,8 +23,8 @@ def main():
   assert record['exit_code']==0 and record.get('validated_source_tree_sha256',record['source_tree_sha256'])==tree['source_tree_sha256'],name
   if record['source_tree_sha256']!=tree['source_tree_sha256']:
    old=read(campaign/('observer-tree-'+record['source_tree_sha256']+'.json'));assert hashlib.sha256(json.dumps(old['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
-   differences={p for p in old['files'].keys()|tree['files'].keys()if old['files'].get(p)!=tree['files'].get(p)};assert differences<={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py'}
-   assert not any(p in old['files']and p in differences for p in ['tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py'])
+   differences={p for p in old['files'].keys()|tree['files'].keys()if old['files'].get(p)!=tree['files'].get(p)};assert differences<={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py','tests/m14/painting148_entry.py'}
+   assert not any(p in old['files']and p in differences for p in ['tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py','tests/m14/painting148_entry.py'])
    assert record['verified_unconsumed_tree_changes']=={p:dict(before=old['files'].get(p),after=tree['files'].get(p))for p in sorted(differences)}
  original=read(work/'exe-chain-native/results.json');assert original['passed']and original['build_id']==build and original['full_production_media']and not original['development_worker_sha256']
  assert original['observer_sha256']==sha(ROOT/'tests/m14/exe148_chain_native.py')and len(original['cycles'])==3
