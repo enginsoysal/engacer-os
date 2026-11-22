@@ -13,9 +13,9 @@ def resume148(prior,name,record,command,current_tree,current_digest,out,build):
  original=prior if record['source_tree_sha256']==prior['source_tree_sha256']else json.loads((out/('observer-tree-'+record['source_tree_sha256']+'.json')).read_text())
  assert hashlib.sha256(json.dumps(original['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
  old=original['files'];differences={p for p in old.keys()|current_tree.keys()if old.get(p)!=current_tree.get(p)}
- allowed={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py','tests/m14/painting148_entry.py','tests/m14/host148_entry.py','tests/m14/msi_host148_entry.py'}
+ allowed={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py','tests/m14/painting148_entry.py','tests/m14/host148_entry.py','tests/m14/msi_host148_entry.py','tests/m14/plan148_entry.py'}
  if not differences<=allowed:return False
- if any(p in differences and p in old for p in ['tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py','tests/m14/painting148_entry.py','tests/m14/host148_entry.py','tests/m14/msi_host148_entry.py']):return False
+ if any(p in differences and p in old for p in ['tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py','tests/m14/painting148_entry.py','tests/m14/host148_entry.py','tests/m14/msi_host148_entry.py','tests/m14/plan148_entry.py']):return False
  assert command[0]not in differences
  record['validated_source_tree_sha256']=current_digest
  record['verified_unconsumed_tree_changes']={p:dict(before=old.get(p),after=current_tree.get(p))for p in sorted(differences)}
@@ -49,6 +49,7 @@ def main():
  tasks['msi147-cab-host']['command']=[sys.executable,'tests/m14/host148_entry.py','cab']
  for scenario in ('files','install','remove','terminal','transaction'):
   tasks['msi147-'+scenario+'-host']['command']=[sys.executable,'tests/m14/msi_host148_entry.py',scenario]
+ tasks['msi147-plan-host']['command']=[sys.executable,'tests/m14/plan148_entry.py']
  assert len(tasks)==147,len(tasks)'''"""
  text=text.replace(needle,additions)
  text=text.replace('retained_tasks=74, total_tasks=138','retained_tasks=74, total_tasks=147, stage7_tasks=138, stage8_added_tasks=9, outer_stage8_adapter_sha256=hashlib.sha256((ROOT/\"tests/m14/suite8.py\").read_bytes()).hexdigest()')

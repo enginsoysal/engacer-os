@@ -1,12 +1,12 @@
 Traceback (most recent call last):
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay8.py", line 35, in <module>
+  File "<project-root>\tests\m14\replay8.py", line 35, in <module>
     exec(compile(text,str(canonical),'exec'),globals())
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay7.py", line 120, in <module>
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay7.py", line 104, in main
+  File "<project-root>\tests\m14\replay7.py", line 120, in <module>
+  File "<project-root>\tests\m14\replay7.py", line 104, in main
     (json.dumps(receipt, indent=2) + '\n').encode('utf-8'))
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\install147_host.py", line 12, in main
+  File "<project-root>\tests\m14\install147_host.py", line 12, in main
     obj=out/(Path(source).stem+'.obj');command([tools['clang'],'--target=x86_64-pc-windows-msvc','-O2','-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-DENGINE_M7','-DENGINE_M8','-DENGINE_M11','-DENGINE_M14','-DMSPACK_NO_DEFAULT_SYSTEM','-DSIZEOF_OFF_T=8','-DDEBUG=0','-I',ROOT/'include','-I',ROOT/'third_party/libmspack-port','-I',ROOT/'third_party/libmspack','-c',ROOT/source,'-o',obj]);objects.append(obj)
-  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tools\build\m1.py", line 30, in command
+  File "<project-root>\tools\build\m1.py", line 30, in command
     if process.returncode:raise RuntimeError(process.stderr.replace(str(ROOT),'<project-root>'))
 RuntimeError: In file included from <project-root>\tests\m14\files147_host.c:37:
 <project-root>\tests\m14\../../kernel/windows8/transaction147.inc:29:5: error: use of undeclared identifier 'spaces142'
