@@ -1,0 +1,36 @@
+{
+  "passed": false,
+  "stage": "M14.8",
+  "status": "native_released_publication_partial_owner_stop",
+  "checked_at": "2026-11-22T02:29:04.276437+00:00",
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "native_source_media_passed": true,
+  "campaign_tasks": 147,
+  "native_groups": 105,
+  "host_groups": 41,
+  "public_downloads_passed": true,
+  "public_assets": 20,
+  "public_article_content_passed": true,
+  "public_link_targets_passed": true,
+  "website_source_commit": "23724dd5316a4e1cb2ede4635faa87b479ef3b67",
+  "public_pages": 628,
+  "exact_source_articles": 408,
+  "public_links": 4733,
+  "known_broken_targets": 0,
+  "unverified_external_references": 12,
+  "native_homepage_save_passed": false,
+  "full_publication_complete": false,
+  "remaining": [
+    "Native BrixCanvas homepage Save returns a website-read error; the public homepage still has the previous download badge and obsolete future-plan copy.",
+    "Reported advanced platform search/navigation remains unqualified."
+  ],
+  "source_bindings": {
+    "bd12730bf19eee5a4ab496d798a7c0435728fed0": "bd12730bf19eee5a4ab496d798a7c0435728fed0",
+    "m148-v0.14.8": "98f1aaebb912a6f80b8d205a929d611f1fadce70",
+    "23724dd5316a4e1cb2ede4635faa87b479ef3b67": "23724dd5316a4e1cb2ede4635faa87b479ef3b67"
+  },
+  "owner_stop_after": "M14.8",
+  "future_implementation_started": false,
+  "scope": "Native milestone implementation and GitHub delivery are complete within their documented scope. Do not claim complete website publication or start M14.9. Preserve the combined platform report.",
+  "observer_sha256": "fc9ecb8d03ad0d36816d292fc2a98509481cc00497bee31b0197596d3012243c"
+}

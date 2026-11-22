@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "scope": "Retain complete public crawl/readback gates under stage-eight evidence paths.\n\nIndependent article provenance is not a native homepage Save receipt.\n",
+  "canonical_path": "tests/m14/public_audit147.py",
+  "canonical_sha256": "35a76b8c3606a846c9cd2e25ba68fbfcab79230aa6769a3fcee0a0505073d8d0",
+  "executed_sha256": "9c7a38788dbeeaee7ef61cbcb221f7f1a01374d20072d3fd589e869529172740",
+  "adapter_sha256": "45f63575d131e9700d180c0e1edd3d68456316dbbae7af22fea1f11ef01eaefd",
+  "only_change": "Output evidence confinement changes from stage seven to stage eight. Full finite crawl, all link/branding/language/soft-404/source-reference checks remain."
+}

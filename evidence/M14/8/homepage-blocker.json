@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "scope": "Fresh visible homepage text, excluding embedded script/style data; no successful native Save is claimed.",
+  "http_status": 200,
+  "seconds": 2.84,
+  "expected_current_native_release": "M14.8",
+  "still_contains_previous_download": true,
+  "still_contains_old_future_plan": true,
+  "save_error": "The website could not be read. Keep this window open.",
+  "root_cause": "Unestablished platform website-read failure; reproduced in a new authenticated Edge editor tab.",
+  "owner_reporting": "Retain in combined BrixCanvas report; do not modify shared BrixCanvas application."
+}
