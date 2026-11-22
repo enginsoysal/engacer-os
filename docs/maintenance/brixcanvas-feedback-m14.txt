@@ -146,3 +146,9 @@ with the approved planned M14.9-M14.16 program, while retaining M14.7 as the
 qualified download until M14.8 qualification. The new roadmap articles are live.
 Keep this observation in the combined handoff; do not ask the owner to forward
 individual findings while native qualification continues.
+
+Follow-up, M14.8 closure: a newly opened authenticated Edge editor tab loads the
+existing website successfully, but one ordinary roadmap-text edit followed by
+Done and the top-level Save reproduces the same website-read error. The old-tab
+debugger attachment problem was resolved by opening the new tab and is separate
+from the reproduced server Save failure. No homepage publication is claimed.
