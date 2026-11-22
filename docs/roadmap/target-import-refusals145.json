@@ -31,8 +31,8 @@
     "activeds.dll": 28,
     "netapi32.dll": 29
   },
-  "refusal_keys": 658,
-  "table_bytes": 5264,
+  "refusal_keys": 559,
+  "table_bytes": 4472,
   "imports": [
     {
       "app": "notepadpp",
@@ -583,13 +583,6 @@
     {
       "app": "notepadpp",
       "dll": "kernel32.dll",
-      "symbol": "GetTickCount64",
-      "key": "c9bad842b62d47a6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
       "symbol": "TerminateThread",
       "key": "5b1aa77cbd8a94eb",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -662,13 +655,6 @@
       "dll": "kernel32.dll",
       "symbol": "lstrcmpiA",
       "key": "05c06d1f5dbd489b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "QueryFullProcessImageNameW",
-      "key": "2d045a97af6ec729",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -891,36 +877,8 @@
     {
       "app": "notepadpp",
       "dll": "kernel32.dll",
-      "symbol": "FormatMessageA",
-      "key": "4c5e1be319ae65ed",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
       "symbol": "GetTimeFormatW",
       "key": "9b912e88bdf8c95b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "GetFileAttributesExW",
-      "key": "9fb8345eb89fa7f3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "GetLongPathNameW",
-      "key": "3f20524d8ef8037b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "MulDiv",
-      "key": "648e9bc0980f7b2d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -942,13 +900,6 @@
       "dll": "kernel32.dll",
       "symbol": "CompareStringEx",
       "key": "00b5d379ea55ffbb",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "RtlUnwindEx",
-      "key": "c4210f2fd88758c6",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1037,20 +988,6 @@
     },
     {
       "app": "notepadpp",
-      "dll": "kernel32.dll",
-      "symbol": "CopyFileW",
-      "key": "e6c4f6f5eb2c8120",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "MonitorFromRect",
-      "key": "7e042e812e4fe0e9",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
       "dll": "user32.dll",
       "symbol": "CreateDialogParamW",
       "key": "066609234a1fb109",
@@ -1122,13 +1059,6 @@
     {
       "app": "notepadpp",
       "dll": "user32.dll",
-      "symbol": "MsgWaitForMultipleObjects",
-      "key": "359ae5ce2a028598",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
       "symbol": "NotifyWinEvent",
       "key": "791f0669333fe878",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -1152,20 +1082,6 @@
       "dll": "user32.dll",
       "symbol": "GetDoubleClickTime",
       "key": "3a9363808a4db9b9",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "MonitorFromPoint",
-      "key": "68b0bd3e3ef0871f",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "AdjustWindowRectEx",
-      "key": "b253a8e561fb51e3",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1222,20 +1138,6 @@
       "dll": "user32.dll",
       "symbol": "GetWindow",
       "key": "bd01e4e80764255d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "UnregisterClassW",
-      "key": "f7533000bf16fae8",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "RegisterClassExW",
-      "key": "8495923b9684dd94",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1367,13 +1269,6 @@
     {
       "app": "notepadpp",
       "dll": "user32.dll",
-      "symbol": "GetWindowLongW",
-      "key": "6576acbe095b9cc4",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
       "symbol": "CreateDialogIndirectParamW",
       "key": "7f65115da1d786bf",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -1418,13 +1313,6 @@
       "dll": "user32.dll",
       "symbol": "CreateCaret",
       "key": "b5d951524a7588ea",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "DrawTextExW",
-      "key": "651a944fb8dbb0c8",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1626,13 +1514,6 @@
     {
       "app": "notepadpp",
       "dll": "user32.dll",
-      "symbol": "SetWindowPos",
-      "key": "9288de1369adab5d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
       "symbol": "EqualRect",
       "key": "d8ce109fce215eb3",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -1642,13 +1523,6 @@
       "dll": "user32.dll",
       "symbol": "EnumChildWindows",
       "key": "7a4e1b6f1816aac5",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "GetSystemMetrics",
-      "key": "f037968b3abc0a91",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1677,13 +1551,6 @@
       "dll": "user32.dll",
       "symbol": "RedrawWindow",
       "key": "264867ddb48dc1d8",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "MapWindowPoints",
-      "key": "211ca81cfd00aa48",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1724,13 +1591,6 @@
     {
       "app": "notepadpp",
       "dll": "user32.dll",
-      "symbol": "GetWindowDC",
-      "key": "132a297f4620aa28",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
       "symbol": "EnumThreadWindows",
       "key": "4c97a7b3fca244fb",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -1745,22 +1605,8 @@
     {
       "app": "notepadpp",
       "dll": "user32.dll",
-      "symbol": "DrawTextW",
-      "key": "98dc78f1c55049f7",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
       "symbol": "PtInRect",
       "key": "76198799e2a2b4e2",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "SetForegroundWindow",
-      "key": "1c76975a08b80438",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -1803,13 +1649,6 @@
       "dll": "user32.dll",
       "symbol": "SetMenuItemBitmaps",
       "key": "0324759643d57cc7",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "user32.dll",
-      "symbol": "GetMonitorInfoW",
-      "key": "7e5d1bc5e55cf322",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2109,27 +1948,6 @@
     {
       "app": "notepadpp",
       "dll": "gdi32.dll",
-      "symbol": "GetDeviceCaps",
-      "key": "64b8c9cd86735a42",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "gdi32.dll",
-      "symbol": "GetTextMetricsW",
-      "key": "acf74d0b109dac70",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "gdi32.dll",
-      "symbol": "GetObjectW",
-      "key": "26c63a1f7a4a3563",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "gdi32.dll",
       "symbol": "BitBlt",
       "key": "4b04aee88c78a9d8",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -2151,13 +1969,6 @@
     {
       "app": "notepadpp",
       "dll": "gdi32.dll",
-      "symbol": "SelectObject",
-      "key": "7425527af07f077c",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "gdi32.dll",
       "symbol": "CreateCompatibleDC",
       "key": "edcf9ac1efaac14c",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -2167,13 +1978,6 @@
       "dll": "gdi32.dll",
       "symbol": "GetClipRgn",
       "key": "bf8314d6168b60a2",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "gdi32.dll",
-      "symbol": "GetStockObject",
-      "key": "384400ba6ee9021e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2326,36 +2130,8 @@
     {
       "app": "notepadpp",
       "dll": "advapi32.dll",
-      "symbol": "RegQueryInfoKeyW",
-      "key": "ecc49ecea511c51e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "advapi32.dll",
       "symbol": "ConvertStringSecurityDescriptorToSecurityDescriptorW",
       "key": "fccdf1e1b8b68260",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "advapi32.dll",
-      "symbol": "CheckTokenMembership",
-      "key": "a32bf847b34e8341",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "advapi32.dll",
-      "symbol": "FreeSid",
-      "key": "7c8749ecca41adea",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "notepadpp",
-      "dll": "advapi32.dll",
-      "symbol": "AllocateAndInitializeSid",
-      "key": "5d82bf57bf087692",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2676,13 +2452,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "MulDiv",
-      "key": "648e9bc0980f7b2d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "SystemTimeToFileTime",
       "key": "66e784083400a9c2",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -2804,13 +2573,6 @@
       "dll": "kernel32.dll",
       "symbol": "RtlPcToFileHeader",
       "key": "6f54da9c204a6769",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "RtlUnwindEx",
-      "key": "c4210f2fd88758c6",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -2949,20 +2711,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "FormatMessageA",
-      "key": "4c5e1be319ae65ed",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "QueryFullProcessImageNameW",
-      "key": "2d045a97af6ec729",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "AttachConsole",
       "key": "0dc50b6a4b1c90e6",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -2984,29 +2732,8 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "CopyFileW",
-      "key": "e6c4f6f5eb2c8120",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GetFileAttributesExW",
-      "key": "9fb8345eb89fa7f3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "OutputDebugStringA",
       "key": "da19db9329e0c8e4",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GetUserDefaultUILanguage",
-      "key": "a3b51e9383410074",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3042,13 +2769,6 @@
       "dll": "kernel32.dll",
       "symbol": "SetThreadExecutionState",
       "key": "a661dc8cac34b69f",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GetSystemTime",
-      "key": "30ddfe45429b9790",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3110,20 +2830,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "GetShortPathNameW",
-      "key": "c7d1b4678874efaf",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "GetLongPathNameW",
-      "key": "3f20524d8ef8037b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "WritePrivateProfileStringW",
       "key": "7871ec5890b69c7b",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3173,20 +2879,6 @@
     {
       "app": "sumatra",
       "dll": "kernel32.dll",
-      "symbol": "VerSetConditionMask",
-      "key": "03408c4bb1a51ab0",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
-      "symbol": "VerifyVersionInfoW",
-      "key": "74e521964ba8abc8",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "kernel32.dll",
       "symbol": "HeapQueryInformation",
       "key": "054f281d286ca178",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3201,22 +2893,8 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "GetForegroundWindow",
-      "key": "c9fe9f069ec1619c",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "WindowFromDC",
       "key": "4d76056f69aac5b6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "GetClassInfoExW",
-      "key": "e03fed9d52eca4b3",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3397,13 +3075,6 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "DrawTextExW",
-      "key": "651a944fb8dbb0c8",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "InsertMenuW",
       "key": "2e0fda2fe84a6a9e",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3413,13 +3084,6 @@
       "dll": "user32.dll",
       "symbol": "GetMenuInfo",
       "key": "f4de9e86e4ea7502",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "GetWindowLongW",
-      "key": "6576acbe095b9cc4",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3441,20 +3105,6 @@
       "dll": "user32.dll",
       "symbol": "MessageBeep",
       "key": "1bf9c8c4c8f63a2a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "GetDesktopWindow",
-      "key": "16dcd718aee2894b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "MsgWaitForMultipleObjects",
-      "key": "359ae5ce2a028598",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3483,13 +3133,6 @@
       "dll": "user32.dll",
       "symbol": "IsWindowVisible",
       "key": "c404a5344610ce93",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "RegisterClassExW",
-      "key": "8495923b9684dd94",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3628,13 +3271,6 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "MapWindowPoints",
-      "key": "211ca81cfd00aa48",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "TrackMouseEvent",
       "key": "709271cab399d3d3",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3658,20 +3294,6 @@
       "dll": "user32.dll",
       "symbol": "IntersectRect",
       "key": "5832782d4698b91e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "GetWindowDC",
-      "key": "132a297f4620aa28",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "DrawTextW",
-      "key": "98dc78f1c55049f7",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3733,13 +3355,6 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "GetMonitorInfoW",
-      "key": "7e5d1bc5e55cf322",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "GetWindowInfo",
       "key": "5949aea8190bfd0d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3775,29 +3390,8 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "MonitorFromRect",
-      "key": "7e042e812e4fe0e9",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "CopyImage",
       "key": "cf3b4d800efba997",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "AdjustWindowRectEx",
-      "key": "b253a8e561fb51e3",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "RegisterWindowMessageA",
-      "key": "12269da7c13b5e48",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -3845,13 +3439,6 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "SetWindowPos",
-      "key": "9288de1369adab5d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "EnumChildWindows",
       "key": "7a4e1b6f1816aac5",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -3859,22 +3446,8 @@
     {
       "app": "sumatra",
       "dll": "user32.dll",
-      "symbol": "GetSystemMetrics",
-      "key": "f037968b3abc0a91",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
       "symbol": "GetActiveWindow",
       "key": "6d990183f9d2828f",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "user32.dll",
-      "symbol": "SetForegroundWindow",
-      "key": "1c76975a08b80438",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4202,36 +3775,8 @@
     {
       "app": "sumatra",
       "dll": "gdi32.dll",
-      "symbol": "GetStockObject",
-      "key": "384400ba6ee9021e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdi32.dll",
-      "symbol": "GetDeviceCaps",
-      "key": "64b8c9cd86735a42",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdi32.dll",
-      "symbol": "GetObjectW",
-      "key": "26c63a1f7a4a3563",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdi32.dll",
       "symbol": "CreateCompatibleBitmap",
       "key": "9ff3bf3549c1234a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdi32.dll",
-      "symbol": "SelectObject",
-      "key": "7425527af07f077c",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4328,13 +3873,6 @@
     {
       "app": "sumatra",
       "dll": "advapi32.dll",
-      "symbol": "RegQueryInfoKeyW",
-      "key": "ecc49ecea511c51e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "advapi32.dll",
       "symbol": "RegEnumKeyW",
       "key": "0795d306be04d7cf",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -4344,27 +3882,6 @@
       "dll": "advapi32.dll",
       "symbol": "InitializeSecurityDescriptor",
       "key": "3e3d57c3d6030bf9",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "advapi32.dll",
-      "symbol": "CheckTokenMembership",
-      "key": "a32bf847b34e8341",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "advapi32.dll",
-      "symbol": "FreeSid",
-      "key": "7c8749ecca41adea",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "advapi32.dll",
-      "symbol": "AllocateAndInitializeSid",
-      "key": "5d82bf57bf087692",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4428,13 +3945,6 @@
       "dll": "shell32.dll",
       "symbol": "#155",
       "key": "59161e8203d28191",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "shell32.dll",
-      "symbol": "CommandLineToArgvW",
-      "key": "80a3e67cfd472c60",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4615,13 +4125,6 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipSetPageUnit",
-      "key": "a2ca60e00fe2bd6e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipCloneBitmapAreaI",
       "key": "e2454677980ea933",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -4629,22 +4132,8 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipGetImagePixelFormat",
-      "key": "05d9c4948f91b007",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipSetInterpolationMode",
       "key": "f5f03c3541f95f24",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetSmoothingMode",
-      "key": "c06fc37362012230",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4678,20 +4167,6 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipSetCompositingQuality",
-      "key": "7c2b94329ebd080a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateBitmapFromScan0",
-      "key": "9d34ad613377fdc5",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipBitmapSetResolution",
       "key": "9787ec8631b48094",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -4708,125 +4183,6 @@
       "dll": "gdiplus.dll",
       "symbol": "GdipDrawImageRectRect",
       "key": "cc2b5adf57e56b1c",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetStringFormatFlags",
-      "key": "976055b9473c0dc4",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetStringFormatAlign",
-      "key": "9b14318ca13f3416",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDrawImageI",
-      "key": "d318e03507a9e3db",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipTranslateWorldTransform",
-      "key": "5f40546e815c180d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDeleteFont",
-      "key": "7470d15b14b80563",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDeleteStringFormat",
-      "key": "73a81299d334ac74",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetImageGraphicsContext",
-      "key": "3deb527514db8590",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipMeasureString",
-      "key": "d195fcea76e89bc2",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipRotateWorldTransform",
-      "key": "b465b049ca2cffa6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateBitmapFromGraphics",
-      "key": "8c5346edfe9a4f67",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipResetWorldTransform",
-      "key": "8ec59568632d6468",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDrawString",
-      "key": "9cb24ff125faef0e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetGenericFontFamilySansSerif",
-      "key": "b757ebad04237023",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateFont",
-      "key": "f66fab7f89c85f80",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateFontFamilyFromName",
-      "key": "94726f421ce09d63",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateStringFormat",
-      "key": "79aab217483122cb",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetSolidFillColor",
-      "key": "a8348f02164bfa0a",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4869,27 +4225,6 @@
       "dll": "gdiplus.dll",
       "symbol": "GdipAddPathRectangleI",
       "key": "1b93c68ff631b57b",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetTextRenderingHint",
-      "key": "02d249c514976555",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetLogFontW",
-      "key": "9655108f34d42293",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetFontHeight",
-      "key": "3f75eb520fb1554d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -4944,64 +4279,8 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipSetCompositingMode",
-      "key": "a17e81cab32a40f6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipStringFormatGetGenericDefault",
-      "key": "7501994afad6ddef",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCloneStringFormat",
-      "key": "8388bb67f28464bc",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateFontFromDC",
-      "key": "bda741a2498fc60d",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetStringFormatTrimming",
-      "key": "80b5a9c242c55b74",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetStringFormatLineAlign",
-      "key": "4be3d87eb6907014",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateFontFromLogfontA",
-      "key": "aec328f1c8c46406",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipFillEllipseI",
       "key": "642fe4695719fdd5",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipScaleWorldTransform",
-      "key": "999111fb042bd111",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5028,43 +4307,8 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipDeleteFontFamily",
-      "key": "d23052e865abe363",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetImageHeight",
-      "key": "36eac9db071a0397",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetFamily",
-      "key": "fc0f6dc4bdd534b7",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipTransformMatrixPoints",
       "key": "655f57099dfd4d61",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateMatrix",
-      "key": "27ccae1415a65bdc",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipSetWorldTransform",
-      "key": "5ebd974606fc13e7",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5091,27 +4335,6 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipGetImageWidth",
-      "key": "0dfc402dad3c39c0",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDeleteMatrix",
-      "key": "9ae10338792d891f",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetFamilyName",
-      "key": "b197ae9187d19894",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipCloneImage",
       "key": "fdccd09e173daf0f",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5121,13 +4344,6 @@
       "dll": "gdiplus.dll",
       "symbol": "GdipCreateBitmapFromHBITMAP",
       "key": "c2daa02b05dde4f5",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDisposeImage",
-      "key": "210c0d513b832103",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5154,29 +4370,8 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipSetStringFormatMeasurableCharacterRanges",
-      "key": "2aa992b6f24ed3a5",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipGetImageEncodersSize",
       "key": "fcbe305f22799314",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipStringFormatGetGenericTypographic",
-      "key": "2259f7dd02ad8120",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipGetStringFormatFlags",
-      "key": "08fd4abd50834d00",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5238,27 +4433,6 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipDeleteBrush",
-      "key": "f1d2bec6fa9f70b2",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipAlloc",
-      "key": "1b02df82811dea2e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateSolidFill",
-      "key": "660d19b401699edd",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipSetPenDashStyle",
       "key": "f5e21c0198ac0393",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5273,27 +4447,6 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipFree",
-      "key": "748ff2452e288593",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCreateFromHDC",
-      "key": "c7df32aa4e9f659e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipCloneBrush",
-      "key": "2dab8c33bc519e7a",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipBitmapLockBits",
       "key": "8b0c30d01caed395",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5301,22 +4454,8 @@
     {
       "app": "sumatra",
       "dll": "gdiplus.dll",
-      "symbol": "GdipFillRectangleI",
-      "key": "0fe5db70c2429234",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
       "symbol": "GdipCreatePen2",
       "key": "f9de23098e0b6b76",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "gdiplus.dll",
-      "symbol": "GdipDeleteGraphics",
-      "key": "6b11784189ff3507",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5359,27 +4498,6 @@
       "dll": "shlwapi.dll",
       "symbol": "PathFindFileNameA",
       "key": "ce8dae0ec38f4191",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "shlwapi.dll",
-      "symbol": "SHDeleteValueW",
-      "key": "a05e4fd3b24295cd",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "shlwapi.dll",
-      "symbol": "SHDeleteKeyW",
-      "key": "869ef7e26ad0fa3f",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "sumatra",
-      "dll": "shlwapi.dll",
-      "symbol": "SHSetValueW",
-      "key": "5bafa5aa19241eb2",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5560,13 +4678,6 @@
     {
       "app": "msi-streams",
       "dll": "kernel32.dll",
-      "symbol": "GetShortPathNameW",
-      "key": "c7d1b4678874efaf",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
       "symbol": "GetComputerNameW",
       "key": "3166c9740ff3045f",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5630,13 +4741,6 @@
     {
       "app": "msi-streams",
       "dll": "kernel32.dll",
-      "symbol": "RtlUnwindEx",
-      "key": "c4210f2fd88758c6",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "kernel32.dll",
       "symbol": "LCMapStringW",
       "key": "e2f33400ceca818d",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5658,13 +4762,6 @@
     {
       "app": "msi-streams",
       "dll": "user32.dll",
-      "symbol": "GetSystemMetrics",
-      "key": "f037968b3abc0a91",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "user32.dll",
       "symbol": "EnumWindows",
       "key": "3702a9f0df9d5787",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
@@ -5674,13 +4771,6 @@
       "dll": "user32.dll",
       "symbol": "GetWindowThreadProcessId",
       "key": "d677cc4bff7c12bb",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "user32.dll",
-      "symbol": "UnregisterClassW",
-      "key": "f7533000bf16fae8",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {
@@ -5798,22 +4888,8 @@
     {
       "app": "msi-streams",
       "dll": "advapi32.dll",
-      "symbol": "RegQueryInfoKeyW",
-      "key": "ecc49ecea511c51e",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "advapi32.dll",
       "symbol": "LookupAccountSidW",
       "key": "3efddd6a15aec66c",
-      "status": "Refusal diagnostic only; no implementation or execution qualification"
-    },
-    {
-      "app": "msi-streams",
-      "dll": "advapi32.dll",
-      "symbol": "EqualSid",
-      "key": "03af25e7f4f1da44",
       "status": "Refusal diagnostic only; no implementation or execution qualification"
     },
     {

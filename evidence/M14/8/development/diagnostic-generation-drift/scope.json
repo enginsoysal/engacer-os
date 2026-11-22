@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build_id": "7d5ee354b13bfd2ef83849f44242449a",
+  "passed_campaign_tasks": 146,
+  "reason": "Generated refusal-key table and diagnostic inventory retain 99 keys for APIs now implemented. Final host consistency guard refuses. No release or final acceptance.",
+  "replacement_requires": "Regenerate exact source/diagnostics, rebuild and rerun the entire campaign; old native results do not qualify replacement media."
+}
