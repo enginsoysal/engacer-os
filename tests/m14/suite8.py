@@ -13,10 +13,10 @@ def resume148(prior,name,record,command,current_tree,current_digest,out,build):
  original=prior if record['source_tree_sha256']==prior['source_tree_sha256']else json.loads((out/('observer-tree-'+record['source_tree_sha256']+'.json')).read_text())
  assert hashlib.sha256(json.dumps(original['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
  old=original['files'];differences={p for p in old.keys()|current_tree.keys()if old.get(p)!=current_tree.get(p)}
- allowed={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py'}
+ allowed={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py'}
  if not differences<=allowed:return False
- if 'tests/m14/wix_action148_lifetimes.py'in differences and 'tests/m14/wix_action148_lifetimes.py'in old:return False
- assert command[0]not in allowed
+ if any(p in differences and p in old for p in ['tests/m14/wix_action148_lifetimes.py','tests/m14/wix_system148_native.py']):return False
+ assert command[0]not in differences
  record['validated_source_tree_sha256']=current_digest
  record['verified_unconsumed_tree_changes']={p:dict(before=old.get(p),after=current_tree.get(p))for p in sorted(differences)}
  record['reuse_scope']='Unchanged frozen OS media, command and consumed observers; only orchestration/verifier maintenance and a previously absent WiX entry were added. Original executed tree is preserved.'
@@ -42,8 +42,10 @@ def main():
   tasks[name]['command']=[sys.executable,'tests/m14/'+script]
  del tasks['static146-host']
  tasks['msi147-wix_action-native']['command']=[sys.executable,'tests/m14/wix_action148_lifetimes.py']
+ tasks['msi147-wix_system-native']['command']=[sys.executable,'tests/m14/wix_system148_native.py']
  assert len(tasks)==147,len(tasks)'''"""
  text=text.replace(needle,additions)
+ text=text.replace('retained_tasks=74, total_tasks=138','retained_tasks=74, total_tasks=147, stage7_tasks=138, stage8_added_tasks=9, outer_stage8_adapter_sha256=hashlib.sha256((ROOT/\"tests/m14/suite8.py\").read_bytes()).hexdigest()')
  needle='def validate_resume(prior, name, record, command, current_tree, current_digest, out, build):'
  assert text.count(needle)==1
  text=text.replace(needle,needle+'\n    return resume148(prior,name,record,command,current_tree,current_digest,out,build)\n')
