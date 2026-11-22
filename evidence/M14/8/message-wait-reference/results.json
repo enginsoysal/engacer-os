@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "scope": "Own Windows thread-queue age/deadline/timer reference; no visible UI.",
+  "cases": [
+    {
+      "case": "empty",
+      "post_allpost_allinput": [
+        258,
+        258,
+        258
+      ]
+    },
+    {
+      "case": "new posted message",
+      "post_allpost_allinput": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "repeated wait without peek",
+      "post_allpost_allinput": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "filtered peek no remove",
+      "post_allpost_allinput": [
+        258,
+        0,
+        258
+      ]
+    },
+    {
+      "case": "unfiltered remove",
+      "post_allpost_allinput": [
+        258,
+        258,
+        258
+      ]
+    },
+    {
+      "case": "posted message 0x100",
+      "key_move_post_timer_paint_allpost": [
+        258,
+        258,
+        0,
+        258,
+        258,
+        0
+      ]
+    },
+    {
+      "case": "posted message 0x200",
+      "key_move_post_timer_paint_allpost": [
+        258,
+        258,
+        0,
+        258,
+        258,
+        0
+      ]
+    },
+    {
+      "case": "posted message 0xf",
+      "key_move_post_timer_paint_allpost": [
+        258,
+        258,
+        0,
+        258,
+        258,
+        0
+      ]
+    },
+    {
+      "case": "posted message 0x113",
+      "key_move_post_timer_paint_allpost": [
+        258,
+        258,
+        0,
+        258,
+        258,
+        0
+      ]
+    }
+  ],
+  "empty_mask_timeout_seconds": 0.03200000000651926,
+  "real_timer_wake": true,
+  "native_profile": "Zero handles only; mixed object/message arrays explicitly refuse until implemented."
+}

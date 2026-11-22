@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "clone": {
+    "source_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "clone_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "live_windows": 10,
+      "gui_owned_pages": 31,
+      "drawing_pages_included": 19,
+      "shared_registered_format_cache_pages": 1,
+      "managed_pages_while_original_open": 1575,
+      "idle_halted_cpu_observations": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "dispatch_quanta_during_observed_idle": 0,
+      "peak_group_owned_pages": 526,
+      "total_dispatch_quanta": 55,
+      "retained_pages": 1
+    },
+    {
+      "cycle": 2,
+      "live_windows": 10,
+      "gui_owned_pages": 31,
+      "drawing_pages_included": 19,
+      "shared_registered_format_cache_pages": 1,
+      "managed_pages_while_original_open": 1575,
+      "idle_halted_cpu_observations": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "dispatch_quanta_during_observed_idle": 0,
+      "peak_group_owned_pages": 526,
+      "total_dispatch_quanta": 47,
+      "retained_pages": 0
+    },
+    {
+      "cycle": 3,
+      "live_windows": 10,
+      "gui_owned_pages": 31,
+      "drawing_pages_included": 19,
+      "shared_registered_format_cache_pages": 1,
+      "managed_pages_while_original_open": 1575,
+      "idle_halted_cpu_observations": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "dispatch_quanta_during_observed_idle": 0,
+      "peak_group_owned_pages": 526,
+      "total_dispatch_quanta": 44,
+      "retained_pages": 0
+    }
+  ],
+  "limits": [
+    "Original window ownership measurements, not complete original-app work or whole-OS optimization",
+    "Dispatch quanta are not measured CPU time",
+    "Configured guest RAM is not measured OS consumption",
+    "M14.15 remains the whole-system CPU/RAM/storage optimization gate"
+  ],
+  "managed_pages_before_original": 1051,
+  "separate_framebuffer_bytes": 4096000,
+  "declared_persistent_pages": {
+    "worker_transition_stack_after_console_warmup": 4,
+    "session_registered_format_cache_after_first_gui": 1
+  }
+}

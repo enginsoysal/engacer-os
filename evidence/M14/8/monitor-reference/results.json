@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "scope": "Own read-only Windows monitor rectangle/point behavior; no desktop control.",
+  "cases": [
+    {
+      "case": "inside",
+      "none_returns_monitor": true,
+      "primary_fallback": true,
+      "nearest_exists": true
+    },
+    {
+      "case": "point",
+      "none_returns_monitor": true,
+      "primary_fallback": true,
+      "nearest_exists": true
+    },
+    {
+      "case": "zero-width",
+      "none_returns_monitor": true,
+      "primary_fallback": true,
+      "nearest_exists": true
+    },
+    {
+      "case": "inverted-inside",
+      "none_returns_monitor": true,
+      "primary_fallback": true,
+      "nearest_exists": true
+    },
+    {
+      "case": "outside",
+      "none_returns_monitor": false,
+      "primary_fallback": true,
+      "nearest_exists": true
+    },
+    {
+      "case": "inverted-crossing",
+      "none_returns_monitor": false,
+      "primary_fallback": true,
+      "nearest_exists": true
+    }
+  ],
+  "empty_rectangle": "A nonpositive width or height uses the supplied top-left point, rather than normalizing the rectangle.",
+  "native_profile": "One actual native monitor; no fabricated secondary displays."
+}

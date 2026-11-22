@@ -3,12 +3,12 @@
 
 ## Current M14 desktop edition
 
-The qualified native base is **M14.7** within M14-STAGE7-VM-v1. Its [exact-source native acceptance](../../evidence/M14/7/acceptance-results.json) passes; use the matching official release and media. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified. The older M11/M10 sections below are historical, not the recommended starting point.
+The qualified native base is **M14.8** within M14-STAGE8-VM-v1. M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained. GitHub downloads and independent public content checks are being finalized. Native homepage Save is blocked by the reproduced BrixCanvas website-read error; article synchronization works. A stale homepage is not counted as successful publication. The older editions below are historical. Use the exact matching release as your source base.
 
 Install the [pinned host tools](../../tools/README.md). Use a **separate checkout** and a distinct output revision so that custom builds cannot overwrite accepted release media or an active development checkout:
 
 ```powershell
-git clone --branch m147-v0.14.7 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
+git clone --branch m148-v0.14.8 --single-branch https://github.com/enginsoysal/engacer-os.git my-engacer-edition
 cd my-engacer-edition
 New-Item -ItemType Directory -Force build
 $editionBuildRoot = Join-Path $env:LOCALAPPDATA 'EngacerOS\Build\my-edition\m14'
@@ -35,9 +35,9 @@ python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Pa
 python -c "import sys; sys.path.insert(0, 'tools/build'); from pathlib import Path; from m6 import build; build('custom', Path('distros/my-edition.json'), m14=True)"
 ```
 
-Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 7` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
+Outputs include `dist/EngacerOS-M14CUSTOM.iso` and the matching manifest/checksums. `m6` is the shared build module's historical name; `m14=True` selects the current M14 feature set. Do not use its standalone M6 CLI to build an M14 edition. Do not run `tools/build/m14.py --stage 8` over an accepted stage: that publisher-oriented command deliberately refuses accepted output.
 
-Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.7 installation](install-m147.md), [supported Windows behavior](windows-m147.md), [desktop use](first-day-m147.md).
+Profile validation checks recipe fields; it does **not** prove a custom ISO boots or that changed apps work. Install your edition in a disposable VM, restart with the ISO connected, then boot independently without it. Test every changed default/application set and your display/RAM profiles before sharing it. The stock release's acceptance does not transfer to changed media. [M14.8 installation](install-m148.md), [supported Windows behavior](windows-m148.md), [desktop use](first-day-m148.md).
 
 Saved per-user preferences can override distribution defaults. Changing a profile does not add unsupported Windows APIs, hardware drivers, arbitrary font plugins or executable package hooks. Destructive storage consent and protected core ownership remain enforced. Distribute source, licenses and third-party notices with your edition.
 

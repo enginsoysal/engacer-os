@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "scope": "Own off-screen Windows affine reference against actual production scalar math.",
+  "source_sha256": {
+    "user/windows8/transform-math148.h": "4bda5aeaf13fa348d969fcd28f6ea7804606b55dc8ec0891400a586bba2e3524",
+    "tests/m14/transform148_reference.c": "3d74fb3a4bfc2652f2029e8c2b0ce26174368823b0d52f0a39136e458dd6a051",
+    "tests/m14/transform148_reference.py": "6e488b2c202a2bd035fed8b0dbe86840f288abf702a26cada277d652031ef52a"
+  },
+  "own_dll_sha256": "193eaaedc929ef4f471c4cb86c0f5814cd8e501f18f0eb3d28d3114a269a9f2a",
+  "rotation_cases": 511,
+  "prepend_append_products": 512,
+  "max_absolute_rotation_error": 9.98377799987793e-07,
+  "max_absolute_product_error": 2.288818359375e-05,
+  "invalid_order_preserves_state": true,
+  "visible_windows_created": 0
+}

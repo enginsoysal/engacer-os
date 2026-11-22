@@ -1,0 +1,38 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "6fbf27c8ec0ac0883b78cf81f8aaaeac0e407ee5923ce79c5acb309e554f293d",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from slist147_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/slist-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-slist-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M147_NATIVE_SLIST_ATOMIC_PRODUCERS_CPU_POLICY_PASS"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "native_atomic_producer_nodes=256"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Own native atomic SLIST flush vs four independent inline CPU producers and corrected usable processor features; not original CRT or custom-action qualification"
+    ]
+  ]
+}

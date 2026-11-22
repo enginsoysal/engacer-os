@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "scope": "Owned off-screen Windows GDI contract observations, never vendor execution.",
+  "host": "10.0.26300",
+  "logical_font_bytes": 92,
+  "partial_object_buffers": [
+    {
+      "bytes": 0,
+      "result": 0,
+      "sentinel_preserved": true
+    },
+    {
+      "bytes": 1,
+      "result": 1,
+      "sentinel_preserved": true
+    },
+    {
+      "bytes": 4,
+      "result": 4,
+      "sentinel_preserved": true
+    },
+    {
+      "bytes": 28,
+      "result": 28,
+      "sentinel_preserved": true
+    },
+    {
+      "bytes": 91,
+      "result": 91,
+      "sentinel_preserved": true
+    },
+    {
+      "bytes": 92,
+      "result": 92,
+      "sentinel_preserved": true
+    }
+  ],
+  "actual_face_buffers": [
+    {
+      "capacity": 0,
+      "result": 0,
+      "actual_face": ""
+    },
+    {
+      "capacity": 1,
+      "result": 1,
+      "actual_face": ""
+    },
+    {
+      "capacity": 2,
+      "result": 2,
+      "actual_face": "M"
+    },
+    {
+      "capacity": 64,
+      "result": 14,
+      "actual_face": "MS Sans Serif"
+    }
+  ],
+  "visible_windows_created": 0,
+  "vendor_code_executed": false
+}

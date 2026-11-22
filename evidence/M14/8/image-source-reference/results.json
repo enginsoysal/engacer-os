@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "scope": "Observe original Windows locks on one owned running reference image; no third-party execution or user-file mutation.",
+  "observations": {
+    "open_write": {
+      "succeeded": false,
+      "error": 32
+    },
+    "delete_running": {
+      "succeeded": false,
+      "error": 5
+    },
+    "rename_running": {
+      "succeeded": true,
+      "error": 0
+    }
+  },
+  "reference_image_sha256": "a71628a9e852acebf5c145ab7a3ec4edd3d4a5ca9a2c3dbcd18daedcf241132d",
+  "source_sha256": {
+    "tests/m14/image_source148_reference.c": "e758a277e7aceeef690bae96d72e36b9301306aec15d0abbb592a74ea98076de",
+    "tests/m14/image_source148_reference.py": "18165e6cd32f8b7d63be2cdca0b1c07d635064d38b79e18260c0c8260641209e"
+  }
+}

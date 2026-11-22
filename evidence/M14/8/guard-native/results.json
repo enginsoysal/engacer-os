@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "scope": "Owned unavailable-import containment only; no original application compatibility proof",
+  "clone": {
+    "source_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "clone_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixture_sha256": "37bc92acaaaff02f58c9624e1b130751a178d94b4dd1feaa86242219d74def73",
+  "optional_discovery_returns_null": true,
+  "static_call_refused": true,
+  "retained_pages": 0,
+  "subsequent_original_console_success": true,
+  "call_site": {
+    "caller": "000000011000107d",
+    "main": "0000000110000000",
+    "resolved": true,
+    "return_rva": 4221,
+    "iat_rva": 8480,
+    "dll": "shlwapi.dll",
+    "symbol": "PathIsRelativeW"
+  },
+  "refusal_output": "Mapped original image: 7zFM.exe bytes=20480 source-fnv32=735160675\nRunning the original Windows executable in a protected process.\n\nM145_GUARD_DISCOVERY_PASS\nUnavailable Win32 API caller=0x000000011000107d main=0x0000000110000000\nABI GPR arguments: 0x000000011000202c 0x0000000000000000 0x0000000000000000 0x0000000000000000\n\nEngacer OS: Required Windows API is unavailable; see the call-site diagnostic.\n"
+}

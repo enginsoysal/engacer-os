@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "stage": "M14.8 development",
+  "scope": "Owned native apartment modes, IUnknown reference lifetimes and GUI-thread teardown; not original GUI qualification",
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "clone": {
+    "source_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "clone_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 23068672
+  },
+  "fixtures": {
+    "com.exe": "bf851f3adcb28132afc79c7f276f09eaa18ff82b2635caac040dad1c32bb251a"
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_pages": 4,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 2,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 3,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 4,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 5,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 6,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 7,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 8,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 9,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 10,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 11,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 12,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 13,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 14,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 15,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 16,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 17,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 18,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 19,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 20,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    },
+    {
+      "cycle": 21,
+      "retained_pages": 0,
+      "gui_thread_exit_cycles": 25
+    }
+  ],
+  "output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=2801087098\nRunning the original Windows executable in a protected process.\n\nM144_COM_LIFETIME_PASS\n"
+}

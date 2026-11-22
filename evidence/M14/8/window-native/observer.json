@@ -1,0 +1,7 @@
+{
+  "canonical_path": "tests/m14/window144_native.py",
+  "canonical_sha256": "29de811d152da40f1c070f1a1b0bd0a75169ed3f286abde7e012d45c22cbd99d",
+  "executed_sha256": "5a7cd610e1147f32326386222189f97e464d23ee3d1c6d8a67d5023107c9501e",
+  "adapter_sha256": "a4ea525d447d5306661833c65e0a721b1f7d0bf5ce1d4d0c1f246ab5863305ef",
+  "scope": "Every retained original window/input/move/resize/close/retention assertion; idle requires three consecutive two-CPU halt samples within the same live window token and two-second bound"
+}

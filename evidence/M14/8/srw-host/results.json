@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Actual production SRW algorithm under host threads/address waits; not native acceptance.",
+  "writer_threads": 4,
+  "reader_threads": 4,
+  "rounds_per_thread": 25000,
+  "final_writes": 100000,
+  "sources": {
+    "user/windows8/srw148.inc": "f249ad46b85898ae7c8c57509fa7462b3f551f8065dd25008a0754f77d3d81eb",
+    "tests/m14/srw148_host.c": "ee736a6662840e1feda91a01d9fcee85df5672447885befafb9a8a6e6fcf9dc5",
+    "tests/m14/srw148_host.py": "04763f726f149d75753224f04c23115279a66c407d24e86d793256d80b604789"
+  }
+}

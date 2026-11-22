@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "scope": "Independent own off-screen GDI text rectangle and DC release contracts.",
+  "visible_windows_created": 0,
+  "text_cases": [
+    {
+      "text": "",
+      "flags": "0x2500",
+      "result": 1,
+      "rectangle": [
+        5,
+        7,
+        5,
+        7
+      ]
+    },
+    {
+      "text": "",
+      "flags": "0x2520",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        5,
+        23
+      ]
+    },
+    {
+      "text": "A",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        13,
+        23
+      ]
+    },
+    {
+      "text": "A\nB",
+      "flags": "0x2500",
+      "result": 32,
+      "rectangle": [
+        5,
+        7,
+        15,
+        39
+      ]
+    },
+    {
+      "text": "A\n",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        13,
+        23
+      ]
+    },
+    {
+      "text": "\n",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        5,
+        23
+      ]
+    },
+    {
+      "text": "A\rB",
+      "flags": "0x2500",
+      "result": 32,
+      "rectangle": [
+        5,
+        7,
+        15,
+        39
+      ]
+    },
+    {
+      "text": "\r\n",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        5,
+        23
+      ]
+    },
+    {
+      "text": "A\n\n",
+      "flags": "0x2500",
+      "result": 32,
+      "rectangle": [
+        5,
+        7,
+        13,
+        39
+      ]
+    },
+    {
+      "text": "&A",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        13,
+        23
+      ]
+    },
+    {
+      "text": "&&A",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        22,
+        23
+      ]
+    },
+    {
+      "text": "&",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        5,
+        23
+      ]
+    },
+    {
+      "text": "&&&",
+      "flags": "0x2500",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        14,
+        23
+      ]
+    },
+    {
+      "text": "&A",
+      "flags": "0x2d00",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        22,
+        23
+      ]
+    },
+    {
+      "text": "A\nB",
+      "flags": "0x2520",
+      "result": 16,
+      "rectangle": [
+        5,
+        7,
+        23,
+        23
+      ]
+    }
+  ],
+  "release_cases": [
+    {
+      "acquire": "GetDC",
+      "advisory_window": "null",
+      "result": 1
+    },
+    {
+      "acquire": "GetDC",
+      "advisory_window": "same",
+      "result": 1
+    },
+    {
+      "acquire": "GetDC",
+      "advisory_window": "other",
+      "result": 1
+    },
+    {
+      "acquire": "GetWindowDC",
+      "advisory_window": "null",
+      "result": 1
+    },
+    {
+      "acquire": "GetWindowDC",
+      "advisory_window": "same",
+      "result": 1
+    },
+    {
+      "acquire": "GetWindowDC",
+      "advisory_window": "other",
+      "result": 1
+    }
+  ],
+  "embedded_nul_profile": "Explicit positive counts can measure embedded NUL on Windows; this native profile must refuse instead of truncating."
+}

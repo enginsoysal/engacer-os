@@ -1,0 +1,8 @@
+{
+  "canonical_sha256": "5402953e9229c499ee14dead37112ef0280ffd9ebf856b9a461ca99864ef6dc9",
+  "executed_sha256": "e5a418fffcf45bafcb3022e43bdc451a2cca08436122acb8b464533f9a07f839",
+  "adapter_sha256": "34819b2bc8365a8cad46139b4b098cb1b3543d24260ac97d2bf6eede81c45e54",
+  "msi_provider": 0,
+  "msi_unresolved_import_rows_checked": 11,
+  "no_import_rows_skipped": true
+}

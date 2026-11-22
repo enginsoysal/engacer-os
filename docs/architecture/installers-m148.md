@@ -1,6 +1,6 @@
 # M14.8 native EXE installer design
 
-M14.7 native and scoped public delivery pass. M14.8 is in development; original Sumatra installation and its reader remain unqualified.
+M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained. GitHub downloads and independent public content checks are being finalized. Native homepage Save is blocked by the reproduced BrixCanvas website-read error; article synchronization works. A stale homepage is not counted as successful publication.
 
 ## Execution and authority
 

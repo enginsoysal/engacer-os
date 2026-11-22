@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "scope": "Preserve canonical decoder corpus without remapping its historical match keys.",
+  "canonical_sha256": "6d41f8610c879764505d16f73bfe0ac764714dbb08329ed64d904f7feac751fb",
+  "executed_sha256": "56b9967a5fd4ef6eaa45473ec73c33f054fbfe24b885828eeaf6e14e106809e3",
+  "adapter_sha256": "ca1741347943deecfb104f5303cd38d1acdb99b3e23854f30b08fdbc30f96e9e"
+}

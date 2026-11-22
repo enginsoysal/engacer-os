@@ -1,0 +1,46 @@
+{
+  "canonical_sha256": "2e44edcdde6eb56480bd6ae102a8ce77fdf0bd5f1d7cd21e3d3edee1fcc912fc",
+  "executed_sha256": "49f9e45e7fdcbd8bd2a628e2bec734702260840439f98086075f220c8b743b94",
+  "production_worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "fdb650a0e4cff632bd4945cc1b024567",
+    "source_commit": "39eea525c1a5fa508135753d196b4c7d06252ee2",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "0e16680d97cb3a279ce2982627f4c6b513a1474372c65e855c743ef01b93c334",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "d4c143860a35eb033ae42365ef48ff3e474d2a9a0db43b8975ca9067bf770e16"
+  },
+  "production_worker_sha256": "91c8c89f2e05488c441edec2552fb96ae3aff16a2ee2dc207a3158e4c9067a66",
+  "replacements": [
+    [
+      "from unwind_fixtures2 import build",
+      "from rtl148_build import build"
+    ],
+    [
+      "m142-unwind",
+      "m148-rtl"
+    ],
+    [
+      "stage8/unwind'",
+      "stage8/rtl-native'"
+    ],
+    [
+      "M142_C_SEH_FINALLY_UNWIND_PASS",
+      "M148_RTL_UNWIND_ORIGINAL_SCOPE_TRANSFER_PASS"
+    ],
+    [
+      "Native compiler-generated C filters/finally across five thread stacks; not C++ exception qualification",
+      "Native software raises: 48 vectored resumptions and 60 C filters/finally across five stacks; continuable flags-zero profile only"
+    ],
+    [
+      "handled_faults_per_execution=60",
+      "handled_faults_per_execution=60,vectored_continuations_per_execution=48"
+    ]
+  ]
+}

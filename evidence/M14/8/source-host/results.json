@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scope": "Host build-integrity checks, not OS compatibility",
+  "exact_bytes": true,
+  "git_clean_crlf_drift_refused": true,
+  "post_capture_mutation_refused": true,
+  "missing_input_refused": true
+}

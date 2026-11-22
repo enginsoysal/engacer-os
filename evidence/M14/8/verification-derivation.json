@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "scope": "Verify the fresh release8 campaign with the unchanged stage-eight gates.",
+  "canonical_path": "tests/m14/verify8.py",
+  "canonical_sha256": "7d9372532447a1180b9dcd6c4f2bd831b0d6af60af7d3b8f27d2f01013998a52",
+  "executed_sha256": "ad410fffb781072c0e21353fc2c071ed0ee541ae67de1d5f0017759e808eb67c",
+  "adapter_sha256": "252eb918801369934cad20b06e0cafd8d2cc5f79cebd0768a3ea563a1c7e313c",
+  "only_change": {
+    "before": "development/final8",
+    "after": "development/release8"
+  },
+  "reason": "A fresh, non-resumed campaign follows exact generated-source correction and replacement production media."
+}

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scope": "Owned Windows CopyFileW metadata reference; never execute original vendor apps.",
+  "source_times": [
+    133000000000000000,
+    133100000000000000,
+    133200000000000000
+  ],
+  "new_destination_times": [
+    134397560251159283,
+    134397560251159283,
+    133200000000000000
+  ],
+  "old_destination_times": [
+    132000000000000000,
+    132100000000000000,
+    132200000000000000
+  ],
+  "replaced_destination_times": [
+    132000000000000000,
+    134397560251230579,
+    133200000000000000
+  ],
+  "source_sha256": "8547837f50c241d9283383d70089ea7fe927c56ab372a578f55fb8c1edc2c856",
+  "copied_source_creation_and_access_times": false
+}

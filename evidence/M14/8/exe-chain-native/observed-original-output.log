@@ -1,0 +1,2015 @@
+Mapped original image: SumatraPDF-3.6.1-64-install.exe bytes=11137024 source-fnv32=3521778578
+Running the original Windows executable in a protected process.
+
+ParseFlags: argName: '-install', arg: 16
+ParseFlags: argName: '-d', arg: 53
+Starting: '"C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe" -install -d "C:\Program Files\SumatraPDF"'
+  ver 3.6.1, flags.install: 1, flags.uninstall: 0
+------------- Starting SumatraPDF installation
+Parent process: pid=9, path='\System\Windows\runtime8.elf'
+OpenEmbeddedFilesArchive: opened archive
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+GetPreviousInstallInfo: not installed
+HasPreviousInstall(): hasPrev: 0
+RunInstaller: 'C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe', cmdLine: '"C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe" -install -d "C:\Program Files\SumatraPDF"', installing into dir 'C:\Program Files\SumatraPDF'
+RunInstaller: requiresSilentElevation: 0, isElevated: 0
+RunInstaller: gCliNew.silent: 0, gCliNew.allUsers: 0, gCliNew.runInstallNow: 0, gCliNew.withFilter: 0, gCliNew.withPreview: 0, gCliNew.fastInstall: 0
+Before CreateInstallerWindow()
+CreateInstallerWindowControls: cli->allUsers: 0, cli->withPreview: 0, cli->withFilter: 0, install dir: 'C:\Program Files\SumatraPDF'
+ReadRegStrTemp(HKEY_CLASSES_ROOT, .pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, (null)) => '(null)'
+IsPreviewInstalled() isInstalled=0
+ReadRegStrTemp(HKEY_CLASSES_ROOT, .pdf\PersistentHandler, (null)) => '(null)'
+IsSearchFilterInstalled() isInstalled=0
+Before SetForegroundWindow()
+Before RunApp()
+KillProcessesWithModule: 'C:\Program Files\SumatraPDF\SumatraPDF.exe'
+OnButtonInstall: before CheckInstallUninstallPossible()
+CheckInstallUninstallPossible(silent=0)
+KillProcessesUsingInstallation()
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ProcessesUsingInstallation()
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+OnButtonInstall: after CheckInstallUninstallPossible()
+OnButtonInstall: wnd: 0x0000000120003B70
+OnButtonInstall: wnd->editInstallationDir: 0x00000001200181C0
+InstallerThread: cli->allUsers: 0, cli->withFilter: 0, cli->withPreview: 0, installerExePath: 'C:\Program Files\SumatraPDF\SumatraPDF.exe'
+ExtractInstallerFiles() to 'C:\Program Files\SumatraPDF'
+CopySelfToDir(C:\Program Files\SumatraPDF)
+LogLastError: 0x0 (0) 'The request is not supported.'
+  copied 'C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe' to dir 'C:\Program Files\SumatraPDF'
+OpenEmbeddedFilesArchive: already opened
+ExtractFiles(): dir 'C:\Program Files\SumatraPDF'
+  extracted 'C:\Program Files\SumatraPDF\libmupdf.dll'
+  extracted 'C:\Program Files\SumatraPDF\PdfFilter.dll'
+  extracted 'C:\Program Files\SumatraPDF\PdfPreview.dll'
+UninstallBrowserPlugin()
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\MozillaPlugins\@mozilla.zeniko.ch/SumatraPDF_Browser_Plugin_x64, Path) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\MozillaPlugins\@mozilla.zeniko.ch/SumatraPDF_Browser_Plugin_x64, Path) => '(null)'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{3D3B1846-CC43-42AE-BFF9-D914083C2BA3}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{3D3B1846-CC43-42AE-BFF9-D914083C2BA3}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.pdf'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cbz'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cb7'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.tga'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.fb2'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.mobi'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\PersistentHandler, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\PersistentHandler, 0) => 2
+RemoveInstallRegistryKeys(HKEY_CURRENT_USER)
+UnregisterFromBeingDefaultViewer()
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Classes\.pdf, (null)) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, ProgId) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, Application) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice, ProgId) => '(null)'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\Applications\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF.pdf) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF.xps) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF.oxps) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF.cbz) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF.cbr) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF.cb7) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF.cbt) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF.djvu) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF.chm) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF.mobi) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF.epub) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF.azw) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF.azw3) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF.azw4) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF.fb2) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF.fb2z) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF.prc) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF.tif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF.tiff) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF.jp2) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF.png) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF.jpg) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF.jpeg) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF.tga) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF.gif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF.avif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF.heic) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF.heif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF.jfif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF.webp) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, SOFTWARE\RegisteredApplications, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, SOFTWARE\SumatraPDF\Capabilities, 0) => 2
+RemoveUninstallerRegistryInfo(HKEY_CURRENT_USER)
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\SumatraPDF, 0) => 2
+CopySettingsFile()
+LogLastError: 0x0 (0) 'The system cannot find the file specified.'
+  copied 'C:\Users\Owner\AppData\Roaming\SumatraPDF\SumatraPDF-settings.txt' to 'C:\Users\Owner\AppData\Local\SumatraPDF\SumatraPDF-settings.txt'
+CreateAppShortcuts(forAllUsers=0)
+CreateAppShortcut(csidl=0), path=C:\Users\Owner\Desktop\SumatraPDF.lnk
+CreateAppShortcut(csidl=11), path=C:\Users\Owner\AppData\Roaming\Microsoft\Windows\Start Menu\SumatraPDF.lnk
+WriteUninstallerRegistryInfo(hKey: HKEY_CURRENT_USER, allUsers: 0, installDir: 'C:\Program Files\SumatraPDF')
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, DisplayIcon, C:\Program Files\SumatraPDF\SumatraPDF.exe) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, DisplayName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, DisplayVersion, 3.6.1) ok!
+GetDirSize(C:\Program Files\SumatraPDF)
+WriteRegDWORD(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, EstimatedSize, 28115) => ok'
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallDate, 20261122) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation, C:\Program Files\SumatraPDF) ok!
+WriteRegDWORD(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, NoModify, 1) => ok'
+WriteRegDWORD(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, NoRepair, 1) => ok'
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, Publisher, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, UninstallString, "C:\Program Files\SumatraPDF\SumatraPDF.exe" -uninstall) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, QuietUninstallString, "C:\Program Files\SumatraPDF\SumatraPDF.exe" -uninstall -silent) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, URLInfoAbout, https://www.sumatrapdfreader.org/) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, URLUpdateInfo, https://www.sumatrapdfreader.org/docs/Version-history.html) ok!
+WriteExtendedFileExtensionInfo('HKEY_CURRENT_USER')
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf, (null), PDF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\Print\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" -print-to-default "%1") ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\PrintTo\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" -print-to "%2" "%1") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF.pdf) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps, (null), XPS File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF.xps) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps, (null), OXPS File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF.oxps) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz, (null), CBZ File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF.cbz) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr, (null), CBR File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF.cbr) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7, (null), CB7 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF.cb7) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt, (null), CBT File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF.cbt) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu, (null), DJVU File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF.djvu) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm, (null), CHM File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF.chm) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi, (null), MOBI File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF.mobi) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub, (null), EPUB File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",2) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",2) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF.epub) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw, (null), AZW File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF.azw) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3, (null), AZW3 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF.azw3) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4, (null), AZW4 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF.azw4) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2, (null), FB2 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF.fb2) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z, (null), FB2Z File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF.fb2z) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc, (null), PRC File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF.prc) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif, (null), TIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF.tif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff, (null), TIFF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF.tiff) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2, (null), JP2 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF.jp2) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png, (null), PNG File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF.png) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg, (null), JPG File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF.jpg) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg, (null), JPEG File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF.jpeg) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga, (null), TGA File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF.tga) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif, (null), GIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF.gif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif, (null), AVIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF.avif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic, (null), HEIC File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF.heic) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif, (null), HEIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF.heif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif, (null), JFIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF.jfif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp, (null), WEBP File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF.webp) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\.pdf, Content Type, application/pdf) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\MIME\Database\Content Type\application/pdf, Extension, .pdf) ok!
+Installer thread finished
+OnInstallationFinished: cli->fastInstall: 0
+RunApp() returned 0
+Installer finished
+M148_ORDINARY_ORIGINAL_INSTALL_VERIFIED
+Mapped original image: SumatraPDF.exe bytes=11137024 source-fnv32=3521778578
+Running the original Windows executable in a protected process.
+
+ParseFlags: argName: '-uninstall', arg: 17
+Starting: '"C:\Program Files\SumatraPDF\SumatraPDF.exe" -uninstall'
+  ver 3.6.1, flags.install: 0, flags.uninstall: 1
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => 'C:\Program Files\SumatraPDF'
+Running uninstaller 'C:\Program Files\SumatraPDF\SumatraPDF.exe' with args '"C:\Program Files\SumatraPDF\SumatraPDF.exe" -uninstall' for 'C:\Program Files\SumatraPDF'
+RelaunchMaybeElevatedFromTempDirectory()
+  copying installer 'C:\Program Files\SumatraPDF\SumatraPDF.exe' to 'C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\Sumatra-Uninstaller.exe'
+LaunchProcessWithCmdLine('C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\Sumatra-Uninstaller.exe' '-uninstall')
+LaunchProcessWithCmdLine() launched 'C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\Sumatra-Uninstaller.exe' '-uninstall' ok!
+Mapped original image: Sumatra-Uninstaller.exe bytes=11137024 source-fnv32=3521778578
+Running the original Windows executable in a protected process.
+
+ParseFlags: argName: '-uninstall', arg: 17
+Starting: '"C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\Sumatra-Uninstaller.exe" -uninstall'
+  ver 3.6.1, flags.install: 0, flags.uninstall: 1
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => 'C:\Program Files\SumatraPDF'
+Running uninstaller 'C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\Sumatra-Uninstaller.exe' with args '"C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\Sumatra-Uninstaller.exe" -uninstall' for 'C:\Program Files\SumatraPDF'
+RelaunchMaybeElevatedFromTempDirectory()
+  already running from temp dir
+ReadRegStrTemp(HKEY_CLASSES_ROOT, .pdf\PersistentHandler, (null)) => '(null)'
+IsSearchFilterInstalled() isInstalled=0
+ReadRegStrTemp(HKEY_CLASSES_ROOT, .pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, (null)) => '(null)'
+IsPreviewInstalled() isInstalled=0
+CheckInstallUninstallPossible(silent=0)
+KillProcessesUsingInstallation()
+ProcessesUsingInstallation()
+UninstallerThread started
+KillProcessesWithModule: 'C:\Program Files\SumatraPDF\SumatraPDF.exe'
+RemoveUninstallerRegistryInfo(HKEY_LOCAL_MACHINE)
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\SumatraPDF, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+RemoveUninstallerRegistryInfo(HKEY_CURRENT_USER)
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\SumatraPDF, 0) => 2
+UninstallBrowserPlugin()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\MozillaPlugins\@mozilla.zeniko.ch/SumatraPDF_Browser_Plugin_x64, Path) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\MozillaPlugins\@mozilla.zeniko.ch/SumatraPDF_Browser_Plugin_x64, Path) => '(null)'
+RemoveInstallRegistryKeys(HKEY_LOCAL_MACHINE)
+UnregisterFromBeingDefaultViewer()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Classes\.pdf, (null)) => '(null)'
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, ProgId) => '(null)'
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, Application) => '(null)'
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice, ProgId) => '(null)'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\Applications\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\App Paths\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.xps\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.chm\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.chm\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.epub\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.azw\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.azw\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.azw3\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.azw3\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.azw4\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.azw4\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.prc\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.prc\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.tif\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tif\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.tiff\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tiff\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jp2\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.jp2\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.png\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.png\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jpg\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.jpg\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.jpeg\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.tga\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.gif\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.gif\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.avif\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.avif\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.heic\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.heic\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.heif\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.heif\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jfif\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.jfif\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.webp\OpenWithProgids, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.webp\OpenWithList\SumatraPDF.exe, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.pdf, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\OpenWithProgids, SumatraPDF.pdf) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.xps, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.xps\OpenWithProgids, SumatraPDF.xps) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.oxps, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\OpenWithProgids, SumatraPDF.oxps) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.cbz, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\OpenWithProgids, SumatraPDF.cbz) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.cbr, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\OpenWithProgids, SumatraPDF.cbr) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.cb7, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\OpenWithProgids, SumatraPDF.cb7) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.cbt, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\OpenWithProgids, SumatraPDF.cbt) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.djvu, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\OpenWithProgids, SumatraPDF.djvu) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.chm, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.chm\OpenWithProgids, SumatraPDF.chm) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.mobi, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\OpenWithProgids, SumatraPDF.mobi) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.epub, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.epub\OpenWithProgids, SumatraPDF.epub) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.azw, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.azw\OpenWithProgids, SumatraPDF.azw) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.azw3, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.azw3\OpenWithProgids, SumatraPDF.azw3) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.azw4, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.azw4\OpenWithProgids, SumatraPDF.azw4) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.fb2, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\OpenWithProgids, SumatraPDF.fb2) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.fb2z, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF.fb2z) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.prc, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.prc\OpenWithProgids, SumatraPDF.prc) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.tif, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.tif\OpenWithProgids, SumatraPDF.tif) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.tiff, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.tiff\OpenWithProgids, SumatraPDF.tiff) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.jp2, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jp2\OpenWithProgids, SumatraPDF.jp2) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.png, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.png\OpenWithProgids, SumatraPDF.png) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.jpg, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jpg\OpenWithProgids, SumatraPDF.jpg) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.jpeg, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF.jpeg) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.tga, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.tga\OpenWithProgids, SumatraPDF.tga) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.gif, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.gif\OpenWithProgids, SumatraPDF.gif) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.avif, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.avif\OpenWithProgids, SumatraPDF.avif) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.heic, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.heic\OpenWithProgids, SumatraPDF.heic) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.heif, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.heif\OpenWithProgids, SumatraPDF.heif) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.jfif, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.jfif\OpenWithProgids, SumatraPDF.jfif) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\SumatraPDF.webp, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, Software\Classes\.webp\OpenWithProgids, SumatraPDF.webp) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegValue(HKEY_LOCAL_MACHINE, SOFTWARE\RegisteredApplications, SumatraPDF) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, SOFTWARE\SumatraPDF\Capabilities, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+RemoveInstallRegistryKeys(HKEY_CURRENT_USER)
+UnregisterFromBeingDefaultViewer()
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Classes\.pdf, (null)) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, ProgId) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, Application) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice, ProgId) => '(null)'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\Applications\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF.pdf) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF.xps) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF.oxps) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF.cbz) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF.cbr) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF.cb7) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF.cbt) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF.djvu) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF.chm) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF.mobi) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF.epub) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF.azw) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF.azw3) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF.azw4) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF.fb2) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF.fb2z) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF.prc) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF.tif) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF.tiff) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF.jp2) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF.png) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF.jpg) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF.jpeg) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF.tga) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF.gif) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF.avif) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF.heic) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF.heif) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF.jfif) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF.webp) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, SOFTWARE\RegisteredApplications, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, SOFTWARE\SumatraPDF\Capabilities, 0) => 2
+RemoveShortcutFile: deleted 'C:\Users\Owner\Desktop\SumatraPDF.lnk'
+RemoveShortcutFile: deleted 'C:\Users\Owner\AppData\Roaming\Microsoft\Windows\Start Menu\SumatraPDF.lnk'
+RemoveInstalledFiles(): removed dir 'C:\Program Files\SumatraPDF', ok = 1
+UninstallerThread finished
+InitSelfDelete()
+Created self-delete batch script 'C:\Users\Owner\AppData\Temp\EXE-{D6E9EC8F-75FD-5D1F-8990-8DE725154FFF}-8\sumatra-self-del.bat'
+M148_ORDINARY_ORIGINAL_REMOVE_VERIFIED
+Mapped original image: SumatraPDF-3.6.1-64-install.exe bytes=11137024 source-fnv32=3521778578
+Running the original Windows executable in a protected process.
+
+ParseFlags: argName: '-install', arg: 16
+ParseFlags: argName: '-d', arg: 53
+Starting: '"C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe" -install -d "C:\Program Files\SumatraPDF"'
+  ver 3.6.1, flags.install: 1, flags.uninstall: 0
+------------- Starting SumatraPDF installation
+Parent process: pid=9, path='\System\Windows\runtime8.elf'
+OpenEmbeddedFilesArchive: opened archive
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+GetPreviousInstallInfo: not installed
+HasPreviousInstall(): hasPrev: 0
+RunInstaller: 'C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe', cmdLine: '"C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe" -install -d "C:\Program Files\SumatraPDF"', installing into dir 'C:\Program Files\SumatraPDF'
+RunInstaller: requiresSilentElevation: 0, isElevated: 0
+RunInstaller: gCliNew.silent: 0, gCliNew.allUsers: 0, gCliNew.runInstallNow: 0, gCliNew.withFilter: 0, gCliNew.withPreview: 0, gCliNew.fastInstall: 0
+Before CreateInstallerWindow()
+CreateInstallerWindowControls: cli->allUsers: 0, cli->withPreview: 0, cli->withFilter: 0, install dir: 'C:\Program Files\SumatraPDF'
+ReadRegStrTemp(HKEY_CLASSES_ROOT, .pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, (null)) => '(null)'
+IsPreviewInstalled() isInstalled=0
+ReadRegStrTemp(HKEY_CLASSES_ROOT, .pdf\PersistentHandler, (null)) => '(null)'
+IsSearchFilterInstalled() isInstalled=0
+Before SetForegroundWindow()
+Before RunApp()
+KillProcessesWithModule: 'C:\Program Files\SumatraPDF\SumatraPDF.exe'
+OnButtonInstall: before CheckInstallUninstallPossible()
+CheckInstallUninstallPossible(silent=0)
+KillProcessesUsingInstallation()
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ProcessesUsingInstallation()
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+OnButtonInstall: after CheckInstallUninstallPossible()
+OnButtonInstall: wnd: 0x0000000120003B70
+OnButtonInstall: wnd->editInstallationDir: 0x00000001200181C0
+InstallerThread: cli->allUsers: 0, cli->withFilter: 0, cli->withPreview: 0, installerExePath: 'C:\Program Files\SumatraPDF\SumatraPDF.exe'
+ExtractInstallerFiles() to 'C:\Program Files\SumatraPDF'
+CopySelfToDir(C:\Program Files\SumatraPDF)
+LogLastError: 0x0 (0) 'The request is not supported.'
+  copied 'C:\Users\Owner\Downloads\SumatraPDF-3.6.1-64-install.exe' to dir 'C:\Program Files\SumatraPDF'
+OpenEmbeddedFilesArchive: already opened
+ExtractFiles(): dir 'C:\Program Files\SumatraPDF'
+  extracted 'C:\Program Files\SumatraPDF\libmupdf.dll'
+  extracted 'C:\Program Files\SumatraPDF\PdfFilter.dll'
+  extracted 'C:\Program Files\SumatraPDF\PdfPreview.dll'
+UninstallBrowserPlugin()
+GetExistingInstallationDir()
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation) => '(null)'
+ReadRegStrTemp(HKEY_LOCAL_MACHINE, Software\MozillaPlugins\@mozilla.zeniko.ch/SumatraPDF_Browser_Plugin_x64, Path) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\MozillaPlugins\@mozilla.zeniko.ch/SumatraPDF_Browser_Plugin_x64, Path) => '(null)'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{3D3B1846-CC43-42AE-BFF9-D914083C2BA3}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{3D3B1846-CC43-42AE-BFF9-D914083C2BA3}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.pdf'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cbz'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cb7'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.tga'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.djvu'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{D427A82C-6545-4FBE-8E87-030EDB3BE46D}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{D427A82C-6545-4FBE-8E87-030EDB3BE46D}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.xps'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{80C4E4B1-2B0F-40D5-95AF-BE7B57FEA4F9}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{80C4E4B1-2B0F-40D5-95AF-BE7B57FEA4F9}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.epub'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{D5878036-E863-403E-A62C-7B9C7453336A}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{D5878036-E863-403E-A62C-7B9C7453336A}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.fb2'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.mobi'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\PersistentHandler, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\PersistentHandler, 0) => 2
+RemoveInstallRegistryKeys(HKEY_CURRENT_USER)
+UnregisterFromBeingDefaultViewer()
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Classes\.pdf, (null)) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, ProgId) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, Application) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice, ProgId) => '(null)'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\Applications\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF) => 2
+denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{bses\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cbz'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cb7'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.tga'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.djvu'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{D427A82C-6545-4FBE-8E87-030EDB3BE46D}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{D427A82C-6545-4FBE-8E87-030EDB3BE46D}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.xps'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{80C4E4B1-2B0F-40D5-95AF-BE7B57FEA4F9}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{80C4E4B1-2B0F-40D5-95AF-BE7B57FEA4F9}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.epub'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{D5878036-E863-403E-A62C-7B9C7453336A}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{D5878036-E863-403E-A62C-7B9C7453336A}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.fb2'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.mobi'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\PersistentHandler, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\PersistentHandler, 0) => 2
+RemoveInstallRegistryKeys(HKEY_CURRENT_USER)
+UnregisterFromBeingDefaultViewer()
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Classes\.pdf, (null)) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, ProgId) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, Application) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice, ProgId) => '(null)'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\Applications\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithList\SumatraPDF.exe, 0) => 2
+a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cbz'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{C29D3E2B-8FF6-4033-A4E8-54221D859D74}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.cb7'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{CB1D63A6-FE5E-4DED-BEA5-3F6AF1A70D08}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.tga'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{6689D0D4-1E9C-400A-8BCA-FA6C56B2C3B5}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.djvu\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.djvu'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{D427A82C-6545-4FBE-8E87-030EDB3BE46D}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{D427A82C-6545-4FBE-8E87-030EDB3BE46D}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.xps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.oxps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.xps'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{80C4E4B1-2B0F-40D5-95AF-BE7B57FEA4F9}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{80C4E4B1-2B0F-40D5-95AF-BE7B57FEA4F9}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.epub\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.epub'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{D5878036-E863-403E-A62C-7B9C7453336A}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{D5878036-E863-403E-A62C-7B9C7453336A}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.fb2'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{42CA907E-BDF5-4A75-994A-E1AEC8A10954}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{e357fccd-a995-4576-b01f-234630154e96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{bb2e617c-0920-11d1-9a0b-00c04fc2d6c1}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}, 0) => 2
+UninstallPreviewDll: removed '.mobi'
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{55808EA8-81FE-43c6-AAE8-1D8149F941D3}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\CLSID\{26CA6565-F22A-4f5e-B688-0AD051D56E96}, 0) => 2
+LoggedDeleteRegKey(HKEY_LOCAL_MACHINE, Software\Classes\.pdf\PersistentHandler, 0) => 5
+LogLastError: 0x5 (5) 'Access is denied.'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\PersistentHandler, 0) => 2
+RemoveInstallRegistryKeys(HKEY_CURRENT_USER)
+UnregisterFromBeingDefaultViewer()
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Classes\.pdf, (null)) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, ProgId) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf, Application) => '(null)'
+ReadRegStrTemp(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice, ProgId) => '(null)'
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\Applications\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.pdf, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.xps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.oxps, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbz, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbr, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cb7, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.cbt, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.djvu, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.chm, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.mobi, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.epub, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw3, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.azw4, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.fb2z, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.prc, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tiff, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jp2, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.png, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpg, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jpeg, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.tga, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.gif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.avif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heic, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.heif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.jfif, 0) => 0
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithList\SumatraPDF.exe, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\.webp, 0) => 0
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF.pdf) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF.xps) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF.oxps) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF.cbz) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF.cbr) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF.cb7) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF.cbt) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF.djvu) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF.chm) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF.mobi) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF.epub) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF.azw) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF.azw3) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF.azw4) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF.fb2) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF.fb2z) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF.prc) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF.tif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF.tiff) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF.jp2) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF.png) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF.jpg) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF.jpeg) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF.tga) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF.gif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF.avif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF.heic) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF.heif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF.jfif) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp, 0) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF.webp) => 2
+LoggedDeleteRegValue(HKEY_CURRENT_USER, SOFTWARE\RegisteredApplications, SumatraPDF) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, SOFTWARE\SumatraPDF\Capabilities, 0) => 2
+RemoveUninstallerRegistryInfo(HKEY_CURRENT_USER)
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, 0) => 2
+LoggedDeleteRegKey(HKEY_CURRENT_USER, Software\SumatraPDF, 0) => 2
+CopySettingsFile()
+LogLastError: 0x0 (0) 'The system cannot find the file specified.'
+  copied 'C:\Users\Owner\AppData\Roaming\SumatraPDF\SumatraPDF-settings.txt' to 'C:\Users\Owner\AppData\Local\SumatraPDF\SumatraPDF-settings.txt'
+CreateAppShortcuts(forAllUsers=0)
+CreateAppShortcut(csidl=0), path=C:\Users\Owner\Desktop\SumatraPDF.lnk
+CreateAppShortcut(csidl=11), path=C:\Users\Owner\AppData\Roaming\Microsoft\Windows\Start Menu\SumatraPDF.lnk
+WriteUninstallerRegistryInfo(hKey: HKEY_CURRENT_USER, allUsers: 0, installDir: 'C:\Program Files\SumatraPDF')
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, DisplayIcon, C:\Program Files\SumatraPDF\SumatraPDF.exe) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, DisplayName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, DisplayVersion, 3.6.1) ok!
+GetDirSize(C:\Program Files\SumatraPDF)
+WriteRegDWORD(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, EstimatedSize, 28115) => ok'
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallDate, 20261122) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, InstallLocation, C:\Program Files\SumatraPDF) ok!
+WriteRegDWORD(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, NoModify, 1) => ok'
+WriteRegDWORD(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, NoRepair, 1) => ok'
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, Publisher, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, UninstallString, "C:\Program Files\SumatraPDF\SumatraPDF.exe" -uninstall) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, QuietUninstallString, "C:\Program Files\SumatraPDF\SumatraPDF.exe" -uninstall -silent) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, URLInfoAbout, https://www.sumatrapdfreader.org/) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Uninstall\SumatraPDF, URLUpdateInfo, https://www.sumatrapdfreader.org/docs/Version-history.html) ok!
+WriteExtendedFileExtensionInfo('HKEY_CURRENT_USER')
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf, (null), PDF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\Print\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" -print-to-default "%1") ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.pdf\shell\PrintTo\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" -print-to "%2" "%1") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.pdf\OpenWithProgids, SumatraPDF.pdf) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps, (null), XPS File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.xps\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.xps\OpenWithProgids, SumatraPDF.xps) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps, (null), OXPS File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.oxps\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.oxps\OpenWithProgids, SumatraPDF.oxps) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz, (null), CBZ File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbz\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cbz\OpenWithProgids, SumatraPDF.cbz) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr, (null), CBR File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbr\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cbr\OpenWithProgids, SumatraPDF.cbr) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7, (null), CB7 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cb7\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cb7\OpenWithProgids, SumatraPDF.cb7) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt, (null), CBT File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",3) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.cbt\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.cbt\OpenWithProgids, SumatraPDF.cbt) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu, (null), DJVU File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.djvu\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.djvu\OpenWithProgids, SumatraPDF.djvu) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm, (null), CHM File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.chm\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.chm\OpenWithProgids, SumatraPDF.chm) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi, (null), MOBI File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.mobi\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.mobi\OpenWithProgids, SumatraPDF.mobi) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub, (null), EPUB File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",2) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",2) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.epub\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.epub\OpenWithProgids, SumatraPDF.epub) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw, (null), AZW File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.azw\OpenWithProgids, SumatraPDF.azw) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3, (null), AZW3 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw3\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.azw3\OpenWithProgids, SumatraPDF.azw3) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4, (null), AZW4 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.azw4\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.azw4\OpenWithProgids, SumatraPDF.azw4) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2, (null), FB2 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.fb2\OpenWithProgids, SumatraPDF.fb2) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z, (null), FB2Z File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.fb2z\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.fb2z\OpenWithProgids, SumatraPDF.fb2z) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc, (null), PRC File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.prc\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.prc\OpenWithProgids, SumatraPDF.prc) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif, (null), TIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.tif\OpenWithProgids, SumatraPDF.tif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff, (null), TIFF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tiff\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.tiff\OpenWithProgids, SumatraPDF.tiff) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2, (null), JP2 File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jp2\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jp2\OpenWithProgids, SumatraPDF.jp2) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png, (null), PNG File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.png\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.png\OpenWithProgids, SumatraPDF.png) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg, (null), JPG File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpg\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jpg\OpenWithProgids, SumatraPDF.jpg) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg, (null), JPEG File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jpeg\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jpeg\OpenWithProgids, SumatraPDF.jpeg) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga, (null), TGA File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.tga\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.tga\OpenWithProgids, SumatraPDF.tga) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif, (null), GIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.gif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.gif\OpenWithProgids, SumatraPDF.gif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif, (null), AVIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.avif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.avif\OpenWithProgids, SumatraPDF.avif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic, (null), HEIC File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heic\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.heic\OpenWithProgids, SumatraPDF.heic) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif, (null), HEIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.heif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.heif\OpenWithProgids, SumatraPDF.heif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif, (null), JFIF File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.jfif\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.jfif\OpenWithProgids, SumatraPDF.jfif) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp, (null), WEBP File) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\Application, ApplicationCompany, Krzysztof Kowalczyk) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\Application, ApplicationName, SumatraPDF) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\DefaultIcon, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\shell\open, Icon, "C:\Program Files\SumatraPDF\SumatraPDF.exe",1) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\SumatraPDF.webp\shell\open\command, (null), "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%1" "%2" "%3" "%4") ok!
+LoggedWriteRegNone(HKEY_CURRENT_USER, Software\Classes\.webp\OpenWithProgids, SumatraPDF.webp) => '0'
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\.pdf, Content Type, application/pdf) ok!
+WriteRegStr(HKEY_CURRENT_USER, Software\Classes\MIME\Database\Content Type\application/pdf, Extension, .pdf) ok!
+Installer thread finished
+OnInstallationFinished: cli->fastInstall: 0
+RunApp() returned 0
+Installer finished
+M148_ORDINARY_ORIGINAL_INSTALL_VERIFIED

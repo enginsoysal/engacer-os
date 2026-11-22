@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "scope": "Ordinary native EXE source selection and read-only review; no EXE installation acceptance.",
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "clone": {
+    "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+    "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "ordinary_exe_installation_qualified": false,
+  "cases": [
+    {
+      "file": "SumatraPDF-3.6.1-64-install.exe",
+      "review": [
+        1,
+        1,
+        0,
+        8,
+        4,
+        4,
+        227,
+        2,
+        1
+      ],
+      "source_digest": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+      "unchanged_volume": true,
+      "no_original_executed": true,
+      "installation_disabled": false,
+      "confirmation_cancelled": true
+    },
+    {
+      "file": "Unknown-review148.exe",
+      "review": [
+        1,
+        0,
+        0,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_digest": "b20656bd18f4c37dd64ebd177a7301831c26f457986c989225801ca56ac24913",
+      "unchanged_volume": true,
+      "no_original_executed": true,
+      "installation_disabled": true,
+      "confirmation_cancelled": false
+    }
+  ]
+}

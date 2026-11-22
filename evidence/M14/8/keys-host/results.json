@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "scope": "Host core only; not native input qualification",
+  "assertions": 8708,
+  "queue_structure_bytes": 3384,
+  "queue_allocation_pages": 1,
+  "sources": {
+    "include/engine/winkeys145.h": "339ead87be6394b9a60827efe2377f5178a60027e64240aecb4906c655c182f9",
+    "tests/m14/keys145_host.c": "f56314a76520b2f4321595f77d71f53c7c065301c14c13104dde8222713aed80",
+    "include/engine/winqueue144.h": "599ca3f1d97f9c4f9d7e84afa57d6c3b6e27c8aba2a8af1f9b8f74cf9f4afe5b"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "build_id": "7d5ee354b13bfd2ef83849f44242449a",
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
   "scope": "Agent visual review of eight actual production-media native captures, not complete acceptance or a human usability study.",
   "captures": [
     "exe-review-native/ordinary-exe-review-0.png",
@@ -13,14 +13,14 @@
     "exe-chain-native/verified-1.png"
   ],
   "capture_sha256": {
-    "exe-review-native/ordinary-exe-review-0.png": "c833ec5a54edcb0a434dfe4594dacf4a4b19ebe337319f97883f54249885f69c",
-    "exe-chain-native/source-review-0.png": "531454551195beffc80790ca63f27ec5fd682690ed16c0ba5f3a2d7118598d21",
-    "exe-chain-native/confirmation-0.png": "3793c90624ed8b49572c1dd2e9b1b06bdbe893407441d43e05151e70ebc053a9",
-    "exe-chain-native/original-after-operation-0.png": "7b6b4c35e4116bfe7659ba0b29ac225f2a4dc9adafbb54ed594ccc72fc8c2da5",
-    "exe-chain-native/verified-0.png": "68058c46c233473209b9319e193bfe4de75373581428600ba396f8d9cb429f94",
-    "exe-chain-native/confirmation-1.png": "75371c0778dc7b8dc9cfe499384ff575db71da1a9eb064889c1c08dd81545de5",
-    "exe-chain-native/original-after-operation-1.png": "a4625558ddbb7cfd70f1e444e49b57aa975ea41ce759e04d5b0321c62b949b67",
-    "exe-chain-native/verified-1.png": "d51fda41edb99539a2c1ef588fed5922e0669e74ea3e625f37333c3ec26d331a"
+    "exe-review-native/ordinary-exe-review-0.png": "de5859b8b8dbd634250790d6c8dea7f6c58c164e86de77202337f7f3fd4903f8",
+    "exe-chain-native/source-review-0.png": "cd3ae5d9ecac1c818453498038e48ab77787b5dbf34aa3f9c0e2f06c22cc9552",
+    "exe-chain-native/confirmation-0.png": "6b7e4cde7f401c386d44f67c45925a9048e054e60c7fe677e81a65d014348dce",
+    "exe-chain-native/original-after-operation-0.png": "d63d21f7c37881b4f2d709cf3e105daed53d892d23d58840a985dbec25ad5d0c",
+    "exe-chain-native/verified-0.png": "e8a0b0ed8c555a9bf046a937dac7cdc2ae668d9f9431bfdbf222191bdb8a0931",
+    "exe-chain-native/confirmation-1.png": "8911d5f2768ef131a0fa6654bb770921aa019a54b62126e1cb68f548582ced3c",
+    "exe-chain-native/original-after-operation-1.png": "1ec97665795b73fa29f2cba14a18c9af2509c9ce846a9659fcf71a4e4ffe1f50",
+    "exe-chain-native/verified-1.png": "51838806e6d366e42a0dc352430027b4ef52a0e647f5ba23107639a10b42fdc5"
   },
   "observations": [
     "Review and confirmation are separate; the exact source, approved destination and original setup arguments are visible.",

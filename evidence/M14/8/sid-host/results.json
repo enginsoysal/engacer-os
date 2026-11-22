@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Compare actual SID serialization with Windows; no vendor application execution.",
+  "checks": 30,
+  "differences": [],
+  "sources": {
+    "user/windows8/sid148.inc": "be649c3ba3491d44fd8dacebd780dbf4818cf1d192c7555905fabbd230bb26c8",
+    "tests/m14/sid148_host.c": "996464031481febd051caa6ebafae89754e799b205ecd6986de2879577df6c8a",
+    "tests/m14/sid148_host.py": "431248f4ef9af87ebeba06b01dbe4804674737eda0a2b71949605214b4d60adb"
+  }
+}

@@ -2,7 +2,7 @@
   "version": 1,
   "program": "M14",
   "current_stage": "M14.8",
-  "current_native_download": "M14.7",
+  "current_native_download": "M14.8",
   "final_release_stage": "M14.16",
   "scope": "Full original Windows 7/8/8.1/10/11 x64 landscape including required mixed-architecture helpers, runtimes, services and drivers; own kernel/native execution; evidence remains scoped",
   "optimization_core_requirement": true,
@@ -109,7 +109,10 @@
       "deliver": "Execute pinned original AMD64 installer code, its GUI and required helpers/uninstaller.",
       "how_and_why": "SumatraPDF provides a measured x64 route. The measured Notepad++ x64-labelled EXE is x86 and explicitly waits for M15; its original x64 MSI remains an M14 target.",
       "acceptance": "At least one complete original x64 EXE installer chain and original MSI chains work; all required child binaries are inventoried and exercised.",
-      "status": "in_development"
+      "status": "native_complete_publication_partial",
+      "evidence": "evidence/M14/8",
+      "qualification": "M14-STAGE8-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8"
     },
     {
       "id": "M14.9",
@@ -172,5 +175,7 @@
   "development_stage": "M14.4",
   "authorized_implementation_through": "M14.8",
   "stop_after": "M14.8",
-  "future_plan": "docs/milestones/m14-consolidated.md"
+  "future_plan": "docs/milestones/m14-consolidated.md",
+  "owner_stop_after": "M14.8",
+  "publication_status": "Native/source/media passed; GitHub/content finalization in progress; native homepage Save blocked."
 }

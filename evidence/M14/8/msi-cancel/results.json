@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "scope": "Actual original 7-Zip MSI cancellation before journal publication, complete namespace rollback and reinstall/run",
+  "canonical_observer_sha256": "bfe8d1cab126fb98f238c8d056a8a2ccd10e9df820dc68643d7244b1a92a4370",
+  "source_derivation": "Current stage UI/task harness, stage/output identity and actual generic staging progress marker; original functional and resource assertions retained",
+  "cancel": {
+    "committed_entries_seen": 6,
+    "namespace_restored": true,
+    "one_time_transition_pages": 4
+  },
+  "reinstall_and_original_execution": true,
+  "subsequent_retained_pages": 0
+}

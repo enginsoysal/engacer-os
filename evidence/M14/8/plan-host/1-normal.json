@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "package": "npp.8.9.9.1.Installer.x64.msi",
+  "package_sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+  "checks": 29316,
+  "cycles": [
+    {
+      "cycle": 1,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": false,
+      "no_updater": false
+    },
+    {
+      "cycle": 2,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": true,
+      "no_updater": false
+    },
+    {
+      "cycle": 3,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": false,
+      "no_updater": true
+    },
+    {
+      "cycle": 4,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": true,
+      "no_updater": true
+    },
+    {
+      "cycle": 5,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": false,
+      "no_updater": false
+    },
+    {
+      "cycle": 6,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": true,
+      "no_updater": false
+    },
+    {
+      "cycle": 7,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": false,
+      "no_updater": true
+    },
+    {
+      "cycle": 8,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": true,
+      "no_updater": true
+    },
+    {
+      "cycle": 9,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": false,
+      "no_updater": false
+    },
+    {
+      "cycle": 10,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": true,
+      "no_updater": false
+    },
+    {
+      "cycle": 11,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": false,
+      "no_updater": true
+    },
+    {
+      "cycle": 12,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": true,
+      "no_updater": true
+    },
+    {
+      "cycle": 13,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": false,
+      "no_updater": false
+    },
+    {
+      "cycle": 14,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": true,
+      "no_updater": false
+    },
+    {
+      "cycle": 15,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": false,
+      "no_updater": true
+    },
+    {
+      "cycle": 16,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": true,
+      "no_updater": true
+    },
+    {
+      "cycle": 17,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": false,
+      "no_updater": false
+    },
+    {
+      "cycle": 18,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": true,
+      "no_updater": false
+    },
+    {
+      "cycle": 19,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": false,
+      "no_updater": true
+    },
+    {
+      "cycle": 20,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 212,
+      "selected_bytes": 26596582,
+      "language": true,
+      "no_updater": true
+    },
+    {
+      "cycle": 21,
+      "retained_allocations": 0,
+      "ordered_actions": 30,
+      "selected_files": 217,
+      "selected_bytes": 28130419,
+      "language": false,
+      "no_updater": false
+    }
+  ],
+  "peak_host_allocated_bytes": 162765,
+  "scope": "Original database-derived action/property plan, clean-install feature/directory/component/file costing and Type51 values vs independent read-only MSI tables. No target mutation, remaining standard actions or original WiX execution.",
+  "limits": [
+    "Conditions using environment/component/feature prefixes refuse until their full state resolvers are implemented",
+    "Only selected Type51/Type3137 metadata is admitted; admission is not execution",
+    "ASCII payload leaves, one isolated program root, selected component/feature attributes and one embedded cabinet; other profiles refuse"
+  ]
+}

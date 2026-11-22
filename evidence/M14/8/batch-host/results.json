@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "scope": "Production bounded batch parser guards; no script or file operations run on the host.",
+  "checks": [
+    "timeout /t 2 /nobreak >nul",
+    "(goto) 2>nul & del \"%~f0\"",
+    "del \"C:\\Owned tests\\a&b.exe\"",
+    "@echo off",
+    "del \"x\" & del \"y\"",
+    "del %PATH%",
+    "del %",
+    "del %~",
+    "del %~f",
+    "del \"unterminated",
+    "del x | del y",
+    "del x >file",
+    "del x <nul",
+    "del x ^& del y",
+    "del \"%~f0\""
+  ],
+  "sources": {
+    "user/windows8/tools147.h": "7dabcb6f79eaebc9855b4bc57a4255410705efcb4b9213c1ba34dee42ba55b0a",
+    "user/windows8/batch148.h": "a29da4a1c5abb81c89bfa718cd77c21e636e61cd7048facf6f351eda0a5f8f5b",
+    "tests/m14/batch148_host.c": "f88d19cbf3ca284f073f1a1e8772f817992feccf3f3deec3c3f1879a81d95530",
+    "tests/m14/batch148_host.py": "4b471642980b467d4bfd781856eea43101d0dc8cef5b6db8e53ce6a574e79ff6"
+  }
+}

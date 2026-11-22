@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "scope": "Production native C storage host execution; not an HTTPS or browser runtime test",
+  "source_sha256": "785876b4ee020bff9a3b2482d91e1db43c657d4704751258fe4d6b0ac1e8b1df",
+  "clone": {
+    "source_sha256": "662d5ecbd70457da69baf219468a20d6db414b7e123646e62473cfa914776c37",
+    "clone_sha256": "662d5ecbd70457da69baf219468a20d6db414b7e123646e62473cfa914776c37",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "checks": [
+    {
+      "name": "Firefox-sized create-only stream, durable CRC and independent readback",
+      "bytes": 95924224,
+      "sha256": "b041f00bcdf1a70997db423f634de442c6c711b62a9cf60ddfb0c2e813298a32",
+      "body_buffer_bytes": 4096
+    },
+    "Oversize reservations, cancellation and existing-target refusal preserve the namespace and committed original"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "63951dfba3551ac263ca508343dd81b4ab7697dc692b6d16ab797207ff29bf66",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from api147_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/api-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-api-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M147_NATIVE_MSI_EXPORT_RECORD_UNICODE_THREADS_PASS"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "native_record_thread_rounds=400"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Production exported MSI record/Unicode APIs, DLL lifetime and native threads on frozen stage8 OS; not original WiX or MSI installation qualification"
+    ],
+    [
+      "try:mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())",
+      "try:\n  mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())\n  mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/msi.dll',(fixture.parent/'msi147/msi.dll').read_bytes())"
+    ]
+  ]
+}

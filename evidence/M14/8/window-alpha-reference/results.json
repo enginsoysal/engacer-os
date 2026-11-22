@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Own memory-HDC Windows reference for straight-ARGB image rounding.",
+  "cases": 4096,
+  "visible_windows_created": 0,
+  "counterexample": {
+    "straight_argb": "0x01808080",
+    "destination_rgb": "0x010101",
+    "actual_windows_rgb": "0x020202",
+    "incorrect_fused_rounding_rgb": "0x010101"
+  },
+  "conversion": "Round source premultiplication first, then separately round the destination contribution."
+}

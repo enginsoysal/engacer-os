@@ -1,0 +1,42 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "27ddb93bb5234531818ce2605c8c1ccfe0f18e1ce624e7e3d47db2f6e3a0ed98",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from atom147_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/atom-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-atom-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M147_NATIVE_GLOBAL_ATOM_CREATOR_EXIT_REFERENCES_PASS"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "creator_exit_reference_checks=1"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Own global atom parent/child API callers verify shared identity, creator exit, reference release, first-case names, integer atoms and bounded output; no full custom-action installation qualification"
+    ],
+    [
+      "try:mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())",
+      "try:\n  mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/7zFM.exe',fixture.read_bytes())\n  mounted.put('/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/atom-child147.exe',(fixture.parent/'atom-child147.exe').read_bytes())"
+    ]
+  ]
+}

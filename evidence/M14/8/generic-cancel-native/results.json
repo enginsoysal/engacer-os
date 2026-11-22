@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "scope": "Cancel an original generic MSI after durable staging, then recover without download.",
+  "kernel_build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "service_source_commit": "39eea525c1a5fa508135753d196b4c7d06252ee2",
+  "observer_sha256": "d58cc886bd414b7814a345f30c5794512ef0e5131ba6efbc38e876fada367d8f",
+  "private_service_receipt_sha256": "a8b3179fd47718b8426e6c55c2fcc3c58f6a9a292a174d411480babbb21cf5d0",
+  "owned_fixture": "ac847259a106472aa3d281bca056f689",
+  "clone": {
+    "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+    "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "last_observed": {
+    "job": {
+      "state": 3,
+      "status": 1,
+      "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n"
+    },
+    "managed_delta": 0
+  },
+  "cancel": {
+    "state": 3,
+    "status": 1,
+    "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+    "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+    "retained_managed_pages": 0,
+    "transaction_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+  },
+  "recovery": {
+    "state": 2,
+    "status": 0,
+    "message": "Removed. Your personal files are unchanged.",
+    "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\n",
+    "retained_managed_pages": 0,
+    "first_activation_pages": 4,
+    "original_download_absent": true
+  }
+}

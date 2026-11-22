@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "scope": "Measured original EXE task managed pages and component counters; not whole-OS RAM or final optimization acceptance.",
+  "page_bytes": 4096,
+  "cycles": [
+    {
+      "cycle": 0,
+      "removing": false,
+      "observed_original_seconds": 95.719,
+      "retained_pages": 1,
+      "resident_pages_before": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 0,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "resident_pages_after": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 1,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "state": {
+        "state": 2,
+        "status": 0,
+        "peak_native_managed_pages": 7611,
+        "scheduled_quanta": 949,
+        "message": "Original installation verified. The PDF reader itself is not qualified in this release."
+      }
+    },
+    {
+      "cycle": 1,
+      "removing": true,
+      "observed_original_seconds": 142.422,
+      "retained_pages": 5,
+      "resident_pages_before": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 0,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "resident_pages_after": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 1,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "state": {
+        "state": 2,
+        "status": 0,
+        "peak_native_managed_pages": 3666,
+        "scheduled_quanta": 661,
+        "message": "Original removal verified. Your other files were preserved."
+      }
+    },
+    {
+      "cycle": 2,
+      "removing": false,
+      "observed_original_seconds": 126.203,
+      "retained_pages": 1,
+      "resident_pages_before": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 0,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "resident_pages_after": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 1,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "state": {
+        "state": 2,
+        "status": 0,
+        "peak_native_managed_pages": 7611,
+        "scheduled_quanta": 1186,
+        "message": "Original installation verified. The PDF reader itself is not qualified in this release."
+      }
+    }
+  ],
+  "limits": [
+    "One UI session-cache page remains after each cold operation.",
+    "Removal retains four further allocator pages not attributed to the tracked component counters. Do not claim zero total retention.",
+    "Scheduled quanta are scheduler observations, not CPU utilization or a reference-Windows speed benchmark.",
+    "Whole-system CPU/RAM/storage optimization remains M14.16."
+  ],
+  "source_report_sha256": "53c56be5c6e9f1c66f84115e4fc0eb354b303e578943852dc756c4cb629f7f81"
+}

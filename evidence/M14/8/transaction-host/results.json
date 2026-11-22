@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": 9461,
+  "scope": "Production transaction binary/checksum/shape admission only; native durable write/recovery is not qualified",
+  "sources": {
+    "include/engine/winproduct147.h": "bd434ed6b9a423637fa99d399ff3ffa8ea462341b6106c02848994ea456cc884",
+    "include/engine/wintxn147.h": "b4bf8707c9c72adb8daf896bf0d47202d45861b2dc722df4a84e195f35cd3837",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "tests/m14/transaction147_host.c": "a76bbf8f7f836c6772551cd64ce3438972da5f8cb2ccd5e73446642c378e0b7e",
+    "tests/m14/transaction147_host.py": "231a650a55f4338445a03eaeaeb689783231a3df4b6a1cc23ab8963307c07c75",
+    "kernel/windows8/transaction147.inc": "b5552661de971102ac175d480a2a358ef18a64c3b34d058414863834c62b3e65",
+    "include/engine/windows8.h": "222b19ec4d44049b46349b7303fa01740077a2afee04dbdc0e58cb3ae0cf31ee"
+  }
+}

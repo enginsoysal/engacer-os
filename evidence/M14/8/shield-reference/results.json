@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "scope": "Own hidden version-6 button shield state and previous-icon contract.",
+  "common_controls_version": 6,
+  "visible_windows_created": 0,
+  "cases": [
+    {
+      "show": false,
+      "returns_previous_icon": true,
+      "current_present": false,
+      "new_handle_when_enabled": false
+    },
+    {
+      "show": true,
+      "returns_previous_icon": true,
+      "current_present": true,
+      "new_handle_when_enabled": true
+    },
+    {
+      "show": true,
+      "returns_previous_icon": true,
+      "current_present": true,
+      "new_handle_when_enabled": true
+    },
+    {
+      "show": false,
+      "returns_previous_icon": true,
+      "current_present": false,
+      "new_handle_when_enabled": false
+    },
+    {
+      "show": false,
+      "returns_previous_icon": true,
+      "current_present": false,
+      "new_handle_when_enabled": false
+    },
+    {
+      "show": true,
+      "returns_previous_icon": true,
+      "current_present": true,
+      "new_handle_when_enabled": true
+    },
+    {
+      "show": false,
+      "returns_previous_icon": true,
+      "current_present": false,
+      "new_handle_when_enabled": false
+    }
+  ],
+  "documentation_discrepancy": "The actual successful return is the previous HICON, including zero; do not treat zero as a failed state change or invent BOOL 1."
+}

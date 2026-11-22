@@ -5,28 +5,23 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 ## Download and get started
 
-**Approved future roadmap:** [M14.9-M14.16](docs/milestones/m14-consolidated.md)
-are eight consolidated Windows x64 platform work packages. The scope covers
-original Windows 7/8/8.1/10/11 x64 software and necessary dependencies; the named
-test applications are fixtures, not a compatibility whitelist. M14.8 remains in
-development. Finish it and stop before future implementation. M14.16 is the
-revised final integrated optimization/release gate.
+**Current native release: [M14.8 / 0.14.8](https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8).** M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained.
 
-**Current native release: [M14.7 / 0.14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified.
+- [Install and restart in VMware](docs/handbook/install-m148.md)
+- [Your first day](docs/handbook/first-day-m148.md)
+- [Original MSI and EXE installers](docs/handbook/windows-m148.md)
+- [Release scope and limits](docs/releases/m148-v0.14.8.md)
+- [Documentation and downloads](https://engaceros.brixcanvas.com/blog/downloads)
 
-- [Install and restart in VMware](docs/handbook/install-m147.md)
-- [Your first day](docs/handbook/first-day-m147.md)
-- [Original Windows menus, folders and browser choices](docs/handbook/windows-m147.md)
-- [Exact release scope and limits](docs/releases/m147-v0.14.7.md)
-- [Documentation and downloads](https://engaceros.brixcanvas.com)
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9-M14.16 remain planned, not started; final integrated optimization is M14.16.
 
-M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. The pinned originals remain mandatory regression fixtures in the broader x64 scope. The approved future plan is M14.9-M14.16; final integrated optimization is M14.16.
+GitHub downloads and independent public content checks are being finalized. Native homepage Save is blocked by the reproduced BrixCanvas website-read error; article synchronization works. A stale homepage is not counted as successful publication.
 
 ## Native qualification
 
-All 98 native and 39 supporting host groups pass on build `1fb03f1b582d4d153441b6b5ca40da06` with 765 exact compiled inputs. Compact, ordinary and actual 4K/200% installation/startup, original 7-Zip/106-payload tasks and original Notepad++/217-payload installation/removal/reinstallation pass. The exact VMware package installs, starts the original app, moves/closes it and boots twice without ISO. [Acceptance](evidence/M14/7/acceptance-results.json), [resources](evidence/M14/7/resources.json), [stage gates](docs/milestones/m14-7.md).
+Build fdb650a0e4cff632bd4945cc1b024567 binds compiled source bd12730bf19eee5a4ab496d798a7c0435728fed0 and 825 exact inputs. [Acceptance](evidence/M14/8/acceptance-results.json), [resources](evidence/M14/8/resources.json), [stage gates](docs/milestones/m14-8.md). Windows instructions execute through the own kernel and compatibility APIs, without an embedded Windows guest.
 
-Windows program instructions run through the own compatibility APIs and kernel. VMware/QEMU are external test hosts; an embedded Windows guest is not the implementation. Optional app removal preserves the desktop and personal files. M14.16 is the approved final integrated optimization/release gate.
+The [approved M14.9-M14.16 program](docs/milestones/m14-consolidated.md) covers the full Windows 7/8/8.1/10/11 x64 landscape and necessary dependencies. Stop after M14.8; future implementation is not started.
 
 ## Use, customize and contribute
 

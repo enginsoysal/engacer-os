@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": 15590,
+  "scope": "Own selected codecs vs Python data references; no host execution of original app, CRT or custom action",
+  "limits": [
+    "UTF-8 ACP/OEM and explicit Windows-1252 only",
+    "Existing strict malformed-input profile retained; not all Windows replacement, best-fit, normalization or flag semantics"
+  ],
+  "sources": {
+    "user/windows8/codepage147.inc": "b04f4293a2e5be1ca32b496132c7f5afc1017702da75e21d2f98ce2a6126665b",
+    "tests/m14/codepage147_host.c": "78cd41eefe633382d8da82990d2e7e0a419a044b8cc15959d6a69ec7324142f1",
+    "tests/m14/codepage147_host.py": "4ad85b80709bc079bf55fa9b5a6eb562eeb123e71031c8502d3590c59ea94a33"
+  }
+}

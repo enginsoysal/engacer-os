@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scope": "Run original MSI plan workers against the same current-stage host library.",
+  "canonical_sha256": "5252adbef563e4aa06961ef25fce073db6d74a2416a06e3326574fdce8682a79",
+  "executed_sha256": "7b31acafb10d319310aaa07c3eb282c30bb5ab980d8e61efd4a6591a12291145",
+  "adapter_sha256": "6403849811516a7016576fe0cccc2732162d0485ff735f9be48e342a58b970fb",
+  "workers": 16
+}

@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "scope": "Owned hidden Windows progress ranges, positions and steps; no visible UI.",
+  "cases": [
+    {
+      "message": "0x406",
+      "wparam": -5,
+      "lparam": 10,
+      "result": 6553600,
+      "minimum": -5,
+      "maximum": 10,
+      "position": 0
+    },
+    {
+      "message": "0x402",
+      "wparam": 20,
+      "lparam": 0,
+      "result": 0,
+      "minimum": -5,
+      "maximum": 10,
+      "position": 10
+    },
+    {
+      "message": "0x403",
+      "wparam": -30,
+      "lparam": 0,
+      "result": 10,
+      "minimum": -5,
+      "maximum": 10,
+      "position": -5
+    },
+    {
+      "message": "0x404",
+      "wparam": 7,
+      "lparam": 0,
+      "result": 10,
+      "minimum": -5,
+      "maximum": 10,
+      "position": -5
+    },
+    {
+      "message": "0x405",
+      "wparam": 0,
+      "lparam": 0,
+      "result": -5,
+      "minimum": -5,
+      "maximum": 10,
+      "position": 2
+    },
+    {
+      "message": "0x405",
+      "wparam": 0,
+      "lparam": 0,
+      "result": 2,
+      "minimum": -5,
+      "maximum": 10,
+      "position": 9
+    },
+    {
+      "message": "0x405",
+      "wparam": 0,
+      "lparam": 0,
+      "result": 9,
+      "minimum": -5,
+      "maximum": 10,
+      "position": 1
+    },
+    {
+      "message": "0x401",
+      "wparam": 0,
+      "lparam": 3276805,
+      "result": 720891,
+      "minimum": 5,
+      "maximum": 50,
+      "position": 5
+    },
+    {
+      "message": "0x402",
+      "wparam": 70,
+      "lparam": 0,
+      "result": 5,
+      "minimum": 5,
+      "maximum": 50,
+      "position": 50
+    },
+    {
+      "message": "0x406",
+      "wparam": 10,
+      "lparam": -5,
+      "result": 3276805,
+      "minimum": 10,
+      "maximum": -5,
+      "position": -5
+    }
+  ],
+  "range_buffer_guards": true,
+  "visible_windows_created": 0,
+  "native_profile": "Finite classic progress; marquee and unsupported common-control extensions refuse."
+}

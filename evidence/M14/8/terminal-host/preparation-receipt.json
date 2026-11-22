@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Keep MSI host-only syscall adapters explicit after EXE context isolation.",
+  "context": "Ordinary MSI only. EXE branch is fail-closed and must never execute in this host harness; native EXE grants are tested separately.",
+  "exe_branch_calls": 0,
+  "canonical_c_sha256": "e1feb2175d93d27e53ef9b9bce69e7cb9ee1375b72f4ce5d9bf9c3f138e5073a",
+  "generated_c_sha256": "f7075e453233290a376900d67938bd62233b4f6c3cc08369c391a3b0a4193b48",
+  "canonical_runner_sha256": "a6d1bb85cfa269128267feef03fb150cd21ba5e63de61d2120ae6d0550cc08a6",
+  "executed_runner_sha256": "b670e0a4aa8add8c00b6213650c613047326c0d8766181eae820f5b7153a50de",
+  "adapter_sha256": "a46b54f626d665a95b54c870690773f967023f4c0622a99fa1d61251476f4d7b"
+}

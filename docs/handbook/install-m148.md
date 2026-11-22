@@ -1,8 +1,6 @@
 # Install Engacer OS M14.8 in VMware
 
-**Candidate instructions: final M14.8 qualification and publication are pending.**
-The current qualified public release remains M14.7. Use media and guides from
-the same release; do not combine an older ISO with a newer installed kernel.
+**M14.8 native/source/media qualification passes.** Use the complete matching [release](https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8) and checksums. Homepage publication is separately blocked; see [status](../roadmap/status.md).
 
 ## Prepare the VM
 

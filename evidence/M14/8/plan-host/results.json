@@ -1,0 +1,526 @@
+{
+  "passed": true,
+  "scope": "Supporting original MSI plan/condition/costing/Type51/close tests, with unknown mandatory actions refused in isolated test processes. Not native MSI installation.",
+  "reports": [
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "package_sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "checks": 15351,
+      "cycles": [
+        {
+          "cycle": 1,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 2,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 3,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 4,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 5,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 6,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 7,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 8,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 9,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 10,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 11,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 12,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 13,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 14,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 15,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 16,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 17,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 18,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 19,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 20,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 21,
+          "retained_allocations": 0,
+          "ordered_actions": 23,
+          "selected_files": 106,
+          "selected_bytes": 5882028,
+          "language": false,
+          "no_updater": false
+        }
+      ],
+      "peak_host_allocated_bytes": 149885,
+      "scope": "Original database-derived action/property plan, clean-install feature/directory/component/file costing and Type51 values vs independent read-only MSI tables. No target mutation, remaining standard actions or original WiX execution.",
+      "limits": [
+        "Conditions using environment/component/feature prefixes refuse until their full state resolvers are implemented",
+        "Only selected Type51/Type3137 metadata is admitted; admission is not execution",
+        "ASCII payload leaves, one isolated program root, selected component/feature attributes and one embedded cabinet; other profiles refuse"
+      ]
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI payload/directory leaf is invalid or outside the ASCII name profile.",
+      "mutation": "overlong-file-leaf"
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI requires an unknown standard/custom action.",
+      "mutation": "unknown"
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI compound-file geometry is unsupported.",
+      "mutation": "bad-shift"
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI directory-sector count is invalid.",
+      "mutation": "bad-directory-count"
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI mini FAT exceeds its bound.",
+      "mutation": "mini-fat-overquota"
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI directory chain is invalid.",
+      "mutation": "fat-cycle"
+    },
+    {
+      "passed": true,
+      "package": "7z2606-x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI compound-file sector length is invalid.",
+      "mutation": "truncated-sector"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "package_sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "checks": 29316,
+      "cycles": [
+        {
+          "cycle": 1,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 2,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": true,
+          "no_updater": false
+        },
+        {
+          "cycle": 3,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": false,
+          "no_updater": true
+        },
+        {
+          "cycle": 4,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": true,
+          "no_updater": true
+        },
+        {
+          "cycle": 5,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 6,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": true,
+          "no_updater": false
+        },
+        {
+          "cycle": 7,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": false,
+          "no_updater": true
+        },
+        {
+          "cycle": 8,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": true,
+          "no_updater": true
+        },
+        {
+          "cycle": 9,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 10,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": true,
+          "no_updater": false
+        },
+        {
+          "cycle": 11,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": false,
+          "no_updater": true
+        },
+        {
+          "cycle": 12,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": true,
+          "no_updater": true
+        },
+        {
+          "cycle": 13,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 14,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": true,
+          "no_updater": false
+        },
+        {
+          "cycle": 15,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": false,
+          "no_updater": true
+        },
+        {
+          "cycle": 16,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": true,
+          "no_updater": true
+        },
+        {
+          "cycle": 17,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": false,
+          "no_updater": false
+        },
+        {
+          "cycle": 18,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": true,
+          "no_updater": false
+        },
+        {
+          "cycle": 19,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": false,
+          "no_updater": true
+        },
+        {
+          "cycle": 20,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 212,
+          "selected_bytes": 26596582,
+          "language": true,
+          "no_updater": true
+        },
+        {
+          "cycle": 21,
+          "retained_allocations": 0,
+          "ordered_actions": 30,
+          "selected_files": 217,
+          "selected_bytes": 28130419,
+          "language": false,
+          "no_updater": false
+        }
+      ],
+      "peak_host_allocated_bytes": 162765,
+      "scope": "Original database-derived action/property plan, clean-install feature/directory/component/file costing and Type51 values vs independent read-only MSI tables. No target mutation, remaining standard actions or original WiX execution.",
+      "limits": [
+        "Conditions using environment/component/feature prefixes refuse until their full state resolvers are implemented",
+        "Only selected Type51/Type3137 metadata is admitted; admission is not execution",
+        "ASCII payload leaves, one isolated program root, selected component/feature attributes and one embedded cabinet; other profiles refuse"
+      ]
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI payload/directory leaf is invalid or outside the ASCII name profile.",
+      "mutation": "overlong-file-leaf"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI requires an unknown standard/custom action.",
+      "mutation": "unknown"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI compound-file geometry is unsupported.",
+      "mutation": "bad-shift"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI directory-sector count is invalid.",
+      "mutation": "bad-directory-count"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI mini FAT exceeds its bound.",
+      "mutation": "mini-fat-overquota"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI directory chain is invalid.",
+      "mutation": "fat-cycle"
+    },
+    {
+      "passed": true,
+      "package": "npp.8.9.9.1.Installer.x64.msi",
+      "scope": "Owned metadata refusal before any target mutation",
+      "expected_refusal": "MSI compound-file sector length is invalid.",
+      "mutation": "truncated-sector"
+    }
+  ],
+  "sources": {
+    "user/windows8/msi-plan147.c": "027c09fab91550ea6d0142e9705e5518adf6dd1da06a8f8e81fefa30c5a6c625",
+    "user/windows8/msi-plan147.h": "10c2124a781b26a8c565ab3d598c85ee6eeb6254fc74e0b032572f268052678f",
+    "user/windows8/msi-cost147.c": "1f814c948c6886e17967492c1b8a736d17115fd859beacf50bfe0a51409d0792",
+    "user/windows8/msi_db.c": "aadfc70faaee1a7d0801a4948bbe846e505e34d5043f9f5311f9ab6a4f143b1a",
+    "user/windows8/msi_db.h": "79b020bad568b03d01c25337cef2dba57e4b7dffbd12f465bd54d991ef5d2fe1",
+    "user/windows8/msi-properties147.h": "6a9d0db86a2f24b13e2b86ea28546b19884586bd1d0255916e94d1041bf3679b",
+    "user/windows8/msi-condition147.h": "b2f899a5f43a07ce8fe611a65d1d4f28d96333b3eab13f90679927bd325938c6",
+    "runtime/sha256.c": "7cce2f4473eec1f08084732604c1e170b56de3cfa255e343bb22e3cfad82f432",
+    "include/engine/sha256.h": "f0782b06f745be9a3d0bf8d160c1f13a0b5dd1b28719a1e889e9fe47e9f826eb",
+    "tests/m14/plan147_host.c": "414e3a1f2a11cfa556a45bdc8f82bfae9828da15a6682ee082e086d750b75a08",
+    "tests/m14/plan147_host.py": "5252adbef563e4aa06961ef25fce073db6d74a2416a06e3326574fdce8682a79",
+    "include/engine/winproduct147.h": "bd434ed6b9a423637fa99d399ff3ffa8ea462341b6106c02848994ea456cc884"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "canonical_sha256": "d180512e4abec3b5a2fcece8e343d6023018083272f25dcb619eb78f756bb91c",
+  "adapter_sha256": "7d687477703a1686347099cd79032791534bad34866abb20517b6060af2c520b",
+  "nested_stages": [
+    {
+      "canonical_sha256": "33ba33b6a0c39292d636d17ad2c55fde82956bc725b06a04628761ae58d02ca2",
+      "executed_sha256": "0fb8a365889e8ad15a46f0a7de311146f13c905c589f0915faed0221e83828cb"
+    },
+    {
+      "canonical_sha256": "d180512e4abec3b5a2fcece8e343d6023018083272f25dcb619eb78f756bb91c",
+      "executed_sha256": "d93ff077c81adec23bac57f4b677ed07c3fada2366889df8b3be8b60d0907542"
+    },
+    {
+      "canonical_sha256": "ec16b94636ef9b1e3cabeed5713fb446dd5e8d937a5c455e59aaa34fa3ff8727",
+      "executed_sha256": "e6a1fd1ebbc0d45cdaf30a6b9b1ac51279919738a7f1ef3151575da6b042e7dc"
+    },
+    {
+      "canonical_sha256": "fb3361afb4a0d197504bb2b078361d54367825beda073b0c672b90d03bdcf90d",
+      "executed_sha256": "aa75494cf46b2e4988801e1d97ea4fb60db39d22f461dd6aecedae7c555abc71"
+    },
+    {
+      "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+      "executed_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b"
+    },
+    {
+      "canonical_sha256": "76bbc42cf6499a6715503f56d33458a97f4e475ac2cef6280c92d2e933bf8232",
+      "executed_sha256": "501258a8bbd840c30a005837988b670e153affd244cede491a8cc83c47af5fd0"
+    },
+    {
+      "canonical_sha256": "d428996d6f518a1c69e1354d4197b597d65613a033fbc9bd2bb82987f57e5fef",
+      "executed_sha256": "23b5d90205075e1818d3f4157ca1b56d51644c2321de445d51b4722c786b5232"
+    }
+  ],
+  "cycles": 21,
+  "scope": "Preserve original WiX/system assertions through each nested own observer."
+}

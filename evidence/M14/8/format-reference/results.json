@@ -1,0 +1,578 @@
+{
+  "passed": true,
+  "scope": "Own off-screen GDI+ text-format behavior, independent of vendor executables.",
+  "cases": [
+    {
+      "creator": "GdipCreateStringFormat",
+      "defaults": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "property": "Flags",
+      "input": -1,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 3,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 5,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 6,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 2147483647,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 3,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 5,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 3,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 5,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 3,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 5,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "range_count": -1,
+      "status": 0
+    },
+    {
+      "range_count": 0,
+      "status": 0
+    },
+    {
+      "range_count": 1,
+      "status": 0
+    },
+    {
+      "range_count": 32,
+      "status": 0
+    },
+    {
+      "range_count": 33,
+      "status": 11
+    },
+    {
+      "creator": "GdipStringFormatGetGenericDefault",
+      "defaults": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "property": "Flags",
+      "input": -1,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 3,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 5,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 6,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 2147483647,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 3,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 5,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 3,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 5,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 3,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 5,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "range_count": -1,
+      "status": 0
+    },
+    {
+      "range_count": 0,
+      "status": 0
+    },
+    {
+      "range_count": 1,
+      "status": 0
+    },
+    {
+      "range_count": 32,
+      "status": 0
+    },
+    {
+      "range_count": 33,
+      "status": 11
+    },
+    {
+      "creator": "GdipStringFormatGetGenericTypographic",
+      "defaults": [
+        24580,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "property": "Flags",
+      "input": -1,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 3,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 5,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 6,
+      "status": 0
+    },
+    {
+      "property": "Flags",
+      "input": 2147483647,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Align",
+      "input": 3,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 5,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "Align",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "LineAlign",
+      "input": 3,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 5,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "LineAlign",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": -1,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": 0,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 1,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 2,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 3,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 5,
+      "status": 0
+    },
+    {
+      "property": "Trimming",
+      "input": 6,
+      "status": 2
+    },
+    {
+      "property": "Trimming",
+      "input": 2147483647,
+      "status": 2
+    },
+    {
+      "range_count": -1,
+      "status": 0
+    },
+    {
+      "range_count": 0,
+      "status": 0
+    },
+    {
+      "range_count": 1,
+      "status": 0
+    },
+    {
+      "range_count": 32,
+      "status": 0
+    },
+    {
+      "range_count": 33,
+      "status": 11
+    }
+  ],
+  "clone_mutation_independent": true,
+  "visible_windows_created": 0
+}

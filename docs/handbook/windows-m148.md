@@ -1,8 +1,6 @@
 # Original Windows installers in M14.8
 
-**Development guide. M14.8 is not yet a qualified download.** Continue using
-the [qualified M14.7 guide](windows-m147.md) with M14.7 media. This page describes
-the new candidate workflow; final native and public delivery gates remain open.
+**M14.8 native/source/media qualification passes.** Use the complete matching [release](https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8) and checksums. Homepage publication is separately blocked; see [status](../roadmap/status.md).
 
 ## Choose and review an installer
 
@@ -20,7 +18,7 @@ silently grants unrestricted access to the rest of the system.
 
 ## Original EXE installer workflow
 
-The first candidate profile uses unchanged [SumatraPDF 3.6.1 x64 from its
+The first qualified installer profile uses unchanged [SumatraPDF 3.6.1 x64 from its
 official download](https://www.sumatrapdfreader.org/dl/rel/3.6.1/SumatraPDF-3.6.1-64-install.exe):
 `SumatraPDF-3.6.1-64-install.exe`, 11,075,960 bytes, SHA-256
 `1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381`.
@@ -74,5 +72,5 @@ completion. Buffers, handles and temporary work are bounded. Actual measured
 peaks and retained memory must accompany final acceptance; configured VM RAM
 does not measure OS consumption. Whole-system optimization remains M14.16.
 
-[M14.8 implementation and current evidence](../milestones/m14-8.md) Â·
+[M14.8 implementation and current evidence](../milestones/m14-8.md) -
 [Approved M14.9-M14.16 plan](../milestones/m14-consolidated.md)

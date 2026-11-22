@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "scope": "Owned temporary Windows registry metadata reference; no original app executes.",
+  "cases": [
+    {
+      "scope": "Counts and UTF-16 maxima",
+      "result": 0,
+      "values": [
+        2,
+        6,
+        0,
+        2,
+        7,
+        7
+      ]
+    },
+    {
+      "scope": "Empty class buffer",
+      "capacity": 0,
+      "result": 0,
+      "units": 0,
+      "first_unit": 88
+    },
+    {
+      "scope": "Empty class buffer",
+      "capacity": 1,
+      "result": 0,
+      "units": 0,
+      "first_unit": 0
+    }
+  ],
+  "owned_fixture_removed": true,
+  "observer_sha256": "6dc9709f663c76bde45edae3334654d33b7896638ac405478f522b2ab2c041a1"
+}

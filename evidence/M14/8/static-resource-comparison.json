@@ -1,0 +1,185 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "baseline_build_id": "1fb03f1b582d4d153441b6b5ca40da06",
+  "baseline_receipt_sha256": "52d97651f18bee44cbd0bacb1059dc3a5b3eaa748a4301dc081519cfb07e7ee0",
+  "records": {
+    "M14.7": {
+      "installed": {
+        "elf_sha256": "8916c965568ceb1d0fc1c54985eb8cc9c3a53bf6cc94717e75f6557bf1f26ea3",
+        "elf_file_bytes": 1601956,
+        "load_memory_bytes": 3500042,
+        "rounded_physical_load_pages": 855,
+        "writable_static_sections_bytes": 1904432,
+        "sections": {
+          ".text": 1051603,
+          ".rodata": 543995,
+          ".data": 420,
+          ".bss": 1904012
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1051603,
+            "memory_bytes": 1051603
+          },
+          {
+            "physical_start": 3149824,
+            "file_bytes": 543995,
+            "memory_bytes": 543995
+          },
+          {
+            "physical_start": 3694592,
+            "file_bytes": 420,
+            "memory_bytes": 1904444
+          }
+        ]
+      },
+      "live": {
+        "elf_sha256": "8daafdf68e1449e77ec8c9660c4dfe46a0a2bb3783601ab7aa4e79050ead90d1",
+        "elf_file_bytes": 4182436,
+        "load_memory_bytes": 6077658,
+        "rounded_physical_load_pages": 1485,
+        "writable_static_sections_bytes": 1904432,
+        "sections": {
+          ".text": 1051603,
+          ".rodata": 3121611,
+          ".data": 420,
+          ".bss": 1904012
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1051603,
+            "memory_bytes": 1051603
+          },
+          {
+            "physical_start": 3149824,
+            "file_bytes": 3121611,
+            "memory_bytes": 3121611
+          },
+          {
+            "physical_start": 6275072,
+            "file_bytes": 420,
+            "memory_bytes": 1904444
+          }
+        ]
+      }
+    },
+    "M14.8": {
+      "installed": {
+        "elf_sha256": "2f34b4d8a13e5d35f798bb0ecc1a294c4c497b046f8b6fdc101711e965ecb14b",
+        "elf_file_bytes": 1642916,
+        "load_memory_bytes": 3540910,
+        "rounded_physical_load_pages": 865,
+        "writable_static_sections_bytes": 1904628,
+        "sections": {
+          ".text": 1089107,
+          ".rodata": 547163,
+          ".data": 420,
+          ".bss": 1904208
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1089107,
+            "memory_bytes": 1089107
+          },
+          {
+            "physical_start": 3186688,
+            "file_bytes": 547163,
+            "memory_bytes": 547163
+          },
+          {
+            "physical_start": 3735552,
+            "file_bytes": 420,
+            "memory_bytes": 1904640
+          }
+        ]
+      },
+      "live": {
+        "elf_sha256": "db9829b73e9c1053ede8c6ca311d36f5ea67dc6bc50fdec220ba1277ed3f646c",
+        "elf_file_bytes": 4284836,
+        "load_memory_bytes": 6181486,
+        "rounded_physical_load_pages": 1510,
+        "writable_static_sections_bytes": 1904628,
+        "sections": {
+          ".text": 1089107,
+          ".rodata": 3187739,
+          ".data": 420,
+          ".bss": 1904208
+        },
+        "segments": [
+          {
+            "physical_start": 2097152,
+            "file_bytes": 1089107,
+            "memory_bytes": 1089107
+          },
+          {
+            "physical_start": 3186688,
+            "file_bytes": 3187739,
+            "memory_bytes": 3187739
+          },
+          {
+            "physical_start": 6377472,
+            "file_bytes": 420,
+            "memory_bytes": 1904640
+          }
+        ]
+      }
+    }
+  },
+  "delta": {
+    "installed": {
+      "elf_file_bytes": 40960,
+      "load_memory_bytes": 40868,
+      "rounded_physical_load_pages": 10,
+      "writable_static_sections_bytes": 196
+    },
+    "live": {
+      "elf_file_bytes": 102400,
+      "load_memory_bytes": 103828,
+      "rounded_physical_load_pages": 25,
+      "writable_static_sections_bytes": 196
+    }
+  },
+  "desktop_fixed": {
+    "bytes": 557692,
+    "sections": {
+      "bss": 557648,
+      "data": 44
+    },
+    "map_sha256": "9b28eea3f4b208daf450ec6b24092beef6ef7859b8c2d8f102c2e9691516df2c"
+  },
+  "scope": "Exact current ELF headers and writable state. Historical baseline is the immutable accepted receipt, not re-executed old source. Overlapping scopes, not total OS RAM or M14.15 CPU/storage optimization.",
+  "sources": {
+    "tests/m14/static147_host.py": "dd10b1822cd353ad235397843ca73b99677df9602d9239652615b12df895e327"
+  },
+  "derivation": {
+    "canonical_sha256": "dd10b1822cd353ad235397843ca73b99677df9602d9239652615b12df895e327",
+    "executed_sha256": "751270f0b058794152c8beddb0ec3a2e21c75d00af2b7a0ca5fe9ec6e980fd99",
+    "adapter_sha256": "7c72f03303de2d360592117b2ea97e39b83711a0d8e29d388325ea9a5a2c2289",
+    "replacements": [
+      [
+        "M14.7",
+        "M14.8"
+      ],
+      [
+        "M14.6",
+        "M14.7"
+      ],
+      [
+        "STAGE7",
+        "STAGE8"
+      ],
+      [
+        "stage7",
+        "stage8"
+      ],
+      [
+        "evidence/M14/6",
+        "evidence/M14/7"
+      ]
+    ]
+  }
+}

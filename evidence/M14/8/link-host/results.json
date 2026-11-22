@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "checks": 5470,
+  "scope": "Validate own binary links with the trusted Windows reader, never activate a shortcut.",
+  "cases": [
+    {
+      "target": "C:\\Program Files\\7-Zip\\7zFM.exe",
+      "working_directory": "",
+      "arguments": "",
+      "description": "",
+      "show": 1,
+      "bytes": 1027,
+      "sha256": "1bdaa5001dc0a39785f795e8e889d24da22ab7dcd952afe54adef75ee9dc201c",
+      "trusted_windows_readback": true
+    },
+    {
+      "target": "C:\\Program Files\\7-Zip\\7zip.chm",
+      "working_directory": "",
+      "arguments": "",
+      "description": "",
+      "show": 1,
+      "bytes": 1027,
+      "sha256": "25f9a7e4cf4bae7afbaad0d73115ca0d444ddf061969b3e79498d5189fa97c09",
+      "trusted_windows_readback": true
+    },
+    {
+      "target": "C:\\Program Files\\Notepad++\\notepad++.exe",
+      "working_directory": "C:\\Program Files\\Notepad++\\",
+      "arguments": "",
+      "description": "",
+      "show": 1,
+      "bytes": 1110,
+      "sha256": "6aded1a7300fb536b51a658b838bb728e3295e09461063dbcf94d7ab16e726b0",
+      "trusted_windows_readback": true
+    },
+    {
+      "target": "C:\\Program Files\\Example\\app.exe",
+      "working_directory": "C:\\Users\\Owner\\Documents",
+      "arguments": "--name \"example\"",
+      "description": "Open \ud83d\ude80",
+      "show": 3,
+      "bytes": 1130,
+      "sha256": "95388b6278153c05a854af6fb60acb1ba1be3ad47e1410c94a37e23867d0d4d2",
+      "trusted_windows_readback": true
+    },
+    {
+      "target": "C:\\Program Files\\Example\\app.exe",
+      "working_directory": "C:\\Users\\Owner\\Documents",
+      "arguments": "",
+      "description": "Unicode \u00e9",
+      "show": 7,
+      "bytes": 1100,
+      "sha256": "df11786e9f5068bd682d79240d805bbfd6ae24c03d54bfdc87bbfdb148b77f8a",
+      "trusted_windows_readback": true
+    }
+  ],
+  "shortcut_activations": 0,
+  "sources": {
+    "user/windows8/msi-link147.h": "87dffa8bc1d29ba1635f6dd17149a448ea78c8fee288f0ac6f7fb98d3f4651ae",
+    "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+    "tests/m14/link147_host.c": "214dae6d9245c24a6d1cdb768783ce225a6f16fda421ea64a01682af98b1cf40",
+    "tests/m14/link147_host.py": "2462bcaae309c6ffccbb79af084177b0a6057f8de6ae7d2155293fd34f366c14"
+  }
+}

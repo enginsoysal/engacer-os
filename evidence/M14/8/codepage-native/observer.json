@@ -1,0 +1,38 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "3bc331411c80f39b34b79cf10d302ad6d2feef238d9fbd0a05868fa8d4ca09da",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from codepage147_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/codepage-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-codepage-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M147_NATIVE_CODEPAGE_UTF8_CP1252_REFERENCE_PASS"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "native_cp1252_reference_bytes=256"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Own native selected code-page metadata, 256 independently referenced CP1252 bytes, UTF-8 scalar/surrogate conversions and malformed refusal; not full NLS or original CRT qualification"
+    ]
+  ]
+}

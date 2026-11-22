@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Production quoting vs Windows argument parser and owned utility pattern reference.",
+  "checks": 12529,
+  "reference_vectors": 2502,
+  "sources": {
+    "user/windows8/tools147.h": "7dabcb6f79eaebc9855b4bc57a4255410705efcb4b9213c1ba34dee42ba55b0a",
+    "tests/m14/tools147_host.c": "e11f7860109055b9ea13a2399930d931ce44069683b2adbc6b5ef5aa294e3bd5",
+    "tests/m14/tools147_host.py": "4bc249bc61737951dade64d67077b6570f1c9fbb5ab23ee5c5acf2f803239b7a"
+  }
+}

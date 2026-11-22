@@ -1,0 +1,68 @@
+{
+  "canonical_sha256": "fcde04af4ff5676cd8119ac42bc3d58bcb20ef02b093bddd718189bb19e59d6b",
+  "executed_sha256": "e5d29487e32cb1b89751dde7c7498300b5ff03d6e4b4385ce006c0190d2e955e",
+  "replacements": [
+    [
+      "from global146_build import build",
+      "from session148_build import build"
+    ],
+    [
+      "stage6/global-native",
+      "stage8/session-native"
+    ],
+    [
+      "stage6/apps",
+      "stage8/apps"
+    ],
+    [
+      "m146-window-apps",
+      "m148-window-apps"
+    ],
+    [
+      "m146-global-native",
+      "m148-session-native"
+    ],
+    [
+      "M146_GLOBAL_MEMORY_OWNERSHIP_QUOTA_THREADS_PASS",
+      "M148_NATIVE_SESSION_MESSAGES_SRW_PASS"
+    ],
+    [
+      "range(21)",
+      "range(3)"
+    ],
+    [
+      "assert ui.integer(g,'ui_resident144',True)==0",
+      "assert ui.integer(g,'ui_resident144',True)==1"
+    ],
+    [
+      "assert retained==0,(cycle,retained)",
+      "assert retained==(1 if cycle==0 else 0),(cycle,retained);before=f.stats(g)[0]"
+    ],
+    [
+      "concurrent_alloc_free_rounds=200",
+      "writer_threads=4,reader_threads=4,writer_operations=4000,desktop_dc_rounds=512"
+    ],
+    [
+      "Owned global-memory ABI, handle/LocalAlloc separation, allocation quota and native thread concurrency; not original application qualification",
+      "Native private-worker identity/display/process/message/shell/GDI lifetimes, DC/SRW contention and heap release; not shipped-route acceptance."
+    ]
+  ],
+  "runner_sha256": "035feda4577cc333924d9dca72561dbb687e0b55c4081ddeda005b7412fa3fbb",
+  "rtc_observer_sha256": "83fdeef5537e7f4d0c9e18ed50cce3847b138ed2ade387c8edba6651799292c9",
+  "production_worker_inputs": {
+    "scope": "Fresh production objects plus a labelled private original-EXE routing probe.",
+    "kernel_build_id": "fdb650a0e4cff632bd4945cc1b024567",
+    "source_commit": "39eea525c1a5fa508135753d196b4c7d06252ee2",
+    "private_dispatch_only": true,
+    "ordinary_installer_route_qualified": false,
+    "canonical_recipe_sha256": "5ed18b8fc5e86a7ccd729b60ec1204fa4ef30ce6d27e3cab5ea4d561449265a6",
+    "executed_recipe_sha256": "6eeadbfb7d10c4a6711473dece99631f47b5676916ce23f161e912659b91f922",
+    "production_receipt_sha256": "0e16680d97cb3a279ce2982627f4c6b513a1474372c65e855c743ef01b93c334",
+    "test_sources": {
+      "tests/m14/exe148_probe_dispatch.c": "e92763d00f7e6afe493af1219984fc4b921de602ad586ab3dddfe88ad3fe5e34",
+      "tests/m14/exe148_probe_build.py": "d33f6a1ad7e49619a53e70de6b51266c76bca4a064fc3003d232fd213ec7a18c"
+    },
+    "runtime_sha256": "d4c143860a35eb033ae42365ef48ff3e474d2a9a0db43b8975ca9067bf770e16"
+  },
+  "production_worker_sha256": "91c8c89f2e05488c441edec2552fb96ae3aff16a2ee2dc207a3158e4c9067a66"
+}

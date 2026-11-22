@@ -1,7 +1,6 @@
 # Your first day with Engacer OS M14.8
 
-**Development guide: M14.8 final qualification is pending.** The qualified public
-download remains M14.7 until native tests and publication finish.
+**M14.8 native/source/media qualification passes.** Use the complete matching [release](https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8) and checksums. Homepage publication is separately blocked; see [status](../roadmap/status.md).
 
 Start with the [matching VMware installation guide](install-m148.md). Finish the
 wizard and restart into the installed desktop before trying application tasks.

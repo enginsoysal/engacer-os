@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "scope": "Read owned link bytes using original Windows metadata interfaces; never activate or resolve a link.",
+  "cases": [
+    {
+      "bytes": 1220,
+      "sha256": "20735418798b0946a562043abbcf644400a345eca1d7292b38f38b26cbf7b0c0",
+      "windows_readback": {
+        "target": "C:\\Program Files\\Example\\hello.exe",
+        "description": "Owned shortcut \u00e4",
+        "working_directory": "C:\\Users\\Owner\\Documents",
+        "arguments": "--native \"148\"",
+        "show": 3
+      },
+      "icon": {
+        "path": "C:\\Program Files\\Example\\hello.exe",
+        "index": -17
+      }
+    },
+    {
+      "bytes": 1220,
+      "sha256": "602b80e4f5351afe62b1f14a7ea9bf71859d5e99114e80bfe580cf2e7890160e",
+      "windows_readback": {
+        "target": "C:\\Program Files\\Example\\hello.exe",
+        "description": "Owned shortcut \u00e4",
+        "working_directory": "C:\\Users\\Owner\\Documents",
+        "arguments": "--native \"148\"",
+        "show": 3
+      },
+      "icon": {
+        "path": "C:\\Program Files\\Example\\hello.exe",
+        "index": 0
+      }
+    },
+    {
+      "bytes": 1220,
+      "sha256": "cc6ef11aeb2dbd84d12e31c8e0376aea290abfe46e1b0496d9aeb357d816024c",
+      "windows_readback": {
+        "target": "C:\\Program Files\\Example\\hello.exe",
+        "description": "Owned shortcut \u00e4",
+        "working_directory": "C:\\Users\\Owner\\Documents",
+        "arguments": "--native \"148\"",
+        "show": 3
+      },
+      "icon": {
+        "path": "C:\\Program Files\\Example\\hello.exe",
+        "index": 7
+      }
+    }
+  ],
+  "refused_cases": 2,
+  "source_sha256": {
+    "tests/m14/shell148_host.c": "93cef5611e295acdc2eedda7234986d69e389bcb9de0e3de49dd17c1977be985",
+    "tests/m14/shell148_reference.py": "6775db2b9be20d2cbbd8b266c1b5f0444407c361a5231749fc88d6cd497c623a",
+    "user/windows8/shell-link-format148.h": "7a8c09a8ccbfdc7871ba9521b847ebbe0c0d0a8fd8485c9027d793379d23dee7",
+    "user/windows8/msi-link147.h": "87dffa8bc1d29ba1635f6dd17149a448ea78c8fee288f0ac6f7fb98d3f4651ae",
+    "user/windows8/msi-text147.h": "f15c2541480b6a2b11f402407822aaf087ff31a93bd78db3a1f3040633c19d7b",
+    "tests/m14/link147_reader.py": "f42f8df3ecdd10efd4e9fe8e3853947022910f5a967aff0f5a9030ac665dc880"
+  }
+}

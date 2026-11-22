@@ -1,0 +1,7 @@
+{
+  "canonical_sha256": "f3557d018e2bb3ae83dc0e0fd562df74718d2f3633dd23763be5347efa8bc095",
+  "executed_sha256": "e55378f1f4997e2937694f1423848bdf12a1e6e29d7db195f0ba36e57eef1b47",
+  "adapter_sha256": "8e0cc099c32ef6f00655c9e45732a09b388f9f4b1b478205dd9fae8a4429e850",
+  "cycles": 21,
+  "scope": "Retain all 21 original WiX action assertions with explicit nested stage mapping."
+}

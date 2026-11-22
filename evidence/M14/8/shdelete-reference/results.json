@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "scope": "Owned temporary HKCU SHDeleteValueW reference; no original app or system-key writes.",
+  "observations": {
+    "root_subkey": 0,
+    "null_subkey": 0,
+    "empty_subkey_default": 0,
+    "readonly_null_subkey": 0,
+    "missing_value": 2,
+    "missing_key": 2,
+    "invalid_handle": 6
+  },
+  "current_native_capability_difference": "Readonly-relative reopening cannot widen access in the native explicit-capability profile; native returns 5 instead of the observed Windows 0.",
+  "source_sha256": "f21d94fba16a39c75c310d251f1a563fda4187799c6b3ed03c313bc0f7f49c42"
+}

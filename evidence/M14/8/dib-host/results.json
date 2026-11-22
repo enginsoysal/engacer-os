@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "scope": "Host-only real resource pixels versus independent Pillow decoding; not GUI qualification",
+  "original_images": [
+    {
+      "type": 2,
+      "id": 100,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "62d77be1faf7fab1761bfc217d6ae105b2fbb385204554e646c5443d1a011660"
+    },
+    {
+      "type": 2,
+      "id": 101,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "0ba90f7079b27cd172455e815974ad977dd2deb3027d803abcab14fc81ee160f"
+    },
+    {
+      "type": 2,
+      "id": 102,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "897c835ea2fa186adc38f90763967ec4e1a697d947fcaec6b895fb81b419e094"
+    },
+    {
+      "type": 2,
+      "id": 103,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "1c7460c05ddd1115899cfd4784f1f30d1cce66d081f0c0c47305735edac3db73"
+    },
+    {
+      "type": 2,
+      "id": 104,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "00ab274a184d1654a130ff8a5bae787a94e495697fe72637de063782589e4ba7"
+    },
+    {
+      "type": 2,
+      "id": 105,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "798e43b1c6850babea83e680a3aaed86099f627b04897a91a65bb0d67dccac6f"
+    },
+    {
+      "type": 2,
+      "id": 106,
+      "language": 1033,
+      "width": 48,
+      "height": 36,
+      "bits": 4,
+      "pixel_sha256": "9e584fd40fb96f1cccd38c0d85cc77164f49019b152f43ed109f74cd8625cb97"
+    },
+    {
+      "type": 2,
+      "id": 150,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "8a76e33986c2d4befbb70b4ce5acf802622a5e1022cf32054c719043d3c8d221"
+    },
+    {
+      "type": 2,
+      "id": 151,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "11a72129ceba7b21684cf5b6dcb785be1705a39f0140a6c55bbd89f7d0f184b1"
+    },
+    {
+      "type": 2,
+      "id": 152,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "eb807dcffb647838d7bda027bbfbfff81d1aed88039a5d0575cb8bb8bb04d30f"
+    },
+    {
+      "type": 2,
+      "id": 153,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "3155b98a0fce89f21b2db6eed9f1306c0fd330b7d05124a9f069bda3d2cd93f4"
+    },
+    {
+      "type": 2,
+      "id": 154,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "52f33c806b28987af76c75b127c56153eb7787c36c7cd92e7af893cdc086e413"
+    },
+    {
+      "type": 2,
+      "id": 155,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "f825e01eb571ef89ecb34c6450b6f165db038292df83a23de3a78eaa74b437af"
+    },
+    {
+      "type": 2,
+      "id": 156,
+      "language": 1033,
+      "width": 24,
+      "height": 24,
+      "bits": 4,
+      "pixel_sha256": "e416ec2c488d4458b7c786de1c8380a2982948bdbec3127b1344e02206c6a09b"
+    },
+    {
+      "type": 2,
+      "id": 190,
+      "language": 1033,
+      "width": 13,
+      "height": 13,
+      "bits": 1,
+      "pixel_sha256": "9e413443e2d12ea18f2491d7bbbca4ad9ec7b5dcfbc043a19fa616855ba7c761"
+    },
+    {
+      "type": 3,
+      "id": 1,
+      "language": 1033,
+      "width": 32,
+      "height": 32,
+      "bits": 4,
+      "pixel_sha256": "e0bc101d36723572f3dcf801e94716fdb128c0f3f1430e4fc54a0473fb46d199"
+    },
+    {
+      "type": 3,
+      "id": 2,
+      "language": 1033,
+      "width": 16,
+      "height": 16,
+      "bits": 4,
+      "pixel_sha256": "a46102ce9489c46807fd5411fe32ce7ca2bc92a6dc9291a75512a1d4954f99d1"
+    },
+    {
+      "type": 3,
+      "id": 3,
+      "language": 1033,
+      "width": 48,
+      "height": 48,
+      "bits": 8,
+      "pixel_sha256": "f19c106dc6d8c5fe42ce1127b8d6670c3ae6f413e62177a47e85483fb25cc5d1"
+    },
+    {
+      "type": 3,
+      "id": 4,
+      "language": 1033,
+      "width": 110,
+      "height": 63,
+      "bits": 8,
+      "pixel_sha256": "673d25f7b901ea9cf9409438fb36e5d4c26c6fc71715d426a8ec2ec90b8666ce"
+    }
+  ],
+  "hostile_mutations": 10000,
+  "mutation_results": {
+    "0": 5743,
+    "193": 3313,
+    "50": 944
+  },
+  "sources": {
+    "user/windows8/dib-core144.h": "462d106b82106e931001e5b55b45b0f513afd4eb361fa2c657f8368e3b45ee10",
+    "tests/m14/dib144_host.c": "73d5d1fb3964eabc5ea78c70acff4c27a8b5cc6f9a5d5041ab3f1f0594ac91c1",
+    "tests/m14/dib144_host.py": "29da82027bc79ba1764cac74bafeb35be36f4457285fc7542c19eb436366f22d"
+  }
+}

@@ -2,8 +2,8 @@
 
 Approved by the owner on 21 November 2026. All eight stages are **planned, not
 started**. This replaces the former future M14.9-M14.15 schedule and the longer
-intermediate proposals. M14.0-M14.7 retain their scoped evidence. M14.8 remains
-unfinished. Current authorization: publish this plan, finish M14.8 and then stop.
+intermediate proposals. M14.0-M14.7 retain their scoped evidence. M14.8 native qualification now passes; native homepage publication remains
+blocked as recorded in current status. Current authorization ends after M14.8.
 Do not start M14.9 implementation until the owner resumes work.
 
 ## Product scope and architecture

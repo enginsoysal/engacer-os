@@ -1,0 +1,12 @@
+{
+  "codecs": {
+    "canonical_c_sha256": "78cd41eefe633382d8da82990d2e7e0a419a044b8cc15959d6a69ec7324142f1",
+    "generated_c_sha256": "819fe6bf375f33dd2937b3a12e334dd874796c18c033b69e2cf8fb158d36cf6b",
+    "canonical_runner_sha256": "4ad85b80709bc079bf55fa9b5a6eb562eeb123e71031c8502d3590c59ea94a33",
+    "executed_runner_sha256": "e6ef70f6a9a8e1a04ed6a490e0a4e969b6188ae6b508785300ff5df578776f07",
+    "additional_dbcs_checks": 1537
+  },
+  "passed": true,
+  "scope": "Recreate read-only archive inputs and exercise newly exposed codec helpers.",
+  "adapter_sha256": "26496e9d85e1fd5152c286cbc077479698ddc24276c772562127c331d9401c01"
+}

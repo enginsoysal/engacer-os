@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Production shell path operation vs native Windows strings, no vendor app execution.",
+  "checks": 258,
+  "differences": [],
+  "sources": {
+    "user/windows8/pathappend148.inc": "93f5ea817147a5ec74a02ba7df7351ec990bb89e61c9612440bf88db2cd6de86",
+    "tests/m14/pathappend148_host.c": "1d9760f9e748ba585592247fd0bf3b96806ab4ffb8f88bbe0557c65609c9a0ea",
+    "tests/m14/pathappend148_host.py": "57bcfc93b3fae12b29d85027d55294b2a070313a80d960a501ebd6edea3ba092"
+  }
+}

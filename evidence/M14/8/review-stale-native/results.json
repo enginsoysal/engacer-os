@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "clone": {
+    "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+    "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 14680064
+  },
+  "scope": "Native ordinary-input MSI chooser, cancellation and source-bound metadata review.",
+  "packages": [
+    {
+      "file": "7z2606-x64.msi",
+      "sha256": "6dc822569e777d9a3ecd5ffcbc22b55600af87e6c5d9810a64e8566cf5a4af9f",
+      "profile": 3,
+      "files": 106,
+      "registry": 16,
+      "shortcuts": 2,
+      "features": 3,
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: 7-Zip 26.06 (x64 edition)\nSelected original files: 106 bytes: 5882028\nAuthored registry entries: 16 shortcuts: 2\nMSI execute actions: 23 custom-action metadata: 0\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    },
+    {
+      "file": "npp.8.9.9.1.Installer.x64.msi",
+      "sha256": "e3b0607a092ce2604fbdac027db2c94915995e8e568ebd226f8c5493c2f61a80",
+      "profile": 2,
+      "files": 217,
+      "registry": 10,
+      "shortcuts": 1,
+      "features": 3,
+      "output": "Mapped Engacer service image: msiexec.exe bytes=20480 source-fnv32=1906778515\nMapped Engacer service image: msi.dll bytes=503808 source-fnv32=3024734052\nRunning the native Engacer MSI service in a protected process.\n\nMSI original product: Notepad++ (x64)\nSelected original files: 217 bytes: 28130419\nAuthored registry entries: 10 shortcuts: 1\nMSI execute actions: 30 custom-action metadata: 4\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n"
+    }
+  ],
+  "changed_source_blocks_confirmation": true,
+  "checks": [
+    "Chooser opens with MSI filter; cancel preserves previous selection",
+    "Both unchanged original MSI packages produce their independently computed source digest",
+    "Both original packages pass read-only generic admission without starting an install job or mutating a product"
+  ]
+}

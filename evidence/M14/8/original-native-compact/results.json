@@ -1,0 +1,716 @@
+{
+  "passed": true,
+  "original_gui_qualified": false,
+  "scope": "M14.8 original file-manager window/input/lifetime profile only; NOT complete app tasks or general Windows compatibility",
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+  "profile": "compact",
+  "clone": {
+    "source_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "clone_sha256": "e8f29e3bfb0c4392fd3df0d5d594823e0074d42087a17fbf8d713ed99c517af3",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 1,
+      "exit_status": 0
+    },
+    {
+      "cycle": 2,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 3,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 4,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 5,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 6,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 7,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 8,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 9,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 10,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 11,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 12,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 13,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 14,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 15,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 16,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 17,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 18,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 19,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 20,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        80,
+        70,
+        784,
+        518
+      ],
+      "resized_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    },
+    {
+      "cycle": 21,
+      "halted_cpus_at_message_wait": 2,
+      "initial_bounds": [
+        80,
+        70,
+        760,
+        500
+      ],
+      "actual_original_edit_input": true,
+      "moved_bounds": [
+        110,
+        90,
+        760,
+        500
+      ],
+      "resized_bounds": [
+        110,
+        90,
+        784,
+        518
+      ],
+      "native_minimize_restore": true,
+      "maximized_bounds": [
+        0,
+        0,
+        1280,
+        740
+      ],
+      "native_maximize_minimize_restore_consistency": true,
+      "retained_pages": 0,
+      "exit_status": 0
+    }
+  ],
+  "physical_dimensions": [
+    1280,
+    800
+  ],
+  "scale_units": 2,
+  "output": "Mapped original image: 7zFM.exe bytes=1019904 source-fnv32=3830248125\nRunning the original Windows executable in a protected process.\n\n",
+  "original_window_profile_passed": true
+}

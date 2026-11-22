@@ -1,0 +1,9 @@
+{
+  "extraction": {
+    "canonical_sha256": "68486c0093151761d4f43f0257295b89e25f452b8a49df22a5eebfd319cfe7f1",
+    "executed_sha256": "ed8a65514ef318a25dcce1f243997c01bcf2b6619f000d15f5faee6c4ba9be13"
+  },
+  "passed": true,
+  "scope": "Recreate read-only archive inputs and exercise newly exposed codec helpers.",
+  "adapter_sha256": "26496e9d85e1fd5152c286cbc077479698ddc24276c772562127c331d9401c01"
+}

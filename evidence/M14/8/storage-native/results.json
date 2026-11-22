@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "build_id": "fdb650a0e4cff632bd4945cc1b024567",
+  "observer_sha256": "79b28e52208f33eced33893cbe79cdfb3dc442780fb341476ec33e95ab296b1e",
+  "fixture_sha256": "48f67020847318f031349d3dd82fa908d9957d18534cd78f3033b9e63e2416b1",
+  "scope": "Test-only native worker over the production kernel; confirmed INSTALL, actual 9-MiB streaming, extent promotion, cancellation and recovery-record retention. Not authored original MSI installation or complete rollback qualification.",
+  "cases": [
+    {
+      "mode": "success",
+      "clone": {
+        "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "first_activation_pages": 4,
+      "state": 2,
+      "status": 0,
+      "message": "Native storage fixture passed; no application was installed.",
+      "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\nM147_NATIVE_STREAM_JOURNAL_PROMOTION_PASS rounds=19\n",
+      "stream_samples": 13,
+      "whole_file_dirty_pages": 0,
+      "retained_managed_pages": 0,
+      "peak_native_managed_pages": 221
+    },
+    {
+      "mode": "cancel",
+      "clone": {
+        "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "first_activation_pages": 4,
+      "state": 3,
+      "status": 1,
+      "message": "Operation cancelled. Uncommitted file writes were discarded.",
+      "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\n",
+      "stream_samples": 1,
+      "whole_file_dirty_pages": 0,
+      "retained_managed_pages": 0,
+      "peak_native_managed_pages": 219
+    },
+    {
+      "mode": "journal-fail",
+      "clone": {
+        "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "first_activation_pages": 4,
+      "state": 3,
+      "status": 1,
+      "message": "Installation stopped. Its transaction was kept; choose Recover / remove.",
+      "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\nM147_EXPECTED_FAILURE_AFTER_JOURNAL\n\nEngacer OS: Intentional test-only failure after journal publication.\n",
+      "stream_samples": 13,
+      "whole_file_dirty_pages": 0,
+      "retained_managed_pages": 0,
+      "peak_native_managed_pages": 221,
+      "independent_restart_preserves_journal_and_payload": true
+    },
+    {
+      "mode": "corrupt-journal",
+      "clone": {
+        "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "first_activation_pages": 4,
+      "state": 3,
+      "status": 1,
+      "message": "The recovery record needs inspection. Files were kept; no automatic rollback was performed.",
+      "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\nM147_EXPECTED_FAILURE_AFTER_JOURNAL\n\nEngacer OS: Intentional test-only failure after journal publication.\n",
+      "stream_samples": 12,
+      "whole_file_dirty_pages": 0,
+      "retained_managed_pages": 0,
+      "peak_native_managed_pages": 221,
+      "independent_restart_preserves_journal_and_payload": true
+    },
+    {
+      "mode": "cancel-journal",
+      "clone": {
+        "source_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "clone_sha256": "ec47c5c9fca7a7a7ecf48daa4d7d5d49adba897187b61abad13c027b5a57472e",
+        "logical_bytes": 2147483648,
+        "allocated_bytes": 14680064
+      },
+      "first_activation_pages": 4,
+      "state": 3,
+      "status": 1,
+      "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+      "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\n",
+      "stream_samples": 11,
+      "whole_file_dirty_pages": 0,
+      "retained_managed_pages": 0,
+      "peak_native_managed_pages": 221,
+      "independent_restart_preserves_journal_and_payload": true
+    }
+  ],
+  "last_observed": {
+    "mode": "cancel-journal",
+    "state": 3,
+    "status": 1,
+    "message": "Cancelled. Its transaction was kept; choose Recover / remove.",
+    "output": "M147_TEST_ONLY_STORAGE_WORKER; NOT ORIGINAL APPLICATION QUALIFICATION\n",
+    "stream_owner": 0,
+    "dirty_pages": 0,
+    "retained_managed_pages": 0,
+    "before_managed_pages": 1051,
+    "after_managed_pages": 1051
+  }
+}

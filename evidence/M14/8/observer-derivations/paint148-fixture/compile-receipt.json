@@ -1,0 +1,9 @@
+{
+  "canonical_c_sha256": "a94917b7063c70083fbdc41995d0bc3006395164a111e6772890642d15216749",
+  "generated_c_sha256": "4a038886b9637ca10ecbc9736420d2e95a4e88b69bd02a12c538637edff792a6",
+  "canonical_builder_sha256": "8989cc8e96dbaa5a8a603c235b9a175a76075f7c03e08466390f87816628ecb3",
+  "executed_builder_sha256": "08489af93e52febb63f49c2c2e659bd7432504eb00d0b0127e46872188c1a376",
+  "adapter_sha256": "488f02ed5bdc12bc226bab630bc33efb5cb68ad9da7e371e7543fddd931c8f1e",
+  "pe_sha256": "9587c29f9fa983285dc68d34fb6860a350629c5e7ca1e466e0b33ba51b7fee44",
+  "scope": "Keep historical paint/fault coverage with actual selected-font metrics."
+}

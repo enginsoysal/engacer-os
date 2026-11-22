@@ -3,15 +3,16 @@
 
 ## Start here
 
-**Current native release: [M14.7](https://github.com/enginsoysal/engacer-os/releases/tag/m147-v0.14.7).** Native qualification passes within M14-STAGE7-VM-v1. Native/source/media qualification passes with 98 native and 39 supporting host groups across 138 campaign tasks. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified. Follow the guide matching your download.
+**Current native release: [M14.8](https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8).** M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained. Follow matching media and guides.
 
-- [Download, verify and install in VMware](install-m147.md)
-- [Original Windows menus, folders and browser downloads](windows-m147.md)
+- [Download, verify and install](install-m148.md)
+- [Original MSI and EXE installer walkthrough](windows-m148.md)
+- [First day](first-day-m148.md)
 - [Current supported behavior and limits](../roadmap/status.md)
-- [Release scope and checksums](../releases/m147-v0.14.7.md)
+- [Release scope and checksums](../releases/m148-v0.14.8.md)
 - [Build your distribution](distributions.md)
 
-M14.7 qualifies original 7-Zip and Notepad++ x64 MSI installation, removal, reinstallation and guided recovery within the tested bounded profiles. Required original WiX copy/delete bodies execute natively. Notepad++ editor use, Sumatra installation/interface, full original GUI archive tasks and Firefox execution remain unqualified. All original-app tasks remain mandatory in M14.12; whole-system CPU/RAM/storage optimization blocks final M14.15.
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9-M14.16 remain planned, not started; final integrated optimization is M14.16.
 
 ## Use the desktop
 
