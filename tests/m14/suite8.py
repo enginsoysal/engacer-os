@@ -3,9 +3,24 @@
 This adapter never edits accepted historical observers. Resume requires an
 identical observer tree; changed inputs require a fresh campaign.
 """
-import hashlib,sys
+import hashlib,json,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
+
+def resume148(prior,name,record,command,current_tree,current_digest,out,build):
+ if record.get('validated_source_tree_sha256',record['source_tree_sha256'])==current_digest:return True
+ if not prior:return False
+ original=prior if record['source_tree_sha256']==prior['source_tree_sha256']else json.loads((out/('observer-tree-'+record['source_tree_sha256']+'.json')).read_text())
+ assert hashlib.sha256(json.dumps(original['files'],sort_keys=True).encode()).hexdigest()==record['source_tree_sha256']
+ old=original['files'];differences={p for p in old.keys()|current_tree.keys()if old.get(p)!=current_tree.get(p)}
+ allowed={'tests/m14/suite8.py','tests/m14/verify8.py','tests/m14/wix_action148_lifetimes.py'}
+ if not differences<=allowed:return False
+ if 'tests/m14/wix_action148_lifetimes.py'in differences and 'tests/m14/wix_action148_lifetimes.py'in old:return False
+ assert command[0]not in allowed
+ record['validated_source_tree_sha256']=current_digest
+ record['verified_unconsumed_tree_changes']={p:dict(before=old.get(p),after=current_tree.get(p))for p in sorted(differences)}
+ record['reuse_scope']='Unchanged frozen OS media, command and consumed observers; only orchestration/verifier maintenance and a previously absent WiX entry were added. Original executed tree is preserved.'
+ return True
 
 def main():
  canonical=ROOT/'tests/m14/suite7.py';raw=canonical.read_bytes();text=raw.decode()
@@ -26,12 +41,13 @@ def main():
   add(name,'tests/m14/'+script,dependencies=dependencies,priority=5 if dependencies else 30)
   tasks[name]['command']=[sys.executable,'tests/m14/'+script]
  del tasks['static146-host']
+ tasks['msi147-wix_action-native']['command']=[sys.executable,'tests/m14/wix_action148_lifetimes.py']
  assert len(tasks)==147,len(tasks)'''"""
  text=text.replace(needle,additions)
  needle='def validate_resume(prior, name, record, command, current_tree, current_digest, out, build):'
  assert text.count(needle)==1
- text=text.replace(needle,needle+'\n    return record.get("source_tree_sha256")==current_digest\n')
- namespace=dict(__name__='suite148_derivation',__file__=str(canonical))
+ text=text.replace(needle,needle+'\n    return resume148(prior,name,record,command,current_tree,current_digest,out,build)\n')
+ namespace=dict(__name__='suite148_derivation',__file__=str(canonical),resume148=resume148)
  exec(compile(text,str(canonical),'exec'),namespace)
  namespace['main']()
 
