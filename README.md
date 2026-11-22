@@ -15,7 +15,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9-M14.16 remain planned, not started; final integrated optimization is M14.16.
 
-GitHub downloads and independent public content checks are being finalized. Native homepage Save is blocked by the reproduced BrixCanvas website-read error; article synchronization works. A stale homepage is not counted as successful publication.
+All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication.
 
 ## Native qualification
 

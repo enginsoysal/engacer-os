@@ -2,7 +2,7 @@
 
 M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained.
 
-GitHub downloads and independent public content checks are being finalized. Native homepage Save is blocked by the reproduced BrixCanvas website-read error; article synchronization works. A stale homepage is not counted as successful publication. [Status](../docs/roadmap/status.md), [acceptance](../evidence/M14/8/acceptance-results.json), [release](../docs/releases/m148-v0.14.8.md).
+All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication. [Status](../docs/roadmap/status.md), [acceptance](../evidence/M14/8/acceptance-results.json), [release](../docs/releases/m148-v0.14.8.md).
 
 Historical M14.6 publication: twenty verified downloads, 594 pages, 385 exact-source articles and 4383 links; [immutable receipt](../evidence/M14/6/publication-results.json).
 
