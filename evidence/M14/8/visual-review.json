@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "build_id": "7d5ee354b13bfd2ef83849f44242449a",
+  "scope": "Agent visual review of eight actual production-media native captures, not complete acceptance or a human usability study.",
+  "captures": [
+    "exe-review-native/ordinary-exe-review-0.png",
+    "exe-chain-native/source-review-0.png",
+    "exe-chain-native/confirmation-0.png",
+    "exe-chain-native/original-after-operation-0.png",
+    "exe-chain-native/verified-0.png",
+    "exe-chain-native/confirmation-1.png",
+    "exe-chain-native/original-after-operation-1.png",
+    "exe-chain-native/verified-1.png"
+  ],
+  "capture_sha256": {
+    "exe-review-native/ordinary-exe-review-0.png": "c833ec5a54edcb0a434dfe4594dacf4a4b19ebe337319f97883f54249885f69c",
+    "exe-chain-native/source-review-0.png": "531454551195beffc80790ca63f27ec5fd682690ed16c0ba5f3a2d7118598d21",
+    "exe-chain-native/confirmation-0.png": "3793c90624ed8b49572c1dd2e9b1b06bdbe893407441d43e05151e70ebc053a9",
+    "exe-chain-native/original-after-operation-0.png": "7b6b4c35e4116bfe7659ba0b29ac225f2a4dc9adafbb54ed594ccc72fc8c2da5",
+    "exe-chain-native/verified-0.png": "68058c46c233473209b9319e193bfe4de75373581428600ba396f8d9cb429f94",
+    "exe-chain-native/confirmation-1.png": "75371c0778dc7b8dc9cfe499384ff575db71da1a9eb064889c1c08dd81545de5",
+    "exe-chain-native/original-after-operation-1.png": "a4625558ddbb7cfd70f1e444e49b57aa975ea41ce759e04d5b0321c62b949b67",
+    "exe-chain-native/verified-1.png": "d51fda41edb99539a2c1ef588fed5922e0669e74ea3e625f37333c3ec26d331a"
+  },
+  "observations": [
+    "Review and confirmation are separate; the exact source, approved destination and original setup arguments are visible.",
+    "Essential native controls and wrapped verification messages are readable without overlap in reviewed compact captures.",
+    "Original setup and removal windows show their actual completion text; durable Installed/Not installed states follow independent verification.",
+    "The installed view explicitly says the PDF reader itself is not qualified."
+  ],
+  "limits": [
+    "The original decorative SumatraPDF logo uses the canonical fallback font and is horizontally clipped. This is not pixel-identical Windows font rendering.",
+    "The original Start SumatraPDF button remains visible but is not a qualified reader task. Close the original window with its title-bar X as described in the guide.",
+    "The outer broker shows bounded waiting progress rather than original installer percentage while the original window is active.",
+    "This review does not qualify arbitrary EXE installers or the PDF reader."
+  ]
+}

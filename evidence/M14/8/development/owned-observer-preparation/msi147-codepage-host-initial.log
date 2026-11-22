@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay8.py", line 35, in <module>
+    exec(compile(text,str(canonical),'exec'),globals())
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay7.py", line 120, in <module>
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\replay7.py", line 104, in main
+    (json.dumps(receipt, indent=2) + '\n').encode('utf-8'))
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tests\m14\codepage147_host.py", line 9, in main
+    command([t['clang'],'--target=x86_64-pc-windows-msvc','-O2','-Wall','-Wextra','-Werror','-DENGINE_M14','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-stack-arg-probe','-I',ROOT/'include','-c',ROOT/'tests/m14/codepage147_host.c','-o',out/'codec.obj'])
+  File "C:\Users\EnginSoysal\OneDrive - ProSysTech\Documents\ChatGPT\Codename-Engine-OS\tools\build\m1.py", line 30, in command
+    if process.returncode:raise RuntimeError(process.stderr.replace(str(ROOT),'<project-root>'))
+RuntimeError: In file included from <project-root>\tests\m14\codepage147_host.c:8:
+<project-root>\tests\m14\../../user/windows8/codepage147.inc:8:15: error: unused function 'f_IsDBCSLeadByte' [-Werror,-Wunused-function]
+    8 | static int MS f_IsDBCSLeadByte(uint8_t value){(void)value;return 0;}
+      |               ^~~~~~~~~~~~~~~~
+<project-root>\tests\m14\../../user/windows8/codepage147.inc:9:15: error: unused function 'f_IsDBCSLeadByteEx' [-Werror,-Wunused-function]
+    9 | static int MS f_IsDBCSLeadByteEx(unsigned cp,uint8_t value){(void)value;if(cp!=0&&cp!=1&&cp!=3&&cp!=65001&&cp!=1252)last8(87);return 0;}
+      |               ^~~~~~~~~~~~~~~~~~
+2 errors generated.
+
