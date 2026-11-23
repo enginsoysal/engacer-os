@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "scope": "Documentation and publication-metadata validation only, not native app-environment or execution qualification.",
+  "date": "2026-11-23",
+  "future_m14_stages": [
+    "M14.9",
+    "M14.10",
+    "M14.11",
+    "M14.12",
+    "M14.13",
+    "M14.14",
+    "M14.15",
+    "M14.16"
+  ],
+  "later_execution_plans": [
+    "M15 standalone x86",
+    "M16 Win16/DOS"
+  ],
+  "native_implementation_changed": false,
+  "os_media_built": false,
+  "accepted_evidence_changed": false,
+  "publisher_tests": 50,
+  "relative_links_checked": 324,
+  "architecture_decision": "080",
+  "document_sha256": {
+    "AGENTS.md": "e9b317f8968f399981aa42033cb09da97402704fb9ba0eeb7888af9b87763215",
+    "README.md": "e132ca68b8bc9414cbb16661ff0b23363705bc4d1aa8be8b85703c89cfde32f4",
+    "docs/architecture/components.md": "0dd8ac211cf75638b7fc291bb55cf2bdcba0e0a69407886fbe141c1f01f9d85c",
+    "docs/architecture/decisions.md": "cdbb7b46f89be754c607469f8874bd63cf918a953c66e3bdce01608d1143c51c",
+    "docs/architecture/overview.md": "300e198b34f0edc3c2d09bdaaa8c8862d1f015df94f10585fd5a01f33fae48dd",
+    "docs/architecture/windows-m14.md": "ae1fd7c331436a729dae781fd0ee6838593bc97c0b981255244a3e6e0db8cf7e",
+    "docs/milestones/m14-10.md": "a927f757812a1cbd13ded20c0f4c0b63fe2584fe0fbef09f2950e7576b1c28c2",
+    "docs/milestones/m14-11.md": "9cdbe07e53860c04baedc4494eafa3996d1b14f4aee2c0ef2c3c65bfa56632fb",
+    "docs/milestones/m14-12.md": "560ac45cee228de00fc63e208ac530421d8f7cd614d8335527d0063c93bbf8f8",
+    "docs/milestones/m14-13.md": "fd0baa402e0593c074f56aeb24aa299ac745216b92d357a80e9672c5b01015f1",
+    "docs/milestones/m14-14.md": "c8f13099a4be58ee719b51879b83592c2b388e8defb8b4e84a15b8ff468d24a4",
+    "docs/milestones/m14-15.md": "e7bc96ff605586c1825a3dfec98c64cbce5735c8ed49ac90f763a98c74f3414e",
+    "docs/milestones/m14-16.md": "1422b8af9003f690fe829187041c54b424141fd657b16705680b7cdcd6ce1fd4",
+    "docs/milestones/m14-9.md": "eec965f64362c4ee0d18cb5a8fc50b1941184df46e48ba3e0f1a3c706693df5f",
+    "docs/milestones/m14-consolidated.md": "b141d4112eacbe8225130638fa2f92aa1f1e625b1b6dbb07ad65b0312bf4bec2",
+    "docs/milestones/m14-progress.json": "3d7838833507172a4d5ae76e641626b2d255743d04532d24215b0c921240cd3a",
+    "docs/milestones/m14.md": "ab88b07f5ca13e765f768ce0e35166ba00cbacf23446e323c3a0c77b9c554f22",
+    "docs/roadmap/status.md": "7aa3bedc1f1952246ef7ebce6bc4198de06392431a8d0706ccd2e89a48e0fde7",
+    "website/brix/portal.json": "8a7ea18d848f38b01bd6d61b69430d800074354f0cb18f16c6e55ba4350aa630",
+    "website/brix/portal.test.mjs": "00fb246eee306f491a1bb33baa147874093e03794560c20108a35ac736ca5fb5",
+    "docs/architecture/windows-app-environments.md": "662b3c40d63f7b1fed335badf714e7d9bf6bba06e834e6c4564e88746bf07c05",
+    "docs/milestones/m15.md": "7d7b0a58df3a84ef9c8476a9827efa6faff86d8e4879b11a14305f98019291ca",
+    "docs/milestones/m16.md": "57f79c21bdefc13833a2df8307677261f442d4b1c848a4d8e912cd77f9d618ed"
+  },
+  "owner_policy": {
+    "app_dependency_sharing": false,
+    "global_application_registry": false,
+    "ordinary_installer_primary": true,
+    "dependency_routes": 3
+  }
+}

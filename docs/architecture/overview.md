@@ -5,6 +5,16 @@ The current native-qualified stage is [M14.7](../releases/m147-v0.14.7.md), with
 Each release binds its own source, media and named native tests. Older M0-M13 results explain established mechanisms; they do not automatically qualify new media. The M14.8 exact candidate retains original 7-Zip window/input/menu/About/folder-navigation preview tasks, retained file/settings/runtime tasks, compact/ordinary/4K installation, independent startup and its exact VMware package. Full original GUI application tasks remain unqualified. Complete public delivery is recorded separately from native acceptance.
 
 
+## Planned independent Windows app environments
+
+The [23 November 2026 contract](windows-app-environments.md) selects one
+self-contained app directory, private registry and independently owned
+dependency copies. No cross-app runtime/DLL store or app-code deduplication.
+Ordinary installation stays primary; dependencies use attributable automatic
+assistance, the app context menu or collapsed installer Advanced options.
+The model spans x64, x86 and Win16/DOS management; their execution mechanisms
+remain separate work. This is a planned architecture, not an M14.8 capability.
+
 ## Layers
 
 ```text

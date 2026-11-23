@@ -1,5 +1,16 @@
 # M14 Windows x64 runtime and efficiency contract
 
+## Owner-selected private app environments
+
+The 23 November 2026 [independent app-environment contract](windows-app-environments.md)
+supersedes proposed cross-app DLL/runtime/provider sharing. Each app owns its
+complete installed dependency tree and Windows-visible registry. The own
+kernel/platform is the common foundation; app-owned dependencies cannot be
+resolved through another bundle or a global store. The detailed
+[M14.9-M14.16 stages](../milestones/m14-consolidated.md), [M15](../milestones/m15.md)
+and [M16](../milestones/m16.md) schedule implementation. Current work is planning
+only; M14.8 is unchanged.
+
 ## Execution and trust boundary
 
 The owner approved the [eight consolidated M14.9-M14.16 work packages](../milestones/m14-consolidated.md)
@@ -29,11 +40,11 @@ Reference profiles are the same named virtual hardware/controller/firmware, two 
 
 Use seven independent cold starts and seven warm starts per target after the first functional baseline exists. Cold means a fresh owned VM process and restored stopped test-disk snapshot; name separately any host/page/disk caches that cannot be flushed safely. Never claim physically cold storage from a fresh guest alone. Keep the same fixtures and scripted workload. Publish raw samples, median and p95, with observer cost/gaps and warmup recorded separately.
 
-Measure wall start-to-interactive time and real app work, process and total guest CPU time, input-to-visible latency, private/committed/resident/shared memory, fixed reservations, managed peak, retained bytes and cache/surface budgets. Count file-level reads/writes, block/device bytes/requests, temporary files, flushes and eventual drained writeback. Sparse disk allocation or compressed archive bytes are not actual I/O traffic. Installed footprint is a separate metric. Aggregate shared pages once and include compatibility/kernel work, not only the app process.
+Measure wall start-to-interactive time and real app work, process and total guest CPU time, input-to-visible latency, private/committed/resident/shared memory, fixed reservations, managed peak, retained bytes and cache/surface budgets. Count file-level reads/writes, block/device bytes/requests, temporary files, flushes and eventual drained writeback. Sparse disk allocation or compressed archive bytes are not actual I/O traffic. Installed footprint is a separate metric. Account native OS/platform shared pages once and private app dependency pages per owner, without cross-app coalescing. Include compatibility/kernel work, not only the app process.
 
 ## Initial budgets and release decisions
 
-After completed app tasks, unexplained managed retention must be zero across twenty start/use/close cycles; explicitly shared caches require a separately declared cap and repeatable steady state. No new periodic compatibility polling worker is permitted; idle work must be event-driven and explainable (including app-originated timers). No unsolicited recurring disk writes are allowed in the registered quiescent scenario. Drained I/O and durable file hashes must agree after independent starts and controlled interrupted-write tests.
+After completed app tasks, unexplained managed retention must be zero across twenty start/use/close cycles; native OS/platform caches require a declared cap and repeatable steady state; app dependency caches remain private and may not be shared across AppIds. No new periodic compatibility polling worker is permitted; idle work must be event-driven and explainable (including app-originated timers). No unsolicited recurring disk writes are allowed in the registered quiescent scenario. Drained I/O and durable file hashes must agree after independent starts and controlled interrupted-write tests.
 
 Before each first native app implementation is qualified, freeze that app's absolute CPU/time/memory/I/O bounds from the declared profile and observed working baseline. Those currently unsupported GUI metrics are explicitly unmeasured, not zero. From that point a >5% median start/CPU/I/O regression, >10% p95 input latency regression, increased retained memory or fixed-state growth blocks the stage until corrected or a quantified necessary tradeoff is explicitly documented before acceptance. Repeat when sample spread makes a threshold inconclusive; never select only the best run. An app's own computation imposes a floor; optimize avoidable OS/runtime overhead and total system cost.
 

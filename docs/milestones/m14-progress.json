@@ -116,66 +116,218 @@
     },
     {
       "id": "M14.9",
-      "title": "Compatibility architecture and reference laboratory",
-      "deliver": "**Deliver:** A version-bound inventory of APIs, ABIs, system calls, component and\ndriver interfaces, formats and protocols; a dependency graph and missing-behavior\nregister; automated differential tests against Windows 7/8/8.1/10/11.\n\n**How and why:** Use primary documentation and SDK/WDK metadata to inventory\ninterfaces. Run owned probes to compare results, side effects, errors, ordering,\nlifetime and concurrency. Signatures alone do not specify behavior.\n\n**Acceptance:** Reproducible reference/native mismatches, provenance and baseline\nversions are recorded. Known requirements have an implementation owner and test\nor explicit investigation task. The reference lab operates independently of\nspecific commercial app success.",
+      "title": "Environment contracts and compatibility reference laboratory",
+      "deliver": "Freeze environment identity, private storage/registry/component contracts, dependency records and versioned Windows reference probes.",
       "status": "planned",
-      "document": "docs/milestones/m14-9.md"
+      "document": "docs/milestones/m14-9.md",
+      "how_and_why": "One ownership model prevents conflicting assumptions in loaders, runtime activation and installer UX.",
+      "acceptance": "Schemas, ownership/escape matrix, reference provenance, migration policy and all-three-route walkthroughs are reviewed; no runtime feature is claimed.",
+      "implementation_steps": [
+        "Specify stable AppId, user, architecture, environment generation and owner identities; define which process/broker may create or change each identity.",
+        "Freeze a versioned bundle layout and manifest/transaction/dependency-record schema, including original source, component versions, graph edges, failures, permissions, private registry views, service instances and restart state.",
+        "Draw the boundary between private app components and native OS/kernel/device facilities. Ban cross-app DLL/runtime stores, link/dedup shortcuts and module cache reuse. Define minimal rebuildable shell/index records outside bundles.",
+        "Specify logical Windows paths and HKLM/HKCU/HKCR views, including x64/x86 redirection and architecture-correct component lookup. Include Win16/DOS requirements in the format without claiming their execution is implemented.",
+        "Define owner-bound context tickets and failure-event records for all three dependency entry routes. Ordinary installation remains primary; dependency targeting in a separately opened installer is under Advanced.",
+        "Build the versioned Windows 7/8/8.1/10/11 reference matrix and a traceable missing-contract register covering APIs, runtimes, components and drivers. Compare actual results, errors, ordering and side effects using owned probes.",
+        "Inventory legacy M14.8 state and design conservative migration/reinstallation rules. Ambiguous legacy ownership cannot be guessed or silently shared."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": []
     },
     {
       "id": "M14.10",
-      "title": "Complete execution foundation",
-      "deliver": "**Deliver:** Required loader, DLL, NT object, process, memory, thread, exception,\nfile, registry, identity and access-control behavior. Include necessary x86\ninstallers/helpers of x64 products instead of deferring those dependencies to M15.\n\n**How and why:** Translate Windows-visible contracts into own kernel operations,\npreserving binary layouts, results, errors, lifetime and security semantics.\n\n**Acceptance:** Real effects, faults, concurrent execution, mixed-architecture\ntransitions and resource cleanup pass reference and native tests. Unimplemented\noperations never become successful no-ops.",
+      "title": "Private execution, files, registry and process ownership",
+      "deliver": "Implement native owner context, private loader/files/registry/object views and required x86 helpers for x64 products.",
       "status": "planned",
-      "document": "docs/milestones/m14-10.md"
+      "document": "docs/milestones/m14-10.md",
+      "how_and_why": "Enforce ownership at kernel/handle boundaries and preserve real Windows-visible semantics, errors and lifetime.",
+      "acceptance": "Native A/B private-copy/backing tests, inherited context, cross-owner rejection, delayed loading, mixed-architecture execution and cleanup pass.",
+      "implementation_steps": [
+        "Attach immutable AppId/user/architecture/generation context to processes, threads, file/registry handles, memory objects and installer brokers. Inherit it across child creation, exceptions, cancellation and authorized privilege transitions; never trust a caller-editable environment variable as authority.",
+        "Implement private filesystem views for program/system/data/temp names. Resolve traversal, links, aliases, case, Unicode, locking and metadata inside the grant. Explicit external document grants do not grant foreign app roots.",
+        "Implement per-app durable registry machine/class/user stores, WOW64 views, enumeration, notifications, permissions and accurate errors. Project OS facts explicitly; do not use a global mutable Windows hive as a fallback.",
+        "Bind PE imports, delay/runtime DLL loads, manifests, activation contexts, API-set/system-module views and module caches to the correct environment. Loaded app components cannot come from a different AppId's backing pages.",
+        "Provide real process/thread/TLS/exception/wait/memory/identity behavior and owner-scoped named objects. Preserve original error and cleanup semantics; a namespace wrapper cannot turn unsupported work into successful no-ops.",
+        "Implement necessary x86 installer/helper execution and x64/x86 transitions for x64 products now. Respect 32-bit System32/SysWOW64 and registry views; standalone x86 product expansion remains M15.",
+        "Add bounded terminal-failure events at actual import/activation/helper boundaries. Record architecture, requested identity, final error and owner. Do not classify every failed intermediate search as a missing dependency.",
+        "Implement protected bundle metadata and minimal rebuildable native indexes; enforce owner-safe rename/move and stale-object rejection."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.9"
+      ]
     },
     {
       "id": "M14.11",
-      "title": "Windows platform services",
-      "deliver": "**Deliver:** Required services, IPC/RPC, COM/OLE/WinRT, native/managed runtimes,\ncommand/script environments, data interfaces, network, cryptography and\nauthentication.\n\n**How and why:** Build shared providers and actual component/service lifetimes.\nResolve dependencies of original runtimes and helpers instead of substituting\nproduct-specific effects.\n\n**Acceptance:** Components execute and communicate, errors propagate, appropriate\nstate survives restart, and peak/retained resources remain bounded.",
+      "title": "Private runtimes, services and dependency activation",
+      "deliver": "Execute private runtimes, COM/services/helpers and transitive dependency activation, including real .NET family/version behavior.",
       "status": "planned",
-      "document": "docs/milestones/m14-11.md"
+      "document": "docs/milestones/m14-11.md",
+      "how_and_why": "A private directory or registry version flag is not a working CLR or service; implement and test actual dependencies.",
+      "acceptance": "Original runtime/helper tasks activate correctly, late/optional failures are distinguished and two apps retain independent components and service state.",
+      "implementation_steps": [
+        "Inventory runtime family/version/architecture requirements from manifests, managed metadata, configuration and real activation traces. Distinguish .NET Framework (including CLR 4 activation) from modern .NET, native C/C++ runtimes, scripting engines and Java or other app-required runtimes.",
+        "Implement required CLR hosting/activation, assembly/fusion binding and private framework/GAC/servicing views. Resolve the original runtime's own Windows API, file, registry and component dependencies without global reuse.",
+        "Implement private COM/OLE/WinRT registration and activation, including local/out-of-process servers and correct AppId inheritance through brokers.",
+        "Implement owner-scoped service instances, SCM behavior, RPC/IPC, pipes, helper programs, scripts and command environments. Same service/component names in two apps must not bind to the same app-owned running instance.",
+        "Provide the required networking, TLS/cryptography, authentication, data and identity semantics. External services and licensing are genuine integration requirements; their failure is not automatically a missing local runtime.",
+        "Add version-aware transitive dependency resolution and activation verification: identify required/optional features, conflicts, architecture mismatches and cycles. Another independently installed app cannot satisfy this graph.",
+        "Emit bounded evidence for late runtime/COM/service/helper failures. Separate missing components from corrupted installations, access errors, unavailable OS contracts and ordinary optional probes. Carry AppId through every event.",
+        "Start dependencies on demand where their semantics permit; honor explicitly authorized background services without starting all installed runtimes at boot."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.10"
+      ]
     },
     {
       "id": "M14.12",
-      "title": "General installation and maintenance",
-      "deliver": "**Deliver:** MSI/MSP, EXE bootstrappers, MSIX/AppX, prerequisites, custom actions,\nupdates, repair, rollback, restart/resume and removal.\n\n**How and why:** Provide general package and execution semantics. An application\nname/digest allowlist is not the compatibility architecture. Source integrity,\nexplicit consent and authorization checks remain mandatory.\n\n**Acceptance:** Original installation and maintenance chains run including\nhelpers/services. Independently verify files, registry, shared ownership, user\ndata and interrupted-operation recovery.",
+      "title": "Owner-bound installation, dependency setup and maintenance",
+      "deliver": "Provide general original installers, owner-bound dependency setup, private durable inventory and install/update/repair/recovery/removal.",
       "status": "planned",
-      "document": "docs/milestones/m14-12.md"
+      "document": "docs/milestones/m14-12.md",
+      "how_and_why": "All three user entry routes converge on one reviewed owner-bound transaction; ordinary standalone installation remains primary.",
+      "acceptance": "Original chains, explicit dependency target selection, nested/resumed setup, crash recovery and remove-A/run-B pass without a global dependency pool.",
+      "implementation_steps": [
+        "Execute real MSI/MSP, EXE bootstrappers, MSIX/AppX and required custom actions, prerequisites, servicing and helper chains. Package semantics are general; application-name/digest allowlists are not the final compatibility model.",
+        "Ordinary installation creates a new AppId and standalone bundle. A separately opened installer exposes Install as dependency only in collapsed Advanced options, with explicit existing-app selection and target confirmation.",
+        "Accept owner-bound requests from automatic assistance and right-click Add dependency. Preserve the selected AppId through nested setup, downloads, helper/elevation brokers, services and restart/resume. Never infer permission solely from the most recently running or installed app.",
+        "Resolve dependency graphs, exact version/architecture constraints, sources, required features, disk cost, cycles and conflicts before mutation. Run each dependency's actual installer in the chosen environment, not another app's.",
+        "Track installed files, hives, assemblies, services, cached repair sources and external shell references by owner. Source downloads can be inputs; runtime operation may not depend on an external download or another bundle's cache.",
+        "Implement staging, journals, commit, verification, cancellation, rollback, repair, update, interrupted-operation recovery and safe uninstall. Private transactions live under the app root with preflight space bounds.",
+        "Handle active processes, authorized background services and reboot-required changes explicitly. Do not restart an app with unsaved work automatically.",
+        "Implement conservative legacy migration: move only attributable state or reinstall original sources. Raw directory deletion must leave no required dependency broken in other apps; reconcile stale launch references safely."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.11"
+      ]
     },
     {
       "id": "M14.13",
-      "title": "Hardware drivers and acceleration",
-      "deliver": "**Deliver:** Required Windows driver contracts, device stacks, GPU graphics and\ncompute, multimedia, input and virtualization facilities over Engacer hardware\nmanagement.\n\n**How and why:** Implement actual operations and necessary binary/kernel\nstructures, requests, synchronization and device lifetimes. Discovery is not\nfunctional acceleration.\n\n**Acceptance:** Original callers perform actual device/render/media/virtualization\ntasks on declared hardware profiles. Preserve device-specific results and\npeak/retained resource measurements.",
+      "title": "Private app device access, driver ownership and acceleration",
+      "deliver": "Provide required driver/device contracts and real acceleration through native hardware mediation with attributable app contexts.",
       "status": "planned",
-      "document": "docs/milestones/m14-13.md"
+      "document": "docs/milestones/m14-13.md",
+      "how_and_why": "Private app-driver files do not automatically isolate kernel privilege; separate component ownership from physical resource arbitration.",
+      "acceptance": "Real device work and reset/fault/teardown pass on declared profiles; removing A cannot remove B components or native platform drivers.",
+      "implementation_steps": [
+        "Classify native platform drivers, app-private user-mode driver components and required foreign privileged driver interfaces. Give each component an owner, authority boundary, real device lifetime and implementation/test plan.",
+        "Store vendor app-specific DLLs, driver binaries, service registrations and configuration within their app environment. Do not silently install one shared vendor app driver or service to satisfy several application bundles.",
+        "Define the necessary WDM/WDF/NT-style binary structures, object, request, synchronization, memory/DMA, interrupt and lifecycle contracts. File isolation alone does not make a privileged driver safe or provide driver compatibility.",
+        "Mediate real physical devices through the own kernel. Bind clients, requests, callbacks, handles, GPU contexts/VRAM and access rights to the owning AppId. Hardware remains physical shared infrastructure, not a dependency copied into each folder or a reason to reuse another app's executable components.",
+        "Resolve device exclusivity, conflicting driver expectations, required global kernel semantics and privilege transitions explicitly. Required gaps remain implementation work; neither a false success nor an undisclosed global dependency fallback is permitted.",
+        "Implement actual graphics/compute/media/print/input/device operations and required virtualization interfaces. Discovery and framebuffer output alone do not establish acceleration or a foreign driver's successful operation.",
+        "Make app update/removal tear down only that app's device execution and references. Removing A cannot unload a native platform driver needed by B or remove B's separately owned vendor components."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.12"
+      ]
     },
     {
       "id": "M14.14",
-      "title": "Application interfaces and desktop integration",
-      "deliver": "**Deliver:** Windows, controls, text, fonts, DPI, accessibility, international\ninput, clipboard, printing, shortcuts, associations and shell integration.\n\n**How and why:** Keep the Engacer desktop while honoring original callbacks,\nmessage ordering, owner identities and visible effects.\n\n**Acceptance:** Original interfaces are readable and usable. Ordinary launch,\nopen/save/close, integration and actual ordinary/HiDPI physical rendering pass.",
+      "title": "Desktop dependency workflows and original application interfaces",
+      "deliver": "Deliver automatic dependency assistance, right-click Add dependency and ordinary installer Advanced targeting with usable original interfaces.",
       "status": "planned",
-      "document": "docs/milestones/m14-14.md"
+      "document": "docs/milestones/m14-14.md",
+      "how_and_why": "Use evidence from native activation boundaries; optional searches and unknown failures must not generate compulsory installation prompts.",
+      "acceptance": "All three native flows, late requests, default/Advanced behavior, keyboard access, source/target confirmation and ordinary/HiDPI rendering pass.",
+      "implementation_steps": [
+        "Keep ordinary Open installer / Install app as the primary/default action. Put Install as dependency for an existing app in collapsed Advanced options. Even a recognized runtime installer must not silently replace this default.",
+        "Add right-click Add dependency to app launchers and installed-app management. Bind the actual AppId, display its name/location and let the user choose a source. Preserve keyboard access, focus, navigation and clear cancellation.",
+        "Implement automatic assistance only for attributable necessary dependency failures. Inspect static declarations and actual loader/runtime/component/ helper events, including requests after successful app launch. No continuous disk/process scanner and no modal prompt for every failed optional probe.",
+        "Present the requested component, runtime family/version/architecture, requesting app, evidence, source, installed/temporary disk cost and exact intended action before consent. Do not promise a package fixes an unknown error; offer diagnostics/manual selection when confidence is insufficient.",
+        "Implement Advanced target selection with searchable app names and distinct identities for duplicates. Recent requests may be suggestions inside that workflow; no selection based solely on last foreground app.",
+        "Make all three routes converge on one transaction and progress/cancel/ retry/recovery view. Distinguish missing, incompatible, installed and verified components. Restart the original app only with appropriate consent.",
+        "Provide per-app dependency details, diagnostics and version/update/removal controls without exposing helpers as unrelated default desktop clutter.",
+        "Complete needed Windows controls, fonts, DPI, international input, accessibility, COM shell integration, shortcuts, associations, clipboard, printing and Open/Save interactions with correct owner/message semantics."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.13"
+      ]
     },
     {
       "id": "M14.15",
-      "title": "Broad compatibility and stability",
-      "deliver": "**Deliver:** Windows-version behavior, historical quirks, external platform\nintegrations, broad original-app campaigns, long-duration/concurrent execution,\nfault injection and recovery.\n\n**How and why:** Contract tests provide the foundation; diverse original software\nchecks composition. New dependencies feed back to their owning subsystems.\nNecessary external service or vendor-trust integration remains explicit work,\nnot a fabricated success or an exception removed from the product scope.\n\n**Acceptance:** Preserve reproducible failures and actual install/start/use/update/\nremove outcomes, resource observations and resolutions. A finite corpus is\nscoped evidence, not an automatic universal-compatibility declaration.",
+      "title": "Independent app composition, broad compatibility and stability",
+      "deliver": "Validate broad original workloads, private A/B independence, version behavior, required integrations, stability and recovery.",
       "status": "planned",
-      "document": "docs/milestones/m14-15.md"
+      "document": "docs/milestones/m14-15.md",
+      "how_and_why": "Contract probes find causes; diverse original apps and repeated concurrent lifecycles verify composition without an app whitelist.",
+      "acceptance": "Original install/start/use/update/repair/remove tasks and fault/concurrency cases pass with physical ownership proof; necessary unresolved work stays explicit.",
+      "implementation_steps": [
+        "Build a contract-driven original-software corpus spanning installer families, runtimes, services, helper chains, COM, device requirements and relevant Windows 7/8/8.1/10/11 behavior. Named apps remain fixtures, not a whitelist.",
+        "Run the mandatory A/B independence matrix with identical dependency names, hashes and versions, and with deliberately conflicting versions. Inspect physical ownership and actual execution, not just separate displayed folders.",
+        "Exercise install/start/use/close/update/repair/remove, cold restarts, concurrent execution, authorized background services and long-duration use. After every destructive A operation verify B's bytes/state and actual work.",
+        "Test late runtime requests, separately opened installers, Advanced targeting, context-menu addition, nested setup, resumed downloads and stale owner tickets.",
+        "Inject storage exhaustion, power loss, bad source/version/architecture, dependency cycles, failed activation, process/service crashes and device resets. Verify recoverable transitions and preserved personal documents.",
+        "Test cross-app escape attempts through paths/links, hives, module/assembly caches, named objects, brokers, service names and shared repair stores. Include multiuser identities, bundle relocation and duplicate imports.",
+        "Cover required external services, licences, trust/attestation, Windows version quirks and vendor integration. Private packaging does not implement these contracts or justify dropping necessary applications from scope.",
+        "Produce per-task compatibility evidence, unresolved-contract register, root-cause fixes and migration/reinstallation results for legacy M14.8 state."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.14"
+      ]
     },
     {
       "id": "M14.16",
-      "title": "Whole-system optimization and release qualification",
-      "deliver": "**Deliver:** Optimize CPU, peak/retained RAM, latency, storage bytes/requests/\nflushes and idle behavior. Repeat full regression on exact frozen media and\npublish matching ISO/VMware artifacts, documentation and actual website content.\n\n**How and why:** Efficiency is measured throughout every stage. This is the final\nintegrated optimization round, replacing the former M14.15 optimization gate.\nCorrectness, user data and readable interfaces cannot be traded for benchmarks.\n\n**Acceptance:** Exact source/media bindings, functional/performance evidence,\nhardware profiles, independently downloaded assets and fresh website readback\nagree. Unresolved required functionality remains open; a release number does\nnot establish universal compatibility.",
+      "title": "Whole-system optimization and independent-bundle release",
+      "deliver": "Measure and optimize the whole system without cross-app dependency sharing, then qualify exact final release media and publication.",
       "status": "planned",
-      "document": "docs/milestones/m14-16.md"
+      "document": "docs/milestones/m14-16.md",
+      "how_and_why": "Optimize demand loading, bounded private caches and event-driven work; report duplicated disk/private RAM costs rather than hiding them through sharing.",
+      "acceptance": "Functional/resource budgets, independent copies, all-three-routes, A/B removal safety and exact source/media/download/website evidence agree.",
+      "implementation_steps": [
+        "Measure cold/warm launch-to-interactive time, real app computation, total CPU/idle work, private/peak/retained RAM, input latency and broker/kernel costs. Measure actual filesystem and block bytes/requests/flushes, drained writeback, duplicate installed footprint and update/rollback peak storage.",
+        "Preserve independent installed copies for identical dependencies. Audit filesystem backing, module caches and physical app-code mappings; reject cross-app hard links, reflinks, deduplicated runtime stores or page coalescing.",
+        "Optimize demand loading, app-local indexes/caches, bounded buffers, metadata lookup, verification scheduling, on-demand services and event-driven waits. Do not introduce a permanent dependency scanner or global runtime daemon that makes app removal unsafe.",
+        "Attribute kernel/platform shared infrastructure separately from private dependency costs. Include all compatibility/device work in whole-system measurements; do not compare configured guest RAM with process use.",
+        "Preserve seven cold/seven warm sample protocols and twenty repeated lifecycle/resource checks where applicable. Record raw samples, median/p95, cache limitations, workload/version identities and reproducible budgets.",
+        "Resolve unexplained retained allocations and regression thresholds before release. Investigate the M14.8 removal measurement's four unattributed pages; do not label them a known cache or assume their cause.",
+        "Freeze compiled inputs and artifacts; rerun the full native, original-app, A/B independence, all-three-routes, recovery, hardware and physical rendering corpus on matching release media. Update stage-number tooling for M14.16.",
+        "Publish matching ISO/USB/VMware media, source/licence provenance, scope, tutorials and private-dependency workflows. Independently download assets and verify actual website content, routes, source links and current homepage."
+      ],
+      "architecture": "docs/architecture/windows-app-environments.md",
+      "planning_revision": "2026-11-23",
+      "entry_dependencies": [
+        "M14.15"
+      ]
     }
   ],
-  "next_stage": "M14.4",
-  "development_stage": "M14.4",
+  "next_stage": "M14.9",
+  "development_stage": null,
   "authorized_implementation_through": "M14.8",
   "stop_after": "M14.8",
   "future_plan": "docs/milestones/m14-consolidated.md",
   "owner_stop_after": "M14.8",
-  "publication_status": "Native/source/media and twenty public asset downloads passed. Native homepage Save blocked; article content verified separately."
+  "publication_status": "Native/source/media and twenty public asset downloads passed. Native homepage Save blocked; article content verified separately.",
+  "planning_revision": {
+    "date": "2026-11-23",
+    "scope": "Windows independent app environments; x64, required x86 helpers, planned standalone x86 and Win16/DOS",
+    "planning_only": true,
+    "runtime_implementation_authorized": false,
+    "app_dependency_sharing": false,
+    "global_application_registry": false,
+    "ordinary_install_is_primary": true,
+    "advanced_dependency_targeting": true,
+    "dependency_routes": [
+      "attributed_automatic_assistance",
+      "app_context_menu",
+      "standalone_installer_advanced"
+    ],
+    "architecture": "docs/architecture/windows-app-environments.md",
+    "later_execution_plans": [
+      "docs/milestones/m15.md",
+      "docs/milestones/m16.md"
+    ]
+  }
 }

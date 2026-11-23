@@ -1,5 +1,14 @@
 # Independent components and customizable setup
 
+**Windows app planning override, 23 November 2026:** the
+[independent app-environment contract](windows-app-environments.md) governs
+future Windows app dependencies, including x86 and Win16/DOS expansion.
+App-owned DLLs/runtimes/helpers/services are private copies, not shared optional
+packages. The native OS/core-component ownership rules and historical native
+package evidence below remain applicable to the platform, not permission for
+cross-app Windows dependency sharing. This planning change is not implemented.
+
+
 Owner requirement, 6 November 2026: Engacer OS must offer a graphical Back/Next/Finish installer, extensive customization, and removable optional applications without breaking unrelated system functions. This is a delivery requirement, not a claim that a package manager or graphical installer is implemented.
 
 ## Component boundaries

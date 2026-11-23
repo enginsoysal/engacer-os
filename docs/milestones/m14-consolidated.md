@@ -1,158 +1,169 @@
-# M14.9-M14.16 - Approved consolidated Windows x64 program
+# M14.9-M14.16 - Independent Windows app environments and full x64 compatibility
 
-Approved by the owner on 21 November 2026. All eight stages are **planned, not
-started**. This replaces the former future M14.9-M14.15 schedule and the longer
-intermediate proposals. M14.0-M14.7 retain their scoped evidence. M14.8 native qualification now passes; native homepage publication remains
-blocked as recorded in current status. Current authorization ends after M14.8.
-Do not start M14.9 implementation until the owner resumes work.
+Owner-approved future program, revised 23 November 2026 after the 21 November
+consolidation. All eight stages remain **planned, not started**. This revision
+authorizes detailed architecture/planning and documentation publication only.
+M14.8 remains the qualified native release within its recorded scope; its
+blocked native homepage publication is recorded separately in current status.
+No new OS implementation, ISO or compatibility claim is created here.
 
-## Product scope and architecture
+## Mandatory architecture
 
-The product target is the complete original x64 Windows application landscape
-for Windows 7, 8, 8.1, 10 and 11, including necessary installation programs,
-mixed-architecture helpers, runtimes, services and drivers. Named applications
-are regression fixtures, not the scope or an application whitelist. No complete
-application list is required from the owner.
+The owner-selected rule is one self-contained app directory with independent
+copies of its DLLs, runtimes, helper programs, private registry and installed
+state. If A and B need the same component, install it twice. No global mutable
+Windows application registry, shared dependency store, cross-app file/link/
+dedup shortcut or app-code page coalescing. Removing/updating A must not affect
+B's components or real behavior.
 
-Original instructions execute natively through the independent Engacer kernel
-and compatibility environment. The implementation is not an embedded Windows
-guest. Preserve Windows-visible binary contracts and behavior at explicit
-boundaries; internal scheduling, storage and resource management remain our own.
+The [complete environment contract](../architecture/windows-app-environments.md)
+defines ownership, physical layout, private Windows views, services/drivers,
+legacy migration, detection and acceptance. Native OS/kernel/hardware management
+remains the foundation; it is not an app-owned dependency shared through A.
+Personal documents stay separate by default and are preserved on uninstall.
 
-Inventory contracts, compare behavior with reference Windows versions and
-discover dependencies continuously. A matching function name, metadata signature
-or finite passing app corpus is not proof of universal compatibility. Newly
-discovered necessary functionality becomes tracked work in its owning subsystem;
-it cannot be silently excluded from scope or reported as successful execution.
+The full product goal remains original Windows 7/8/8.1/10/11 x64 applications
+and their necessary installers, mixed-architecture helpers, runtimes, services
+and drivers. Named apps are fixtures, not a whitelist or the compatibility scope.
+Original x64/x86 instructions use the own kernel/compatibility environment, not
+an embedded Windows guest. Private packaging does not implement missing APIs.
 
-## M14.9 - Compatibility architecture and reference laboratory
+## Three routes, one installation engine
 
-**Deliver:** A version-bound inventory of APIs, ABIs, system calls, component and
-driver interfaces, formats and protocols; a dependency graph and missing-behavior
-register; automated differential tests against Windows 7/8/8.1/10/11.
+1. Automatic assistance for a confidently attributed necessary missing component,
+   including one requested after successful launch; explicit user consent.
+2. Right-click the target app and choose Add dependency.
+3. Open an installer normally; under collapsed Advanced options choose Install
+   as dependency for an existing app, then explicitly select the target.
 
-**How and why:** Use primary documentation and SDK/WDK metadata to inventory
-interfaces. Run owned probes to compare results, side effects, errors, ordering,
-lifetime and concurrency. Signatures alone do not specify behavior.
+Ordinary standalone installation is always primary/default for a separately
+opened installer. Recognition or the most recent foreground app cannot change
+that default or grant authority. Unknown cases retain manual routes. Optional
+probes are not compulsory failures; no permanent scanner or automatic arbitrary
+DLL download is part of the design.
 
-**Acceptance:** Reproducible reference/native mismatches, provenance and baseline
-versions are recorded. Known requirements have an implementation owner and test
-or explicit investigation task. The reference lab operates independently of
-specific commercial app success.
+## Ordered implementation
 
-## M14.10 - Complete execution foundation
+Each linked stage specifies its work, how/why, deliverables, native acceptance
+cases, resource budget and handoff. Earlier contracts are prerequisites; later
+UI or benchmarks cannot replace missing runtime behavior.
 
-**Deliver:** Required loader, DLL, NT object, process, memory, thread, exception,
-file, registry, identity and access-control behavior. Include necessary x86
-installers/helpers of x64 products instead of deferring those dependencies to M15.
+## M14.9 - Environment contracts and compatibility reference laboratory
 
-**How and why:** Translate Windows-visible contracts into own kernel operations,
-preserving binary layouts, results, errors, lifetime and security semantics.
+**Work:** Freeze environment identity, private storage/registry/component contracts, dependency records and versioned Windows reference probes.
 
-**Acceptance:** Real effects, faults, concurrent execution, mixed-architecture
-transitions and resource cleanup pass reference and native tests. Unimplemented
-operations never become successful no-ops.
+**How and why:** One ownership model prevents conflicting assumptions in loaders, runtime activation and installer UX.
 
-## M14.11 - Windows platform services
+**Exit gate:** Schemas, ownership/escape matrix, reference provenance, migration policy and all-three-route walkthroughs are reviewed; no runtime feature is claimed.
 
-**Deliver:** Required services, IPC/RPC, COM/OLE/WinRT, native/managed runtimes,
-command/script environments, data interfaces, network, cryptography and
-authentication.
+[Detailed work, tests and handoff](m14-9.md).
 
-**How and why:** Build shared providers and actual component/service lifetimes.
-Resolve dependencies of original runtimes and helpers instead of substituting
-product-specific effects.
+## M14.10 - Private execution, files, registry and process ownership
 
-**Acceptance:** Components execute and communicate, errors propagate, appropriate
-state survives restart, and peak/retained resources remain bounded.
+**Work:** Implement native owner context, private loader/files/registry/object views and required x86 helpers for x64 products.
 
-## M14.12 - General installation and maintenance
+**How and why:** Enforce ownership at kernel/handle boundaries and preserve real Windows-visible semantics, errors and lifetime.
 
-**Deliver:** MSI/MSP, EXE bootstrappers, MSIX/AppX, prerequisites, custom actions,
-updates, repair, rollback, restart/resume and removal.
+**Exit gate:** Native A/B private-copy/backing tests, inherited context, cross-owner rejection, delayed loading, mixed-architecture execution and cleanup pass.
 
-**How and why:** Provide general package and execution semantics. An application
-name/digest allowlist is not the compatibility architecture. Source integrity,
-explicit consent and authorization checks remain mandatory.
+[Detailed work, tests and handoff](m14-10.md).
 
-**Acceptance:** Original installation and maintenance chains run including
-helpers/services. Independently verify files, registry, shared ownership, user
-data and interrupted-operation recovery.
+## M14.11 - Private runtimes, services and dependency activation
 
-## M14.13 - Hardware drivers and acceleration
+**Work:** Execute private runtimes, COM/services/helpers and transitive dependency activation, including real .NET family/version behavior.
 
-**Deliver:** Required Windows driver contracts, device stacks, GPU graphics and
-compute, multimedia, input and virtualization facilities over Engacer hardware
-management.
+**How and why:** A private directory or registry version flag is not a working CLR or service; implement and test actual dependencies.
 
-**How and why:** Implement actual operations and necessary binary/kernel
-structures, requests, synchronization and device lifetimes. Discovery is not
-functional acceleration.
+**Exit gate:** Original runtime/helper tasks activate correctly, late/optional failures are distinguished and two apps retain independent components and service state.
 
-**Acceptance:** Original callers perform actual device/render/media/virtualization
-tasks on declared hardware profiles. Preserve device-specific results and
-peak/retained resource measurements.
+[Detailed work, tests and handoff](m14-11.md).
 
-## M14.14 - Application interfaces and desktop integration
+## M14.12 - Owner-bound installation, dependency setup and maintenance
 
-**Deliver:** Windows, controls, text, fonts, DPI, accessibility, international
-input, clipboard, printing, shortcuts, associations and shell integration.
+**Work:** Provide general original installers, owner-bound dependency setup, private durable inventory and install/update/repair/recovery/removal.
 
-**How and why:** Keep the Engacer desktop while honoring original callbacks,
-message ordering, owner identities and visible effects.
+**How and why:** All three user entry routes converge on one reviewed owner-bound transaction; ordinary standalone installation remains primary.
 
-**Acceptance:** Original interfaces are readable and usable. Ordinary launch,
-open/save/close, integration and actual ordinary/HiDPI physical rendering pass.
+**Exit gate:** Original chains, explicit dependency target selection, nested/resumed setup, crash recovery and remove-A/run-B pass without a global dependency pool.
 
-## M14.15 - Broad compatibility and stability
+[Detailed work, tests and handoff](m14-12.md).
 
-**Deliver:** Windows-version behavior, historical quirks, external platform
-integrations, broad original-app campaigns, long-duration/concurrent execution,
-fault injection and recovery.
+## M14.13 - Private app device access, driver ownership and acceleration
 
-**How and why:** Contract tests provide the foundation; diverse original software
-checks composition. New dependencies feed back to their owning subsystems.
-Necessary external service or vendor-trust integration remains explicit work,
-not a fabricated success or an exception removed from the product scope.
+**Work:** Provide required driver/device contracts and real acceleration through native hardware mediation with attributable app contexts.
 
-**Acceptance:** Preserve reproducible failures and actual install/start/use/update/
-remove outcomes, resource observations and resolutions. A finite corpus is
-scoped evidence, not an automatic universal-compatibility declaration.
+**How and why:** Private app-driver files do not automatically isolate kernel privilege; separate component ownership from physical resource arbitration.
 
-## M14.16 - Whole-system optimization and release qualification
+**Exit gate:** Real device work and reset/fault/teardown pass on declared profiles; removing A cannot remove B components or native platform drivers.
 
-**Deliver:** Optimize CPU, peak/retained RAM, latency, storage bytes/requests/
-flushes and idle behavior. Repeat full regression on exact frozen media and
-publish matching ISO/VMware artifacts, documentation and actual website content.
+[Detailed work, tests and handoff](m14-13.md).
 
-**How and why:** Efficiency is measured throughout every stage. This is the final
-integrated optimization round, replacing the former M14.15 optimization gate.
-Correctness, user data and readable interfaces cannot be traded for benchmarks.
+## M14.14 - Desktop dependency workflows and original application interfaces
 
-**Acceptance:** Exact source/media bindings, functional/performance evidence,
-hardware profiles, independently downloaded assets and fresh website readback
-agree. Unresolved required functionality remains open; a release number does
-not establish universal compatibility.
+**Work:** Deliver automatic dependency assistance, right-click Add dependency and ordinary installer Advanced targeting with usable original interfaces.
 
-## Every-stage closure
+**How and why:** Use evidence from native activation boundaries; optional searches and unknown failures must not generate compulsory installation prompts.
 
-Test actual effects, errors, isolation, persistence, concurrency and cleanup.
-Measure CPU, peak/retained RAM, I/O and idle costs during implementation. Update
-English architecture, user guides, status, GitHub source/evidence and the actual
-website after every milestone. Preserve accepted historical artifacts. Never
-promote a development image or private diagnostic route to qualified release.
+**Exit gate:** All three native flows, late requests, default/Advanced behavior, keyboard access, source/target confirmation and ordinary/HiDPI rendering pass.
 
-The initial pinned originals remain regression fixtures and provenance records.
-M15 remains standalone x86 expansion; required x86 dependencies of x64 products
-are already included in M14.10. M16 remains Win16/DOS.
+[Detailed work, tests and handoff](m14-14.md).
 
-## Primary research sources
+## M14.15 - Independent app composition, broad compatibility and stability
+
+**Work:** Validate broad original workloads, private A/B independence, version behavior, required integrations, stability and recovery.
+
+**How and why:** Contract probes find causes; diverse original apps and repeated concurrent lifecycles verify composition without an app whitelist.
+
+**Exit gate:** Original install/start/use/update/repair/remove tasks and fault/concurrency cases pass with physical ownership proof; necessary unresolved work stays explicit.
+
+[Detailed work, tests and handoff](m14-15.md).
+
+## M14.16 - Whole-system optimization and independent-bundle release
+
+**Work:** Measure and optimize the whole system without cross-app dependency sharing, then qualify exact final release media and publication.
+
+**How and why:** Optimize demand loading, bounded private caches and event-driven work; report duplicated disk/private RAM costs rather than hiding them through sharing.
+
+**Exit gate:** Functional/resource budgets, independent copies, all-three-routes, A/B removal safety and exact source/media/download/website evidence agree.
+
+[Detailed work, tests and handoff](m14-16.md).
+
+## x86, Win16 and DOS
+
+The directory/ownership/dependency/UI format is designed now for all these
+families. Required x86 installers/helpers of x64 products are part of M14.10.
+[M15](m15.md) expands standalone Windows x86 software. [M16](m16.md) expands
+Win16 and DOS formats, execution modes, APIs, extenders and historical devices.
+Their code is not implemented by planning or by a successful x64 test.
+8/4/2/1-bit machines are not additional Windows application generations; other
+historical architectures remain separate future decisions. Linux is deferred.
+
+## Every-stage completion rule
+
+Prove actual effects, errors, owner isolation, persistence, source integrity,
+concurrency and cleanup. The mandatory A/B case installs independent copies,
+does real work, updates/repairs/removes A, cold-starts B and verifies B's bytes,
+private state and behavior. Include forged ownership, late activation, stale
+targets, interrupted setup and physical-backing checks.
+
+Measure CPU, private/peak/retained RAM, installed/temporary/rollback storage,
+actual I/O and idle cost throughout. M14.16 repeats final integrated budgets
+without forbidden sharing. A finite corpus is scoped evidence, not a universal
+compatibility declaration; required unresolved behavior remains tracked work.
+
+Update English architecture, progress, manuals, exact-source test evidence,
+GitHub and actual website after each implemented stage. Preserve accepted
+historical media and distinguish planning, implementation, native qualification
+and full public delivery. An external website Save failure is not a successful
+homepage update. Current authorization stops at this planning revision.
+
+## Source contracts
 
 - [Windows API index](https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-api-list)
 - [Microsoft Win32 metadata](https://github.com/microsoft/win32metadata)
 - [Windows protocols](https://learn.microsoft.com/en-us/openspecs/windows_protocols/)
-- [WDM and WDF](https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/differences-between-wdm-and-kmdf)
-- [Version-dependent application behavior](https://learn.microsoft.com/en-us/windows/compatibility/application-executable-manifest)
+- [Windows driver models](https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/differences-between-wdm-and-kmdf)
+- [Detailed architecture and primary references](../architecture/windows-app-environments.md)
 
-[Current status](../roadmap/status.md), [current M14.8 work](m14-8.md),
-[program history](m14.md), [architecture](../architecture/windows-m14.md).
+[Current status](../roadmap/status.md), [qualified M14.8](m14-8.md),
+[program history](m14.md), [execution and measurement contract](../architecture/windows-m14.md).

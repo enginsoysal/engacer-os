@@ -10,6 +10,14 @@ All twenty GitHub release assets were independently downloaded and verified, inc
 
 **Owner stop: M14.8.** Complete available publication work, then stop before M14.9. [Approved plan](../milestones/m14-consolidated.md).
 
+
+**Approved planning update (23 November 2026):** future Windows apps receive
+one independent directory with private DLL/runtime/helper copies and registry;
+no cross-app dependency sharing. Automatic missing-component assistance,
+right-click Add dependency and ordinary installer Advanced targeting share one
+owner-bound lifecycle. This is a plan, not a shipped M14.8 feature.
+[Architecture](../architecture/windows-app-environments.md), [M14 stages](../milestones/m14-consolidated.md), [M15](../milestones/m15.md), [M16](../milestones/m16.md). Native release/qualification stays M14.8. The current authorization is documentation/planning publication only.
+
 ## Historical M14.7 delivery
 
 **M14.7 native/source/media qualification passes.** M14.7 native/source/media qualification passes on build `1fb03f1b582d4d153441b6b5ca40da06`, compiled source `ad9ea25eea112dddb662c506c7631989b63b78b3` and 765 exact inputs. All 138 campaign tasks pass, covering 98 native and 39 supporting host groups plus starter preparation. Original 7-Zip and Notepad++ default/French MSI install/remove/reinstall, 217 original Notepad++ payloads, 76 durable registry readbacks, actual WiX bodies, changed-file preservation, ordinary cancellation, source-free recovery, compact/ordinary/actual 4K regressions and actual enabled-device VMware installation/two independent starts pass. Native managed task retention is zero after the documented first-use caches. Public M14.7 delivery passes within the owner-approved content/layout scope: twenty independently downloaded assets, 604 pages, 391 exact-source articles and 4531 links; zero known broken targets and twelve unverified external references. Advanced BrixCanvas search/navigation remains reported and unqualified. The Notepad++ editor and Sumatra original-app tasks remain unqualified.

@@ -1,5 +1,10 @@
 # Engacer OS â€” project instructions
 
+- Latest owner instruction, 23 November 2026: revise and publish the detailed Windows milestone/architecture plans for independent app environments. This authorizes documentation/planning only, not M14.9+ runtime implementation or new ISO builds. Include standalone x86 in M15 and Win16/DOS in M16 now at design level; required x86 helpers of x64 products remain M14.10. Keep accepted M14.8 media/evidence immutable.
+- Superseding app dependency policy: one self-contained Windows app directory, private registry and independent copies of DLLs, runtimes, helper programs and app-owned services. No cross-app dependency store, hardlink/reflink/dedup reuse or shared app-code backing. Native OS/kernel/hardware management is the common foundation. Follow docs/architecture/windows-app-environments.md.
+- Dependency UX has three routes: evidence-based automatic assistance, app right-click Add dependency, and a separately opened installer's collapsed Advanced option to target an existing app. Ordinary standalone installation is always primary/default. Missing-component recognition or the last foreground app never silently authorizes a target. Inherit kernel-controlled AppId through nested installers, services and restart/resume. No permanent scanner or optional-probe prompt spam.
+
+
 - Superseding owner reporting instruction: accumulate all BrixCanvas observations in docs/maintenance/brixcanvas-feedback-m14.txt and deliver one combined handoff after M14.15. Do not ask the owner to forward individual platform findings during the milestone sequence. Distinguish reproduced issues, transient failures, resolved observations and test-observer errors. Continue native milestones and website content updates.
 
 - Superseding owner instruction: missing BrixCanvas search configuration/rendering is report-only and must not block milestone continuation. Keep the website content and GitHub current after every stage. Continue M14 through M14.15 in order without a new stage approval; preserve actual failures and limitations instead of claiming the missing platform controls passed. All native correctness, source/media integrity and optimization gates remain mandatory.
@@ -17,7 +22,7 @@
 - Keep milestone implementation and evidence separate from architecture claims. Never mark runtime behavior complete based on a stub, header or host reference test.
 - Record each substantial decision with how, why, alternatives, limitations and verification. Keep status and milestone documents consistent.
 - All committed documentation, code comments, UI strings and new release notes must be in English. Update architecture, status, tests/evidence and user instructions together whenever behavior or scope changes.
-- CPU/RAM efficiency is a primary requirement. Bound allocations/queues, share immutable code, measure peak and retained memory separately, and halt when idle instead of polling. Never equate configured guest RAM with kernel consumption or native probes with Windows compatibility.
+- CPU/RAM efficiency is a primary requirement. Bound allocations/queues, keep app-owned dependency code/data private across AppIds, account native OS/platform code separately, measure peak and retained memory separately, and halt when idle instead of polling. Never equate configured guest RAM with kernel consumption or native probes with Windows compatibility.
 
 ## Product requirements
 
