@@ -1,0 +1,184 @@
+{
+  "passed": true,
+  "scope": "Independent visible public HTML readback of updated plan/architecture articles and curated current-guide links; script/style payload excluded. Not a native environment feature or a homepage Save claim.",
+  "source_commit": "669c7f61619a22208bfb56615e15e7386ad91d07",
+  "checked_at": "2026-11-23T14:16:41.872748+00:00",
+  "pages": [
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-architecture-windows-app-environments",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Exactly three user entry routes",
+        "Prohibit cross-app hard links"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/architecture/windows-app-environments.md",
+      "current_guide": null,
+      "html_sha256": "672a620fb4562f5150d908a23e7d901cfbc7c04ee94a47ac7e2789b5cb9fbae4"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-consolidated",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Three routes, one installation engine",
+        "planned, not started"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-consolidated.md",
+      "current_guide": null,
+      "html_sha256": "2b2732da0444bd28a3f1019754ef1099645e720920924ccc0b5c7831ea01a454"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-9",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-9.md",
+      "current_guide": null,
+      "html_sha256": "840c853ee37c19cc558a9606af9ead5781c1a8deef9bb0dd34f6378b89dcee02"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-10",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-10.md",
+      "current_guide": null,
+      "html_sha256": "34bf5a0e55d3a7f96ac8a4e8bcad7246268bec71d47c5399de03644ec9b7ad5d"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-11",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-11.md",
+      "current_guide": null,
+      "html_sha256": "4154263e65e0ed4638a15216ab44e81320cf929db703efa90dff6ff349e8ae77"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-12",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-12.md",
+      "current_guide": null,
+      "html_sha256": "0af7242f5a602b40b38944831e52c6674498cc3fd5c0fe0ae5be157dea360ca4"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-13",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-13.md",
+      "current_guide": null,
+      "html_sha256": "5b33da84f3c0dd7a91b14e113b94fa373048bcf7fd5e39d1979f0801fef95a47"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-14",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-14.md",
+      "current_guide": null,
+      "html_sha256": "3d21a4f2caaf878f555867278edaa72d6d62c803016838b4134f3179d1cdc188"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-15",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-15.md",
+      "current_guide": null,
+      "html_sha256": "10cdc923d8a290dd7bebfbbbe811dd17209e80158088837be5ec7df09d6ac746"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m14-16",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Status: planned, not started.",
+        "Work to perform"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m14-16.md",
+      "current_guide": null,
+      "html_sha256": "fc9f02d73a2622eef86636bf3c01c91a3b28dcf2a097a57f0f1884d0ac590eaf"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m15",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Ordered work"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m15.md",
+      "current_guide": null,
+      "html_sha256": "2a0bb40b85fb5ca419916ee295a2f352cb1da7911d8486799078adcca9120637"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/docs-milestones-m16",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Ordered work"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/blob/669c7f61619a22208bfb56615e15e7386ad91d07/docs/milestones/m16.md",
+      "current_guide": null,
+      "html_sha256": "c9b9f713377d4f1cec2370d21811982a535d60a0ec5c0eb0308cc1b781a8091d"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/guide-project",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [
+        "Planned: one independent app directory",
+        "Planned standalone Windows x86 support",
+        "Planned Win16 and MS-DOS support"
+      ],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/tree/669c7f61619a22208bfb56615e15e7386ad91d07",
+      "current_guide": null,
+      "html_sha256": "51f01e8f1ef24748fb5faa4f1c3f4d8025159062b317a3e20d08c4ab65e0da73"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/guide-install",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/tree/669c7f61619a22208bfb56615e15e7386ad91d07",
+      "current_guide": "https://engaceros.brixcanvas.com/blog/docs-handbook-install-m148",
+      "html_sha256": "70f7bae3ee6c9b0ae45755cd4169b50d590ec21cdabed00fbeb8ebbcf855cf51"
+    },
+    {
+      "url": "https://engaceros.brixcanvas.com/blog/guide-use",
+      "status": 200,
+      "lang": "en",
+      "visible_markers": [],
+      "canonical_source": "https://github.com/enginsoysal/engacer-os/tree/669c7f61619a22208bfb56615e15e7386ad91d07",
+      "current_guide": "https://engaceros.brixcanvas.com/blog/docs-handbook-first-day-m148",
+      "html_sha256": "4bd7c63ac112cda035d0d616de0da9002c2bc98b81d9dde5b7c02ba545083091"
+    }
+  ],
+  "publisher_workflow": 45191658071,
+  "homepage_save_attempted": false,
+  "runtime_implementation_started": false
+}
