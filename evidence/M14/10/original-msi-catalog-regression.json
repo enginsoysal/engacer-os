@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "stage": "M14.10",
+  "build_id": "eeea44b55767cd28cd80adad42a0b12c",
+  "source_commit": "9255bd627634583d246c710864fab898d10036e5",
+  "profile": "default",
+  "scope": "Original x64 Notepad++ MSI on production native media; stage-number and output-directory adaptation of generic147_native.py",
+  "tasks": [
+    {
+      "operation": "install",
+      "status": 0,
+      "retained_managed_pages": 0,
+      "payloads": 217,
+      "links": 1,
+      "registry_ownerships": 9,
+      "journal_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+    },
+    {
+      "operation": "remove without original download after independent restart",
+      "status": 0,
+      "retained_managed_pages": 0,
+      "payloads": null,
+      "links": null,
+      "registry_ownerships": null,
+      "journal_sha256": null
+    },
+    {
+      "operation": "reinstall original selection",
+      "status": 0,
+      "retained_managed_pages": 0,
+      "payloads": 217,
+      "links": 1,
+      "registry_ownerships": 9,
+      "journal_sha256": "70d184c82a5cf5327032c9dc64e38aade7abda27c7ac86d228b251c6dc97b56b"
+    },
+    {
+      "operation": "remove unchanged reinstalled product",
+      "status": 0,
+      "retained_managed_pages": 0,
+      "payloads": null,
+      "links": null,
+      "registry_ownerships": null,
+      "journal_sha256": null
+    }
+  ]
+}
