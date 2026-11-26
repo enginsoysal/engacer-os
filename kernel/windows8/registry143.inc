@@ -92,9 +92,10 @@ static unsigned registry_full_key143(uint64_t root,uint64_t name,unsigned access
 static unsigned registry_open143(const w8_registry_request143*request,unsigned create,w8_registry_result143*result){
  if(request->flags)return 50;char display[768],canonical[768];unsigned error=registry_full_key143(request->root,request->name,request->access,create,display,canonical);if(error)return error;
  unsigned cap_slot=0;while(cap_slot<32&&spaces142[active_space142]->registry_handles[cap_slot].live)++cap_slot;if(cap_slot==32||registry_generation143==0x7fffffu)return 8;
- unsigned object_slot=0;while(object_slot<REGISTRY_KEYS143){registry_object143*object=registry_objects143[object_slot];if(registry_object_owned143(object)&&!object->deleted&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))break;++object_slot;}
+ char directory[256];registry_directory143(canonical,directory);
+ unsigned object_slot=0;while(object_slot<REGISTRY_KEYS143){registry_object143*object=registry_objects143[object_slot];if(registry_object_owned143(object)&&!object->deleted&&equal8(object->directory,directory)&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))break;++object_slot;}
  unsigned existing_object=object_slot<REGISTRY_KEYS143;if(!existing_object){object_slot=0;while(object_slot<REGISTRY_KEYS143&&registry_objects143[object_slot])++object_slot;if(object_slot==REGISTRY_KEYS143)return 8;}
- uint64_t page=registry_page143();if(!page)return 8;registry_object143*loaded=(void*)(uintptr_t)page;registry_directory143(canonical,loaded->directory);
+ uint64_t page=registry_page143();if(!page)return 8;registry_object143*loaded=(void*)(uintptr_t)page;copy8(loaded->directory,directory,sizeof(loaded->directory));
  error=registry_load_key143(canonical,loaded->directory,&loaded->record);unsigned existed=!error||!canonical[0];
  if(error==2&&create){
   /* Create each selected ancestor, retaining the first stored display spelling. */
