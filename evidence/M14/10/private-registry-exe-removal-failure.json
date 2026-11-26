@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "build_id": "608fb0b88145d5f243a93aec945fd1f0",
+  "compiled_source": "7f5309d984fa4e637960e68035c6cf7f70465bae",
+  "observer_sha256": "20f5ecf3c7ecc658b7590cab7fbf5724fe14eb5b154219a1894acc457bb2d555",
+  "scope": "Native original SumatraPDF install and cold uninstall with private bundle registry",
+  "initial_install": {
+    "passed": true,
+    "cold_payloads": 4,
+    "shortcuts": 2,
+    "observer_wall_seconds": 416.563
+  },
+  "cold_removal": {
+    "passed": false,
+    "state": 3,
+    "status": 1,
+    "engine_error": 5,
+    "observation": "The uninstall helper completed its file and registry calls, but root removal returned false and effect verification detected the remaining bundle."
+  },
+  "correction_commit": "11137a19",
+  "subsequent_candidates_require_native_retest": true
+}
