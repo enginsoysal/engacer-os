@@ -1,8 +1,10 @@
 """Execute an i386 PE from a Win64 parent on the installed candidate."""
+import argparse
 import hashlib
 import json
 import os
 from pathlib import Path
+import struct
 import sys
 import traceback
 
@@ -13,7 +15,34 @@ ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
 
 
+def seed_views(volume):
+    def digest(value):
+        return hashlib.sha256(value).hexdigest()[:32]
+
+    def put(path, data):
+        current = PRODUCT
+        for directory in path.removeprefix(PRODUCT + "/").split("/")[:-1]:
+            current += "/" + directory
+            volume.mkdir(current)
+        volume.put(path, data)
+
+    for directory, content in (("SysWOW64", b"x"), ("System32", b"y")):
+        put(f"{PRODUCT}/System/{directory}/view.dat", content)
+    for view in (32, 64):
+        principal = f"/Machine/{view}".encode()
+        key = b"software\\engineprobe"
+        name = b"payload"
+        base = f"{PRODUCT}/.Engacer/Registry/{digest(principal)}/k{digest(key)}"
+        put(base + "/$key", struct.pack("<QQ256s768s768s", 0x314B52454734314D, 0,
+                                       principal, key, b"Software\\EngineProbe"))
+        put(base + "/v" + digest(name), struct.pack("<QII256s768s256s256sI",
+            0x315652454734314D, 4, 4, principal, key, name, b"Payload", view))
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--views", action="store_true")
+    args = parser.parse_args()
     replay7.REPLACEMENTS += [("EngacerOS-M14STAGE7", "EngacerOS-M14STAGE10"),
                              ("m14stage7", "m14stage10")]
     loader = replay7.ReplayLoader()
@@ -53,9 +82,11 @@ def main():
                 p.desktop(12001, True)
                 task(g, p, 12003)
                 assert PRODUCT + "/product.bin" in f.entries(g)
-            files = build()
+            files = build(args.views)
             volume = StoppedDisk(disk, library())
             try:
+                if args.views:
+                    seed_views(volume)
                 report["images"] = {}
                 for fixture, target in (("x86-parent.exe", "7z.exe"),
                                         ("helper32.exe", "helper32.exe"), ("fault32.exe", "fault32.exe")):
@@ -75,6 +106,7 @@ def main():
                     report["output"] = result
                 finally:
                     (out / "serial.log").write_text(g.log(), encoding="utf-8")
+            report["views_and_exception_resume"] = args.views
             report["passed"] = True
         except Exception:
             report["error"] = ui.q.clean(traceback.format_exc())

@@ -78,6 +78,9 @@ class StoppedDisk:
         self.file.flush()
         return 0
 
+    def mkdir(self,path):
+        assert self.lib.v6_mkdir(c.byref(self.volume),path.encode()) in (0,4),path
+
     def put(self,path,data):
         @types.SOURCE
         def source(ctx,offset,out,n):
