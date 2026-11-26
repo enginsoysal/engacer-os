@@ -342,6 +342,9 @@ static unsigned prepare_space_tables1410(void){
  branches[4]=pd8|7;
  return 0;
 }
+#ifdef ENGINE_M14
+#include "pe32_1410.inc"
+#endif
 static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request,const private_space142*parent){
  if(parent){root=parent->input.product_root;user=parent->input.user_root;}
  if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
