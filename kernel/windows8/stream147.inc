@@ -2,16 +2,18 @@
 static uint32_t stream_owner147,stream_phase147;
 static uint64_t stream_expected147,stream_received147;
 static void stream_release147(void){if(stream_owner147&&stream_owner147==input8.process_id){v6_stream_abort(m6_volume());stream_owner147=stream_phase147=0;stream_expected147=stream_received147=0;}}
-static void repair_stage1410(char path[256]){
+static void maintenance_stage1410(char path[256]){
  copy8(path,input8.product_root,256);
- path_append143(path,W8_REPAIR_STAGE1410,256);
+ path_append143(path,W8_MAINTAIN_STAGE1410,256);
 }
-static unsigned repair_authority1410(void){
- return active_space142==0&&input8.command==W8_REPAIR1410;
+static unsigned maintenance_authority1410(void){
+ return active_space142==0&&(input8.command==W8_REPAIR1410||input8.command==W8_UPDATE1410);
 }
-static int64_t repair_call1410(uint64_t operation){
- if(!repair_authority1410()||stream_owner147)return -5;
- char stage[256];repair_stage1410(stage);
+static int64_t maintain_call1410(uint64_t operation){
+ unsigned removing=operation==1&&active_space142==0&&input8.command==W8_REMOVE&&
+                   installer_authority147()&&!spaces142[0]->exe_context148;
+ if((!maintenance_authority1410()&&!removing)||stream_owner147)return -5;
+ char stage[256];maintenance_stage1410(stage);
  const v6_entry *directory=find8(stage);
  if(directory&&directory->kind!=2)return -13;
  if(operation==1){
@@ -20,7 +22,7 @@ static int64_t repair_call1410(uint64_t operation){
  }
  if(operation!=2||!directory)return -87;
  const v6_volume *volume=m6_volume();
- unsigned stage_bytes=length8(stage);
+ unsigned stage_bytes=length8(stage),control=0;
  for(unsigned i=0;i<V6_ENTRIES;++i){
   const v6_entry *entry=volume->entries+i;
   if(!entry->kind||!prefix8(entry->path,stage)||equal8(entry->path,stage))continue;
@@ -28,22 +30,28 @@ static int64_t repair_call1410(uint64_t operation){
   char item[64];unsigned j=0;
   for(;relative[j]&&relative[j]!='/'&&j<sizeof(item)-1;++j)item[j]=relative[j];
   item[j]=0;
-  if(!win_tx_relative147(relative,'/')||win_tx_equal147(item,".Engacer")||
-     win_tx_equal147(item,".EngacerMSI")||win_tx_equal147(item,"product.bin"))return -5;
+  if(!win_tx_relative147(relative,'/')||win_tx_equal147(item,".Engacer"))return -5;
+  if(win_tx_equal147(item,".EngacerMSI")||win_tx_equal147(item,"product.bin")){
+   if(input8.command!=W8_UPDATE1410)return -5;
+   if(equal8(relative,"product.bin")&&entry->kind==1)control|=1;
+   else if(equal8(relative,".EngacerMSI/source.msi")&&entry->kind==1)control|=2;
+   else if(!equal8(relative,".EngacerMSI")||entry->kind!=2)return -5;
+  }
   char target[256];copy8(target,input8.product_root,256);
   if(path_append143(target,entry->path+stage_bytes,256))return -206;
   if(file_object_slot143(target)<FILE_OBJECTS143)return -32;
  }
+ if(input8.command==W8_UPDATE1410&&control!=3)return -13;
  return v6_overlay_tree1410(m6_volume(),stage,input8.product_root)?-1117:0;
 }
 static int64_t stream_call147(uint64_t operation,uint64_t address,uint64_t bytes,uint64_t d,uint64_t e){
- unsigned repairing=repair_authority1410();
+ unsigned repairing=maintenance_authority1410();
  if(d||e||(!repairing&&(input8.command!=W8_INSTALL||!installer_authority147())))return -5;
  if(operation==1){
   if(stream_owner147)return -170;if(bytes>32u*1024u*1024u)return -1816;char path[256];if(string8(address,path,sizeof(path))||!path8(path,1))return -5;
   unsigned root=length8(input8.product_root);if(memcmp(path,input8.product_root,root)||path[root]!='/')return -5;
   const char*relative=path+root+1;unsigned prefix=sizeof(".EngacerMSI/stage/")-1;
-  if(repairing){char stage[256];repair_stage1410(stage);if(!prefix8(path,stage)||equal8(path,stage))return -5;}
+  if(repairing){char stage[256];maintenance_stage1410(stage);if(!prefix8(path,stage)||equal8(path,stage))return -5;}
   else if((length8(relative)<=prefix||memcmp(relative,".EngacerMSI/stage/",prefix))&&!equal8(relative,".EngacerMSI/source.msi"))return -5;
   if(find8(path)||file_object_slot143(path)<FILE_OBJECTS143)return -80;
   unsigned status=v6_stream_begin(m6_volume(),path,bytes?bytes:1);if(status)return status==V6_LIMIT?-170:status==V6_FULL?-112:-1117;

@@ -26,12 +26,12 @@ unsigned msif_hash147(const char*path,uint64_t bytes,uint8_t hash[32]){
  while(bytes){unsigned n=bytes>sizeof(buffer)?sizeof(buffer):(unsigned)bytes;if(read8(handle,buffer,n)!=(int)n||!engine_sha256_update(&context,buffer,n)){status=23;break;}bytes-=n;if(!(++blocks&127))sys8(W8_SYS_YIELD,0,0,0,0,0);}
  if(close8(handle))status=1117;if(!status&&!engine_sha256_final(&context,hash))status=87;return status;
 }
-typedef struct {msia_plan147*plan;msij147*journal;const cab147_archive*archive;uint16_t map[256];const win_tx_file147 *repair[256];unsigned repairing,active,current,offset,completed,status;engine_sha256_context hash;} stage147;
+typedef struct {msia_plan147*plan;msij147*journal;const cab147_archive*archive;uint16_t map[256];const win_tx_file147 *repair[256];unsigned maintenance,active,current,offset,completed,status;engine_sha256_context hash;} stage147;
 static unsigned finish_file147(stage147*s){
  if(!s->active)return 0;msia_file147*f=s->plan->files+s->current;if(s->offset!=f->size)return 23;
  unsigned status=stream_finish147();if(status)return status;if(!engine_sha256_final(&s->hash,f->sha256))return 87;
  char path[256];status=msia_file_path147(s->plan,s->current,path);if(status)return status;
- if(s->repairing){
+ if(s->maintenance==1){
   if(memcmp(f->sha256,s->repair[s->current]->sha,32))return 23;
  }else{
   status=msij_file147(s->journal,WIN_TX_FILE147,path+len8(s->plan->product_root)+1,f->size,f->sha256,WIN_TX_PAYLOAD147);
@@ -39,11 +39,11 @@ static unsigned finish_file147(stage147*s){
  }
  s->active=0;++s->completed;progress8(15+s->completed*50/s->plan->selected_files,"Staging and checking original application files.");return 0;
 }
-static unsigned repair_file_path1410(const msia_plan147 *plan,unsigned index,char path[256]){
+static unsigned maintenance_file_path1410(const msia_plan147 *plan,unsigned index,char path[256]){
  char original[256];
  unsigned status=msia_file_path147(plan,index,original);
  if(status)return status;
- status=make_path147(path,plan->product_root,W8_REPAIR_STAGE1410);
+ status=make_path147(path,plan->product_root,W8_MAINTAIN_STAGE1410);
  if(status)return status;
  unsigned base=len8(path);
  const char *suffix=original+len8(plan->product_root);
@@ -59,9 +59,9 @@ static unsigned repair_file_path1410(const msia_plan147 *plan,unsigned index,cha
 }
 static int stage_sink147(void*opaque,const cab147_file*file,unsigned offset,const void*data,unsigned bytes){
  stage147*s=opaque;unsigned index=(unsigned)(file-s->archive->files);if(index>=s->archive->count){s->status=87;return 1;}unsigned current=s->map[index];msia_file147*f=s->plan->files+current;
- if(!f->selected||(s->repairing&&!s->repair[current]))return 0;
+ if(!f->selected||(s->maintenance==1&&!s->repair[current]))return 0;
  if(!s->active||s->current!=current){
-  s->status=finish_file147(s);if(s->status||offset)return 1;char path[256];s->status=s->repairing?repair_file_path1410(s->plan,current,path):stage_path147(s->plan,current,path);if(!s->status)s->status=stream_status147(1,path,f->size);if(s->status)return 1;
+  s->status=finish_file147(s);if(s->status||offset)return 1;char path[256];s->status=s->maintenance?maintenance_file_path1410(s->plan,current,path):stage_path147(s->plan,current,path);if(!s->status)s->status=stream_status147(1,path,f->size);if(s->status)return 1;
   s->active=1;s->current=current;s->offset=0;engine_sha256_init(&s->hash);
  }
  if(offset!=s->offset||bytes>f->size-s->offset){s->status=23;return 1;}
@@ -109,14 +109,44 @@ static const win_tx_file147 *repair_record1410(const msij147 *journal,const char
  }
  return 0;
 }
-unsigned msif_repair1410(msia_plan147 *plan,const msij147 *journal){
+static unsigned update_records1410(const msia_plan147 *plan,const msij147 *old,msij147 *next){
+ unsigned status=msij_properties147(next,&plan->properties);
+ for(unsigned at=sizeof(win_tx_header147);!status&&at<old->bytes;){
+  const win_tx_record147 *record=(const void*)(old->data+at);
+  if(record->type!=WIN_TX_PROPERTY147){
+   const win_tx_file147 *file=(const void*)(record+1);
+   if(record->type!=WIN_TX_FILE147||file->flags==WIN_TX_GENERATED147)
+    status=msij_append147(next,record->type,record+1,record->bytes-sizeof(*record));
+  }
+  at+=record->bytes;
+ }
+ return status;
+}
+static unsigned update_cache1410(const msia_plan147 *plan,msij147 *journal,const void *source,unsigned bytes){
+ char base[256],path[256];
+ unsigned status=make_path147(base,plan->product_root,W8_MAINTAIN_STAGE1410);
+ if(!status)status=make_path147(path,base,"/.EngacerMSI");
+ if(!status)status=msif_directory147(path);
+ if(!status)status=make_path147(path,base,"/.EngacerMSI/source.msi");
+ if(!status)status=stream_status147(1,path,bytes);
+ if(!status)status=stream_write147(source,bytes);
+ if(!status)status=stream_finish147();
+ if(!status)status=msij_file147(journal,WIN_TX_FILE147,".EngacerMSI/source.msi",bytes,
+                                plan->source_sha256,WIN_TX_CACHE147);
+ if(!status)status=make_path147(path,base,"/product.bin");
+ if(!status)status=msij_write147(journal,path);
+ return status;
+}
+unsigned msif_maintain1410(msia_plan147 *plan,const msij147 *journal,const void *source,unsigned bytes){
+ unsigned update=job8->command==W8_UPDATE1410;
  if(!plan||!plan->costed||!journal||!win_tx_validate147(journal->data,journal->bytes)||
-    job8->command!=W8_REPAIR1410||!equal8(plan->product_root,job8->product_root))return 87;
- int64_t cleared=(int64_t)sys8(W8_SYS_REPAIR1410,1,0,0,0,0);
+    (!update&&job8->command!=W8_REPAIR1410)||!equal8(plan->product_root,job8->product_root)||
+    (update&&(!source||plan->source_bytes!=bytes||memcmp(job8->source_sha147,plan->source_sha256,32))))return 87;
+ int64_t cleared=(int64_t)sys8(W8_SYS_MAINTAIN1410,1,0,0,0,0);
  if(cleared<0)return (unsigned)-cleared;
  stage147 *stage=calloc8(1,sizeof(*stage));
  if(!stage)return 8;
- stage->plan=plan;stage->repairing=1;
+ stage->plan=plan;stage->maintenance=update?2:1;
  unsigned pending=0,status=0;
  for(unsigned i=0;!status&&i<plan->file_count;++i){
   if(!plan->files[i].selected)continue;
@@ -124,10 +154,16 @@ unsigned msif_repair1410(msia_plan147 *plan,const msij147 *journal){
   status=msia_file_path147(plan,i,path);
   if(status)break;
   const win_tx_file147 *file=repair_record1410(journal,path+len8(plan->product_root)+1);
-  if(!file||file->bytes!=plan->files[i].size){status=13;break;}
+  if(!file||(!update&&file->bytes!=plan->files[i].size)){status=13;break;}
   unsigned existing=msif_hash147(path,file->bytes,hash);
   if(existing&&existing!=2&&existing!=23){status=existing;break;}
-  if(existing||memcmp(hash,file->sha,32)){stage->repair[i]=file;++pending;}
+  unsigned damaged=existing||memcmp(hash,file->sha,32);
+  if(update&&damaged){status=1306;break;}
+  if(update||damaged){stage->repair[i]=file;++pending;}
+ }
+ if(!status&&update){
+  stage->journal=msij_create147(plan);
+  status=stage->journal?update_records1410(plan,journal,stage->journal):8;
  }
  if(!status&&pending){
   msi8_blob blob=msi8_stream(plan->cabinet,0);
@@ -139,15 +175,16 @@ unsigned msif_repair1410(msia_plan147 *plan,const msij147 *journal){
    status=stage->status?stage->status:walk?13:finish_file147(stage);
   }
   if(!status&&stage->completed!=pending)status=13;
+  if(!status&&update)status=update_cache1410(plan,stage->journal,source,bytes);
   if(!status){
-   int64_t published=(int64_t)sys8(W8_SYS_REPAIR1410,2,0,0,0,0);
+   int64_t published=(int64_t)sys8(W8_SYS_MAINTAIN1410,2,0,0,0,0);
    if(published<0)status=(unsigned)-published;
   }
-  if(status){(void)stream_status147(6,0,0);(void)sys8(W8_SYS_REPAIR1410,1,0,0,0,0);}
+  if(status){(void)stream_status147(6,0,0);(void)sys8(W8_SYS_MAINTAIN1410,1,0,0,0,0);}
   if(archive)cab147_close(archive);
   if(blob.data)free8(blob.data);
- }
- free8(stage);
+ }else if(!status&&update)status=13;
+ msij_close147(stage->journal);free8(stage);
  return status;
 }
 unsigned msif_promote147(const msia_plan147*p){

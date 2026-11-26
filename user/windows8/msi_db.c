@@ -1,5 +1,6 @@
 /* Bounded CFB v3/v4 and MSI relational database reader; no host installer calls. */
 #include "msi_db.h"
+#include <engine/sha256.h>
 #define END8 0xfffffffeu
 #define FREE8 0xffffffffu
 static const uint8_t *compound8;
@@ -89,4 +90,66 @@ void msi8_database(const void*data,unsigned bytes){
  }require8(offset==text.size,"MSI string data contains trailing bytes.");free8(pool.data);free8(text.data);
  columns_table8=(msi8_table){.columns=4,.column={{"Table",0x800},{"Number",2},{"Name",0x800},{"Type",2}},.data=msi8_stream("_Columns",1)};
  require8(columns_table8.data.data&&!(columns_table8.data.size%8)&&columns_table8.data.size/8<=4096,"MSI column catalog is invalid.");columns_table8.rows=columns_table8.data.size/8;(void)compound_size8;
+}
+
+static void digest_text1410(engine_sha256_context *hash,const char *text){
+ engine_sha256_update(hash,text,len8(text)+1);
+}
+static unsigned metadata_stream1410(const char *name,const char *cabinet){
+ return equal8(name,cabinet)||equal8(name,"_StringData")||equal8(name,"_StringPool")||
+        equal8(name,"\005SummaryInformation");
+}
+unsigned msi8_update_shape1410(const char *cabinet,uint8_t digest[32]){
+ if(!cabinet||!cabinet[0])return 87;
+ engine_sha256_context hash;engine_sha256_init(&hash);
+ char previous[128]={0};
+ for(;;){
+  char name[128]={0};unsigned table=0;
+  for(unsigned at=0;at+128<=directory_size8;at+=128){
+   const uint8_t *entry=directory8+at;
+   if(entry[66]!=2)continue;
+   unsigned kind;char candidate[128];stream_name8(entry,candidate,sizeof(candidate),&kind);
+   if(metadata_stream1410(candidate,cabinet)||case8(candidate,previous)<=0)continue;
+   if(!name[0]||case8(candidate,name)<0){copy8(name,candidate,sizeof(name));table=kind;}
+  }
+  if(!name[0])break;
+  digest_text1410(&hash,name);copy8(previous,name,sizeof(previous));
+  engine_sha256_update(&hash,&table,sizeof(table));
+  if(table&&!equal8(name,"_Columns")&&!equal8(name,"_Tables")){
+   msi8_table rows=msi8_table_open(name);
+   engine_sha256_update(&hash,&rows.columns,sizeof(rows.columns));
+   engine_sha256_update(&hash,&rows.rows,sizeof(rows.rows));
+   for(unsigned col=0;col<rows.columns;++col){
+    const msi8_column *column=rows.column+col;
+    digest_text1410(&hash,column->name);
+    engine_sha256_update(&hash,&column->type,sizeof(column->type));
+    for(unsigned row=0;row<rows.rows;++row){
+     if(equal8(name,"File")&&(equal8(column->name,"FileSize")||equal8(column->name,"Version")))continue;
+     if(equal8(name,"MsiFileHash")&&!equal8(column->name,"File_"))continue;
+     if(equal8(name,"Property")&&col==1&&equal8(msi8_text(&rows,row,0),"ProductVersion"))continue;
+     if(column->type&0x800){
+      const char *value=msi8_text(&rows,row,col);
+      for(unsigned i=0,length=len8(value);i+14<=length;++i)
+       if(!memcmp(value+i,"ProductVersion",14)){
+        if(!equal8(name,"Property")||col!=0||!equal8(value,"ProductVersion")){
+         free8(rows.data.data);return 50;
+        }
+       }
+      digest_text1410(&hash,value);
+     }else{
+      unsigned value=msi8_raw(&rows,row,col);
+      engine_sha256_update(&hash,&value,sizeof(value));
+     }
+    }
+   }
+   if(rows.data.data)free8(rows.data.data);
+  }else if(!table){
+   msi8_blob data=msi8_stream(name,0);
+   if(!data.data)return 13;
+   engine_sha256_update(&hash,&data.size,sizeof(data.size));
+   engine_sha256_update(&hash,data.data,data.size);
+   free8(data.data);
+  }
+ }
+ return engine_sha256_final(&hash,digest)?0:87;
 }

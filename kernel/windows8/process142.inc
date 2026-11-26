@@ -148,7 +148,7 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
 #ifdef ENGINE_M14
  if(w8_pending())return V6_BUSY;
  if(!win_product_root147(root)||!user||!prefix8(user,"/Users"))return V6_INVALID;
- if(command==W8_RUN||command==W8_REMOVE||command==W8_INSTALL||command==W8_REPAIR1410){
+ if(command==W8_RUN||command==W8_REMOVE||command==W8_INSTALL||command==W8_REPAIR1410||command==W8_UPDATE1410){
   unsigned migration=migrate_registry1410(root,user);
   if(migration)return migration;
  }
@@ -181,7 +181,7 @@ unsigned w8_start_app1410(const char *source,const char *root,const char *user,c
 }
 #endif
 unsigned w8_start_reviewed147(unsigned command,const char*source,const char*root,const char*user,const char*arguments,const uint8_t digest[32]){
- if(command!=W8_INSTALL||!digest)return V6_INVALID;unsigned nonzero=0;for(unsigned i=0;i<32;++i)nonzero|=digest[i];if(!nonzero)return V6_INVALID;
+ if((command!=W8_INSTALL&&command!=W8_UPDATE1410)||!digest)return V6_INVALID;unsigned nonzero=0;for(unsigned i=0;i<32;++i)nonzero|=digest[i];if(!nonzero)return V6_INVALID;
  unsigned status=w8_start(command,source,root,user,arguments);if(status)return status;
  memcpy(input8.source_sha147,digest,32);
 #ifdef ENGINE_M14

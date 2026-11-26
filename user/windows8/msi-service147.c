@@ -20,17 +20,57 @@ static msij147*removal_journal147(char source[256]){
 static void user_alias147(char user[256]){
  const char*owner=job8->user_root;for(unsigned i=0;job8->user_root[i];++i)if(job8->user_root[i]=='/')owner=job8->user_root+i+1;copy8(user,"C:\\Users\\",256);if(!owner[0]||len8(owner)+len8(user)>=256)fail8("The MSI user alias exceeds its bound.");append8(user,owner,256);
 }
+/* The supported maintenance update retains the product, its install selection,
+ * registry and shortcuts. A new code or changed authored effects need a
+ * package-specific upgrade implementation. */
+static int version1410(const char *text,unsigned parts[4]){
+ unsigned index=0;
+ while(*text){
+  if(index==4||*text<'0'||*text>'9')return 0;
+  unsigned value=0;
+  do{
+   if(value>6553)return 0;
+   value=value*10+(unsigned)(*text++-'0');
+  }while(*text>='0'&&*text<='9');
+  if(value>65535)return 0;
+  parts[index++]=value;
+  if(!*text)return 1;
+  if(*text++!='.'||!*text)return 0;
+ }
+ return 0;
+}
+static unsigned newer1410(const char *before,const char *after){
+ unsigned old[4]={0},next[4]={0};
+ if(!version1410(before,old)||!version1410(after,next))return 0;
+ for(unsigned i=0;i<4;++i)if(old[i]!=next[i])return old[i]<next[i];
+ return 0;
+}
+static unsigned previous_package1410(const msij147 *journal,const char *user,
+                                     uint8_t shape[32],msip_session147 *properties){
+ char cached[256];service_path147(cached,"/.EngacerMSI/source.msi");
+ void *image=0;unsigned bytes=load8(cached,&image,8*1024*1024);
+ if(!bytes)return 2;
+ msia_plan147 *old=msia_prepare147(image,bytes);
+ unsigned status=msij_restore147(journal,old);
+ if(!status){
+  msia_cost147(old,user);
+  status=msi8_update_shape1410(old->cabinet,shape);
+ }
+ if(!status){*properties=old->properties;old->properties=(msip_session147){0};}
+ msia_close147(old);free8(image);
+ return status;
+}
 static void metadata_service147(msia_plan147*p,unsigned database){
  static const uint8_t legacy[32]={0x6d,0xc8,0x22,0x56,0x9e,0x77,0x7d,0x9a,0x3e,0xcd,0x5f,0xfc,0xbc,0x22,0xb5,0x56,0x00,0xaf,0x87,0xe6,0xc5,0xd9,0x81,0x0a,0x64,0xe8,0x56,0x6c,0xf5,0xa4,0xaf,0x9f};
- if(job8->command!=W8_INSTALL)memcpy(job8->source_sha147,p->source_sha256,32);job8->profile147=0;if(job8->command==W8_PREVIEW){unsigned admission=msia_admit147(p);if(!admission)job8->profile147=W8_PROFILE_GENERIC147|(!memcmp(legacy,p->source_sha256,32)?W8_PROFILE_LEGACY147:0);else{print8("MSI read-only admission status: ");number8(admission);print8("\n");}}
+ if(job8->command!=W8_INSTALL&&job8->command!=W8_UPDATE1410)memcpy(job8->source_sha147,p->source_sha256,32);job8->profile147=0;if(job8->command==W8_PREVIEW){unsigned admission=msia_admit147(p);if(!admission)job8->profile147=W8_PROFILE_GENERIC147|(!memcmp(legacy,p->source_sha256,32)?W8_PROFILE_LEGACY147:0);else{print8("MSI read-only admission status: ");number8(admission);print8("\n");}}
  copy8(job8->product,p->product,sizeof(job8->product));copy8(job8->version,p->version,sizeof(job8->version));copy8(job8->publisher,p->publisher,sizeof(job8->publisher));copy8(job8->code,p->code,sizeof(job8->code));job8->files=p->selected_files;job8->total_bytes=p->selected_bytes;job8->features=p->feature_count;job8->registry=table_count147(database,"Registry");job8->shortcuts=table_count147(database,"Shortcut");
 }
 __declspec(dllexport) unsigned EngacerMsiRun147(void){
- if(job8->magic!=W8_MAGIC)exit8(87);if(job8->command!=W8_PREVIEW&&job8->command!=W8_INSTALL&&job8->command!=W8_REMOVE&&job8->command!=W8_REPAIR1410)fail8("This MSI operation is not supported.");
+ if(job8->magic!=W8_MAGIC)exit8(87);if(job8->command!=W8_PREVIEW&&job8->command!=W8_INSTALL&&job8->command!=W8_REMOVE&&job8->command!=W8_REPAIR1410&&job8->command!=W8_UPDATE1410)fail8("This MSI operation is not supported.");
  if(job8->command==W8_REMOVE){unsigned kept=0,status=msir_finish147(&kept);if(status!=2){if(status){print8("MSI final cleanup status: ");number8(status);print8("\n");copy8(job8->message,status==13?"The completion record needs inspection. Your saved files were kept. Open Details before retrying.":"Final removal cleanup could not finish. Its completion record and your files were kept; choose Recover / remove.",sizeof(job8->message));return status;}progress8(100,"Removal finished. Any saved application files remain in Documents > Recovered applications.");return 0;}}
  char source_path[256];copy8(source_path,job8->source,256);msij147*recovery=job8->command==W8_REMOVE?removal_journal147(source_path):0;
- unsigned repairing=job8->command==W8_REPAIR1410;
- if(repairing){
+ unsigned repairing=job8->command==W8_REPAIR1410,updating=job8->command==W8_UPDATE1410;
+ if(repairing||updating){
   char record[256];w8_file_info pending;
   service_path147(record,"/.EngacerMSI/transaction.bin");
   if(!stat8(record,&pending))return 1618;
@@ -38,28 +78,53 @@ __declspec(dllexport) unsigned EngacerMsiRun147(void){
   recovery=msij_read147(record,job8->product_root,job8->user_root);
   if(!recovery)return 13;
  }
- progress8(2,recovery?"Reading the application's saved original installer.":"Reading the selected original MSI package.");void*source=0;unsigned bytes=load8(source_path,&source,8*1024*1024);if(!bytes)fail8("The original installer is missing or exceeds its input bound. No installation or removal was started.");msia_plan147*p=msia_prepare147(source,bytes);
- if(job8->command==W8_INSTALL&&memcmp(job8->source_sha147,p->source_sha256,32))fail8("The reviewed MSI source changed. No installation was started.");
- if(recovery){if(msij_restore147(recovery,p))fail8("The saved installer or original selection no longer matches its recovery record. No files were removed.");}
+ char user[256];user_alias147(user);
+ uint8_t old_shape[32];msip_session147 old_properties={0};
+ if(updating){
+  unsigned status=previous_package1410(recovery,user,old_shape,&old_properties);
+  if(status)return status;
+ }
+ progress8(2,recovery&&!updating?"Reading the application's saved original installer.":"Reading the selected original MSI package.");void*source=0;unsigned bytes=load8(source_path,&source,8*1024*1024);if(!bytes)fail8("The original installer is missing or exceeds its input bound. No installation or removal was started.");msia_plan147*p=msia_prepare147(source,bytes);
+ if((job8->command==W8_INSTALL||updating)&&memcmp(job8->source_sha147,p->source_sha256,32))fail8("The reviewed MSI source changed. No installation was started.");
+ if(updating){
+  const win_tx_header147 *header=(const void*)recovery->data;
+  if(!equal8(header->code,p->code)||!equal8(header->product,p->product)||
+     !equal8(header->publisher,p->publisher)||!newer1410(header->version,p->version))
+   fail8("Choose a newer installer for this application from the same publisher.");
+  msip_destroy147(&p->properties);p->properties=old_properties;
+  if(msip_set147(&p->properties,"ProductVersion",p->version))
+   fail8("The new version could not be stored in the installer session.");
+ }else if(recovery){if(msij_restore147(recovery,p))fail8("The saved installer or original selection no longer matches its recovery record. No files were removed.");}
  else{
   if(msip_set147(&p->properties,"Privileged","1"))fail8("The MSI privilege property exceeds its bound.");
   if(equal8(msip_get147(&p->properties,"ALLUSERS"),"2")&&msip_set147(&p->properties,"ALLUSERS","1"))fail8("The MSI installation-context property exceeds its bound.");
   if(msireg_appsearch147(p))fail8("The MSI registry search is outside the supported profile. No installation was started.");
  }
- char user[256];user_alias147(user);msia_cost147(p,user);
+ msia_cost147(p,user);
+ if(updating){
+  uint8_t shape[32];
+  if(msi8_update_shape1410(p->cabinet,shape)||memcmp(shape,old_shape,32))
+   fail8("This installer changes the application's authored layout or registration. The current version was kept.");
+ }
  if(recovery&&!equal8(((const win_tx_header147*)(const void*)recovery->data)->alias,p->program_alias))fail8("The saved program location no longer matches the original installer. No files were removed.");
  unsigned install=msi_bind147(p);if(!install)fail8("The native MSI session could not be bound.");unsigned database=MsiGetActiveDatabase(install);if(!database)fail8("The active MSI database could not be acquired.");metadata_service147(p,database);if(MsiCloseHandle(database))fail8("The active MSI database could not be closed.");database=0;
  unsigned status=0,kept=0;
  if(job8->command==W8_INSTALL)status=msia_install147(p,source,bytes);
- else if(repairing)status=msif_repair1410(p,recovery);
- else if(recovery){int64_t alias=(int64_t)sys8(W8_SYS_ALIAS147,(uint64_t)(uintptr_t)p->program_alias,0,0,0,0);status=alias<0?(unsigned)-alias:msir_remove147(p,recovery,&kept);}
+ else if(repairing||updating)status=msif_maintain1410(p,recovery,source,bytes);
+ else if(recovery){
+  int64_t alias=(int64_t)sys8(W8_SYS_ALIAS147,(uint64_t)(uintptr_t)p->program_alias,0,0,0,0);
+  int64_t clean=alias<0?alias:(int64_t)sys8(W8_SYS_MAINTAIN1410,1,0,0,0,0);
+  status=clean<0?(unsigned)-clean:msir_remove147(p,recovery,&kept);
+ }
  else{
   print8("MSI original product: ");print8(p->product);print8("\nSelected original files: ");number8(p->selected_files);print8(" bytes: ");number8(p->selected_bytes);print8("\nAuthored registry entries: ");number8(job8->registry);print8(" shortcuts: ");number8(job8->shortcuts);print8("\nMSI execute actions: ");number8(p->action_count);print8(" custom-action metadata: ");number8(p->custom_count);print8("\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n");
  }
  if(database&&MsiCloseHandle(database))fail8("The active MSI database could not be closed.");msi_unbind147();msia_close147(p);msij_close147(recovery);free8(source);
+ if(status==1306){copy8(job8->message,"An installed file has changed or is missing. Repair the application before updating.",sizeof(job8->message));return status;}
  if(status==1618){copy8(job8->message,"Finish the previous removal with Recover / remove before installing.",sizeof(job8->message));return status;}
  if(status){print8("MSI operation status: ");number8(status);print8("\n");copy8(job8->message,"The operation could not finish. Recovery records and your files were kept; inspect Details before retrying.",sizeof(job8->message));return status;}
  if(job8->command==W8_INSTALL)progress8(100,"Application files, registry values and shortcuts were installed and verified.");
+ else if(updating)progress8(100,"The new application version was installed and verified.");
  else if(repairing)progress8(100,"Application files were verified and repaired from the saved installer.");
  else if(job8->command==W8_REMOVE)progress8(100,kept?"Removed. Changed files were saved in Documents > Recovered applications.":"Removed. Your personal files are unchanged.");
  else progress8(100,"Read-only MSI preview complete. No installation was performed.");return 0;

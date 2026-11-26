@@ -46,7 +46,7 @@ void msi8_execute(void){
 #ifdef ENGINE_M14
  if(job8->command==W8_PREVIEW&&exe148_source(job8->source)){exe148_review();return;}
  if((job8->command==W8_INSTALL||job8->command==W8_REMOVE)&&job8->profile147&W8_PROFILE_EXE148){exe148_execute();return;}
- unsigned use_service=job8->command==W8_PREVIEW||job8->command==W8_INSTALL||job8->command==W8_REMOVE||job8->command==W8_REPAIR1410;
+ unsigned use_service=job8->command==W8_PREVIEW||job8->command==W8_INSTALL||job8->command==W8_REMOVE||job8->command==W8_REPAIR1410||job8->command==W8_UPDATE1410;
  if(job8->command==W8_REMOVE&&equal8(job8->product_root,ROOT8)){char path[256];path_msi8(path,"product.bin");int handle=open8(path,0);uint64_t magic=0;if(handle>=0){int got=read8(handle,&magic,8);close8(handle);if(got==8&&magic==UINT64_C(0x31494d38574f53))use_service=0;}}
  if(use_service){if(job8->command==W8_INSTALL){unsigned nonzero=0;for(unsigned i=0;i<32;++i)nonzero|=job8->source_sha147[i];if(!nonzero){check8(equal8(job8->product_root,ROOT8),"Review the original MSI before installation.");memcpy(job8->source_sha147,package_hash8,32);}}init_win8();pe8_run("/System/Windows/Installer/msiexec.exe","");return;}
 #endif

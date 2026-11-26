@@ -12,5 +12,6 @@ msi8_table msi8_table_open(const char*);
 const char *msi8_string(unsigned);
 const char *msi8_text(const msi8_table*,unsigned,unsigned);
 int32_t msi8_integer(const msi8_table*,unsigned,unsigned);
+unsigned msi8_update_shape1410(const char *,uint8_t[32]);
 unsigned msi8_raw(const msi8_table*,unsigned,unsigned);
 #endif
