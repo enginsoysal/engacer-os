@@ -14,6 +14,8 @@ invalidate = source[start:end]
 process = (root / "kernel/windows8/process.c").read_text(encoding="utf-8")
 owner = process[process.index("static void init_app_owner1410("):
                 process.index("\n#endif", process.index("static void init_app_owner1410("))]
+authority = process[process.index("static uint64_t group_generation1410;"):
+                    process.index("static int equal8", process.index("static uint64_t group_generation1410;"))]
 fixture = """
 #include <stdint.h>
 #include <string.h>
@@ -26,7 +28,7 @@ fixture = """
 typedef struct { char user[256],canonical[768]; } record;
 typedef struct { record record; char app_owner[65],directory[256]; unsigned deleted; } registry_object143;
 typedef struct { unsigned live,generation,object,access; } registry_cap143;
-typedef struct { char named_owner1410[256],app_id1410[39]; uint64_t app_generation1410; registry_cap143 registry_handles[32]; } private_space142;
+typedef struct { char named_owner1410[256],app_id1410[39]; uint64_t app_generation1410; unsigned install_authority147; registry_cap143 registry_handles[32]; } private_space142;
 static private_space142 a={.app_generation1410=1}, b={.app_generation1410=2};
 static private_space142 *spaces142[]={&a,&b};
 static unsigned length8(const char *s){return (unsigned)strlen(s);}
@@ -35,7 +37,7 @@ static unsigned active_space142;
 static int equal8(const char*a,const char*b){return !strcmp(a,b);}
 static registry_object143 first={.record={"user","key"},.app_owner="A",.directory="/shared"},second={.record={"user","key"},.app_owner="B",.directory="/shared"};
 static registry_object143 *registry_objects143[64]={&first,&second};
-""" + owner + lookup + """
+""" + owner + authority + lookup + """
 static void invalidate_key(const char *directory){
 """ + invalidate + """
 }
@@ -46,6 +48,16 @@ int main(void){
  if(!strcmp(a.named_owner1410,b.named_owner1410))return 6;
  memcpy(first.app_owner,a.named_owner1410,sizeof(first.app_owner));
  memcpy(second.app_owner,b.named_owner1410,sizeof(second.app_owner));
+ a.install_authority147=b.install_authority147=1;
+ group_generation1410=a.app_generation1410;
+ memcpy(group_owner1410,a.named_owner1410,sizeof(group_owner1410));
+ if(!installer_authority147())return 7;
+ group_generation1410=b.app_generation1410;
+ memcpy(group_owner1410,b.named_owner1410,sizeof(group_owner1410));
+ if(installer_authority147())return 8;
+ active_space142=1;
+ if(!installer_authority147())return 9;
+ active_space142=0;
  uint64_t h=W8_REGISTRY_TAG143|(7u<<5);
  a.registry_handles[0]=(registry_cap143){1,7,0,1};
  if(registry_slot143(h)!=0)return 1;
