@@ -193,6 +193,10 @@ static unsigned user8(uint64_t va,void*buffer,unsigned bytes,unsigned to_user){
   if(to_user)memcpy(physical,b,n);else memcpy(b,physical,n);b+=n;va+=n;bytes-=n;}return 0;
 }
 static unsigned string8(uint64_t va,char*out,unsigned cap){for(unsigned i=0;i<cap;++i){if(user8(va+i,out+i,1,0))return 1;if(!out[i])return 0;}return 1;}
+#ifdef ENGINE_M14
+static void protected_hash143(const char*,char*);
+static unsigned protected_prepare143(const char*);
+#endif
 #include "path-access147.inc"
 static const v6_entry *find8(const char*p){v6_volume*v=m6_volume();if(!v)return 0;for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&equal8(v->entries[i].path,p))return v->entries+i;return 0;}
 #include "path143.inc"
@@ -483,14 +487,14 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_FILE_OP143:{if(!a&&b>=10&&b<=18&&b!=12&&b!=13){char target[256];if(string8(c,path,256))return -998;
   if(b==18){if(!path8(path,0))return -5;const v6_entry*directory=find8(path);if(!directory)return -3;if(directory->kind!=2)return -267;if(e>=V6_ENTRIES)return 0;unsigned prefix=length8(path);for(unsigned i=(unsigned)e;i<V6_ENTRIES;++i){const v6_entry*entry=m6_volume()->entries+i;if(!entry->kind||memcmp(entry->path,path,prefix)||entry->path[prefix]!='/')continue;const char*name=entry->path+prefix+1;unsigned nested=0;while(*name)if(*name++=='/')nested=1;if(nested)continue;
 #ifdef ENGINE_M14
-   if(bundle_control_path1410(entry->path))continue;
+   if(bundle_control_path1410(entry->path)&&!app_temp_grant1410(entry->path))continue;
 #endif
    w8_file_info information;unsigned error=information8(entry,&information);if(error)return -(int64_t)error;if(user8(d,&information,sizeof(information),1))return -998;return i+1;}return 0;}
   if(b==10)return -(int64_t)file_delete143(path);if(b==14)return -(int64_t)file_attributes143(path,(unsigned)d);
   if(b==15){if(!path8(path,0))return -5;const v6_entry*entry=find8(path);if(!entry)return -2;w8_file_info information;unsigned error=information8(entry,&information);if(error)return -(int64_t)error;return user8(d,&information,sizeof(information),1)?-998:0;}
   if(b==16||b==17){if(!path8(path,1))return -5;const v6_entry*entry=find8(path);if(b==17){if(!entry)return -3;if(entry->kind!=2)return -267;for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*child=m6_volume()->entries+i;if(child->kind&&!equal8(child->path,path)&&prefix8(child->path,path)){
 #ifdef ENGINE_M14
-    if(removable_registry_tree1410(path))break;
+    if(removable_bundle_tree1410(path))break;
 #endif
     return -145;
    }}return -(int64_t)file_delete143(path);}
@@ -522,7 +526,7 @@ static int64_t dispatch8(trap_frame*f){
   if(string8(a,path,256)||!path8(path,0)||c>=V6_ENTRIES)return -1;unsigned len=length8(path);v6_volume*v=m6_volume();
   for(unsigned i=(unsigned)c;i<V6_ENTRIES;++i){const v6_entry*e=v->entries+i;if(!e->kind||memcmp(e->path,path,len)||e->path[len]!='/')continue;const char*p=e->path+len+1;unsigned slash=0;while(*p)if(*p++=='/')slash=1;if(slash)continue;
 #ifdef ENGINE_M14
-   if(bundle_control_path1410(e->path))continue;
+   if(bundle_control_path1410(e->path)&&!app_temp_grant1410(e->path))continue;
 #endif
    w8_file_info result;if(information8(e,&result)||user8(b,&result,sizeof(result),1))return -1;return i+1;}return 0;
  }

@@ -78,13 +78,19 @@ static unsigned path_resolve143(const path_context143*ctx,const char*root,const 
   else{out[prefix++]='/';memcpy(out+prefix,tail+first,n);out[prefix+n]=0;missing=1;}
  }return 0;
 }
-static unsigned path_policy143(const path_context143*ctx,const char*input,const char*cwd,unsigned flags,w8_path_result143*out){
+static unsigned path_policy_with_temp1410(const path_context143*ctx,const char*input,const char*cwd,unsigned flags,w8_path_result143*out,const char*temporary){
  if(flags&~7u)return 87;memset(out,0,sizeof(*out));char clean[1024];unsigned error=path_normalize143(input,cwd,flags,clean);if(error)return error;
  unsigned pos=0,wide=0,bytes=path_length143(clean,sizeof(clean));
  while(pos<bytes){uint32_t cp;if(!decode_utf8_143(clean,bytes,&pos,&cp))return 1113;if(!encode_utf16_143(cp,out->windows,511,&wide))return 206;}out->windows[wide]=0;
  if(flags&2)return 0;
  char user[512];if(path_user_alias143(ctx,user,sizeof(user)))return 206;
  unsigned skip=0;const char*root=0;
+ if(temporary){
+  unsigned used=0,folder=0;
+  if(path_prefix143(clean,user,&used)&&
+     path_prefix143(clean+used,"\\AppData\\Temp",&folder))
+   return path_resolve143(ctx,temporary,clean+used+folder,flags,out->native);
+ }
 #ifdef ENGINE_M14
  const char*common="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs";
  unsigned common_skip=0;if(path_prefix143(clean,common,&common_skip))return path_resolve143(ctx,"/Data/Windows/Common/Programs",clean+common_skip,flags,out->native);
@@ -104,4 +110,8 @@ static unsigned path_policy143(const path_context143*ctx,const char*input,const 
  if(path_prefix143(clean,ctx->windows,&skip))root=ctx->product;
  else if(path_prefix143(clean,user,&skip))root=ctx->user;
  if(!root)return 5;return path_resolve143(ctx,root,clean+skip,flags,out->native);
+}
+static unsigned path_policy143(const path_context143*ctx,const char*input,const char*cwd,
+                               unsigned flags,w8_path_result143*out){
+ return path_policy_with_temp1410(ctx,input,cwd,flags,out,0);
 }

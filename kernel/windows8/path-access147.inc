@@ -7,6 +7,25 @@ static unsigned bundle_control_path1410(const char *path){
  if(length8(path)<=offset||path[offset]!='/')return 0;
  return prefix8(path+offset,"/.Engacer");
 }
+static unsigned app_temp_enabled1410(void){
+ return input8.command==W8_RUN&&!installer_authority147();
+}
+static void app_temp_root1410(char *out){
+ char principal[33];
+ protected_hash143(input8.user_root,principal);
+ copy8(out,input8.product_root,256);
+ unsigned n=length8(out);
+ copy8(out+n,"/.Engacer/Temp/",256-n);
+ n=length8(out);
+ copy8(out+n,principal,256-n);
+}
+static unsigned app_temp_grant1410(const char *path){
+ if(!app_temp_enabled1410()||!prefix8(path,input8.product_root))return 0;
+ const char *suffix=path+length8(input8.product_root);
+ if(!prefix8(suffix,"/.Engacer/Temp"))return 0;
+ char directory[256];app_temp_root1410(directory);
+ return prefix8(path,directory);
+}
 /* Related-product checks need catalog records, never another product's payload. */
 static unsigned installer_catalog_read1410(const char*p){
  if(equal8(p,"/Applications/Windows"))return 1;
@@ -25,7 +44,9 @@ static unsigned path8(const char*p,unsigned write){
  for(unsigned i=1;p[i];++i){if((uint8_t)p[i]<32||p[i]=='\\')return 0;if(p[i]=='/'){if(!component)return 0;component=0;}else{if(++component>63)return 0;if(p[i]=='.'&&(p[i+1]=='/'||!p[i+1])&&(i==1||p[i-1]=='/'||(p[i-1]=='.'&&(i==2||p[i-2]=='/'))))return 0;}}
  if(!component)return 0;
 #ifdef ENGINE_M14
- if(bundle_control_path1410(p))return 0;
+ if(bundle_control_path1410(p))return app_temp_grant1410(p);
+ if(app_temp_enabled1410()&&prefix8(p,input8.user_root)&&
+    prefix8(p+length8(input8.user_root),"/AppData/Temp"))return 0;
 #endif
  if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source)
 #ifdef ENGINE_M14

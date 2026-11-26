@@ -21,6 +21,12 @@ static unsigned installer_authority147(void){return input8.command!=W8_RUN;}
 static unsigned installer_user_grant147(const char *path,unsigned ancestor){
  (void)path;(void)ancestor;return 0;
 }
+static void copy8(char *out,const char *in,unsigned cap){
+ size_t n=strlen(in);if(n>=cap)n=cap-1;memcpy(out,in,n);out[n]=0;
+}
+static void protected_hash143(const char *text,char *out){
+ (void)text;memset(out,'0',32);out[32]=0;
+}
 #include "../../kernel/windows8/path-access147.inc"
 
 int main(void){
@@ -39,5 +45,10 @@ int main(void){
  input8.command=W8_RUN;
  if(path8(APP_B "/product.bin",0)||path8("/Applications/Windows",0)||
     !path8(APP_A "/other.dll",0))return 4;
+ const char own[]=APP_A "/.Engacer/Temp/00000000000000000000000000000000/cache.bin";
+ const char foreign[]=APP_B "/.Engacer/Temp/00000000000000000000000000000000/cache.bin";
+ if(!path8(own,1)||!path_content1410(own)||path8(foreign,0)||
+    path8("/Users/Owner/AppData/Temp/cache.bin",1)||
+    path8(APP_A "/.Engacer/Temp/11111111111111111111111111111111/cache.bin",0))return 7;
  return 0;
 }

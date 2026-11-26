@@ -18,7 +18,19 @@ static int64_t path_syscall143(uint64_t name,uint64_t directory,uint64_t output,
  if(directory)error=path_user_string143(directory,cwd,sizeof(cwd));
  else{error=path_user_alias143(&context,cwd,sizeof(cwd));if(!error)error=path_append143(cwd,"\\Documents",sizeof(cwd));}
  if(error)return -(int64_t)error;
- error=path_policy143(&context,text,cwd,(unsigned)flags,&result);if(error)return -(int64_t)error;
+#ifdef ENGINE_M14
+ if(app_temp_enabled1410()){
+  char temporary[256];app_temp_root1410(temporary);
+  error=path_policy_with_temp1410(&context,text,cwd,(unsigned)flags,&result,temporary);
+  if(!error&&!(flags&2)&&app_temp_grant1410(result.native)&&!find8(temporary)){
+   const v6_entry *bundle=find8(input8.product_root);
+   if(!bundle||bundle->kind!=2)return -3;
+   error=protected_prepare143(temporary);
+  }
+ }else
+#endif
+ error=path_policy143(&context,text,cwd,(unsigned)flags,&result);
+ if(error)return -(int64_t)error;
  if(!(flags&2)&&!path8(result.native,0))return -5;
  return user8(output,&result,sizeof(result),1)?-998:0;
 }

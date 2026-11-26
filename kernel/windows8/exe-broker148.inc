@@ -21,7 +21,8 @@ static unsigned exe_hash_file148(const char*path,uint64_t bytes,const char*expec
 static unsigned exe_payloads_check148(void){
  unsigned files=0;v6_volume*v=m6_volume();for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*e=v->entries+i;if(!e->kind||equal8(e->path,EXE148_ROOT)||!prefix8(e->path,EXE148_ROOT))continue;unsigned found=0;
   if(equal8(e->path,EXE148_ROOT "/.Engacer")||
-     prefix8(e->path,EXE148_ROOT "/.Engacer/Registry"))continue;
+     prefix8(e->path,EXE148_ROOT "/.Engacer/Registry")||
+     prefix8(e->path,EXE148_ROOT "/.Engacer/Temp"))continue;
   for(unsigned j=0;j<4;++j){char path[256];copy8(path,EXE148_ROOT,256);path_append143(path,"/",256);path_append143(path,exe_payloads148[j].name,256);if(equal8(path,e->path)){if(exe_hash_file148(path,exe_payloads148[j].bytes,exe_payloads148[j].sha))return 23;found=1;++files;break;}}
   if(!found)return 5;
  }return files==4?0:13;

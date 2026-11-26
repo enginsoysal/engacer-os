@@ -179,25 +179,28 @@ static int64_t file_lock_call143(trap_frame*frame,unsigned slot,uint64_t handle,
  context8=*frame;context8.rax=0;w8_active=0;w8_escape();
 }
 #ifdef ENGINE_M14
-/* At terminal removal the host drops only this app's private registry along
+/* At terminal removal the host drops only this app's private state along
  * with its empty product root, in one volume commit. A visible file or other
  * control record still makes the directory nonempty.
  */
 static void registry_bundle_removed1410(const char *path);
-static unsigned removable_registry_tree1410(const char *path){
+static unsigned removable_bundle_tree1410(const char *path){
  if(input8.command!=W8_REMOVE||!installer_authority147()||
     !equal8(path,input8.product_root))return 0;
- char control[256],registry[256];
+ char control[256],registry[256],temporary[256];
  copy8(control,path,sizeof(control));
  path_append143(control,"/.Engacer",sizeof(control));
  copy8(registry,control,sizeof(registry));
  path_append143(registry,"/Registry",sizeof(registry));
- if(!find8(registry))return 0;
+ copy8(temporary,control,sizeof(temporary));
+ path_append143(temporary,"/Temp",sizeof(temporary));
+ if(!find8(registry)&&!find8(temporary))return 0;
  v6_volume *volume=m6_volume();
  for(unsigned i=0;i<V6_ENTRIES;++i){
   const v6_entry *entry=volume->entries+i;
   if(entry->kind&&prefix8(entry->path,path)&&!equal8(entry->path,path)&&
-     !equal8(entry->path,control)&&!prefix8(entry->path,registry))return 0;
+     !equal8(entry->path,control)&&!prefix8(entry->path,registry)&&
+     !prefix8(entry->path,temporary))return 0;
  }
  return 1;
 }
@@ -213,7 +216,7 @@ static unsigned file_delete143(const char*path){
   unsigned error=file_sharing143(object,4,7);if(error)return error;value->delete_pending=1;return 0;}
  if(entry->kind==2){for(unsigned i=0;i<FILE_OBJECTS143;++i)if(file_objects143[i]&&prefix8(file_objects143[i]->path,path))return 32;}
 #ifdef ENGINE_M14
- if(entry->kind==2&&removable_registry_tree1410(path)){
+ if(entry->kind==2&&removable_bundle_tree1410(path)){
   if(v6_remove_tree11(m6_volume(),path))return 1117;
   registry_bundle_removed1410(path);
   return metadata_remove143(path);
