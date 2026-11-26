@@ -10,9 +10,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--stage', type=int, required=True, choices=range(1, 16))
     args = parser.parse_args()
-    previous = ROOT / f'evidence/M14/{args.stage-1}/publication-results.json'
-    proof = json.loads(previous.read_text(encoding='utf-8'))
-    assert proof['passed'] and proof.get('stage') == f'M14.{args.stage-1}', 'Close the preceding public delivery first'
+    if args.stage == 10:
+        # M14.9 delivered a reference laboratory and had no release ISO.
+        progress = ROOT / 'docs/milestones/m14-progress.json'
+        stages = json.loads(progress.read_text(encoding='utf-8'))['stages']
+        lab = next(stage for stage in stages if stage['id'] == 'M14.9')
+        assert lab['status'] == 'complete', 'Close the M14.9 reference laboratory first'
+    else:
+        previous = ROOT / f'evidence/M14/{args.stage-1}/publication-results.json'
+        proof = json.loads(previous.read_text(encoding='utf-8'))
+        assert proof['passed'] and proof.get('stage') == f'M14.{args.stage-1}', 'Close the preceding public delivery first'
     assert not (ROOT / f'evidence/M14/{args.stage}/publication-results.json').exists(), 'Accepted media are immutable'
     profile = ROOT / 'distros/engacer-desktop-m14.json'
     assert json.loads(profile.read_text(encoding='utf-8'))['version'] == f'0.14.{args.stage}'

@@ -1,6 +1,6 @@
 # Engacer OS â€” project instructions
 
-- Latest owner instruction, 26 November 2026: start M14.9 contracts and reference laboratory. M14.10 and later remain planned.
+- Latest owner instruction, 26 November 2026: implement and finish M14.10, including kernel-owned app identity, private app files and registry, inherited helper ownership, and exact native testing. Update GitHub and the public milestone documentation. Preserve accepted earlier media. M14.9 is closed; M14.11 and later remain planned.
 
 - Previous owner instruction, 23 November 2026: revise and publish the detailed Windows milestone/architecture plans for independent app environments. This authorizes documentation/planning only, not M14.9+ runtime implementation or new ISO builds. Include standalone x86 in M15 and Win16/DOS in M16 now at design level; required x86 helpers of x64 products remain M14.10. Keep accepted M14.8 media/evidence immutable.
 - Superseding app dependency policy: one self-contained Windows app directory, private registry and independent copies of DLLs, runtimes, helper programs and app-owned services. No cross-app dependency store, hardlink/reflink/dedup reuse or shared app-code backing. Native OS/kernel/hardware management is the common foundation. Follow docs/architecture/windows-app-environments.md.
