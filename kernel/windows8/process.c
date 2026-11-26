@@ -348,7 +348,7 @@ static unsigned prepare_space_tables1410(void){
 #endif
 static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request,const private_space142*parent,unsigned compat_x86){
  if(parent){root=parent->input.product_root;user=parent->input.user_root;}
- if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
+ if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_REPAIR1410||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
  active_space142=slot;if(allocate_space142(slot))goto failure;spaces142[slot]->object=object;memset(&info8,0,sizeof(info8));info8.peak_pages=metadata_pages142[slot];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
  copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;info8.job_id147=input8.process_id;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
 #ifdef ENGINE_M14
@@ -490,6 +490,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_PIPE147:return e?-87:pipe_call147(a,b,c,d,f);
  case W8_SYS_ALIAS147:return alias_set147(a,b,c,d,e);
  case W8_SYS_STREAM147:return stream_call147(a,b,c,d,e);
+ case W8_SYS_REPAIR1410:return b||c||d||e?-87:repair_call1410(a);
 #endif
  case W8_SYS_PATH143:return e?-87:path_syscall143(a,b,c,d);
  case W8_SYS_REGISTRY143:return c||d||e?-87:registry_syscall143(a,b);

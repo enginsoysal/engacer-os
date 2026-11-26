@@ -2,6 +2,7 @@
 #include "msi-plan147.h"
 #include "msi_db.h"
 #include "msi-install147.h"
+#include "msi-files147.h"
 #include "msi-remove147.h"
 #include "msi-registry147.h"
 unsigned msi_bind147(msia_plan147*);
@@ -25,9 +26,18 @@ static void metadata_service147(msia_plan147*p,unsigned database){
  copy8(job8->product,p->product,sizeof(job8->product));copy8(job8->version,p->version,sizeof(job8->version));copy8(job8->publisher,p->publisher,sizeof(job8->publisher));copy8(job8->code,p->code,sizeof(job8->code));job8->files=p->selected_files;job8->total_bytes=p->selected_bytes;job8->features=p->feature_count;job8->registry=table_count147(database,"Registry");job8->shortcuts=table_count147(database,"Shortcut");
 }
 __declspec(dllexport) unsigned EngacerMsiRun147(void){
- if(job8->magic!=W8_MAGIC)exit8(87);if(job8->command!=W8_PREVIEW&&job8->command!=W8_INSTALL&&job8->command!=W8_REMOVE)fail8("This MSI operation is not supported.");
+ if(job8->magic!=W8_MAGIC)exit8(87);if(job8->command!=W8_PREVIEW&&job8->command!=W8_INSTALL&&job8->command!=W8_REMOVE&&job8->command!=W8_REPAIR1410)fail8("This MSI operation is not supported.");
  if(job8->command==W8_REMOVE){unsigned kept=0,status=msir_finish147(&kept);if(status!=2){if(status){print8("MSI final cleanup status: ");number8(status);print8("\n");copy8(job8->message,status==13?"The completion record needs inspection. Your saved files were kept. Open Details before retrying.":"Final removal cleanup could not finish. Its completion record and your files were kept; choose Recover / remove.",sizeof(job8->message));return status;}progress8(100,"Removal finished. Any saved application files remain in Documents > Recovered applications.");return 0;}}
  char source_path[256];copy8(source_path,job8->source,256);msij147*recovery=job8->command==W8_REMOVE?removal_journal147(source_path):0;
+ unsigned repairing=job8->command==W8_REPAIR1410;
+ if(repairing){
+  char record[256];w8_file_info pending;
+  service_path147(record,"/.EngacerMSI/transaction.bin");
+  if(!stat8(record,&pending))return 1618;
+  service_path147(record,"/product.bin");
+  recovery=msij_read147(record,job8->product_root,job8->user_root);
+  if(!recovery)return 13;
+ }
  progress8(2,recovery?"Reading the application's saved original installer.":"Reading the selected original MSI package.");void*source=0;unsigned bytes=load8(source_path,&source,8*1024*1024);if(!bytes)fail8("The original installer is missing or exceeds its input bound. No installation or removal was started.");msia_plan147*p=msia_prepare147(source,bytes);
  if(job8->command==W8_INSTALL&&memcmp(job8->source_sha147,p->source_sha256,32))fail8("The reviewed MSI source changed. No installation was started.");
  if(recovery){if(msij_restore147(recovery,p))fail8("The saved installer or original selection no longer matches its recovery record. No files were removed.");}
@@ -41,6 +51,7 @@ __declspec(dllexport) unsigned EngacerMsiRun147(void){
  unsigned install=msi_bind147(p);if(!install)fail8("The native MSI session could not be bound.");unsigned database=MsiGetActiveDatabase(install);if(!database)fail8("The active MSI database could not be acquired.");metadata_service147(p,database);if(MsiCloseHandle(database))fail8("The active MSI database could not be closed.");database=0;
  unsigned status=0,kept=0;
  if(job8->command==W8_INSTALL)status=msia_install147(p,source,bytes);
+ else if(repairing)status=msif_repair1410(p,recovery);
  else if(recovery){int64_t alias=(int64_t)sys8(W8_SYS_ALIAS147,(uint64_t)(uintptr_t)p->program_alias,0,0,0,0);status=alias<0?(unsigned)-alias:msir_remove147(p,recovery,&kept);}
  else{
   print8("MSI original product: ");print8(p->product);print8("\nSelected original files: ");number8(p->selected_files);print8(" bytes: ");number8(p->selected_bytes);print8("\nAuthored registry entries: ");number8(job8->registry);print8(" shortcuts: ");number8(job8->shortcuts);print8("\nMSI execute actions: ");number8(p->action_count);print8(" custom-action metadata: ");number8(p->custom_count);print8("\nM147_NATIVE_MSI_READ_ONLY_PLAN_PASS\n");
@@ -49,6 +60,7 @@ __declspec(dllexport) unsigned EngacerMsiRun147(void){
  if(status==1618){copy8(job8->message,"Finish the previous removal with Recover / remove before installing.",sizeof(job8->message));return status;}
  if(status){print8("MSI operation status: ");number8(status);print8("\n");copy8(job8->message,"The operation could not finish. Recovery records and your files were kept; inspect Details before retrying.",sizeof(job8->message));return status;}
  if(job8->command==W8_INSTALL)progress8(100,"Application files, registry values and shortcuts were installed and verified.");
+ else if(repairing)progress8(100,"Application files were verified and repaired from the saved installer.");
  else if(job8->command==W8_REMOVE)progress8(100,kept?"Removed. Changed files were saved in Documents > Recovered applications.":"Removed. Your personal files are unchanged.");
  else progress8(100,"Read-only MSI preview complete. No installation was performed.");return 0;
 }

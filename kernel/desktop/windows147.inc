@@ -1,7 +1,7 @@
 #include <engine/winexe148.h>
 /* Native frontend for the bounded original Windows-console compatibility profile. */
 #define PRODUCT_ROOT8 "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
-enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,CHOOSE_MSI147,DETAILS_MSI147,GUI144=12100,PRODUCT_ROW147=12200,PRODUCTS147=12208,PRODUCT_MORE147=12209,RUN_PRODUCT1410=12301};
+enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,CHOOSE_MSI147,DETAILS_MSI147,GUI144=12100,PRODUCT_ROW147=12200,PRODUCTS147=12208,PRODUCT_MORE147=12209,RUN_PRODUCT1410=12301,REPAIR_PRODUCT1410=12302};
 extern const char windows8_licenses[];
 static unsigned installed8(void){
  static uint64_t generation=UINT64_MAX;static unsigned valid;
@@ -96,10 +96,10 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  ui73_fit(x+width-150,y+9,150,info->state==1?"Working...":installed?"Installed":recovering?"Recovery needed":"Not installed",1,ink());
  ui73_paragraph(x,y+84,width-190,2,"Native Windows application support is being expanded. Review shows package metadata without running custom actions.",ink());
  if(app->number){
-  text(x,y+145,app->number==1?"Install this application?":recovering?"Finish recovery?":"Remove this application?",2,ink());
-  ui73_paragraph(x,y+194,width,5,app->number==1?"" ENGINE_PRODUCT_NAME " will verify the reviewed source. An EXE opens its original setup window with access to its application folder, two approved shortcuts and a private temporary folder. MSI installation uses its authored package actions. Your documents stay separate.":recovering?"Engacer OS will finish the interrupted operation using its recovery records. Saved application files stay in Documents > Recovered applications. Your other files will not be removed.":"Unchanged application files and product registrations will be removed. Your documents and modified application files will be kept. You can install the application again later.",ink());
+  text(x,y+145,app->number==1?"Install this application?":app->number==3?"Repair this application?":recovering?"Finish recovery?":"Remove this application?",2,ink());
+  ui73_paragraph(x,y+194,width,5,app->number==1?"" ENGINE_PRODUCT_NAME " will verify the reviewed source. An EXE opens its original setup window with access to its application folder, two approved shortcuts and a private temporary folder. MSI installation uses its authored package actions. Your documents stay separate.":app->number==3?"Engacer OS checks the original application files and replaces missing or damaged files using the saved installer. Application settings and personal documents are kept.":recovering?"Engacer OS will finish the interrupted operation using its recovery records. Saved application files stay in Documents > Recovered applications. Your other files will not be removed.":"Unchanged application files and product registrations will be removed. Your documents and modified application files will be kept. You can install the application again later.",ink());
   if(app->number==1&&(app->msi147.profile&W8_PROFILE_EXE148)){ui73_fit(x,y+276,width,"Approved folder: " EXE148_ALIAS,1,ink());ui73_fit(x,y+300,width,"Original setup arguments: -install -d \"" EXE148_ALIAS "\"",1,ink());}
-  button(token,x,y+340,150,"Go back",BACK8,0);button(token,x+166,y+340,190,app->number==1?"Install app":recovering?"Finish recovery":"Remove app",CONFIRM8,1);
+  button(token,x,y+340,150,"Go back",BACK8,0);button(token,x+166,y+340,190,app->number==1?"Install app":app->number==3?"Repair app":recovering?"Finish recovery":"Remove app",CONFIRM8,1);
   button(token,x+372,y+340,150,"Licenses",LICENSE8,0);return;
  }
  if(!installed){
@@ -121,7 +121,11 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  if(installed&&legacy&&info->state!=1){
   button(token,x,y+194,195,"Create test archive",ZIP8,0);button(token,x+209,y+194,195,"Extract test archive",EXTRACT8,0);
   button(token,x+418,y+194,210,"Open file manager",GUI144,0);button(token,x+642,y+194,190,"Choose installer...",CHOOSE_MSI147,0);
-  ui73_fit(x,y+246,width,"The test uses a separate sample document in your Documents folder.",1,ink());
+  ui73_fit(x+174,y+255,width-174,"The test uses a separate sample document in your Documents folder.",1,ink());
+ }
+ if(installed&&info->state!=1&&!(app->msi147.profile&W8_PROFILE_EXE148)){
+  char cached[256];copy(cached,selected_root147(app),256);append(cached,"/.EngacerMSI/source.msi",256);
+  if(entry(cached))button(token,x,y+246,160,"Repair app",REPAIR_PRODUCT1410,0);
  }
  if(info->state!=1)button(token,x+width-174,y+82,174,"Installed apps",PRODUCTS147,0);
  const char*message=app->notice[0]?app->notice:info->message[0]?info->message:
@@ -144,7 +148,7 @@ static void sample_name8(char*out,const char*base,unsigned number,const char*ext
  copy(out,base,256);if(number){char suffix[24];decimal(suffix,number+1);append(out,"-",256);append(out,suffix,256);}append(out,extension,256);
 }
 static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,unsigned command){
- (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>DETAILS_MSI147&&command!=GUI144&&command!=12300&&command!=RUN_PRODUCT1410&&(command<PRODUCT_ROW147||command>PRODUCT_MORE147)))return 0;
+ (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>DETAILS_MSI147&&command!=GUI144&&command!=12300&&command!=RUN_PRODUCT1410&&command!=REPAIR_PRODUCT1410&&(command<PRODUCT_ROW147||command>PRODUCT_MORE147)))return 0;
  if(command==12300){if(!exe_front_select148(app))notice(app,"This EXE record needs inspection. No operation started.");invalidate(w->bounds);return 1;}
  if(command==DETAILS_MSI147){app->entered^=1;invalidate(w->bounds);return 1;}
  if(command==LICENSE8){app->calc_error=1;app->offset=0;invalidate(w->bounds);return 1;}
@@ -159,13 +163,17 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
  if(command==CHOOSE_MSI147){picker_begin12(token,P12_WINDOWS_MSI147);return 1;}
  if(command==INSTALL8&&app->msi147.selected&&(!app->msi147.ready||!review_source147(app)||!(app->msi147.profile&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147|W8_PROFILE_EXE148)))){notice(app,app->msi147.ready?"This package requires installer features that are not supported yet.":"Review this installer before installing.");invalidate(w->bounds);return 1;}
  if(command==INSTALL8||command==REMOVE8){app->number=command==INSTALL8?1:2;invalidate(w->bounds);return 1;}
+ if(command==REPAIR_PRODUCT1410){
+  if(product_state147(app,0)&&!(app->msi147.profile&W8_PROFILE_EXE148))app->number=3;
+  invalidate(w->bounds);return 1;
+ }
  if(command==INSPECT141){picker_begin12(token,P12_WINDOWS_INSPECT);return 1;}
  if(command==RUN_PRODUCT1410){
   if(app->msi147.ready&&product_state147(app,0))picker_begin12(token,P12_WINDOWS_RUN1410);
   return 1;
  }
  unsigned job=0;const char*source=app->path,*arguments="";char sample_arguments[512];
- if(command==CONFIRM8){job=app->number==1?W8_INSTALL:app->number==2?W8_REMOVE:0;app->number=0;}
+ if(command==CONFIRM8){job=app->number==1?W8_INSTALL:app->number==2?W8_REMOVE:app->number==3?W8_REPAIR1410:0;app->number=0;}
  if(command==PREVIEW8)job=W8_PREVIEW;
  if(command==GUI144){job=W8_RUN;source=PRODUCT_ROOT8 "/7zFM.exe";arguments="";}
  if(command==INFO8||command==ZIP8||command==EXTRACT8){job=W8_RUN;source=PRODUCT_ROOT8 "/7z.exe";arguments=command==INFO8?"i":command==ZIP8?"a -tzip -mx=1 -mmt=off -y EngineOS-Windows.zip EngineOS-Windows.txt":"x -mmt=off -y -oEngineOS-Windows-Extracted EngineOS-Windows.zip";}
@@ -194,6 +202,10 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
   }else if(job==W8_INSTALL&&app->msi147.selected){
    if(!app->msi147.ready||!review_source147(app)||!(app->msi147.profile&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147|W8_PROFILE_EXE148))){notice(app,"The reviewed installer is unavailable or changed. Review it again.");invalidate(w->bounds);return 1;}
    result=w8_start_reviewed147(job,source,app->msi147.root,user,arguments,app->msi147.digest);
+  }else if(job==W8_REPAIR1410){
+   const char *root=selected_root147(app);char cached[256];
+   copy(cached,root,256);append(cached,"/.EngacerMSI/source.msi",256);
+   result=w8_start(job,cached,root,user,"");
   }else{if(job==W8_REMOVE&&app->msi147.profile&W8_PROFILE_EXE148)source=EXE148_ROOT "/SumatraPDF.exe";result=w8_start(job,source,job==W8_REMOVE?selected_root147(app):PRODUCT_ROOT8,user,arguments);}notice(app,result?"The Windows task could not start. Open System Monitor for memory details.":"");app->offset=0;
  }invalidate(w->bounds);return 1;
 }

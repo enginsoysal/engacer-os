@@ -148,9 +148,14 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
 #ifdef ENGINE_M14
  if(w8_pending())return V6_BUSY;
  if(!win_product_root147(root)||!user||!prefix8(user,"/Users"))return V6_INVALID;
- if(command==W8_RUN||command==W8_REMOVE||command==W8_INSTALL){
+ if(command==W8_RUN||command==W8_REMOVE||command==W8_INSTALL||command==W8_REPAIR1410){
   unsigned migration=migrate_registry1410(root,user);
   if(migration)return migration;
+ }
+ if(command==W8_REPAIR1410){
+  char cached[256];copy8(cached,root,sizeof(cached));
+  path_append143(cached,"/.EngacerMSI/source.msi",sizeof(cached));
+  if(!source||!equal8(source,cached)||!find8(cached))return V6_INVALID;
  }
  v6_set_guard148(exe_volume_guard148);
 #endif

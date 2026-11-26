@@ -26,23 +26,59 @@ unsigned msif_hash147(const char*path,uint64_t bytes,uint8_t hash[32]){
  while(bytes){unsigned n=bytes>sizeof(buffer)?sizeof(buffer):(unsigned)bytes;if(read8(handle,buffer,n)!=(int)n||!engine_sha256_update(&context,buffer,n)){status=23;break;}bytes-=n;if(!(++blocks&127))sys8(W8_SYS_YIELD,0,0,0,0,0);}
  if(close8(handle))status=1117;if(!status&&!engine_sha256_final(&context,hash))status=87;return status;
 }
-typedef struct {msia_plan147*plan;msij147*journal;const cab147_archive*archive;uint16_t map[256];unsigned active,current,offset,completed,status;engine_sha256_context hash;} stage147;
+typedef struct {msia_plan147*plan;msij147*journal;const cab147_archive*archive;uint16_t map[256];const win_tx_file147 *repair[256];unsigned repairing,active,current,offset,completed,status;engine_sha256_context hash;} stage147;
 static unsigned finish_file147(stage147*s){
  if(!s->active)return 0;msia_file147*f=s->plan->files+s->current;if(s->offset!=f->size)return 23;
  unsigned status=stream_finish147();if(status)return status;if(!engine_sha256_final(&s->hash,f->sha256))return 87;
  char path[256];status=msia_file_path147(s->plan,s->current,path);if(status)return status;
- status=msij_file147(s->journal,WIN_TX_FILE147,path+len8(s->plan->product_root)+1,f->size,f->sha256,WIN_TX_PAYLOAD147);if(status)return status;
+ if(s->repairing){
+  if(memcmp(f->sha256,s->repair[s->current]->sha,32))return 23;
+ }else{
+  status=msij_file147(s->journal,WIN_TX_FILE147,path+len8(s->plan->product_root)+1,f->size,f->sha256,WIN_TX_PAYLOAD147);
+  if(status)return status;
+ }
  s->active=0;++s->completed;progress8(15+s->completed*50/s->plan->selected_files,"Staging and checking original application files.");return 0;
+}
+static unsigned repair_file_path1410(const msia_plan147 *plan,unsigned index,char path[256]){
+ char original[256];
+ unsigned status=msia_file_path147(plan,index,original);
+ if(status)return status;
+ status=make_path147(path,plan->product_root,W8_REPAIR_STAGE1410);
+ if(status)return status;
+ unsigned base=len8(path);
+ const char *suffix=original+len8(plan->product_root);
+ if(base+len8(suffix)>=256)return 206;
+ append8(path,suffix,256);
+ unsigned parent=len8(path);
+ while(parent&&path[parent-1]!='/')--parent;
+ if(!parent)return 87;
+ path[parent-1]=0;
+ status=msif_directory147(path);
+ path[parent-1]='/';
+ return status;
 }
 static int stage_sink147(void*opaque,const cab147_file*file,unsigned offset,const void*data,unsigned bytes){
  stage147*s=opaque;unsigned index=(unsigned)(file-s->archive->files);if(index>=s->archive->count){s->status=87;return 1;}unsigned current=s->map[index];msia_file147*f=s->plan->files+current;
- if(!f->selected)return 0;
+ if(!f->selected||(s->repairing&&!s->repair[current]))return 0;
  if(!s->active||s->current!=current){
-  s->status=finish_file147(s);if(s->status||offset)return 1;char path[256];s->status=stage_path147(s->plan,current,path);if(!s->status)s->status=stream_status147(1,path,f->size);if(s->status)return 1;
+  s->status=finish_file147(s);if(s->status||offset)return 1;char path[256];s->status=s->repairing?repair_file_path1410(s->plan,current,path):stage_path147(s->plan,current,path);if(!s->status)s->status=stream_status147(1,path,f->size);if(s->status)return 1;
   s->active=1;s->current=current;s->offset=0;engine_sha256_init(&s->hash);
  }
  if(offset!=s->offset||bytes>f->size-s->offset){s->status=23;return 1;}
  s->status=stream_write147(data,bytes);if(s->status)return 1;if(!engine_sha256_update(&s->hash,data,bytes)){s->status=87;return 1;}s->offset+=bytes;return 0;
+}
+static unsigned stage_map147(stage147 *s){
+ const cab147_archive *archive=s->archive;
+ const msia_plan147 *plan=s->plan;
+ if(archive->count!=plan->file_count)return 13;
+ for(unsigned i=0;i<archive->count;++i){
+  unsigned match=0;
+  while(match<plan->file_count&&!equal8(archive->files[i].name,plan->files[match].id))++match;
+  if(match==plan->file_count||archive->files[i].size!=plan->files[match].size)return 13;
+  for(unsigned k=0;k<i;++k)if(s->map[k]==match)return 13;
+  s->map[i]=(uint16_t)match;
+ }
+ return 0;
 }
 unsigned msif_stage147(msia_plan147*p,msij147*j,const void*source,unsigned bytes){
  if(!p||!p->costed||!j||!source||bytes!=p->source_bytes||!p->selected_files||job8->command!=W8_INSTALL||!equal8(p->product_root,job8->product_root)||memcmp(p->source_sha256,job8->source_sha147,32))return 87;
@@ -52,8 +88,7 @@ unsigned msif_stage147(msia_plan147*p,msij147*j,const void*source,unsigned bytes
  for(unsigned i=0;i<p->file_count;++i)if(p->files[i].selected){char path[256];unsigned status=msia_file_path147(p,i,path);if(status)return status;const char*relative=path+len8(p->product_root)+1;if(!win_tx_relative147(relative,'/')||win_tx_equal147(relative,"product.bin"))return 50;char first[256];unsigned n=0;while(relative[n]&&relative[n]!='/'){first[n]=relative[n];++n;}first[n]=0;if(win_tx_equal147(first,".EngacerMSI"))return 50;}
  msi8_blob blob=msi8_stream(p->cabinet,0);cab147_archive*archive=0;unsigned status=cab147_open(blob,&archive);if(status){if(blob.data)free8(blob.data);return 13;}
  stage147*s=calloc8(1,sizeof(*s));if(!s){cab147_close(archive);free8(blob.data);return 8;}s->plan=p;s->journal=j;s->archive=archive;
- if(archive->count!=p->file_count)status=13;
- for(unsigned i=0;!status&&i<archive->count;++i){unsigned match=0;while(match<p->file_count&&!equal8(archive->files[i].name,p->files[match].id))++match;if(match==p->file_count||archive->files[i].size!=p->files[match].size)status=13;else{s->map[i]=(uint16_t)match;for(unsigned k=0;k<i;++k)if(s->map[k]==match)status=13;}}
+ status=stage_map147(s);
  if(!status){int64_t made=(int64_t)sys8(W8_SYS_MKDIR,(uint64_t)(uintptr_t)p->product_root,1,0,0,0);if(made)status=183;}
  char path[256];if(!status)status=make_path147(path,p->product_root,"/.EngacerMSI");if(!status&&mkdir8(path))status=1117;
  if(!status)status=make_path147(path,p->product_root,"/.EngacerMSI/stage");if(!status&&mkdir8(path))status=1117;
@@ -62,6 +97,58 @@ unsigned msif_stage147(msia_plan147*p,msij147*j,const void*source,unsigned bytes
  if(!status){unsigned walk=cab147_walk(archive,stage_sink147,s);status=s->status?s->status:walk?13:finish_file147(s);}
  if(!status&&s->completed!=p->selected_files)status=13;
  if(status)(void)stream_status147(6,0,0);free8(s);cab147_close(archive);free8(blob.data);return status;
+}
+static const win_tx_file147 *repair_record1410(const msij147 *journal,const char *relative){
+ for(unsigned at=sizeof(win_tx_header147);at<journal->bytes;){
+  const win_tx_record147 *record=(const void*)(journal->data+at);
+  if(record->type==WIN_TX_FILE147){
+   const win_tx_file147 *file=(const void*)(record+1);
+   if(file->flags==WIN_TX_PAYLOAD147&&equal8(file->path,relative))return file;
+  }
+  at+=record->bytes;
+ }
+ return 0;
+}
+unsigned msif_repair1410(msia_plan147 *plan,const msij147 *journal){
+ if(!plan||!plan->costed||!journal||!win_tx_validate147(journal->data,journal->bytes)||
+    job8->command!=W8_REPAIR1410||!equal8(plan->product_root,job8->product_root))return 87;
+ int64_t cleared=(int64_t)sys8(W8_SYS_REPAIR1410,1,0,0,0,0);
+ if(cleared<0)return (unsigned)-cleared;
+ stage147 *stage=calloc8(1,sizeof(*stage));
+ if(!stage)return 8;
+ stage->plan=plan;stage->repairing=1;
+ unsigned pending=0,status=0;
+ for(unsigned i=0;!status&&i<plan->file_count;++i){
+  if(!plan->files[i].selected)continue;
+  char path[256];uint8_t hash[32];
+  status=msia_file_path147(plan,i,path);
+  if(status)break;
+  const win_tx_file147 *file=repair_record1410(journal,path+len8(plan->product_root)+1);
+  if(!file||file->bytes!=plan->files[i].size){status=13;break;}
+  unsigned existing=msif_hash147(path,file->bytes,hash);
+  if(existing&&existing!=2&&existing!=23){status=existing;break;}
+  if(existing||memcmp(hash,file->sha,32)){stage->repair[i]=file;++pending;}
+ }
+ if(!status&&pending){
+  msi8_blob blob=msi8_stream(plan->cabinet,0);
+  cab147_archive *archive=0;
+  if(cab147_open(blob,&archive))status=13;
+  if(!status){stage->archive=archive;status=stage_map147(stage);}
+  if(!status){
+   unsigned walk=cab147_walk(archive,stage_sink147,stage);
+   status=stage->status?stage->status:walk?13:finish_file147(stage);
+  }
+  if(!status&&stage->completed!=pending)status=13;
+  if(!status){
+   int64_t published=(int64_t)sys8(W8_SYS_REPAIR1410,2,0,0,0,0);
+   if(published<0)status=(unsigned)-published;
+  }
+  if(status){(void)stream_status147(6,0,0);(void)sys8(W8_SYS_REPAIR1410,1,0,0,0,0);}
+  if(archive)cab147_close(archive);
+  if(blob.data)free8(blob.data);
+ }
+ free8(stage);
+ return status;
 }
 unsigned msif_promote147(const msia_plan147*p){
  if(!p||!p->costed)return 87;
