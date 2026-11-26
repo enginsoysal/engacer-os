@@ -115,7 +115,6 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  if(status){drop_process_object142((unsigned)object);return -8;}
  process_objects142[object].parent_pid=spaces142[caller]->input.process_id;
 #ifdef ENGINE_M14
- spaces142[target]->install_authority147=spaces142[caller]->install_authority147;
  spaces142[target]->exe_context148=spaces142[caller]->exe_context148;
  if(spaces142[target]->exe_context148){const v6_entry*image=find8(request.source);spaces142[target]->image_pin148=(unsigned)(image-m6_volume()->entries)+1;spaces142[target]->input.reserved147=spaces142[caller]->input.reserved147;spaces142[target]->input.profile147=W8_PROFILE_EXE148;}
  error=pipe_inherit147(caller,target,&request);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
