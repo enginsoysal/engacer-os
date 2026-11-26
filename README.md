@@ -13,7 +13,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 - [Release scope and limits](docs/releases/m148-v0.14.8.md)
 - [Documentation and downloads](https://engaceros.brixcanvas.com/blog/downloads)
 
-Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contracts and reference lab are complete. M14.10-M14.16 remain planned.
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contracts and reference lab are complete. M14.10 is in progress. M14.11-M14.16 remain planned.
 
 All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication.
 

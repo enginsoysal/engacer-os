@@ -1,5 +1,8 @@
 /* Shared RAM-backed committed sections, with process-owned grants and views. */
 #include <engine/winmap146.h>
+#ifndef W8_NAMED_OWNER
+#define W8_NAMED_OWNER (input8.user_root)
+#endif
 #define MAP_OBJECTS146 16u
 #define MAP_PAGES146 256u
 #define MAP_VIEWS146 16u
@@ -24,20 +27,20 @@ static uint64_t mapping_reference146(unsigned object,unsigned access){
  p->handles[slot]=(mapping_cap146){1,++mapping_generation146,object,access};++mapping_objects146[object]->refs;return WMAP_TAG146|((uint64_t)mapping_generation146<<6)|slot;
 }
 static int64_t mapping_close146(uint64_t h){int slot=mapping_slot146(h);if(slot<0)return -6;mapping_cap146*c=mapping_process_get146(0)->handles+slot;unsigned index=c->object;c->live=0;--mapping_objects146[index]->refs;mapping_drop146(index);mapping_process_trim146();return 0;}
-static unsigned mapping_name_taken146(const uint16_t*name){if(!name[0])return 0;for(unsigned i=0;i<MAP_OBJECTS146;++i){mapping_object146*o=mapping_objects146[i];if(o&&equal8(o->owner,input8.user_root)&&!memcmp(o->name,name,192))return 1;}return 0;}
+static unsigned mapping_name_taken146(const uint16_t*name){if(!name[0])return 0;for(unsigned i=0;i<MAP_OBJECTS146;++i){mapping_object146*o=mapping_objects146[i];if(o&&equal8(o->owner,W8_NAMED_OWNER)&&!memcmp(o->name,name,192))return 1;}return 0;}
 static unsigned mapping_access146(unsigned value){return value==2||value==4||value==6||value==0xf001f;}
 static int64_t mapping_create146(uint64_t input,uint64_t output,unsigned open){
  wmap_create146 r;wmap_result146 result={0};if(user8(input,&r,sizeof(r),0)||user8(output,&result,sizeof(result),1))return -998;
  if(r.reserved[0]||r.reserved[1])return -87;unsigned error=sync_name142(r.name);if(error)return -(int64_t)error;
  if(open){if(!r.name[0]||r.file||r.bytes||r.protection||!mapping_access146(r.access))return -87;}
  else if(r.file!=UINT64_MAX||((r.protection&~0x08000000u)!=2&&(r.protection&~0x08000000u)!=4)||r.access)return -50;
- for(unsigned i=0;i<SYNC_OBJECTS142;++i)if(sync_used142[i]){sync_object142*o=sync_object_at142(i);if(r.name[0]&&equal8(o->owner,input8.user_root)&&!memcmp(o->name,r.name,192))return -6;}
+ for(unsigned i=0;i<SYNC_OBJECTS142;++i)if(sync_used142[i]){sync_object142*o=sync_object_at142(i);if(r.name[0]&&equal8(o->owner,W8_NAMED_OWNER)&&!memcmp(o->name,r.name,192))return -6;}
  unsigned index=MAP_OBJECTS146,created=0;
- for(unsigned i=0;i<MAP_OBJECTS146;++i){mapping_object146*o=mapping_objects146[i];if(o&&r.name[0]&&equal8(o->owner,input8.user_root)&&!memcmp(o->name,r.name,192)){index=i;result.existed=1;break;}}
+ for(unsigned i=0;i<MAP_OBJECTS146;++i){mapping_object146*o=mapping_objects146[i];if(o&&r.name[0]&&equal8(o->owner,W8_NAMED_OWNER)&&!memcmp(o->name,r.name,192)){index=i;result.existed=1;break;}}
  if(index==MAP_OBJECTS146){
   if(open)return -2;if(!r.bytes)return -87;if(r.bytes>MAP_PAGES146*UINT64_C(4096))return -1816;
   for(unsigned i=0;i<MAP_OBJECTS146;++i)if(!mapping_objects146[i]){index=i;break;}if(index==MAP_OBJECTS146)return -1816;
-  mapping_object146*o=mapping_page146();if(!o)return -8;mapping_objects146[index]=o;o->bytes=r.bytes;o->protection=r.protection&255;memcpy(o->owner,input8.user_root,256);memcpy(o->name,r.name,192);created=1;
+  mapping_object146*o=mapping_page146();if(!o)return -8;mapping_objects146[index]=o;o->bytes=r.bytes;o->protection=r.protection&255;memcpy(o->owner,W8_NAMED_OWNER,256);memcpy(o->name,r.name,192);created=1;
   for(unsigned i=0;i<(r.bytes+4095)/4096;++i){void*page=mapping_page146();if(!page){mapping_drop146(index);return -8;}o->pages[i]=(uint64_t)(uintptr_t)page;}
  }
  mapping_object146*o=mapping_objects146[index];unsigned access=open?r.access:6;

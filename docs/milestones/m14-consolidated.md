@@ -1,7 +1,7 @@
 # M14.9-M14.16 - Independent Windows app environments and full x64 compatibility
 
 Owner-approved future program, revised 23 November 2026 after the 21 November
-consolidation. **M14.9 contract and reference lab are complete.** M14.10-M14.16 remain planned. The owner authorized M14.9 contracts and reference laboratory work.
+consolidation. **M14.9 contract and reference lab are complete.** M14.10 is in progress. M14.11-M14.16 remain planned. The owner authorized M14.9 contracts and reference laboratory work.
 M14.8 remains the qualified native release within its recorded scope; its
 blocked native homepage publication is recorded separately in current status.
 No new OS implementation, ISO or compatibility claim is created here.
