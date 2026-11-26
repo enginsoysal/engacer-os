@@ -82,9 +82,8 @@ static unsigned migration_copy_value1410(const char *stage,const char *user,
   return V6_INVALID;
  char folded[256];
  if(registry_fold143(value->display,folded,sizeof(folded))||!equal8(folded,name))return V6_INVALID;
- if(!win_migration_postimage1410(value->type,value->data,value->bytes,
-      effect->after_type,claim->after,effect->after_bytes,
-      effect->before_exists,effect->before_type,claim->before,effect->before_bytes))return V6_OK;
+ if(claim->identical_preimage||value->type!=effect->after_type||
+    value->bytes!=effect->after_bytes||memcmp(value->data,claim->after,value->bytes))return V6_OK;
 
  unsigned status=migration_key_directory1410(directory,stage,principal,key);
  if(status)return status;
@@ -122,10 +121,9 @@ static unsigned migration_exe_claim1410(const exe_record148 *record,unsigned ind
  const void *after=index?(const void*)extension:(const void*)mime;
  claim->fields.after_bytes=index?sizeof(extension):sizeof(mime);
  memcpy(claim->after,after,claim->fields.after_bytes);
- claim->fields.before_exists=prior->present;
- claim->fields.before_type=prior->type;
- claim->fields.before_bytes=prior->bytes;
- memcpy(claim->before,prior->data,prior->bytes);
+ claim->identical_preimage=!win_migration_postimage1410(
+   1,after,claim->fields.after_bytes,1,after,claim->fields.after_bytes,
+   prior->present,prior->type,prior->data,prior->bytes);
  return 1;
 }
 
@@ -190,25 +188,25 @@ static unsigned migration_conflict1410(const char *root,const char *user,
  return 0;
 }
 
-static unsigned migrate_registry1410(const char *root,const char *user){
+_Static_assert(sizeof(win_migration_value1410)<=4096,"Migration scratch is one page");
+static __attribute__((noinline)) unsigned migrate_registry1410(const char *root,const char *user){
  uint64_t generation=0;
  unsigned status=app_generation1410(root,0,&generation);
  if(status||generation||!find8(root))return status;
- migration_msi1410 msi;
- exe_record148 exe;
+ union { migration_msi1410 msi; exe_record148 exe; } owner;
  unsigned is_exe=equal8(root,EXE148_ROOT);
  const uint8_t *digest;
  if(is_exe){
-  unsigned loaded=exe_record_load148(user,&exe);
+  unsigned loaded=exe_record_load148(user,&owner.exe);
   if(loaded==2)return V6_OK;
   if(loaded)return V6_INVALID;
-  if(exe.state!=EXE148_INSTALLED)return V6_OK;
-  digest=exe.checksum;
+  if(owner.exe.state!=EXE148_INSTALLED)return V6_OK;
+  digest=owner.exe.checksum;
  }else{
-  status=migration_msi_open1410(&msi,root,user);
+  status=migration_msi_open1410(&owner.msi,root,user);
   if(status==V6_NOTFOUND)return V6_OK;
   if(status)return status;
-  digest=msi.header.checksum;
+  digest=owner.msi.header.checksum;
  }
  char stage[256],target[256],receipt[256];
  copy8(stage,root,sizeof(stage));
@@ -227,19 +225,23 @@ static unsigned migrate_registry1410(const char *root,const char *user){
  /* An interrupted staging pass is never visible to registry lookup. */
  if(find8(stage)&&(status=v6_remove_tree11(m6_volume(),stage)))return status;
  if(protected_prepare143(stage))return V6_IO;
- win_migration_value1410 claim;
- unsigned offset=sizeof(msi.header),count=0;
+ uint64_t page=page_alloc();
+ if(!page)return V6_FULL;
+ win_migration_value1410 *claim=(void*)(uintptr_t)page;
+ unsigned offset=sizeof(owner.msi.header),count=0;
  for(;;){
-  int next=is_exe?(count<2?(migration_exe_claim1410(&exe,count,&claim)?1:-1):0):
-                   win_migration_next1410(migration_read1410,msi.journal,msi.header.bytes,&offset,&claim);
-  if(next<0)return V6_INVALID;
+  int next=is_exe?(count<2?(migration_exe_claim1410(&owner.exe,count,claim)?1:-1):0):
+                   win_migration_next1410(migration_read1410,owner.msi.journal,owner.msi.header.bytes,&offset,claim);
+  if(next<0){status=V6_INVALID;break;}
   if(!next)break;
   ++count;
-  if(migration_conflict1410(root,user,&claim))continue;
-  status=migration_copy_value1410(stage,user,&claim);
-  if(status)return status;
+  if(migration_conflict1410(root,user,claim))continue;
+  status=migration_copy_value1410(stage,user,claim);
+  if(status)break;
  }
- if(!is_exe&&count!=msi.header.registry)return V6_INVALID;
+ page_free(page);
+ if(status)return status;
+ if(!is_exe&&count!=owner.msi.header.registry)return V6_INVALID;
  copy8(receipt,stage,sizeof(receipt));
  path_append143(receipt,"/$legacy-migration",sizeof(receipt));
  if((status=v6_put(m6_volume(),receipt,32,memory_source8,(void*)digest)))return status;

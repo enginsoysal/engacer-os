@@ -47,7 +47,8 @@ static inline unsigned win_migration_open1410(
 typedef struct {
  win_tx_reg147 fields;
  char key[256],name[256];
- uint8_t after[2048],before[2048];
+ unsigned identical_preimage;
+ uint8_t after[2048];
 } win_migration_value1410;
 
 /* Return one registry effect, none at end, or -1 for malformed input. */
@@ -70,7 +71,7 @@ static inline int win_migration_next1410(
      (!field->before_exists&&(field->before_bytes||field->before_type))||
      !field->key_bytes||field->key_bytes>sizeof(value->key)||
      !field->name_bytes||field->name_bytes>sizeof(value->name)||
-     field->after_bytes>sizeof(value->after)||field->before_bytes>sizeof(value->before))return -1;
+     field->after_bytes>sizeof(value->after)||field->before_bytes>sizeof(value->after))return -1;
   unsigned used=sizeof(*field)+field->key_bytes+field->name_bytes+field->after_bytes+field->before_bytes;
   if(used>length||length-used>7)return -1;
   unsigned at=start+sizeof(*field);
@@ -83,7 +84,18 @@ static inline int win_migration_next1410(
      read(context,at,value->after,field->after_bytes)||
      !win_tx_typed147(field->after_type,value->after,field->after_bytes))return -1;
   at+=field->after_bytes;
-  if(field->before_bytes&&read(context,at,value->before,field->before_bytes))return -1;
+  value->identical_preimage=field->before_exists&&
+    field->before_type==field->after_type&&field->before_bytes==field->after_bytes;
+  if(value->identical_preimage){
+   uint8_t block[256];
+   for(unsigned offset=0;offset<field->before_bytes;){
+    unsigned count=field->before_bytes-offset;
+    if(count>sizeof(block))count=sizeof(block);
+    if(read(context,at+offset,block,count))return -1;
+    if(memcmp(block,value->after+offset,count)){value->identical_preimage=0;break;}
+    offset+=count;
+   }
+  }
   at+=field->before_bytes;
   uint8_t padding[7];
   if(length>used&&(read(context,at,padding,length-used)||!win_tx_zero147(padding,length-used)))return -1;
