@@ -5,6 +5,8 @@
 #define PE32_TEB1410 UINT32_C(0x5fe00000)
 #define PE32_STACK_BYTES1410 UINT32_C(0x10000)
 #define PE32_COMMAND1410 (PE32_TEB1410+0x400u)
+#define PE32_EXCEPTION_RETURN1410 UINT32_C(0x40000fe0)
+#define PE32_EXCEPTION_RESUME1410 UINT32_C(0x141000ff)
 #define PE32_EXIT_RETURN1410 UINT32_C(0x40000ff0)
 #define PE32_GATE_FIRST1410 UINT32_C(0x14100000)
 
@@ -12,7 +14,7 @@ enum {
  X86_EXIT1410,X86_GET_ERROR1410,X86_SET_ERROR1410,X86_PID1410,
  X86_STD_HANDLE1410,X86_WRITE1410,X86_CREATE_FILE1410,X86_READ1410,
  X86_CLOSE_HANDLE1410,X86_COMMAND1410,
- X86_REG_OPEN1410,X86_REG_CREATE1410,X86_REG_QUERY1410,X86_REG_SET1410,X86_REG_CLOSE1410,
+ X86_REG_OPEN1410,X86_REG_CREATE1410,X86_REG_QUERY1410,X86_REG_SET1410,X86_REG_CLOSE1410,X86_FILTER1410,
 };
 typedef struct {const char *name;uint8_t arguments,registry;} pe32_api1410;
 static const pe32_api1410 pe32_kernel1410[]={
@@ -20,7 +22,7 @@ static const pe32_api1410 pe32_kernel1410[]={
  {"GetStdHandle",1,0},{"WriteFile",5,0},{"CreateFileW",7,0},{"ReadFile",5,0},
  {"CloseHandle",1,0},{"GetCommandLineW",0,0},
  {"RegOpenKeyExW",5,1},{"RegCreateKeyExW",9,1},{"RegQueryValueExW",6,1},
- {"RegSetValueExW",6,1},{"RegCloseKey",1,1},
+ {"RegSetValueExW",6,1},{"RegCloseKey",1,1},{"SetUnhandledExceptionFilter",1,0},
 };
 static unsigned pe32_string1410(const win_pe32_image1410 *image,uint32_t rva,char *out,unsigned cap){
  for(unsigned i=0;i<cap;++i){
@@ -83,6 +85,9 @@ static unsigned pe32_install_thunks1410(void){
  uint32_t exit_call=PE32_GATE_FIRST1410+X86_EXIT1410;
  memcpy(exit_return+4,&exit_call,4);
  if(user8(PE32_EXIT_RETURN1410,exit_return,sizeof(exit_return),1))return 1;
+ uint32_t filter_return=PE32_EXCEPTION_RESUME1410;
+ memcpy(exit_return+4,&filter_return,4);
+ if(user8(PE32_EXCEPTION_RETURN1410,exit_return,sizeof(exit_return),1))return 1;
  uint64_t *pte=pte8(PE32_THUNKS1410,0);
  *pte=(*pte&UINT64_C(0x000ffffffffff000))|5;
  return 0;

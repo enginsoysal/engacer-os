@@ -103,9 +103,18 @@ static uint32_t pe32_registry1410(unsigned api,const uint32_t *args){
  }
 }
 
+#include "pe32_exception1410.inc"
 static uint32_t dispatch_pe321410(trap_frame *frame){
  if(frame->cs!=0x3b||!app_context_current1410(spaces142[active_space142])){
   finish8(0xc0000005u);return 0;
+ }
+ if((uint32_t)frame->rax==PE32_EXCEPTION_RESUME1410&&
+    frame->rip==PE32_EXCEPTION_RETURN1410+10u){
+  uint32_t disposition;
+  if(frame->rsp>UINT32_MAX-4||user8(frame->rsp+4,&disposition,sizeof(disposition),0)){
+   finish8(0xc0000005u);return 0;
+  }
+  return pe32_finish_filter1410(frame,disposition);
  }
  uint32_t api=(uint32_t)frame->rax-PE32_GATE_FIRST1410;
  if(api>=sizeof(pe32_kernel1410)/sizeof(*pe32_kernel1410)||
@@ -137,6 +146,7 @@ static uint32_t dispatch_pe321410(trap_frame *frame){
   return status?pe32_error1410(status,0):1;
  }
  case X86_COMMAND1410:return PE32_COMMAND1410;
+ case X86_FILTER1410:return pe32_set_filter1410(args[0]);
  case X86_REG_OPEN1410:case X86_REG_CREATE1410:case X86_REG_QUERY1410:
  case X86_REG_SET1410:case X86_REG_CLOSE1410:return pe32_registry1410(api,args);
  default:return pe32_error1410(50,0);

@@ -40,7 +40,7 @@ typedef struct {
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
  uint64_t app_generation1410;
- unsigned compat_x86,compat_error;
+ unsigned compat_x86,compat_error,compat_filter,compat_exception;
  unsigned install_authority147,exe_context148,image_pin148,exe_child_error148;
  char app_id1410[39];
  char named_owner1410[256];
@@ -694,6 +694,10 @@ trap_frame *w8_trap(trap_frame*f){
  }
  if(f->vector==32){out8(0x20,0x20);if(++quantum8<1)return f;context8=*f;w8_active=0;w8_escape();}
  serial_text("M8_PROCESS_FAULT vector=");serial_hex(f->vector);serial_text(" rip=");serial_hex(f->rip);serial_text(" address=");uint64_t addr;__asm__ volatile("movq %%cr2,%0":"=r"(addr));serial_hex(addr);serial_text("\n");
- uint64_t fault_address;__asm__ volatile("movq %%cr2,%0":"=r"(fault_address));if(f->cs!=0x3b&&(f->vector==14||f->vector==6||f->vector==0)&&enter_exception142(f,fault_address))return f;
+ uint64_t fault_address;__asm__ volatile("movq %%cr2,%0":"=r"(fault_address));
+#ifdef ENGINE_M14
+ if(f->cs==0x3b&&pe32_deliver_exception1410(f,fault_address))return f;
+#endif
+ if(f->cs!=0x3b&&(f->vector==14||f->vector==6||f->vector==0)&&enter_exception142(f,fault_address))return f;
  copy8(info8.message,"The Windows process stopped after an unsupported operation or memory fault.",sizeof(info8.message));info8.state=3;info8.status=f->vector==14?0xc0000005u:f->vector==6?0xc000001du:f->vector==0?0xc0000094u:0xc0000001u;w8_active=0;w8_escape();
 }
