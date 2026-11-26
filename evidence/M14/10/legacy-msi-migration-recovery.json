@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build_id": "25837c84308bc0c82ecb8be8f0d786ea",
+  "source_commit": "7654882e9e3222206d753575b162da010ab59195",
+  "owned_fixture": "9ac6a2bf0f134ac992acb9051dff5878",
+  "observer_sha256": "a8bc6af470fecd79b19bf232a666072e35211e13095b0ec8788d58dc72a74565",
+  "interrupted_state": "staged and unpublished",
+  "original_values_preserved": 9,
+  "migrated_values": 7,
+  "changed_values_skipped": 1,
+  "competing_values_skipped": 1,
+  "independent_disk_starts": 2,
+  "receipt_sha256": "08ef4b436eca81c99baf1f70d177d43ebf68b7730f70c0ea8de5a9cc9c079903"
+}
