@@ -12,7 +12,11 @@
 #define REGISTRY_VALUE_MAGIC143 UINT64_C(0x315652454734314d)
 typedef struct {uint64_t magic,time;char user[256],canonical[768],display[768];} registry_key_record143;
 typedef struct {uint64_t magic;uint32_t type,bytes;char user[256],key[768],name[256],display[256];uint8_t data[2048];} registry_value_record143;
-typedef struct {registry_key_record143 record;char directory[256];unsigned refs,deleted;} registry_object143;
+typedef struct {registry_key_record143 record;char directory[256];
+#ifdef ENGINE_M14
+ char app_owner[65];
+#endif
+ unsigned refs,deleted;} registry_object143;
 _Static_assert(sizeof(registry_object143)<=4096&&sizeof(registry_value_record143)<=4096,"Registry records exceed the scratch-page budget");
 static registry_object143*registry_objects143[REGISTRY_KEYS143];
 static unsigned registry_generation143;
@@ -61,8 +65,15 @@ static unsigned registry_ensure_key143(const char*canonical,const char*display,r
  memset(scratch,0,sizeof(*scratch));scratch->magic=REGISTRY_KEY_MAGIC143;scratch->time=now8();copy8(scratch->user,registry_owner147(),256);copy8(scratch->canonical,canonical,768);copy8(scratch->display,display,768);
  copy8(path,directory,256);path_append143(path,"/$key",256);return v6_put(m6_volume(),path,sizeof(*scratch),memory_source8,scratch)?1117:0;
 }
+static unsigned registry_object_owned143(const registry_object143*object){
+#ifdef ENGINE_M14
+ return object&&equal8(object->app_owner,W8_NAMED_OWNER);
+#else
+ return object!=0;
+#endif
+}
 static int registry_slot143(uint64_t handle){unsigned slot=(unsigned)(handle&31);registry_cap143*cap=spaces142[active_space142]->registry_handles+slot;
- return (handle&W8_HANDLE_TAG_MASK)==W8_REGISTRY_TAG143&&cap->live&&cap->generation==((handle&UINT64_C(0x1fffffff))>>5)&&cap->object<REGISTRY_KEYS143&&registry_objects143[cap->object]?(int)slot:-1;
+ return (handle&W8_HANDLE_TAG_MASK)==W8_REGISTRY_TAG143&&cap->live&&cap->generation==((handle&UINT64_C(0x1fffffff))>>5)&&cap->object<REGISTRY_KEYS143&&registry_object_owned143(registry_objects143[cap->object])?(int)slot:-1;
 }
 static unsigned registry_close143(uint64_t handle){if(registry_hkcu143(handle))return 0;int slot=registry_slot143(handle);if(slot<0)return 6;registry_cap143*cap=spaces142[active_space142]->registry_handles+slot;unsigned object=cap->object;cap->live=0;
  if(!--registry_objects143[object]->refs){registry_free143((uint64_t)(uintptr_t)registry_objects143[object]);registry_objects143[object]=0;}return 0;
@@ -81,7 +92,7 @@ static unsigned registry_full_key143(uint64_t root,uint64_t name,unsigned access
 static unsigned registry_open143(const w8_registry_request143*request,unsigned create,w8_registry_result143*result){
  if(request->flags)return 50;char display[768],canonical[768];unsigned error=registry_full_key143(request->root,request->name,request->access,create,display,canonical);if(error)return error;
  unsigned cap_slot=0;while(cap_slot<32&&spaces142[active_space142]->registry_handles[cap_slot].live)++cap_slot;if(cap_slot==32||registry_generation143==0x7fffffu)return 8;
- unsigned object_slot=0;while(object_slot<REGISTRY_KEYS143){registry_object143*object=registry_objects143[object_slot];if(object&&!object->deleted&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))break;++object_slot;}
+ unsigned object_slot=0;while(object_slot<REGISTRY_KEYS143){registry_object143*object=registry_objects143[object_slot];if(registry_object_owned143(object)&&!object->deleted&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))break;++object_slot;}
  unsigned existing_object=object_slot<REGISTRY_KEYS143;if(!existing_object){object_slot=0;while(object_slot<REGISTRY_KEYS143&&registry_objects143[object_slot])++object_slot;if(object_slot==REGISTRY_KEYS143)return 8;}
  uint64_t page=registry_page143();if(!page)return 8;registry_object143*loaded=(void*)(uintptr_t)page;registry_directory143(canonical,loaded->directory);
  error=registry_load_key143(canonical,loaded->directory,&loaded->record);unsigned existed=!error||!canonical[0];
@@ -92,7 +103,12 @@ static unsigned registry_open143(const w8_registry_request143*request,unsigned c
  }
  if(error==2&&!canonical[0]){error=0;loaded->record.magic=REGISTRY_KEY_MAGIC143;copy8(loaded->record.user,registry_owner147(),256);}
  if(error){registry_free143(page);return error;}
- if(existing_object)registry_free143(page);else registry_objects143[object_slot]=loaded;
+ if(existing_object)registry_free143(page);else{
+#ifdef ENGINE_M14
+  copy8(loaded->app_owner,W8_NAMED_OWNER,sizeof(loaded->app_owner));
+#endif
+  registry_objects143[object_slot]=loaded;
+ }
  registry_cap143*cap=spaces142[active_space142]->registry_handles+cap_slot;*cap=(registry_cap143){1,++registry_generation143,object_slot,request->access};++registry_objects143[object_slot]->refs;
  result->handle=W8_REGISTRY_TAG143|((uint64_t)cap->generation<<5)|cap_slot;result->disposition=existed?2:1;return 0;
 }
