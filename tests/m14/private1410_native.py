@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import struct
 import sys
+import traceback
 
 import replay7
 from private1410_build import build
@@ -78,6 +79,12 @@ def main():
                 task(g, p, 12003)
                 assert A + "/product.bin" in f.entries(g)
                 p.desktop(12013, True)
+                assert c.flag(g, "picker12") == 9
+                p.desktop(54019, True)
+                c.key(g, "ctrl", "a")
+                c.type_text(g, "/Users/Owner/Downloads")
+                c.key(g, "ret")
+                p.drain()
                 choose_file(g, p, download)
                 p.desktop(54011, True)
                 task(g, p, 12000)
@@ -137,6 +144,9 @@ def main():
             finally:
                 volume.close()
             report["passed"] = True
+        except Exception:
+            report["error"] = ui.q.clean(traceback.format_exc())
+            raise
         finally:
             (out / "results.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
             print(json.dumps(report, indent=2), flush=True)
