@@ -178,6 +178,30 @@ static int64_t file_lock_call143(trap_frame*frame,unsigned slot,uint64_t handle,
  thread142*thread=threads142+current142;thread->wait_handles[0]=handle;thread->wait_handles[1]=request.offset;thread->wait_handles[2]=request.length;thread->wait_all=(request.flags&2)!=0;thread->state=T143_FILELOCK;thread->deadline=UINT64_MAX;
  context8=*frame;context8.rax=0;w8_active=0;w8_escape();
 }
+#ifdef ENGINE_M14
+/* At terminal removal the host drops only this app's private registry along
+ * with its empty product root, in one volume commit. A visible file or other
+ * control record still makes the directory nonempty.
+ */
+static void registry_bundle_removed1410(const char *path);
+static unsigned removable_registry_tree1410(const char *path){
+ if(input8.command!=W8_REMOVE||!installer_authority147()||
+    !equal8(path,input8.product_root))return 0;
+ char control[256],registry[256];
+ copy8(control,path,sizeof(control));
+ path_append143(control,"/.Engacer",sizeof(control));
+ copy8(registry,control,sizeof(registry));
+ path_append143(registry,"/Registry",sizeof(registry));
+ if(!find8(registry))return 0;
+ v6_volume *volume=m6_volume();
+ for(unsigned i=0;i<V6_ENTRIES;++i){
+  const v6_entry *entry=volume->entries+i;
+  if(entry->kind&&prefix8(entry->path,path)&&!equal8(entry->path,path)&&
+     !equal8(entry->path,control)&&!prefix8(entry->path,registry))return 0;
+ }
+ return 1;
+}
+#endif
 static unsigned file_delete143(const char*path){
 #ifdef ENGINE_M14
  if(exe_image_pinned148(path))return 5;
@@ -188,6 +212,13 @@ static unsigned file_delete143(const char*path){
  if(object<FILE_OBJECTS143){file_object143*value=file_objects143[object];if(value->delete_pending)return 303;
   unsigned error=file_sharing143(object,4,7);if(error)return error;value->delete_pending=1;return 0;}
  if(entry->kind==2){for(unsigned i=0;i<FILE_OBJECTS143;++i)if(file_objects143[i]&&prefix8(file_objects143[i]->path,path))return 32;}
+#ifdef ENGINE_M14
+ if(entry->kind==2&&removable_registry_tree1410(path)){
+  if(v6_remove_tree11(m6_volume(),path))return 1117;
+  registry_bundle_removed1410(path);
+  return metadata_remove143(path);
+ }
+#endif
  if(v6_remove(m6_volume(),path))return 1117;return metadata_remove143(path);
 }
 static unsigned file_move143(const char*source,const char*destination,unsigned replace){

@@ -42,7 +42,11 @@ static unsigned registry_fold143(const char*source,char*out,unsigned cap){
 #define registry_prepare143 protected_prepare143
 static void registry_root143(char*out){
 #ifdef ENGINE_M14
- char hash[33];protected_hash143(registry_owner147(),hash);copy8(out,"/Data/Windows/",256);path_append143(out,hash,256);path_append143(out,"/Registry",256);
+ char hash[33];
+ protected_hash143(registry_owner147(),hash);
+ copy8(out,input8.product_root,256);
+ path_append143(out,"/.Engacer/Registry/",256);
+ path_append143(out,hash,256);
 #else
  protected_root143("Registry",out);
 #endif
@@ -60,6 +64,10 @@ static unsigned registry_count143(unsigned values){char root[256];registry_root1
  }return count;
 }
 static unsigned registry_ensure_key143(const char*canonical,const char*display,registry_key_record143*scratch){
+#ifdef ENGINE_M14
+ const v6_entry *bundle=find8(input8.product_root);
+ if(!bundle||bundle->kind!=2)return 3;
+#endif
  char directory[256],path[256];registry_directory143(canonical,directory);unsigned error=registry_load_key143(canonical,directory,scratch);if(!error)return 0;if(error!=2)return error;
  if(registry_count143(0)>=REGISTRY_PERSISTED_KEYS148)return 1450;error=registry_prepare143(directory);if(error)return error;
  memset(scratch,0,sizeof(*scratch));scratch->magic=REGISTRY_KEY_MAGIC143;scratch->time=now8();copy8(scratch->user,registry_owner147(),256);copy8(scratch->canonical,canonical,768);copy8(scratch->display,display,768);

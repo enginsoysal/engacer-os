@@ -411,6 +411,12 @@ static unsigned information8(const v6_entry*entry,w8_file_info*out){
 }
 #include "registry143.inc"
 #ifdef ENGINE_M14
+static void registry_bundle_removed1410(const char *path){
+ for(unsigned i=0;i<REGISTRY_KEYS143;++i){
+  registry_object143 *object=registry_objects143[i];
+  if(object&&prefix8(object->directory,path))object->deleted=1;
+ }
+}
 #include "exe-broker148.inc"
 #endif
 static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i]==page){owned8[i]=owned8[--count8];page_free(page);return;}}
@@ -482,7 +488,12 @@ static int64_t dispatch8(trap_frame*f){
    w8_file_info information;unsigned error=information8(entry,&information);if(error)return -(int64_t)error;if(user8(d,&information,sizeof(information),1))return -998;return i+1;}return 0;}
   if(b==10)return -(int64_t)file_delete143(path);if(b==14)return -(int64_t)file_attributes143(path,(unsigned)d);
   if(b==15){if(!path8(path,0))return -5;const v6_entry*entry=find8(path);if(!entry)return -2;w8_file_info information;unsigned error=information8(entry,&information);if(error)return -(int64_t)error;return user8(d,&information,sizeof(information),1)?-998:0;}
-  if(b==16||b==17){if(!path8(path,1))return -5;const v6_entry*entry=find8(path);if(b==17){if(!entry)return -3;if(entry->kind!=2)return -267;for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*child=m6_volume()->entries+i;if(child->kind&&!equal8(child->path,path)&&prefix8(child->path,path))return -145;}return -(int64_t)file_delete143(path);}
+  if(b==16||b==17){if(!path8(path,1))return -5;const v6_entry*entry=find8(path);if(b==17){if(!entry)return -3;if(entry->kind!=2)return -267;for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*child=m6_volume()->entries+i;if(child->kind&&!equal8(child->path,path)&&prefix8(child->path,path)){
+#ifdef ENGINE_M14
+    if(removable_registry_tree1410(path))break;
+#endif
+    return -145;
+   }}return -(int64_t)file_delete143(path);}
    if(entry)return -183;char parent[256];copy8(parent,path,256);unsigned n=length8(parent);while(n&&parent[n-1]!='/')--n;if(!n)return -3;parent[n-1]=0;const v6_entry*directory=find8(parent);if(!directory||directory->kind!=2)return -3;return v6_mkdir(m6_volume(),path)?-1117:0;}
   if(string8(d,target,256))return -998;return -(int64_t)file_move143(path,target,(unsigned)e);}int slot=file_handle143(a);if(slot<0)return -6;file8*grant=files8+slot;file_object143*object=file_objects143[grant->object];
   switch(b){case 1:return d>4096?-87:file_read143((unsigned)slot,c,(unsigned)d);case 2:return d>4096?-87:file_write143((unsigned)slot,c,(unsigned)d);
