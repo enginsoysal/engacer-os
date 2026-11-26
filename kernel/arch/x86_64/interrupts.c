@@ -17,7 +17,13 @@ typedef struct __attribute__((packed)) {uint16_t limit;uint64_t base;} table_poi
 typedef struct __attribute__((packed)) {uint32_t reserved0;uint64_t rsp[3],reserved1,ist[7],reserved2;uint16_t reserved3,iomap;} tss_type;
 _Static_assert(sizeof(tss_type)==104 && sizeof(gate)==16,"x64 CPU layouts");
 static _Alignas(16) gate idt[256];
-static _Alignas(16) uint64_t gdt[7];
+#ifdef ENGINE_M14
+#define CPU_GDT_SLOTS 8
+#define USER_COMPAT_CODE32 UINT64_C(0x00cffa000000ffff)
+#else
+#define CPU_GDT_SLOTS 7
+#endif
+static _Alignas(16) uint64_t gdt[CPU_GDT_SLOTS];
 static tss_type tss;
 static _Alignas(16) uint8_t emergency_stack[16384];
 extern void *exception_stubs[256];
@@ -29,7 +35,12 @@ void interrupts_init(void) {
     uint64_t base=(uint64_t)(uintptr_t)&tss,limit=sizeof(tss)-1;
     gdt[3]=UINT64_C(0x00affa000000ffff);gdt[4]=UINT64_C(0x00cff2000000ffff);
     gdt[5]=(limit&65535)|((base&0xffffff)<<16)|(UINT64_C(0x89)<<40)|((limit&0xf0000)<<32)|((base&0xff000000)<<32);
-    gdt[6]=base>>32;table_pointer gdtr={sizeof(gdt)-1,(uint64_t)(uintptr_t)gdt};
+    gdt[6]=base>>32;
+#ifdef ENGINE_M14
+    /* IA-32e compatibility mode uses a DPL3, D=1, L=0 code segment. */
+    gdt[7]=USER_COMPAT_CODE32;
+#endif
+    table_pointer gdtr={sizeof(gdt)-1,(uint64_t)(uintptr_t)gdt};
     __asm__ volatile("lgdt %0"::"m"(gdtr):"memory");uint16_t selector=40;__asm__ volatile("ltr %0"::"r"(selector));
     for(unsigned i=0;i<256;++i) {
         uint64_t handler=(uint64_t)(uintptr_t)exception_stubs[i];
@@ -93,13 +104,16 @@ uint64_t *exception_dispatch(uint64_t *frame) {
 }
 
 #ifdef ENGINE_M3
-static uint64_t ap_gdt[3][7];static tss_type ap_tss[3];
+static uint64_t ap_gdt[3][CPU_GDT_SLOTS];static tss_type ap_tss[3];
 void interrupts_ap(unsigned cpu,uint64_t stack,uint64_t emergency){
     if(!cpu||cpu>3)test_exit(0x31);tss_type *t=&ap_tss[cpu-1];uint64_t *g=ap_gdt[cpu-1];
     memset(t,0,sizeof(*t));t->rsp[0]=stack;t->ist[0]=emergency;t->iomap=sizeof(*t);
     memcpy(g,gdt,5*8);uint64_t base=(uint64_t)(uintptr_t)t,limit=sizeof(*t)-1;
     g[5]=(limit&65535)|((base&0xffffff)<<16)|(UINT64_C(0x89)<<40)|((base&0xf0000)<<32)|((base&0xff000000)<<32);g[6]=base>>32;
-    table_pointer gdtr={55,(uint64_t)(uintptr_t)g},idtr={sizeof(idt)-1,(uint64_t)(uintptr_t)idt};
+#ifdef ENGINE_M14
+    g[7]=USER_COMPAT_CODE32;
+#endif
+    table_pointer gdtr={sizeof(ap_gdt[0])-1,(uint64_t)(uintptr_t)g},idtr={sizeof(idt)-1,(uint64_t)(uintptr_t)idt};
     __asm__ volatile("lgdt %0; pushq $8; leaq 1f(%%rip),%%rax; pushq %%rax; lretq; 1: movw $16,%%ax; movw %%ax,%%ds; movw %%ax,%%es; movw %%ax,%%ss"::"m"(gdtr):"rax","memory");
     uint16_t selector=40;__asm__ volatile("ltr %0; lidt %1"::"r"(selector),"m"(idtr):"memory");
 }
