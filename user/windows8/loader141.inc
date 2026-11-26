@@ -71,7 +71,9 @@ static uint64_t load141(const char*path,unsigned external){
  unsigned index=0;while(index<MODULES141&&modules141[index].state)++index;if(index==MODULES141)fail8("The Windows module quota of 32 was reached.");
  w8_file_info info;if(stat8(path,&info)||info.kind!=1||info.size<64||info.size>IMAGE141_LIMIT)fail8("The Windows image cannot be read or exceeds the 32 MiB file quota.");int file=open8(path,0);if(file<0)fail8("The Windows image could not be opened.");
  uint8_t dos[64],header[24],optional[512],sections[32][40];read141(file,info.size,0,dos,64);uint32_t offset=u32(dos+60);read141(file,info.size,offset,header,24);
- if(u16(dos)!=0x5a4d||u32(header)!=0x4550||u16(header+4)!=0x8664)fail8("Choose a Windows x64 file. Windows x86 and ARM64 require separate support.");
+ if(u16(dos)!=0x5a4d||u32(header)!=0x4550)fail8("The Windows image does not have a valid PE signature.");
+ if(u16(header+4)==0x014c)fail8("This image targets Windows x86. This runtime currently executes x64 code.");
+ if(u16(header+4)!=0x8664)fail8("This image uses an unsupported Windows processor architecture.");
  unsigned number=u16(header+6),options=u16(header+20);if(!number||number>32||options<240||options>sizeof(optional))fail8("The Windows image has an unsupported section/header count.");read141(file,info.size,(uint64_t)offset+24,optional,options);
  if(u16(optional)!=0x20b||u32(optional+32)!=4096||u32(optional+108)<16)fail8("The Windows image is not a supported PE32+ layout.");
  for(unsigned directory=0;directory<16;++directory){uint32_t rva=u32(optional+112+directory*8),bytes=u32(optional+116+directory*8);if(!rva&&bytes)fail8("The Windows data directory has no address.");if(rva&&bytes&&!range141(rva,bytes,directory==4?info.size:u32(optional+56)))fail8("The Windows data directory is outside its image or file.");}
