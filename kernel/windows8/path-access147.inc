@@ -9,7 +9,8 @@ static unsigned installer_catalog_read1410(const char*p){
  char guid[39];memcpy(guid,code,38);guid[38]=0;
  if(!win_product_guid147(guid,1))return 0;
  const char*record=code+38;
- return equal8(record,"/product.bin")||equal8(record,"/.EngacerMSI/transaction.bin");
+ if(equal8(record,"/.EngacerMSI/transaction.bin"))return 2;
+ return equal8(record,"/product.bin");
 }
 #endif
 static unsigned path8(const char*p,unsigned write){
@@ -32,4 +33,13 @@ static unsigned path8(const char*p,unsigned write){
  if(input8.command==W8_INSTALL||input8.command==W8_REMOVE)return prefix8(p,input8.product_root)&&(!equal8(p,input8.product_root)||input8.command==W8_INSTALL||input8.command==W8_REMOVE);
 #endif
  return input8.command==W8_RUN&&prefix8(p,input8.user_root)&&!equal8(p,input8.user_root);
+}
+
+/* Related-product checks only stat a foreign pending transaction. */
+static unsigned path_content1410(const char*p){
+ if(!path8(p,0))return 0;
+#ifdef ENGINE_M14
+ if(!prefix8(p,input8.product_root)&&installer_catalog_read1410(p)==2)return 0;
+#endif
+ return 1;
 }

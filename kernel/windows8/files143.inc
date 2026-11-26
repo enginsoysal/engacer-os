@@ -86,7 +86,7 @@ static unsigned file_resize143(file_object143*object,uint64_t size){
 }
 static int64_t file_open143(const char*path,unsigned access,unsigned share,unsigned creation,unsigned flags,unsigned legacy){
  if(access&~31u||share&~7u||creation<1||creation>5)return -87;
- if(!path8(path,0)||((access&22)&&!path8(path,1)))return -5;
+ if(!path_content1410(path)||((access&22)&&!path8(path,1)))return -5;
 #ifdef ENGINE_M14
  if(((access&22)||creation==2||creation==5)&&exe_image_pinned148(path))return -32;
 #endif
@@ -224,7 +224,7 @@ static unsigned file_attributes143(const char*path,unsigned attributes){
 static int64_t file_copy148(unsigned destination,uint64_t source){
  int input=file_handle143(source);if(input<0||destination>=32||!files8[destination].live)return -6;
  file8*in=files8+input,*out=files8+destination;
- if(!(in->access&1)||!(out->access&2)||!path8(in->path,0)||!path8(out->path,1))return -5;
+ if(!(in->access&1)||!(out->access&2)||!path_content1410(in->path)||!path8(out->path,1))return -5;
  if(in->object==out->object)return -32;
  file_object143*from=file_objects143[in->object],*to=file_objects143[out->object];
  if(from->size>64*1024*1024)return -223;

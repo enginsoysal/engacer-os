@@ -506,7 +506,7 @@ static int64_t dispatch8(trap_frame*f){
   if(b==3)return d||e?-87:process_image148(a,c);
   _Static_assert(SPACES142==W8_PROCESS_SNAPSHOT_MAX148,"Process inventory must cover every Windows space");
   if(c||d||e||b>1)return -87;
-  if(b==1){if(string8(a,path,256))return -998;if(!path8(path,0))return -5;unsigned error=child_image142(path);if(error)return -(int64_t)error;
+  if(b==1){if(string8(a,path,256))return -998;if(!path_content1410(path))return -5;unsigned error=child_image142(path);if(error)return -(int64_t)error;
    const char*name=path;for(unsigned j=0;path[j];++j)if(path[j]=='/')name=path+j+1;char*current=spaces142[active_space142]->image_name148;
    if(current[0]&&!equal8(current,name))return -5;copy8(current,name,64);return 0;
   }w8_process_snapshot148 snapshot={0};

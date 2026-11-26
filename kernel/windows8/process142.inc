@@ -97,7 +97,7 @@ static unsigned environment_copy143(const w8_process_request*request,unsigned ca
 static int64_t create_process142(uint64_t request_address,uint64_t result_address){
  w8_process_request request;w8_process_result result={0};if(user8(request_address,&request,sizeof(request),0)||user8(result_address,&result,sizeof(result),1))return -87;
  if(!terminated142(request.source,sizeof(request.source))||!terminated142(request.command,sizeof(request.command))||!terminated142(request.directory,sizeof(request.directory))||(request.flags&~W8_CREATE_FLAGS147))return -87;
- if(!path8(request.source,0)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);if(error)return -(int64_t)error;
+ if(!path_content1410(request.source)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);if(error)return -(int64_t)error;
 #ifdef ENGINE_M14
  if(spaces142[active_space142]->exe_context148&&!equal8(request.source,"/System/Windows/Tools/cmd.exe")&&!equal8(request.source,"/System/Windows/Tools/xcopy.exe")){error=exe_hash_file148(request.source,EXE148_SOURCE_BYTES,EXE148_SOURCE_SHA);if(error)return -(int64_t)error;}
 #endif
