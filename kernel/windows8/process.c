@@ -40,6 +40,7 @@ typedef struct {
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
  unsigned install_authority147,exe_context148,image_pin148,exe_child_error148;
+ char app_id1410[39];
  char named_owner1410[256];
 #endif
  process_handle142 handles[32];sync_cap142 sync_handles[64];registry_cap143 registry_handles[32];
@@ -258,14 +259,16 @@ static unsigned rollback8(void){
 static unsigned prepare_transition8(void){if(ready8)return 0;uint64_t pages[4];unsigned count=0;for(;count<4;++count)if(!(pages[count]=page_alloc()))break;if(count<4){while(count)page_free(pages[--count]);return 1;}uint64_t*pt=(void*)(uintptr_t)kernel_entry_pt();for(unsigned i=0;i<4;++i)pt[((TRAP8>>12)&511)+i]=pages[i]|3|NX;ready8=1;return 0;}
 #ifdef ENGINE_M14
 /* Both strings come from the kernel launch request, outside the user mailbox. */
-static void init_named_owner1410(char *out,const char *root,const char *user){
+static void init_app_owner1410(private_space142 *space,const char *root,const char *user){
+ char *out=space->named_owner1410;
+ memcpy(space->app_id1410,root+sizeof(WIN_PRODUCT_BASE147)-1,sizeof(space->app_id1410));
  uint8_t digest[32];engine_sha256_context hash;
  static const char hex[]="0123456789abcdef";
  engine_sha256_init(&hash);
  engine_sha256_update(&hash,user,length8(user)+1);
- engine_sha256_update(&hash,root,length8(root)+1);
+ engine_sha256_update(&hash,space->app_id1410,sizeof(space->app_id1410));
  engine_sha256_final(&hash,digest);
- memset(out,0,256);
+ memset(out,0,sizeof(space->named_owner1410));
  for(unsigned i=0;i<32;++i){out[i*2]=hex[digest[i]>>4];out[i*2+1]=hex[digest[i]&15];}
 }
 #endif
@@ -279,8 +282,9 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  if(!win_product_root147(root))goto failure;
  if(parent){
   /* The caller's kernel space supplies both the path grant and object owner. */
+  memcpy(spaces142[slot]->app_id1410,parent->app_id1410,sizeof(parent->app_id1410));
   memcpy(spaces142[slot]->named_owner1410,parent->named_owner1410,sizeof(parent->named_owner1410));
- }else init_named_owner1410(spaces142[slot]->named_owner1410,root,user);
+ }else init_app_owner1410(spaces142[slot],root,user);
 #else
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
 #endif
