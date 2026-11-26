@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "stage": "M14.10",
+  "build_id": "eeea44b55767cd28cd80adad42a0b12c",
+  "iso_sha256": "7a4f4814d396fd316364c0972ad3553ada7c6991c9fe3f54aa2402d9ab211572",
+  "scope": "Headless VMware Workstation UEFI ISO boot to installer",
+  "secure_boot": false,
+  "ram_mib": 128,
+  "disk": "Fresh growable 2 GiB SATA VMDK",
+  "check": "Guest COM1 emitted M6_WIZARD_READY",
+  "source_commit": "9255bd627634583d246c710864fab898d10036e5"
+}
