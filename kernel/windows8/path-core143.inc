@@ -78,7 +78,8 @@ static unsigned path_resolve143(const path_context143*ctx,const char*root,const 
   else{out[prefix++]='/';memcpy(out+prefix,tail+first,n);out[prefix+n]=0;missing=1;}
  }return 0;
 }
-static unsigned path_policy_with_temp1410(const path_context143*ctx,const char*input,const char*cwd,unsigned flags,w8_path_result143*out,const char*temporary){
+static unsigned path_policy_with_temp1410(const path_context143*ctx,const char*input,const char*cwd,unsigned flags,w8_path_result143*out,const char*temporary,unsigned compat_x86){
+ (void)compat_x86;
  if(flags&~7u)return 87;memset(out,0,sizeof(*out));char clean[1024];unsigned error=path_normalize143(input,cwd,flags,clean);if(error)return error;
  unsigned pos=0,wide=0,bytes=path_length143(clean,sizeof(clean));
  while(pos<bytes){uint32_t cp;if(!decode_utf8_143(clean,bytes,&pos,&cp))return 1113;if(!encode_utf16_143(cp,out->windows,511,&wide))return 206;}out->windows[wide]=0;
@@ -97,13 +98,13 @@ static unsigned path_policy_with_temp1410(const path_context143*ctx,const char*i
  const char*systems[]={"C:\\Windows\\System32","C:\\Windows\\SysWOW64"};
  for(unsigned i=0;i<2;++i){unsigned used=0;if(!path_prefix143(clean,systems[i],&used))continue;
   const char*leaf=clean+used;const char*names[]={"\\cmd.exe","\\xcopy.exe"};
-  for(unsigned j=0;j<2;++j){if(equal_utf8_143(leaf,path_length143(leaf,1024),names[j],path_length143(names[j],32))==1){
+  for(unsigned j=0;!compat_x86&&j<2;++j){if(equal_utf8_143(leaf,path_length143(leaf,1024),names[j],path_length143(names[j],32))==1){
    unsigned e=path_copy143(out->native,"/System/Windows/Tools",256);if(e)return e;
    e=path_append143(out->native,j?"/xcopy.exe":"/cmd.exe",256);return e;
   }}
   char app_system[256];
   unsigned e=path_copy143(app_system,ctx->product,sizeof(app_system));
-  if(!e)e=path_append143(app_system,i?"/System/SysWOW64":"/System/System32",sizeof(app_system));
+  if(!e)e=path_append143(app_system,(i||compat_x86)?"/System/SysWOW64":"/System/System32",sizeof(app_system));
   return e?e:path_resolve143(ctx,app_system,leaf,flags,out->native);
  }
 #endif
@@ -113,5 +114,5 @@ static unsigned path_policy_with_temp1410(const path_context143*ctx,const char*i
 }
 static unsigned path_policy143(const path_context143*ctx,const char*input,const char*cwd,
                                unsigned flags,w8_path_result143*out){
- return path_policy_with_temp1410(ctx,input,cwd,flags,out,0);
+ return path_policy_with_temp1410(ctx,input,cwd,flags,out,0,0);
 }

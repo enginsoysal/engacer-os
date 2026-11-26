@@ -181,11 +181,12 @@ static unsigned registry_delete_key143(const w8_registry_request143*request,void
  return v6_remove(volume,directory)?1117:0;
 }
 #include "registry-info148.inc"
-static int64_t registry_syscall143(uint64_t operation,uint64_t address){
- w8_registry_request143 request;w8_registry_result143 result={0};if(user8(address,&request,sizeof(request),0))return -998;
+static int64_t registry_request1410(uint64_t operation,w8_registry_request143 request,w8_registry_result143 *native_result){
+ w8_registry_result143 result={0};
 #ifdef ENGINE_M14
  registry_machine147=0;unsigned view=request.access&0x300u;if(view==0x300u)return -87;request.access&=~0x300u;
- if(registry_hklm147(request.root))registry_machine147=view==0x200u?2:1;
+ if(registry_hklm147(request.root))registry_machine147=view?view==0x200u?2:1:
+    spaces142[active_space142]->compat_x86?2:1;
  else if(registry_hkcu143(request.root)){if(view)return -50;}
  else {int selected=registry_slot143(request.root);if(selected<0)return -6;const char*owner=registry_objects143[spaces142[active_space142]->registry_handles[selected].object]->record.user;
   if(equal8(owner,"/Machine/64"))registry_machine147=1;else if(equal8(owner,"/Machine/32"))registry_machine147=2;
@@ -198,7 +199,7 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
  }
 #endif
  if(operation==11){if(request.flags||request.name||request.data||!request.result)return -87;result.type=registry_count143(0);result.bytes=registry_count143(1);result.name_units=REGISTRY_PERSISTED_KEYS148;result.disposition=REGISTRY_VALUES143;return user8(request.result,&result,sizeof(result),1)?-998:0;}
- if(operation==1||operation==2){if(!request.result)return -87;if(user8(request.result,&result,sizeof(result),1))return -998;unsigned error=registry_open143(&request,operation==2,&result);if(error)return -(int64_t)error;if(user8(request.result,&result,sizeof(result),1)){(void)registry_close143(result.handle);return -998;}return 0;}
+ if(operation==1||operation==2){if(!request.result&&!native_result)return -87;if(request.result&&user8(request.result,&result,sizeof(result),1))return -998;unsigned error=registry_open143(&request,operation==2,&result);if(error)return -(int64_t)error;if(request.result&&user8(request.result,&result,sizeof(result),1)){(void)registry_close143(result.handle);return -998;}if(native_result)*native_result=result;return 0;}
  if(request.flags)return -87;
  if(operation==5)return -(int64_t)registry_close143(request.root);
  if(operation==10){uint64_t temporary=registry_page143();if(!temporary)return -8;unsigned error=registry_delete_key143(&request,(void*)(uintptr_t)temporary);registry_free143(temporary);return -(int64_t)error;}
@@ -219,8 +220,14 @@ static int64_t registry_syscall143(uint64_t operation,uint64_t address){
     if(!error){value->type=request.type;value->bytes=request.bytes;if(v6_put(m6_volume(),path,offsetof(registry_value_record143,data)+value->bytes,memory_source8,value))error=1117;}}
   }
  }else if(!error){error=registry_load_value143(path,value);if(!error&&operation==6){if(v6_remove(m6_volume(),path))error=1117;}
-  else if(!error){result.type=value->type;result.bytes=value->bytes;if(request.result&&user8(request.result,&result,sizeof(result),1))error=998;
+  else if(!error){result.type=value->type;result.bytes=value->bytes;if(native_result)*native_result=result;if(request.result&&user8(request.result,&result,sizeof(result),1))error=998;
    if(!error&&request.data){if(request.bytes<value->bytes)error=234;else if(value->bytes&&user8(request.data,value->data,value->bytes,1))error=998;}}
  }
  registry_free143(page);return -(int64_t)error;
+}
+
+static int64_t registry_syscall143(uint64_t operation,uint64_t address){
+ w8_registry_request143 request;
+ if(user8(address,&request,sizeof(request),0))return -998;
+ return registry_request1410(operation,request,0);
 }

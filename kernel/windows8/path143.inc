@@ -10,29 +10,36 @@ static unsigned path_user_string143(uint64_t source,char*out,unsigned cap){
   if(!encode_utf8_143(cp,out,cap-1,&at))return 206;
  }return 206;
 }
-static int64_t path_syscall143(uint64_t name,uint64_t directory,uint64_t output,uint64_t flags){
+static int64_t path_user_resolve1410(uint64_t name,uint64_t directory,w8_path_result143 *result,uint64_t flags){
  if(flags&~UINT64_C(7))return -87;
- char text[2048],cwd[1024];w8_path_result143 result;
+ char text[2048],cwd[1024];
  unsigned error=path_user_string143(name,text,sizeof(text));if(error)return -(int64_t)error;
  path_context143 context={input8.user_root,input8.product_root,input8.windows_root,m6_volume()->entries,V6_ENTRIES};
  if(directory)error=path_user_string143(directory,cwd,sizeof(cwd));
  else{error=path_user_alias143(&context,cwd,sizeof(cwd));if(!error)error=path_append143(cwd,"\\Documents",sizeof(cwd));}
  if(error)return -(int64_t)error;
 #ifdef ENGINE_M14
+ unsigned compat=spaces142[active_space142]->compat_x86;
  if(app_temp_enabled1410()){
   char temporary[256];app_temp_root1410(temporary);
-  error=path_policy_with_temp1410(&context,text,cwd,(unsigned)flags,&result,temporary);
-  if(!error&&!(flags&2)&&app_temp_grant1410(result.native)&&!find8(temporary)){
+  error=path_policy_with_temp1410(&context,text,cwd,(unsigned)flags,result,temporary,compat);
+  if(!error&&!(flags&2)&&app_temp_grant1410(result->native)&&!find8(temporary)){
    const v6_entry *bundle=find8(input8.product_root);
    if(!bundle||bundle->kind!=2)return -3;
    error=protected_prepare143(temporary);
   }
- }else
+ }else if(compat)error=path_policy_with_temp1410(&context,text,cwd,(unsigned)flags,result,0,compat);
+ else
 #endif
- error=path_policy143(&context,text,cwd,(unsigned)flags,&result);
+ error=path_policy143(&context,text,cwd,(unsigned)flags,result);
  if(error)return -(int64_t)error;
- if(!(flags&2)&&!path8(result.native,0))return -5;
- return user8(output,&result,sizeof(result),1)?-998:0;
+ if(!(flags&2)&&!path8(result->native,0))return -5;
+ return 0;
+}
+static int64_t path_syscall143(uint64_t name,uint64_t directory,uint64_t output,uint64_t flags){
+ w8_path_result143 result;
+ int64_t status=path_user_resolve1410(name,directory,&result,flags);
+ return status?status:user8(output,&result,sizeof(result),1)?-998:0;
 }
 static int64_t text_compare143(uint64_t first,uint64_t second){
  char a[1024],b[1024];unsigned error=path_user_string143(first,a,sizeof(a));if(!error)error=path_user_string143(second,b,sizeof(b));if(error)return -(int64_t)error;

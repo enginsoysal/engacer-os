@@ -4,17 +4,23 @@
 #define PE32_STACK1410 UINT32_C(0x5ff00000)
 #define PE32_TEB1410 UINT32_C(0x5fe00000)
 #define PE32_STACK_BYTES1410 UINT32_C(0x10000)
+#define PE32_COMMAND1410 (PE32_TEB1410+0x400u)
 #define PE32_EXIT_RETURN1410 UINT32_C(0x40000ff0)
 #define PE32_GATE_FIRST1410 UINT32_C(0x14100000)
 
 enum {
  X86_EXIT1410,X86_GET_ERROR1410,X86_SET_ERROR1410,X86_PID1410,
- X86_STD_HANDLE1410,X86_WRITE1410,
+ X86_STD_HANDLE1410,X86_WRITE1410,X86_CREATE_FILE1410,X86_READ1410,
+ X86_CLOSE_HANDLE1410,X86_COMMAND1410,
+ X86_REG_OPEN1410,X86_REG_CREATE1410,X86_REG_QUERY1410,X86_REG_SET1410,X86_REG_CLOSE1410,
 };
-typedef struct {const char *name;uint8_t arguments;} pe32_api1410;
+typedef struct {const char *name;uint8_t arguments,registry;} pe32_api1410;
 static const pe32_api1410 pe32_kernel1410[]={
- {"ExitProcess",1},{"GetLastError",0},{"SetLastError",1},{"GetCurrentProcessId",0},
- {"GetStdHandle",1},{"WriteFile",5},
+ {"ExitProcess",1,0},{"GetLastError",0,0},{"SetLastError",1,0},{"GetCurrentProcessId",0,0},
+ {"GetStdHandle",1,0},{"WriteFile",5,0},{"CreateFileW",7,0},{"ReadFile",5,0},
+ {"CloseHandle",1,0},{"GetCommandLineW",0,0},
+ {"RegOpenKeyExW",5,1},{"RegCreateKeyExW",9,1},{"RegQueryValueExW",6,1},
+ {"RegSetValueExW",6,1},{"RegCloseKey",1,1},
 };
 static unsigned pe32_string1410(const win_pe32_image1410 *image,uint32_t rva,char *out,unsigned cap){
  for(unsigned i=0;i<cap;++i){
@@ -30,10 +36,12 @@ static unsigned pe32_name_equal1410(const char *a,const char *b){
  return equal_utf8_143(a,length8(a),b,length8(b))==1;
 }
 static uint32_t pe32_find_api1410(const char *library,const char *name){
- if(!pe32_name_equal1410(library,"kernel32.dll")&&
+ unsigned registry=pe32_name_equal1410(library,"advapi32.dll");
+ if(!registry&&!pe32_name_equal1410(library,"kernel32.dll")&&
     !pe32_name_equal1410(library,"kernelbase.dll"))return 0;
  for(unsigned i=0;i<sizeof(pe32_kernel1410)/sizeof(*pe32_kernel1410);++i)
-  if(equal8(name,pe32_kernel1410[i].name))return PE32_THUNKS1410+i*16u;
+  if(registry==pe32_kernel1410[i].registry&&equal8(name,pe32_kernel1410[i].name))
+   return PE32_THUNKS1410+i*16u;
  return 0;
 }
 static unsigned pe32_bind_imports1410(const win_pe32_image1410 *image){
@@ -90,6 +98,15 @@ static inline unsigned pe32_start1410(const char *source,uint64_t *entry,uint64_
  teb[0]=UINT32_MAX;teb[1]=PE32_STACK1410;teb[2]=PE32_STACK1410-PE32_STACK_BYTES1410;
  teb[6]=PE32_TEB1410;teb[8]=input8.process_id;
  if(user8(PE32_TEB1410,teb,sizeof(teb),1))return 1;
+ uint16_t command[1200];
+ unsigned at=0,used=0,length=length8(input8.startup_command);
+ while(at<length){
+  uint32_t code;
+  if(!decode_utf8_143(input8.startup_command,length,&at,&code)||
+     !encode_utf16_143(code,command,1199,&used))return 1;
+ }
+ command[used]=0;
+ if(user8(PE32_COMMAND1410,command,(used+1)*sizeof(*command),1))return 1;
  uint32_t returning=PE32_EXIT_RETURN1410;
  *entry=W8_PE32_IMAGE1410+image.entry;*stack=PE32_STACK1410-4;
  return user8(*stack,&returning,sizeof(returning),1);
