@@ -22,6 +22,9 @@ static void require(int condition,unsigned error){
  if(!condition)ExitProcess(error);
 }
 
+static const char a[]="M1410_PRIVATE_APP_A_PASS\n",b[]="M1410_PRIVATE_APP_B_PASS\n";
+static const char *volatile messages[]={a,b};
+
 void entry(void){
  H named=LoadLibraryW(L"bundle-test.dll");
  H explicit=LoadLibraryW(L"C:\\Windows\\System32\\bundle-test.dll");
@@ -57,7 +60,6 @@ void entry(void){
  else require(WriteFile(file,&identity,sizeof(identity),&bytes,0)&&bytes==sizeof(identity),73);
  require(CloseHandle(file),74);
 
- static const char a[]="M1410_PRIVATE_APP_A_PASS\n",b[]="M1410_PRIVATE_APP_B_PASS\n";
- require(WriteFile(GetStdHandle((unsigned)-11),identity==0x41?a:b,sizeof(a)-1,&bytes,0),75);
+ require(WriteFile(GetStdHandle((unsigned)-11),messages[identity-0x41],sizeof(a)-1,&bytes,0),75);
  ExitProcess(0);
 }
