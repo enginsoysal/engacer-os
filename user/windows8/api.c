@@ -31,8 +31,26 @@ static void winpath8(const char*native,char*out,unsigned cap){
 #ifdef ENGINE_M14
  if(equal8(native,"/System/Windows/Tools/cmd.exe")||equal8(native,"/System/Windows/Tools/xcopy.exe")){copy8(out,"C:\\Windows\\System32",cap);append8(out,native+len8("/System/Windows/Tools"),cap);for(unsigned i=0;out[i];++i)if(out[i]=='/')out[i]='\\';return;}
 #endif
- if(!memcmp(native,job8->product_root,len8(job8->product_root))&&job8->product_root[0]){copy8(out,job8->windows_root,cap);append8(out,native+len8(job8->product_root),cap);}
- else if(!memcmp(native,job8->user_root,len8(job8->user_root))){copy8(out,"C:\\Users\\",cap);const char*name=job8->user_root;for(unsigned i=0;job8->user_root[i];++i)if(job8->user_root[i]=='/')name=job8->user_root+i+1;append8(out,name,cap);append8(out,native+len8(job8->user_root),cap);}
+ unsigned bytes=len8(native),product=len8(job8->product_root),user=len8(job8->user_root);
+ if(product&&bytes>=product&&!memcmp(native,job8->product_root,product)&&
+    (!native[product]||native[product]=='/')){
+  const char *suffix=native+product,*alias=job8->windows_root;
+#ifdef ENGINE_M14
+  const char *directories[]={"/System/System32","/System/SysWOW64"};
+  const char *aliases[]={"C:\\Windows\\System32","C:\\Windows\\SysWOW64"};
+  for(unsigned i=0;i<2;++i){
+   unsigned n=len8(directories[i]);
+   if(bytes-product>=n&&!memcmp(suffix,directories[i],n)&&(!suffix[n]||suffix[n]=='/')){
+    suffix+=n;alias=aliases[i];break;
+   }
+  }
+#endif
+  copy8(out,alias,cap);append8(out,suffix,cap);
+ }else if(user&&bytes>=user&&!memcmp(native,job8->user_root,user)&&(!native[user]||native[user]=='/')){
+  copy8(out,"C:\\Users\\",cap);const char*name=job8->user_root;
+  for(unsigned i=0;job8->user_root[i];++i)if(job8->user_root[i]=='/')name=job8->user_root+i+1;
+  append8(out,name,cap);append8(out,native+user,cap);
+ }
  else copy8(out,native,cap);for(unsigned i=0;out[i];++i)if(out[i]=='/')out[i]='\\';
 }
 static int nativepath_mode143(const WCHAR*wide,char*out,unsigned flags){
