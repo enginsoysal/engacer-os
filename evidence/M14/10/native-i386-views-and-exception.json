@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build_id": "2b3fb5606daa5b194d68af3f066bb436",
+  "source_commit": "f1ecdc55f45f7d799a7078cec8a3277de7e07500",
+  "owned_fixture": "6d37e831044e44bf8bb20ff760a9f13a",
+  "observer_sha256": "0c4b60b2c60810358e420cd27de03ae5106b4bbec6913fc76c15d877f3de0658",
+  "images": {
+    "x86-parent.exe": "37a3761d02d4f8fb90960e353ab285a87ab99628b5efcc1c12e6972429d77c65",
+    "helper32.exe": "a87543e5effe93e6bffdfb23d92f95d5716b63de9f6bedb40749e52b0d3c8af0",
+    "fault32.exe": "41da362e246ddf0aab71e386c30c7002e64ba542ced51a10f789e48dc036a37e"
+  },
+  "output": "Mapped original image: 7z.exe bytes=20480 source-fnv32=489189007\nRunning the original Windows executable in a protected process.\n\nM1410_NATIVE_I386_THUNK_PASS\nM1410_X64_PARENT_I386_CHILD_PASS\n",
+  "views_and_exception_resume": true
+}
