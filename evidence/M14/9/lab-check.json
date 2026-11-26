@@ -1,0 +1,13 @@
+{
+  "record_schema": {
+    "accepted": 3,
+    "rejected": 6
+  },
+  "reference_cases": 3,
+  "comparison_fixture": {
+    "changed": "difference",
+    "extra": "unmeasured",
+    "missing": "unmeasured",
+    "same": "match"
+  }
+}

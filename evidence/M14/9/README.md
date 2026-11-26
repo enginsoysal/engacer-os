@@ -31,3 +31,20 @@ observations, while the matrix distinguishes absent, observed and compared.
 | Installer lifecycle | Nested owner binding and interrupted commit readback | M14.12 |
 | Device calls | Request privileges, teardown and actual device effects | M14.13 |
 | Desktop assistance | Distinct missing, corrupt, incompatible and denied cases, plus the three entry routes | M14.14 |
+
+
+## Repeatable review
+
+Run `uv run --no-project --with jsonschema==4.25.1 python tests/m14/reference149/check_lab.py`
+from the repository root. The check validates the schema, exercises accepted
+and rejected records, verifies the committed reference probe hash and tests
+comparison reporting with owned fixture data. Pass `--candidate <capture.json>`
+to compare another capture against the shipped host observation. Differences
+and missing observations are reported separately. Use matched OS, architecture
+and filesystem profiles when interpreting measurements.
+
+The discovered Windows 7 VM directory had VMware lock entries. Its running state,
+guest access and reference provenance were unverified. No reference guests for
+Windows 8, 8.1 or 10 were identified in the inspected VM locations. A pinned
+Windows 11 guest capture also remains open. The host sample is the only measured
+platform in the current report.
