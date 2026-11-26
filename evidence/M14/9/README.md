@@ -48,3 +48,36 @@ guest access and reference provenance were unverified. No reference guests for
 Windows 8, 8.1 or 10 were identified in the inspected VM locations. A pinned
 Windows 11 guest capture also remains open. The host sample is the only measured
 platform in the current report.
+
+## Guest preparation
+
+Use a disposable guest with its own virtual disk. Record the publisher URL,
+edition, language, ISO SHA-256 and expected publisher digest when available.
+Keep installation media and virtual disks in local lab storage outside the
+repository. Start with offline networking and no host folder mappings. Record
+the guest build, architecture and fixture filesystem with each capture.
+An install ISO or VM configuration does not count as an observation.
+
+Run the portable probe from Windows PowerShell inside the installed guest:
+
+~~~powershell
+powershell.exe -NoProfile -File windows_probe.ps1
+~~~
+
+Capture stdout as JSON. On x64 Windows run the same probe separately in the
+native and WOW64 Windows PowerShell processes, recording the process bitness.
+The portable probe records the WMI OS version and SKU. Its x64 development-host
+capture agrees with the three Python observations and remains host evidence.
+
+- Windows 7, 8 and 8.1: no verified install image or guest was identified.
+  The local VMware entry named Windows 7 pointed at Engacer installation media.
+  Check available downloads through the licensed Microsoft subscription catalog.
+- Windows 10: Microsoft publishes a retail ISO download page. A suitable
+  licensed or evaluation guest and installed-system capture remain open.
+- Windows 11: Microsoft publishes an Enterprise LTSC evaluation ISO. Download
+  started and an isolated VMware configuration and growable disk were created.
+  Download verification, guest installation and probe execution remain open.
+
+Sources: [Microsoft subscription downloads](https://learn.microsoft.com/en-us/visualstudio/subscriptions/download-software),
+[Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10ISO),
+[Windows 11 evaluation](https://www.microsoft.com/en-us/evalcenter/download-windows-11-enterprise).

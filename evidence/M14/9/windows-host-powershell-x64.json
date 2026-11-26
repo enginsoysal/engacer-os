@@ -1,0 +1,12 @@
+{
+  "system": [10,0,26300],
+  "operating_system_sku": 4,
+  "service_pack_major": 0,
+  "process_bits": 64,
+  "probe_sha256": "ac5a0981f13046e39781a01ceac6c27e17179e6a29751d59a2928af7d7f3236a",
+  "cases": {
+    "absent_image": {"loaded": false, "last_error": 126},
+    "invalid_image": {"loaded": false, "last_error": 193},
+    "case_lookup": {"alternate_case_read": true}
+  }
+}
