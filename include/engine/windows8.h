@@ -6,6 +6,14 @@
 #include <engine/winprocess148.h>
 #define W8_BASE UINT64_C(0x100000000)
 #define W8_LIMIT UINT64_C(0x140000000)
+/* Below 4 GiB and above the kernel's page allocator ceiling. */
+#define W8_X86_BASE UINT64_C(0x40000000)
+#define W8_X86_LIMIT UINT64_C(0x60000000)
+static inline unsigned w8_user_range1410(unsigned compat_x86,uint64_t base,uint64_t bytes){
+ uint64_t low=compat_x86?W8_X86_BASE:W8_BASE;
+ uint64_t high=compat_x86?W8_X86_LIMIT:W8_LIMIT;
+ return base>=low&&base<high&&bytes<=high-base;
+}
 #define W8_MAILBOX UINT64_C(0x100800000)
 #define W8_ENVIRONMENT143 UINT64_C(0x100900000)
 #define W8_ENVIRONMENT_LIMIT143 16384u

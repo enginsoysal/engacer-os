@@ -40,6 +40,7 @@ typedef struct {
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
  uint64_t app_generation1410;
+ unsigned compat_x86;
  unsigned install_authority147,exe_context148,image_pin148,exe_child_error148;
  char app_id1410[39];
  char named_owner1410[256];
@@ -172,13 +173,20 @@ static int prefix8(const char*p,const char*root){unsigned n=length8(root);return
 static void group_peak142(void){uint64_t total=sync_resident142+file_resident143+registry_resident143+ui_resident144+clipboard_resident144+mapping_resident146+pipe_resident147+exe_resident148;for(unsigned i=0;i<SPACES142;++i){total+=metadata_pages142[i];if(spaces142[i])total+=spaces142[i]->count;}if(total>root_info142->peak_pages)root_info142->peak_pages=total;}
 static void peak8(void){if((uint64_t)count8+metadata_pages142[active_space142]>info8.peak_pages)info8.peak_pages=(uint64_t)count8+metadata_pages142[active_space142];group_peak142();}
 static uint64_t allocate8(void){if(count8==OWN8)return 0;uint64_t p=page_alloc();if(p)owned8[count8++]=p;peak8();return p;}
+static unsigned user_range8(uint64_t address,uint64_t bytes){
+#ifdef ENGINE_M14
+ return w8_user_range1410(spaces142[active_space142]->compat_x86,address,bytes);
+#else
+ return w8_user_range1410(0,address,bytes);
+#endif
+}
 static uint64_t *pte8(uint64_t va,unsigned create){
- if(va<W8_BASE||va>=W8_LIMIT)return 0;uint64_t*pd=(void*)(uintptr_t)pd8;unsigned at=(unsigned)((va>>21)&511);uint64_t page=pd[at]&UINT64_C(0x000ffffffffff000);
+ if(!user_range8(va,1))return 0;uint64_t*pd=(void*)(uintptr_t)pd8;unsigned at=(unsigned)((va>>21)&511);uint64_t page=pd[at]&UINT64_C(0x000ffffffffff000);
  if(!page&&create){page=allocate8();if(!page)return 0;pd[at]=page|7;}return page?(uint64_t*)(uintptr_t)page+((va>>12)&511):0;
 }
 static void free_owned8(uint64_t page);
 static unsigned reserve141(uint64_t va,uint64_t bytes,unsigned permissions,unsigned lazy){
- if(!bytes||(va&4095)||(bytes&4095)||va<W8_BASE||va>=W8_LIMIT||bytes>W8_LIMIT-va||bytes>32*1024*1024||(permissions!=1&&permissions!=3&&permissions!=5))return 1;
+ if(!bytes||(va&4095)||(bytes&4095)||!user_range8(va,bytes)||bytes>32*1024*1024||(permissions!=1&&permissions!=3&&permissions!=5))return 1;
  if(bytes/4096>VIRTUAL141_PAGES-virtual_pages141)return 1;
  for(uint64_t at=va;at<va+bytes;at+=4096){uint64_t*p=pte8(at,1);if(!p||*p)return 1;}
  uint64_t end=va;for(;end<va+bytes;end+=4096){uint64_t*p=pte8(end,0),physical=lazy?0:allocate8();if(!lazy&&!physical)break;*p=physical|(lazy?RESERVED141|4:5)|((permissions&2)?2:0)|((permissions&4)?0:NX);}
@@ -192,7 +200,7 @@ static unsigned commit141(uint64_t va,unsigned write,unsigned execute){
  uint64_t physical=allocate8();if(!physical)return 1;*p=physical|(*p&(NX|6))|1;++lazy_faults141;__asm__ volatile("invlpg (%0)"::"r"(va):"memory");return 0;
 }
 static unsigned user8(uint64_t va,void*buffer,unsigned bytes,unsigned to_user){
- if(va<W8_BASE||va>=W8_LIMIT||bytes>W8_LIMIT-va)return 1;uint8_t*b=buffer;
+ if(!user_range8(va,bytes))return 1;uint8_t*b=buffer;
  while(bytes){uint64_t*p=pte8(va,0);if(p&&!(*p&1)&&(*p&RESERVED141)&&commit141(va,to_user,0))return 1;if(!p||!(*p&1)||(to_user&&!(*p&2)))return 1;unsigned n=4096-(unsigned)(va&4095);if(n>bytes)n=bytes;void*physical=(void*)(uintptr_t)((*p&UINT64_C(0x000ffffffffff000))+(va&4095));
   if(to_user)memcpy(physical,b,n);else memcpy(b,physical,n);b+=n;va+=n;bytes-=n;}return 0;
 }
@@ -313,6 +321,27 @@ static void init_app_owner1410(private_space142 *space,const char *root,const ch
  for(unsigned i=0;i<32;++i){out[i*2]=hex[digest[i]>>4];out[i*2+1]=hex[digest[i]&15];}
 }
 #endif
+static unsigned prepare_space_tables1410(void){
+ cr3_8=allocate8();uint64_t pdpt=allocate8();pd8=allocate8();
+ if(!cr3_8||!pdpt||!pd8)return 1;
+ uint64_t *top=(void*)(uintptr_t)cr3_8,*branches=(void*)(uintptr_t)pdpt;
+ top[0]=pdpt|7;top[256]=kernel_stack_branch()|3;
+ for(unsigned i=0;i<4;++i)branches[i]=kernel_pd(i)|3;
+#ifdef ENGINE_M14
+ if(spaces142[active_space142]->compat_x86){
+  unsigned index=(unsigned)(W8_X86_BASE>>30);
+  uint64_t *directory=(void*)(uintptr_t)pd8;
+  memcpy(directory,(const void*)(uintptr_t)kernel_pd(index),4096);
+  /* All remaining identity entries keep their supervisor-only PDEs. */
+  for(unsigned i=0;i<512;++i)directory[i]&=~UINT64_C(4);
+  memset(directory,0,(W8_X86_LIMIT-W8_X86_BASE)/UINT64_C(0x200000)*sizeof(*directory));
+  branches[index]=pd8|7;
+  return 0;
+ }
+#endif
+ branches[4]=pd8|7;
+ return 0;
+}
 static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request,const private_space142*parent){
  if(parent){root=parent->input.product_root;user=parent->input.user_root;}
  if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
@@ -331,8 +360,7 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
 #else
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
 #endif
- if(prepare_transition8())goto failure;cr3_8=allocate8();uint64_t pdpt=allocate8();pd8=allocate8();if(!cr3_8||!pdpt||!pd8)goto failure;
- ((uint64_t*)(uintptr_t)cr3_8)[0]=pdpt|7;((uint64_t*)(uintptr_t)cr3_8)[256]=kernel_stack_branch()|3;for(unsigned i=0;i<4;++i)((uint64_t*)(uintptr_t)pdpt)[i]=kernel_pd(i)|3;((uint64_t*)(uintptr_t)pdpt)[4]=pd8|7;
+ if(prepare_transition8()||prepare_space_tables1410())goto failure;
  elf_header header;if(v6_verify(m6_volume(),"/System/Windows/runtime8.elf")||exact8("/System/Windows/runtime8.elf",0,&header,sizeof(header))||memcmp(header.ident,"\177ELF\2\1\1",7)||header.machine!=62||header.type!=2||header.phnum>8||header.phentsize!=56)goto failure;
  unsigned executable=0;for(unsigned i=0;i<header.phnum;++i){elf_segment s;if(exact8("/System/Windows/runtime8.elf",header.phoff+i*56,&s,sizeof(s)))goto failure;if(s.type!=1||!s.memsz)continue;
   if(s.vaddr<W8_BASE||s.vaddr>=W8_BASE+0x100000||s.memsz>W8_BASE+0x100000-s.vaddr||s.filesz>s.memsz||s.filesz>0x100000||(s.vaddr&4095)||s.flags>6||(s.flags&3)==3)goto failure;
@@ -449,7 +477,7 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_TEXT143:if(d||e)return -87;if(a==1)return text_compare143(b,c);if(a==2)return text_find143(b,c);return -87;
  case W8_SYS_PAGE145:{
   /* Probe the complete range and old-protection output before changing any PTE. */
-  if(e||!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -87;
+  if(e||!b||(a&4095)||(b&4095)||!user_range8(a,b)||b>32*1024*1024)return -87;
   if(c!=1&&c!=3&&c!=5)return -50;
   unsigned old=0;
   for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -487;
@@ -476,7 +504,7 @@ static int64_t dispatch8(trap_frame*f){
 #endif
  case W8_SYS_VMINFO:{uint64_t values[4]={virtual_pages141,count8,lazy_faults141,OWN8};return user8(a,values,sizeof(values),1)?-1:0;}
  case W8_SYS_UNMAP:case W8_SYS_PROTECT:{
-  if(!b||(a&4095)||(b&4095)||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||b>32*1024*1024)return -1;
+  if(!b||(a&4095)||(b&4095)||!user_range8(a,b)||b>32*1024*1024)return -1;
   if(f->rax==W8_SYS_PROTECT&&c!=1&&c!=3&&c!=5)return -1;
   for(uint64_t at=a;at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141)))return -1;
 #ifdef ENGINE_M14
@@ -593,7 +621,7 @@ static int64_t dispatch8(trap_frame*f){
   }return user8(a,&snapshot,sizeof(snapshot),1)?-998:0;
  }
  case W8_SYS_THREAD_LIST:{w8_thread_snapshot result[THREADS142];memset(result,0,sizeof(result));unsigned count=0;for(unsigned i=0;i<THREADS142;++i)if(threads142[i].state&&threads142[i].state!=T142_EXITED){result[i]=(w8_thread_snapshot){threads142[i].teb,(uint32_t)thread_token142(i),threads142[i].state};++count;}return user8(a,result,sizeof(result),1)?-1:(int64_t)count;}
- case W8_SYS_ACCESS:{if(!b||a<W8_BASE||a>=W8_LIMIT||b>W8_LIMIT-a||!c||(c&~7u))return -1;for(uint64_t at=a&~UINT64_C(4095);at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141))||((c&2)&&!(*p&2))||((c&4)&&(*p&NX)))return -1;}return 0;}
+ case W8_SYS_ACCESS:{if(!b||!user_range8(a,b)||!c||(c&~7u))return -1;for(uint64_t at=a&~UINT64_C(4095);at<a+b;at+=4096){uint64_t*p=pte8(at,0);if(!p||!(*p&(1|RESERVED141))||((c&2)&&!(*p&2))||((c&4)&&(*p&NX)))return -1;}return 0;}
  case W8_SYS_QUIESCE:for(unsigned i=0;i<THREADS142;++i)if(i!=current142&&threads142[i].state){threads142[i].state=T142_EXITED;threads142[i].code=(unsigned)a;}return 0;
  case W8_SYS_THREAD_CLOSE:{int slot=thread_slot142(a);if(slot<0)return -1;threads142[slot].closed=1;return 0;}
  case W8_SYS_THREAD_RESUME:{if((a&W8_HANDLE_TAG_MASK)==W8_PROCESS_TAG)return resume_process_thread142(a);int slot=thread_slot142(a);if(slot<0||threads142[slot].state==T142_EXITED)return -1;unsigned suspended=threads142[slot].state==T142_SUSPENDED;if(suspended)threads142[slot].state=T142_READY;return suspended;}
@@ -633,7 +661,7 @@ static int64_t dispatch8(trap_frame*f){
 trap_frame *w8_trap(trap_frame*f){
  if(!w8_active)return f;
  if(f->vector==14){uint64_t address;__asm__ volatile("movq %%cr2,%0":"=r"(address));
-  if(!(f->error&1)&&address>=W8_BASE&&address<W8_LIMIT&&!commit141(address,(f->error&2)!=0,(f->error&16)!=0))return f;
+  if(!(f->error&1)&&user_range8(address,1)&&!commit141(address,(f->error&2)!=0,(f->error&16)!=0))return f;
   if(!(f->error&1)&&address>=threads142[current142].low&&address<threads142[current142].top&&address+65536>=f->rsp&&!map8(address&~UINT64_C(4095),4096,3))return f;
  }
  if(f->vector==128){f->rax=(uint64_t)dispatch8(f);return f;}
