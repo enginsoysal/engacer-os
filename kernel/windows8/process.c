@@ -505,7 +505,11 @@ static int64_t dispatch8(trap_frame*f){
  case W8_SYS_STAT:{if(string8(a,path,256)||!path8(path,0))return -1;const v6_entry*e=find8(path);if(!e)return -1;w8_file_info result;if(information8(e,&result))return -1;return user8(b,&result,sizeof(result),1)?-1:0;}
  case W8_SYS_ENUM:{
   if(string8(a,path,256)||!path8(path,0)||c>=V6_ENTRIES)return -1;unsigned len=length8(path);v6_volume*v=m6_volume();
-  for(unsigned i=(unsigned)c;i<V6_ENTRIES;++i){const v6_entry*e=v->entries+i;if(!e->kind||memcmp(e->path,path,len)||e->path[len]!='/')continue;const char*p=e->path+len+1;unsigned slash=0;while(*p)if(*p++=='/')slash=1;if(slash)continue;w8_file_info result;if(information8(e,&result)||user8(b,&result,sizeof(result),1))return -1;return i+1;}return 0;
+  for(unsigned i=(unsigned)c;i<V6_ENTRIES;++i){const v6_entry*e=v->entries+i;if(!e->kind||memcmp(e->path,path,len)||e->path[len]!='/')continue;const char*p=e->path+len+1;unsigned slash=0;while(*p)if(*p++=='/')slash=1;if(slash)continue;
+#ifdef ENGINE_M14
+   if(bundle_control_path1410(e->path))continue;
+#endif
+   w8_file_info result;if(information8(e,&result)||user8(b,&result,sizeof(result),1))return -1;return i+1;}return 0;
  }
  case W8_SYS_MKDIR:case W8_SYS_DELETE:{if(string8(a,path,256)||b>1||c||d||e)return -1;if(!path8(path,1)
 #ifdef ENGINE_M14

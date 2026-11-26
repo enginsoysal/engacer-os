@@ -1,5 +1,12 @@
 /* Shared native Windows path grants, also compiled by the storage test adapter. */
 #ifdef ENGINE_M14
+/* Bundle control records are only accessible through kernel brokers. */
+static unsigned bundle_control_path1410(const char *path){
+ if(!prefix8(path,"/Applications/Windows"))return 0;
+ unsigned offset=sizeof(WIN_PRODUCT_BASE147)-1+38;
+ if(length8(path)<=offset||path[offset]!='/')return 0;
+ return prefix8(path+offset,"/.Engacer");
+}
 /* Related-product checks need catalog records, never another product's payload. */
 static unsigned installer_catalog_read1410(const char*p){
  if(equal8(p,"/Applications/Windows"))return 1;
@@ -17,6 +24,9 @@ static unsigned path8(const char*p,unsigned write){
  if(p[0]!='/'||!p[1]||length8(p)>=255)return 0;unsigned component=0;
  for(unsigned i=1;p[i];++i){if((uint8_t)p[i]<32||p[i]=='\\')return 0;if(p[i]=='/'){if(!component)return 0;component=0;}else{if(++component>63)return 0;if(p[i]=='.'&&(p[i+1]=='/'||!p[i+1])&&(i==1||p[i-1]=='/'||(p[i-1]=='.'&&(i==2||p[i-2]=='/'))))return 0;}}
  if(!component)return 0;
+#ifdef ENGINE_M14
+ if(bundle_control_path1410(p))return 0;
+#endif
  if(!write)return prefix8(p,input8.user_root)||prefix8(p,input8.product_root)||equal8(p,input8.source)
 #ifdef ENGINE_M14
   ||prefix8(p,"/System/Windows/Installer")||prefix8(p,"/Data/Windows/Common/Programs")

@@ -33,6 +33,9 @@ int main(void){
     !path_content1410(APP_B "/product.bin")||
     !path_content1410(APP_A "/.EngacerMSI/transaction.bin"))return 5;
  if(!path8(APP_A "/other.dll",0)||!path8(APP_A "/other.dll",1))return 3;
+ if(path8(APP_A "/.Engacer",0)||path8(APP_A "/.Engacer/Registry/key",1)||
+    path_content1410(APP_A "/.Engacer/Registry/key")||
+    !path8(APP_A "/.EngacerMSI/transaction.bin",1))return 6;
  input8.command=W8_RUN;
  if(path8(APP_B "/product.bin",0)||path8("/Applications/Windows",0)||
     !path8(APP_A "/other.dll",0))return 4;
