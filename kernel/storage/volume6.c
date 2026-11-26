@@ -267,6 +267,49 @@ unsigned v6_move_tree11(v6_volume*v,const char*source,const char*target,unsigned
  }
  if(validate(v,v->pending))return V6_INVALID;return commit(v);
 }
+#ifdef ENGINE_M14
+/* Publish a verified staging subtree in one table commit. Files outside its
+ * relative paths retain their backing entries. The stage may be inside target. */
+unsigned v6_overlay_tree1410(v6_volume *v,const char *stage,const char *target){
+ if(!valid_path(stage)||!valid_path(target)||within11(target,stage))return V6_INVALID;
+ int from;
+ unsigned status=prepare(v,stage,&from);
+ if(status)return status;
+ int root=find(v->entries,target);
+ if(v->entries[from].kind!=2||root<0||v->entries[root].kind!=2)return V6_INVALID;
+ unsigned old_length=0,new_length=0;
+ while(stage[old_length])++old_length;
+ while(target[new_length])++new_length;
+ for(unsigned i=0;i<V6_ENTRIES;++i){
+  const v6_entry *entry=v->entries+i;
+  if(!entry->kind||!within11(entry->path,stage))continue;
+  if(i==(unsigned)from){
+   zero(v->pending+i,sizeof(v6_entry));
+   continue;
+  }
+  unsigned tail=0;
+  while(entry->path[old_length+tail])++tail;
+  if(new_length+tail>=256)return V6_LIMIT;
+  char path[256];
+  copy(path,target,new_length);
+  copy(path+new_length,entry->path+old_length,tail+1);
+  if(!valid_path(path)||within11(path,stage))return V6_INVALID;
+  int previous=find(v->entries,path);
+  if(previous>=0){
+   if(entry->kind!=v->entries[previous].kind)return V6_EXISTS;
+   if(entry->kind==2){
+    zero(v->pending+i,sizeof(v6_entry));
+    continue;
+   }
+   zero(v->pending+previous,sizeof(v6_entry));
+  }
+  zero(v->pending[i].path,256);
+  copy(v->pending[i].path,path,new_length+tail+1);
+ }
+ if(validate(v,v->pending))return V6_INVALID;
+ return commit(v);
+}
+#endif
 unsigned v6_remove_tree11(v6_volume*v,const char*source){
  int from;unsigned status=prepare(v,source,&from);if(status)return status;if(!v->entries[from].kind)return V6_NOTFOUND;
  for(unsigned i=0;i<V6_ENTRIES;++i)if(v->entries[i].kind&&within11(v->entries[i].path,source))zero(v->pending+i,sizeof(v6_entry));

@@ -42,6 +42,9 @@ unsigned v6_verify(v6_volume*,const char*);
 #ifdef ENGINE_M11
 unsigned v6_move_tree11(v6_volume*,const char*,const char*,unsigned);
 unsigned v6_remove_tree11(v6_volume*,const char*);
+#ifdef ENGINE_M14
+unsigned v6_overlay_tree1410(v6_volume*,const char*,const char*);
+#endif
 unsigned v6_stream_seal11(v6_volume*);
 unsigned v6_stream_check11(v6_volume*,unsigned*);
 unsigned v6_stream_finish_expected11(v6_volume*,uint64_t,uint32_t);
