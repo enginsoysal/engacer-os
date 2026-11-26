@@ -9,5 +9,45 @@
     "extra": "unmeasured",
     "missing": "unmeasured",
     "same": "match"
-  }
+  },
+  "graph_policy": {
+    "accepted": 1,
+    "rejected": 4
+  },
+  "host_probe_comparison": [
+    {
+      "case": "absent_image",
+      "reference": {
+        "loaded": false,
+        "last_error": 126
+      },
+      "candidate": {
+        "loaded": false,
+        "last_error": 126
+      },
+      "result": "match"
+    },
+    {
+      "case": "case_lookup",
+      "reference": {
+        "alternate_case_read": true
+      },
+      "candidate": {
+        "alternate_case_read": true
+      },
+      "result": "match"
+    },
+    {
+      "case": "invalid_image",
+      "reference": {
+        "loaded": false,
+        "last_error": 193
+      },
+      "candidate": {
+        "loaded": false,
+        "last_error": 193
+      },
+      "result": "match"
+    }
+  ]
 }

@@ -4,11 +4,11 @@
 
 Build fdb650a0e4cff632bd4945cc1b024567, compiled source bd12730bf19eee5a4ab496d798a7c0435728fed0, 825 exact inputs. [Acceptance](../../evidence/M14/8/acceptance-results.json), [resources](../../evidence/M14/8/resources.json), [stage](../milestones/m14-8.md), [install](../handbook/install-m148.md).
 
-Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 is active. M14.10-M14.16 remain planned.
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contract and reference work is complete. M14.10-M14.16 remain planned.
 
 All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication. See [combined platform findings](../maintenance/brixcanvas-feedback-m14.txt).
 
-**Active stage: [M14.9](../milestones/m14-9.md).** The owner resumed work on 26 November 2026. The v1 contract and initial reference observation are available. [Approved plan](../milestones/m14-consolidated.md).
+**Completed design stage: [M14.9](../milestones/m14-9.md).** The owner resumed work on 26 November 2026. The v1 contract and initial reference observation are available. [Approved plan](../milestones/m14-consolidated.md).
 
 
 **Approved planning update (23 November 2026):** future Windows apps receive

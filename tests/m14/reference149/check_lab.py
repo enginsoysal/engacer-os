@@ -14,6 +14,43 @@ def read(path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
+def validate_graph(components):
+    graph = {row["id"]: row["requires"] for row in components}
+    if len(graph) != len(components):
+        raise ValueError("Duplicate component identity")
+    visiting = set()
+    depths = {}
+
+    def depth(node):
+        if node not in graph or node in visiting:
+            raise ValueError("Missing dependency or cycle")
+        if node not in depths:
+            visiting.add(node)
+            depths[node] = 1 + max((depth(child) for child in graph[node]), default=0)
+            visiting.remove(node)
+        return depths[node]
+
+    if any(depth(node) > 32 for node in graph):
+        raise ValueError("Dependency depth exceeds 32")
+
+
+def validate_graph_fixtures():
+    def row(identity, *requires):
+        return {"id": identity, "requires": requires}
+
+    validate_graph([row("a", "b", "c"), row("b", "c"), row("c")])
+    chain = [row(str(i), str(i + 1)) for i in range(32)] + [row("32")]
+    invalid = ([row("a"), row("a")], [row("a", "z")],
+               [row("a", "b"), row("b", "a")], chain)
+    for fixture in invalid:
+        try:
+            validate_graph(fixture)
+        except ValueError:
+            continue
+        raise ValueError("Invalid dependency graph was accepted")
+    return {"accepted": 1, "rejected": len(invalid)}
+
+
 def validate_records():
     schema = read(ROOT / "docs/architecture/windows-app-records-v1.schema.json")
     Draft202012Validator.check_schema(schema)
@@ -76,6 +113,14 @@ def main():
         raise ValueError("Reference probe hash does not match")
     result = {"record_schema": validate_records(), "reference_cases": len(reference["cases"]),
               "comparison_fixture": validate_comparison()}
+    result["graph_policy"] = validate_graph_fixtures()
+    portable = read(evidence.with_name("windows-host-powershell-x64.json"))
+    portable_probe = probe.with_suffix(".ps1")
+    if portable["probe_sha256"] != hashlib.sha256(portable_probe.read_bytes()).hexdigest():
+        raise ValueError("Portable probe hash does not match")
+    result["host_probe_comparison"] = compare(reference, portable)
+    if any(row["result"] != "match" for row in result["host_probe_comparison"]):
+        raise ValueError("Host probes disagree")
     if args.candidate:
         result["comparison"] = compare(reference, read(args.candidate))
     print(json.dumps(result, indent=2))
