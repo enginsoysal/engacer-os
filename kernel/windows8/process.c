@@ -39,6 +39,7 @@ typedef struct {
  uint64_t owned[OWN8],cr3,pd,entry,virtual_pages,lazy_faults;
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
+ uint64_t app_generation1410;
  unsigned install_authority147,exe_context148,image_pin148,exe_child_error148;
  char app_id1410[39];
  char named_owner1410[256];
@@ -258,6 +259,27 @@ static unsigned rollback8(void){
 }
 static unsigned prepare_transition8(void){if(ready8)return 0;uint64_t pages[4];unsigned count=0;for(;count<4;++count)if(!(pages[count]=page_alloc()))break;if(count<4){while(count)page_free(pages[--count]);return 1;}uint64_t*pt=(void*)(uintptr_t)kernel_entry_pt();for(unsigned i=0;i<4;++i)pt[((TRAP8>>12)&511)+i]=pages[i]|3|NX;ready8=1;return 0;}
 #ifdef ENGINE_M14
+/* Keep the counter outside the product tree so removal cannot recycle it.
+ * An admitted install reserves an epoch before any installer code can run.
+ * Failed or cancelled installs may leave gaps.
+ */
+static unsigned app_generation1410(const char *root, unsigned reserve, uint64_t *generation){
+ const char directory[]="/Data/Windows/InstallGenerations";
+ char path[256];
+ copy8(path,directory,sizeof(path));
+ path_append143(path,"/",sizeof(path));
+ path_append143(path,root+sizeof(WIN_PRODUCT_BASE147)-1,sizeof(path));
+ const v6_entry *entry=find8(path);
+ *generation=0;
+ if(entry&&(entry->kind!=1||entry->size!=sizeof(*generation)||
+    v6_verify(m6_volume(),path)||exact8(path,0,generation,sizeof(*generation))||
+    !*generation))return V6_INVALID;
+ if(!reserve)return V6_OK;
+ if(*generation==UINT64_MAX)return V6_FULL;
+ if(protected_prepare143(directory))return V6_IO;
+ ++*generation;
+ return v6_put(m6_volume(),path,sizeof(*generation),memory_source8,generation);
+}
 /* Both strings come from the kernel launch request, outside the user mailbox. */
 static void init_app_owner1410(private_space142 *space,const char *root,const char *user){
  char *out=space->named_owner1410;
@@ -267,6 +289,7 @@ static void init_app_owner1410(private_space142 *space,const char *root,const ch
  engine_sha256_init(&hash);
  engine_sha256_update(&hash,user,length8(user)+1);
  engine_sha256_update(&hash,space->app_id1410,sizeof(space->app_id1410));
+ engine_sha256_update(&hash,&space->app_generation1410,sizeof(space->app_generation1410));
  engine_sha256_final(&hash,digest);
  memset(out,0,sizeof(space->named_owner1410));
  for(unsigned i=0;i<32;++i){out[i*2]=hex[digest[i]>>4];out[i*2+1]=hex[digest[i]&15];}
@@ -282,9 +305,10 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  if(!win_product_root147(root))goto failure;
  if(parent){
   /* The caller's kernel space supplies both the path grant and object owner. */
+  spaces142[slot]->app_generation1410=parent->app_generation1410;
   memcpy(spaces142[slot]->app_id1410,parent->app_id1410,sizeof(parent->app_id1410));
   memcpy(spaces142[slot]->named_owner1410,parent->named_owner1410,sizeof(parent->named_owner1410));
- }else init_app_owner1410(spaces142[slot],root,user);
+ }
 #else
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
 #endif
@@ -307,6 +331,13 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  threads142[0].teb=W8_TEB;threads142[0].low=W8_STACK_LOW;threads142[0].top=W8_STACK_TOP;
  current142=cursor142=0;save_thread142();
  {uint64_t id=thread_token142(0);if(user8(W8_TEB+0x48,&id,8,1))goto failure;}
+#ifdef ENGINE_M14
+ if(!parent){
+  private_space142 *space=spaces142[slot];
+  if(app_generation1410(root,command==W8_INSTALL,&space->app_generation1410))goto failure;
+  init_app_owner1410(space,root,user);
+ }
+#endif
  process_objects142[object].live=1;process_objects142[object].slot=slot;process_objects142[object].primary_id=(unsigned)thread_token142(0);
  serial_text(slot?"M142_CHILD_CREATED command=":"M8_CPL3_CREATED command=");serial_hex(command);serial_text(" pid=");serial_hex(input8.process_id);serial_text("\n");return 0;
  failure:release8();if(!slot){root_info142->state=3;root_info142->status=1;copy8(root_info142->message,"The protected Windows runtime could not be loaded.",sizeof(root_info142->message));++root_info142->revision;}return V6_INVALID;
