@@ -218,9 +218,10 @@ static __attribute__((noinline)) unsigned migrate_registry1410(const char *root,
  if(find8(target)){
   uint8_t checked[32];
   const v6_entry *stored=find8(receipt);
-  return stored&&stored->kind==1&&stored->size==sizeof(checked)&&
+  unsigned matches=stored&&stored->kind==1&&stored->size==sizeof(checked)&&
          !v6_verify(m6_volume(),receipt)&&!exact8(receipt,0,checked,sizeof(checked))&&
-         !memcmp(checked,digest,sizeof(checked))?V6_OK:V6_EXISTS;
+         !memcmp(checked,digest,sizeof(checked));
+  return matches?app_generation1410(root,1,&generation):V6_EXISTS;
  }
  /* An interrupted staging pass is never visible to registry lookup. */
  if(find8(stage)&&(status=v6_remove_tree11(m6_volume(),stage)))return status;
@@ -245,5 +246,9 @@ static __attribute__((noinline)) unsigned migrate_registry1410(const char *root,
  copy8(receipt,stage,sizeof(receipt));
  path_append143(receipt,"/$legacy-migration",sizeof(receipt));
  if((status=v6_put(m6_volume(),receipt,32,memory_source8,(void*)digest)))return status;
- return v6_move_tree11(m6_volume(),stage,target,0);
+ status=v6_move_tree11(m6_volume(),stage,target,0);
+ if(status)return status;
+ /* A committed migrated bundle has its own durable generation. If the
+  * generation write was interrupted, the checked receipt can finish it. */
+ return app_generation1410(root,1,&generation);
 }
