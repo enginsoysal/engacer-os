@@ -9,7 +9,7 @@ import sys
 import traceback
 
 import replay7
-from private1410_native import B
+from private1410_native import A, B
 
 ROOT = Path(__file__).resolve().parents[2]
 TEST_ROOT = ROOT / "build/m14-native/stage10"
@@ -37,7 +37,7 @@ def registry_effects(journal):
             start += name_size
             principal = USER if root == 1 else "/Machine/" + str(view)
             suffix = digest(principal) + "/k" + digest(key) + "/v" + digest(name)
-            yield suffix, journal[start:start + size], before
+            yield suffix, journal[start:start + size], before, journal[at:at + length]
         at += length
 
 
@@ -78,17 +78,29 @@ def main():
         out.mkdir(parents=True, exist_ok=True)
         c.OUT = out
         report = {"passed": False, "build_id": meta["build_id"],
-                  "source_commit": meta["source_commit"], "owned_fixture": work.name}
+                  "source_commit": meta["source_commit"], "owned_fixture": work.name,
+                  "observer_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
         try:
             volume = StoppedDisk(disk, lib)
             try:
                 journal = read(volume, B + "/product.bin")
                 digest_expected = hashlib.sha256(journal[:72] + bytes(32) + journal[104:]).digest()
                 assert journal[72:104] == digest_expected
-                selected = [(suffix, payload) for suffix, payload, before in registry_effects(journal) if not before and payload]
-                assert len(selected) >= 2
+                selected = [(suffix, payload, effect) for suffix, payload, before, effect
+                            in registry_effects(journal) if not before and payload]
+                assert len(selected) >= 3
+                # Preserve A's product/principal binding while giving its checked
+                # ownership journal one competing claim on B's legacy value.
+                rival = bytearray(read(volume, A + "/product.bin"))
+                assert rival[72:104] == hashlib.sha256(rival[:72] + bytes(32) + rival[104:]).digest()
+                rival += selected[2][2]
+                struct.pack_into("<I", rival, 12, len(rival))
+                for field in (16, 24):
+                    struct.pack_into("<I", rival, field, struct.unpack_from("<I", rival, field)[0] + 1)
+                rival[72:104] = hashlib.sha256(rival[:72] + bytes(32) + rival[104:]).digest()
+                volume.put(A + "/product.bin", bytes(rival))
                 original = {}
-                for index, (suffix, payload) in enumerate(selected):
+                for index, (suffix, payload, _) in enumerate(selected):
                     record = read(volume, PRIVATE + "/" + suffix)
                     assert record[1552:] == payload
                     principal, tail = suffix.split("/", 1)
@@ -140,7 +152,7 @@ def main():
                     assert read(volume, PRIVATE + "/$legacy-migration") == digest_expected
                     for entry_index, (suffix, (legacy, record)) in enumerate(original.items()):
                         assert read(volume, legacy) == record
-                        if entry_index == 1:
+                        if entry_index in (1, 2):
                             assert PRIVATE + "/" + suffix not in names
                         else:
                             assert read(volume, PRIVATE + "/" + suffix) == record
@@ -149,7 +161,8 @@ def main():
 
             report.update(passed=True, interrupted_state="staged and unpublished",
                           original_values_preserved=len(original),
-                          migrated_values=len(original)-1, changed_values_skipped=1,
+                          migrated_values=len(original)-2, changed_values_skipped=1,
+                          competing_values_skipped=1,
                           independent_disk_starts=2, receipt_sha256=digest_expected.hex())
         except Exception:
             report["error"] = ui.q.clean(traceback.format_exc())
