@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build_id": "25837c84308bc0c82ecb8be8f0d786ea",
+  "source_commit": "7654882e9e3222206d753575b162da010ab59195",
+  "owned_fixture": "dc92a087ba774c26b58437dfc6d74a84",
+  "legacy_build": "fdb650a0e4cff632bd4945cc1b024567",
+  "legacy_input_sha256": "470f9f3ba712466ebc9892a26bc8ea63bf01c86d28ca076a88d0a13904f74f61",
+  "migrated_values": 2,
+  "unattributed_values_preserved": 1,
+  "receipt_sha256": "b9ba5bfa8b07dd99a8d9c48e8420819e6109749ef5eed2cce37f89cd42568ee6"
+}
