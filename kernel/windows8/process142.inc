@@ -139,6 +139,20 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
 #endif
  return status;
 }
+#ifdef ENGINE_M14
+unsigned w8_start_app1410(const char *source,const char *root,const char *user,const char *alias){
+ if(!win_product_root147(root)||!source||!prefix8(source,root)||
+    equal8(source,root)||bundle_control_path1410(source)||!win_tx_alias147(alias))return V6_INVALID;
+ unsigned status=w8_start(W8_RUN,source,root,user,"");
+ if(status)return status;
+ copy8(input8.windows_root,alias,sizeof(input8.windows_root));
+ if(user8(W8_MAILBOX+offsetof(w8_mailbox,windows_root),
+          input8.windows_root,sizeof(input8.windows_root),1)){
+  w8_cancel();return V6_INVALID;
+ }
+ return 0;
+}
+#endif
 unsigned w8_start_reviewed147(unsigned command,const char*source,const char*root,const char*user,const char*arguments,const uint8_t digest[32]){
  if(command!=W8_INSTALL||!digest)return V6_INVALID;unsigned nonzero=0;for(unsigned i=0;i<32;++i)nonzero|=digest[i];if(!nonzero)return V6_INVALID;
  unsigned status=w8_start(command,source,root,user,arguments);if(status)return status;

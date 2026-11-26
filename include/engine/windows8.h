@@ -77,6 +77,7 @@ typedef struct {unsigned state,command,status,percent,revision;uint64_t peak_pag
  uint8_t source_sha147[32];uint32_t profile147,job_id147,registry147,shortcuts147,features147;uint64_t reserved_review147;} w8_info;
 extern volatile unsigned w8_active;
 unsigned w8_start(unsigned,const char*,const char*,const char*,const char*);
+unsigned w8_start_app1410(const char*,const char*,const char*,const char*);
 unsigned w8_start_reviewed147(unsigned,const char*,const char*,const char*,const char*,const uint8_t[32]);
 unsigned w8_pending(void);
 unsigned w8_runnable(void);

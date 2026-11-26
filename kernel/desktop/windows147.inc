@@ -1,7 +1,7 @@
 #include <engine/winexe148.h>
 /* Native frontend for the bounded original Windows-console compatibility profile. */
 #define PRODUCT_ROOT8 "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"
-enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,CHOOSE_MSI147,DETAILS_MSI147,GUI144=12100,PRODUCT_ROW147=12200,PRODUCTS147=12208,PRODUCT_MORE147=12209};
+enum {PREVIEW8=12000,INSTALL8,REMOVE8,CONFIRM8,BACK8,INFO8,ZIP8,EXTRACT8,CANCEL8,OUTPUT_PREV8,OUTPUT_NEXT8,LICENSE8,INSPECT141,CHOOSE_MSI147,DETAILS_MSI147,GUI144=12100,PRODUCT_ROW147=12200,PRODUCTS147=12208,PRODUCT_MORE147=12209,RUN_PRODUCT1410=12301};
 extern const char windows8_licenses[];
 static unsigned installed8(void){
  static uint64_t generation=UINT64_MAX;static unsigned valid;
@@ -27,6 +27,30 @@ static unsigned inventory_product147(unsigned requested,char root[256],win_tx_he
  }return 0;
 }
 static unsigned select_product147(application*a,unsigned index){char root[256];win_tx_header147 h;if(!inventory_product147(index,root,&h)||!product_header147(root,&h,1))return 0;win_review147*r=&a->msi147;memset(r,0,sizeof(*r));r->selected=2;r->ready=1;r->profile=W8_PROFILE_GENERIC147;if(equal(root,PRODUCT_ROOT8))r->profile|=W8_PROFILE_LEGACY147;r->files=h.files;r->registry=h.registry;r->shortcuts=h.links;copy(r->root,root,256);copy(r->product,h.product,96);copy(r->version,h.version,32);copy(r->publisher,h.publisher,96);copy(r->code,h.code,40);memcpy(r->digest,h.source_sha,32);a->calc_error=0;a->offset=0;a->number=0;a->notice[0]=0;return 1;}
+static unsigned windows_run_path1410(const application *app,const char *path){
+ const char *root=selected_root147(app);
+ unsigned n=length(root);
+ if(!app->msi147.ready||!win_product_root147(root)||
+    length(path)<n||memcmp(path,root,n)||(path[n]&&path[n]!='/'))return 0;
+ /* Package control trees are never launch locations. */
+ if(path[n]=='/'&&path[n+1]=='.')return 0;
+ return 1;
+}
+static unsigned windows_run_installed1410(application *app,const char *path){
+ if(!windows_run_path1410(app,path)||!product_state147(app,0)||
+    ui12_file_natural(ui12_file_extension(file_basename11(path)),"exe"))return 0;
+ const v6_entry *image=entry(path);
+ if(!image||image->kind!=1||v6_verify(m6_volume(),path))return 0;
+ win_tx_header147 header;
+ const char *alias=EXE148_ALIAS;
+ if(!(app->msi147.profile&W8_PROFILE_EXE148)){
+  if(!product_header147(selected_root147(app),&header,1))return 0;
+  alias=header.alias;
+ }
+ char user[256];root_path(user,"");unsigned n=length(user);if(n&&user[n-1]=='/')user[n-1]=0;
+ if(w8_start_app1410(path,selected_root147(app),user,alias))return 0;
+ app->offset=0;return 1;
+}
 static unsigned review_source147(application*a){
  const v6_entry*e=entry(a->path);win_review147*r=&a->msi147;
  return e&&e->kind==1&&e->size==r->source_size&&e->first==r->source_first&&e->crc==r->source_crc;
@@ -89,8 +113,11 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
   if(recovering&&(app->msi147.profile&W8_PROFILE_EXE148)){ui73_fit(x,actions+10,160,"Inspection required",1,ink());}else if(installed||(legacy&&(!app->msi147.selected||app->msi147.selected==1))||recovering||(app->msi147.selected==1&&app->msi147.ready&&(app->msi147.profile&(W8_PROFILE_GENERIC147|W8_PROFILE_EXE148))))button(token,x,actions,160,installed?(legacy?"Run 7-Zip console":"Remove app"):recovering?"Recover app":"Install app",installed?(legacy?INFO8:REMOVE8):recovering?REMOVE8:INSTALL8,1);else ui73_fit(x,actions+10,160,"Review only",1,ink());
   button(token,x+174,actions,170,installed?(legacy?"Remove app":"Choose installer..."):"Review installer",installed?(legacy?REMOVE8:CHOOSE_MSI147):PREVIEW8,!legacy);
   button(token,x+358,actions,130,"Licenses",LICENSE8,0);button(token,x+736,actions,140,app->entered?"Hide details":"Details",DETAILS_MSI147,0);
-  if(installed||(!entry(selected_root147(app))&&!completion))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
+  if(installed&&!legacy&&app->msi147.ready)button(token,x+502,actions,220,"Open app executable",RUN_PRODUCT1410,1);
+  else if(installed||(!entry(selected_root147(app))&&!completion))button(token,x+502,actions,220,"Check a Windows file",INSPECT141,0);
  }
+ if(installed&&!legacy&&app->msi147.ready&&info->state!=1)
+  button(token,x,y+194,220,"Check a Windows file",INSPECT141,0);
  if(installed&&legacy&&info->state!=1){
   button(token,x,y+194,195,"Create test archive",ZIP8,0);button(token,x+209,y+194,195,"Extract test archive",EXTRACT8,0);
   button(token,x+418,y+194,210,"Open file manager",GUI144,0);button(token,x+642,y+194,190,"Choose installer...",CHOOSE_MSI147,0);
@@ -98,7 +125,7 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  }
  if(info->state!=1)button(token,x+width-174,y+82,174,"Installed apps",PRODUCTS147,0);
  const char*message=app->notice[0]?app->notice:info->message[0]?info->message:
-  info->state==1?"A Windows task is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?(legacy?"Ready. Run the 7-Zip console or try creating and extracting a test archive.":"Installed. Opening this app is not supported yet. Use Installed apps to manage it."):recovering?(app->msi147.profile&W8_PROFILE_EXE148?"An EXE operation was interrupted. Keep its files and protected record for inspection. Automatic EXE recovery is not supported yet.":"A previous operation needs cleanup. Choose Recover app. The original download is not needed."):"Choose Install app for the included 7-Zip, or Choose installer to review another installer. Review alone does not install it.";
+  info->state==1?"A Windows task is running...":info->state==2&&info->command==W8_RUN?"Finished successfully.":installed?(legacy?"Ready. Run the 7-Zip console or try creating and extracting a test archive.":"Installed. Choose an executable in this app’s folder to open it."):recovering?(app->msi147.profile&W8_PROFILE_EXE148?"An EXE operation was interrupted. Keep its files and protected record for inspection. Automatic EXE recovery is not supported yet.":"A previous operation needs cleanup. Choose Recover app. The original download is not needed."):"Choose Install app for the included 7-Zip, or Choose installer to review another installer. Review alone does not install it.";
  ui73_paragraph(x,y+294,width,info->command==W8_RUN||info->command==W8_INSPECT?2:3,message,ink());
  if(info->state==1&&info->command!=W8_RUN){
   unsigned filled=(unsigned)width*info->percent/100;ui73_round(x,y+374,width,8,4,desktop_dark16()?0x233c47:0xdce8ee);
@@ -117,7 +144,7 @@ static void sample_name8(char*out,const char*base,unsigned number,const char*ext
  copy(out,base,256);if(number){char suffix[24];decimal(suffix,number+1);append(out,"-",256);append(out,suffix,256);}append(out,extension,256);
 }
 static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,unsigned command){
- (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>DETAILS_MSI147&&command!=GUI144&&command!=12300&&(command<PRODUCT_ROW147||command>PRODUCT_MORE147)))return 0;
+ (void)token;if(w->app!=WINDOWS8||command<PREVIEW8||(command>DETAILS_MSI147&&command!=GUI144&&command!=12300&&command!=RUN_PRODUCT1410&&(command<PRODUCT_ROW147||command>PRODUCT_MORE147)))return 0;
  if(command==12300){if(!exe_front_select148(app))notice(app,"This EXE record needs inspection. No operation started.");invalidate(w->bounds);return 1;}
  if(command==DETAILS_MSI147){app->entered^=1;invalidate(w->bounds);return 1;}
  if(command==LICENSE8){app->calc_error=1;app->offset=0;invalidate(w->bounds);return 1;}
@@ -133,6 +160,10 @@ static unsigned action_windows8(desktop_window*w,application*app,uint64_t token,
  if(command==INSTALL8&&app->msi147.selected&&(!app->msi147.ready||!review_source147(app)||!(app->msi147.profile&(W8_PROFILE_LEGACY147|W8_PROFILE_GENERIC147|W8_PROFILE_EXE148)))){notice(app,app->msi147.ready?"This package requires installer features that are not supported yet.":"Review this installer before installing.");invalidate(w->bounds);return 1;}
  if(command==INSTALL8||command==REMOVE8){app->number=command==INSTALL8?1:2;invalidate(w->bounds);return 1;}
  if(command==INSPECT141){picker_begin12(token,P12_WINDOWS_INSPECT);return 1;}
+ if(command==RUN_PRODUCT1410){
+  if(app->msi147.ready&&product_state147(app,0))picker_begin12(token,P12_WINDOWS_RUN1410);
+  return 1;
+ }
  unsigned job=0;const char*source=app->path,*arguments="";char sample_arguments[512];
  if(command==CONFIRM8){job=app->number==1?W8_INSTALL:app->number==2?W8_REMOVE:0;app->number=0;}
  if(command==PREVIEW8)job=W8_PREVIEW;

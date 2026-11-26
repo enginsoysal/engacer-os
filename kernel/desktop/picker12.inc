@@ -24,6 +24,12 @@ static unsigned picker_remember12(void){
 static void picker_error12(const char*message){copy(picker12.error,message,sizeof(picker12.error));whole();}
 static void picker_visit12(const char*path,unsigned push){
 #ifdef ENGINE_M14
+ if(picker12.purpose==P12_WINDOWS_RUN1410){
+  desktop_window *window=desktop_lookup(&model,file_dialog_state11.owner);
+  if(!window||!windows_run_path1410(&apps[window-model.windows],path)){
+   picker_error12("Choose a location inside the installed app.");return;
+  }
+ }
  if(picker_foreign12()&&!w8_picker_allowed146(picker_foreign_generation146,path,0)){picker_error12("This app cannot access that location. Choose one of its granted folders.");return;}
 #endif
  if(!picker_folder12(path)){picker_error12("That folder is no longer available. Choose another location.");return;}
@@ -44,6 +50,9 @@ static void picker_begin12(uint64_t token,unsigned purpose){
  picker_load12();memset(&picker12,0,sizeof(picker12));picker12.purpose=purpose;picker12.selected=UINT32_MAX;
  char path[256];unsigned category=picker_category12();copy(path,picker_preferences.paths[category],256);
  if(!picker_string12(path)||!picker_folder12(path)||(purpose!=P12_TEXT_OPEN&&purpose!=P12_IMAGE_OPEN&&purpose!=P12_ZIP_OPEN&&purpose!=P12_WINDOWS_INSPECT&&purpose!=P12_WINDOWS_MSI147&&!picker_writable12(path)))root_path(path,purpose==P12_ZIP_FOLDER||purpose==P12_ZIP_OPEN||purpose==P12_WINDOWS_INSPECT||purpose==P12_WINDOWS_MSI147?"Downloads":purpose==P12_IMAGE_OPEN?"Pictures":"Documents");
+#ifdef ENGINE_M14
+ if(purpose==P12_WINDOWS_RUN1410)copy(path,selected_root147(a),256);
+#endif
  if(purpose==P12_TEXT_SAVE){copy(picker12.name,a->path[0]?file_basename11(a->path):"Note.txt",256);picker12.name_cursor=length(picker12.name);picker12.name_anchor=0;}
  file_dialog_open11(P12_DIALOG,token,0);file_dialog_state11.focus=purpose==P12_TEXT_SAVE?2:1;picker_visit12(path,1);
  serial_text("M128_PICKER_OPEN purpose=");serial_hex(purpose);serial_text("\n");
@@ -51,6 +60,13 @@ static void picker_begin12(uint64_t token,unsigned purpose){
 static unsigned picker_match12(const v6_entry*e){
 #ifdef ENGINE_M14
  if(picker_foreign12()){if(!w8_picker_allowed146(picker_foreign_generation146,e->path,0))return 0;return e->kind==2||(e->kind==1&&w8_picker_matches146(picker_foreign_generation146,file_basename11(e->path),picker12.filter));}
+#endif
+#ifdef ENGINE_M14
+ if(picker12.purpose==P12_WINDOWS_RUN1410){
+  desktop_window *window=desktop_lookup(&model,file_dialog_state11.owner);
+  if(!window||!windows_run_path1410(&apps[window-model.windows],e->path))return 0;
+  return e->kind==2||(e->kind==1&&!ui12_file_natural(ui12_file_extension(file_basename11(e->path)),"exe"));
+ }
 #endif
  if(e->kind==2)return 1;if(e->kind!=1||picker12.purpose==P12_ZIP_FOLDER)return 0;
  if(picker12.filter)return 1;const char*extension=ui12_file_extension(file_basename11(e->path));
@@ -133,6 +149,14 @@ static void picker_accept12(unsigned decision){
  if(picker_saving12()){picker_save12(w,a,0);return;}
  if(!e||e->kind!=1){picker_error12("Select a file in the list, then choose Open.");return;}
  char path[256];copy(path,e->path,256);
+#ifdef ENGINE_M14
+ if(picker12.purpose==P12_WINDOWS_RUN1410){
+  if(!windows_run_installed1410(a,path)){
+   picker_error12("The selected executable could not start in this installed app.");return;
+  }
+  picker_close12(a,"Starting the selected executable.",0);invalidate(w->bounds);return;
+ }
+#endif
  if(picker12.purpose==P12_WINDOWS_MSI147){
 #ifdef ENGINE_M14
   if(!windows_choose_source147(a,path)){picker_error12("Choose an MSI up to 8 MiB or an EXE up to 64 MiB in your folders. Copy USB files to Downloads first.");return;}
@@ -239,7 +263,7 @@ static void picker_nav20(int x,int y,unsigned command,unsigned icon,const char*n
 static unsigned picker_draw12(void){
  if(!picker_live12())return 0;if(!desktop_lookup(&model,file_dialog_state11.owner)){file_dialog_state11.mode=0;return 1;}if(!file_dialog_owner_focused11())return 1;
  file_dialog11*d=&file_dialog_state11;int width=model.width>900?860:(int)model.width-40,height=model.height>712?620:(int)model.height-92,x=((int)model.width-width)/2,y=((int)model.height-60-height)/2;
- desktop_shadow16(x,y,width,height);if(access_flags16&1){ui73_round(x,y,width,height,12,ink());ui73_round(x+2,y+2,width-4,height-4,10,paper());}else ui73_round(x,y,width,height,12,paper());ui73_fit(x+24,y+20,width-48,picker_foreign_title146(picker12.phase==P12_REPLACE_REVIEW?"Replace this file?":picker12.phase==P12_DIRTY_REVIEW?"Keep your current changes?":picker12.phase==P12_FOLDER_REVIEW?"Create a folder":picker_saving12()?"Save as":picker12.purpose==P12_ZIP_FOLDER?"Choose an extraction folder":picker12.purpose==P12_WINDOWS_MSI147?"Choose a Windows installer":"Open a file"),UI12_SECTION,ink());
+ desktop_shadow16(x,y,width,height);if(access_flags16&1){ui73_round(x,y,width,height,12,ink());ui73_round(x+2,y+2,width-4,height-4,10,paper());}else ui73_round(x,y,width,height,12,paper());ui73_fit(x+24,y+20,width-48,picker_foreign_title146(picker12.phase==P12_REPLACE_REVIEW?"Replace this file?":picker12.phase==P12_DIRTY_REVIEW?"Keep your current changes?":picker12.phase==P12_FOLDER_REVIEW?"Create a folder":picker_saving12()?"Save as":picker12.purpose==P12_ZIP_FOLDER?"Choose an extraction folder":picker12.purpose==P12_WINDOWS_MSI147?"Choose a Windows installer":picker12.purpose==P12_WINDOWS_RUN1410?"Choose an app executable":"Open a file"),UI12_SECTION,ink());
  if(picker12.phase){
   if(picker12.phase==P12_FOLDER_REVIEW){ui73_fit(x+24,y+62,width-48,picker12.path,1,ink());text(x+24,y+106,"Folder name",1,ink());desktop_rect r={x+24,y+138,width-48,40};file_text_field11(r,d->input,d->cursor,d->anchor,d->focus==2,0);file_control11(d->owner,r,P12_NAME);}
   else{ui73_paragraph(x+24,y+64,width-48,2,picker12.phase==P12_REPLACE_REVIEW?(picker_foreign12()?"Your app may replace this file after you confirm. Cancel keeps this destination.":"Replacing removes this destination's previous contents. Your original document stays open until the new save succeeds."):"Your current document has unsaved changes. Save it, discard those changes explicitly, or return to your choice.",ink());text(x+24,y+120,picker12.phase==P12_REPLACE_REVIEW?"Destination file":"Selected file",1,ink());ui73_paragraph(x+24,y+148,width-48,3,file_basename11(picker12.pending),ink());desktop_rect r={x+24,y+224,width-48,36};file_text_field11(r,picker12.pending,length(picker12.pending),length(picker12.pending),0,0);}
@@ -266,7 +290,7 @@ static unsigned picker_draw12(void){
  int controls_y=y+height-164;picker_button12(x+24,controls_y,64,"Prev",P12_PREVIOUS,picker12.offset>0,0,14);picker_button12(x+96,controls_y,64,"Next",P12_NEXT,picker12.offset+picker12.rows<picker12.count,0,15);
  picker_button12(x+168,controls_y,108,"New folder",P12_NEW_FOLDER,picker_writable12(picker12.path)&&!picker_busy12(),0,13);
  if(picker_saving12()){text(x+24,y+height-116,"Name",UI12_SECONDARY,ink());desktop_rect field={x+84,y+height-122,width-108,36};file_text_field11(field,picker12.name,picker12.name_cursor,picker12.name_anchor,d->focus==2,0);file_control11(d->owner,field,P12_NAME);}
- if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker_foreign12()?picker_foreign_filter146("All files"):picker12.filter?"All files":picker12.purpose==P12_WINDOWS_MSI147?"MSI and EXE":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker_saving12()?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
+ if(picker12.purpose!=P12_ZIP_FOLDER)picker_button12(x+width-228,controls_y,204,picker_foreign12()?picker_foreign_filter146("All files"):picker12.filter?"All files":picker12.purpose==P12_WINDOWS_MSI147?"MSI and EXE":picker12.purpose==P12_WINDOWS_RUN1410?"Executables":picker12.purpose==P12_WINDOWS_INSPECT?"Windows files":picker12.purpose==P12_IMAGE_OPEN?"BMP images":picker12.purpose==P12_ZIP_OPEN?"ZIP archives":picker_saving12()?"Text (.txt)":"Text files",P12_FILTER,1,0,3);
  ui73_fit(x+24,y+height-76,width-48,picker12.error[0]?picker12.error:picker_foreign12()?(picker_saving12()?"Choose a destination. Your app writes the file after this dialog closes.":"Choose a file. Your app opens it after this dialog closes."):picker_saving12()?"Text type adds .txt when no extension is supplied. The original is kept.":"Click selects. Double-click or Enter opens. Escape cancels.",UI12_SECONDARY,ink());
  picker_button12(x+24,y+height-46,120,"Cancel",P12_CANCEL,1,0,5);picker_button12(x+width-190,y+height-46,166,picker_saving12()?"Save":picker12.purpose==P12_ZIP_FOLDER?"Choose folder":"Open",P12_ACCEPT,1,1,4);
  return 1;
