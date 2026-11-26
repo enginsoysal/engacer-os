@@ -118,7 +118,7 @@
       "id": "M14.9",
       "title": "Environment contracts and compatibility reference laboratory",
       "deliver": "Freeze environment identity, private storage/registry/component contracts, dependency records and versioned Windows reference probes.",
-      "status": "planned",
+      "status": "in_progress",
       "document": "docs/milestones/m14-9.md",
       "how_and_why": "One ownership model prevents conflicting assumptions in loaders, runtime activation and installer UX.",
       "acceptance": "Schemas, ownership/escape matrix, reference provenance, migration policy and all-three-route walkthroughs are reviewed; no runtime feature is claimed.",
@@ -133,7 +133,8 @@
       ],
       "architecture": "docs/architecture/windows-app-environments.md",
       "planning_revision": "2026-11-23",
-      "entry_dependencies": []
+      "entry_dependencies": [],
+      "evidence": "evidence/M14/9"
     },
     {
       "id": "M14.10",
@@ -304,11 +305,11 @@
     }
   ],
   "next_stage": "M14.9",
-  "development_stage": null,
-  "authorized_implementation_through": "M14.8",
-  "stop_after": "M14.8",
+  "development_stage": "M14.9",
+  "authorized_implementation_through": "M14.9",
+  "stop_after": "M14.9",
   "future_plan": "docs/milestones/m14-consolidated.md",
-  "owner_stop_after": "M14.8",
+  "owner_stop_after": null,
   "publication_status": "Native/source/media and twenty public asset downloads passed. Native homepage Save blocked; article content verified separately.",
   "planning_revision": {
     "date": "2026-11-23",

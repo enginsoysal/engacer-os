@@ -13,7 +13,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 - [Release scope and limits](docs/releases/m148-v0.14.8.md)
 - [Documentation and downloads](https://engaceros.brixcanvas.com/blog/downloads)
 
-Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9-M14.16 remain planned, not started; final integrated optimization is M14.16.
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contracts and reference lab are in progress. M14.10-M14.16 remain planned.
 
 All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication.
 
@@ -23,13 +23,13 @@ one independent directory with private DLL/runtime/helper copies and registry;
 no cross-app dependency sharing. Automatic missing-component assistance,
 right-click Add dependency and ordinary installer Advanced targeting share one
 owner-bound lifecycle. This is a plan, not a shipped M14.8 feature.
-[Architecture](docs/architecture/windows-app-environments.md), [detailed M14.9-M14.16 stages](docs/milestones/m14-consolidated.md), [M15/x86](docs/milestones/m15.md), [M16/Win16-DOS](docs/milestones/m16.md). No runtime implementation is authorized by this planning task.
+[Architecture](docs/architecture/windows-app-environments.md), [detailed M14.9-M14.16 stages](docs/milestones/m14-consolidated.md), [M15/x86](docs/milestones/m15.md), [M16/Win16-DOS](docs/milestones/m16.md). The app environment contract is being specified in M14.9.
 
 ## Native qualification
 
 Build fdb650a0e4cff632bd4945cc1b024567 binds compiled source bd12730bf19eee5a4ab496d798a7c0435728fed0 and 825 exact inputs. [Acceptance](evidence/M14/8/acceptance-results.json), [resources](evidence/M14/8/resources.json), [stage gates](docs/milestones/m14-8.md). Windows instructions execute through the own kernel and compatibility APIs, without an embedded Windows guest.
 
-The [approved M14.9-M14.16 program](docs/milestones/m14-consolidated.md) covers the full Windows 7/8/8.1/10/11 x64 landscape and necessary dependencies. Stop after M14.8; future implementation is not started.
+The [approved M14.9-M14.16 program](docs/milestones/m14-consolidated.md) covers the full Windows 7/8/8.1/10/11 x64 landscape and necessary dependencies. [M14.9](docs/milestones/m14-9.md) is the active stage.
 
 ## Use, customize and contribute
 

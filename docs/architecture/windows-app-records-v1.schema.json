@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/manifest"
+    },
+    {
+      "$ref": "#/$defs/transaction"
+    },
+    {
+      "$ref": "#/$defs/activation_event"
+    }
+  ],
+  "$defs": {
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "owner",
+        "architecture",
+        "source",
+        "components"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "app_id",
+            "user_id",
+            "generation"
+          ],
+          "properties": {
+            "app_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "user_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "generation": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "architecture": {
+          "enum": [
+            "x64",
+            "x86",
+            "win16",
+            "dos"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "publisher",
+            "version"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "publisher": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "architecture",
+              "family",
+              "source",
+              "requires",
+              "state"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{32}$"
+              },
+              "architecture": {
+                "enum": [
+                  "x64",
+                  "x86",
+                  "win16",
+                  "dos"
+                ]
+              },
+              "family": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "source": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "sha256",
+                  "publisher",
+                  "version"
+                ],
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "publisher": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  },
+                  "version": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  }
+                }
+              },
+              "requires": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{32}$"
+                },
+                "maxItems": 64,
+                "uniqueItems": true
+              },
+              "state": {
+                "enum": [
+                  "declared",
+                  "installed",
+                  "verified",
+                  "incompatible",
+                  "failed"
+                ]
+              }
+            }
+          },
+          "maxItems": 256,
+          "uniqueItems": true
+        }
+      }
+    },
+    "transaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "owner",
+        "operation",
+        "source_sha256",
+        "state"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "app_id",
+            "user_id",
+            "generation"
+          ],
+          "properties": {
+            "app_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "user_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "generation": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "operation": {
+          "enum": [
+            "install",
+            "add_dependency",
+            "update",
+            "repair",
+            "remove"
+          ]
+        },
+        "source_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "enum": [
+            "reviewed",
+            "staging",
+            "verifying",
+            "commit_pending",
+            "committed",
+            "rollback_pending",
+            "rolled_back",
+            "needs_attention"
+          ]
+        }
+      }
+    },
+    "activation_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "owner",
+        "architecture",
+        "source",
+        "requested",
+        "status",
+        "classification"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "app_id",
+            "user_id",
+            "generation"
+          ],
+          "properties": {
+            "app_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "user_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "generation": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "architecture": {
+          "enum": [
+            "x64",
+            "x86",
+            "win16",
+            "dos"
+          ]
+        },
+        "source": {
+          "enum": [
+            "loader",
+            "runtime",
+            "com",
+            "service",
+            "helper"
+          ]
+        },
+        "requested": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "classification": {
+          "enum": [
+            "unknown",
+            "optional",
+            "required_missing",
+            "incompatible",
+            "denied",
+            "unsupported"
+          ]
+        }
+      }
+    }
+  }
+}

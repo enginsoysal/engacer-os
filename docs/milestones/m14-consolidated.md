@@ -1,8 +1,7 @@
 # M14.9-M14.16 - Independent Windows app environments and full x64 compatibility
 
 Owner-approved future program, revised 23 November 2026 after the 21 November
-consolidation. All eight stages remain **planned, not started**. This revision
-authorizes detailed architecture/planning and documentation publication only.
+consolidation. **M14.9 is in progress** as of 26 November 2026. M14.10-M14.16 remain planned. The owner authorized M14.9 contracts and reference laboratory work.
 M14.8 remains the qualified native release within its recorded scope; its
 blocked native homepage publication is recorded separately in current status.
 No new OS implementation, ISO or compatibility claim is created here.
@@ -155,7 +154,7 @@ Update English architecture, progress, manuals, exact-source test evidence,
 GitHub and actual website after each implemented stage. Preserve accepted
 historical media and distinguish planning, implementation, native qualification
 and full public delivery. An external website Save failure is not a successful
-homepage update. Current authorization stops at this planning revision.
+homepage update. Current authorization covers M14.9.
 
 ## Source contracts
 
