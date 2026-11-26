@@ -163,7 +163,7 @@ static unsigned registry_delete_key143(const w8_registry_request143*request,void
  }
  for(unsigned i=0;i<V6_ENTRIES;++i){const v6_entry*entry=volume->entries+i;if(entry->kind==1&&prefix8(entry->path,directory)){const char*leaf=entry->path;for(unsigned n=0;entry->path[n];++n)if(entry->path[n]=='/')leaf=entry->path+n+1;if(equal8(leaf,"$key"))continue;if(leaf[0]!='v')return 13;copy8(path,entry->path,256);if(v6_remove(volume,path))return 1117;}}
  copy8(path,directory,256);path_append143(path,"/$key",256);if(v6_remove(volume,path))return 1117;
- for(unsigned i=0;i<REGISTRY_KEYS143;++i){registry_object143*object=registry_objects143[i];if(object&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))object->deleted=1;}
+ for(unsigned i=0;i<REGISTRY_KEYS143;++i){registry_object143*object=registry_objects143[i];if(registry_object_owned143(object)&&equal8(object->record.user,registry_owner147())&&equal8(object->record.canonical,canonical))object->deleted=1;}
  return v6_remove(volume,directory)?1117:0;
 }
 #include "registry-info148.inc"
