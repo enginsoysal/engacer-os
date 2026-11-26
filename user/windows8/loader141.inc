@@ -25,6 +25,14 @@ static unsigned candidate141(const char*folder,const char*name,char*out){
  for(unsigned at=0;at<1024;){int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)folder,(uint64_t)&info,at,0,0);if(next<=0)break;at=(unsigned)next;if(info.kind==1&&!case8(info.name,name)){copy8(out,folder,256);append8(out,"/",256);append8(out,info.name,256);return 1;}}return 0;
 }
 #ifdef ENGINE_M14
+static unsigned dependency_path_owned141(const char *path){
+ const char *root=job8->product_root;
+ unsigned n=len8(root);
+ if(n&&len8(path)>n&&!memcmp(path,root,n)&&path[n]=='/')return 1;
+ /* This DLL implements the Engacer MSI service, alongside its own worker. */
+ return equal8(path,"/System/Windows/Installer/msi.dll")&&
+        equal8(modules141[0].path,"/System/Windows/Installer/msiexec.exe");
+}
 static unsigned system_candidate141(const char *name,char *path){
  char directory[256];
  copy8(directory,job8->product_root,sizeof(directory));
@@ -80,6 +88,9 @@ static uint64_t address141(uint32_t size){uint64_t at=ARENA141;for(unsigned pass
 static void attach141(unsigned index){module141*m=modules141+index;if(!m->state||m->attached)return;m->attached=1;for(unsigned i=0;i<MODULES141;++i)if(m->dependencies&(UINT32_C(1)<<i))attach141(i);tls_notify_impl142(m,1);if(m->dll&&m->entry){if(!((int(MS*)(void*,unsigned,void*))(m->base+m->entry))(m->base,1,0))fail8("The Windows DLL rejected process attachment.");}m->sequence=++sequence141;}
 static uint64_t load141(const char*path,unsigned external){
  const char*name=basename141(path);if(!leaf141(name)||len8(path)>=256)fail8("The Windows module path exceeds its bound.");
+#ifdef ENGINE_M14
+ if(modules141[0].state&&!dependency_path_owned141(path))return 0;
+#endif
  for(unsigned i=0;i<MODULES141;++i)if(modules141[i].state&&!case8(modules141[i].name,name)){if(case8(modules141[i].path,path))fail8("A DLL with this name is already loaded from another folder.");if(external){if(modules141[i].references==UINT32_MAX)fail8("The Windows module reference quota was reached.");++modules141[i].references;}return (uint64_t)(uintptr_t)modules141[i].base;}
  unsigned index=0;while(index<MODULES141&&modules141[index].state)++index;if(index==MODULES141)fail8("The Windows module quota of 32 was reached.");
  w8_file_info info;if(stat8(path,&info)||info.kind!=1||info.size<64||info.size>IMAGE141_LIMIT)fail8("The Windows image cannot be read or exceeds the 32 MiB file quota.");int file=open8(path,0);if(file<0)fail8("The Windows image could not be opened.");
