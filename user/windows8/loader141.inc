@@ -24,12 +24,25 @@ static unsigned candidate141(const char*folder,const char*name,char*out){
  copy8(out,folder,256);if(len8(out)+len8(name)+2>=256)return 0;append8(out,"/",256);append8(out,name,256);w8_file_info info;if(!stat8(out,&info))return info.kind==1;
  for(unsigned at=0;at<1024;){int64_t next=(int64_t)sys8(W8_SYS_ENUM,(uint64_t)folder,(uint64_t)&info,at,0,0);if(next<=0)break;at=(unsigned)next;if(info.kind==1&&!case8(info.name,name)){copy8(out,folder,256);append8(out,"/",256);append8(out,info.name,256);return 1;}}return 0;
 }
+#ifdef ENGINE_M14
+static unsigned system_candidate141(const char *name,char *path){
+ char directory[256];
+ copy8(directory,job8->product_root,sizeof(directory));
+ if(len8(directory)+sizeof("/System/System32")>sizeof(directory))return 0;
+ append8(directory,"/System/System32",sizeof(directory));
+ return candidate141(directory,name,path);
+}
+#endif
 #include "resource144.inc"
 static uint64_t load141(const char*,unsigned);
 static uint64_t dependency141(int owner,const char*name){
  if(owner<0||!leaf141(name))return 0;uint64_t found=pe8_module(name);
  if(!found){char folder[256],path[256];copy8(folder,modules141[owner].path,256);char*end=folder+len8(folder);while(end>folder&&end[-1]!='/')--end;if(end<=folder)return 0;end[-1]=0;
-  if(!candidate141(folder,name,path)){copy8(folder,modules141[0].path,256);end=folder+len8(folder);while(end>folder&&end[-1]!='/')--end;if(end<=folder)return 0;end[-1]=0;if(!candidate141(folder,name,path))return 0;}
+  if(!candidate141(folder,name,path)){copy8(folder,modules141[0].path,256);end=folder+len8(folder);while(end>folder&&end[-1]!='/')--end;if(end<=folder)return 0;end[-1]=0;if(!candidate141(folder,name,path)
+#ifdef ENGINE_M14
+   &&!system_candidate141(name,path)
+#endif
+   )return 0;}
   found=load141(path,0);
  }
  int child=slot141(found);if(child>=0)modules141[owner].dependencies|=UINT32_C(1)<<(unsigned)child;return found;
@@ -109,7 +122,11 @@ static uint64_t pe8_load_impl142(const char*path){return terminating142?0:load14
 static uint64_t pe8_named_impl142(const char*name){
  if(terminating142||!leaf141(name))return 0;uint64_t loaded=pe8_module(name);if(loaded)return load141(pe8_path(loaded),1);
  char folder[256],path[256];if(!modules141[0].state)return 0;copy8(folder,modules141[0].path,256);char*end=folder+len8(folder);while(end>folder&&end[-1]!='/')--end;if(end<=folder)return 0;end[-1]=0;
- return candidate141(folder,name,path)?load141(path,1):0;
+ if(candidate141(folder,name,path))return load141(path,1);
+#ifdef ENGINE_M14
+ if(system_candidate141(name,path))return load141(path,1);
+#endif
+ return 0;
 }
 static int pe8_release_impl142(uint64_t base){if(terminating142)return 0;int index=slot141(base);if(index<=0||!modules141[index].references)return 0;--modules141[index].references;uint32_t reachable=1;for(unsigned i=1;i<MODULES141;++i)if(modules141[i].state&&modules141[i].references)reachable|=UINT32_C(1)<<i;
  for(unsigned pass=0;pass<MODULES141;++pass){uint32_t next=reachable;for(unsigned i=0;i<MODULES141;++i)if(reachable&(UINT32_C(1)<<i))next|=modules141[i].dependencies;if(next==reachable)break;reachable=next;}

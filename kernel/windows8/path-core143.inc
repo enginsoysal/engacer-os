@@ -95,7 +95,10 @@ static unsigned path_policy143(const path_context143*ctx,const char*input,const 
    unsigned e=path_copy143(out->native,"/System/Windows/Tools",256);if(e)return e;
    e=path_append143(out->native,j?"/xcopy.exe":"/cmd.exe",256);return e;
   }}
-  return 5;
+  char app_system[256];
+  unsigned e=path_copy143(app_system,ctx->product,sizeof(app_system));
+  if(!e)e=path_append143(app_system,i?"/System/SysWOW64":"/System/System32",sizeof(app_system));
+  return e?e:path_resolve143(ctx,app_system,leaf,flags,out->native);
  }
 #endif
  if(path_prefix143(clean,ctx->windows,&skip))root=ctx->product;
