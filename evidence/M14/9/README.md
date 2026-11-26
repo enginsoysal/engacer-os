@@ -12,7 +12,7 @@ python tests/m14/reference149/windows_probe.py
 
 | Target | Capture |
 | --- | --- |
-| Windows 7 SP1 x64 | Pending |
+| Windows 7 SP1 x64 | ISO hash checked and disposable VM started with a blank disk. Installed guest capture pending. |
 | Windows 8 x64 | Pending |
 | Windows 8.1 x64 | Pending |
 | Windows 10 x64 | Pending |
@@ -69,9 +69,9 @@ native and WOW64 Windows PowerShell processes, recording the process bitness.
 The portable probe records the WMI OS version and SKU. Its x64 development-host
 capture agrees with the three Python observations and remains host evidence.
 
-- Windows 7, 8 and 8.1: no verified install image or guest was identified.
-  The local VMware entry named Windows 7 pointed at Engacer installation media.
-  Check available downloads through the licensed Microsoft subscription catalog.
+- Windows 7: verified image and dedicated VM preparation are recorded in the
+  [behavior reference](../../../docs/architecture/windows-behavior-reference-m149.md).
+  Windows 8 and 8.1 guest captures remain open.
 - Windows 10: Microsoft publishes a retail ISO download page. A suitable
   licensed or evaluation guest and installed-system capture remain open.
 - Windows 11: Microsoft publishes an Enterprise LTSC evaluation ISO. Download
