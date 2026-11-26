@@ -28,6 +28,7 @@ fixture = """
 #include "engine/sha256.h"
 #include "engine/winproduct147.h"
 #define ENGINE_M14
+#define W8_REMOVE 4
 #define W8_REGISTRY_TAG143 UINT64_C(0x80000000)
 #define W8_HANDLE_TAG_MASK UINT64_C(0xe0000000)
 #define REGISTRY_KEYS143 64
@@ -78,8 +79,11 @@ int main(void){
  memcpy(group_owner1410,b.named_owner1410,sizeof(group_owner1410));
  if(installer_authority147())return 8;
  active_space142=1;
- if(!installer_authority147())return 9;
+ if(!installer_authority147()||installer_remove_authority1410())return 9;
+ group_command1410=W8_REMOVE;
+ if(!installer_remove_authority1410())return 11;
  active_space142=0;
+ if(installer_remove_authority1410())return 12;
  uint64_t h=W8_REGISTRY_TAG143|(7u<<5);
  a.registry_handles[0]=(registry_cap143){1,7,0,1};
  if(registry_slot143(h)!=0)return 1;

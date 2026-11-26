@@ -185,8 +185,7 @@ static int64_t file_lock_call143(trap_frame*frame,unsigned slot,uint64_t handle,
  */
 static void registry_bundle_removed1410(const char *path);
 static unsigned removable_bundle_tree1410(const char *path){
- if(input8.command!=W8_REMOVE||!installer_authority147()||
-    !equal8(path,input8.product_root))return 0;
+ if(!installer_remove_authority1410()||!equal8(path,input8.product_root))return 0;
  char control[256],registry[256],temporary[256];
  copy8(control,path,sizeof(control));
  path_append143(control,"/.Engacer",sizeof(control));

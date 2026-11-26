@@ -78,6 +78,7 @@ uint64_t w8_saved_rsp,w8_kernel_cr3;
 #ifdef ENGINE_M14
 /* Keep the current identity after the root exits while its helpers finish. */
 static uint64_t group_generation1410;
+static unsigned group_command1410;
 static char group_owner1410[65];
 static unsigned app_context_current1410(const private_space142 *space){
  return space&&space->app_generation1410==group_generation1410&&
@@ -86,6 +87,9 @@ static unsigned app_context_current1410(const private_space142 *space){
 static unsigned installer_authority147(void){
  const private_space142 *space=spaces142[active_space142];
  return app_context_current1410(space)&&space->install_authority147;
+}
+static unsigned installer_remove_authority1410(void){
+ return group_command1410==W8_REMOVE&&installer_authority147();
 }
 static int equal8(const char*,const char*);
 static unsigned exe_image_pinned148(const char*path){for(unsigned i=0;i<SPACES142;++i){private_space142*s=spaces142[i];if(s&&s->exe_context148&&s->image_pin148&&process_objects142[s->object].live&&s->image_pin148<=V6_ENTRIES&&equal8(path,m6_volume()->entries[s->image_pin148-1].path))return 1;}return 0;}
@@ -352,6 +356,7 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
   if(app_generation1410(root,command==W8_INSTALL,&space->app_generation1410))goto failure;
   init_app_owner1410(space,root,user);
   group_generation1410=space->app_generation1410;
+  group_command1410=command;
   memcpy(group_owner1410,space->named_owner1410,sizeof(group_owner1410));
  }
 #endif
