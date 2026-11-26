@@ -33,6 +33,17 @@ static v6_volume*m6_volume(void){return volume147;}
 #define FILE_OBJECTS143 64u
 static unsigned file_object_slot143(const char*p){(void)p;return FILE_OBJECTS143;}
 static void metadata_path143(const char*p,char*out){(void)p;copy_kernel147(out,"/not-a-host-adapter-metadata-record",256);}
+static unsigned active_space142;
+static struct host_worker147 {unsigned exe_context148;} worker147;
+static const struct host_worker147 *spaces142[]={&worker147};
+static unsigned bundle_control_path1410(const char*);
+static unsigned path_append143(char*,const char*,unsigned);
+static void protected_hash143(const char *text,char *out){
+ uint8_t hash[32];static const char hex[]="0123456789abcdef";
+ engine_sha256(text,len8(text),hash);
+ for(unsigned i=0;i<16;++i){out[2*i]=hex[hash[i]>>4];out[2*i+1]=hex[hash[i]&15];}
+ out[32]=0;
+}
 #define copy8 copy_kernel147
 #include "../../kernel/windows8/transaction147.inc"
 #undef copy8
@@ -41,7 +52,7 @@ static void metadata_path143(const char*p,char*out){(void)p;copy_kernel147(out,"
 #include "../../kernel/windows8/path-core143.inc"
 int stat8(const char*p,w8_file_info*out){if(!path8(p,0))return -1;const v6_entry*e=find8(p);if(!e)return -1;memset(out,0,sizeof(*out));out->kind=e->kind;out->size=e->size;return 0;}
 int mkdir8(const char*p){unsigned status=v6_mkdir(volume147,p);return status&&status!=V6_EXISTS?-1:0;}
-int open8(const char*p,unsigned flags){if(flags!=0&&flags!=2)return -1;const v6_entry*e=find8(p);if((flags==0&&(!e||e->kind!=1))||(flags==2&&e))return -1;unsigned i=0;while(i<8&&handles147[i].live)++i;if(i==8)return -1;memset(handles147+i,0,sizeof(handles147[i]));handles147[i].live=1;handles147[i].write=flags!=0;copy8(handles147[i].path,p,256);return (int)i;}
+int open8(const char*p,unsigned flags){if((flags!=0&&flags!=2)||(!flags&&!path_content1410(p)))return -1;const v6_entry*e=find8(p);if((flags==0&&(!e||e->kind!=1))||(flags==2&&e))return -1;unsigned i=0;while(i<8&&handles147[i].live)++i;if(i==8)return -1;memset(handles147+i,0,sizeof(handles147[i]));handles147[i].live=1;handles147[i].write=flags!=0;copy8(handles147[i].path,p,256);return (int)i;}
 int read8(int h,void*out,unsigned n){if(h<0||h>=8||!handles147[h].live||handles147[h].write)return -1;unsigned got=0;if(v6_read(volume147,handles147[h].path,handles147[h].offset,out,n,&got))return -1;handles147[h].offset+=got;return (int)got;}
 int write8(int h,const void*data,unsigned n){if(h<0||h>=8||!handles147[h].live||!handles147[h].write||n>WIN_TX_LIMIT147-handles147[h].bytes)return -1;unsigned total=handles147[h].bytes+n;if(total>handles147[h].capacity){void*p=realloc8(handles147[h].data,total);if(!p)return -1;handles147[h].data=p;handles147[h].capacity=total;}memcpy(handles147[h].data+handles147[h].bytes,data,n);handles147[h].bytes=total;return (int)n;}
 static unsigned write_source147(void*context,uint64_t offset,void*out,unsigned n){memcpy(out,(uint8_t*)context+offset,n);return 0;}
@@ -53,6 +64,7 @@ uint64_t sys8(uint64_t call,uint64_t a,uint64_t b,uint64_t c,uint64_t d,uint64_t
  if(call==W8_SYS_REGISTRY143)return registry_host147?(uint64_t)registry_host147((unsigned)a,b):UINT64_MAX;
  if(call==W8_SYS_ENUM){const char*parent=(const void*)(uintptr_t)a;unsigned n=len8(parent);if(!path8(parent,0)||c>=V6_ENTRIES)return UINT64_MAX;for(unsigned i=(unsigned)c;i<V6_ENTRIES;++i){const v6_entry*entry=volume147->entries+i;if(!entry->kind||memcmp(entry->path,parent,n)||entry->path[n]!='/')continue;const char*leaf=entry->path+n+1;unsigned nested=0;for(unsigned k=0;leaf[k];++k)if(leaf[k]=='/')nested=1;if(nested)continue;w8_file_info*info=(void*)(uintptr_t)b;memset(info,0,sizeof(*info));info->kind=entry->kind;info->size=entry->size;copy8(info->name,leaf,256);return i+1;}return 0;}
  if(call==W8_SYS_PATH143){char text[2048],cwd[1024];unsigned code=msit_fromwide147((const void*)(uintptr_t)a,text,sizeof(text));if(!code)code=msit_fromwide147((const void*)(uintptr_t)b,cwd,sizeof(cwd));if(code)return (uint64_t)-(int64_t)code;path_context143 context={input8.user_root,input8.product_root,input8.windows_root,volume147->entries,V6_ENTRIES};return (uint64_t)-(int64_t)path_policy143(&context,text,cwd,(unsigned)d,(void*)(uintptr_t)c);}
+ if(call==W8_SYS_MAINTAIN1410)return (uint64_t)(b||c||d||e?-87:maintain_call1410(a));
  if(call==W8_SYS_STREAM147)return (uint64_t)stream_call147(a,b,c,d,e);
  if(call==W8_SYS_ALIAS147)return (uint64_t)alias_set147(a,b,c,d,e);
  if(call==W8_SYS_INFO){if(a==3)return v6_capacity(volume147)-v6_used(volume147);if(a==5){unsigned free=0;for(unsigned i=0;i<V6_ENTRIES;++i)if(!volume147->entries[i].kind)++free;return free;}}

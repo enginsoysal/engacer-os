@@ -92,6 +92,10 @@ void msi8_database(const void*data,unsigned bytes){
  require8(columns_table8.data.data&&!(columns_table8.data.size%8)&&columns_table8.data.size/8<=4096,"MSI column catalog is invalid.");columns_table8.rows=columns_table8.data.size/8;(void)compound_size8;
 }
 
+static int stream_order1410(const char *left,const char *right){
+ while(*left&&*left==*right){++left;++right;}
+ return (unsigned char)*left-(unsigned char)*right;
+}
 static void digest_text1410(engine_sha256_context *hash,const char *text){
  engine_sha256_update(hash,text,len8(text)+1);
 }
@@ -109,8 +113,8 @@ unsigned msi8_update_shape1410(const char *cabinet,uint8_t digest[32]){
    const uint8_t *entry=directory8+at;
    if(entry[66]!=2)continue;
    unsigned kind;char candidate[128];stream_name8(entry,candidate,sizeof(candidate),&kind);
-   if(metadata_stream1410(candidate,cabinet)||case8(candidate,previous)<=0)continue;
-   if(!name[0]||case8(candidate,name)<0){copy8(name,candidate,sizeof(name));table=kind;}
+   if(metadata_stream1410(candidate,cabinet)||stream_order1410(candidate,previous)<=0)continue;
+   if(!name[0]||stream_order1410(candidate,name)<0){copy8(name,candidate,sizeof(name));table=kind;}
   }
   if(!name[0])break;
   digest_text1410(&hash,name);copy8(previous,name,sizeof(previous));
@@ -131,7 +135,7 @@ unsigned msi8_update_shape1410(const char *cabinet,uint8_t digest[32]){
       const char *value=msi8_text(&rows,row,col);
       for(unsigned i=0,length=len8(value);i+14<=length;++i)
        if(!memcmp(value+i,"ProductVersion",14)){
-        if(!equal8(name,"Property")||col!=0||!equal8(value,"ProductVersion")){
+        if(!equal8(name,"_Validation")&&(!equal8(name,"Property")||col!=0||!equal8(value,"ProductVersion"))){
          free8(rows.data.data);return 50;
         }
        }

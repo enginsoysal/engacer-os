@@ -1,5 +1,6 @@
 /* Host-only adapter. Original database bytes are parsed, never executed. */
 #include "../../user/windows8/msi-plan147.h"
+#include "../../user/windows8/msi_db.h"
 typedef void *(*allocator147)(void *,size_t);
 typedef void (*releaser147)(void *,void *);
 typedef void (*failure147)(const char *);
@@ -26,6 +27,7 @@ __declspec(dllexport) unsigned set147(const char *name,const char *value){return
 __declspec(dllexport) unsigned property147(unsigned index){return msia_property_action147(plan147,index);}
 __declspec(dllexport) int condition147(const char *text){return msia_condition147(plan147,text);}
 __declspec(dllexport) void cost147(const char *user){msia_cost147(plan147,user);}
+__declspec(dllexport) unsigned update_shape1410(uint8_t hash[32]){return msi8_update_shape1410(plan147->cabinet,hash);}
 __declspec(dllexport) unsigned files147(void){return plan147->file_count;}
 __declspec(dllexport) unsigned selected147(void){return plan147->selected_files;}
 __declspec(dllexport) unsigned selected_bytes147(void){return plan147->selected_bytes;}
