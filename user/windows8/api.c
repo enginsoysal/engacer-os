@@ -359,7 +359,7 @@ static void *MS f_GetProcAddress(HANDLE module,const char*name){
  void*p=pe8_symbol(module,(uintptr_t)name<65536?0:name,(uintptr_t)name<65536?(unsigned)(uintptr_t)name:0);if(guard_address144(p)||guard_address145(p))p=0;if(!p)last8(127);return p;
 }
 static HANDLE MS f_LoadLibraryExW(const WCHAR*name,HANDLE file,unsigned flags){if(file||(flags&~8u)){last8(50);return 0;}char text[256];if(utf16_to8(name,text,256)<0){last8(206);return 0;}unsigned id=provider8(text);if(id)return 0x70000000+id*0x10000;char path[256];unsigned separator=0;for(unsigned i=0;text[i];++i)if(text[i]=='/'||text[i]=='\\')separator=1;
- if(!separator){HANDLE found=pe8_named(text);if(!found)last8(126);return found;}else if(!nativepath8(name,path)){last8(126);return 0;}w8_file_info info;if(stat8(path,&info)){last8(126);return 0;}return pe8_load(path);}
+ if(!separator){HANDLE found=pe8_named(text);if(!found)last8(126);return found;}else if(!nativepath8(name,path)){last8(126);return 0;}w8_file_info info;if(stat8(path,&info)){last8(126);return 0;}HANDLE found=pe8_load(path);if(!found)last8(126);return found;}
 static HANDLE MS f_LoadLibraryW(const WCHAR*name){return f_LoadLibraryExW(name,0,0);}
 static HANDLE MS f_LoadLibraryExA(const char*name,HANDLE file,unsigned flags){WCHAR wide[256];if(!name){last8(87);return 0;}if(!f_MultiByteToWideChar(0,8,name,-1,wide,256))return 0;return f_LoadLibraryExW(wide,file,flags);}
 static HANDLE MS f_LoadLibraryA(const char*name){WCHAR wide[256];if(utf8_to16(name,wide,256)<0)return 0;return f_LoadLibraryW(wide);}
