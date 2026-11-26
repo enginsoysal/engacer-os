@@ -51,7 +51,15 @@ typedef struct {
  file_root11 roots[F11_ROOTS];file_node11 nodes[V6_ENTRIES];
  char source[256],target[256],staged[256];uint64_t source_first,source_size;uint32_t source_crc;
 } file_job11;
-typedef struct {unsigned kind,count;file_root11 roots[F11_ROOTS];} file_clipboard11;
+typedef struct {
+ unsigned kind,count;
+#ifdef ENGINE_M14
+ unsigned pages;
+ file_root11 *roots;
+#else
+ file_root11 roots[F11_ROOTS];
+#endif
+} file_clipboard11;
 typedef struct {unsigned mode,focus,always,cursor,anchor,provider,item_kind;uint64_t owner,size;char path[256],input[256],error[128];} file_dialog11;
 typedef struct {unsigned kind;uint64_t generation;char source[256],target[256];} file_undo11;
 typedef struct {const char*label;unsigned command,enabled;} file_menu11;

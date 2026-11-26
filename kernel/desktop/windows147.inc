@@ -128,7 +128,8 @@ static void draw_windows8(desktop_window*w,application*app,uint64_t token){
  if(installed&&legacy&&info->state!=1){
   button(token,x,y+194,195,"Create test archive",ZIP8,0);button(token,x+209,y+194,195,"Extract test archive",EXTRACT8,0);
   button(token,x+418,y+194,210,"Open file manager",GUI144,0);button(token,x+642,y+194,190,"Choose installer...",CHOOSE_MSI147,0);
-  ui73_fit(x+174,y+255,width-174,"The test uses a separate sample document in your Documents folder.",1,ink());
+  if(app->msi147.ready)button(token,x+174,y+246,220,"Open app executable",RUN_PRODUCT1410,0);
+  else ui73_fit(x+174,y+255,width-174,"The test uses a separate sample document in your Documents folder.",1,ink());
  }
  if(installed&&info->state!=1&&!(app->msi147.profile&W8_PROFILE_EXE148)){
   char cached[256];copy(cached,selected_root147(app),256);append(cached,"/.EngacerMSI/source.msi",256);

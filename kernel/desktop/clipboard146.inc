@@ -16,8 +16,32 @@ static unsigned native_clipboard_readable146(void){
  return 1;
 #endif
 }
+static void file_clipboard_clear11(void){
+#ifdef ENGINE_M14
+ uint64_t first=(uint64_t)(uintptr_t)file_clip11.roots;
+ for(unsigned i=0;i<file_clip11.pages;++i)page_free(first+(uint64_t)i*4096);
+ file_clip11.roots=0;file_clip11.pages=0;
+#endif
+ file_clip11.count=0;
+}
+static int file_clipboard_store11(const file_root11 *roots,unsigned count,unsigned kind){
+ unsigned bytes=count*sizeof(*roots);
+#ifdef ENGINE_M14
+ unsigned pages=(bytes+4095)/4096;
+ if(pages>file_clip11.pages){
+  uint64_t first=pages_alloc_run(pages);
+  if(!first)return 0;
+  file_clipboard_clear11();
+  file_clip11.roots=(void*)(uintptr_t)first;
+  file_clip11.pages=pages;
+ }
+#endif
+ memcpy(file_clip11.roots,roots,bytes);
+ file_clip11.count=count;file_clip11.kind=kind;
+ return 1;
+}
 static void native_clipboard_changed146(unsigned kind){
- clipboard_kind11=kind;if(kind!=2)file_clip11.count=0;
+ clipboard_kind11=kind;if(kind!=2)file_clipboard_clear11();
  if(kind!=1){clipboard_length=0;clipboard[0]=0;}
 #ifdef ENGINE_M14
  ++clipboard_revision146;w8_clipboard_native_changed146();
@@ -37,6 +61,6 @@ unsigned desktop_clipboard_write146(const char*first,const char*second,unsigned 
  if(clipboard_revision146>=INT64_MAX||bytes>sizeof(clipboard)||(!first&&bytes)||(bytes>4096&&!second))return 1816;
  if(bytes){unsigned n=bytes>4096?4096:bytes;memcpy(clipboard,first,n);if(bytes>n)memcpy(clipboard+n,second,bytes-n);clipboard_length=bytes-1;clipboard_kind11=1;}
  else{clipboard_length=0;clipboard[0]=0;clipboard_kind11=0;}
- file_clip11.count=0;++clipboard_revision146;return 0;
+ file_clipboard_clear11();++clipboard_revision146;return 0;
 }
 #endif

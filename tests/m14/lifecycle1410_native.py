@@ -99,11 +99,11 @@ def main():
             if root == A:
                 # The legacy 7-Zip UI has the built-in console entry point.
                 assert "7-Zip" in task(g, pointer, 12005)
-                return
             pointer.desktop(12301, True)
             select(g, pointer, root + "/isolation.exe")
             result = task(g, pointer, 54011)
-            assert "M1410_PRIVATE_APP_B_PASS" in result, result
+            identity = "A" if root == A else "B"
+            assert "M1410_PRIVATE_APP_" + identity + "_PASS" in result, result
 
         def record_b(volume):
             return {path: (entry.first, hashlib.sha256(read(volume, path)).hexdigest())
@@ -170,6 +170,7 @@ def main():
 
             with start("migrated-baseline") as g:
                 p = front(g)
+                sandbox(g, p, A)
                 sandbox(g, p, B)
                 save_log(g, "migrated-baseline")
             volume = StoppedDisk(disk, lib)
