@@ -87,7 +87,7 @@ def main():
                 p.drain()
                 choose_file(g, p, download)
                 p.desktop(54011, True)
-                task(g, p, 12000)
+                assert "M147_NATIVE_MSI_READ_ONLY_PLAN_PASS" in task(g, p, 12000)
                 p.desktop(12001, True)
                 task(g, p, 12003)
                 assert B + "/product.bin" in f.entries(g)
@@ -96,6 +96,7 @@ def main():
             native = (fixtures / "isolation.exe").read_bytes()
             volume = StoppedDisk(disk, disk_lib)
             try:
+                volume.put("/Users/Owner/Downloads/bundle-test.dll", (fixtures / "A" / "bundle-test.dll").read_bytes())
                 for root, marker, image in [(A, "A", "7z.exe"), (B, "B", "isolation.exe")]:
                     for part in ["/System", "/System/System32"]:
                         path = (root + part).encode()

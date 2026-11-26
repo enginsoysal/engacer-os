@@ -14,7 +14,7 @@ def build():
     flags = ["--target=x86_64-pc-windows-msvc", "-O2", "-Wall", "-Wextra", "-Werror",
              "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-mno-stack-arg-probe"]
     for library, symbols in {
-        "kernel32": "LoadLibraryW GetProcAddress FreeLibrary GetTempPathW CreateFileW ReadFile WriteFile GetStdHandle CloseHandle ExitProcess",
+        "kernel32": "LoadLibraryW GetProcAddress FreeLibrary GetModuleFileNameW GetLastError GetTempPathW CreateFileW ReadFile WriteFile GetStdHandle CloseHandle ExitProcess",
         "advapi32": "RegCreateKeyExW RegQueryValueExW RegSetValueExW RegCloseKey",
     }.items():
         definition = out / (library + ".def")
