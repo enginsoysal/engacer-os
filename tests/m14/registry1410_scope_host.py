@@ -16,8 +16,14 @@ owner = process[process.index("static void init_app_owner1410("):
                 process.index("\n#endif", process.index("static void init_app_owner1410("))]
 authority = process[process.index("static uint64_t group_generation1410;"):
                     process.index("static int equal8", process.index("static uint64_t group_generation1410;"))]
+backing = source[source.index("static void registry_root143("):
+                 source.index("static unsigned registry_load_key143(")]
+protected = (root / "kernel/windows8/protected143.inc").read_text(encoding="utf-8")
+hash_path = protected[protected.index("static void protected_hash143("):
+                      protected.index("static void protected_root143(")]
 fixture = """
 #include <stdint.h>
+#include <stdio.h>
 #include <string.h>
 #include "engine/sha256.h"
 #include "engine/winproduct147.h"
@@ -37,12 +43,28 @@ static unsigned active_space142;
 static int equal8(const char*a,const char*b){return !strcmp(a,b);}
 static registry_object143 first={.record={"user","key"},.app_owner="A",.directory="/shared"},second={.record={"user","key"},.app_owner="B",.directory="/shared"};
 static registry_object143 *registry_objects143[64]={&first,&second};
-""" + owner + authority + lookup + """
+static struct { const char *product_root; } input8;
+static const char *registry_owner147(void){return "/Machine/64";}
+static void copy8(char *out,const char *in,unsigned cap){snprintf(out,cap,"%s",in);}
+static void path_append143(char *out,const char *in,unsigned cap){
+ unsigned n=length8(out);copy8(out+n,in,cap-n);
+}
+#define registry_hash143 protected_hash143
+""" + hash_path + backing + owner + authority + lookup + """
 static void invalidate_key(const char *directory){
 """ + invalidate + """
 }
 int main(void){
  const char root[]=WIN_PRODUCT_BASE147 "{A23B657D-838B-4C9B-8F9D-386E50C1A76B}";
+ char path_a[256],path_b[256];
+ input8.product_root=root;
+ registry_directory143("software\\example",path_a);
+ input8.product_root=WIN_PRODUCT_BASE147 "{B23B657D-838B-4C9B-8F9D-386E50C1A76B}";
+ registry_directory143("software\\example",path_b);
+ if(strncmp(path_a,root,strlen(root))||
+    strncmp(path_b,input8.product_root,strlen(input8.product_root))||
+    !strstr(path_a,"/.Engacer/Registry/")||!strstr(path_b,"/.Engacer/Registry/")||
+    !strcmp(path_a,path_b))return 10;
  init_app_owner1410(&a,root,"/Users/Owner");
  init_app_owner1410(&b,root,"/Users/Owner");
  if(!strcmp(a.named_owner1410,b.named_owner1410))return 6;
