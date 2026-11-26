@@ -70,7 +70,7 @@ static unsigned child_image142(const char*source){
  memcpy(&magic,optional,2);memcpy(&subsystem,optional+68,2);
 #ifdef ENGINE_M14
  /* A recognized x86 helper is distinct from a malformed or mismatched image.
-  * Until the compatibility task exists, fail before allocating a process. */
+  * Child startup checks full PE32 layout before constructing a compatibility task. */
  if(machine==0x014c&&magic==0x010b)return bytes>=96?216:193;
 #endif
  if(machine!=0x8664||magic!=0x020b)return 193;
@@ -96,22 +96,35 @@ static unsigned environment_validate143(const w8_process_request*request){
 }
 static unsigned environment_copy143(const w8_process_request*request,unsigned caller,unsigned target){
  if(!request->environment_bytes)return 0;unsigned bytes=request->environment_bytes;active_space142=target;
- if(map8(W8_ENVIRONMENT143,(bytes+4095u)&~UINT64_C(4095),3)){active_space142=caller;return 8;}
+ uint64_t destination=W8_ENVIRONMENT143;
+#ifdef ENGINE_M14
+ if(spaces142[target]->compat_x86)destination=PE32_TEB1410+4096u;
+#endif
+ if(map8(destination,(bytes+4095u)&~UINT64_C(4095),3)){active_space142=caller;return 8;}
  for(unsigned offset=0;offset<bytes;){unsigned count=bytes-offset;if(count>4096)count=4096;active_space142=caller;
-  if(user8(request->environment+offset,io8,count,0))return 998;active_space142=target;if(user8(W8_ENVIRONMENT143+offset,io8,count,1)){active_space142=caller;return 998;}offset+=count;}
- input8.environment=W8_ENVIRONMENT143;input8.environment_bytes=bytes;
- unsigned error=user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;return error;
+  if(user8(request->environment+offset,io8,count,0))return 998;active_space142=target;if(user8(destination+offset,io8,count,1)){active_space142=caller;return 998;}offset+=count;}
+ input8.environment=destination;input8.environment_bytes=bytes;
+ unsigned error=destination==W8_ENVIRONMENT143&&user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;return error;
 }
 static int64_t create_process142(uint64_t request_address,uint64_t result_address){
  w8_process_request request;w8_process_result result={0};if(user8(request_address,&request,sizeof(request),0)||user8(result_address,&result,sizeof(result),1))return -87;
  if(!terminated142(request.source,sizeof(request.source))||!terminated142(request.command,sizeof(request.command))||!terminated142(request.directory,sizeof(request.directory))||(request.flags&~W8_CREATE_FLAGS147))return -87;
- if(!path_content1410(request.source)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);if(error)return -(int64_t)error;
+ if(!path_content1410(request.source)||!path8(request.directory,0))return -5;const v6_entry*directory=find8(request.directory);if(!directory||directory->kind!=2)return -3;unsigned error=environment_validate143(&request);if(error)return -(int64_t)error;error=child_image142(request.source);
+ unsigned compat_x86=0;
+#ifdef ENGINE_M14
+ if(error==216){
+  win_pe32_image1410 image;
+  if(!prefix8(request.source,input8.product_root)||!pe32_parse_file1410(request.source,&image))return -193;
+  compat_x86=1;error=0;
+ }
+#endif
+ if(error)return -(int64_t)error;
 #ifdef ENGINE_M14
  if(spaces142[active_space142]->exe_context148&&!equal8(request.source,"/System/Windows/Tools/cmd.exe")&&!equal8(request.source,"/System/Windows/Tools/xcopy.exe")){error=exe_hash_file148(request.source,EXE148_SOURCE_BYTES,EXE148_SOURCE_SHA);if(error)return -(int64_t)error;}
 #endif
  unsigned caller=active_space142,target=1,free_handles=0;while(target<SPACES142&&spaces142[target])++target;for(unsigned i=0;i<32;++i)if(!spaces142[caller]->handles[i].live)++free_handles;if(target==SPACES142||free_handles<2)return -8;
  int object=new_process_object142();if(object<0)return -8;
- unsigned status=start_space142(W8_RUN,request.source,0,0,"",target,(unsigned)object,&request,spaces142[caller]);active_space142=caller;
+ unsigned status=start_space142(W8_RUN,request.source,0,0,"",target,(unsigned)object,&request,spaces142[caller],compat_x86);active_space142=caller;
  if(status){drop_process_object142((unsigned)object);return -8;}
  process_objects142[object].parent_pid=spaces142[caller]->input.process_id;
 #ifdef ENGINE_M14
@@ -120,7 +133,7 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  error=pipe_inherit147(caller,target,&request);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  spaces142[target]->input.startup_flags147=request.startup_flags147;memcpy(spaces142[target]->input.std_handles147,request.std_handles147,sizeof(request.std_handles147));copy8(spaces142[target]->input.windows_root,spaces142[caller]->input.windows_root,256);
  spaces142[target]->input.error_mode148=(request.flags&0x04000000u)?0:request.error_mode148;
- active_space142=target;error=user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
+ active_space142=target;error=!compat_x86&&user8(W8_MAILBOX,&input8,sizeof(input8),1)?998:0;active_space142=caller;if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
 #endif
  error=environment_copy143(&request,caller,target);if(error){active_space142=target;info8.status=error;info8.state=3;end_space142(target,error);active_space142=caller;return -(int64_t)error;}
  result.process=new_process_handle142((unsigned)object,1);result.thread=new_process_handle142((unsigned)object,2);
@@ -142,7 +155,7 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
  v6_set_guard148(exe_volume_guard148);
 #endif
  if(w8_pending())return V6_INVALID;active_space142=0;root_terminal142=root_waiting142=0;root_end_message142[0]=0;space_cursor142=0;memset(root_info142,0,sizeof(*root_info142));int object=new_process_object142();if(object<0)return V6_INVALID;
- unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0,0);active_space142=0;if(status)drop_process_object142((unsigned)object);
+ unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0,0,0);active_space142=0;if(status)drop_process_object142((unsigned)object);
 #ifdef ENGINE_M14
  if(!status&&command==W8_REMOVE&&equal8(root,EXE148_ROOT)){status=exe_admit148(command,0);if(status)w8_cancel();}
 #endif

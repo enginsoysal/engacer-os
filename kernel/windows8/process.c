@@ -40,7 +40,7 @@ typedef struct {
  unsigned count,cancel,created_root,current,cursor,object;
 #ifdef ENGINE_M14
  uint64_t app_generation1410;
- unsigned compat_x86;
+ unsigned compat_x86,compat_error;
  unsigned install_authority147,exe_context148,image_pin148,exe_child_error148;
  char app_id1410[39];
  char named_owner1410[256];
@@ -344,13 +344,15 @@ static unsigned prepare_space_tables1410(void){
 }
 #ifdef ENGINE_M14
 #include "pe32_1410.inc"
+#include "pe32_apis1410.inc"
 #endif
-static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request,const private_space142*parent){
+static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request,const private_space142*parent,unsigned compat_x86){
  if(parent){root=parent->input.product_root;user=parent->input.user_root;}
  if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
  active_space142=slot;if(allocate_space142(slot))goto failure;spaces142[slot]->object=object;memset(&info8,0,sizeof(info8));info8.peak_pages=metadata_pages142[slot];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
  copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;info8.job_id147=input8.process_id;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
 #ifdef ENGINE_M14
+ spaces142[slot]->compat_x86=compat_x86;
  spaces142[slot]->install_authority147=parent?parent->install_authority147:(command==W8_INSTALL||command==W8_REMOVE);
  if(!win_product_root147(root))goto failure;
  if(parent){
@@ -361,9 +363,20 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
   memcpy(spaces142[slot]->named_owner1410,parent->named_owner1410,sizeof(parent->named_owner1410));
  }
 #else
- if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
+ if(compat_x86||!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
 #endif
  if(prepare_transition8()||prepare_space_tables1410())goto failure;
+ uint64_t start_ip=0,start_sp=W8_STACK_TOP-8,teb_address=W8_TEB;
+ uint64_t stack_low=W8_STACK_LOW,stack_top=W8_STACK_TOP;
+ unsigned code_selector=0x1b;
+#ifdef ENGINE_M14
+ if(compat_x86){
+  if(!parent||pe32_start1410(source,&start_ip,&start_sp))goto failure;
+  teb_address=PE32_TEB1410;stack_top=PE32_STACK1410;
+  stack_low=PE32_STACK1410-PE32_STACK_BYTES1410;code_selector=0x3b;
+ }else
+#endif
+ {
  elf_header header;if(v6_verify(m6_volume(),"/System/Windows/runtime8.elf")||exact8("/System/Windows/runtime8.elf",0,&header,sizeof(header))||memcmp(header.ident,"\177ELF\2\1\1",7)||header.machine!=62||header.type!=2||header.phnum>8||header.phentsize!=56)goto failure;
  unsigned executable=0;for(unsigned i=0;i<header.phnum;++i){elf_segment s;if(exact8("/System/Windows/runtime8.elf",header.phoff+i*56,&s,sizeof(s)))goto failure;if(s.type!=1||!s.memsz)continue;
   if(s.vaddr<W8_BASE||s.vaddr>=W8_BASE+0x100000||s.memsz>W8_BASE+0x100000-s.vaddr||s.filesz>s.memsz||s.filesz>0x100000||(s.vaddr&4095)||s.flags>6||(s.flags&3)==3)goto failure;
@@ -374,13 +387,16 @@ static unsigned start_space142(unsigned command,const char*source,const char*roo
  if(!executable||map8(W8_MAILBOX,4096,3)||map8(W8_STACK_TOP-16384,16384,3)||map8(W8_TEB,8192,3))goto failure;
  if(user8(W8_MAILBOX,&input8,sizeof(input8),1))goto failure;
  uint64_t self=W8_TEB,stack=W8_STACK_TOP,limit=W8_STACK_LOW,pid=input8.process_id;if(user8(W8_TEB+0x40,&pid,8,1)||user8(W8_TEB+0x30,&self,8,1)||user8(W8_TEB+8,&stack,8,1)||user8(W8_TEB+16,&limit,8,1))goto failure;
- memset(&context8,0,sizeof(context8));context8.cs=0x1b;context8.ss=0x23;context8.rflags=0x202;context8.rip=header.entry;context8.rsp=W8_STACK_TOP-8;entry8=header.entry;
+ start_ip=header.entry;
+ }
+ memset(&context8,0,sizeof(context8));context8.cs=code_selector;context8.ss=0x23;
+ context8.rflags=0x202;context8.rip=start_ip;context8.rsp=start_sp;entry8=start_ip;
  memset(fx8,0,sizeof(fx8));*(uint16_t*)fx8=0x37f;*(uint32_t*)(fx8+24)=0x1f80;cancel8=0;
 
  threads142[0].state=request&&(request->flags&4)?T142_SUSPENDED:T142_READY;threads142[0].generation=++generation142;
- threads142[0].teb=W8_TEB;threads142[0].low=W8_STACK_LOW;threads142[0].top=W8_STACK_TOP;
+ threads142[0].teb=teb_address;threads142[0].low=stack_low;threads142[0].top=stack_top;
  current142=cursor142=0;save_thread142();
- {uint64_t id=thread_token142(0);if(user8(W8_TEB+0x48,&id,8,1))goto failure;}
+ if(!compat_x86){uint64_t id=thread_token142(0);if(user8(W8_TEB+0x48,&id,8,1))goto failure;}
 #ifdef ENGINE_M14
  if(!parent){
   private_space142 *space=spaces142[slot];
@@ -661,15 +677,23 @@ static int64_t dispatch8(trap_frame*f){
  default:(void)d;return -1;
  }return -1;
 }
+#ifdef ENGINE_M14
+#include "pe32_calls1410.inc"
+#endif
 trap_frame *w8_trap(trap_frame*f){
  if(!w8_active)return f;
  if(f->vector==14){uint64_t address;__asm__ volatile("movq %%cr2,%0":"=r"(address));
   if(!(f->error&1)&&user_range8(address,1)&&!commit141(address,(f->error&2)!=0,(f->error&16)!=0))return f;
   if(!(f->error&1)&&address>=threads142[current142].low&&address<threads142[current142].top&&address+65536>=f->rsp&&!map8(address&~UINT64_C(4095),4096,3))return f;
  }
- if(f->vector==128){f->rax=(uint64_t)dispatch8(f);return f;}
+ if(f->vector==128){
+#ifdef ENGINE_M14
+  if(spaces142[active_space142]->compat_x86){f->rax=dispatch_pe321410(f);return f;}
+#endif
+  f->rax=(uint64_t)dispatch8(f);return f;
+ }
  if(f->vector==32){out8(0x20,0x20);if(++quantum8<1)return f;context8=*f;w8_active=0;w8_escape();}
  serial_text("M8_PROCESS_FAULT vector=");serial_hex(f->vector);serial_text(" rip=");serial_hex(f->rip);serial_text(" address=");uint64_t addr;__asm__ volatile("movq %%cr2,%0":"=r"(addr));serial_hex(addr);serial_text("\n");
- uint64_t fault_address;__asm__ volatile("movq %%cr2,%0":"=r"(fault_address));if((f->vector==14||f->vector==6||f->vector==0)&&enter_exception142(f,fault_address))return f;
+ uint64_t fault_address;__asm__ volatile("movq %%cr2,%0":"=r"(fault_address));if(f->cs!=0x3b&&(f->vector==14||f->vector==6||f->vector==0)&&enter_exception142(f,fault_address))return f;
  copy8(info8.message,"The Windows process stopped after an unsupported operation or memory fault.",sizeof(info8.message));info8.state=3;info8.status=f->vector==14?0xc0000005u:f->vector==6?0xc000001du:f->vector==0?0xc0000094u:0xc0000001u;w8_active=0;w8_escape();
 }
