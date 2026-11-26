@@ -269,14 +269,18 @@ static void init_named_owner1410(char *out,const char *root,const char *user){
  for(unsigned i=0;i<32;++i){out[i*2]=hex[digest[i]>>4];out[i*2+1]=hex[digest[i]&15];}
 }
 #endif
-static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request){
+static unsigned start_space142(unsigned command,const char*source,const char*root,const char*user,const char*arguments,unsigned slot,unsigned object,const w8_process_request*request,const private_space142*parent){
+ if(parent){root=parent->input.product_root;user=parent->input.user_root;}
  if(slot>=SPACES142||spaces142[slot]||generation142>=0x3fffffu||command<1||command>W8_INSPECT||!source||!user||length8(source)>255||length8(user)>223||!prefix8(user,"/Users"))return V6_INVALID;
  active_space142=slot;if(allocate_space142(slot))goto failure;spaces142[slot]->object=object;memset(&info8,0,sizeof(info8));info8.peak_pages=metadata_pages142[slot];created_root8=0;memset(&input8,0,sizeof(input8));info8.state=1;info8.command=command;input8.magic=W8_MAGIC;input8.command=command;
  copy8(input8.source,source,256);copy8(input8.user_root,user,256);if(root)copy8(input8.product_root,root,256);if(arguments)copy8(input8.arguments,arguments,sizeof(input8.arguments));copy8(input8.windows_root,"C:\\Program Files\\7-Zip",256);input8.process_id=process_objects142[object].pid;info8.job_id147=input8.process_id;if(request){copy8(input8.startup_command,request->command,1200);copy8(input8.startup_directory,request->directory,256);input8.startup_flags=request->flags;}
 #ifdef ENGINE_M14
  spaces142[slot]->install_authority147=command==W8_INSTALL||command==W8_REMOVE;
  if(!win_product_root147(root))goto failure;
- init_named_owner1410(spaces142[slot]->named_owner1410,root,user);
+ if(parent){
+  /* The caller's kernel space supplies both the path grant and object owner. */
+  memcpy(spaces142[slot]->named_owner1410,parent->named_owner1410,sizeof(parent->named_owner1410));
+ }else init_named_owner1410(spaces142[slot]->named_owner1410,root,user);
 #else
  if(!root||!equal8(root,"/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}"))goto failure;
 #endif

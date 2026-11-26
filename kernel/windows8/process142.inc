@@ -16,7 +16,7 @@ static int64_t close_process_handle142(uint64_t handle){int slot=process_handle_
 #ifdef ENGINE_M14
 static int64_t open_process148(unsigned pid,unsigned access,unsigned inherit){
  if(!pid)return -87;if(inherit||access&~0x101400u)return -50;
- for(unsigned i=0;i<SPACES142;++i){private_space142*p=spaces142[i];if(!p)continue;process_object142*o=process_objects142+p->object;if(o->pid!=pid||!o->live)continue;if(!equal8(p->input.user_root,input8.user_root))return -5;
+ for(unsigned i=0;i<SPACES142;++i){private_space142*p=spaces142[i];if(!p)continue;process_object142*o=process_objects142+p->object;if(o->pid!=pid||!o->live)continue;if(!equal8(p->named_owner1410,spaces142[active_space142]->named_owner1410))return -5;
   uint64_t handle=new_process_handle142(p->object,1);if(!handle)return -8;int slot=process_handle_slot142(handle);spaces142[active_space142]->handles[slot].access=access;return (int64_t)handle;
  }return -87;
 }
@@ -103,8 +103,7 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
 #endif
  unsigned caller=active_space142,target=1,free_handles=0;while(target<SPACES142&&spaces142[target])++target;for(unsigned i=0;i<32;++i)if(!spaces142[caller]->handles[i].live)++free_handles;if(target==SPACES142||free_handles<2)return -8;
  int object=new_process_object142();if(object<0)return -8;
- const w8_mailbox*parent=&spaces142[caller]->input;
- unsigned status=start_space142(W8_RUN,request.source,parent->product_root,parent->user_root,"",target,(unsigned)object,&request);active_space142=caller;
+ unsigned status=start_space142(W8_RUN,request.source,0,0,"",target,(unsigned)object,&request,spaces142[caller]);active_space142=caller;
  if(status){drop_process_object142((unsigned)object);return -8;}
  process_objects142[object].parent_pid=spaces142[caller]->input.process_id;
 #ifdef ENGINE_M14
@@ -127,7 +126,7 @@ unsigned w8_start(unsigned command,const char*source,const char*root,const char*
  v6_set_guard148(exe_volume_guard148);
 #endif
  if(w8_pending())return V6_INVALID;active_space142=0;root_terminal142=root_waiting142=0;root_end_message142[0]=0;space_cursor142=0;memset(root_info142,0,sizeof(*root_info142));int object=new_process_object142();if(object<0)return V6_INVALID;
- unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0);active_space142=0;if(status)drop_process_object142((unsigned)object);
+ unsigned status=start_space142(command,source,root,user,arguments,0,(unsigned)object,0,0);active_space142=0;if(status)drop_process_object142((unsigned)object);
 #ifdef ENGINE_M14
  if(!status&&command==W8_REMOVE&&equal8(root,EXE148_ROOT)){status=exe_admit148(command,0);if(status)w8_cancel();}
 #endif
