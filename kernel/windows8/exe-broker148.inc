@@ -42,16 +42,6 @@ static unsigned exe_shared_capture148(exe_record148*r){registry_machine147=0;reg
  for(unsigned i=0;i<2;++i){char path[256],dir[256];exe_shared_path148(i,v,path);registry_directory143(v->key,dir);path_append143(dir,"/$key",256);r->shared[i].key_present=find8(dir)!=0;unsigned error=registry_load_value143(path,v);if(error==2)continue;if(error)return error;if(v->bytes>512)return 234;r->shared[i].present=1;r->shared[i].type=v->type;r->shared[i].bytes=v->bytes;memcpy(r->shared[i].data,v->data,v->bytes);}
  return 0;
 }
-static unsigned exe_shared_restore148(exe_record148*r){registry_machine147=0;registry_value_record143*v=(void*)io8;
- for(unsigned i=0;i<2;++i){char path[256];exe_shared_path148(i,v,path);unsigned error=registry_load_value143(path,v);if(error!=2&&error)return error;
-  /* Do not overwrite a newer user's value. Restore only the value installed by
-   * this profile or an absent value removed by the original uninstaller. */
-  static const uint16_t mime[]={ 'a','p','p','l','i','c','a','t','i','o','n','/','p','d','f',0 },ext[]={'.','p','d','f',0};const void*expected=i?(const void*)ext:(const void*)mime;unsigned bytes=i?sizeof(ext):sizeof(mime);
-  if(!error&&(v->type!=1||v->bytes!=bytes||memcmp(v->data,expected,bytes)))continue;
-  if(r->shared[i].present){if(r->shared[i].bytes>512)return 13;error=registry_ensure_key143(exe_shared_key148(i),exe_shared_key148(i),(void*)io8);if(error)return error;exe_shared_path148(i,v,path);v->type=r->shared[i].type;v->bytes=r->shared[i].bytes;memcpy(v->data,r->shared[i].data,v->bytes);if(v6_put(m6_volume(),path,offsetof(registry_value_record143,data)+v->bytes,memory_source8,v))return 1117;}
-  else if(!error&&v6_remove(m6_volume(),path))return 1117;
- }return 0;
-}
 static unsigned exe_admit148(unsigned command,const uint8_t*digest){
  if(active_space142||!equal8(input8.product_root,EXE148_ROOT)||(command!=W8_INSTALL&&command!=W8_REMOVE))return 87;
  uint64_t page=exe_page148();if(!page)return 8;exe_record148*r=(void*)(uintptr_t)page;unsigned error=exe_record_load148(input8.user_root,r);
@@ -75,7 +65,7 @@ static int64_t exe_syscall148(trap_frame*frame,uint64_t op,uint64_t b,uint64_t c
   if(find8(r->temporary)){error=80;goto done;}error=exe_record_save148(r);if(!error)error=protected_prepare143(r->temporary);
  }else if(op==2||op==3){error=exe_record_load148(input8.user_root,r);if(error||r->nonce!=input8.reserved147){error=13;goto done;}if(spaces142[0]->exe_child_error148){error=spaces142[0]->exe_child_error148;goto done;}
   if(op==2){if(r->state!=EXE148_INSTALLING){error=5;goto done;}error=exe_payloads_check148();for(unsigned i=0;!error&&i<2;++i){char path[256];exe_leaf148(i,path);error=exe_link_check148(path);}if(!error&&find8(r->temporary)&&v6_remove_tree11(m6_volume(),r->temporary))error=1117;if(!error){r->state=EXE148_INSTALLED;error=exe_record_save148(r);}}
-  else{if(r->state!=EXE148_REMOVING||find8(EXE148_ROOT)){error=5;goto done;}for(unsigned i=0;i<2;++i){char path[256];exe_leaf148(i,path);if(find8(path)){error=5;goto done;}}error=exe_shared_restore148(r);if(!error&&find8(r->temporary)&&v6_remove_tree11(m6_volume(),r->temporary))error=1117;if(!error){r->state=EXE148_REMOVED;error=exe_record_save148(r);}}
+  else{if(r->state!=EXE148_REMOVING||find8(EXE148_ROOT)){error=5;goto done;}for(unsigned i=0;i<2;++i){char path[256];exe_leaf148(i,path);if(find8(path)){error=5;goto done;}}if(find8(r->temporary)&&v6_remove_tree11(m6_volume(),r->temporary))error=1117;if(!error){r->state=EXE148_REMOVED;error=exe_record_save148(r);}}
  }else error=87;
  done:exe_free148(page);return -(int64_t)error;
 }

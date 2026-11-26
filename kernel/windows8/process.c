@@ -422,6 +422,7 @@ static void registry_bundle_removed1410(const char *path){
  }
 }
 #include "exe-broker148.inc"
+#include "migration1410.inc"
 #endif
 static void free_owned8(uint64_t page){for(unsigned i=0;i<count8;++i)if(owned8[i]==page){owned8[i]=owned8[--count8];page_free(page);return;}}
 #include "exception142.inc"

@@ -128,8 +128,17 @@ static int64_t create_process142(uint64_t request_address,uint64_t result_addres
  result.process_id=process_objects142[object].pid;result.thread_id=process_objects142[object].primary_id;
  if(user8(result_address,&result,sizeof(result),1))return -87;return 0;
 }
+#ifdef ENGINE_M14
+static unsigned migrate_registry1410(const char*,const char*);
+#endif
 unsigned w8_start(unsigned command,const char*source,const char*root,const char*user,const char*arguments){
 #ifdef ENGINE_M14
+ if(w8_pending())return V6_BUSY;
+ if(!win_product_root147(root)||!user||!prefix8(user,"/Users"))return V6_INVALID;
+ if(command==W8_RUN||command==W8_REMOVE||command==W8_INSTALL){
+  unsigned migration=migrate_registry1410(root,user);
+  if(migration)return migration;
+ }
  v6_set_guard148(exe_volume_guard148);
 #endif
  if(w8_pending())return V6_INVALID;active_space142=0;root_terminal142=root_waiting142=0;root_end_message142[0]=0;space_cursor142=0;memset(root_info142,0,sizeof(*root_info142));int object=new_process_object142();if(object<0)return V6_INVALID;
