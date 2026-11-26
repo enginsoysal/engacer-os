@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "build_id": "608fb0b88145d5f243a93aec945fd1f0",
+  "source_commit": "7f5309d984fa4e637960e68035c6cf7f70465bae",
+  "owned_fixture": "57079aa742c4498aa2aa0a08ee699658",
+  "markers": [
+    "A",
+    "B",
+    "A",
+    "B"
+  ],
+  "backing": {
+    "A": {
+      "paths": [
+        "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/System/System32/bundle-test.dll",
+        "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/.Engacer/Temp/0c137590566279cf9aa0d442a1c7fd09/bundle-test.bin",
+        "/Applications/Windows/{23170F69-40C1-2702-2606-000001000000}/.Engacer/Registry/0c137590566279cf9aa0d442a1c7fd09/kc458a0a3b1d88fc6f0952af1e0105944/ved5b8120601641c516d02ed9dc643a59"
+      ],
+      "first_blocks": [
+        13893,
+        4302,
+        4300
+      ],
+      "dll_sha256": "95152adc35e9cbd6c2adc12f69ed4496e78bd22f29ce8813a012db2b97fc9d58"
+    },
+    "B": {
+      "paths": [
+        "/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}/System/System32/bundle-test.dll",
+        "/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}/.Engacer/Temp/0c137590566279cf9aa0d442a1c7fd09/bundle-test.bin",
+        "/Applications/Windows/{A23B657D-838B-4C9B-8F9D-386E50C1A76B}/.Engacer/Registry/0c137590566279cf9aa0d442a1c7fd09/kc458a0a3b1d88fc6f0952af1e0105944/ved5b8120601641c516d02ed9dc643a59"
+      ],
+      "first_blocks": [
+        4298,
+        4306,
+        4304
+      ],
+      "dll_sha256": "0c14e1e09351cf1ba903a6e099e461b97d56381a015a2148a06e0b67d2bf485e"
+    }
+  }
+}
