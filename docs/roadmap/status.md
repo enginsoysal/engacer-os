@@ -1,10 +1,14 @@
 # Current status
 
-**Current native qualification: M14.8.** M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained.
+**Current native release: [M14.10 / 0.14.10](https://github.com/enginsoysal/engacer-os/releases/tag/m1410-v0.14.10).** Native app bundles have private DLLs, registry and temporary storage, with generation-checked ownership and tested i386 helpers. The two-app test verifies a migrated bundle after its neighbor is updated, repaired and removed. The same ISO was installed and cold-started in QEMU and VMware.
+
+## Historical M14.8 qualification
+
+ M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained.
 
 Build fdb650a0e4cff632bd4945cc1b024567, compiled source bd12730bf19eee5a4ab496d798a7c0435728fed0, 825 exact inputs. [Acceptance](../../evidence/M14/8/acceptance-results.json), [resources](../../evidence/M14/8/resources.json), [stage](../milestones/m14-8.md), [install](../handbook/install-m148.md).
 
-Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contract and reference work is complete. M14.10 is in progress. M14.11-M14.16 remain planned.
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contract and reference work is complete. M14.11-M14.16 remain planned.
 
 All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication. See [combined platform findings](../maintenance/brixcanvas-feedback-m14.txt).
 

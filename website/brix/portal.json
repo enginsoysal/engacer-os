@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "currentRelease": "M14.8",
+  "currentRelease": "M14.10",
   "designProgram": "M13.0",
   "archiveSlug": "documentation-archive",
   "sections": [
@@ -33,7 +33,7 @@
           "Download the tested ISO or prepared VMware package"
         ],
         [
-          "docs/handbook/install-m148.md",
+          "docs/handbook/install-m1410.md",
           "Install and restart in VMware"
         ],
         [
@@ -41,7 +41,7 @@
           "Understand setup, disk review and the first-start guide"
         ],
         [
-          "docs/releases/m148-v0.14.8.md",
+          "docs/releases/m1410-v0.14.10.md",
           "Check tested configurations and known limits"
         ]
       ]
@@ -142,8 +142,8 @@
           "Planned Win16 and MS-DOS support"
         ],
         [
-          "docs/milestones/m14-8.md",
-          "Read M14.8 native qualification and actual release limits"
+          "docs/milestones/m14-10.md",
+          "Read M14.10 native qualification and release limits"
         ],
         [
           "docs/milestones/m14.md",
@@ -220,9 +220,9 @@
       ]
     }
   ],
-  "developmentProgram": "M14.8",
-  "currentSummary": "M14.8 qualifies the original SumatraPDF x64 EXE install/remove/reinstall chain and retains prior 7-Zip/Notepad++ MSI scope. The PDF reader, arbitrary installers and broad Windows compatibility remain unqualified. The approved M14.9-M14.16 plan introduces independent app directories, private registries and separate dependency copies, with automatic assistance, right-click Add dependency and Advanced targeting. These are planned, not implemented. M15 expands standalone x86; M16 Win16/DOS. Final integrated optimization is M14.16. Native homepage Save remains separately blocked; articles and downloads are maintained from GitHub. Browser choices download the original Firefox installer; Firefox installation and execution are not supported yet. Original software runs in private Windows processes without an embedded Windows guest.",
-  "currentImageAlt": "Historical Engacer OS M14.7 original Notepad++ MSI review. Current native release is M14.8; independent app environments remain planned.",
+  "developmentProgram": "M14.10",
+  "currentSummary": "M14.10 qualifies private Windows app bundles, durable installation ownership, MSI maintenance and selected native i386 helpers. The native two-app test preserves the migrated neighboring bundle through update, repair, removal and cold restarts. The exact ISO was installed and cold-started in QEMU and VMware. Qualified bundles use private registries and separate dependency copies in private Windows processes without an embedded Windows guest. The browser can download the original Firefox installer. Firefox installation and execution are not supported yet. The M14.9-M14.16 plan continues with private runtimes and services. Final integrated optimization is M14.16. Standalone Windows x86 support remains planned for M15.",
+  "currentImageAlt": "Historical Engacer OS M14.7 original Notepad++ MSI review. The current native release is M14.10.",
   "reportedPlatformLimit": "BrixCanvas currently omits the saved same-page search and article navigation. Browse the task guides and archive; this reported platform limitation does not block OS milestones.",
   "plannedProgram": "M14.9-M14.16"
 }
