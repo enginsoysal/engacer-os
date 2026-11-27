@@ -6,11 +6,13 @@
   "native_source_media_passed": true,
   "github_release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1410-v0.14.10",
   "github_assets_verified": 25,
-  "website_sync_run": "https://github.com/enginsoysal/engacer-os/actions/runs/45961553679",
-  "website_source_commit": "712bdf277824d6ebc67e475d07f94690efd6bb21",
+  "website_sync_run": "https://github.com/enginsoysal/engacer-os/actions/runs/45963732664",
+  "website_source_commit": "995d31f49b25f439d9cdab06bdd49b08536366dc",
   "public_downloads_passed": true,
   "public_milestone_passed": true,
   "homepage_save_passed": false,
   "homepage_save_error": "The website could not be read. Keep this window open.",
-  "public_homepage_release_label": "M14.7"
+  "public_homepage_release_label": "M14.7",
+  "public_downloads_stage_copy_verified": true,
+  "homepage_save_reproduced_in_fresh_session": true
 }
