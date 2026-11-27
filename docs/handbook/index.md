@@ -3,16 +3,16 @@
 
 ## Start here
 
-**Current native release: [M14.8](https://github.com/enginsoysal/engacer-os/releases/tag/m148-v0.14.8).** M14.8 native/source/media qualification passes: 105 native and 41 supporting host groups across 147 campaign tasks, including actual VMware installation and two independent starts. Original SumatraPDF 3.6.1 x64 EXE GUI installation, cold removal and cold reinstall pass. Both installation cycles verify four original payloads and two actual shortcuts. The PDF reader itself remains unqualified. Previous 7-Zip and Notepad++ MSI scopes are retained. Follow matching media and guides.
+**Current native release: [M14.10](https://github.com/enginsoysal/engacer-os/releases/tag/m1410-v0.14.10).** Use the matching QEMU and VMware tested media. The qualified Windows app bundles use private DLLs, registry and temporary storage. The native test suite covers i386 helpers and a two-app MSI update, repair and removal with migrated settings.
 
-- [Download, verify and install](install-m148.md)
+- [Download, verify and install](install-m1410.md)
 - [Original MSI and EXE installer walkthrough](windows-m148.md)
 - [First day](first-day-m148.md)
 - [Current supported behavior and limits](../roadmap/status.md)
-- [Release scope and checksums](../releases/m148-v0.14.8.md)
+- [Release scope and checksums](../releases/m1410-v0.14.10.md)
 - [Build your distribution](distributions.md)
 
-Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9-M14.16 remain planned, not started; final integrated optimization is M14.16.
+Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. Private runtimes, services and broader compatibility are in the M14.11-M14.16 roadmap. Integrated optimization is M14.16.
 
 ## Use the desktop
 
