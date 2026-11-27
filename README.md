@@ -15,7 +15,7 @@ An independent, MIT-licensed OS with its own loaders, kernel and desktop. Clear 
 
 Arbitrary EXE/MSI installers, the PDF reader, Notepad++ editor, full graphical archive tasks and Firefox execution remain unqualified. The fixtures are not the full product scope. M14.9 contracts and reference lab are complete. M14.11-M14.16 remain planned.
 
-All twenty GitHub release assets were independently downloaded and verified, including ZIP CRC and the embedded ISO. Native homepage Save remains blocked by the reproduced BrixCanvas website-read error; articles synchronize from GitHub. Complete public content checks are recorded separately; a stale homepage is not counted as successful publication.
+All 25 M14.10 GitHub assets passed independent download and SHA-256 verification. The public downloads and release documentation show M14.10. The BrixCanvas homepage still displays M14.7 after the editor returned a website-read error. [Publication readback](evidence/M14/10/publication-results.json).
 
 
 **Approved planning update (23 November 2026):** future Windows apps receive

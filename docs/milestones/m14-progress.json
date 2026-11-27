@@ -145,6 +145,10 @@
       "deliver": "Implement native owner context, private loader/files/registry/object views and required x86 helpers for x64 products.",
       "status": "in_progress",
       "document": "docs/milestones/m14-10.md",
+      "evidence": "evidence/M14/10",
+      "qualification": "M14-STAGE10-VM-v1",
+      "release": "https://github.com/enginsoysal/engacer-os/releases/tag/m1410-v0.14.10",
+      "publication_evidence": "evidence/M14/10/publication-results.json",
       "how_and_why": "Enforce ownership at kernel/handle boundaries and preserve real Windows-visible semantics, errors and lifetime.",
       "acceptance": "Native A/B private-copy/backing tests, inherited context, cross-owner rejection, delayed loading, mixed-architecture execution and cleanup pass.",
       "implementation_steps": [
