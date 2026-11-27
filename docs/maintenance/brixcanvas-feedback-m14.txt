@@ -152,3 +152,12 @@ existing website successfully, but one ordinary roadmap-text edit followed by
 Done and the top-level Save reproduces the same website-read error. The old-tab
 debugger attachment problem was resolved by opening the new tab and is separate
 from the reproduced server Save failure. No homepage publication is claimed.
+
+M14.10, 27 November 2026. The native editor opened the public Engacer OS
+homepage after the article synchronization was complete. Existing text,
+download button label and qualification copy were edited through the normal
+controls. The top-level Save returned "The website could not be read. Keep
+this window open." The public homepage continued to show M14.7. The downloads
+and M14.10 milestone pages served the current GitHub release after publishing;
+the existing homepage Download button still opens the current downloads page.
+See evidence/M14/10/publication-results.json for the readback.
