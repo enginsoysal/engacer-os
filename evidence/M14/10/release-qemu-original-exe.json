@@ -1,0 +1,223 @@
+{
+  "passed": true,
+  "scope": "Ordinary unchanged x64 EXE GUI install, cold removal and reinstall on production media.",
+  "build_id": "bae8fd2c36b99b9aa0f9934dbd833bb1",
+  "compiled_source": "bb2af22550c656cb79f35a18e42ce3b2ae62c558",
+  "observer_sha256": "20f5ecf3c7ecc658b7590cab7fbf5724fe14eb5b154219a1894acc457bb2d555",
+  "clone": {
+    "source_sha256": "e0e6545476a78324d0b0ea4db4be6794d4734de7d5e7173833d885402690b527",
+    "clone_sha256": "e0e6545476a78324d0b0ea4db4be6794d4734de7d5e7173833d885402690b527",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 0
+  },
+  "owned_fixture": "79d5bb324b444a07b133dc05079f8a78",
+  "cycles": [
+    {
+      "cycle": 0,
+      "removing": false,
+      "observed_original_seconds": 325.703,
+      "retained_pages": 1,
+      "volume_entries": 861,
+      "resident_pages_before": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 0,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "resident_pages_after": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 1,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "state": {
+        "state": 2,
+        "status": 0,
+        "peak_native_managed_pages": 7596,
+        "scheduled_quanta": 1506,
+        "message": "Original installation verified. The PDF reader itself is not qualified in this release."
+      },
+      "cold_payload_readback": [
+        {
+          "name": "libmupdf.dll",
+          "bytes": 16625528,
+          "sha256": "a1290f350cc6c5de0c44d64be2f8e193f927c368224cb6b0738f9b843110c08c",
+          "crc32": 197125815
+        },
+        {
+          "name": "PdfFilter.dll",
+          "bytes": 342904,
+          "sha256": "f4de564a26049dd93c0cbb33a40273bccfacf29b266f57dbe7673c4b1f363e8f",
+          "crc32": 1167518459
+        },
+        {
+          "name": "PdfPreview.dll",
+          "bytes": 746360,
+          "sha256": "7f4ee56e1d36d2dc53dc684841316a163c9d91c8e0b544baf6992b4596c26e92",
+          "crc32": 1534824848
+        },
+        {
+          "name": "SumatraPDF.exe",
+          "bytes": 11075960,
+          "sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+          "crc32": 2042335303
+        }
+      ],
+      "windows_original_shortcut_readback": [
+        {
+          "path": "/Users/Owner/Desktop/SumatraPDF.lnk",
+          "sha256": "2cc76e28e072c429e2786faefdeed0b721d96360bce92a89daa2e16a173e7923",
+          "metadata": {
+            "target": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+            "description": "",
+            "working_directory": "C:\\Program Files\\SumatraPDF",
+            "arguments": "",
+            "show": 1
+          }
+        },
+        {
+          "path": "/Users/Owner/AppData/Roaming/Microsoft/Windows/Start Menu/SumatraPDF.lnk",
+          "sha256": "2cc76e28e072c429e2786faefdeed0b721d96360bce92a89daa2e16a173e7923",
+          "metadata": {
+            "target": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+            "description": "",
+            "working_directory": "C:\\Program Files\\SumatraPDF",
+            "arguments": "",
+            "show": 1
+          }
+        }
+      ],
+      "original_output_sha256": "dbfa666896f0b2151f44185f0c70a3c18571afb336f910aea9f7b102114f767f"
+    },
+    {
+      "cycle": 1,
+      "removing": true,
+      "observed_original_seconds": 397.203,
+      "retained_pages": 5,
+      "volume_entries": 110,
+      "resident_pages_before": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 0,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "resident_pages_after": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 1,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "state": {
+        "state": 2,
+        "status": 0,
+        "peak_native_managed_pages": 3545,
+        "scheduled_quanta": 782,
+        "message": "Original removal verified. Your other files were preserved."
+      },
+      "original_output_sha256": "7886aefb2df0aaa3af3829daed9b5bd3f7172fb1665f15a5cadcd4dee9446988"
+    },
+    {
+      "cycle": 2,
+      "removing": false,
+      "observed_original_seconds": 322.391,
+      "retained_pages": 1,
+      "volume_entries": 863,
+      "resident_pages_before": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 0,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "resident_pages_after": {
+        "sync_resident142": 0,
+        "file_resident143": 0,
+        "registry_resident143": 0,
+        "ui_resident144": 1,
+        "clipboard_resident144": 0,
+        "mapping_resident146": 0,
+        "pipe_resident147": 0,
+        "exe_resident148": 0
+      },
+      "state": {
+        "state": 2,
+        "status": 0,
+        "peak_native_managed_pages": 7596,
+        "scheduled_quanta": 1303,
+        "message": "Original installation verified. The PDF reader itself is not qualified in this release."
+      },
+      "cold_payload_readback": [
+        {
+          "name": "libmupdf.dll",
+          "bytes": 16625528,
+          "sha256": "a1290f350cc6c5de0c44d64be2f8e193f927c368224cb6b0738f9b843110c08c",
+          "crc32": 197125815
+        },
+        {
+          "name": "PdfFilter.dll",
+          "bytes": 342904,
+          "sha256": "f4de564a26049dd93c0cbb33a40273bccfacf29b266f57dbe7673c4b1f363e8f",
+          "crc32": 1167518459
+        },
+        {
+          "name": "PdfPreview.dll",
+          "bytes": 746360,
+          "sha256": "7f4ee56e1d36d2dc53dc684841316a163c9d91c8e0b544baf6992b4596c26e92",
+          "crc32": 1534824848
+        },
+        {
+          "name": "SumatraPDF.exe",
+          "bytes": 11075960,
+          "sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+          "crc32": 2042335303
+        }
+      ],
+      "windows_original_shortcut_readback": [
+        {
+          "path": "/Users/Owner/Desktop/SumatraPDF.lnk",
+          "sha256": "2cc76e28e072c429e2786faefdeed0b721d96360bce92a89daa2e16a173e7923",
+          "metadata": {
+            "target": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+            "description": "",
+            "working_directory": "C:\\Program Files\\SumatraPDF",
+            "arguments": "",
+            "show": 1
+          }
+        },
+        {
+          "path": "/Users/Owner/AppData/Roaming/Microsoft/Windows/Start Menu/SumatraPDF.lnk",
+          "sha256": "2cc76e28e072c429e2786faefdeed0b721d96360bce92a89daa2e16a173e7923",
+          "metadata": {
+            "target": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+            "description": "",
+            "working_directory": "C:\\Program Files\\SumatraPDF",
+            "arguments": "",
+            "show": 1
+          }
+        }
+      ],
+      "original_output_sha256": "dbfa666896f0b2151f44185f0c70a3c18571afb336f910aea9f7b102114f767f"
+    }
+  ],
+  "full_production_media": true,
+  "development_worker_sha256": null
+}
