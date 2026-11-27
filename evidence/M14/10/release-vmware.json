@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "stage": "M14.10",
+  "build_id": "bae8fd2c36b99b9aa0f9934dbd833bb1",
+  "iso_sha256": "a40df44b31d6dd36c88d3cca3bcbadbbdb72b74aba9a5a3157b4340ca9dc7dbe",
+  "starter_sha256": "9abfae82746a340b8c3c12bdc93cdad386f8797fd41f950bf6beb3bdd7ba9247",
+  "checks": [
+    "Actual RFB mouse opens Screensaver settings, shows native preview and returns without operating the underlying Preview control",
+    "Exact blank-disk VMware ZIP installs through eight setup steps and restarts with ISO retained into the actual installed desktop, with all shipped devices enabled and DHCP",
+    "Guest mouse and keyboard exercise maximize/restore, Start search and shared native Settings controls without host desktop input",
+    "Two independent boots retain the same disk, VMware configuration and firmware variables with only the ISO disconnected; no forced boot order"
+  ],
+  "observation_port_policy": {
+    "outbound_start": 49152,
+    "outbound_count": 16384,
+    "listener_outside_outbound_range": true,
+    "loopback_only": true
+  },
+  "visible_preview_wake_observations": [
+    {
+      "phase": "preview",
+      "black_fraction": 0.9929211934407552
+    },
+    {
+      "phase": "wake",
+      "body_restored": true,
+      "unchanged_settings_fraction": 0.9874692874692874
+    }
+  ],
+  "original_window": {
+    "passed": true,
+    "scope": "Original supported MSI installation and original file-manager window launch/move/normal close in exact enabled-device VMware starter; not complete GUI app tasks",
+    "expected_original_sha256": "a12710799d5cb9b3076b86dd0f92d4a503b7062bc3efac62b7f4cb8a74e05931",
+    "original_identity_basis": "Pinned bundled MSI verification; full installed payload SHA-256 independently checked in native QEMU profiles",
+    "input": "Authenticated loopback RFB of this new owned headless guest"
+  },
+  "inventory_cleanup_observations": [
+    {
+      "count": 0,
+      "owned_test_still_listed": false,
+      "matches_before": true
+    }
+  ],
+  "before_inventory_sha256": [],
+  "after_inventory_sha256": [],
+  "existing_vm_inventory_unchanged": true
+}

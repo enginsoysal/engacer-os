@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "stage": "M14.10",
+  "qualification": "M14-STAGE10-VM-v1",
+  "build_id": "bae8fd2c36b99b9aa0f9934dbd833bb1",
+  "compiled_source": "bb2af22550c656cb79f35a18e42ce3b2ae62c558",
+  "iso_sha256": "a40df44b31d6dd36c88d3cca3bcbadbbdb72b74aba9a5a3157b4340ca9dc7dbe",
+  "vmware_zip_sha256": "9abfae82746a340b8c3c12bdc93cdad386f8797fd41f950bf6beb3bdd7ba9247",
+  "reports": [
+    "release-qemu-boot.json",
+    "release-qemu-lifecycle.json",
+    "release-qemu-i386.json",
+    "release-vmware.json"
+  ]
+}

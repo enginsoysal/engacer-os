@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "build_id": "bae8fd2c36b99b9aa0f9934dbd833bb1",
+  "source_commit": "bb2af22550c656cb79f35a18e42ce3b2ae62c558",
+  "owned_fixture": "a114ff693d344e3885135ea41d7bf295",
+  "clone": {
+    "source_sha256": "7ee67bb56c57d6361fc8e290a30cf6d08c5c59fc1650c861dca58eb97f1f85d2",
+    "clone_sha256": "7ee67bb56c57d6361fc8e290a30cf6d08c5c59fc1650c861dca58eb97f1f85d2",
+    "logical_bytes": 2147483648,
+    "allocated_bytes": 70254592
+  },
+  "runs": [
+    "migrated-baseline",
+    "update-a",
+    "update-cold",
+    "repair-a",
+    "repair-cold-remove-a",
+    "remove-cold"
+  ],
+  "update_sha256": "35c2c51a71afd2272423790853449c69701e10f62ded0cb0c025d040dec64d83",
+  "expected_updated_exe_sha256": "d5def759b1ed9651999208aac59a9e6fa86bde986e086d5780ed3530bb3a5bb5",
+  "observer_sha256": "d4e56dc1207e78d962b6d649288bf441777879bf483bf688238c1e94bc6bc2cb",
+  "resumed_installed_fixture": "2a4f452b24494e93bb6171292d2ba4c9",
+  "migrated_values": 9,
+  "neighbor_sha256": "6a1e89c053085ab8f1e2bc3fff5c08b4163f2a46d57ed7c6859f3507467278a3",
+  "neighbor_files": 241,
+  "observer_sha256_basis": "Committed lifecycle observer. The interrupted run resumed by cloning the stopped same-build installation and continuing at fixture preparation.",
+  "install_serial_sha256": "54d605adbda38d91f96b805fe2211ee2bcb31817ab508d51b83ded9ab0067c0b"
+}

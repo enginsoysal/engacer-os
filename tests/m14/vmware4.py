@@ -1,4 +1,4 @@
-"""Exact archived M14.4 starter: headless VMware, guest input and independent boots."""
+"""Exact archived M14 starter: headless VMware, guest input and independent boots."""
 import argparse
 import hashlib
 import importlib.util
@@ -59,7 +59,7 @@ def original_window_tasks(g,out):
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage',type=int,required=True);parser.add_argument('--inspect-input',action='store_true');args=parser.parse_args();stage=args.stage
-    assert stage==4
+    assert stage in (4, 10)
     image=f'EngacerOS-M14STAGE{stage}';archive=ROOT/'dist'/(image+'-VMware.zip')
     meta=json.loads((ROOT/f'dist/m14stage{stage}-build-manifest.json').read_text(encoding='utf-8'))
     work=ROOT/f'build/m14-native/stage{stage}/vmware'/uuid.uuid4().hex;work.mkdir(parents=True)
@@ -119,7 +119,7 @@ def main():
                         # never guest writes or a user VM, to explain this new Preview failure.
                         result=v.old.v.run('suspend',g.vmx,'hard');assert result.returncode==0,'Owned diagnostic suspend failed';g.owned=False
                         memories=list(g.folder.glob('*.vmem'));assert len(memories)==1
-                        mapping=(ROOT/'dist/EngacerOS-M14STAGE4-installed-kernel.map').read_text(encoding='utf-8')
+                        mapping=(ROOT/f'dist/EngacerOS-M14STAGE{stage}-installed-kernel.map').read_text(encoding='utf-8')
                         values={}
                         with memories[0].open('rb') as ram:
                             for name in ['saver_saved21','saver_phase21','activity21','legacy_held21','usb_held21','pointer_held21','legacy_pressed21','pause21','prefix21','control_modifier','shift','usb_modifiers11']:
